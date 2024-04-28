@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  # Servicio de la aplicación Django
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=databaseElTelar
+      - POSTGRES_USER=telar
+      - POSTGRES_PASSWORD=mypassword
+    depends_on:
+      - db
+
+  # Servicio de la base de datos PostgreSQL
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: databaseElTelar
+      POSTGRES_USER: telar
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

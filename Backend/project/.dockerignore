@@ -1,0 +1,22 @@
+# Directorio de archivos estáticos generados por Django
+/staticfiles/
+
+# Directorio de archivos media generados por Django
+/media/
+
+# Archivos y directorios generados por Python y Django
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+
+# Archivos y directorios generados por sistemas de control de versiones
+.git
+.gitignore
+
+# Archivos y directorios específicos de entornos virtuales de Python
+venv/
