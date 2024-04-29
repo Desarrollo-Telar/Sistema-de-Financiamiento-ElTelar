@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.users',
     'apps.clients',
+    'apps.roles',
+    'apps.permissions',
 ]
 
 MIDDLEWARE = [
