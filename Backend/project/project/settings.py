@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.users',
     'apps.clients',
+    'apps.roles',
 ]
 
 MIDDLEWARE = [
@@ -110,8 +111,8 @@ USE_TZ = True
 
 # Configuración de archivos estáticos y medios
 
-#STATIC_URL = '/static/'
-#MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 from minio_storage.storage import MinioMediaStorage, MinioStaticStorage
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
@@ -122,17 +123,17 @@ STATICFILES_DIRS = (
 )
 
 # Configuración de MinIO como almacenamiento de objetos
-MINIO_STORAGE_ENDPOINT = os.environ.get('MINIO_STORAGE_ENDPOINT')
-MINIO_ACCESS_KEY = os.environ.get('MINIO_ACCESS_KEY')
-MINIO_SECRET_KEY = os.environ.get('MINIO_SECRET_KEY')
-MINIO_STORAGE_BUCKET_NAME = 'prueba'
+#MINIO_STORAGE_ENDPOINT = os.environ.get('MINIO_STORAGE_ENDPOINT')
+#MINIO_ACCESS_KEY = os.environ.get('MINIO_ACCESS_KEY')
+#MINIO_SECRET_KEY = os.environ.get('MINIO_SECRET_KEY')
+#MINIO_STORAGE_BUCKET_NAME = 'prueba'
 
-DEFAULT_FILE_STORAGE = 'minio_storage.storage.MinioMediaStorage'
-STATICFILES_STORAGE = 'minio_storage.storage.MinioStaticStorage'
+#DEFAULT_FILE_STORAGE = 'minio_storage.storage.MinioMediaStorage'
+#STATICFILES_STORAGE = 'minio_storage.storage.MinioStaticStorage'
 
 # URLs base para los archivos estáticos y multimedia
-MEDIA_URL = f'{MINIO_STORAGE_ENDPOINT}/{MINIO_STORAGE_BUCKET_NAME}/media/'
-STATIC_URL = f'{MINIO_STORAGE_ENDPOINT}/{MINIO_STORAGE_BUCKET_NAME}/static/'
+#MEDIA_URL = f'{MINIO_STORAGE_ENDPOINT}/{MINIO_STORAGE_BUCKET_NAME}/media/'
+#STATIC_URL = f'{MINIO_STORAGE_ENDPOINT}/{MINIO_STORAGE_BUCKET_NAME}/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
