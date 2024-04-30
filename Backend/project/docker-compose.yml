@@ -13,8 +13,13 @@ services:
       - POSTGRES_NAME=databaseElTelar
       - POSTGRES_USER=telar
       - POSTGRES_PASSWORD=mypassword
+      - MINIO_STORAGE_ENDPOINT=http://minio:9000
+      - MINIO_SERVER_ACCESS_KEY=choc1403
+      - MINIO_SERVER_SECRET_KEY=choc1403
     depends_on:
       - db
+    networks:
+      - app_fin
 
   # Servicio de la base de datos PostgreSQL
   db:
@@ -27,6 +32,27 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_fin
+
+  # Servicio de almacenamientos de objectos
+  minio:
+    image: "bitnami/minio:latest"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=choc1403
+      - MINIO_ROOT_PASSWORD=choc1403
+    networks:
+      - app_fin
+    volumes:
+      - minio_data:/data
 
 volumes:
   postgres_data:
+  minio_data:
+
+networks:
+  app_fin:
+    driver: bridge
