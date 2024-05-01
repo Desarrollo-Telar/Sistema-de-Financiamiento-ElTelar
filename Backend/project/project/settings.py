@@ -105,6 +105,17 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Configuracion para enviar correos electronicos
+# settings.py
+
+# Configuración de correo electrónico
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_PORT = 587  
+EMAIL_HOST_USER = 'develtelar@gmail.com' 
+EMAIL_HOST_PASSWORD = 'DevElTelar30.' 
+EMAIL_USE_TLS = True  
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
