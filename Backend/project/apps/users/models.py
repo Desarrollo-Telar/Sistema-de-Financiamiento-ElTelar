@@ -28,7 +28,7 @@ class User(AbstractUser):
     gender = models.CharField(choices=genders, default='MASCULINO', max_length=50)
     user_code = models.CharField(max_length=25, blank=False, null=False, unique=True)
     nationality = models.CharField(max_length=75, blank=False, null=False, default='Guatemala')
-    profile_pic = models.ImageField(upload_to='users/profile_pics/')
+    profile_pic = models.ImageField(blank=True, null=True,upload_to='users/profile_pics/')
     creation_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
