@@ -8,8 +8,8 @@ class Role(models.Model):
         ('Secretaria', 'Secretaria'),
         ('Programador', 'Programador')
     ]
-    role_name = models.CharField(choices=roles, max_length=75)
-    description = models.TextField()
+    role_name = models.CharField(choices=roles, max_length=75, unique=True)
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.role_name

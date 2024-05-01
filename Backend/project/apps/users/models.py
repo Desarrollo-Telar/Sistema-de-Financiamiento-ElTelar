@@ -23,13 +23,16 @@ class User(AbstractUser):
     type_identification = models.CharField(choices=identification, default='DPI', max_length=50 )
     identification_number = models.CharField(max_length=15, blank=False, null=False, unique=True)
     telephone = models.CharField(max_length=20, blank=True, null=True)
-    
+    email = models.EmailField(unique=True)
     status = models.BooleanField(default=True)
     gender = models.CharField(choices=genders, default='MASCULINO', max_length=50)
     user_code = models.CharField(max_length=25, blank=False, null=False, unique=True)
     nationality = models.CharField(max_length=75, blank=False, null=False, default='Guatemala')
     profile_pic = models.ImageField(blank=True, null=True,upload_to='users/profile_pics/')
     creation_date = models.DateTimeField(auto_now_add=True)
+    
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
 
     def __str__(self):
         if(self.first_name==''):

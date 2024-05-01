@@ -1,0 +1,36 @@
+body{
+    background-color: #eef0f2;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario{
+    display: flex;
+    background-color: white;
+    padding: 7rem;
+    width: 100rem;
+    border-radius: 2rem;
+    
+}
+
+
+.formulario .form-group{
+    margin-top: 1.5rem;
+}
+
+.formulario h3{
+    color: #c52233;
+
+}
+
+.formulario .btn_iniciar{
+    margin-top: 3rem;
+    background-color: #a7333f;
+    color: #fbfbf2;
+    border-color: #a7333f;
+    border-radius: 2rem;
+    border-style: solid;
+}
+

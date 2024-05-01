@@ -9,7 +9,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 urlpatterns = [
-    path('correo_prueba/', views.prueba, name='prueba'),
+    
     path('',login_required(views.index),name='index'),
     path('accounts/login/',views.login_view, name='login'),
     path('logout/',views.logout_view, name='logout'),

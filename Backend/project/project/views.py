@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate
 # Manejo de mensajes
 from django.contrib import messages
 
+
 def prueba(request):
     enviar_correo('Mensaje de prueba', 'Esto solo es una prueba', 'eloicx@gmail.com')
 
@@ -22,8 +23,32 @@ def logout_view(request):
 
 ### --- APARTADO PARA INICIAR SESION --- ###
 def login_view(request):
-    if request.user.is_autenticated:
+    template_name = 'user/login.html'
+    
+    # Verificar que no este autenticado
+    if request.user.is_authenticated:
         return redirect('index')
+    
+    # Registro de credenciales
+    if request.method == 'POST':
+        
+        username = request.POST.get('username')  # diccionario
+        password = request.POST.get('password')  # None
+
+        user = authenticate(username=username, password=password)  # None
+        if user:
+            login(request, user)
+            return redirect('index')
+        else:
+            messages.error(request, 'Credenciales no validos, por favor revise si ingreso correctamente su correo electronico o su contraseña')
+    
+
+    context = {
+        'title': 'Iniciar Sesión',
+    }
+    
+    
+    return render(request, template_name, context)
 
 
 
