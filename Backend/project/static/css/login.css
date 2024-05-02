@@ -1,17 +1,28 @@
-body{
-    background-color: #eef0f2;
+.formulario_main{    
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+body{
+    background-color: #eef0f2;
+}
+.container{
+    max-width: 85rem;
+    max-height: 35rem;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 12px;    
+}
 
-.formulario{
+.formulario{    
     display: flex;
-    background-color: white;
-    padding: 7rem;
-    width: 100rem;
-    border-radius: 2rem;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem;
+   
+    
     
 }
 
