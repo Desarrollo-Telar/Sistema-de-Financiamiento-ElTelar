@@ -1,11 +1,17 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
+# Archivo models de modulo
 
+# Librerias de DJANGO
 from datetime import datetime
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.utils import timezone
+from django.db import models
+from django.contrib.auth.models import AbstractUser
 
+# Llamado de tablas para la relacion
 from apps.roles.models import Role
+
+import random
 
 # Creacion de todas las tablas para este modulo
 
@@ -44,13 +50,24 @@ class User(AbstractUser):
             return '{}'.format(self.username)
         return '{} {}'.format(self.first_name, self.last_name)
 
-
+# Creacion de la tabla Usuario Rol
 class UserRole(models.Model):
     idUser = models.ForeignKey(User, blank=False, null=False,on_delete=models.CASCADE)
     idRole = models.ForeignKey(Role, blank=False, null=False, on_delete=models.CASCADE)
     
     def __str__(self):
         return f'Rol de {self.idRole} para {self.idUser}'
+
+# Creacion de la tabla de codigos de verificacion
+class VerificationToken(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  
+    code = models.CharField(max_length=6)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    @classmethod
+    def generate_token(cls, user):
+        code = ''.join(random.choices('0123456789', k=6))  # Genera un código de 6 dígitos
+        return cls.objects.create(user=user, code=code)
 
 #Funcion clave para la generacion de codigos de usuario, luego de haberse creado
 @receiver(pre_save, sender=User)
