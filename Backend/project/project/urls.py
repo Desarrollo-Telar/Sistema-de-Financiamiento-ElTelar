@@ -14,6 +14,7 @@ urlpatterns = [
     path('accounts/login/',views.login_view, name='login'),
     path('logout/',views.logout_view, name='logout'),
     path('admin/', admin.site.urls),
+    #path('dashboard/', include('django_dash.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:    

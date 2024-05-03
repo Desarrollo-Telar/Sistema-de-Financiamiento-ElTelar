@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.clients',
     'apps.roles',
+    #'otp',
 ]
 
 MIDDLEWARE = [
