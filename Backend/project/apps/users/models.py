@@ -97,3 +97,10 @@ def set_user_code(sender, instance, *args, **kwargs):
 
         # Guardar informacion
         instance.user_code = user_code
+
+#Funcion clave para guardar en nombre de usuarios
+@receiver(pre_save, sender=User)
+def set_user_code(sender, instance, *args, **kwargs):
+    if instance.username == '' and instance.username:
+        email = instance.email
+        instance.username = email
