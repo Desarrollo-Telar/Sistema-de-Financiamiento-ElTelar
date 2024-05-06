@@ -1,68 +1,115 @@
-{% load static %} {% url 'index' as index %} {% block css %}
+{% load static %} {% url 'index' as index %} {% url 'users:users' as users %} 
+{%block css %}
 <style>
-    .sidebar {
-        height: 100vh;
-        border-right: rgba(11, 9, 10, 0.1) solid 1px;
-    }
+  .sidebar {
+    height: 100vh;
+    border-right: rgba(11, 9, 10, 0.1) solid 1px;
+  }
 
-    .sidebar .activar {
-        background-color: #161a1d;
-        color: #ffff;
-        cursor: pointer;
-        text-decoration: none;
-    }
+  .sidebar .activar {
+    background-color: #161a1d;
+    color: #ffff;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .sidebar a {
+    color:#161a1d;
+    cursor: pointer;
+    text-decoration: none;
+  }
 </style>
 
 {% endblock %}
 
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidebar" style="width: 280px">
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-            <a href="/" class="nav-link {% if request.path == index %} activar {% endif%}" aria-current="page">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                    class="bi bi-house-door" viewBox="0 0 16 16">
-                    <path
-                        d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
-                </svg>
-                <span style="margin-left: 1rem;">Inicio</span>
-            </a>
-        </li>
+<div
+  class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidebar"
+  style="width: 280px"
+>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a
+        href="/"
+        class="nav-link {% if request.path == index %} activar {% endif%}"
+        aria-current="page"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="currentColor"
+          class="bi bi-house-door"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"
+          />
+        </svg>
+        <span style="margin-left: 1rem">Inicio</span>
+      </a>
+    </li>
 
-        <li>
-            <a href="#" class="nav-link link-body-emphasis">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
-                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0"/>
-                  </svg>
-                <span style="margin-left: 1rem;">Clientes</span> 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link link-body-emphasis">
-                
-                <img src="{% static './img/icons/creditos.png'%}" style="height: 1.8rem; margin-right: 1rem;" alt="">
-                
-                Creditos
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link link-body-emphasis">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bank" viewBox="0 0 16 16">
-                    <path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z"/>
-                  </svg>
-                <span style="margin-left: 1rem;">Pagos</span>
-            </a>
-        </li>
-        
-        <li>
-            <a href="#" class="nav-link link-body-emphasis">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
-                </svg>
-                <span style="margin-left: 1rem;">Usuarios</span>
-                
-            </a>
-        </li>
-    </ul>
-    
-    
+    <li>
+      <a href="#" class="nav-link link-body-emphasis">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="currentColor"
+          class="bi bi-person-vcard-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0"
+          />
+        </svg>
+        <span style="margin-left: 1rem">Clientes</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-body-emphasis">
+        <img
+          src="{% static './img/icons/creditos.png'%}"
+          style="height: 1.8rem; margin-right: 1rem"
+          alt=""
+        />
+
+        Creditos
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-body-emphasis ">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="currentColor"
+          class="bi bi-bank"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z"
+          />
+        </svg>
+        <span style="margin-left: 1rem">Pagos</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="{{users}}" class="nav-link  {% if request.path == users %} activar {% endif%}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="currentColor"
+          class="bi bi-people-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"
+          />
+        </svg>
+        <span style="margin-left: 1rem">Usuarios</span>
+      </a>
+    </li>
+  </ul>
 </div>

@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 # Vistas
 from . import views
 
@@ -14,6 +14,7 @@ urlpatterns = [
     path('accounts/login/',views.login_view, name='login'),
     path('logout/',views.logout_view, name='logout'),
     path('admin/', admin.site.urls),
+    path('users/', include('apps.users.urls')),
     #path('dashboard/', include('django_dash.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

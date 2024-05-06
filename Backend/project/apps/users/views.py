@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse
 from .models import VerificationToken, User
+"""
 from twilio.rest import Client
 
 from django_otp.oath import TOTP
@@ -58,3 +59,12 @@ def generar_codigo_secreto():
     # Genera y devuelve el código de verificación actual
     codigo_verificacion = totp.token()
     return codigo_verificacion, clave_secreta
+
+""" 
+@login_required
+def list_user(request):
+    template_name = 'user/index.html'
+    context = {
+        'title':'Usuarios'
+    }
+    return render(request, template_name, context)
