@@ -6,6 +6,8 @@ from .models import User
 # LIBRERIA QUE SE ENCARGA DE CREAR USUARIOS
 from django.contrib.auth.forms import UserCreationForm
 
+# Validaores
+from .validations import validar_correo
 
 ### -- FORMULARIO PARA CREAR USUARIOS--#
 class RegistroForm(UserCreationForm):
@@ -53,8 +55,11 @@ class RegistroForm(UserCreationForm):
         email = self.cleaned_data.get('email')
 
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError('El email ya se encuentra en uso')
-
+            raise forms.ValidationError('Este correo electrónico ya está en uso.')
+        
+        if not validar_correo(email):
+            raise forms.ValidationError('El formato del correo electrónico no es válido.')
+        
         return email
 
     class Meta:
