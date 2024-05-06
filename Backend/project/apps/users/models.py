@@ -98,9 +98,8 @@ def set_user_code(sender, instance, *args, **kwargs):
         # Guardar informacion
         instance.user_code = user_code
 
-#Funcion clave para guardar en nombre de usuarios
+#Funcion clave para guardar el nombre de usuario utilizando el email registrado
 @receiver(pre_save, sender=User)
 def set_user_code(sender, instance, *args, **kwargs):
-    if instance.username == '' and instance.username:
-        email = instance.email
-        instance.username = email
+    if not instance.username: # Verifica si el username está vacío
+        instance.username = instance.email # Usa el email como username si está vacío
