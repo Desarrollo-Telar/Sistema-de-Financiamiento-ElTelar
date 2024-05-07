@@ -1,4 +1,4 @@
-{% load static %} {% url 'index' as index %} {% url 'users:users' as users %} 
+{% load static %} {% url 'index' as index %} {% url 'users:users' as users %}
 {%block css %}
 <style>
   .sidebar {
@@ -13,7 +13,7 @@
     text-decoration: none;
   }
   .sidebar a {
-    color:#161a1d;
+    color: #161a1d;
     cursor: pointer;
     text-decoration: none;
   }
@@ -22,7 +22,7 @@
 {% endblock %}
 
 <div
-  class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidebar"
+  class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidebar shadow bg-body-tertiary rounded"
   style="width: 280px"
 >
   <ul class="nav nav-pills flex-column mb-auto">
@@ -77,7 +77,7 @@
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link link-body-emphasis ">
+      <a href="#" class="nav-link link-body-emphasis">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="25"
@@ -95,7 +95,10 @@
     </li>
 
     <li>
-      <a href="{{users}}" class="nav-link  {% if request.path == users %} activar {% endif%}">
+      <a
+        href="{{users}}"
+        class="nav-link {% if request.path == users %} activar {% endif%}"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="25"

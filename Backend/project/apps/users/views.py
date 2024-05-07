@@ -63,8 +63,11 @@ def generar_codigo_secreto():
 """ 
 @login_required
 def list_user(request):
-    template_name = 'user/index.html'
+    template_name = 'user/list_user.html'
+    users = User.objects.all()
+    print(users)
     context = {
-        'title':'Usuarios'
+        'title':'EL TELAR - USUARIOS',
+        'users_list':users,
     }
     return render(request, template_name, context)
