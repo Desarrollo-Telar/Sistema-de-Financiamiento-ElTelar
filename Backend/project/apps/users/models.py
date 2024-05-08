@@ -49,6 +49,16 @@ class User(AbstractUser):
         if(self.first_name==''):
             return '{}'.format(self.username)
         return '{} {}'.format(self.first_name, self.last_name)
+    
+    def get_status(self):
+        if(self.status):
+            return 'Activo'
+        return 'Inactivo'
+    
+    def get_telephone(self):
+        if not(self.telephone):
+            return 'Numero de telefono no registrado'
+        return self.telephone
 
 # Creacion de la tabla Usuario Rol
 class UserRole(models.Model):

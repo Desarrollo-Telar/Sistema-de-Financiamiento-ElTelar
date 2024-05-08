@@ -1,5 +1,75 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base.html" %} 
+{% load static %}
 
 {% block content %}
-<h3>Hola</h3>
+<div class="row">
+    <div class="col" style="padding: 2.5rem;">
+        <h3>Apartado de usuarios</h3>
+        <p>Bienvenido al módulo de usuarios. Este módulo te permite administrar todos los aspectos relacionados con los usuarios de la plataforma.</p>
+        <p>Este módulo está diseñado para brindarte el control y la flexibilidad necesarios para administrar eficazmente el registro de los usuarios en la plataforma. </p>
+    </div>
+</div>
+<hr>
+<div class="row" style="margin-bottom: 2rem;">
+    <div class="col d-flex flex-row-reverse">
+        <a class="add_user" href="#">Añadir usuario nuevo</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col shadow p-3 mb-5 bg-body-tertiary rounded">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo Electronico</th>
+                        <th scope="col">Nombre de Usuario</th>
+                        <th scope="col">Genero</th>
+                        <th scope="col">Numero de telefono</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users_list %}
+                    <tr>
+                        <th scope="row" >{{user.user_code}}</th>
+                        <td>{{user.first_name}} {{user.last_name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.gender}}</td>
+                        <td >
+                            <p  style="font-size: 0.9rem;">{{user.get_telephone}}</p>
+                        </td>
+                        <td >
+                            <p class="{% if not user.status %} inactivo {% endif %} activo">{{user.get_status}}</p>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="action dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  ...
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">Ver informacion</a></li>
+                                    <li><a class="dropdown-item" href="#">Editar informacion</a></li>
+                                    <li><a class="dropdown-item" href="#">Eliminar usuario</a></li>
+                                </ul>
+                              </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+          </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="../../static/css/users/list.css">
 {% endblock %}
