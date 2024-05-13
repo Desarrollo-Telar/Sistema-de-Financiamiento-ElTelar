@@ -7,9 +7,8 @@ from . import views
 # Decorador
 from django.contrib.auth.decorators import login_required
 
-app_name = 'users'
+app_name = 'roles_permissions'
 
 urlpatterns = [
-    path('', login_required(views.list_user), name='users'),
-    path('user_profile/', login_required(views.profile), name='profile'),
+    path('', login_required(views.role_permission), name='roles_permissions'),
 ]

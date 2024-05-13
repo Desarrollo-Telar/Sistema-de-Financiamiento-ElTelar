@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse
 from .models import VerificationToken, User
+
+# import get_object_or_404()
+from django.shortcuts import get_object_or_404
+
 """
 from twilio.rest import Client
 
@@ -68,6 +72,17 @@ def list_user(request):
     print(users)
     context = {
         'title':'EL TELAR - USUARIOS',
+        'users_list':users,
+    }
+    return render(request, template_name, context)
+
+@login_required
+def profile(request):
+    template_name = 'user/user_profile.html'
+    users =  get_object_or_404(User, username=request.user.username)
+    print(users)
+    context = {
+        'title':'EL TELAR - PERFIL {}'.format(users),
         'users_list':users,
     }
     return render(request, template_name, context)
