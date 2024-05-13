@@ -18,6 +18,10 @@ from apps.codes.forms import CodeForm
 from apps.users.models import User
 from django.contrib.auth.models import AnonymousUser
 
+
+#UTILS
+from .utils import send_verification_code
+
 def prueba(request):
     enviar_correo('Mensaje de prueba', 'Esto solo es una prueba', 'eloicx@gmail.com')
 
@@ -71,6 +75,8 @@ def verification(request):
             if not request.POST:
                 # send sms
                 print(code_user)
+                phone_numer = user.telephone
+                send_verification_code(code_user,phone_numer)
             if form.is_valid():
                 num = form.cleaned_data.get('number')
 
