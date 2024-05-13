@@ -51,6 +51,14 @@ def login_view(request):
     return render(request, template_name, context)
 
 
+### --- AÁRTADO PARA VERIFICACION DE DOS PASOS --- ###
+def verification(request):
+    template_name = 'verification/messages.html'
+    context = {}
+    if request.user:
+        return redirect('index')
+    return render(request, template_name, context)
+
 
 ### --- APARTADO INICIAL DEL PROYECTO --- ###
 def index(request):
