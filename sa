@@ -1,0 +1,34 @@
+[33mcommit 4a6db8ee0a32f79d7d4daae4a51dcb384517d4f2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: choc_1403 <eloicx@gmail.com>
+Date:   Mon May 13 15:29:38 2024 -0600
+
+    sms y whatsaap
+
+[1mdiff --git a/Backend/project/project/utils.py b/Backend/project/project/utils.py[m
+[1mindex 5475822..1c8f75e 100644[m
+[1m--- a/Backend/project/project/utils.py[m
+[1m+++ b/Backend/project/project/utils.py[m
+[36m@@ -12,13 +12,13 @@[m [mdef send_verification_code(user_code, phone_numer):[m
+     client = Client(account_sid, auth_token)[m
+ [m
+     # Enviar código de verificación por SMS[m
+[31m-    """[m
+[32m+[m[41m    [m
+     message = client.messages.create([m
+         body=f'Tu código de verificación es: {user_code}',[m
+         from_='+13513004588',[m
+         to='+502{}'.format(phone_numer)[m
+     )[m
+[31m-    """ [m
+[32m+[m[41m    [m
+ [m
+     # Enviar código de verificación por WhatsApp[m
+     whatsapp_message = client.messages.create([m
+[36m@@ -28,4 +28,4 @@[m [mdef send_verification_code(user_code, phone_numer):[m
+     )[m
+ [m
+ [m
+[31m-    print('Mensaje enviado... {}'.format(whatsapp_message))[m
+\ No newline at end of file[m
+[32m+[m[32m    print('Mensaje enviado... {} - {}'.format(message,whatsapp_message))[m
+\ No newline at end of file[m

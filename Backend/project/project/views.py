@@ -22,8 +22,12 @@ from django.contrib.auth.models import AnonymousUser
 #UTILS
 from .utils import send_verification_code
 
+# Envio de correos
+from .send_mail import send_email_welcome_customer
 def prueba(request):
-    enviar_correo('Mensaje de prueba', 'Esto solo es una prueba', 'eloicx@gmail.com')
+    send_email_welcome_customer()
+    print('Enviando')
+    return redirect('index')
 
 ### -- APARTADO DE SALIR --##
 def logout_view(request):

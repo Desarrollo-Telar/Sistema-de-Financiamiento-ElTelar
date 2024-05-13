@@ -110,13 +110,14 @@ USE_TZ = True
 
 # Configuracion para enviar correos electronicos
 # settings.py
+# DevElTelar30.
 
 # Configuración de correo electrónico
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_HOST = 'smtp.office365.com'  
 EMAIL_PORT = 587  
 EMAIL_HOST_USER = 'develtelar@gmail.com' 
-EMAIL_HOST_PASSWORD = 'DevElTelar30.' 
+EMAIL_HOST_PASSWORD = 'nswqvzrfeyznmnki'
 EMAIL_USE_TLS = True  
 
 
