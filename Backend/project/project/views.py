@@ -11,6 +11,12 @@ from django.contrib.auth import authenticate
 # Manejo de mensajes
 from django.contrib import messages
 
+# Formularios
+from apps.codes.forms import CodeForm
+
+# Modelos
+from apps.users.models import User
+from django.contrib.auth.models import AnonymousUser
 
 def prueba(request):
     enviar_correo('Mensaje de prueba', 'Esto solo es una prueba', 'eloicx@gmail.com')
@@ -37,8 +43,9 @@ def login_view(request):
 
         user = authenticate(username=username, password=password)  # None
         if user:
-            login(request, user)
-            return redirect('index')
+            
+            request.session['pk'] = user.pk
+            return redirect('verification')
         else:
             messages.error(request, 'Credenciales no validos, por favor revise si ingreso correctamente su correo electronico o su contraseña')
     
@@ -54,8 +61,33 @@ def login_view(request):
 ### --- AÁRTADO PARA VERIFICACION DE DOS PASOS --- ###
 def verification(request):
     template_name = 'verification/messages.html'
-    context = {}
-    if request.user:
+    form = CodeForm(request.POST or None)
+    pk = request.session.get('pk')
+    if isinstance(request.user,AnonymousUser ):
+        if pk:
+            user = User.objects.get(pk=pk)
+            code = user.code
+            code_user = f'{user.username}: {user.code}'
+            if not request.POST:
+                # send sms
+                print(code_user)
+            if form.is_valid():
+                num = form.cleaned_data.get('number')
+
+                if str(code)==num:
+                    code.save()
+                    login(request, user)
+                    return redirect('index')
+                else:
+                    return redirect('login')
+
+
+
+        context = {
+            'form':CodeForm,
+        }
+    
+    else:
         return redirect('index')
     return render(request, template_name, context)
 
