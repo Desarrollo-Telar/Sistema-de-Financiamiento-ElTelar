@@ -7,14 +7,14 @@ from django.template.loader import get_template
 from django.conf import settings
 
 
-def send_email_welcome_customer():
+def send_email_welcome_customer(customer):
     # Envio de correos
     # Mensaje de bienvendia a un cliente a la empresa
     template = get_template('email/welcome_message.html')
-    ruta_img = 'static/logo.png'
+    
     context = {
-        'nombre_usuario': 'Juan Carlos',
-        'logo':ruta_img,
+        'nombre_usuario': customer,
+        
     }
 
     content = template.render(context)
