@@ -1,33 +1,48 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mensaje de Bienvenida</title>
-  </head>
-  <body>
-    
-    <div style="background-color: #f2f2f2; padding: 20px; text-align: center;">
-      <h1 style="text-transform: uppercase; ">Bienvenido a nuestra empresa El Telar</h1>
-      <p style="font-style: oblique;">Hola {{ nombre_usuario }},</p>
-      <p>
-        En nombre de todo el equipo de El Telar, nos gustaría expresar nuestro más sincero agradecimiento por confiar en nosotros para garantizar su crédito. Valoramos enormemente la oportunidad de servirle y estamos comprometidos a brindarle el mejor servicio posible en todo momento.
-      </p>
-      <p>
-        Entendemos lo importante que es para usted tener tranquilidad financiera y estamos aquí para ayudarlo a lograr sus metas. Nuestro objetivo es proporcionarle soluciones financieras que se adapten a sus necesidades específicas y le brinden la seguridad que busca.
-      </p>
-      <p>
-        Nos enorgullece poder contar con un equipo altamente calificado y dedicado que estará a su disposición en cada paso del camino. Si tiene alguna pregunta o inquietud, no dude en ponerse en contacto con nosotros. Estamos aquí para ayudarlo y asegurarnos de que su experiencia con nosotros sea excepcional.
-      </p>
-      <p>
-        Una vez más, gracias por confiar en nosotros. Esperamos poder servirle durante muchos años más y ser parte de su éxito financiero.
-      </p>
-      <p>Atentamente,</p>
-      
-      <footer>
-        <img src="../../static/img/logo.png" alt="" style="width: 15rem; ">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mensaje de Bienvenida</title>
+</head>
+
+<body>
+  <div style="background-color: #f2f2f2; padding: 20px; text-align: center">
+    <h1 style="text-transform: uppercase">
+      Bienvenido a nuestra empresa El Telar
+    </h1>
+    <p style="font-style: oblique">Hola {{ nombre_usuario }},</p>
+    <p>
+      En nombre de todo el equipo de El Telar, nos gustaría expresar nuestro
+      más sincero agradecimiento por confiar en nosotros para garantizar su
+      crédito. Valoramos enormemente la oportunidad de servirle y estamos
+      comprometidos a brindarle el mejor servicio posible en todo momento.
+    </p>
+    <p>
+      Entendemos lo importante que es para usted tener tranquilidad financiera
+      y estamos aquí para ayudarlo a lograr sus metas. Nuestro objetivo es
+      proporcionarle soluciones financieras que se adapten a sus necesidades
+      específicas y le brinden la seguridad que busca.
+    </p>
+    <p>
+      Nos enorgullece poder contar con un equipo altamente calificado y
+      dedicado que estará a su disposición en cada paso del camino. Si tiene
+      alguna pregunta o inquietud, no dude en ponerse en contacto con
+      nosotros. Estamos aquí para ayudarlo y asegurarnos de que su experiencia
+      con nosotros sea excepcional.
+    </p>
+    <p>
+      Una vez más, gracias por confiar en nosotros. Esperamos poder servirle
+      durante muchos años más y ser parte de su éxito financiero.
+    </p>
+    <p>Atentamente,</p>
+
+    <footer>
+      <img src="{{logo}}" alt="" style="width: 15rem" />
     </footer>
-      
-    </div>
-  </body>
+  </div>
+</body>
+
 </html>

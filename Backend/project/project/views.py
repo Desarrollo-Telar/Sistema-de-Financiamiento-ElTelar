@@ -1,5 +1,3 @@
-from .send_mail import plantilla_enviar_correo, enviar_correo
-
 
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -25,9 +23,9 @@ from .utils import send_verification_code
 # Envio de correos
 from .send_mail import send_email_welcome_customer
 def prueba(request):
-    send_email_welcome_customer()
-    print('Enviando')
-    return redirect('index')
+    #send_email_welcome_customer()
+    
+    return render(request, 'email/welcome_message.html',{})
 
 ### -- APARTADO DE SALIR --##
 def logout_view(request):
