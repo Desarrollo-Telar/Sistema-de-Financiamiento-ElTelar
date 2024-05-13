@@ -12,13 +12,13 @@ def send_verification_code(user_code, phone_numer):
     client = Client(account_sid, auth_token)
 
     # Enviar código de verificación por SMS
-    """
+    
     message = client.messages.create(
         body=f'Tu código de verificación es: {user_code}',
         from_='+13513004588',
         to='+502{}'.format(phone_numer)
     )
-    """ 
+    
 
     # Enviar código de verificación por WhatsApp
     whatsapp_message = client.messages.create(
@@ -28,4 +28,4 @@ def send_verification_code(user_code, phone_numer):
     )
 
 
-    print('Mensaje enviado... {}'.format(whatsapp_message))
+    print('Mensaje enviado... {} - {}'.format(message,whatsapp_message))
