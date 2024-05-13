@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.customers',
     'apps.roles',
+    'crispy_forms',
+    'apps.codes',
     #'otp',
 ]
 
