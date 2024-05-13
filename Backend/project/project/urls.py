@@ -12,6 +12,7 @@ urlpatterns = [
     
     path('',login_required(views.index),name='index'),
     path('accounts/login/',views.login_view, name='login'),
+    path('verification/', views.verification, name='verification'),
     path('logout/',views.logout_view, name='logout'),
     path('admin/', admin.site.urls),
     path('users/', include('apps.users.urls')),

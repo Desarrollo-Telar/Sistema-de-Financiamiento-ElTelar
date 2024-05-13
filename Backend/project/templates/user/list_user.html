@@ -1,16 +1,20 @@
-{% extends "base.html" %} 
-{% load static %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 <div class="row">
-    <div class="col" style="padding: 2.5rem;">
+    <div class="col" style="padding: 2.5rem">
         <h3>Apartado de usuarios</h3>
-        <p>Bienvenido al módulo de usuarios. Este módulo te permite administrar todos los aspectos relacionados con los usuarios de la plataforma.</p>
-        <p>Este módulo está diseñado para brindarte el control y la flexibilidad necesarios para administrar eficazmente el registro de los usuarios en la plataforma. </p>
+        <p>
+            Bienvenido al módulo de usuarios. Este módulo te permite administrar todos
+            los aspectos relacionados con los usuarios de la plataforma.
+        </p>
+        <p>
+            Este módulo está diseñado para brindarte el control y la flexibilidad
+            necesarios para administrar eficazmente el registro de los usuarios en la
+            plataforma.
+        </p>
     </div>
 </div>
-<hr>
-<div class="row" style="margin-bottom: 2rem;">
+<hr />
+<div class="row" style="margin-bottom: 2rem">
     <div class="col d-flex flex-row-reverse">
         <a class="add_user" href="#">Añadir usuario nuevo</a>
     </div>
@@ -34,42 +38,45 @@
                 <tbody>
                     {% for user in users_list %}
                     <tr>
-                        <th scope="row" >{{user.user_code}}</th>
+                        <th scope="row">{{user.user_code}}</th>
                         <td>{{user.first_name}} {{user.last_name}}</td>
                         <td>{{user.email}}</td>
                         <td>{{user.username}}</td>
                         <td>{{user.gender}}</td>
-                        <td >
-                            <p  style="font-size: 0.9rem;">{{user.get_telephone}}</p>
+                        <td>
+                            <p style="font-size: 0.9rem">{{user.get_telephone}}</p>
                         </td>
-                        <td >
-                            <p class="{% if not user.status %} inactivo {% endif %} activo">{{user.get_status}}</p>
+                        <td>
+                            <p class="{% if not user.status %} inactivo {% endif %} activo">
+                                {{user.get_status}}
+                            </p>
                         </td>
                         <td>
                             <div class="btn-group">
-                                <button class="action dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  ...
+                                <button class="action dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    ...
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li><a class="dropdown-item" href="#">Ver informacion</a></li>
-                                    <li><a class="dropdown-item" href="#">Editar informacion</a></li>
-                                    <li><a class="dropdown-item" href="#">Eliminar usuario</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Editar informacion</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Eliminar usuario</a>
+                                    </li>
                                 </ul>
-                              </div>
+                            </div>
                         </td>
                     </tr>
                     {% endfor %}
-                    
                 </tbody>
             </table>
-          </div>
+        </div>
     </div>
 </div>
 
+{% endblock %} {% block css %}
 
-{% endblock %}
-
-{% block css %}
-
-<link rel="stylesheet" href="../../static/css/users/list.css">
+<link rel="stylesheet" href="../../static/css/users/list.css" />
 {% endblock %}
