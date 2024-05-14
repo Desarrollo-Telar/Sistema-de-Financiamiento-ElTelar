@@ -1,1 +1,37 @@
-{% extends "base.html"%} {% load static %}
+{% extends "base.html"%}
+{% load static %}
+{% block content %}
+{% if role_list %}
+<div class="row">
+    {% for role in role_list %}
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="card">
+            <div class="card-body" style="padding: 2rem;">
+                <h5 class="card-title">{{role.role_name}}</h5>
+                <p class="card-text">
+                    {{role.description}}
+                </p>
+                <a href="#" class="btn btn-primary">Ver permisos</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% else %}
+<div class="card">
+    <div class="card-header">
+        ¡¡¡ AVISO !!!
+    </div>
+    <div class="card-body">
+        <h5 class="card-title" style="text-align: center;">No hay registro de roles y permisos</h5>
+        <p class="card-text">La ausencia de registros de roles y permisos es un desafío que requiere una atención
+            inmediata y una acción proactiva para garantizar la seguridad, la conformidad y la eficiencia en la gestión
+            de accesos en entornos informáticos y empresariales.</p>
+        <p class="card-text">Por favor, proceda a registrar los roles que tendrán acceso al sistema, junto con los
+            permisos correspondientes asignados a cada uno de ellos.</p>
+        <a href="#" class="btn btn-primary" style="padding: 0.3rem 5rem;">Agregar</a>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}
