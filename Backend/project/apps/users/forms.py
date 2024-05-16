@@ -10,6 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .validations import validar_correo
 
 ### -- FORMULARIO PARA CREAR USUARIOS--#
+# Formulario
 class RegistroForm(UserCreationForm):
     username = forms.CharField(
         label='Usuario',
@@ -71,11 +72,11 @@ class RegistroForm(UserCreationForm):
             'username',
             'email',
             'type_identification',
-            'identification_number'
+            'identification_number',
             'telephone',
             'gender',
             'nationality',
-            'profile_pic'
+            'profile_pic',
 
         ]
 
@@ -87,7 +88,7 @@ class RegistroForm(UserCreationForm):
             'telephone': 'Numero de Telefono',
             'gender':'Genero',
             'nationality':'Nacionalidad',
-            'profile_pic':'Imagen de Usuario'
+            'profile_pic':'Imagen de Usuario',
         }
 
         widgets = {

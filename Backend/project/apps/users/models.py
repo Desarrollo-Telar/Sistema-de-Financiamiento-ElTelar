@@ -37,8 +37,7 @@ class User(AbstractUser):
     profile_pic = models.ImageField(blank=True, null=True,upload_to='users/profile_pics/')
     creation_date = models.DateTimeField(auto_now_add=True)
     
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    
 
     def __str__(self):
         if(self.first_name==''):

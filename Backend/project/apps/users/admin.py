@@ -7,7 +7,11 @@ from .models import VerificationToken
 admin.site.register(UserRole)
 admin.site.register(VerificationToken)
 
+"""
 class UserAdmin(admin.ModelAdmin):
     fields = ('first_name','last_name', 'username', 'email', 'password','type_identification','identification_number','telephone','status','gender','nationality','profile_pic')
     list_display = ('__str__', 'user_code','creation_date')
 admin.site.register(User, UserAdmin)
+"""
+
+admin.site.register(User)

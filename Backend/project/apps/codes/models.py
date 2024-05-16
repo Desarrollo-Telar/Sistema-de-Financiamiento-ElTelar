@@ -3,6 +3,8 @@ from django.db import models
 from apps.users.models import User
 
 import random
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 # Create your models here.
 class Code(models.Model):
@@ -24,3 +26,11 @@ class Code(models.Model):
         code_string = "".join(str(item) for item in code_items)
         self.number = code_string
         super().save()
+""" 
+#Funcion clave para codigos de verificacion
+@receiver(pre_save, sender=User)
+def set_code_verification(sender, instance, *args, **kwargs):
+    num = random.choices('0123456789', k=5)
+    code_verification = Code.objects.create(number=num,user=instance)
+
+"""

@@ -8,6 +8,10 @@ from .models import VerificationToken, User
 # import get_object_or_404()
 from django.shortcuts import get_object_or_404
 
+# Formulario
+from .forms import RegistroForm
+from django.views import generic
+from django.urls import reverse_lazy, reverse
 
 @login_required
 def list_user(request):
@@ -30,3 +34,15 @@ def profile(request):
         'users_list':users,
     }
     return render(request, template_name, context)
+
+class userCreateView(generic.CreateView):
+    template_name = 'user/add_user.html'
+    form_class = RegistroForm
+    model = User
+
+    success_url = reverse_lazy(('users:users'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Crear un Nuevo Usuario'
+        return context

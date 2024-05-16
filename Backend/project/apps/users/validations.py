@@ -1,6 +1,5 @@
 import re
-from django_otp.oath import TOTP
-import base64
+
 
 def validar_correo(correo):
     # Expresión regular básica para validar el formato del correo electrónico
@@ -22,12 +21,4 @@ def validar_correo(correo):
     
     return True
 
-def verificar_codigo(codigo_ingresado, clave_secreta):
-    # Crea un objeto TOTP con la clave secreta almacenada
-    totp = TOTP(key=clave_secreta, step=300, digits=6)
 
-    # Verifica si el código de verificación ingresado es válido
-    if totp.verify(codigo_ingresado):
-        return True
-    else:
-        return False
