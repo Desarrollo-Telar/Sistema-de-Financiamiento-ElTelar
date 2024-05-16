@@ -21,11 +21,14 @@ from django.contrib.auth.models import AnonymousUser
 from .utils import send_verification_code
 
 # Envio de correos
-from .send_mail import send_email_welcome_customer
+from .send_mail import send_email_welcome_customer, send_email_code_verification
+
+
+
 def prueba(request):
     #send_email_welcome_customer()
     
-    return render(request, 'email/welcome_message.html',{})
+    return render(request, 'email/send_code.html',{})
 
 ### -- APARTADO DE SALIR --##
 def logout_view(request):
@@ -79,6 +82,7 @@ def verification(request):
             if not request.POST:
                 # send sms
                 print(code_user)
+                send_email_code_verification(user,code_user)
                 #phone_numer = user.telephone
                 #send_verification_code(code_user,phone_numer)
             if form.is_valid():

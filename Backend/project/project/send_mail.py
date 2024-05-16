@@ -7,6 +7,26 @@ from django.template.loader import get_template
 from django.conf import settings
 
 
+def send_email_code_verification(user, code):
+    template = get_template('email/send_code.html')
+    user_mail = user.email
+    context = {
+        'user':user,
+        'code':code,
+    }
+
+    content = template.render(context)
+
+    email = EmailMultiAlternatives(
+        'Codigo de verificación',
+        'EL Telar',
+        settings.EMAIL_HOST_USER,
+        ['{}'.format(user_mail)]
+    )
+    email.attach_alternative(content, 'text/html')
+    email.send()
+
+
 def send_email_welcome_customer(customer):
     # Envio de correos
     # Mensaje de bienvendia a un cliente a la empresa
