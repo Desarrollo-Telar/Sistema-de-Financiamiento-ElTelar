@@ -1,40 +1,36 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 <div class="row">
     <form method="POST">
-        {% csrf_token %}
-
-        {% for field in form %}
+        {% csrf_token %} {% for field in form %}
 
         <div class="form-group">
-            {{ field.label_tag }}
-            {{ field }}
-
-            {% if field.errors %}
-            {{ field.errors }}
+            {{ field.label_tag }} {{ field }} {% if field.errors %} {{ field.errors }}
             {% endif %}
         </div>
-        <br>
-
-
-
+        <br />
 
         {% endfor %}
 
-
-
-        <br>
-        <hr>
-        <a type="button"
-            style="border: 1px solid #BA181B; color: #BA181B; text-decoration: none; padding: 0.5rem; border-radius: 2rem; background-color: #effaf3;"
-            href=" {% url 'users:users' %}">Volver atrás</a>
-        <button type="submit"
-            style="background-color: #161A1D; color: #effaf3; border: 1px solid #161A1D; padding: 0.5rem 1rem; border-radius: 2rem;">Agregar</button>
-
+        <br />
+        <hr />
+        <a type="button" style="
+        border: 1px solid #ba181b;
+        color: #ba181b;
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 2rem;
+        background-color: #effaf3;
+      " href=" {% url 'users:users' %}">Volver atrás</a>
+        <button type="submit" style="
+        background-color: #161a1d;
+        color: #effaf3;
+        border: 1px solid #161a1d;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+      ">
+            {{accion}}
+        </button>
     </form>
-
 </div>
-
 
 {% endblock content %}

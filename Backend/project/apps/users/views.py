@@ -9,7 +9,7 @@ from .models import VerificationToken, User
 from django.shortcuts import get_object_or_404
 
 # Formulario
-from .forms import RegistroForm
+from .forms import RegistroForm, UpdateUserForm
 from django.views import generic
 from django.urls import reverse_lazy, reverse
 
@@ -45,4 +45,17 @@ class userCreateView(generic.CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Crear un Nuevo Usuario'
+        context['accion'] = 'Añadir Usuario'
+        return context
+
+class userUpdateView(generic.UpdateView):
+    template_name = 'user/add_user.html'
+    form_class = UpdateUserForm
+    model = User
+
+    success_url = reverse_lazy(('users:users'))
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Actualizar Usuario'
+        context['accion'] = 'Actualizar Usuario'
         return context

@@ -13,4 +13,5 @@ urlpatterns = [
     path('', login_required(views.list_user), name='users'),
     path('user_profile/', login_required(views.profile), name='profile'),
     path('create_user/', login_required(views.userCreateView.as_view()), name='create'),
+    path('update_user/<int:pk>/', login_required(views.userUpdateView.as_view()), name='update'),
 ]
