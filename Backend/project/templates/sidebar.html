@@ -2,7 +2,6 @@
 {% url 'index' as index %}
 {% url 'users:users' as users %}
 {% url 'roles_permissions:roles_permissions' as roles %}
-
 {%block css %}
 <style>
   .sidebar {
@@ -26,7 +25,7 @@
 
 {% endblock %}
 
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidebar shadow rounded" style="width: 13rem">
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidebar shadow rounded sidebar" style="width: 13rem">
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
       <a href="/" class="nav-link {% if request.path == index %} activar {% endif%}" aria-current="page">
@@ -70,7 +69,7 @@
     <li>
       <div class="btn-group dropend">
         <button type="button"
-          class="btn btn-secondary dropdown-toggle nav-link {% if request.path == users   %} activar {% else %} {% if request.path == roles %} activar {% endif %} {% endif%}"
+          class="btn btn-secondary dropdown-toggle nav-link {% if request.path == users %} activar {% else %} {% if request.path == roles %} activar {% endif %} {% endif%}"
           data-bs-toggle="dropdown" aria-expanded="false">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-people-fill"
             viewBox="0 0 16 16">
@@ -87,11 +86,8 @@
           <li>
             <a href="{{roles}}" class="dropdown-item">Roles y Permisos</a>
           </li>
-
-
         </ul>
       </div>
-
     </li>
   </ul>
 </div>

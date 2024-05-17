@@ -1,13 +1,45 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
 <div class="row">
     <form method="POST">
-        {% csrf_token %} {% for field in form %}
-
+        {% csrf_token %}
+        {% for field in form %}
+        {% if field.name != 'permissions' %}
         <div class="form-group">
-            {{ field.label_tag }} {{ field }} {% if field.errors %} {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+            {{ field.errors }}
             {% endif %}
         </div>
-        <br />
+        {% else %}
+
+        {% if field.name == 'permissions' %}
+        <br>
+        {{field.label_tag}}
+        <hr>
+        <div class="row row-cols-2">
+            <div class="col-12">
+                <div class="form-group">
+                    {{field}}
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        {% endif %}
+        <br>
+        {% endif %}
+
+
 
         {% endfor %}
 

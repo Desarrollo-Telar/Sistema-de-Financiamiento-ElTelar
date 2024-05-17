@@ -23,6 +23,6 @@ class RoleForm(forms.ModelForm):
 
         widgets = {
             'role_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'permissions': forms.CheckboxSelectMultiple(attrs={'class':'form-check', 'type':'checkbox'}),
-            'description': forms.Textarea(attrs={'class':'form-control'}),
+            'permissions': forms.CheckboxSelectMultiple(attrs={'class':''}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
         }

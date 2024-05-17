@@ -82,7 +82,7 @@ def verification(request):
             if not request.POST:
                 # send sms
                 print(code_user)
-                send_email_code_verification(user,code_user)
+                #send_email_code_verification(user,code_user)
                 #phone_numer = user.telephone
                 #send_verification_code(code_user,phone_numer)
             if form.is_valid():
