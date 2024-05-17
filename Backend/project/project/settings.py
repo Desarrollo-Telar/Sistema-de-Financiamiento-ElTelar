@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'apps.roles',
     'crispy_forms',
     'apps.codes',
+    'apps.pictures',
    # 'django_inlinecss',
     #'otp',
 ]
