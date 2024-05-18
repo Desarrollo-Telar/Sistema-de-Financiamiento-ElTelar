@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'apps.codes',
     'apps.pictures',
+    'apps.addresses',
    # 'django_inlinecss',
     #'otp',
 ]
