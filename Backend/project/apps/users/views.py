@@ -1,20 +1,31 @@
 
-from django.shortcuts import render
+
 from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse
 from .models import VerificationToken, User
 
 # import get_object_or_404()
-from django.shortcuts import get_object_or_404
+
 
 # Formulario
-from .forms import RegistroForm, UpdateUserForm
-from django.views import generic
+from .forms import RegistroForm, UpdateUserForm, ChangePasswordForm
+
+
+# LIBRERIAS PARA EL CRUD
+from django.views.generic import CreateView, UpdateView, DeleteView, View
+
+# URL
 from django.urls import reverse_lazy, reverse
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Paginacion
 from project.pagination import paginacion
+
+# Login
+from django.contrib.auth import login
+from django.contrib.auth import logout
+from django.contrib.auth import authenticate
 
 @login_required
 def list_user(request):
@@ -41,7 +52,7 @@ def profile(request):
     }
     return render(request, template_name, context)
 
-class userCreateView(generic.CreateView):
+class userCreateView(CreateView):
     template_name = 'user/add_user.html'
     form_class = RegistroForm
     model = User
@@ -54,7 +65,7 @@ class userCreateView(generic.CreateView):
         context['accion'] = 'Añadir Usuario'
         return context
 
-class userUpdateView(generic.UpdateView):
+class userUpdateView(UpdateView):
     template_name = 'user/add_user.html'
     form_class = UpdateUserForm
     model = User
@@ -65,3 +76,38 @@ class userUpdateView(generic.UpdateView):
         context['title'] = 'Actualizar Usuario'
         context['accion'] = 'Actualizar Usuario'
         return context
+
+###-- APARTADO PARA CAMBIAR LA CONTRASEÑA DE UN USUARIO --##
+class ChangePassword(View):
+    template_name ='user/change_password.html'
+    form_class = ChangePasswordForm
+    success_url = reverse_lazy('index')
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {
+            'form':self.form_class, 
+            'title': 'CAMBIAR CONTRASEÑA',
+            'info': 'CAMBIAR CONTRASEÑA'
+            })
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user = User.objects.filter(pk = request.user.pk)
+            if user.exists():
+                user = user.first()
+                user.set_password(form.cleaned_data.get('password1'))
+                contra = form.cleaned_data.get('password1')
+                user.save()
+                user = authenticate(username=request.user.username, password=contra)
+                login(self.request, user)
+
+                return redirect(self.success_url)
+            return redirect(self.success_url)
+        else:
+            form = self.form_class(request.POST)
+            return render(request, self.template_name, {
+            'form':form, 
+            'title': 'CAMBIAR CONTRASEÑA',
+            'info': 'CAMBIAR CONTRASEÑA'
+            })

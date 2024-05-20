@@ -176,3 +176,28 @@ class UpdateUserForm(forms.ModelForm):
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'profile_pic': forms.FileInput(attrs={'type':'checkbox', 'name':'image', 'type':'file', 'accept':'image', 'class':'form-control'}),
         }
+
+###-- FORMULARIO PARA CAMBIAR LA CONTRASEÑA --###
+class ChangePasswordForm(forms.Form):
+    password1 = forms.CharField(
+        label='NUEVA CONTRASEÑA: ',
+        widget = forms.PasswordInput(attrs={'class': 'form-control', 'autocomplete': 'off'}),
+        required = True,
+       
+
+    )
+    password2 = forms.CharField(
+        label='CONFIRMAR CONTRASEÑA: ',
+        widget = forms.PasswordInput(attrs={'class': 'form-control', 'autocomplete': 'off'}),
+        required = True,       
+
+
+    )
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+
+        if password1 != password2:
+            raise forms.ValidationError('Contraseña no coinciden')
+        return password2
