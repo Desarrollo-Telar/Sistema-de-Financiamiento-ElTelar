@@ -23,7 +23,12 @@ from .utils import send_verification_code
 # Envio de correos
 from .send_mail import send_email_welcome_customer, send_email_code_verification
 
+# Tiempo
+import datetime
+import calendar
 
+# Obtener la fecha y hora actual
+now = datetime.datetime.now()
 
 def prueba(request):
     #send_email_welcome_customer()
@@ -109,7 +114,14 @@ def verification(request):
 ### --- APARTADO INICIAL DEL PROYECTO --- ###
 def index(request):
     template_name = 'index.html'
+    # Obtener el día de la fecha actual
+    dia_actual = now.day
+    mes_actual = now.month
+    # Obtener el nombre del mes usando el módulo calendar
+    mes_actual_nombre = calendar.month_name[mes_actual]
     context = {
-        'title':'EL TELAR'
+        'title':'EL TELAR',
+        'dia':dia_actual,
+        'mes':mes_actual_nombre,
     }
     return render(request, template_name, context)

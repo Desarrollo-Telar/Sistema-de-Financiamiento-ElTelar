@@ -1,16 +1,15 @@
 
-
+# Decoradores
 from django.contrib.auth.decorators import login_required
 
+# Metodos HTTP
 from django.http import HttpResponse
+
+# Modelos
 from .models import VerificationToken, User
-
-# import get_object_or_404()
-
 
 # Formulario
 from .forms import RegistroForm, UpdateUserForm, ChangePasswordForm
-
 
 # LIBRERIAS PARA EL CRUD
 from django.views.generic import CreateView, UpdateView, DeleteView, View
@@ -77,7 +76,7 @@ class userUpdateView(UpdateView):
         context['accion'] = 'Actualizar Usuario'
         return context
 
-###-- APARTADO PARA CAMBIAR LA CONTRASEÑA DE UN USUARIO --##
+
 class ChangePassword(View):
     template_name ='user/change_password.html'
     form_class = ChangePasswordForm

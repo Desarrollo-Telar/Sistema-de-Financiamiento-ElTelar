@@ -1,69 +1,68 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 <div class="row">
     <div class="col">
         <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
-            <div class="card-header" style="background-color: #3d474d; color: #f4f7f7;">
+            <div class="card-header" style="background-color: #e02226; color: #f4f7f7; font-size: 1.2rem;">
                 ¡Hola! {{user}}
             </div>
-            <div class="card-body" style="padding: 2rem;">
-
-                <p class="card-text" style="font-size: large;">
+            <div class="card-body" style="padding: 2rem">
+                <p class="card-text" style="font-size: 1.2rem">
                     ¡Bienvenido/a a nuestro portal de control de financiamientos El Telar!
-                    Estamos encantados de tenerte aquí. Este es tu centro de operaciones para gestionar las finanzas
-                    de todos nuestros clientes de manera eficiente y efectiva.
-                    Desde el seguimiento del plan de inversion hasta el siguimiento de sus pagos,
-                    estamos aquí para ayudarte en cada paso del camino.
-
+                    Estamos encantados de tenerte aquí. Este es tu centro de operaciones
+                    para gestionar las finanzas de todos nuestros clientes de manera
+                    eficiente y efectiva. Desde el seguimiento del plan de inversion hasta
+                    el siguimiento de sus pagos, estamos aquí para ayudarte en cada paso
+                    del camino.
                 </p>
-
             </div>
-
         </div>
-
     </div>
 </div>
-<div class="row">
-    
-</div>
-<div class="row row-cols-2 align-items-center">
-    <div class="col shadow p-3 mb-5 bg-body-tertiary rounded">
+<div class="row"></div>
+<div class="row row-cols-2 align-items-center" style="margin-top:2rem ;">
+    <div class="col ">
         <h3>Calendario</h3>
-        <hr>
+        <hr />
         <div class="" id="demo-calendar-apppearance"></div>
     </div>
-
+    <div class="col rounded" style="
+      padding: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e02226;
+      color: #ffffff;
+    ">
+        <div style="font-size: 5rem;">
+            <h3>El día de hoy:</h3>
+            <p style="text-align: center;">{{dia}} de {{mes}}</p>
+        </div>
+    </div>
 </div>
-{% endblock %}
-
-
-{% block js %}
+{% endblock %} {% block js %}
 <script>
     $(document).ready(function () {
         $("#demo-calendar-apppearance").zabuto_calendar({
-            language: 'es',
-            header_format: '[month] [year]',
-            week_starts: 'sunday',
+            language: "es",
+            header_format: "[month] [year]",
+            week_starts: "sunday",
             show_days: true,
-            today_markup: '<span style="background-color:#4e626c; padding:0.5rem; border-radius:0.4rem; color:#FFFFFF">[day]</span>',
+            today_markup:
+                '<span style="background-color:#e02226; padding:0.5rem; border-radius:0.4rem; color:#FFFFFF">[day]</span>',
             navigation_markup: {
                 prev: '<i class=""><</i>',
-                next: '<i class=""> ></i>'
-            }
+                next: '<i class=""> ></i>',
+            },
         });
     });
 </script>
 <script src="{% static 'js/calendar/dist/zabuto_calendar.min.js' %}"></script>
 
-{% endblock %}
-
-{% block css %}
+{% endblock %} {% block css %}
 <style>
-    table.lightgrey-weekends tbody td:nth-child(n+6) {
+    table.lightgrey-weekends tbody td:nth-child(n + 6) {
         background-color: #f3f3f3;
     }
 </style>
-<link href="{% static 'js/calendar/dist/zabuto_calendar.min.css' %}" rel="stylesheet">
+<link href="{% static 'js/calendar/dist/zabuto_calendar.min.css' %}" rel="stylesheet" />
 {% endblock %}
