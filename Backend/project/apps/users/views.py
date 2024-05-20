@@ -13,14 +13,20 @@ from .forms import RegistroForm, UpdateUserForm
 from django.views import generic
 from django.urls import reverse_lazy, reverse
 
+# Paginacion
+from project.pagination import paginacion
+
 @login_required
 def list_user(request):
     template_name = 'user/list_user.html'
-    users = User.objects.all()
-    print(users)
+    users = User.objects.all().order_by('-id')
+    # PAGINACION
+    page_obj = paginacion(request,users)
+
     context = {
         'title':'EL TELAR - USUARIOS',
         'users_list':users,
+        'page_obj':page_obj,
     }
     return render(request, template_name, context)
 
@@ -28,7 +34,7 @@ def list_user(request):
 def profile(request):
     template_name = 'user/user_profile.html'
     users =  get_object_or_404(User, username=request.user.username)
-    print(users)
+    
     context = {
         'title':'EL TELAR - PERFIL {}'.format(users),
         'users_list':users,
