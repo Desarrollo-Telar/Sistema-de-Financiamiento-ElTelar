@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'apps.codes',
     'apps.pictures',
     'apps.addresses',
+    'apps.FinancialInformation',
+    'apps.InvestmentPlan',
    # 'django_inlinecss',
     #'otp',
 ]

@@ -33,6 +33,12 @@ class Customer(models.Model):
         ('Indivicual (PI)', 'Indivicual (PI)'),
         ('Juridica (PJ)', 'Juridica (PJ)')
     ]
+    status = [
+        ('Revisión de documentos', 'Revisión de documentos'),
+        ('Aprobado', 'Aprobado'),
+        ('No Aprobado', 'No Aprobado'),
+        ('Posible Cliente', 'Posible Cliente'),
+    ]
 
     user_id = models.ForeignKey(User, blank=False, null=False, on_delete=models.CASCADE)
     immigration_status_id = models.ForeignKey(ImmigrationStatus, blank=False, null=False, on_delete=models.CASCADE)
@@ -43,9 +49,9 @@ class Customer(models.Model):
     identification_number = models.CharField(max_length=15, blank=False, null=False, unique=True)
     telephone = models.CharField(max_length=20, blank=True, null=True)
     email = models.EmailField(unique=True)
-    status = models.CharField(max_length=20, blank=True, null=True)
+    status = models.CharField(choices=status, default='Posible Cliente', max_length=75)
     date_birth = models.DateField()
-    number_nit = models.CharField(max_length=20, blank=False, null=False, unique=True)
+    number_nit = models.CharField(max_length=20, blank=False, null=False, unique=True) # NIT
     place_birth = models.CharField(max_length=75, blank=False, null=False) # Lugar de nacimiento
     marital_status =  models.CharField(max_length=50, blank=False, null=False)   # Estado civil
     profession_trade = models.CharField(max_length=75, blank=False, null=False) # Profesion u oficio
@@ -53,3 +59,4 @@ class Customer(models.Model):
     nationality = models.CharField(max_length=75, blank=False, null=False, default='Guatemala')
     person_type = models.CharField(choices=type_person, max_length=50)
     creation_date = models.DateTimeField(auto_now_add=True)
+
