@@ -27,11 +27,11 @@ def list_customer(request):
 
 @login_required
 def add_customer(request):
-    form = CustomerForm
+    form1 = CustomerForm
     template_name = 'customer/add.html'
     context = {
         'title': 'EL TELAR - CLIENTES',
-        'form':form,
+        'form1':form1,
         'accion':'Agregar',
     }
     return render(request, template_name, context)

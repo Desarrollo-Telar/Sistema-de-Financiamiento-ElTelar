@@ -46,18 +46,17 @@ class CustomerForm(forms.ModelForm):
             'last_name',
             'type_identification',
             'identification_number',
+            'marital_status',            
+            'nationality',
+            'number_nit',
+            'date_birth',
+            'place_birth',
+            'gender',
+            'profession_trade',
             'person_type',
             'telephone',
             'email',
-            'status',
-            'date_birth',
-            'number_nit',
-            'place_birth',
-            'marital_status',
-            'profession_trade',
-            'gender',
-            'nationality',
-            
+            'status',  
         ]
 
         labels = {

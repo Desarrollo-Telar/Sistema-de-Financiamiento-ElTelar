@@ -1,15 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row">
-    <div class="col">
-        <h4>Información Personal</h4>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-4">
+            <h4>Información Personal</h4>
 
+        </div>
+        <div class="col-8">
+
+            {%include 'customer/forms/forms_personal.html' %}
+
+        </div>
+        <hr>
+        <div class="col-4">
+            <h4>Información Laboral</h4>
+
+        </div>
+        <div class="col-8">
+
+            {%include 'customer/forms/forms_working.html' %}
+
+        </div>
     </div>
-    <div class="col">
-        {%include 'customer/forms/forms.html' %}
-
-    </div>
-</div>
-
+    <br />
+    <hr />
+    <a type="button" style="
+        border: 1px solid #ba181b;
+        color: #ba181b;
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 2rem;
+        background-color: #effaf3;
+      " href=" {% url 'customers:customers' %}">Volver atrás</a>
+    <button type="submit" style="
+        background-color: #161a1d;
+        color: #effaf3;
+        border: 1px solid #161a1d;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+      ">
+        {{accion}}
+    </button>
+</form>
 {% endblock%}
