@@ -172,7 +172,7 @@ class UpdateUserForm(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'telephone': forms.TextInput(attrs={'class': 'form-control', 'name': 'telefono'}),
+            'telephone':forms.TextInput(attrs={'class':'form-control', 'type':'number', 'min':'0'}),
             'type_identification': forms.Select(attrs={'class':'form-control', 'name':'type_identification', 'id':'type_identification'}),
             'identification_number':forms.TextInput(attrs={'class':'form-control', 'type':'number', 'min':'0'}),
             'gender': forms.Select(attrs={'class':'form-control', 'name':'gender', 'id':'gender'}),

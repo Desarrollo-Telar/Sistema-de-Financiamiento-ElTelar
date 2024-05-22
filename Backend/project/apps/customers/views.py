@@ -31,6 +31,7 @@ def add_customer(request):
     template_name = 'customer/add.html'
     context = {
         'title': 'EL TELAR - CLIENTES',
-        'form':form
+        'form':form,
+        'accion':'Agregar',
     }
     return render(request, template_name, context)
