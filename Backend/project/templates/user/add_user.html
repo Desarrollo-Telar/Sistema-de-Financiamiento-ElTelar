@@ -1,36 +1,44 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 <div class="row">
-    <form method="POST">
-        {% csrf_token %} {% for field in form %}
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {% for field in form %}
 
-        <div class="form-group">
-            {{ field.label_tag }} {{ field }} {% if field.errors %} {{ field.errors }}
-            {% endif %}
-        </div>
-        <br />
+    <div class="form-group">
+      {{ field.label_tag }} {{ field }} {% if field.errors %} {{ field.errors }}
+      {% endif %}
+    </div>
+    <br />
 
-        {% endfor %}
+    {% endfor %}
 
-        <br />
-        <hr />
-        <a type="button" style="
+    <br />
+    <hr />
+    <a
+      type="button"
+      style="
         border: 1px solid #ba181b;
         color: #ba181b;
         text-decoration: none;
         padding: 0.5rem;
         border-radius: 2rem;
         background-color: #effaf3;
-      " href=" {% url 'users:users' %}">Volver atrás</a>
-        <button type="submit" style="
+      "
+      href=" {% url 'users:users' %}"
+      >Volver atrás</a
+    >
+    <button
+      type="submit"
+      style="
         background-color: #161a1d;
         color: #effaf3;
         border: 1px solid #161a1d;
         padding: 0.5rem 1rem;
         border-radius: 2rem;
-      ">
-            {{accion}}
-        </button>
-    </form>
+      "
+    >
+      {{accion}}
+    </button>
+  </form>
 </div>
 
 {% endblock content %}
