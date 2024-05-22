@@ -3,6 +3,14 @@ from django.db import models
 # Relaciones
 from apps.users.models import User
 
+# Signals
+from django.db.models.signals import pre_save
+
+# Django
+from django.dispatch import receiver
+from django.utils import timezone
+import random
+
 # Create your models here.
 condition = [
         ('Residente temporal','Residente temporal'),

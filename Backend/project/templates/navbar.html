@@ -3,7 +3,7 @@
 {% url 'users:users' as users %}
 {% url 'roles_permissions:roles_permissions' as roles %}
 {% url 'users:update_password' as update_password%}
-
+{% url 'customers:customers' as customers%}
 <style>
   .btn_outline {
     background-color: #e02226;
@@ -63,7 +63,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="{{customers}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                 class="bi bi-person-vcard-fill" viewBox="0 0 16 16" style="margin-right: 1rem">
                 <path
