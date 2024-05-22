@@ -1,8 +1,16 @@
 {% extends 'base.html '%}
 {% load static %}
 
-{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock%}
 
+{% block content %}
+<div class="row" style="margin-bottom: 2rem">
+    <div class="col d-flex flex-row-reverse">
+        <a class="add" href="{% url 'customers:create'%}">Añadir cliente nuevo</a>
+    </div>
+</div>
 {% include 'customer/table/table.html' %}
 
 

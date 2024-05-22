@@ -79,7 +79,8 @@
 <hr>
 {% include 'snippets/pages.html' %}
 
-{% endblock %} {% block css %}
+{% endblock %}
+{% block css %}
 
-<link rel="stylesheet" href="../../static/css/users/list.css" />
+<link rel="stylesheet" href="{% static 'css/users/list.css' %}" />
 {% endblock %}

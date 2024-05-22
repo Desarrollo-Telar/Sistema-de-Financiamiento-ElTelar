@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 # Paginacion
 from project.pagination import paginacion
 
+# Formularios
+from .forms import CustomerForm
+
 # Create your views here.
 @login_required
 def list_customer(request):
@@ -19,5 +22,15 @@ def list_customer(request):
         'title':'EL TELAR - CLIENTES',
         'page_obj':page_obj,
         'customer_list':customer_list,
+    }
+    return render(request, template_name, context)
+
+@login_required
+def add_customer(request):
+    form = CustomerForm
+    template_name = 'customer/add.html'
+    context = {
+        'title': 'EL TELAR - CLIENTES',
+        'form':form
     }
     return render(request, template_name, context)

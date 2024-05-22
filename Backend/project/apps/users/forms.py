@@ -177,7 +177,6 @@ class UpdateUserForm(forms.ModelForm):
             'identification_number':forms.TextInput(attrs={'class':'form-control', 'type':'number', 'min':'0'}),
             'gender': forms.Select(attrs={'class':'form-control', 'name':'gender', 'id':'gender'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
-            'status': forms.TextInput(attrs={'type':'checkbox'}),
             'profile_pic': forms.FileInput(attrs={'type':'checkbox', 'name':'image', 'type':'file', 'accept':'image', 'class':'form-control'}),
         }
 
