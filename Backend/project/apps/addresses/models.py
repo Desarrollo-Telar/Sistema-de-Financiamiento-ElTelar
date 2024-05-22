@@ -18,3 +18,8 @@ class Address(models.Model):
     country = models.CharField(max_length=90, blank=False, null=False) # Pais
     type_address = models.CharField(choices=type_address,max_length=90, blank=False, null=False)
     customer_id = models.ForeignKey(Customer, blank=False, null=False, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return '{} {} / {}'.format(self.street, self.city,self.customer_id)
+    
