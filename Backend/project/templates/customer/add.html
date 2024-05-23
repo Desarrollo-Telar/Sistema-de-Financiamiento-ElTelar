@@ -14,10 +14,21 @@
                     {%include 'customer/forms/PersonalInformation/forms.html' %}
                 </div>
             </div>
+            <div class="row">
+                <div class="col-2">
+                    <a href="#">Visualizar</a>
+
+                </div>
+                <div class="col-2">
+                    <a href="#">Siguiente</a>
+                </div>
+            </div>
         </div>
 
-        <hr>
+
+
         <div id="WorkingInformation" style="display: none;">
+            <hr>
             <div class="row">
                 <div class="col-4">
                     <h4>Información Laboral</h4>
@@ -29,37 +40,44 @@
 
                 </div>
             </div>
-        </div>
-
-
-        <hr>
-        <div id="InvestmentPlan" style="display: none;">
             <div class="row">
-                <div class="col-4">
-                    <h4>Información Sobre el Plan de Inversión</h4>
+                <div class="col-2">
+                    <a href="#">Visualizar</a>
 
                 </div>
-                <div class="col-8">
-                    {% include 'customer/forms/InvestmentPlan/forms.html' %}
-
-
-
+                <div class="col-2">
+                    <a href="#">Anterior</a>
+                </div>
+                <div class="col-2">
+                    <a href="#">Siguiente</a>
                 </div>
             </div>
         </div>
 
 
-        <hr>
+
+        <div id="InvestmentPlan" style="display: none;">
+            <hr>
+            <div class="row">
+                <div class="col-4">
+                    <h4>Información Sobre el Plan de Inversión</h4>
+                </div>
+                <div class="col-8">
+                    {% include 'customer/forms/InvestmentPlan/forms.html' %}
+                </div>
+            </div>
+        </div>
+
+
+
         <div id="References" style="display: none;">
+            <hr>
             <div class="row">
                 <div class="col-4">
                     <h4>Información Referencias del cliente</h4>
-
                 </div>
                 <div class="col-8">
                     {% include 'customer/forms/FinancialInformation/forms.html' %}
-
-
 
                 </div>
             </div>
@@ -67,8 +85,9 @@
 
     </div>
     <br />
-    <hr />
-    <a type="button" style="
+    <div id="References" style="display: none;">
+        <hr />
+        <a type="button" style="
         border: 1px solid #ba181b;
         color: #ba181b;
         text-decoration: none;
@@ -76,14 +95,15 @@
         border-radius: 2rem;
         background-color: #effaf3;
       " href=" {% url 'customers:customers' %}">Volver atrás</a>
-    <button type="submit" style="
+        <button type="submit" style="
         background-color: #161a1d;
         color: #effaf3;
         border: 1px solid #161a1d;
         padding: 0.5rem 1rem;
         border-radius: 2rem;
       ">
-        {{accion}}
-    </button>
+            {{accion}}
+        </button>
+    </div>
 </form>
 {% endblock%}

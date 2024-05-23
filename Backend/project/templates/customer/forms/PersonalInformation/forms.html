@@ -1,49 +1,161 @@
-<div id="PersonalInformation">
-    <div class="row g-3">
-        <div class="col-6">
-            <div class="form-group">
-                <label for="first_name">Nombre</label>
-                <input type="text" name="fist_name" id="fist_name" class="form-control">
-            </div>
+<div class="row g-3">
+    <div class="col-6">
+        <div class="form-group">
+            <label for="first_name">Nombre</label>
+            <input type="text" name="fist_name" id="fist_name" class="form-control">
         </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label for="last_name">Apellido</label>
-                <input type="text" name="last_name" id="last_name" class="form-control">
-            </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="last_name">Apellido</label>
+            <input type="text" name="last_name" id="last_name" class="form-control">
         </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label for="email">Correo Electronico</label>
-                <input type="email" name="email" id="email" class="form-control">
-            </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="email">Correo Electronico</label>
+            <input type="email" name="email" id="email" class="form-control">
         </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label for="telephone">Numero de Telefono</label>
-                <div class="input-group">
-                    <div class="input-group-text">+502</div>
-                    <input type="num" min="0" name="telephone" id="telephone" class="form-control">
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="telephone">Numero de Telefono</label>
+            <div class="input-group">
+                <div class="input-group-text">+502</div>
+                <input type="num" min="0" name="telephone" id="telephone" class="form-control">
 
-                </div>
             </div>
         </div>
-        <div class="col-6">
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="email">Tipo de Identificación</label>
+            <select class="form-select" aria-label="Default select example" id="type_identification">
+                <option value="DPI">DPI</option>
+                <option value="PASAPORTE">PASAPORTE</option>
+                <option value="OTRO">OTRO</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="form-group">
+            <label for="identification_number">Numero de identificación</label>
+            <input type="num" min="0" name="identification_number" id="identification_number" class="form-control">
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="date_birth">Fecha de Nacimiento</label>
+            <input type="date" name="date_birth" id="date_birth" class="form-control">
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="place_birth">Lugar de Nacimiento</label>
+            <input type="text" name="place_birth" id="place_birth" class="form-control">
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="nationality">Nacionalidad</label>
+            <input type="text" name="nationality" id="nationality" class="form-control">
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="gender">Genero</label>
+            <select class="form-select" aria-label="Default select example" id="gender">
+
+                <option value="MASCULINO">MASCULINO</option>
+                <option value="FEMENINO">FEMENINO</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="marital_status">Estado Civil</label>
+            <input type="text" name="marital_status" id="marital_status" class="form-control">
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="profession_trade">Profesión</label>
+            <input type="text" name="profession_trade" id="profession_trade" class="form-control">
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="person_type">Tipo de Persona</label>
+            <select class="form-select" aria-label="Default select example" id="person_type">
+                <option value="Indivicual (PI)">Indivicual (PI)</option>
+                <option value="Juridica (PJ)">Juridica (PJ)</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="status">Status del cliente</label>
+            <select class="form-select" aria-label="Default select example" id="status">
+                <option value="Posible Cliente">Posible Cliente</option>
+                <option value="Revisión de documentos">Revisión de documentos</option>
+                <option value="Aprobado">Aprobado</option>
+                <option value="No Aprobado">No Aprobado</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="immigration_status_id">Condicion Migratoria</label>
+            <select class="form-select" aria-label="Default select example" id="immigration_status_id">
+
+            </select>
+        </div>
+    </div>
+
+
+    <div class="row g-3">
+        <hr>
+        <h5>Dirección</h5>
+        <hr>
+        <div class="col-12">
             <div class="form-group">
-                <label for="email">Tipo de Identificación</label>
-                <select class="form-select" aria-label="Default select example" id="type_identification">
-                    <option value="DPI">DPI</option>
-                    <option value="PASAPORTE">PASAPORTE</option>
-                    <option value="OTRO">OTRO</option>
-                </select>
+                <label for="calle1">Dirección particular o sede social completa:</label>
+                <input type="text" class="form-control" id="street1"
+                    placeholder="Calle o avenida, casa, colonia, sector, lote, manzana, otros" name="street1">
+                <div class="form-text" id="basic-addon4">Ejemplo: 11 AVENIDA 5 CALLE 5-09</div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-2">
             <div class="form-group">
-                <label for="identification_number">Numero de identificación</label>
-                <input type="num" min="0" name="identification_number" id="identification_number" class="form-control">
+                <label for="number1">Zona</label>
+                <input type="number" min="0" class="form-control" id="number1" name="number1">
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="city1">Departamento</label>
+                <input type="text" class="form-control" id="city1" name="city1">
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="state1">Municipio</label>
+                <input type="text" class="form-control" id="state1" name="state1">
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="postal_code1">Codigo Postal</label>
+                <input type="text" class="form-control" id="postal_code1" name="postal_code1">
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label for="country1">País</label>
+                <input type="text" class="form-control" id="country1" name="country1">
             </div>
         </div>
 
     </div>
+
 </div>
