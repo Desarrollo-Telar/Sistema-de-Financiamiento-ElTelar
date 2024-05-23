@@ -13,6 +13,7 @@ from project.pagination import paginacion
 from .forms import CustomerForm
 from apps.addresses.forms import AddressForms
 from apps.FinancialInformation.forms import WorkingInformationForms, OtherSourcesOfIncomeForms
+from apps.InvestmentPlan.forms import InvestmentPlanForms
 
 
 
@@ -35,12 +36,14 @@ def add_customer(request):
     form1 = CustomerForm
     form2 = WorkingInformationForms
     form3 = OtherSourcesOfIncomeForms
+    form4 = InvestmentPlanForms
     template_name = 'customer/add.html'
     context = {
         'title': 'EL TELAR - CLIENTES',
         'form1':form1,
         'form2':form2,      
         'form3':form3,  
+        'form4':form4,
         'accion':'Agregar',
     }
     return render(request, template_name, context)
