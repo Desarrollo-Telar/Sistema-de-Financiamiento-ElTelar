@@ -82,6 +82,20 @@
     </div>
 
 </div>
+
+<hr>
+{% for field in form3 %}
+
+<div class="form-group">
+    {{ field.label_tag }}
+    {{ field }}
+    {% if field.errors %}
+    {{ field.errors }}
+    {% endif %}
+</div>
+<br />
+
+{% endfor %}
 <hr>
 <h5>Dirección</h5>
 <div class="row g-3">

@@ -51,4 +51,22 @@ class OtherSourcesOfIncomeForms(forms.ModelForm):
     class Meta:
         model = OtherSourcesOfIncome
 
-        fields = '__all__'
+        fields = [
+            'source_of_income',
+            'nit',
+            'phone_number',
+        ]
+
+        labels = {
+            'source_of_income': 'Fuente de ingreso',
+            'nit': 'NIT',
+            'phone_number': 'Numero de telefono',
+
+        }
+
+
+        widgets = {
+            'source_of_income':forms.TextInput(attrs={'class':'form-control'}),
+            'nit': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
+            'phone_number': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
+        }
