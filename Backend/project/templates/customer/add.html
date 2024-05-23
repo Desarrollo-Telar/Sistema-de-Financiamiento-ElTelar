@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% block content %}
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -14,14 +15,17 @@
                     {%include 'customer/forms/PersonalInformation/forms.html' %}
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-top: 3rem;">
                 <div class="col-2">
                     <a href="#">Visualizar</a>
 
                 </div>
                 <div class="col-2">
-                    <a href="#">Siguiente</a>
+                    <a style="cursor: pointer;"
+                        onclick="mostrarOcultar('WorkingInformation','PersonalInformation')">Siguiente</a>
                 </div>
+
+
             </div>
         </div>
 
@@ -40,16 +44,16 @@
 
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-top: 3rem;">
                 <div class="col-2">
                     <a href="#">Visualizar</a>
 
                 </div>
                 <div class="col-2">
-                    <a href="#">Anterior</a>
+                    <a onclick="mostrarOcultar('WorkingInformation','PersonalInformation')">Anterior</a>
                 </div>
                 <div class="col-2">
-                    <a href="#">Siguiente</a>
+                    <a onclick="mostrarOcultar('InvestmentPlan','WorkingInformation')">Siguiente</a>
                 </div>
             </div>
         </div>
@@ -64,6 +68,18 @@
                 </div>
                 <div class="col-8">
                     {% include 'customer/forms/InvestmentPlan/forms.html' %}
+                </div>
+            </div>
+            <div class="row" style="margin-top: 3rem;">
+                <div class="col-2">
+                    <a href="#">Visualizar</a>
+
+                </div>
+                <div class="col-2">
+                    <a onclick="mostrarOcultar('InvestmentPlan','WorkingInformation')">Anterior</a>
+                </div>
+                <div class="col-2">
+                    <a onclick="mostrarOcultar('References','InvestmentPlan','agregar')">Siguiente</a>
                 </div>
             </div>
         </div>
@@ -81,11 +97,26 @@
 
                 </div>
             </div>
+            <div class="row">
+                <div class="col-2">
+                    <a href="#">Visualizar</a>
+
+                </div>
+                <div class="col-2">
+                    <a onclick="mostrarOcultar('References','InvestmentPlan','agregar')">Anterior</a>
+                </div>
+                <!-- 
+                <div class="col-2">
+                    <a onclick="mostrarOcultar('agregar','References')">Siguiente</a>
+                </div>
+                -->
+
+            </div>
         </div>
 
     </div>
     <br />
-    <div id="References" style="display: none;">
+    <div id="agregar" style="display: none;">
         <hr />
         <a type="button" style="
         border: 1px solid #ba181b;
@@ -107,3 +138,9 @@
     </div>
 </form>
 {% endblock%}
+
+{% block js %}
+
+<script type="text/javascript" src="{% static 'js/customer/forms_add.js'%}"></script>
+
+{% endblock %}
