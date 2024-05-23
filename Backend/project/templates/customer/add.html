@@ -4,48 +4,67 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="row">
-        <!-- 
-        <div class="col-4">
-            <h4>Información Personal</h4>
+        <div id="PersonalInformation">
+            <div class="row">
+                <div class="col-4">
+                    <h4>Información Personal</h4>
 
+                </div>
+                <div class="col-8">
+                    {%include 'customer/forms/PersonalInformation/forms.html' %}
+                </div>
+            </div>
         </div>
-        <div class="col-8">
 
-            {%include 'customer/forms/forms_personal.html' %}
-
-        </div>
         <hr>
-        <div class="col-4">
-            <h4>Información Laboral</h4>
+        <div id="WorkingInformation" style="display: none;">
+            <div class="row">
+                <div class="col-4">
+                    <h4>Información Laboral</h4>
 
+                </div>
+                <div class="col-8">
+
+                    {%include 'customer/forms/forms_working.html' %}
+
+                </div>
+            </div>
         </div>
-        <div class="col-8">
 
-            {%include 'customer/forms/forms_working.html' %}
 
-        </div>
--->
         <hr>
-        <div class="col-4">
-            <h4>Información Sobre el Plan de Inversión</h4>
+        <div id="InvestmentPlan" style="display: none;">
+            <div class="row">
+                <div class="col-4">
+                    <h4>Información Sobre el Plan de Inversión</h4>
 
+                </div>
+                <div class="col-8">
+                    {% include 'customer/forms/InvestmentPlan/forms.html' %}
+
+
+
+                </div>
+            </div>
         </div>
-        <div class="col-8">
-            {% include 'customer/forms/InvestmentPlan/forms.html' %}
 
 
-
-        </div>
         <hr>
-        <div class="col-4">
-            <h4>Información Referencias del cliente</h4>
+        <div id="References" style="display: none;">
+            <div class="row">
+                <div class="col-4">
+                    <h4>Información Referencias del cliente</h4>
 
+                </div>
+                <div class="col-8">
+                    {% include 'customer/forms/FinancialInformation/forms.html' %}
+
+
+
+                </div>
+            </div>
         </div>
-        <div class="col-8">
 
-
-
-        </div>
     </div>
     <br />
     <hr />

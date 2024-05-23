@@ -1,12 +1,105 @@
-{% for field in form4 %}
+<div id="referencias">
+    <h6>Referencias Personales</h6>
+    <hr>
+    <div class="row g-3">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="full_name1">Nombre Completo</label>
+                <input type="text" name="full_name1" id="full_name1" class="form-control">
+            </div>
 
-<div class="form-group">
-    {{ field.label_tag }}
-    {{ field }}
-    {% if field.errors %}
-    {{ field.errors }}
-    {% endif %}
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="phone_number1">Numero de Telefono</label>
+                <div class="input-group">
+                    <div class="input-group-text">+502</div>
+                    <input type="num" min="0" name="phone_number1" id="phone_number1" class="form-control">
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="full_name2">Nombre Completo</label>
+                <input type="text" name="full_name2" id="full_name2" class="form-control">
+            </div>
+
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="phone_number2">Numero de Telefono</label>
+                <div class="input-group">
+                    <div class="input-group-text">+502</div>
+                    <input type="num" min="0" name="phone_number2" id="phone_number2" class="form-control">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <hr>
+    <div class="row" style="margin-top: 3rem;">
+        <h6>Referencias Laborales, Comerciales o Bancarias: (nombre de patronos, empresas o bancos)</h6>
+    </div>
+    <hr>
+    <div class="row g-3">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="full_name3">Nombre Completo</label>
+                <input type="text" name="full_name3" id="full_name3" class="form-control">
+            </div>
+
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="phone_number3">Numero de Telefono</label>
+                <div class="input-group">
+                    <div class="input-group-text">+502</div>
+                    <input type="num" min="0" name="phone_number3" id="phone_number3" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="reference3">Tipo de Referencia</label>
+                <select class="form-select" aria-label="Default select example" id="reference3">
+                    <option value="Laborales">Laborales</option>
+                    <option value="Comerciales">Comerciales</option>
+                    <option value="Bancarias">Bancarias</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="full_name4">Nombre Completo</label>
+                <input type="text" name="full_name4" id="full_name4" class="form-control">
+            </div>
+
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="phone_number4">Numero de Telefono</label>
+                <div class="input-group">
+                    <div class="input-group-text">+502</div>
+                    <input type="num" min="0" name="phone_number4" id="phone_number4" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="reference4">Tipo de Referencia</label>
+                <select class="form-select" aria-label="Default select example" id="reference4">
+                    <option value="Laborales">Laborales</option>
+                    <option value="Comerciales">Comerciales</option>
+                    <option value="Bancarias">Bancarias</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+
 </div>
-<br />
-
-{% endfor %}

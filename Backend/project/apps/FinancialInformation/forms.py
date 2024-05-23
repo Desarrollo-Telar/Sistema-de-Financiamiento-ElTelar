@@ -1,7 +1,7 @@
 from django import forms
 
 # Models
-from .models import Reference, OtherSourcesOfIncome, WorkingInformation
+from .models import Reference, OtherSourcesOfIncome, WorkingInformation, Reference
 
 class WorkingInformationForms(forms.ModelForm):
     class Meta:
@@ -70,3 +70,9 @@ class OtherSourcesOfIncomeForms(forms.ModelForm):
             'nit': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
             'phone_number': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
         }
+
+class ReferenceForms(forms.ModelForm):
+    class Meta:
+        model = Reference
+
+        fields = '__all__'

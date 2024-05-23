@@ -12,7 +12,7 @@ from project.pagination import paginacion
 # Formularios
 from .forms import CustomerForm
 from apps.addresses.forms import AddressForms
-from apps.FinancialInformation.forms import WorkingInformationForms, OtherSourcesOfIncomeForms
+from apps.FinancialInformation.forms import WorkingInformationForms, OtherSourcesOfIncomeForms, ReferenceForms
 from apps.InvestmentPlan.forms import InvestmentPlanForms
 
 
@@ -37,6 +37,7 @@ def add_customer(request):
     form2 = WorkingInformationForms
     form3 = OtherSourcesOfIncomeForms
     form4 = InvestmentPlanForms
+    form5 = ReferenceForms
     template_name = 'customer/add.html'
     context = {
         'title': 'EL TELAR - CLIENTES',
@@ -44,6 +45,7 @@ def add_customer(request):
         'form2':form2,      
         'form3':form3,  
         'form4':form4,
+        'form5':form5,
         'accion':'Agregar',
     }
     return render(request, template_name, context)
