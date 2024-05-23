@@ -12,6 +12,8 @@ from project.pagination import paginacion
 # Formularios
 from .forms import CustomerForm
 from apps.addresses.forms import AddressForms
+from apps.FinancialInformation.forms import WorkingInformationForms
+
 
 # Create your views here.
 @login_required
@@ -30,12 +32,13 @@ def list_customer(request):
 def add_customer(request):
     # Listado de formularios
     form1 = CustomerForm
-    form2 = AddressForms
+    form2 = WorkingInformationForms
+    
     template_name = 'customer/add.html'
     context = {
         'title': 'EL TELAR - CLIENTES',
         'form1':form1,
-        'form2':form2,
+        'form2':form2,        
         'accion':'Agregar',
     }
     return render(request, template_name, context)
