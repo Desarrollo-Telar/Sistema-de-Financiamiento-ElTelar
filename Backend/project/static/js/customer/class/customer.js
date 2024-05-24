@@ -205,7 +205,7 @@ class Cliente {
     }
     // Método toString para representar el objeto como una cadena
     toString() {
-        return `{
+        return `Cliente {
             Nombre: ${this.#first_name}, 
             Apellido: ${this.#last_name},
             Tipo de Identificación: ${this.#type_identification},
