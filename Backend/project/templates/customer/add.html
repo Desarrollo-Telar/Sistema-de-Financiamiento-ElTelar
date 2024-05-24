@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/customers/forms.css' %}">
+{% endblock %}
+
 {% block content %}
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -37,13 +42,11 @@ background-color: #effaf3;
         background-color: #effaf3;
       " href=" {% url 'customers:customers' %}">Cancelar</a>
                 </div>
-                <div class="col-2">
-                    <a href="#">Visualizar</a>
 
-                </div>
                 <div class="col-2">
-                    <a style="cursor: pointer;"
-                        onclick="mostrarOcultar('WorkingInformation','PersonalInformation')">Siguiente</a>
+                    <a type="button" style="cursor: pointer;"
+                        onclick="mostrarOcultar('WorkingInformation','PersonalInformation')"
+                        class="siguiente">Siguiente</a>
                 </div>
 
 
@@ -67,15 +70,14 @@ background-color: #effaf3;
             </div>
             <div class="row" style="margin-top: 3rem;">
                 <hr>
-                <div class="col-2">
-                    <a href="#">Visualizar</a>
 
+                <div class="col-2">
+                    <a type="button" onclick="mostrarOcultar('WorkingInformation','PersonalInformation')"
+                        class="anterior">Anterior</a>
                 </div>
                 <div class="col-2">
-                    <a onclick="mostrarOcultar('WorkingInformation','PersonalInformation')">Anterior</a>
-                </div>
-                <div class="col-2">
-                    <a onclick="mostrarOcultar('InvestmentPlan','WorkingInformation')">Siguiente</a>
+                    <a type="button" onclick="mostrarOcultar('InvestmentPlan','WorkingInformation')"
+                        class="siguiente">Siguiente</a>
                 </div>
             </div>
         </div>
@@ -94,15 +96,14 @@ background-color: #effaf3;
             </div>
             <div class="row" style="margin-top: 3rem;">
                 <hr>
-                <div class="col-2">
-                    <a href="#">Visualizar</a>
 
+                <div class="col-2">
+                    <a type="button" onclick="mostrarOcultar('InvestmentPlan','WorkingInformation')"
+                        class="anterior">Anterior</a>
                 </div>
                 <div class="col-2">
-                    <a onclick="mostrarOcultar('InvestmentPlan','WorkingInformation')">Anterior</a>
-                </div>
-                <div class="col-2">
-                    <a onclick="mostrarOcultar('References','InvestmentPlan','agregar')">Siguiente</a>
+                    <a type="button" onclick="mostrarOcultar('References','InvestmentPlan','agregar')"
+                        class="siguiente">Siguiente</a>
                 </div>
             </div>
         </div>
@@ -122,12 +123,10 @@ background-color: #effaf3;
             </div>
             <div class="row" style="margin-top: 3rem;">
                 <hr>
-                <div class="col-2">
-                    <a href="#">Visualizar</a>
 
-                </div>
                 <div class="col-2">
-                    <a onclick="mostrarOcultar('References','InvestmentPlan','agregar')">Anterior</a>
+                    <a type="button" onclick="mostrarOcultar('References','InvestmentPlan','agregar')"
+                        class="anterior">Anterior</a>
                 </div>
                 <!-- 
                 <div class="col-2">

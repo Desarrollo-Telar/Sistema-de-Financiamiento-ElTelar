@@ -17,14 +17,14 @@
     </div>
     <div class="col" style="display: flex; align-items: center; justify-content: center;">
         <div class="form-group">
-            <a onclick="mostrarFuente('source_of_income1')" style="border: 1px solid; ">Confirmar</a>
+            <a type="button" onclick="mostrarFuente('source_of_income1')" class="confirmar">Confirmar</a>
         </div>
     </div>
 
 
 </div>
 
-<div id="informacionLaboral" style="display: none;">
+<div id="informacionLaboral" style="display: none; margin-top: 1rem;">
     <div class="row g-3">
 
         <div class="col-4">
@@ -99,7 +99,7 @@
 </div>
 
 
-<div id="otra" style="display: none;">
+<div id="otra" style="display: none; margin-top: 1rem;">
 
     {% for field in form3 %}
 

@@ -1,0 +1,28 @@
+.siguiente{
+    border: 1px solid #4e626c;
+    background-color: #4e626c;
+    text-decoration: none;
+    color: #f4f7f7;
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.anterior{
+    border: 1px solid #e5383b;
+    
+    text-decoration: none;
+    color: #e5383b;
+    padding: 0.5rem;
+    border-radius: 2rem;
+
+}
+
+.confirmar{
+    border: 1px solid #888888;
+    background-color: #888888;
+    text-decoration: none;
+    color: #f7f7f7;
+    padding: 0.5rem;
+    border-radius: 2rem;
+
+}
