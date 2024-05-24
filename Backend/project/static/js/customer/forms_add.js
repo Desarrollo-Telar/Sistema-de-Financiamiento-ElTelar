@@ -1,3 +1,4 @@
+import {Cliente} from '../customer/class/customer.js';
 
 const mostrarOcultar = (id1, id2 = null, id3 = null) => {
     // Obtener los elementos por sus IDs

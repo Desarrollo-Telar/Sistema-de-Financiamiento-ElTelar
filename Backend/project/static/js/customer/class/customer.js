@@ -1,13 +1,13 @@
 class Cliente {
-    #first_name; 
-    #last_name; 
+    #first_name;
+    #last_name;
     #type_identification;
     #identification_number;
     #telephone;
     #email;
     #status;
     #date_birth;
-    #number_nit; 
+    #number_nit;
     #place_birth;
     #marital_status;
     #profession_trade;
@@ -15,9 +15,10 @@ class Cliente {
     #nationality;
     #person_type;
 
-    constructor(first_name, last_name, type_identification, identification_number, telephone,
-        email, status, date_birth, number_nit, place_birth, marital_status, profession_trade,
-        gender, nationality, person_type) {
+
+    constructor(first_name = '', last_name = '', type_identification = '', identification_number = '',
+        telephone = '', email = '', status = '', date_birth = '', number_nit = '', place_birth = '',
+        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '') {
         this.#first_name = first_name;
         this.#last_name = last_name;
         this.#type_identification = type_identification;
@@ -73,6 +74,14 @@ class Cliente {
     }
 
     set telephone(value) {
+        // Expresión regular para exactamente 8 dígitos
+        const regex = /^\d{8}$/;
+
+        // Validar el formato del número de teléfono
+        if (!regex.test(value)) {
+            console.error('Numero de telefono no valido, no cumple con el estandar de un numero de telefono. Verificar!!!')
+            return false;
+        }
         this.#telephone = value;
     }
 
@@ -81,7 +90,26 @@ class Cliente {
     }
 
     set email(value) {
+        // Expresión regular básica para validar el formato del correo electrónico
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        // Lista de dominios conocidos
+        const dominiosConocidos = ['gmail.com', 'yahoo.com', 'outlook.com'];  // Agrega más dominios según sea necesario
+        // Validar el formato del correo electrónico
+        if (!regex.test(value)) {
+            console.error('Verifique bien si esta escribiendo el correo electronico...')
+            return false;
+        }
+        // Obtener el dominio del correo electrónico
+        const dominio = value.split('@')[1];
+
+        // Verificar si el dominio está en la lista de dominios conocidos
+        if (!dominiosConocidos.includes(dominio)) {
+            console.error('Verifique bien si esta escribiendo el dominio del correo electronico...')
+            return false;
+        }
         this.#email = value;
+
+
     }
 
     get status() {
@@ -155,10 +183,31 @@ class Cliente {
     set person_type(value) {
         this.#person_type = value;
     }
+    // Método toJSON para convertir el objeto en una representación JSON
+    toJSON() {
+        return {
+            first_name: this.#first_name,
+            last_name: this.#last_name,
+            type_identification: this.#type_identification,
+            identification_number: this.#identification_number,
+            telephone: this.#telephone,
+            email: this.#email,
+            status: this.#status,
+            date_birth: this.#date_birth,
+            number_nit: this.#number_nit,
+            place_birth: this.#place_birth,
+            marital_status: this.#marital_status,
+            profession_trade: this.#profession_trade,
+            gender: this.#gender,
+            nationality: this.#nationality,
+            person_type: this.#person_type
+        };
+    }
     // Método toString para representar el objeto como una cadena
     toString() {
         return `{
-            Nombre: ${this.#first_name} ${this.#last_name},
+            Nombre: ${this.#first_name}, 
+            Apellido: ${this.#last_name},
             Tipo de Identificación: ${this.#type_identification},
             Número de Identificación: ${this.#identification_number},
             Teléfono: ${this.#telephone},
@@ -176,4 +225,4 @@ class Cliente {
     }
 }
 
-
+export default Cliente;
