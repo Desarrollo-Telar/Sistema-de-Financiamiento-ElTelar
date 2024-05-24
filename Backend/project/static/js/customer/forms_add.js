@@ -1,7 +1,5 @@
 
 const mostrarOcultar = (id1, id2 = null, id3 = null) => {
-    console.log(id1, id2, id3);
-
     // Obtener los elementos por sus IDs
     let div = document.getElementById(id1);
     let div2 = id2 ? document.getElementById(id2) : null;
@@ -82,3 +80,26 @@ const mostrarFuente = (id) =>{
     }
 }
 
+let id_type_of_transfers_or_transfer_of_funds = document.getElementById('transferencias');
+console.log(id_type_of_transfers_or_transfer_of_funds);
+ocultar(id_type_of_transfers_or_transfer_of_funds);
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Obtener el checkbox por su ID
+    const checkbox = document.getElementById('transfers_or_transfer_of_funds');
+    // Obtener el párrafo para mostrar el estado
+    //const status = document.getElementById('id_type_of_transfers_or_transfer_of_funds');
+
+    // Añadir un listener para el evento 'change'
+    checkbox.addEventListener('change', (event) => {
+        if (checkbox.checked) {
+            //status.textContent = 'Checkbox is checked';
+            console.log('Checkbox is checked');
+            mostrar(id_type_of_transfers_or_transfer_of_funds)
+        } else {
+            //status.textContent = 'Checkbox is unchecked';
+            console.log('Checkbox is unchecked');
+            ocultar(id_type_of_transfers_or_transfer_of_funds);
+        }
+    });
+});

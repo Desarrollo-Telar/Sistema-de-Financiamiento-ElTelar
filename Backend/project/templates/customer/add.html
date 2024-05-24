@@ -5,6 +5,16 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="row">
+        <div class="col-12" style="display: flex; align-items: end; justify-content: end;">
+            <a type="button" style="
+border: 1px solid #ba181b;
+color: #ba181b;
+text-decoration: none;
+padding: 0.5rem;
+border-radius: 2rem;
+background-color: #effaf3;
+" href=" {% url 'customers:customers' %}">Cancelar</a>
+        </div>
         <div id="PersonalInformation">
             <div class="row">
                 <div class="col-4">
@@ -16,6 +26,17 @@
                 </div>
             </div>
             <div class="row" style="margin-top: 3rem;">
+                <hr>
+                <div class="col-2">
+                    <a type="button" style="
+        border: 1px solid #ba181b;
+        color: #ba181b;
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 2rem;
+        background-color: #effaf3;
+      " href=" {% url 'customers:customers' %}">Cancelar</a>
+                </div>
                 <div class="col-2">
                     <a href="#">Visualizar</a>
 
@@ -45,6 +66,7 @@
                 </div>
             </div>
             <div class="row" style="margin-top: 3rem;">
+                <hr>
                 <div class="col-2">
                     <a href="#">Visualizar</a>
 
@@ -71,6 +93,7 @@
                 </div>
             </div>
             <div class="row" style="margin-top: 3rem;">
+                <hr>
                 <div class="col-2">
                     <a href="#">Visualizar</a>
 
@@ -86,7 +109,7 @@
 
 
 
-        <div id="References" style="display: none;">
+        <div id="References" style="display: none; ">
             <hr>
             <div class="row">
                 <div class="col-4">
@@ -97,7 +120,8 @@
 
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-top: 3rem;">
+                <hr>
                 <div class="col-2">
                     <a href="#">Visualizar</a>
 
@@ -125,7 +149,7 @@
         padding: 0.5rem;
         border-radius: 2rem;
         background-color: #effaf3;
-      " href=" {% url 'customers:customers' %}">Volver atrás</a>
+      " href=" {% url 'customers:customers' %}">Cancelar</a>
         <button type="submit" style="
         background-color: #161a1d;
         color: #effaf3;
