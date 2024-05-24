@@ -1,0 +1,152 @@
+{% load static %}
+<div class="row g-3">
+    <div class="col">
+        <div class="form-group">
+            <label for="source_of_income">Fuentes de Ingreso</label>
+            <select class="form-select" aria-label="Default select example" id="source_of_income1"
+                name="source_of_income1">
+
+                <option value="Relación de Dependencia">Relación de Dependencia</option>
+                <option value="Negocio Propio">Negocio Propio</option>
+                <option value="Otra">Otra</option>
+            </select>
+
+
+        </div>
+
+    </div>
+    <div class="col" style="display: flex; align-items: center; justify-content: center;">
+        <div class="form-group">
+            <a type="button" onclick="mostrarFuente('source_of_income1')" class="confirmar">Confirmar</a>
+        </div>
+    </div>
+
+
+</div>
+
+<div id="informacionLaboral" style="display: none; margin-top: 1rem;">
+    <div class="row g-3">
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="position" class="form-label">Puesto</label>
+                <input type="text" class="form-control" id="position" name="position">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="company_name" class="form-label">Nombre de la Empresa</label>
+                <input type="text" class="form-control" id="company_name" name="company_name">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="start_date" class="form-label">Fecha de Inicio</label>
+                <input type="date" class="form-control" id="start_date" name="start_date">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="salary" class="form-label">Salario</label>
+                <input type="number" min="0" class="form-control" id="salary" name="salary">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="working_hours" class="form-label">Horario de trabajo</label>
+                <input type="text" class="form-control" id="working_hours" name="working_hours">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="phone_number" class="form-label">Numero de telefono</label>
+                <input type="number" min="0" class="form-control" id="phone_number" name="phone_number">
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                <label for="income_detail" class="form-label">Detalles de ingreso</label>
+                <textarea rows="3" class="form-control" id="income_detail" name="income_detail"></textarea>
+            </div>
+        </div>
+        <div class="col-12">
+            {% for field in form2 %}
+            {% if field.name == 'employment_status' %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                {{ field.errors }}
+                {% endif %}
+
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+
+        <div class="col-12">
+            <div class="form-group">
+                <label for="description" class="form-label">Detalles</label>
+                <textarea rows="3" class="form-control" id="description" name="description"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div id="otra" style="display: none; margin-top: 1rem;">
+    {% include 'customer/forms/WorkingInformation/forms_other.html'%}
+
+</div>
+<div id="direccion" style="display: none;">
+    <hr>
+    <h5>Dirección</h5>
+    <hr>
+    <div class="row g-3">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="calle2">Dirección particular o sede social completa:</label>
+                <input type="text" class="form-control" id="street2"
+                    placeholder="Calle o avenida, casa, colonia, sector, lote, manzana, otros" name="street2">
+                <div class="form-text" id="basic-addon4">Ejemplo: 11 AVENIDA 5 CALLE 5-09</div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="form-group">
+                <label for="number2">Zona</label>
+                <input type="number" min="0" class="form-control" id="number2" name="number2">
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="city">Departamento</label>
+                <input type="text" class="form-control" id="city1" name="city1">
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="state2">Municipio</label>
+                <input type="text" class="form-control" id="state2" name="state2">
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="postal_code2">Codigo Postal</label>
+                <input type="text" class="form-control" id="postal_code2" name="postal_code2">
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label for="country2">País</label>
+                <input type="text" class="form-control" id="country2" name="country2">
+            </div>
+        </div>
+
+    </div>
+    <br>
+</div>
