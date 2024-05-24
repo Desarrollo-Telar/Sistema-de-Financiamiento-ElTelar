@@ -71,18 +71,23 @@
             </div>
         </div>
         <div class="col-12">
-            {% for field in form2 %}
-            {% if field.name == 'employment_status' %}
-            <div class="form-group">
-                {{ field.label_tag }}
-                {{ field }}
-                {% if field.errors %}
-                {{ field.errors }}
-                {% endif %}
-
-            </div>
-            {% endif %}
-            {% endfor %}
+            <label for="employment_status">Estado Laboral</label>
+            <select class="form-select" aria-label="Default select example" id="employment_status"
+                name="employment_status">
+                <option value="Empleado a Tiempo Completo">Empleado a Tiempo Completo</option>
+                <option value="Empleado a Tiempo Parcial">Empleado a Tiempo Parcial</option>
+                <option value="Autónomo">Autónomo</option>
+                <option value="Desempleado">Desempleado</option>
+                <option value="Trabajador Temporal">Trabajador Temporal</option>
+                <option value="Contratista">Contratista</option>
+                <option value="Freelancer">Freelancer</option>
+                <option value="Estudiante">Estudiante</option>
+                <option value="Jubilado">Jubilado</option>
+                <option value="Hogar">Hogar</option>
+                <option value="Practicante o Pasante">Practicante o Pasante</option>
+                <option value="Trabajador a Domicilio">Trabajador a Domicilio</option>
+                <option value="Voluntario">Voluntario</option>
+            </select>
         </div>
 
 

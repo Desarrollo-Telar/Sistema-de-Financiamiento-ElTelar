@@ -1,0 +1,8 @@
+<div class="col-6">
+        <div class="form-group">
+            <label for="immigration_status_id">Condicion Migratoria</label>
+            <select class="form-select" aria-label="Default select example" id="immigration_status_id">
+
+            </select>
+        </div>
+    </div>
