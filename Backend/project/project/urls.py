@@ -21,6 +21,7 @@ urlpatterns = [
     path('customers/', include('apps.customers.urls')),
     path('addresses/', include('apps.addresses.urls')),
     path('codes/', include('apps.codes.urls')),
+    path('financial_information/', include('apps.FinancialInformation.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     #path('dashboard/', include('django_dash.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
