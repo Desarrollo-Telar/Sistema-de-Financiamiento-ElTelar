@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apps.addresses',
     'apps.FinancialInformation',
     'apps.InvestmentPlan',
+    'rest_framework',
    # 'django_inlinecss',
     #'otp',
 ]
