@@ -1,4 +1,4 @@
-class Referencia {
+export class Referencia {
     #full_name;
     #phone_number;
     #reference_type;

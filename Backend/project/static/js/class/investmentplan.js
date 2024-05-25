@@ -1,4 +1,4 @@
-class PlanInversion {
+export class PlanInversion {
     #type_of_product_or_service;
     #total_value_of_the_product_or_service;
     #investment_plan_description;

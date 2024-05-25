@@ -1,4 +1,4 @@
-import {Cliente} from '../class/customer';
+
 
 const mostrarOcultar = (id1, id2 = null, id3 = null) => {
     // Obtener los elementos por sus IDs
@@ -17,12 +17,12 @@ const mostrarOcultar = (id1, id2 = null, id3 = null) => {
     if (window.getComputedStyle(div).display !== 'none') {
         // Ocultar el elemento principal
         ocultar(div);
-        
+
         // Ocultar el tercer elemento si existe
         if (div3) {
             ocultar(div3);
         }
-        
+
         // Mostrar el segundo elemento si existe
         if (div2) {
             mostrar(div2);
@@ -60,20 +60,20 @@ const mostrar = (element) => {
 };
 
 
-const mostrarFuente = (id) =>{
+const mostrarFuente = (id) => {
     let div = document.getElementById(id);
     let informacionLaborl = document.getElementById('informacionLaboral');
     let direccion = document.getElementById('direccion');
     let otra = document.getElementById('otra');
-    
-    
-    if(div.value === 'Otra'){
-        console.log('Mostrar informacion laboral de otra');
+
+
+    if (div.value === 'Otra') {
+        
         mostrar(otra);
         mostrar(direccion);
         ocultar(informacionLaborl);
-    }else{
-        console.log('Mostrar informacion laboral de otra');
+    } else {
+        
         mostrar(informacionLaborl);
         mostrar(direccion);
         ocultar(otra);
@@ -95,36 +95,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     checkbox.addEventListener('change', (event) => {
         if (checkbox.checked) {
             //status.textContent = 'Checkbox is checked';
-            console.log('Checkbox is checked');
-            mostrar(id_type_of_transfers_or_transfer_of_funds)
+            
+            mostrar(id_type_of_transfers_or_transfer_of_funds);
         } else {
             //status.textContent = 'Checkbox is unchecked';
-            console.log('Checkbox is unchecked');
+            
             ocultar(id_type_of_transfers_or_transfer_of_funds);
         }
     });
 });
 
-// Informacion del formulario
-document.getElementById('customer').addEventListener('submit', function(event) {
-    // Evitar el envío predeterminado del formulario
-    event.preventDefault();
-
-    // Obtener los datos del formulario
-    var nombre = document.getElementById('fist_name').value;
-   
-
-    // Realizar la validación (ejemplo sencillo)
-    if (nombre === '') {
-        alert('El nombre del cliente es obligatorio');
-        return false;
-    }
-
-    
-
-    // Si la validación es exitosa, se puede proceder con el envío del formulario
-    alert('¡Formulario enviado con éxito!');
-
-    // Opcionalmente, puedes enviar el formulario programáticamente si es necesario
-    // this.submit();
-});

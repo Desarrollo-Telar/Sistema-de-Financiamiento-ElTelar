@@ -1,4 +1,4 @@
-class InformacionLaboral {
+export class InformacionLaboral {
     #position;
     #company_name;  
     #start_date;

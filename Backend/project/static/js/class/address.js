@@ -1,4 +1,4 @@
-class Direccion {
+export class Direccion {
     #street;
     #number;
     #city;

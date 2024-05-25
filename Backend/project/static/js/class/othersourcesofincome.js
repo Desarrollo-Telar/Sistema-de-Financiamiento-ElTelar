@@ -1,4 +1,4 @@
-class OtraInformacionLaboral {
+export class OtraInformacionLaboral {
     #source_of_income;
     #nit;
     #phone_number;
