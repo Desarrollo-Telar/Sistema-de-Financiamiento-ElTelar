@@ -19,6 +19,7 @@ urlpatterns = [
     path('roles&permissions/', include('apps.roles.urls')),
     path('prueba/', views.prueba, name='prueba'),
     path('customers/', include('apps.customers.urls')),
+    path('addresses/', include('apps.addresses.urls')),
     #path('dashboard/', include('django_dash.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
