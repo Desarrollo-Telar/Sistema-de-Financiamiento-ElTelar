@@ -58,7 +58,7 @@ def login_view(request):
         print(password)
 
         user = authenticate(username=username, password=password)  # None
-        print(user.status)
+        
         if user and user.status:
             
             request.session['pk'] = user.pk
