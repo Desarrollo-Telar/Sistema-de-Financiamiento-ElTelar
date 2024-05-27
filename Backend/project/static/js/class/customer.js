@@ -80,7 +80,8 @@ export class Cliente {
         // Validar el formato del número de teléfono
         if (!regex.test(value)) {
             console.error('Numero de telefono no valido, no cumple con el estandar de un numero de telefono. Verificar!!!')
-            return false;
+            throw new Error('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
+            
         }
         this.#telephone = value;
     }
@@ -97,7 +98,8 @@ export class Cliente {
         // Validar el formato del correo electrónico
         if (!regex.test(value)) {
             console.error('Verifique bien si esta escribiendo el correo electronico...')
-            return false;
+            throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito.');
+            
         }
         // Obtener el dominio del correo electrónico
         const dominio = value.split('@')[1];
@@ -105,7 +107,8 @@ export class Cliente {
         // Verificar si el dominio está en la lista de dominios conocidos
         if (!dominiosConocidos.includes(dominio)) {
             console.error('Verifique bien si esta escribiendo el dominio del correo electronico...')
-            return false;
+            throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
+            
         }
         this.#email = value;
 
