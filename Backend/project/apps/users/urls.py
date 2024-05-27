@@ -4,6 +4,9 @@ from django.urls import path, include
 # Views
 from . import views
 
+# API
+from apps.users.api import routers
+
 # Decorador
 from django.contrib.auth.decorators import login_required
 
@@ -16,3 +19,5 @@ urlpatterns = [
     path('update_user/<int:pk>/', login_required(views.userUpdateView.as_view()), name='update'),
     path('change_password/', login_required(views.ChangePassword.as_view()), name='update_password'),
 ]
+
+urlpatterns += routers.urlpatterns
