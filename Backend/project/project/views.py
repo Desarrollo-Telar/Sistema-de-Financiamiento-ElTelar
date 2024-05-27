@@ -58,7 +58,8 @@ def login_view(request):
         print(password)
 
         user = authenticate(username=username, password=password)  # None
-        if user:
+        print(user.status)
+        if user and user.status:
             
             request.session['pk'] = user.pk
             return redirect('verification')
