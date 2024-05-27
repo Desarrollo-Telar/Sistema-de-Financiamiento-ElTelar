@@ -6,4 +6,5 @@ export const urls = {
     api_url_informacion_laboral:'http://127.0.0.1:8000/financial_information/api/working_information/',
     api_url_otra_informacion_laboral:'http://127.0.0.1:8000/financial_information/api/other_sources/',
     api_url_usuarios:'http://127.0.0.1:8000/users/api/users/',
+    api_url_rol:'http://127.0.0.1:8000/roles&permissions/api/role/',
 }
