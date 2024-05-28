@@ -105,3 +105,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+import {list_customer} from '../API/customer/list_api.js';
+
+console.log(list_customer);

@@ -10,7 +10,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils import timezone
 import random
-
+from datetime import datetime
 # Create your models here.
 condition = [
         ('Residente temporal','Residente temporal'),
