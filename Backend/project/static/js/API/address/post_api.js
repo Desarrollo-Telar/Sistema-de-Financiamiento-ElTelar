@@ -1,22 +1,22 @@
 
-import { recoletarInformacionCliente } from '../../customer/recolectar.js';
 
-export async function putCustomer(url_api,id) {
+import { recoletarInformacionDirecciones } from '../../customer/recolectar.js';
+
+export async function postDireccion(url, customer_id) {
     try {
-        let clienteData = recoletarInformacionCliente();
-        console.log(clienteData.toJSON());
-        let url = `${url_api}${id}/`
+        let direccionData = recoletarInformacionDirecciones(customer_id);
+        console.log('--- ',direccionData[0].toJSON());
 
         // Obtener el token CSRF del meta tag
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         const response = await fetch(url, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
             },
-            body: JSON.stringify(clienteData.toJSON())
+            body: JSON.stringify(direccionData[0].toJSON())
         });
 
         if (!response.ok) {

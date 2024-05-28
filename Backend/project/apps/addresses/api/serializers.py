@@ -7,6 +7,4 @@ from apps.addresses.models import Address
 class AddressSerializaer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = [
-            ''
-        ]
+        fields = '__all__'

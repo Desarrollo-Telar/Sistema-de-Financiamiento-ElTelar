@@ -6,8 +6,9 @@ export class Direccion {
     #postal_code;
     #country;
     #type_address;
+    #customer_id;
 
-    constructor(street='', number='', city='', state='', postal_code='', country='', type_address='') {
+    constructor(street = '', number = '', city = '', state = '', postal_code = '', country = '', type_address = '', customer_id = '') {
         this.#street = street;
         this.#number = number;
         this.#city = city;
@@ -15,6 +16,7 @@ export class Direccion {
         this.#postal_code = postal_code;
         this.#country = country;
         this.#type_address = type_address;
+        this.#customer_id = customer_id;
     }
 
     // Getters
@@ -46,6 +48,10 @@ export class Direccion {
         return this.#type_address;
     }
 
+    get customer_id() {
+        return this.#customer_id;
+    }
+
     // Setters
     set street(value) {
         this.#street = value;
@@ -75,6 +81,10 @@ export class Direccion {
         this.#type_address = value;
     }
 
+    set customer_id(value) {
+        this.#customer_id = value;
+    }
+
     // Método toString para representar el objeto como una cadena
     toString() {
         return `Direccion {
@@ -84,7 +94,8 @@ export class Direccion {
             State: ${this.#state},
             Postal Code: ${this.#postal_code},
             Country: ${this.#country},
-            Type Address: ${this.#type_address}
+            Type Address: ${this.#type_address},
+            customer_id: ${this.#customer_id}
         }`;
     }
 
@@ -97,7 +108,8 @@ export class Direccion {
             state: this.#state,
             postal_code: this.#postal_code,
             country: this.#country,
-            type_address: this.#type_address
+            type_address: this.#type_address,
+            customer_id: this.#customer_id
         };
     }
 }
