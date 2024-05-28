@@ -40,7 +40,7 @@ def add_customer(request):
     form4 = InvestmentPlanForms
     form5 = ReferenceForms
     template_name = 'customer/add.html'
-    print(ime)
+    print(request.user.id)
     context = {
         'title': 'EL TELAR - CLIENTES',
         'form1':form1,
@@ -49,6 +49,7 @@ def add_customer(request):
         'form4':form4,
         'form5':form5,
         'immigration_status':ime,
+        'user_id':request.user.id,
         'accion':'Agregar',
     }
     return render(request, template_name, context)

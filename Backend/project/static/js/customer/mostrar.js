@@ -68,12 +68,12 @@ const mostrarFuente = (id) => {
 
 
     if (div.value === 'Otra') {
-        
+
         mostrar(otra);
         mostrar(direccion);
         ocultar(informacionLaborl);
     } else {
-        
+
         mostrar(informacionLaborl);
         mostrar(direccion);
         ocultar(otra);
@@ -95,16 +95,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
     checkbox.addEventListener('change', (event) => {
         if (checkbox.checked) {
             //status.textContent = 'Checkbox is checked';
-            
+
             mostrar(id_type_of_transfers_or_transfer_of_funds);
         } else {
             //status.textContent = 'Checkbox is unchecked';
-            
+
             ocultar(id_type_of_transfers_or_transfer_of_funds);
         }
     });
 });
 
-import {list_customer} from '../API/customer/list_api.js';
 
-console.log(list_customer);
+import { urls } from '../API/urls_api.js';
+import {recoletarInformacionCliente} from '../customer/recolectar.js';
+import {postCustomer} from '../API/customer/post_api.js';
+
+/// Uso de la función
+document.getElementById('customer').addEventListener('submit', function (event) {
+    // Evitar el envío predeterminado del formulario
+    event.preventDefault();
+    postCustomer(urls.api_url_cliente)
+        .then(data => console.log('Cliente registrado con éxito:', data))
+        .catch(error => console.error('Error al registrar el cliente:', error));
+   
+
+
+});

@@ -14,11 +14,13 @@ export class Cliente {
     #gender;
     #nationality;
     #person_type;
+    #immigration_status_id;
+    #user_id;
 
 
     constructor(first_name = '', last_name = '', type_identification = '', identification_number = '',
         telephone = '', email = '', status = '', date_birth = '', number_nit = '', place_birth = '',
-        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '') {
+        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '', immigration_status_id='', user_id='') {
         this.#first_name = first_name;
         this.#last_name = last_name;
         this.#type_identification = type_identification;
@@ -34,6 +36,8 @@ export class Cliente {
         this.#gender = gender;
         this.#nationality = nationality;
         this.#person_type = person_type;
+        this.#immigration_status_id = immigration_status_id;
+        this.#user_id = user_id;
     }
 
     // Getters and Setters for each property
@@ -186,6 +190,23 @@ export class Cliente {
     set person_type(value) {
         this.#person_type = value;
     }
+
+    get immigration_status_id(){
+        return this.#immigration_status_id;
+    }
+
+    set immigration_status_id(value){
+        this.#immigration_status_id = value;
+    }
+
+    get user_id(){
+        return this.#user_id;
+    }
+
+    set user_id(value){
+        this.#user_id = value;
+    }
+
     // Método toJSON para convertir el objeto en una representación JSON
     toJSON() {
         return {
@@ -203,7 +224,9 @@ export class Cliente {
             profession_trade: this.#profession_trade,
             gender: this.#gender,
             nationality: this.#nationality,
-            person_type: this.#person_type
+            person_type: this.#person_type,
+            immigration_status_id: this.#immigration_status_id,
+            user_id: this.#user_id,
         };
     }
     // Método toString para representar el objeto como una cadena
@@ -223,7 +246,9 @@ export class Cliente {
             Profesión/Oficio: ${this.#profession_trade},
             Género: ${this.#gender},
             Nacionalidad: ${this.#nationality},
-            Tipo de Persona: ${this.#person_type}
+            Tipo de Persona: ${this.#person_type},
+            'Condicion Migratoria': ${this.#immigration_status_id},
+            'Usuario': ${this.#user_id}
         }`;
     }
 }

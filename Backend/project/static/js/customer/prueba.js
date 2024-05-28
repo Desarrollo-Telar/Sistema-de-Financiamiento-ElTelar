@@ -11,23 +11,42 @@ import InformacionLaboral from '../class/workinginformation.js';
 // ------------------------------------------------
 export function recoletarInformacionCliente() {
     let cliente = new Cliente();
-    cliente.first_name = document.getElementById('first_name').value;
-    cliente.last_name = document.getElementById('last_name').value;
-    cliente.email = document.getElementById('email').value;
-    cliente.telephone = document.getElementById('telephone').value;
-    cliente.type_identification = document.getElementById('type_identification').value;
-    cliente.identification_number = document.getElementById('identification_number').value;
-    cliente.date_birth = document.getElementById('date_birth').value;
-    cliente.place_birth = document.getElementById('place_birth').value;
-    cliente.nationality = document.getElementById('nationality').value;
-    cliente.number_nit = document.getElementById('number_nit').value;
-    cliente.gender = document.getElementById('gender').value;
-    cliente.marital_status = document.getElementById('marital_status').value;
-    cliente.profession_trade = document.getElementById('profession_trade').value;
-    cliente.person_type = document.getElementById('person_type').value;
-    cliente.status = document.getElementById('status').value;
 
+    // Lista de campos con sus IDs correspondientes
+    const fields = [
+        'first_name',
+        'last_name',
+        'email',
+        'telephone',
+        'type_identification',
+        'identification_number',
+        'date_birth',
+        'place_birth',
+        'nationality',
+        'number_nit',
+        'gender',
+        'marital_status',
+        'profession_trade',
+        'person_type',
+        'status',
+        'immigration_status_id',
+        'user_id',
+    ];
+
+    // Recorrer los campos y asignar los valores correspondientes
+    fields.forEach(field => {
+        let element = document.getElementById(field);
+        if (element) {
+            cliente[field] = element.value;
+        } else {
+            console.warn(`Elemento con id '${field}' no encontrado.`);
+        }
+    });
+
+    // Devuelve el objeto cliente en formato JSON
+    return cliente;
 }
+
 
 
 
