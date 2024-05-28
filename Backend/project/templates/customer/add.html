@@ -1,6 +1,11 @@
-{% extends 'base.html' %} {% load static %} {% block css %}
+{% extends 'base.html' %} 
+{% load static %} 
+{% block css %}
 <link rel="stylesheet" href="{% static 'css/customers/forms.css' %}" />
-{% endblock %} {% block content %}
+{% endblock %}
+
+{% block content %}
+
 <form method="GET" enctype="multipart/form-data" id="customer">
     {% csrf_token %}
     <div class="row">
@@ -21,6 +26,7 @@
                     {%include 'customer/forms/PersonalInformation/forms.html' %}
                 </div>
             </div>
+            <!--
             <div class="row" style="margin-top: 3rem">
                 <hr />
                 <div class="col-2">
@@ -134,16 +140,15 @@
                                 d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                         </svg>Anterior</a>
                 </div>
-                <!-- 
-                <div class="col-2">
-                    <a onclick="mostrarOcultar('agregar','References')">Siguiente</a>
-                </div>
-                -->
+                
+                
             </div>
         </div>
     </div>
+    display: none;
+-->
     <br />
-    <div id="agregar" style="display: none; margin-top: 5rem">
+    <div id="agregar" style=" margin-top: 5rem">
         <hr />
         <a type="button" class="cancelar" href=" {% url 'customers:customers' %}"><svg
                 xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-right:0.5rem"

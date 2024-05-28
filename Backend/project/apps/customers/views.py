@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from project.pagination import paginacion
 
 # Formularios
-from .forms import CustomerForm
+from .forms import CustomerForm, ImmigrationStatus
 from apps.addresses.forms import AddressForms
 from apps.FinancialInformation.forms import WorkingInformationForms, OtherSourcesOfIncomeForms, ReferenceForms
 from apps.InvestmentPlan.forms import InvestmentPlanForms
@@ -34,11 +34,13 @@ def list_customer(request):
 def add_customer(request):
     # Listado de formularios
     form1 = CustomerForm
+    ime = ImmigrationStatus.objects.all()
     form2 = WorkingInformationForms
     form3 = OtherSourcesOfIncomeForms
     form4 = InvestmentPlanForms
     form5 = ReferenceForms
     template_name = 'customer/add.html'
+    print(ime)
     context = {
         'title': 'EL TELAR - CLIENTES',
         'form1':form1,
@@ -46,6 +48,7 @@ def add_customer(request):
         'form3':form3,  
         'form4':form4,
         'form5':form5,
+        'immigration_status':ime,
         'accion':'Agregar',
     }
     return render(request, template_name, context)
