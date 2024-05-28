@@ -77,6 +77,8 @@ export function recoletarInformacionDirecciones() {
     direcciones[1].country = document.getElementById('country2').value;
     direcciones[1].type_address = 'Dirección de Trabajo';
 
+    return direcciones;
+
 
 }
 
@@ -88,12 +90,14 @@ export function recoletarInformacionDirecciones() {
 export function recoletarInformacionLaboral() {
     let informacionLaboral = new InformacionLaboral();
     informacionLaboral.source_of_income = document.getElementById('source_of_income1').value;
+    let resultado;
 
     if (informacionLaboral.source_of_income === 'Otra') {
         let otraInformacionLaboral = new OtraInformacionLaboral();
         otraInformacionLaboral.source_of_income = document.getElementById('source_of_income2').value;
         otraInformacionLaboral.nit = document.getElementById('nit').value;
         otraInformacionLaboral.phone_number = document.getElementById('phone_number2').value;
+        resultado = otraInformacionLaboral;
 
     } else {
         informacionLaboral.position = document.getElementById('position').value;
@@ -105,8 +109,11 @@ export function recoletarInformacionLaboral() {
         informacionLaboral.phone_number = document.getElementById('phone_number1').value;
         informacionLaboral.income_detail = document.getElementById('income_detail').value;
         informacionLaboral.employment_status = document.getElementById('employment_status').value;
+        resultado = informacionLaboral;
 
     }
+
+    return resultado;
 
 }
 
@@ -124,6 +131,8 @@ export function recoletarInformacionPlanInversion() {
     planInversion.monthly_amount = document.getElementById('monthly_amount').value;
     planInversion.transfers_or_transfer_of_funds = document.getElementById('transfers_or_transfer_of_funds').value;
     planInversion.type_of_transfers_or_transfer_of_funds = document.getElementById('type_of_transfers_or_transfer_of_funds').value;
+
+    return planInversion;
 
 }
 

@@ -46,23 +46,41 @@ export class Cliente {
     }
 
     set first_name(value) {
-        this.#first_name = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el nombre del cliente');
+            throw new Error('Debe ingresar el nombre del cliente');
+        }
+        
+        this.#first_name = value.trim();
     }
+    
 
     get last_name() {
         return this.#last_name;
     }
 
     set last_name(value) {
-        this.#last_name = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el apellido del cliente');
+            throw new Error('Debe ingresar el apellido del cliente');
+        }
+        
+        this.#last_name = value.trim();
     }
+    
 
     get type_identification() {
         return this.#type_identification;
     }
 
     set type_identification(value) {
-        this.#type_identification = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el tipo de identificación del cliente');
+            throw new Error('Debe ingresar el tipo de identificación del cliente');
+        }
+        
+        
+        this.#type_identification = value.trim();
     }
 
     get identification_number() {
@@ -70,7 +88,14 @@ export class Cliente {
     }
 
     set identification_number(value) {
-        this.#identification_number = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el numero del tipo de identificación del cliente');
+            throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
+        }
+        
+        
+        this.#identification_number = value.trim();
+       
     }
 
     get telephone() {
@@ -78,16 +103,24 @@ export class Cliente {
     }
 
     set telephone(value) {
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el numero de telefono del cliente');
+            throw new Error('Debe ingresar el numero de telefono del cliente');
+        }
+        
+        
         // Expresión regular para exactamente 8 dígitos
         const regex = /^\d{8}$/;
 
         // Validar el formato del número de teléfono
         if (!regex.test(value)) {
             console.error('Numero de telefono no valido, no cumple con el estandar de un numero de telefono. Verificar!!!')
+            alert('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
             throw new Error('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
             
         }
-        this.#telephone = value;
+        this.#telephone = value.trim();
+        
     }
 
     get email() {
@@ -95,13 +128,19 @@ export class Cliente {
     }
 
     set email(value) {
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el correo electronico del cliente');
+            throw new Error('Debe ingresar el correo electronico del cliente');
+        }
+        
         // Expresión regular básica para validar el formato del correo electrónico
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         // Lista de dominios conocidos
         const dominiosConocidos = ['gmail.com', 'yahoo.com', 'outlook.com'];  // Agrega más dominios según sea necesario
         // Validar el formato del correo electrónico
         if (!regex.test(value)) {
-            console.error('Verifique bien si esta escribiendo el correo electronico...')
+            console.error('Verifique bien si esta escribiendo el correo electronico...');
+            alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito.');
             
         }
@@ -110,11 +149,12 @@ export class Cliente {
 
         // Verificar si el dominio está en la lista de dominios conocidos
         if (!dominiosConocidos.includes(dominio)) {
-            console.error('Verifique bien si esta escribiendo el dominio del correo electronico...')
+            console.error('Verifique bien si esta escribiendo el dominio del correo electronico...');
+            alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
             
         }
-        this.#email = value;
+        this.#email = value.trim();
 
 
     }
@@ -132,7 +172,14 @@ export class Cliente {
     }
 
     set date_birth(value) {
-        this.#date_birth = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar la fecha de nacimiento del cliente');
+            throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
+        }
+        
+        
+        
+        this.#date_birth = value.trim();
     }
 
     get number_nit() {
@@ -140,7 +187,15 @@ export class Cliente {
     }
 
     set number_nit(value) {
-        this.#number_nit = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el numero de NIT cliente');
+            throw new Error('Debe ingresar el numero de NIT cliente');
+        }
+        
+        
+        
+        this.#number_nit = value.trim();
+        
     }
 
     get place_birth() {
