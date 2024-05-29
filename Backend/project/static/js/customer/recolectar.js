@@ -95,6 +95,7 @@ export function recoletarInformacionLaboral() {
     let resultado;
 
     if (informacionLaboral.source_of_income === 'Otra') {
+        resultado = '';
         let otraInformacionLaboral = new OtraInformacionLaboral();
         otraInformacionLaboral.source_of_income = document.getElementById('source_of_income2').value;
         otraInformacionLaboral.nit = document.getElementById('nit').value;
@@ -102,6 +103,7 @@ export function recoletarInformacionLaboral() {
         resultado = otraInformacionLaboral;
 
     } else {
+        resultado = '';
         informacionLaboral.position = document.getElementById('position').value;
         informacionLaboral.company_name = document.getElementById('company_name').value;
         informacionLaboral.start_date = document.getElementById('start_date').value;
@@ -124,7 +126,7 @@ export function recoletarInformacionLaboral() {
 // ------------------------------------------------
 //                  PLAN DE INVERSION
 // ------------------------------------------------
-export function recoletarInformacionPlanInversion() {
+export function recoletarInformacionPlanInversion(customer_id) {
     let planInversion = new PlanInversion();
     planInversion.type_of_product_or_service = document.getElementById('type_of_product_or_service').value;
     planInversion.total_value_of_the_product_or_service = document.getElementById('total_value_of_the_product_or_service').value;
@@ -133,6 +135,7 @@ export function recoletarInformacionPlanInversion() {
     planInversion.monthly_amount = document.getElementById('monthly_amount').value;
     planInversion.transfers_or_transfer_of_funds = document.getElementById('transfers_or_transfer_of_funds').value;
     planInversion.type_of_transfers_or_transfer_of_funds = document.getElementById('type_of_transfers_or_transfer_of_funds').value;
+    planInversion.customer_id = customer_id;
 
     return planInversion;
 

@@ -6,8 +6,10 @@ export class PlanInversion {
     #monthly_amount;
     #transfers_or_transfer_of_funds;
     #type_of_transfers_or_transfer_of_funds;
+    #customer_id;
 
-    constructor(type_of_product_or_service='', total_value_of_the_product_or_service='', investment_plan_description='', initial_amount='', monthly_amount='', transfers_or_transfer_of_funds='', type_of_transfers_or_transfer_of_funds='') {
+    constructor(type_of_product_or_service='', total_value_of_the_product_or_service='', investment_plan_description='', initial_amount='', 
+    monthly_amount='', transfers_or_transfer_of_funds='', type_of_transfers_or_transfer_of_funds='', customer_id='') {
         this.#type_of_product_or_service = type_of_product_or_service;
         this.#total_value_of_the_product_or_service = total_value_of_the_product_or_service;
         this.#investment_plan_description = investment_plan_description;
@@ -15,6 +17,7 @@ export class PlanInversion {
         this.#monthly_amount = monthly_amount;
         this.#transfers_or_transfer_of_funds = transfers_or_transfer_of_funds;
         this.#type_of_transfers_or_transfer_of_funds = type_of_transfers_or_transfer_of_funds;
+        this.#customer_id = customer_id;
     }
 
     // Getters
@@ -46,6 +49,10 @@ export class PlanInversion {
         return this.#type_of_transfers_or_transfer_of_funds;
     }
 
+    get customer_id(){
+        return this.#customer_id;
+    }
+
     // Setters
     set type_of_product_or_service(value) {
         this.#type_of_product_or_service = value;
@@ -75,6 +82,10 @@ export class PlanInversion {
         this.#type_of_transfers_or_transfer_of_funds = value;
     }
 
+    set customer_id(value){
+        this.#customer_id = value;
+    }
+
     // Método toString para representar el objeto como una cadena
     toString() {
         return `PlanInversion {
@@ -84,7 +95,8 @@ export class PlanInversion {
             Initial Amount: ${this.#initial_amount},
             Monthly Amount: ${this.#monthly_amount},
             Transfers or Transfer of Funds: ${this.#transfers_or_transfer_of_funds},
-            Type of Transfers or Transfer of Funds: ${this.#type_of_transfers_or_transfer_of_funds}
+            Type of Transfers or Transfer of Funds: ${this.#type_of_transfers_or_transfer_of_funds},
+            Cliente: ${this.#customer_id},
         }`;
     }
 
@@ -97,7 +109,8 @@ export class PlanInversion {
             initial_amount: this.#initial_amount,
             monthly_amount: this.#monthly_amount,
             transfers_or_transfer_of_funds: this.#transfers_or_transfer_of_funds,
-            type_of_transfers_or_transfer_of_funds: this.#type_of_transfers_or_transfer_of_funds
+            type_of_transfers_or_transfer_of_funds: this.#type_of_transfers_or_transfer_of_funds,
+            customer_id: this.#customer_id
         };
     }
 }
