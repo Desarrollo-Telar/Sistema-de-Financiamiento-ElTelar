@@ -147,7 +147,7 @@ export function recoletarInformacionPlanInversion(customer_id) {
 // ------------------------------------------------
 //                  REFERENCIAS
 // ------------------------------------------------
-export function recoletarInformacionReferencias(){
+export function recoletarInformacionReferencias(customer_id){
     let referencias = [
         new Referencia(),
         new Referencia(),
@@ -157,18 +157,22 @@ export function recoletarInformacionReferencias(){
     
     referencias[0].full_name = document.getElementById('full_name1').value;
     referencias[0].phone_number = document.getElementById('phone_number3').value;
-    referencias[0].reference_type = document.getElementById('Personales').value;
+    referencias[0].reference_type = document.getElementById('Personales').value;    
+    referencias[0].customer_id = customer_id;
     
     referencias[1].full_name = document.getElementById('full_name2').value;
     referencias[1].phone_number = document.getElementById('phone_number4').value;
     referencias[1].reference_type = document.getElementById('Personales').value;
+    referencias[1].customer_id = customer_id;
     
     referencias[2].full_name = document.getElementById('full_name3').value;
     referencias[2].phone_number = document.getElementById('phone_number5').value;
     referencias[2].reference_type = document.getElementById('reference3').value;
+    referencias[2].customer_id = customer_id;
     
     referencias[3].full_name = document.getElementById('full_name3').value;
     referencias[3].phone_number = document.getElementById('phone_number6').value;
     referencias[3].reference_type = document.getElementById('reference3').value;
+    referencias[3].customer_id = customer_id;
 
 }

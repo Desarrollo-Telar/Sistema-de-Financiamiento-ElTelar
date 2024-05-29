@@ -1,11 +1,11 @@
 
 
-import { recoletarInformacionDirecciones } from '../../customer/recolectar.js';
+import { recoletarInformacionReferencias } from '../../customer/recolectar.js';
 
-export async function postDireccion(url, customer_id) {
+export async function postReferencia(url, customer_id) {
     try {
-        let direccionData = recoletarInformacionDirecciones(customer_id);
-        console.log('--- ',direccionData.toJSON());
+        let referenciaData = recoletarInformacionReferencias(customer_id);
+        console.log('--- ',referenciaData.toJSON());
 
         // Obtener el token CSRF del meta tag
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -16,7 +16,7 @@ export async function postDireccion(url, customer_id) {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
             },
-            body: JSON.stringify(direccionData.toJSON())
+            body: JSON.stringify(referenciaData.toJSON())
         });
 
         if (!response.ok) {

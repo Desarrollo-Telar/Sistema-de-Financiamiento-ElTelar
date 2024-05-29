@@ -2,11 +2,13 @@ export class Referencia {
     #full_name;
     #phone_number;
     #reference_type;
+    #customer_id;
 
-    constructor(full_name='', phone_number='', reference_type='') {
+    constructor(full_name='', phone_number='', reference_type='',customer_id='') {
         this.#full_name = full_name;
         this.#phone_number = phone_number;
         this.#reference_type = reference_type;
+        this.#customer_id = customer_id;
     }
 
     // Getters
@@ -20,6 +22,10 @@ export class Referencia {
 
     get reference_type() {
         return this.#reference_type;
+    }
+
+    get customer_id(){
+        return this.#customer_id;
     }
 
     // Setters
@@ -44,12 +50,17 @@ export class Referencia {
         this.#reference_type = value;
     }
 
+    set customer_id(value){
+        this.#customer_id = value;
+    }
+
     // Método toString para representar el objeto como una cadena
     toString() {
         return `Referencia {
             Full Name: ${this.#full_name},
             Phone Number: ${this.#phone_number},
-            Reference Type: ${this.#reference_type}
+            Reference Type: ${this.#reference_type},
+            Cliente: ${this.#customer_id}
         }`;
     }
 
@@ -58,7 +69,8 @@ export class Referencia {
         return {
             full_name: this.#full_name,
             phone_number: this.#phone_number,
-            reference_type: this.#reference_type
+            reference_type: this.#reference_type,
+            customer_id:this.#customer_id
         };
     }
 }
