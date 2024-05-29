@@ -1,20 +1,20 @@
 
 
-import { recoletarInformacionLaboral } from '../../customer/recolectar.js';
-import { urls } from '../urls_api.js';
+import { recolectarInformacionLaboral } from '../../customer/recolectar.js';
+
 
 export async function postLaboral(customer_id) {
     try {
-        let informacionLaboral = recoletarInformacionLaboral(customer_id);
+        let informacionLaboral = recolectarInformacionLaboral(customer_id);
         let sourceOfIncome1 = document.getElementById('source_of_income1').value;
         
         let url;
 
         if (sourceOfIncome1 === 'Otra'){
-            url = urls.api_url_otra_informacion_laboral;
+            url = 'http://127.0.0.1:8000/financial_information/api/other_sources/';
 
         }else{
-            url = urls.api_url_informacion_laboral;
+            url = 'http://127.0.0.1:8000/financial_information/api/working_information/';
         }
 
         // Obtener el token CSRF del meta tag

@@ -5,49 +5,42 @@ import { postPlanInversion } from '../API/investmentplan/post_api.js';
 import { postLaboral } from '../API/workinginformation/post_api.js';
 import { postReferencia } from '../API/reference/post_api.js';
 
-/// Uso de la función
 document.getElementById('customer').addEventListener('submit', function (event) {
-    // Evitar el envío predeterminado del formulario
     event.preventDefault();
-
-
 
     postCustomer(urls.api_url_cliente)
         .then(data => {
-
             console.log('Cliente registrado con éxito:', data);
+            const customer_id = data.id;
 
-            // --------------- DIRECCIONES ---------------------------
-            customer_id = data.id;
-            postDireccion(urls.api_url_direccion, customer_id)
-                .then(data => {
-                    console.log('Direccion registrado con exito...', data);
-                    alert('¡Formulario enviado con éxito!');
-                })
-                .catch(error => console.error('Error en el registro de la direccion', error));
-
-            // ------------- INFORMACION LABORAL -------------------
-            postLaboral(customer_id)
-                .then(data => {
-                    console.log('Informacion laboral registrado con exito', data)
-                })
-                .catch(error => console.error('Error en el registro laboral del cliente', error));
-
-
-            // ------------- PLAN DE INVERSION -----------------
-            postPlanInversion(urls.api_url_investment_plan, customer_id)
-                .then(data => console.log('Plan de Inversion registrado con exito.', data))
-                .catch(error => console.error('Error en el registro de plan de inversion', error));
-
-            // ------- REFERENCIAS -----------
-            postReferencia(urls.api_url_referencia, customer_id)
-            .then(data => console.log('Refencias guardadas con exito', data))
-            .catch(error => console.error('Error en el registro de referencias', error));
-
-
+            // Registra la dirección
+            return postDireccion(urls.api_url_direccion, customer_id);
         })
-        .catch(error => console.error('Error al registrar el cliente:', error));
+        .then(data => {
+            console.log('Dirección registrada con éxito:', data);
 
+            // Registra la información laboral
+            //return postLaboral(customer_id);
+        })
+        /*
+        .then(data => {
+            console.log('Información laboral registrada con éxito:', data);
 
+            // Registra el plan de inversión
+            return postPlanInversion(urls.api_url_investment_plan, customer_id);
+        })
+        .then(data => {
+            console.log('Plan de inversión registrado con éxito:', data);
 
+            // Registra las referencias
+            return postReferencia(urls.api_url_referencia, customer_id);
+        })
+        .then(data => {
+            console.log('Referencias guardadas con éxito:', data);
+            alert('¡Formulario enviado con éxito!');
+        })*/
+        .catch(error => {
+            console.error('Error al registrar los datos:', error);
+            alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        });
 });

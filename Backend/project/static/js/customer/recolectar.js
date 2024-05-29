@@ -69,7 +69,7 @@ export function recoletarInformacionDirecciones(customer_id) {
     direcciones[0].country = document.getElementById('country1').value;
     direcciones[0].type_address = 'Dirección Personal';
     direcciones[0].customer_id = customer_id;
-/*
+
     direcciones[1].street = document.getElementById('street2').value;
     direcciones[1].number = document.getElementById('number2').value;
     direcciones[1].city = document.getElementById('city2').value;
@@ -78,7 +78,7 @@ export function recoletarInformacionDirecciones(customer_id) {
     direcciones[1].country = document.getElementById('country2').value;
     direcciones[1].type_address = 'Dirección de Trabajo';
     direcciones[1].customer_id = customer_id;
-*/
+
     return direcciones;
 
 
@@ -174,5 +174,7 @@ export function recoletarInformacionReferencias(customer_id){
     referencias[3].phone_number = document.getElementById('phone_number6').value;
     referencias[3].reference_type = document.getElementById('reference3').value;
     referencias[3].customer_id = customer_id;
+
+    return referencias;
 
 }

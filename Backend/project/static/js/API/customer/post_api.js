@@ -5,7 +5,7 @@ import { recoletarInformacionCliente } from '../../customer/recolectar.js';
 export async function postCustomer(url) {
     try {
         let clienteData = recoletarInformacionCliente();
-        console.log(clienteData.toJSON());
+        
 
         // Obtener el token CSRF del meta tag
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
