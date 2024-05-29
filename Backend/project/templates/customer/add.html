@@ -30,7 +30,7 @@
                     {%include 'customer/forms/PersonalInformation/forms.html' %}
                 </div>
             </div>
-            <!--
+            
             <div class="row" style="margin-top: 3rem">
                 <hr />
                 <div class="col-2">
@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-
+<!-- 
         <div id="InvestmentPlan" style="display: none">
             <hr />
             <div class="row">
@@ -173,6 +173,7 @@
 </form>
 {% endblock%} {% block js %}
 
-<script type="module" src="{% static 'js/customer/mostrar.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/customer/mostrar.js'%}"></script>
+<script type="module" src="{% static 'js/customer/guardar.js' %}"></script>
 
 {% endblock %}
