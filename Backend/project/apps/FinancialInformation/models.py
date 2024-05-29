@@ -37,15 +37,13 @@ class WorkingInformation(models.Model):
     phone_number = models.CharField(max_length=20, blank=False, null=False) # Numero de trabajo
     source_of_income  = models.CharField(max_length=90, choices=source_of_income) # Fuente de ingreso
     income_detail  = models.TextField(blank=True, null=True) # Detalle de ingreso
-    employment_status  = models.CharField(max_length=150, choices=employment_status) # Estado Laboral
-    address_id = models.ForeignKey(Address, null=False, blank=False, on_delete=models.CASCADE)
+    employment_status  = models.CharField(max_length=150, choices=employment_status) # Estado Laboral    
     customer_id = models.ForeignKey(Customer, blank=False, null=False, on_delete=models.CASCADE)
 
 class OtherSourcesOfIncome(models.Model):
     source_of_income = models.CharField(max_length=100, blank=False, null=False) # Fuente de ingreso
     nit = models.CharField(max_length=20, blank=False, null=False)
-    phone_number = models.CharField(max_length=20, blank=False, null=False) # Numero de trabajo
-    address_id = models.ForeignKey(Address, null=False, blank=False, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=20, blank=False, null=False) # Numero de trabajo    
     customer_id = models.ForeignKey(Customer, blank=False, null=False, on_delete=models.CASCADE)
 
 class Reference(models.Model):

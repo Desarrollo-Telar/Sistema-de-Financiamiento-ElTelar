@@ -16,6 +16,7 @@ export async function postLaboral(customer_id) {
         }else{
             url = 'http://127.0.0.1:8000/financial_information/api/working_information/';
         }
+        console.log(url);
 
         // Obtener el token CSRF del meta tag
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
