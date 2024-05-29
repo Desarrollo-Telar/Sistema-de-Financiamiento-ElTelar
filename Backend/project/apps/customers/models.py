@@ -24,7 +24,7 @@ condition = [
 
 class ImmigrationStatus(models.Model):
     condition_name = models.CharField(max_length=50, blank=False, null=False, unique=True)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.condition_name

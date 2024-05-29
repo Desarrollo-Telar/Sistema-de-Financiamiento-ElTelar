@@ -9,9 +9,10 @@ export class InformacionLaboral {
     #source_of_income;  
     #income_detail;
     #employment_status;  
-    
+    #customer_id;
+
     constructor(position='', company_name='', start_date='', description='', salary='',
-                working_hours='', phone_number='', source_of_income='', income_detail='', employment_status='') {
+                working_hours='', phone_number='', source_of_income='', income_detail='', employment_status='', customer_id='') {
         this.#position = position;
         this.#company_name = company_name;
         this.#start_date = start_date;
@@ -22,6 +23,7 @@ export class InformacionLaboral {
         this.#source_of_income = source_of_income;
         this.#income_detail = income_detail;
         this.#employment_status = employment_status;
+        this.#customer_id = customer_id;
     }
 
     // Getters
@@ -63,6 +65,10 @@ export class InformacionLaboral {
 
     get employment_status() {
         return this.#employment_status;
+    }
+
+    get customer_id(){
+        return this.#customer_id;
     }
 
     // Setters
@@ -115,6 +121,12 @@ export class InformacionLaboral {
         this.#employment_status = value;
     }
 
+    set customer_id(value){
+        this.#customer_id = value;
+    }
+        
+    
+
     // Método toString para representar el objeto como una cadena
     toString() {
         return `InformacionLaboral {
@@ -127,7 +139,8 @@ export class InformacionLaboral {
             Phone Number: ${this.#phone_number},
             Source of Income: ${this.#source_of_income},
             Income Detail: ${this.#income_detail},
-            Employment Status: ${this.#employment_status}
+            Employment Status: ${this.#employment_status},
+            'Cliente: ${this.#customer_id}
         }`;
     }
 
@@ -143,7 +156,8 @@ export class InformacionLaboral {
             phone_number: this.#phone_number,
             source_of_income: this.#source_of_income,
             income_detail: this.#income_detail,
-            employment_status: this.#employment_status
+            employment_status: this.#employment_status,
+            customer_id: this.#customer_id
         };
     }
 }

@@ -89,21 +89,22 @@ export function recoletarInformacionDirecciones(customer_id) {
 //                  INFORMACION LABORAL
 // ------------------------------------------------
 
-export function recoletarInformacionLaboral() {
-    let informacionLaboral = new InformacionLaboral();
-    informacionLaboral.source_of_income = document.getElementById('source_of_income1').value;
+export function recolectarInformacionLaboral(customer_id) {
+    let sourceOfIncome1 = document.getElementById('source_of_income1').value;
     let resultado;
 
-    if (informacionLaboral.source_of_income === 'Otra') {
+    if (sourceOfIncome1 === 'Otra') {
         resultado = '';
         let otraInformacionLaboral = new OtraInformacionLaboral();
         otraInformacionLaboral.source_of_income = document.getElementById('source_of_income2').value;
         otraInformacionLaboral.nit = document.getElementById('nit').value;
         otraInformacionLaboral.phone_number = document.getElementById('phone_number2').value;
+        otraInformacionLaboral.customer_id = customer_id;
         resultado = otraInformacionLaboral;
-
     } else {
         resultado = '';
+        let informacionLaboral = new InformacionLaboral();
+        informacionLaboral.source_of_income = sourceOfIncome1;
         informacionLaboral.position = document.getElementById('position').value;
         informacionLaboral.company_name = document.getElementById('company_name').value;
         informacionLaboral.start_date = document.getElementById('start_date').value;
@@ -113,13 +114,13 @@ export function recoletarInformacionLaboral() {
         informacionLaboral.phone_number = document.getElementById('phone_number1').value;
         informacionLaboral.income_detail = document.getElementById('income_detail').value;
         informacionLaboral.employment_status = document.getElementById('employment_status').value;
+        informacionLaboral.customer_id = customer_id;
         resultado = informacionLaboral;
-
     }
 
     return resultado;
-
 }
+
 
 
 

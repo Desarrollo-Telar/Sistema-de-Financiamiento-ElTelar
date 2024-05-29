@@ -2,11 +2,13 @@ export class OtraInformacionLaboral {
     #source_of_income;
     #nit;
     #phone_number;
+    #customer_id;
 
-    constructor(source_of_income='', nit='', phone_number='') {
+    constructor(source_of_income='', nit='', phone_number='', customer_id = '') {
         this.#source_of_income = source_of_income;
         this.#nit = nit;
         this.#phone_number = phone_number;
+        this.#customer_id = customer_id;
     }
 
     // Getters
@@ -20,6 +22,10 @@ export class OtraInformacionLaboral {
 
     get phone_number() {
         return this.#phone_number;
+    }
+
+    get customer_id(){
+        return this.#customer_id;
     }
 
     // Setters
@@ -44,12 +50,17 @@ export class OtraInformacionLaboral {
         this.#phone_number = value;
     }
 
+    set customer_id(value){
+        this.#customer_id = value;
+    }
+
     // Método toString para representar el objeto como una cadena
     toString() {
         return `OtraInformacionLaboral {
             Source of Income: ${this.#source_of_income},
             NIT: ${this.#nit},
-            Phone Number: ${this.#phone_number}
+            Phone Number: ${this.#phone_number},
+            Cliente: ${this.#customer_id}
         }`;
     }
 
@@ -58,7 +69,8 @@ export class OtraInformacionLaboral {
         return {
             source_of_income: this.#source_of_income,
             nit: this.#nit,
-            phone_number: this.#phone_number
+            phone_number: this.#phone_number,
+            customer_id:this.#customer_id
         };
     }
 }
