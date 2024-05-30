@@ -76,7 +76,7 @@ class RegistroForm(UserCreationForm):
             'telephone',
             'gender',
             'nationality',
-            'profile_pic',
+           # 'profile_pic',
 
         ]
 
@@ -151,7 +151,7 @@ class UpdateUserForm(forms.ModelForm):
             'telephone',
             'gender',
             'nationality',
-            'profile_pic',
+            #'profile_pic',
             'status'
 
             

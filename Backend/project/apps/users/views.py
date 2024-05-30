@@ -51,7 +51,7 @@ def profile(request):
     
     context = {
         'title':'EL TELAR - PERFIL {}'.format(users),
-        'users_list':users,
+        'user':users,
     }
     return render(request, template_name, context)
 

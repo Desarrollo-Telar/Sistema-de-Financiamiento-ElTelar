@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-<div class="row">
+<div class="row shadow-lg p-3 mb-5 bg-body-tertiary rounded">
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %} {% for field in form %}
 

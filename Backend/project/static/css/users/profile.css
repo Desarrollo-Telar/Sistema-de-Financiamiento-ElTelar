@@ -1,0 +1,18 @@
+.mensaje_portada{
+    text-align: center;
+    margin-top: 2.5rem;
+    
+}
+
+.mensaje_portada .titulo{
+    font-size: 3.5rem;
+
+}
+
+.mensaje_modulo p{
+    color: rgba(54, 54, 54, 0.6);
+}
+
+.informacion_usuario{
+    margin-top: 2rem;
+}
