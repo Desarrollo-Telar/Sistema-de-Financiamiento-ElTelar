@@ -1,6 +1,8 @@
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
+from project.decorador import usuario_activo
+from django.utils.decorators import method_decorator
 
 # Metodos HTTP
 from django.http import HttpResponse
@@ -27,6 +29,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 
 @login_required
+@usuario_activo
 def list_user(request):
     template_name = 'user/list_user.html'
     users = User.objects.all().order_by('-id')
@@ -41,6 +44,7 @@ def list_user(request):
     return render(request, template_name, context)
 
 @login_required
+@usuario_activo
 def profile(request):
     template_name = 'user/user_profile.html'
     users =  get_object_or_404(User, username=request.user.username)
@@ -51,6 +55,7 @@ def profile(request):
     }
     return render(request, template_name, context)
 
+
 class userCreateView(CreateView):
     template_name = 'user/add_user.html'
     form_class = RegistroForm
@@ -58,11 +63,16 @@ class userCreateView(CreateView):
 
     success_url = reverse_lazy(('users:users'))
 
+    @method_decorator(usuario_activo)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Crear un Nuevo Usuario'
         context['accion'] = 'Añadir Usuario'
         return context
+
 
 class userUpdateView(UpdateView):
     template_name = 'user/add_user.html'
@@ -70,6 +80,11 @@ class userUpdateView(UpdateView):
     model = User
 
     success_url = reverse_lazy(('users:users'))
+
+    @method_decorator(usuario_activo)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Actualizar Usuario'
@@ -81,6 +96,10 @@ class ChangePassword(View):
     template_name ='user/change_password.html'
     form_class = ChangePasswordForm
     success_url = reverse_lazy('index')
+    
+    @method_decorator(usuario_activo)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {

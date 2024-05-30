@@ -1,6 +1,9 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 
+# Decorador
+from .decorador import usuario_activo
+
 # Login
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -54,8 +57,7 @@ def login_view(request):
         
         username = request.POST.get('username')  # diccionario
         password = request.POST.get('password')  # None
-        print(username)
-        print(password)
+        
 
         user = authenticate(username=username, password=password)  # None
         
@@ -113,6 +115,7 @@ def verification(request):
 
 
 ### --- APARTADO INICIAL DEL PROYECTO --- ###
+@usuario_activo
 def index(request):
     template_name = 'index.html'
     # Obtener el día de la fecha actual

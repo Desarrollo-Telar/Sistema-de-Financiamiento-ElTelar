@@ -5,6 +5,7 @@ from .models import Customer
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
+from project.decorador import usuario_activo
 
 # Paginacion
 from project.pagination import paginacion
@@ -19,6 +20,7 @@ from apps.InvestmentPlan.forms import InvestmentPlanForms
 
 # Create your views here.
 @login_required
+@usuario_activo
 def list_customer(request):
     customer_list = Customer.objects.all().order_by('-id')
     page_obj = paginacion(request, customer_list)
@@ -31,23 +33,17 @@ def list_customer(request):
     return render(request, template_name, context)
 
 @login_required
+@usuario_activo
 def add_customer(request):
     # Listado de formularios
-    form1 = CustomerForm
+    
     ime = ImmigrationStatus.objects.all()
-    form2 = WorkingInformationForms
-    form3 = OtherSourcesOfIncomeForms
-    form4 = InvestmentPlanForms
-    form5 = ReferenceForms
+    
     template_name = 'customer/add.html'
     print(request.user.id)
     context = {
         'title': 'EL TELAR - CLIENTES',
-        'form1':form1,
-        'form2':form2,      
-        'form3':form3,  
-        'form4':form4,
-        'form5':form5,
+        
         'immigration_status':ime,
         'user_id':request.user.id,
         'accion':'Agregar',
