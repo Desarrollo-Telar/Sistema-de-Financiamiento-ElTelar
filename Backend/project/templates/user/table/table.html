@@ -38,7 +38,7 @@
                                     ...
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="#">Ver informacion</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'users:detail' user.username %}">Ver informacion</a></li>
                                     <li>
                                         <a class="dropdown-item" href="{% url 'users:update' user.pk %}">Editar
                                             informacion</a>

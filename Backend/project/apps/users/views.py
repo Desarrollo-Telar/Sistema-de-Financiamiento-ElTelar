@@ -38,6 +38,7 @@ from django.contrib.auth import authenticate
 
 from django.apps import apps
 
+# ----- LISTADO DE USUARIOS ----- #
 @login_required
 @usuario_activo
 def list_user(request):
@@ -53,6 +54,7 @@ def list_user(request):
     }
     return render(request, template_name, context)
 
+# ----- PERFIL DE USUARIOS ----- #
 @login_required
 @usuario_activo
 def profile(request):
@@ -65,7 +67,7 @@ def profile(request):
     }
     return render(request, template_name, context)
 
-
+# ----- CREACION DE USUARIOS ----- #
 class userCreateView(CreateView):
     template_name = 'user/add_user.html'
     form_class = RegistroForm
@@ -83,7 +85,7 @@ class userCreateView(CreateView):
         context['accion'] = 'Añadir Usuario'
         return context
 
-
+# ----- MODIFICAR INFORMACION DE USUARIOS ----- #
 class userUpdateView(UpdateView):
     template_name = 'user/add_user.html'
     form_class = UpdateUserForm
@@ -101,7 +103,7 @@ class userUpdateView(UpdateView):
         context['accion'] = 'Actualizar Usuario'
         return context
 
-
+# ----- CAMBIO DE CONTRASEÑA DE USUARIOS ----- #
 class ChangePassword(View):
     template_name ='user/change_password.html'
     form_class = ChangePasswordForm
@@ -114,7 +116,7 @@ class ChangePassword(View):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {
             'form':self.form_class, 
-            'title': 'CAMBIAR CONTRASEÑA',
+            'title': 'EL TELAR - CAMBIAR CONTRASEÑA',
             'info': 'CAMBIAR CONTRASEÑA'
             })
 
@@ -140,7 +142,7 @@ class ChangePassword(View):
             'info': 'CAMBIAR CONTRASEÑA'
             })
 
-###-- MODULO QUE BUSCA A LOS USUARIOS--###
+# ----- MODULO QUE BUSCA A LOS USUARIOS ----- #
 class UserSearch(ListView):
     template_name = 'user/search.html'
 
@@ -183,3 +185,15 @@ class UserSearch(ListView):
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
         return context
+
+# ----- VER DETALLES DE UN USUARIOS ----- #
+@login_required
+@usuario_activo
+def detail_user(request,username):
+    user_id = get_object_or_404(User, username=username)
+    template_name = 'user/detail.html'
+    context = {
+        'title':'EL TELAR - {}'.format(user_id),
+        'user_list':user_id
+    }
+    return render(request, template_name, context)

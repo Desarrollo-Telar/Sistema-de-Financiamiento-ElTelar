@@ -7,3 +7,11 @@
     color: #0B090A;
     
 }
+
+.btn_edit{
+    background-color: #0B090A;
+    color: #efefef;
+    text-decoration: none;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+}
