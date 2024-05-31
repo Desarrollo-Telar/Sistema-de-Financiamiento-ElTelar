@@ -14,7 +14,15 @@ from .models import VerificationToken, User
 from .forms import RegistroForm, UpdateUserForm, ChangePasswordForm
 
 # LIBRERIAS PARA EL CRUD
-from django.views.generic import CreateView, UpdateView, DeleteView, View
+from django.views.generic import View
+
+# LIBRERIAS PARA CRUD
+from django.views.generic import CreateView
+from django.views.generic.list import ListView
+from django.views.generic import UpdateView
+from django.views.generic import DeleteView
+from django.views.generic.detail import DetailView
+from django.db.models import Q
 
 # URL
 from django.urls import reverse_lazy, reverse
@@ -28,6 +36,8 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 
+from django.apps import apps
+
 @login_required
 @usuario_activo
 def list_user(request):
@@ -38,7 +48,7 @@ def list_user(request):
 
     context = {
         'title':'EL TELAR - USUARIOS',
-        'users_list':users,
+        'object_list':users,
         'page_obj':page_obj,
     }
     return render(request, template_name, context)
@@ -129,3 +139,47 @@ class ChangePassword(View):
             'title': 'CAMBIAR CONTRASEÑA',
             'info': 'CAMBIAR CONTRASEÑA'
             })
+
+###-- MODULO QUE BUSCA A LOS USUARIOS--###
+class UserSearch(ListView):
+    template_name = 'user/search.html'
+
+    def get_queryset(self):
+        try:
+            # Asignar la consulta a una variable local
+            query = self.query()
+            
+            # Definir los filtros utilizando Q objects
+            filters = (
+                Q(first_name__icontains=query) | 
+                Q(username__icontains=query) | 
+                Q(last_name__icontains=query) | 
+                Q(type_identification__icontains=query) |
+                Q(gender__icontains=query) |
+                Q(email__icontains=query) |
+                Q(telephone__icontains=query) |
+                Q(identification_number__icontains=query) |
+                Q(nationality__icontains=query) 
+            )
+            
+            # Filtrar los objetos Customer usando los filtros definidos
+            return User.objects.filter(filters)
+        except Exception as e:
+            # Manejar cualquier excepción que ocurra y devolver un queryset vacío
+            print(f"Error al filtrar el queryset: {e}")
+            return User.objects.none()
+    
+
+    def query(self):
+        return self.request.GET.get('q')
+    
+    @method_decorator(usuario_activo)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.query()
+        context['title'] = 'ELTELAR - Buscar'
+        context['count'] = context['object_list'].count()
+        return context

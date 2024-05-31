@@ -19,62 +19,13 @@
         <div class="col d-flex flex-row-reverse">
             <a class="btn_add" href="{% url 'users:create'%}">Añadir usuario nuevo</a>
         </div>
-    </div>
-    <div class="row">
-        <div class="col ">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Codigo de Usuario</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Correo Electronico</th>
-                            <th scope="col">Nombre de Usuario</th>
-                            <th scope="col">Genero</th>
-                            <th scope="col">Numero de telefono</th>
-                            <th scope="col">Status</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in users_list %}
-                        <tr>
-                            <th scope="row">{{user.user_code}}</th>
-                            <td>{{user.first_name}} {{user.last_name}}</td>
-                            <td>{{user.email}}</td>
-                            <td>{{user.username}}</td>
-                            <td>{{user.gender}}</td>
-                            <td>
-                                <p >{{user.get_telephone}}</p>
-                            </td>
-                            <td>
-                                <p class="{% if not user.status %} inactivo {% endif %} activo">
-                                    {{user.get_status}}
-                                </p>
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <button class="action dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        ...
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="#">Ver informacion</a></li>
-                                        <li>
-                                            <a class="dropdown-item" href="{% url 'users:update' user.pk %}">Editar
-                                                informacion</a>
-                                        </li>
+        <div class="col-12 d-flex flex-row-reverse" style="margin-top: 2rem;">
+            {% include 'user/snippets/search.html' with query=query %}
+            
 
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
+    {% include 'user/table/table.html' %}
 
 </div>
 
