@@ -1,11 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Models
 from .models import Customer
 
+# LIBRERIAS PARA CRUD
+from django.views.generic import CreateView
+from django.views.generic.list import ListView
+from django.views.generic import UpdateView
+from django.views.generic import DeleteView
+from django.views.generic.detail import DetailView
+from django.db.models import Q
+
 # Decoradores
 from django.contrib.auth.decorators import login_required
 from project.decorador import usuario_activo
+from django.utils.decorators import method_decorator
 
 # Paginacion
 from project.pagination import paginacion
@@ -16,7 +25,7 @@ from apps.addresses.forms import AddressForms
 from apps.FinancialInformation.forms import WorkingInformationForms, OtherSourcesOfIncomeForms, ReferenceForms
 from apps.InvestmentPlan.forms import InvestmentPlanForms
 
-
+from django.apps import apps
 
 # Create your views here.
 @login_required
@@ -49,3 +58,45 @@ def add_customer(request):
         'accion':'Agregar',
     }
     return render(request, template_name, context)
+
+###-- MODULO QUE BUSCA A LOS CLIENTES--###
+class CustomerSearch(ListView):
+    template_name = 'customer/search.html'
+
+    def get_queryset(self):
+        try:
+            # Asignar la consulta a una variable local
+            query = self.query()
+            
+            # Definir los filtros utilizando Q objects
+            filters = (
+                Q(first_name__icontains=query) | 
+                Q(customer_code__icontains=query) | 
+                Q(last_name__icontains=query) | 
+                Q(type_identification__icontains=query) |
+                Q(gender__icontains=query)
+            )
+            
+            # Filtrar los objetos Customer usando los filtros definidos
+            return Customer.objects.filter(filters)
+        except Exception as e:
+            # Manejar cualquier excepción que ocurra y devolver un queryset vacío
+            print(f"Error al filtrar el queryset: {e}")
+            return Customer.objects.none()
+    
+
+    def query(self):
+        return self.request.GET.get('q')
+    
+    @method_decorator(usuario_activo)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.query()
+        context['title'] = 'ELTELAR - Buscar'
+        context['count'] = context['customer_list'].count()
+        
+
+        return context

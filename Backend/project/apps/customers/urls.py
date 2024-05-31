@@ -15,6 +15,7 @@ app_name = 'customers'
 urlpatterns = [
     path('', views.list_customer, name='customers'),
     path('create/', views.add_customer, name='create'),
+    path('search/', login_required(views.CustomerSearch.as_view()), name='search'),
 ]
 
 urlpatterns+=routers.urlpatterns

@@ -7,10 +7,36 @@
 
 {% block content %}
 <div class=" row shadow p-3 mb-5 bg-body-tertiary rounded">
+    <div class="row">
+        <div class="col" style="padding: 2.5rem">
+            <h3>¡Bienvenido al Apartado de  <span class="badge text-bg-dark">Clientes</span> !</h3>
+            <p>
+                En este módulo, podrás gestionar toda la información relacionada con tus clientes de manera eficiente y
+                organizada.
+            </p>
+            <p>
+                Este módulo está diseñado para brindarte el control y la flexibilidad
+                necesarios para administrar eficazmente el registro de los clientes en la
+                plataforma.
+            </p>
+        </div>
+
+    </div>
+    <hr>
     <div class="row" style="margin-bottom: 2rem">
         <div class="col d-flex flex-row-reverse">
+
             <a class="btn_add" href="{% url 'customers:create'%}">Añadir cliente nuevo</a>
+            
         </div>
+        <div class="col-12 d-flex flex-row-reverse" style="margin-top: 2rem;">
+            {% include 'customer/snippets/search.html' with query=query %}
+            
+
+        </div>
+        
+
+        
     </div>
     {% include 'customer/table/table.html' %}
 
