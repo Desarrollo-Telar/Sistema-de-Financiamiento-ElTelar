@@ -1,16 +1,17 @@
 {% load static %}
 <div class="row">
+    <!-- 
     <div class="col-1" >
         <h6>Filtros</h6>
         <hr>
     </div>
-
-    <div class="col-11 " style="text-align: center;">
+-->
+    <div class="col-12 " style="text-align: center;">
         <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Codigo de Cliente</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Correo Electronico</th>
                         <th scope="col">CUI</th>
@@ -24,6 +25,34 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for customer in customer_list %}
+                    <tr>
+                        <th scope="row" >{{customer.customer_code}}</th>
+                        <td>{{customer.first_name}} {{customer.last_name}}</td>
+                        <td>{{customer.email}} </td>
+                        <td>{{customer.identification_number}} </td>
+                        <td>{{customer.number_nit}} </td>
+                        <td>{{customer.telephone}} </td>
+                        <td>{{customer.gender}} </td>
+                        <td>{{customer.status}} </td>
+                        <td>Pendiente</td>
+                        <td >{{customer.creation_date}} </td>
+                        <td>
+                            <div class="dropdown">
+                                <button style="border: none; background-color: white;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  ...
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="#">Action</a></li>
+                                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                              </div>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
