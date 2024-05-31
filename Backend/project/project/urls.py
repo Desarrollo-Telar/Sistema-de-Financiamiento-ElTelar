@@ -8,6 +8,7 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from rest_framework.documentation import include_docs_urls
 urlpatterns = [
     
     path('',login_required(views.index),name='index'),
@@ -25,6 +26,7 @@ urlpatterns = [
     path('plan_inversion/', include('apps.InvestmentPlan.urls')),
     path('imagen/', include('apps.pictures.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),
     #path('dashboard/', include('django_dash.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

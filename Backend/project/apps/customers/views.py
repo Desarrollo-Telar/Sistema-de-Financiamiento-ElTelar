@@ -28,6 +28,7 @@ from apps.InvestmentPlan.forms import InvestmentPlanForms
 from django.apps import apps
 
 # Create your views here.
+# ----- LISTADO DE CLIENTES ----- #
 @login_required
 @usuario_activo
 def list_customer(request):
@@ -41,6 +42,7 @@ def list_customer(request):
     }
     return render(request, template_name, context)
 
+# ----- CREANDO USUARIOS NUEVOS ----- #
 @login_required
 @usuario_activo
 def add_customer(request):
@@ -59,7 +61,7 @@ def add_customer(request):
     }
     return render(request, template_name, context)
 
-###-- MODULO QUE BUSCA A LOS CLIENTES--###
+# ----- BUSCAR CLIENTES ----- #
 class CustomerSearch(ListView):
     template_name = 'customer/search.html'
 
@@ -100,3 +102,6 @@ class CustomerSearch(ListView):
         
 
         return context
+
+# ----- VER DETALLES DE UN CLIENTE ----- #
+# ----- VER FORMULARIO IVE ----- #

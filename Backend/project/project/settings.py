@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'apps.FinancialInformation',
     'apps.InvestmentPlan',
     'rest_framework',
+    'coreapi', 
    # 'django_inlinecss',
     #'otp',
 ]
@@ -51,6 +52,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+}
 ROOT_URLCONF = 'project.urls'
 
 # Configuración de autenticación
