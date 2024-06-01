@@ -1,0 +1,5 @@
+
+/* ---- CONECTARSE A LA BASE DE DATOS MYSQL*/
+mysql -h db -P 3306 -u user -p
+SHOW DATABASES;
+SHOW TABLES;

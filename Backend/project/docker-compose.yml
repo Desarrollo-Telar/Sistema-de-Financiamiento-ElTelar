@@ -10,16 +10,16 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - POSTGRES_NAME=databaseElTelar
-      - POSTGRES_USER=telar
-      - POSTGRES_PASSWORD=mypassword
+      #- POSTGRES_NAME=databaseElTelar
+      #- POSTGRES_USER=telar
+      #- POSTGRES_PASSWORD=mypassword
       - MINIO_STORAGE_ENDPOINT=http://minio:9000
       - MINIO_SERVER_ACCESS_KEY=choc1403
       - MINIO_SERVER_SECRET_KEY=choc1403
-      #- MYSQL_USER=user
-      #- MYSQL_PASSWORD=password
-      #- MYSQL_DATABASE=db
-      #- MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=db
+      - MYSQL_ROOT_PASSWORD=password
     depends_on:
       - db
     networks:
@@ -27,24 +27,24 @@ services:
 
   # Servicio de la base de datos PostgreSQL
   db:
-    image: postgres:latest
-    #image: mysql 
+    #image: postgres:latest
+    image: mysql 
     environment:
-      POSTGRES_DB: databaseElTelar
-      POSTGRES_USER: telar
-      POSTGRES_PASSWORD: mypassword
-      #- MYSQL_DATABASE=db      
-      #- MYSQL_USER=user
-      #- MYSQL_PASSWORD=password      
-      #- MYSQL_ROOT_PASSWORD=password
-      #- MYSQL_HOST=''
+      #POSTGRES_DB: databaseElTelar
+      #POSTGRES_USER: telar
+      #POSTGRES_PASSWORD: mypassword
+      - MYSQL_DATABASE=db      
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password      
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_HOST=''
     ports:
-      - "5432:5432"
-      #- "3306:3306"
+      #- "5432:5432"
+      - "3306:3306"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      #- /tmp/app/mysqld:/var/run/mysqld
-      #- my-db:/var/lib/mysql
+      #- postgres_data:/var/lib/postgresql/data
+      - /tmp/app/mysqld:/var/run/mysqld
+      - my-db:/var/lib/mysql
     networks:
       - app_fin
 
@@ -64,6 +64,7 @@ services:
 
 volumes:
   postgres_data:
+  my-db:
   minio_data:
 
 networks:
