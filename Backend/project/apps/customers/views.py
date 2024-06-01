@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404
 
 # Models
 from .models import Customer
+from apps.addresses.models import Address
+from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
+from apps.InvestmentPlan.models import InvestmentPlan
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
@@ -105,3 +108,25 @@ class CustomerSearch(ListView):
 
 # ----- VER DETALLES DE UN CLIENTE ----- #
 # ----- VER FORMULARIO IVE ----- #
+@login_required
+@usuario_activo
+def formulario_ive(request, id):
+    template_name = 'customer/forms/forms_ive.html'
+    customer_list = get_object_or_404(Customer, id=id)
+    address_list = Address.objects.filter(Q(customer_id=customer_list))
+    working_information = WorkingInformation.objects.filter(Q(customer_id=customer_list))
+    other_information = OtherSourcesOfIncome.objects.filter(Q(customer_id=customer_list))
+    reference = Reference.objects.filter(Q(customer_id=customer_list))
+    plan = InvestmentPlan.objects.filter(Q(customer_id=customer_list))
+
+    context = {
+        'title':'EL TELAR - FORMULARIO IVE',
+        'customer_list':customer_list,
+        'address_list': address_list,  
+        'working_information' :working_information,
+        'other_information' :other_information,
+        'reference':reference,
+        'plan_list':plan,
+        
+        }
+    return render(request, template_name, context)

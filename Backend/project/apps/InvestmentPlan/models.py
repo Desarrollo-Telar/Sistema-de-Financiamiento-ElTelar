@@ -17,3 +17,8 @@ class InvestmentPlan(models.Model):
     transfers_or_transfer_of_funds = models.BooleanField(blank=False, null=False) # transferencias o traslado de fondos Si o No
     type_of_transfers_or_transfer_of_funds  = models.CharField(max_length=75, choices=type_of_transfers_or_transfer_of_funds)# tipo de transferencias o traslado de fondos Local o Internacional
     customer_id = models.ForeignKey(Customer, blank=False, null=False, on_delete=models.CASCADE)
+
+    def description(self):
+        description = self.investment_plan_description
+        return '----' if not description else description
+ 
