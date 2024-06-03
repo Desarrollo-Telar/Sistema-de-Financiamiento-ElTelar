@@ -6,10 +6,10 @@
 {% endblock%}
 
 {% block content %}
-<div class=" row shadow p-3 mb-5 bg-body-tertiary rounded">
+<div class=" row box">
     <div class="row">
         <div class="col" style="padding: 2.5rem">
-            <h3>¡Bienvenido al Apartado de  <span class="badge text-bg-dark">Clientes</span> !</h3>
+            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Clientes</span> !</h3>
             <p>
                 En este módulo, podrás gestionar toda la información relacionada con tus clientes de manera eficiente y
                 organizada.
@@ -25,13 +25,44 @@
     <hr>
     <div class="row" style="margin-bottom: 2rem">
         <div class="col d-flex flex-row-reverse">
-            <a class="btn_add" href="{% url 'customers:create'%}">Añadir cliente nuevo</a> 
+            <a class="btn_add" href="{% url 'customers:create'%}">Añadir cliente nuevo</a>
         </div>
-        <div class="col-12 d-flex flex-row-reverse" style="margin-top: 2rem;">
-            {% include 'customer/snippets/search.html' with query=query %}
+        <div class="row" style="display: flex; align-items: center; justify-content: end; margin-top: 2rem;">
             
 
+            <div class="col-6" style="display: flex; align-items: center; justify-content: end;">
+                {% include 'customer/snippets/search.html' with query=query %}
+
+            </div>
+            <div class="col-1">
+                <div class="dropdown">
+                    <button style="border: none; background-color: white;" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-filter" viewBox="0 0 16 16">
+                            <path
+                                d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+                        </svg>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Recientes <span class="badge text-bg-secondary">#</span> </a></li>
+                        <li><a class="dropdown-item" href="#">Solicitudes <span class="badge text-bg-secondary">#</span> </a></li>
+                        <li><a class="dropdown-item" href="#">No Aceptados <span class="badge text-bg-secondary">#</span> </a></li>
+                        
+                        <hr>
+                        <li><a class="dropdown-item" href="#">Clientes de EL<span style="color: red;">T</span>ELAR <span class="badge text-bg-secondary">#</span></a></li>
+                        <li><a class="dropdown-item" href="#">Clientes Inactivos <span class="badge text-bg-secondary">#</span></a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+
         </div>
+
+
     </div>
     {% include 'customer/table/table.html' %}
 
