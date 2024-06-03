@@ -1,3 +1,7 @@
+// Constructor de la clase
+
+import {list_customer} from '../API/customer/list_api.js'
+
 export class Cliente {
     #first_name;
     #last_name;
@@ -45,6 +49,70 @@ export class Cliente {
         return this.#first_name;
     }
 
+    get last_name() {
+        return this.#last_name;
+    }
+
+    get type_identification() {
+        return this.#type_identification;
+    }
+
+    get identification_number() {
+        return this.#identification_number;
+    }
+
+    get telephone() {
+        return this.#telephone;
+    }
+
+    get email() {
+        return this.#email;
+    }
+
+    get status() {
+        return this.#status;
+    }
+
+    get date_birth() {
+        return this.#date_birth;
+    }
+
+    get number_nit() {
+        return this.#number_nit;
+    }
+
+    get place_birth() {
+        return this.#place_birth;
+    }
+
+    get marital_status() {
+        return this.#marital_status;
+    }
+
+    get profession_trade() {
+        return this.#profession_trade;
+    }
+
+    get gender() {
+        return this.#gender;
+    }
+
+    get nationality() {
+        return this.#nationality;
+    }
+
+    get person_type() {
+        return this.#person_type;
+    }
+
+    get immigration_status_id(){
+        return this.#immigration_status_id;
+    }
+
+    get user_id(){
+        return this.#user_id;
+    }
+
     set first_name(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el nombre del cliente');
@@ -53,12 +121,7 @@ export class Cliente {
         
         this.#first_name = value.trim();
     }
-    
-
-    get last_name() {
-        return this.#last_name;
-    }
-
+        
     set last_name(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el apellido del cliente');
@@ -68,11 +131,6 @@ export class Cliente {
         this.#last_name = value.trim();
     }
     
-
-    get type_identification() {
-        return this.#type_identification;
-    }
-
     set type_identification(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el tipo de identificación del cliente');
@@ -81,10 +139,6 @@ export class Cliente {
         
         
         this.#type_identification = value.trim();
-    }
-
-    get identification_number() {
-        return this.#identification_number;
     }
 
     set identification_number(value) {
@@ -96,10 +150,6 @@ export class Cliente {
         
         this.#identification_number = value.trim();
        
-    }
-
-    get telephone() {
-        return this.#telephone;
     }
 
     set telephone(value) {
@@ -121,10 +171,6 @@ export class Cliente {
         }
         this.#telephone = value.trim();
         
-    }
-
-    get email() {
-        return this.#email;
     }
 
     set email(value) {
@@ -159,16 +205,8 @@ export class Cliente {
 
     }
 
-    get status() {
-        return this.#status;
-    }
-
     set status(value) {
         this.#status = value;
-    }
-
-    get date_birth() {
-        return this.#date_birth;
     }
 
     set date_birth(value) {
@@ -177,13 +215,7 @@ export class Cliente {
             throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
         }
         
-        
-        
         this.#date_birth = value.trim();
-    }
-
-    get number_nit() {
-        return this.#number_nit;
     }
 
     set number_nit(value) {
@@ -192,70 +224,35 @@ export class Cliente {
             throw new Error('Debe ingresar el numero de NIT cliente');
         }
         
-        
-        
         this.#number_nit = value.trim();
-        
-    }
-
-    get place_birth() {
-        return this.#place_birth;
     }
 
     set place_birth(value) {
         this.#place_birth = value;
     }
 
-    get marital_status() {
-        return this.#marital_status;
-    }
-
     set marital_status(value) {
         this.#marital_status = value;
-    }
-
-    get profession_trade() {
-        return this.#profession_trade;
     }
 
     set profession_trade(value) {
         this.#profession_trade = value;
     }
 
-    get gender() {
-        return this.#gender;
-    }
-
     set gender(value) {
         this.#gender = value;
-    }
-
-    get nationality() {
-        return this.#nationality;
     }
 
     set nationality(value) {
         this.#nationality = value;
     }
 
-    get person_type() {
-        return this.#person_type;
-    }
-
     set person_type(value) {
         this.#person_type = value;
     }
 
-    get immigration_status_id(){
-        return this.#immigration_status_id;
-    }
-
     set immigration_status_id(value){
         this.#immigration_status_id = value;
-    }
-
-    get user_id(){
-        return this.#user_id;
     }
 
     set user_id(value){
