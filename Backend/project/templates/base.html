@@ -33,15 +33,12 @@
     <!--  -->
   </header>
 
-  <main>
-    <div class="menu-lateral" style="display: flex">
+  <main style="margin-top: 2rem">
+    <div class="container">
+      <div class="row">
 
-      <div class="container">
-        <div class="row">
-          <div class="col" style="margin: 2rem">
-            {% block content %} {% endblock %}
-          </div>
-        </div>
+        {% block content %} {% endblock %}
+
       </div>
     </div>
   </main>

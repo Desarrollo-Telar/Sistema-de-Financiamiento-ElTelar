@@ -114,7 +114,8 @@ def detail_customer(request,customer_code):
     customer_list = get_object_or_404(Customer,customer_code = str(customer_code))
     
     context = {
-        'title': 'ELTELAR - {} {} / {}'.format(customer_list.first_name, customer_list.last_name,str(customer_code))
+        'title': 'ELTELAR - {} {} / {}'.format(customer_list.first_name, customer_list.last_name,str(customer_code)),
+        'customer_list':customer_list,
     }
     return render(request, template_name, context)
 
