@@ -43,7 +43,7 @@ from django.apps import apps
 @usuario_activo
 def list_user(request):
     template_name = 'user/list_user.html'
-    users = User.objects.all().order_by('-id')
+    users = User.objects.all().order_by('user_code')
     # PAGINACION
     page_obj = paginacion(request,users)
 

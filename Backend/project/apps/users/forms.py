@@ -120,15 +120,7 @@ class UpdateUserForm(forms.ModelForm):
 
     )
 
-    password = forms.CharField(
-        label='Contraseña',
-        widget=forms.PasswordInput(
-            attrs={'class': 'form-control', 'autocomplete': 'off'}),
-        required=True,
-
-
-    )
-
+    
     def clean_email(self):
         email = self.cleaned_data.get('email')
         
@@ -152,7 +144,7 @@ class UpdateUserForm(forms.ModelForm):
             'gender',
             'nationality',
             #'profile_pic',
-            'status'
+            
 
             
         ]

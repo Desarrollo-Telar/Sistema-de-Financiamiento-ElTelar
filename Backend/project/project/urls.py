@@ -27,6 +27,7 @@ urlpatterns = [
     path('imagen/', include('apps.pictures.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),
+    path('test/', views.test, name='test'),
     #path('dashboard/', include('django_dash.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

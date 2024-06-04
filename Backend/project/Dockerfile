@@ -12,7 +12,7 @@ WORKDIR /code
 COPY requirements.txt /code/
 
 # Instala las dependencias definidas en requirements.txt
-RUN pip install -r requirements.txt
+RUN python -m pip install -r requirements.txt
 
 # Copia el contenido del directorio actual al directorio de trabajo
 COPY . /code/

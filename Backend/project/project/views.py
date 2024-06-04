@@ -33,6 +33,11 @@ import calendar
 # Obtener la fecha y hora actual
 now = datetime.datetime.now()
 
+def test(request):
+    return render(request, 'test/test.html', {
+        
+    })
+    
 def prueba(request):
     #send_email_welcome_customer()
     
