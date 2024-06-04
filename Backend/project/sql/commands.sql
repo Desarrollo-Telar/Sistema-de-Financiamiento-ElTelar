@@ -1,5 +1,8 @@
 
 /* ---- CONECTARSE A LA BASE DE DATOS MYSQL*/
+mysql -u user -h db db -p
+
+use db;
  
 SHOW DATABASES;
 SHOW TABLES;
@@ -27,3 +30,7 @@ FROM table_name\G;
 
 -- Informacion de la tabla
 desc tabla;
+
+-- Ejecutar archivos SQL
+
+SOURCE <direccion del archivo sql>

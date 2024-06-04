@@ -27,7 +27,7 @@
                 <tbody>
                     {% for customer in customer_list %}
                     <tr>
-                        <th scope="row" >{{customer.customer_code}}</th>
+                        <th scope="row">{{customer.customer_code}}</th>
                         <td>{{customer.first_name}} {{customer.last_name}}</td>
                         <td>{{customer.email}} </td>
                         <td>{{customer.identification_number}} </td>
@@ -36,19 +36,24 @@
                         <td>{{customer.gender}} </td>
                         <td>{{customer.status}} </td>
                         <td>Pendiente</td>
-                        <td >{{customer.creation_date}} </td>
+                        <td>{{customer.creation_date}} </td>
                         <td>
                             <div class="dropdown">
-                                <button style="border: none; background-color: white;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  ...
+                                <button style="border: none; background-color: white;" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    ...
                                 </button>
                                 <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">Detalles del Cliente</a></li>
-                                  <li><a class="dropdown-item" href="{% url 'customers:formulario_ive' customer.id %}">Formulario IVE</a></li>
-                                  <li><a class="dropdown-item" href="#">Editar Información del Cliente</a></li>
-                                  
+                                    <li><a class="dropdown-item"
+                                            href="{% url 'customers:detail' customer.customer_code %}">Detalles del
+                                            Cliente</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{% url 'customers:formulario_ive' customer.id %}">Formulario IVE</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Editar Información del Cliente</a></li>
+
                                 </ul>
-                              </div>
+                            </div>
                         </td>
 
                     </tr>

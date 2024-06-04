@@ -107,6 +107,17 @@ class CustomerSearch(ListView):
         return context
 
 # ----- VER DETALLES DE UN CLIENTE ----- #
+@login_required
+@usuario_activo
+def detail_customer(request,customer_code):
+    template_name = 'customer/detail.html'
+    customer_list = get_object_or_404(Customer,customer_code = str(customer_code))
+    
+    context = {
+        'title': 'ELTELAR - {} {} / {}'.format(customer_list.first_name, customer_list.last_name,str(customer_code))
+    }
+    return render(request, template_name, context)
+
 # ----- VER FORMULARIO IVE ----- #
 @login_required
 @usuario_activo
