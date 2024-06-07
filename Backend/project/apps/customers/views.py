@@ -116,6 +116,7 @@ def detail_customer(request,customer_code):
     otra_informacion_laboral = OtherSourcesOfIncome.objects.filter(Q(customer_id=customer_list))
     direccion = Address.objects.filter(Q(customer_id=customer_list))
     plan_inversion = InvestmentPlan.objects.filter(Q(customer_id=customer_list))
+    reference = Reference.objects.filter(Q(customer_id=customer_list))
 
     
     
@@ -123,6 +124,11 @@ def detail_customer(request,customer_code):
         'title': 'ELTELAR - {} {} / {}'.format(customer_list.first_name, customer_list.last_name,str(customer_code)),
         'customer_list':customer_list,
         'user_id':request.user.id,
+        'direccion': direccion,  
+        'informacion_laboral' :informacion_laboral,
+        'otra_informacion_laboral' :otra_informacion_laboral,
+        'reference':reference,
+        'plan_inversion':plan_inversion,
     }
     return render(request, template_name, context)
 

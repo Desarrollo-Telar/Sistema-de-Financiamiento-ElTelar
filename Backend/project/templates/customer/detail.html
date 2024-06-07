@@ -175,11 +175,6 @@
                         {% endif %}
                     
                     {% endif %}
-
-                    
-
-                 
-                    
                 </div>
 
                 
@@ -187,7 +182,11 @@
             <div class="tab-pane fade show " id="nav-direcciones" role="tabpanel" aria-labelledby="nav-direcciones-tab"
                 tabindex="0">
                 <div class="contenido">
+                    {% if direccion %}
                     {% include 'customer/snippets/detail/direcciones.html' %}
+                    {% else %}
+                    NO HAY DATA
+                    {% endif %}
                 </div>
             
             
@@ -195,14 +194,22 @@
             <div class="tab-pane fade show " id="nav-referencia" role="tabpanel" aria-labelledby="nav-referencia-tab"
                 tabindex="0">
                 <div class="contenido">
+                    {% if reference %}
                     {% include 'customer/snippets/detail/referencia.html' %}
+                    {% else %}
+                    No hay data
+                    {% endif %}
                 </div>
 
             </div>
             <div class="tab-pane fade show " id="nav-plan_inversion" role="tabpanel"
                 aria-labelledby="nav-plan_inversion-tab" tabindex="0">
                 <div class="contenido">
+                    {% if plan_inversion %}
                     {% include 'customer/snippets/detail/plan_inversion.html' %}
+                    {% else %}
+                    no hay data
+                    {% endif %}
                 </div>
             </div>
 
