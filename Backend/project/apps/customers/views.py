@@ -118,11 +118,12 @@ def detail_customer(request,customer_code):
     direccion = Address.objects.filter(Q(customer_id=customer_id))
     plan_inversion = InvestmentPlan.objects.filter(Q(customer_id=customer_id))
 
-    print(customer_list.get_qr)
+    
     
     context = {
         'title': 'ELTELAR - {} {} / {}'.format(customer_list.first_name, customer_list.last_name,str(customer_code)),
         'customer_list':customer_list,
+        'user_id':request.user.id,
     }
     return render(request, template_name, context)
 
