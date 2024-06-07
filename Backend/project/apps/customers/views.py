@@ -112,6 +112,13 @@ class CustomerSearch(ListView):
 def detail_customer(request,customer_code):
     template_name = 'customer/detail.html'
     customer_list = get_object_or_404(Customer,customer_code = str(customer_code))
+    customer_id = customer_list.id
+    informacion_laboral = WorkingInformation.objects.filter(Q(customer_id=customer_id))
+    otra_informacion_laboral = OtherSourcesOfIncome.objects.filter(Q(customer_id=customer_id))
+    direccion = Address.objects.filter(Q(customer_id=customer_id))
+    plan_inversion = InvestmentPlan.objects.filter(Q(customer_id=customer_id))
+
+    print(customer_list.get_qr)
     
     context = {
         'title': 'ELTELAR - {} {} / {}'.format(customer_list.first_name, customer_list.last_name,str(customer_code)),

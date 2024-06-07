@@ -1,8 +1,10 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 
-# Decorador
-from .decorador import usuario_activo
+# Decoradores
+from django.contrib.auth.decorators import login_required
+from project.decorador import usuario_activo
+from django.utils.decorators import method_decorator
 
 # Login
 from django.contrib.auth import login
@@ -19,6 +21,11 @@ from apps.codes.forms import CodeForm
 from apps.users.models import User
 from django.contrib.auth.models import AnonymousUser
 
+# DJANGO HTTP
+from django.http import HttpResponse
+
+# QR
+import qrcode
 
 #UTILS
 from .utils import send_verification_code
@@ -29,6 +36,10 @@ from .send_mail import send_email_welcome_customer, send_email_code_verification
 # Tiempo
 import datetime
 import calendar
+
+# OS
+import os
+from django.conf import settings
 
 # Obtener la fecha y hora actual
 now = datetime.datetime.now()
@@ -42,6 +53,39 @@ def prueba(request):
     #send_email_welcome_customer()
     
     return render(request, 'email/send_code.html',{})
+
+### --- GENERACION DE CODIGOS QR --- ###
+@login_required
+@usuario_activo
+def generate_qr(request, data):
+    # Crea un objeto QRCode
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    # Agrega los datos al objeto QRCode
+    qr.add_data(data)
+    qr.make(fit=True)
+    # Crea una imagen QR
+    img = qr.make_image(fill_color="black", back_color="white")
+
+    # Especifica el directorio y el archivo donde se guardará la imagen QR
+    directory = os.path.join(settings.MEDIA_ROOT, 'qr')
+    if not os.path.exists(directory):
+        os.makedirs(directory)  # Crea el directorio si no existe
+    
+    filename = f"{data}.png"  # Puedes personalizar el nombre del archivo
+    filepath = os.path.join(directory, filename)
+    
+    # Guarda la imagen QR en el archivo especificado
+    img.save(filepath)
+
+    # Guarda la imagen QR en un buffer
+    response = HttpResponse(content_type="image/png")
+    img.save(response, "PNG")
+    return redirect('index')
 
 ### -- APARTADO DE SALIR --##
 def logout_view(request):

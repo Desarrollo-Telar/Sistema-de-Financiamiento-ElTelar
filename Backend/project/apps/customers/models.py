@@ -11,6 +11,10 @@ from django.dispatch import receiver
 from django.utils import timezone
 import random
 from datetime import datetime
+
+# Settings
+from project.settings import MEDIA_URL, STATIC_URL
+
 # Create your models here.
 condition = [
         ('Residente temporal','Residente temporal'),
@@ -71,6 +75,16 @@ class Customer(models.Model):
     nationality = models.CharField(max_length=75, blank=False, null=False, default='Guatemala') #
     person_type = models.CharField(choices=type_person, max_length=50) #
     creation_date = models.DateTimeField(auto_now_add=True)
+
+    def get_qr(self):
+        codigo = '/media/qr/codigoQr_{}.png'.format(self.customer_code)
+        if not codigo:
+            return 'No hay info'
+        
+        
+
+        return codigo
+
 
     def __str__(self):
         return '{} {} / {}'.format(self.first_name, self.last_name,self.customer_code)

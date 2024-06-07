@@ -54,7 +54,11 @@
                 </p>
             </div>
             <div>
-                codigoqr
+                {% if customer_list.get_qr %}
+                <img src="{{customer_list.get_qr}}" alt="Codigo qr" width="205rem" height="205rem">
+                {% endif %}
+                
+                
             </div>
 
 
