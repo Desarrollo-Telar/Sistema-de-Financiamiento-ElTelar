@@ -1,0 +1,35 @@
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<button onclick="mostrarModal()" class="w3-button w3-green w3-large">Editar el estado del Cliente</button>
+<div id="id01" >
+    
+  </div>
+
+<script>
+    function mostrarModal(){
+        document.getElementById('id01').style.display='block';
+        alert('Abriendo modal');
+
+    }
+</script>
+
+<td>
+    <div class="dropdown">
+        <button style="border: none; background-color: white;" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            ...
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item"
+                    >Detalles del
+                    Cliente</a></li>
+            <li><a class="dropdown-item"
+                    href="{% url 'customers:formulario_ive' customer.id %}">Formulario IVE</a>
+            </li>
+            
+
+
+        </ul>
+    </div>
+</td>

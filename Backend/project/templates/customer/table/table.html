@@ -21,41 +21,73 @@
                         <th scope="col">Status Cliente</th>
                         <th scope="col">Status Bancario</th>
                         <th scope="col">Fecha De Registro</th>
-                        <th scope="col"></th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     {% for customer in customer_list %}
+
                     <tr>
-                        <th scope="row">{{customer.customer_code}}</th>
-                        <td>{{customer.first_name}} {{customer.last_name}}</td>
-                        <td>{{customer.email}} </td>
-                        <td>{{customer.identification_number}} </td>
-                        <td>{{customer.number_nit}} </td>
-                        <td>{{customer.telephone}} </td>
-                        <td>{{customer.gender}} </td>
-                        <td>{{customer.status}} </td>
-                        <td>Pendiente</td>
-                        <td>{{customer.creation_date}} </td>
+                        <th scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'customers:detail' customer.customer_code %}">
+                                {{customer.customer_code}}
+                            </a>
+                        </th>
                         <td>
-                            <div class="dropdown">
-                                <button style="border: none; background-color: white;" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    ...
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item"
-                                            href="{% url 'customers:detail' customer.customer_code %}">Detalles del
-                                            Cliente</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="{% url 'customers:formulario_ive' customer.id %}">Formulario IVE</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Editar Información del Cliente</a></li>
-
-                                </ul>
-                            </div>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'customers:detail' customer.customer_code %}">
+                                {{customer.first_name}} {{customer.last_name}}
+                            </a>
                         </td>
-
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'customers:detail' customer.customer_code %}">
+                                {{customer.email}}
+                            </a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'customers:detail' customer.customer_code %}">
+                                {{customer.identification_number}}
+                            </a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'customers:detail' customer.customer_code %}">
+                                {{customer.number_nit}}
+                            </a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'customers:detail' customer.customer_code %}">
+                                {{customer.telephone}}
+                            </a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'customers:detail' customer.customer_code %}">
+                                {{customer.gender}}
+                            </a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'customers:detail' customer.customer_code %}">
+                                {{customer.status}}
+                            </a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'customers:detail' customer.customer_code %}">
+                                Pendiente
+                            </a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'customers:detail' customer.customer_code %}">
+                                {{customer.creation_date}}
+                            </a>
+                        </td>
                     </tr>
 
                     {% endfor %}
@@ -63,5 +95,6 @@
             </table>
         </div>
     </div>
+
 
 </div>
