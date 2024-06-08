@@ -23,6 +23,7 @@ from django.utils.decorators import method_decorator
 
 # Create your views here.
 
+# --- CREAR DIRECCION NUEVA --- #
 class AddressCreateView(CreateView):
     @method_decorator(usuario_activo)
     def dispatch(self, *args, **kwargs):
@@ -36,7 +37,7 @@ class AddressCreateView(CreateView):
             'title':'ELTELAR - DIRECCIONES',
             'form':CoordinateForms,
             'form2':AddressForms,
-            'customer_id':cliente
+            'customer_code':cliente.customer_code
         }
         return render(request, template_name, context)
 
