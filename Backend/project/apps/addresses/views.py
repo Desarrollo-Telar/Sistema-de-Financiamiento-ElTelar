@@ -70,5 +70,64 @@ class AddressCreateView(CreateView):
         else:
             return self.render_to_response(self.get_context_data(form=form,form2=form2))
 
-   
+@usuario_activo
+@login_required
+def addressUpdateView(request, id,customer_code):
+    template_name = 'addresses/address_update.html'
+    cliente = get_object_or_404(Customer, customer_code= str(customer_code))
+    address = get_object_or_404(Address,id=id)
+    coordinate = get_object_or_404(Coordinate, address_id=address.id)
     
+    if request.method == 'POST':
+        form = CoordinateForms(request.POST)
+        form2 = AddressForms(request.POST)
+
+        if form.is_valid() and form2.is_valid():
+            direccion = address
+            direccion.street = form2.cleaned_data.get('street')
+            direccion.number = form2.cleaned_data.get('number')
+            direccion.city = form2.cleaned_data.get('city')
+            direccion.state = form2.cleaned_data.get('state')
+            direccion.postal_code = form2.cleaned_data.get('postal_code')
+            direccion.country = form2.cleaned_data.get('country')
+            direccion.type_address = form2.cleaned_data.get('type_address')
+            direccion.customer_id = cliente
+                
+            direccion.save()
+            coordenada = coordinate
+            coordenada.latitud = form.cleaned_data.get('latitud')
+            coordenada.longitud = form.cleaned_data.get('longitud')
+            coordenada.address_id = direccion
+            coordenada.save()
+                
+            return redirect('customers:detail',cliente.customer_code ) 
+            
+        else:
+            return self.render_to_response(self.get_context_data(form=form,form2=form2))
+    else:
+        initial_data_address = {
+            'street':address.street,
+            'number':address.number,
+            'city':address.city,
+            'state':address.state,
+            'postal_code':address.postal_code,
+            'country':address.country,
+            'type_address':address.type_address,
+        }
+        initial_data_coordinate = {
+            'latitud':coordinate.latitud,
+            'longitud':coordinate.longitud,
+
+        }
+
+        form2 = AddressForms(initial=initial_data_address)
+        form = CoordinateForms(initial=initial_data_coordinate)
+        context = {
+                'title':'ELTELAR - DIRECCIONES',
+                'form':form,
+                'form2':form2,
+                'customer_code':cliente.customer_code,
+                'address_id':id,
+        }
+
+        return render(request, template_name, context)
