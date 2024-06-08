@@ -146,7 +146,16 @@ export class Cliente {
             alert('Debe ingresar el numero del tipo de identificación del cliente');
             throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
         }
-        
+        // Expresión regular para exactamente 13 dígitos
+        const regex = /^\d{13}$/;
+
+        // Validar el formato del número de identificacion
+        if (!regex.test(value)) {
+            console.error('Numero de identificacion no valido. Verificar!!!')
+            //alert('Numero de identificacion no valido. Verificar!!!');
+            throw new Error('Numero de identificacion no valido. Verificar!!!');
+            
+        }
         
         this.#identification_number = value.trim();
        
@@ -228,6 +237,15 @@ export class Cliente {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el numero de NIT cliente');
             throw new Error('Debe ingresar el numero de NIT cliente');
+        }
+        const regex = /^(\d{7}-[A-Z]|\d{8}|\d{7}[A-Z]|\d{7}-\d{1})$/;
+
+         // Validar el formato del número de nit
+         if (!regex.test(value)) {
+            console.error('Numero de NIT no valido. Verificar!!!')
+            //alert('Numero de NIT no valido. Verificar!!!');
+            throw new Error('Numero de NIT no valido. Verificar!!!');
+            
         }
         
         this.#number_nit = value.trim();
