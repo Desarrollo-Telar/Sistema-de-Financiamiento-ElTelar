@@ -11,7 +11,7 @@ document.getElementById('customer').addEventListener('submit', function (event) 
     event.preventDefault();
     let customer_id;
 
-
+    
     postCustomer(urls.api_url_cliente)
         .then(data => {
             console.log('Cliente registrado con éxito:', data);

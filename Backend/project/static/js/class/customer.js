@@ -1,6 +1,6 @@
 // Constructor de la clase
 
-import {list_customer} from '../API/customer/list_api.js'
+
 
 export class Cliente {
     #first_name;
@@ -186,7 +186,7 @@ export class Cliente {
         // Validar el formato del correo electrónico
         if (!regex.test(value)) {
             console.error('Verifique bien si esta escribiendo el correo electronico...');
-            alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
+            //alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito.');
             
         }
@@ -196,7 +196,7 @@ export class Cliente {
         // Verificar si el dominio está en la lista de dominios conocidos
         if (!dominiosConocidos.includes(dominio)) {
             console.error('Verifique bien si esta escribiendo el dominio del correo electronico...');
-            alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
+            //alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
             
         }
@@ -206,6 +206,10 @@ export class Cliente {
     }
 
     set status(value) {
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el status del cliente');
+            throw new Error('Debe ingresar el correo electronico del cliente');
+        }
         this.#status = value;
     }
 
@@ -228,35 +232,70 @@ export class Cliente {
     }
 
     set place_birth(value) {
-        this.#place_birth = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el lugar de nacimiento del cliente');
+            throw new Error('Debe ingresar el lugar de nacimiento del cliente');
+        }
+        this.#place_birth = value.trim();
     }
 
     set marital_status(value) {
-        this.#marital_status = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el estado civil del cliente');
+            throw new Error('Debe ingresar el estado civil del cliente');
+        }
+        this.#marital_status = value.trim();
     }
 
     set profession_trade(value) {
-        this.#profession_trade = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar la profesion u oficio del cliente');
+            throw new Error('Debe ingresar la profesion u oficio del cliente');
+        }
+        this.#profession_trade = value.trim();
     }
 
     set gender(value) {
-        this.#gender = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el genero del cliente');
+            throw new Error('Debe ingresar el genero del cliente');
+        }
+        this.#gender = value.trim();
     }
 
     set nationality(value) {
-        this.#nationality = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar la nacionalidad del cliente');
+            throw new Error('Debe ingresar la nacionalidad del cliente');
+        }
+        this.#nationality = value.trim();
     }
 
     set person_type(value) {
-        this.#person_type = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el tipo de persona que es el cliente');
+            throw new Error('Debe ingresar el tipo de persona que es el cliente');
+        }
+        this.#person_type = value.trim();
     }
 
     set immigration_status_id(value){
-        this.#immigration_status_id = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar la condicion migratoria del cliente');
+            throw new Error('Debe ingresar la condicion migratoria del cliente');
+        }
+        
+        this.#immigration_status_id = value.trim();
     }
 
     set user_id(value){
-        this.#user_id = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el usuario que esta registrado a este cliente');
+            throw new Error('Debe ingresar el usuario que esta registrado a este cliente');
+        }
+        
+        
+        this.#user_id = value.trim();
     }
 
     // Método toJSON para convertir el objeto en una representación JSON

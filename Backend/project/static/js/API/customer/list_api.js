@@ -32,5 +32,6 @@ const outputDiv = document.getElementById('output');
 // Agregar un event listener para el evento input
 inputField.addEventListener('input', function(event) {
     const inputValue = event.target.value;
+    
     outputDiv.textContent = `Texto ingresado: ${inputValue}`;
 });
