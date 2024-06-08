@@ -23,3 +23,10 @@ class Address(models.Model):
     def __str__(self):
         return '{} {} / {}'.format(self.street, self.city,self.customer_id)
     
+class Coordinate(models.Model):
+    latitud = models.CharField(max_length=90,blank=False, null=False)
+    longitud = models.CharField(max_length=90,blank=False, null=False)
+    address_id = models.ForeignKey(Address, on_delete=models.CASCADE, blank=False, null=False)
+
+    def __str__(self):
+        return '{} - {},{}'.format(self.address_id, self.latitud,self.longitud)
