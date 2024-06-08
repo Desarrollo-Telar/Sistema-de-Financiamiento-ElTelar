@@ -200,6 +200,8 @@ export class Cliente {
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
             
         }
+
+        // Falta por agregar el filtro de ver si ya existe el correo electronico registrado
         this.#email = value.trim();
 
 
