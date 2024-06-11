@@ -96,25 +96,30 @@ def set_customer_code(sender, instance, *args, **kwargs):
     if instance.customer_code == '':
         # Obtiene la fecha y hora actual
         current_date = datetime.now()
-
         # Extrae el año de la fecha actual
-        current_year = current_date.year  
-
-        # Formato al codigo de usuario
+        current_year = current_date.year
+        # Formato base del código de usuario
         customer_code_base = f'{current_year}-'
+        
+        # Mapeo de estados a sufijos de códigos
+        status_suffix = {
+            'Posible Cliente': 'S',
+            'No Aprobado': 'N',
+            'Aprobado': '',
+            'Revisión de documentos': 'D'
+        }
 
-        # Contador
+        # Inicializa el contador
         counter = 1
+        suffix = status_suffix.get(instance.status, '')
+        
+        # Genera el código base
+        customer_code = f'{customer_code_base}{suffix}{counter}'
 
-        # Base final del codigo
-        # Ejemplo: 2024-1
-        customer_code = f'{customer_code_base}{counter}'
-
-        # Verificar si no existe un codigo igual, si no generar uno nuevo
+        # Verificar si no existe un código igual, si no, generar uno nuevo
         while Customer.objects.filter(customer_code=customer_code).exists():
             counter += 1
-            customer_code = f'{customer_code_base}{counter}'
-            print(instance.customer_code)
+            customer_code = f'{customer_code_base}{suffix}{counter}'
 
-        # Guardar informacion
+        # Asigna el código único al cliente
         instance.customer_code = customer_code
