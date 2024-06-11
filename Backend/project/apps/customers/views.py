@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from .models import Customer
@@ -31,6 +31,16 @@ from apps.InvestmentPlan.forms import InvestmentPlanForms
 from django.apps import apps
 
 # Create your views here.
+@login_required
+@usuario_activo
+def delete_customer(request,id):
+    customer = get_object_or_404(Customer, id=id)
+    if customer:
+        customer.delete()
+        return redirect('customers:create')
+    else:
+        return redirect('customers:create')
+
 # ----- LISTADO DE CLIENTES ----- #
 @login_required
 @usuario_activo

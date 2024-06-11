@@ -30,10 +30,21 @@ export class Referencia {
 
     // Setters
     set full_name(value) {
-        this.#full_name = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el nombre completo de la referencia del cliente');
+            throw new Error('Debe ingresar el nombre completo de la referencia del cliente');
+        }
+
+        this.#full_name = value.trim();
     }
 
     set phone_number(value) {
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el numero de telefono de la referencia del cliente');
+            throw new Error('Debe ingresar el numero de telefono de la referencia del cliente');
+        }
+
+        
         // Expresión regular para exactamente 8 dígitos
         const regex = /^\d{8}$/;
 
@@ -43,7 +54,7 @@ export class Referencia {
             throw new Error('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
         }
         
-        this.#phone_number = value;
+        this.#phone_number = value.trim();
     }
 
     set reference_type(value) {

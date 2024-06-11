@@ -43,6 +43,7 @@ document.getElementById('customer').addEventListener('submit', async function (e
         window.location.href = '/customers/';
     } catch (error) {
         console.error('Error al registrar los datos:', error);
+        window.location.href = '/customers/delete/'+customer_id+'/';
         alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
     }
 });

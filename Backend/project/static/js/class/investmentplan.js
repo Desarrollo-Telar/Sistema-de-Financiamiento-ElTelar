@@ -55,23 +55,44 @@ export class PlanInversion {
 
     // Setters
     set type_of_product_or_service(value) {
-        this.#type_of_product_or_service = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el Tipo Producto o Servicio del cliente');
+            throw new Error('Debe ingresar el Tipo Producto o Servicio del cliente');
+        }
+
+        this.#type_of_product_or_service = value.trim();
     }
 
     set total_value_of_the_product_or_service(value) {
-        this.#total_value_of_the_product_or_service = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el Valor total del producto o servicio del cliente');
+            throw new Error('Debe ingresar el Valor total del producto o servicio del cliente');
+        }
+
+        this.#total_value_of_the_product_or_service = value.trim();
     }
 
-    set investment_plan_description(value) {
-        this.#investment_plan_description = value;
+    set investment_plan_description(value) {        
+
+        this.#investment_plan_description = value.trim();
     }
 
     set initial_amount(value) {
-        this.#initial_amount = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el Monto Inicial a manejar en el producto o servicios del cliente');
+            throw new Error('Debe ingresar el Monto Inicial a manejar en el producto o servicios del cliente');
+        }
+
+        this.#initial_amount = value.trim();
     }
 
     set monthly_amount(value) {
-        this.#monthly_amount = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el Monto Inicial a manejar en el producto o servicios del cliente');
+            throw new Error('Debe ingresar el Monto Inicial a manejar en el producto o servicios del cliente');
+        }
+
+        this.#monthly_amount = value.trim();
     }
 
     set transfers_or_transfer_of_funds(value) {

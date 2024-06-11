@@ -54,35 +54,75 @@ export class Direccion {
 
     // Setters
     set street(value) {
-        this.#street = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar la direccion del cliente');
+            throw new Error('Debe ingresar la direccion del cliente');
+        }
+
+        this.#street = value.trim();
     }
 
     set number(value) {
-        this.#number = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar la zona de la direccion del cliente');
+            throw new Error('Debe ingresar la zona de la direccion del cliente');
+        }
+
+        this.#number = value.trim();
     }
 
     set city(value) {
-        this.#city = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar la ciudad de la direccion del cliente');
+            throw new Error('Debe ingresar la ciudad de la direccion del cliente');
+        }
+
+        this.#city = value.trim();
     }
 
     set state(value) {
-        this.#state = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el municipio de la direccion del cliente');
+            throw new Error('Debe ingresar el municipio de la direccion del cliente');
+        }
+
+        this.#state = value.trim();
     }
 
     set postal_code(value) {
-        this.#postal_code = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el codigo postal de la direccion del cliente');
+            throw new Error('Debe ingresar el codigo postal de la direccion del cliente');
+        }
+
+        this.#postal_code = value.trim();
     }
 
     set country(value) {
-        this.#country = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el pais de la direccion del cliente');
+            throw new Error('Debe ingresar el pais de la direccion del cliente');
+        }
+
+        this.#country = value.trim();
     }
 
     set type_address(value) {
-        this.#type_address = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el tipo de direccion del cliente');
+            throw new Error('Debe ingresar el tipo de direccion del cliente');
+        }
+
+        this.#type_address = value.trim();
     }
 
     set customer_id(value) {
-        this.#customer_id = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el nombre del cliente o id de la direccion del cliente');
+            throw new Error('Debe ingresar el nombre del cliente o id de la direccion del cliente');
+        }
+
+        this.#type_address = value.trim();
     }
 
     // Método toString para representar el objeto como una cadena

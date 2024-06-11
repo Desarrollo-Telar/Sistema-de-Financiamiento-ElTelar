@@ -73,15 +73,34 @@ export class InformacionLaboral {
 
     // Setters
     set position(value) {
-        this.#position = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar la posicion del cliente de su informacion laboral');
+            throw new Error('Debe ingresar la posicion del cliente de su informacion laboral');
+        }
+
+        
+        this.#position = value.trim();
     }
 
     set company_name(value) {
-        this.#company_name = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el nombre de la empresa del cliente de su informacion laboral');
+            throw new Error('Debe ingresar el nombre de la empresa del cliente de su informacion laboral');
+        }
+
+        
+        this.#company_name = value.trim();
     }
 
     set start_date(value) {
-        this.#start_date = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar la fecha de inicio del cliente de su informacion laboral');
+            throw new Error('Debe ingresar la fecha de inicio del cliente de su informacion laboral');
+        }
+
+        
+        this.#start_date = value.trim();
+        
     }
 
     set description(value) {
@@ -89,14 +108,26 @@ export class InformacionLaboral {
     }
 
     set salary(value) {
-        this.#salary = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el salario del cliente de su informacion laboral');
+            throw new Error('Debe ingresar el salario del del cliente de su informacion laboral');
+        }
+        this.#salary = value.trim();
     }
 
     set working_hours(value) {
-        this.#working_hours = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar las horario de trabajo del cliente de su informacion laboral');
+            throw new Error('Debe ingresar las horario de trabajo del del cliente de su informacion laboral');
+        }
+        this.#working_hours = value.trim();
     }
 
     set phone_number(value) {
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el numero de telefono de trabajo del cliente de su informacion laboral');
+            throw new Error('Debe ingresar el numero de telefono de trabajo del cliente de su informacion laboral');
+        }
         // Expresión regular para exactamente 8 dígitos
         const regex = /^\d{8}$/;
 

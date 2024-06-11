@@ -30,14 +30,29 @@ export class OtraInformacionLaboral {
 
     // Setters
     set source_of_income(value) {
-        this.#source_of_income = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar la Fuente de Ingreso del cliente');
+            throw new Error('Debe ingresar la Fuente de Ingreso del cliente');
+        }
+
+        this.#source_of_income = value.trim();
     }
 
     set nit(value) {
-        this.#nit = value;
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el numero de NIT de la Fuente de Ingreso del cliente');
+            throw new Error('Debe ingresar el numero de NIT de la Fuente de Ingreso del cliente');
+        }
+
+        this.#nit = value.trim();
+        
     }
 
     set phone_number(value) {
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el numero de telefono de la Fuente de Ingreso del cliente');
+            throw new Error('Debe ingresar el numero de telefono de la Fuente de Ingreso del cliente');
+        }
         // Expresión regular para exactamente 8 dígitos
         const regex = /^\d{8}$/;
 
@@ -47,7 +62,7 @@ export class OtraInformacionLaboral {
             throw new Error('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
         }
         
-        this.#phone_number = value;
+        this.#phone_number = value.trim();
     }
 
     set customer_id(value){
