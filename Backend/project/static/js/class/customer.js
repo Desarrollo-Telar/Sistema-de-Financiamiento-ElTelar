@@ -1,6 +1,6 @@
 // Constructor de la clase
 
-
+import { filtro, fetchCustomerList } from '../API/customer/list_api.js'
 
 export class Cliente {
     #first_name;
@@ -24,7 +24,7 @@ export class Cliente {
 
     constructor(first_name = '', last_name = '', type_identification = '', identification_number = '',
         telephone = '', email = '', status = '', date_birth = '', number_nit = '', place_birth = '',
-        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '', immigration_status_id='', user_id='') {
+        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '', immigration_status_id = '', user_id = '') {
         this.#first_name = first_name;
         this.#last_name = last_name;
         this.#type_identification = type_identification;
@@ -105,11 +105,11 @@ export class Cliente {
         return this.#person_type;
     }
 
-    get immigration_status_id(){
+    get immigration_status_id() {
         return this.#immigration_status_id;
     }
 
-    get user_id(){
+    get user_id() {
         return this.#user_id;
     }
 
@@ -118,27 +118,55 @@ export class Cliente {
             alert('Debe ingresar el nombre del cliente');
             throw new Error('Debe ingresar el nombre del cliente');
         }
-        
+
         this.#first_name = value.trim();
     }
-        
+
     set last_name(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el apellido del cliente');
             throw new Error('Debe ingresar el apellido del cliente');
         }
-        
+
         this.#last_name = value.trim();
     }
-    
+
     set type_identification(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el tipo de identificación del cliente');
             throw new Error('Debe ingresar el tipo de identificación del cliente');
         }
-        
-        
+
+
         this.#type_identification = value.trim();
+    }
+
+    static async validateIDENTIFICATIONNUMBER(value){
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el numero del tipo de identificación del cliente');
+            throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
+        }
+        // Expresión regular para exactamente 13 dígitos
+        const regex = /^\d{13}$/;
+
+        // Validar el formato del número de identificacion
+        if (!regex.test(value)) {
+            console.error('Numero de identificacion no valido. Verificar!!!')
+            //alert('Numero de identificacion no valido. Verificar!!!');
+            throw new Error('Numero de identificacion no valido. Verificar!!!');
+
+        }
+        // Verificar si el número de identificacion ya está registrado
+        const customers = await fetchCustomerList();
+        const encontrado = customers.some(cliente => cliente['identification_number'] === value);
+        if (encontrado) {
+            throw new Error('Número de identificacion no válido. Este número de identificacion ya ha sido registrado');
+        }
+        return value.trim(); 
+    }
+
+    async setIDENTIFICATIONNUMBER(value){
+        this.#identification_number = await Cliente.validateIDENTIFICATIONNUMBER(value);
     }
 
     set identification_number(value) {
@@ -154,11 +182,12 @@ export class Cliente {
             console.error('Numero de identificacion no valido. Verificar!!!')
             //alert('Numero de identificacion no valido. Verificar!!!');
             throw new Error('Numero de identificacion no valido. Verificar!!!');
-            
+
         }
         
+
         this.#identification_number = value.trim();
-       
+
     }
 
     set telephone(value) {
@@ -166,23 +195,64 @@ export class Cliente {
             alert('Debe ingresar el numero de telefono del cliente');
             throw new Error('Debe ingresar el numero de telefono del cliente');
         }
-        
-        
+
+
         // Expresión regular para exactamente 8 dígitos
         const regex = /^\d{8}$/;
 
         // Validar el formato del número de teléfono
         if (!regex.test(value)) {
             console.error('Numero de telefono no valido, no cumple con el estandar de un numero de telefono. Verificar!!!')
-            alert('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
+            //alert('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
             throw new Error('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
-            
+
         }
         this.#telephone = value.trim();
-        
+
     }
 
-    set email(value) {
+    static async validateEMAIL(value){
+        if (!value || value.trim() === '') {
+            //alert('Debe ingresar el correo electronico del cliente');
+            throw new Error('Debe ingresar el correo electronico del cliente');
+        }
+        // Expresión regular básica para validar el formato del correo electrónico
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        // Lista de dominios conocidos
+        const dominiosConocidos = ['gmail.com', 'yahoo.com', 'outlook.com'];  // Agrega más dominios según sea necesario
+        // Validar el formato del correo electrónico
+        if (!regex.test(value)) {
+            console.error('Verifique bien si esta escribiendo el correo electronico...');
+            //alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
+            throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito.');
+
+        }
+        // Obtener el dominio del correo electrónico
+        const dominio = value.split('@')[1];
+
+        // Verificar si el dominio está en la lista de dominios conocidos
+        if (!dominiosConocidos.includes(dominio)) {
+            console.error('Verifique bien si esta escribiendo el dominio del correo electronico...');
+            //alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
+            throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
+
+        }
+        // Verificar si el número de EMAIL ya está registrado
+        const customers = await fetchCustomerList();
+        const encontrado = customers.some(cliente => cliente['email'] === value);
+        if (encontrado) {
+            throw new Error('Correo Electronico no válido. Este correo ya ha sido registrado');
+        }
+
+        return value.trim();
+
+    }
+
+    async setEMAIL(value){
+        this.#email = await Cliente.validateEMAIL(value);
+    }
+
+    set email(value){
         if (!value || value.trim() === '') {
             alert('Debe ingresar el correo electronico del cliente');
             throw new Error('Debe ingresar el correo electronico del cliente');
@@ -212,8 +282,6 @@ export class Cliente {
 
         // Falta por agregar el filtro de ver si ya existe el correo electronico registrado
         this.#email = value.trim();
-
-
     }
 
     set status(value) {
@@ -229,8 +297,34 @@ export class Cliente {
             alert('Debe ingresar la fecha de nacimiento del cliente');
             throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
         }
-        
+
         this.#date_birth = value.trim();
+    }
+
+    static async validateNIT(value) {
+        if (!value || value.trim() === '') {
+            throw new Error('Debe ingresar el número de NIT del cliente');
+        }
+
+        const regex = /^(\d{7}-[A-Z]|\d{8}|\d{7}[A-Z]|\d{7}-\d{1})$/;
+
+        // Validar el formato del número de NIT
+        if (!regex.test(value)) {
+            throw new Error('Número de NIT no válido. Verificar');
+        }
+
+        // Verificar si el número de NIT ya está registrado
+        const customers = await fetchCustomerList();
+        const encontrado = customers.some(cliente => cliente['number_nit'] === value);
+        if (encontrado) {
+            throw new Error('Número de NIT no válido. Este número de NIT ya ha sido registrado');
+        }
+
+        return value.trim();
+    }
+
+    async setNumberNIT(value) {
+        this.#number_nit = await Cliente.validateNIT(value);
     }
 
     set number_nit(value) {
@@ -250,6 +344,7 @@ export class Cliente {
         
         this.#number_nit = value.trim();
     }
+
 
     set place_birth(value) {
         if (!value || value.trim() === '') {
@@ -299,22 +394,22 @@ export class Cliente {
         this.#person_type = value.trim();
     }
 
-    set immigration_status_id(value){
+    set immigration_status_id(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar la condicion migratoria del cliente');
             throw new Error('Debe ingresar la condicion migratoria del cliente');
         }
-        
+
         this.#immigration_status_id = value.trim();
     }
 
-    set user_id(value){
+    set user_id(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el usuario que esta registrado a este cliente');
             throw new Error('Debe ingresar el usuario que esta registrado a este cliente');
         }
-        
-        
+
+
         this.#user_id = value.trim();
     }
 

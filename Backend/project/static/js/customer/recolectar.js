@@ -33,15 +33,67 @@ export function recoletarInformacionCliente() {
         'user_id',
     ];
 
+    const fields_outputs = [      
+        'output_first_name',
+        'output_last_name',
+        'output_email',
+        'output_telephone',
+        'output_type_identification',
+        'output_identification_number',
+        'output_date_birth',
+        'output_place_birth',
+        'output_nationality',
+        'output_number_nit',
+        'output_gender',
+        'output_marital_status',
+        'output_profession_trade',
+        'output_person_type',
+        'output_status',
+        'output_immigration_status_id',        
+        'user_id'
+    ]
+
     // Recorrer los campos y asignar los valores correspondientes
+    /*
+    for(let i = 0; i < fields.length; i++){
+        const elementoInput = document.getElementById(fields[i]);
+        const elementoOutput = document.getElementById(fields_outputs[i]);
+
+        if(elementoInput){
+            elementoInput.addEventListener('input', function(event){
+                try{
+                    cliente[fields[i]] = event.target.value;
+                    elementoOutput.textContent = cliente[fields[i]];
+
+                }catch(e){
+                    console.error(e);
+                }
+            });
+
+        }else {
+            console.warn(`Elemento con id '${fields[i]}' no encontrado.`);
+        }
+
+    }
+        */
+
+    
     fields.forEach(field => {
         let element = document.getElementById(field);
         if (element) {
             cliente[field] = element.value;
+            
+            element.addEventListener('input', function(event){
+                cliente[field] = element.target.value;
+
+            });
+            
+            
         } else {
             console.warn(`Elemento con id '${field}' no encontrado.`);
         }
     });
+    
 
     // Devuelve el objeto cliente en formato JSON
     return cliente;

@@ -6,3 +6,5 @@
             </select>
         </div>
     </div>
+
+<script type="module" src="{% static 'js/customer/validacion_formulario.js' %}"></script>

@@ -18,20 +18,36 @@ export function fetchCustomerList() {
         });
 }
 
-fetchCustomerList()
-    .then(customers => {
-        // Hacer algo con la lista de clientes, como mostrarla en la interfaz de usuario
-        console.log(customers)
-    })
-    .catch(error => {
-        // Manejar el error, por ejemplo, mostrando un mensaje de error al usuario
-    });
 
-const inputField = document.getElementById('myInput');
-const outputDiv = document.getElementById('output');
-// Agregar un event listener para el evento input
-inputField.addEventListener('input', function(event) {
-    const inputValue = event.target.value;
+
+export function filtros(atributo, valor) {
+    list = [];
+    fetchCustomerList()
+        .then(customers => {
+            // Hacer algo con la lista de clientes, como mostrarla en la interfaz de usuario
+            console.log(customers)
+            if (customers[`${atributo}`] === valor){
+                list = customers;
+            }
+        })
+        .catch(error => {
+            // Manejar el error, por ejemplo, mostrando un mensaje de error al usuario
+            console.error(error);
+        });
     
-    outputDiv.textContent = `Texto ingresado: ${inputValue}`;
-});
+    
+
+    
+}
+
+export async function filtro(atributo, valor) {
+    try {
+        const customers = await fetchCustomerList();
+        const filteredList = customers.filter(customer => customer[atributo] === valor);
+        console.log(filteredList);
+        return filteredList;
+    } catch (error) {
+        console.error('Error en el filtro:', error);
+        throw error;
+    }
+}
