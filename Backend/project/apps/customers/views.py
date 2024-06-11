@@ -30,16 +30,17 @@ from apps.InvestmentPlan.forms import InvestmentPlanForms
 
 from django.apps import apps
 
-# Create your views here.
+
+# ----- ELIMINACION DE CLIENTES ----- #
 @login_required
 @usuario_activo
 def delete_customer(request,id):
     customer = get_object_or_404(Customer, id=id)
-    if customer:
+    try:
         customer.delete()
-        return redirect('customers:create')
-    else:
-        return redirect('customers:create')
+    except Exception as e:
+        print(e)
+    return redirect('customers:create')
 
 # ----- LISTADO DE CLIENTES ----- #
 @login_required
