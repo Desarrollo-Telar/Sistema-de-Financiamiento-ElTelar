@@ -59,16 +59,11 @@ def list_customer(request):
 # ----- CREANDO USUARIOS NUEVOS ----- #
 @login_required
 @usuario_activo
-def add_customer(request):
-    # Listado de formularios
-    
-    ime = ImmigrationStatus.objects.all()
-    
-    template_name = 'customer/add.html'
-    print(request.user.id)
+def add_customer(request):     
+    ime = ImmigrationStatus.objects.all()    
+    template_name = 'customer/add.html'    
     context = {
-        'title': 'EL TELAR - CLIENTES',
-        
+        'title': 'EL TELAR - CLIENTES',        
         'immigration_status':ime,
         'user_id':request.user.id,
         'accion':'Agregar',
