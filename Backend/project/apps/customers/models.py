@@ -90,8 +90,8 @@ class Customer(models.Model):
         return '{} {} / {}'.format(self.first_name, self.last_name,self.customer_code)
     
 
+# Función para generar el código de cliente basado en el estado y año actual
 def generate_customer_code(status, current_year, counter):
-    # Mapeo de estados a sufijos de códigos
     status_suffix = {
         'Posible Cliente': 'S',
         'No Aprobado': 'N',
@@ -99,24 +99,17 @@ def generate_customer_code(status, current_year, counter):
         'Revisión de documentos': 'D'
     }
     suffix = status_suffix.get(status, '')
-    # Genera el código base
     return f'{current_year}-{suffix}{counter}'
 
 @receiver(pre_save, sender=Customer)
 def set_customer_code_and_update_status(sender, instance, **kwargs):
-    if not instance.customer_code or instance.customer_code=='':
-        # Obtiene la fecha y hora actual
+    # Si el código del cliente está vacío o es una cadena vacía, genera uno nuevo
+    if not instance.customer_code or instance.customer_code == '':
         current_date = datetime.now()
-        # Extrae el año de la fecha actual
         current_year = current_date.year
-        # Formato base del código de usuario
-        customer_code_base = f'{current_year}-'
-        
-        # Inicializa el contador
         counter = 1
-        suffix = status_suffix.get(instance.status, '')
         
-        # Genera el código base
+        # Generar el código base
         customer_code = generate_customer_code(instance.status, current_year, counter)
 
         # Verificar si no existe un código igual, si no, generar uno nuevo
@@ -124,26 +117,22 @@ def set_customer_code_and_update_status(sender, instance, **kwargs):
             counter += 1
             customer_code = generate_customer_code(instance.status, current_year, counter)
 
-        # Asigna el código único al cliente
         instance.customer_code = customer_code
 
-    else:
-        # Si el código ya existe, verifica si el estado ha cambiado
-        if instance.pk and Customer.objects.filter(pk=instance.pk).exists():
-            current_customer = Customer.objects.get(pk=instance.pk)
-            if current_customer.status != instance.status:
-                # El estado ha cambiado, actualiza el código del cliente
-                current_date = datetime.now()
-                current_year = current_date.year
-                counter = 1
-                
-                # Generar el código base
+    # Si el cliente ya existe, verificar si el estado ha cambiado
+    elif instance.pk and Customer.objects.filter(pk=instance.pk).exists():
+        current_customer = Customer.objects.get(pk=instance.pk)
+        if current_customer.status != instance.status:
+            current_date = datetime.now()
+            current_year = current_date.year
+            counter = 1
+            
+            # Generar el código base
+            customer_code = generate_customer_code(instance.status, current_year, counter)
+
+            # Verificar si no existe un código igual, si no, generar uno nuevo
+            while Customer.objects.filter(customer_code=customer_code).exists():
+                counter += 1
                 customer_code = generate_customer_code(instance.status, current_year, counter)
 
-                # Verificar si no existe un código igual, si no, generar uno nuevo
-                while Customer.objects.filter(customer_code=customer_code).exists():
-                    counter += 1
-                    customer_code = generate_customer_code(instance.status, current_year, counter)
-
-                # Asigna el código único al cliente
-                instance.customer_code = customer_code
+            instance.customer_code = customer_code

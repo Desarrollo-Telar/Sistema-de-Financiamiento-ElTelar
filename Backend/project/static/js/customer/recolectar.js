@@ -47,7 +47,7 @@ export function recoletarInformacionCliente() {
     
 
     // Devuelve el objeto cliente en formato JSON
-    alert('INFORMACION DEL CLIENTE COMPLETA');
+   
     return cliente;
 }
 

@@ -35,12 +35,13 @@ from django.apps import apps
 @login_required
 @usuario_activo
 def delete_customer(request,id):
-    customer = get_object_or_404(Customer, id=id)
-    try:
+    customer = Customer.objects.filter(Q(id=id))
+    if(customer):
         customer.delete()
-    except Exception as e:
+        return redirect('customers:create')
+    else:
         print(e)
-    return redirect('customers:create')
+        return redirect('customers:create')
 
 # ----- LISTADO DE CLIENTES ----- #
 @login_required
