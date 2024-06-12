@@ -40,7 +40,7 @@ export class Coordenada{
     }
 
     set address_id(value){        
-        this.#address_id = value.trim();
+        this.#address_id = value;
     }
 
     // ToJson

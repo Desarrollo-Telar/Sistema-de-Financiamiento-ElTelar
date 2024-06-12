@@ -117,12 +117,9 @@ export class Direccion {
     }
 
     set customer_id(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar el nombre del cliente o id de la direccion del cliente');
-            throw new Error('Debe ingresar el nombre del cliente o id de la direccion del cliente');
-        }
+       
 
-        this.#type_address = value.trim();
+        this.#customer_id = value;
     }
 
     // Método toString para representar el objeto como una cadena
