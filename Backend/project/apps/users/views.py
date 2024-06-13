@@ -38,6 +38,15 @@ from django.contrib.auth import authenticate
 
 from django.apps import apps
 
+# ----- DESACTIVAR A UN USUARIO ---- #
+@login_required
+@usuario_activo
+def deactivate(request, id):
+    user = get_object_or_404(User, id=id)
+    user.status = False
+    user.save()
+    return redirect('users:users')
+
 # ----- LISTADO DE USUARIOS ----- #
 @login_required
 @usuario_activo
