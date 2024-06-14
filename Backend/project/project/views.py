@@ -85,7 +85,7 @@ def generate_qr(request, data):
     # Guarda la imagen QR en un buffer
     response = HttpResponse(content_type="image/png")
     img.save(response, "PNG")
-    return redirect('index')
+    return redirect('customers:customers')
 
 ### -- APARTADO DE SALIR --##
 def logout_view(request):

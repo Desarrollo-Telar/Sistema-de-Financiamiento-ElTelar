@@ -129,3 +129,4 @@ pdf_mostrar.addEventListener('input',function (event){
     }
 
 });
+

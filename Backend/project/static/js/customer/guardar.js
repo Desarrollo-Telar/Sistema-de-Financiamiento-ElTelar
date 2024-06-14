@@ -42,7 +42,17 @@ document.getElementById('customer').addEventListener('submit', async function (e
 
         alert('¡Formulario enviado con éxito!');
         // Redirigir a la página de éxito después de enviar todas las referencias
-        window.location.href = '/customers/';
+        let hostname = window.location.hostname;
+        let protocol = window.location.protocol;
+        let port = window.location.port;
+        let fullUrl = window.location.href;
+        //http://127.0.0.1:8000/qr/http://127.0.0.1:8000/formulario_ive/<int:id>//
+        //formulario_ive/<int:id>/
+        let generar = `${protocol}//${hostname}:${port}/qr/${protocol}//${hostname}:${port}/formulario_ive/${customer_id}//`;
+
+        console.log(generar);
+        window.location.href = generar;
+        //window.location.href = '/customers/';
     } catch (error) {
         console.error('Error al registrar los datos:', error);
         //window.location.href = '/customers/delete/'+customer_id+'/';
