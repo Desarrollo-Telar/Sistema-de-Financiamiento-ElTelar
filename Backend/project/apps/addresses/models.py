@@ -4,29 +4,38 @@ from django.db import models
 # Relaciones
 from apps.customers.models import Customer
 
+
+ADDRESS_TYPE_CHOICES = [
+    ('Dirección de Casa', 'Dirección de Casa'),
+    ('Dirección de Trabajo', 'Dirección de Trabajo'),
+    ('Dirección Personal', 'Dirección Personal'),
+]
+
 class Address(models.Model):
-    type_address = [
-        ('Dirección de Casa', 'Dirección de Casa'),
-        ('Dirección de Trabajo', 'Dirección de Trabajo'),
-        ('Dirección Personal', 'Dirección Personal'),
-        ]
-    street = models.CharField(max_length=90, blank=False, null=False) # Calle
-    number= models.CharField(max_length=90, blank=False, null=False) # Numero
-    city = models.CharField(max_length=90, blank=False, null=False)# Ciudad
-    state = models.CharField(max_length=90, blank=False, null=False)# Estado
-    postal_code = models.CharField(max_length=90, blank=False, null=False)# Codigo Postal
-    country = models.CharField(max_length=90, blank=False, null=False) # Pais
-    type_address = models.CharField(choices=type_address,max_length=90, blank=False, null=False)
-    customer_id = models.ForeignKey(Customer, blank=False, null=False, on_delete=models.CASCADE)
-
+    street = models.CharField("Dirección particular o sede social completa", max_length=90, blank=False, null=False)
+    number = models.CharField("Zona", max_length=90, blank=False, null=False)
+    city = models.CharField("Departamento", max_length=90, blank=False, null=False)
+    state = models.CharField("Municipio", max_length=90, blank=False, null=False)
+    postal_code = models.CharField("Código Postal", max_length=90, blank=False, null=False)
+    country = models.CharField("País", max_length=90, blank=False, null=False)
+    type_address = models.CharField("Tipo de Dirección", choices=ADDRESS_TYPE_CHOICES, max_length=90, blank=False, null=False)
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} {} / {}'.format(self.street, self.city,self.customer_id)
-    
+        return f'{self.street}, {self.city} / {self.customer_id}'
+
+    class Meta:
+        verbose_name = "Dirección"
+        verbose_name_plural = "Direcciones"
+
 class Coordinate(models.Model):
-    latitud = models.CharField(max_length=90,blank=False, null=False)
-    longitud = models.CharField(max_length=90,blank=False, null=False)
-    address_id = models.ForeignKey(Address, on_delete=models.CASCADE, blank=False, null=False)
+    latitud = models.DecimalField("Latitud", max_digits=10, decimal_places=6, blank=False, null=False)
+    longitud = models.DecimalField("Longitud", max_digits=10, decimal_places=6, blank=False, null=False)
+    address_id = models.ForeignKey(Address, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} - {},{}'.format(self.address_id, self.latitud,self.longitud)
+        return f'{self.address_id} - {self.latitud}, {self.longitud}'
+
+    class Meta:
+        verbose_name = "Coordenada"
+        verbose_name_plural = "Coordenadas"

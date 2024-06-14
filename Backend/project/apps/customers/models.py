@@ -33,61 +33,62 @@ class ImmigrationStatus(models.Model):
     def __str__(self):
         return self.condition_name
     
+IDENTIFICATION_CHOICES = [
+    ('DPI', 'DPI'),
+    ('PASAPORTE', 'PASAPORTE'),
+    ('OTRO', 'OTRO')
+]
 
+GENDER_CHOICES = [
+    ('MASCULINO', 'MASCULINO'),
+    ('FEMENINO', 'FEMENINO')
+]
+
+PERSON_TYPE_CHOICES = [
+    ('Individual (PI)', 'Individual (PI)'),
+    ('Jurídica (PJ)', 'Jurídica (PJ)')
+]
+
+STATUS_CHOICES = [
+    ('Revisión de documentos', 'Revisión de documentos'),
+    ('Aprobado', 'Aprobado'),
+    ('No Aprobado', 'No Aprobado'),
+    ('Posible Cliente', 'Posible Cliente'),
+]
 
 class Customer(models.Model):
-    identification = [
-        ('DPI', 'DPI'),
-        ('PASAPORTE', 'PASAPORTE'),
-        ('OTRO', 'OTRO')
-    ]
-    genders = [
-        ('MASCULINO', 'MASCULINO'),
-        ('FEMENINO', 'FEMENINO')
-    ]
-    type_person = [
-        ('Indivicual (PI)', 'Indivicual (PI)'),
-        ('Juridica (PJ)', 'Juridica (PJ)')
-    ]
-    status = [
-        ('Revisión de documentos', 'Revisión de documentos'),
-        ('Aprobado', 'Aprobado'),
-        ('No Aprobado', 'No Aprobado'),
-        ('Posible Cliente', 'Posible Cliente'),
-    ]
-
-    user_id = models.ForeignKey(User, blank=False, null=False, on_delete=models.CASCADE)
-    immigration_status_id = models.ForeignKey(ImmigrationStatus, blank=False, null=False, on_delete=models.CASCADE)
-    customer_code = models.CharField(max_length=25, blank=False, null=False, unique=True)
-    first_name = models.TextField(max_length=100, blank=False, null=False) #
-    last_name = models.TextField(max_length=100, blank=False, null=False) #
-    type_identification = models.CharField(choices=identification, default='DPI', max_length=50 ) #
-    identification_number = models.CharField(max_length=15, blank=False, null=False, unique=True) #
-    telephone = models.CharField(max_length=20, blank=True, null=True) #
-    email = models.EmailField(unique=True) #
-    status = models.CharField(choices=status, default='Posible Cliente', max_length=75)
-    date_birth = models.DateField() #
-    number_nit = models.CharField(max_length=20, blank=False, null=False, unique=True) # NIT
-    place_birth = models.CharField(max_length=75, blank=False, null=False) # Lugar de nacimiento #
-    marital_status =  models.CharField(max_length=50, blank=False, null=False)   # Estado civil #
-    profession_trade = models.CharField(max_length=75, blank=False, null=False) # Profesion u oficio #
-    gender = models.CharField(choices=genders, default='MASCULINO', max_length=50) #
-    nationality = models.CharField(max_length=75, blank=False, null=False, default='Guatemala') #
-    person_type = models.CharField(choices=type_person, max_length=50) #
-    creation_date = models.DateTimeField(auto_now_add=True)
+    user_id = models.ForeignKey(User, blank=False, null=False, on_delete=models.CASCADE, verbose_name="Usuario")
+    immigration_status_id = models.ForeignKey(ImmigrationStatus, blank=False, null=False, on_delete=models.CASCADE, verbose_name="Estatus Migratorio")
+    customer_code = models.CharField("Código de Cliente", max_length=25, blank=False, null=False, unique=True)
+    first_name = models.CharField("Nombre", max_length=100, blank=False, null=False)
+    last_name = models.CharField("Apellido", max_length=100, blank=False, null=False)
+    type_identification = models.CharField("Tipo de Identificación", choices=IDENTIFICATION_CHOICES, default='DPI', max_length=50)
+    identification_number = models.CharField("Número de Identificación", max_length=15, blank=False, null=False, unique=True)
+    telephone = models.CharField("Teléfono", max_length=20, blank=True, null=True)
+    email = models.EmailField("Correo Electrónico", unique=True)
+    status = models.CharField("Estado", choices=STATUS_CHOICES, default='Posible Cliente', max_length=75)
+    date_birth = models.DateField("Fecha de Nacimiento", blank=False, null=False)
+    number_nit = models.CharField("NIT", max_length=20, blank=False, null=False, unique=True)
+    place_birth = models.CharField("Lugar de Nacimiento", max_length=75, blank=False, null=False)
+    marital_status = models.CharField("Estado Civil", max_length=50, blank=False, null=False)
+    profession_trade = models.CharField("Profesión u Oficio", max_length=75, blank=False, null=False)
+    gender = models.CharField("Género", choices=GENDER_CHOICES, default='MASCULINO', max_length=50)
+    nationality = models.CharField("Nacionalidad", max_length=75, blank=False, null=False, default='Guatemala')
+    person_type = models.CharField("Tipo de Persona", choices=PERSON_TYPE_CHOICES, max_length=50, blank=False, null=False)
+    description = models.TextField("Observaciones",blank=True, null=True )
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
     def get_qr(self):
-        codigo = '/media/qr/codigoQr_{}.png'.format(self.customer_code)
-        if not codigo:
-            return 'No hay info'
-        
-        
-
-        return codigo
-
+        codigo = f'/media/qr/codigoQr_{self.customer_code}.png'
+        return codigo if codigo else 'No hay info'
 
     def __str__(self):
-        return '{} {} / {}'.format(self.first_name, self.last_name,self.customer_code)
+        return f'{self.first_name} {self.last_name} / {self.customer_code}'
+
+    class Meta:
+        verbose_name = "Cliente"
+        verbose_name_plural = "Clientes"
+
     
 
 # Función para generar el código de cliente basado en el estado y año actual

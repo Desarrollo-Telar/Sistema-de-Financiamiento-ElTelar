@@ -4,21 +4,30 @@ from django.db import models
 from apps.customers.models import Customer
 
 # Create your models here.
+
+TRANSFER_CHOICES = [
+    ('Local', 'Local'),
+    ('Internacional', 'Internacional')
+]
+
 class InvestmentPlan(models.Model):
-    type_of_transfers_or_transfer_of_funds = [
-        ('Local', 'Local'),
-        ('Internacional', 'Internacional')
-    ]
-    type_of_product_or_service = models.CharField(max_length=75, blank=False, null=False) # Tipo de producto o servicio
-    total_value_of_the_product_or_service = models.CharField(max_length=75, blank=False, null=False) # Valor total del producto o servicio
-    investment_plan_description = models.TextField(blank=True, null=True) # Descripción del plan de inversión
-    initial_amount  = models.CharField(max_length=75, blank=False, null=False) # Monto Inicial a manejar en el producto o servicios
-    monthly_amount = models.CharField(max_length=75, blank=False, null=False) # Monto Mensual a manejar en el producto o servicios
-    transfers_or_transfer_of_funds = models.BooleanField(blank=False, null=False) # transferencias o traslado de fondos Si o No
-    type_of_transfers_or_transfer_of_funds  = models.CharField(max_length=75, choices=type_of_transfers_or_transfer_of_funds)# tipo de transferencias o traslado de fondos Local o Internacional
-    customer_id = models.ForeignKey(Customer, blank=False, null=False, on_delete=models.CASCADE)
+    type_of_product_or_service = models.CharField("Tipo de Producto o Servicio", max_length=75, blank=False, null=False)
+    total_value_of_the_product_or_service = models.DecimalField("Valor Total del Producto o Servicio", max_digits=15, decimal_places=2, blank=False, null=False)
+    investment_plan_description = models.TextField("Descripción del Plan de Inversión", blank=True, null=True)
+    initial_amount = models.DecimalField("Monto Inicial", max_digits=15, decimal_places=2, blank=False, null=False)
+    monthly_amount = models.DecimalField("Monto Mensual", max_digits=15, decimal_places=2, blank=False, null=False)
+    transfers_or_transfer_of_funds = models.BooleanField("Transferencias o Traslado de Fondos", blank=False, null=False)
+    type_of_transfers_or_transfer_of_funds = models.CharField("Tipo de Transferencia", max_length=75, choices=TRANSFER_CHOICES)
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.type_of_product_or_service} - {self.customer_id}"
 
     def description(self):
-        description = self.investment_plan_description
-        return '----' if not description else description
+        return self.investment_plan_description or '----'
+
+    class Meta:
+        verbose_name = "Plan de Inversión"
+        verbose_name_plural = "Planes de Inversión"
+
  

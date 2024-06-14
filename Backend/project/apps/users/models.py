@@ -16,48 +16,45 @@ import random
 # Creacion de todas las tablas para este modulo
 
 # Creacion de tabla de usuario
+IDENTIFICATION_CHOICES = [
+    ('DPI', 'DPI'),
+    ('PASAPORTE', 'PASAPORTE'),
+    ('OTRO', 'OTRO')
+]
+
+GENDER_CHOICES = [
+    ('MASCULINO', 'MASCULINO'),
+    ('FEMENINO', 'FEMENINO')
+]
+
 class User(AbstractUser):
-    identification = [
-        ('DPI', 'DPI'),
-        ('PASAPORTE', 'PASAPORTE'),
-        ('OTRO', 'OTRO')
-    ]
-    genders = [
-        ('MASCULINO', 'MASCULINO'),
-        ('FEMENINO', 'FEMENINO')
-    ]
-    type_identification = models.CharField(choices=identification, default='DPI', max_length=50 )
-    identification_number = models.CharField(max_length=15, blank=False, null=False, unique=True)
-    telephone = models.CharField(max_length=20, blank=True, null=True)
-    email = models.EmailField(unique=True)
-    status = models.BooleanField(default=True)
-    gender = models.CharField(choices=genders, default='MASCULINO', max_length=50)
-    user_code = models.CharField(max_length=25, blank=False, null=False, unique=True)
-    nationality = models.CharField(max_length=75, blank=False, null=False, default='Guatemala')
-    profile_pic = models.ImageField(blank=True, null=True,upload_to='users/profile_pics/')
-    creation_date = models.DateTimeField(auto_now_add=True)
-    
-    
+    type_identification = models.CharField("Tipo de Identificación", choices=IDENTIFICATION_CHOICES, default='DPI', max_length=50)
+    identification_number = models.CharField("Número de Identificación", max_length=15, blank=False, null=False, unique=True)
+    telephone = models.CharField("Teléfono", max_length=20, blank=True, null=True)
+    email = models.EmailField("Correo Electrónico", unique=True)
+    status = models.BooleanField("Estado", default=True)
+    gender = models.CharField("Género", choices=GENDER_CHOICES, default='MASCULINO', max_length=50)
+    user_code = models.CharField("Código de Usuario", max_length=25, blank=False, null=False, unique=True)
+    nationality = models.CharField("Nacionalidad", max_length=75, blank=False, null=False, default='Guatemala')
+    profile_pic = models.ImageField("Foto de Perfil", blank=True, null=True, upload_to='users/profile_pics/')
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
     def __str__(self):
-        if(self.first_name==''):
-            return '{}'.format(self.username)
-        return '{} {}'.format(self.first_name, self.last_name)
-    
+        return f'{self.first_name} {self.last_name}' if self.first_name else self.username
+
     def get_full_name(self):
-        if(self.first_name==''):
-            return '{}'.format(self.username)
-        return '{} {}'.format(self.first_name, self.last_name)
-    
+        return f'{self.first_name} {self.last_name}' if self.first_name else self.username
+
     def get_status(self):
-        if(self.status):
-            return 'Activo'
-        return 'Inactivo'
-    
+        return 'Activo' if self.status else 'Inactivo'
+
     def get_telephone(self):
-        if not(self.telephone):
-            return 'Numero de telefono no registrado'
-        return self.telephone
+        return self.telephone if self.telephone else 'Número de teléfono no registrado'
+
+    class Meta:
+        verbose_name = "Usuario"
+        verbose_name_plural = "Usuarios"
+
 
 # Creacion de la tabla Usuario Rol
 class UserRole(models.Model):

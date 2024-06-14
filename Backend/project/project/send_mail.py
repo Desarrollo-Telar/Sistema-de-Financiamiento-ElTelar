@@ -1,5 +1,5 @@
 from django.core.mail import send_mail
-from django.template.loader import render_to_string
+
 from django.core.mail import EmailMultiAlternatives
 
 from django.template.loader import get_template
