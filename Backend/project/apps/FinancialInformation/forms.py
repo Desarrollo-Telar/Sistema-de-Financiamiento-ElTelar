@@ -42,7 +42,7 @@ class WorkingInformationForms(forms.ModelForm):
 
             'description':forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
             'income_detail':forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
-            'salary': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
+            'salary': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0', 'step':'any'}),
             'working_hours': forms.TextInput(attrs={'class':'form-control'}),
             'phone_number': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
         }
@@ -55,12 +55,14 @@ class OtherSourcesOfIncomeForms(forms.ModelForm):
             'source_of_income',
             'nit',
             'phone_number',
+            'salary'
         ]
 
         labels = {
             'source_of_income': 'Fuente de ingreso',
             'nit': 'NIT',
             'phone_number': 'Numero de telefono',
+            'salary':'Salario',
 
         }
 
@@ -69,10 +71,26 @@ class OtherSourcesOfIncomeForms(forms.ModelForm):
             'source_of_income':forms.TextInput(attrs={'class':'form-control'}),
             'nit': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
             'phone_number': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
+            'salary': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0', 'step':'any'}),
         }
 
 class ReferenceForms(forms.ModelForm):
     class Meta:
         model = Reference
 
-        fields = '__all__'
+        fields = [
+            'full_name',
+            'phone_number',
+            'reference_type'
+        ]
+        labels = {
+            'full_name':'Nombre Completo',
+            'phone_number':'Número de Teléfono',
+            'reference_type':'Tipo de Referencia'
+
+        }
+        widgets = {
+            'full_name':forms.TextInput(attrs={'class':'form-control'}),
+            'phone_number':forms.TextInput(attrs={'class':'form-control'}),
+            'reference_type':forms.TextInput(attrs={'class':'form-control'}),
+        }

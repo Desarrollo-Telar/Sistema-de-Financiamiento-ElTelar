@@ -57,6 +57,7 @@ class CustomerForm(forms.ModelForm):
             'telephone',
             'email',
             'status',  
+            'description'
         ]
 
         labels = {
@@ -73,6 +74,7 @@ class CustomerForm(forms.ModelForm):
             'profession_trade': 'Profesión u Oficio',
             'gender': 'Genero',
             'nationality': 'Nacionalidad',
+            'description':'Observaciones'
             
         }
 
@@ -90,5 +92,6 @@ class CustomerForm(forms.ModelForm):
             'profession_trade': forms.TextInput(attrs={'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
+            'description':forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
 
         }
