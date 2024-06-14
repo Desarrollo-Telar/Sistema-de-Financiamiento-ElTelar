@@ -8,7 +8,7 @@
 <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
 
 
-    <form method="POST" enctype="multipart/form-data" id="customer">
+    <form method="POST" enctype="multipart/form-data" autocomplete="off" id="customer">
         {% csrf_token %}
         <meta name="csrf-token" content="{{ csrf_token }}">
 

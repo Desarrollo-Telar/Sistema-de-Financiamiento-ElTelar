@@ -146,7 +146,19 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
 
+from minio_storage.storage import MinioMediaStorage, MinioStaticStorage
+# Configuración de MinIO como almacenamiento de objetos
+#MINIO_STORAGE_ENDPOINT = os.environ.get('MINIO_STORAGE_ENDPOINT')
+#MINIO_ACCESS_KEY = os.environ.get('MINIO_ACCESS_KEY')
+#MINIO_SECRET_KEY = os.environ.get('MINIO_SECRET_KEY')
+#MINIO_STORAGE_BUCKET_NAME = 'prueba'
 
+#DEFAULT_FILE_STORAGE = 'minio_storage.storage.MinioMediaStorage'
+#STATICFILES_STORAGE = 'minio_storage.storage.MinioStaticStorage'
+
+# URLs base para los archivos estáticos y multimedia
+#MEDIA_URL = f'{MINIO_STORAGE_ENDPOINT}/{MINIO_STORAGE_BUCKET_NAME}/media/'
+#STATIC_URL = f'{MINIO_STORAGE_ENDPOINT}/{MINIO_STORAGE_BUCKET_NAME}/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
