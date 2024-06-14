@@ -31,6 +31,7 @@ export function recoletarInformacionCliente() {
         'status',
         'immigration_status_id',
         'user_id',
+        'description_customer'
     ];
 
     fields.forEach(field => {

@@ -20,11 +20,12 @@ export class Cliente {
     #person_type;
     #immigration_status_id;
     #user_id;
+    #description;
 
 
     constructor(first_name = '', last_name = '', type_identification = '', identification_number = '',
         telephone = '', email = '', status = '', date_birth = '', number_nit = '', place_birth = '',
-        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '', immigration_status_id = '', user_id = '') {
+        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '', immigration_status_id = '', user_id = '', description = '') {
         this.#first_name = first_name;
         this.#last_name = last_name;
         this.#type_identification = type_identification;
@@ -42,6 +43,7 @@ export class Cliente {
         this.#person_type = person_type;
         this.#immigration_status_id = immigration_status_id;
         this.#user_id = user_id;
+        this.#description = description;
     }
 
     // Getters and Setters for each property
@@ -111,6 +113,10 @@ export class Cliente {
 
     get user_id() {
         return this.#user_id;
+    }
+
+    get description(){
+        return this.#description;
     }
 
     set first_name(value) {
@@ -404,13 +410,11 @@ export class Cliente {
     }
 
     set user_id(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar el usuario que esta registrado a este cliente');
-            throw new Error('Debe ingresar el usuario que esta registrado a este cliente');
-        }
+        this.#user_id = value;
+    }
 
-
-        this.#user_id = value.trim();
+    set description(value){
+        this.#description = value;
     }
 
     // Método toJSON para convertir el objeto en una representación JSON
@@ -433,6 +437,7 @@ export class Cliente {
             person_type: this.#person_type,
             immigration_status_id: this.#immigration_status_id,
             user_id: this.#user_id,
+            description:this.#description,
         };
     }
     // Método toString para representar el objeto como una cadena
@@ -454,7 +459,8 @@ export class Cliente {
             Nacionalidad: ${this.#nationality},
             Tipo de Persona: ${this.#person_type},
             'Condicion Migratoria': ${this.#immigration_status_id},
-            'Usuario': ${this.#user_id}
+            'Usuario': ${this.#user_id},
+            'Descripcion': ${this.#description}
         }`;
     }
 }
