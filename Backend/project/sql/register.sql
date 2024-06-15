@@ -45,6 +45,25 @@ VALUES
 (39.7817, -89.6501, 1),
 (39.7817, -89.6502, 2);
 
+INSERT INTO InvestmentPlan_investmentplan(
+    type_of_product_or_service,
+    total_value_of_the_product_or_service,
+    investment_plan_description,
+    initial_amount,
+    monthly_amount,
+    transfers_or_transfer_of_funds,
+    type_of_transfers_or_transfer_of_funds,
+    customer_id_id
+) VALUES (
+    'Mutual Fund', 
+    100000, 
+    'Long-term investment in a diversified mutual fund.', 
+    5000, 
+    500, 
+    1, 
+    'Local', 
+    1
+);
 
 -- MOSTRAR LA INFORMACION DE LOS CLIENTES
 SELECT * FROM customers_customer\G;

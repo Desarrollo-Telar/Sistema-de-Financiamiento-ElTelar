@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from .models import Customer
-from apps.addresses.models import Address
+from apps.addresses.models import Address, Coordinate
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
 from apps.InvestmentPlan.models import InvestmentPlan
 
@@ -124,6 +124,8 @@ def detail_customer(request,customer_code):
     direccion = Address.objects.filter(Q(customer_id=customer_list))
     plan_inversion = InvestmentPlan.objects.filter(Q(customer_id=customer_list))
     reference = Reference.objects.filter(Q(customer_id=customer_list))
+    coordenada = Coordinate.objects.all()
+  
 
     
     
@@ -136,6 +138,7 @@ def detail_customer(request,customer_code):
         'otra_informacion_laboral' :otra_informacion_laboral,
         'reference':reference,
         'plan_inversion':plan_inversion,
+        'coordenada':coordenada,
     }
     return render(request, template_name, context)
 

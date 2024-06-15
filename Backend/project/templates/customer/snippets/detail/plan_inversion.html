@@ -1,3 +1,41 @@
 {% load static %}
 <div class="row" style="margin: 1rem 0;">
+    {% for plan in plan_inversion%}
+    <p>Tipo de Producto o Servicio</p>
+    <p>
+        {{plan.type_of_product_or_service}}
+    </p>
+    <hr>
+    <p>Valor Total del Producto o Servicio</p>
+    <p>
+        Q{{plan.total_value_of_the_product_or_service}}
+    </p>
+    <hr>
+    <p>Monto Inicial</p>
+    <p>
+        Q{{plan.initial_amount}}
+    </p>
+    <hr>
+    <p>Monto Mensual</p>
+    <p>
+        Q{{plan.monthly_amount}}
+    </p>
+    <hr>
+    <p>Transferencias o Traslado de Fondos</p>
+    <p>
+        {{plan.transfers_or_transfer_of_funds}}
+    </p>
+    <hr>
+    <p>Tipo de Transferencia</p>
+    <p>
+        {{plan.type_of_transfers_or_transfer_of_funds}}
+    </p>
+    
+    </p>
+    <hr>
+    <p>Descripción del Plan de Inversión</p>
+    <p>
+        {{plan.investment_plan_description}}
+    </p>
+    {% endfor %}
 </div>
