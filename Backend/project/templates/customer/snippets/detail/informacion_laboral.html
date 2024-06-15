@@ -1,11 +1,23 @@
 {% load static %}
 <div class="row" style="margin: 1rem 0;">
-    {% if working_information %}
-    {% for working in working_information%}
+    {% if informacion_laboral%}
+    {% for laborl in informacion_laboral %}
     {% endfor %}
     {% endif %}
-    {% if other_information %}
-    {% for other in other_information%}
+
+    {% if otra_informacion_laboral%}
+    {% for other in otra_informacion_laboral%}
+    <p>Fuentes de ingreso</p>
+    <p>{{other.source_of_income}}</p>
+    <hr>
+    <p>NIT</p>
+    <p>{{other.nit}}</p>
+    <hr>
+    <p>Numero de telefono</p>
+    <p>{{other.phone_number}}</p>
+    <hr>
+    <p>Salario</p>
+    <p>Q{{other.salary}}</p>
     {% endfor %}
     {% endif %}
 

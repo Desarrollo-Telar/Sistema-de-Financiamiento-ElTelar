@@ -1,3 +1,27 @@
 {% load static %}
 <div class="row" style="margin: 1rem 0;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre Completo</th>
+                <th scope="col">Numero de telefono</th>
+                <th scope="col">Tipo de referencia</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for referencia in reference %}
+            <tr>
+                <th>{{referencia.full_name}}</th>
+                <td>{{referencia.phone_number}}</td>
+                <td>{{referencia.reference_type}}</td>
+
+            </tr>
+
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+
 </div>
