@@ -105,4 +105,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+// ------------------- MANEJO PARA SUBIR IMAGEN ------------------------
+const imagen_mostrar = document.getElementById('imagen_mostrar');
+const pdf_mostrar = document.getElementById('pdf_mostrar');
+// AQUI ESTAN LOS INPUTS PARA SUBIR LOS DOCUMENTOS
+const pdf_dpi = document.getElementById('pdf_dpi');
+const imagenes_dpi = document.getElementById('imagenes_dpi');
+
+imagen_mostrar.addEventListener('input',function (event){
+    let on = event.target.value;
+    if(on){
+        mostrar(imagenes_dpi);
+        ocultar(pdf_dpi);
+    }
+
+});
+
+pdf_mostrar.addEventListener('input',function (event){
+    let on = event.target.value;
+    if(on){
+        ocultar(imagenes_dpi);
+        mostrar(pdf_dpi);
+    }
+
+});
 

@@ -5,20 +5,21 @@ from django.db import models
 from apps.customers.models import Customer
 
 
-ADDRESS_TYPE_CHOICES = [
-    ('Dirección de Casa', 'Dirección de Casa'),
-    ('Dirección de Trabajo', 'Dirección de Trabajo'),
-    ('Dirección Personal', 'Dirección Personal'),
-]
+
 
 class Address(models.Model):
+    tipo_direccion = [
+        ('Dirección de Casa', 'Dirección de Casa'),
+        ('Dirección de Trabajo', 'Dirección de Trabajo'),
+        ('Dirección Personal', 'Dirección Personal'),
+    ]
     street = models.CharField("Dirección particular o sede social completa", max_length=90, blank=False, null=False)
     number = models.CharField("Zona", max_length=90, blank=False, null=False)
     city = models.CharField("Departamento", max_length=90, blank=False, null=False)
     state = models.CharField("Municipio", max_length=90, blank=False, null=False)
     postal_code = models.CharField("Código Postal", max_length=90, blank=False, null=False)
     country = models.CharField("País", max_length=90, blank=False, null=False)
-    type_address = models.CharField("Tipo de Dirección", choices=ADDRESS_TYPE_CHOICES, max_length=90, blank=False, null=False)
+    type_address = models.CharField("Tipo de Dirección", choices=tipo_direccion, max_length=90, blank=False, null=False)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):

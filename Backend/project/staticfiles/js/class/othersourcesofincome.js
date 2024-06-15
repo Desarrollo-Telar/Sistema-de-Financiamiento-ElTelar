@@ -3,12 +3,14 @@ export class OtraInformacionLaboral {
     #nit;
     #phone_number;
     #customer_id;
+    #salary;
 
-    constructor(source_of_income='', nit='', phone_number='', customer_id = '') {
+    constructor(source_of_income='', nit='', phone_number='', customer_id = '',salary='') {
         this.#source_of_income = source_of_income;
         this.#nit = nit;
         this.#phone_number = phone_number;
         this.#customer_id = customer_id;
+        this.#salary = salary;
     }
 
     // Getters
@@ -26,6 +28,10 @@ export class OtraInformacionLaboral {
 
     get customer_id(){
         return this.#customer_id;
+    }
+
+    get salary() {
+        return this.#salary;
     }
 
     // Setters
@@ -46,6 +52,14 @@ export class OtraInformacionLaboral {
 
         this.#nit = value.trim();
         
+    }
+
+    set salary(value) {
+        if (!value || value.trim() === '') {
+            alert('Debe ingresar el salario del cliente de su informacion laboral');
+            throw new Error('Debe ingresar el salario del del cliente de su informacion laboral');
+        }
+        this.#salary = value.trim();
     }
 
     set phone_number(value) {
@@ -75,6 +89,7 @@ export class OtraInformacionLaboral {
             Source of Income: ${this.#source_of_income},
             NIT: ${this.#nit},
             Phone Number: ${this.#phone_number},
+            Salary: ${this.#salary},
             Cliente: ${this.#customer_id}
         }`;
     }
@@ -85,7 +100,8 @@ export class OtraInformacionLaboral {
             source_of_income: this.#source_of_income,
             nit: this.#nit,
             phone_number: this.#phone_number,
-            customer_id:this.#customer_id
+            customer_id:this.#customer_id,
+            salary:this.#salary
         };
     }
 }

@@ -9,8 +9,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{% static 'css/customers/forms_ive.css' %}">
+    <!--  <link rel="stylesheet" href="{% static 'css/customers/forms_ive.css' %}">-->
     <link rel="icon" href="{% static 'img/logo.png' %}" />
+    <style>
+        .seccion {
+            display: flex;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -34,7 +40,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <p style="font-weight:bold; ">Número o Codigo de Cliente</p>
-    
+
                                 </div>
                                 <div class="card-body">
                                     {{customer_list.customer_code}}
@@ -48,11 +54,11 @@
                                 <div class="card-body"
                                     style="padding: 2rem; display: flex; align-items: center; justify-content: center;">
                                     <p style="font-weight:bold; "> FORMULARIO PARA INICIO DE RELACIONES</p>
-    
+
                                 </div>
                             </div>
                         </div>
-    
+
                     </div>
                 </div>
                 <!-- INFORMACION DE EN EL FORMULARIO -->
@@ -64,14 +70,16 @@
                                 <div class="card-body">
                                     <div class="seccion">
                                         <div class="col-3">
-                                            <p style="font-weight:bold; background-color: #D3D3D3;border: 1px solid; ">1.
+                                            <p style="font-weight:bold; background-color: #D3D3D3;border: 1px solid; ">
+                                                1.
                                                 LUGAR:
                                         </div>
                                         <div class="col-3">
                                             <p style="border: 1px solid; text-align: center;">COBAN A.V.</p>
                                         </div>
                                         <div class="col-3">
-                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">2.
+                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
+                                                2.
                                                 FECHA:
                                             </p>
                                         </div>
@@ -87,14 +95,16 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="col-12" style="background-color: black; color: white; text-align:center ;">
+                                    <div class="col-12"
+                                        style="background-color: black; color: white; text-align:center ;">
                                         <p style="font-weight:bold;">DATOS DE LA PERSONA OBLIGADA (PO)</p>
-    
+
                                     </div>
                                     <div class="col-12">
                                         <div class="seccion">
                                             <div class="col-6">
-                                                <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
+                                                <p
+                                                    style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                     3.1
                                                     Nombre Completo o Razón Social y Nombre Comercial:</p>
                                             </div>
@@ -103,14 +113,16 @@
                                                     {{customer_list.first_name}}
                                                     {{customer_list.last_name}}</p>
                                             </div>
-    
+
                                         </div>
-    
+
                                         <div class="seccion">
                                             <div class="col-8">
-                                                <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
+                                                <p
+                                                    style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                     3.2
-                                                    Nombre de la central, sucursal o agencia donde se solicita el producto o
+                                                    Nombre de la central, sucursal o agencia donde se solicita el
+                                                    producto o
                                                     servicio:</p>
                                             </div>
                                             <div class="col">
@@ -127,9 +139,9 @@
                                             <div class="col">
                                                 <p style="border: 1px solid; text-align: center;">001</p>
                                             </div>
-    
+
                                         </div>
-    
+
                                     </div>
                                 </div>
                             </div>
@@ -138,24 +150,28 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="col-12" style="background-color: black; color: white; text-align:center ;">
+                                    <div class="col-12"
+                                        style="background-color: black; color: white; text-align:center ;">
                                         <p style="font-weight:bold;">DATOS PERSONALES DEL SOLICITANTE / CLIENTE</p>
                                     </div>
                                     <div class="seccion">
                                         <div class="col">
-                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">4.1
+                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
+                                                4.1
                                                 Tipo de Persona:</p>
-    
+
                                         </div>
                                         <div class="col-6">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.person_type}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.person_type}}
                                             </p>
                                         </div>
-    
+
                                     </div>
                                     <div class="col-12">
                                         <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                            4.2 Nombre completo de la persona individual o Representante Legal de la persona
+                                            4.2 Nombre completo de la persona individual o Representante Legal de la
+                                            persona
                                             jurídica:
                                         </p>
                                     </div>
@@ -163,10 +179,11 @@
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.2.1 Apellidos:</p>
-    
+
                                         </div>
                                         <div class="col-6">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.last_name}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.last_name}}
                                             </p>
                                         </div>
 
@@ -175,45 +192,48 @@
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.2.2 Nombre:</p>
-    
+
                                         </div>
                                         <div class="col-6">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.first_name}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.first_name}}
                                             </p>
                                         </div>
 
                                     </div>
                                     <div class="col-12">
                                         <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                            4.3 Datos específicos de la persona individual o Representante Legal de la persona jurídica:
+                                            4.3 Datos específicos de la persona individual o Representante Legal de la
+                                            persona jurídica:
                                         </p>
                                     </div>
                                     <div class="seccion">
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.3.1 Lugar de nacimiento:</p>
-    
+
                                         </div>
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.3.2 Género:</p>
-    
+
                                         </div>
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.3.3 Estado Civil:</p>
-    
+
                                         </div>
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.3.4 Profesión u oficio:</p>
-    
+
                                         </div>
 
                                     </div>
-                                    <div class="seccion">                                        
+                                    <div class="seccion">
                                         <div class="col">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.place_birth}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.place_birth}}
                                             </p>
                                         </div>
                                         <div class="col">
@@ -221,11 +241,13 @@
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.marital_status}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.marital_status}}
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.profession_trade}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.profession_trade}}
                                             </p>
                                         </div>
 
@@ -234,63 +256,69 @@
                                         <div class="col-3">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.3.5 Tipo de identificación:</p>
-    
+
                                         </div>
                                         <div class="col-3">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.3.5.1 Número de identificación:</p>
-    
+
                                         </div>
                                         <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.3.5.2 Lugar de emisión:</p>
-    
+
                                         </div>
-                                        
+
 
                                     </div>
-                                    <div class="seccion">                                        
+                                    <div class="seccion">
                                         <div class="col-3">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.type_identification}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.type_identification}}
                                             </p>
                                         </div>
                                         <div class="col-3">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.identification_number}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.identification_number}}
                                             </p>
                                         </div>
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center; font-size: 0.7rem;">
-                                                
-                                                    Departamento: <span style="font-size: 1rem; margin-left: 0.2rem;">Alta Verapaz</span> 
-                                                
+
+                                                Departamento: <span style="font-size: 1rem; margin-left: 0.2rem;">Alta
+                                                    Verapaz</span>
+
                                             </p>
                                         </div>
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center; font-size: 0.7rem;">
-                                                
-                                                Municipio: <span style="font-size: 1rem; margin-left: 0.2rem;">Cobán</span> 
-                                            
-                                        </p>
+
+                                                Municipio: <span
+                                                    style="font-size: 1rem; margin-left: 0.2rem;">Cobán</span>
+
+                                            </p>
                                         </div>
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center; font-size: 0.7rem;">
-                                                
-                                                País: <span style="font-size: 1rem; margin-left: 0.2rem;">Guatemala</span> 
-                                            
-                                        </p>
+
+                                                País: <span
+                                                    style="font-size: 1rem; margin-left: 0.2rem;">Guatemala</span>
+
+                                            </p>
                                         </div>
-                                        
-                                        
+
+
 
                                     </div>
                                     <div class="seccion">
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.3.6 Condición Migratoria:</p>
-    
+
                                         </div>
                                         <div class="col-6">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.immigration_status_id}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.immigration_status_id}}
                                             </p>
                                         </div>
 
@@ -305,27 +333,29 @@
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.4.1 Fecha nacimiento (PI) creación o constitución (PJ) (dd/mm/aaaa):
                                             </p>
-    
+
                                         </div>
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.4.2 Nacionalidad (PI)/País de Constitución (PJ):
                                             </p>
-    
+
                                         </div>
-                                        
+
 
                                     </div>
-                                    <div class="seccion">                                        
+                                    <div class="seccion">
                                         <div class="col">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.date_birth}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.date_birth}}
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.nationality}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.nationality}}
                                             </p>
                                         </div>
-                                       
+
 
                                     </div>
                                     <div class="seccion">
@@ -333,84 +363,92 @@
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.4.3 Número de identificación tributaria (NIT):
                                             </p>
-    
+
                                         </div>
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.4.4 Celular / Móvil:
                                             </p>
-    
+
                                         </div>
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 4.4.5 Correo electrónico / e-mail:
                                             </p>
-    
+
                                         </div>
-                                        
+
 
                                     </div>
-                                    <div class="seccion">                                        
+                                    <div class="seccion">
                                         <div class="col">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.number_nit}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.number_nit}}
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid; text-align: center;">{{customer_list.telephone}}
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{customer_list.telephone}}
                                             </p>
                                         </div>
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">{{customer_list.email}}
                                             </p>
                                         </div>
-                                       
+
 
                                     </div>
                                     <div class="col-12">
                                         <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                            4.4.6 Dirección particular o sede social completa: (No. de calle o avenida, No. de casa, colonia, sector, lote, manzana, otros)
+                                            4.4.6 Dirección particular o sede social completa: (No. de calle o avenida,
+                                            No. de casa, colonia, sector, lote, manzana, otros)
                                         </p>
                                     </div>
                                     {% for direccion_1 in address_list %}
-                                    {% if direccion_1.type_address  == 'Dirección Personal' %}
+                                    {% if direccion_1.type_address == 'Dirección Personal' %}
                                     <div class="col-12">
-                                        
+
                                         <p style="border: 1px solid; ">{{direccion_1.street}}
                                         </p>
                                     </div>
-                                    <div class="seccion">                                        
+                                    <div class="seccion">
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Zona: <span style="font-size: 1rem;">{{direccion_1.number}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Zona: <span
+                                                    style="font-size: 1rem;">{{direccion_1.number}}</span>
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Departamento: <span style="font-size: 1rem;">{{direccion_1.state}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Departamento: <span
+                                                    style="font-size: 1rem;">{{direccion_1.state}}</span>
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Municipio: <span style="font-size: 1rem;">{{direccion_1.city}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Municipio: <span
+                                                    style="font-size: 1rem;">{{direccion_1.city}}</span>
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> País: <span style="font-size: 1rem;">{{direccion_1.country}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> País: <span
+                                                    style="font-size: 1rem;">{{direccion_1.country}}</span>
                                             </p>
                                         </div>
-                                       
+
 
                                     </div>
                                     {% endif %}
                                     {% endfor %}
-                                
-    
+
+
                                 </div>
                             </div>
                         </div>
-    
+
                         <!-- SECCION 5-->
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="col-12" style="background-color: black; color: white; text-align:center ;">
+                                    <div class="col-12"
+                                        style="background-color: black; color: white; text-align:center ;">
                                         <p style="font-weight:bold;">INFORMACIÓN ECONÓMICO-FINANCIERA DEL SOLICITANTE /
                                             CLIENTE</p>
                                     </div>
@@ -420,14 +458,14 @@
                                         </p>
                                     </div>
                                     {% for trabajo in working_information %}
-                                    
-                                    {% if  trabajo.source_of_income == 'Otra' %}
-                                    <!-- AQUI SE AGREGA LA INFORMACION LABORAL DE OTRA -->                                    
-                                    
+
+                                    {% if trabajo.source_of_income == 'Otra' %}
+                                    <!-- AQUI SE AGREGA LA INFORMACION LABORAL DE OTRA -->
+
                                     <div class="seccion">
                                         <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                               5.1 Otras fuentes o ingresos adicionales especificar:
+                                                5.1 Otras fuentes o ingresos adicionales especificar:
                                             </p>
                                         </div>
                                         <div class="col-6">
@@ -453,7 +491,7 @@
                                                 {{otra.nit}}
                                             </p>
                                         </div>
-                                        
+
                                         <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 5.1.1.2 Número(s) de teléfono(s):
@@ -468,46 +506,52 @@
                                     </div>
                                     <div class="col-12">
                                         <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                            5.1.1.3 Dirección o sede completa de la empresa/institución donde trabaja o del negocio: (No. de calle o avenida, No. de casa, colonia, sector, lote, manzana, otros)
+                                            5.1.1.3 Dirección o sede completa de la empresa/institución donde trabaja o
+                                            del negocio: (No. de calle o avenida, No. de casa, colonia, sector, lote,
+                                            manzana, otros)
                                         </p>
                                     </div>
                                     {% for direccion_1 in address_list %}
-                                    {% if direccion_1.type_address  == 'Dirección de Trabajo' %}
+                                    {% if direccion_1.type_address == 'Dirección de Trabajo' %}
                                     <div class="col-12">
-                                        
+
                                         <p style="border: 1px solid; ">{{direccion_1.street}}
                                         </p>
                                     </div>
-                                    <div class="seccion">                                        
+                                    <div class="seccion">
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Zona: <span style="font-size: 1rem;">{{direccion_1.number}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Zona: <span
+                                                    style="font-size: 1rem;">{{direccion_1.number}}</span>
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Departamento: <span style="font-size: 1rem;">{{direccion_1.state}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Departamento: <span
+                                                    style="font-size: 1rem;">{{direccion_1.state}}</span>
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Municipio: <span style="font-size: 1rem;">{{direccion_1.city}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Municipio: <span
+                                                    style="font-size: 1rem;">{{direccion_1.city}}</span>
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> País: <span style="font-size: 1rem;">{{direccion_1.country}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> País: <span
+                                                    style="font-size: 1rem;">{{direccion_1.country}}</span>
                                             </p>
                                         </div>
-                                       
+
 
                                     </div>
                                     {% endif %}
                                     {% endfor %}
-                                   
-                                    
+
+
                                     {% else %}
                                     <!-- AQUI SE AGREGA LA INFORMACION LABORAL DE DEPENDENCIA O TRABAJO PROPIO -->
                                     <div class="seccion">
                                         <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                               5.1 Fuentes de Ingreso</p>
+                                                5.1 Fuentes de Ingreso</p>
                                         </div>
                                         <div class="col-6">
                                             <p style="border: 1px solid; text-align: center;">
@@ -516,11 +560,11 @@
                                         </div>
 
                                     </div>
-                                    
+
                                     <div class="seccion">
                                         <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                5.1.1  Nombre de empresa/institución donde trabaja  o del negocio:
+                                                5.1.1 Nombre de empresa/institución donde trabaja o del negocio:
                                             </p>
                                         </div>
                                         <div class="col-6">
@@ -554,48 +598,61 @@
                                         </div>
 
                                     </div>
-                                    
+
                                     <div class="col-12">
                                         <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                            5.1.1.3 Dirección o sede completa de la empresa/institución donde trabaja o del negocio: (No. de calle o avenida, No. de casa, colonia, sector, lote, manzana, otros)
+                                            5.1.1.3 Dirección o sede completa de la empresa/institución donde trabaja o
+                                            del negocio: (No. de calle o avenida, No. de casa, colonia, sector, lote,
+                                            manzana, otros)
                                         </p>
                                     </div>
-                                    
-                                    
+
+
                                     {% for direccion_1 in address_list %}
-                                    {% if direccion_1.type_address  == 'Dirección de Trabajo' %}
+                                    {% if direccion_1.type_address == 'Dirección de Trabajo' %}
                                     <div class="col-12">
-                                        
+
                                         <p style="border: 1px solid; ">{{direccion_1.street}}
                                         </p>
                                     </div>
-                                    <div class="seccion">                                        
+                                    <div class="seccion">
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Zona: <span style="font-size: 1rem;">{{direccion_1.number}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Zona: <span
+                                                    style="font-size: 1rem;">{{direccion_1.number}}</span>
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Departamento: <span style="font-size: 1rem;">{{direccion_1.state}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Departamento: <span
+                                                    style="font-size: 1rem;">{{direccion_1.state}}</span>
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Municipio: <span style="font-size: 1rem;">{{direccion_1.city}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Municipio: <span
+                                                    style="font-size: 1rem;">{{direccion_1.city}}</span>
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> País: <span style="font-size: 1rem;">{{direccion_1.country}}</span>
+                                            <p style="border: 1px solid;  font-size: 0.75rem;"> País: <span
+                                                    style="font-size: 1rem;">{{direccion_1.country}}</span>
                                             </p>
                                         </div>
-                                       
+
 
                                     </div>
                                     {% endif %}
                                     {% endfor %}
                                     {% endif %}
-                                    
+
                                     <div class="col-12">
                                         <p style=" background-color: #D3D3D3; border: 1px solid; font-size: 0.7rem;">
-                                           <span class="fw-semibold" style="font-size: 1rem;">5.2 Actividad económica en que la entidad, negocio o empresa se desarrolla:</span>  Indicar la actividad específica desarrollada en el sector económico al que pertenece, tales como: Comercio de vehículos, joyas, vestuario; Producción de alimentos, calzado; Agricultura de café, cardamomo, banano, papa; Ganadería bovina, vacuna, porcina; Servicios Profesionales privados de abogacía y notariado, auditoría y contaduría pública, médicos; Sector Público tal como Municipalidad, Ministerio, Secretaría,
+                                            <span class="fw-semibold" style="font-size: 1rem;">5.2 Actividad económica
+                                                en que la entidad, negocio o empresa se desarrolla:</span> Indicar la
+                                            actividad específica desarrollada en el sector económico al que pertenece,
+                                            tales como: Comercio de vehículos, joyas, vestuario; Producción de
+                                            alimentos, calzado; Agricultura de café, cardamomo, banano, papa; Ganadería
+                                            bovina, vacuna, porcina; Servicios Profesionales privados de abogacía y
+                                            notariado, auditoría y contaduría pública, médicos; Sector Público tal como
+                                            Municipalidad, Ministerio, Secretaría,
                                         </p>
                                     </div>
                                     <div class="seccion">
@@ -607,13 +664,13 @@
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
                                                 Q<span>{{trabajo.salary}}</span>
-                                                
+
                                             </p>
                                         </div>
-                                        
+
 
                                     </div>
-                                    
+
                                     {% endfor %}
                                 </div>
                             </div>
@@ -622,95 +679,102 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="col-12" style="background-color: black; color: white; text-align:center ;">
+                                    <div class="col-12"
+                                        style="background-color: black; color: white; text-align:center ;">
                                         <p style="font-weight:bold;">DATOS DEL PRODUCTO O SERVICIO SOLICITADO POR EL
                                             SOLICITANTE /
                                             CLIENTE</p>
                                     </div>
                                     {% for plan in plan_list %}
                                     <div class="seccion">
-                                        <div class="col-6" >
+                                        <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 6.1 Tipo de producto o servicio:
                                             </p>
-                                            
+
                                         </div>
-                                        <div class="col-6" >
+                                        <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                6.2  Valor total del producto o servicio (monto):
-                                            </p>                                            
+                                                6.2 Valor total del producto o servicio (monto):
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="seccion">
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
                                                 <span>{{plan.type_of_product_or_service }}</span>
-                                                
+
                                             </p>
                                         </div>
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
-                                                <span>{{plan.total_value_of_the_product_or_service   }}</span>
-                                                
+                                                <span>{{plan.total_value_of_the_product_or_service }}</span>
+
                                             </p>
                                         </div>
 
                                     </div>
-                                    <div class="col-12" >
+                                    <div class="col-12">
                                         <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                             6.3 Descripción o datos generales del producto o servicio:
-                                        </p>                                            
+                                        </p>
                                     </div>
                                     <div class="col-12">
                                         <p style="border: 1px solid; text-align: center;">
-                                            <span>{{plan.description   }}</span>
-                                            
+                                            <span>{{plan.description }}</span>
+
                                         </p>
                                     </div>
                                     <div class="seccion">
-                                        <div class="col-6" >
+                                        <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                6.4 Monto inicial a manejar en el producto o servicio: 
+                                                6.4 Monto inicial a manejar en el producto o servicio:
                                             </p>
-                                            
+
                                         </div>
-                                        <div class="col-6" >
+                                        <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                6.5  Monto mensual a manejar en el producto o servicio: 
-                                            </p>                                            
+                                                6.5 Monto mensual a manejar en el producto o servicio:
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="seccion">
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
                                                 Q<span>{{plan.initial_amount}}</span>
-                                                
+
                                             </p>
                                         </div>
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
                                                 Q<span>{{plan.monthly_amount}}</span>
-                                                
+
                                             </p>
                                         </div>
 
                                     </div>
-                                    <div class="col-12" >
-                                        <p  style="background-color: #D3D3D3; border: 1px solid; font-size: 0.7rem; ">
-                                           <span class="fw-bolder" style="font-size: 1rem;">6.7 Procedencia u origen de los fondos, valores o bienes para el inicio o durante la relación comercial:</span> 
-Indicar si son sueldos, salarios, remesas, manutención, pensiones por jubilación, ahorros personales, intereses, dividendos, utilidades, venta de inmuebles o vehículos, ventas o servicios del negocio, arrendamiento, préstamo o cancelación de cuenta o inversión (adicional indicar la entidad).
-                                        </p>                                            
+                                    <div class="col-12">
+                                        <p style="background-color: #D3D3D3; border: 1px solid; font-size: 0.7rem; ">
+                                            <span class="fw-bolder" style="font-size: 1rem;">6.7 Procedencia u origen de
+                                                los fondos, valores o bienes para el inicio o durante la relación
+                                                comercial:</span>
+                                            Indicar si son sueldos, salarios, remesas, manutención, pensiones por
+                                            jubilación, ahorros personales, intereses, dividendos, utilidades, venta de
+                                            inmuebles o vehículos, ventas o servicios del negocio, arrendamiento,
+                                            préstamo o cancelación de cuenta o inversión (adicional indicar la entidad).
+                                        </p>
                                     </div>
                                     <div class="col-12">
                                         <p style="border: 1px solid; text-align: center; padding: 1rem;">
-                                        
+
                                         </p>
                                     </div>
                                     <div class="seccion">
-                                        <div class="col" >
+                                        <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                6.8 Realizará transferencias o traslado de fondos, valores o bienes: (Si es afirmativa, indicar la información siguiente)
-                                            </p>                                            
+                                                6.8 Realizará transferencias o traslado de fondos, valores o bienes: (Si
+                                                es afirmativa, indicar la información siguiente)
+                                            </p>
                                         </div>
                                         <div class="col-2">
                                             <p style="border: 1px solid; text-align: center;">
@@ -719,23 +783,24 @@ Indicar si son sueldos, salarios, remesas, manutención, pensiones por jubilaci�
                                                 {% else %}
                                                 <span>No</span>
                                                 {% endif %}
-                                                
+
                                             </p>
                                         </div>
 
                                     </div>
                                     <div class="seccion">
-                                        <div class="col" >
+                                        <div class="col">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                6.8.1 Las transferencias o traslado de fondos, valores o bienes se realizaran a nivel: 
-                                            </p>                                            
+                                                6.8.1 Las transferencias o traslado de fondos, valores o bienes se
+                                                realizaran a nivel:
+                                            </p>
                                         </div>
                                         <div class="col-2">
                                             <p style="border: 1px solid; text-align: center;">
-                                                
+
                                                 <span>{{plan.type_of_transfers_or_transfer_of_funds}}</span>
-                                                
-                                                
+
+
                                             </p>
                                         </div>
 
@@ -748,39 +813,40 @@ Indicar si son sueldos, salarios, remesas, manutención, pensiones por jubilaci�
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="col-12" style="background-color: black; color: white; text-align:center ;">
+                                    <div class="col-12"
+                                        style="background-color: black; color: white; text-align:center ;">
                                         <p style="font-weight:bold;">REFERENCIAS DEL SOLICITANTE / CLIENTE</p>
                                     </div>
                                     <div class="seccion">
-                                        <div class="col-6" >
+                                        <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 8.1 Personales: (nombres de dos personas que no sean familiares)
                                             </p>
-                                            
+
                                         </div>
-                                        <div class="col-6" >
+                                        <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 Celular / Móvil:
                                             </p>
-                                            
+
                                         </div>
 
                                     </div>
-                                    
+
                                     {% for referencia in reference %}
                                     {% if referencia.reference_type == 'Personales' %}
-                                    
+
                                     <div class="seccion">
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
                                                 <span>{{referencia.full_name }}</span>
-                                                
+
                                             </p>
                                         </div>
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
-                                                <span>{{referencia.phone_number  }}</span>
-                                                
+                                                <span>{{referencia.phone_number }}</span>
+
                                             </p>
                                         </div>
 
@@ -788,87 +854,103 @@ Indicar si son sueldos, salarios, remesas, manutención, pensiones por jubilaci�
                                     {% endif %}
                                     {% endfor %}
                                     <div class="seccion">
-                                        <div class="col-8" >
+                                        <div class="col-8">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                8.2 Laborales, Comerciales o Bancarias: (nombre de patronos, empresas o bancos)
+                                                8.2 Laborales, Comerciales o Bancarias: (nombre de patronos, empresas o
+                                                bancos)
                                             </p>
-                                            
+
                                         </div>
-                                        <div class="col-2" >
+                                        <div class="col-2">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 Celular / Móvil:
                                             </p>
-                                            
+
                                         </div>
-                                        <div class="col-2" >
+                                        <div class="col-2">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 Tipo de Referencia:
                                             </p>
-                                            
+
                                         </div>
 
                                     </div>
                                     {% for referencia in reference %}
                                     {% if not referencia.reference_type == 'Personales' %}
-                                    
+
                                     <div class="seccion">
                                         <div class="col-8">
                                             <p style="border: 1px solid; text-align: center;">
                                                 <span>{{referencia.full_name }}</span>
-                                                
+
                                             </p>
                                         </div>
                                         <div class="col-2">
                                             <p style="border: 1px solid; text-align: center;">
-                                                <span>{{referencia.phone_number  }}</span>
-                                                
+                                                <span>{{referencia.phone_number }}</span>
+
                                             </p>
                                         </div>
                                         <div class="col-2">
                                             <p style="border: 1px solid; text-align: center;">
-                                                <span>{{referencia.reference_type  }}</span>
-                                                
+                                                <span>{{referencia.reference_type }}</span>
+
                                             </p>
                                         </div>
 
                                     </div>
                                     {% endif%}
-                                    
+
                                     {% endfor %}
                                 </div>
-                                
+
                             </div>
                         </div>
                         <!-- SECCION 8-->
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="col-12" style="background-color: black; color: white; text-align:center ;">
+                                    <div class="col-12"
+                                        style="background-color: black; color: white; text-align:center ;">
                                         <p style="font-weight:bold;">DOCUMENTOS QUE SE DEBEN ANEXAR AL FORMULARIO PARA
                                             INICIO DE
                                             RELACIONES</p>
                                     </div>
                                     <div class="col-12 fw-light fs-6">
                                         <p>
-                                            9.1 Cuando el espacio del formulario sea insuficiente, sírvase incluir la información en hojas por separado,  indicando el numeral al que corresponde.
+                                            9.1 Cuando el espacio del formulario sea insuficiente, sírvase incluir la
+                                            información en hojas por separado, indicando el numeral al que corresponde.
                                         </p>
                                         <p>
-                                            9.2 Anexar al presente formulario como mínimo y según las políticas, normas, procedimientos y controles internos de la PO, la documentación siguiente:
+                                            9.2 Anexar al presente formulario como mínimo y según las políticas, normas,
+                                            procedimientos y controles internos de la PO, la documentación siguiente:
                                         </p>
                                         <p>
-                                            9.2.1 Fotocopia legible de los documentos de identificación del solicitante/cliente, personas individual o Representante Legal de la persona jurídica.
+                                            9.2.1 Fotocopia legible de los documentos de identificación del
+                                            solicitante/cliente, personas individual o Representante Legal de la persona
+                                            jurídica.
                                         </p>
                                         <p>
-                                            9.2.2 Fotocopia legible de un recibo, ya sea de agua, luz o teléfono u otro servicio similar, u otro documento similar, que registre la dirección de la residencia o sede comercial indicada por el solicitante/cliente, de la persona individual o jurídica, según corresponda.
+                                            9.2.2 Fotocopia legible de un recibo, ya sea de agua, luz o teléfono u otro
+                                            servicio similar, u otro documento similar, que registre la dirección de la
+                                            residencia o sede comercial indicada por el solicitante/cliente, de la
+                                            persona individual o jurídica, según corresponda.
                                         </p>
                                         <p>
-                                            9.2.3 En el caso de la persona individual con negocio propio o la persona jurídica, adjuntar constancia de inscripción o de actualización ante la Superintendencia de Administración Tributaria -SAT-; el mismo debe estar ratificado en el año que inicie su solicitud o inicio de relación.
+                                            9.2.3 En el caso de la persona individual con negocio propio o la persona
+                                            jurídica, adjuntar constancia de inscripción o de actualización ante la
+                                            Superintendencia de Administración Tributaria -SAT-; el mismo debe estar
+                                            ratificado en el año que inicie su solicitud o inicio de relación.
                                         </p>
                                         <p>
-                                            9.2.4 En el caso de la persona individual con negocio propio o la persona jurídica, adjuntar fotocopia legible de patente de empresa, patente de sociedad, Acuerdo Gubernativo u otro documento similar, según corresponda.
+                                            9.2.4 En el caso de la persona individual con negocio propio o la persona
+                                            jurídica, adjuntar fotocopia legible de patente de empresa, patente de
+                                            sociedad, Acuerdo Gubernativo u otro documento similar, según corresponda.
                                         </p>
                                         <p>
-                                            9.2.5 Fotocopia legible del nombramiento del Representante Legal, debidamente registrado o primer testimonio de la escritura de mandato debidamente registrado.
+                                            9.2.5 Fotocopia legible del nombramiento del Representante Legal,
+                                            debidamente registrado o primer testimonio de la escritura de mandato
+                                            debidamente registrado.
                                         </p>
                                     </div>
                                 </div>
@@ -879,7 +961,7 @@ Indicar si son sueldos, salarios, remesas, manutención, pensiones por jubilaci�
                 <!-- SECCION FIRMA DEL CLIENTE-->
                 <div class="container">
                     <div class="row align-items-start" style="margin-top: 2rem; text-align: center;">
-    
+
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body"
@@ -887,9 +969,9 @@ Indicar si son sueldos, salarios, remesas, manutención, pensiones por jubilaci�
                                     <div class="col-4">
                                         <hr style="border: 1px solid black;">
                                         <p class="fw-bold">Firma del Solicitante / Cliente</p>
-    
+
                                     </div>
-    
+
                                 </div>
                             </div>
                         </div>
@@ -898,7 +980,7 @@ Indicar si son sueldos, salarios, remesas, manutención, pensiones por jubilaci�
                 <!-- SECCION FIRMA DEL CLIENTE-->
                 <div class="container">
                     <div class="row align-items-start" style="margin-top: 8rem; text-align: center; ">
-    
+
                         <div class="col-4">
                             <div>
                                 <hr>
@@ -906,33 +988,33 @@ Indicar si son sueldos, salarios, remesas, manutención, pensiones por jubilaci�
                                     Nombre, firma y código del empleado o tercero (intermediario, agente, sub-agente o
                                     similar) que
                                     asistió en consignar la información del formulario
-    
+
                                 </p>
                             </div>
                         </div>
                         <div class="col-4"></div>
-    
-    
+
+
                         <div class="col-4">
                             <div>
                                 <hr>
                                 <p class="fw-medium">
                                     Nombre, firma y código de quien verifica y/o
                                     autoriza la operación o inicio de la relación
-    
+
                                 </p>
                             </div>
                         </div>
-    
-    
-    
+
+
+
                     </div>
                 </div>
             </div>
         </div>
-        
+
     </div>
-    
+
 
 
 

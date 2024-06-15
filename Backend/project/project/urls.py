@@ -29,6 +29,7 @@ urlpatterns = [
     path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),
     path('test/', views.test, name='test'),
     path('qr/<str:data>/', views.generate_qr, name='generate_qr'),
+    path('pdf/<int:id>',login_required(views.render_pdf_view), name='pdf'),
     #path('dashboard/', include('django_dash.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

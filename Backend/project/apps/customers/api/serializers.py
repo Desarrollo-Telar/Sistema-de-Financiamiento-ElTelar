@@ -24,7 +24,8 @@ class CustomerSerializer(serializers.ModelSerializer):
             "nationality",
             "person_type",
             "user_id",
-            "immigration_status_id"
+            "immigration_status_id",
+            "description"
         ]
     def to_representation(self, instance):
         return {
@@ -46,7 +47,8 @@ class CustomerSerializer(serializers.ModelSerializer):
             "person_type": instance.person_type,
             "user_id": instance.user_id.id,
             "immigration_status_id": instance.immigration_status_id.id,
-            'customer_code':instance.customer_code
+            'customer_code':instance.customer_code,
+            "description":instance.description
         }
 
 

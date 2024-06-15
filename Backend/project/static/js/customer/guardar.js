@@ -13,13 +13,14 @@ document.getElementById('customer').addEventListener('submit', async function (e
     let customer_id;
 
     try {
-        //recoletarInformacionCliente();
-        const customerData = await postCustomer(urls.api_url_cliente);
+        
+        console.log(JSON.stringify(recoletarInformacionCliente().toJSON()));
+        //const customerData = await postCustomer(urls.api_url_cliente);
         //console.log('Cliente registrado con éxito:', customerData);
-        customer_id = customerData.id;
+       // customer_id = customerData.id;
 
         // Registra la dirección
-    
+    /*
         recoletarInformacionDirecciones(customer_id);
         const direccionData = await postDireccion(urls.api_url_direccion, customer_id);
         console.log('Dirección registrada con éxito:', direccionData);
@@ -53,6 +54,8 @@ document.getElementById('customer').addEventListener('submit', async function (e
         console.log(generar);
         window.location.href = generar;
         //window.location.href = '/customers/';
+        */
+        
     } catch (error) {
         console.error('Error al registrar los datos:', error);
         //window.location.href = '/customers/delete/'+customer_id+'/';

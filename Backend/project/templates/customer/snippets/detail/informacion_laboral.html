@@ -1,3 +1,12 @@
 {% load static %}
 <div class="row" style="margin: 1rem 0;">
+    {% if working_information %}
+    {% for working in working_information%}
+    {% endfor %}
+    {% endif %}
+    {% if other_information %}
+    {% for other in other_information%}
+    {% endfor %}
+    {% endif %}
+
 </div>

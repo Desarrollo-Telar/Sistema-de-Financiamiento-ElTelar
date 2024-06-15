@@ -31,6 +31,7 @@ export function recoletarInformacionCliente() {
         'status',
         'immigration_status_id',
         'user_id',
+        'description_customer'
     ];
 
     fields.forEach(field => {
@@ -104,6 +105,7 @@ export function recolectarInformacionLaboral(customer_id) {
         otraInformacionLaboral.source_of_income = document.getElementById('source_of_income2').value;
         otraInformacionLaboral.nit = document.getElementById('nit').value;
         otraInformacionLaboral.phone_number = document.getElementById('phone_number2').value;
+        otraInformacionLaboral.salary = document.getElementById('salary2').value;
         otraInformacionLaboral.customer_id = customer_id;
         resultado = otraInformacionLaboral;
     } else {
