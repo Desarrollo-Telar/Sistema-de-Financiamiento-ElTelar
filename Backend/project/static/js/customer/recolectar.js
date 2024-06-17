@@ -71,7 +71,7 @@ export function recoletarInformacionDirecciones(customer_id) {
     direcciones[0].number = document.getElementById('number1').value;
     direcciones[0].city = document.getElementById('city1').value;
     direcciones[0].state = document.getElementById('state1').value;
-    direcciones[0].postal_code = document.getElementById('postal_code1').value;
+    
     direcciones[0].country = document.getElementById('country1').value;
     direcciones[0].type_address = 'Dirección Personal';
     direcciones[0].customer_id = customer_id;
@@ -80,7 +80,7 @@ export function recoletarInformacionDirecciones(customer_id) {
     direcciones[1].number = document.getElementById('number2').value;
     direcciones[1].city = document.getElementById('city2').value;
     direcciones[1].state = document.getElementById('state2').value;
-    direcciones[1].postal_code = document.getElementById('postal_code2').value;
+    
     direcciones[1].country = document.getElementById('country2').value;
     direcciones[1].type_address = 'Dirección de Trabajo';
     direcciones[1].customer_id = customer_id;

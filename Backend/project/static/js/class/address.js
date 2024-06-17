@@ -3,17 +3,17 @@ export class Direccion {
     #number;
     #city;
     #state;
-    #postal_code;
+ 
     #country;
     #type_address;
     #customer_id;
 
-    constructor(street = '', number = '', city = '', state = '', postal_code = '', country = '', type_address = '', customer_id = '') {
+    constructor(street = '', number = '', city = '', state = '',  country = '', type_address = '', customer_id = '') {
         this.#street = street;
         this.#number = number;
         this.#city = city;
         this.#state = state;
-        this.#postal_code = postal_code;
+      
         this.#country = country;
         this.#type_address = type_address;
         this.#customer_id = customer_id;
@@ -36,9 +36,7 @@ export class Direccion {
         return this.#state;
     }
 
-    get postal_code() {
-        return this.#postal_code;
-    }
+    
 
     get country() {
         return this.#country;
@@ -89,14 +87,7 @@ export class Direccion {
         this.#state = value.trim();
     }
 
-    set postal_code(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar el codigo postal de la direccion del cliente');
-            throw new Error('Debe ingresar el codigo postal de la direccion del cliente');
-        }
-
-        this.#postal_code = value.trim();
-    }
+    
 
     set country(value) {
         if (!value || value.trim() === '') {
@@ -129,7 +120,7 @@ export class Direccion {
             Number: ${this.#number},
             City: ${this.#city},
             State: ${this.#state},
-            Postal Code: ${this.#postal_code},
+            
             Country: ${this.#country},
             Type Address: ${this.#type_address},
             customer_id: ${this.#customer_id}
@@ -143,7 +134,7 @@ export class Direccion {
             number: this.#number,
             city: this.#city,
             state: this.#state,
-            postal_code: this.#postal_code,
+           
             country: this.#country,
             type_address: this.#type_address,
             customer_id: this.#customer_id

@@ -11,7 +11,7 @@ class AddressForms(forms.ModelForm):
             'number',
             'city',
             'state',
-            'postal_code',
+            
             'country',
             'type_address',
             
@@ -22,7 +22,7 @@ class AddressForms(forms.ModelForm):
             'number':'Zona',
             'city':'Departamento',
             'state':'Municipio',
-            'postal_code':'Codigo Postal',
+            
             'country':'País',
             'type_address':'Tipo de direccion',
             
@@ -36,7 +36,7 @@ class AddressForms(forms.ModelForm):
             'number': forms.TextInput(attrs={'class':'form-control','type':'number','min':'0'}),
             'city': forms.TextInput(attrs={'class':'form-control'}),
             'state': forms.TextInput(attrs={'class':'form-control'}),
-            'postal_code': forms.TextInput(attrs={'class':'form-control'}),
+            
             'country': forms.TextInput(attrs={'class':'form-control'}),
             'type_address':forms.Select(attrs={'class':'form-control'}),
            

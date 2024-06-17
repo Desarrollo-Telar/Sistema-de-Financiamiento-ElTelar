@@ -15,12 +15,13 @@ document.getElementById('customer').addEventListener('submit', async function (e
     try {
         
         console.log(JSON.stringify(recoletarInformacionCliente().toJSON()));
-        //const customerData = await postCustomer(urls.api_url_cliente);
-        //console.log('Cliente registrado con éxito:', customerData);
-       // customer_id = customerData.id;
+        recoletarInformacionCliente();
+        const customerData = await postCustomer(urls.api_url_cliente);
+        console.log('Cliente registrado con éxito:', customerData);
+        customer_id = customerData.id;
 
         // Registra la dirección
-    /*
+    
         recoletarInformacionDirecciones(customer_id);
         const direccionData = await postDireccion(urls.api_url_direccion, customer_id);
         console.log('Dirección registrada con éxito:', direccionData);
@@ -52,9 +53,9 @@ document.getElementById('customer').addEventListener('submit', async function (e
         let generar = `${protocol}//${hostname}:${port}/qr/${protocol}//${hostname}:${port}/formulario_ive/${customer_id}//`;
 
         console.log(generar);
-        window.location.href = generar;
-        //window.location.href = '/customers/';
-        */
+        //window.location.href = generar;
+        window.location.href = '/customers/';
+        
         
     } catch (error) {
         console.error('Error al registrar los datos:', error);
