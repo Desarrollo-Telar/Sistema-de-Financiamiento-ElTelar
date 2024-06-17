@@ -14,7 +14,7 @@ document.getElementById('customer').addEventListener('submit', async function (e
 
     try {
         
-        console.log(JSON.stringify(recoletarInformacionCliente().toJSON()));
+        
         recoletarInformacionCliente();
         const customerData = await postCustomer(urls.api_url_cliente);
         console.log('Cliente registrado con éxito:', customerData);

@@ -3,13 +3,14 @@
   <table class="table">
     <thead>
       <tr>
+        <th scope="col">Tipo de direccion</th>
         <th scope="col">Direccion</th>
         <th scope="col">Zona</th>
         <th scope="col">Departamento</th>
         <th scope="col">Municipio</th>
         <th scope="col">Código Postal</th>
         <th scope="col">Pais</th>
-        <th scope="col">Tipo de direccion</th>
+        
         <th scope="col">Longitud</th>
         <th scope="col">Latitud</th>
         <th scope="col">Editar</th>
@@ -17,21 +18,20 @@
     </thead>
     <tbody>
       {% for dire in direccion%}
+
       <tr>
-        <th scope="row"> {{dire.street}}</th>
+        <td scope="row">{{dire.type_address}}</td>
+        <th > {{dire.street}}</th>
         <td>{{dire.number}}</td>
         <td>{{dire.city}}</td>
         <td>{{dire.state}}</td>
         <td>{{dire.postal_code}}</td>
         <td>{{dire.country}}</td>
-        <td>{{dire.type_address}}</td>
-        {%for cordinate in coordenada%}
-        {%if cordinate.address_id == dire %}
+        
+        <!-- 
         <td>{{cordinate.longitud}}</td>
         <td>{{cordinate.longitud}}</td>
-        {% endif %}
-
-        {%endfor%}
+       -->
         <td>
           <a href="#">Editar direccion</a>
         </td>

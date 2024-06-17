@@ -125,6 +125,8 @@ def detail_customer(request,customer_code):
     plan_inversion = InvestmentPlan.objects.filter(Q(customer_id=customer_list))
     reference = Reference.objects.filter(Q(customer_id=customer_list))
     coordenada = Coordinate.objects.all()
+
+    print(direccion)
   
 
     
