@@ -247,6 +247,7 @@ def verification(request):
                 if str(code)==num:
                     code.save()
                     login(request, user)
+                    messages.success(request, 'Credenciales validos. ¡Bienvenido!')
                     return redirect('index')
                 else:
                     return redirect('login')
@@ -277,3 +278,5 @@ def index(request):
         'mes':mes_actual_nombre,
     }
     return render(request, template_name, context)
+
+# SE ME OLVIDO LA CONTRASEÑA
