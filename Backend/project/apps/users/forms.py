@@ -4,7 +4,7 @@ from django import forms
 from .models import User
 
 # LIBRERIA QUE SE ENCARGA DE CREAR USUARIOS
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 # Validaores
 from .validations import validar_correo
@@ -101,6 +101,11 @@ class RegistroForm(UserCreationForm):
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'profile_pic': forms.FileInput(attrs={'type':'checkbox', 'name':'image', 'type':'file', 'accept':'image', 'class':'form-control'}),
         }
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'type_identification', 'identification_number', 'telephone', 'status', 'gender', 'user_code', 'nationality', 'profile_pic')
 
 class UpdateUserForm(forms.ModelForm):
    
