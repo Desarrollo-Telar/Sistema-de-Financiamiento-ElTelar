@@ -14,8 +14,9 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from rest_framework.documentation import include_docs_urls
 
-#FORMULARIO
 
+from django.core.mail import send_mail
+from django.conf import settings
 
 urlpatterns = [    
     path('',login_required(views.index),name='index'),
@@ -40,7 +41,7 @@ urlpatterns = [
     path('pdf/<int:id>',login_required(views.render_pdf_view), name='pdf'),
 
 
-    path('reset_password/',auth_views.PasswordResetView.as_view(template_name='user/autentication/password-reset.html', email_template_name='user/autentication/password-message.html'),name='password_reset'),
+    path('reset_password/',auth_views.PasswordResetView.as_view(template_name='user/autentication/password-reset.html',email_template_name='user/autentication/password-message.html'),name='password_reset'),
     path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(template_name='user/autentication/password-confirmation1.html'),name='password_reset_done'),
     path('reset_password/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(template_name='user/autentication/password_reset_confirm.html'),name='password_reset_confirm'),    
     path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(template_name='user/autentication/password-confirmation2.html'),name='password_reset_complete'),
@@ -49,3 +50,6 @@ urlpatterns = [
 
 if settings.DEBUG:    
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+#template_name='user/autentication/password-reset.html'
+#email_template_name='user/autentication/password-message.html'

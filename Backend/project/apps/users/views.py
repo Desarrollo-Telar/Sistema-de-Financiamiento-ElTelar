@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.http import HttpResponse
 
 # Modelos
-from .models import VerificationToken, User
+from .models import  User
 
 # Formulario
 from .forms import RegistroForm, UpdateUserForm, ChangePasswordForm

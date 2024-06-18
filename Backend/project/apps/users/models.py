@@ -8,8 +8,8 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Llamado de tablas para la relacion
-from apps.roles.models import Role
+
+
 
 import random
 
