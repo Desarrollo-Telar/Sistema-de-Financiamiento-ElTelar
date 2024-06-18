@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import Permission
+from apps.users.models import User
 
 
 # Create your models here.
@@ -15,7 +16,17 @@ class Role(models.Model):
         verbose_name = "Rol"
         verbose_name_plural = "Roles"
 
+# Creacion de la tabla Usuario Rol
+class UserRole(models.Model):
+    idUser = models.ForeignKey(User, blank=False, null=False,on_delete=models.CASCADE, verbose_name='Usuario', related_name='rol_usuario')
+    idRole = models.ForeignKey(Role, blank=False, null=False, on_delete=models.CASCADE, verbose_name='Rol', related_name='rol_usuario')
+    
+    def __str__(self):
+        return f'Rol de {self.idRole} para {self.idUser}'
 
+    class Meta:
+        verbose_name = "Rol de Usuario"
+        verbose_name_plural = "Roles de Usuarios"
 
 
 class Meta:

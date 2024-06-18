@@ -2,7 +2,16 @@
     <div class="col-6">
         <div class="form-group">
             <label for="type_of_product_or_service">Tipo Producto o Servicio</label>
-            <input type="text" class="form-control" name="type_of_product_or_service" id="type_of_product_or_service">
+            <select class="form-select" aria-label="Default select example" name="type_of_product_or_service" id="type_of_product_or_service">
+                
+                <option value="DERECHOS DE POSESIÓN E HIPOTECA">DERECHOS DE POSESIÓN E HIPOTECA</option>
+                <option value="FIDUCIARIA">FIDUCIARIA</option>
+                <option value="PRENDARIA">PRENDARIA</option>
+                <option value="MOBILIARIA">MOBILIARIA</option>
+                <option value="FIDEICOMISOS Y PROGRAMAS ADICIONALES">FIDEICOMISOS Y PROGRAMAS ADICIONALES</option>
+                <option value="PRÉSTAMO">PRÉSTAMO</option>
+              </select>
+            
         </div>
     </div>
     <div class="col-6">
@@ -29,17 +38,17 @@
             <label for="initial_amount">Monto Inicial a manejar en el producto o servicios</label>
             <div class="input-group">
                 <div class="input-group-text">Q</div>
-                <input type="num" min="0" class="form-control" name="initial_amount" id="initial_amount">
+                <input type="num" min="0" class="form-control" name="initial_amount" id="initial_amount" step="any">
             </div>
 
         </div>
     </div>
     <div class="col-6">
         <div class="form-group">
-            <label for="monthly_amount">Monto Inicial a manejar en el producto o servicios</label>
+            <label for="monthly_amount">Monto Mensual a manejar en el producto o servicios</label>
             <div class="input-group">
                 <div class="input-group-text">Q</div>
-                <input type="num" min="0" class="form-control" name="monthly_amount" id="monthly_amount">
+                <input type="num" min="0" class="form-control" name="monthly_amount" id="monthly_amount" step="any">
             </div>
 
         </div>

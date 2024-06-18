@@ -28,7 +28,7 @@ class InvestmentPlanForms(forms.ModelForm):
         }
 
         widgets = {
-            'type_of_product_or_service':forms.TextInput(attrs={'class':'form-control'}),
+            'type_of_product_or_service':forms.Select(attrs={'class':'form-control'}),
             'total_value_of_the_product_or_service':forms.TextInput(attrs={'class':'form-control'}),
             'investment_plan_description':forms.Textarea(attrs={'class':'form-control','rows':'3'}),
             'initial_amount':forms.TextInput(attrs={'class':'form-control'}),

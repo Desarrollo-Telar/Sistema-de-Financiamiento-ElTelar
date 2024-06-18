@@ -4,6 +4,7 @@ from django.db import models
 from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
+from apps.users.models import User
 
 # Create your models here.
 class Document(models.Model):
@@ -48,7 +49,8 @@ class DocumentOther(models.Model):
     description = models.CharField("Descripción", max_length=150, blank=True, null=True)
     document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='other_documents')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='other_documents')
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='other_documents')
+    
     class Meta:
         verbose_name = "Otro Documento"
         verbose_name_plural = "Otros Documentos"

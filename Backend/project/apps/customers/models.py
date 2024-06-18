@@ -54,6 +54,7 @@ class Customer(models.Model):
         ('Aprobado', 'Aprobado'),
         ('No Aprobado', 'No Aprobado'),
         ('Posible Cliente', 'Posible Cliente'),
+        ('Dar de Baja', 'Dar de Baja'),
     ]
     user_id = models.ForeignKey(User, blank=False, null=False, on_delete=models.CASCADE, verbose_name="Usuario")
     immigration_status_id = models.ForeignKey(ImmigrationStatus, blank=False, null=False, on_delete=models.CASCADE, verbose_name="Estatus Migratorio")
@@ -95,7 +96,8 @@ def generate_customer_code(status, current_year, counter):
         'Posible Cliente': 'S',
         'No Aprobado': 'N',
         'Aprobado': '',
-        'Revisión de documentos': 'D'
+        'Revisión de documentos': 'D',
+        'Dar de Baja': '',
     }
     suffix = status_suffix.get(status, '')
     return f'{current_year}-{suffix}{counter}'
