@@ -30,6 +30,65 @@ from apps.InvestmentPlan.forms import InvestmentPlanForms
 
 from django.apps import apps
 
+# ----- EDITAR INFORMACION PERSONAL DE UN CLIENTE ----- #
+def update_customer(request, customer_code):
+    template_name = 'customer/update.html'
+    customer = get_object_or_404(Customer, customer_code=str(customer_code))
+    
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            cliente = customer
+            cliente.first_name = form.changed_data.get('first_name')
+            cliente.last_name = form.changed_data.get('last_name')
+            cliente.type_identification = form.changed_data.get('type_identification')
+            cliente.identification_number = form.changed_data.get('identification_number')
+            cliente.marital_status = form.changed_data.get('marital_status')
+            cliente.nationality = form.changed_data.get('nationality')
+            cliente.number_nit = form.changed_data.get('number_nit')
+            cliente.date_birth = form.changed_data.get('date_birth')
+            cliente.place_birth = form.changed_data.get('place_birth')
+            cliente.gender = form.changed_data.get('gender')
+            cliente.profession_trade = form.changed_data.get('profession_trade')
+            cliente.person_type = form.changed_data.get('person_type')
+            cliente.telephone = form.changed_data.get('telephone')
+            cliente.email = form.changed_data.get('email')
+            cliente.status = form.changed_data.get('status')
+            cliente.description = form.changed_data.get('description')
+            cliente.save()
+            redirect('customers:detail',cliente.customer_code)
+            
+
+    else:
+
+        initial_data_customer = {
+            'first_name':customer.first_name,
+            'last_name':customer_last_name,
+            'type_identification':customer.type_identification,
+            'identification_number':customer.identification_number,
+            'marital_status':customer.marital_status,            
+            'nationality':customer.nationality,
+            'number_nit':customer.number_nit,
+            'date_birth':customer.date_birth,
+            'place_birth':customer.place_birth,
+            'gender':customer.gender,
+            'profession_trade':customer.profession_trade,
+            'person_type':customer.person_type,
+            'telephone':customer.telephone,
+            'email':customer.email,
+            'status':customer.status,  
+            'description':customer.description
+        
+
+        }
+        form = CustomerForm(initial=initial_data_customer)
+        context = {
+            'form':form,
+            'title':'ELTELAR - CLIENTE {}'.format(customer),
+            'customer_code':customer.customer_code
+        }
+        return render(request, template_name, context)
+
 
 # ----- ELIMINACION DE CLIENTES ----- #
 @login_required

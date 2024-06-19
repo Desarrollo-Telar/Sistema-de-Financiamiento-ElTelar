@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <form method="POST" action="{% url 'customers:update' customer_code %}" >
+        {% csrf_token %}
+        {% include 'customer/forms/forms.html' %}
+        <button type="submit">Actualizar</button>
+
+
+    </form>
+{% endblock %}

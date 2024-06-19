@@ -76,7 +76,7 @@ class RegistroForm(UserCreationForm):
             'telephone',
             'gender',
             'nationality',
-           # 'profile_pic',
+            'profile_pic',
 
         ]
 
