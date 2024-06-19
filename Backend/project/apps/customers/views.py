@@ -118,15 +118,14 @@ def detail_customer(request,customer_code):
     informacion_laboral = WorkingInformation.objects.filter(Q(customer_id=customer_list))
     otra_informacion_laboral = OtherSourcesOfIncome.objects.filter(Q(customer_id=customer_list))
     direccion = Address.objects.filter(Q(customer_id=customer_list))
+    
     plan_inversion = InvestmentPlan.objects.filter(Q(customer_id=customer_list))
     reference = Reference.objects.filter(Q(customer_id=customer_list))
-    coordenada = Coordinate.objects.all()
+    coor = []
+    for dire in direccion:
+        coordenada = Coordinate.objects.filter(Q(address_id=dire))
+        coor.append(coordenada)
 
-    print(direccion)
-  
-
-    
-    
     context = {
         'title': 'ELTELAR - {} {} / {}'.format(customer_list.first_name, customer_list.last_name,str(customer_code)),
         'customer_list':customer_list,
@@ -136,7 +135,7 @@ def detail_customer(request,customer_code):
         'otra_informacion_laboral' :otra_informacion_laboral,
         'reference':reference,
         'plan_inversion':plan_inversion,
-        'coordenada':coordenada,
+        'coordenada':coor,
     }
     return render(request, template_name, context)
 

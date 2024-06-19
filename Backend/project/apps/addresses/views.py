@@ -53,7 +53,7 @@ class AddressCreateView(CreateView):
             direccion.number = form2.cleaned_data.get('number')
             direccion.city = form2.cleaned_data.get('city')
             direccion.state = form2.cleaned_data.get('state')
-            direccion.postal_code = form2.cleaned_data.get('postal_code')
+           
             direccion.country = form2.cleaned_data.get('country')
             direccion.type_address = form2.cleaned_data.get('type_address')
             direccion.customer_id = cliente
@@ -88,7 +88,7 @@ def addressUpdateView(request, id,customer_code):
             direccion.number = form2.cleaned_data.get('number')
             direccion.city = form2.cleaned_data.get('city')
             direccion.state = form2.cleaned_data.get('state')
-            direccion.postal_code = form2.cleaned_data.get('postal_code')
+            
             direccion.country = form2.cleaned_data.get('country')
             direccion.type_address = form2.cleaned_data.get('type_address')
             direccion.customer_id = cliente
@@ -110,7 +110,7 @@ def addressUpdateView(request, id,customer_code):
             'number':address.number,
             'city':address.city,
             'state':address.state,
-            'postal_code':address.postal_code,
+            
             'country':address.country,
             'type_address':address.type_address,
         }

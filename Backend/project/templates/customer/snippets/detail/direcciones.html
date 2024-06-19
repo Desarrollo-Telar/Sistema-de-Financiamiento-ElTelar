@@ -8,7 +8,7 @@
         <th scope="col">Zona</th>
         <th scope="col">Departamento</th>
         <th scope="col">Municipio</th>
-        <th scope="col">Código Postal</th>
+       
         <th scope="col">Pais</th>
         
         <th scope="col">Longitud</th>
@@ -17,25 +17,27 @@
       </tr>
     </thead>
     <tbody>
-      {% for dire in direccion%}
+      {% for dire in coordenada%}
+      {% for x in dire %}
 
       <tr>
-        <td scope="row">{{dire.type_address}}</td>
-        <th > {{dire.street}}</th>
-        <td>{{dire.number}}</td>
-        <td>{{dire.city}}</td>
-        <td>{{dire.state}}</td>
-        <td>{{dire.postal_code}}</td>
-        <td>{{dire.country}}</td>
+        <th scope="row">{{x.address_id.type_address}}</th>
+        <td > {{x.address_id.street}}</td>
+        <td>{{x.address_id.number}}</td>
+        <td>{{x.address_id.city}}</td>
+        <td>{{x.address_id.state}}</td>
+       
+        <td>{{x.address_id.country}}</td>
         
-        <!-- 
-        <td>{{cordinate.longitud}}</td>
-        <td>{{cordinate.longitud}}</td>
-       -->
+        
+        <td>{{x.longitud}}</td>
+        <td>{{x.latitud}}</td>
+      
         <td>
-          <a href="#">Editar direccion</a>
+          <a href="{% url 'addresses:update' x.address_id.id customer_list.customer_code %}">Editar direccion</a>
         </td>
       </tr>
+      {% endfor %}
       {% endfor %}
 
     </tbody>

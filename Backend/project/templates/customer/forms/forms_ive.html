@@ -457,108 +457,10 @@
                                             Información persona individual:
                                         </p>
                                     </div>
+                                    {% if working_information%}
                                     {% for trabajo in working_information %}
-
-                                    {% if trabajo.source_of_income == 'Otra' %}
-                                    <!-- AQUI SE AGREGA LA INFORMACION LABORAL DE OTRA -->
-
-                                    <div class="seccion">
-                                        <div class="col-6">
-                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                5.1 Otras fuentes o ingresos adicionales especificar:
-                                            </p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p style="border: 1px solid; text-align: center;">
-                                                {{otra.source_of_income}}
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-12">
-                                        <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                            Información persona individual con negocio propio:
-                                        </p>
-                                    </div>
-                                    <div class="seccion">
-                                        <div class="col-4">
-                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                5.1.1.1 Número de identificación tributaria (NIT):
-                                            </p>
-                                        </div>
-                                        <div class="col">
-                                            <p style="border: 1px solid; text-align: center;">
-                                                {{otra.nit}}
-                                            </p>
-                                        </div>
-
-                                        <div class="col">
-                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                5.1.1.2 Número(s) de teléfono(s):
-                                            </p>
-                                        </div>
-                                        <div class="col">
-                                            <p style="border: 1px solid; text-align: center;">
-                                                {{otra.phone_number}}
-                                            </p>
-                                        </div>
-                                        <div class="col">
-                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                                5.1.1.3 Ingresos:
-                                            </p>
-                                        </div>
-                                        <div class="col">
-                                            <p style="border: 1px solid; text-align: center;">
-                                                {{otra.salary}}
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-12">
-                                        <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
-                                            5.1.1.3 Dirección o sede completa de la empresa/institución donde trabaja o
-                                            del negocio: (No. de calle o avenida, No. de casa, colonia, sector, lote,
-                                            manzana, otros)
-                                        </p>
-                                    </div>
-                                    {% for direccion_1 in address_list %}
-                                    {% if direccion_1.type_address == 'Dirección de Trabajo' %}
-                                    <div class="col-12">
-
-                                        <p style="border: 1px solid; ">{{direccion_1.street}}
-                                        </p>
-                                    </div>
-                                    <div class="seccion">
-                                        <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Zona: <span
-                                                    style="font-size: 1rem;">{{direccion_1.number}}</span>
-                                            </p>
-                                        </div>
-                                        <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Departamento: <span
-                                                    style="font-size: 1rem;">{{direccion_1.state}}</span>
-                                            </p>
-                                        </div>
-                                        <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> Municipio: <span
-                                                    style="font-size: 1rem;">{{direccion_1.city}}</span>
-                                            </p>
-                                        </div>
-                                        <div class="col">
-                                            <p style="border: 1px solid;  font-size: 0.75rem;"> País: <span
-                                                    style="font-size: 1rem;">{{direccion_1.country}}</span>
-                                            </p>
-                                        </div>
-
-
-                                    </div>
-                                    {% endif %}
-                                    {% endfor %}
-
-
-                                    {% else %}
-                                    <!-- AQUI SE AGREGA LA INFORMACION LABORAL DE DEPENDENCIA O TRABAJO PROPIO -->
-                                    <div class="seccion">
+                                     <!-- AQUI SE AGREGA LA INFORMACION LABORAL DE DEPENDENCIA O TRABAJO PROPIO -->
+                                     <div class="seccion">
                                         <div class="col-6">
                                             <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                                 5.1 Fuentes de Ingreso</p>
@@ -609,6 +511,62 @@
 
                                     </div>
 
+                                    {% endfor %}
+
+                                    {% endif %}
+
+                                    {% if other_information %}
+                                    {% for otra in other_information %}
+                                    <div class="seccion">
+                                        <div class="col-6">
+                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
+                                                5.1 Otras fuentes o ingresos adicionales especificar:
+                                            </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{otra.source_of_income}}
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12">
+                                        <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
+                                            Información persona individual con negocio propio:
+                                        </p>
+                                    </div>
+                                    <div class="seccion">
+                                        <div class="col-4">
+                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
+                                                5.1.1.1 Número de identificación tributaria (NIT):
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{otra.nit}}
+                                            </p>
+                                        </div>
+
+                                        <div class="col">
+                                            <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
+                                                5.1.1.2 Número(s) de teléfono(s):
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <p style="border: 1px solid; text-align: center;">
+                                                {{otra.phone_number}}
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                    {% endfor%}
+                                    {% endif %}
+                                    
+
+                                   
+                                    <!-- AQUI SE AGREGA LA INFORMACION LABORAL DE OTRA -->
+
+                                    
                                     <div class="col-12">
                                         <p style="font-weight:bold; background-color: #D3D3D3; border: 1px solid; ">
                                             5.1.1.3 Dirección o sede completa de la empresa/institución donde trabaja o
@@ -616,8 +574,6 @@
                                             manzana, otros)
                                         </p>
                                     </div>
-
-
                                     {% for direccion_1 in address_list %}
                                     {% if direccion_1.type_address == 'Dirección de Trabajo' %}
                                     <div class="col-12">
@@ -651,7 +607,11 @@
                                     </div>
                                     {% endif %}
                                     {% endfor %}
-                                    {% endif %}
+
+
+                                  
+                                   
+
 
                                     <div class="col-12">
                                         <p style=" background-color: #D3D3D3; border: 1px solid; font-size: 0.7rem;">
@@ -673,7 +633,18 @@
                                         </div>
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
+                                                {% if working_information %}
+                                                {% for trabajo in working_information%}
                                                 Q<span>{{trabajo.salary}}</span>
+                                                {% endfor %}
+                                                {% endif %}
+
+                                                {% if other_information %}
+                                                {% for trabajo in other_information%}
+                                                Q<span>{{trabajo.salary}}</span>
+                                                {% endfor %}
+                                                {% endif %}
+
 
                                             </p>
                                         </div>
@@ -681,7 +652,7 @@
 
                                     </div>
 
-                                    {% endfor %}
+                                    
                                 </div>
                             </div>
                         </div>
