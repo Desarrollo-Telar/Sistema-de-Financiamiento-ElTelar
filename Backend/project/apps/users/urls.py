@@ -20,6 +20,7 @@ urlpatterns = [
     path('deactivate_user/<int:id>/', login_required(views.deactivate), name='deactivate'),
     path('detail_user/<str:username>/', views.detail_user, name='detail'),
     path('change_password/', login_required(views.ChangePassword.as_view()), name='update_password'),
+    path('change_password_user/<int:id>/', login_required(views.change_password_user), name='update_password_user'),
     path('search/', login_required(views.UserSearch.as_view()), name='search'),
 ]
 

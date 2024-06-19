@@ -37,6 +37,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 
 from django.apps import apps
+from django.contrib import messages
 
 # ----- DESACTIVAR A UN USUARIO ---- #
 @login_required
@@ -58,7 +59,7 @@ def list_user(request):
 
     context = {
         'title':'EL TELAR - USUARIOS',
-        'object_list':users,
+        'object_list':page_obj,
         'page_obj':page_obj,
     }
     return render(request, template_name, context)
@@ -150,6 +151,30 @@ class ChangePassword(View):
             'title': 'CAMBIAR CONTRASEÑA',
             'info': 'CAMBIAR CONTRASEÑA'
             })
+
+# ----- MODULO QUE CAMBIA LA CONTRASEÑA A USUARIOS ----- #
+@usuario_activo
+def change_password_user(request, id):
+    template_name ='user/change_password.html'
+    user = get_object_or_404(User, id=id)
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.POST)  # Crear una instancia del formulario con los datos POST
+        if form.is_valid():
+            user.set_password(form.cleaned_data.get('password1'))
+            user.save()
+            messages.success(request, 'Contraseña cambiada exitosamente')
+            return redirect('users:users')
+        else:
+            messages.error(request, 'No se pudo realizar el cambio, verifique bien sus credenciales')
+    
+    form = ChangePasswordForm()  # Crear una instancia del formulario vacía si es una solicitud GET
+
+    context = {
+        'form': form,
+        'title': 'CAMBIAR CONTRASEÑA',
+        'info': 'CAMBIAR CONTRASEÑA'
+    }
+    return render(request, template_name, context)
 
 # ----- MODULO QUE BUSCA A LOS USUARIOS ----- #
 class UserSearch(ListView):

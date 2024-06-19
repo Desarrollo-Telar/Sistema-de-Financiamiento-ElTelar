@@ -108,7 +108,7 @@ def list_customer(request):
     context = {
         'title':'EL TELAR - CLIENTES',
         'page_obj':page_obj,
-        'customer_list':customer_list,
+        'customer_list':page_obj,
     }
     return render(request, template_name, context)
 
