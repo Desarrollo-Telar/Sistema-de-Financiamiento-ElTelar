@@ -1,18 +1,18 @@
 export class InformacionLaboral {
     #position;
-    #company_name;  
+    #company_name;
     #start_date;
-    #description; 
+    #description;
     #salary;
-    #working_hours;  
+    #working_hours;
     #phone_number;
-    #source_of_income;  
+    #source_of_income;
     #income_detail;
-    #employment_status;  
+    #employment_status;
     #customer_id;
 
-    constructor(position='', company_name='', start_date='', description='', salary='',
-                working_hours='', phone_number='', source_of_income='', income_detail='', employment_status='', customer_id='') {
+    constructor(position = '', company_name = '', start_date = '', description = '', salary = '',
+        working_hours = '', phone_number = '', source_of_income = '', income_detail = '', employment_status = '', customer_id = '') {
         this.#position = position;
         this.#company_name = company_name;
         this.#start_date = start_date;
@@ -67,7 +67,7 @@ export class InformacionLaboral {
         return this.#employment_status;
     }
 
-    get customer_id(){
+    get customer_id() {
         return this.#customer_id;
     }
 
@@ -78,7 +78,7 @@ export class InformacionLaboral {
             throw new Error('Debe ingresar la posicion del cliente de su informacion laboral');
         }
 
-        
+
         this.#position = value.trim();
     }
 
@@ -88,7 +88,7 @@ export class InformacionLaboral {
             throw new Error('Debe ingresar el nombre de la empresa del cliente de su informacion laboral');
         }
 
-        
+
         this.#company_name = value.trim();
     }
 
@@ -98,9 +98,9 @@ export class InformacionLaboral {
             throw new Error('Debe ingresar la fecha de inicio del cliente de su informacion laboral');
         }
 
-        
+
         this.#start_date = value.trim();
-        
+
     }
 
     set description(value) {
@@ -136,7 +136,7 @@ export class InformacionLaboral {
             console.error('Numero de telefono no valido, no cumple con el estandar de un numero de telefono. Verificar!!!')
             throw new Error('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
         }
-        
+
         this.#phone_number = value;
     }
 
@@ -152,11 +152,38 @@ export class InformacionLaboral {
         this.#employment_status = value;
     }
 
-    set customer_id(value){
+    set customer_id(value) {
         this.#customer_id = value;
     }
-        
-    
+
+    validar() {
+        if (
+            (
+                this.#position.trim() === '' &&
+                this.#company_name.trim() === '' &&
+                this.#start_date.trim() === '' &&
+                this.#description.trim() === '' &&
+                this.#salary.trim() === '' &&
+                this.#working_hours.trim() === '' &&
+                this.#phone_number.trim() === '' &&
+                this.#employment_status.trim() === '' 
+                ) ||
+            (
+                !this.#position &&
+                !this.#company_name &&
+                !this.#start_date &&
+                !this.#description &&
+                !this.#salary &&
+                !this.#working_hours &&
+                !this.#phone_number &&
+                !this.#employment_status 
+            )
+        ) {
+            return false;
+        }
+        return true;
+    }
+
 
     // Método toString para representar el objeto como una cadena
     toString() {

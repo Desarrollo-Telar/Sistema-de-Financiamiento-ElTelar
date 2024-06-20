@@ -107,6 +107,27 @@ export class PlanInversion {
         this.#customer_id = value;
     }
 
+    // Validar
+    validar(){
+        if (
+            (
+                this.#type_of_product_or_service.trim() === '' &&
+                this.#total_value_of_the_product_or_service.trim() === '' &&
+                this.#initial_amount.trim() === '' &&
+                this.#monthly_amount.trim() === '' 
+            )||
+            (
+                !this.#type_of_product_or_service &&
+                !this.#total_value_of_the_product_or_service &&
+                !this.#initial_amount &&
+                !this.#monthly_amount 
+            )
+        ){
+            return false;
+        }
+        return true;
+    }
+
     // Método toString para representar el objeto como una cadena
     toString() {
         return `PlanInversion {

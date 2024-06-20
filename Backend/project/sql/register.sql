@@ -37,13 +37,13 @@ VALUES('DSAD','1808964-K','42249955','35',1);
 
 INSERT INTO addresses_address(street, number, city, state,  country, type_address, customer_id_id)
 VALUES
-('Calle Falsa 123', 456, 'Springfield', 'IL',  'USA', 'Dirección de Personal', 1),
-('Avenida Siempre Viva 742', 100, 'Springfield', 'IL',  'USA', 'Dirección de Trabajo', 1);
+('Calle Falsa 123', 456, 'Springfield', 'IL',  'USA', 'Dirección de Personal', 2),
+('Avenida Siempre Viva 742', 100, 'Springfield', 'IL',  'USA', 'Dirección de Trabajo', 2);
 
 INSERT INTO addresses_coordinate(latitud, longitud, address_id_id)
 VALUES
-(39.7817, -89.6501, 1),
-(39.7817, -89.6502, 2);
+(39.7817, -89.6501, 3),
+(39.7817, -89.6502, 4);
 
 INSERT INTO InvestmentPlan_investmentplan(
     type_of_product_or_service,

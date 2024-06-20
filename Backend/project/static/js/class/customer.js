@@ -115,7 +115,7 @@ export class Cliente {
         return this.#user_id;
     }
 
-    get description(){
+    get description() {
         return this.#description;
     }
 
@@ -147,7 +147,7 @@ export class Cliente {
         this.#type_identification = value.trim();
     }
 
-    static async validateIDENTIFICATIONNUMBER(value){
+    static async validateIDENTIFICATIONNUMBER(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el numero del tipo de identificación del cliente');
             throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
@@ -168,10 +168,10 @@ export class Cliente {
         if (encontrado) {
             throw new Error('Número de identificacion no válido. Este número de identificacion ya ha sido registrado');
         }
-        return value.trim(); 
+        return value.trim();
     }
 
-    async setIDENTIFICATIONNUMBER(value){
+    async setIDENTIFICATIONNUMBER(value) {
         this.#identification_number = await Cliente.validateIDENTIFICATIONNUMBER(value);
     }
 
@@ -190,7 +190,7 @@ export class Cliente {
             throw new Error('Numero de identificacion no valido. Verificar!!!');
 
         }
-        
+
 
         this.#identification_number = value.trim();
 
@@ -217,7 +217,7 @@ export class Cliente {
 
     }
 
-    static async validateEMAIL(value){
+    static async validateEMAIL(value) {
         if (!value || value.trim() === '') {
             //alert('Debe ingresar el correo electronico del cliente');
             throw new Error('Debe ingresar el correo electronico del cliente');
@@ -225,7 +225,7 @@ export class Cliente {
         // Expresión regular básica para validar el formato del correo electrónico
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         // Lista de dominios conocidos
-        const dominiosConocidos = ['gmail.com', 'yahoo.com', 'outlook.com','hotmail.com'];  // Agrega más dominios según sea necesario
+        const dominiosConocidos = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com'];  // Agrega más dominios según sea necesario
         // Validar el formato del correo electrónico
         if (!regex.test(value)) {
             console.error('Verifique bien si esta escribiendo el correo electronico...');
@@ -254,16 +254,16 @@ export class Cliente {
 
     }
 
-    async setEMAIL(value){
+    async setEMAIL(value) {
         this.#email = await Cliente.validateEMAIL(value);
     }
 
-    set email(value){
+    set email(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el correo electronico del cliente');
             throw new Error('Debe ingresar el correo electronico del cliente');
         }
-        
+
         // Expresión regular básica para validar el formato del correo electrónico
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         // Lista de dominios conocidos
@@ -273,7 +273,7 @@ export class Cliente {
             console.error('Verifique bien si esta escribiendo el correo electronico...');
             //alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito.');
-            
+
         }
         // Obtener el dominio del correo electrónico
         const dominio = value.split('@')[1];
@@ -283,7 +283,7 @@ export class Cliente {
             console.error('Verifique bien si esta escribiendo el dominio del correo electronico...');
             //alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
-            
+
         }
 
         // Falta por agregar el filtro de ver si ya existe el correo electronico registrado
@@ -340,14 +340,14 @@ export class Cliente {
         }
         const regex = /^(\d{7}-[A-Z]|\d{8}|\d{7}[A-Z]|\d{7}-\d{1})$/;
 
-         // Validar el formato del número de nit
-         if (!regex.test(value)) {
+        // Validar el formato del número de nit
+        if (!regex.test(value)) {
             console.error('Numero de NIT no valido. Verificar!!!')
             //alert('Numero de NIT no valido. Verificar!!!');
             throw new Error('Numero de NIT no valido. Verificar!!!');
-            
+
         }
-        
+
         this.#number_nit = value.trim();
     }
 
@@ -413,8 +413,24 @@ export class Cliente {
         this.#user_id = value;
     }
 
-    set description(value){
+    set description(value) {
         this.#description = value;
+    }
+
+    // Validar que todos los campos no esten vacios
+    validar() {
+        if (
+            (
+                this.#first_name.trim() ==='' && this.#last_name.trim() ==='' && this.#type_identification.trim() ==='' && this.#identification_number.trim() ==='' && this.#telephone.trim() ==='' &&this.#email.trim() ==='' &&this.#status.trim() ==='' &&
+                this.#date_birth.trim() ==='' &&this.#number_nit.trim() ==='' && this.#place_birth.trim() ==='' &&this.#marital_status.trim() ==='' &&this.#profession_trade.trim() ==='' &&this.#gender.trim() ==='' &&this.#nationality.trim() ==='' &&
+                this.#person_type.trim() ==='' &&this.#immigration_status_id.trim() ==='' && this.#user_id.trim() ==='') ||
+            (
+                !this.#first_name && !this.#last_name && !this.#type_identification && !this.#identification_number && !this.#telephone &&!this.#email &&!this.#status &&!this.#date_birth &&!this.#number_nit &&
+                !this.#place_birth &&!this.#marital_status &&!this.#profession_trade &&!this.#gender &&!this.#nationality &&!this.#person_type &&!this.#immigration_status_id && !this.#user_id )
+        ) {
+            return false;
+        }
+        return true;
     }
 
     // Método toJSON para convertir el objeto en una representación JSON
@@ -437,7 +453,7 @@ export class Cliente {
             person_type: this.#person_type,
             immigration_status_id: this.#immigration_status_id,
             user_id: this.#user_id,
-            description:this.#description,
+            description: this.#description,
         };
     }
     // Método toString para representar el objeto como una cadena

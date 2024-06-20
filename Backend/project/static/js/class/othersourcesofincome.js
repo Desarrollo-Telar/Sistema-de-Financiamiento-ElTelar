@@ -83,6 +83,29 @@ export class OtraInformacionLaboral {
         this.#customer_id = value;
     }
 
+    // validar
+    validar(){
+        if(
+            (
+                this.#source_of_income.trim() ==='' &&
+                this.#nit.trim() ===''&&
+                this.#phone_number.trim() ==='' &&
+               
+                this.#salary.trim() ===''
+            )||
+            (
+                !this.#source_of_income &&
+                !this.#nit&&
+                !this.#phone_number &&
+               
+                !this.#salary
+            )
+        ){
+            return false;
+        }
+        return true;
+    }
+
     // Método toString para representar el objeto como una cadena
     toString() {
         return `OtraInformacionLaboral {

@@ -4,7 +4,7 @@ export class Referencia {
     #reference_type;
     #customer_id;
 
-    constructor(full_name='', phone_number='', reference_type='',customer_id='') {
+    constructor(full_name = '', phone_number = '', reference_type = '', customer_id = '') {
         this.#full_name = full_name;
         this.#phone_number = phone_number;
         this.#reference_type = reference_type;
@@ -24,7 +24,7 @@ export class Referencia {
         return this.#reference_type;
     }
 
-    get customer_id(){
+    get customer_id() {
         return this.#customer_id;
     }
 
@@ -44,7 +44,7 @@ export class Referencia {
             throw new Error('Debe ingresar el numero de telefono de la referencia del cliente');
         }
 
-        
+
         // Expresión regular para exactamente 8 dígitos
         const regex = /^\d{8}$/;
 
@@ -53,7 +53,7 @@ export class Referencia {
             console.error('Numero de telefono no valido, no cumple con el estandar de un numero de telefono. Verificar!!!')
             throw new Error('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
         }
-        
+
         this.#phone_number = value.trim();
     }
 
@@ -61,8 +61,30 @@ export class Referencia {
         this.#reference_type = value;
     }
 
-    set customer_id(value){
+    set customer_id(value) {
         this.#customer_id = value;
+    }
+
+    // Validar
+    validar() {
+        if (
+            (
+                this.#full_name.trim() === '' &&
+                this.#phone_number.trim() === '' &&
+                this.#reference_type.trim() === '' 
+               
+            ) ||
+            (
+                !this.#full_name &&
+                !this.#phone_number &&
+                !this.#reference_type 
+               
+            )
+
+        ) {
+            return false;
+        }
+        return true;
     }
 
     // Método toString para representar el objeto como una cadena
@@ -81,7 +103,7 @@ export class Referencia {
             full_name: this.#full_name,
             phone_number: this.#phone_number,
             reference_type: this.#reference_type,
-            customer_id:this.#customer_id
+            customer_id: this.#customer_id
         };
     }
 }

@@ -113,6 +113,17 @@ export class Direccion {
         this.#customer_id = value;
     }
 
+    // Metodo para validar que todos los campos esten ingresados
+    validar() {
+        if (
+            (this.#street.trim() === '' && this.#number.trim() === '' && this.#city.trim() === '' && this.#state.trim() === '' && this.#country.trim() === '' && this.#type_address.trim() === '' ) ||
+            (!this.#street && !this.#number && !this.#city && !this.#state && !this.#country && !this.#type_address)
+        ) {
+            return false;
+        }
+        return true;
+    }
+
     // Método toString para representar el objeto como una cadena
     toString() {
         return `Direccion {

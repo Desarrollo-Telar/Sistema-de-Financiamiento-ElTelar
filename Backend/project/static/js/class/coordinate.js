@@ -42,6 +42,17 @@ export class Coordenada{
     set address_id(value){        
         this.#address_id = value;
     }
+    // Metodo para validar que todos los campos esten ingresados
+    validar(){
+        if(
+            (this.#longitud.trim() ==='' &&  this.#latitud.trim() ==='' )||
+            (!this.#longitud &&  !this.#latitud )
+        ){
+            return false;
+        }
+        return true;
+
+    }
 
     // ToJson
     toJSON(){
