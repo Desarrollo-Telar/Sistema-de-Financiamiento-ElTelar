@@ -99,7 +99,7 @@ class RegistroForm(UserCreationForm):
             'identification_number':forms.TextInput(attrs={'class':'form-control', 'type':'number', 'min':'0'}),
             'gender': forms.Select(attrs={'class':'form-control', 'name':'gender', 'id':'gender'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
-            'profile_pic': forms.FileInput(attrs={'type':'checkbox', 'name':'image', 'type':'file', 'accept':'image', 'class':'form-control'}),
+            'profile_pic': forms.FileInput(attrs={'name':'image', 'type':'file', 'accept':'image/*', 'class':'form-control'}),
         }
 
 class CustomUserChangeForm(UserChangeForm):
@@ -148,7 +148,7 @@ class UpdateUserForm(forms.ModelForm):
             'telephone',
             'gender',
             'nationality',
-            #'profile_pic',
+            'profile_pic',
             
 
             
