@@ -109,6 +109,8 @@ def list_customer(request):
         'title':'EL TELAR - CLIENTES',
         'page_obj':page_obj,
         'customer_list':page_obj,
+        'count':customer_list.count(),
+        
     }
     return render(request, template_name, context)
 
@@ -180,7 +182,7 @@ def detail_customer(request,customer_code):
     
     plan_inversion = InvestmentPlan.objects.filter(Q(customer_id=customer_list))
     reference = Reference.objects.filter(Q(customer_id=customer_list))
-    coor = []
+    coor = []        
     for dire in direccion:
         coordenada = Coordinate.objects.filter(Q(address_id=dire))
         coor.append(coordenada)

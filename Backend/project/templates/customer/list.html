@@ -10,6 +10,16 @@
     <div class="row">
         <div class="col" style="padding: 2.5rem">
             <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Clientes</span> !</h3>
+            <div class="d-flex justify-content-center fs-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{% url 'customers:customers' %}">Clientes</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+                     
+                    </ol>
+                  </nav>
+            </div>
+            
             <p>
                 En este módulo, podrás gestionar toda la información relacionada con tus clientes de manera eficiente y
                 organizada.
@@ -44,15 +54,20 @@
                                 d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
                         </svg>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Recientes <span class="badge text-bg-secondary">#</span> </a></li>
-                        <li><a class="dropdown-item" href="#">Solicitudes <span class="badge text-bg-secondary">#</span> </a></li>
-                        <li><a class="dropdown-item" href="#">No Aceptados <span class="badge text-bg-secondary">#</span> </a></li>
+                    
+                      
+                    <ul class="dropdown-menu ">
+                        <li><a class="dropdown-item fw-bold" href="{% url 'customers:customers' %}">Todos  </a></li>
+                        <li><a class="dropdown-item fw-normal" href="{% url 'customers:recent' %}">Recientes  </a></li>
+                        <li><a class="dropdown-item fw-normal" href="{% url 'customers:solicitude'%}">Solicitudes  </a></li>
+                        <li><a class="dropdown-item fw-normal" href="{% url 'customers:not_accepted' %}">No Aceptados  </a></li>
+                        <li><a class="dropdown-item fw-normal" href="{% url 'customers:document_review' %}">Revision de Documentos  </a></li>
                         
                         <hr>
-                        <li><a class="dropdown-item" href="#">Clientes de EL<span style="color: red;">T</span>ELAR <span class="badge text-bg-secondary">#</span></a></li>
-                        <li><a class="dropdown-item" href="#">Clientes Inactivos <span class="badge text-bg-secondary">#</span></a></li>
+                        <li><a class="dropdown-item fw-bold" href="{% url 'customers:accepted' %}">Clientes de EL<span style="color: red;">T</span>ELAR </a></li>
+                        <li><a class="dropdown-item fw-normal" href="{% url 'customers:inactive' %}">Clientes Inactivos </a></li>
                     </ul>
+                    
                 </div>
 
             </div>
@@ -64,11 +79,15 @@
 
 
     </div>
+    <p class="text-body-secondary fs-6 text-uppercase" >TOTAL DE TODOS LOS CLIENTES REGISTRADOS {{message}}: <span class="badge rounded-pill text-bg-dark">{{count}}</span>  </p>
+    <hr>
     {% include 'customer/table/table.html' %}
 
 </div>
 <hr>
+{% if page_obj %}
 {% include 'snippets/pages.html' %}
+{% endif %}
 
 
 
