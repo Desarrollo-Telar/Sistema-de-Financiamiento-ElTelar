@@ -1,7 +1,20 @@
 
 import { Cliente } from '../class/customer.js'
 
-//
+//output_name_customer
+const first_name = document.getElementById('first_name');
+const last_name = document.getElementById('last_name');
+const output_name_customer = document.getElementById('output_name_customer');
+output_name_customer.textContent = '';
+
+first_name.addEventListener('input', function(event){
+    output_name_customer.textContent += event.target.value+' '
+});
+
+last_name.addEventListener('input', function(event){
+    output_name_customer.textContent += event.target.value;
+});
+
 
 const inputField_email = document.getElementById('email');
 const outputDiv_email = document.getElementById('output_email');
