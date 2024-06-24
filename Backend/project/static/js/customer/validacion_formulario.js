@@ -7,13 +7,12 @@ const last_name = document.getElementById('last_name');
 const output_name_customer = document.getElementById('output_name_customer');
 output_name_customer.textContent = '';
 
-first_name.addEventListener('input', function(event){
-    output_name_customer.textContent += event.target.value+' '
-});
+function updateOutput() {
+    output_name_customer.textContent = `${first_name.value} ${last_name.value}`.trim();
+}
 
-last_name.addEventListener('input', function(event){
-    output_name_customer.textContent += event.target.value;
-});
+first_name.addEventListener('input', updateOutput);
+last_name.addEventListener('input', updateOutput);
 
 
 const inputField_email = document.getElementById('email');
