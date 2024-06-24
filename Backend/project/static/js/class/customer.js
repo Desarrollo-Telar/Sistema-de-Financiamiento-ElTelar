@@ -311,6 +311,7 @@ export class Cliente {
         if (!value || value.trim() === '') {
             throw new Error('Debe ingresar el número de NIT del cliente');
         }
+        /*
 
         const regex = /^(\d{7}-[A-Z]|\d{8}|\d{7}[A-Z]|\d{7}-\d{1})$/;
 
@@ -318,7 +319,7 @@ export class Cliente {
         if (!regex.test(value)) {
             throw new Error('Número de NIT no válido. Verificar');
         }
-
+*/
         // Verificar si el número de NIT ya está registrado
         const customers = await fetchCustomerList();
         const encontrado = customers.some(cliente => cliente['number_nit'] === value);
