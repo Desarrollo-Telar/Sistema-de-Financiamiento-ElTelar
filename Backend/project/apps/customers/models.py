@@ -15,6 +15,9 @@ from datetime import datetime
 # Settings
 from project.settings import MEDIA_URL, STATIC_URL
 
+# SEND EMAILS
+from project.send_mail import send_email_welcome_customer, send_email_new_customer
+
 # Create your models here.
 condition = [
         ('Residente temporal','Residente temporal'),
@@ -80,6 +83,9 @@ class Customer(models.Model):
     def get_qr(self):
         codigo = f'/media/qr/codigoQr_{self.customer_code}.png'
         return codigo if codigo else 'No hay info'
+    
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} / {self.customer_code}'
@@ -137,3 +143,9 @@ def set_customer_code_and_update_status(sender, instance, **kwargs):
                 customer_code = generate_customer_code(instance.status, current_year, counter)
 
             instance.customer_code = customer_code
+
+@receiver(post_save, sender=Customer)
+def send_message(sender, instance, created, **kwargs):
+    if created:
+        send_email_new_customer(instance)
+        send_email_welcome_customer(instance)

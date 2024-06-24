@@ -19,6 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
             'gender',
             'nationality',
             'profile_pic',
-            'status'
+            'status',
+            'rol'
 
         ]

@@ -77,6 +77,7 @@ class RegistroForm(UserCreationForm):
             'gender',
             'nationality',
             'profile_pic',
+            'rol'
 
         ]
 
@@ -89,6 +90,7 @@ class RegistroForm(UserCreationForm):
             'gender':'Genero',
             'nationality':'Nacionalidad',
             'profile_pic':'Imagen de Usuario',
+            'rol':'Rol de Usuario'
         }
 
         widgets = {
@@ -100,12 +102,13 @@ class RegistroForm(UserCreationForm):
             'gender': forms.Select(attrs={'class':'form-control', 'name':'gender', 'id':'gender'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'profile_pic': forms.FileInput(attrs={'name':'image', 'type':'file', 'accept':'image/*', 'class':'form-control'}),
+            'rol':forms.Select(attrs={'class':'form-control', 'name':'rol', 'id':'rol'}),
         }
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ('username', 'email', 'type_identification', 'identification_number', 'telephone', 'status', 'gender', 'user_code', 'nationality', 'profile_pic')
+        fields = ('username', 'email', 'type_identification', 'identification_number', 'telephone', 'status', 'gender', 'user_code', 'nationality', 'profile_pic','rol')
 
 class UpdateUserForm(forms.ModelForm):
    
@@ -149,7 +152,7 @@ class UpdateUserForm(forms.ModelForm):
             'gender',
             'nationality',
             'profile_pic',
-            
+            'rol'
 
             
         ]
@@ -163,6 +166,7 @@ class UpdateUserForm(forms.ModelForm):
             'nationality':'Nacionalidad',
             'status': 'Estado',
             'profile_pic':'Imagen de Usuario',
+            'rol':'Rol de Usuario',
 
         }
 
@@ -175,6 +179,7 @@ class UpdateUserForm(forms.ModelForm):
             'gender': forms.Select(attrs={'class':'form-control', 'name':'gender', 'id':'gender'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'profile_pic': forms.FileInput(attrs={'type':'checkbox', 'name':'image', 'type':'file', 'accept':'image', 'class':'form-control'}),
+            'rol':forms.Select(attrs={'class':'form-control', 'name':'rol', 'id':'rol'}),
         }
 
 ###-- FORMULARIO PARA CAMBIAR LA CONTRASEÑA --###

@@ -66,16 +66,16 @@ services:
       - app_fin
 
   # Servicio de NGINX
-  nginx:
-    image: nginx
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - web
-    networks:
-      - app_fin
+  #nginx:
+    #image: nginx
+    #ports:
+      #- "80:80"
+    #volumes:
+      #- ./nginx.conf:/etc/nginx/nginx.conf
+    #depends_on:
+      #- web
+    #networks:
+      #- app_fin
 
 volumes:
   postgres_data:

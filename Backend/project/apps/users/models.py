@@ -29,6 +29,16 @@ class User(AbstractUser):
         ('MASCULINO', 'MASCULINO'),
         ('FEMENINO', 'FEMENINO')
     ]
+    roles = [
+        ('Administrador','Administrador'),
+        ('Administradora','Administradora'),
+        ('Programador','Programador'),
+        ('Programadora','Programadora'),
+        ('Secretaria','Secretaria'),
+        ('Secretario','Secretario'),
+        ('Contador','Contador'),
+        ('Contadora','Contadora'),
+    ]
     type_identification = models.CharField("Tipo de Identificación", choices=tipo_identificacion, default='DPI', max_length=50)
     identification_number = models.CharField("Número de Identificación", max_length=15, blank=False, null=False, unique=True)
     telephone = models.CharField("Teléfono", max_length=20, blank=True, null=True)
@@ -38,6 +48,7 @@ class User(AbstractUser):
     user_code = models.CharField("Código de Usuario", max_length=25, blank=False, null=False, unique=True)
     nationality = models.CharField("Nacionalidad", max_length=75, blank=False, null=False, default='Guatemala')
     profile_pic = models.ImageField("Foto de Perfil", blank=True, null=True, upload_to='users/profile_pics/')
+    rol = models.CharField("Rol de Usuario", choices=roles, max_length=50)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
     def __str__(self):
@@ -92,3 +103,14 @@ def set_user_code(sender, instance, *args, **kwargs):
 def set_username(sender, instance, *args, **kwargs):
     if not instance.username: # Verifica si el username está vacío
         instance.username = instance.email # Usa el email como username si está vacío
+
+# Funcion para permisos de administrador
+@receiver(pre_save, sender=User)
+def set_rol(sender, instance, *args, **kwargs):
+    roles_superuser = ['Administrador', 'Administradora', 'Programador', 'Programadora']
+    
+    if instance.rol in roles_superuser:
+        instance.is_superuser = True 
+    elif instance.is_superuser:
+        instance.rol = 'Administrador'
+
