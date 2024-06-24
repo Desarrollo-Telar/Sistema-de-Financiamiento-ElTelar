@@ -18,6 +18,9 @@ from project.settings import MEDIA_URL, STATIC_URL
 # SEND EMAILS
 from project.send_mail import send_email_welcome_customer, send_email_new_customer
 
+# QR
+from project.generate_qr import qrcode
+
 # Create your models here.
 condition = [
         ('Residente temporal','Residente temporal'),
@@ -149,3 +152,7 @@ def send_message(sender, instance, created, **kwargs):
     if created:
         send_email_new_customer(instance)
         send_email_welcome_customer(instance)
+        filename = 'codigoQr_{}.png'.format(instance.customer_code)
+        dato = 'http://127.0.0.1:8000/formulario_ive/{}/'.format(instance.id)
+
+        qrcode(dato,filename)
