@@ -25,7 +25,8 @@ class CustomerAdmin(admin.ModelAdmin):
             'user_id',
             'immigration_status_id'
     )
-    list_display = ('get_full_name','customer_code','telephone','identification_number','email','status')
+    list_display = ('customer_code','first_name','last_name','telephone','identification_number','email','status')
     search_fields = ('customer_code','identification_number','first_name','last_name','email','status')
+    list_filter = ('customer_code','status','type_identification')
     
 admin.site.register(ImmigrationStatus)

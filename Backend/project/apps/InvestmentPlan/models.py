@@ -4,7 +4,11 @@ from django.db import models
 from apps.customers.models import Customer
 
 # Create your models here.
+# Signals
+from django.db.models.signals import pre_save, post_save
 
+# Django
+from django.dispatch import receiver
 
 
 class InvestmentPlan(models.Model):

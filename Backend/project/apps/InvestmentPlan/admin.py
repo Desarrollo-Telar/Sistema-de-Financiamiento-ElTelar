@@ -16,4 +16,5 @@ class InvestmentPlanAdmin(admin.ModelAdmin):
             'customer_id'
     )
     list_display = ('__str__','investment_plan_description','total_value_of_the_product_or_service','initial_amount','monthly_amount','investment_plan_code')
-    search_fields('type_of_product_or_service','customer_id','investment_plan_code')
+    search_fields = ('type_of_product_or_service','customer_id','investment_plan_code')
+    list_filter = ('customer_id','type_of_product_or_service','investment_plan_code')

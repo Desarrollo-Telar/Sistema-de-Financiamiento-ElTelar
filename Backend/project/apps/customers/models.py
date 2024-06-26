@@ -4,7 +4,7 @@ from django.db import models
 from apps.users.models import User
 
 # Signals
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 
 # Django
 from django.dispatch import receiver
