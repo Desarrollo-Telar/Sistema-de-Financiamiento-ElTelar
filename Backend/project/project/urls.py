@@ -5,6 +5,7 @@ from django.urls import path, include
 # Vistas
 from . import views
 from django.contrib.auth import views as auth_views
+from . import generate_pdf
 
 
 
@@ -38,7 +39,8 @@ urlpatterns = [
     path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),
     path('test/', views.test, name='test'),
     path('qr/<str:data>/', views.generate_qr, name='generate_qr'),
-    path('pdf/<int:id>',login_required(views.render_pdf_view), name='pdf'),
+    #path('pdf/<int:id>',login_required(views.render_pdf_view), name='pdf'),
+    path('pdf/<int:id>', login_required(generate_pdf.generar_pdf), name='pdf'),
 
 
     path('reset_password/',auth_views.PasswordResetView.as_view(template_name='user/autentication/password-reset.html',email_template_name='user/autentication/password-message.html'),name='password_reset'),
