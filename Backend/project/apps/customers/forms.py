@@ -57,7 +57,8 @@ class CustomerForm(forms.ModelForm):
             'telephone',
             'email',
             'status',  
-            'description'
+            'description',
+            'immigration_status_id'
         ]
 
         labels = {
@@ -74,7 +75,8 @@ class CustomerForm(forms.ModelForm):
             'profession_trade': 'Profesión u Oficio',
             'gender': 'Genero',
             'nationality': 'Nacionalidad',
-            'description':'Observaciones'
+            'description':'Observaciones',
+            'immigration_status_id':'Condicion Migratoria'
             
         }
 
@@ -93,5 +95,6 @@ class CustomerForm(forms.ModelForm):
             'gender': forms.Select(attrs={'class': 'form-control'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'description':forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
+            'immigration_status_id':forms.Select(attrs={'class': 'form-control'}),
 
         }

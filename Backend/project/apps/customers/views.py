@@ -210,7 +210,7 @@ def formulario_ive(request, id):
     working_information = WorkingInformation.objects.filter(Q(customer_id=customer_list))
     other_information = OtherSourcesOfIncome.objects.filter(Q(customer_id=customer_list))
     reference = Reference.objects.filter(Q(customer_id=customer_list))
-    plan = InvestmentPlan.objects.filter(Q(customer_id=customer_list))
+    plan = InvestmentPlan.objects.filter(Q(customer_id=customer_list)).first()
 
     context = {
         'title':'EL TELAR - FORMULARIO IVE',

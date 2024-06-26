@@ -3,9 +3,12 @@ from django.contrib import admin
 # Modelos
 from .models import Imagen, ImagenAddress, ImagenCustomer, ImagenGuarantee, ImagenOther
 
+# Formularios
+from .forms import ImagenForms
 # Register your models here.
 @admin.register(Imagen)
 class ImagenAdmin(admin.ModelAdmin):
+    form = ImagenForms
     list_display = ('image', 'description')
     search_fields = ('image', 'description')
 

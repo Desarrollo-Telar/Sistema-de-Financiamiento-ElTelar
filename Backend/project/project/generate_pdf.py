@@ -30,7 +30,7 @@ def generar_pdf(request,id):
     working_information = WorkingInformation.objects.filter(customer_id=customer_list)
     other_information = OtherSourcesOfIncome.objects.filter(customer_id=customer_list)
     reference = Reference.objects.filter(customer_id=customer_list)
-    plan = InvestmentPlan.objects.filter(customer_id=customer_list)
+    plan = InvestmentPlan.objects.filter(customer_id=customer_list).first()
 
     context = {
         'title': 'EL TELAR - FORMULARIO IVE',

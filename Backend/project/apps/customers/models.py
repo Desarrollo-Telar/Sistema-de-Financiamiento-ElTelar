@@ -38,8 +38,14 @@ class ImmigrationStatus(models.Model):
 
     def __str__(self):
         return self.condition_name
+
+    class Meta:
+        verbose_name = "Condicion Migratoria"
+        verbose_name_plural = "Condiciones Migratorias"
     
 
+def set_null_user():
+    return User.objects.get_or_create(identification_number='0000000000000',email='desconocido@gmail.com', username='desconocido', password='desconocido134')[0]
 
 class Customer(models.Model):
     identification = [
@@ -62,8 +68,8 @@ class Customer(models.Model):
         ('Posible Cliente', 'Posible Cliente'),
         ('Dar de Baja', 'Dar de Baja'),
     ]
-    user_id = models.ForeignKey(User, blank=False, null=False, on_delete=models.CASCADE, verbose_name="Usuario")
-    immigration_status_id = models.ForeignKey(ImmigrationStatus, blank=False, null=False, on_delete=models.CASCADE, verbose_name="Estatus Migratorio")
+    user_id = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET(set_null_user), verbose_name="Usuario")
+    immigration_status_id = models.ForeignKey(ImmigrationStatus, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Condición Migratorio")
     customer_code = models.CharField("Código de Cliente", max_length=25, blank=False, null=False, unique=True)
     first_name = models.CharField("Nombre", max_length=100, blank=False, null=False)
     last_name = models.CharField("Apellido", max_length=100, blank=False, null=False)

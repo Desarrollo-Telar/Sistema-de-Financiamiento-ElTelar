@@ -26,9 +26,9 @@ class DocumentCustomer(models.Model):
         verbose_name_plural ="Documentos de Clientes"
 
 class DocumentAddress(models.Model):
-    address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='documents')
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='address_documents')
-    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='address_documents')
+    address_id = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='documents')
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='address_documents')
+    document_id = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='address_documents')
 
 
     class Meta:
@@ -36,9 +36,9 @@ class DocumentAddress(models.Model):
         verbose_name_plural ="Documentos de Direcciones"
 
 class DocumentGuarantee(models.Model):
-    investment_plan = models.ForeignKey(InvestmentPlan, on_delete=models.CASCADE, related_name='documents')
-    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='guarantee_documents')
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='guarantee_documents')
+    investment_plan_id = models.ForeignKey(InvestmentPlan, on_delete=models.CASCADE, related_name='documents')
+    document_id = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='guarantee_documents')
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='guarantee_documents')
 
     class Meta:
         verbose_name = "Documento de Garantía"
@@ -47,9 +47,9 @@ class DocumentGuarantee(models.Model):
 
 class DocumentOther(models.Model):
     description = models.CharField("Descripción", max_length=150, blank=True, null=True)
-    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='other_documents')
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='other_documents')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='other_documents')
+    document_id = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='other_documents')
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='other_documents')
+    
     
     class Meta:
         verbose_name = "Otro Documento"

@@ -25,6 +25,9 @@ class Address(models.Model):
 
     def __str__(self):
         return f'{self.street}, {self.city} / {self.customer_id}'
+    
+    def direccion(self):
+        return '{} Zona: {} Departamento: {} Municipio: {}'.format(self.street, self.number, self.city, self.state)
 
     class Meta:
         verbose_name = "Dirección"
