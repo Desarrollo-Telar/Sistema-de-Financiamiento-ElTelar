@@ -1433,6 +1433,16 @@ var departamentos = [
     },
 ]
 
-$(".city1").select2({
-    data: departamentos
-  })
+$(document).ready(function() {
+    
+    $(".city1").select2({
+        data: departamentos
+    });
+    $(".state1").select2({
+        data: municipios
+    });
+    
+   
+    
+    
+});

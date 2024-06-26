@@ -54,7 +54,7 @@
         <div class="col-4">
             <div class="form-group">
                 <label for="working_hours" class="form-label">Horario de trabajo</label>
-                <input type="text" class="form-control" id="working_hours" name="working_hours">
+                <input type="time" class="form-control" id="working_hours" name="working_hours">
             </div>
         </div>
         <div class="col-4">
@@ -127,23 +127,33 @@
                 <input type="number" min="0" class="form-control" id="number2" name="number2">
             </div>
         </div>
-        <div class="col">
+        <div class="col-5">
             <div class="form-group">
-                <label for="city">Departamento</label>
-                <input type="text" class="form-control" id="city2" name="city1">
+                <label for="city2">Departamento</label>    
+                <div>
+                    <select class="form-control city1" style="width: 100%" name="city2" id="city2"></select>
+
+                </div>            
+                
             </div>
         </div>
-        <div class="col">
+        <div class="col-5">
             <div class="form-group">
-                <label for="state2">Municipio</label>
-                <input type="text" class="form-control" id="state2" name="state2">
+                <label for="state2">Municipio</label>    
+                <div class="">
+                    <select class="state1 form-control"  style="width: 100%"  name="state2" id="state2"></select>
+
+                </div>                        
+                
             </div>
         </div>
+       
+        
         
         <div class="col-12">
             <div class="form-group">
                 <label for="country2">País</label>
-                <input type="text" class="form-control" id="country2" name="country2">
+                <input type="text" class="form-control" id="country2" name="country2" value="GUATEMALA" placeholder="GUATEMALA" disabled>
             </div>
         </div>
         <div class="col-6">
