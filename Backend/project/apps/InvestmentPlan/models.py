@@ -28,6 +28,7 @@ class InvestmentPlan(models.Model):
     transfers_or_transfer_of_funds = models.BooleanField("Transferencias o Traslado de Fondos", blank=False, null=False)
     type_of_transfers_or_transfer_of_funds = models.CharField("Tipo de Transferencia", max_length=75, choices=tipo_transferencia)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    investment_plan_code = models.CharField("Código de Plan de Inversion", max_length=25, blank=False, null=False, unique=True)
 
     def __str__(self):
         return f"{self.type_of_product_or_service} - {self.customer_id}"
@@ -45,4 +46,43 @@ class InvestmentPlan(models.Model):
         verbose_name = "Plan de Inversión"
         verbose_name_plural = "Planes de Inversión"
 
- 
+# Función para generar el código de plan de inversion basado en el Tipo de Producto o Servicio junto a la referencia del codigo de cliente
+def generate_investment_plan_code(type_of_product_or_service, customer_code, counter):
+    status_suffix = {
+        'DERECHOS DE POSESIÓN E HIPOTECA': 'DPH',
+        'FIDUCIARIA': 'F',
+        'PRENDARIA': 'P',
+        'MOBILIARIA': 'M',
+        'FIDEICOMISOS Y PROGRAMAS ADICIONALES': 'F&PA',
+        'PRÉSTAMO': 'P',
+    }
+    suffix = status_suffix.get(type_of_product_or_service, '')
+    return f'{customer_code}/{suffix}{counter}'
+
+@receiver(pre_save, sender=InvestmentPlan)
+def set_investment_plan_code(sender, instance, **kwargs):
+    customer_code = instance.customer_id.customer_code
+    if not instance.investment_plan_code or instance.investment_plan_code == '':
+        counter = 1
+        investment_plan_code = generate_investment_plan_code(instance.type_of_product_or_service, customer_code, counter)
+
+        # Verificar si no existe un código igual, si no, generar uno nuevo
+        while InvestmentPlan.objects.filter(investment_plan_code=investment_plan_code).exists():
+            counter += 1
+            investment_plan_code = generate_investment_plan_code(instance.type_of_product_or_service, customer_code, counter)
+
+        instance.investment_plan_code = investment_plan_code
+
+    elif instance.pk and InvestmentPlan.objects.filter(pk=instance.pk).exists():
+        current_investment_plan = InvestmentPlan.objects.get(pk=instance.pk)
+
+        if current_investment_plan.type_of_product_or_service != instance.type_of_product_or_service:
+            counter = 1
+            investment_plan_code = generate_investment_plan_code(instance.type_of_product_or_service, customer_code, counter)
+
+            # Verificar si no existe un código igual, si no, generar uno nuevo
+            while InvestmentPlan.objects.filter(investment_plan_code=investment_plan_code).exists():
+                counter += 1
+                investment_plan_code = generate_investment_plan_code(instance.type_of_product_or_service, customer_code, counter)
+
+            instance.investment_plan_code = investment_plan_code
