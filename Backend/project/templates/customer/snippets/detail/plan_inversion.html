@@ -1,41 +1,44 @@
 {% load static %}
 <div class="row" style="margin: 1rem 0;">
-    {% for plan in plan_inversion%}
-    <p>Tipo de Producto o Servicio</p>
-    <p>
-        {{plan.type_of_product_or_service}}
-    </p>
-    <hr>
-    <p>Valor Total del Producto o Servicio</p>
-    <p>
-        Q{{plan.total_value_of_the_product_or_service}}
-    </p>
-    <hr>
-    <p>Monto Inicial</p>
-    <p>
-        Q{{plan.initial_amount}}
-    </p>
-    <hr>
-    <p>Monto Mensual</p>
-    <p>
-        Q{{plan.monthly_amount}}
-    </p>
-    <hr>
-    <p>Transferencias o Traslado de Fondos</p>
-    <p>
-        {{plan.transferencias_o_traslado_de_Fondos}}
-    </p>
-    <hr>
-    <p>Tipo de Transferencia</p>
-    <p>
-        {{plan.tipo_transferencia}}
-    </p>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tipo de Producto o Servicio</th>
+            <th scope="col">Valor Total del Producto o Servicio</th>
+            <th scope="col">Monto Inicial</th>
+            <th scope="col">Monto Mensual</th>
+            <th scope="col">Transferencias o Traslado de Fondos</th>
+            <th scope="col">Tipo de Transferencia</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for plan in plan_inversion%}
+          <tr>
+            <th scope="row">{{plan.investment_plan_code}}</th>
+            <td>{{plan.type_of_product_or_service}}</td>
+            <td> Q{{plan.total_value_of_the_product_or_service}}</td>
+            <td>Q{{plan.initial_amount}}</td>
+            <td>Q{{plan.monthly_amount}}</td>
+            <td>{{plan.transferencias_o_traslado_de_Fondos}}</td>
+            <td>{{plan.tipo_transferencia}}</td>
+            <td>{{plan.investment_plan_description}}</td>
+            <td>
+                <a href="#">Editar</a>
+                
+            </td>
+            <td>
+                <a href="#">Eliminar</a>
+            </td>
+            
+
+          </tr>
+          {% endfor %}
+         
+        </tbody>
+      </table>
     
-    </p>
-    <hr>
-    <p>Descripción del Plan de Inversión</p>
-    <p>
-        {{plan.investment_plan_description}}
-    </p>
-    {% endfor %}
+   
+   
 </div>
