@@ -4,7 +4,7 @@ USE db;
 
 -- REGISTRAR CONDICION MIGRATORIA
 INSERT INTO customers_immigrationstatus(condition_name) 
-VALUES('Residente tempora'),
+VALUES('Residente temporal'),
 ('Turista o visitante'),
 ('Residente permanente'),
 ('Permiso de trabajo'),
@@ -37,8 +37,8 @@ VALUES('DSAD','1808964-K','42249955','35',1);
 
 INSERT INTO addresses_address(street, number, city, state,  country, type_address, customer_id_id)
 VALUES
-('Calle Falsa 123', 456, 'Springfield', 'IL',  'USA', 'Dirección de Personal', 2),
-('Avenida Siempre Viva 742', 100, 'Springfield', 'IL',  'USA', 'Dirección de Trabajo', 2);
+('Calle Falsa 123', 456, 'Springfield', 'IL',  'USA', 'Dirección de Personal', 1),
+('Avenida Siempre Viva 742', 100, 'Springfield', 'IL',  'USA', 'Dirección de Trabajo', 1);
 
 INSERT INTO addresses_coordinate(latitud, longitud, address_id_id)
 VALUES

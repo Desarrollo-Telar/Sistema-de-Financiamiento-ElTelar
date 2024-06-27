@@ -98,6 +98,10 @@ class Customer(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} / {self.customer_code}'
+    
+    def fecha_creacion(self):
+        
+        return self.creation_date.strftime('%d de %B de %y')
 
     class Meta:
         verbose_name = "Cliente"
@@ -159,6 +163,6 @@ def send_message(sender, instance, created, **kwargs):
         send_email_new_customer(instance)
         send_email_welcome_customer(instance)
         filename = 'codigoQr_{}.png'.format(instance.customer_code)
-        dato = 'http://127.0.0.1:8000/formulario_ive/{}/'.format(instance.id)
+        dato = 'http://127.0.0.1:8000/pdf/{}/'.format(instance.id)
 
         qrcode(dato,filename)

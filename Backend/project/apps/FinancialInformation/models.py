@@ -45,7 +45,7 @@ class WorkingInformation(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.position} at {self.company_name}"
+        return f"{self.position} - {self.company_name}"
 
     class Meta:
         verbose_name = "Información Laboral"

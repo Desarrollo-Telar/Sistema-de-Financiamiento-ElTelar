@@ -219,7 +219,7 @@ def formulario_ive(request, id):
         'working_information' :working_information,
         'other_information' :other_information,
         'reference':reference,
-        'plan_list':plan,
+        'plan':plan,
         
         }
     return render(request, template_name, context)

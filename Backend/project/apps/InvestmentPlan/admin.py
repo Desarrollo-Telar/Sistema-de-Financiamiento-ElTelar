@@ -12,7 +12,7 @@ class InvestmentPlanAdmin(admin.ModelAdmin):
             'initial_amount',
             'monthly_amount',
             'transfers_or_transfer_of_funds',
-            'type_of_transfers_or_transfer_of_funds'
+            'type_of_transfers_or_transfer_of_funds',
             'customer_id'
     )
     list_display = ('__str__','investment_plan_description','total_value_of_the_product_or_service','initial_amount','monthly_amount','investment_plan_code')

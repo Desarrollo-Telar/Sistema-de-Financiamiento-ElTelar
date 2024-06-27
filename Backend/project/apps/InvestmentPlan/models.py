@@ -61,7 +61,7 @@ def generate_investment_plan_code(type_of_product_or_service, customer_code, cou
         'PRÉSTAMO': 'P',
     }
     suffix = status_suffix.get(type_of_product_or_service, '')
-    return f'{customer_code}/{suffix}{counter}'
+    return f'{customer_code}/{suffix}-{counter}'
 
 @receiver(pre_save, sender=InvestmentPlan)
 def set_investment_plan_code(sender, instance, **kwargs):
