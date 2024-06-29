@@ -272,12 +272,13 @@ def index(request):
     mes_actual = now.month
     # Obtener el nombre del mes usando el módulo calendar
     mes_actual_nombre = calendar.month_name[mes_actual]
-    customer_id = Customer.objects.get('-id')[:5]
+    customer_id = Customer.objects.all().order_by('-id')[:5]
     context = {
         'title':'EL TELAR',
         'dia':dia_actual,
         'mes':mes_actual_nombre,
-        'customer_list':customer_id
+        'customer_list':customer_id,
+        'count':customer_id.count()
     }
     return render(request, template_name, context)
 
