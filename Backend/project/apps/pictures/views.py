@@ -101,3 +101,39 @@ def create_imagen_customer_guarantee(request,investment_plan_id_id, customer_cod
     }
 
     return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def delete_imagen(request, id, customer_code):
+    imagen = get_object_or_404(Imagen, id=id)
+    imagen.delete()
+    return redirect('customers:detail', customer_code)
+
+
+@login_required
+@usuario_activo
+def update_imagen(request, id, customer_code):
+    imagen = get_object_or_404(Imagen, id=id)
+    template_name = ''
+
+    if request.method == 'POST':
+        form = ImagenForms(request.POST)
+        if form.is_valid():
+            imagen.image = form.cleaned_data.get('image')
+            imagen.description = form.cleaned_data.get('description')
+            imagen.save()
+            return redirect('customers:detail',customer_code)
+    else:
+
+        initial_data = {
+            'image':imagen.image ,
+            'description':imagen.description
+        }
+
+        form = ImagenForms(initial=initial_data)
+
+        context = {
+            'form':form
+        }
+
+        return render(request, template_name, context)
