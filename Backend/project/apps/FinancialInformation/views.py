@@ -62,6 +62,10 @@ def create_working_information(request, customer_code):
             working.employment_status = form.cleaned_data.get('employment_status')
             working.company_name = form.cleaned_data.get('company_name')
             working.save()
+            return redirect('customer:detail',customer_code)
+
+        else:
+            return render_to_response(get_context_data(form=form))
 
     return render(request, template_name, context)
 
@@ -84,6 +88,10 @@ def create_other_information(request, customer_code):
             other.salary = form.cleaned_data.get('salary')
             other.source_of_income = form.cleaned_data.get('source_of_income')
             other.save()
+            return redirect('customer:detail',customer_code)
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
+        
     return render(request, template_name, context)
 
 @login_required
@@ -93,8 +101,82 @@ def delete_working_information(request, id, customer_code):
     working.delete()
     return redirect('customers:detail',customer_code)
 
+@login_required
 @usuario_activo
 def delete_other_information(request, id, customer_code):
     other = get_object_or_404(OtherSourcesOfIncome, id=id)
     other.delete()
     return redirect('customers:detail',customer_code)
+
+@login_required
+@usuario_activo
+def update_working_information(request, id, customer_code):
+    customer_id = get_object_or_404(Customer, customer_code=customer_code)
+    working = get_object_or_404(WorkingInformation, id = id)
+    template_name = ''
+
+    if request.method == 'POST':
+        form = WorkingInformationForms(request.POST)
+        if form.is_valid():
+            working.customer_id = customer_id
+            working.position = form.cleaned_data.get('position')
+            working.start_date = form.cleaned_data.get('start_date')
+            working.description = form.cleaned_data.get('description')
+            working.salary = form.cleaned_data.get('salary')
+            working.working_hours = form.cleaned_data.get('working_hours')
+            working.phone_number = form.cleaned_data.get('phone_number')
+            working.source_of_income = form.cleaned_data.get('source_of_income')
+            working.income_detail = form.cleaned_data.get('income_detail')
+            working.employment_status = form.cleaned_data.get('employment_status')
+            working.company_name = form.cleaned_data.get('company_name')
+            working.save()
+            return redirect('customers:detail', customer_code)
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
+    else:
+        initial_data = {
+            'position':working.position,
+            'company_name':working.company_name,
+            'start_date':working.start_date,            
+            'salary':working.salary,
+            'working_hours':working.working_hours,
+            'phone_number':working.phone_number,
+            'source_of_income':working.source_of_income,
+            'income_detail':working.income_detail,
+            'employment_status':working.employment_status ,
+            'description':working.description,
+        }
+        form = WorkingInformationForms(initial=initial_data)
+        context = {
+            'form':form
+        }
+        return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def update_other_information(request,id,customer_code):
+    customer_id = get_object_or_404(Customer, customer_code = customer_code)
+    other = get_object_or_404(OtherSourcesOfIncome, id = id)
+    template_name = ''
+    if request.method == 'POST':
+        form = OtherSourcesOfIncomeForms(request.POST)
+        if form.is_valid():
+            other.customer_id = customer_id
+            other.nit = form.cleaned_data.get('nit')
+            other.phone_number = form.cleaned_data.get('phone_number')
+            other.salary = form.cleaned_data.get('salary')
+            other.source_of_income = form.cleaned_data.get('source_of_income')
+            other.save()
+            return redirect('customer:detail',customer_code)
+    else:
+        initial_data = {
+            'source_of_income':other.source_of_income,
+            'nit':other.nit,
+            'phone_number':other.phone_number,
+            'salary':other.salary
+        }
+        form = OtherSourcesOfIncomeForms(initial=initial_data)
+        context = {
+            'form':form
+        }
+        return render(request, template_name, context)
