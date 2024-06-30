@@ -65,3 +65,36 @@ def create_working_information(request, customer_code):
 
     return render(request, template_name, context)
 
+@login_required
+@usuario_activo
+def create_other_information(request, customer_code):
+    template_name = ''
+    customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
+    form = OtherSourcesOfIncomeForms
+    context = {
+        'form':form
+    }
+    if request.method == 'POST':
+        form = OtherSourcesOfIncomeForms(request.POST)
+        if form.is_valid():
+            other = OtherSourcesOfIncome()
+            other.customer_id = customer_id
+            other.nit = form.cleaned_data.get('nit')
+            other.phone_number = form.cleaned_data.get('phone_number')
+            other.salary = form.cleaned_data.get('salary')
+            other.source_of_income = form.cleaned_data.get('source_of_income')
+            other.save()
+    return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def delete_working_information(request, id, customer_code):
+    working = get_object_or_404(WorkingInformation, id=id)
+    working.delete()
+    return redirect('customers:detail',customer_code)
+
+@usuario_activo
+def delete_other_information(request, id, customer_code):
+    other = get_object_or_404(OtherSourcesOfIncome, id=id)
+    other.delete()
+    return redirect('customers:detail',customer_code)
