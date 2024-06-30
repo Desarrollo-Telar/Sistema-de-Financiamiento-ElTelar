@@ -31,7 +31,7 @@ def create_imagen_customer(request, customer_code):
     template_name = ''
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     if request.method == 'POST':
-        form = ImagenForms(request.POST)
+        form = ImagenForms(request.POST,request.FILES)
         if form.is_valid():
             imagen = Imagen()
             imagen.image = form.cleaned_data.get('image')
@@ -55,7 +55,7 @@ def create_imagen_customer_address(request,address_id_id, customer_code):
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     address_id = get_object_or_404(Address, id=address_id_id)
     if request.method == 'POST':
-        form = ImagenForms(request.POST)
+        form = ImagenForms(request.POST,request.FILES)
         if form.is_valid():
             imagen = Imagen()
             imagen.image = form.cleaned_data.get('image')
@@ -82,7 +82,7 @@ def create_imagen_customer_guarantee(request,investment_plan_id_id, customer_cod
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     investment_plan_id = get_object_or_404(InvestmentPlan, id=investment_plan_id_id)
     if request.method == 'POST':
-        form = ImagenForms(request.POST)
+        form = ImagenForms(request.POST,request.FILES)
         if form.is_valid():
             imagen = Imagen()
             imagen.image = form.cleaned_data.get('image')
@@ -117,7 +117,7 @@ def update_imagen(request, id, customer_code):
     template_name = ''
 
     if request.method == 'POST':
-        form = ImagenForms(request.POST)
+        form = ImagenForms(request.POST,request.FILES)
         if form.is_valid():
             imagen.image = form.cleaned_data.get('image')
             imagen.description = form.cleaned_data.get('description')
