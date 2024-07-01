@@ -27,7 +27,7 @@ from django.utils.decorators import method_decorator
 @usuario_activo
 def create_document_customer(request, customer_code):
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
-    template_name = ''
+    template_name = 'documents/create/create_documents_customers.html'
     if request.method == 'POST':
         form = DocumentForms(request.POST, request.FILES)
 
@@ -42,7 +42,8 @@ def create_document_customer(request, customer_code):
 
     form = DocumentForms
     context = {
-        'form':form
+        'form':form,
+        'customer_code':customer_code
     } 
 
     return render(request, template_name, context)
@@ -52,7 +53,7 @@ def create_document_customer(request, customer_code):
 def create_documente_address(request, addrress_id ,customer_code):
     addrress_id = get_object_or_404(Address, id = addrress_id)
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
-    template_name = ''
+    template_name = 'documents/create/create_documents_address.html'
     if request.method == 'POST':
         form = DocumentForms(request.POST, request.FILES)
 
@@ -67,7 +68,9 @@ def create_documente_address(request, addrress_id ,customer_code):
 
     form = DocumentForms
     context = {
-        'form':form
+        'form':form,
+        'addrress_id':addrress_id.id,
+        'customer_code':customer_code
     } 
 
     return render(request, template_name, context)   
@@ -77,7 +80,7 @@ def create_documente_address(request, addrress_id ,customer_code):
 def create_documente_guarantee(request, investment_plan_id ,customer_code):
     investment_plan_id = get_object_or_404(InvestmentPlan, id = investment_plan_id)
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
-    template_name = ''
+    template_name = 'documents/create/create_documents_guarantee.html'
     if request.method == 'POST':
         form = DocumentForms(request.POST, request.FILES)
 
@@ -109,7 +112,7 @@ def delete(request, id, customer_code):
 def update_document(request, id, customer_code):
     documento = get_object_or_404(Document, id=id)
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
-    template_name = ''
+    template_name = 'documents/update/update_documents.html'
 
     if request.method == 'POST':
         form = DocumentForms(request.POST, request.FILES)
@@ -125,7 +128,9 @@ def update_document(request, id, customer_code):
     form = DocumentForms(initial=initial_data)
 
     context = {
-        'form':form
+        'form':form,
+        'document_id':id,
+        'customer_code':customer_code
     }
 
     return render(request, template_name, context)

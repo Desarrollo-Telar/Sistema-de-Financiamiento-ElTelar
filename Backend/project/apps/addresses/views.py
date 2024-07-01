@@ -103,7 +103,32 @@ def addressUpdateView(request, id,customer_code):
             return redirect('customers:detail',cliente.customer_code ) 
             
         else:
-            return self.render_to_response(self.get_context_data(form=form,form2=form2))
+            initial_data_address = {
+                'street':address.street,
+                'number':address.number,
+                'city':address.city,
+                'state':address.state,
+                
+                'country':address.country,
+                'type_address':address.type_address,
+            }
+            initial_data_coordinate = {
+                'latitud':coordinate.latitud,
+                'longitud':coordinate.longitud,
+
+            }
+
+            form2 = AddressForms(initial=initial_data_address)
+            form = CoordinateForms(initial=initial_data_coordinate)
+            context = {
+                    'title':'ELTELAR - DIRECCIONES',
+                    'form':form,
+                    'form2':form2,
+                    'customer_code':cliente.customer_code,
+                    'address_id':id,
+            }
+
+            return render(request, template_name, context)
     else:
         initial_data_address = {
             'street':address.street,
