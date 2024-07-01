@@ -60,6 +60,7 @@ def delete_plan_financiamiento(request, id,customer_code):
 def update_plan_financiamiento(request,id,customer_code):
     template_name = ''
     plan = get_object_or_404(InvestmentPlan, id=id)
+    customer_id = get_object_or_404(Customer, customer_code = customer_code)
     if request.method == 'POST':
         form = InvestmentPlanForms(request.POST)
         if form.is_valid():
