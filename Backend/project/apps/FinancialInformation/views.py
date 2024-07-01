@@ -180,3 +180,56 @@ def update_other_information(request,id,customer_code):
             'form':form
         }
         return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def create_references_customer(request, customer_code):
+    customer_id = get_object_or_404(Customer, customer_code = customer_code)
+    template_name = ''
+
+    if request.method == 'POST':
+        form = ReferenceForms(request.POST)
+        if form.is_valid():
+            referencia = Reference()
+            referencia.full_name = form.cleaned_data.get('full_name')
+            referencia.phone_number = form.cleaned_data.get('phone_number')
+            referencia.reference_type = form.cleaned_data.get('reference_type')
+            referencia.save()
+
+            return redirect('customers:detail',customer_code)
+    form = ReferenceForms
+    context = {
+        'form':form
+    }
+
+    return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def update_references_customer(request, id,customer_code):
+    customer_id = get_object_or_404(Customer, customer_code = customer_code)
+    template_name = ''
+    referencia = get_object_or_404(Reference, id=id)
+    if request.method == 'POST':
+        form = ReferenceForms(request.POST)
+        if form.is_valid():
+            
+            referencia.full_name = form.cleaned_data.get('full_name')
+            referencia.phone_number = form.cleaned_data.get('phone_number')
+            referencia.reference_type = form.cleaned_data.get('reference_type')
+            referencia.save()
+
+            return redirect('customers:detail',customer_code)
+    else:
+        initial_data = {
+            'full_name':referencia.full_name,
+            'phone_number':referencia.phone_number,
+            'reference_type':referencia.reference_type
+        }
+        form = ReferenceForms(initial=initial_data)
+
+        context = {
+            'form':form
+        }
+
+        return render(request, template_name, context)
