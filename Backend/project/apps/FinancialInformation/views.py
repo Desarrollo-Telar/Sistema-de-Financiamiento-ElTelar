@@ -65,7 +65,7 @@ def create_working_information(request, customer_code):
             return redirect('customer:detail',customer_code)
 
         else:
-            return render_to_response(get_context_data(form=form))
+            return render(request, template_name, context)
 
     return render(request, template_name, context)
 
@@ -90,23 +90,10 @@ def create_other_information(request, customer_code):
             other.save()
             return redirect('customer:detail',customer_code)
         else:
-            return self.render_to_response(self.get_context_data(form=form))
+            return render(request, template_name, context)
         
     return render(request, template_name, context)
 
-@login_required
-@usuario_activo
-def delete_working_information(request, id, customer_code):
-    working = get_object_or_404(WorkingInformation, id=id)
-    working.delete()
-    return redirect('customers:detail',customer_code)
-
-@login_required
-@usuario_activo
-def delete_other_information(request, id, customer_code):
-    other = get_object_or_404(OtherSourcesOfIncome, id=id)
-    other.delete()
-    return redirect('customers:detail',customer_code)
 
 @login_required
 @usuario_activo
@@ -132,7 +119,7 @@ def update_working_information(request, id, customer_code):
             working.save()
             return redirect('customers:detail', customer_code)
         else:
-            return self.render_to_response(self.get_context_data(form=form))
+            return render(request, template_name, context)
     else:
         initial_data = {
             'position':working.position,
