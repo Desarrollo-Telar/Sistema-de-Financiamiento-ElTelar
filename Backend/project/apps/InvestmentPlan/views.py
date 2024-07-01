@@ -59,4 +59,33 @@ def delete_plan_financiamiento(request, id,customer_code):
 @usuario_activo
 def update_plan_financiamiento(request,id,customer_code):
     template_name = ''
-    
+    plan = get_object_or_404(InvestmentPlan, id=id)
+    if request.method == 'POST':
+        form = InvestmentPlanForms(request.POST)
+        if form.is_valid():
+            plan.customer_id = customer_id
+            plan.type_of_product_or_service = form.cleaned_data.get('type_of_product_or_service')
+            plan.total_value_of_the_product_or_service = form.cleaned_data.get('total_value_of_the_product_or_service')
+            plan.investment_plan_description= form.cleaned_data.get('investment_plan_description')
+            plan.initial_amount = form.cleaned_data.get('initial_amount')
+            plan.monthly_amount= form.cleaned_data.get('monthly_amount')
+            plan.transfers_or_transfer_of_funds = form.cleaned_data.get('transfers_or_transfer_of_funds')
+            plan.type_of_transfers_or_transfer_of_funds = form.cleaned_data.get('type_of_transfers_or_transfer_of_funds')
+            plan.save()
+            return redirect('customers:detail',customer_code)
+    else:
+        initial_data = {
+            'type_of_product_or_service':plan.type_of_product_or_service ,
+            'total_value_of_the_product_or_service':plan.type_of_product_or_service,
+            'investment_plan_description': plan.investment_plan_description,
+            'initial_amount':plan.initial_amount,
+            'monthly_amount':plan.monthly_amount,
+            'transfers_or_transfer_of_funds':plan.transfers_or_transfer_of_funds,
+            'type_of_transfers_or_transfer_of_funds':plan.type_of_transfers_or_transfer_of_funds,
+
+        }
+        form = InvestmentPlanForms(initial=initial_data)
+        context = {
+            'form':form
+        }
+        return render(request, template_name, context)
