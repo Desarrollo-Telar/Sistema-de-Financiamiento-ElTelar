@@ -63,7 +63,7 @@ def update_customer(request, customer_code):
 
         initial_data_customer = {
             'first_name':customer.first_name,
-            'last_name':customer_last_name,
+            'last_name':customer.last_name,
             'type_identification':customer.type_identification,
             'identification_number':customer.identification_number,
             'marital_status':customer.marital_status,            
