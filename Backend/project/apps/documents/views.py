@@ -49,8 +49,8 @@ def create_document_customer(request, customer_code):
 
 @login_required
 @usuario_activo
-def create_documente_addrress(request, addrress_id_id ,customer_code):
-    addrress_id = get_object_or_404(Address, id = addrress_id_id)
+def create_documente_address(request, addrress_id ,customer_code):
+    addrress_id = get_object_or_404(Address, id = addrress_id)
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     template_name = ''
     if request.method == 'POST':
@@ -74,8 +74,8 @@ def create_documente_addrress(request, addrress_id_id ,customer_code):
  
 @login_required
 @usuario_activo
-def create_documente_guarantee(request, investment_plan_id_id ,customer_code):
-    investment_plan_id = get_object_or_404(InvestmentPlan, id = investment_plan_id_id)
+def create_documente_guarantee(request, investment_plan_id ,customer_code):
+    investment_plan_id = get_object_or_404(InvestmentPlan, id = investment_plan_id)
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     template_name = ''
     if request.method == 'POST':
