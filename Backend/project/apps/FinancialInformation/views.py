@@ -39,12 +39,13 @@ def delete_working_information(request,id, customer_code):
 @login_required
 @usuario_activo
 def create_working_information(request, customer_code):
-    template_name = ''
+    template_name = 'FinancialInformation/create_working_information.html'
     customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
     
     form = WorkingInformationForms
     context = {
-        'form':form
+        'form':form,
+        'customer_code':customer_code,
     }
     if request.method == 'POST':
         form = WorkingInformationForms(request.POST)
@@ -72,11 +73,12 @@ def create_working_information(request, customer_code):
 @login_required
 @usuario_activo
 def create_other_information(request, customer_code):
-    template_name = ''
+    template_name = 'FinancialInformation/create_other_information.html'
     customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
     form = OtherSourcesOfIncomeForms
     context = {
-        'form':form
+        'form':form,
+        'customer_code':customer_code,
     }
     if request.method == 'POST':
         form = OtherSourcesOfIncomeForms(request.POST)
@@ -100,7 +102,7 @@ def create_other_information(request, customer_code):
 def update_working_information(request, id, customer_code):
     customer_id = get_object_or_404(Customer, customer_code=customer_code)
     working = get_object_or_404(WorkingInformation, id = id)
-    template_name = ''
+    template_name = 'FinancialInformation/update_working_information.html'
 
     if request.method == 'POST':
         form = WorkingInformationForms(request.POST)
@@ -135,7 +137,9 @@ def update_working_information(request, id, customer_code):
         }
         form = WorkingInformationForms(initial=initial_data)
         context = {
-            'form':form
+            'form':form,
+            'working_id':id,
+            'customer_code':customer_code
         }
         return render(request, template_name, context)
 
@@ -144,7 +148,7 @@ def update_working_information(request, id, customer_code):
 def update_other_information(request,id,customer_code):
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     other = get_object_or_404(OtherSourcesOfIncome, id = id)
-    template_name = ''
+    template_name = 'FinancialInformation/update_other_information.html'
     if request.method == 'POST':
         form = OtherSourcesOfIncomeForms(request.POST)
         if form.is_valid():
@@ -164,7 +168,9 @@ def update_other_information(request,id,customer_code):
         }
         form = OtherSourcesOfIncomeForms(initial=initial_data)
         context = {
-            'form':form
+            'form':form,
+            'other_id':id,
+            'customer_code':customer_code
         }
         return render(request, template_name, context)
 
@@ -172,7 +178,7 @@ def update_other_information(request,id,customer_code):
 @usuario_activo
 def create_references_customer(request, customer_code):
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
-    template_name = ''
+    template_name = 'FinancialInformation/create_references.html'
 
     if request.method == 'POST':
         form = ReferenceForms(request.POST)
@@ -186,7 +192,8 @@ def create_references_customer(request, customer_code):
             return redirect('customers:detail',customer_code)
     form = ReferenceForms
     context = {
-        'form':form
+        'form':form,
+        'customer_code':customer_code
     }
 
     return render(request, template_name, context)
@@ -195,7 +202,7 @@ def create_references_customer(request, customer_code):
 @usuario_activo
 def update_references_customer(request, id,customer_code):
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
-    template_name = ''
+    template_name = 'FinancialInformation/update_references.html'
     referencia = get_object_or_404(Reference, id=id)
     if request.method == 'POST':
         form = ReferenceForms(request.POST)
@@ -216,7 +223,9 @@ def update_references_customer(request, id,customer_code):
         form = ReferenceForms(initial=initial_data)
 
         context = {
-            'form':form
+            'form':form,
+            'references_id':id,
+            'customer_code':customer_code
         }
 
         return render(request, template_name, context)
