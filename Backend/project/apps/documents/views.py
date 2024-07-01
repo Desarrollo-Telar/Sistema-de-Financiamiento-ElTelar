@@ -103,3 +103,29 @@ def delete(request, id, customer_code):
     document = get_object_or_404(Document, id=id)
     document.delete()
     return redirect('customers:detail',customer_code)
+
+@login_required
+@usuario_activo
+def update_document(request, id, customer_code):
+    documento = get_object_or_404(Document, id=id)
+    customer_id = get_object_or_404(Customer, customer_code = customer_code)
+    template_name = ''
+
+    if request.method == 'POST':
+        form = DocumentForms(request.POST, request.FILES)
+        if form.is_valid():
+            documento.document = form.cleaned_data.get('document')
+            documento.description = form.cleaned_data.get('description')
+            documento.save()
+            return redirect('customers:detail',customer_code)
+    initial_data = {
+        'description':documento.document,
+        'document':documento.description, 
+    }
+    form = DocumentForms(initial=initial_data)
+
+    context = {
+        'form':form
+    }
+
+    return render(request, template_name, context)
