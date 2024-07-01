@@ -23,6 +23,8 @@ from project.decorador import usuario_activo
 from django.utils.decorators import method_decorator
 
 # Create your views here.
+@login_required
+@usuario_activo
 def create_document_customer(request, customer_code):
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     template_name = ''
@@ -45,6 +47,8 @@ def create_document_customer(request, customer_code):
 
     return render(request, template_name, context)
 
+@login_required
+@usuario_activo
 def create_documente_addrress(request, addrress_id_id ,customer_code):
     addrress_id = get_object_or_404(Address, id = addrress_id_id)
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
@@ -66,8 +70,10 @@ def create_documente_addrress(request, addrress_id_id ,customer_code):
         'form':form
     } 
 
-    return render(request, template_name, context)    
-
+    return render(request, template_name, context)   
+ 
+@login_required
+@usuario_activo
 def create_documente_guarantee(request, investment_plan_id_id ,customer_code):
     investment_plan_id = get_object_or_404(InvestmentPlan, id = investment_plan_id_id)
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
@@ -91,3 +97,9 @@ def create_documente_guarantee(request, investment_plan_id_id ,customer_code):
 
     return render(request, template_name, context) 
 
+@login_required
+@usuario_activo
+def delete(request, id, customer_code):    
+    document = get_object_or_404(Document, id=id)
+    document.delete()
+    return redirect('customers:detail',customer_code)
