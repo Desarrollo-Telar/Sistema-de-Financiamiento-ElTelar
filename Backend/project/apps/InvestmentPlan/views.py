@@ -26,7 +26,7 @@ from django.utils.decorators import method_decorator
 @usuario_activo
 def create_plan_financiamiento(request, customer_code):
     customer_id = get_object_or_404(Customer, customer_code=customer_code)
-    template_name = ''
+    template_name = 'InvestmentPlan/create.html'
     if request.method == 'POST':
         form = InvestmentPlanForms(request.POST)
         if form.is_valid():
@@ -43,7 +43,8 @@ def create_plan_financiamiento(request, customer_code):
             return redirect('customers:detail',customer_code)
     form = InvestmentPlanForms
     context = {
-        'form':form
+        'form':form,
+        'customer_code':customer_code
     }
     return render(request, template_name, context)
 
@@ -58,7 +59,7 @@ def delete_plan_financiamiento(request, id,customer_code):
 @login_required
 @usuario_activo
 def update_plan_financiamiento(request,id,customer_code):
-    template_name = ''
+    template_name = 'InvestmentPlan/update.html'
     plan = get_object_or_404(InvestmentPlan, id=id)
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     if request.method == 'POST':
@@ -87,6 +88,8 @@ def update_plan_financiamiento(request,id,customer_code):
         }
         form = InvestmentPlanForms(initial=initial_data)
         context = {
-            'form':form
+            'form':form,
+            'customer_code':customer_code,
+            'investment_plan_id':id,
         }
         return render(request, template_name, context)
