@@ -8,6 +8,7 @@ from django.conf import settings
 
 from apps.users.models import User
 
+
 def send_email_code_verification(user, code):
     template = get_template('email/send_code.html')
     user_mail = user.email
@@ -31,6 +32,9 @@ def send_email_code_verification(user, code):
 def send_email_welcome_customer(customer):
     # Envio de correos
     # Mensaje de bienvendia a un cliente a la empresa
+   
+    print(customer.email)
+    
     template = get_template('email/welcome_message.html')
     
     context = {
@@ -44,12 +48,16 @@ def send_email_welcome_customer(customer):
         'Bienvenido',
         'EL Telar',
         settings.EMAIL_HOST_USER,
-        ['{}'.customer.email]
+        ['{}'.format(customer.email)]
     )
     email.attach_alternative(content, 'text/html')
     email.send()
+    
 
 def send_email_new_customer(customer):
+    
+    print(customer.email)
+    
     # Envio de correos
     # Mensaje de bienvenida a un cliente a la empresa
     template = get_template('email/message_new_customer.html')
@@ -76,3 +84,4 @@ def send_email_new_customer(customer):
     )
     email.attach_alternative(content, 'text/html')
     email.send()
+    

@@ -19,7 +19,7 @@ from project.settings import MEDIA_URL, STATIC_URL
 from project.send_mail import send_email_welcome_customer, send_email_new_customer
 
 # QR
-from project.generate_qr import qrcode
+from project.generate_qr import generate_qr
 
 # Create your models here.
 condition = [
@@ -89,6 +89,9 @@ class Customer(models.Model):
     description = models.TextField("Observaciones",blank=True, null=True )
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
+    def __str__(self):
+        return self.first_name
+
     def get_qr(self):
         codigo = f'/media/qr/codigoQr_{self.customer_code}.png'
         return codigo if codigo else 'No hay info'
@@ -96,8 +99,7 @@ class Customer(models.Model):
     def get_full_name(self):
         return f'{self.first_name} {self.last_name}'
 
-    def __str__(self):
-        return f'{self.first_name} {self.last_name} / {self.customer_code}'
+    
     
     def fecha_creacion(self):
         
@@ -159,10 +161,21 @@ def set_customer_code_and_update_status(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Customer)
 def send_message(sender, instance, created, **kwargs):
+    customer = instance
     if created:
-        send_email_new_customer(instance)
-        send_email_welcome_customer(instance)
-        filename = 'codigoQr_{}.png'.format(instance.customer_code)
-        dato = 'http://127.0.0.1:8000/pdf/{}/'.format(instance.id)
+        
+        send_email_new_customer(customer)
+        send_email_welcome_customer(customer)
+        
+        filename = f'codigoQr_{customer.customer_code}.png'
+        dato = f'http://127.0.0.1:8000/pdf/{customer.id}/'
 
-        qrcode(dato,filename)
+        
+
+        generate_qr(dato,filename)
+    else:
+        filename = f'codigoQr_{customer.customer_code}.png'
+        dato = f'http://127.0.0.1:8000/pdf/{customer.id}/'
+
+        generate_qr(dato,filename)
+       
