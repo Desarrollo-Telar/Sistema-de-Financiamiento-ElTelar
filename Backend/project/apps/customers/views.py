@@ -189,6 +189,8 @@ def detail_customer(request,customer_code):
         coordenada = Coordinate.objects.filter(Q(address_id=dire))
         coor.append(coordenada)
 
+    limite_direccion = False if direccion.count() >= 2 else True
+
     context = {
         'title': 'ELTELAR - {} {} / {}'.format(customer_list.first_name, customer_list.last_name,str(customer_code)),
         'customer_list':customer_list,
@@ -202,6 +204,7 @@ def detail_customer(request,customer_code):
         'plan_inversion':plan_inversion,
         'coordenada':coor,
         'customer_code':customer_code,
+        'limite_direccion':limite_direccion,
     }
     return render(request, template_name, context)
 

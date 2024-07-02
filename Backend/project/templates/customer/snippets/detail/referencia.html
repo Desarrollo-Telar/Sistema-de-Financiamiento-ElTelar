@@ -1,5 +1,5 @@
 {% load static %}
-<div class="row" style="margin: 1rem 0;">
+<div class="row" style="margin: 2rem ;">
     <table class="table">
         <thead>
             <tr>
@@ -17,7 +17,7 @@
                 <td>{{referencia.phone_number}}</td>
                 <td>{{referencia.reference_type}}</td>
                 <td>
-                    <a href="#">Editar Referencia</a>
+                    <a href="{%url 'financial_information:update_reference' referencia.id customer_code %}">Editar Referencia</a>
                 </td>
 
             </tr>

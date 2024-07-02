@@ -1,5 +1,5 @@
 {% load static %}
-<div class="row" style="margin: 1rem 0;">
+<div class="row" style="margin: 2rem 0;">
   <table class="table">
     <thead>
       <tr>
@@ -42,6 +42,11 @@
 
     </tbody>
   </table>
+  {% if limite_direccion  %}
+  <div>
+    <a href="{% url 'addresses:add' customer_code %}" class="btn_edit">Agregar Direccion</a>
+  </div>
+  {% endif %}
 
 
 

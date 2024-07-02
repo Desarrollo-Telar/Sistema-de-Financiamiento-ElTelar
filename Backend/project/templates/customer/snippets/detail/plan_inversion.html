@@ -1,5 +1,5 @@
 {% load static %}
-<div class="row" style="margin: 1rem 0;">
+<div class="row" style="margin: 2rem ;">
     <table class="table">
         <thead>
           <tr>
@@ -37,7 +37,11 @@
           {% endfor %}
          
         </tbody>
-      </table>
+    </table>
+    <div>
+      <a href="{% url 'investment_plan:create' customer_code %}" class="btn_edit">Crear Nuevo Plan de Inversion</a>
+
+    </div>
     
    
    

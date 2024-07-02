@@ -92,5 +92,5 @@ class ReferenceForms(forms.ModelForm):
         widgets = {
             'full_name':forms.TextInput(attrs={'class':'form-control'}),
             'phone_number':forms.TextInput(attrs={'class':'form-control'}),
-            'reference_type':forms.TextInput(attrs={'class':'form-control'}),
+            'reference_type':forms.Select(attrs={'class':'form-control'}),
         }
