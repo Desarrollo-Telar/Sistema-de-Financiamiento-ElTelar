@@ -60,7 +60,8 @@ def send_email_new_customer(customer):
     context = {
         'nombre_usuario': customer.get_full_name(),  # Llamar al método correctamente
         'email':customer.email,
-        'date':customer.creation_date
+        'date':customer.creation_date,
+        'code':customer.code,
     }
 
     
