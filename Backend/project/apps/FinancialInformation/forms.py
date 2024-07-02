@@ -69,7 +69,7 @@ class OtherSourcesOfIncomeForms(forms.ModelForm):
 
         widgets = {
             'source_of_income':forms.TextInput(attrs={'class':'form-control'}),
-            'nit': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
+            'nit': forms.TextInput(attrs={'class':'form-control',}),
             'phone_number': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
             'salary': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0', 'step':'any'}),
         }
