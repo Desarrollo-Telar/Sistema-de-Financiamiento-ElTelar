@@ -5,6 +5,8 @@ from .models import Customer
 from apps.addresses.models import Address, Coordinate
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
 from apps.InvestmentPlan.models import InvestmentPlan
+from apps.pictures.models import ImagenCustomer
+from apps.documents.models import DocumentCustomer
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
@@ -184,6 +186,8 @@ def detail_customer(request,customer_code):
     
     plan_inversion = InvestmentPlan.objects.filter(Q(customer_id=customer_list))
     reference = Reference.objects.filter(Q(customer_id=customer_list))
+    imagen = ImagenCustomer.objects.filter(Q(customer_id=customer_list))
+    document = DocumentCustomer.objects.filter(Q(customer_id=customer_list))
     coor = []        
     for dire in direccion:
         coordenada = Coordinate.objects.filter(Q(address_id=dire))
@@ -205,6 +209,8 @@ def detail_customer(request,customer_code):
         'coordenada':coor,
         'customer_code':customer_code,
         'limite_direccion':limite_direccion,
+        'imagen':imagen,
+        'document':document,
     }
     return render(request, template_name, context)
 

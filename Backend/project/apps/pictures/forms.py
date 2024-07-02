@@ -6,8 +6,9 @@ class ImagenForms(forms.ModelForm):
     class Meta:
         model = Imagen
         fields = [
+            'description',
             'image',
-            'description'
+            
         ]
 
         labels = {
@@ -16,6 +17,6 @@ class ImagenForms(forms.ModelForm):
         }
         
         widgets = {
-            'image':forms.FileInput(attrs={'type':'file','class':'form-control','name':'document','accept':'image/*'}),  
+            'image':forms.FileInput(attrs={'type':'file','class':'form-control','name':'image','accept':'image/*'}),  
             'description':forms.TextInput(attrs={'class':'form-control'}),
         }

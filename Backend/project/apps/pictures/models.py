@@ -6,6 +6,9 @@ from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
 # Create your models here.
 
+# SETTINGS OF PROJECT
+from project.settings import MEDIA_URL, STATIC_URL
+
 class Imagen(models.Model):
     image = models.ImageField("Imagen", blank=True, null=True, upload_to='documents/')
     description = models.TextField("Descripción", blank=True, null=True)
@@ -13,6 +16,9 @@ class Imagen(models.Model):
 
     def __str__(self):
         return self.description or "Sin descripción"
+    
+    def get_image(self):
+        return '{}{}'.format(MEDIA_URL,self.image)
 
     class Meta:
         verbose_name = "Imagen"

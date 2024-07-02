@@ -1,3 +1,15 @@
 {% load static %}
-<div class="row" style="margin: 1rem 0;">
+<div class="row" style="margin: 2rem;">
+    <div>
+        <a href="{% url 'imagen:create_image' customer_code %}" class="btn_edit">Agregar una nueva Imagen</a>
+    </div>
+    <div class="col-12" style="margin-top: 2rem;">
+        {% for image in imagen %}
+        <p>{{image.image_id.description}}</p>
+        <img src="{{image.image_id.get_image}}" alt="{{image.image_id.description}}" >
+        {% endfor %}
+
+    </div>
+    
+    
 </div>

@@ -33,15 +33,18 @@ def create_imagen_customer(request, customer_code):
     if request.method == 'POST':
         form = ImagenForms(request.POST,request.FILES)
         if form.is_valid():
+            #imagen = form.save()
+             
             imagen = Imagen()
             imagen.image = form.cleaned_data.get('image')
             imagen.description = form.cleaned_data.get('description')
             imagen.save()
+            
             imagen_customer = ImagenCustomer(customer_id=customer_id, image_id=imagen)
             imagen_customer.save()
             return redirect('customers:detail',customer_code)
-        
-    form = ImagenForms
+    else:
+        form = ImagenForms()
     context = {
         'form': form,
         'customer_code':customer_code,
