@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <form method="POST" action="{% url 'document:create_document_guarantee' investment_plan_id customer_code %}" >
+    <form method="POST" action="{% url 'imagen:update_image' imagen_id customer_code %}" >
         {% csrf_token %}
         {% include 'documents/snippets/forms.html' %}
         <button type="submit">Crear Registro</button>

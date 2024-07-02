@@ -28,7 +28,7 @@ from django.utils.decorators import method_decorator
 @login_required
 @usuario_activo
 def create_imagen_customer(request, customer_code):
-    template_name = ''
+    template_name = 'pictures/create/create_images_customers.html'
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     if request.method == 'POST':
         form = ImagenForms(request.POST,request.FILES)
@@ -43,7 +43,8 @@ def create_imagen_customer(request, customer_code):
         
     form = ImagenForms
     context = {
-        'form': form
+        'form': form,
+        'customer_code':customer_code,
     }
 
     return render(request, template_name, context)
@@ -51,7 +52,7 @@ def create_imagen_customer(request, customer_code):
 @login_required
 @usuario_activo
 def create_imagen_customer_address(request,address_id, customer_code):
-    template_name = ''
+    template_name = 'pictures/create/create_images_address.html'
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     address_id = get_object_or_404(Address, id=address_id)
     if request.method == 'POST':
@@ -70,7 +71,9 @@ def create_imagen_customer_address(request,address_id, customer_code):
         
     form = ImagenForms
     context = {
-        'form': form
+        'form': form,
+        'address_id':address_id.id,
+        'customer_code':customer_code,
     }
 
     return render(request, template_name, context)
@@ -78,7 +81,7 @@ def create_imagen_customer_address(request,address_id, customer_code):
 @login_required
 @usuario_activo
 def create_imagen_customer_guarantee(request,investment_plan_id, customer_code):
-    template_name = ''
+    template_name = 'pictures/create/create_images_guarantee.html'
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     investment_plan_id = get_object_or_404(InvestmentPlan, id=investment_plan_id)
     if request.method == 'POST':
@@ -97,7 +100,9 @@ def create_imagen_customer_guarantee(request,investment_plan_id, customer_code):
         
     form = ImagenForms
     context = {
-        'form': form
+        'form': form,
+        'investment_plan_id':investment_plan_id.id,
+        'customer_code':customer_code
     }
 
     return render(request, template_name, context)
@@ -114,7 +119,7 @@ def delete_imagen(request, id, customer_code):
 @usuario_activo
 def update_imagen(request, id, customer_code):
     imagen = get_object_or_404(Imagen, id=id)
-    template_name = ''
+    template_name = 'pictures/update/update_images.html'
 
     if request.method == 'POST':
         form = ImagenForms(request.POST,request.FILES)
@@ -133,7 +138,9 @@ def update_imagen(request, id, customer_code):
         form = ImagenForms(initial=initial_data)
 
         context = {
-            'form':form
+            'form':form,
+            'imagen_id':id,
+            'customer_code':customer_code,
         }
 
         return render(request, template_name, context)
