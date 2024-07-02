@@ -18,7 +18,7 @@ class CustomerForm(forms.ModelForm):
     )
     telephone = forms.CharField(
         label='Numero de telefono',
-        widget=forms.TextInput(attrs={'class':'form-control', 'type':'number', 'min':'0'}),
+        widget=forms.TextInput(attrs={'class':'form-control', }),
         required=True
     )
 
@@ -56,9 +56,9 @@ class CustomerForm(forms.ModelForm):
             'person_type',
             'telephone',
             'email',
-            'status',  
+            'status',              
+            'immigration_status_id',
             'description',
-            'immigration_status_id'
         ]
 
         labels = {
@@ -88,13 +88,13 @@ class CustomerForm(forms.ModelForm):
             'person_type': forms.Select(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             'date_birth': forms.TextInput(attrs={'type':'date', 'class':'form-control'}),
-            'number_nit':forms.TextInput(attrs={'class':'form-control', 'type':'number', 'min':'0'}),
+            'number_nit':forms.TextInput(attrs={'class':'form-control',}),
             'place_birth': forms.TextInput(attrs={'class': 'form-control'}),
             'marital_status': forms.TextInput(attrs={'class': 'form-control'}),
             'profession_trade': forms.TextInput(attrs={'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'description':forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
-            'immigration_status_id':forms.Select(attrs={'class': 'form-control'}),
+            'immigration_status_id':forms.Select(attrs={'class': 'form-control','value':'immigration_status_id'}),
 
         }
