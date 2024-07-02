@@ -5,7 +5,8 @@ from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
 # Create your models here.
-
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 # SETTINGS OF PROJECT
 from project.settings import MEDIA_URL, STATIC_URL
 
@@ -69,3 +70,8 @@ class ImagenOther(models.Model):
         verbose_name = "Otra Imagen"
         verbose_name_plural ="Otras Imágenes"
 
+@receiver(post_delete, sender=Imagen)
+def delete_image_files(sender, instance, **kwargs):
+    # instance.image es el campo de imagen en tu modelo Imagen
+    if instance.image:
+        instance.image.delete()

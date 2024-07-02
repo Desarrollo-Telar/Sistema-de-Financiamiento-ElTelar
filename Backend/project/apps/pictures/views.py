@@ -123,27 +123,22 @@ def delete_imagen(request, id, customer_code):
 def update_imagen(request, id, customer_code):
     imagen = get_object_or_404(Imagen, id=id)
     template_name = 'pictures/update/update_images.html'
+    print(imagen.image)
 
     if request.method == 'POST':
-        form = ImagenForms(request.POST,request.FILES)
+        form = ImagenForms(request.POST, request.FILES, instance=imagen)
         if form.is_valid():
-            imagen.image = form.cleaned_data.get('image')
-            imagen.description = form.cleaned_data.get('description')
-            imagen.save()
-            return redirect('customers:detail',customer_code)
+            form.save()
+            return redirect('customers:detail', customer_code)
     else:
+        form = ImagenForms(instance=imagen)
 
-        initial_data = {
-            'image':imagen.image ,
-            'description':imagen.description
-        }
+    context = {
+        'form':form,
+        'imagen_id':id,
+        'imagen':imagen,
+        'customer_code':customer_code,
+        'title':'ELTELAR - {}'.format(customer_code)
+    }
 
-        form = ImagenForms(initial=initial_data)
-
-        context = {
-            'form':form,
-            'imagen_id':id,
-            'customer_code':customer_code,
-        }
-
-        return render(request, template_name, context)
+    return render(request, template_name, context)

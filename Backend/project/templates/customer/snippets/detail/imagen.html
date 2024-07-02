@@ -5,8 +5,27 @@
     </div>
     <div class="col-12" style="margin-top: 2rem;">
         {% for image in imagen %}
-        <p>{{image.image_id.description}}</p>
-        <img src="{{image.image_id.get_image}}" alt="{{image.image_id.description}}" >
+        <div class="row">
+            <div class="col-2">
+                <p class="fw-semibold">{{image.image_id.description}}</p>
+    
+            </div>
+            <div class="col-6">
+                <img src="{{image.image_id.get_image}}" alt="{{image.image_id.description}}" style="width: 25rem; height: 15rem;">
+    
+            </div>
+            <div class="col">
+                <a href="{% url 'imagen:update_image' image.image_id.id customer_code %}">Editar Imagen</a>
+                
+            </div>
+            <div class="col-2">
+                <a href="{% url 'imagen:delete_image' image.image_id.id customer_code %}" class="btn_add">Eliminar Imagen</a>
+            </div>
+
+        </div>
+        
+        
+        
         {% endfor %}
 
     </div>
