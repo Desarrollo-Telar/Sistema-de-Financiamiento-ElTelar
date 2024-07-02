@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'apps.InvestmentPlan',
     'rest_framework',
     'coreapi', 
-    'apps.documents'
+    'apps.documents',
+    'apps.financings',
     #'django_inlinecss',
     #'otp',
 ]
