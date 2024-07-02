@@ -339,6 +339,7 @@ export class Cliente {
             alert('Debe ingresar el numero de NIT cliente');
             throw new Error('Debe ingresar el numero de NIT cliente');
         }
+        /*
         const regex = /^(\d{7}-[A-Z]|\d{8}|\d{7}[A-Z]|\d{7}-\d{1})$/;
 
         // Validar el formato del número de nit
@@ -348,6 +349,7 @@ export class Cliente {
             throw new Error('Numero de NIT no valido. Verificar!!!');
 
         }
+        */
 
         this.#number_nit = value.trim();
     }

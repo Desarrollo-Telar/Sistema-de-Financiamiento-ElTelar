@@ -86,10 +86,11 @@ def update_plan_financiamiento(request,id,customer_code):
             'type_of_transfers_or_transfer_of_funds':plan.type_of_transfers_or_transfer_of_funds,
 
         }
-        form = InvestmentPlanForms(initial=initial_data)
+        form = InvestmentPlanForms(instance=plan)
         context = {
             'form':form,
             'customer_code':customer_code,
             'investment_plan_id':id,
+            'title':'ELTELAR CLIENTE{} - PLAN DE INVERSION'.format(customer_code),
         }
         return render(request, template_name, context)

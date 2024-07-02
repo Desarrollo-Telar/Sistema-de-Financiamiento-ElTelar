@@ -17,36 +17,9 @@ document.getElementById('customer').addEventListener('submit', async function (e
     event.preventDefault();
 
     try {
-        // Recolectar y validar información del cliente
-        const infoCliente = recoletarInformacionCliente();
-        if (!infoCliente.validar()) {
-            alert('No se puede proceder con el registro del cliente debido a información incompleta. Por favor, revise todos los campos requeridos.');
-            return;
-        }
         
-        const infoDireccion = recoletarInformacionDirecciones();
-        if (!infoDireccion.validar()) {
-            alert('No se pudo registrar la dirección del cliente. Por favor, asegúrese de proporcionar información completa sobre la dirección de trabajo o de residencia.');
-            return;
-        }
-        
-        const infoLaboral = recolectarInformacionLaboral();
-        if (!infoLaboral.validar()) {
-            alert('No se pudo registrar la información laboral del cliente. Por favor, complete todos los campos necesarios en la descripción de la información laboral.');
-            return;
-        }
-        
-        const infoPlanInversion = recoletarInformacionPlanInversion();
-        if (!infoPlanInversion.validar()) {
-            alert('No se pudo registrar el plan de inversión del cliente. Asegúrese de proporcionar toda la información requerida.');
-            return;
-        }
-        
-        const infoReferencias = recoletarInformacionReferencias();
-        if (!infoReferencias.validar()) {
-            alert('No se pudieron registrar las referencias del cliente debido a información incompleta. Por favor, revise los detalles de las referencias.');
-            return;
-        }
+       
+
         
 
         // Realizar llamadas a la API
