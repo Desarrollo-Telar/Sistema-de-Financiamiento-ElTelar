@@ -195,10 +195,13 @@ def detail_customer(request,customer_code):
         'user_id':request.user.id,
         'direccion': direccion,  
         'informacion_laboral' :informacion_laboral,
+        'laboral':informacion_laboral.exists(),
+        'otra':otra_informacion_laboral.exists(),
         'otra_informacion_laboral' :otra_informacion_laboral,
         'reference':reference,
         'plan_inversion':plan_inversion,
         'coordenada':coor,
+        'customer_code':customer_code,
     }
     return render(request, template_name, context)
 

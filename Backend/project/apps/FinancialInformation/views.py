@@ -46,6 +46,7 @@ def create_working_information(request, customer_code):
     context = {
         'form':form,
         'customer_code':customer_code,
+        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
     }
     if request.method == 'POST':
         form = WorkingInformationForms(request.POST)
@@ -79,6 +80,7 @@ def create_other_information(request, customer_code):
     context = {
         'form':form,
         'customer_code':customer_code,
+        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
     }
     if request.method == 'POST':
         form = OtherSourcesOfIncomeForms(request.POST)
@@ -139,7 +141,8 @@ def update_working_information(request, id, customer_code):
         context = {
             'form':form,
             'working_id':id,
-            'customer_code':customer_code
+            'customer_code':customer_code,
+            'title':'ELTELAR - CLIENTE {}'.format(customer_code),
         }
         return render(request, template_name, context)
 
@@ -170,7 +173,8 @@ def update_other_information(request,id,customer_code):
         context = {
             'form':form,
             'other_id':id,
-            'customer_code':customer_code
+            'customer_code':customer_code,
+            'title':'ELTELAR - CLIENTE {}'.format(customer_code),
         }
         return render(request, template_name, context)
 
@@ -193,7 +197,8 @@ def create_references_customer(request, customer_code):
     form = ReferenceForms
     context = {
         'form':form,
-        'customer_code':customer_code
+        'customer_code':customer_code,
+        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
     }
 
     return render(request, template_name, context)
@@ -225,7 +230,8 @@ def update_references_customer(request, id,customer_code):
         context = {
             'form':form,
             'references_id':id,
-            'customer_code':customer_code
+            'customer_code':customer_code,
+            'title':'ELTELAR - CLIENTE {}'.format(customer_code),
         }
 
         return render(request, template_name, context)

@@ -5,7 +5,7 @@
     <form method="POST" action="{% url 'document:update_document' document_id customer_code %}" >
         {% csrf_token %}
         {% include 'documents/snippets/forms.html' %}
-        <button type="submit">Crear Registro</button>
+        <button type="submit">Actualizar Registro</button>
         <a href="{% url 'customers:detail' customer_code  %}">Cancelar</a>
 
 

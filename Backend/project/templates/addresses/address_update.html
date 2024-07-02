@@ -5,7 +5,8 @@
     <form method="POST" action="{% url 'addresses:update' address_id customer_code %}" >
         {% csrf_token %}
         {% include 'addresses/forms/address_forms.html' %}
-        <button type="submit">Actualizar</button>
+        <button type="submit" class="btn_edit">Actualizar</button>
+        <a href="{% url 'customers:detail' customer_code%}">Cancelar</a>
 
 
     </form>
