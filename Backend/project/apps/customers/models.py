@@ -116,7 +116,7 @@ def generate_customer_code(status, current_year, counter):
         'No Aprobado': 'N',
         'Aprobado': '',
         'Revisión de documentos': 'D',
-        'Dar de Baja': '',
+        'Dar de Baja': 'E',
     }
     suffix = status_suffix.get(status, '')
     return f'{current_year}-{suffix}{counter}'

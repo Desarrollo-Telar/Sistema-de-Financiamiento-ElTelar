@@ -8,17 +8,17 @@ from .models import Customer, ImmigrationStatus
 from project.validations import validar_correo, validar_numero_telefono
 # Tiempo
 from datetime import datetime
+
 class CustomerForm(forms.ModelForm):
     email = forms.EmailField(
-        label="Correo Electronico",
-        widget=forms.EmailInput(
-            attrs={'class': 'form-control'}),
+        label="Correo Electrónico",
+        widget=forms.EmailInput(attrs={'class': 'form-control'}),
         required=True
-
     )
+
     telephone = forms.CharField(
-        label='Numero de telefono',
-        widget=forms.TextInput(attrs={'class':'form-control', }),
+        label='Número de teléfono',
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
         required=True
     )
 
@@ -31,10 +31,10 @@ class CustomerForm(forms.ModelForm):
         return email
     
     def clean_telephone(self):
-        telephone = self.changed_data.get('telephone')
+        telephone = self.cleaned_data.get('telephone')
 
         if not validar_numero_telefono(telephone):
-            raise forms.ValidationError('El numero de telefono no es válido.')
+            raise forms.ValidationError('El número de teléfono no es válido.')
 
         return telephone
 
@@ -65,36 +65,34 @@ class CustomerForm(forms.ModelForm):
             'first_name': 'Nombre',
             'last_name': 'Apellido',
             'type_identification': 'Tipo de Identificación',
-            'identification_number': 'Numero de Identificación',
+            'identification_number': 'Número de Identificación',
             'person_type': 'Tipo de Persona',             
             'status': 'Status del cliente',
             'date_birth': 'Fecha de Nacimiento',
-            'number_nit': 'Numero de NIT',
+            'number_nit': 'Número de NIT',
             'place_birth': 'Lugar de Nacimiento',
             'marital_status': 'Estado Civil',
             'profession_trade': 'Profesión u Oficio',
-            'gender': 'Genero',
+            'gender': 'Género',
             'nationality': 'Nacionalidad',
-            'description':'Observaciones',
-            'immigration_status_id':'Condicion Migratoria'
-            
+            'description': 'Observaciones',
+            'immigration_status_id': 'Condición Migratoria'
         }
 
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'type_identification': forms.Select(attrs={'class': 'form-control'}),
-            'identification_number': forms.TextInput(attrs={'class':'form-control', 'type':'number', 'min':'0'}),
+            'identification_number': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0'}),
             'person_type': forms.Select(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
-            'date_birth': forms.TextInput(attrs={'type':'date', 'class':'form-control'}),
-            'number_nit':forms.TextInput(attrs={'class':'form-control',}),
+            'date_birth': forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'number_nit': forms.TextInput(attrs={'class': 'form-control'}),
             'place_birth': forms.TextInput(attrs={'class': 'form-control'}),
             'marital_status': forms.TextInput(attrs={'class': 'form-control'}),
             'profession_trade': forms.TextInput(attrs={'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
-            'description':forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
-            'immigration_status_id':forms.Select(attrs={'class': 'form-control','value':'immigration_status_id'}),
-
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
+            'immigration_status_id': forms.Select(attrs={'class': 'form-control'}),
         }
