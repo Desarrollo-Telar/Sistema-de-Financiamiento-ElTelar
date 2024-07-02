@@ -61,7 +61,7 @@ def send_email_new_customer(customer):
         'nombre_usuario': customer.get_full_name(),  # Llamar al método correctamente
         'email':customer.email,
         'date':customer.creation_date,
-        'code':customer.code,
+        'code':customer.customer_code,
     }
 
     

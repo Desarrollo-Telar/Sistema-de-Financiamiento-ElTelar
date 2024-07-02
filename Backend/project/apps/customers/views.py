@@ -65,7 +65,8 @@ def delete_customer(request,id):
 @login_required
 @usuario_activo
 def list_customer(request):
-    customer_list = Customer.objects.all().order_by('-id')
+    status = ['Revisión de documentos', 'Aprobado', 'No Aprobado', 'Posible Cliente']
+    customer_list = Customer.objects.all().order_by('-id').filter(status__in=status)
     page_obj = paginacion(request, customer_list)
     template_name = 'customer/list.html'
     context = {
