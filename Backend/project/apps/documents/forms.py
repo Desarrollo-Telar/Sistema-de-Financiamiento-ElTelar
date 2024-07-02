@@ -13,7 +13,7 @@ class DocumentForms(forms.ModelForm):
         ]
 
         labels = {
-            'description':'Descripción',
+            'description':'Titulo',
             'document':'Documento',
         }
         widgets = {

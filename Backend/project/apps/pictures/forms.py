@@ -12,7 +12,7 @@ class ImagenForms(forms.ModelForm):
 
         labels = {
             'image':'Imagen',
-            'description':'Descripción'
+            'description':'Titulo'
         }
         
         widgets = {

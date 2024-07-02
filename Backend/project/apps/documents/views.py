@@ -43,7 +43,8 @@ def create_document_customer(request, customer_code):
     form = DocumentForms
     context = {
         'form':form,
-        'customer_code':customer_code
+        'customer_code':customer_code,
+        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
     } 
 
     return render(request, template_name, context)
@@ -70,7 +71,8 @@ def create_documente_address(request, addrress_id ,customer_code):
     context = {
         'form':form,
         'addrress_id':addrress_id.id,
-        'customer_code':customer_code
+        'customer_code':customer_code,
+        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
     } 
 
     return render(request, template_name, context)   
@@ -95,7 +97,10 @@ def create_documente_guarantee(request, investment_plan_id ,customer_code):
 
     form = DocumentForms
     context = {
-        'form':form
+        'form':form,
+        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
+        'investment_plan_id':investment_plan_id.id,
+        'customer_code':customer_code
     } 
 
     return render(request, template_name, context) 
@@ -130,7 +135,9 @@ def update_document(request, id, customer_code):
     context = {
         'form':form,
         'document_id':id,
-        'customer_code':customer_code
+        'customer_code':customer_code,
+        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
+        
     }
 
     return render(request, template_name, context)
