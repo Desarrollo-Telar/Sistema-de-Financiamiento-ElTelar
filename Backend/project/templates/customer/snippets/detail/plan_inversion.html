@@ -25,11 +25,11 @@
             <td>{{plan.tipo_transferencia}}</td>
             <td>{{plan.investment_plan_description}}</td>
             <td>
-                <a href="{% url 'investment_plan:update' plan.id customer_code %}">Editar</a>
+                <a href="{% url 'investment_plan:update' plan.id customer_code %}" class="btn_add">Editar</a>
                 
             </td>
             <td>
-                <a href="{% url 'investment_plan:delete' plan.id customer_code %}">Eliminar</a>
+                <a href="{% url 'investment_plan:delete' plan.id customer_code %}" class="btn_edit">Eliminar</a>
             </td>
             
 

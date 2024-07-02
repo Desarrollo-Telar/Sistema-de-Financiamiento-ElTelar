@@ -116,28 +116,23 @@ def delete(request, id, customer_code):
 @usuario_activo
 def update_document(request, id, customer_code):
     documento = get_object_or_404(Document, id=id)
-    customer_id = get_object_or_404(Customer, customer_code = customer_code)
+    customer = get_object_or_404(Customer, customer_code=customer_code)
     template_name = 'documents/update/update_documents.html'
 
     if request.method == 'POST':
-        form = DocumentForms(request.POST, request.FILES)
+        form = DocumentForms(request.POST, request.FILES, instance=documento)
         if form.is_valid():
-            documento.document = form.cleaned_data.get('document')
-            documento.description = form.cleaned_data.get('description')
-            documento.save()
-            return redirect('customers:detail',customer_code)
-    initial_data = {
-        'description':documento.document,
-        'document':documento.description, 
-    }
-    form = DocumentForms(initial=initial_data)
+            form.save()
+            return redirect('customers:detail', customer_code=customer_code)
+    else:
+        form = DocumentForms(instance=documento)
 
     context = {
-        'form':form,
-        'document_id':id,
-        'customer_code':customer_code,
-        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
-        
+        'form': form,
+        'document_id': id,
+        'customer_code': customer_code,
+        'docum': documento,
+        'title': f'ELTELAR - CLIENTE {customer_code}',
     }
 
     return render(request, template_name, context)

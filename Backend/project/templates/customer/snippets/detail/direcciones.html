@@ -34,7 +34,7 @@
         <td>{{x.latitud}}</td>
       
         <td>
-          <a href="{% url 'addresses:update' x.address_id.id customer_list.customer_code %}">Editar direccion</a>
+          <a href="{% url 'addresses:update' x.address_id.id customer_list.customer_code %}" class="btn_add">Editar direccion</a>
         </td>
       </tr>
       {% endfor %}

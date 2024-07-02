@@ -188,6 +188,7 @@ def detail_customer(request,customer_code):
     reference = Reference.objects.filter(Q(customer_id=customer_list))
     imagen = ImagenCustomer.objects.filter(Q(customer_id=customer_list))
     document = DocumentCustomer.objects.filter(Q(customer_id=customer_list))
+    print(document)
     coor = []        
     for dire in direccion:
         coordenada = Coordinate.objects.filter(Q(address_id=dire))

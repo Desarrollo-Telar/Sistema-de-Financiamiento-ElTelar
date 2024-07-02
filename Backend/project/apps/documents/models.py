@@ -5,12 +5,24 @@ from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.users.models import User
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
+from project.settings import MEDIA_URL, STATIC_URL
 # Create your models here.
 class Document(models.Model):
     description = models.TextField("Descripción",blank=True, null=True)
     document = models.FileField("Documento",blank=True, null=True,upload_to='documents/')
     uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+
+    def __str__(self):
+        return self.description or "Sin Titulo"
+    
+    def get_document(self):
+        return '{}{}'.format(MEDIA_URL,self.document)
+    
+    def titulo(self):
+        return self.description
 
     class Meta:
         verbose_name = "Documento"
@@ -20,6 +32,11 @@ class DocumentCustomer(models.Model):
     document_id = models.ForeignKey(Document, on_delete=models.CASCADE,related_name='customer_documents')
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='documents')
 
+    def __str__(self):
+        return f'Documento del Cliente: {self.document_id}'
+    
+    def titulo(self):
+        return self.document_id
 
     class Meta:
         verbose_name = "Documento de Cliente"
@@ -54,3 +71,9 @@ class DocumentOther(models.Model):
     class Meta:
         verbose_name = "Otro Documento"
         verbose_name_plural = "Otros Documentos"
+
+@receiver(post_delete, sender=Document)
+def delete_document_files(sender, instance, **kwargs):
+    # instance.image es el campo del documento en el modelo de Documentos
+    if instance.document:
+        instance.document.delete()
