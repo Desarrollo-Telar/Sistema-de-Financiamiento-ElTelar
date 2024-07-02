@@ -4,7 +4,7 @@ from django.db import models
 from apps.users.models import User
 
 # Signals
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, pre_delete, post_delete
 
 # Django
 from django.dispatch import receiver
@@ -20,6 +20,9 @@ from project.send_mail import send_email_welcome_customer, send_email_new_custom
 
 # QR
 from project.generate_qr import generate_qr
+
+# OS
+import os
 
 # Create your models here.
 condition = [
@@ -164,18 +167,22 @@ def send_message(sender, instance, created, **kwargs):
     customer = instance
     if created:
         
-        send_email_new_customer(customer)
-        send_email_welcome_customer(customer)
+        #send_email_new_customer(customer)
+        #send_email_welcome_customer(customer)
         
         filename = f'codigoQr_{customer.customer_code}.png'
         dato = f'http://127.0.0.1:8000/pdf/{customer.id}/'
-
-        
-
         generate_qr(dato,filename)
     else:
         filename = f'codigoQr_{customer.customer_code}.png'
         dato = f'http://127.0.0.1:8000/pdf/{customer.id}/'
 
         generate_qr(dato,filename)
-       
+
+@receiver(post_delete, sender=Customer)
+def delete_image_qr_customer(sender, instance, **kwargs):
+    qr = f'media/qr/codigoQr_{instance.customer_code}.png'
+    
+    os.remove(qr)
+    print('IMAGEN DE QR ELIMINADO')
+    

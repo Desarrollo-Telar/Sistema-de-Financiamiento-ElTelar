@@ -33,8 +33,6 @@ def send_email_welcome_customer(customer):
     # Envio de correos
     # Mensaje de bienvendia a un cliente a la empresa
    
-    print(customer.email)
-    
     template = get_template('email/welcome_message.html')
     
     context = {
@@ -55,9 +53,6 @@ def send_email_welcome_customer(customer):
     
 
 def send_email_new_customer(customer):
-    
-    print(customer.email)
-    
     # Envio de correos
     # Mensaje de bienvenida a un cliente a la empresa
     template = get_template('email/message_new_customer.html')
