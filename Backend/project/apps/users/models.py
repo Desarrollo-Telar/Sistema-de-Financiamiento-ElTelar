@@ -109,8 +109,13 @@ def set_username(sender, instance, *args, **kwargs):
 def set_rol(sender, instance, *args, **kwargs):
     roles_superuser = ['Administrador', 'Administradora', 'Programador', 'Programadora']
     
+    # Si el rol del usuario está en la lista de roles de superusuario, establecer is_superuser a True
     if instance.rol in roles_superuser:
-        instance.is_superuser = True 
-    elif instance.is_superuser:
+        instance.is_superuser = True
+    else:
+        instance.is_superuser = False
+
+    # Si el usuario es un superusuario y no tiene un rol en roles_superuser, establecer el rol a 'Administrador'
+    if instance.is_superuser and instance.rol not in roles_superuser:
         instance.rol = 'Administrador'
 
