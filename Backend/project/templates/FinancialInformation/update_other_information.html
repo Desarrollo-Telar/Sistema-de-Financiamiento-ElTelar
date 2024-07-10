@@ -2,12 +2,10 @@
 {% load static %}
 
 {% block content %}
-    <form method="POST" action="{% url 'financial_information:update_other_information' other_id customer_code %}" >
+    <form method="POST" >
         {% csrf_token %}
         {% include 'FinancialInformation/snippets/forms.html' %}
         <button type="submit" class="btn_edit">Actualizar Registro</button>
-        <a href="{% url 'customers:detail' customer_code  %}">Cancelar</a>
-
-
+        <a href="{% url 'customers:detail' customer_code %}">Cancelar</a>
     </form>
 {% endblock %}

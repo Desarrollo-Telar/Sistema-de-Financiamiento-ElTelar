@@ -7,8 +7,10 @@ export class Direccion {
     #country;
     #type_address;
     #customer_id;
+    #longitud;
+    #latitud;
 
-    constructor(street = '', number = '', city = '', state = '',  country = '', type_address = '', customer_id = '') {
+    constructor(street = '', number = '', city = '', state = '',  country = '', type_address = '', customer_id = '',longitud='',latitud='') {
         this.#street = street;
         this.#number = number;
         this.#city = city;
@@ -17,6 +19,8 @@ export class Direccion {
         this.#country = country;
         this.#type_address = type_address;
         this.#customer_id = customer_id;
+        this.#latitud = latitud;
+        this.#longitud= longitud;
     }
 
     // Getters

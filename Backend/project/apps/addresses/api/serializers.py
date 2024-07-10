@@ -9,7 +9,3 @@ class AddressSerializaer(serializers.ModelSerializer):
         model = Address
         fields = '__all__'
 
-class CoordinateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Coordinate
-        fields = '__all__'

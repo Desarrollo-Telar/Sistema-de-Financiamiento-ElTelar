@@ -149,10 +149,8 @@ def detail_customer(request,customer_code):
     imagen = ImagenCustomer.objects.filter(Q(customer_id=customer_list))
     document = DocumentCustomer.objects.filter(Q(customer_id=customer_list))
     print(document)
-    coor = []        
-    for dire in direccion:
-        coordenada = Coordinate.objects.filter(Q(address_id=dire))
-        coor.append(coordenada)
+      
+    
 
     limite_direccion = False if direccion.count() >= 2 else True
 
@@ -167,7 +165,7 @@ def detail_customer(request,customer_code):
         'otra_informacion_laboral' :otra_informacion_laboral,
         'reference':reference,
         'plan_inversion':plan_inversion,
-        'coordenada':coor,
+        
         'customer_code':customer_code,
         'limite_direccion':limite_direccion,
         'imagen':imagen,

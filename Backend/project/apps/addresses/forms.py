@@ -1,7 +1,7 @@
 from django import forms
 
 # Models
-from .models import Address, Coordinate
+from .models import Address
 
 class AddressForms(forms.ModelForm):
     class Meta:
@@ -11,8 +11,9 @@ class AddressForms(forms.ModelForm):
             'number',
             'city',
             'state',
-            
             'country',
+            'latitud',
+            'longitud',
             'type_address',
             
             ]
@@ -25,6 +26,8 @@ class AddressForms(forms.ModelForm):
             
             'country':'País',
             'type_address':'Tipo de direccion',
+            'latitud':'Latitud',
+            'longitud':'Longitud'
             
             
 
@@ -39,24 +42,10 @@ class AddressForms(forms.ModelForm):
             
             'country': forms.TextInput(attrs={'class':'form-control'}),
             'type_address':forms.Select(attrs={'class':'form-control'}),
+            'latitud': forms.TextInput(attrs={'class':'form-control'}),
+            'longitud': forms.TextInput(attrs={'class':'form-control'}),
            
             
 
         }
         
-class CoordinateForms(forms.ModelForm):
-    class Meta:
-        model = Coordinate
-        fields = [
-            'latitud',
-            'longitud'
-            ]
-        labels = {
-            'latitud':'Latitud',
-            'longitud':'Longitud'
-
-        }
-        widgets = {
-            'latitud': forms.TextInput(attrs={'class':'form-control'}),
-            'longitud': forms.TextInput(attrs={'class':'form-control'}),
-        }

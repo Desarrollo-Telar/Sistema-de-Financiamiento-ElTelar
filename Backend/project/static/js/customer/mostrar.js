@@ -1441,6 +1441,12 @@ $(document).ready(function() {
     $(".state1").select2({
         data: municipios
     });
+    $(".city2").select2({
+        data: departamentos
+    });
+    $(".state2").select2({
+        data: municipios
+    });
     
    
     

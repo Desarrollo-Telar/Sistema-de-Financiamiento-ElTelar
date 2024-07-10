@@ -4,10 +4,10 @@ from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
 # FORMS
-from .forms import AddressForms,CoordinateForms
+from .forms import AddressForms
 
 # MODELS
-from .models import Address, Coordinate
+from .models import Address
 from apps.customers.models import Customer
 
 # CRUD
@@ -35,8 +35,7 @@ class AddressCreateView(CreateView):
         
         context = {
             'title':'ELTELAR - DIRECCIONES',
-            'form':CoordinateForms,
-            'form2':AddressForms,
+            'form':CoordinateForms,            
             'customer_code':cliente.customer_code
         }
         return render(request, template_name, context)
@@ -44,26 +43,24 @@ class AddressCreateView(CreateView):
     def post(self, request, customer_code,*args, **kwargs):
         
         cliente = get_object_or_404(Customer, customer_code= str(customer_code))
-        form = CoordinateForms(request.POST)
-        form2 = AddressForms(request.POST)
+        form = AddressForms(request.POST)
+       
 
-        if form.is_valid() and form2.is_valid():
+        if form.is_valid():
             direccion = Address()
-            direccion.street = form2.cleaned_data.get('street')
-            direccion.number = form2.cleaned_data.get('number')
-            direccion.city = form2.cleaned_data.get('city')
-            direccion.state = form2.cleaned_data.get('state')
+            direccion.street = form.cleaned_data.get('street')
+            direccion.number = form.cleaned_data.get('number')
+            direccion.city = form.cleaned_data.get('city')
+            direccion.state = form.cleaned_data.get('state')
            
-            direccion.country = form2.cleaned_data.get('country')
-            direccion.type_address = form2.cleaned_data.get('type_address')
+            direccion.country = form.cleaned_data.get('country')
+            direccion.type_address = form.cleaned_data.get('type_address')
             direccion.customer_id = cliente
+            direccion.latitud = form.cleaned_data.get('latitud')
+            direccion.longitud = form.cleaned_data.get('longitud')
             
             direccion.save()
-            coordenada = Coordinate()
-            coordenada.latitud = form.cleaned_data.get('latitud')
-            coordenada.longitud = form.cleaned_data.get('longitud')
-            coordenada.address_id = direccion
-            coordenada.save()
+            
             
             return redirect('customers:detail',cliente.customer_code ) 
           
@@ -76,81 +73,53 @@ def addressUpdateView(request, id,customer_code):
     template_name = 'addresses/address_update.html'
     cliente = get_object_or_404(Customer, customer_code= str(customer_code))
     address = get_object_or_404(Address,id=id)
-    coordinate = get_object_or_404(Coordinate, address_id=address.id)
+   
     
     if request.method == 'POST':
-        form = CoordinateForms(request.POST)
-        form2 = AddressForms(request.POST)
+       
+        form = AddressForms(request.POST)
 
-        if form.is_valid() and form2.is_valid():
+        if form.is_valid() :
             direccion = address
-            direccion.street = form2.cleaned_data.get('street')
-            direccion.number = form2.cleaned_data.get('number')
-            direccion.city = form2.cleaned_data.get('city')
-            direccion.state = form2.cleaned_data.get('state')
+            direccion.street = form.cleaned_data.get('street')
+            direccion.number = form.cleaned_data.get('number')
+            direccion.city = form.cleaned_data.get('city')
+            direccion.state = form.cleaned_data.get('state')
             
-            direccion.country = form2.cleaned_data.get('country')
-            direccion.type_address = form2.cleaned_data.get('type_address')
+            direccion.country = form.cleaned_data.get('country')
+            direccion.type_address = form.cleaned_data.get('type_address')
             direccion.customer_id = cliente
+            direccion.latitud = form.cleaned_data.get('latitud')
+            direccion.longitud = form.cleaned_data.get('longitud')
                 
             direccion.save()
-            coordenada = coordinate
-            coordenada.latitud = form.cleaned_data.get('latitud')
-            coordenada.longitud = form.cleaned_data.get('longitud')
-            coordenada.address_id = direccion
-            coordenada.save()
+            
                 
             return redirect('customers:detail',cliente.customer_code ) 
             
         else:
-            initial_data_address = {
-                'street':address.street,
-                'number':address.number,
-                'city':address.city,
-                'state':address.state,
-                
-                'country':address.country,
-                'type_address':address.type_address,
-            }
-            initial_data_coordinate = {
-                'latitud':coordinate.latitud,
-                'longitud':coordinate.longitud,
+            
 
-            }
-
-            form2 = AddressForms(initial=initial_data_address)
-            form = CoordinateForms(initial=initial_data_coordinate)
+            form = AddressForms(instance=address)
+            
             context = {
                     'title':'ELTELAR - DIRECCIONES',
                     'form':form,
-                    'form2':form2,
+                    
                     'customer_code':cliente.customer_code,
                     'address_id':id,
             }
 
             return render(request, template_name, context)
     else:
-        initial_data_address = {
-            'street':address.street,
-            'number':address.number,
-            'city':address.city,
-            'state':address.state,
-            
-            'country':address.country,
-            'type_address':address.type_address,
-        }
-        initial_data_coordinate = {
-            'latitud':coordinate.latitud,
-            'longitud':coordinate.longitud,
+        
 
-        }
-
-        form2 = AddressForms(initial=initial_data_address)
-        form = CoordinateForms(initial=initial_data_coordinate)
+        form = AddressForms(instance=address)
+        
         context = {
                 'title':'ELTELAR - DIRECCIONES',
                 'form':form,
-                'form2':form2,
+                
                 'customer_code':cliente.customer_code,
                 'address_id':id,
         }

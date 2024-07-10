@@ -17,27 +17,27 @@
       </tr>
     </thead>
     <tbody>
-      {% for dire in coordenada%}
-      {% for x in dire %}
+      {% for dire in direccion%}
+   
 
       <tr>
-        <th scope="row">{{x.address_id.type_address}}</th>
-        <td > {{x.address_id.street}}</td>
-        <td>{{x.address_id.number}}</td>
-        <td>{{x.address_id.city}}</td>
-        <td>{{x.address_id.state}}</td>
+        <th scope="row">{{diretype_address}}</th>
+        <td > {{dire.street}}</td>
+        <td>{{dire.number}}</td>
+        <td>{{dire.city}}</td>
+        <td>{{dire.state}}</td>
        
-        <td>{{x.address_id.country}}</td>
+        <td>{{dire.country}}</td>
         
         
-        <td>{{x.longitud}}</td>
-        <td>{{x.latitud}}</td>
+        <td>{{dire.longitud}}</td>
+        <td>{{dire.latitud}}</td>
       
         <td>
-          <a href="{% url 'addresses:update' x.address_id.id customer_list.customer_code %}" class="btn_add">Editar direccion</a>
+          <a href="{% url 'addresses:update' dire.id customer_list.customer_code %}" class="btn_add">Editar direccion</a>
         </td>
       </tr>
-      {% endfor %}
+    
       {% endfor %}
 
     </tbody>
