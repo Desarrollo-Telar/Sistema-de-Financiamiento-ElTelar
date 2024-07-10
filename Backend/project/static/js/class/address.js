@@ -54,6 +54,14 @@ export class Direccion {
         return this.#customer_id;
     }
 
+    get latitud(){
+        return this.#latitud;
+    }
+
+    get longitud(){
+        return this.#longitud;
+    }
+
     // Setters
     set street(value) {
         if (!value || value.trim() === '') {
@@ -117,6 +125,14 @@ export class Direccion {
         this.#customer_id = value;
     }
 
+    set latitud(value){
+        this.#latitud = value;
+    }
+
+    set longitud(value){
+        this.#longitud = value;
+    }
+
     // Metodo para validar que todos los campos esten ingresados
     validar() {
         if (
@@ -138,7 +154,9 @@ export class Direccion {
             
             Country: ${this.#country},
             Type Address: ${this.#type_address},
-            customer_id: ${this.#customer_id}
+            customer_id: ${this.#customer_id},
+            longitud:${this.#longitud},
+            latitud:${this.#latitud}
         }`;
     }
 
@@ -152,7 +170,9 @@ export class Direccion {
            
             country: this.#country,
             type_address: this.#type_address,
-            customer_id: this.#customer_id
+            customer_id: this.#customer_id,
+            latitud:this.#latitud,
+            longitud:this.#longitud
         };
     }
 }
