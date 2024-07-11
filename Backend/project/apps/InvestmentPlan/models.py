@@ -13,12 +13,12 @@ from django.dispatch import receiver
 
 class InvestmentPlan(models.Model):
     tipo_producto_servicio = [
-        ('DERECHOS DE POSESIÓN E HIPOTECA', 'DERECHOS DE POSESIÓN E HIPOTECA'),
-        ('FIDUCIARIA', 'FIDUCIARIA'),
-        ('PRENDARIA', 'PRENDARIA'),
-        ('MOBILIARIA', 'MOBILIARIA'),
-        ('FIDEICOMISOS Y PROGRAMAS ADICIONALES', 'FIDEICOMISOS Y PROGRAMAS ADICIONALES'),
-        ('PRÉSTAMO', 'PRÉSTAMO')
+        ('AGROPECUARIO Y/O PRODUCTIVO', 'AGROPECUARIO Y/O PRODUCTIVO'),
+        ('COMERCIO', 'COMERCIO'),
+        ('SERVICIOS', 'SERVICIOS'),
+        ('CONSUMO', 'CONSUMO'),
+        ('VIVIENDA', 'VIVIENDA')
+
     ]
     tipo_transferencia = [
         ('Local', 'Local'),
