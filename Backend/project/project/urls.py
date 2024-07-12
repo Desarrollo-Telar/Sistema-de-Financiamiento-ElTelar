@@ -41,8 +41,8 @@ urlpatterns = [
     path('qr/<str:data>/', views.generate_qr, name='generate_qr'),
     #path('pdf/<int:id>',login_required(views.render_pdf_view), name='pdf'),
     path('pdf/<int:id>', login_required(generate_pdf.generar_pdf), name='pdf'),
-
-
+    path('financings/',include('apps.financings.urls')),
+    
     path('reset_password/',auth_views.PasswordResetView.as_view(template_name='user/autentication/password-reset.html',email_template_name='user/autentication/password-message.html'),name='password_reset'),
     path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(template_name='user/autentication/password-confirmation1.html'),name='password_reset_done'),
     path('reset_password/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(template_name='user/autentication/password_reset_confirm.html'),name='password_reset_confirm'),    
