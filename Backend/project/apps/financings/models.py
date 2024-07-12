@@ -46,3 +46,6 @@ class Disbursement(models.Model):
     class Meta:
         verbose_name = "Desembolso"
         verbose_name_plural = "Desembolsos"
+
+class Guarantees(models.Model):
+    pass
