@@ -1,20 +1,18 @@
 import json
-
+from .credit import Credit
 # CLASE PARA LA SIMULACION DE REGISTRO DE GARANTIAS
 class Guarantee:
     contador = 0
     def __init__(self, credit_id, detalle_garantia, descripcion=None):
         Guarantee.contador += 1
         self._count = Guarantee.contador
-        
+       
         self.__credit_id = credit_id
         self.__description = descripcion
         self.__detalle_garantia = [DetailGuarantee(**dg) for dg in detalle_garantia]
         self.__suma_total = self.calcular_suma_total()
         self.__guarantee = {}
-    
-    
-    
+        
     @property
     def credit_id(self):
         return self.__credit_id
@@ -38,8 +36,7 @@ class Guarantee:
     def calcular_suma_total(self):
         return sum(detalle.valor_cobertura for detalle in self.__detalle_garantia)
     
-    def toJSON(self):
-        self.__guarantee['id'] = self.id
+    def toJSON(self):        
         self.__guarantee['description'] = self.descripcion
         self.__guarantee['suma_total'] = self.suma_total
         return json.dumps(self.__guarantee, indent=4)
@@ -47,7 +44,7 @@ class Guarantee:
     def __str__(self):
         resultado = f'''
         Credito:[
-            id:{self._count},
+            
             descripcion:{self.descripcion},
             suma total: {self.suma_total}
         ]    
@@ -57,14 +54,13 @@ class Guarantee:
 class DetailGuarantee:
     contador = 0
 
-    def __init__(self,  tipo_garantia, valor_cobertura=0, **kwargs):
+    def __init__(self, tipo_garantia, valor_cobertura=0, especificacion=None):
         DetailGuarantee.contador += 1
         
-        self.__tipo_garantia = self.crear_tipo_de_garantia(tipo_garantia, **kwargs)
+        self.__tipo_garantia = self.crear_tipo_de_garantia(tipo_garantia, **especificacion)
         self.__valor_cobertura = valor_cobertura
 
-   
-
+  
     @property
     def tipo_garantia(self):
         return self.__tipo_garantia
@@ -174,36 +170,40 @@ json_data = '''
         "id": 1,
         "tipo_garantia": "Hipoteca",
         "valor_cobertura": 750,
-        "noEscritura": "12345",
-        "notario": "Notario 1",
-        "finca": "Finca 1",
-        "folio": "Folio 1",
-        "libro": "Libro 1",
-        "area": "100m2",
-        "ubicacion": "Ubicación 1",
-        "descripcion": "Descripción 1",
-        "valor_comercial": 100000,
-        "titular": "Titular 1",
-        "estatus": "Activo",
-        "noContratoArrendamiento": "12345",
-        "avaluoBien": "Avaluo 1",
-        "docDigitalSoporte": "Doc 1"
+        "especificacion": {
+            "noEscritura": "12345",
+            "notario": "Notario 1",
+            "finca": "Finca 1",
+            "folio": "Folio 1",
+            "libro": "Libro 1",
+            "area": "100m2",
+            "ubicacion": "Ubicación 1",
+            "descripcion": "Descripción 1",
+            "valor_comercial": 100000,
+            "titular": "Titular 1",
+            "estatus": "Activo",
+            "noContratoArrendamiento": "12345",
+            "avaluoBien": "Avaluo 1",
+            "docDigitalSoporte": "Doc 1"
+        }
     },
     {
         "id": 2,
         "tipo_garantia": "Derecho de posesión",
         "valor_cobertura": 750,
-        "noEscritura": "54321",
-        "notario": "Notario 2",
-        "area": "200m2",
-        "ubicacion": "Ubicación 2",
-        "descripcion": "Descripción 2",
-        "valor_comercial": 200000,
-        "titular": "Titular 2",
-        "estatus": "Activo",
-        "noContratoArrendamiento": "54321",
-        "avaluoBien": "Avaluo 2",
-        "docDigitalSoporte": "Doc 2"
+        "especificacion": {
+            "noEscritura": "54321",
+            "notario": "Notario 2",
+            "area": "200m2",
+            "ubicacion": "Ubicación 2",
+            "descripcion": "Descripción 2",
+            "valor_comercial": 200000,
+            "titular": "Titular 2",
+            "estatus": "Activo",
+            "noContratoArrendamiento": "54321",
+            "avaluoBien": "Avaluo 2",
+            "docDigitalSoporte": "Doc 2"
+        }
     }]
 }]
 '''
@@ -220,9 +220,10 @@ creditos = [Guarantee(
 for credito in creditos:
     print(f'Credito ID: {credito.id}, Suma Total: {credito.suma_total}')
     for detalle in credito._Guarantee__detalle_garantia:
-        print(f'  Detalle Garantia ID: {detalle.id}, Valor Cobertura: {detalle.valor_cobertura}')
+        print(f'  Detalle ID: {detalle.id}, Valor Cobertura: {detalle.valor_cobertura}')
         print(f'    Tipo de Garantia: {type(detalle.tipo_garantia).__name__}')
-detalle =  [
-    DetailGuarantee(tipo_garantia='Hipoteca',valor_comercial=500,)
-]
-garantia = Guarantee(1,1,)
+        print(f'    Especificaciones: {vars(detalle.tipo_garantia)}')
+
+
+
+
