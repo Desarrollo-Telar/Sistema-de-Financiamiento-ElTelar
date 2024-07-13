@@ -1,6 +1,8 @@
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
+from apps.customers.clases.Customer import Customer
+
 class Credit:
     def __init__(self, proposito, monto, plazo, tasa_interes, forma_de_pago, frecuencia_pago, fecha_inicio, tipo_credito, destino_id, customer_id, fecha_vencimiento=None):
         self.__proposito = proposito
