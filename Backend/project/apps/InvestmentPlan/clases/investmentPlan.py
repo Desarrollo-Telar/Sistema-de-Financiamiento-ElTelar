@@ -54,6 +54,10 @@ class InvestmentPlan:
     
     @type_of_product_or_service.setter
     def type_of_product_or_service(self,value):
+        tipoCredito = ['AGROPECURIO Y/O PRODUCTIVO','COMERCIO','SERVICIOS','CONSUMO','VIVIENDA']
+        if not value in tipoCredito:
+            print('Error de tipo de credito')
+            
         self.__type_of_product_or_service = value
     
     @total_value_of_the_product_or_service.setter

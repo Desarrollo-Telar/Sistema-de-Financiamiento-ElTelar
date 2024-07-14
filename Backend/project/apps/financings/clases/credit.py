@@ -16,11 +16,78 @@ class Credit:
         self.__tipo_credito = tipo_credito
         self.__destino_id = destino_id
         self.__customer_id = customer_id
+    
+    @property
+    def proposito(self):
+        return self.__proposito
+    
+    @property
+    def monto(self):
+        return self.__monto
+    
+    @property
+    def plazo(self):
+        return self.__plazo
+    
+    @property
+    def tasa_interes(self):
+        return self.__tasa_interes
 
+    @property
+    def forma_de_pago(self):
+        return self.__forma_de_pago
+    
     @property
     def frecuencia_pago(self):
         return self.__frecuencia_pago
+
+    @property
+    def fecha_inicio(self):
+        return self.__fecha_inicio
     
+    @property
+    def fecha_vencimiento(self):
+        return self.__fecha_vencimiento
+    
+    @property
+    def tipo_credito(self):
+        if self.__destino_id:
+            self.__tipo_credito = self.__destino_id.type_of_product_or_service
+
+        return self.__tipo_credito
+    
+    @property
+    def destino_id(self):
+        return self.__destino_id
+    
+    @property
+    def customer_id(self):
+        return self.__customer_id
+    
+    @proposito.setter
+    def proposito(self,value):
+        self.__proposito = value
+    
+    @monto.setter
+    def monto(self,value):
+        self.__monto = value
+    
+    @plazo.setter
+    def plazo(self, value):
+        self.__plazo = value
+    
+    @tasa_interes.setter
+    def tasa_interes(self,value):
+        self.__tasa_interes = value
+    
+    @forma_de_pago.setter
+    def forma_de_pago(self,value):
+        frecuenciaPago = ['NIVELADA', 'AMORTIZACIONES A CAPITAL']
+        if value in frecuenciaPago:
+            self.__forma_de_pago = value
+        else:
+            print("Frecuencia de pago no válida")
+           
     @frecuencia_pago.setter
     def frecuencia_pago(self, value):
         frecuenciaPago = ['MENSUAL', 'TRIMESTRAL', 'SEMANAL']
@@ -29,18 +96,6 @@ class Credit:
         else:
             print("Frecuencia de pago no válida")
 
-    @property
-    def plazo(self):
-        return self.__plazo
-    
-    @plazo.setter
-    def plazo(self, value):
-        self.__plazo = value
-    
-    @property
-    def fecha_inicio(self):
-        return self.__fecha_inicio
-    
     @fecha_inicio.setter
     def fecha_inicio(self, value):
         formato = '%Y-%m-%d'
@@ -48,6 +103,26 @@ class Credit:
             self.__fecha_inicio = datetime.strptime(value, formato)
         except ValueError:
             self.__fecha_inicio = datetime.now()
+    
+    @fecha_vencimiento.setter
+    def fecha_vencimiento(self,value):
+        self.__fecha_vencimiento = value
+    
+    @tipo_credito.setter
+    def tipo_credito(self,value):
+        tipoCredito = ['AGROPECURIO Y/O PRODUCTIVO','COMERCIO','SERVICIOS','CONSUMO','VIVIENDA']
+        if not value in tipoCredito:
+            print('Error de tipo de credito')
+
+        self.__tipo_credito = value
+    
+    @destino_id.setter
+    def destino_id(self,value):
+        self.__destino_id = value
+    
+    @customer_id.setter
+    def customer_id(self,value):
+        self.__customer_id = value
 
     def calcular_fecha_vencimiento(self):
         fecha_inicio = self.__fecha_inicio
