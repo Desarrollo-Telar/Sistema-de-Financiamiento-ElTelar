@@ -7,6 +7,7 @@ class Customer:
                  numero_nit, numero_telefono, condicion_migratoria, status, genero, profesion, nacionalidad, 
                  lugar_nacimiento, fecha_nacimiento, estado_civil, tipo_persona, obeservacion=None, 
                  fecha_registro=None, codigo_cliente=None):
+        Customer.contador+=1
         self._nombre = nombre
         self._apellido = apellido
         self._correo_electronico = correo_electronico
@@ -25,11 +26,12 @@ class Customer:
         self._tipo_persona = tipo_persona
         self._obeservacion = obeservacion
         self._fecha_registro = fecha_registro if fecha_registro else datetime.now()
-        self._codigo_cliente = codigo_cliente if codigo_cliente else self.generar_codigo_cliente()
-        Customer.contador+=1
-        self._contador = Customer.contador
+        self._codigo_cliente = codigo_cliente if codigo_cliente else self.generar_codigo_cliente(Customer.contador)
+        self._contador_id = Customer.contador
     
-    def generar_codigo_cliente(self):
+    
+    
+    def generar_codigo_cliente(self, contador):
         status_suffix = {
             'Posible Cliente': 'S',
             'No Aprobado': 'N',
@@ -37,10 +39,10 @@ class Customer:
             'Revisión de documentos': 'D',
             'Dar de Baja': 'E',
         }
-        suffix = status_suffix.get(status, '')
+        suffix = status_suffix.get(self._status, '')
         current_date = datetime.now()
         current_year = current_date.year
-        self._codigo_cliente = f'{current_year}-{suffix}{self._contador}'
+        return f'{current_year}-{suffix}{contador}'
 
     # Getters
     @property
@@ -196,3 +198,11 @@ class Customer:
     @codigo_cliente.setter
     def codigo_cliente(self, value):
         self._codigo_cliente = value
+    
+    def __str__(self):        
+        return f'Cliente: Contador:{self._contador_id}, codigo_cliente:{self._codigo_cliente}'
+
+if __name__ == '__main__':
+    
+    fiador = Customer('Juan','Lopez','lopez@gmail.com','DPI','323846682','1106369','42256694','RESIDENTE','Aprobado','MASCULINO','AGRONOMO','GUATEMALTECA','COBAN','14-03-1995','SOLTERO','Indivicual (PI)')
+    print(fiador)

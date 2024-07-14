@@ -1,7 +1,13 @@
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
+import sys
+import os
 
-from apps.customers.clases.Customer import Customer
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
+from apps.customers.clases.customer import Customer
+from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
+
+
 
 class Credit:
     def __init__(self, proposito, monto, plazo, tasa_interes, forma_de_pago, frecuencia_pago, fecha_inicio, tipo_credito, destino_id, customer_id, fecha_vencimiento=None):
@@ -129,3 +135,9 @@ class Credit:
         plazo = self.__plazo
         fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
         return fecha_vencimiento.strftime('%Y-%m-%d')
+
+if __name__ == '__main__':
+    fiador = Customer('Juan','Lopez','lopez@gmail.com','DPI','323846682','1106369','42256694','RESIDENTE','Aprobado','MASCULINO','AGRONOMO','GUATEMALTECA','COBAN','14-03-1995','SOLTERO','Indivicual (PI)')
+    cliente = Customer('Juan','Lopez','lopez@gmail.com','DPI','323846682','1106369','42256694','RESIDENTE','Aprobado','MASCULINO','AGRONOMO','GUATEMALTECA','COBAN','14-03-1995','SOLTERO','Indivicual (PI)') 
+    print(cliente)
+
