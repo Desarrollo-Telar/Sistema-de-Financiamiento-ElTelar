@@ -1,9 +1,19 @@
 import json
-#from .credit import Credit
-# CLASE PARA LA SIMULACION DE REGISTRO DE GARANTIAS
+import sys
+import os
+
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
+
+from .credit import Credit
+from apps.customers.clases.customer import Customer
+from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
+from .type_guarantee import *
+
+
 class Guarantee:
     contador = 0
-    def __init__(self,credit_id, detalle_garantia, descripcion=None):
+    
+    def __init__(self, credit_id, detalle_garantia, descripcion=None):
         Guarantee.contador += 1
         self._count = Guarantee.contador             
         self.__credit_id = credit_id
@@ -41,25 +51,25 @@ class Guarantee:
         return json.dumps(self.__guarantee, indent=4)
 
     def __str__(self):
-        resultado = f'''
-        Credito:[
-            
-            descripcion:{self.descripcion},
-            suma total: {self.suma_total}
-        ]    
-        '''
+        resultado = f'Credito ID:\n{self.credit_id},\n\nSuma Total: {self.suma_total}\n\n\n'
+        for index, detalle in enumerate(self.__detalle_garantia, start=1):
+            resultado += f'  Detalle {index}:\n'
+            resultado += f'    Tipo de Garantia: {type(detalle.tipo_garantia).__name__}\n'
+            resultado += f'    Valor Cobertura: {detalle.valor_cobertura}\n'
+            resultado += f'    Especificaciones: {vars(detalle.tipo_garantia)}\n'
         return resultado
+
 
 class DetailGuarantee:
     contador = 0
 
-    def __init__(self, tipo_garantia, valor_cobertura=0,especificacion=None):
+    def __init__(self, tipo_garantia, valor_cobertura=0, especificacion=None):
         DetailGuarantee.contador += 1
         
         self.__tipo_garantia = self.crear_tipo_de_garantia(tipo_garantia, **especificacion)
         self.__valor_cobertura = valor_cobertura
+        self._dic = {}
 
-  
     @property
     def tipo_garantia(self):
         return self.__tipo_garantia
@@ -69,7 +79,7 @@ class DetailGuarantee:
         return self.__valor_cobertura
 
     def crear_tipo_de_garantia(self, tipo_garantia, **kwargs):
-        if tipo_garantia == 'Hipoteca':
+        if tipo_garantia == 'Hipoteca' or tipo_garantia == 'HIPOTECA':
             return Hipoteca(**kwargs)
         elif tipo_garantia == 'Derecho de posesión':
             return DerechoDePosesionHipoteca(**kwargs)
@@ -84,145 +94,37 @@ class DetailGuarantee:
         else:
             raise ValueError(f"Tipo de garantía desconocido: {tipo_garantia}")
 
-class Hipoteca:
-    def __init__(self, noEscritura="", notario="", finca="", folio="", libro="", area="", ubicacion="", descripcion="", valor_comercial=0, titular="", estatus="", noContratoArrendamiento="", avaluoBien="", docDigitalSoporte=""):
-        self.noEscritura = noEscritura
-        self.notario = notario
-        self.finca = finca
-        self.folio = folio
-        self.libro = libro
-        self.area = area
-        self.ubicacion = ubicacion
-        self.descripcion = descripcion
-        self.valor_comercial = valor_comercial
-        self.titular = titular
-        self.estatus = estatus
-        self.noContratoArrendamiento = noContratoArrendamiento
-        self.avaluoBien = avaluoBien
-        self.docDigitalSoporte = docDigitalSoporte
+    @property
+    def diccionario(self):
+        self._dic['tipo_garantia'] = self.__tipo_garantia.diccionario
+        return self._dic
 
-class DerechoDePosesionHipoteca:
-    def __init__(self, noEscritura="", notario="", area="", ubicacion="", descripcion="", valor_comercial=0, titular="", estatus="", noContratoArrendamiento="", avaluoBien="", docDigitalSoporte=""):
-        self.noEscritura = noEscritura
-        self.notario = notario
-        self.area = area
-        self.ubicacion = ubicacion
-        self.descripcion = descripcion
-        self.valor_comercial = valor_comercial
-        self.titular = titular
-        self.estatus = estatus
-        self.noContratoArrendamiento = noContratoArrendamiento
-        self.avaluoBien = avaluoBien
-        self.docDigitalSoporte = docDigitalSoporte
+    def __str__(self):
+        return f'Tipo de Garantía: {type(self.__tipo_garantia).__name__}, Valor de Cobertura: {self.__valor_cobertura}, Especificaciones: {vars(self.__tipo_garantia)}'
 
-class Fiador:
-    def __init__(self, codigo_cliente="", nombre="", lugar_trabajo="", ingresos=0, numeroTelefono="", fotografia=""):
-        self.codigo_cliente = codigo_cliente
-        self.nombre = nombre
-        self.lugar_trabajo = lugar_trabajo
-        self.ingresos = ingresos
-        self.numeroTelefono = numeroTelefono
-        self.fotografia = fotografia
 
-class Cheque:
-    def __init__(self, noCheque="", nombreCuenta="", banco="", cheque_girado_a="", monto_cheque=0, fotografia_cheque=""):
-        self.noCheque = noCheque
-        self.nombreCuenta = nombreCuenta
-        self.banco = banco
-        self.cheque_girado_a = cheque_girado_a
-        self.monto_cheque = monto_cheque
-        self.fotografia_cheque = fotografia_cheque
 
-class Vehiculo:
-    def __init__(self, placa="", marca="", color="", noChasis="", noMotor="", valor_comercial=0, fotografias=None, tarjetaCirculacion="", titulo="", noPoliza="", montoSeguro=0, noContratoArrendamiento=""):
-        if fotografias is None:
-            fotografias = []
-        self.placa = placa
-        self.marca = marca
-        self.color = color
-        self.noChasis = noChasis
-        self.noMotor = noMotor
-        self.valor_comercial = valor_comercial
-        self.fotografias = fotografias
-        self.tarjetaCirculacion = tarjetaCirculacion
-        self.titulo = titulo
-        self.noPoliza = noPoliza
-        self.montoSeguro = montoSeguro
-        self.noContratoArrendamiento = noContratoArrendamiento
 
-class Mobiliaria:
-    def __init__(self, descripcionBien="", documentoAcredita="", imagenDocumentoAcredita="", fotografiaBien="", noPoliza="", montoSeguro=0):
-        self.descripcionBien = descripcionBien
-        self.documentoAcredita = documentoAcredita
-        self.imagenDocumentoAcredita = imagenDocumentoAcredita
-        self.fotografiaBien = fotografiaBien
-        self.noPoliza = noPoliza
-        self.montoSeguro = montoSeguro
-
-# Ejemplo de uso con los datos JSON proporcionados
-json_data = '''
-[{
-    
-    "credit_id": 1,
-    "description": "",
-    "Detalle Garantia": [{
-        
-        "tipo_garantia": "Hipoteca",
-        "valor_cobertura": 850,
-        "especificacion": {
-            "noEscritura": "12345",
-            "notario": "Notario 1",
-            "finca": "Finca 1",
-            "folio": "Folio 1",
-            "libro": "Libro 1",
-            "area": "100m2",
-            "ubicacion": "Ubicación 1",
-            "descripcion": "Descripción 1",
-            "valor_comercial": 100000,
-            "titular": "Titular 1",
-            "estatus": "Activo",
-            "noContratoArrendamiento": "12345",
-            "avaluoBien": "Avaluo 1",
-            "docDigitalSoporte": "Doc 1"
-        }
+if __name__ == '__main__':
+    fiador = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Indivicual (PI)')
+    cliente = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Indivicual (PI)') 
+    destino = InvestmentPlan('CONSUMO', 1500, 750, 100, cliente)
+    credito = Credit(destino.type_of_product_or_service, destino.total_value_of_the_product_or_service, 12, 0.05, 'NIVELADA', 'MENSUAL', '2024-07-14', 'CONSUMO', destino, fiador)
+    especificacion = {
+        'noEscritura': 125
+    }
+    detalle = [{
+        'tipo_garantia': 'HIPOTECA',
+        'valor_cobertura': 750,
+        'especificacion': especificacion
     },
     {
-        
-        "tipo_garantia": "Derecho de posesión",
-        "valor_cobertura": 750,
-        "especificacion": {
-            "noEscritura": "54321",
-            "notario": "Notario 2",
-            "area": "200m2",
-            "ubicacion": "Ubicación 2",
-            "descripcion": "Descripción 2",
-            "valor_comercial": 200000,
-            "titular": "Titular 2",
-            "estatus": "Activo",
-            "noContratoArrendamiento": "54321",
-            "avaluoBien": "Avaluo 2",
-            "docDigitalSoporte": "Doc 2"
-        }
-    }]
-}]
-'''
-
-data = json.loads(json_data)
-creditos = [Guarantee(
-
-    credit_id=item["credit_id"],
-    descripcion=item["description"],
-    detalle_garantia=item["Detalle Garantia"]
-) for item in data]
-
-# Ejemplo de acceso a los datos
-for credito in creditos:
-    print(f'Credito ID: , Suma Total: {credito.suma_total}')
-    for detalle in credito._Guarantee__detalle_garantia:
-        print(f'  Detalle ID: , Valor Cobertura: {detalle.valor_cobertura}')
-        print(f'    Tipo de Garantia: {type(detalle.tipo_garantia).__name__}')
-        print(f'    Especificaciones: {vars(detalle.tipo_garantia)}')
-
-
-
+        'tipo_garantia': 'HIPOTECA',
+        'valor_cobertura': 750,
+        'especificacion': especificacion
+    },
+    ]
+    garantia = Guarantee(credito, detalle)
+    
+    print(garantia)
 

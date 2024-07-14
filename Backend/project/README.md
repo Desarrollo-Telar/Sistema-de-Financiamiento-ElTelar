@@ -5,3 +5,5 @@ docker exec -it pg_container sh
 psql -U postgres -d mydb
 
 mysql -h db -P 3306 -u user -p
+
+python -m <archivo.py>

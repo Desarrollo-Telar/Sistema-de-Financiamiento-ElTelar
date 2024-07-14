@@ -10,7 +10,10 @@ from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
 
 
 class Credit:
+    contador = 0
     def __init__(self, proposito, monto, plazo, tasa_interes, forma_de_pago, frecuencia_pago, fecha_inicio, tipo_credito, destino_id, customer_id, fecha_vencimiento=None):
+        Credit.contador+=1
+        self._id = Credit.contador
         self.__proposito = proposito
         self.__monto = monto
         self.__plazo = plazo
@@ -49,7 +52,7 @@ class Credit:
 
     @property
     def fecha_inicio(self):
-        return self.__fecha_inicio
+        return self.__fecha_inicio.strftime('%Y-%m-%d')
     
     @property
     def fecha_vencimiento(self):
@@ -135,9 +138,14 @@ class Credit:
         plazo = self.__plazo
         fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
         return fecha_vencimiento.strftime('%Y-%m-%d')
+    
+    def __str__(self):
+        return f'Credito: \nID:{self._id},\nFecha Inicio: {self.fecha_inicio},\nPlazo: {self.__plazo} meses,\nFecha de Vencimiento: {self.__fecha_vencimiento},\nFiador: {self.__customer_id.nombre} {self.__customer_id.apellido}'
 
 if __name__ == '__main__':
     fiador = Customer('Juan','Lopez','lopez@gmail.com','DPI','323846682','1106369','42256694','RESIDENTE','Aprobado','MASCULINO','AGRONOMO','GUATEMALTECA','COBAN','14-03-1995','SOLTERO','Indivicual (PI)')
     cliente = Customer('Juan','Lopez','lopez@gmail.com','DPI','323846682','1106369','42256694','RESIDENTE','Aprobado','MASCULINO','AGRONOMO','GUATEMALTECA','COBAN','14-03-1995','SOLTERO','Indivicual (PI)') 
-    print(cliente)
+    destino = InvestmentPlan('CONSUMO',1500,750,100,cliente)
+    credito = Credit(destino.type_of_product_or_service,destino.total_value_of_the_product_or_service,12,0.05,'NIVELADA','MENSUAL','2024-07-14','CONSUMO',destino,fiador)
+    print(credito)
 
