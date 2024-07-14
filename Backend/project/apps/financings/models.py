@@ -5,7 +5,7 @@ from apps.InvestmentPlan.models import InvestmentPlan
 class Credit(models.Model):  
     formaPago = [
         ('NIVELADA','NIVELADA'),
-        ('AMORTAZICACIONES O CAPITAL','AMORTAZICACIONES O CAPITAL')
+        ('AMORTIZACIONES A CAPITAL','AMORTIZACIONES A CAPITAL')
     ]  
     frecuenciaPago = [
         ('MENSUAL','MENSUAL'),

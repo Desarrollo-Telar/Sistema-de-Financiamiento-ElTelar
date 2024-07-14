@@ -1,0 +1,14 @@
+[
+    {
+        "id":1,
+        "type_of_product_or_service":"COMERCIO",
+        "investment_plan_description":"",
+        "initial_amount":250.00,
+        "monthly_amount":100.00,
+        "transfers_or_transfer_of_funds":true,
+        "type_of_transfers_or_transfer_of_funds":"Local",
+        "customer_id":1,
+        "investment_plan_code":"2024-1/C1"
+
+    }
+]

@@ -1,12 +1,12 @@
 import json
-from .credit import Credit
+#from .credit import Credit
 # CLASE PARA LA SIMULACION DE REGISTRO DE GARANTIAS
 class Guarantee:
     contador = 0
-    def __init__(self, credit_id, detalle_garantia, descripcion=None):
+    def __init__(self,credit_id, detalle_garantia, descripcion=None, id=None):
         Guarantee.contador += 1
         self._count = Guarantee.contador
-       
+        self.id =id       
         self.__credit_id = credit_id
         self.__description = descripcion
         self.__detalle_garantia = [DetailGuarantee(**dg) for dg in detalle_garantia]
@@ -54,9 +54,9 @@ class Guarantee:
 class DetailGuarantee:
     contador = 0
 
-    def __init__(self, tipo_garantia, valor_cobertura=0, especificacion=None):
+    def __init__(self, tipo_garantia, valor_cobertura=0, id=None,especificacion=None):
         DetailGuarantee.contador += 1
-        
+        self.id = id
         self.__tipo_garantia = self.crear_tipo_de_garantia(tipo_garantia, **especificacion)
         self.__valor_cobertura = valor_cobertura
 
@@ -169,7 +169,7 @@ json_data = '''
     "Detalle Garantia": [{
         "id": 1,
         "tipo_garantia": "Hipoteca",
-        "valor_cobertura": 750,
+        "valor_cobertura": 850,
         "especificacion": {
             "noEscritura": "12345",
             "notario": "Notario 1",
