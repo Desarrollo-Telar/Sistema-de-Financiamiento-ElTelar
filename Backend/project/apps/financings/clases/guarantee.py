@@ -3,10 +3,9 @@ import json
 # CLASE PARA LA SIMULACION DE REGISTRO DE GARANTIAS
 class Guarantee:
     contador = 0
-    def __init__(self,credit_id, detalle_garantia, descripcion=None, id=None):
+    def __init__(self,credit_id, detalle_garantia, descripcion=None):
         Guarantee.contador += 1
-        self._count = Guarantee.contador
-        self.id =id       
+        self._count = Guarantee.contador             
         self.__credit_id = credit_id
         self.__description = descripcion
         self.__detalle_garantia = [DetailGuarantee(**dg) for dg in detalle_garantia]
@@ -54,9 +53,9 @@ class Guarantee:
 class DetailGuarantee:
     contador = 0
 
-    def __init__(self, tipo_garantia, valor_cobertura=0, id=None,especificacion=None):
+    def __init__(self, tipo_garantia, valor_cobertura=0,especificacion=None):
         DetailGuarantee.contador += 1
-        self.id = id
+        
         self.__tipo_garantia = self.crear_tipo_de_garantia(tipo_garantia, **especificacion)
         self.__valor_cobertura = valor_cobertura
 
@@ -163,11 +162,11 @@ class Mobiliaria:
 # Ejemplo de uso con los datos JSON proporcionados
 json_data = '''
 [{
-    "id": 1,
+    
     "credit_id": 1,
     "description": "",
     "Detalle Garantia": [{
-        "id": 1,
+        
         "tipo_garantia": "Hipoteca",
         "valor_cobertura": 850,
         "especificacion": {
@@ -188,7 +187,7 @@ json_data = '''
         }
     },
     {
-        "id": 2,
+        
         "tipo_garantia": "Derecho de posesión",
         "valor_cobertura": 750,
         "especificacion": {
@@ -210,7 +209,7 @@ json_data = '''
 
 data = json.loads(json_data)
 creditos = [Guarantee(
-    id=item["id"],
+
     credit_id=item["credit_id"],
     descripcion=item["description"],
     detalle_garantia=item["Detalle Garantia"]
@@ -218,9 +217,9 @@ creditos = [Guarantee(
 
 # Ejemplo de acceso a los datos
 for credito in creditos:
-    print(f'Credito ID: {credito.id}, Suma Total: {credito.suma_total}')
+    print(f'Credito ID: , Suma Total: {credito.suma_total}')
     for detalle in credito._Guarantee__detalle_garantia:
-        print(f'  Detalle ID: {detalle.id}, Valor Cobertura: {detalle.valor_cobertura}')
+        print(f'  Detalle ID: , Valor Cobertura: {detalle.valor_cobertura}')
         print(f'    Tipo de Garantia: {type(detalle.tipo_garantia).__name__}')
         print(f'    Especificaciones: {vars(detalle.tipo_garantia)}')
 
