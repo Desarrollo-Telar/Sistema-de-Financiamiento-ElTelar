@@ -40,6 +40,10 @@ class Credit:
     
     @property
     def tasa_interes(self):
+        tasa = float(self.__tasa_interes)
+
+        if tasa > 1:
+            return self.__tasa_interes / 100
         return self.__tasa_interes
 
     @property
