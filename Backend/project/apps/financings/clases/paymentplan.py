@@ -1,5 +1,6 @@
 # CLASE PARA VER LOS PLANES DE PAGOS
-
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from .credit import Credit
 from apps.customers.clases.customer import Customer
 from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
@@ -56,9 +57,16 @@ class PaymentPlan:
         else:
             return round(self.monto_inicial / self.plazo, 2)
 
+    def mes_inicial(self):
+        return self.__credit.fecha_inicio
+
     def inicial(self):
+        mes_inicial = self.mes_inicial()
+        mes_final = mes_inicial + relativedelta(months=1)
         dicio = {
             'mes': 1,
+            'fecha inicio': mes_inicial,
+            'fecha final': mes_final,
             'monto_prestado': self.monto_inicial
         }
         intereses = self.calculo_intereses(self.monto_inicial)
@@ -77,12 +85,18 @@ class PaymentPlan:
 
     def generar_plan(self):
         plan = [self.inicial()]
+        
         for mes in range(2, self.plazo + 1):
             anterior = plan[-1]
             monto_prestado = round(anterior['monto_prestado'] - anterior['capital'], 2)
             intereses = self.calculo_intereses(monto_prestado)
+            mes_inicial = anterior['fecha final']
+            mes_final = mes_inicial + relativedelta(months=1)
+            print(f'MES: {anterior['mes']}, Fecha Inicio: {anterior['fecha inicio'].strftime('%Y-%m-%d')}, Fecha Final: {anterior['fecha final'].strftime('%Y-%m-%d')}')
             dicio = {
                 'mes': mes,
+                'fecha inicio': mes_inicial,
+                'fecha final': mes_final,
                 'monto_prestado': monto_prestado,
                 'intereses': intereses
             }
@@ -103,10 +117,8 @@ if __name__ == '__main__':
     fiador = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     cliente = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     destino = InvestmentPlan('CONSUMO', 1500, 750, 100, cliente)
-    credito = Credit(destino.type_of_product_or_service, 117000, 60, 66, 'AMORTIZADA A CAPITAL', 'MENSUAL', '2024-07-14', 'CONSUMO', destino, fiador)
+    credito = Credit(destino.type_of_product_or_service, 117000, 60, 66, 'AMORTIZADA A CAPITAL', 'MENSUAL', '2024-07-17', 'CONSUMO', destino, fiador)
     plan_pago = PaymentPlan(credito)
-
-    #print(plan_pago.inicial())
 
     plan = plan_pago.generar_plan()
     for pago in plan:

@@ -56,7 +56,7 @@ class Credit:
 
     @property
     def fecha_inicio(self):
-        return self.__fecha_inicio.strftime('%Y-%m-%d')
+        return self.__fecha_inicio
     
     @property
     def fecha_vencimiento(self):
