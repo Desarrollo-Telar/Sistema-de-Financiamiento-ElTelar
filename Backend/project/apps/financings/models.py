@@ -22,8 +22,8 @@ class Credit(models.Model):
     fecha_vencimiento = models.DateField("Fecha de Vencimiento", blank=False, null=False)
     tipo_credito = models.CharField("Tipo de Credito",max_length=75, blank=False, null=False)
     codigo_credito = models.CharField("Codigo Credito",max_length=25, blank=False, null=False, unique=True)
-    destino_id = models.OneToOneField(InvestmentPlan, on_delete=models.CASCADE, verbose_name='Destino')
-    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Fiador')
+    destino_id = models.OneToOneField(InvestmentPlan, on_delete=models.SET_NULL, blank=True,null=True ,verbose_name='Destino')
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Cliente')
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
     class Meta:

@@ -1,3 +1,5 @@
+import json
+
 class Hipoteca:
     def __init__(self, noEscritura="", notario="", finca="", folio="", libro="", area="", ubicacion="", descripcion="", valor_comercial=0, titular="", estatus="", noContratoArrendamiento="", avaluoBien="", docDigitalSoporte=""):
         self.noEscritura = noEscritura
@@ -15,6 +17,26 @@ class Hipoteca:
         self.avaluoBien = avaluoBien
         self.docDigitalSoporte = docDigitalSoporte
     
+    def toJson(self):
+        js = {
+            'Nombre':'HIPOTECA',
+            'No.Escritura':self.noEscritura,
+            'Notario':self.notario,
+            'Finca':self.finca,
+            'Folio':self.folio,
+            'Libro':self.libro,
+            'Area':self.area,
+            'Ubicación':self.ubicacion,
+            'Descripción':self.descripcion,
+            'Valor Comercial':self.valor_comercial,
+            'Titular':self.titular,
+            'Estatus':self.estatus,
+            'No.Contrato de Arrendamiento':self.noContratoArrendamiento,
+            'Avaluo del Bien':self.avaluoBien,
+            'Documento Digital de Soporte':self.docDigitalSoporte
+        }
+        return json.dumps(js, indent=4, ensure_ascii=False)
+    
     def __str__(self):
         return f'Hipoteca\nNo.Escritura: {self.noEscritura}'
 
@@ -31,6 +53,23 @@ class DerechoDePosesionHipoteca:
         self.noContratoArrendamiento = noContratoArrendamiento
         self.avaluoBien = avaluoBien
         self.docDigitalSoporte = docDigitalSoporte
+    
+    def toJson(self):
+        js = {
+            'Nombre':'DERECHO DE POSESIÓN HIPOTECA',
+            'No.Escritura':self.noEscritura,
+            'Notario':self.notario,           
+            'Area':self.area,
+            'Ubicacion':self.ubicacion,
+            'Descripcion':self.descripcion,
+            'Valor_Comercial':self.valor_comercial,
+            'Titular':self.titular,
+            'Estatus':self.estatus,
+            'No.Contrato_de_Arrendamiento':self.noContratoArrendamiento,
+            'Avaluo_del_Bien':self.avaluoBien,
+            'Documento_Digital_de_Soporte':self.docDigitalSoporte
+        }
+        return json.dumps(js, indent=4, ensure_ascii=False)
 
 class Fiador:
     def __init__(self, codigo_cliente="", nombre="", lugar_trabajo="", ingresos=0, numeroTelefono="", fotografia=""):
@@ -40,6 +79,23 @@ class Fiador:
         self.ingresos = ingresos
         self.numeroTelefono = numeroTelefono
         self.fotografia = fotografia
+
+    def toJson(self):
+        js = {
+            'Nombre':'FIADOR',
+            'Codigo_de_Cliente':self.codigo_cliente,
+            'Nombre':self.nombre,           
+            'Lugar de Trabajo':self.lugar_trabajo,
+            'Ingresos':self.ingresos,
+            'Numero de Telefono':self.descripcion,
+            'Valor Comercial':self.valor_comercial,
+            'Titular':self.titular,
+            'Estatus':self.estatus,
+            'No.Contrato de Arrendamiento':self.noContratoArrendamiento,
+            'Avaluo del Bien':self.avaluoBien,
+            'Documento Digital de Soporte':self.docDigitalSoporte
+        }
+        return json.dumps(js, indent=4, ensure_ascii=False)
 
 class Cheque:
     def __init__(self, noCheque="", nombreCuenta="", banco="", cheque_girado_a="", monto_cheque=0, fotografia_cheque=""):
@@ -75,3 +131,7 @@ class Mobiliaria:
         self.fotografiaBien = fotografiaBien
         self.noPoliza = noPoliza
         self.montoSeguro = montoSeguro
+
+if __name__ == '__main__':
+    garantia = Hipoteca()
+    print(garantia.toJson())
