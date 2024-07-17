@@ -103,10 +103,10 @@ if __name__ == '__main__':
     fiador = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     cliente = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     destino = InvestmentPlan('CONSUMO', 1500, 750, 100, cliente)
-    credito = Credit(destino.type_of_product_or_service, 117000, 60, 66, 'NIVELADA', 'MENSUAL', '2024-07-14', 'CONSUMO', destino, fiador)
+    credito = Credit(destino.type_of_product_or_service, 117000, 60, 66, 'AMORTIZADA A CAPITAL', 'MENSUAL', '2024-07-14', 'CONSUMO', destino, fiador)
     plan_pago = PaymentPlan(credito)
 
-    print(plan_pago.inicial())
+    #print(plan_pago.inicial())
 
     plan = plan_pago.generar_plan()
     for pago in plan:
