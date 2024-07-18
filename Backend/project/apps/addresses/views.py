@@ -35,7 +35,7 @@ class AddressCreateView(CreateView):
         
         context = {
             'title':'ELTELAR - DIRECCIONES',
-            'form':CoordinateForms,            
+            'form':AddressForms,            
             'customer_code':cliente.customer_code
         }
         return render(request, template_name, context)

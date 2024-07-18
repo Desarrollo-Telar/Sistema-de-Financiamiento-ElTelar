@@ -8,9 +8,9 @@
         <th scope="col">Zona</th>
         <th scope="col">Departamento</th>
         <th scope="col">Municipio</th>
-       
+
         <th scope="col">Pais</th>
-        
+
         <th scope="col">Longitud</th>
         <th scope="col">Latitud</th>
         <th scope="col">Editar</th>
@@ -18,31 +18,32 @@
     </thead>
     <tbody>
       {% for dire in direccion%}
-   
+
 
       <tr>
-        <th scope="row">{{diretype_address}}</th>
-        <td > {{dire.street}}</td>
+        <th scope="row">{{dire.type_address}}</th>
+        <td> {{dire.street}}</td>
         <td>{{dire.number}}</td>
         <td>{{dire.city}}</td>
         <td>{{dire.state}}</td>
-       
+
         <td>{{dire.country}}</td>
-        
-        
+
+
         <td>{{dire.longitud}}</td>
         <td>{{dire.latitud}}</td>
-      
+
         <td>
-          <a href="{% url 'addresses:update' dire.id customer_list.customer_code %}" class="btn_add">Editar direccion</a>
+          <a href="{% url 'addresses:update' dire.id customer_list.customer_code %}" class="btn_add">Editar
+            direccion</a>
         </td>
       </tr>
-    
+
       {% endfor %}
 
     </tbody>
   </table>
-  {% if limite_direccion  %}
+  {% if limite_direccion %}
   <div>
     <a href="{% url 'addresses:add' customer_code %}" class="btn_edit">Agregar Direccion</a>
   </div>
