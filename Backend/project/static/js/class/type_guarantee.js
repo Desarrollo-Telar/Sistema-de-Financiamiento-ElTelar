@@ -16,7 +16,7 @@ class Hipoteca {
         this.docDigitalSoporte = docDigitalSoporte;
     }
 
-    toJson() {
+    toJSON() {
         const js = {
             Nombre: 'HIPOTECA',
             NoEscritura: this.noEscritura,
@@ -34,7 +34,7 @@ class Hipoteca {
             Avaluo_del_Bien: this.avaluoBien,
             Documento_Digital_de_Soporte: this.docDigitalSoporte
         };
-        return JSON.stringify(js, null, 4);
+        return js;
     }
 
     toString() {
@@ -57,7 +57,7 @@ class DerechoDePosesionHipoteca {
         this.docDigitalSoporte = docDigitalSoporte;
     }
 
-    toJson() {
+    toJSON() {
         const js = {
             Nombre: 'DERECHO DE POSESIÓN HIPOTECA',
             NoEscritura: this.noEscritura,
@@ -72,7 +72,7 @@ class DerechoDePosesionHipoteca {
             Avaluo_del_Bien: this.avaluoBien,
             Documento_Digital_de_Soporte: this.docDigitalSoporte
         };
-        return JSON.stringify(js, null, 4);
+        return js;
     }
 }
 
@@ -86,7 +86,7 @@ class Fiador {
         this.fotografia = fotografia;
     }
 
-    toJson() {
+    toJSON() {
         const js = {
             Nombre: 'FIADOR',
             Codigo_de_Cliente: this.codigo_cliente,
@@ -96,7 +96,7 @@ class Fiador {
             Numero_de_Telefono: this.numeroTelefono,
             Fotografia: this.fotografia
         };
-        return JSON.stringify(js, null, 4);
+        return js;
     }
 }
 
@@ -110,7 +110,7 @@ class Cheque {
         this.fotografia_cheque = fotografia_cheque;
     }
 
-    toJson() {
+    toJSON() {
         const js = {
             Nombre: 'CHEQUE',
             noCheque: this.noCheque,
@@ -120,7 +120,7 @@ class Cheque {
             Monto_cheque: this.monto_cheque,
             Fotografia_Cheque: this.fotografia_cheque
         };
-        return JSON.stringify(js, null, 4);
+        return js;
     }
 }
 
@@ -140,7 +140,7 @@ class Vehiculo {
         this.noContratoArrendamiento = noContratoArrendamiento;
     }
 
-    toJson() {
+    toJSON() {
         const js = {
             Nombre: 'VEHICULO',
             Placa: this.placa,
@@ -156,7 +156,7 @@ class Vehiculo {
             MontoSeguro: this.montoSeguro,
             NoContratoArrendamiento: this.noContratoArrendamiento
         };
-        return JSON.stringify(js, null, 4);
+        return js;
     }
 }
 
@@ -170,7 +170,7 @@ class Mobiliaria {
         this.montoSeguro = montoSeguro;
     }
 
-    toJson() {
+    toJSON() {
         const js = {
             Nombre: 'MOBILIARIA',
             DescripcionBien: this.descripcionBien,
@@ -180,6 +180,6 @@ class Mobiliaria {
             NoPoliza: this.noPoliza,
             MontoSeguro: this.montoSeguro
         };
-        return JSON.stringify(js, null, 4);
+        return js;
     }
 }

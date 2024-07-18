@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 import sys
 import os
+import json
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 from apps.customers.clases.customer import Customer
@@ -142,6 +143,10 @@ class Credit:
         plazo = self.__plazo
         fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
         return fecha_vencimiento.strftime('%Y-%m-%d')
+    
+    def toJson(self):
+        
+        return json.dumps(js, indent=4, ensure_ascii=False)
     
     def __str__(self):
         return f'Credito: \nID:{self._id},\nFecha Inicio: {self.fecha_inicio},\nPlazo: {self.__plazo} meses,\nFecha de Vencimiento: {self.__fecha_vencimiento},\nFiador: {self.__customer_id.nombre} {self.__customer_id.apellido}'
