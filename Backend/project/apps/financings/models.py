@@ -12,6 +12,14 @@ class Credit(models.Model):
         ('TRIMESTRAL','TRIMESTRAL'),
         ('SEMANAL','SEMANAL')
     ]
+    credit_type = [
+        ('AGROPECUARIO Y/O PRODUCTIVO', 'AGROPECUARIO Y/O PRODUCTIVO'),
+        ('COMERCIO', 'COMERCIO'),
+        ('SERVICIOS', 'SERVICIOS'),
+        ('CONSUMO', 'CONSUMO'),
+        ('VIVIENDA', 'VIVIENDA')
+
+    ]
     proposito = models.TextField("Proposito", blank=False, null=False)
     monto = models.DecimalField("Monto", decimal_places=2, max_digits=15, blank=False, null=False)
     plazo = models.IntegerField("Plazo", blank=False, null=False)
@@ -20,7 +28,7 @@ class Credit(models.Model):
     frecuencia_pago = models.CharField("Frecuencia de Pago", choices=frecuenciaPago, max_length=75, blank=False, null=False, default='NIVELADA')
     fecha_inicio = models.DateField("Fecha de Inicio", blank=False, null=False)
     fecha_vencimiento = models.DateField("Fecha de Vencimiento", blank=False, null=False)
-    tipo_credito = models.CharField("Tipo de Credito",max_length=75, blank=False, null=False)
+    tipo_credito = models.CharField("Tipo de Credito",choices=credit_type,max_length=75, blank=False, null=False)
     codigo_credito = models.CharField("Codigo Credito",max_length=25, blank=False, null=False, unique=True)
     destino_id = models.OneToOneField(InvestmentPlan, on_delete=models.SET_NULL, blank=True,null=True ,verbose_name='Destino')
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Cliente')
