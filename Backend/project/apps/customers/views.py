@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from .models import Customer
-from apps.addresses.models import Address, Coordinate
+from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.pictures.models import ImagenCustomer

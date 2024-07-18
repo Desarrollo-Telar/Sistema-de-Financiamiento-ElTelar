@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # Models
-from apps.addresses.models import Address, Coordinate
+from apps.addresses.models import Address
 
 class AddressSerializaer(serializers.ModelSerializer):
     class Meta:

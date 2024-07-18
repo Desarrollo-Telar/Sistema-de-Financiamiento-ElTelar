@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 # Model
-from apps.addresses.models import Address, Coordinate
+from apps.addresses.models import Address
 
 class AddressViewSet(viewsets.ModelViewSet):
     serializer_class = AddressSerializaer
