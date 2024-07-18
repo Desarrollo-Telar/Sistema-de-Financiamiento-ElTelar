@@ -103,6 +103,7 @@ class Cheque:
     
     def toJson(self):
         js = {
+            'Nombre':'CHEQUE',
             'noCheque':self.noCheque,
             'NombreCuenta':self.nombreCuenta,
             'Banco':self.banco,
@@ -132,6 +133,7 @@ class Vehiculo:
 
     def toJson(self):
         js = {
+            'Nombre':'VEHICULO',
             'Placa':self.placa,
             'Marca':self.marca,
             'Color':self.noChasis,
@@ -157,6 +159,7 @@ class Mobiliaria:
 
     def toJson(self):
         js = {
+            'Nombre':'MOBILIARIA',
             'DescripcionBien':self.descripcionBien,
             'DocumentoAcredita':self.documentoAcredita,
             'imagenDocumentoAcredita':self.imagenDocumentoAcredita,
