@@ -145,7 +145,20 @@ class Credit:
         return fecha_vencimiento.strftime('%Y-%m-%d')
     
     def toJson(self):
-        
+        js = {
+            'proposito':self.__proposito,
+            'monto':self.__monto,
+            'plazo':self.__plazo,
+            'tasa_interes':self.__tasa_interes,
+            'forma_de_pago':self.__forma_de_pago,
+            'frecuecia_pago':self.__frecuencia_pago,
+            'fecha_inicio':self.__fecha_inicio,
+            'fecha_vencimiento':self.__fecha_vencimiento,
+            'tipo_credito':self.__tipo_credito,
+            'destino':self.__destino_id,
+            'cliente':self.__customer_id,
+
+        }
         return json.dumps(js, indent=4, ensure_ascii=False)
     
     def __str__(self):

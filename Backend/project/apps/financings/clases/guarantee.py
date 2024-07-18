@@ -45,9 +45,10 @@ class Guarantee:
     def calcular_suma_total(self):
         return sum(detalle.valor_cobertura for detalle in self.__detalle_garantia)
     
-    def toJSON(self):        
-        self.__guarantee['description'] = self.descripcion
-        self.__guarantee['suma_total'] = self.suma_total
+    def toJSON(self):     
+        self.__guarantee['credit_id']=self.__credit_id   
+        self.__guarantee['description'] = self.__descripcion
+        self.__guarantee['suma_total'] = self.__suma_total
         return json.dumps(self.__guarantee, indent=4)
 
     def __str__(self):
