@@ -1,0 +1,30 @@
+[
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$E2wBTZ3NV0YK0BbsjWNqSi$6Av/47yxMWF1NjiPsiK5r3bHQArW464C5OblRkUH0ZA=",
+        "last_login": "2024-07-18T21:36:07.727Z",
+        "is_superuser": true,
+        "username": "choc1403",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-07-18T21:34:05.436Z",
+        "type_identification": "DPI",
+        "identification_number": "3238438161601",
+        "telephone": "42249955",
+        "email": "eloicx@gmail.com",
+        "status": true,
+        "gender": "MASCULINO",
+        "user_code": "2024-1",
+        "nationality": "Guatemala",
+        "profile_pic": "",
+        "rol": "Administrador",
+        "creation_date": "2024-07-18T21:34:05.625Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

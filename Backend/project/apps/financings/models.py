@@ -73,6 +73,7 @@ class DetailsGuarantees(models.Model):
         ('VEHICULO','VEHICULO'),
         ('MOBILIARIA','MOBILIARIA')
     ]
+    garantia_id = models.ForeignKey(Guarantees, on_delete=models.CASCADE, verbose_name='Garantia')
     tipo_garantia = models.CharField("Tipo de Garantia", choices=tipoGarantia, max_length=75)
     especificaciones = models.JSONField("Especificaciones")
     valor_cobertura = models.DecimalField("Valor de Cobertura", decimal_places=2, max_digits=15)
