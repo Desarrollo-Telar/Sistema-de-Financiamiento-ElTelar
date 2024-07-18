@@ -48,7 +48,7 @@ class User(AbstractUser):
     user_code = models.CharField("Código de Usuario", max_length=25, blank=False, null=False, unique=True)
     nationality = models.CharField("Nacionalidad", max_length=75, blank=False, null=False, default='Guatemala')
     profile_pic = models.ImageField("Foto de Perfil", blank=True, null=True, upload_to='users/profile_pics/')
-    rol = models.CharField("Rol de Usuario", choices=roles, max_length=50)
+    rol = models.CharField("Rol de Usuario", choices=roles, max_length=50, default='Administrador')
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
     def __str__(self):
@@ -115,7 +115,5 @@ def set_rol(sender, instance, *args, **kwargs):
     else:
         instance.is_superuser = False
 
-    # Si el usuario es un superusuario y no tiene un rol en roles_superuser, establecer el rol a 'Administrador'
-    if instance.is_superuser and instance.rol not in roles_superuser:
-        instance.rol = 'Administrador'
+    
 
