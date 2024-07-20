@@ -13,6 +13,7 @@ from . import views
 app_name = 'financings'
 
 urlpatterns = [
+    path('credit/create',login_required(views.create_credit),name='create_credit'),
     
 ]
 

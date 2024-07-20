@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<form method="POST">
+    <div style="background-color: white; padding: 2rem;">
+        <div class="row">
+            <div class="col-12" style="margin-bottom: 2rem;">
+                <div class="form-group">
+                    <label class="fw-medium" for="customer_id">Cliente</label>
+                    <select class="form-control customer_id" id="customer_id" name="customer_id" style="width: 100%">
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-12" style="margin-bottom: 2rem;">
+                <div class="form-group">
+                    <label class="fw-medium" for="proposito">Proposito</label>
+                    <textarea class="form-control" name="proposito" id="proposito" rows="2"></textarea>
+
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="fw-medium" for="monto">Monto</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                        <input type="number" min="0" step="any" class="form-control" name="monto" id="monto">
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="fw-medium" for="plazo">Plazo</label>
+                    <div class="input-group mb-3">
+                        <input type="number" min="0" class="form-control" pattern="^[0-9]+" name="plazo" id="plazo">
+                        <span class="input-group-text fw-medium" id="basic-addon1">Meses</span>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-6" style="margin: 2rem 0;">
+                <div class="form-group">
+                    <label class="fw-medium" for="forma_de_pago">Forma De Pago</label>
+                    <select class="form-select" aria-label="Default select example" id="forma_de_pago"
+                        name="forma_de_pago">
+                        <option value="NIVELADA">NIVELADA</option>
+                        <option value="AMORTIZACIONES A CAPITAL">AMORTIZACIONES A CAPITAL</option>
+                    </select>
+                </div>
+
+
+
+            </div>
+            <div class="col-6" style="margin: 2rem 0;">
+                <div class="form-group">
+                    <label class="fw-medium" for="tipo_credito">Tipo De Credito</label>
+                    <select class="form-select" id="tipo_credito" name="tipo_credito">
+                        <option value="AGROPECUARIO Y/O PRODUCTIVO">AGROPECUARIO Y/O PRODUCTIVO</option>
+                        <option value="COMERCIO">COMERCIO</option>
+                        <option value="SERVICIOS">SERVICIOS</option>
+                        <option value="CONSUMO">CONSUMO</option>
+                        <option value="VIVIENDA">VIVIENDA</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="fw-medium" for="fecha_inicio">Fecha de Inicio</label>
+                    <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio">
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="fw-medium" for="fecha_vencimiento">Fecha de Vencimiento</label>
+                    <input type="date" class="form-control" name="fecha_vencimiento" id="fecha_vencimiento">
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <hr>
+    <div style="background-color: white; padding: 2rem;">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">Plan de Pagos</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                    type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Garantia</button>
+
+                <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled"
+                    type="button" role="tab" aria-controls="nav-disabled" aria-selected="false"
+                    disabled>Desembolso</button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+                tabindex="0">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Mes</th>
+                                    <th scope="col">Fecha de Inicio</th>
+                                    <th scope="col">Fecha de Vencimiento</th>
+                                    <th scope="col">Monto Prestado</th>
+                                    <th scope="col">Interes</th>
+                                    <th scope="col">Capital</th>
+                                    <th scope="col">Cuota</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_plan">
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                ...
+            </div>
+
+            <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab"
+                tabindex="0">...
+            </div>
+        </div>
+
+    </div>
+    <hr>
+    <div style="background-color: white; padding: 2rem;">
+        <a href="{% url 'customers:customers' %}" style="margin-right: 0.5rem;"> Cancelar</a>
+        <button type="submit" class="btn_edit">Agregar</button>
+    </div>
+
+</form>
+
+
+
+
+{% endblock %}
+
+
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript">
+    const plazo = document.getElementById('plazo');
+    const fecha_inicio = document.getElementById('fecha_inicio');
+    const fecha_vencimiento = document.getElementById('fecha_vencimiento');
+
+    fecha_inicio.addEventListener('input', function (event) {
+        const plazoValue = parseInt(plazo.value, 10); // Obtén el valor del plazo
+        const fechaInicioValue = new Date(event.target.value);
+        if (!isNaN(plazoValue) && fechaInicioValue instanceof Date && !isNaN(fechaInicioValue)) {
+            fechaInicioValue.setMonth(fechaInicioValue.getMonth() + plazoValue);
+            fecha_vencimiento.value = fechaInicioValue.toISOString().split('T')[0];
+        }
+    });
+
+    plazo.addEventListener('input', function (event) {
+        const plazoValue = parseInt(event.target.value, 10); // Obtén el valor del plazo
+        const fechaInicioValue = new Date(fecha_inicio.value);
+        if (!isNaN(plazoValue) && fechaInicioValue instanceof Date && !isNaN(fechaInicioValue)) {
+            fechaInicioValue.setMonth(fechaInicioValue.getMonth() + plazoValue);
+            fecha_vencimiento.value = fechaInicioValue.toISOString().split('T')[0];
+        }
+    });
+
+
+
+    $(document).ready(function () {
+        $(".customer_id").select2({
+            width: 'resolve',
+            ajax: {
+                url: 'http://127.0.0.1:8000/customers/api/customers/',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    console.log(data);
+                    // Verificar si 'data' es un array de objetos
+                    if (Array.isArray(data)) {
+                        return {
+                            results: data.map(function (item) {
+                                return {
+                                    id: item.id,
+                                    text: item.customer_code + ' ' + item.first_name + ' ' + item.last_name
+                                };
+                            })
+                        };
+                    } else {
+                        console.error('Estructura de datos inesperada:', data);
+                        return {
+                            results: []
+                        };
+                    }
+                },
+                cache: true
+            },
+            placeholder: 'Seleccione un Cliente',
+            minimumInputLength: 1
+        });
+    });
+
+</script>
+<script type="module" src="{% static 'js/financings/credit/credit.js'%}"></script>
+{% endblock%}
