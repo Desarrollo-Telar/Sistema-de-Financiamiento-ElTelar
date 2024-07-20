@@ -13,7 +13,7 @@ export class Credit {
     #destino_id;
     #customer_id;
 
-    constructor(proposito, monto, plazo, tasa_interes, forma_de_pago, frecuencia_pago, fecha_inicio, tipo_credito, destino_id, customer_id, fecha_vencimiento = null) {
+    constructor(proposito='', monto='', plazo='', tasa_interes='', forma_de_pago='', frecuencia_pago='', fecha_inicio='', tipo_credito='', destino_id = '', customer_id='', fecha_vencimiento = null) {
         Credit.contador++;
         this.#id = Credit.contador;
         this.#proposito = proposito;

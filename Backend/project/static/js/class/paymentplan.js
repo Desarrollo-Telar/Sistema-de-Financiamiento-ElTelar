@@ -1,7 +1,7 @@
-class PaymentPlan {
+export class PaymentPlan {
     static contador = 0;
 
-    constructor(credit) {
+    constructor(credit = '') {
         PaymentPlan.contador += 1;
         this._no = PaymentPlan.contador;
         this._credit = credit;
@@ -9,6 +9,15 @@ class PaymentPlan {
         this._plan = [];
         this._plazo = parseInt(this._credit.plazo);
     }
+
+    get credit(){
+        return this._credit;
+    }
+
+    set credit(value){
+        this._credit = value;
+    }
+
 
     get plazo() {
         return this._plazo;
