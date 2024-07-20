@@ -13,7 +13,7 @@ export class Credit {
     #destino_id;
     #customer_id;
 
-    constructor(proposito='', monto='', plazo='', tasa_interes='', forma_de_pago='', frecuencia_pago='', fecha_inicio='', tipo_credito='', destino_id = '', customer_id='', fecha_vencimiento = null) {
+    constructor(proposito='', monto='', plazo='', tasa_interes='', forma_de_pago='', frecuencia_pago='', fecha_inicio='', tipo_credito='', destino_id = null, customer_id='', fecha_vencimiento = null) {
         Credit.contador++;
         this.#id = Credit.contador;
         this.#proposito = proposito;
@@ -160,8 +160,8 @@ export class Credit {
             fecha_inicio:this.#fecha_inicio,
             fecha_vencimiento:this.#fecha_vencimiento,
             tipo_credito:this.#tipo_credito,
-            destino:this.#destino_id,
-            cliente:this.#customer_id,
+            destino_id:this.#destino_id,
+            customer_id:this.#customer_id,
         };
     }
 

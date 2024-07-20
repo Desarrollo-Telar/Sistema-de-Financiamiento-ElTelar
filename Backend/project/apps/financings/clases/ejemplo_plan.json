@@ -1,18 +1,13 @@
-[
-    {
-        "mes":1,
-        "monto_prestado":117000,
-        "interes":6435.0,
-        "capital":269.93,
-        "cuota":6704.93
-
-    },
-    {
-        "mes":2,
-        "monto_prestado":116730.07,
-        "interes":6420.15,
-        "capital":269.93,
-        "cuota":6704.93
-    }
-
-]
+{
+    "customer_id": "1",
+    "destino_id": null,
+    "fecha_inicio": "2024-07-20",
+    "fecha_vencimiento": "2025-07-20",
+    "forma_de_pago": "NIVELADA",
+    "frecuencia_pago": "MENSUAL",
+    "monto": "7000",
+    "plazo": "12",
+    "proposito": "cvcx",
+    "tasa_interes": 1.2,
+    "tipo_credito": "AGROPECUARIO Y/O PRODUCTIVO"
+}

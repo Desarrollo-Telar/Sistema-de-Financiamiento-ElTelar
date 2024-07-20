@@ -4,8 +4,9 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {% endblock %}
 {% block content %}
-<form method="POST">
+<form method="POST" id="credito">
     {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <div style="background-color: white; padding: 2rem;">
         <div class="row">
             <div class="col-12" style="margin-bottom: 2rem;">
@@ -256,18 +257,23 @@
 
         } else if (valor === 'FIADOR') {
             ocultar(hipoteca);
+            ocultar(derecho_posesion);
 
         } else if (valor === 'CHEQUE') {
             ocultar(hipoteca);
+            ocultar(derecho_posesion);
 
         } else if (valor === 'VEHICULO') {
             ocultar(hipoteca);
+            ocultar(derecho_posesion);
 
         } else if (valor === 'MOBILIARIA') {
             ocultar(hipoteca);
+            ocultar(derecho_posesion);
 
         } else {
             ocultar(hipoteca);
+            ocultar(derecho_posesion);
             console.log('Buenoooo');
         }
     });
