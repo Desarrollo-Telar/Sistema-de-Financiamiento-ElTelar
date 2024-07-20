@@ -5,6 +5,7 @@
 {% endblock %}
 {% block content %}
 <form method="POST">
+    {% csrf_token %}
     <div style="background-color: white; padding: 2rem;">
         <div class="row">
             <div class="col-12" style="margin-bottom: 2rem;">
@@ -106,7 +107,7 @@
 
             </div>
             <div style="margin-top: 2rem;">
-                <a type="button" onclick="generar_plan()" class="btn_add" id="generar_plan">Genear Plan de Pagos</a>
+                <a type="button" onclick="generar_plan()" class="btn_add" id="generar_plan">Generar Plan de Pagos</a>
             </div>
 
 
@@ -154,7 +155,7 @@
 
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                ...
+                {% include 'financings/guarantee/add.html' %}
             </div>
 
             <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab"
@@ -238,7 +239,54 @@
             minimumInputLength: 1
         });
     });
+    const tipo_garantia = document.getElementById('tipo_garantia');
+
+    const hipoteca = document.getElementById('hipoteca');
+    const derecho_posesion = document.getElementById('derecho_posesion');
+
+    tipo_garantia.addEventListener('change', function (event) {
+        const valor = event.target.value;
+        if (valor === 'HIPOTECA') {
+            mostrar(hipoteca);
+            ocultar(derecho_posesion);
+
+        } else if (valor === 'DERECHO DE POSESIÓN HIPOTECA') {
+            ocultar(hipoteca);
+            mostrar(derecho_posesion);
+
+        } else if (valor === 'FIADOR') {
+            ocultar(hipoteca);
+
+        } else if (valor === 'CHEQUE') {
+            ocultar(hipoteca);
+
+        } else if (valor === 'VEHICULO') {
+            ocultar(hipoteca);
+
+        } else if (valor === 'MOBILIARIA') {
+            ocultar(hipoteca);
+
+        } else {
+            ocultar(hipoteca);
+            console.log('Buenoooo');
+        }
+    });
+
+    const ocultar = (element) => {
+        if (element) {
+            element.style.display = 'none';
+        }
+    };
+
+    const mostrar = (element) => {
+        if (element) {
+            element.style.display = 'block';
+        }
+    };
+
+
 
 </script>
 <script type="module" src="{% static 'js/financings/credit/credit.js'%}"></script>
+
 {% endblock%}
