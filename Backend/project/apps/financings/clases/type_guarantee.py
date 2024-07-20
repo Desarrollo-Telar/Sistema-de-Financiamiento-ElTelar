@@ -140,7 +140,7 @@ class Vehiculo:
             'NoMotor':self.noMotor,
             'Valor_Comericial':self.valor_comercial,
             'Fotografias':self.fotografias,
-            'Titulo':self.titulo,
+            #'Titulo':self.titulo,
             'NoPoliza':self.noPoliza,
             'MontoSeguro':self.montoSeguro,
             'NoContratoArrendamiento':self.noContratoArrendamiento
