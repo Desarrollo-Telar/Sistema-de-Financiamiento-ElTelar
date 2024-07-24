@@ -1,3 +1,48 @@
 {% load static %}
-<div class="row" style="margin: 1rem 0;">
+
+<div class="row" style="margin: 1rem 0; padding: 2rem;">
+    {% if credit_list %}
+    <div class="col-3">
+        <a href="{% url 'financings:create_credit' %}" class="btn_edit">Crear Nuevo Credito</a>
+
+    </div>
+
+    <table class="table" style="margin-top: 0.5rem;">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Proposito</th>
+                <th scope="col">Monto</th>
+                <th scope="col">Plazo</th>
+                <th scope="col">Tasa de Interes</th>
+                <th scope="col">Forma de Pago</th>
+                <th scope="col">Tipo de Credito</th>
+                <th scope="col">Fecha de Creación</th>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for credito in credit_list %}
+            <tr>
+                <td>{{credito.codigo_credito}}</td>
+                <td>{{credito.proposito}}</td>
+                <td>Q {{credito.monto}}</td>
+                <td>{{credito.plazo}} Meses</td>
+                <td>% {{credito.tasa_interes}}</td>
+                <td>{{credito.forma_de_pago}}</td>
+                <td>{{credito.tipo_credito}}</td>
+                <td>{{credito.creation_date}}</td>
+
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+    {% else %}
+    <a href="{% url 'financings:create_credit' %}" class="btn_edit">Crear Nuevo Credito</a>
+    {% endif %}
 </div>

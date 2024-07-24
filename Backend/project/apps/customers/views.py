@@ -7,6 +7,7 @@ from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfI
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.pictures.models import ImagenCustomer
 from apps.documents.models import DocumentCustomer
+from apps.financings.models import Credit
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
@@ -148,7 +149,9 @@ def detail_customer(request,customer_code):
     reference = Reference.objects.filter(Q(customer_id=customer_list))
     imagen = ImagenCustomer.objects.filter(Q(customer_id=customer_list))
     document = DocumentCustomer.objects.filter(Q(customer_id=customer_list))
-    print(document)
+    credito = Credit.objects.filter(Q(customer_id =customer_list ))
+
+    #print(credito)
       
     
 
@@ -165,7 +168,7 @@ def detail_customer(request,customer_code):
         'otra_informacion_laboral' :otra_informacion_laboral,
         'reference':reference,
         'plan_inversion':plan_inversion,
-        
+        'credit_list':credito,
         'customer_code':customer_code,
         'limite_direccion':limite_direccion,
         'imagen':imagen,
