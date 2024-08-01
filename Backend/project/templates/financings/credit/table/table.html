@@ -1,0 +1,94 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 " style="text-align: center;">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Codigo Credito</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Proposito</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Plazo</th>
+                        <th scope="col">Tasa de Interes</th>
+                        <th scope="col">Forma de Pago</th>
+                        <th scope="col">Tipo de Credito</th>
+                        <th scope="col">Fecha de Inicio</th>
+                        <th scope="col">Fecha de Vencimiento</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for credit in credit_list %}
+
+                    <tr>
+                        <th scope="row">
+                            <a style="text-decoration: none; color: black;" href="#">
+                                {{credit.codigo_credito}}
+                            </a>
+
+
+                        </th>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;" href="#">
+                                {{credit.customer_id}}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black; " href="#">
+                                {{credit.proposito}}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;" href="#">
+                                Q <span>{{credit.monto}}</span>
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;" href="#">
+                                {{credit.plazo}} Meses
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;" href="#">
+                                % {{credit.tasa_interes}}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;" href="#">
+                                {{credit.forma_de_pago}}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;" href="#">
+                                {{credit.tipo_credito}}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;" href="#">
+                                {{credit.fecha_inicio}}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;" href="#">
+                                {{credit.fecha_vencimiento}}
+                            </a>
+                        </td>
+
+
+
+
+
+
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

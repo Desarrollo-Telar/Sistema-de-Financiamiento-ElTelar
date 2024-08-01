@@ -93,7 +93,7 @@ class Customer(models.Model):
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
     def __str__(self):
-        return self.first_name
+        return self.get_full_name()
 
     def get_qr(self):
         codigo = f'/media/qr/codigoQr_{self.customer_code}.png'

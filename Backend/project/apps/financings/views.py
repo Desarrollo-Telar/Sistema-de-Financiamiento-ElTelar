@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
-from .models import Customer
+from .models import Credit
 from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
 from apps.InvestmentPlan.models import InvestmentPlan
@@ -34,3 +34,15 @@ def create_credit(request):
     }
 
     return render(request,template_name,context)
+
+@login_required
+@usuario_activo
+def list_credit(request):
+    template_name = 'financings/credit/list.html'
+    page_obj = paginacion(request, Credit.objects.all().order_by('-id'))
+    context = {
+        'title':'ELTELAR - CREDITOS',
+        'page_obj':page_obj,
+        'credit_list':page_obj
+    }
+    return render(request, template_name, context)

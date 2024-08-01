@@ -1,6 +1,22 @@
 from django.db import models
 from apps.customers.models import Customer
 from apps.InvestmentPlan.models import InvestmentPlan
+
+# Signals
+from django.db.models.signals import pre_save, post_save, pre_delete, post_delete
+
+# Django
+from django.dispatch import receiver
+from django.utils import timezone
+import random
+from datetime import datetime
+
+# Settings
+from project.settings import MEDIA_URL, STATIC_URL
+
+# OS
+import os
+
 # Create your models here.
 class Credit(models.Model):  
     formaPago = [
@@ -81,3 +97,23 @@ class DetailsGuarantees(models.Model):
     class Meta:
         verbose_name = 'Detalle de Garantia'
         verbose_name_plural = 'Detalles de Garantias'
+
+
+
+@receiver(pre_save, sender=Credit)
+def set_customer_code_and_update_status(sender, instance, **kwargs):
+    # Si el código del cliente está vacío o es una cadena vacía, genera uno nuevo
+    if not instance.codigo_credito or instance.codigo_credito == '':
+
+        counter = 1
+        
+        # Generar el código base
+        customer_code = instance.customer_id.customer_code
+        credit_code = f'{customer_code} / {counter}'
+
+        # Verificar si no existe un código igual, si no, generar uno nuevo
+        while Credit.objects.filter(codigo_credito=credit_code).exists():
+            counter += 1
+            credit_code = f'{customer_code} / {counter}'
+
+        instance.codigo_credito = credit_code
