@@ -13,7 +13,7 @@ from .type_guarantee import *
 class Guarantee:
     contador = 0
     
-    def __init__(self, credit_id, detalle_garantia, descripcion=None):
+    def __init__(self,detalle_garantia, credit_id = None,  descripcion=None):
         Guarantee.contador += 1
         self._count = Guarantee.contador             
         self.__credit_id = credit_id
@@ -82,7 +82,7 @@ class DetailGuarantee:
     def crear_tipo_de_garantia(self, tipo_garantia, **kwargs):
         if tipo_garantia == 'Hipoteca' or tipo_garantia == 'HIPOTECA':
             return Hipoteca(**kwargs)
-        elif tipo_garantia == 'Derecho de posesión':
+        elif tipo_garantia == 'DERECHO DE POSESIÓN HIPOTECA' or tipo_garantia =='Derecho de posesión hipoteca':
             return DerechoDePosesionHipoteca(**kwargs)
         elif tipo_garantia == 'Fiador':
             return Fiador(**kwargs)
@@ -114,18 +114,15 @@ if __name__ == '__main__':
     especificacion = {
         'noEscritura': 125
     }
+    
     detalle = [{
         'tipo_garantia': 'HIPOTECA',
         'valor_cobertura': 750,
         'especificacion': especificacion
     },
-    {
-        'tipo_garantia': 'HIPOTECA',
-        'valor_cobertura': 750,
-        'especificacion': especificacion
-    },
+    
     ]
-    garantia = Guarantee(credito, detalle)
+    garantia = Guarantee(credit_id=credito, detalle_garantia=detalle)
     
     print(garantia)
 

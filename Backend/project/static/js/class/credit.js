@@ -13,13 +13,13 @@ export class Credit {
     #destino_id;
     #customer_id;
 
-    constructor(proposito='', monto='', plazo='', tasa_interes='', forma_de_pago='', frecuencia_pago='', fecha_inicio='', tipo_credito='', destino_id = null, customer_id='', fecha_vencimiento = null) {
+    constructor(proposito = '', monto = '', plazo = '', tasa_interes = '', forma_de_pago = '', frecuencia_pago = '', fecha_inicio = '', tipo_credito = '', destino_id = null, customer_id = '', fecha_vencimiento = null) {
         Credit.contador++;
         this.#id = Credit.contador;
         this.#proposito = proposito;
-        this.#monto = monto;
-        this.#plazo = plazo;
-        this.#tasa_interes = tasa_interes;
+        this.#monto = parseFloat(monto);
+        this.#plazo = parseInt(plazo);
+        this.#tasa_interes = parseFloat(tasa_interes);
         this.#forma_de_pago = forma_de_pago;
         this.#frecuencia_pago = frecuencia_pago;
         this.#fecha_inicio = new Date(fecha_inicio);
@@ -42,7 +42,7 @@ export class Credit {
     }
 
     get tasaInteres() {
-        const tasa = parseFloat(this.#tasa_interes);
+        const tasa = this.#tasa_interes;
         return tasa > 1 ? tasa / 100 : tasa;
     }
 
@@ -60,6 +60,7 @@ export class Credit {
 
     get fechaVencimiento() {
         return this.#fecha_vencimiento;
+        
     }
 
     get tipoCredito() {
@@ -82,15 +83,15 @@ export class Credit {
     }
 
     set monto(value) {
-        this.#monto = value;
+        this.#monto = parseFloat(value);
     }
 
     set plazo(value) {
-        this.#plazo = value;
+        this.#plazo = parseInt(value);
     }
 
     set tasaInteres(value) {
-        this.#tasa_interes = value;
+        this.#tasa_interes = parseFloat(value);
     }
 
     set formaDePago(value) {
@@ -98,7 +99,7 @@ export class Credit {
         if (formasDePagoValidas.includes(value)) {
             this.#forma_de_pago = value;
         } else {
-            console.error("Frecuencia de pago no válida");
+            console.error("Forma de pago no válida");
         }
     }
 
@@ -112,12 +113,7 @@ export class Credit {
     }
 
     set fechaInicio(value) {
-        const formato = 'YYYY-MM-DD';
-        try {
-            this.#fecha_inicio = new Date(value);
-        } catch (error) {
-            this.#fecha_inicio = new Date();
-        }
+        this.#fecha_inicio = new Date(value);
     }
 
     set fechaVencimiento(value) {
@@ -126,10 +122,10 @@ export class Credit {
 
     set tipoCredito(value) {
         const tiposCreditoValidos = ['AGROPECUARIO Y/O PRODUCTIVO', 'COMERCIO', 'SERVICIOS', 'CONSUMO', 'VIVIENDA'];
-        if (!tiposCreditoValidos.includes(value)) {
-            console.error('Error de tipo de crédito');
-        } else {
+        if (tiposCreditoValidos.includes(value)) {
             this.#tipo_credito = value;
+        } else {
+            console.error('Error de tipo de crédito');
         }
     }
 
@@ -143,25 +139,24 @@ export class Credit {
 
     calcularFechaVencimiento() {
         const fechaInicio = this.#fecha_inicio;
-        const plazo = this.#plazo;
         const fechaVencimiento = new Date(fechaInicio);
-        fechaVencimiento.setMonth(fechaVencimiento.getMonth() + plazo);
+        fechaVencimiento.setMonth(fechaVencimiento.getMonth() + this.#plazo);
         return fechaVencimiento;
     }
 
-    toJSON(){
+    toJSON() {
         return {
-            proposito:this.#proposito,
-            monto:this.#monto,
-            plazo:this.#plazo,
-            tasa_interes:this.#tasa_interes,
-            forma_de_pago:this.#forma_de_pago,
-            frecuecia_pago:this.#frecuencia_pago,
-            fecha_inicio:this.#fecha_inicio,
-            fecha_vencimiento:this.#fecha_vencimiento,
-            tipo_credito:this.#tipo_credito,
-            destino_id:this.#destino_id,
-            customer_id:this.#customer_id,
+            proposito: this.#proposito,
+            monto: this.#monto,
+            plazo: this.#plazo,
+            tasa_interes: this.#tasa_interes,
+            forma_de_pago: this.#forma_de_pago,
+            frecuencia_pago: this.#frecuencia_pago,
+            fecha_inicio: this.#fecha_inicio,
+            fecha_vencimiento: this.#fecha_vencimiento,
+            tipo_credito: this.#tipo_credito,
+            destino_id: this.#destino_id,
+            customer_id: this.#customer_id,
         };
     }
 

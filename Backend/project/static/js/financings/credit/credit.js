@@ -15,9 +15,12 @@ const tbody_plan = document.getElementById('tbody_plan');
 
 function generar_plan() {
     tbody_plan.innerHTML = '';
+  
     const fechaInicioValue = new Date(fecha_inicio.value);
+    
 
     let credito = new Credit(proposito.value, monto.value, plazo.value, tasa_interes.value, forma_de_pago.value, 'MENSUAL', fechaInicioValue, tipo_credito.value, null, customer_id.value);
+    
     let plan_pago = new PaymentPlan(credito);
     let plan = plan_pago.generarPlan();
     console.log(credito.toJSON());

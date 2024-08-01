@@ -123,6 +123,9 @@
                     type="button" role="tab" aria-controls="nav-home" aria-selected="true">Plan de Pagos</button>
                 <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
                     type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Garantia</button>
+                <button class="nav-link" id="nav-garantia-tab" data-bs-toggle="tab" data-bs-target="#nav-garantia"
+                    type="button" role="tab" aria-controls="nav-garantia" aria-selected="false">Garantias
+                    Registradas</button>
 
                 <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled"
                     type="button" role="tab" aria-controls="nav-disabled" aria-selected="false"
@@ -158,6 +161,11 @@
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
                 {% include 'financings/guarantee/add.html' %}
             </div>
+            <div class="tab-pane fade" id="nav-garantia" role="tabpanel" aria-labelledby="nav-garantia-tab"
+                tabindex="0">
+                {% include 'financings/guarantee/list.html' %}
+
+            </div>
 
             <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab"
                 tabindex="0">...
@@ -167,7 +175,7 @@
     </div>
     <hr>
     <div style="background-color: white; padding: 2rem;">
-        <a href="{% url 'customers:customers' %}" style="margin-right: 0.5rem;"> Cancelar</a>
+        <a href="{% url 'financings:list_credit' %}" style="margin-right: 0.5rem;"> Cancelar</a>
         <button type="submit" class="btn_edit">Agregar</button>
     </div>
 
@@ -325,5 +333,5 @@
 
 </script>
 <script type="module" src="{% static 'js/financings/credit/credit.js'%}"></script>
-
+<script type="module" src="{% static 'js/financings/credit/garantia.js'%}"></script>
 {% endblock%}

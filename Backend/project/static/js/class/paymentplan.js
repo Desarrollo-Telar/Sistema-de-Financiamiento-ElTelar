@@ -66,13 +66,17 @@ export class PaymentPlan {
     }
 
     mesInicial() {
-        return new Date(this._credit.fechaInicio);
+        // Asegúrate de que la fecha sea siempre a medianoche UTC para evitar problemas con zonas horarias
+        const fecha = new Date(this._credit.fechaInicio);
+        return new Date(Date.UTC(fecha.getUTCFullYear(), fecha.getUTCMonth(), fecha.getUTCDate(),fecha.getUTCHours(),
+        fecha.getUTCMinutes(),
+        fecha.getUTCSeconds()));
     }
 
     inicial() {
         const mesInicial = this.mesInicial();
         const mesFinal = new Date(mesInicial);
-        mesFinal.setMonth(mesFinal.getMonth() + 1);
+        mesFinal.setUTCMonth(mesFinal.getUTCMonth() + 1);
 
         const dicio = {
             mes: 1,
