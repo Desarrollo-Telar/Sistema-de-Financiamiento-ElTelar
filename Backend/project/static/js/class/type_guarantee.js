@@ -404,7 +404,6 @@ export class Cheque {
 
     toJSON() {
         return {
-            Nombre: 'CHEQUE',
             noCheque: this._noCheque,
             NombreCuenta: this._nombreCuenta,
             Banco: this._banco,
