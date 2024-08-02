@@ -1,5 +1,5 @@
 import { Guarantee, DetailGuarantee } from '../../class/guarantee.js';
-import { Hipoteca, Cheque, DerechoDePosesionHipoteca, Fiador } from '../../class/type_guarantee.js';
+import { Hipoteca, Cheque, DerechoDePosesionHipoteca, Fiador, Mobiliaria, Vehiculo} from '../../class/type_guarantee.js';
 
 const tbody_garantia = document.getElementById('tbody_garantia');
 const suma = document.getElementById('total_garantia');
@@ -174,4 +174,61 @@ document.getElementById('agregar_garantiaF').addEventListener('click', function(
     clearFields();
 });
 
+// Evento para agregar un Mobiliaria
+document.getElementById('agregar_garantiaM').addEventListener('click',function(event){
+    event.preventDefault();
+    
+    let valor_cobertura = document.getElementById('valor_cobertura').value;
+    if (!valor_cobertura || valor_cobertura === '') {
+        alert('DEBE DE INGRESAR EL VALOR DE COBERTURA');
+        return; // Cambiado para evitar el uso de `throw` en un evento DOM
+    }
+    const mobiliaria = new Mobiliaria();
+    mobiliaria.descripcionBien = document.getElementById('descripcionBien').value;
+    mobiliaria.documentoAcredita = document.getElementById('documentoAcredita1').value;
+    mobiliaria.imagenDocumentoAcredita = document.getElementById('imagenDocumentoAcredita').value;
+    mobiliaria.fotografiaBien = document.getElementById('fotografiaBien1').value;
+    mobiliaria.noPoliza = document.getElementById('noPoliza1').value;
+    mobiliaria.montoSeguro = document.getElementById('montoSeguro').value;
+    
+
+
+
+    addGuarantee('MOBILIARIA', mobiliaria.toJSON());
+    clearFields();
+
+
+});
+
+// Evento para agregar un Vehiculo
+document.getElementById('agregar_garantiaV').addEventListener('click',function(event){
+    event.preventDefault();
+    
+    let valor_cobertura = document.getElementById('valor_cobertura').value;
+    if (!valor_cobertura || valor_cobertura === '') {
+        alert('DEBE DE INGRESAR EL VALOR DE COBERTURA');
+        return; // Cambiado para evitar el uso de `throw` en un evento DOM
+    }
+    const vehiculo = new Vehiculo();
+    vehiculo.placa = document.getElementById('placa').value;
+    vehiculo.marca = document.getElementById('marca').value;
+    vehiculo.color = document.getElementById('color').value;
+    vehiculo.noChasis = document.getElementById('noChasis').value;
+    vehiculo.noMotor = document.getElementById('noMotor').value;
+    vehiculo.valor_comercial = document.getElementById('valor_comercial5').value;
+    vehiculo.fotografias = document.getElementById('fotografiaC').value;
+    vehiculo.tarjetaCirculacion = document.getElementById('tarjetaC').value;
+    vehiculo.titulo = document.getElementById('tituloC').value;
+    vehiculo.noPoliza = document.getElementById('noPoliza5').value;
+    vehiculo.montoSeguro = document.getElementById('montoSeguroC').value;
+    vehiculo.noContratoArrendamiento = document.getElementById('arrendamientoC').value;
+    
+
+
+
+    addGuarantee('VEHICULO', vehiculo.toJSON());
+    clearFields();
+
+
+});
 

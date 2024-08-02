@@ -20,10 +20,7 @@ export class Hipoteca {
         return this._noEscritura;
     }
     set noEscritura(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar numero de Escritura');
-            throw new Error('Debe ingresar numero de Escritura');
-        }
+        
         this._noEscritura = value.trim();
     }
 
@@ -31,10 +28,7 @@ export class Hipoteca {
         return this._notario;
     }
     set notario(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar la informacion del Notario');
-            throw new Error('Debe ingresar la informacion del Notario');
-        }
+        
         this._notario = value.trim();
     }
 
@@ -42,10 +36,7 @@ export class Hipoteca {
         return this._finca;
     }
     set finca(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar la informacion de la Finca');
-            throw new Error('Debe ingresar la informacion de la Finca');
-        }
+        
         this._finca = value.trim();
     }
 
@@ -53,10 +44,7 @@ export class Hipoteca {
         return this._folio;
     }
     set folio(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar la informacion del Folio');
-            throw new Error('Debe ingresar la informacion del Folio');
-        }
+        
         this._folio = value.trim();
     }
 
@@ -64,10 +52,7 @@ export class Hipoteca {
         return this._libro;
     }
     set libro(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar la informacion del Libro');
-            throw new Error('Debe ingresar la informacion del Libro');
-        }
+        
         this._libro = value.trim();
     }
 
@@ -75,10 +60,7 @@ export class Hipoteca {
         return this._area;
     }
     set area(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar la informacion del Area');
-            throw new Error('Debe ingresar la informacion del Area');
-        }
+        
         this._area = value.trim();
     }
 
@@ -86,10 +68,7 @@ export class Hipoteca {
         return this._ubicacion;
     }
     set ubicacion(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar la informacion de la Ubicacion');
-            throw new Error('Debe ingresar la informacion de la Ubicacion');
-        }
+        
         this._ubicacion = value.trim();
     }
 
@@ -105,10 +84,7 @@ export class Hipoteca {
         return this._valor_comercial;
     }
     set valor_comercial(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar el valor comercial');
-            throw new Error('Debe ingresar el valor comercial');
-        }
+       
         this._valor_comercial = parseFloat(value.trim());
     }
 
@@ -116,10 +92,7 @@ export class Hipoteca {
         return this._titular;
     }
     set titular(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar el Titular');
-            throw new Error('Debe ingresar el titular');
-        }
+        
         this._titular = value.trim();
     }
 
@@ -136,10 +109,7 @@ export class Hipoteca {
         return this._noContratoArrendamiento;
     }
     set noContratoArrendamiento(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar la informacion de numero de contrato de arrendamiento');
-            throw new Error('Debe ingresar la informacion de numero de contrato de arrendamiento');
-        }
+        
         this._noContratoArrendamiento = value.trim();
     }
 
@@ -513,8 +483,7 @@ export class Vehiculo {
     }
 
     toJSON() {
-        return {
-            Nombre: 'VEHICULO',
+        return {            
             Placa: this._placa,
             Marca: this._marca,
             Color: this._color,
@@ -583,8 +552,7 @@ export class Mobiliaria {
     }
 
     toJSON() {
-        return {
-            Nombre: 'MOBILIARIA',
+        return {            
             DescripcionBien: this._descripcionBien,
             DocumentoAcredita: this._documentoAcredita,
             ImagenDocumentoAcredita: this._imagenDocumentoAcredita,
