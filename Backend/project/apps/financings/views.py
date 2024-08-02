@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
-from .models import Credit, Guarantees, Disbursement
+from .models import Credit, Guarantees, Disbursement,DetailsGuarantees
 from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
 from apps.InvestmentPlan.models import InvestmentPlan
@@ -52,10 +52,12 @@ def list_credit(request):
 def list_guarantee(request):
     template_name = 'financings/guarantee/lists.html'
     page_obj = paginacion(request, Guarantees.objects.all().order_by('-id'))
+
     context = {
         'title':'ELTELAR - GARANTIAS',
         'page_obj':page_obj,
-        'list_guarantee':page_obj
+        'list_guarantee':page_obj,
+        'detalle_garantia':DetailsGuarantees.objects.all(),
     }
     return render(request, template_name, context)
 
