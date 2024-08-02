@@ -1,5 +1,6 @@
 import { Credit } from '../../class/credit.js';
 import { PaymentPlan } from '../../class/paymentplan.js';
+import {suma_total, lista_garantia} from './garantia.js'
 
 const proposito = document.getElementById('proposito');
 const monto = document.getElementById('monto');
@@ -55,6 +56,9 @@ document.getElementById('generar_plan').onclick = generar_plan;
 
 document.getElementById('credito').addEventListener('submit', async function(event) {
     event.preventDefault();
+    
+
+    
     try {
         let credito = new Credit();
         credito.proposito = proposito.value;
@@ -79,6 +83,7 @@ document.getElementById('credito').addEventListener('submit', async function(eve
         console.error('Error al registrar los datos:', error);
         alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
     }
+    
 });
 
 async function registrarCredito(url, credito) {

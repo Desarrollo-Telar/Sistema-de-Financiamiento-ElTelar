@@ -3,12 +3,15 @@ import { Hipoteca, Cheque, DerechoDePosesionHipoteca, Fiador, Mobiliaria, Vehicu
 
 const tbody_garantia = document.getElementById('tbody_garantia');
 const suma = document.getElementById('total_garantia');
-const lista_garantia = [];
+export const lista_garantia = [];
+
+export let suma_total = '';
 
 // Función para actualizar la suma total
 function garantias() {
     const garantia = new Guarantee(lista_garantia);
     suma.innerText = `Q ${garantia._suma_total}`;
+    suma_total = garantia._suma_total;
 }
 
 // Función genérica para agregar una nueva garantía
