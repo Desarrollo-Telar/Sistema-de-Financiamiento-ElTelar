@@ -184,7 +184,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
             console.log(desembolsos)
 
             alert('¡Formulario enviado con éxito!');
-            window.location.href = '/customers/';
+            window.location.href = '/financings/credit/';
 
         }else{
             alert('NO SE HA REGISTRADO NINGUNA GARANTIA')
