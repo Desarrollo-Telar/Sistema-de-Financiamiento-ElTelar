@@ -61,7 +61,7 @@ class Disbursement(models.Model):
         ('CANCELACIÓN DE CRÉDITO VIGENTE','CANCELACIÓN DE CRÉDITO VIGENTE')
     ]
     credit_id = models.ForeignKey(Credit,on_delete=models.CASCADE ,verbose_name='Credito')
-    forma_desembolso = models.CharField("Forma de Desmbolso", choices=formaDesembolso, max_length=75, blank=False, null=False)
+    forma_desembolso = models.CharField("Forma de Desembolso", choices=formaDesembolso, max_length=75, blank=False, null=False)
     monto_credito = models.DecimalField("Monto Credito", decimal_places=2, max_digits=15, default=0)
     saldo_anterior = models.DecimalField("Saldo Anterior", decimal_places=2, max_digits=15, default=0)
     honorarios = models.DecimalField("Honorarios", decimal_places=2, max_digits=15, default=0)

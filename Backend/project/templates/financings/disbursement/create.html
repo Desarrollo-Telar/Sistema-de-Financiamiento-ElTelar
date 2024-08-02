@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<form method="POST" id="desembolso">
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <div style="background-color: white; padding: 2rem;">
+        <div class="row">
+            <div class="col-12" style="margin-bottom: 2rem;">
+                <div class="form-group">
+                    <label class="fw-medium" for="credit_id">Credito</label>
+                    <select class="form-control credit" id="credit_id" name="credit_id" style="width: 100%" required>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="fw-medium" for="forma_desembolso">Forma de Desembolso</label>
+            <select class="form-select" id="forma_desembolso" aria-label="Default select example">
+
+                <option value="APLICACIÓN GASTOS">APLICACIÓN GASTOS</option>
+                <option value="APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE">APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE
+                </option>
+                <option value="CANCELACIÓN DE CRÉDITO VIGENTE">CANCELACIÓN DE CRÉDITO VIGENTE</option>
+            </select>
+
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="fw-medium" for="monto">Monto del Credito</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                <input type="number" min="0" step="any" class="form-control" id="monto" disabled>
+            </div>
+
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="fw-medium" for="saldo_anterior">Saldo Anterior</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                <input type="number" min="0" step="any" class="form-control" id="saldo_anterior">
+            </div>
+
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="fw-medium" for="honorarios">Honorarios</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                <input type="number" min="0" step="any" class="form-control" id="honorarios">
+            </div>
+
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="fw-medium" for="poliza_seguro">Poliza de Seguro</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                <input type="number" min="0" step="any" class="form-control" id="poliza_seguro">
+            </div>
+
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="fw-medium" for="total_depositar">Total a Depositar</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                <input type="number" min="0" step="any" class="form-control" id="total_depositar" disabled>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+    <div style="background-color: white; padding: 2rem;">
+        <a href="{% url 'financings:list_disbursement' %}" style="margin-right: 0.5rem;"> Cancelar</a>
+        <button type="submit" class="btn_edit">Agregar</button>
+    </div>
+
+
+</form>
+{% endblock %}
+
+
+
+{% block js %}
+<script type="module" src="{% static 'js/financings/credit/disbursement.js'%}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".credit").select2({
+            width: 'resolve',
+            ajax: {
+                url: 'http://127.0.0.1:8000/financings/api/credit/',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    console.log(data);
+                    // Verificar si 'data' es un array de objetos
+                    if (Array.isArray(data)) {
+                        return {
+                            results: data.map(function (item) {
+                                const monto_credito = document.getElementById('monto');
+                                monto_credito.value = item.monto;
+                                return {
+                                    id: item.id,
+                                    text: item.codigo_credito + ' ' + item.customer_id.first_name + ' ' + item.customer_id.last_name
+                                };
+                            })
+                        };
+                    } else {
+                        console.error('Estructura de datos inesperada:', data);
+                        return {
+                            results: []
+                        };
+                    }
+                },
+                cache: true
+            },
+            placeholder: 'Seleccione un Credito',
+            minimumInputLength: 1
+        });
+    });
+
+
+</script>
+
+{% endblock %}

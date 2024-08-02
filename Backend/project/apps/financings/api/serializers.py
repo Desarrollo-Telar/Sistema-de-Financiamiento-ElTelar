@@ -21,23 +21,27 @@ class CreditSerializer(serializers.ModelSerializer):
             'customer_id',
             
         ]
-
     def to_representation(self, instance):
         return {
             'id':instance.id,
+            'customer_id':{
+                'first_name':instance.customer_id.first_name,
+                'last_name':instance.customer_id.last_name,
+
+            },
             'proposito':instance.proposito,
             'monto':instance.monto,
             'plazo':instance.plazo,
             'tasa_interes':instance.tasa_interes,
             'forma_de_pago':instance.forma_de_pago,
-            'frecuecia_pago':instance.frecuencia_pago,
+            'frecuencia_pago':instance.frecuencia_pago,
             'fecha_inicio':instance.fecha_inicio,
             'fecha_vencimiento':instance.fecha_vencimiento,
             'tipo_credito':instance.tipo_credito,
-            'codigo_credito':instance.codigo_credito,
             #'destino_id':instance.destino_id,
-            'customer_id':instance.customer_id.id
+            'codigo_credito':instance.codigo_credito
         }
+
 
 class GuaranteesSerializer(serializers.ModelSerializer):
     class Meta:
