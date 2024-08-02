@@ -17,6 +17,7 @@ function garantias() {
 // Función genérica para agregar una nueva garantía
 function addGuarantee(tipoGarantia, especificacion) {
     const tipo = {
+        garantia_id:1,
         tipo_garantia: tipoGarantia,
         valor_cobertura: parseFloat(document.getElementById('valor_cobertura').value),
         especificacion: especificacion

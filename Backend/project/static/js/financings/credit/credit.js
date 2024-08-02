@@ -1,6 +1,6 @@
 import { Credit } from '../../class/credit.js';
 import { PaymentPlan } from '../../class/paymentplan.js';
-import {suma_total, lista_garantia} from './garantia.js'
+import { suma_total, lista_garantia } from './garantia.js'
 
 const proposito = document.getElementById('proposito');
 const monto = document.getElementById('monto');
@@ -13,15 +13,15 @@ const fecha_inicio = document.getElementById('fecha_inicio');
 const tipo_credito = document.getElementById('tipo_credito');
 const customer_id = document.getElementById('customer_id');
 const tbody_plan = document.getElementById('tbody_plan');
-
+/*
 function generar_plan() {
     tbody_plan.innerHTML = '';
-  
+
     const fechaInicioValue = new Date(fecha_inicio.value);
-    
+
 
     let credito = new Credit(proposito.value, monto.value, plazo.value, tasa_interes.value, forma_de_pago.value, 'MENSUAL', fechaInicioValue, tipo_credito.value, null, customer_id.value);
-    
+
     let plan_pago = new PaymentPlan(credito);
     let plan = plan_pago.generarPlan();
     console.log(credito.toJSON());
@@ -43,6 +43,37 @@ function generar_plan() {
         cuota.textContent = 'Q' + element['cuota'];
     });
 }
+*/
+function generar_plan() {
+    tbody_plan.innerHTML = '';
+
+    const fechaInicioValue = new Date(fecha_inicio.value);
+
+    let credito = new Credit(proposito.value, monto.value, plazo.value, tasa_interes.value, forma_de_pago.value, 'MENSUAL', fechaInicioValue, tipo_credito.value, null, customer_id.value);
+    let plan_pago = new PaymentPlan(credito);
+    let plan = plan_pago.generarPlan();
+
+    console.log(credito.toJSON());
+
+    plan.forEach(element => {
+        var nueva_fila = tbody_plan.insertRow();
+        var mes = nueva_fila.insertCell(0);
+        mes.textContent = element['mes'];
+        var fechaIni = nueva_fila.insertCell(1);
+        fechaIni.textContent = transformarFecha(element['fecha inicio']);
+        var fechaVenc = nueva_fila.insertCell(2);
+        fechaVenc.textContent = transformarFecha(element['fecha final']);
+        var monto = nueva_fila.insertCell(3);
+        monto.textContent = 'Q' + element['monto_prestado'];
+        var interes = nueva_fila.insertCell(4);
+        interes.textContent = 'Q' + element['intereses'];
+        var capital = nueva_fila.insertCell(5);
+        capital.textContent = 'Q' + element['capital'];
+        var cuota = nueva_fila.insertCell(6);
+        cuota.textContent = 'Q' + element['cuota'];
+    });
+}
+
 
 function transformarFecha(ele) {
     const fecha = new Date(ele);
@@ -53,10 +84,11 @@ function transformarFecha(ele) {
 }
 
 document.getElementById('generar_plan').onclick = generar_plan;
-
-document.getElementById('credito').addEventListener('submit', async function(event) {
+/*
+document.getElementById('credito').addEventListener('submit', async function (event) {
     event.preventDefault();
-    
+
+
 
     
     try {
@@ -77,6 +109,8 @@ document.getElementById('credito').addEventListener('submit', async function(eve
 
         const credi = await registrarCredito('http://127.0.0.1:8000/financings/api/credit/', credito);
         console.log('Credito Registrado', credi);
+        const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/',credi.id)
+        console.log(garantia)
         alert('¡Formulario enviado con éxito!');
         window.location.href = '/customers/';
     } catch (error) {
@@ -84,6 +118,38 @@ document.getElementById('credito').addEventListener('submit', async function(eve
         alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
     }
     
+});
+*/
+document.getElementById('credito').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    try {
+        let credito = new Credit();
+        credito.proposito = proposito.value;
+        credito.monto = monto.value;
+        credito.plazo = plazo.value;
+        credito.tasaInteres = tasa_interes.value;
+        credito.formaDePago = forma_de_pago.value;
+        credito.frecuenciaPago = 'MENSUAL';
+        credito.fechaInicio = new Date(fecha_inicio.value);
+        credito.tipoCredito = tipo_credito.value;
+        credito.customerId = customer_id.value;
+        credito.fechaVencimiento = new Date(fecha_inicio.value);
+        credito.fechaVencimiento.setFullYear(credito.fechaVencimiento.getFullYear() + 1);
+        
+        console.log(credito.toJSON());
+
+        const credi = await registrarCredito('http://127.0.0.1:8000/financings/api/credit/', credito);
+        console.log('Credito Registrado', credi);
+        const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/', credi.id);
+        console.log(garantia);
+
+        alert('¡Formulario enviado con éxito!');
+        window.location.href = '/customers/';
+    } catch (error) {
+        console.error('Error al registrar los datos:', error);
+        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+    }
 });
 
 async function registrarCredito(url, credito) {
@@ -128,6 +194,123 @@ async function registrarCredito(url, credito) {
         return data;
     } catch (error) {
         console.error('Error:', error);
+        throw error;
+    }
+}
+
+/*
+async function registroGarantia(url, credito_id) {
+
+    try {
+        let json = {
+            suma_total: suma_total,
+            credit_id: credito_id
+        };
+        console.log(json);
+
+        // Obtener el token CSRF del meta tag
+        const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+        if (!csrfTokenElement) {
+            throw new Error('CSRF token not found');
+        }
+        const csrfToken = csrfTokenElement.getAttribute('content');
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
+            },
+            body: JSON.stringify(json)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        const detalle = await registrarDetalle('http://127.0.0.1:8000/financings/api/detalle_garantia/',data.id);
+        console.log(detalle);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+
+}
+*/
+async function registroGarantia(url, credito_id) {
+    try {
+        let json = {
+            suma_total: suma_total,
+            credit_id: credito_id
+        };
+
+        console.log(json);
+
+        const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+        if (!csrfTokenElement) {
+            throw new Error('CSRF token not found');
+        }
+        const csrfToken = csrfTokenElement.getAttribute('content');
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(json)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        const detalle = await registrarDetalle('http://127.0.0.1:8000/financings/api/detalle_garantia/', data.id);
+        console.log(detalle);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+}
+
+
+async function registrarDetalle(url, garantia_id) {
+    try {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        
+        for (let element of lista_garantia) {
+            let js = {
+                garantia_id: garantia_id,
+                tipo_garantia: element['tipo_garantia'],
+                valor_cobertura: element['valor_cobertura'],
+                especificaciones: element['especificacion']
+            };
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
+                },
+                body: JSON.stringify(js)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Respuesta de la API:', data);
+        }
+        
+    } catch (error) {
+        console.error('Error en el envío de detalles:', error);
         throw error;
     }
 }
