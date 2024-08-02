@@ -1,6 +1,7 @@
 import { Credit } from '../../class/credit.js';
 import { PaymentPlan } from '../../class/paymentplan.js';
 import { suma_total, lista_garantia } from './garantia.js'
+import {desembolso} from './disbursement.js'
 
 const proposito = document.getElementById('proposito');
 const monto = document.getElementById('monto');
@@ -44,6 +45,7 @@ function generar_plan() {
     });
 }
 */
+/*
 function generar_plan() {
     tbody_plan.innerHTML = '';
 
@@ -73,7 +75,41 @@ function generar_plan() {
         cuota.textContent = 'Q' + element['cuota'];
     });
 }
+*/
+function generar_plan() {
+    tbody_plan.innerHTML = '';
 
+    const fechaInicioValue = new Date(fecha_inicio.value);
+
+    const credito = new Credit(
+        proposito.value,
+        monto.value,
+        plazo.value,
+        tasa_interes.value,
+        forma_de_pago.value,
+        'MENSUAL',
+        fechaInicioValue,
+        tipo_credito.value,
+        null,
+        customer_id.value
+    );
+
+    const plan_pago = new PaymentPlan(credito);
+    const plan = plan_pago.generarPlan();
+
+    console.log(credito.toJSON());
+
+    plan.forEach(element => {
+        const nueva_fila = tbody_plan.insertRow();
+        nueva_fila.insertCell(0).textContent = element['mes'];
+        nueva_fila.insertCell(1).textContent = transformarFecha(element['fecha inicio']);
+        nueva_fila.insertCell(2).textContent = transformarFecha(element['fecha final']);
+        nueva_fila.insertCell(3).textContent = 'Q' + element['monto_prestado'];
+        nueva_fila.insertCell(4).textContent = 'Q' + element['intereses'];
+        nueva_fila.insertCell(5).textContent = 'Q' + element['capital'];
+        nueva_fila.insertCell(6).textContent = 'Q' + element['cuota'];
+    });
+}
 
 function transformarFecha(ele) {
     const fecha = new Date(ele);
@@ -124,28 +160,37 @@ document.getElementById('credito').addEventListener('submit', async function (ev
     event.preventDefault();
 
     try {
-        let credito = new Credit();
-        credito.proposito = proposito.value;
-        credito.monto = monto.value;
-        credito.plazo = plazo.value;
-        credito.tasaInteres = tasa_interes.value;
-        credito.formaDePago = forma_de_pago.value;
-        credito.frecuenciaPago = 'MENSUAL';
-        credito.fechaInicio = new Date(fecha_inicio.value);
-        credito.tipoCredito = tipo_credito.value;
-        credito.customerId = customer_id.value;
-        credito.fechaVencimiento = new Date(fecha_inicio.value);
-        credito.fechaVencimiento.setFullYear(credito.fechaVencimiento.getFullYear() + 1);
-        
-        console.log(credito.toJSON());
 
-        const credi = await registrarCredito('http://127.0.0.1:8000/financings/api/credit/', credito);
-        console.log('Credito Registrado', credi);
-        const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/', credi.id);
-        console.log(garantia);
+        if (lista_garantia.length > 0) {
+            let credito = new Credit();
+            credito.proposito = proposito.value;
+            credito.monto = monto.value;
+            credito.plazo = plazo.value;
+            credito.tasaInteres = tasa_interes.value;
+            credito.formaDePago = forma_de_pago.value;
+            credito.frecuenciaPago = 'MENSUAL';
+            credito.fechaInicio = new Date(fecha_inicio.value);
+            credito.tipoCredito = tipo_credito.value;
+            credito.customerId = customer_id.value;
+            credito.fechaVencimiento = new Date(fecha_inicio.value);
+            credito.fechaVencimiento.setFullYear(credito.fechaVencimiento.getFullYear() + 1);
 
-        alert('¡Formulario enviado con éxito!');
-        window.location.href = '/customers/';
+            console.log(credito.toJSON());
+            const credi = await registrarCredito('http://127.0.0.1:8000/financings/api/credit/', credito);
+            console.log('Credito Registrado', credi);
+            const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/', credi.id);
+            console.log(garantia);
+            const desembolsos = await registrarDesembolso('http://127.0.0.1:8000/financings/api/desembolso/',credi.id);
+            console.log(desembolsos)
+
+            alert('¡Formulario enviado con éxito!');
+            window.location.href = '/customers/';
+
+        }else{
+            alert('NO SE HA REGISTRADO NINGUNA GARANTIA')
+        }
+
+
     } catch (error) {
         console.error('Error al registrar los datos:', error);
         alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
@@ -155,17 +200,17 @@ document.getElementById('credito').addEventListener('submit', async function (ev
 async function registrarCredito(url, credito) {
     try {
         let json = {
-            customer_id: credito.customerId,
-            destino_id: credito.destinoId,
-            fecha_inicio: credito.fechaInicio.toISOString().split('T')[0],
-            fecha_vencimiento: credito.fechaVencimiento.toISOString().split('T')[0],
+            customer_id: parseInt(document.getElementById('customer_id').value),
+            destino_id: null,
+            fecha_inicio: document.getElementById('fecha_inicio').value,
+            fecha_vencimiento: document.getElementById('fecha_vencimiento').value,
             forma_de_pago: credito.formaDePago,
-            frecuencia_pago: credito.frecuenciaPago,
+            frecuencia_pago: 'MENSUAL',
             monto: credito.monto,
             plazo: credito.plazo,
             proposito: credito.proposito,
-            tasa_interes: credito.tasaInteres, // Asegúrate de que este valor es el correcto
-            tipo_credito: credito.tipoCredito
+            tasa_interes: credito.tasaInteres,
+            tipo_credito: credito.tipoCredito,
         };
         console.log(json);
 
@@ -197,6 +242,7 @@ async function registrarCredito(url, credito) {
         throw error;
     }
 }
+
 
 /*
 async function registroGarantia(url, credito_id) {
@@ -244,7 +290,8 @@ async function registroGarantia(url, credito_id) {
     try {
         let json = {
             suma_total: suma_total,
-            credit_id: credito_id
+            credit_id: credito_id,
+            descripcion:'REGISTRO DE GARANTIA',
         };
 
         console.log(json);
@@ -283,14 +330,15 @@ async function registroGarantia(url, credito_id) {
 async function registrarDetalle(url, garantia_id) {
     try {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        
+
         for (let element of lista_garantia) {
             let js = {
                 garantia_id: garantia_id,
                 tipo_garantia: element['tipo_garantia'],
                 valor_cobertura: element['valor_cobertura'],
-                especificaciones: element['especificacion']
+                especificaciones: element['especificacion'],
             };
+            console.log(`DETALLE DE GARANTIA ${JSON.stringify(js)}`)
 
             const response = await fetch(url, {
                 method: 'POST',
@@ -308,9 +356,45 @@ async function registrarDetalle(url, garantia_id) {
             const data = await response.json();
             console.log('Respuesta de la API:', data);
         }
-        
+
     } catch (error) {
         console.error('Error en el envío de detalles:', error);
         throw error;
     }
+}
+
+async function registrarDesembolso(url, credit_id){
+    try {
+        desembolso.credit_id = credit_id
+
+        
+
+        const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+        if (!csrfTokenElement) {
+            throw new Error('CSRF token not found');
+        }
+        const csrfToken = csrfTokenElement.getAttribute('content');
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(desembolso.toJson())
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+
 }

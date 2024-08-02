@@ -128,8 +128,7 @@
                     Registradas</button>
 
                 <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled"
-                    type="button" role="tab" aria-controls="nav-disabled" aria-selected="false"
-                    disabled>Desembolso</button>
+                    type="button" role="tab" aria-controls="nav-disabled" aria-selected="false">Desembolso</button>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
@@ -168,7 +167,8 @@
             </div>
 
             <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab"
-                tabindex="0">...
+                tabindex="0">
+                {% include 'financings/disbursement/add.html' %}
             </div>
         </div>
 
@@ -462,4 +462,5 @@
 </script>
 <script type="module" src="{% static 'js/financings/credit/credit.js'%}"></script>
 <script type="module" src="{% static 'js/financings/credit/garantia.js'%}"></script>
+<script type="module" src="{% static 'js/financings/credit/disbursement.js'%}"></script>
 {% endblock%}

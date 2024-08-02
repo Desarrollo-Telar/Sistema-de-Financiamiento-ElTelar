@@ -116,7 +116,7 @@ class Guarantees(models.Model):
 class DetailsGuarantees(models.Model):
     tipoGarantia = [
         ('HIPOTECA','HIPOTECA'),
-        ('DERECHO DE POSESION','DERECHO DE POSESION'),
+        ('DERECHO DE POSESION HIPOTECA','DERECHO DE POSESION HIPOTECA'),
         ('FIADOR','FIADOR'),
         ('CHEQUE','CHEQUE'),
         ('VEHICULO','VEHICULO'),
