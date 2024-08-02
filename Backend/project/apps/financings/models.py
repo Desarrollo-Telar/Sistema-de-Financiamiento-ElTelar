@@ -56,20 +56,53 @@ class Credit(models.Model):
 
 class Disbursement(models.Model):
     formaDesembolso = [
-        ('CHEQUE', 'CHEQUE'),
-        ('TRANSFERENCIA','TRANSFERENCIA'),
-        ('CANCELACION ANTERIOR','CANCELACION ANTERIOR')
+        ('APLICACIÓN GASTOS', 'APLICACIÓN GASTOS'),
+        ('APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE','APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE'),
+        ('CANCELACIÓN DE CRÉDITO VIGENTE','CANCELACIÓN DE CRÉDITO VIGENTE')
     ]
     credit_id = models.ForeignKey(Credit,on_delete=models.CASCADE ,verbose_name='Credito')
     forma_desembolso = models.CharField("Forma de Desmbolso", choices=formaDesembolso, max_length=75, blank=False, null=False)
-    monto_desembolso = models.DecimalField("Monto", decimal_places=2, max_digits=15)
-    saldo_anterior = models.DecimalField("Monto", decimal_places=2, max_digits=15)
-    gasto_administrativo = models.DecimalField("Gasto Administrativo", decimal_places=2, max_digits=15 )
-    monto_seguro = models.DecimalField("Monto de Seguro", decimal_places=2, max_digits=15)
+    monto_credito = models.DecimalField("Monto Credito", decimal_places=2, max_digits=15, default=0)
+    saldo_anterior = models.DecimalField("Saldo Anterior", decimal_places=2, max_digits=15, default=0)
+    honorarios = models.DecimalField("Honorarios", decimal_places=2, max_digits=15, default=0)
+    poliza_seguro = models.DecimalField("Poliza de Seguro", decimal_places=2, max_digits=15, default=0)
+    monto_total_desembolso = models.DecimalField("Monto Total a Desembolsar", decimal_places=2, max_digits=15, default=0)
+
+    def save(self, *args, **kwargs):
+        self.monto_total_desembolso = self.monto_credito - (self.honorarios + self.poliza_seguro + self.saldo_anterior)
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Desembolso"
         verbose_name_plural = "Desembolsos"
+
+
+class DetalleDesembolso(models.Model):    
+    desembolso = models.ForeignKey(Disbursement, on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=255)
+    cantidad = models.IntegerField(default=1)
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0, editable=False)
+
+    def save(self, *args, **kwargs):
+        self.total = self.cantidad * self.precio_unitario
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Detalle {self.id} - Desembolso {self.desembolso.id}"
+
+
+class HistorialDesembolso(models.Model):
+    
+    desembolso = models.ForeignKey(Disbursement, on_delete=models.CASCADE)
+    fecha_cambio = models.DateTimeField(auto_now_add=True)
+    descripcion_cambio = models.CharField(max_length=255)
+    
+
+    def __str__(self):
+        return f"Historial {self.id} - Desembolso {self.desembolso.id}"
+
+
 
 class Guarantees(models.Model):
     descripcion = models.TextField("Descripcion",blank=False, null=False)

@@ -1,8 +1,8 @@
 # Serializador
-from .serializers import CreditSerializer, GuaranteesSerializer, DetailsGuaranteesSerializer
+from .serializers import CreditSerializer, GuaranteesSerializer, DetailsGuaranteesSerializer, DisbursementSerializer
 
 # MODELS
-from apps.financings.models import Credit, Guarantees, DetailsGuarantees
+from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement
 
 # API
 from rest_framework import viewsets, status, generics
@@ -20,3 +20,7 @@ class GuaranteesViewSet(viewsets.ModelViewSet):
 class DetailsGuaranteesViewSet(viewsets.ModelViewSet):
     serializer_class = DetailsGuaranteesSerializer
     queryset = DetailsGuarantees.objects.all()
+
+class DisbursementViewSet(viewsets.ModelViewSet):
+    serializer_class = DisbursementSerializer
+    queryset = Disbursement.objects.all()

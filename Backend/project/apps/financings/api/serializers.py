@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # MODELS
-from apps.financings.models import Credit, Guarantees, DetailsGuarantees
+from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement
 
 class CreditSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,4 +47,9 @@ class GuaranteesSerializer(serializers.ModelSerializer):
 class DetailsGuaranteesSerializer(serializers.ModelSerializer):
     class Meta:
         model = DetailsGuarantees
+        fields = '__all__'
+
+class DisbursementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Disbursement
         fields = '__all__'
