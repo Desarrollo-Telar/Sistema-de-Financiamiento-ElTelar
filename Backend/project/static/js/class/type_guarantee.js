@@ -339,8 +339,7 @@ export class Fiador {
     }
 
     toJSON() {
-        return {
-            Nombre: 'FIADOR',
+        return {            
             Codigo_de_Cliente: this._codigo_cliente,
             Nombre: this._nombre,
             Lugar_de_Trabajo: this._lugar_trabajo,

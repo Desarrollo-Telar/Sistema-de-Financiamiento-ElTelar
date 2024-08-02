@@ -1,6 +1,6 @@
 import { urls } from '../urls_api.js';
 
-export function fetchCustomerList() {
+export async function fetchCustomerList() {
     return fetch(urls.api_url_cliente)
         .then(response => {
             if (!response.ok) {

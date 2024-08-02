@@ -1,5 +1,5 @@
 import { Guarantee, DetailGuarantee } from '../../class/guarantee.js';
-import { Hipoteca, Cheque } from '../../class/type_guarantee.js';
+import { Hipoteca, Cheque, DerechoDePosesionHipoteca, Fiador } from '../../class/type_guarantee.js';
 
 const tbody_garantia = document.getElementById('tbody_garantia');
 const suma = document.getElementById('total_garantia');
@@ -60,7 +60,7 @@ function clearFields() {
     document.getElementById('descripcion').value = '';
     document.getElementById('valor_comercial').value = '';
     document.getElementById('titular').value = '';
-    document.getElementById('tipo_garantia').value = '';
+    document.getElementById('estatus').value = '';
     document.getElementById('noContratoArrendamiento').value = '';
     document.getElementById('avaluoBien').value = '';
     document.getElementById('docDigitalSoporte').value = '';
@@ -94,7 +94,7 @@ document.getElementById('agregar_garantiaH').addEventListener('click', function(
     hipoteca.descripcion = document.getElementById('descripcion').value;
     hipoteca.valor_comercial = document.getElementById('valor_comercial').value;
     hipoteca.titular = document.getElementById('titular').value;
-    hipoteca.estatus = document.getElementById('tipo_garantia').value;
+    hipoteca.estatus = document.getElementById('estatus').value;
     hipoteca.noContratoArrendamiento = document.getElementById('noContratoArrendamiento').value;
     hipoteca.avaluoBien = document.getElementById('avaluoBien').value;
     hipoteca.docDigitalSoporte = document.getElementById('docDigitalSoporte').value;
@@ -124,3 +124,54 @@ document.getElementById('agregar_garantiaC').addEventListener('click', function(
     addGuarantee('CHEQUE', cheque.toJSON());
     clearFields();
 });
+
+// Evento para agregar un Derecho de posesion hipoteca
+document.getElementById('agregar_garantiaDH').addEventListener('click',function(event){
+    event.preventDefault();
+    
+    let valor_cobertura = document.getElementById('valor_cobertura').value;
+    if (!valor_cobertura || valor_cobertura === '') {
+        alert('DEBE DE INGRESAR EL VALOR DE COBERTURA');
+        return; // Cambiado para evitar el uso de `throw` en un evento DOM
+    }
+    const dh = new DerechoDePosesionHipoteca();
+    dh.noEscritura = document.getElementById('noEscritura1').value;
+    dh.notario = document.getElementById('notario1').value;
+    dh.area = document.getElementById('area1').value;
+    dh.ubicacion = document.getElementById('ubicacion1').value;
+    dh.descripcion = document.getElementById('descripcion1').value;
+    dh.valor_comercial = document.getElementById('valor_comercial1').value;
+    dh.titular = document.getElementById('titular1').value;
+    dh.estatus = document.getElementById('estatus1').value;
+    dh.noContratoArrendamiento = document.getElementById('noContratoArrendamiento1').value;
+    dh.avaluoBien = document.getElementById('avaluoBien1').value;
+    dh.docDigitalSoporte = document.getElementById('docDigitalSoporte1').value;
+
+    addGuarantee('DERECHO DE POSESION HIPOTECA', dh.toJSON());
+    clearFields();
+
+});
+
+// Evento para agregar un Fiador
+document.getElementById('agregar_garantiaF').addEventListener('click', function(event){
+    event.preventDefault();
+    
+    let valor_cobertura = document.getElementById('valor_cobertura').value;
+    if (!valor_cobertura || valor_cobertura === '') {
+        alert('DEBE DE INGRESAR EL VALOR DE COBERTURA');
+        return; // Cambiado para evitar el uso de `throw` en un evento DOM
+    }
+    const fiador = new Fiador()
+     
+    fiador.codigo_cliente = document.getElementById('fiador_codigo_cliente').value;
+    fiador.numeroTelefono = document.getElementById('telefono2').value;
+    fiador.lugar_trabajo = document.getElementById('lugar_trabajo').value;
+    fiador.ingresos = document.getElementById('ingreso').value;
+    fiador.fotografia = document.getElementById('fotografiaF').value;
+
+
+    addGuarantee('FIADOR', fiador.toJSON());
+    clearFields();
+});
+
+

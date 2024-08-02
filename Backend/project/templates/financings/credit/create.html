@@ -247,6 +247,134 @@
             placeholder: 'Seleccione un Cliente',
             minimumInputLength: 1
         });
+        $(".customer_id_fiador").select2({
+            width: 'resolve',
+            ajax: {
+                url: 'http://127.0.0.1:8000/customers/api/customers/',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    console.log(data);
+                    // Verificar si 'data' es un array de objetos
+                    if (Array.isArray(data)) {
+                        return {
+                            results: data.map(function (item) {
+                                return {
+                                    id: item.id,
+                                    text: item.customer_code + ' ' + item.first_name + ' ' + item.last_name
+                                };
+                            })
+                        };
+                    } else {
+                        console.error('Estructura de datos inesperada:', data);
+                        return {
+                            results: []
+                        };
+                    }
+                },
+                cache: true
+            },
+            placeholder: 'Seleccione un Cliente',
+            minimumInputLength: 1
+        });
+        async function fetchInformacion_laboral() {
+            return fetch('http://127.0.0.1:8000/financial_information/api/working_information/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al momento de obtener informacion laboral ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Lista de clientes de informacion laboral obtenida:', data);
+                    return data; // Puedes devolver los datos si necesitas hacer algo con ellos
+                })
+                .catch(error => {
+                    console.error('Error al obtener la lista de clientes:', error);
+                    throw error; // Puedes relanzar el error para manejarlo en otra parte de tu aplicación si es necesario
+                });
+
+        }
+        async function fetchOtraInformacion_laboral() {
+            return fetch('http://127.0.0.1:8000/financial_information/api/other_sources/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al momento de obtener informacion laboral ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Lista de clientes obtenida:', data);
+                    return data; // Puedes devolver los datos si necesitas hacer algo con ellos
+                })
+                .catch(error => {
+                    console.error('Error al obtener la lista de clientes:', error);
+                    throw error; // Puedes relanzar el error para manejarlo en otra parte de tu aplicación si es necesario
+                });
+
+        }
+
+        async function filtro(valor) {
+            try {
+                const laboral = await fetchInformacion_laboral();
+                const otra = await fetchOtraInformacion_laboral();
+
+                let filterList = [];
+
+                if (laboral && laboral.length > 0) {
+                    filterList = laboral.filter(item => item['customer_id'] === valor);
+                }
+
+                if (filterList.length === 0 && otra && otra.length > 0) {
+                    filterList = otra.filter(item => item['customer_id'] === valor);
+                }
+
+                console.log(filterList);
+                return filterList;
+
+            } catch (error) {
+                console.error('Error en el filtro', error);
+                throw error;
+            }
+        }
+
+
+        $(".customer_id_fiador").on('select2:select', async function (e) {
+            var data = e.params.data;
+            var clienteId = data.id;
+            var codigo_cliente = document.getElementById('fiador_codigo_cliente');
+            var telefono = document.getElementById('telefono2');
+            var lugar_trabajo = document.getElementById('lugar_trabajo');
+            var ingreso = document.getElementById('ingreso');
+
+            try {
+                const laboral = await filtro(clienteId);
+                laboral.forEach(element => {
+                    if (element.company_name) {
+                        lugar_trabajo.value = element.company_name;
+
+                    } else {
+                        lugar_trabajo.value = element.source_of_income;
+                    }
+
+                    ingreso.value = element.salary;
+                    console.log(element);
+                });
+
+                // Realizar una solicitud para obtener detalles adicionales del cliente
+                const response = await fetch(`http://127.0.0.1:8000/customers/api/customers/${clienteId}/`);
+                if (!response.ok) {
+                    throw new Error(`Error en la solicitud: ${response.statusText}`);
+                }
+                const clienteDetalles = await response.json();
+                codigo_cliente.value = clienteDetalles.customer_code;
+                telefono.value = clienteDetalles.telephone;
+                // Aquí puedes usar los detalles de cliente para llenar otros campos, como lugar_trabajo e ingreso
+            } catch (error) {
+                console.error('Error obteniendo detalles del cliente:', error);
+            }
+        });
+
     });
     const tipo_garantia = document.getElementById('tipo_garantia');
 
