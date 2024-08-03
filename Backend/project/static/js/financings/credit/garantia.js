@@ -236,3 +236,97 @@ document.getElementById('agregar_garantiaV').addEventListener('click',function(e
 
 });
 
+document.getElementById('garantia').addEventListener('submit', async function (event) {
+    event.preventDefault();
+    try {
+        const credi_id = document.getElementById('credit_id').value;
+
+       
+        const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/', credi_id);
+        console.log(garantia);
+        alert('¡Formulario enviado con éxito!');
+        window.location.href = '/financings/guarantee/';
+
+
+    } catch (error) {
+        console.error('Error al registrar los datos:', error);
+        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+    }
+});
+
+async function registroGarantia(url, credito_id) {
+    try {
+        let json = {
+            suma_total: suma_total,
+            credit_id: credito_id,
+            descripcion:'REGISTRO DE GARANTIA',
+        };
+
+        console.log(json);
+
+        const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+        if (!csrfTokenElement) {
+            throw new Error('CSRF token not found');
+        }
+        const csrfToken = csrfTokenElement.getAttribute('content');
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(json)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        const detalle = await registrarDetalle('http://127.0.0.1:8000/financings/api/detalle_garantia/', data.id);
+        console.log(detalle);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+}
+
+
+async function registrarDetalle(url, garantia_id) {
+    try {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        for (let element of lista_garantia) {
+            let js = {
+                garantia_id: garantia_id,
+                tipo_garantia: element['tipo_garantia'],
+                valor_cobertura: element['valor_cobertura'],
+                especificaciones: element['especificacion'],
+            };
+            console.log(`DETALLE DE GARANTIA ${JSON.stringify(js)}`)
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
+                },
+                body: JSON.stringify(js)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Respuesta de la API:', data);
+        }
+
+    } catch (error) {
+        console.error('Error en el envío de detalles:', error);
+        throw error;
+    }
+}

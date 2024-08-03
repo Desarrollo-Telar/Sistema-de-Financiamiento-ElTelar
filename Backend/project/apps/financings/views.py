@@ -34,12 +34,23 @@ def create_credit(request):
     }
 
     return render(request,template_name,context)
+
 @login_required
 @usuario_activo
 def create_disbursement(request):
     template_name = 'financings/disbursement/create.html'
     context = {
         'title':'ELTELAR - DESEMBOLSO'
+    }
+
+    return render(request,template_name,context)
+
+@login_required
+@usuario_activo
+def create_guarantee(request):
+    template_name = 'financings/guarantee/create.html'
+    context = {
+        'title':'ELTELAR - GARANTIA'
     }
 
     return render(request,template_name,context)
