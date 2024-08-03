@@ -22,20 +22,23 @@
 
                     <tr>
                         <th scope="row">
-                            <a style="text-decoration: none; color: black;" href="#">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' guarantee.credit_id.id %}">
                                 {{guarantee.credit_id.codigo_credito}}
                             </a>
 
 
                         </th>
                         <td scope="row">
-                            <a style="text-decoration: none; color: black;" href="#">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' guarantee.credit_id.id %}">
                                 {{guarantee.credit_id.customer_id.first_name}}
                                 {{guarantee.credit_id.customer_id.last_name}}
                             </a>
                         </td>
                         <td scope="row">
-                            <a style="text-decoration: none; color: black;" href="#">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' guarantee.credit_id.id %}">
                                 {% for detalle in detalle_garantia %}
                                 {% if detalle.garantia_id == guarantee %}
                                 <p class="fw-medium">TIPO DE GARANTIA:
@@ -52,7 +55,8 @@
                             </a>
                         </td>
                         <td scope="row">
-                            <a style="text-decoration: none; color: black;" href="#">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' guarantee.credit_id.id %}">
 
                                 Q {{guarantee.suma_total}}
                             </a>

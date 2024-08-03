@@ -22,25 +22,29 @@
 
                     <tr>
                         <th scope="row">
-                            <a style="text-decoration: none; color: black;" href="#">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' disbursement.credit_id.id %}">
                                 {{disbursement.credit_id.codigo_credito}}
                             </a>
 
 
                         </th>
                         <td scope="row">
-                            <a style="text-decoration: none; color: black;" href="#">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' disbursement.credit_id.id %}">
                                 {{disbursement.credit_id.customer_id.first_name}}
                                 {{disbursement.credit_id.customer_id.last_name}}
                             </a>
                         </td>
                         <td scope="row">
-                            <a style="text-decoration: none; color: black;" href="#">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' disbursement.credit_id.id %}">
                                 {{disbursement.forma_desembolso}}
                             </a>
                         </td>
                         <td scope="row">
-                            <a style="text-decoration: none; color: black;" href="#">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' disbursement.credit_id.id %}">
                                 <p>MONTO DEL CREDITO: <span>Q {{disbursement.monto_credito}}</span></p>
                                 <p>SALDO ANTERIOR: <span>Q {{disbursement.saldo_anterior}}</span></p>
                                 <p>HONORARIOS: <span>Q {{disbursement.honorarios}}</span></p>
@@ -48,7 +52,8 @@
                             </a>
                         </td>
                         <td scope="row">
-                            <a style="text-decoration: none; color: black;" href="#">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' disbursement.credit_id.id %}">
                                 Q {{disbursement.monto_total_desembolso}}
                             </a>
                         </td>

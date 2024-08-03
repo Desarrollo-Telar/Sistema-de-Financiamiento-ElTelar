@@ -25,6 +25,7 @@ from django.utils.decorators import method_decorator
 from project.pagination import paginacion
 
 # Create your views here.
+### ------------------- CREAR ---------------------- ###
 @login_required
 @usuario_activo
 def create_credit(request):
@@ -94,3 +95,17 @@ def list_disbursement(request):
         'list_disbursement':page_obj
     }
     return render(request, template_name, context)
+
+
+### ------------ DETALLE -------------- ###
+@login_required
+@usuario_activo
+def detail_credit(request,id):
+    template_name = 'financings/credit/detail.html'
+    credito= get_object_or_404(Credit,id=id)
+    context = {
+        'title':'ELTELAR - CREDITO',
+        'credit_list':credito
+
+    }
+    return render(request, template_name,context)
