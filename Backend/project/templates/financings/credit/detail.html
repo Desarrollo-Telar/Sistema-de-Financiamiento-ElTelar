@@ -10,26 +10,16 @@
             <div class="nav nav-tabs listado" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
                     type="button" role="tab" aria-controls="nav-home" aria-selected="true">Información Personal</button>
-                <button class="nav-link" id="nav-plan_inversion-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos"
-                    type="button" role="tab" aria-controls="nav-creditos" aria-selected="true" disabled>Ficha</button>
+                <button class="nav-link" id="nav-direcciones-tab" data-bs-toggle="tab" data-bs-target="#nav-direcciones"
+                    type="button" role="tab" aria-controls="nav-direcciones" aria-selected="true">Plan de Pagos</button>
+
                 <button class="nav-link" id="nav-laboral-tab" data-bs-toggle="tab" data-bs-target="#nav-laboral"
                     type="button" role="tab" aria-controls="nav-laboral" aria-selected="true">Garantias</button>
                 <button class="nav-link" id="nav-plan_inversion-tab" data-bs-toggle="tab"
                     data-bs-target="#nav-plan_inversion" type="button" role="tab" aria-controls="nav-plan_inversion"
                     aria-selected="true">Desembolso</button>
-
-
-
-                <button class="nav-link" id="nav-direcciones-tab" data-bs-toggle="tab" data-bs-target="#nav-direcciones"
-                    type="button" role="tab" aria-controls="nav-direcciones" aria-selected="true">Direcciones</button>
-                <button class="nav-link" id="nav-referencia-tab" data-bs-toggle="tab" data-bs-target="#nav-referencia"
-                    type="button" role="tab" aria-controls="nav-referencia" aria-selected="true">Referencias</button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-                    type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Imagen de
-                    Cliente</button>
-                <button class="nav-link" id="nav-archivos-tab" data-bs-toggle="tab" data-bs-target="#nav-archivos"
-                    type="button" role="tab" aria-controls="nav-archivos" aria-selected="true">Archivos</button>
-
+                <button class="nav-link" id="nav-plan_inversion-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos"
+                    type="button" role="tab" aria-controls="nav-creditos" aria-selected="true" disabled>Ficha</button>
 
             </div>
         </nav>
@@ -38,12 +28,13 @@
                 tabindex="0">
 
                 <div class="contenido">
-
+                    {% include 'customer/snippets/detail/informacion_personal.html' %}
 
                 </div>
                 <div>
                     <hr>
-                    <a href="#" class="btn_edit">Editar informacion
+                    <a href="{% url 'customers:update_customer' customer_list.customer_code %}" class="btn_edit">Editar
+                        informacion
                         Personal</a>
                 </div>
 
@@ -66,6 +57,7 @@
             <div class="tab-pane fade show " id="nav-direcciones" role="tabpanel" aria-labelledby="nav-direcciones-tab"
                 tabindex="0">
                 <div class="contenido">
+                    {%include 'financings/credit/paymentplan.html' %}
 
                 </div>
 

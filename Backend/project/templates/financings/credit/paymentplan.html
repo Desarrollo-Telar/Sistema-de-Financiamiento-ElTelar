@@ -1,0 +1,48 @@
+{% load static %}
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Mes</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Fecha de Vencimiento</th>
+                    <th scope="col">Monto Prestado</th>
+                    <th scope="col">Interes</th>
+                    <th scope="col">Capital</th>
+                    <th scope="col">Cuota</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pago in plan %}
+                <tr>
+                    <td>
+                        {{pago.mes}}
+                    </td>
+                    <td>
+                        {{pago.fecha_inicio}}
+                    </td>
+                    <td>
+                        {{pago.fecha_final}}
+                    </td>
+                    <td>
+                        Q {{pago.monto_prestado}}
+                    </td>
+                    <td>
+                        Q {{pago.intereses}}
+                    </td>
+                    <td>
+                        Q {{pago.capital}}
+                    </td>
+                    <td>
+                        Q {{pago.cuota}}
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

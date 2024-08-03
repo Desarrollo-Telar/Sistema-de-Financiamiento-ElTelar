@@ -12,7 +12,7 @@ from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
 
 class Credit:
     contador = 0
-    def __init__(self, proposito, monto, plazo, tasa_interes, forma_de_pago, frecuencia_pago, fecha_inicio, tipo_credito, destino_id, customer_id, fecha_vencimiento=None):
+    def __init__(self, proposito, monto, plazo, tasa_interes, forma_de_pago, frecuencia_pago, fecha_inicio, tipo_credito,  customer_id,destino_id=None, fecha_vencimiento=None):
         Credit.contador+=1
         self._id = Credit.contador
         self.__proposito = proposito
@@ -162,7 +162,7 @@ class Credit:
         return json.dumps(js, indent=4, ensure_ascii=False)
     
     def __str__(self):
-        return f'Credito: \nID:{self._id},\nFecha Inicio: {self.fecha_inicio},\nPlazo: {self.__plazo} meses,\nFecha de Vencimiento: {self.__fecha_vencimiento},\nFiador: {self.__customer_id.nombre} {self.__customer_id.apellido}'
+        return f'Credito: \nID:{self._id},\nFecha Inicio: {self.fecha_inicio},\nPlazo: {self.__plazo} meses,\nFecha de Vencimiento: {self.__fecha_vencimiento},\n'
 
 if __name__ == '__main__':
     fiador = Customer('Juan','Lopez','lopez@gmail.com','DPI','323846682','1106369','42256694','RESIDENTE','Aprobado','MASCULINO','AGRONOMO','GUATEMALTECA','COBAN','14-03-1995','SOLTERO','Indivicual (PI)')

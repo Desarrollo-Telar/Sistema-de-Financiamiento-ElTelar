@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from .models import Credit, Guarantees, Disbursement,DetailsGuarantees
+from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
 from apps.InvestmentPlan.models import InvestmentPlan
@@ -23,6 +24,10 @@ from django.utils.decorators import method_decorator
 
 # Paginacion
 from project.pagination import paginacion
+
+# CLASES
+from .clases.paymentplan import PaymentPlan
+from .clases.credit import Credit as Credito
 
 # Create your views here.
 ### ------------------- CREAR ---------------------- ###
@@ -103,9 +108,20 @@ def list_disbursement(request):
 def detail_credit(request,id):
     template_name = 'financings/credit/detail.html'
     credito= get_object_or_404(Credit,id=id)
+    
+    customer_list = get_object_or_404(Customer,id= credito.customer_id.id)
+    formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
+
+    credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1)
+    plan_pago = PaymentPlan(credit)
+    plan = plan_pago.generar_plan()
+    for pago in plan:
+        print(pago)
     context = {
         'title':'ELTELAR - CREDITO',
-        'credit_list':credito
+        'credit_list':credito,
+        'customer_list':customer_list,
+        'plan':plan,
 
     }
     return render(request, template_name,context)

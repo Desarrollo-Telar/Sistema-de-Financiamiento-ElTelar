@@ -65,8 +65,8 @@ class PaymentPlan:
         mes_final = mes_inicial + relativedelta(months=1)
         dicio = {
             'mes': 1,
-            'fecha inicio': mes_inicial,
-            'fecha final': mes_final,
+            'fecha_inicio': mes_inicial,
+            'fecha_final': mes_final,
             'monto_prestado': self.monto_inicial
         }
         intereses = self.calculo_intereses(self.monto_inicial)
@@ -90,13 +90,13 @@ class PaymentPlan:
             anterior = plan[-1]
             monto_prestado = round(anterior['monto_prestado'] - anterior['capital'], 2)
             intereses = self.calculo_intereses(monto_prestado)
-            mes_inicial = anterior['fecha final']
+            mes_inicial = anterior['fecha_final']
             mes_final = mes_inicial + relativedelta(months=1)
-            print(f'MES: {anterior['mes']}, Fecha Inicio: {anterior['fecha inicio'].strftime('%Y-%m-%d')}, Fecha Final: {anterior['fecha final'].strftime('%Y-%m-%d')}')
+            print(f'MES: {anterior['mes']}, Fecha Inicio: {anterior['fecha_inicio'].strftime('%Y-%m-%d')}, Fecha Final: {anterior['fecha_final'].strftime('%Y-%m-%d')}')
             dicio = {
                 'mes': mes,
-                'fecha inicio': mes_inicial,
-                'fecha final': mes_final,
+                'fecha_inicio': mes_inicial,
+                'fecha_final': mes_final,
                 'monto_prestado': monto_prestado,
                 'intereses': intereses
             }

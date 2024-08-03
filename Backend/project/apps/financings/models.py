@@ -50,6 +50,9 @@ class Credit(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Cliente')
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
+    def __str__(self):
+        return self.codigo_credito
+
     class Meta:
         verbose_name = "Credito"
         verbose_name_plural = "Creditos"
