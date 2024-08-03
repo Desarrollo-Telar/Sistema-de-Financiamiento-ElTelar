@@ -88,6 +88,74 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        async function informacionDesembolso() {
+            return fetch('http://127.0.0.1:8000/financings/api/desembolso/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al obtener información de desembolso: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Lista de desembolsos obtenida:', data);
+                    return data;
+                })
+                .catch(error => {
+                    console.error('Error al obtener la lista de desembolsos:', error);
+                    throw error;
+                });
+        }
+
+        async function filtro(valor) {
+            try {
+                const desembolso = await informacionDesembolso();
+                let filterList = [];
+
+                if (desembolso && Array.isArray(desembolso) && desembolso.length > 0) {
+                    filterList = desembolso.filter(item => item['credit_id'] === valor);
+                }
+
+                console.log(filterList);
+                return filterList;
+
+            } catch (error) {
+                console.error('Error en el filtro', error);
+                throw error;
+            }
+        }
+
+        var suma = 0;
+
+        $(".credit").on('select2:select', async function (e) {
+            var data = e.params.data;
+            var credit_id = data.id;
+
+            suma = 0; // Reiniciar suma para cada cálculo
+
+            try {
+                const laboral = await filtro(credit_id);
+
+                if (Array.isArray(laboral)) {
+                    laboral.forEach(element => {
+                        suma += parseFloat(element['monto_total_desembolso']);
+                    });
+                }
+
+                const monto_credito = parseFloat(document.getElementById('monto').value);
+
+                if (suma >= monto_credito) {
+                    alert('NO SE PUEDE REALIZAR OTRO DESEMBOLSO');
+                    window.location.href = '/financings/disbursement/';
+                }
+
+                console.log('Suma total de desembolsos:', suma);
+
+                // Aquí puedes usar los detalles de cliente para llenar otros campos, como lugar_trabajo e ingreso
+            } catch (error) {
+                console.error('Error obteniendo detalles del cliente:', error);
+            }
+        });
+
         $(".credit").select2({
             width: 'resolve',
             ajax: {
@@ -96,7 +164,6 @@
                 delay: 250,
                 processResults: function (data) {
                     console.log(data);
-                    // Verificar si 'data' es un array de objetos
                     if (Array.isArray(data)) {
                         return {
                             results: data.map(function (item) {
@@ -121,8 +188,7 @@
             minimumInputLength: 1
         });
     });
-
-
 </script>
+
 
 {% endblock %}
