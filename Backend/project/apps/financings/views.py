@@ -110,13 +110,21 @@ def detail_credit(request,id):
     credito= get_object_or_404(Credit,id=id)
     
     customer_list = get_object_or_404(Customer,id= credito.customer_id.id)
-    list_guarantee = Guarantees.objects.filter(credit_id=credito)
-    list_disbursement = Disbursement.objects.filter(credit_id=credito)
+    list_guarantee = Guarantees.objects.filter(credit_id=credito).order_by('-id')
+    list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('-id')
 
     formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
 
     credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1)
     plan_pago = PaymentPlan(credit)
+    total_garantia = 0
+    total_desembolso = 0
+    for garantia in list_guarantee:
+        total_garantia += garantia.suma_total
+    
+    for desembolso in list_disbursement:
+        total_desembolso +=desembolso.monto_total_desembolso
+    
     plan = plan_pago.generar_plan()
      
     context = {
@@ -127,6 +135,8 @@ def detail_credit(request,id):
         'list_guarantee':list_guarantee,
         'list_disbursement':list_disbursement,
         'detalle_garantia':DetailsGuarantees.objects.all(),
+        'total_garantia':total_garantia,
+        'total_desembolso':total_desembolso,
 
     }
     return render(request, template_name,context)

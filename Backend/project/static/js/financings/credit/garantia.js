@@ -246,7 +246,7 @@ if(document.getElementById('garantia')){
             const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/', credi_id);
             console.log(garantia);
             alert('¡Formulario enviado con éxito!');
-            window.location.href = '/financings/guarantee/';
+            window.location.href = `/financings/credit/${credi_id}`;
     
     
         } catch (error) {

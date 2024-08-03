@@ -76,7 +76,7 @@ if (document.getElementById('desembolso')) {
             const desembolsos = await registrarDesembolso('http://127.0.0.1:8000/financings/api/desembolso/', credi_id);
             console.log(desembolsos);
             alert('¡Formulario enviado con éxito!');
-            window.location.href = '/financings/disbursement/';
+            window.location.href = `/financings/credit/${credi_id}`;
         } catch (error) {
             console.error('Error al registrar los datos:', error);
             alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');

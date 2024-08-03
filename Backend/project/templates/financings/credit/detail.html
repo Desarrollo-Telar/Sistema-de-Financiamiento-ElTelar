@@ -24,7 +24,7 @@
             </div>
         </div>
         <hr>
-        <div class="col">
+        <div class="col" style="margin-top: 1rem;">
             <p class="fw-medium">PROPOSITO: <span class="fw-light">{{credit_list.proposito}}</span></p>
             <p class="fw-medium">TIPO DE CREDITO: <span class="fw-light">{{credit_list.tipo_credito}}</span></p>
             <p class="fw-medium">MONTO: <span class="fw-light">Q {{credit_list.monto}}</span></p>
@@ -34,6 +34,9 @@
             <p class="fw-medium">FRECUENCIA DE PAGO: <span class="fw-light">{{credit_list.frecuencia_pago}}</span></p>
             <p class="fw-medium">FECHA DE INICIO: <span class="fw-light">{{credit_list.fecha_inicio}}</span></p>
             <p class="fw-medium">FECHA DE VENCIMIENTO: <span class="fw-light">{{credit_list.fecha_vencimiento}}</span>
+            </p>
+            <p class="fw-medium">FECHA DE CREACION DEL CREDITO: <span
+                    class="fw-light">{{credit_list.creation_date}}</span>
             </p>
 
 
@@ -88,6 +91,9 @@
                         {% include 'financings/guarantee/table/table.html' %}
 
                     </div>
+                    <div class="row" style="margin-top: 1rem;">
+                        <p>TOTAL: <span>Q {{total_garantia}}</span></p>
+                    </div>
 
 
                 </div>
@@ -125,6 +131,10 @@
                     </div>
                     <div class="row" style="margin-top: 1rem;">
                         {% include 'financings/disbursement/table/table.html' %}
+
+                    </div>
+                    <div class="row" style="margin-top: 1rem;">
+                        <p>TOTAL: <span>Q {{total_desembolso}}</span></p>
 
                     </div>
 
