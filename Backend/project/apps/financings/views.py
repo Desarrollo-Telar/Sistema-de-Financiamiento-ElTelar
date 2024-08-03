@@ -110,18 +110,23 @@ def detail_credit(request,id):
     credito= get_object_or_404(Credit,id=id)
     
     customer_list = get_object_or_404(Customer,id= credito.customer_id.id)
+    list_guarantee = Guarantees.objects.filter(credit_id=credito)
+    list_disbursement = Disbursement.objects.filter(credit_id=credito)
+
     formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
 
     credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1)
     plan_pago = PaymentPlan(credit)
     plan = plan_pago.generar_plan()
-    for pago in plan:
-        print(pago)
+     
     context = {
         'title':'ELTELAR - CREDITO',
         'credit_list':credito,
         'customer_list':customer_list,
         'plan':plan,
+        'list_guarantee':list_guarantee,
+        'list_disbursement':list_disbursement,
+        'detalle_garantia':DetailsGuarantees.objects.all(),
 
     }
     return render(request, template_name,context)
