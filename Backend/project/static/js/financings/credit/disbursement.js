@@ -50,7 +50,10 @@ async function actualizarTotalDepositar() {
     } catch (error) {
         console.error('Error obteniendo detalles del cliente:', error);
     }
-    document.getElementById('add_Desembolso').style.display = '';
+    if (document.getElementById('add_Desembolso')) {
+        document.getElementById('add_Desembolso').style.display = '';
+    }
+    
 
     // Actualiza el valor en el elemento HTML
     document.getElementById('total_depositar').value = Math.round(total);
