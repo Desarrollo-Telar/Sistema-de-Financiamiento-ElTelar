@@ -2,20 +2,29 @@ import { Desembolso } from '../../class/disbursement.js';
 
 export const desembolso = new Desembolso();
 
-// Función para actualizar el total a depositar
+// Variables globales para acumulación y control
 var suma = 0;
+var saldo_anterior = 0;
+var credi_id = 0;
+
+// Función para actualizar el total a depositar
 async function actualizarTotalDepositar() {
     const monto = parseFloat(document.getElementById('monto').value) || 0;
     const poliza_seguro = parseFloat(document.getElementById('poliza_seguro').value) || 0;
     const honorarios = parseFloat(document.getElementById('honorarios').value) || 0;
-    const saldo_anterior = parseFloat(document.getElementById('saldo_anterior').value) || 0;
-    const credi_id = parseInt(document.getElementById('credit_id').value) || 0;
+
+    if (document.getElementById('saldo_anterior')) {
+        saldo_anterior = parseFloat(document.getElementById('saldo_anterior').value) || 0;
+    }
+    if (document.getElementById('credit_id')) {
+        credi_id = parseInt(document.getElementById('credit_id').value) || 0;
+    }
 
     // Actualiza los valores en la instancia de Desembolso
     desembolso.monto_credito = monto;
     desembolso.poliza_seguro = poliza_seguro;
     desembolso.honorarios = honorarios;
-    desembolso.saldo_anterior = saldo_anterior; 
+    desembolso.saldo_anterior = saldo_anterior;
 
     suma = 0;
     const total = desembolso.total_a_depositar;
@@ -31,13 +40,17 @@ async function actualizarTotalDepositar() {
 
         if (suma >= total) {
             alert('NO SE PUEDE REALIZAR OTRO DESEMBOLSO');
-            window.location.href = '/financings/disbursement/';
+            if (document.getElementById('add_Desembolso')) {
+                document.getElementById('add_Desembolso').style.display = 'none';
+            }
+            return;
         }
 
         console.log('Suma total de desembolsos:', suma);
     } catch (error) {
         console.error('Error obteniendo detalles del cliente:', error);
     }
+    document.getElementById('add_Desembolso').style.display = '';
 
     // Actualiza el valor en el elemento HTML
     document.getElementById('total_depositar').value = Math.round(total);
@@ -47,21 +60,26 @@ async function actualizarTotalDepositar() {
 document.getElementById('monto').addEventListener('input', actualizarTotalDepositar);
 document.getElementById('poliza_seguro').addEventListener('input', actualizarTotalDepositar);
 document.getElementById('honorarios').addEventListener('input', actualizarTotalDepositar);
+if (document.getElementById('saldo_anterior')) {
+    document.getElementById('saldo_anterior').addEventListener('input', actualizarTotalDepositar);
+}
 
-document.getElementById('desembolso').addEventListener('submit', async function (event) {
-    event.preventDefault();
-    try {
-        const credi_id = parseInt(document.getElementById('credit_id').value);
-
-        const desembolsos = await registrarDesembolso('http://127.0.0.1:8000/financings/api/desembolso/', credi_id);
-        console.log(desembolsos);
-        alert('¡Formulario enviado con éxito!');
-        window.location.href = '/financings/disbursement/';
-    } catch (error) {
-        console.error('Error al registrar los datos:', error);
-        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
-    }
-});
+if (document.getElementById('desembolso')) {
+    document.getElementById('desembolso').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        try {
+            const credi_id = parseInt(document.getElementById('credit_id').value);
+    
+            const desembolsos = await registrarDesembolso('http://127.0.0.1:8000/financings/api/desembolso/', credi_id);
+            console.log(desembolsos);
+            alert('¡Formulario enviado con éxito!');
+            window.location.href = '/financings/disbursement/';
+        } catch (error) {
+            console.error('Error al registrar los datos:', error);
+            alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        }
+    });
+}
 
 async function registrarDesembolso(url, credit_id) {
     try {
@@ -91,7 +109,7 @@ async function registrarDesembolso(url, credit_id) {
 
         return data;
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error al registrar el desembolso:', error);
         throw error;
     }
 }
@@ -126,7 +144,7 @@ async function filtro(valor) {
         console.log(filterList);
         return filterList;
     } catch (error) {
-        console.error('Error en el filtro', error);
+        console.error('Error en el filtro de desembolsos:', error);
         throw error;
     }
 }

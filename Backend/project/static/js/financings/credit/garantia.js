@@ -236,23 +236,27 @@ document.getElementById('agregar_garantiaV').addEventListener('click',function(e
 
 });
 
-document.getElementById('garantia').addEventListener('submit', async function (event) {
-    event.preventDefault();
-    try {
-        const credi_id = document.getElementById('credit_id').value;
+if(document.getElementById('garantia')){
+    document.getElementById('garantia').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        try {
+            const credi_id = document.getElementById('credit_id').value;
+    
+           
+            const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/', credi_id);
+            console.log(garantia);
+            alert('¡Formulario enviado con éxito!');
+            window.location.href = '/financings/guarantee/';
+    
+    
+        } catch (error) {
+            console.error('Error al registrar los datos:', error);
+            alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        }
+    });
 
-       
-        const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/', credi_id);
-        console.log(garantia);
-        alert('¡Formulario enviado con éxito!');
-        window.location.href = '/financings/guarantee/';
+}
 
-
-    } catch (error) {
-        console.error('Error al registrar los datos:', error);
-        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
-    }
-});
 
 async function registroGarantia(url, credito_id) {
     try {
