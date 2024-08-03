@@ -24,14 +24,56 @@
         <tbody>
             {% for credito in credit_list %}
             <tr>
-                <td>{{credito.codigo_credito}}</td>
-                <td>{{credito.proposito}}</td>
-                <td>Q {{credito.monto}}</td>
-                <td>{{credito.plazo}} Meses</td>
-                <td>% {{credito.tasa_interes}}</td>
-                <td>{{credito.forma_de_pago}}</td>
-                <td>{{credito.tipo_credito}}</td>
-                <td>{{credito.creation_date}}</td>
+                <td>
+                    <a style="text-decoration: none; color: black;"
+                        href="{% url 'financings:detail_credit' credito.id %}">
+                        {{credito.codigo_credito}}
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;"
+                        href="{% url 'financings:detail_credit' credito.id %}">
+                        {{credito.proposito}}
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;"
+                        href="{% url 'financings:detail_credit' credito.id %}">
+                        Q {{credito.monto}}
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;"
+                        href="{% url 'financings:detail_credit' credito.id %}">
+                        {{credito.plazo}} Meses
+                    </a>
+
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;"
+                        href="{% url 'financings:detail_credit' credito.id %}">
+
+                        % {{credito.tasa_interes}}
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;"
+                        href="{% url 'financings:detail_credit' credito.id %}">
+                        {{credito.forma_de_pago}}
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;"
+                        href="{% url 'financings:detail_credit' credito.id %}">
+                        {{credito.tipo_credito}}
+                    </a>
+                </td>
+                <td>
+                    <a style="text-decoration: none; color: black;"
+                        href="{% url 'financings:detail_credit' credito.id %}">
+                        {{credito.creation_date}}
+                    </a>
+                </td>
 
 
             </tr>
