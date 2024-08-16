@@ -1,7 +1,7 @@
 export class PaymentPlan {
     static contador = 0;
 
-    constructor(credit = '') {
+    constructor(credit) {
         PaymentPlan.contador += 1;
         this._no = PaymentPlan.contador;
         this._credit = credit;
@@ -9,15 +9,6 @@ export class PaymentPlan {
         this._plan = [];
         this._plazo = parseInt(this._credit.plazo);
     }
-
-    get credit(){
-        return this._credit;
-    }
-
-    set credit(value){
-        this._credit = value;
-    }
-
 
     get plazo() {
         return this._plazo;
@@ -28,66 +19,64 @@ export class PaymentPlan {
     }
 
     get interes() {
-        return this._credit.tasaInteres;
+        return this._credit.tasa_interes;
     }
 
     get formaPago() {
-        return this._credit.formaDePago;
+        return this._credit.forma_de_pago;
     }
 
     get montoInicial() {
-        return Math.round(this._credit.monto * 100) / 100;
+        return parseFloat(this._credit.monto).toFixed(2);
     }
 
-    calculoIntereses(monto = this.montoInicial) {
-        const intereses = (monto * this.interes) / 12;
-        return Math.round(intereses * 100) / 100;
+    calculoIntereses(dia = null, monto = null) {
+        if (monto === null) {
+            monto = this.montoInicial;
+        }
+        const intereses = ((monto * this.interes) / 365) * dia;
+        return parseFloat(intereses).toFixed(2);
     }
 
     calculoCuota(interes = null, capital = null) {
+        let cuota;
         if (this.formaPago === 'NIVELADA') {
             const defaultInteres = this.interes / 12;
-            const parte1 = (1 + defaultInteres) ** this.plazo * defaultInteres;
-            const parte2 = (1 + defaultInteres) ** this.plazo - 1;
-            const cuota = (parte1 / parte2) * this.montoInicial;
-            return Math.round(cuota * 100) / 100;
+            const parte1 = (Math.pow(1 + defaultInteres, this.plazo) * defaultInteres);
+            const parte2 = (Math.pow(1 + defaultInteres, this.plazo) - 1);
+            cuota = (parte1 / parte2) * this.montoInicial;
         } else {
-            const cuota = interes + capital;
-            return Math.round(cuota * 100) / 100;
+            cuota = interes + capital;
         }
+        return parseFloat(cuota).toFixed(2);
     }
 
     calculoCapital(cuota = null, intereses = null) {
         if (this.formaPago === 'NIVELADA') {
-            return Math.round((cuota - intereses) * 100) / 100;
+            return parseFloat(cuota - intereses).toFixed(2);
         } else {
-            return Math.round((this.montoInicial / this.plazo) * 100) / 100;
+            return parseFloat(this.montoInicial / this.plazo).toFixed(2);
         }
     }
 
     mesInicial() {
-        // Asegúrate de que la fecha sea siempre a medianoche UTC para evitar problemas con zonas horarias
-        const fecha = new Date(this._credit.fechaInicio);
-        return new Date(Date.UTC(fecha.getUTCFullYear(), fecha.getUTCMonth(), fecha.getUTCDate(),fecha.getUTCHours(),
-        fecha.getUTCMinutes(),
-        fecha.getUTCSeconds()));
+        return this._credit.fecha_inicio;
     }
 
     inicial() {
         const mesInicial = this.mesInicial();
         const mesFinal = new Date(mesInicial);
-        mesFinal.setUTCMonth(mesFinal.getUTCMonth() + 1);
+        mesFinal.setMonth(mesFinal.getMonth() + 1);
+        const diasDiferencia = (mesFinal - mesInicial) / (1000 * 60 * 60 * 24);
 
         const dicio = {
             mes: 1,
-            'fecha inicio': mesInicial,
-            'fecha final': mesFinal,
-            'monto_prestado': this.montoInicial,
+            fecha_inicio: mesInicial,
+            fecha_final: mesFinal,
+            monto_prestado: this.montoInicial
         };
-
-        const intereses = this.calculoIntereses(this.montoInicial);
+        const intereses = this.calculoIntereses(diasDiferencia, this.montoInicial);
         let cuota, capital;
-
         if (this.formaPago === 'NIVELADA') {
             cuota = this.calculoCuota();
             capital = this.calculoCapital(cuota, intereses);
@@ -95,7 +84,6 @@ export class PaymentPlan {
             capital = this.calculoCapital();
             cuota = this.calculoCuota(intereses, capital);
         }
-
         dicio.intereses = intereses;
         dicio.capital = capital;
         dicio.cuota = cuota;
@@ -108,30 +96,31 @@ export class PaymentPlan {
 
         for (let mes = 2; mes <= this.plazo; mes++) {
             const anterior = plan[plan.length - 1];
-            const montoPrestado = Math.round((anterior['monto_prestado'] - anterior.capital) * 100) / 100;
-            const intereses = this.calculoIntereses(montoPrestado);
-            const mesInicial = new Date(anterior['fecha final']);
+            const montoPrestado = parseFloat(anterior.monto_prestado - anterior.capital).toFixed(2);
+
+            const mesInicial = anterior.fecha_final;
             const mesFinal = new Date(mesInicial);
             mesFinal.setMonth(mesFinal.getMonth() + 1);
+            const diasDiferencia = (mesFinal - mesInicial) / (1000 * 60 * 60 * 24);
+
+            const intereses = this.calculoIntereses(diasDiferencia, montoPrestado);
 
             const dicio = {
                 mes: mes,
-                'fecha inicio': mesInicial,
-                'fecha final': mesFinal,
-                'monto_prestado': montoPrestado,
-                'intereses': intereses,
+                fecha_inicio: mesInicial,
+                fecha_final: mesFinal,
+                monto_prestado: montoPrestado,
+                intereses: intereses
             };
 
             let cuota, capital;
-
             if (this.formaPago === 'NIVELADA') {
                 cuota = this.calculoCuota();
                 capital = this.calculoCapital(cuota, intereses);
             } else {
-                capital = Math.round(anterior.capital * 100) / 100;
+                capital = parseFloat(anterior.capital).toFixed(2);
                 cuota = this.calculoCuota(intereses, capital);
             }
-
             dicio.capital = capital;
             dicio.cuota = cuota;
 
