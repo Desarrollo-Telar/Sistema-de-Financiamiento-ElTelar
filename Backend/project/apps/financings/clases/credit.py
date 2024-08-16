@@ -162,7 +162,7 @@ class Credit:
         return json.dumps(js, indent=4, ensure_ascii=False)
     
     def __str__(self):
-        return f'Credito: \nID:{self._id},\nFecha Inicio: {self.fecha_inicio},\nPlazo: {self.__plazo} meses,\nFecha de Vencimiento: {self.__fecha_vencimiento},\n'
+        return f'Credito: \nID:{self._id},\nFecha Inicio: {self.fecha_inicio},\nPlazo: {self.__plazo} meses,\nTasa de Interes: {self.__tasa_interes} %\nFecha de Vencimiento: {self.__fecha_vencimiento},\n'
 
 if __name__ == '__main__':
     fiador = Customer('Juan','Lopez','lopez@gmail.com','DPI','323846682','1106369','42256694','RESIDENTE','Aprobado','MASCULINO','AGRONOMO','GUATEMALTECA','COBAN','14-03-1995','SOLTERO','Indivicual (PI)')

@@ -22,6 +22,14 @@ class PaymentPlan:
 
     def generar_estado(self):
         return 'VIGENTE'
+    
+    @property
+    def credit(self):
+        return self.__credit
+    
+    @credit.setter
+    def credit(self,value):
+        self.__credit = value
 
     @property
     def interes(self):
