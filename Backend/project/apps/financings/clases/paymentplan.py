@@ -2,6 +2,7 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from .credit import Credit
+
 from apps.customers.clases.customer import Customer
 from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
 
@@ -15,6 +16,8 @@ class PaymentPlan:
         self.__estado_pago = self.generar_estado()
         self.__plan = []
         self.__plazo = int(self.__credit.plazo)
+    
+    
 
     @property
     def plazo(self):
@@ -77,7 +80,8 @@ class PaymentPlan:
             'mes': 1,
             'fecha_inicio': mes_inicial,
             'fecha_final': mes_final,
-            'monto_prestado': self.monto_inicial
+            'monto_prestado': self.monto_inicial,
+            'mora':0,
         }
         intereses = self.calculo_intereses(dias_diferencia,self.monto_inicial)
         if self.forma_pago == 'NIVELADA':
@@ -89,7 +93,8 @@ class PaymentPlan:
         dicio.update({
             'intereses': intereses,
             'capital': capital,
-            'cuota': cuota
+            'cuota': cuota,
+            'estado':'PENDIENTE'
         })
         return dicio
 
@@ -111,6 +116,7 @@ class PaymentPlan:
                 'fecha_inicio': mes_inicial,
                 'fecha_final': mes_final,
                 'monto_prestado': monto_prestado,
+                'mora':0,
                 'intereses': intereses
             }
             if self.forma_pago == 'NIVELADA':
@@ -121,7 +127,8 @@ class PaymentPlan:
                 cuota = self.calculo_cuota(intereses, capital)
             dicio.update({
                 'capital': capital,
-                'cuota': cuota
+                'cuota': cuota,
+                'estado':'PENDIENTE'
             })
             plan.append(dicio)
         return plan
@@ -136,3 +143,8 @@ if __name__ == '__main__':
     plan = plan_pago.generar_plan()
     for pago in plan:
         print(pago)
+    
+
+
+  
+    
