@@ -109,6 +109,7 @@ class Payment:
     def realizar_pago(self):
         total_pagar = self._calcular_total()
         monto_depositado = self.monto
+        saldo_pendiente = 0
         
         def procesar_pago(tipo, monto_requerido):
             nonlocal monto_depositado
@@ -118,6 +119,7 @@ class Payment:
             else:
                 saldo = round(monto_requerido - monto_depositado, 2)
                 monto_depositado = 0
+                
                 return saldo
 
         self.mora = procesar_pago('Mora', self.mora)
@@ -125,18 +127,23 @@ class Payment:
             self.estado_transaccion = "PENDIENTE"
             self.registrar_pago(self.monto)
             return f"Pago realizado parcialmente. Quedan Q{self.mora} de mora pendiente."
-
+        
         self.interes = procesar_pago('Interes', self.interes)
+        
         if self.interes > 0:
             self.estado_transaccion = "PENDIENTE"
             self.registrar_pago(self.monto)
+            saldo_pendiente+=self.interes
+            
             return f"Pago realizado parcialmente. Quedan Q{self.interes} de intereses pendientes."
 
         self.capital = procesar_pago('Capital', self.capital)
+        print(saldo_pendiente)
         if self.capital > 0:
             self.credit.monto -= monto_depositado
             self.estado_transaccion = "PENDIENTE"
             self.registrar_pago(self.monto)
+            
             return f"Pago realizado parcialmente. Quedan Q{self.capital} de capital pendiente."
 
         self.estado_transaccion = "COMPLETADO"
@@ -162,11 +169,11 @@ if __name__ == '__main__':
     
     plan = plan_pago.generar_plan()
     for pago in plan:
-        print(pago)
+        print(pago['mes'])
 
     print(f'\n\n\n\n\n')
 
     # Crear un pago
-    pago1 = Payment(credito, monto=6704.93, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-15', '%Y-%m-%d'))
+    pago1 = Payment(credito, monto=600, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-17', '%Y-%m-%d'))
     resultado_pago = pago1.realizar_pago()
     print(resultado_pago)
