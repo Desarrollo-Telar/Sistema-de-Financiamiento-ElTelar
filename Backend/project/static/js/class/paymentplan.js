@@ -19,11 +19,11 @@ export class PaymentPlan {
     }
 
     get interes() {
-        return this._credit.tasa_interes;
+        return this._credit.tasaInteres;
     }
 
     get formaPago() {
-        return this._credit.forma_de_pago;
+        return this._credit.formaDePago;
     }
 
     get montoInicial() {
@@ -60,7 +60,7 @@ export class PaymentPlan {
     }
 
     mesInicial() {
-        return this._credit.fecha_inicio;
+        return this._credit.fechaInicio;
     }
 
     inicial() {

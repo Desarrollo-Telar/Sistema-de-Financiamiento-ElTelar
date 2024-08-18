@@ -88,7 +88,7 @@ function generar_plan() {
         tasa_interes.value,
         forma_de_pago.value,
         'MENSUAL',
-        fechaInicioValue,
+        fecha_inicio.value,
         tipo_credito.value,
         null,
         customer_id.value
@@ -101,9 +101,10 @@ function generar_plan() {
 
     plan.forEach(element => {
         const nueva_fila = tbody_plan.insertRow();
+        console.log(element);
         nueva_fila.insertCell(0).textContent = element['mes'];
-        nueva_fila.insertCell(1).textContent = transformarFecha(element['fecha inicio']);
-        nueva_fila.insertCell(2).textContent = transformarFecha(element['fecha final']);
+        nueva_fila.insertCell(1).textContent = transformarFecha(element['fecha_inicio']);
+        nueva_fila.insertCell(2).textContent = transformarFecha(element['fecha_final']);
         nueva_fila.insertCell(3).textContent = 'Q' + element['monto_prestado'];
         nueva_fila.insertCell(4).textContent = 'Q' + element['intereses'];
         nueva_fila.insertCell(5).textContent = 'Q' + element['capital'];

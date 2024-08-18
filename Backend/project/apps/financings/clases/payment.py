@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from .paymentplan import PaymentPlan
 from .credit import Credit
 from apps.customers.clases.customer import Customer
@@ -15,12 +15,12 @@ class Payment:
         self.estado_transaccion = estado_transaccion
         self.descripcion = descripcion
         self.credit = credit
+        self.plan_de_pagos = PaymentPlan(credit).generar_plan()
+        self.pagos_realizados = []
         self.mora = 0
         self.interes = 0
         self.capital = 0
-        self.plan_de_pagos = PaymentPlan(credit).generar_plan()
-
-    # -------- PROPERTIES AND SETTERS ------------
+    
     @property
     def monto(self):
         return round(self._monto, 2)
@@ -48,7 +48,6 @@ class Payment:
         else:
             raise ValueError("Estado no válido")
 
-    # ------------------ HELPER METHODS --------------------
     def _calculo_intereses(self, dias=None, monto=None):
         monto = monto or self.credit.monto
         dias = dias or 0
@@ -71,11 +70,12 @@ class Payment:
         if self.credit.forma_de_pago == 'NIVELADA':
             if cuota is not None and intereses is not None:
                 self.capital = round(cuota - intereses, 2)
+                return self.capital
             else:
                 raise ValueError("Cuota e intereses deben ser proporcionados para calcular el capital.")
         else:
             self.capital = round(self.credit.monto / self.credit.plazo, 2)
-        return self.capital
+            return self.capital
 
     def _calculo_mora(self, saldo_pendiente, dias_atrasados):
         tasa_mora_diaria = self.credit.tasa_interes / 365
@@ -88,6 +88,7 @@ class Payment:
 
     def _calcular_total(self):
         primer_pago = self._primer_pago_pendiente()
+        
         if primer_pago is None:
             raise ValueError("No hay pagos pendientes para calcular el total.")
 
@@ -111,6 +112,10 @@ class Payment:
         monto_depositado = self.monto
         saldo_pendiente = 0
         
+        print(f'Cobro de Mora: Q {self.mora}')
+        print(f'Cobro de Interes: Q {self.interes}')
+        print(f'Cobro de Capital: Q {self.capital}')
+        
         def procesar_pago(tipo, monto_requerido):
             nonlocal monto_depositado
             if monto_depositado >= monto_requerido:
@@ -119,7 +124,6 @@ class Payment:
             else:
                 saldo = round(monto_requerido - monto_depositado, 2)
                 monto_depositado = 0
-                
                 return saldo
 
         self.mora = procesar_pago('Mora', self.mora)
@@ -133,28 +137,43 @@ class Payment:
         if self.interes > 0:
             self.estado_transaccion = "PENDIENTE"
             self.registrar_pago(self.monto)
-            saldo_pendiente+=self.interes
-            
+            saldo_pendiente += self.interes
             return f"Pago realizado parcialmente. Quedan Q{self.interes} de intereses pendientes."
 
         self.capital = procesar_pago('Capital', self.capital)
-        print(saldo_pendiente)
+        
         if self.capital > 0:
             self.credit.monto -= monto_depositado
             self.estado_transaccion = "PENDIENTE"
             self.registrar_pago(self.monto)
-            
             return f"Pago realizado parcialmente. Quedan Q{self.capital} de capital pendiente."
 
         self.estado_transaccion = "COMPLETADO"
         self.registrar_pago(self.monto)
         return f"Pago realizado con éxito. Q{monto_depositado} restante."
-
+        
     def registrar_pago(self, monto):
-        # Use logging instead of print for better production practices
-        print(f"Registro de pago: Q{monto}")
+        # Actualizar el estado del primer pago pendiente
+        primer_pago = self._primer_pago_pendiente()
+        if primer_pago:
+            primer_pago['estado'] = 'COMPLETADO'
+            # Actualizar el estado de las cuotas restantes
+            for pago in self.plan_de_pagos:
+                if pago['estado'] == 'PENDIENTE' and pago['fecha_inicio'] > primer_pago['fecha_inicio']:
+                    pago['monto_prestado'] -= monto
+                    if pago['monto_prestado'] <= 0:
+                        pago['estado'] = 'COMPLETADO'
+                    break
+        
+        # Registrar el pago realizado
+        self.pagos_realizados.append({
+            'monto': monto,
+            'fecha': self.fecha_emision,
+            'estado': self.estado_transaccion
+        })
+        print(f"Registro de pago: Q {monto}")
+        print(primer_pago)
 
-    # ------------------ TO STRING -------------------
     def __str__(self):
         return (f'PAGO:\n\tMonto: Q{self.monto}\n\tFecha De Emision: {self.fecha_emision}\n'
                 f'\tNumero de Referencia: {self.numero_referencia}\n\tObservacion: {self.descripcion}\n'
@@ -164,16 +183,13 @@ if __name__ == '__main__':
     fiador = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     cliente = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     destino = InvestmentPlan('CONSUMO', 1500, 750, 100, cliente)
-    credito = Credit(destino.type_of_product_or_service, 117000, 60, 66, 'NIVELADA', 'MENSUAL', '2024-07-17', 'CONSUMO', destino, fiador)
+    credito = Credit(destino.type_of_product_or_service, 7000, 60, 66, 'NIVELADA', 'MENSUAL', '2024-08-17', 'CONSUMO', destino, fiador)
     plan_pago = PaymentPlan(credito)
     
     plan = plan_pago.generar_plan()
     for pago in plan:
-        print(pago['mes'])
+        print(pago)
 
     print(f'\n\n\n\n\n')
 
-    # Crear un pago
-    pago1 = Payment(credito, monto=600, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-17', '%Y-%m-%d'))
-    resultado_pago = pago1.realizar_pago()
-    print(resultado_pago)
+    
