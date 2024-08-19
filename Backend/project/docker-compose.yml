@@ -1,18 +1,18 @@
 version: "3"
 
 services:
-  
   # Servicio de la base de datos PostgreSQL
   db:
     #image: postgres:latest
-    image: mysql 
+    image: mysql
+    container_name: db
     environment:
       #POSTGRES_DB: databaseElTelar
       #POSTGRES_USER: telar
       #POSTGRES_PASSWORD: mypassword
-      - MYSQL_DATABASE=db      
+      - MYSQL_DATABASE=db
       - MYSQL_USER=user
-      - MYSQL_PASSWORD=password      
+      - MYSQL_PASSWORD=password
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_HOST=''
     ports:
@@ -27,22 +27,23 @@ services:
 
   # Servicio de almacenamientos de objectos
   #minio:
-    #image: "bitnami/minio:latest"
-    #ports:
-      #- "9000:9000"
-      #- "9001:9001"
-    #environment:
-      #- MINIO_ROOT_USER=choc1403
-      #- MINIO_ROOT_PASSWORD=choc1403
-    #networks:
-      #- app_fin
-    #volumes:
-      #- minio_data:/data
-      
+  #image: "bitnami/minio:latest"
+  #ports:
+  #- "9000:9000"
+  #- "9001:9001"
+  #environment:
+  #- MINIO_ROOT_USER=choc1403
+  #- MINIO_ROOT_PASSWORD=choc1403
+  #networks:
+  #- app_fin
+  #volumes:
+  #- minio_data:/data
+
   # Servicio de la aplicación Django
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
+    container_name: web
     volumes:
       - .:/code
     ports:
@@ -51,11 +52,11 @@ services:
       #- POSTGRES_NAME=databaseElTelar
       #- POSTGRES_USER=telar
       #- POSTGRES_PASSWORD=mypassword
-      
+
       #- MINIO_STORAGE_ENDPOINT=http://minio:9000
       #- MINIO_SERVER_ACCESS_KEY=choc1403
       #- MINIO_SERVER_SECRET_KEY=choc1403
-  
+
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=db
@@ -67,15 +68,15 @@ services:
 
   # Servicio de NGINX
   #nginx:
-    #image: nginx
-    #ports:
-      #- "80:80"
-    #volumes:
-      #- ./nginx.conf:/etc/nginx/nginx.conf
-    #depends_on:
-      #- web
-    #networks:
-      #- app_fin
+  #image: nginx
+  #ports:
+  #- "80:80"
+  #volumes:
+  #- ./nginx.conf:/etc/nginx/nginx.conf
+  #depends_on:
+  #- web
+  #networks:
+  #- app_fin
 
 volumes:
   postgres_data:
