@@ -137,6 +137,9 @@ class Payment(models.Model):
     mora = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     interes = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     capital = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    boleta = models.FileField("Boleta",blank=True, null=True,upload_to='pagos/boletas/')
+    
+
 
     def dias_atraso(self):
         # Obtener la última fecha de vencimiento del plan de pago

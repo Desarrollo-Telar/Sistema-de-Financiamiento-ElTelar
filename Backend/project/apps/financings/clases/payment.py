@@ -21,6 +21,7 @@ class Payment:
         self.mora = 0
         self.interes = 0
         self.capital = 0
+        self.saldo_pendiente = 0
     
     @property
     def monto(self):
@@ -91,6 +92,20 @@ class Payment:
     def _primer_pago_pendiente(self):
         return next((pago for pago in self.plan_de_pagos if pago['estado'] == 'PENDIENTE'), None)
 
+    def _siguiente_pago_pendiente(self):
+        for i, pago in enumerate(self.plan_de_pagos):
+            if pago['estado'] == 'PENDIENTE':
+                
+                # Verifica si existe un siguiente pago en la lista
+                if i + 1 < len(self.plan_de_pagos):
+                    return self.plan_de_pagos[i]
+                else:
+                    return None
+        return None
+
+
+
+
     def _calcular_total(self):
         primer_pago = self._primer_pago_pendiente()
         
@@ -102,6 +117,8 @@ class Payment:
         
         mora = self._calculo_mora(primer_pago['monto_prestado'], dias_atrasados - 15) if dias_atrasados > 15 else 0
         intereses = self._calculo_intereses(dias_diferencia , primer_pago['monto_prestado'])
+        print(f'\n\n')
+        print(f'DIAS TRANSCURRIDOS DESDE EL: {primer_pago['fecha_inicio']} A LA FECHA DE PAGO: {self.fecha_emision} ES DE: {dias_diferencia} DIAS')
         print('DIAS DE DIFERENCIA PARA MORA: ',dias_atrasados-15)
         
         if self.credit.forma_de_pago == 'NIVELADA':
@@ -116,13 +133,24 @@ class Payment:
     def realizar_pago(self):
         total_pagar = self._calcular_total()
         monto_depositado = self.monto
-        saldo_pendiente = 0
-        print(''.center(60,'-'))
+        self.saldo_pendiente = round(total_pagar-monto_depositado,2)
+        primer_pago = self._primer_pago_pendiente()
+        print('POR COBRAR'.center(60,'-'))
         print(f'Cobro de Mora: Q {self.mora}')
         print(f'Cobro de Interes: Q {self.interes}')
         print(f'Cobro de Capital: Q {self.capital}')
-        print(f'TOTAL A CANCELAR: Q {total_pagar}')
         print(''.center(60,'-'))
+        print(f'TOTAL A CANCELAR: Q {total_pagar}')
+        print(''.center(60,'-'))        
+        print(f'TOTAL DE LA CUOTA: Q {primer_pago['cuota']}')
+        if total_pagar > primer_pago['cuota'] or self.saldo_pendiente < primer_pago['cuota']:
+            print('EN ATRASO')
+            print('Saldo Pendinte: Q ',self.saldo_pendiente)
+        else:
+            print('VIGENTE')
+
+        print(''.center(60,'-'))
+        
         
         def procesar_pago(tipo, monto_requerido):
             nonlocal monto_depositado
@@ -132,24 +160,22 @@ class Payment:
             else:
                 saldo = round(monto_requerido - monto_depositado, 2)
                 monto_depositado = 0
+                
                 return saldo
 
         self.mora = procesar_pago('Mora', self.mora)
         if self.mora > 0:
             self.estado_transaccion = "PENDIENTE"
             self.registrar_pago(self.monto)
-            return f"Pago realizado parcialmente. Quedan Q{self.mora} de mora pendiente."
+            return f"Pago realizado parcialmente. Quedan Q{self.mora} de mora pendiente. "
         
         self.interes = procesar_pago('Interes', self.interes)
-        
         if self.interes > 0:
             self.estado_transaccion = "PENDIENTE"
             self.registrar_pago(self.monto)
-            saldo_pendiente += self.interes
-            return f"Pago realizado parcialmente. Quedan Q{self.interes} de intereses pendientes."
+            return f"Pago realizado parcialmente. Quedan Q{self.interes} de intereses pendientes. "
 
         self.capital = procesar_pago('Capital', self.capital)
-        
         if self.capital > 0:
             self.credit.monto -= monto_depositado
             self.estado_transaccion = "PENDIENTE"
@@ -158,13 +184,15 @@ class Payment:
 
         self.estado_transaccion = "COMPLETADO"
         self.registrar_pago(self.monto)
-        return f"Pago realizado con éxito. Q{monto_depositado} restante."
+        return f"Pago realizado con éxito. Q{monto_depositado} restante. Saldo pendiente total: Q{self.saldo_pendiente}"
+
         
     def registrar_pago(self, monto):
         # Actualizar el estado del primer pago pendiente
         primer_pago = self._primer_pago_pendiente()
         if primer_pago:
             primer_pago['estado'] = 'COMPLETADO'
+            """
             # Actualizar el estado de las cuotas restantes
             for pago in self.plan_de_pagos:
                 if pago['estado'] == 'PENDIENTE' and pago['fecha_inicio'] > primer_pago['fecha_inicio']:
@@ -172,6 +200,9 @@ class Payment:
                     if pago['monto_prestado'] <= 0:
                         pago['estado'] = 'COMPLETADO'
                     break
+            
+            """
+        
         
         # Registrar el pago realizado
         self.pagos_realizados.append({
@@ -179,9 +210,18 @@ class Payment:
             'fecha': self.fecha_emision,
             'estado': self.estado_transaccion
         })
-        print(f"Registro de pago: Q {monto}")
+        print(f"Cantidad Depositada: Q {monto}")
         print(''.center(60,'-'))
         print(f'DE LA CUOTA: {primer_pago}')
+        print(''.center(60,'-'))
+        siguiente = self._siguiente_pago_pendiente()
+        if self.saldo_pendiente > 0:     
+            siguiente_cuota = round(siguiente['cuota'],2) 
+            siguiente_cuota+= round(self.saldo_pendiente,2)
+            siguiente['cuota'] = round(siguiente_cuota,2)
+        
+        print(f'SIGUIENTE CUOTA: {siguiente}')
+        print(''.center(60,'-'))
         print(''.center(60,'-'))
 
     def __str__(self):
@@ -193,26 +233,28 @@ if __name__ == '__main__':
     fiador = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     cliente = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     destino = InvestmentPlan('CONSUMO', 1500, 750, 100, cliente)
-    credito = Credit(destino.type_of_product_or_service, 10000, 2, 7.5, 'AMORTIZACION A CAPITAL', 'MENSUAL', '2024-03-15', 'CONSUMO', destino, fiador)
+    credito = Credit(destino.type_of_product_or_service, 7000, 60, 66, 'NIVELADA', 'MENSUAL', '2024-07-15', 'CONSUMO', destino, fiador)
     plan_pago = PaymentPlan(credito)
     
     plan = plan_pago.generar_plan()
     
     listado = plan
 
-    pago1 = Payment(credito, monto=300, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-05-01', '%Y-%m-%d'))
+    pago1 = Payment(credito, monto=300, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-31', '%Y-%m-%d'))
     #pago2 = Payment(credito, monto=401.15, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-10-17', '%Y-%m-%d'))
     resultado_pago = pago1.realizar_pago()
     
     print('RESULTADO DEL PAGO 1: ',resultado_pago)
+    print(''.center(60,'-'))
+    print(f'\n\n')
     #resultado_pago = pago2.realizar_pago()
     
     
     #print('RESULTADO DEL PAGO 2: ',resultado_pago)
 
-""" 
-    for pago in listado:
-        print(pago)
-"""   
+
+    #for pago in listado:
+        #print(pago)
+
 
     
