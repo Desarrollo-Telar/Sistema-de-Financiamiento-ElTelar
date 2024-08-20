@@ -17,15 +17,20 @@ document.getElementById('customer').addEventListener('submit', async function (e
     event.preventDefault();
 
     try {
+        /*
+        let direccionData = recoletarInformacionDirecciones(1);
+        direccionData.forEach(element => console.log(element.toJSON()));
         
        
-
+*/
         
 
         // Realizar llamadas a la API
+        
         const customerData = await postCustomer(urls.api_url_cliente);
         console.log('Cliente registrado con éxito:', customerData);
         const customer_id = customerData.id;
+        
 
         const direccionData = await postDireccion(urls.api_url_direccion, customer_id);
         console.log('Dirección registrada con éxito:', direccionData);

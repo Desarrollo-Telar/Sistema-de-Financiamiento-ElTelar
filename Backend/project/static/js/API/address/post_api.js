@@ -4,6 +4,7 @@ import { recoletarInformacionDirecciones } from '../../customer/recolectar.js';
 export async function postDireccion(url, customer_id) {
     try {
         let direccionData = recoletarInformacionDirecciones(customer_id);
+       
         let direc = direccionData.map(direccion => direccion.toJSON());
 
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

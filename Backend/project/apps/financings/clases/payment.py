@@ -254,14 +254,14 @@ if __name__ == '__main__':
     listado = plan
 
     pago1 = Payment(credito, monto=300, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-25', '%Y-%m-%d'))
-    #pago2 = Payment(credito, monto=401.15, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-09-01', '%Y-%m-%d'))
+    pago2 = Payment(credito, monto=401.15, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-15', '%Y-%m-%d'))
     resultado_pago = pago1.realizar_pago()
     
     print('RESULTADO DEL PAGO 1: ',resultado_pago)
     print(''.center(60,'-'))
     print(f'\n\n')
-    #resultado_pago = pago2.realizar_pago()
-    #print('RESULTADO DEL PAGO 2: ',resultado_pago)
+    resultado_pago = pago2.realizar_pago()
+    print('RESULTADO DEL PAGO 2: ',resultado_pago)
 
 
     #for pago in listado:
