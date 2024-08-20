@@ -4,6 +4,7 @@ from .credit import Credit
 from apps.customers.clases.customer import Customer
 from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
 
+listado = None
 class Payment:
     VALID_TRANSACTION_STATES = ["PENDIENTE", "COMPLETADO", "FALLIDO"]
 
@@ -15,7 +16,7 @@ class Payment:
         self.estado_transaccion = estado_transaccion
         self.descripcion = descripcion
         self.credit = credit
-        self.plan_de_pagos = PaymentPlan(credit).generar_plan()
+        self.plan_de_pagos = listado
         self.pagos_realizados = []
         self.mora = 0
         self.interes = 0
@@ -70,6 +71,10 @@ class Payment:
         if self.credit.forma_de_pago == 'NIVELADA':
             if cuota is not None and intereses is not None:
                 self.capital = round(cuota - intereses, 2)
+                if self.capital < 0:
+                    dato = self._primer_pago_pendiente()
+                    self.capital = dato['capital']
+
                 return self.capital
             else:
                 raise ValueError("Cuota e intereses deben ser proporcionados para calcular el capital.")
@@ -92,11 +97,12 @@ class Payment:
         if primer_pago is None:
             raise ValueError("No hay pagos pendientes para calcular el total.")
 
-        dias_diferencia = (self.fecha_emision - primer_pago['fecha_inicio']).days
+        dias_diferencia = max((self.fecha_emision - primer_pago['fecha_inicio']).days,0)
         dias_atrasados = max((self.fecha_emision - primer_pago['fecha_final']).days, 0)
         
         mora = self._calculo_mora(primer_pago['monto_prestado'], dias_atrasados - 15) if dias_atrasados > 15 else 0
-        intereses = self._calculo_intereses(dias_diferencia, primer_pago['monto_prestado'])
+        intereses = self._calculo_intereses(dias_diferencia , primer_pago['monto_prestado'])
+        print('DIAS DE DIFERENCIA PARA MORA: ',dias_atrasados-15)
         
         if self.credit.forma_de_pago == 'NIVELADA':
             cuota = self._calculo_cuota(intereses=intereses)
@@ -111,10 +117,12 @@ class Payment:
         total_pagar = self._calcular_total()
         monto_depositado = self.monto
         saldo_pendiente = 0
-        
+        print(''.center(60,'-'))
         print(f'Cobro de Mora: Q {self.mora}')
         print(f'Cobro de Interes: Q {self.interes}')
         print(f'Cobro de Capital: Q {self.capital}')
+        print(f'TOTAL A CANCELAR: Q {total_pagar}')
+        print(''.center(60,'-'))
         
         def procesar_pago(tipo, monto_requerido):
             nonlocal monto_depositado
@@ -172,7 +180,9 @@ class Payment:
             'estado': self.estado_transaccion
         })
         print(f"Registro de pago: Q {monto}")
-        print(primer_pago)
+        print(''.center(60,'-'))
+        print(f'DE LA CUOTA: {primer_pago}')
+        print(''.center(60,'-'))
 
     def __str__(self):
         return (f'PAGO:\n\tMonto: Q{self.monto}\n\tFecha De Emision: {self.fecha_emision}\n'
@@ -183,13 +193,26 @@ if __name__ == '__main__':
     fiador = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     cliente = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     destino = InvestmentPlan('CONSUMO', 1500, 750, 100, cliente)
-    credito = Credit(destino.type_of_product_or_service, 7000, 60, 66, 'NIVELADA', 'MENSUAL', '2024-08-17', 'CONSUMO', destino, fiador)
+    credito = Credit(destino.type_of_product_or_service, 10000, 2, 7.5, 'AMORTIZACION A CAPITAL', 'MENSUAL', '2024-03-15', 'CONSUMO', destino, fiador)
     plan_pago = PaymentPlan(credito)
     
     plan = plan_pago.generar_plan()
-    for pago in plan:
-        print(pago)
+    
+    listado = plan
 
-    print(f'\n\n\n\n\n')
+    pago1 = Payment(credito, monto=300, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-05-01', '%Y-%m-%d'))
+    #pago2 = Payment(credito, monto=401.15, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-10-17', '%Y-%m-%d'))
+    resultado_pago = pago1.realizar_pago()
+    
+    print('RESULTADO DEL PAGO 1: ',resultado_pago)
+    #resultado_pago = pago2.realizar_pago()
+    
+    
+    #print('RESULTADO DEL PAGO 2: ',resultado_pago)
+
+""" 
+    for pago in listado:
+        print(pago)
+"""   
 
     
