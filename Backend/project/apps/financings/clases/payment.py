@@ -108,6 +108,9 @@ class Payment:
 
     def _calcular_total(self):
         primer_pago = self._primer_pago_pendiente()
+        saldo_pendiente = 0
+        if primer_pago['saldo_pendiente'] > 0:
+            saldo_pendiente = primer_pago['saldo_pendiente']
         
         if primer_pago is None:
             raise ValueError("No hay pagos pendientes para calcular el total.")
@@ -128,7 +131,7 @@ class Payment:
             capital = self._calculo_capital()
             cuota = self._calculo_cuota(intereses=intereses, capital=capital)
         
-        return round(mora + intereses + capital, 2)
+        return round(mora + intereses + capital+saldo_pendiente, 2)
 
     def realizar_pago(self):
         total_pagar = self._calcular_total()
@@ -139,6 +142,9 @@ class Payment:
         print(f'Cobro de Mora: Q {self.mora}')
         print(f'Cobro de Interes: Q {self.interes}')
         print(f'Cobro de Capital: Q {self.capital}')
+        if primer_pago['saldo_pendiente'] > 0:
+            print(f'Cobro de Saldo Pendiente: Q {primer_pago['saldo_pendiente']}')
+
         print(''.center(60,'-'))
         print(f'TOTAL A CANCELAR: Q {total_pagar}')
         print(''.center(60,'-'))        
@@ -159,8 +165,7 @@ class Payment:
                 return 0
             else:
                 saldo = round(monto_requerido - monto_depositado, 2)
-                monto_depositado = 0
-                
+                monto_depositado = 0                
                 return saldo
 
         self.mora = procesar_pago('Mora', self.mora)
@@ -181,6 +186,12 @@ class Payment:
             self.estado_transaccion = "PENDIENTE"
             self.registrar_pago(self.monto)
             return f"Pago realizado parcialmente. Quedan Q{self.capital} de capital pendiente."
+
+        if primer_pago['saldo_pendiente'] > 0:
+            self.saldo_pendiente = procesar_pago('Saldo Pendiente',primer_pago['saldo_pendiente'])
+            if self.saldo_pendiente > 0:
+                self.registrar_pago(self.monto)
+                return f"Pago realizado parcialmente. Quedan Q{self.saldo_pendiente} del Saldo Pendiente. "
 
         self.estado_transaccion = "COMPLETADO"
         self.registrar_pago(self.monto)
@@ -218,7 +229,9 @@ class Payment:
         if self.saldo_pendiente > 0:     
             siguiente_cuota = round(siguiente['cuota'],2) 
             siguiente_cuota+= round(self.saldo_pendiente,2)
-            siguiente['cuota'] = round(siguiente_cuota,2)
+            siguiente['saldo_pendiente'] = 0
+            siguiente['saldo_pendiente'] = round(self.saldo_pendiente,2)
+            siguiente['total'] = round(siguiente_cuota,2)
         
         print(f'SIGUIENTE CUOTA: {siguiente}')
         print(''.center(60,'-'))
@@ -240,16 +253,14 @@ if __name__ == '__main__':
     
     listado = plan
 
-    pago1 = Payment(credito, monto=300, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-31', '%Y-%m-%d'))
-    #pago2 = Payment(credito, monto=401.15, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-10-17', '%Y-%m-%d'))
+    pago1 = Payment(credito, monto=300, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-25', '%Y-%m-%d'))
+    #pago2 = Payment(credito, monto=401.15, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-09-01', '%Y-%m-%d'))
     resultado_pago = pago1.realizar_pago()
     
     print('RESULTADO DEL PAGO 1: ',resultado_pago)
     print(''.center(60,'-'))
     print(f'\n\n')
     #resultado_pago = pago2.realizar_pago()
-    
-    
     #print('RESULTADO DEL PAGO 2: ',resultado_pago)
 
 

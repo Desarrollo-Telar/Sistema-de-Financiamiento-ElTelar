@@ -94,6 +94,8 @@ class PaymentPlan:
             'intereses': intereses,
             'capital': capital,
             'cuota': cuota,
+            'saldo_pendiente':0,
+            'total':cuota,
             'estado':'PENDIENTE'
         })
         return dicio
@@ -128,6 +130,8 @@ class PaymentPlan:
             dicio.update({
                 'capital': capital,
                 'cuota': cuota,
+                'saldo_pendiente':0,
+                'total':cuota,
                 'estado':'PENDIENTE'
             })
             plan.append(dicio)
