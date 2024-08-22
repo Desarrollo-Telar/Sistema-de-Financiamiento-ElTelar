@@ -3,6 +3,8 @@ from .paymentplan import PaymentPlan
 from .credit import Credit
 from apps.customers.clases.customer import Customer
 from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
+from dateutil.relativedelta import relativedelta
+
 
 listado = None
 class Payment:
@@ -115,11 +117,42 @@ class Payment:
         if primer_pago is None:
             raise ValueError("No hay pagos pendientes para calcular el total.")
 
-        dias_diferencia = max((self.fecha_emision - primer_pago['fecha_inicio']).days,0)
+        dias_diferencia = max((self.fecha_emision - primer_pago['fecha_inicio']).days, 0)
+        dias_total = (primer_pago['fecha_final'] - primer_pago['fecha_inicio']).days
         dias_atrasados = max((self.fecha_emision - primer_pago['fecha_final']).days, 0)
-        
+
         mora = self._calculo_mora(primer_pago['monto_prestado'], dias_atrasados - 15) if dias_atrasados > 15 else 0
-        intereses = self._calculo_intereses(dias_diferencia , primer_pago['monto_prestado'])
+
+        fecha_gracia = primer_pago['fecha_final'] + relativedelta(days=15)
+        
+
+        if self.fecha_emision > fecha_gracia:  # Corrected condition
+            dias_adicionales = dias_total + (dias_atrasados-15)
+            total_dias = dias_total + dias_adicionales
+            print('ATRASO')
+            print(dias_adicionales)
+            intereses = self._calculo_intereses(total_dias, primer_pago['monto_prestado'])
+        elif self.fecha_emision>=primer_pago['fecha_final'] or self.fecha_emision <= fecha_gracia:
+            print('LIMITE')
+            print(f'FECHA DE EMISION: {self.fecha_emision}\nFecha Limite: {fecha_gracia}')
+            intereses = self._calculo_intereses(dias_total, primer_pago['monto_prestado'])
+        else:
+            print('ESTA ANTES')
+            intereses = self._calculo_intereses(dias_diferencia, primer_pago['monto_prestado'])
+
+
+
+
+        
+
+
+
+      
+
+       
+
+
+        
         print(f'\n\n')
         print(f'DIAS TRANSCURRIDOS DESDE EL: {primer_pago['fecha_inicio']} A LA FECHA DE PAGO: {self.fecha_emision} ES DE: {dias_diferencia} DIAS')
         print('DIAS DE DIFERENCIA PARA MORA: ',dias_atrasados-15)
@@ -157,7 +190,7 @@ class Payment:
 
         print(''.center(60,'-'))
         
-        
+     
         def procesar_pago(tipo, monto_requerido):
             nonlocal monto_depositado
             if monto_depositado >= monto_requerido:
@@ -165,7 +198,8 @@ class Payment:
                 return 0
             else:
                 saldo = round(monto_requerido - monto_depositado, 2)
-                monto_depositado = 0                
+                monto_depositado = 0    
+                          
                 return saldo
 
         self.mora = procesar_pago('Mora', self.mora)
@@ -253,15 +287,15 @@ if __name__ == '__main__':
     
     listado = plan
 
-    pago1 = Payment(credito, monto=300, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-25', '%Y-%m-%d'))
+    pago1 = Payment(credito, monto=300, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-20', '%Y-%m-%d'))
     pago2 = Payment(credito, monto=401.15, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-15', '%Y-%m-%d'))
     resultado_pago = pago1.realizar_pago()
     
     print('RESULTADO DEL PAGO 1: ',resultado_pago)
     print(''.center(60,'-'))
     print(f'\n\n')
-    resultado_pago = pago2.realizar_pago()
-    print('RESULTADO DEL PAGO 2: ',resultado_pago)
+    #resultado_pago = pago2.realizar_pago()
+    #print('RESULTADO DEL PAGO 2: ',resultado_pago)
 
 
     #for pago in listado:
