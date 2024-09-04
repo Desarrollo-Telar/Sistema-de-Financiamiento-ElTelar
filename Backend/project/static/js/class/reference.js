@@ -45,14 +45,7 @@ export class Referencia {
         }
 
 
-        // Expresión regular para exactamente 8 dígitos
-        const regex = /^\d{8}$/;
-
-        // Validar el formato del número de teléfono
-        if (!regex.test(value)) {
-            console.error('Numero de telefono no valido, no cumple con el estandar de un numero de telefono. Verificar!!!')
-            throw new Error('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
-        }
+       
 
         this.#phone_number = value.trim();
     }

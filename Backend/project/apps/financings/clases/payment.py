@@ -97,12 +97,8 @@ class Payment:
     def _siguiente_pago_pendiente(self):
         for i, pago in enumerate(self.plan_de_pagos):
             if pago['estado'] == 'PENDIENTE':
+                return self.plan_de_pagos[i]
                 
-                # Verifica si existe un siguiente pago en la lista
-                if i + 1 < len(self.plan_de_pagos):
-                    return self.plan_de_pagos[i]
-                else:
-                    return None
         return None
 
 
@@ -130,29 +126,18 @@ class Payment:
             dias_adicionales = dias_total + (dias_atrasados-15)
             total_dias = dias_total + dias_adicionales
             print('ATRASO')
-            print(dias_adicionales)
-            intereses = self._calculo_intereses(total_dias, primer_pago['monto_prestado'])
-        elif self.fecha_emision>=primer_pago['fecha_final'] or self.fecha_emision <= fecha_gracia:
-            print('LIMITE')
-            print(f'FECHA DE EMISION: {self.fecha_emision}\nFecha Limite: {fecha_gracia}')
-            intereses = self._calculo_intereses(dias_total, primer_pago['monto_prestado'])
-        else:
+            print(f'{dias_adicionales} Dias\n')
+            print(f'FECHA DE EMISION: {self.fecha_emision}\nFecha Limite: {fecha_gracia}\nFecha de Vencimiento: {primer_pago['fecha_final']}\nDe la fecha de inicio a la fecha de vencimiento hay una diferencia de: {dias_total} dias y han pasado {dias_atrasados-15} dias de atraso excluyendo los dias pasado en el periodo de 15 dias')
+            intereses = self._calculo_intereses(dias_adicionales, primer_pago['monto_prestado'])
+        
+        elif self.fecha_emision <primer_pago['fecha_final'] :
             print('ESTA ANTES')
             intereses = self._calculo_intereses(dias_diferencia, primer_pago['monto_prestado'])
+        elif self.fecha_emision >=primer_pago['fecha_final'] or self.fecha_emision <= fecha_gracia:
+            print('LIMITE')
+            print(f'FECHA DE EMISION: {self.fecha_emision}\nFecha Limite: {fecha_gracia}\nFecha de Vencimiento: {primer_pago['fecha_final']}')
+            intereses = self._calculo_intereses(dias_total, primer_pago['monto_prestado'])
 
-
-
-
-        
-
-
-
-      
-
-       
-
-
-        
         print(f'\n\n')
         print(f'DIAS TRANSCURRIDOS DESDE EL: {primer_pago['fecha_inicio']} A LA FECHA DE PAGO: {self.fecha_emision} ES DE: {dias_diferencia} DIAS')
         print('DIAS DE DIFERENCIA PARA MORA: ',dias_atrasados-15)
@@ -236,18 +221,7 @@ class Payment:
         # Actualizar el estado del primer pago pendiente
         primer_pago = self._primer_pago_pendiente()
         if primer_pago:
-            primer_pago['estado'] = 'COMPLETADO'
-            """
-            # Actualizar el estado de las cuotas restantes
-            for pago in self.plan_de_pagos:
-                if pago['estado'] == 'PENDIENTE' and pago['fecha_inicio'] > primer_pago['fecha_inicio']:
-                    pago['monto_prestado'] -= monto
-                    if pago['monto_prestado'] <= 0:
-                        pago['estado'] = 'COMPLETADO'
-                    break
-            
-            """
-        
+            primer_pago['estado'] = 'COMPLETADO'       
         
         # Registrar el pago realizado
         self.pagos_realizados.append({
@@ -260,16 +234,18 @@ class Payment:
         print(f'DE LA CUOTA: {primer_pago}')
         print(''.center(60,'-'))
         siguiente = self._siguiente_pago_pendiente()
-        if self.saldo_pendiente > 0:     
-            siguiente_cuota = round(siguiente['cuota'],2) 
-            siguiente_cuota+= round(self.saldo_pendiente,2)
-            siguiente['saldo_pendiente'] = 0
-            siguiente['saldo_pendiente'] = round(self.saldo_pendiente,2)
-            siguiente['total'] = round(siguiente_cuota,2)
+        if siguiente:
+            if self.saldo_pendiente > 0:     
+                siguiente_cuota = round(siguiente['cuota'],2) 
+                siguiente_cuota+= round(self.saldo_pendiente,2)
+                siguiente['monto_prestado'] +=  round(self.saldo_pendiente,2)
+                siguiente['saldo_pendiente'] = 0
+                siguiente['saldo_pendiente'] = round(self.saldo_pendiente,2)
+                siguiente['total'] = round(siguiente_cuota,2)
         
-        print(f'SIGUIENTE CUOTA: {siguiente}')
-        print(''.center(60,'-'))
-        print(''.center(60,'-'))
+            print(f'SIGUIENTE CUOTA: {siguiente}')
+            print(''.center(60,'-'))
+            print(''.center(60,'-'))
 
     def __str__(self):
         return (f'PAGO:\n\tMonto: Q{self.monto}\n\tFecha De Emision: {self.fecha_emision}\n'
@@ -280,14 +256,14 @@ if __name__ == '__main__':
     fiador = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     cliente = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     destino = InvestmentPlan('CONSUMO', 1500, 750, 100, cliente)
-    credito = Credit(destino.type_of_product_or_service, 7000, 60, 66, 'NIVELADA', 'MENSUAL', '2024-07-15', 'CONSUMO', destino, fiador)
+    credito = Credit(destino.type_of_product_or_service, 1000, 60, 66, 'NIVELADA', 'MENSUAL', '2024-07-15', 'CONSUMO', destino, fiador)
     plan_pago = PaymentPlan(credito)
     
     plan = plan_pago.generar_plan()
     
     listado = plan
 
-    pago1 = Payment(credito, monto=300, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-20', '%Y-%m-%d'))
+    pago1 = Payment(credito, monto=100, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-09-01', '%Y-%m-%d'))
     pago2 = Payment(credito, monto=401.15, numero_referencia='REF001', fecha_emision=datetime.strptime('2024-08-15', '%Y-%m-%d'))
     resultado_pago = pago1.realizar_pago()
     
