@@ -7,7 +7,7 @@ from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.pictures.models import ImagenCustomer
-from apps.documents.models import DocumentCustomer
+from apps.documents.models import DocumentCustomer, DocumentBank
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
@@ -66,6 +66,9 @@ def create_guarantee(request):
 @usuario_activo
 def list_bank(request):
     template_name = 'financings/bank/list.html'
+    documento = DocumentBank.objects.all()
+    
+
     context = {
         'title':'EL TELAR',
     }
