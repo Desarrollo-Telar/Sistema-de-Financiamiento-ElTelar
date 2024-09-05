@@ -5,7 +5,6 @@ services:
   db:
     #image: postgres:latest
     image: mysql
-    container_name: db
     environment:
       #POSTGRES_DB: databaseElTelar
       #POSTGRES_USER: telar
@@ -43,7 +42,6 @@ services:
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
-    container_name: web
     volumes:
       - .:/code
     ports:

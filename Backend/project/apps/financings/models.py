@@ -183,10 +183,10 @@ class AccountStatement(models.Model):
         return f"Estado de cuenta para crédito {self.credit.id} - Pago {self.payment.reference_number}"
 
 # ALERTAS
-class Alert(models.model):
+class Alert(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='Cliente')
     message = models.CharField(max_length=150, blank=True, null=True, verbose_name='Mensaje')
-    
+
     def __str__(self):
         return f'QUERIDO CLIENTE: {self.customer} LE RECORDAMOS: {self.message}'
 
@@ -195,7 +195,7 @@ class Alert(models.model):
         verbose_name_plural = 'Alertas'
 
 # BANCOS
-class Banco(models.model):
+class Banco(models.Model):
     fecha = models.DateField()
     referencia = models.CharField('No.Referencia',max_length=100, unique=True)
     credito = models.DecimalField('Monto', decimal_places=2, max_digits=12)

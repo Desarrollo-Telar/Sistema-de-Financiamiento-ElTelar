@@ -7,11 +7,8 @@ from .models import Document, DocumentCustomer, DocumentAddress, DocumentGuarant
 from .forms import DocumentForms
 
 # Register your models here.
-@admin.register(DocumentBank)
-class DocumentAdmin(admin.ModelAdmin):
-    form = DocumentForms
-    list_display = ('document')
-    search_fields = ('document')
+admin.site.register(DocumentBank)
+
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):

@@ -19,8 +19,8 @@ class DocumentBank(models.Model):
     uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
     class Meta:
-        verbose_name = "Documento"
-        verbose_name_plural ="Documentos"
+        verbose_name = "Documeto de Banco"
+        verbose_name_plural ="Documentos de Bancos"
 
 class Document(models.Model):
     description = models.TextField("Descripción",blank=True, null=True)
