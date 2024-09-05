@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+
+    <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+        {{ field.errors }}
+        {% endif %}
+    </div>
+    <br />
+
+    {% endfor %}
+    <button type="submit" class="btn_edit">Crear Registro</button>
+    <a href="{% url 'financings:list_bank'  %}">Cancelar</a>
+
+
+</form>
+{% endblock %}

@@ -64,6 +64,20 @@ def create_guarantee(request):
 ### ----------------- LISTAR ------------------------ ###    
 @login_required
 @usuario_activo
+def list_payment(request):
+    template_name = 'financings/payment/list.html'
+    page_obj = paginacion(request, Payment.objects.all().order_by('id'))
+    
+
+    context = {
+        'title':'EL TELAR',
+        'page_obj':page_obj,
+        
+    }
+    return render(request,template_name, context)
+
+@login_required
+@usuario_activo
 def list_bank(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.all().order_by('id'))
