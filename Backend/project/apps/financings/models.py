@@ -173,7 +173,7 @@ class AccountStatement(models.Model):
     numero_referencia = models.CharField('Numero de Referencia', max_length=255)
     description = models.TextField('Descripcion',blank=True, null=True )
     verificar = models.BooleanField(default=False)
-    
+
     class Meta:
         verbose_name = "Estado de Cuenta"
         verbose_name_plural = "Estados de Cuentas"
@@ -193,6 +193,15 @@ class Alert(models.model):
         verbose_name = 'Alerta'
         verbose_name_plural = 'Alertas'
 
+# BANCOS
+class Banco(models.model):
+    fecha = models.DateField()
+    referencia = models.CharField('No.Referencia',max_length=100, unique=True)
+    credito = models.DecimalField('Monto', decimal_places=2, max_digits=12)
+
+    class Meta:
+        verbose_name = 'Banco'
+        verbose_name_plural = 'Bancos'
 # Señales
 @receiver(pre_save, sender=Credit)
 def pre_save_credito(sender, instance, **kwargs):

@@ -3,14 +3,8 @@ import pandas as pd
 
 file_path = 'apps/financings/clases/Movs_XXXXXXXXXX8868_Últimos5Movimientos.csv'
 
-# Prueba con diferentes delimitadores
-try:
-    df = pd.read_csv(file_path, encoding='latin1', delimiter=';')  # Cambia ';' por el delimitador correcto si es necesario
-except pd.errors.ParserError as e:
-    print(f"Error de análisis: {e}")
-
-df.to_excel('archivo.xlsx', index=False, engine='openpyxl')
-
+df = pd.read_csv(file_path)
+df.head(5)
 
 """
 # Leer el archivo de texto

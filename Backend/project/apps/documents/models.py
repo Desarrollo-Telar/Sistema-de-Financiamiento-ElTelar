@@ -5,11 +5,20 @@ from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.users.models import User
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
 from project.settings import MEDIA_URL, STATIC_URL
 # Create your models here.
+
+class DocumentBank(models.Model):
+    document = models.FileField("Documento",blank=True, null=True,upload_to='documents/banco')
+    uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Documento"
+        verbose_name_plural ="Documentos"
+
 class Document(models.Model):
     description = models.TextField("Descripción",blank=True, null=True)
     document = models.FileField("Documento",blank=True, null=True,upload_to='documents/')
@@ -77,3 +86,7 @@ def delete_document_files(sender, instance, **kwargs):
     # instance.image es el campo del documento en el modelo de Documentos
     if instance.document:
         instance.document.delete()
+
+@receiver(post_save, sender=DocumentBank)
+def registrar_pagos(sender, instance, **kwargs):
+    pass
