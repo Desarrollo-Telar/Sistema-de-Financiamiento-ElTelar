@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 # FORMULARIO
-from .forms import DocumentForms
+from .forms import DocumentForms, DocumentBankForms
 
 # MODELOS
-from .models import Document, DocumentAddress, DocumentCustomer, DocumentGuarantee, DocumentOther
+from .models import Document, DocumentAddress, DocumentCustomer, DocumentGuarantee, DocumentOther, DocumentBank
 from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
@@ -22,7 +22,32 @@ from django.contrib.auth.decorators import login_required
 from project.decorador import usuario_activo
 from django.utils.decorators import method_decorator
 
+
 # Create your views here.
+@login_required
+@usuario_activo
+def subir_banco(request):
+    template_name = 'documents/create/banco.html'
+    if request.method == 'POST':
+        form = DocumentBankForms(request.POST, request.FILES)
+
+        if form.is_valid():
+            documento = DocumentBank()
+            documento.document = form.cleaned_data.get('document')
+            documento.save()            
+            return redirect('financings:list_bank')
+
+    form = DocumentBankForms
+    context = {
+        'form':form,
+        
+        'title':'ELTELAR ',
+    } 
+
+    return render(request, template_name, context)
+
+
+
 @login_required
 @usuario_activo
 def create_document_customer(request, customer_code):

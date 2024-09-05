@@ -62,6 +62,14 @@ def create_guarantee(request):
     return render(request,template_name,context)
 
 ### ----------------- LISTAR ------------------------ ###    
+@login_required
+@usuario_activo
+def list_bank(request):
+    template_name = 'financings/bank/list.html'
+    context = {
+        'title':'EL TELAR',
+    }
+    return render(request,template_name, context)
 
 @login_required
 @usuario_activo

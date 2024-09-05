@@ -17,7 +17,8 @@ urlpatterns = [
     path('create_document/address/<int:addrress_id>/<str:customer_code>/',views.create_documente_address,name='create_document_address'),
     path('create_document/guarantee/<int:investment_plan_id>/<str:customer_code>/', views.create_documente_guarantee, name='create_document_guarantee'),
     path('delete_document/<int:id>/<str:customer_code>/',views.delete,name='delete_document'),
-    path('update_document/<int:id>/<str:customer_code>/',views.update_document,name='update_document')
+    path('update_document/<int:id>/<str:customer_code>/',views.update_document,name='update_document'),
+    path('create/',views.subir_banco,name='banco'),
 ]
 
 urlpatterns += routers.urlpatterns
