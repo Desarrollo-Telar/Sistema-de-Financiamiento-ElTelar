@@ -12,7 +12,7 @@ router.register(r'credit',views.CreditViewSet,'credit')
 router.register(r'garantia',views.GuaranteesViewSet,'guarantee')
 router.register(r'detalle_garantia',views.DetailsGuaranteesViewSet,'detail_guarantee')
 router.register(r'desembolso',views.DisbursementViewSet,'disbursement')
-
+router.register(r'payment',views.PaymentViewSet,'payment')
 urlpatterns = [
     path('api/', include(router.urls)),
 ]

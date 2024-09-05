@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # MODELS
-from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement
+from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment
 
 class CreditSerializer(serializers.ModelSerializer):
     class Meta:
@@ -57,3 +57,15 @@ class DisbursementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Disbursement
         fields = '__all__'
+
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = [
+            'credit',
+            'monto',
+            'numero_referencia',
+            'fecha_emision',
+            'descripcion',
+            'boleta'
+        ]

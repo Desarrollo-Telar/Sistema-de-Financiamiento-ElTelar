@@ -1,0 +1,6 @@
+credit = document.getElementById('credit')
+monto = document.getElementById('monto')
+numero_referencia = document.getElementById('numero_referencia')
+fecha_emision = document.getElementById('fecha_emision')
+descripcion = document.getElementById('descripcion')
+boleta = document.getElementById('boleta')
