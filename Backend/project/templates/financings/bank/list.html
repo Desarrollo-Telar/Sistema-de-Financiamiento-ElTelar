@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row">
-    <a href="{% url 'document:banco' %}">Subir Documento</a>
+<div class=" row box">
+    <div class="row">
+        <a href="{% url 'document:banco' %}">Subir Documento</a>
+    </div>
+    <div class="row" style="margin-top: 2rem;">
+        {% include 'financings/bank/table/table.html' %}
+    </div>
+
 </div>
 
+
+{% if page_obj %}
+{% include 'snippets/pages.html' %}
+{% endif %}
 {% endblock %}

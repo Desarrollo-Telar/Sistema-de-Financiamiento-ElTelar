@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
-from .models import Credit, Guarantees, Disbursement,DetailsGuarantees
+from .models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment
 from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
@@ -66,11 +66,13 @@ def create_guarantee(request):
 @usuario_activo
 def list_bank(request):
     template_name = 'financings/bank/list.html'
-    
+    page_obj = paginacion(request, Banco.objects.all().order_by('id'))
     
 
     context = {
         'title':'EL TELAR',
+        'page_obj':page_obj,
+        'bank_list':page_obj
     }
     return render(request,template_name, context)
 

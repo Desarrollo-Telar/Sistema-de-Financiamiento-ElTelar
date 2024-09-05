@@ -200,6 +200,9 @@ class Banco(models.Model):
     referencia = models.CharField('No.Referencia',max_length=100, unique=True)
     credito = models.DecimalField('Monto', decimal_places=2, max_digits=12)
 
+    def __str__(self):
+        return f'Fecha: {self.fecha} Referencia: {self.referencia} Monto: {self.credito}'
+
     class Meta:
         verbose_name = 'Banco'
         verbose_name_plural = 'Bancos'

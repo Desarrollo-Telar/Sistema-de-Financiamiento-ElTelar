@@ -18,7 +18,7 @@ def process(nuevo):
     for index, row in df_filtered.iterrows():
         # Acceder a los valores de cada fila
         fecha = datetime.strptime(row['Fecha'], '%d/%m/%Y')
-        referencia = row['Referencia']
+        referencia = str(row['Referencia'])
         credito = row['Crédito (+)']
         # Verificar si la referencia ya existe en la base de datos
         if Banco.objects.filter(referencia=referencia).exists():
@@ -29,4 +29,4 @@ def process(nuevo):
         banco.save()
         
         # Realizar alguna acción con los datos
-        #print(f"Fecha: {fecha}, Referencia: {referencia}, Crédito: {credito}")
+        print(f"Fecha: {fecha}, Referencia: {referencia}, Crédito: {credito}")

@@ -1,0 +1,52 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 " style="text-align: center;">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">No. Referencia</th>
+                        <th scope="col">Monto</th>
+
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for credit in bank_list %}
+
+                    <tr>
+                        <td scope="row">
+
+                            {{credit.fecha}}
+
+
+                        </td>
+                        <td scope="row">
+
+                            {{credit.referencia}}
+
+                        </td>
+                        <td scope="row">
+                            {{credit.credito}}
+                        </td>
+
+
+
+
+
+
+
+
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
