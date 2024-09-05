@@ -1,12 +1,18 @@
 from django.contrib import admin
 
 # Modelos
-from .models import Document, DocumentCustomer, DocumentAddress, DocumentGuarantee, DocumentOther
+from .models import Document, DocumentCustomer, DocumentAddress, DocumentGuarantee, DocumentOther, DocumentBank
 
 # Formularios
 from .forms import DocumentForms
 
 # Register your models here.
+@admin.register(DocumentBank)
+class DocumentAdmin(admin.ModelAdmin):
+    form = DocumentForms
+    list_display = ('document')
+    search_fields = ('document')
+
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
     form = DocumentForms

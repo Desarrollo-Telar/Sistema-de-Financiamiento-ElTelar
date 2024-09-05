@@ -5,7 +5,10 @@ from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.users.models import User
-from django.db.models.signals import post_delete, post_save
+from apps.financings.models import Banco
+
+# SIGNALS
+from django.db.models.signals import post_delete, post_save, pre_save
 from django.dispatch import receiver
 
 from project.settings import MEDIA_URL, STATIC_URL
@@ -87,6 +90,7 @@ def delete_document_files(sender, instance, **kwargs):
     if instance.document:
         instance.document.delete()
 
-@receiver(post_save, sender=DocumentBank)
+@receiver(pre_save, sender=DocumentBank)
 def registrar_pagos(sender, instance, **kwargs):
-    pass
+    file_path = instance.document
+    print(file_path)

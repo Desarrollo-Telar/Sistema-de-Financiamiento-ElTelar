@@ -186,6 +186,7 @@ class AccountStatement(models.Model):
 class Alert(models.model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='Cliente')
     message = models.CharField(max_length=150, blank=True, null=True, verbose_name='Mensaje')
+    
     def __str__(self):
         return f'QUERIDO CLIENTE: {self.customer} LE RECORDAMOS: {self.message}'
 

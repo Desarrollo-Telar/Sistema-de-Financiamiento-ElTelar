@@ -1,5 +1,9 @@
 import csv
 import os
+import pandas as pd
+
+
+    
 
 file_path = 'apps/financings/clases/Movs_XXXXXXXXXX8868_Últimos5Movimientos.csv'
 nuevo = 'apps/financings/clases/buenoo.csv'
@@ -65,9 +69,5 @@ for index, row in df_filtered.iterrows():
 
 
 
-csvfile2 = open(nuevo)
-files = csv.reader(csvfile2, delimiter=',')
-for xd in files:
-    print(f'{xd[0]}\t{xd[3]}\t{xd[7]}')
 
 print('Fin de programa')
