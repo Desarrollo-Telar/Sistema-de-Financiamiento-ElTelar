@@ -7,6 +7,7 @@
 
 {% block content %}
 <form method="POST" id="pago" enctype="multipart/form-data">
+    {% csrf_token %}
     <meta name="csrf-token" content="{{ csrf_token }}">
     <div style="background-color: white; padding: 2rem;">
         <div class="row">
@@ -41,7 +42,7 @@
             </div>
             <div class="form-group" style="margin-top: 1rem;">
                 <label class="fw-medium" for="boleta">Imagen de Boleta</label>
-                <input class="form-control" type="file" id="boleta" accept=".pdf, image/*">
+                <input class="form-control" type="file" id="boleta" accept=".pdf, image/*" required>
 
             </div>
         </div>
@@ -99,4 +100,7 @@
     });
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="module" src="{% static 'js/financings/credit/payment.js'%}"></script>
 {% endblock %}
