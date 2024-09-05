@@ -140,10 +140,6 @@ class Payment(models.Model):
     boleta = models.FileField("Boleta",blank=True, null=True,upload_to='pagos/boletas/')
     tipo_pago = models.CharField('Tipo de Pago', choices=TYPE_PAYMENT, max_length=75, default='CREDITO')
     
-
-
-   
-
     def __str__(self):
         return f'PAGO {self.numero_referencia} - {self.estado_transaccion}'
 
@@ -164,33 +160,36 @@ class PaymentPlan(models.Model):
         verbose_name = 'Plan de Pago'
         verbose_name_plural = 'Planes de Pago'
 
-# ESTADO DE CUENTAS
-
-
+# ESTADOS DE CUENTAS
 class AccountStatement(models.Model):
-    credit = models.ForeignKey(Credit, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add=True)
-    description = models.CharField(max_length=255)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    balance = models.DecimalField(max_digits=10, decimal_places=2)  # Saldo después del movimiento
-
-class StatementOfAccount(models.Model):
-    credit = models.ForeignKey(Credit, on_delete=models.CASCADE, verbose_name='Credito')
-    fecha = models.DateField('Fecha')
-    descripcion = models.TextField('Descripcion')
-    mora = models.DecimalField('Mora', max_digits=12, decimal_places=2, default=0)
-    interes = models.DecimalField('Interes', max_digits=12, decimal_places=2, default=0)
-    capital = models.DecimalField('Capital', max_digits=12, decimal_places=2, default=0)
+    credit = models.ForeignKey('Credit', on_delete=models.CASCADE, related_name='account_statements')
+    payment = models.ForeignKey('Payment', on_delete=models.CASCADE, related_name='account_statement')
+    issue_date = models.DateField(default=timezone.now)
+    interest_paid = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    capital_paid = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    late_fee_paid = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     saldo_pendiente = models.DecimalField('Saldo Pendiente', max_digits=12, decimal_places=2, default=0)
-    abono = models.DecimalField('Abono', max_digits=12, decimal_places=2, default=0)
-    
+    abono = models.DecimalField('Abono', max_digits=12, decimal_places=2, default=0)    
     numero_referencia = models.CharField('Numero de Referencia', max_length=255)
-    fecha_inicio = models.DateTimeField('Fecha de Inicio')
-    fecha_final = models.DateTimeField('Fecha de Vencimiento')
-    
+
     class Meta:
         verbose_name = "Estado de Cuenta"
         verbose_name_plural = "Estados de Cuentas"
+
+
+    def __str__(self):
+        return f"Estado de cuenta para crédito {self.credit.id} - Pago {self.payment.reference_number}"
+
+# ALERTAS
+class Alert(models.model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='Cliente')
+    message = models.CharField(max_length=150, blank=True, null=True, verbose_name='Mensaje')
+    def __str__(self):
+        return f'QUERIDO CLIENTE: {self.customer} LE RECORDAMOS: {self.message}'
+        
+    class Meta:
+        verbose_name = 'Alerta'
+        verbose_name_plural = 'Alertas'
 
 # Señales
 @receiver(pre_save, sender=Credit)
@@ -224,30 +223,14 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
         for pago in plan_pago.generar_plan():
             planPago = PaymentPlan(
                 mes=pago['mes'],
-                fecha_inicio=pago['fecha_inicio'],
-                fecha_final=pago['fecha_final'],
-                monto_prestado=pago['monto_prestado'],
+                start_date=pago['fecha_inicio'],
+                due_date=pago['fecha_final'],
+                outstanding_balance=pago['monto_prestado'],
                 mora=pago['mora'],
-                interes=pago['intereses'],
-                capital=pago['capital'],
-                cuota=pago['cuota'],
+                interest=pago['intereses'],
+                principal=pago['capital'],
+                installment=pago['cuota'],
                 credit_id=instance
             )
             planPago.save()
 
-@receiver(post_save, sender=Payment)
-def handle_payment_creation(sender, instance, created, **kwargs):
-    if created:
-        PaymentTransaction.objects.create(
-            payment=instance,
-            transaction_type='PAGO REALIZADO',
-            previous_status='PENDIENTE',
-            new_status=instance.estado_transaccion,
-            amount=instance.monto,
-            mora=instance.mora,
-            interest=instance.interes,
-            capital=instance.capital,
-            remaining_amount=instance.monto - (instance.mora + instance.interes + instance.capital),
-            description=instance.descripcion
-        )
-        print(f"Se ha registrado un nuevo pago con referencia {instance.numero_referencia}")

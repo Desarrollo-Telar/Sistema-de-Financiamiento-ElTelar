@@ -1,13 +1,10 @@
-from django.utils import timezone
 
-
+# DECIMAL
 from decimal import Decimal
 
-
+# TIEMPO
 from datetime import timedelta
-
-
-
+from django.utils import timezone
 
 
 def realizar_pago(credito_id, fecha_emision,  monto_pago):
@@ -15,23 +12,17 @@ def realizar_pago(credito_id, fecha_emision,  monto_pago):
         # Obtener el crédito
         credito = Credit.objects.get(id=credito_id)   
 
-
         # Verificar si el crédito ya está pagado
         if credito.is_paid_off:
             return "Este crédito ya está pagado en su totalidad."
 
-
-
         monto_restante = Decimal(monto_pago)
         fecha_pago = fecha_emision
-        pago_realizado = False
         
-
-
+        
         # Obtener las cuotas pendientes en orden cronológico
         cuotas = PaymentPlan.objects.filter(credit=credito, status=False).order_by('due_date')
         
-
 
         for cuota in cuotas:
             if monto_restante <= 0:
@@ -98,8 +89,6 @@ def realizar_pago(credito_id, fecha_emision,  monto_pago):
 
             cuota.save()
 
-
-
         # Si hay monto restante después de cubrir la cuota actual, aplicarlo a la siguiente cuota
         if monto_restante > 0 and not cuotas[-1].status:
             for cuota in cuotas:
@@ -118,8 +107,6 @@ def realizar_pago(credito_id, fecha_emision,  monto_pago):
 
                 cuota.save()
 
-
-
         # Si el monto no cubrió la cuota completa, acumular el saldo pendiente en la próxima cuota
         if monto_restante < 0:
             for i in range(len(cuotas)):
@@ -128,11 +115,8 @@ def realizar_pago(credito_id, fecha_emision,  monto_pago):
                     cuotas[i + 1].save()
                     break
 
-
-
         # Actualizar el saldo total del crédito
         credito.monto -= Decimal(monto_pago) - max(monto_restante, Decimal(0))
-
 
         if credito.monto <= 0:
             credito.monto = Decimal(0)
@@ -143,10 +127,11 @@ def realizar_pago(credito_id, fecha_emision,  monto_pago):
 
 
         # Registrar el pago
-        Payment.objects.create(credit=credito, monto=monto_pago)
-
+        #Payment.objects.create(credit=credito, monto=monto_pago, numero_referencia, fecha_emision,descripcion)
+        
         # Registrar en el estado de cuenta
-        if pago_realizado:
+        """ 
+        if pago_realizado == 'COMPLETADO':
             AccountStatement.objects.create(
                 credit=credito,
                 description=f"Pago recibido",
@@ -154,9 +139,9 @@ def realizar_pago(credito_id, fecha_emision,  monto_pago):
                 balance=credito.balance
             )
 
+        """
 
-
-        return f"Pago de {monto_pago} realizado exitosamente. Saldo restante: {credito.balance}"
+        return f"Pago de {monto_pago} realizado exitosamente. Saldo restante: {credito.monto}"
 
 
 
