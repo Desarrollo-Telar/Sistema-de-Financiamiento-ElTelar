@@ -21,7 +21,7 @@ class Credit:
         self.__tasa_interes = tasa_interes
         self.__forma_de_pago = forma_de_pago
         self.__frecuencia_pago = frecuencia_pago
-        self.__fecha_inicio = datetime.strptime(fecha_inicio, '%Y-%m-%d')
+        self.__fecha_inicio = fecha_inicio
         self.__fecha_vencimiento = fecha_vencimiento if fecha_vencimiento else self.calcular_fecha_vencimiento()
         self.__tipo_credito = tipo_credito
         self.__destino_id = destino_id

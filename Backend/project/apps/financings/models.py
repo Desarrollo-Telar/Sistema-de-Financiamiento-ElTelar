@@ -230,7 +230,7 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
             instance.tasa_interes, 
             instance.forma_de_pago, 
             instance.frecuencia_pago, 
-            datetime.strptime(instance.fecha_inicio,'%Y-%m-%d'), 
+            instance.fecha_inicio, 
             instance.tipo_credito, 
             instance.customer_id
         )

@@ -21,7 +21,8 @@ urlpatterns = [
     path('guarantee/',login_required(views.list_guarantee), name='list_guarantee'),
     path('disbursement/',login_required(views.list_disbursement), name='list_disbursement'),
     path('bank/',login_required(views.list_bank),name='list_bank'),
-    path('payment/',login_required(views.list_payment),name='list_payment')
+    path('payment/',login_required(views.list_payment),name='list_payment'),
+    path('payment/create',login_required(views.create_payment),name='create_payment'),
 ]
 
 urlpatterns+=routers.urlpatterns
