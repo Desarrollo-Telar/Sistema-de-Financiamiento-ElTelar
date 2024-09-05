@@ -165,13 +165,15 @@ class AccountStatement(models.Model):
     credit = models.ForeignKey('Credit', on_delete=models.CASCADE, related_name='account_statements')
     payment = models.ForeignKey('Payment', on_delete=models.CASCADE, related_name='account_statement')
     issue_date = models.DateField(default=timezone.now)
-    interest_paid = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
-    capital_paid = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
-    late_fee_paid = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    interest_paid = models.DecimalField('Interes Pagado',max_digits=10, decimal_places=2, default=0.0)
+    capital_paid = models.DecimalField('Capital Pagada',max_digits=10, decimal_places=2, default=0.0)
+    late_fee_paid = models.DecimalField('Mora Pagada',max_digits=10, decimal_places=2, default=0.0)
     saldo_pendiente = models.DecimalField('Saldo Pendiente', max_digits=12, decimal_places=2, default=0)
     abono = models.DecimalField('Abono', max_digits=12, decimal_places=2, default=0)    
     numero_referencia = models.CharField('Numero de Referencia', max_length=255)
-
+    description = models.TextField('Descripcion',blank=True, null=True )
+    verificar = models.BooleanField(default=False)
+    
     class Meta:
         verbose_name = "Estado de Cuenta"
         verbose_name_plural = "Estados de Cuentas"
@@ -186,7 +188,7 @@ class Alert(models.model):
     message = models.CharField(max_length=150, blank=True, null=True, verbose_name='Mensaje')
     def __str__(self):
         return f'QUERIDO CLIENTE: {self.customer} LE RECORDAMOS: {self.message}'
-        
+
     class Meta:
         verbose_name = 'Alerta'
         verbose_name_plural = 'Alertas'
