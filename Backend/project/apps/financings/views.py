@@ -66,7 +66,7 @@ def create_guarantee(request):
 @usuario_activo
 def list_bank(request):
     template_name = 'financings/bank/list.html'
-    documento = DocumentBank.objects.all()
+    
     
 
     context = {

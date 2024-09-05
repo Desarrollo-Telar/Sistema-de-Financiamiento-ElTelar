@@ -2,6 +2,7 @@ import csv
 import os
 import pandas as pd
 
+from .process_read_csv import process
 def read(file_path):
     nuevo = 'apps/financings/clases/buenoo.csv'
     # Elimina el archivo si ya existe antes de empezar a escribir
@@ -36,3 +37,4 @@ def read(file_path):
                 if row != ['Confidencial']:  # Evita filas con "Confidencial"
                     crear_archivo_nuevo(row)
                     #print(row)
+    process(nuevo)

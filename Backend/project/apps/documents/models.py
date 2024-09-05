@@ -91,18 +91,16 @@ def delete_document_files(sender, instance, **kwargs):
         instance.document.delete()
 
 
-@receiver(post_delete, sender=DocumentBank)
-def delete_document_files(sender, instance, **kwargs):
-    # instance.image es el campo del documento en el modelo de Documentos
-    if instance.document:
-        instance.document.delete()
+
+
 
 from apps.financings.read_csv import read
+
 from project.settings import MEDIA_ROOT
 import os
 
 @receiver(post_save, sender=DocumentBank)
 def subir(sender,instance, created, **kwargs):
     file_path = os.path.join(MEDIA_ROOT, str(instance.document))     
-    print(file_path)
+    #print(file_path)
     read(file_path)
