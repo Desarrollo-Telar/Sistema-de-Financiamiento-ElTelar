@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Banco, Payment
+from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Banco, Payment, AccountStatement
 # Register your models here.
 @admin.register(Credit)
 class CreditAdmin(admin.ModelAdmin):
@@ -25,3 +25,4 @@ admin.site.register(DetailsGuarantees)
 admin.site.register(Disbursement)
 admin.site.register(Banco)
 admin.site.register(Payment)
+admin.site.register(AccountStatement)
