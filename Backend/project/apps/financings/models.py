@@ -140,6 +140,8 @@ class Payment(models.Model):
     boleta = models.FileField("Boleta",blank=True, null=True,upload_to='pagos/boletas/')
     tipo_pago = models.CharField('Tipo de Pago', choices=TYPE_PAYMENT, max_length=75, default='CREDITO')
     
+    def fechaEmision(self):
+        return datetime.strftime(self.fecha_emision,'%d/%m/%Y')
     def __str__(self):
         return f'PAGO {self.numero_referencia} - {self.estado_transaccion}'
 

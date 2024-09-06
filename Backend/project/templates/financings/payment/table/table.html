@@ -1,0 +1,57 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 " style="text-align: center;">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha de Emision</th>
+                        <th scope="col">No. Referencia</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Estado</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for credit in payment_list %}
+
+                    <tr>
+                        <td scope="row">
+                            {{credit.fechaEmision}}
+                        </td>
+                        <td scope="row">
+
+                            {{credit.numero_referencia}}
+
+                        </td>
+                        <td scope="row">
+
+                            {{credit.monto}}
+
+
+                        </td>
+
+
+                        <td scope="row">
+                            {{credit.estado_transaccion}}
+                        </td>
+
+
+
+
+
+
+
+
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

@@ -82,6 +82,8 @@ def list_payment(request):
     context = {
         'title':'EL TELAR',
         'page_obj':page_obj,
+        'payment_list':page_obj
+
         
     }
     return render(request,template_name, context)
