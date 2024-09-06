@@ -60,7 +60,7 @@
                     data-bs-target="#nav-plan_inversion" type="button" role="tab" aria-controls="nav-plan_inversion"
                     aria-selected="true">Desembolso</button>
                 <button class="nav-link" id="nav-plan_inversion-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos"
-                    type="button" role="tab" aria-controls="nav-creditos" aria-selected="true" disabled>Ficha</button>
+                    type="button" role="tab" aria-controls="nav-creditos" aria-selected="true">Ficha</button>
 
             </div>
         </nav>
@@ -115,13 +115,7 @@
 
 
             </div>
-            <div class="tab-pane fade show " id="nav-referencia" role="tabpanel" aria-labelledby="nav-referencia-tab"
-                tabindex="0">
-                <div class="contenido">
 
-                </div>
-
-            </div>
             <div class="tab-pane fade show " id="nav-plan_inversion" role="tabpanel"
                 aria-labelledby="nav-plan_inversion-tab" tabindex="0">
                 <div class="contenido">
@@ -147,24 +141,12 @@
             <div class="tab-pane fade show " id="nav-creditos" role="tabpanel" aria-labelledby="nav-creditos-tab"
                 tabindex="0">
                 <div class="contenido">
+                    {% include 'financings/credit/snippets/estado_cuenta.html' %}
 
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
 
-                <div class="contenido">
-
-                </div>
-
-            </div>
-            <div class="tab-pane fade" id="nav-archivos" role="tabpanel" aria-labelledby="nav-archivos-tab"
-                tabindex="0">
-                <div class="contenido">
-
-
-                </div>
-            </div>
 
         </div>
 

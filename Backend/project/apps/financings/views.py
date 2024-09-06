@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
-from .models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan
+from .models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement
 from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
@@ -73,13 +73,14 @@ def create_guarantee(request):
 
 ### ----------------- LISTAR ------------------------ ###    
 from .functions import realizar_pago
+from .functions_payment import generar
 @login_required
 @usuario_activo
 def list_payment(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.all().order_by('id'))
     
-        
+    generar()
 
 
     context = {
@@ -157,6 +158,7 @@ def detail_credit(request,id):
 
     formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
     plan_pago = PaymentPlan.objects.filter(credit_id=credito)
+    estado_cuenta = AccountStatement.objects.filter(credit=credito)
 
     #credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1)
     #plan_pago = PaymentPlan(credit)
@@ -180,6 +182,7 @@ def detail_credit(request,id):
         'detalle_garantia':DetailsGuarantees.objects.all(),
         'total_garantia':total_garantia,
         'total_desembolso':total_desembolso,
+        'estado_cuenta':estado_cuenta,
 
     }
     return render(request, template_name,context)
