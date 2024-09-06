@@ -130,7 +130,7 @@ class Payment(models.Model):
     credit = models.ForeignKey(Credit, on_delete=models.CASCADE, verbose_name='Credito')
     monto = models.DecimalField('Monto', max_digits=12, decimal_places=2)
     numero_referencia = models.CharField('Numero de Referencia', max_length=255)
-    fecha_emision = models.DateTimeField('Fecha de Emision', default=timezone.now)
+    fecha_emision = models.DateField('Fecha de Emision', default=timezone.now)
     fecha_creacion = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     estado_transaccion = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDIENTE')
     descripcion = models.TextField(blank=True, null=True)

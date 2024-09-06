@@ -3,8 +3,11 @@ from decimal import Decimal
 
 # DAYS
 from dateutil.relativedelta import relativedelta
+from datetime import datetime, timedelta
 
 def calcular_interes(saldo_pendiente, tasa_interes, fecha_inicio, fecha_pago, fecha_emision):
+    
+
     dias_transcurridos = (fecha_pago - fecha_inicio).days
     fecha_vencimiento = fecha_inicio + relativedelta(months=1)
     fecha_gracia = fecha_vencimiento + relativedelta(days=15)
@@ -15,7 +18,7 @@ def calcular_interes(saldo_pendiente, tasa_interes, fecha_inicio, fecha_pago, fe
         dias_transcurridos = dias_adicionales
 
     interes_generado = (saldo_pendiente * tasa_interes / Decimal(365)) * Decimal(dias_transcurridos)
-
+    
     return interes_generado   
 
 def calcular_mora(saldo_pendiente, tasa_interes, fecha_vencimiento, fecha_pago):
