@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
-from .models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment
+from .models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan
 from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
@@ -26,7 +26,7 @@ from django.utils.decorators import method_decorator
 from project.pagination import paginacion
 
 # CLASES
-from .clases.paymentplan import PaymentPlan
+from .clases.paymentplan import PaymentPlan as PlanPagoos
 from .clases.credit import Credit as Credito
 
 # Create your views here.
@@ -72,12 +72,15 @@ def create_guarantee(request):
     return render(request,template_name,context)
 
 ### ----------------- LISTAR ------------------------ ###    
+from .functions import realizar_pago
 @login_required
 @usuario_activo
 def list_payment(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.all().order_by('id'))
     
+        
+
 
     context = {
         'title':'EL TELAR',
@@ -92,7 +95,7 @@ def list_payment(request):
 @usuario_activo
 def list_bank(request):
     template_name = 'financings/bank/list.html'
-    page_obj = paginacion(request, Banco.objects.all().order_by('id'))
+    page_obj = paginacion(request, Banco.objects.all().order_by('-fecha'))
     
 
     context = {
@@ -153,9 +156,10 @@ def detail_credit(request,id):
     list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('-id')
 
     formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
+    plan_pago = PaymentPlan.objects.filter(credit_id=credito)
 
-    credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1)
-    plan_pago = PaymentPlan(credit)
+    #credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1)
+    #plan_pago = PaymentPlan(credit)
     total_garantia = 0
     total_desembolso = 0
     for garantia in list_guarantee:
@@ -164,13 +168,13 @@ def detail_credit(request,id):
     for desembolso in list_disbursement:
         total_desembolso +=desembolso.monto_total_desembolso
     
-    plan = plan_pago.generar_plan()
+    #plan = plan_pago.generar_plan()
      
     context = {
         'title':'ELTELAR - CREDITO',
         'credit_list':credito,
         'customer_list':customer_list,
-        'plan':plan,
+        'plan':plan_pago,
         'list_guarantee':list_guarantee,
         'list_disbursement':list_disbursement,
         'detalle_garantia':DetailsGuarantees.objects.all(),

@@ -4,12 +4,12 @@ from decimal import Decimal
 # DAYS
 from dateutil.relativedelta import relativedelta
 
-def calcular_interes(saldo_pendiente, tasa_interes, fecha_inicio, fecha_pago):
+def calcular_interes(saldo_pendiente, tasa_interes, fecha_inicio, fecha_pago, fecha_emision):
     dias_transcurridos = (fecha_pago - fecha_inicio).days
     fecha_vencimiento = fecha_inicio + relativedelta(months=1)
     fecha_gracia = fecha_vencimiento + relativedelta(days=15)
     dias_total = (fecha_vencimiento - fecha_inicio).days
-    dias_atrasados = max((self.fecha_emision - fecha_vencimiento).days, 0)
+    dias_atrasados = max((fecha_emision - fecha_vencimiento).days, 0)
     if fecha_pago > fecha_gracia: 
         dias_adicionales = dias_total + (dias_atrasados-15)
         dias_transcurridos = dias_adicionales
