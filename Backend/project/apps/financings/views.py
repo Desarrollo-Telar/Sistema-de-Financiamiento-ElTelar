@@ -80,7 +80,7 @@ def list_payment(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.all().order_by('id'))
     
-    generar()
+    #generar()
 
 
     context = {
@@ -159,7 +159,11 @@ def detail_credit(request,id):
     formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
     plan_pago = PaymentPlan.objects.filter(credit_id=credito)
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
-
+    cuotas = PaymentPlan.objects.filter(credit_id=credito, status=False).order_by('due_date').first()
+    
+    
+    print(cuotas)
+    
     #credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1)
     #plan_pago = PaymentPlan(credit)
     total_garantia = 0
