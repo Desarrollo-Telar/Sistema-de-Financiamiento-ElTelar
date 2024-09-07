@@ -80,7 +80,7 @@ def list_payment(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.all().order_by('id'))
     
-    #generar()
+    generar()
 
 
     context = {

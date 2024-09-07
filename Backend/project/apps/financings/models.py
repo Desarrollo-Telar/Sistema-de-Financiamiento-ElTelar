@@ -130,7 +130,7 @@ class Payment(models.Model):
     credit = models.ForeignKey(Credit, on_delete=models.CASCADE, verbose_name='Credito')
     monto = models.DecimalField('Monto', max_digits=12, decimal_places=2)
     numero_referencia = models.CharField('Numero de Referencia', max_length=255)
-    fecha_emision = models.DateField('Fecha de Emision', default=timezone.now)
+    fecha_emision = models.DateTimeField('Fecha de Emision', default=timezone.now)
     fecha_creacion = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     estado_transaccion = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDIENTE')
     descripcion = models.TextField(blank=True, null=True)
@@ -195,6 +195,8 @@ class Payment(models.Model):
         dias_total = (cuota.due_date - cuota.start_date).days        
 
         dias_diferencia = max((self.fecha_emision - cuota.start_date).days, 0)
+
+
         dias_atrasados = max((self.fecha_emision - cuota.due_date).days, 0)
 
 
@@ -269,18 +271,21 @@ class Payment(models.Model):
         self.mora = procesar_pago('Mora', self.mora)
         if self.mora > 0:            
             self.registrar_pago('Mora', pagado_mora,saldo_pendiente)
+            print(f"Pago realizado parcialmente. Quedan Q{self.mora} de mora pendiente. ")
             return f"Pago realizado parcialmente. Quedan Q{self.mora} de mora pendiente. "
 
         # Procesar pago de intereses
         self.interes = procesar_pago('Interes', self.interes)
         if self.interes > 0:            
             self.registrar_pago('Interes', pagado_interes,saldo_pendiente)
+            print(f"Pago realizado parcialmente. Quedan Q{self.interes} de intereses pendientes. ")
             return f"Pago realizado parcialmente. Quedan Q{self.interes} de intereses pendientes. "
 
         # Procesar pago de capital
-        self.capital = procesar_pago('Capital', self.capital,saldo_pendiente)
+        self.capital = procesar_pago('Capital', self.capital)
         if self.capital > 0:                      
             self.registrar_pago('Capital', pagado_capital,saldo_pendiente)
+            print(f"Pago realizado parcialmente. Quedan Q{self.capital} de capital pendiente.")
             return f"Pago realizado parcialmente. Quedan Q{self.capital} de capital pendiente."
 
         # Si todo fue pagado completamente
@@ -290,45 +295,63 @@ class Payment(models.Model):
 
     def registrar_pago(self,tipo,monto, saldo_pendiente=None):
         cuota = self._cuota_pagar()
+        print(monto)
         
         if cuota:
-            cuota.status = True
+            cuota.status = True  # Marcar la cuota como pagada si el pago cubre todo el saldo pendiente
+            cuota.save()  # Guardar la cuota actualizada
 
+        # Crear un nuevo estado de cuenta
         estado_cuenta = AccountStatement()
         estado_cuenta.credit = self.credit
+        
+        # Registrar el tipo de pago
         if tipo == 'Mora':
             estado_cuenta.late_fee_paid = monto
         elif tipo == 'Interes':
             estado_cuenta.interest_paid = monto
         elif tipo == 'Capital':
             estado_cuenta.capital_paid = monto
-        else:
-            estado_cuenta.abono = monto
         
+        estado_cuenta.abono = monto
+        
+        # Asociar el estado de cuenta con la cuota y el saldo pendiente
         estado_cuenta.saldo_pendiente = saldo_pendiente
         estado_cuenta.numero_referencia = self.numero_referencia
         estado_cuenta.description = 'PAGO DEL CREDITO'
-        estado_cuenta.saldo_pendiente = saldo_pendiente
         
-        pagoss = Payment.objects.get(id=self.id)   
-        estado_cuenta.payment = pagoss
-        pagoss.estado_transaccion = 'COMPLEATADO'
-        pagoss.save()
-
-        nuevo_fechaIncio = cuota.due_date
+        # Asociar el pago al estado de cuenta
+        pago = Payment.objects.get(id=self.id)   
+        estado_cuenta.payment = pago
+        pago.estado_transaccion = 'COMPLETADO'
+        pago.save()
         
-        saldo = cuota.outstanding_balance
-        capi = cuota.principal
-        nuevo_monto = (saldo - capi) + saldo_pendiente 
-        credito = Credit.objects.get(id=self.credit.id)  
-
-        if  nuevo_monto >=0:
-            plan = PaymentPlan(due_date=nuevo_fechaIncio,outstanding_balance=nuevo_monto)
-            plan.save()
-        else:
-            credito.is_paid_off = True
-
+        # Guardar el estado de cuenta
         estado_cuenta.save()
+
+        # Crear una nueva cuota si es necesario
+        nuevo_monto = (cuota.outstanding_balance - cuota.principal) + (saldo_pendiente or 0)
+        print('CAPITAL',cuota.principal)
+        
+        if nuevo_monto > 0:
+            # Crear una nueva cuota con el saldo pendiente
+            nuevo_fecha_inicio = cuota.due_date
+            print(nuevo_fecha_inicio)
+            print(nuevo_monto)
+            """
+            plan = PaymentPlan(
+                credit_id=self.credit, 
+                start_date=nuevo_fecha_inicio, 
+                outstanding_balance=nuevo_monto, 
+                
+            )
+            plan.save()
+            """
+        else:
+            # Marcar el crédito como pagado si no hay saldo pendiente
+            credito = Credit.objects.get(id=self.credit.id)
+            credito.is_paid_off = True
+            credito.save()
         
 
         
@@ -357,7 +380,7 @@ class PaymentPlan(models.Model):
         if planes:
             for plan in planes:
                 contar +=1
-            self.mes = contar + 1
+            self.mes = contar
 
         else:
             self.mes = 1
