@@ -1,4 +1,4 @@
-version: "3"
+#version: "3"
 
 services:
   # Servicio de la base de datos PostgreSQL

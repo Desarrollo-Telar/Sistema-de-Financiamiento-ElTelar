@@ -72,7 +72,10 @@ class PaymentPlan:
         return self.__credit.fecha_inicio
 
     def inicial(self):
-        mes_inicial = self.mes_inicial()
+        mes_inicial = self.mes_inicial()  # Esto debería retornar un objeto 'datetime'
+        if isinstance(mes_inicial, str):  # Si mes_inicial es un string, lo conviertes
+            mes_inicial = datetime.strptime(mes_inicial, '%Y-%m-%d')
+        
         mes_final = mes_inicial + relativedelta(months=1)
         dias_diferencia = (mes_final - mes_inicial).days
 
@@ -81,22 +84,24 @@ class PaymentPlan:
             'fecha_inicio': mes_inicial,
             'fecha_final': mes_final,
             'monto_prestado': self.monto_inicial,
-            'mora':0,
+            'mora': 0,
         }
-        intereses = self.calculo_intereses(dias_diferencia,self.monto_inicial)
+        intereses = self.calculo_intereses(dias_diferencia, self.monto_inicial)
+        
         if self.forma_pago == 'NIVELADA':
             cuota = self.calculo_cuota()
             capital = self.calculo_capital(cuota, intereses)
         else:
             capital = self.calculo_capital()
             cuota = self.calculo_cuota(intereses, capital)
+
         dicio.update({
             'intereses': intereses,
             'capital': capital,
             'cuota': cuota,
-            'saldo_pendiente':0,
-            'total':cuota,
-            'estado':'PENDIENTE'
+            'saldo_pendiente': 0,
+            'total': cuota,
+            'estado': 'PENDIENTE'
         })
         return dicio
 

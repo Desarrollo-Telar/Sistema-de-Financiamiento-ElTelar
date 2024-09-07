@@ -388,7 +388,7 @@ class PaymentPlan(models.Model):
         return self.installment 
     
     def calculo_capital(self):
-        if self.credit_id.forma_pago == 'NIVELADA':
+        if self.credit_id.forma_de_pago == 'NIVELADA':
             self.principal = round(self.installment - self.interest, 2)
              
         else:

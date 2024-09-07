@@ -114,7 +114,8 @@ class Credit:
     def fecha_inicio(self, value):
         formato = '%Y-%m-%d'
         try:
-            self.__fecha_inicio = datetime.strptime(value, formato)
+            # Asegúrate de que 'value' se convierta correctamente a 'datetime'
+            self.__fecha_inicio = datetime.strptime(value, formato) if isinstance(value, str) else value
         except ValueError:
             self.__fecha_inicio = datetime.now()
     

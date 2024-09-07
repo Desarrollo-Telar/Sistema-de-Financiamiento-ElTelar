@@ -161,7 +161,8 @@ def detail_credit(request,id):
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
     
     
-    credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1)
+    credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1,None,credito.fecha_vencimiento)
+    
     plan_pago = PlanPagoos(credit)
     total_garantia = 0
     total_desembolso = 0
@@ -172,7 +173,7 @@ def detail_credit(request,id):
         total_desembolso +=desembolso.monto_total_desembolso
     
     plan = plan_pago.generar_plan()
-     
+   
     context = {
         'title':'ELTELAR - CREDITO',
         'credit_list':credito,
