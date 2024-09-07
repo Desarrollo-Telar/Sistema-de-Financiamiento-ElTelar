@@ -66,6 +66,12 @@
             </table>
         </div>
     </div>
+    <hr>
+    {% for sigue in siguiente_pago%}
+    <p>PARA EL SIGUIENTE PAGO LA CUOTA ES : Q{{sigue.installment}}</p>
+    <p>Y EL TOTAL PARA CANCELAR: Q{{sigue.total}}</p>
+    <p>LA FECHA LIMITE DE PAGO ES: {{sigue.due_date}}</p>
+    {% endfor %}
 
 
 </div>

@@ -157,7 +157,7 @@ def detail_credit(request,id):
     list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('-id')
 
     formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
-    #plan_pago = PaymentPlan.objects.filter(credit_id=credito)
+    siguiente_pago = PaymentPlan.objects.filter(credit_id=credito,status=False)
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
     
     
@@ -185,6 +185,7 @@ def detail_credit(request,id):
         'total_garantia':total_garantia,
         'total_desembolso':total_desembolso,
         'estado_cuenta':estado_cuenta,
+        'siguiente_pago':siguiente_pago,
 
     }
     return render(request, template_name,context)
