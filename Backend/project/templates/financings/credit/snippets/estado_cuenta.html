@@ -8,6 +8,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Fecha de Verificacion</th>
+                        <th scope="col">Fecha de Emision</th>
                         <th scope="col">No. Referencia</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Monto Pagado</th>
@@ -30,11 +31,18 @@
                         </td>
                         <td scope="row">
 
+                            {{credit.payment.fecha_emision}}
+
+                        </td>
+                        <td scope="row">
+
+
                             {{credit.numero_referencia}}
 
                         </td>
                         <td scope="row">
-                            {{credit.description}}
+                            <p>{{credit.description}}</p>
+
                         </td>
                         <td scope="row">
                             {{credit.abono}}
@@ -68,10 +76,14 @@
     </div>
     <hr>
     {% for sigue in siguiente_pago%}
-    <p>PARA EL SIGUIENTE PAGO LA CUOTA ES : Q{{sigue.installment}}</p>
-    <p>Y EL TOTAL PARA CANCELAR: Q{{sigue.total}}</p>
+    <p>PARA EL SIGUIENTE PAGO LA CUOTA ES : Q {{sigue.installment}}</p>
+    <p>EL SALDO CAPITAL PARA CANCELAR: Q {{sigue.outstanding_balance}}</p>
+    <p>EL INTERES PARA CANCELAR: Q {{sigue.interest}}</p>
+    <p>EL CAPITAL PARA CANCELAR: Q {{sigue.principal}}</p>
+    <p>Y EL TOTAL PARA CANCELAR: Q {{sigue.total}}</p>
     <p>LA FECHA LIMITE DE PAGO ES: {{sigue.due_date}}</p>
     {% endfor %}
 
 
 </div>
+<!-- CONENCTORES -->

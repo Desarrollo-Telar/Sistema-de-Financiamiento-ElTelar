@@ -188,6 +188,7 @@ class Payment(models.Model):
     
     def _calcular_total(self):
         cuota = self._cuota_pagar()
+        
         if cuota is None:
             return "No hay pagos pendientes para calcular el total."
 
@@ -200,7 +201,7 @@ class Payment(models.Model):
         dias_atrasados = max((self.fecha_emision - cuota.due_date).days, 0)
 
 
-        mora = self._calculo_mora(cuota.outstanding_balance, dias_atrasados - 15) if dias_atrasados > 15 else 0
+        mora = self._calculo_mora(cuota.saldo_pendiente, dias_atrasados - 15) if dias_atrasados > 15 else 0
 
         fecha_gracia = cuota.due_date + relativedelta(days=15)
         
@@ -208,30 +209,21 @@ class Payment(models.Model):
         if self.fecha_emision > fecha_gracia:  # Corrected condition
             dias_adicionales = dias_total + (dias_atrasados-15)
             total_dias = dias_total + dias_adicionales
-            intereses = self._calculo_intereses(dias_adicionales, cuota.outstanding_balance)
+            intereses = cuota.interes_acumulado+self._calculo_intereses(dias_adicionales, cuota.saldo_pendiente) - cuota.interes_pagado
         
         elif self.fecha_emision <cuota.due_date :
             
-            intereses = self._calculo_intereses(dias_diferencia, cuota.outstanding_balance)
+            intereses = cuota.interes_acumulado+self._calculo_intereses(dias_total, cuota.saldo_pendiente) - cuota.interes_pagado
         elif self.fecha_emision >=cuota.due_date or self.fecha_emision <= fecha_gracia:
-           intereses = self._calculo_intereses(dias_total, cuota.outstanding_balance)
+           intereses = cuota.interes_acumulado+self._calculo_intereses(dias_total, cuota.saldo_pendiente) - cuota.interes_pagado
 
-       
-        
-        if self.credit.forma_de_pago == 'NIVELADA':
-            cuota = self._calculo_cuota(intereses=intereses)
-            capital = self._calculo_capital(cuota=cuota, intereses=intereses)
-        else:
-            capital = self._calculo_capital()
-            cuota = self._calculo_cuota(intereses=intereses, capital=capital)
-        
-        total = round(mora + intereses + capital, 2)
+        total = round(mora + intereses , 2)
 
         res = {
             'total':total,
             'interes':intereses,
             'mora':mora,
-            'capital':capital
+           
         }
         
         return res
@@ -241,8 +233,6 @@ class Payment(models.Model):
         monto_depositado = self.monto
         mora = self._calcular_total()['mora']
         interes = self._calcular_total()['interes']
-        capital = self._calcular_total()['capital']
-        
 
         # Variables para registrar cuánto se pagó de cada parte
         pagado_mora = 0
@@ -263,8 +253,7 @@ class Payment(models.Model):
                     pagado_mora += monto_requerido
                 elif tipo == 'Interes':
                     pagado_interes += monto_requerido
-                elif tipo == 'Capital':
-                    pagado_capital += monto_requerido
+                
                 
                 return 0
             else:
@@ -274,8 +263,7 @@ class Payment(models.Model):
                     pagado_mora += monto_depositado
                 elif tipo == 'Interes':
                     pagado_interes += monto_depositado
-                elif tipo == 'Capital':
-                    pagado_capital += monto_depositado
+               
                 
                 monto_depositado = 0    
                 return saldo
@@ -284,46 +272,49 @@ class Payment(models.Model):
         mora = procesar_pago('Mora', mora)
  
         if mora > 0:            
-            self.registrar_pago('Mora', pagado_mora,pagado_interes,pagado_capital,self.monto,saldo_pendiente)
+            pagado_capital = monto_depositado
+            self.registrar_pago('Mora', pagado_mora,pagado_interes,pagado_capital,self.monto,interes,mora,saldo_pendiente)
             print(f"Pago realizado parcialmente. Quedan Q{mora} de mora pendiente. ")
             return f"Pago realizado parcialmente. Quedan Q{mora} de mora pendiente. "
 
         # Procesar pago de intereses
         interes = procesar_pago('Interes', interes)
         
-        if interes > 0:            
-            self.registrar_pago('Interes', pagado_mora,pagado_interes,pagado_capital,self.monto,saldo_pendiente)
+        if interes > 0:       
+            pagado_capital = monto_depositado     
+            self.registrar_pago('Interes', pagado_mora,pagado_interes,pagado_capital,self.monto,interes,mora,saldo_pendiente)
             print(f"Pago realizado parcialmente. Quedan Q{interes} de intereses pendientes. ")
             return f"Pago realizado parcialmente. Quedan Q{interes} de intereses pendientes. "
 
-        # Procesar pago de capital
-        capital = procesar_pago('Capital', capital)
         
-        if capital > 0:                      
-            self.registrar_pago('Capital', pagado_mora,pagado_interes,pagado_capital,self.monto,saldo_pendiente)
-            print(f"Pago realizado parcialmente. Quedan Q{capital} de capital pendiente.")
-            return f"Pago realizado parcialmente. Quedan Q{capital} de capital pendiente."
 
         # Si todo fue pagado completamente
-        self.registrar_pago('COMPLETO',pagado_mora,pagado_interes,pagado_capital,self.monto,saldo_pendiente)
+        pagado_capital = monto_depositado
+        saldo_pendiente = self._cuota_pagar().saldo_pendiente - pagado_capital
+        self.registrar_pago('COMPLETO',pagado_mora,pagado_interes,pagado_capital,self.monto,interes,mora,saldo_pendiente)
         return f"Pago realizado con éxito. Q{monto_depositado} restante."
        
 
         
 
-    def registrar_pago(self,tipo,pago_mora,pago_interes,pago_capital,monto, saldo_pendiente=None):
+    def registrar_pago(self,tipo,pago_mora,pago_interes,pago_capital,monto, interes_acumulado, mora_acumulada,saldo_pendiente=None ):
         cuota = self._cuota_pagar()
         mora = self._calcular_total()['mora']
         interes = self._calcular_total()['interes']
-        capital = self._calcular_total()['capital']
-        print(f'PAGO DEL CREDITO:\nPAGO MORA: {pago_mora} DE MORA GENERADA: {mora}\nPAGO INTERES: {pago_interes} DE INTERES GENERADO: {interes}\nPAGO CAPITAL: {pago_capital} DE CAPITAL GENERADO: {capital}')
+        
+        print(f'PAGO DEL CREDITO:\nPAGO MORA: {pago_mora} DE MORA GENERADA: {mora}\nPAGO INTERES: {pago_interes} DE INTERES GENERADO: {interes}\nAPORTACION A CAPITAL: {pago_capital} ')
         
 
+        cuota.interes_pagado = pago_interes
+        cuota.mora_pagado = pago_mora
+        cuota.saldo_pendiente -= pago_capital
+        cuota.interes_acumulado = interes_acumulado
+        cuota.mora_acumulada = mora_acumulada
+
+        if self.monto == cuota.principal or self.monto >= cuota.principal:
+            cuota.status = True
+            cuota.save()
         
-        
-        if cuota:
-            cuota.status = True  # Marcar la cuota como pagada si el pago cubre todo el saldo pendiente
-            cuota.save()  # Guardar la cuota actualizada
             
 
         # Crear un nuevo estado de cuenta
@@ -343,7 +334,14 @@ class Payment(models.Model):
         # Asociar el estado de cuenta con la cuota y el saldo pendiente
         estado_cuenta.saldo_pendiente = saldo_pendiente
         estado_cuenta.numero_referencia = self.numero_referencia
-        estado_cuenta.description = f'PAGO DEL CREDITO:\nPAGO MORA: {pago_mora} DE MORA GENERADA: {mora}\nPAGO INTERES: {pago_interes} DE INTERES GENERADO: {interes}\nPAGO CAPITAL: {pago_capital} DE CAPITAL GENERADO: {capital}'
+        descrip = f'''
+       
+        PAGO DEL CREDITO:
+        PAGO MORA: Q{pago_mora} DE MORA GENERADA Q{mora}
+        PAGO INTERES: Q{pago_interes} DE INTERES GENERADO: Q{interes}
+        APORTACION A CAPITAL: Q{pago_capital} '''
+
+        estado_cuenta.description = descrip
         
         # Asociar el pago al estado de cuenta
         pago = Payment.objects.get(id=self.id)   
@@ -354,13 +352,14 @@ class Payment(models.Model):
         # Guardar el estado de cuenta
         estado_cuenta.save()
 
-        # Crear una nueva cuota si es necesario
-        nuevo_monto = (cuota.outstanding_balance - cuota.principal) + (saldo_pendiente or 0)
+       
         
         
-        if nuevo_monto > 0:
+        if cuota.saldo_pendiente > 0:
             # Crear una nueva cuota con el saldo pendiente
             nuevo_fecha_inicio = cuota.due_date
+             # Crear una nueva cuota si es necesario
+            nuevo_monto = (cuota.outstanding_balance - cuota.principal)
             
            
             plan = PaymentPlan(
@@ -398,7 +397,12 @@ class PaymentPlan(models.Model):
     installment = models.DecimalField('Cuota',max_digits=12, decimal_places=2, default=0)
     status = models.BooleanField(default=False)
     credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE)
-    saldo_pendiente = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    # NUEVOS CAMPOS
+    saldo_pendiente = models.DecimalField('Saldo Pendiente',max_digits=12, decimal_places=2, default=0)
+    interes_pagado = models.DecimalField('Interes Pagado',max_digits=12, decimal_places=2, default=0)
+    mora_pagado = models.DecimalField('Mora Pagada', max_digits=12, decimal_places=2, default=0)
+    interes_acumulado = models.DecimalField('Interes Acumulada',max_digits=12, decimal_places=2, default=0)
+    mora_acumulada =  models.DecimalField('Mora Acumulada',max_digits=12, decimal_places=2, default=0)
 
     def no_mes(self):
         contar = 0
@@ -534,7 +538,7 @@ def pre_save_credito(sender, instance, **kwargs):
 @receiver(post_save, sender=Credit)
 def generar_plan_pagos(sender, instance, created, **kwargs):
     if created:
-        plan_pago = PaymentPlan(credit_id=instance,start_date=instance.fecha_inicio, outstanding_balance=instance.monto)
+        plan_pago = PaymentPlan(credit_id=instance,start_date=instance.fecha_inicio, outstanding_balance=instance.monto, saldo_pendiente=instance.monto)
         plan_pago.save()
      
 

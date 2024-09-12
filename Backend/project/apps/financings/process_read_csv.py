@@ -25,8 +25,8 @@ def process(nuevo):
             print(f"La referencia {referencia} ya existe. Ignorando...")
             continue  # Si ya existe, saltar este registro
         
-        banco = Banco(fecha=fecha,referencia=referencia,credito=credito)
-        banco.save()
+        #banco = Banco(fecha=fecha,referencia=referencia,credito=credito)
+        #banco.save()
         
         # Realizar alguna acción con los datos
         print(f"Fecha: {fecha}, Referencia: {referencia}, Crédito: {credito}")
