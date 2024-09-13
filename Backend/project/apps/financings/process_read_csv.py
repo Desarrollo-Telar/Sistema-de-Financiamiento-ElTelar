@@ -1,12 +1,15 @@
 import pandas as pd
 from apps.financings.models import Banco
 from datetime import datetime, timedelta
-
+import csv
+import os
+import pandas as pd
 def process(nuevo):
     # Leer el archivo CSV
-    df = pd.read_csv(nuevo, encoding='utf-8')  # Usa 'latin1' si es necesario
+    #nuevo = f'/code/{nuevo}'
+    df = pd.read_csv(nuevo, encoding='utf-8', on_bad_lines='skip')  # Usa 'latin1' si es necesario
 
-    #print("Columnas del archivo CSV:", df.columns)
+    #print("Columnas del archivo CSV:", df)
 
     # Filtrar las columnas 'Fecha', 'Referencia' y 'Crédito (+)'
     df_filtered = df[['Fecha', 'Referencia', 'Crédito (+)']]
@@ -25,8 +28,8 @@ def process(nuevo):
             print(f"La referencia {referencia} ya existe. Ignorando...")
             continue  # Si ya existe, saltar este registro
         
-        #banco = Banco(fecha=fecha,referencia=referencia,credito=credito)
-        #banco.save()
+        banco = Banco(fecha=fecha,referencia=referencia,credito=credito)
+        banco.save()
         
         # Realizar alguna acción con los datos
         print(f"Fecha: {fecha}, Referencia: {referencia}, Crédito: {credito}")

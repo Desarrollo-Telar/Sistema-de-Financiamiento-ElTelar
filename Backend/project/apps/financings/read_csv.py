@@ -24,7 +24,9 @@ def read(file_path):
         # Variable para activar la captura de los movimientos cuando se encuentra el encabezado
         capture_data = False
 
-        for row in file:            
+        for row in file:         
+             
+            
             # Detecta el encabezado para comenzar a capturar los datos relevantes
             if row == ['Fecha', 'Oficina', 'Descripción', 'Referencia', 'Secuencial', 'Cheque Propio / Local / Efectivo', 'Débito (-)', 'Crédito (+)', 'Saldo Contable', 'Saldo Disponible']:
                 capture_data = True
@@ -37,4 +39,5 @@ def read(file_path):
                 if row != ['Confidencial']:  # Evita filas con "Confidencial"
                     crear_archivo_nuevo(row)
                     #print(row)
+                
     process(nuevo)

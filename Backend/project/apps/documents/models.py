@@ -102,5 +102,5 @@ import os
 @receiver(post_save, sender=DocumentBank)
 def subir(sender,instance, created, **kwargs):
     file_path = os.path.join(MEDIA_ROOT, str(instance.document))     
-    #print(file_path)
+    print(file_path)
     read(file_path)
