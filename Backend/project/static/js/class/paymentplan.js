@@ -8,6 +8,7 @@ export class PaymentPlan {
         this._estado_pago = this.generarEstado();
         this._plan = [];
         this._plazo = parseInt(this._credit.plazo);
+        this._agregar = 0;
     }
 
     get plazo() {
@@ -48,7 +49,7 @@ export class PaymentPlan {
         } else {
             cuota = interes + capital;
         }
-        return parseFloat(cuota).toFixed(2);
+        return parseFloat(cuota+this._agregar).toFixed(2);
     }
 
     calculoCapital(cuota = null, intereses = null) {
@@ -93,9 +94,10 @@ export class PaymentPlan {
 
     generarPlan() {
         const plan = [this.inicial()];
+        this._plan.push(this.inicial())
 
         for (let mes = 2; mes <= this.plazo; mes++) {
-            const anterior = plan[plan.length - 1];
+            const anterior = this._plan[this._plan.length - 1];
             const montoPrestado = parseFloat(anterior.monto_prestado - anterior.capital).toFixed(2);
 
             const mesInicial = anterior.fecha_final;
@@ -124,9 +126,33 @@ export class PaymentPlan {
             dicio.capital = capital;
             dicio.cuota = cuota;
 
-            plan.push(dicio);
+            this._plan.push(dicio);
         }
 
-        return plan;
+        return this._plan;
+    }
+
+    recalcular_capital(){
+        let total_cap = 0;
+        let total_monto = this._credit.monto;
+        plan = this.generarPlan();
+        plan.forEach(element => {
+            total_cap += element['capital'];
+        });
+        let diferencia = total_monto - total_cap;
+        if (diferencia > 0){
+            let promedio = diferencia /this.plazo
+            this._plan.length = 0;
+            this._agregar = parseFloat(promedio).toFixed(2);
+            plan = this.generarPlan();
+
+
+
+
+        }
+        return this._plan
+            
+
+
     }
 }

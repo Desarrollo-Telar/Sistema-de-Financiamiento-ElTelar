@@ -95,7 +95,7 @@ function generar_plan() {
     );
 
     const plan_pago = new PaymentPlan(credito);
-    const plan = plan_pago.generarPlan();
+    const plan = plan_pago.recalcular_capital();
 
     console.log(credito.toJSON());
 

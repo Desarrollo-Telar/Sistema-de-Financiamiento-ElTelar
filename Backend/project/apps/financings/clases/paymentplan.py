@@ -173,9 +173,10 @@ if __name__ == '__main__':
     credito = Credit(destino.type_of_product_or_service, 50000, 36, 7.5, 'NIVELADA', 'MENSUAL', '2024-07-17', 'CONSUMO', destino, fiador)
     plan_pago = PaymentPlan(credito)
 
-    
+    #print(plan_pago.calculo_cuota())
     plan = plan_pago.recalcular_capital()
-    print(plan_pago._agregar)
+    #print(plan_pago._agregar)
+    #print(plan_pago.calculo_cuota())
     for pago in plan:
         print(pago)
    
