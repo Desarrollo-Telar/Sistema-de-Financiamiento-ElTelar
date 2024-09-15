@@ -140,9 +140,12 @@ class Credit:
         self.__customer_id = value
 
     def calcular_fecha_vencimiento(self):
-        fecha_inicio = self.__fecha_inicio
+        # Convertir fecha_inicio a un objeto datetime
+        fecha_inicio = datetime.strptime(self.__fecha_inicio, '%Y-%m-%d')
         plazo = self.__plazo
+        # Usar relativedelta para sumar meses al objeto datetime
         fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
+        # Devolver la fecha en formato string
         return fecha_vencimiento.strftime('%Y-%m-%d')
     
     def toJson(self):

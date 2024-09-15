@@ -16,6 +16,7 @@ class PaymentPlan:
         self.__estado_pago = self.generar_estado()
         self.__plan = []
         self.__plazo = int(self.__credit.plazo)
+        self._agregar = 0
     
     
 
@@ -57,10 +58,10 @@ class PaymentPlan:
             default_interes = self.interes / 12
             parte1 = (1 + default_interes) ** self.plazo * default_interes
             parte2 = (1 + default_interes) ** self.plazo - 1
-            cuota = (parte1 / parte2) * self.monto_inicial
+            cuota = ((parte1 / parte2) * self.monto_inicial) 
         else:
             cuota = interes + capital
-        return round(cuota, 2)
+        return round(cuota + self._agregar, 2)
 
     def calculo_capital(self, cuota=None, intereses=None):
         if self.forma_pago == 'NIVELADA':
@@ -106,10 +107,11 @@ class PaymentPlan:
         return dicio
 
     def generar_plan(self):
+        self.__plan.append(self.inicial())
         plan = [self.inicial()]
         
         for mes in range(2, self.plazo + 1):
-            anterior = plan[-1]
+            anterior = self.__plan[-1]
             monto_prestado = round(anterior['monto_prestado'] - anterior['capital'], 2)
             
             mes_inicial = anterior['fecha_final']
@@ -139,19 +141,44 @@ class PaymentPlan:
                 'total':cuota,
                 'estado':'PENDIENTE'
             })
-            plan.append(dicio)
-        return plan
+            self.__plan.append(dicio)
+        return self.__plan
+    
+    def recalcular_capital(self):
+        total_cap = 0
+        total_monto = self.__credit.monto
+        plan = self.generar_plan()
+        
+
+        for pago in plan:
+            total_cap = round(total_cap + pago['capital'],2)
+        
+        diferencia = round(total_monto - total_cap,2)
+        if diferencia > 0:
+            promedio = round(diferencia / self.plazo,2)    
+            self._agregar = promedio
+            self.__plan.clear()
+            plan = self.generar_plan()
+       
+
+        return self.__plan
+
+
+
 
 if __name__ == '__main__':
     fiador = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     cliente = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     destino = InvestmentPlan('CONSUMO', 1500, 750, 100, cliente)
-    credito = Credit(destino.type_of_product_or_service, 1000, 10, 5, 'NIVELADA', 'MENSUAL', '2024-07-17', 'CONSUMO', destino, fiador)
+    credito = Credit(destino.type_of_product_or_service, 50000, 36, 7.5, 'NIVELADA', 'MENSUAL', '2024-07-17', 'CONSUMO', destino, fiador)
     plan_pago = PaymentPlan(credito)
 
-    plan = plan_pago.generar_plan()
+    
+    plan = plan_pago.recalcular_capital()
+    print(plan_pago._agregar)
     for pago in plan:
         print(pago)
+   
     
 
 
