@@ -40,15 +40,20 @@ export class PaymentPlan {
     }
 
     calculoCuota(interes = null, capital = null) {
-        let cuota;
+        let cuota = 0;
+        let capi = parseFloat(capital);
         if (this.formaPago === 'NIVELADA') {
             const defaultInteres = this.interes / 12;
             const parte1 = (Math.pow(1 + defaultInteres, this.plazo) * defaultInteres);
             const parte2 = (Math.pow(1 + defaultInteres, this.plazo) - 1);
             cuota = (parte1 / parte2) * this.montoInicial;
-        } else {
-            cuota = interes + capital;
+        } else if (this.formaPago === 'AMORTIZACIONES A CAPITAL'){
+
+            cuota = parseFloat(interes) + parseFloat(capi);
+            
         }
+       
+        
         return parseFloat(cuota+this._agregar).toFixed(2);
     }
 
@@ -83,6 +88,7 @@ export class PaymentPlan {
             capital = this.calculoCapital(cuota, intereses);
         } else {
             capital = this.calculoCapital();
+            
             cuota = this.calculoCuota(intereses, capital);
         }
         dicio.intereses = intereses;
@@ -121,6 +127,7 @@ export class PaymentPlan {
                 capital = this.calculoCapital(cuota, intereses);
             } else {
                 capital = parseFloat(anterior.capital).toFixed(2);
+
                 cuota = this.calculoCuota(intereses, capital);
             }
             dicio.capital = capital;
@@ -135,7 +142,7 @@ export class PaymentPlan {
     recalcular_capital(){
         let total_cap = 0;
         let total_monto = this._credit.monto;
-        plan = this.generarPlan();
+        let plan = this.generarPlan();
         plan.forEach(element => {
             total_cap += element['capital'];
         });

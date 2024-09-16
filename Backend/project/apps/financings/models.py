@@ -311,7 +311,7 @@ class Payment(models.Model):
         cuota.interes_acumulado = interes_acumulado
         cuota.mora_acumulada = mora_acumulada
 
-        if self.monto == cuota.principal or self.monto >= cuota.principal:
+        if self.monto == cuota.installment or self.monto >= cuota.installment:
             cuota.status = True
             cuota.save()
         

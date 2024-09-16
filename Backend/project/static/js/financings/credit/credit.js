@@ -98,10 +98,11 @@ function generar_plan() {
     const plan = plan_pago.recalcular_capital();
 
     console.log(credito.toJSON());
+    
 
     plan.forEach(element => {
         const nueva_fila = tbody_plan.insertRow();
-        console.log(element);
+        
         nueva_fila.insertCell(0).textContent = element['mes'];
         nueva_fila.insertCell(1).textContent = transformarFecha(element['fecha_inicio']);
         nueva_fila.insertCell(2).textContent = transformarFecha(element['fecha_final']);
