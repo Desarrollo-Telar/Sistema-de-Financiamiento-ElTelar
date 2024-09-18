@@ -418,6 +418,15 @@ class PaymentPlan(models.Model):
         else:
             self.mes = 1
         return self.mes
+    
+    def calculo_mora(self):
+        mora = (self.saldo_pendiente * self.credit_id.tasa_interes ) * self.credit_id.tasa_mora
+        
+        fecha_actual = datetime.now().strftime('%Y-%m-%d')
+        if fecha_actual == self.due_date or fecha_actual >= self.due_date:
+            self.mora = round(mora,2)
+        
+        return self.mora
 
     def fecha_vencimiento(self):
         self.due_date = self.start_date + relativedelta(months=1)
@@ -425,6 +434,7 @@ class PaymentPlan(models.Model):
 
     def save(self,*args, **kwargs):
         #self.no_mes()
+        self.calculo_mora()
         self.fecha_vencimiento()
         #self.calculo_interes()
         """

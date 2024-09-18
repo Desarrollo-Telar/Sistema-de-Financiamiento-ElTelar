@@ -177,8 +177,7 @@ if __name__ == '__main__':
     plan = plan_pago.recalcular_capital()
     #print(plan_pago._agregar)
     #print(plan_pago.calculo_cuota())
-    for pago in plan:
-        print(pago)
+    print(datetime.now().strftime('%Y-%m-%d'))
    
     
 
