@@ -54,6 +54,9 @@ class Credit(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Cliente')
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     is_paid_off = models.BooleanField(default=False)
+    # NUEVOS ATRIBUTOS
+    tasa_mora = models.DecimalField("Tasa de Morosidad", decimal_places=2, max_digits=15, default=0.1)
+    saldo_pendiente = models.DecimalField("Saldo Pendiente", decimal_places=2, max_digits=15, default=0)
 
 
     def __str__(self):
@@ -534,6 +537,7 @@ def pre_save_credito(sender, instance, **kwargs):
             credit_code = f'{customer_code} / {counter}'
 
         instance.codigo_credito = credit_code
+        instance.saldo_pendiente = instance.monto
 
 @receiver(post_save, sender=Credit)
 def generar_plan_pagos(sender, instance, created, **kwargs):
