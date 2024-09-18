@@ -183,7 +183,7 @@ if __name__ == '__main__':
     fecha_vencimiento += relativedelta(days=15)
 
     print(fecha_vencimiento.strftime('%Y-%m-%d'))
-    print(fecha_limite.strftime('%Y-%m-%d'))
+    print(datetime.now().date())
    
     
 

@@ -146,23 +146,81 @@ class Payment(models.Model):
     def fechaEmision(self):
         return datetime.strftime(self.fecha_emision,'%d/%m/%Y')
     
-    def _calculo_intereses(self, dias=None, monto=None):
-        monto = monto or self.credit.monto
-        dias = dias or 0
-        intereses = ((monto * self.credit.tasa_interes) / 365) * dias
+    def _calculo_intereses(self):
+        monto = self.credit.saldo_pendiente 
+        intereses = (monto * self.credit.tasa_interes) 
         self.interes = round(intereses, 2)
         return self.interes
 
    
-    def _calculo_mora(self, saldo_pendiente, dias_atrasados):
-        tasa_mora_diaria = self.credit.tasa_interes / 365
-        dias_gracia = max(dias_atrasados - 15, 0)
-        mora = saldo_pendiente * tasa_mora_diaria * dias_gracia        
-        self.mora = round(mora, 2)
-        return self.mora
+    def _calculo_mora(self):
+        cuota = self._cuota_pagar()
+        return cuota.mora_acumulada
     
     def _cuota_pagar(self):
         return PaymentPlan.objects.filter(credit_id=self.credit, status=False).order_by('due_date').first()
+    
+    def realizar_pago(self):
+        if self.tipo_pago == 'DESEMBOLSO':
+            # registrar en el apartado de desembolso
+            return f'REGISTRO DE DESEMBOLSO'
+        saldo_pendiente = self.credit.saldo_pendiente
+        mora = self._calculo_mora()
+        interes = self._calculo_intereses()
+        monto_depositado = self.monto
+
+        pagado_mora = 0
+        pagado_interes = 0
+        aporte_capital = 0
+
+        def procesar_pago(tipo, monto_requerido):
+            nonlocal monto_depositado, pagado_mora, pagado_interes
+
+            if monto_depositado >= monto_requerido:
+                monto_depositado = round(monto_depositado - monto_requerido, 2)
+                
+                if tipo == 'Mora':
+                    pagado_mora += monto_requerido
+                elif tipo == 'Interes':
+                    pagado_interes += monto_requerido
+                
+                
+                return 0
+            else:
+                saldo = round(monto_requerido - monto_depositado, 2)
+                
+                if tipo == 'Mora':
+                    pagado_mora += monto_depositado
+                elif tipo == 'Interes':
+                    pagado_interes += monto_depositado
+               
+                
+                monto_depositado = 0    
+                return saldo
+        
+        # Procesar pago de mora
+        mora = procesar_pago('Mora', mora)
+ 
+        if mora > 0:     
+            aporte_capital = monto_depositado       
+                       
+            return f"Pago realizado parcialmente. Quedan Q{mora} de mora pendiente. "
+
+        # Procesar pago de intereses
+        interes = procesar_pago('Interes', interes)
+        
+        if interes > 0:       
+            aporte_capital = monto_depositado
+            
+            return f"Pago realizado parcialmente. Quedan Q{interes} de intereses pendientes. "
+        
+        aporte_capital = monto_depositado
+        saldo_pendiente -= aporte_capital
+        return f"Pago realizado con éxito. Q{self.monto} restante. Saldo pendiente total: Q{self.saldo_pendiente}"
+    
+    def _registrar_pago(self, pagado_mora, pagado_interes, aporte_capital):
+        pass
+
     
     
 
@@ -206,12 +264,12 @@ class PaymentPlan(models.Model):
     def calculo_mora(self):
         mora = (self.saldo_pendiente * self.credit_id.tasa_interes ) * self.credit_id.tasa_mora
         
-        fecha_actual = datetime.now()
+        fecha_actual = datetime.now().date()
          
         if fecha_actual >= self.fecha_limite:
             self.mora = round(mora,2)
         
-        return (self.mora + self.mora_acumulada)-self.mora_pagado
+        return self.mora
 
     def fecha_vencimiento(self):
         self.due_date = self.start_date + relativedelta(months=1)
@@ -221,6 +279,11 @@ class PaymentPlan(models.Model):
         fecha_inicio = datetime.strptime(self.start_date,'%Y-%m-%d')
         self.fecha_limite = fecha_inicio + relativedelta(months=1, days=15)
         return self.fecha_limite.strftime('%Y-%m-%d')
+    
+    def acumulacion_mora(self):
+        self.mora_acumulada -= self.mora_pagado
+        return round(self.mora_acumulada,2)
+
 
 
     def save(self,*args, **kwargs):
@@ -228,6 +291,7 @@ class PaymentPlan(models.Model):
         self.calculo_mora()
         self.fecha_vencimiento()
         self.fecha_limite()
+        self.acumulacion_mora()
         #self.calculo_interes()
         """
         if self.credit_id.forma_de_pago == 'NIVELADA':
