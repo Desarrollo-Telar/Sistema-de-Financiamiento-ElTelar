@@ -156,7 +156,7 @@ class Payment(models.Model):
    
     def _calculo_mora(self):
         cuota = self._cuota_pagar()
-        return cuota.mora_acumulada
+        return cuota.mora
     
     def _cuota_pagar(self):
         return PaymentPlan.objects.filter(credit_id=self.credit, status=False).order_by('due_date').first()
@@ -176,16 +176,21 @@ class Payment(models.Model):
             return f'EL CREDITO YA FUE PAGO'
 
         saldo_pendiente = self.credit.saldo_pendiente
+        mora_acumulada = self._cuota_pagar().mora_acumulada
         mora = self._calculo_mora()
         interes = self._calculo_intereses()
+        interes_acumulado = self._cuota_pagar().interes_acumulado
+
         monto_depositado = self.monto
 
         pagado_mora = 0
         pagado_interes = 0
+        pagado_acumulado_mora = 0
+        pagado_acumulado_interes = 0
         aporte_capital = 0
 
         def procesar_pago(tipo, monto_requerido):
-            nonlocal monto_depositado, pagado_mora, pagado_interes
+            nonlocal monto_depositado, pagado_mora, pagado_interes,pagado_acumulado_mora,pagado_acumulado_interes
 
             if monto_depositado >= monto_requerido:
                 monto_depositado = round(monto_depositado - monto_requerido, 2)
@@ -194,6 +199,10 @@ class Payment(models.Model):
                     pagado_mora += monto_requerido
                 elif tipo == 'Interes':
                     pagado_interes += monto_requerido
+                elif tipo == 'Mora Acumulada':
+                    pagado_acumulado_mora += monto_requerido
+                elif tipo == 'Interes Acumulado':
+                    pagado_acumulado_interes += monto_requerido
                 
                 
                 return 0
@@ -204,19 +213,36 @@ class Payment(models.Model):
                     pagado_mora += monto_depositado
                 elif tipo == 'Interes':
                     pagado_interes += monto_depositado
+                elif tipo == 'Mora Acumulada':
+                    pagado_acumulado_mora += monto_depositado
+                elif tipo == 'Interes Acumulado':
+                    pagado_acumulado_interes += monto_depositado
                
                 
                 monto_depositado = 0    
                 return saldo
         
+        # Procesar pago de mora acumulada
+        if mora_acumulada > 0:
+            mora_acumulada = procesar_pago('Mora Acumulada',mora_acumulada)
+            if mora_acumulada > 0:
+                aporte_capital = monto_depositado
+                return f'Pago realizado parcialmente. Quedan Q{mora_acumulada} de mora acumulada pendiente.'
+
         # Procesar pago de mora
-        mora = procesar_pago('Mora', mora)
- 
+        mora = procesar_pago('Mora', mora) 
         if mora > 0:     
             aporte_capital = monto_depositado       
                        
             return f"Pago realizado parcialmente. Quedan Q{mora} de mora pendiente. "
 
+        # Procesar pago de interes acumulado
+        if interes_acumulado > 0:
+            interes_acumulado  = procesar_pago('Interes Acumulado', interes_acumulado)
+            if interes_acumulado > 0:
+                aporte_capital = monto_depositado
+                return f'Pago realizado parcialmente. Quedan Q{interes_acumulado} de interes acumulado pendiente.'
+                
         # Procesar pago de intereses
         interes = procesar_pago('Interes', interes)
         
