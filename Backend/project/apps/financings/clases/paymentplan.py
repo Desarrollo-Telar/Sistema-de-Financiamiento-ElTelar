@@ -177,7 +177,13 @@ if __name__ == '__main__':
     plan = plan_pago.recalcular_capital()
     #print(plan_pago._agregar)
     #print(plan_pago.calculo_cuota())
-    print(datetime.now().strftime('%Y-%m-%d'))
+    fecha_inicio = datetime.strptime('2024-09-01','%Y-%m-%d')
+    fecha_vencimiento = fecha_inicio + relativedelta(months=1)
+    fecha_limite = fecha_inicio + relativedelta(months=1, days=15)
+    fecha_vencimiento += relativedelta(days=15)
+
+    print(fecha_vencimiento.strftime('%Y-%m-%d'))
+    print(fecha_limite.strftime('%Y-%m-%d'))
    
     
 
