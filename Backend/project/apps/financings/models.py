@@ -406,6 +406,7 @@ class PaymentPlan(models.Model):
     mora_pagado = models.DecimalField('Mora Pagada', max_digits=12, decimal_places=2, default=0)
     interes_acumulado = models.DecimalField('Interes Acumulada',max_digits=12, decimal_places=2, default=0)
     mora_acumulada =  models.DecimalField('Mora Acumulada',max_digits=12, decimal_places=2, default=0)
+    fecha_limite = models.DateField('Fecha de Limite',blank=True,null=True)
    
     def no_mes(self):
         contar = 0
@@ -422,9 +423,9 @@ class PaymentPlan(models.Model):
     def calculo_mora(self):
         mora = (self.saldo_pendiente * self.credit_id.tasa_interes ) * self.credit_id.tasa_mora
         
-        fecha_actual = datetime.now().strftime('%Y-%m-%d')
+        fecha_actual = datetime.now()
          
-        if fecha_actual >= self.fecha_limite():
+        if fecha_actual >= self.fecha_limite:
             self.mora = round(mora,2)
         
         return self.mora
@@ -434,14 +435,16 @@ class PaymentPlan(models.Model):
         return self.due_date
     
     def fecha_limite(self):
-        self.due_date +=   relativedelta(days=15)
-        return self.due_date.strftime('%Y-%m-%d')
+        fecha_inicio = datetime.strptime(self.start_date,'%Y-%m-%d')
+        self.fecha_limite = fecha_inicio + relativedelta(months=1, days=15)
+        return self.fecha_limite.strftime('%Y-%m-%d')
 
 
     def save(self,*args, **kwargs):
         #self.no_mes()
         self.calculo_mora()
         self.fecha_vencimiento()
+        self.fecha_limite()
         #self.calculo_interes()
         """
         if self.credit_id.forma_de_pago == 'NIVELADA':
