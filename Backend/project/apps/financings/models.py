@@ -428,7 +428,7 @@ class PaymentPlan(models.Model):
         if fecha_actual >= self.fecha_limite:
             self.mora = round(mora,2)
         
-        return self.mora
+        return self.mora + self.mora_acumulada
 
     def fecha_vencimiento(self):
         self.due_date = self.start_date + relativedelta(months=1)
