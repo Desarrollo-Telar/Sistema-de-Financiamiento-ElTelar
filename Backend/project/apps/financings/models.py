@@ -390,7 +390,7 @@ class Payment(models.Model):
 
 # PLAN DE PAGOS
 class PaymentPlan(models.Model):
-    mes = models.IntegerField('No.Mes',blank=True, null=True)  
+    mes = models.IntegerField('No.Mes',blank=True, null=True,default=1)  
     start_date = models.DateTimeField('Fecha de Inicio') # obligatorio
     due_date = models.DateTimeField('Fecha de Vencimiento',blank=True,null=True)
     outstanding_balance = models.DecimalField('Monto Prestado', max_digits=12, decimal_places=2, default=0) # obligatorio
@@ -406,71 +406,37 @@ class PaymentPlan(models.Model):
     mora_pagado = models.DecimalField('Mora Pagada', max_digits=12, decimal_places=2, default=0)
     interes_acumulado = models.DecimalField('Interes Acumulada',max_digits=12, decimal_places=2, default=0)
     mora_acumulada =  models.DecimalField('Mora Acumulada',max_digits=12, decimal_places=2, default=0)
-
+   
     def no_mes(self):
         contar = 0
         planes = PaymentPlan.objects.filter(credit_id=self.credit_id)
         if planes:
             for plan in planes:
                 contar +=1
-            self.mes = contar
+            self.mes = contar + 1
 
         else:
             self.mes = 1
         return self.mes
-    
-    def total(self):
-        return round(self.installment + self.saldo_pendiente,2)
-
-        
 
     def fecha_vencimiento(self):
         self.due_date = self.start_date + relativedelta(months=1)
         return self.due_date
 
-    def calculo_interes(self):
-        dia = (self.due_date - self.start_date).days
-        self.interest = round( ((self.outstanding_balance * self.credit_id.tasa_interes) / 365)*dia,2)
-
-        return round(self.interest,2)
-    
-    def calculo_cuota(self):
-        if self.credit_id.forma_de_pago == 'NIVELADA':
-            default_interes = self.credit_id.tasa_interes / 12
-            parte1 = (1 + default_interes) ** self.credit_id.plazo * default_interes
-            parte2 = (1 + default_interes) ** self.credit_id.plazo - 1
-            cuota = (parte1 / parte2) * self.credit_id.monto
-            
-        else:
-            cuota = self.interest + self.principal
-        self.installment = round(cuota,2)
-        return self.installment 
-    
-    def calculo_capital(self):
-        if self.credit_id.forma_de_pago == 'NIVELADA':
-            self.principal = round(self.installment - self.interest, 2)
-             
-        else:
-            self.principal = round(self.credit_id.monto / self.credit_id.plazo, 2)
-
-         
-        return self.principal
-    
     def save(self,*args, **kwargs):
-        self.no_mes()
+        #self.no_mes()
         self.fecha_vencimiento()
-        self.calculo_interes()
+        #self.calculo_interes()
+        """
         if self.credit_id.forma_de_pago == 'NIVELADA':
             self.calculo_cuota()
             self.calculo_capital()
         else:
             self.calculo_capital()
             self.calculo_cuota()
+        """
         super().save(*args, **kwargs)
-            
 
-
-    
     def __str__(self):
         return f'{self.mes}'
         
@@ -483,6 +449,7 @@ class AccountStatement(models.Model):
     credit = models.ForeignKey('Credit', on_delete=models.CASCADE, related_name='account_statements')
     payment = models.ForeignKey('Payment', on_delete=models.CASCADE, related_name='account_statement')
     issue_date = models.DateField(default=timezone.now)
+    disbursement_paid = models.DecimalField('Desembolso Pagado',max_digits=10, decimal_places=2, default=0.0)
     interest_paid = models.DecimalField('Interes Pagado',max_digits=10, decimal_places=2, default=0.0)
     capital_paid = models.DecimalField('Capital Pagada',max_digits=10, decimal_places=2, default=0.0)
     late_fee_paid = models.DecimalField('Mora Pagada',max_digits=10, decimal_places=2, default=0.0)
@@ -524,25 +491,5 @@ class Banco(models.Model):
     class Meta:
         verbose_name = 'Banco'
         verbose_name_plural = 'Bancos'
-# Señales
-@receiver(pre_save, sender=Credit)
-def pre_save_credito(sender, instance, **kwargs):
-    if not instance.codigo_credito or instance.codigo_credito == '':
-        counter = 1
-        customer_code = instance.customer_id.customer_code
-        credit_code = f'{customer_code} / {counter}'
 
-        while Credit.objects.filter(codigo_credito=credit_code).exists():
-            counter += 1
-            credit_code = f'{customer_code} / {counter}'
-
-        instance.codigo_credito = credit_code
-        instance.saldo_pendiente = instance.monto
-
-@receiver(post_save, sender=Credit)
-def generar_plan_pagos(sender, instance, created, **kwargs):
-    if created:
-        plan_pago = PaymentPlan(credit_id=instance,start_date=instance.fecha_inicio, outstanding_balance=instance.monto, saldo_pendiente=instance.monto)
-        plan_pago.save()
-     
 
