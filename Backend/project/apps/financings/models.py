@@ -247,6 +247,16 @@ class Payment(models.Model):
         cuota = self._cuota_pagar()
 
         # SE GENERA EL RECIBO
+        recibo = Recibo(
+            mora=cuota.mora,
+            interes=cuota.interest,
+            pago=pago,
+            total=self.monto,
+            aporte_capital=aporte_capital,
+            interes_pagado=pagado_interes,
+            mora_pagada=pagado_mora,
+            cliente=credito.customer_id
+        )
 
         # ACTUALIZAR LA CUOTA QUE SE ESTA CREANDO 
         cuota.interest -=pagado_interes
@@ -442,6 +452,8 @@ class Banco(models.Model):
     referencia = models.CharField('No.Referencia',max_length=100, unique=True)
     credito = models.DecimalField('Monto', decimal_places=2, max_digits=12)
 
+    debito = models.DecimalField('Debito', decimal_places=2, max_digits=12, default=0)
+    
     def __str__(self):
         return f'Fecha: {self.fecha} Referencia: {self.referencia} Monto: {self.credito}'
 
@@ -450,6 +462,7 @@ class Banco(models.Model):
         verbose_name_plural = 'Bancos'
 
 # RECIBO
+from num2words import num2words
 class Recibo(models.Model):
     fecha = models.DateField('Fecha De Recibo',default=timezone.now)
     recibo = models.IntegerField("No. Recibo", default=0)
@@ -461,6 +474,24 @@ class Recibo(models.Model):
     mora_pagada = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     aporte_capital = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     total  = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    def total_letras(self):
+        total = num2words(self.total,lang='es')
+        return f'{total} Quetzales'
+    
+    def interes_pagado_letras(self):
+        interes = num2words(self.interes_pagado,lang='es')
+        return f'{interes} Quetzales'
+
+    def mora_pagada_letras(self):
+        mora = num2words(self.mora_pagada,lang='es')
+        return f'{mora} Quetzales'
+    
+    def aporte_capital_letras(self):
+        capital = num2words(self.aporte_capital,lang='es')
+        return f'{capital} Quetzales'
+        
+
 
 
     

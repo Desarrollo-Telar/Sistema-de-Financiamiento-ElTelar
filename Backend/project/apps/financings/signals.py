@@ -2,7 +2,7 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
 # MODELOS
-from .models import Payment, AccountStatement, Credit, PaymentPlan, Banco
+from .models import Payment, AccountStatement, Credit, PaymentPlan, Banco, Recibo
 
 # FUNCIONALIDADES
 from .functions import realizar_pago
@@ -23,12 +23,22 @@ def registrar_pago_en_estado_de_cuenta(sender, instance, created, **kwargs):
         realizar_pago(instance.credit, instance.fecha_emision, instance.monto, instance)
 
 """
+
 @receiver(post_save, sender=Banco)
 def validar_con_pagos(sender,instance,created,**kwargs):
     if created:
         pagos = Payment.objects.filter(numero_referencia=instance.referencia)
 
 # Señales
+@receiver(pre_save, sender=Recibo)
+def generar_noRecibo(sender, instance, **kwargs):
+    if not instance.recibo or instance.recibo == 0:
+        counter = 1
+        while Recibo.objects.filter(recibo=counter).exists():
+            counter += 1
+
+        instance.recibo = counter
+
 @receiver(pre_save, sender=Credit)
 def pre_save_credito(sender, instance, **kwargs):
     if not instance.codigo_credito or instance.codigo_credito == '':

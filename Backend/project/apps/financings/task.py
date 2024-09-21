@@ -1,6 +1,6 @@
 from celery import shared_task
 from datetime import datetime
-from .models import PaymentPlan
+from .models import PaymentPlan, Payment
 
 def calculo_mora(saldo_pendiente, tasa_interes):
     mora = saldo_pendiente * (tasa_interes/12) * 0.1
@@ -15,22 +15,27 @@ def cambiar_plan():
     planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), status=False)
 
     for pago in planes:
-        pago.status = True     
-        pago.mora += calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)   
-        pago.save()
+        # Validar si hay algún pago registrado para este crédito y plan
+        boleta = Payment.objects.filter(credit=pago.credit_id)
+        if not boleta:
+            pago.status = True     
+            # Calcular la mora acumulada solo si hay atraso (después de 15 días)
+            mora_acumulada = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
+            pago.mora += mora_acumulada   
+            pago.save()
 
-        interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
-        interes_acumulado = pago.interest + interes
-        
-        
-        
-        # CARGAR UNA NUEVA CUOTA CON POSIBLE ACUMULO DE INTERES Y DE MORA
-        nuevo_plan = PaymentPlan(
-            saldo_pendiente=pago.saldo_pendiente, 
-            credit_id= pago.credit_id, 
-            start_date=pago.due_date,
-            mora=pago.mora, 
-            outstanding_balance=pago.saldo_pendiente,
-            interest=interes_acumulado
-            )
-        nuevo_plan.save()
+            interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
+            interes_acumulado = pago.interest + interes
+            
+            
+            
+            # CARGAR UNA NUEVA CUOTA CON POSIBLE ACUMULO DE INTERES Y DE MORA
+            nuevo_plan = PaymentPlan(
+                saldo_pendiente=pago.saldo_pendiente, 
+                credit_id= pago.credit_id, 
+                start_date=pago.due_date,
+                mora=pago.mora, 
+                outstanding_balance=pago.saldo_pendiente,
+                interest=interes_acumulado
+                )
+            nuevo_plan.save()
