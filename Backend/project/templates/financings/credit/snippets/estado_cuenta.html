@@ -7,7 +7,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Fecha de Verificacion</th>
+
                         <th scope="col">Fecha de Emision</th>
                         <th scope="col">No. Referencia</th>
                         <th scope="col">Descripcion</th>
@@ -16,6 +16,8 @@
                         <th scope="col">Interes Pagado</th>
                         <th scope="col">Capital Pagado</th>
                         <th scope="col">Saldo Pendiente</th>
+                        <th scope="col"></th>
+
 
                     </tr>
                 </thead>
@@ -23,12 +25,7 @@
                     {% for credit in estado_cuenta %}
 
                     <tr>
-                        <td scope="row">
 
-                            {{credit.issue_date}}
-
-
-                        </td>
                         <td scope="row">
 
                             {{credit.payment.fecha_emision}}
@@ -76,12 +73,21 @@
     </div>
     <hr>
     {% for sigue in siguiente_pago%}
-    <p>PARA EL SIGUIENTE PAGO LA CUOTA ES : Q {{sigue.installment}}</p>
-    <p>EL SALDO CAPITAL PARA CANCELAR: Q {{sigue.outstanding_balance}}</p>
-    <p>EL INTERES PARA CANCELAR: Q {{sigue.interest}}</p>
-    <p>EL CAPITAL PARA CANCELAR: Q {{sigue.principal}}</p>
-    <p>Y EL TOTAL PARA CANCELAR: Q {{sigue.total}}</p>
-    <p>LA FECHA LIMITE DE PAGO ES: {{sigue.due_date}}</p>
+    <div class="d-flex justify-content-center">
+        <p>EL SALDO CAPITAL PARA CANCELAR: Q {{sigue.saldo_pendiente}}</p>
+        <p>EL INTERES PARA CANCELAR: Q {{sigue.interest}}</p>
+
+        <p>Y EL TOTAL PARA CANCELAR: Q {{sigue.total}}</p>
+        <p>LA FECHA VENCIMIENTO DE PAGO ES: {{sigue.due_date}}</p>
+        <p>LA FECHA LMITE DE PAGO ES: {{sigue.fecha_limite}}</p>
+
+    </div>
+    <div class="row">
+
+
+    </div>
+
+
     {% endfor %}
 
 

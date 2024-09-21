@@ -63,8 +63,18 @@ class Credit(models.Model):
     def __str__(self):
         return self.codigo_credito
     
+    def tasa_interes_c(self):
+
+        tasa = float(self.tasa_interes)
+
+        if tasa > 1:
+            return (self.tasa_interes / 12)/100
+        return (self.tasa_interes/12)
+
+
+    
     def tasa_mensual(self):
-        return self.tasa_interes / 12
+        return self.tasa_interes
 
     class Meta:
         verbose_name = "Credito"
@@ -364,7 +374,7 @@ class PaymentPlan(models.Model):
         return self.mes
     
     def calculo_mora(self):
-        mora = (self.saldo_pendiente * self.credit_id.tasa_mensual() ) * self.credit_id.tasa_mora
+        mora = (self.saldo_pendiente * self.credit_id.tasa_interes ) * self.credit_id.tasa_mora
         
         fecha_actual = datetime.now().date()
          
@@ -374,7 +384,7 @@ class PaymentPlan(models.Model):
         return self.mora
 
     def calculo_interes(self):
-        interes = (self.saldo_pendiente * self.credit_id.tasa_mensual())
+        interes = (self.saldo_pendiente * self.credit_id.tasa_interes)
         self.interest = round(interes,2)
         return self.interest
 
@@ -382,17 +392,21 @@ class PaymentPlan(models.Model):
         interes = 12
 
     def fecha_vencimiento(self):
-        self.due_date = self.start_date + relativedelta(months=1)
+        self.due_date =  self.start_date + relativedelta(months=1)
         return self.due_date
     
     def fecha_limite(self):
-        fecha_inicio = datetime.strptime(self.start_date,'%Y-%m-%d')
-        self.fecha_limite = fecha_inicio + relativedelta(months=1, days=15)
+        #fecha_inicio = datetime.strptime(self.start_date)
+        self.fecha_limite = self.start_date + relativedelta(months=1, days=15)
         return self.fecha_limite
     
     def acumulacion_mora(self):
         self.mora_acumulada -= self.mora_pagado
         return round(self.mora_acumulada,2)
+    
+    def total(self):
+        total = self.mora + self.interest
+        return round(total,2)
     
     
 
@@ -402,6 +416,7 @@ class PaymentPlan(models.Model):
         #self.calculo_mora()
         self.fecha_vencimiento()
         self.fecha_limite()
+        #self.calculo_interes()
         super().save(*args, **kwargs)
 
     def __str__(self):

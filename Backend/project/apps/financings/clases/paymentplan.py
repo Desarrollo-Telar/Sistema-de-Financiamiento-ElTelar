@@ -50,12 +50,14 @@ class PaymentPlan:
     def calculo_intereses(self, dia=None,monto=None):
         if monto is None:
             monto = self.monto_inicial
-        intereses = ((monto * self.interes) / 365)*dia
+        #intereses = ((monto * self.interes) / 365)*dia
+        intereses = ((monto * self.interes) )
         return round(intereses, 2)
 
     def calculo_cuota(self, interes=None, capital=None):
         if self.forma_pago == 'NIVELADA':
-            default_interes = self.interes / 12
+            #default_interes = self.interes / 12
+            default_interes = self.interes
             parte1 = (1 + default_interes) ** self.plazo * default_interes
             parte2 = (1 + default_interes) ** self.plazo - 1
             cuota = ((parte1 / parte2) * self.monto_inicial) 
@@ -106,7 +108,7 @@ class PaymentPlan:
         })
         return dicio
 
-    def generar_plan(self):
+    def generar_plan(self):        
         self.__plan.append(self.inicial())
         plan = [self.inicial()]
         
@@ -162,6 +164,33 @@ class PaymentPlan:
        
 
         return self.__plan
+    
+    def calcular_total_capital(self):
+        total_cap = 0
+        plan = self.generar_plan()      
+        for pago in plan:
+            total_cap = round(total_cap + pago['capital'],2)
+        
+        return round(total_cap,2)
+    
+    def calcular_total_interes(self):
+        plan = self.generar_plan()
+        total_cap = 0
+        for pago in plan:
+            total_cap = round(total_cap + pago['intereses'],2)
+
+        return round(total_cap,2)
+    
+    def calcular_total_cuotas(self):
+        plan = self.generar_plan()
+        total_cuotas = 0
+        for pago in plan:
+           
+            total_cuotas += pago['cuota']
+           
+
+        return round(total_cuotas,2)
+
 
 
 
@@ -170,12 +199,13 @@ if __name__ == '__main__':
     fiador = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     cliente = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
     destino = InvestmentPlan('CONSUMO', 1500, 750, 100, cliente)
-    credito = Credit(destino.type_of_product_or_service, 50000, 36, 7.5, 'NIVELADA', 'MENSUAL', '2024-09-15', 'CONSUMO', destino, fiador)
+    credito = Credit(destino.type_of_product_or_service, 50000, 36, 0.1, 'NIVELADA', 'MENSUAL', '2024-09-15', 'CONSUMO', destino, fiador)
     plan_pago = PaymentPlan(credito)
 
     #print(plan_pago.calculo_cuota())
     plan = plan_pago.recalcular_capital()
-    #print(plan_pago._agregar)
+    print(plan_pago.calcular_total_cuotas())
+
     #print(plan_pago.calculo_cuota())
     fecha_inicio = datetime.strptime('2024-09-01','%Y-%m-%d')
     fecha_vencimiento = fecha_inicio + relativedelta(months=1)

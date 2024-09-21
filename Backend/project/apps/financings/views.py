@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
-from .models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement
+from .models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
 from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
@@ -186,6 +186,21 @@ def detail_credit(request,id):
         'total_desembolso':total_desembolso,
         'estado_cuenta':estado_cuenta,
         'siguiente_pago':siguiente_pago,
+        'total_cuota':plan_pago.calcular_total_cuotas(),
+        'total_capital':plan_pago.calcular_total_capital(),
+        'total_interes':plan_pago.calcular_total_interes()
 
     }
     return render(request, template_name,context)
+
+@login_required
+@usuario_activo
+def detallar_recibo(request):
+    #pago = Payment.objects.filter(estado_transaccion='COMPLETADO', id=id)
+    #recibo = Recibo.objects.get(pago=pago)
+    template_name = 'financings/credit/recibo/detail.html'
+    context = {
+        'title':'ELTELAR - RECIBO',
+    }
+    return render(request, template_name, context)
+

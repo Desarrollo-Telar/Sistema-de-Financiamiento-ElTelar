@@ -44,8 +44,8 @@ class Credit:
         tasa = float(self.__tasa_interes)
 
         if tasa > 1:
-            return (self.__tasa_interes / 12)/100
-        return (self.__tasa_interes/12)
+            return (self.__tasa_interes )/100
+        return (self.__tasa_interes)
 
     @property
     def forma_de_pago(self):

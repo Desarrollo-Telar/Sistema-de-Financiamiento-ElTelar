@@ -54,12 +54,12 @@ def pre_save_credito(sender, instance, **kwargs):
         
 
 def calculo_interes(saldo_pendiente, tasa_interes):
-    interes = saldo_pendiente * (tasa_interes /12)
+    interes = saldo_pendiente * tasa_interes 
     return round(interes,2)
 
 def calcular_fecha_vencimiento(fecha_inicio):
     # Convertir fecha_inicio a un objeto datetime
-    fecha_inicio = datetime.strptime(fecha_inicio, '%Y-%m-%d')
+    #fecha_inicio = datetime.strptime(fecha_inicio)
     plazo = 1
     # Usar relativedelta para sumar meses al objeto datetime
     fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
@@ -69,7 +69,7 @@ def calcular_fecha_vencimiento(fecha_inicio):
 def calcular_fecha_maxima(fecha_inicio):
     
     # Convertir fecha_inicio a un objeto datetime
-    fecha_inicio = datetime.strptime(fecha_inicio, '%Y-%m-%d')
+    #fecha_inicio = datetime.strptime(fecha_inicio)
     plazo = 1
     # Usar relativedelta para sumar meses al objeto datetime
     fecha_limite = fecha_inicio + relativedelta(months=plazo, days= 15)
@@ -90,6 +90,7 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
         interes = calculo_interes(instance.saldo_pendiente, instance.tasa_interes)
         # GENERACION DE FECHA LIMITE DE PAGO 15 DIAS
         fecha_limite = calcular_fecha_maxima(instance.fecha_inicio)
+        print(fecha_limite)
         # FECHA DE VENCIMIENTO
         fecha_vencimiento = calcular_fecha_vencimiento(instance.fecha_inicio)
         
@@ -100,7 +101,7 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
             outstanding_balance=instance.monto, 
             saldo_pendiente=instance.monto,
             interest=interes,
-            fecha_limite = fecha_limite,
+            #fecha_limite = fecha_limite,
             due_date=fecha_vencimiento
             )
         plan_pago.save()
