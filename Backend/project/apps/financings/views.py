@@ -203,6 +203,7 @@ def detallar_recibo(request,id):
     template_name = 'financings/credit/recibo/detail.html'
     context = {
         'title':'ELTELAR - RECIBO',
+        'recibo':recibo,
     }
     return render(request, template_name, context)
 
