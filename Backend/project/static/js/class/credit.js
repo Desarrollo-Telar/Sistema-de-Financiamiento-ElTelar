@@ -43,7 +43,8 @@ export class Credit {
 
     get tasaInteres() {
         const tasa = this.#tasa_interes;
-        return tasa > 1 ? tasa / 100 : tasa;
+
+        return tasa > 1 ? (tasa / 12)/100 : tasa/12;
     }
 
     get formaDePago() {
