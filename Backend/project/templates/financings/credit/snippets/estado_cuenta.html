@@ -56,6 +56,9 @@
                         <td scope="row">
                             {{credit.saldo_pendiente}}
                         </td>
+                        <td>
+                            <a href="{% url 'financings:recibo' credit.payment.id %}">RECIBO</a>
+                        </td>
 
 
 

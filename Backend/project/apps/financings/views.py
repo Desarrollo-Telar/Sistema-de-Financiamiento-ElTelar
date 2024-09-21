@@ -195,9 +195,11 @@ def detail_credit(request,id):
 
 @login_required
 @usuario_activo
-def detallar_recibo(request):
-    #pago = Payment.objects.filter(estado_transaccion='COMPLETADO', id=id)
-    #recibo = Recibo.objects.get(pago=pago)
+def detallar_recibo(request,id):
+    pago = Payment.objects.filter(estado_transaccion='COMPLETADO', id=id)
+    if not pago:
+        return redirect('index')
+    recibo = Recibo.objects.get(pago=pago)
     template_name = 'financings/credit/recibo/detail.html'
     context = {
         'title':'ELTELAR - RECIBO',

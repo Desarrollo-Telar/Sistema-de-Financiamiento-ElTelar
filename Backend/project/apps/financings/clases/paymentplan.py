@@ -51,6 +51,7 @@ class PaymentPlan:
         if monto is None:
             monto = self.monto_inicial
         #intereses = ((monto * self.interes) / 365)*dia
+        print(f'{monto} {self.interes}')
         intereses = ((monto * self.interes) )
         return round(intereses, 2)
 
@@ -108,7 +109,8 @@ class PaymentPlan:
         })
         return dicio
 
-    def generar_plan(self):        
+    def generar_plan(self):   
+        self.__plan.clear()     
         self.__plan.append(self.inicial())
         plan = [self.inicial()]
         
@@ -167,14 +169,14 @@ class PaymentPlan:
     
     def calcular_total_capital(self):
         total_cap = 0
-        plan = self.generar_plan()      
+        plan = self.recalcular_capital()      
         for pago in plan:
             total_cap = round(total_cap + pago['capital'],2)
         
         return round(total_cap,2)
     
     def calcular_total_interes(self):
-        plan = self.generar_plan()
+        plan = self.recalcular_capital()
         total_cap = 0
         for pago in plan:
             total_cap = round(total_cap + pago['intereses'],2)
@@ -182,7 +184,7 @@ class PaymentPlan:
         return round(total_cap,2)
     
     def calcular_total_cuotas(self):
-        plan = self.generar_plan()
+        plan = self.recalcular_capital()
         total_cuotas = 0
         for pago in plan:
            

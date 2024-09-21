@@ -23,7 +23,7 @@ urlpatterns = [
     path('bank/',login_required(views.list_bank),name='list_bank'),
     path('payment/',login_required(views.list_payment),name='list_payment'),
     path('payment/create',login_required(views.create_payment),name='create_payment'),
-    path('recibo',login_required(views.detallar_recibo), name='recibo')
+    path('recibo/<int:id>/',login_required(views.detallar_recibo), name='recibo')
 ]
 
 urlpatterns+=routers.urlpatterns
