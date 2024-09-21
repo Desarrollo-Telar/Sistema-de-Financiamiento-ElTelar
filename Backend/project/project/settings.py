@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'coreapi', 
     'apps.documents',
     'apps.financings',
+    'django_celery_beat',
     #'django_inlinecss',
     #'otp',
 ]
@@ -143,6 +144,19 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_TIMEZONE = "America/Guatemala"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
+
+# Configuración de Celery Beat
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'tarea-diaria-a-medianoche': {
+        'task': 'finnacings.tasks.cambiar_plan',
+        'schedule': crontab(minute=0, hour=0),  # A las 00:00 hrs
+        'options': {'time_limit': 300},
+    },
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
