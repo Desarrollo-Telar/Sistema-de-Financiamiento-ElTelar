@@ -51,7 +51,7 @@ class PaymentPlan:
         if monto is None:
             monto = self.monto_inicial
         #intereses = ((monto * self.interes) / 365)*dia
-        print(f'{monto} {self.interes}')
+        
         intereses = ((monto * self.interes) )
         return round(intereses, 2)
 
