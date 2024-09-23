@@ -415,16 +415,14 @@ class PaymentPlan(models.Model):
         return round(total,2)
     
     
-
+    """
     def save(self,*args, **kwargs):
-        
-        
         #self.calculo_mora()
-        self.fecha_vencimiento()
-        self.fecha_limite()
+        #self.fecha_vencimiento()
+        #self.fecha_limite()
         #self.calculo_interes()
         super().save(*args, **kwargs)
-
+    """
     def __str__(self):
         return f'{self.mes}'
         
