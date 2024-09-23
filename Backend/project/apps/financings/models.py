@@ -186,15 +186,16 @@ class Payment(models.Model):
     
 
     def realizar_pago(self):
+        print('ESTOY REALIZANDO EL PAGO')
         if self.tipo_pago == 'DESEMBOLSO':
             # registrar en el apartado de desembolso
             return f'REGISTRO DE DESEMBOLSO'
         
         if self.credito().is_paid_off:
             return f'EL CREDITO YA FUE PAGO'
-
-        saldo_pendiente = self.credit.saldo_pendiente
         
+
+        saldo_pendiente = self.credito().saldo_pendiente
         mora = self._calculo_mora()
         interes = self._calculo_intereses()
         monto_depositado = self.monto
@@ -235,6 +236,7 @@ class Payment(models.Model):
         mora = procesar_pago('Mora', mora) 
         if mora > 0:     
             aporte_capital = monto_depositado       
+            self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente)
                        
             return f"Pago realizado parcialmente. Quedan Q{mora} de mora pendiente. "
 
@@ -244,11 +246,12 @@ class Payment(models.Model):
         
         if interes > 0:       
             aporte_capital = monto_depositado
-            
+            self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente)
             return f"Pago realizado parcialmente. Quedan Q{interes} de intereses pendientes. "
         
         aporte_capital = monto_depositado
         saldo_pendiente -= aporte_capital
+        self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente)
         return f"Pago realizado con éxito. Q{self.monto} restante. Saldo pendiente total: Q{self.saldo_pendiente}"
     
     def _registrar_pago(self, pagado_mora, pagado_interes,aporte_capital, saldo_pendiente):
@@ -267,8 +270,11 @@ class Payment(models.Model):
             mora_pagada=pagado_mora,
             cliente=credito.customer_id
         )
+        recibo.save()
 
         # ACTUALIZAR LA CUOTA QUE SE ESTA CREANDO 
+                            # 500 - 100 = 400
+        cuota.interest = cuota.interest - pagado_interes
         cuota.interest -=pagado_interes
         cuota.mora -= pagado_mora
         cuota.saldo_pendiente = saldo_pendiente
@@ -315,7 +321,7 @@ class Payment(models.Model):
         # GENERAR OTRA CUOTA A PAGAR CUANDO EL MONTO DEPOSITADO ES MAYOR QUE EL TOTAL A PAGAR
         def calculo_interes(saldo_pendiente, tasa_interes):
             # CALCULAR TASA DE INTERES NUEVA
-            interes = saldo_pendiente * (tasa_interes /12)
+            interes = saldo_pendiente * (tasa_interes )
             return round(interes,2)
 
         if self.monto >= self._calcular_total():

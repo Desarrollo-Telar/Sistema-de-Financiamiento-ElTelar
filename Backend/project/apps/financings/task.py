@@ -3,16 +3,16 @@ from datetime import datetime
 from .models import PaymentPlan, Payment
 
 def calculo_mora(saldo_pendiente, tasa_interes):
-    mora = saldo_pendiente * (tasa_interes/12) * 0.1
+    mora = saldo_pendiente * (tasa_interes) * 0.1
     return round(mora,2)
 
 def calculo_interes(saldo_pendiente, tasa_interes):
-    interes = saldo_pendiente * (tasa_interes /12)
+    interes = saldo_pendiente * (tasa_interes )
     return round(interes,2)
 
 @shared_task
 def cambiar_plan():
-    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), status=False)
+    planes = PaymentPlan.objects.filter(due_date=datetime.now(), status=False)
 
     for pago in planes:
         # Validar si hay algún pago registrado para este crédito y plan
@@ -21,6 +21,8 @@ def cambiar_plan():
             pago.status = True     
             # Calcular la mora acumulada solo si hay atraso (después de 15 días)
             mora_acumulada = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
+            # nueva mora = 15 + 150 
+            #pago.mora = pago.mora + mora_acumulada
             pago.mora += mora_acumulada   
             pago.save()
 

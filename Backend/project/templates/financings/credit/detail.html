@@ -38,6 +38,7 @@
             <p class="fw-medium">FECHA DE CREACION DEL CREDITO: <span
                     class="fw-light">{{credit_list.creation_date}}</span>
             </p>
+            <p>{{credit_list.is_paid_off}}</p>
             <a href="{% url 'financings:create_payment' %}">Generar Pago</a>
 
 

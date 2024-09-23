@@ -29,6 +29,9 @@ from project.pagination import paginacion
 from .clases.paymentplan import PaymentPlan as PlanPagoos
 from .clases.credit import Credit as Credito
 
+# TAREA ASINCRONICO
+from .task import cambiar_plan
+
 # Create your views here.
 ### ------------------- CREAR ---------------------- ###
 @login_required
@@ -146,6 +149,7 @@ def list_disbursement(request):
 
 
 ### ------------ DETALLE -------------- ###
+from datetime import datetime
 @login_required
 @usuario_activo
 def detail_credit(request,id):
@@ -173,6 +177,7 @@ def detail_credit(request,id):
         total_desembolso +=desembolso.monto_total_desembolso
     
     plan = plan_pago.generar_plan()
+    
    
     context = {
         'title':'ELTELAR - CREDITO',
@@ -196,10 +201,14 @@ def detail_credit(request,id):
 @login_required
 @usuario_activo
 def detallar_recibo(request,id):
-    pago = Payment.objects.filter(estado_transaccion='COMPLETADO', id=id)
+   
+    pago = get_object_or_404(Payment, id=id)
+    recibo = get_object_or_404(Recibo, pago=pago)
+
     if not pago:
         return redirect('index')
-    recibo = Recibo.objects.get(pago=pago)
+
+   
     template_name = 'financings/credit/recibo/detail.html'
     context = {
         'title':'ELTELAR - RECIBO',
