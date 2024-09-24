@@ -401,7 +401,7 @@ class PaymentPlan(models.Model):
         self.due_date =  self.start_date + relativedelta(months=1)
         return self.due_date
     
-    def fecha_limite(self):
+    def calculo_fecha_limite(self):
         #fecha_inicio = datetime.strptime(self.start_date)
         self.fecha_limite = self.start_date + relativedelta(months=1, days=15)
         return self.fecha_limite
@@ -411,18 +411,46 @@ class PaymentPlan(models.Model):
         return round(self.mora_acumulada,2)
     
     def total(self):
-        total = self.mora + self.interest
+        total = self.mora + self.interest + self.calculo_capital()
         return round(total,2)
     
+    def calculo_cuota(self):
+        forma_pago = self.credit_id.forma_de_pago
+        tasa_interes = self.credit_id.tasa_interes
+        plazo = self.credit_id.plazo
+        monto = self.credit_id.monto
+
+        if forma_pago == 'NIVELADA':
+            #default_interes = self.interes / 12
+            default_interes = tasa_interes
+            parte1 = (1 + default_interes) ** plazo * default_interes
+            parte2 = (1 + default_interes) ** plazo - 1
+            cuota = ((parte1 / parte2) * monto) 
+        else:
+            cuota = interes + capital
+        return round(cuota, 2)
     
-    """
+    def calculo_capital(self):
+        forma_pago = self.credit_id.forma_de_pago
+        cuota = self.calculo_cuota()
+        monto_inicial = self.credit_id.monto
+        plazo = self.credit_id.plazo
+        intereses = self.interest
+
+        if forma_pago == 'NIVELADA':
+            return round(cuota - intereses, 2)
+        else:
+            return round(monto_inicial / plazo, 2)
+    
+    
+   
     def save(self,*args, **kwargs):
         #self.calculo_mora()
-        #self.fecha_vencimiento()
-        #self.fecha_limite()
+        self.fecha_vencimiento()
+        self.calculo_fecha_limite()
         #self.calculo_interes()
         super().save(*args, **kwargs)
-    """
+    
     def __str__(self):
         return f'{self.mes}'
         
