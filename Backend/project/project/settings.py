@@ -53,7 +53,28 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # MIDDLEWARE 
+    'project.middleware.AutoLogoutMiddleware',
+    'project.middleware.RestrictedAccessByTimeMiddleware',
 ]
+
+
+
+# Configura el tiempo de expiración de la sesión a 30 minutos
+SESSION_COOKIE_AGE = 1800  # 30 minutos en segundos
+
+# Define que la sesión se cierre cuando el navegador se cierre
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Opcional: Si deseas que se borre la sesión de la base de datos al expirar
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
+
+# Definir las horas de acceso permitido
+ALLOWED_ACCESS_START_HOUR = 1   # Hora de inicio permitida (01:00 AM)
+
+ALLOWED_ACCESS_END_HOUR = 23    # Hora de fin permitida (11:00 PM)
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
