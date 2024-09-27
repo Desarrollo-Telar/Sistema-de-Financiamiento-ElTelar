@@ -169,6 +169,9 @@
                             results: data.map(function (item) {
                                 const monto_credito = document.getElementById('monto');
                                 monto_credito.value = item.monto;
+
+                                const saldo_anterior = document.getElementById('saldo_anterior');
+                                saldo_anterior.value = item.saldo_pendiente;
                                 return {
                                     id: item.id,
                                     text: item.codigo_credito + ' ' + item.customer_id.first_name + ' ' + item.customer_id.last_name

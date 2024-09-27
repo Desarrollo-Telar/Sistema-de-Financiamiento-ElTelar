@@ -39,7 +39,9 @@ class CreditSerializer(serializers.ModelSerializer):
             'fecha_vencimiento':instance.fecha_vencimiento,
             'tipo_credito':instance.tipo_credito,
             #'destino_id':instance.destino_id,
-            'codigo_credito':instance.codigo_credito
+            'codigo_credito':instance.codigo_credito,
+            'saldo_actual':instance.saldo_actual,
+            'saldo_pendiente':instance.saldo_pendiente,
         }
 
 
