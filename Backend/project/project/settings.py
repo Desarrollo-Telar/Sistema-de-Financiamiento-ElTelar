@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # MIDDLEWARE 
     'project.middleware.AutoLogoutMiddleware',
-    'project.middleware.RestrictedAccessByTimeMiddleware',
+    #'project.middleware.RestrictedAccessByTimeMiddleware',
 ]
 
 

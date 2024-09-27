@@ -11,10 +11,12 @@ class AutoLogoutMiddleware:
     def __call__(self, request):
         # Si el usuario está autenticado
         if request.user.is_authenticated:
-            last_activity = request.session.get('last_activity')
+            last_activity_str = request.session.get('last_activity')
 
             # Si hay actividad previa
-            if last_activity:
+            if last_activity_str:
+                # Convertir la cadena de last_activity a un objeto datetime
+                last_activity = datetime.fromisoformat(last_activity_str)
                 elapsed_time = (now() - last_activity).total_seconds()
                 
                 # Si el tiempo de inactividad excede el límite
@@ -23,8 +25,8 @@ class AutoLogoutMiddleware:
                     logout(request)
                     request.session.flush()  # Opcional: elimina toda la sesión
                 
-            # Actualiza el tiempo de la última actividad
-            request.session['last_activity'] = now()
+            # Actualiza el tiempo de la última actividad (almacena como cadena ISO)
+            request.session['last_activity'] = now().isoformat()
 
         response = self.get_response(request)
         return response

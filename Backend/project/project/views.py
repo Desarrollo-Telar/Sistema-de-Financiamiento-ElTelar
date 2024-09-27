@@ -226,8 +226,12 @@ def login_view(request):
 
 
 ### --- AÁRTADO PARA VERIFICACION DE DOS PASOS --- ###
+import logging
+
 def verification(request):
     template_name = 'verification/messages.html'
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+
     form = CodeForm(request.POST or None)
     pk = request.session.get('pk')
     if isinstance(request.user,AnonymousUser ):
@@ -237,8 +241,9 @@ def verification(request):
             code_user = f'{user.username}: {user.code}'
             if not request.POST:
                 # send sms
-                print(code_user)
-                send_email_code_verification(user,code_user)
+                #print(code_user)
+                logging.info(code_user)
+                #send_email_code_verification(user,code_user)
                 #phone_numer = user.telephone
                 #send_verification_code(code_user,phone_numer)
             if form.is_valid():
