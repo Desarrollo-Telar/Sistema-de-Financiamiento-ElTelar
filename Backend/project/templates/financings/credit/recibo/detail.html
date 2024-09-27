@@ -98,7 +98,7 @@
 
                     </p>
                     <p>
-                        MORA CANCELADA: <span>Q {{recibo.mora_pagada}}</span>
+                        MORA CANCELADA: <span class="text-uppercase">Q {{recibo.mora_pagada}}</span>
 
                     </p>
 
@@ -115,7 +115,7 @@
 
                     </p>
                     <p>
-                        INTERES CANCELADO: <span>Q {{recibo.interes_pagado}}</span>
+                        INTERES CANCELADO: <span class="text-uppercase">Q {{recibo.interes_pagado}}</span>
 
                     </p>
 
@@ -127,7 +127,7 @@
                 <td>{{recibo.aporte_capital_letras}}</td>
                 <td>
                     <p>
-                        APORTE A CAPITAL: <span>Q {{recibo.aporte_capital}}</span>
+                        APORTE A CAPITAL: <span class="text-uppercase">Q {{recibo.aporte_capital}}</span>
 
 
                     </p>
@@ -138,7 +138,8 @@
             <tr>
                 <th scope="row" style="background-color: black; border: 1px solid black; color: white;">TOTAL</th>
                 <td style="background-color: black; border: 1px solid black; color: white;">Q {{recibo.total}}</td>
-                <td colspan="2" style="background-color: black; border: 1px solid black; color: white;">
+                <td colspan="2" style="background-color: black; border: 1px solid black; color: white;"
+                    class="text-uppercase">
                     {{recibo.total_letras}} </td>
 
             </tr>
