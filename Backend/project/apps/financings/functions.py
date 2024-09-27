@@ -14,8 +14,6 @@ def realizar_pago(credito_id,  payment):
         if credito.is_paid_off:
             return "Este crédito ya está pagado en su totalidad."
 
-      
-        print(payment)
 
         # Registrar el pago
         pagoss = Payment.objects.get(id=payment.id)   
