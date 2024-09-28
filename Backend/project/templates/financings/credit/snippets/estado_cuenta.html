@@ -57,7 +57,14 @@
                             {{credit.saldo_pendiente}}
                         </td>
                         <td>
+                            {% if credit.payment %}
                             <a href="{% url 'financings:recibo' credit.payment.id %}">RECIBO</a>
+                            {% endif %}
+
+                            {% if credit.disbursement %}
+                            <a href="{% url 'financings:recibo' credit.disbursement.id %}">DESEMBOLSO</a>
+                            {% endif %}
+
                         </td>
 
 

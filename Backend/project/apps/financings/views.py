@@ -203,9 +203,12 @@ def detail_credit(request,id):
 def detallar_recibo(request,id):
    
     pago = get_object_or_404(Payment, id=id)
+    desembolso = get_object_or_404(Disbursement,id=id)
     recibo = get_object_or_404(Recibo, pago=pago)
 
     if not pago:
+        if desembolso:
+            return redirect('index')
         return redirect('index')
 
    
