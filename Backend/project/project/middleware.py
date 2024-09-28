@@ -3,6 +3,7 @@ from datetime import datetime
 from django.conf import settings
 from django.utils.timezone import now
 from django.http import HttpResponse
+from django.shortcuts import render
 
 class AutoLogoutMiddleware:
     def __init__(self, get_response):
@@ -50,7 +51,11 @@ class RestrictedAccessByTimeMiddleware:
 
         # Verificar si la hora actual está fuera del horario permitido
         if not (hora_inicio <= hora_actual < hora_fin):
-            return HttpResponse("<h1>Sistema fuera de servicio. Intente nuevamente en el horario permitido.</h1>", status=403)
+            context = {
+                'status':403,
+                'title':'EL TELAR'
+            }
+            return render(request, 'http/400/403.html',context)
 
         # Si está dentro del horario, continúa con la solicitud
         response = self.get_response(request)
