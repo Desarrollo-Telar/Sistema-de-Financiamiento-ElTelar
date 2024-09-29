@@ -13,16 +13,25 @@ def generar():
                 banco_referencia = get_object_or_404(Banco, referencia=pago.numero_referencia)
              
                 # Actualiza el monto del pago si no coincide con el del banco
+                # Inicializa un flag para determinar si se debe cambiar el estado
+                cambiar_estado = False
+
+                # Verifica y actualiza el monto del pago
                 if pago.monto != banco_referencia.credito:
-                    #pass
                     pago.monto = banco_referencia.credito
-                    pago.save()
                 elif pago.monto != banco_referencia.debito:
                     pago.monto = banco_referencia.debito
+
+                # Verifica la fecha de emisión
+                if pago.fecha_emision.strftime('%d/%m/%Y') != banco_referencia.fecha:
+                    cambiar_estado = True
+
+                # Si se ha modificado el monto o la fecha, guarda el pago
+                if cambiar_estado or (pago.monto != banco_referencia.credito or pago.monto != banco_referencia.debito):
+                    if cambiar_estado:
+                        pago.estado_transaccion = 'FALLIDO'
                     pago.save()
-                elif pago.fecha_emision.strftime('%d/%m/%Y') != banco_referencia.fecha:
-                    pago.estado_transaccion = 'FALLIDO'
-                    pago.save()
+
 
                 # Si la transacción está pendiente, se realiza el pago
                 if pago.estado_transaccion == 'PENDIENTE' or pago.estado_transaccion == 'Pendiente':

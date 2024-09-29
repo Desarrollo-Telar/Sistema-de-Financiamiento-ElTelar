@@ -17,6 +17,8 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 import uuid
+import logging
+logger = logging.getLogger(__name__)
 
 """ 
 @receiver(post_save, sender=Payment)
@@ -135,3 +137,41 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
             referencia = str(uuid.uuid4())[:8]
             estado_cuenta.numero_referencia = referencia
             estado_cuenta.save()
+
+# VER SI HUBO CAMBIOS
+@receiver(post_save, sender=PaymentPlan)
+def cambios(sender, instance, **kwargs):
+    if instance.cambios:
+        referencia = instance.numero_referencia
+        
+        # Obtener la siguiente cuota
+        siguiente_cuota = PaymentPlan.objects.filter(
+            credit_id=instance.credit_id,  
+            fecha_limite__gt=instance.fecha_limite  # Filtramos por fecha límite
+        ).order_by('fecha_limite').first()
+
+        if siguiente_cuota:
+            interes = calculo_interes(instance.saldo_pendiente, instance.credit_id.tasa_interes)
+            mora = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
+            
+            # Actualizar la siguiente cuota
+            siguiente_cuota.cambios = True
+            siguiente_cuota.interest = max(siguiente_cuota.interest, siguiente_cuota.interest - interes)  # Asegúrate de que no sea negativa
+            siguiente_cuota.mora = max(siguiente_cuota.mora, siguiente_cuota.mora - mora)  # Asegúrate de que no sea negativa
+            siguiente_cuota.start_date = instance.due_date
+            siguiente_cuota.saldo_pendiente = instance.saldo_pendiente
+            siguiente_cuota.credit_id = instance.credit_id
+            siguiente_cuota.save()
+
+            logger.info(f"Siguiente cuota actualizada: {siguiente_cuota}")
+        else:
+            logger.warning("No hay más cuotas disponibles.")
+
+        # Manejo de pagos
+        try:
+            pago = Payment.objects.get(numero_referencia=referencia)
+            if pago.estado_transaccion == 'COMPLETADO':
+                pago.realizar_pago()
+        except Payment.DoesNotExist:
+            logger.error(f"No se encontró el pago con número de referencia: {referencia}")
+   

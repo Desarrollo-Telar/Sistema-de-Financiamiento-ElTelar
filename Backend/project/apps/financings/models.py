@@ -19,6 +19,9 @@ from django.utils import timezone
 # DECIMAL
 from decimal import Decimal
 
+# CALCULOS
+from apps.financings.calculos import calculo_mora
+
 
 from django.shortcuts import render, get_object_or_404, redirect
 # Create your models here.
@@ -172,7 +175,7 @@ class Payment(models.Model):
         El resultado será una lista de objetos PaymentPlan correspondientes al crédito especificado, ordenados por la fecha de vencimiento, desde la más cercana hasta la más lejana.
         return PaymentPlan.objects.filter(credit_id=self.credit, status=False).order_by('due_date').first()
         """
-        cuotas = PaymentPlan.objects.filter(credit_id=self.credit).order_by('due_date')
+        cuotas = PaymentPlan.objects.filter(credit_id=self.credit).order_by('fecha_limite')
         for cuota in cuotas:
             encontrada = False
             fecha_inicio = datetime.strftime(cuota.start_date,'%d/%m/%Y')
@@ -183,7 +186,7 @@ class Payment(models.Model):
                 return cuota 
 
     def _siguiente_cuota(self):
-        cuotas = PaymentPlan.objects.filter(credit_id=self.credit).order_by('due_date')
+        cuotas = PaymentPlan.objects.filter(credit_id=self.credit).order_by('fecha_limite')
         cuota_actual = None
         for cuota in cuotas:
             
@@ -201,11 +204,6 @@ class Payment(models.Model):
 
         return None
 
-
-
-
-        
-    
     def _calculo_intereses(self):
         interes = self._cuota_pagar().interest
         return interes
@@ -226,9 +224,16 @@ class Payment(models.Model):
         print('ESTOY REALIZANDO EL PAGO')
         if self.tipo_pago == 'DESEMBOLSO':
             # registrar en el apartado de desembolso
+            pago = self.pago()
+            pago.estado_transaccion = 'COMPLETADO'
+            pago.save()
+
             return f'REGISTRO DE DESEMBOLSO'
         
         if self.credito().is_paid_off:
+            pago = self.pago()
+            pago.estado_transaccion = 'FALLIDO'
+            pago.save()
             return f'EL CREDITO YA FUE PAGO'
         
 
@@ -297,17 +302,36 @@ class Payment(models.Model):
         cuota = self._cuota_pagar()
 
         # SE GENERA EL RECIBO
-        recibo = Recibo(
-            mora=cuota.mora,
-            interes=cuota.interest,
-            pago=pago,
-            total=self.monto,
-            aporte_capital=aporte_capital,
-            interes_pagado=pagado_interes,
-            mora_pagada=pagado_mora,
-            cliente=credito.customer_id
-        )
-        recibo.save()
+        """
+        VERIFICAR SI YA EXISTE UN RECIBO ASOCIADO CON EL PAGO O GENERAR UNO NUEVO
+        """
+        recibos = Recibo.objects.filter(pago=pago)
+
+        if recibos.exists():
+            for recibo in recibos:
+                # Actualizamos cada recibo existente
+                recibo.mora = cuota.mora
+                recibo.interes = cuota.interest
+                recibo.pago = pago
+                recibo.total = self.monto
+                recibo.aporte_capital = aporte_capital
+                recibo.interes_pagado = pagado_interes
+                recibo.mora_pagada = pagado_mora
+                recibo.cliente = credito.customer_id
+                recibo.save()
+        else:
+            # Creamos un nuevo recibo si no hay existentes
+            recibo = Recibo(
+                mora=cuota.mora,
+                interes=cuota.interest,
+                pago=pago,
+                total=self.monto,
+                aporte_capital=aporte_capital,
+                interes_pagado=pagado_interes,
+                mora_pagada=pagado_mora,
+                cliente=credito.customer_id
+            )
+            recibo.save()
 
         # ACTUALIZAR LA CUOTA QUE SE ESTA CREANDO 
                             # 500 - 100 = 400
@@ -315,6 +339,8 @@ class Payment(models.Model):
         cuota.interest -=pagado_interes
         cuota.mora -= pagado_mora
         cuota.saldo_pendiente = saldo_pendiente
+        cuota.numero_referencia = self.numero_referencia
+        cuota.cambios = False
         cuota.save()
 
         # ACTUALIZAR EL PAGO PARA REFREGAR LA CANTIDA PAGADA
@@ -325,16 +351,30 @@ class Payment(models.Model):
         pago.save()
 
         # REFLEJAR EN EL ESTADO DE CUENTA
-        estado_cuenta = AccountStatement()
-        estado_cuenta.abono = self.monto
-        estado_cuenta.credit = credito
-        estado_cuenta.payment = pago
-        estado_cuenta.interest_paid = pagado_interes
-        estado_cuenta.late_fee_paid = pagado_mora
-        estado_cuenta.capital_paid = aporte_capital
-        estado_cuenta.numero_referencia = self.numero_referencia
-        estado_cuenta.description = 'PAGO DE CREDITO'
-        estado_cuenta.save()
+        estados_cuenta = AccountStatement.objects.filter(payment=pago)
+
+        # Definimos los datos que se asignarán a los estados de cuenta
+        datos_estado_cuenta = {
+            'abono': self.monto,
+            'credit': credito,
+            'payment': pago,
+            'interest_paid': pagado_interes,
+            'late_fee_paid': pagado_mora,
+            'capital_paid': aporte_capital,
+            'numero_referencia': self.numero_referencia,
+            'description': 'PAGO DE CREDITO'
+        }
+
+        if estados_cuenta.exists():
+            for estado_cuenta in estados_cuenta:
+                # Actualizamos cada estado de cuenta existente
+                for key, value in datos_estado_cuenta.items():
+                    setattr(estado_cuenta, key, value)
+                estado_cuenta.save()
+        else:
+            # Creamos un nuevo estado de cuenta si no hay existentes
+            estado_cuenta = AccountStatement(**datos_estado_cuenta)
+            estado_cuenta.save()
 
         # VERIFICAR SI EL CREDITO YA FUE PAGADO POR COMPLETO
         if saldo_pendiente <= 0:
@@ -349,11 +389,6 @@ class Payment(models.Model):
         credito.saldo_pendiente = saldo_pendiente
         credito.save()
 
-        
-
-        
-
-        
 
         # GENERAR OTRA CUOTA A PAGAR CUANDO EL MONTO DEPOSITADO ES MAYOR QUE EL TOTAL A PAGAR
         def calculo_interes(saldo_pendiente, tasa_interes):
@@ -364,19 +399,25 @@ class Payment(models.Model):
         if self.monto >= self._calcular_total():
             interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
             siguiente = self._siguiente_cuota()
+            mora = calculo_mora(saldo_pendiente, credito.tasa_interes)
 
             if siguiente:
                 # Actualizamos la siguiente cuota si ya existe
                 cuota_a_actualizar = siguiente
+                cuota_a_actualizar.cambios = True
+                cuota_a_actualizar.interest = max(cuota_a_actualizar.interest,cuota_a_actualizar.interest-interes)
+                cuota_a_actualizar.mora = max(cuota_a_actualizar.mora, cuota_a_actualizar.mora - mora)
+               
             else:
                 # Creamos una nueva cuota si no hay una siguiente
                 cuota_a_actualizar = PaymentPlan()
+                cuota_a_actualizar.interest = interes
 
             # Ya sea que sea una cuota nueva o la siguiente existente, actualizamos los campos
             cuota_a_actualizar.start_date = cuota.due_date
             cuota_a_actualizar.saldo_pendiente = saldo_pendiente
             cuota_a_actualizar.credit_id  = credito  
-            cuota_a_actualizar.interest = interes
+            
             cuota_a_actualizar.outstanding_balance = saldo_pendiente
 
             # Guardamos los cambios (tanto si es una nueva cuota como si es una cuota existente)
@@ -411,6 +452,8 @@ class PaymentPlan(models.Model):
     interes_acumulado_pagado = models.DecimalField('Interes Acumulado Pagado',max_digits=12, decimal_places=2, default=0)
     mora_acumulado_pagado = models.DecimalField('Mora Acumulado Pagada', max_digits=12, decimal_places=2, default=0)
     fecha_limite = models.DateTimeField('Fecha de Limite',blank=True,null=True)
+    cambios = models.BooleanField(default=False)
+    numero_referencia = models.CharField('Numero de Referencia', max_length=255, unique=True, null=True, blank=True, default="NAN")
    
     def no_mes(self):
         contar = 0

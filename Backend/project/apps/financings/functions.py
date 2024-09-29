@@ -9,14 +9,16 @@ def realizar_pago(credito_id,  payment):
     try:
         # Obtener el crédito
         credito = Credit.objects.get(id=credito_id.id)  
-        
+        pagoss = Payment.objects.get(id=payment.id)
         # Verificar si el crédito ya está pagado
         if credito.is_paid_off:
+            pagoss.estado_transaccion = 'FALLIDO'
+            pagoss.save()
             return "Este crédito ya está pagado en su totalidad."
 
 
         # Registrar el pago
-        pagoss = Payment.objects.get(id=payment.id)   
+           
         pagoss.realizar_pago()     
         
         
