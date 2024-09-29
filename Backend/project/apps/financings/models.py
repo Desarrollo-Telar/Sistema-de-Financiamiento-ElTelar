@@ -233,6 +233,7 @@ class Payment(models.Model):
         if self.credito().is_paid_off:
             pago = self.pago()
             pago.estado_transaccion = 'FALLIDO'
+            pago.descripcion += f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
             pago.save()
             return f'EL CREDITO YA FUE PAGO'
         
@@ -615,6 +616,7 @@ class Recibo(models.Model):
     mora_pagada = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     aporte_capital = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     total  = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    factura = models.BooleanField(default=False)
 
     def total_letras(self):
         total = num2words(self.total,lang='es')

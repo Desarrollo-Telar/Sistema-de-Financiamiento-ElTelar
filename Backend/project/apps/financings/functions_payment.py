@@ -30,6 +30,7 @@ def generar():
                 if cambiar_estado or (pago.monto != banco_referencia.credito or pago.monto != banco_referencia.debito):
                     if cambiar_estado:
                         pago.estado_transaccion = 'FALLIDO'
+                        pago.descripcion += f'\n\nEL REGISTRO DE ESTA BOLETA ES FALLIDA DEBIDO A QUE LA FECHA DE EMISION NO CORRESPONDE AL REGISTRO DE BANCOS\n\n'
                     pago.save()
 
 
