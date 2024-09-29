@@ -114,7 +114,7 @@ def generar_planes(sender, instance,created, **kwargs):
 
 
 
-
+# EL DESEMBOLSO REALIZADO SE REFLEJA EN EL ESTADO DE CUENTAS DEL CLIENTE
 @receiver(post_save, sender=Disbursement)
 def reflejar_estado_cuenta(sender, instance, created, **kwargs):
     if created:

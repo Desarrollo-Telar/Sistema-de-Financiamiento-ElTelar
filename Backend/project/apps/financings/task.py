@@ -20,9 +20,10 @@ def cambiar_plan():
         if not boleta:
             pago.status = True     
             # Calcular la mora acumulada solo si hay atraso (después de 15 días)
-            mora_acumulada = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
+            mora = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
+            mora_acumulada = pago.mora + mora
             
-            pago.mora += mora_acumulada   
+            #pago.mora += mora_acumulada   
             pago.save()
 
             interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
@@ -35,7 +36,7 @@ def cambiar_plan():
                 saldo_pendiente=pago.saldo_pendiente, 
                 credit_id= pago.credit_id, 
                 start_date=pago.due_date,
-                mora=pago.mora, 
+                mora=mora_acumulada, 
                 outstanding_balance=pago.saldo_pendiente,
                 interest=interes_acumulado
                 )

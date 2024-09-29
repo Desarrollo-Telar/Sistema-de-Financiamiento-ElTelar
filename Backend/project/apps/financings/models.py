@@ -167,7 +167,44 @@ class Payment(models.Model):
         return Credit.objects.get(id=self.credit.id)
 
     def _cuota_pagar(self):
+        """
+        PaymentPlan.objects.filter(credit_id=self.credit).order_by('due_date')
+        El resultado será una lista de objetos PaymentPlan correspondientes al crédito especificado, ordenados por la fecha de vencimiento, desde la más cercana hasta la más lejana.
         return PaymentPlan.objects.filter(credit_id=self.credit, status=False).order_by('due_date').first()
+        """
+        cuotas = PaymentPlan.objects.filter(credit_id=self.credit).order_by('due_date')
+        for cuota in cuotas:
+            encontrada = False
+            fecha_inicio = datetime.strftime(cuota.start_date,'%d/%m/%Y')
+            fecha_limite = datetime.strftime(cuota.fecha_limite,'%d/%m/%Y')
+            fecha_emision = datetime.strftime(self.fecha_emision,'%d/%m/%Y')
+
+            if fecha_inicio <= fecha_emision <= fecha_limite:
+                return cuota 
+
+    def _siguiente_cuota(self):
+        cuotas = PaymentPlan.objects.filter(credit_id=self.credit).order_by('due_date')
+        cuota_actual = None
+        for cuota in cuotas:
+            
+            fecha_inicio = datetime.strftime(cuota.start_date,'%d/%m/%Y')
+            fecha_limite = datetime.strftime(cuota.fecha_limite,'%d/%m/%Y')
+            fecha_emision = datetime.strftime(self.fecha_emision,'%d/%m/%Y')
+
+            if fecha_inicio <= fecha_emision <= fecha_limite:
+                
+                cuota_actual = cuota
+                continue
+
+            if cuota_actual:
+                return cuota
+
+        return None
+
+
+
+
+        
     
     def _calculo_intereses(self):
         interes = self._cuota_pagar().interest
@@ -326,16 +363,24 @@ class Payment(models.Model):
 
         if self.monto >= self._calcular_total():
             interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
+            siguiente = self._siguiente_cuota()
 
-            proxima_cuota = PaymentPlan()
-            proxima_cuota.start_date = cuota.due_date
-            proxima_cuota.saldo_pendiente = saldo_pendiente
-            proxima_cuota.credit_id = credito
-            proxima_cuota.interest = interes
-            proxima_cuota.outstanding_balance = saldo_pendiente
+            if siguiente:
+                # Actualizamos la siguiente cuota si ya existe
+                cuota_a_actualizar = siguiente
+            else:
+                # Creamos una nueva cuota si no hay una siguiente
+                cuota_a_actualizar = PaymentPlan()
 
+            # Ya sea que sea una cuota nueva o la siguiente existente, actualizamos los campos
+            cuota_a_actualizar.start_date = cuota.due_date
+            cuota_a_actualizar.saldo_pendiente = saldo_pendiente
+            cuota_a_actualizar.credit_id  = credito  
+            cuota_a_actualizar.interest = interes
+            cuota_a_actualizar.outstanding_balance = saldo_pendiente
 
-            proxima_cuota.save()
+            # Guardamos los cambios (tanto si es una nueva cuota como si es una cuota existente)
+            cuota_a_actualizar.save()
 
 
         

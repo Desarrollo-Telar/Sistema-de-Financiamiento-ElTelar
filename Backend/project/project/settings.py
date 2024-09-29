@@ -75,7 +75,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Definir las horas de acceso permitido
 ALLOWED_ACCESS_START_HOUR = 1   # Hora de inicio permitida (01:00 AM)
 
-ALLOWED_ACCESS_END_HOUR = 8    # Hora de fin permitida (11:00 PM)
+ALLOWED_ACCESS_END_HOUR = 23    # Hora de fin permitida (11:00 PM)
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
