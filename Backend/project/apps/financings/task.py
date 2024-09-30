@@ -1,14 +1,26 @@
 from celery import shared_task
+
+# TIEMPO
 from datetime import datetime
+from time import sleep
+# MODELOS
 from .models import PaymentPlan, Payment
 
-def calculo_mora(saldo_pendiente, tasa_interes):
-    mora = saldo_pendiente * (tasa_interes) * 0.1
-    return round(mora,2)
+# CALCULOS
+from apps.financings.calculos import calculo_mora, calculo_interes
 
-def calculo_interes(saldo_pendiente, tasa_interes):
-    interes = saldo_pendiente * (tasa_interes )
-    return round(interes,2)
+# EMAILS
+from project.send_mail import send_email_alert
+
+import logging
+logger = logging.getLogger(__name__)
+
+@shared_task
+def envio_mensaje_alerta(mensaje, estado):
+    logger.info('ENVIANDO MENSAJE...')
+
+    send_email_alert(mensaje, estado)
+
 
 @shared_task
 def cambiar_plan():

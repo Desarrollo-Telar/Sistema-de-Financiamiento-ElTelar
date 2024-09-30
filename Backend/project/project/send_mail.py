@@ -87,10 +87,10 @@ def send_email_new_customer(customer):
     email.send()
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
-def send_email_alert():
+def send_email_alert(message, status):
     template = get_template('email/alert_message.html')
     context = {
-        'message'
+        'message':message
     }
     # Recolectar correos electrónicos de todos los superusuarios
     usuarios_email = [user.email for user in User.objects.filter(is_superuser=True)]
@@ -100,7 +100,7 @@ def send_email_alert():
 
     # Crear y enviar el correo electrónico
     email = EmailMultiAlternatives(
-        'ALERTA',
+        f'ALERTA {status}',
         'ELTELAR',
         settings.EMAIL_HOST_USER,
         usuarios_email

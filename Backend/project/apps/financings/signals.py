@@ -20,6 +20,10 @@ import uuid
 import logging
 logger = logging.getLogger(__name__)
 
+
+
+# ENVIO DE EMAIL
+from .task import envio_mensaje_alerta
 """ 
 @receiver(post_save, sender=Payment)
 def registrar_pago_en_estado_de_cuenta(sender, instance, created, **kwargs):
@@ -179,4 +183,5 @@ def cambios(sender, instance, **kwargs):
 @receiver(post_save, sender=Payment)
 def alerta(sender, instance, **kwargs):
     if instance.estado_transaccion == 'FALLIDO':
-        pass
+        envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO')
+   
