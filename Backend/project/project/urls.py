@@ -19,6 +19,10 @@ from rest_framework.documentation import include_docs_urls
 from django.core.mail import send_mail
 from django.conf import settings
 
+from django.urls import re_path
+from django.views.static import serve
+from django.conf import settings
+
 urlpatterns = [    
     path('',login_required(views.index),name='index'),
     path('accounts/login/',views.login_view, name='login'),
@@ -48,6 +52,9 @@ urlpatterns = [
     path('reset_password/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(template_name='user/autentication/password_reset_confirm.html'),name='password_reset_confirm'),    
     path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(template_name='user/autentication/password-confirmation2.html'),name='password_reset_complete'),
     #path('dashboard/', include('django_dash.urls')),
+    
+    re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:    

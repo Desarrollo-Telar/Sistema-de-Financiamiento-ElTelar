@@ -13,6 +13,7 @@ def realizar_pago(credito_id,  payment):
         # Verificar si el crédito ya está pagado
         if credito.is_paid_off:
             pagoss.estado_transaccion = 'FALLIDO'
+            pagoss.descripcion_estado  = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
             pagoss.save()
             return "Este crédito ya está pagado en su totalidad."
 

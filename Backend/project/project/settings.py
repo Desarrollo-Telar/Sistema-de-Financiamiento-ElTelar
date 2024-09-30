@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -56,6 +56,8 @@ MIDDLEWARE = [
     # MIDDLEWARE 
     'project.middleware.AutoLogoutMiddleware',
     'project.middleware.RestrictedAccessByTimeMiddleware',
+    # WhiteNoise 
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 # Modo de mantenimiento
@@ -188,12 +190,15 @@ CELERY_BEAT_SCHEDULE = {
 # settings.py
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static/'),
 ]
+
 # settings.py
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

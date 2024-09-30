@@ -175,3 +175,8 @@ def cambios(sender, instance, **kwargs):
         except Payment.DoesNotExist:
             logger.error(f"No se encontró el pago con número de referencia: {referencia}")
    
+
+@receiver(post_save, sender=Payment)
+def alerta(sender, instance, **kwargs):
+    if instance.estado_transaccion == 'FALLIDO':
+        pass

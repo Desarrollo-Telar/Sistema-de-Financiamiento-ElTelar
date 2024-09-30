@@ -159,6 +159,8 @@ class Payment(models.Model):
     capital = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     boleta = models.FileField("Boleta",blank=True, null=True,upload_to='pagos/boletas/')
     tipo_pago = models.CharField('Tipo de Pago', choices=TYPE_PAYMENT, max_length=75, default='CREDITO')
+    # nuevos campos
+    descripcion_estado = models.TextField(blank=True, null=True)
     
     def fechaEmision(self):
         return datetime.strftime(self.fecha_emision,'%d/%m/%Y')
@@ -233,7 +235,7 @@ class Payment(models.Model):
         if self.credito().is_paid_off:
             pago = self.pago()
             pago.estado_transaccion = 'FALLIDO'
-            pago.descripcion += f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
+            pago.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
             pago.save()
             return f'EL CREDITO YA FUE PAGO'
         
