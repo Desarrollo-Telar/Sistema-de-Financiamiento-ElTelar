@@ -9,6 +9,9 @@ from django.conf import settings
 from apps.users.models import User
 
 
+
+
+# ENVIO DE MENSAJE DE EMAIL PARA CODIGO DE VERIFICACION
 def send_email_code_verification(user, code):
     template = get_template('email/send_code.html')
     user_mail = user.email
@@ -20,8 +23,8 @@ def send_email_code_verification(user, code):
     content = template.render(context)
  
     email = EmailMultiAlternatives(
-        'Codigo de verificación',
-        'EL Telar',
+        'CODIGO DE VERIFICACIÓN',
+        'ELTELAR',
         settings.EMAIL_HOST_USER,
         ['{}'.format(user_mail)]
     )
@@ -29,6 +32,7 @@ def send_email_code_verification(user, code):
     email.send()
 
 
+# ENVIO DE MENSAJE DE EMAIL PARA DARLE LA BIENVENIDA A UN CLIENTE
 def send_email_welcome_customer(customer):
     # Envio de correos
     # Mensaje de bienvendia a un cliente a la empresa
@@ -43,8 +47,8 @@ def send_email_welcome_customer(customer):
     content = template.render(context)
 
     email = EmailMultiAlternatives(
-        'Bienvenido',
-        'EL Telar',
+        'BIENVENIDO',
+        'ELTELAR',
         settings.EMAIL_HOST_USER,
         ['{}'.format(customer.email)]
     )
@@ -52,6 +56,7 @@ def send_email_welcome_customer(customer):
     email.send()
     
 
+# NOTIFICAR A TODOS LOS ADMINISTRADORES DE UN NUEVO CLIENTE A LA EMPRESA
 def send_email_new_customer(customer):
     # Envio de correos
     # Mensaje de bienvenida a un cliente a la empresa
@@ -73,11 +78,32 @@ def send_email_new_customer(customer):
 
     # Crear y enviar el correo electrónico
     email = EmailMultiAlternatives(
-        'Cliente Nuevo',
-        'EL Telar',
+        'CLIENTE NUEVO',
+        'ELTELAR',
         settings.EMAIL_HOST_USER,
         usuarios_email
     )
     email.attach_alternative(content, 'text/html')
     email.send()
-    
+
+# MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
+def send_email_alert():
+    template = get_template('email/alert_message.html')
+    context = {
+        'message'
+    }
+    # Recolectar correos electrónicos de todos los superusuarios
+    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True)]
+
+    # Renderizar el contenido del correo electrónico
+    content = template.render(context)
+
+    # Crear y enviar el correo electrónico
+    email = EmailMultiAlternatives(
+        'ALERTA',
+        'ELTELAR',
+        settings.EMAIL_HOST_USER,
+        usuarios_email
+    )
+    email.attach_alternative(content, 'text/html')
+    email.send()
