@@ -294,7 +294,7 @@ def test(request):
     domain = request.get_host()
     full_url = f"{protocol}://{domain}"
     context = {
-        'message':'message',
+        'message':'ESTO ES UN MENSAJE',
         'full_url':full_url,
         'object':request.user,
     }

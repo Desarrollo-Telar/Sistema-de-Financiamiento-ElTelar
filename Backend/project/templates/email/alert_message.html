@@ -2,14 +2,14 @@
 {% load static %}
 
 {%block content %}
-<div style="display: flex; align-items: center; justify-content: center; height: 50vh;">
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
     <div class="card" style="width: 50rem; padding: 2rem;">
         <div class="card-body">
             <h5 class="card-title">EL TELAR</h5>
             <p class="card-text">
-                {{mesage}}
+                {{message}}
             </p>
-            <a href="{{full_url}}">EDITAR BOLETA</a>
+            <a href="{{full_url}}{%url 'users:profile'%}">EDITAR BOLETA</a>
 
         </div>
     </div>
