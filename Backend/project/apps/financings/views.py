@@ -219,3 +219,13 @@ def detallar_recibo(request,id):
     }
     return render(request, template_name, context)
 
+### ---------------- ACTUALIZAR --------------------
+@login_required
+@usuario_activo
+def update_pago(request,id):
+    template_name = ''
+    pago = get_object_or_404(Payment,id=id)
+    context = {
+        'title':'ELTELAR'
+    }
+    return render(request)

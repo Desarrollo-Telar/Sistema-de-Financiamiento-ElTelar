@@ -9,7 +9,11 @@
             <p class="card-text">
                 {{message}}
             </p>
-            <a href="{{full_url}}{%url 'users:profile'%}">EDITAR BOLETA</a>
+            {% if object.id %}
+            <a href="{{ full_url }}{% url 'financings:actualizar_boleta' object.id %}">EDITAR BOLETA</a>
+            {% endif %}
+
+
 
         </div>
     </div>
