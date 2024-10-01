@@ -71,7 +71,7 @@ def send_email_new_customer(customer):
 
     
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True)]
+    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True, status=True)]
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
@@ -98,7 +98,7 @@ def send_email_alert(request, message, status,models):
         'object':models,
     }
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True)]
+    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True, status=True)]
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
