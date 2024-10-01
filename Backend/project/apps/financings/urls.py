@@ -25,6 +25,8 @@ urlpatterns = [
     path('payment/create',login_required(views.create_payment),name='create_payment'),
     path('payment/update/<int:id>/',login_required(views.update_pago),name='actualizar_boleta'),
     path('recibo/<int:id>/',login_required(views.detallar_recibo), name='recibo'),
+    path('bank/search/',login_required(views.BankSearch.as_view()),name='bank_search'),
+    path('payment/search/',login_required(views.PaymentSearch.as_view()),name='payment_search'),
 ]
 
 urlpatterns+=routers.urlpatterns
