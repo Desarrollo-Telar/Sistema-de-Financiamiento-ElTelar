@@ -156,7 +156,13 @@
         <hr>
         <p>FIRMA DEL CLIENTE</p>
     </div>
-    <div class="col-6"></div>
+    <div class="col-6">
+        {% if recibo.factura %}
+        <p>ESTE RECIBO YA FUE FACTURADO</p>
+        {% else %}
+        <p>POR FACTURAR</p>
+        {% endif %}
+    </div>
     <div class="col-3">
         <hr>
         <p>FIRMA EL TELA S.A.</p>

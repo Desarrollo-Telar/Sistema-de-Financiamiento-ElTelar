@@ -26,6 +26,7 @@ from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
 from apps.InvestmentPlan.models import InvestmentPlan
 from django.db.models import Q
+from apps.financings.models import Recibo
 
 # DJANGO HTTP
 from django.http import HttpResponse
@@ -42,6 +43,7 @@ from .send_mail import send_email_welcome_customer, send_email_code_verification
 # Tiempo
 import datetime
 import calendar
+from datetime import datetime
 
 # PDF
 from django.template.loader import get_template
@@ -64,15 +66,9 @@ from django.conf import settings
 # Obtener la fecha y hora actual
 now = datetime.datetime.now()
 
-def test(request):
-    return render(request, 'test/test.html', {
-        
-    })
+
     
-def prueba(request):
-    #send_email_welcome_customer()
-    
-    return render(request, 'email/send_code.html',{})
+
 
 
 ###-- CREACION DE PDFS PARA ALGUN FORMULARIO IVE --###
@@ -278,12 +274,14 @@ def index(request):
     # Obtener el nombre del mes usando el módulo calendar
     mes_actual_nombre = calendar.month_name[mes_actual]
     customer_id = Customer.objects.all().order_by('-id')[:5]
+    recibos = Recibo.objects.filter(fecha=datetime.now().date(), factura=False)
     context = {
         'title':'EL TELAR',
         'dia':dia_actual,
         'mes':mes_actual_nombre,
         'customer_list':customer_id,
-        'count':customer_id.count()
+        'count':customer_id.count(),
+        'recibos':recibos,
     }
     return render(request, template_name, context)
 
