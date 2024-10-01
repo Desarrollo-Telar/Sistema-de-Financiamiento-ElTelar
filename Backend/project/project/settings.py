@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.documents',
     'apps.financings',
     'django_celery_beat',
+    'bootstrap5',
     #'django_inlinecss',
     #'otp',
 ]

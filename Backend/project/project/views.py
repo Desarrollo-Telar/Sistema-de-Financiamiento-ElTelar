@@ -288,4 +288,16 @@ def index(request):
     return render(request, template_name, context)
 
 
+def test(request):
+    template_name  = 'email/alert_message.html'
+    protocol = request.scheme
+    domain = request.get_host()
+    full_url = f"{protocol}://{domain}"
+    context = {
+        'message':'message',
+        'full_url':full_url,
+        'object':request.user,
+    }
+    return render(request, template_name, context)
+
 

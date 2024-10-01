@@ -1,0 +1,17 @@
+{% extends 'email/base.html' %}
+{% load static %}
+
+{%block content %}
+<div style="display: flex; align-items: center; justify-content: center; height: 50vh;">
+    <div class="card" style="width: 50rem; padding: 2rem;">
+        <div class="card-body">
+            <h5 class="card-title">EL TELAR</h5>
+            <p class="card-text">
+                {{mesage}}
+            </p>
+            <a href="{{full_url}}">EDITAR BOLETA</a>
+
+        </div>
+    </div>
+</div>
+{%endblock%}
