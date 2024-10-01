@@ -3,8 +3,49 @@
 {% block content %}
 <div class=" row box">
     <div class="row">
-        <a href="{% url 'financings:create_payment' %}">Generar Pago</a>
-        <a href="{% url 'document:banco' %}">Subir Documento</a>
+        <div class="col" style="padding: 2.5rem">
+            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Pagos</span> !</h3>
+            <div class="d-flex justify-content-center fs-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'financings:list_payment' %}">Pagos</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+
+                    </ol>
+                </nav>
+            </div>
+
+            <p>
+                En este módulo, podrás gestionar toda la información relacionada con los pagos realizados por los
+                clientes de manera eficiente y
+                organizada.
+            </p>
+            <p>
+                Este módulo está diseñado para brindarte el control y la flexibilidad
+                necesarios para administrar eficazmente el registro de todas las transacciones recibidas por parte de
+                los clientes
+                en la empresa por medio de la
+                plataforma.
+            </p>
+        </div>
+
+    </div>
+    <hr>
+    <div class="row" style="display: flex; margin-top: 1rem;">
+        <div class="col-4">
+            <a href="{% url 'financings:create_payment' %}"
+                style="background-color: black; color: white; text-decoration: none; padding: 0.8rem; border-radius: 2rem;">Generar
+                Pago</a>
+
+        </div>
+        <div class="col-4">
+            <a href="{% url 'document:banco' %}"
+                style="background-color: black; color: white; text-decoration: none; padding: 0.8rem; border-radius: 2rem;">Subir
+                Documento</a>
+
+        </div>
+
+
 
     </div>
     <div class="row" style="margin-top: 2rem;">
