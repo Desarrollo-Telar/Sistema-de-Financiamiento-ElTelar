@@ -6,6 +6,8 @@ from time import sleep
 # MODELOS
 from .models import PaymentPlan, Payment
 
+from django.shortcuts import render, get_object_or_404
+
 # CALCULOS
 from apps.financings.calculos import calculo_mora, calculo_interes
 
@@ -16,10 +18,18 @@ import logging
 logger = logging.getLogger(__name__)
 
 @shared_task
-def envio_mensaje_alerta(mensaje, estado):
+def envio_mensaje_alerta(mensaje, estado, modelo=None):
     logger.info('ENVIANDO MENSAJE...')
-
-    send_email_alert(mensaje, estado)
+    
+    pago = None
+    if modelo:
+        try:
+            pago = get_object_or_404(Payment, id=modelo)
+        except Payment.DoesNotExist:
+            logger.error(f'No se encontró el objeto Payment con ID {modelo}')
+            return
+    
+    send_email_alert(mensaje, estado, pago)
 
 
 @shared_task

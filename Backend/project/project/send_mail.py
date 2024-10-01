@@ -87,10 +87,15 @@ def send_email_new_customer(customer):
     email.send()
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
-def send_email_alert(message, status):
+def send_email_alert(request, message, status,models):
     template = get_template('email/alert_message.html')
+    protocol = request.scheme
+    domain = request.get_host()
+    full_url = f"{protocol}://{domain}"
     context = {
-        'message':message
+        'message':message,
+        'full_url':full_url,
+        'object':models,
     }
     # Recolectar correos electrónicos de todos los superusuarios
     usuarios_email = [user.email for user in User.objects.filter(is_superuser=True)]

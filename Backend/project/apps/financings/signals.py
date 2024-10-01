@@ -183,5 +183,7 @@ def cambios(sender, instance, **kwargs):
 @receiver(post_save, sender=Payment)
 def alerta(sender, instance, **kwargs):
     if instance.estado_transaccion == 'FALLIDO':
-        envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO')
+        envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO',instance.id)
+    elif instance.estado_transaccion == 'COMPLETADO':
+        envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO',instance.id)
    
