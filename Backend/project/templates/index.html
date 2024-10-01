@@ -51,7 +51,7 @@
 
 
             <table class="table">
-                <thead class="table-dark">
+                <thead>
                     <tr>
                         <th>Codigo Cliente</th>
                         <th>Nombre</th>
@@ -104,7 +104,7 @@
 
 
             <table class="table">
-                <thead class="table-dark">
+                <thead>
                     <tr>
                         <th>Fecha</th>
                         <th>Numero de Recibo</th>
@@ -121,6 +121,9 @@
                         <td>{{recib.recibo}} </td>
                         <td>{{recib.cliente}}</td>
                         <td>{{recib.total}}</td>
+                        <td>
+                            <a href="{% url 'financings:recibo' recib.pago.id %}">Ver Recibo</a>
+                        </td>
 
                     </tr>
                     {% endfor %}
