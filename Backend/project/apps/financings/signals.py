@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 # ENVIO DE EMAIL
-from .task import envio_mensaje_alerta
+from .task import envio_mensaje_alerta, envio_mensaje_alerta_recibo
 """ 
 @receiver(post_save, sender=Payment)
 def registrar_pago_en_estado_de_cuenta(sender, instance, created, **kwargs):
@@ -48,6 +48,9 @@ def generar_noRecibo(sender, instance, **kwargs):
             counter += 1
 
         instance.recibo = counter
+    # ENVIAR MENSAJES AL CLIENTE, ADMINISTRADORES Y SECRETARIA
+    envio_mensaje_alerta_recibo(instance.id)
+
 
 # PARA CODIGO DEL CREDITO
 @receiver(pre_save, sender=Credit)
@@ -180,10 +183,13 @@ def cambios(sender, instance, **kwargs):
             logger.error(f"No se encontró el pago con número de referencia: {referencia}")
    
 
+# ENVIO DE ALERTA PARA EL ESTATUS DE LA BOLETA
 @receiver(post_save, sender=Payment)
 def alerta(sender, instance, **kwargs):
     if instance.estado_transaccion == 'FALLIDO':
         envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO',instance.id)
     elif instance.estado_transaccion == 'COMPLETADO':
         envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO',instance.id)
+
+
    

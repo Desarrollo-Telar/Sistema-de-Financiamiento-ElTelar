@@ -4,7 +4,7 @@ from celery import shared_task
 from datetime import datetime
 from time import sleep
 # MODELOS
-from .models import PaymentPlan, Payment
+from .models import PaymentPlan, Payment, Recibo
 
 from django.shortcuts import render, get_object_or_404
 
@@ -12,7 +12,7 @@ from django.shortcuts import render, get_object_or_404
 from apps.financings.calculos import calculo_mora, calculo_interes
 
 # EMAILS
-from project.send_mail import send_email_alert
+from project.send_mail import send_email_alert, send_email_recibo
 
 import logging
 logger = logging.getLogger(__name__)
@@ -30,6 +30,15 @@ def envio_mensaje_alerta(mensaje, estado, modelo=None):
             return
     
     send_email_alert(mensaje, estado, pago)
+
+@shared_task
+def envio_mensaje_alerta_recibo( modelo):
+    try:
+        pago = get_object_or_404(Recibo, id=modelo)
+    except Recibo.DoesNotExist:
+        logger.error(f'No se encontró el objeto Recibo con ID {modelo}')
+        return
+    send_email_recibo(pago)
 
 
 @shared_task

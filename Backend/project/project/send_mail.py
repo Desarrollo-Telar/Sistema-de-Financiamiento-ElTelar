@@ -112,3 +112,24 @@ def send_email_alert(request, message, status,models):
     )
     email.attach_alternative(content, 'text/html')
     email.send()
+
+def send_email_recibo(models):
+    template = get_template('email/recibo.html')
+    context = {
+        'recibo':models,
+    }
+    # Renderizar el contenido del correo electrónico
+    content = template.render(context)
+
+    # Recolectar correos electrónicos de todos los usuarios activos
+    usuarios_email = [user.email for user in User.objects.filter( status=True)]
+    usuarios_email.append(models.cliente.email)
+    # Crear y enviar el correo electrónico
+    email = EmailMultiAlternatives(
+        f'RECIBO DE {models.cliente}',
+        'ELTELAR',
+        settings.EMAIL_HOST_USER,
+        usuarios_email
+    )
+    email.attach_alternative(content, 'text/html')
+    email.send()
