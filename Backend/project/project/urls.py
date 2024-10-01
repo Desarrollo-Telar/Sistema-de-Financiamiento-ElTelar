@@ -31,7 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('apps.users.urls')),
     path('roles&permissions/', include('apps.roles.urls')),
-    path('prueba/', views.prueba, name='prueba'),
+    #path('prueba/', views.prueba, name='prueba'),
     path('customers/', include('apps.customers.urls')),
     path('addresses/', include('apps.addresses.urls')),
     path('codes/', include('apps.codes.urls')),

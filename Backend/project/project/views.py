@@ -41,9 +41,9 @@ from .utils import send_verification_code
 from .send_mail import send_email_welcome_customer, send_email_code_verification
 
 # Tiempo
-import datetime
+
 import calendar
-from datetime import datetime
+from datetime import datetime,timedelta
 
 # PDF
 from django.template.loader import get_template
@@ -64,7 +64,7 @@ from django.conf import settings
 
 
 # Obtener la fecha y hora actual
-now = datetime.datetime.now()
+now = datetime.now()
 
 
     
@@ -273,7 +273,9 @@ def index(request):
     mes_actual = now.month
     # Obtener el nombre del mes usando el módulo calendar
     mes_actual_nombre = calendar.month_name[mes_actual]
-    customer_id = Customer.objects.all().order_by('-id')[:5]
+    today = datetime.now().date()
+    tomorrow = today + timedelta(days=1)
+    customer_id = Customer.objects.filter(creation_date__range=(today, tomorrow))
     recibos = Recibo.objects.filter(fecha=datetime.now().date(), factura=False)
     context = {
         'title':'EL TELAR',
@@ -282,6 +284,7 @@ def index(request):
         'customer_list':customer_id,
         'count':customer_id.count(),
         'recibos':recibos,
+        'count_re':recibos.count(),
     }
     return render(request, template_name, context)
 
