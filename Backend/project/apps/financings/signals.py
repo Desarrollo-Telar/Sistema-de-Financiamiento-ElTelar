@@ -99,13 +99,18 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
 # FECHA DE HOY; 27 DE SEPTIEMBRE 
 # PERO LA FECHA DEL LA PRIMERA CUOTA ESTA PARA EL 2 DE FEBRERO
 # ESTO CREAR NUEVAS CUOTAS
+
 @receiver(post_save, sender=PaymentPlan)
 def generar_planes(sender, instance,created, **kwargs):
-    fecha_actual = datetime.now().date()
-    limite_fecha = instance.fecha_limite
+    
     if created:
+        fecha_actual = datetime.now().date()
+        limite_fecha = instance.fecha_limite
+        print(limite_fecha)
+        print(fecha_actual)
         
-        if fecha_actual >= limite_fecha.strftime('%Y-%m-%d'):
+        
+        if fecha_actual >= limite_fecha:
             mora_acumulada = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
             instance.mora += mora_acumulada   
             instance.status = True   
@@ -121,8 +126,7 @@ def generar_planes(sender, instance,created, **kwargs):
                 interest=interes_acumulado
                 )
             cuota_nueva.save()
-
-
+        
 
 # EL DESEMBOLSO REALIZADO SE REFLEJA EN EL ESTADO DE CUENTAS DEL CLIENTE
 @receiver(post_save, sender=Disbursement)

@@ -19,12 +19,17 @@ def generar():
                 # Verifica y actualiza el monto del pago
                 if pago.monto != banco_referencia.credito:
                     pago.monto = banco_referencia.credito
-                elif pago.monto != banco_referencia.debito:
+
+                if pago.monto != banco_referencia.debito:
                     pago.monto = banco_referencia.debito
 
                 # Verifica la fecha de emisión
-                if pago.fecha_emision.strftime('%d/%m/%Y') != banco_referencia.fecha:
+                print(banco_referencia.fecha)
+                print(pago.fecha_emision.date())
+                
+                if pago.fecha_emision.date() != banco_referencia.fecha:
                     cambiar_estado = True
+                    
 
                 # Si se ha modificado el monto o la fecha, guarda el pago
                 if cambiar_estado or (pago.monto != banco_referencia.credito or pago.monto != banco_referencia.debito):

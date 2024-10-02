@@ -456,7 +456,7 @@ class PaymentPlan(models.Model):
     mora_acumulado_pagado = models.DecimalField('Mora Acumulado Pagada', max_digits=12, decimal_places=2, default=0)
     fecha_limite = models.DateTimeField('Fecha de Limite',blank=True,null=True)
     cambios = models.BooleanField(default=False)
-    numero_referencia = models.CharField('Numero de Referencia', max_length=255, unique=True, null=True, blank=True, default="NAN")
+    numero_referencia = models.CharField('Numero de Referencia', max_length=255, null=True, blank=True, default="NAN")
    
     def no_mes(self):
         contar = 0
