@@ -49,7 +49,8 @@ def generar_noRecibo(sender, instance, **kwargs):
 
         instance.recibo = counter
     # ENVIAR MENSAJES AL CLIENTE, ADMINISTRADORES Y SECRETARIA
-    envio_mensaje_alerta_recibo(instance.id)
+    #envio_mensaje_alerta_recibo(instance.id)
+    logger.info('ENVIO DE MENSAJE DE RECIBO CARGADO')
 
 
 # PARA CODIGO DEL CREDITO
@@ -187,9 +188,11 @@ def cambios(sender, instance, **kwargs):
 @receiver(post_save, sender=Payment)
 def alerta(sender, instance, **kwargs):
     if instance.estado_transaccion == 'FALLIDO':
-        envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO',instance.id)
+        logger.info('ENVIANDO MENSAJE')
+        #envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO',instance.id)
     elif instance.estado_transaccion == 'COMPLETADO':
-        envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO',instance.id)
+        logger.info('ENVIANDO MENSAJE')
+        #envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO',instance.id)
 
 
    

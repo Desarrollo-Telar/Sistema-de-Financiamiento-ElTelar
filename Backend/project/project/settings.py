@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -151,14 +151,19 @@ USE_TZ = True
 # DevElTelar30.
 
 # Configuración de correo electrónico
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'  
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/code/tpm/email'  # Asegúrate de que este directorio exista.
+
+EMAIL_HOST = 'smtp-mail.outlook.com'  
 EMAIL_PORT = 587  
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'develtelar@gmail.com' 
-EMAIL_HOST_PASSWORD = 'nswqvzrfeyznmnki'
-EMAIL_USE_TLS = True  
-DEFAULT_FROM_EMAIL = 'develtelar@gmail.com'
+#EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'DesarrolloElTelar@outlook.com' 
+#EMAIL_HOST_PASSWORD = 'tmmbkxogfsvfrimo'
+EMAIL_HOST_PASSWORD = 'fmfuzehmqcmrcvqo'
+DEFAULT_FROM_EMAIL = 'DesarrolloElTelar@outlook.com'
+# UP3HB-9X2AR-YWK8K-UCQCS-Q63T7
 
 # Configuración de Celery
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Usamos Redis como broker
