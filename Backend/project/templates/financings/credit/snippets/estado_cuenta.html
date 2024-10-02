@@ -12,6 +12,7 @@
                         <th scope="col">No. Referencia</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Monto Pagado</th>
+                        <th scope="col">Desembolso</th>
                         <th scope="col">Mora Pagado</th>
                         <th scope="col">Interes Pagado</th>
                         <th scope="col">Capital Pagado</th>
@@ -43,6 +44,9 @@
                         </td>
                         <td scope="row">
                             {{credit.abono}}
+                        </td>
+                        <td scope="row">
+                            {{credit.disbursement_paid}}
                         </td>
                         <td scope="row">
                             {{credit.late_fee_paid}}

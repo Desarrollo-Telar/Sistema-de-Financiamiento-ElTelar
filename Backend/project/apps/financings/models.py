@@ -580,7 +580,7 @@ class AccountStatement(models.Model):
 
 
     def __str__(self):
-        return f"Estado de cuenta para crédito {self.credit.id} - Pago {self.payment.numero_referencia}"
+        return f"Estado de cuenta para crédito {self.credit.id} "
 
 # ALERTAS
 class Alert(models.Model):
