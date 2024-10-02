@@ -187,6 +187,7 @@ class Payment(models.Model):
             if fecha_inicio <= fecha_emision <= fecha_limite:
                 return cuota 
 
+        return None
     def _siguiente_cuota(self):
         cuotas = PaymentPlan.objects.filter(credit_id=self.credit).order_by('fecha_limite')
         cuota_actual = None
@@ -238,6 +239,9 @@ class Payment(models.Model):
             pago.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
             pago.save()
             return f'EL CREDITO YA FUE PAGO'
+        cuota = self._cuota_pagar()
+        if cuota is None:
+            return f'CUOTA NO ENCONTRADA'
         
 
         saldo_pendiente = self.credito().saldo_pendiente

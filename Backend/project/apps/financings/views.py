@@ -177,7 +177,7 @@ def detail_credit(request,id):
         total_desembolso +=desembolso.monto_total_desembolso
     
     plan = plan_pago.generar_plan()
-    
+   
    
     context = {
         'title':'ELTELAR - CREDITO',
