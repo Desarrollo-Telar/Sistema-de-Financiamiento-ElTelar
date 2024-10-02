@@ -102,30 +102,37 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=PaymentPlan)
 def generar_planes(sender, instance,created, **kwargs):
-    
+    # Cálculo de interés y mora acumulada
+    interes = calculo_interes(instance.saldo_pendiente, instance.credit_id.tasa_interes)
+    mora_acumulada = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
+    interes_acumulado = instance.interest + interes
+
     if created:
         fecha_actual = datetime.now().date()
         limite_fecha = instance.fecha_limite
-        print(limite_fecha)
-        print(fecha_actual)
         
-        
-        if fecha_actual >= limite_fecha:
-            mora_acumulada = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
-            instance.mora += mora_acumulada   
-            instance.status = True   
 
-            interes = calculo_interes(instance.saldo_pendiente,instance.credit_id.tasa_interes)
-            interes_acumulado = instance.interest + interes
+        if fecha_actual >= limite_fecha:
+            # Acumular mora y marcar estado
+            instance.mora += mora_acumulada
+            instance.status = True
+
+            # Crear nueva cuota
             cuota_nueva = PaymentPlan(
-                saldo_pendiente=instance.saldo_pendiente, 
-                credit_id= instance.credit_id, 
+                saldo_pendiente=instance.saldo_pendiente,
+                credit_id=instance.credit_id,
                 start_date=instance.due_date,
-                mora=instance.mora, 
+                mora=instance.mora,
                 outstanding_balance=instance.saldo_pendiente,
                 interest=interes_acumulado
-                )
+            )
             cuota_nueva.save()
+
+    # Actualizar el saldo del crédito
+    credito = Credit.objects.get(id=instance.credit_id.id)
+    credito.saldo_pendiente = instance.saldo_pendiente
+    credito.saldo_actual = instance.saldo_pendiente + instance.mora + interes_acumulado
+    credito.save()
         
 
 # EL DESEMBOLSO REALIZADO SE REFLEJA EN EL ESTADO DE CUENTAS DEL CLIENTE

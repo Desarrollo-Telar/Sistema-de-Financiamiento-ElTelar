@@ -201,15 +201,14 @@ def detail_credit(request,id):
 @login_required
 @usuario_activo
 def detallar_recibo(request,id):
-   
-    pago = get_object_or_404(Payment, id=id)
     desembolso = get_object_or_404(Disbursement,id=id)
+    if desembolso:
+        return redirect('index')
+    pago = get_object_or_404(Payment, id=id)
+    
     recibo = get_object_or_404(Recibo, pago=pago)
 
-    if not pago:
-        if desembolso:
-            return redirect('index')
-        return redirect('index')
+    
 
    
     template_name = 'financings/credit/recibo/detail.html'

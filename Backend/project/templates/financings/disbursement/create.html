@@ -42,7 +42,7 @@
             <label class="fw-medium" for="saldo_anterior">Saldo Anterior</label>
             <div class="input-group mb-3">
                 <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                <input type="number" min="0" step="any" class="form-control" id="saldo_anterior">
+                <input type="number" min="0" step="any" class="form-control" id="saldo_anterior" disabled>
             </div>
 
         </div>
@@ -98,6 +98,7 @@
                 })
                 .then(data => {
                     console.log('Lista de desembolsos obtenida:', data);
+
                     return data;
                 })
                 .catch(error => {
@@ -138,6 +139,26 @@
                 if (Array.isArray(laboral)) {
                     laboral.forEach(element => {
                         suma += parseFloat(element['monto_total_desembolso']);
+                        // Deshabilitar la opción en forma de desembolso
+                        const select = document.getElementById('forma_desembolso');
+                        let dese = element['forma_desembolso'];
+
+
+                        const option = Array.from(select.options).find(opt => {
+                            if (dese === 'APLICACIÓN GASTOS' && opt.value === dese) {
+                                console.log('POR OCULTAR');
+
+                                opt.disabled = true;
+
+                            } else {
+                                opt.disabled = false;
+
+
+                            }
+
+                        });
+
+
                     });
                 }
 
@@ -167,11 +188,15 @@
                     if (Array.isArray(data)) {
                         return {
                             results: data.map(function (item) {
-                                const monto_credito = document.getElementById('monto');
-                                monto_credito.value = item.monto;
+                                // Actualizar monto
+                                document.getElementById('monto').value = item.monto;
 
-                                const saldo_anterior = document.getElementById('saldo_anterior');
-                                saldo_anterior.value = item.saldo_pendiente;
+
+
+                                // Actualizar saldo anterior
+                                document.getElementById('saldo_anterior').value = item.saldo_actual;
+
+                                // Retornar resultado para Select2
                                 return {
                                     id: item.id,
                                     text: item.codigo_credito + ' ' + item.customer_id.first_name + ' ' + item.customer_id.last_name
@@ -184,6 +209,9 @@
                             results: []
                         };
                     }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
                 },
                 cache: true
             },
