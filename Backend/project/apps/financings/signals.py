@@ -24,19 +24,7 @@ logger = logging.getLogger(__name__)
 
 # ENVIO DE EMAIL
 from .task import envio_mensaje_alerta, envio_mensaje_alerta_recibo
-""" 
-@receiver(post_save, sender=Payment)
-def registrar_pago_en_estado_de_cuenta(sender, instance, created, **kwargs):
-    
-    if created:
-        realizar_pago(instance.credit, instance.fecha_emision, instance.monto, instance)
 
-"""
-
-@receiver(post_save, sender=Banco)
-def validar_con_pagos(sender,instance,created,**kwargs):
-    if created:
-        pagos = Payment.objects.filter(numero_referencia=instance.referencia)
 
 # Señales
 # GENERACION DE NUMEROS DE RECIBO
@@ -206,5 +194,6 @@ def alerta(sender, instance, **kwargs):
         logger.info('ENVIANDO MENSAJE')
         #envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO',instance.id)
 
+#JKDSJAKDJSA
 
    

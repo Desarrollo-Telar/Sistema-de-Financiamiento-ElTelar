@@ -38,7 +38,9 @@
             <p class="fw-medium">FECHA DE CREACION DEL CREDITO: <span
                     class="fw-light">{{credit_list.creation_date}}</span>
             </p>
-            <p>{{credit_list.is_paid_off}}</p>
+            <p class="fw-medium">SALDO ACTUAL: <span class="fw-light">Q {{credit_list.saldo_actual}}</span>
+            </p>
+
             <a href="{% url 'financings:create_payment' %}">Generar Pago</a>
 
 
@@ -60,8 +62,12 @@
                 <button class="nav-link" id="nav-plan_inversion-tab" data-bs-toggle="tab"
                     data-bs-target="#nav-plan_inversion" type="button" role="tab" aria-controls="nav-plan_inversion"
                     aria-selected="true">Desembolso</button>
-                <button class="nav-link" id="nav-plan_inversion-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos"
+                <button class="nav-link" id="nav-creditos-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos"
                     type="button" role="tab" aria-controls="nav-creditos" aria-selected="true">Estado de Cuenta</button>
+
+                <button class="nav-link" id="nav-historial-tab" data-bs-toggle="tab" data-bs-target="#nav-historial"
+                    type="button" role="tab" aria-controls="nav-historial" aria-selected="true">Historial de
+                    Cuotas</button>
 
             </div>
         </nav>
@@ -143,6 +149,13 @@
                 tabindex="0">
                 <div class="contenido">
                     {% include 'financings/credit/snippets/estado_cuenta.html' %}
+
+                </div>
+            </div>
+            <div class="tab-pane fade show " id="nav-historial" role="tabpanel" aria-labelledby="nav-historial-tab"
+                tabindex="0">
+                <div class="contenido">
+                    {% include 'financings/credit/snippets/historial.html' %}
 
                 </div>
             </div>

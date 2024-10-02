@@ -1,0 +1,60 @@
+{% load static %}
+<div class="row" style="margin: 0.5rem 0;">
+    <div class="col-12 ">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Fecha de Inicio</th>
+                        <th scope="col">Fecha De Vencimiento</th>
+                        <th scope="col">Fecha Limite</th>
+                        <th scope="col">Interes Acumulado</th>
+                        <th scope="col">Mora Acumulado</th>
+                        <th scope="col">Capital Minimo para Aportar</th>
+                        <th scope="col">Saldo Capital</th>
+                        <th scope="col">Cuota A Cancelar</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for credit in siguiente_pago %}
+
+                    <tr>
+                        <td>
+                            {{credit.start_date}}
+                        </td>
+                        <td>
+                            {{credit.due_date}}
+                        </td>
+                        <td>
+                            {{credit.fecha_limite}}
+                        </td>
+                        <td>
+                            {{credit.interest}}
+                        </td>
+                        <td>
+                            {{credit.mora}}
+                        </td>
+                        <td>
+                            {{credit.calculo_capital}}
+                        </td>
+                        <td>
+                            {{credit.saldo_pendiente}}
+                        </td>
+                        <td>
+                            {{credit.total}}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>

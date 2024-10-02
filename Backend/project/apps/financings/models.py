@@ -506,7 +506,7 @@ class PaymentPlan(models.Model):
         return round(self.mora_acumulada,2)
     
     def total(self):
-        total = self.mora + self.interest + self.calculo_capital()
+        total = self.interest+self.mora +self.calculo_capital()
         return round(total,2)
     
     def calculo_cuota(self):
@@ -522,7 +522,7 @@ class PaymentPlan(models.Model):
             parte2 = (1 + default_interes) ** plazo - 1
             cuota = ((parte1 / parte2) * monto) 
         else:
-            cuota = interes + capital
+            cuota = self.interest + self.calculo_capital()
         return round(cuota, 2)
     
     def calculo_capital(self):
@@ -533,6 +533,7 @@ class PaymentPlan(models.Model):
         intereses = self.interest
 
         if forma_pago == 'NIVELADA':
+            
             return round(cuota - intereses, 2)
         else:
             return round(monto_inicial / plazo, 2)
