@@ -17,6 +17,12 @@ from project.send_mail import send_email_alert, send_email_recibo
 import logging
 logger = logging.getLogger(__name__)
 
+from apps.financings.functions_payment import generar
+@shared_task
+def comparacion():
+    generar()
+
+
 @shared_task
 def envio_mensaje_alerta(mensaje, estado, modelo=None):
     logger.info('ENVIANDO MENSAJE...')
