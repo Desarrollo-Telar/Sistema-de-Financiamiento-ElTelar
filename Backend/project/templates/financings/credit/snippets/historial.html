@@ -9,8 +9,9 @@
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha De Vencimiento</th>
                         <th scope="col">Fecha Limite</th>
-                        <th scope="col">Interes Acumulado</th>
                         <th scope="col">Mora Acumulado</th>
+                        <th scope="col">Interes Acumulado</th>
+
                         <th scope="col">Capital Minimo para Aportar</th>
                         <th scope="col">Saldo Capital</th>
                         <th scope="col">Cuota A Cancelar</th>
@@ -32,11 +33,12 @@
                             {{credit.fecha_limite}}
                         </td>
                         <td>
-                            {{credit.interest}}
-                        </td>
-                        <td>
                             {{credit.mora}}
                         </td>
+                        <td>
+                            {{credit.interest}}
+                        </td>
+
                         <td>
                             {{credit.calculo_capital}}
                         </td>

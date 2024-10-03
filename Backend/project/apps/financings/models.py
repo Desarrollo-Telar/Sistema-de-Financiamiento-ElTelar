@@ -177,15 +177,23 @@ class Payment(models.Model):
         El resultado será una lista de objetos PaymentPlan correspondientes al crédito especificado, ordenados por la fecha de vencimiento, desde la más cercana hasta la más lejana.
         return PaymentPlan.objects.filter(credit_id=self.credit, status=False).order_by('due_date').first()
         """
-        cuotas = PaymentPlan.objects.filter(credit_id=self.credit).order_by('fecha_limite')
+        cuotas = PaymentPlan.objects.filter(credit_id_id=self.credit.id).order_by('fecha_limite')
+        # Recorre las cuotas para realizar las comparaciones
         for cuota in cuotas:
             encontrada = False
-            fecha_inicio = datetime.strftime(cuota.start_date,'%d/%m/%Y')
-            fecha_limite = datetime.strftime(cuota.fecha_limite,'%d/%m/%Y')
-            fecha_emision = datetime.strftime(self.fecha_emision,'%d/%m/%Y')
-
-            if fecha_inicio <= fecha_emision <= fecha_limite:
-                return cuota 
+            # No conviertas las fechas a cadenas, manténlas como objetos datetime
+            fecha_inicio = cuota.start_date.strftime('%Y-%m-%d')
+            fecha_limite = cuota.fecha_limite.strftime('%Y-%m-%d')
+            fecha_emision = self.fecha_emision.strftime('%Y-%m-%d')
+            
+            
+            # Compara los objetos datetime directamente
+            if fecha_inicio <= fecha_emision and fecha_limite >= fecha_emision:
+                # Si cae dentro del rango, haz lo que necesites con la cuota
+                print(f"FECHA DE INICIO: {fecha_inicio}")
+                print(f"FECHA DE EMISION: {fecha_emision}")
+                print(f"FECHA LIMITE: {fecha_limite}")
+                return cuota
 
         return None
     def _siguiente_cuota(self):
@@ -193,11 +201,11 @@ class Payment(models.Model):
         cuota_actual = None
         for cuota in cuotas:
             
-            fecha_inicio = datetime.strftime(cuota.start_date,'%d/%m/%Y')
-            fecha_limite = datetime.strftime(cuota.fecha_limite,'%d/%m/%Y')
-            fecha_emision = datetime.strftime(self.fecha_emision,'%d/%m/%Y')
+            fecha_inicio = cuota.start_date.strftime('%Y-%m-%d')
+            fecha_limite = cuota.fecha_limite.strftime('%Y-%m-%d')
+            fecha_emision = self.fecha_emision.strftime('%Y-%m-%d')
 
-            if fecha_inicio <= fecha_emision <= fecha_limite:
+            if fecha_inicio <= fecha_emision and fecha_limite >= fecha_emision:
                 
                 cuota_actual = cuota
                 continue
