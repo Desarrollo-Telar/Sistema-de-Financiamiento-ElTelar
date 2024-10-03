@@ -163,6 +163,11 @@ def detail_credit(request,id):
     formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
     siguiente_pago = PaymentPlan.objects.filter(credit_id=credito,status=False)
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
+    pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
+    
+    credito.saldo_pendiente = pagos.saldo_pendiente
+    credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
+    credito.save()
     
 
     

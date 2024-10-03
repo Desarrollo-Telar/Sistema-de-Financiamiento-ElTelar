@@ -103,10 +103,7 @@ def generar_planes(sender, instance,created, **kwargs):
 
     if created:
         fecha_actual = str(datetime.now().date())  # Obtén la fecha actual aware
-        limite_fecha = instance.fecha_limite.strftime('%Y-%m-%d')
-        print(fecha_actual)
-        print(limite_fecha)
-        
+        limite_fecha = instance.fecha_limite.strftime('%Y-%m-%d')       
         
         if fecha_actual >= limite_fecha:
             # Acumular mora y marcar estado
@@ -126,11 +123,24 @@ def generar_planes(sender, instance,created, **kwargs):
         
 
     # Actualizar el saldo del crédito
+    """
     credito = Credit.objects.get(id=instance.credit_id.id)
     credito.saldo_pendiente = instance.saldo_pendiente
     credito.saldo_actual = instance.saldo_pendiente + instance.mora + instance.interest
+    print(instance.interest)
     credito.save()
+    """
+    actualizar(instance.id)
         
+def actualizar(id):
+    pagos = PaymentPlan.objects.filter(id=id).order_by('-id').first()
+   
+    credito = Credit.objects.get(id=pagos.credit_id.id)
+    credito.saldo_pendiente = pagos.saldo_pendiente
+    credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
+    credito.save()
+
+
 
 # EL DESEMBOLSO REALIZADO SE REFLEJA EN EL ESTADO DE CUENTAS DEL CLIENTE
 @receiver(post_save, sender=Disbursement)
@@ -169,7 +179,6 @@ def cambios(sender, instance, **kwargs):
             credit_id_id=instance.credit_id.id,  
             fecha_limite__gt=instance.fecha_limite  # Filtramos por fecha límite
         ).order_by('fecha_limite').first()
-        print(siguiente_cuota)
         
 
         if siguiente_cuota:
