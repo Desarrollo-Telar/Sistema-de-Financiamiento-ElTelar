@@ -19,7 +19,7 @@ def realizar_pago(credito_id,  payment):
 
 
         # Registrar el pago
-           
+        
         pagoss.realizar_pago()     
         
         

@@ -87,7 +87,7 @@ def list_payment(request):
 
 
     context = {
-        'title':'EL TELAR',
+        'title':'EL TELAR - PAGOS',
         'page_obj':page_obj,
         'payment_list':page_obj
 
@@ -103,7 +103,7 @@ def list_bank(request):
     
 
     context = {
-        'title':'EL TELAR',
+        'title':'EL TELAR - BANCOS',
         'page_obj':page_obj,
         'bank_list':page_obj
     }
@@ -204,9 +204,11 @@ def detail_credit(request,id):
 @login_required
 @usuario_activo
 def detallar_recibo(request,id):
+    """
     desembolso = get_object_or_404(Disbursement,id=id)
     if desembolso:
         return redirect('index')
+    """
     pago = get_object_or_404(Payment, id=id)
     
     recibo = get_object_or_404(Recibo, pago=pago)

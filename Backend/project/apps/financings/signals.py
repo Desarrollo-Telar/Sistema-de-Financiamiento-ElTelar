@@ -87,6 +87,7 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
 # FECHA DE HOY; 27 DE SEPTIEMBRE 
 # PERO LA FECHA DEL LA PRIMERA CUOTA ESTA PARA EL 2 DE FEBRERO
 # ESTO CREAR NUEVAS CUOTAS
+from django.utils import timezone
 
 @receiver(post_save, sender=PaymentPlan)
 def generar_planes(sender, instance,created, **kwargs):
@@ -96,10 +97,12 @@ def generar_planes(sender, instance,created, **kwargs):
     interes_acumulado = instance.interest + interes
 
     if created:
-        fecha_actual = datetime.now().date()
-        limite_fecha = instance.fecha_limite
+        fecha_actual = str(datetime.now().date())  # Obtén la fecha actual aware
+        limite_fecha = instance.fecha_limite.strftime('%Y-%m-%d')
+        print(fecha_actual)
+        print(limite_fecha)
         
-
+        
         if fecha_actual >= limite_fecha:
             # Acumular mora y marcar estado
             instance.mora += mora_acumulada
@@ -115,11 +118,12 @@ def generar_planes(sender, instance,created, **kwargs):
                 interest=interes_acumulado
             )
             cuota_nueva.save()
+        
 
     # Actualizar el saldo del crédito
     credito = Credit.objects.get(id=instance.credit_id.id)
     credito.saldo_pendiente = instance.saldo_pendiente
-    credito.saldo_actual = instance.saldo_pendiente + instance.mora + interes_acumulado
+    credito.saldo_actual = instance.saldo_pendiente + instance.mora + instance.interest
     credito.save()
         
 
@@ -147,16 +151,21 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
             estado_cuenta.save()
 
 # VER SI HUBO CAMBIOS
+
+
 @receiver(post_save, sender=PaymentPlan)
 def cambios(sender, instance, **kwargs):
     if instance.cambios:
         referencia = instance.numero_referencia
+        #fecha_limite_aware = timezone.make_aware(instance.fecha_limite)
         
         # Obtener la siguiente cuota
         siguiente_cuota = PaymentPlan.objects.filter(
-            credit_id=instance.credit_id,  
+            credit_id_id=instance.credit_id.id,  
             fecha_limite__gt=instance.fecha_limite  # Filtramos por fecha límite
         ).order_by('fecha_limite').first()
+        print(siguiente_cuota)
+        
 
         if siguiente_cuota:
             interes = calculo_interes(instance.saldo_pendiente, instance.credit_id.tasa_interes)
@@ -164,8 +173,8 @@ def cambios(sender, instance, **kwargs):
             
             # Actualizar la siguiente cuota
             siguiente_cuota.cambios = True
-            siguiente_cuota.interest = max(siguiente_cuota.interest, siguiente_cuota.interest - interes)  # Asegúrate de que no sea negativa
-            siguiente_cuota.mora = max(siguiente_cuota.mora, siguiente_cuota.mora - mora)  # Asegúrate de que no sea negativa
+            siguiente_cuota.interest = max(0, siguiente_cuota.interest - interes)  # Asegúrate de que no sea negativa
+            siguiente_cuota.mora = max(0, siguiente_cuota.mora - mora)  # Asegúrate de que no sea negativa
             siguiente_cuota.start_date = instance.due_date
             siguiente_cuota.saldo_pendiente = instance.saldo_pendiente
             siguiente_cuota.credit_id = instance.credit_id
@@ -182,6 +191,7 @@ def cambios(sender, instance, **kwargs):
                 pago.realizar_pago()
         except Payment.DoesNotExist:
             logger.error(f"No se encontró el pago con número de referencia: {referencia}")
+        
    
 
 # ENVIO DE ALERTA PARA EL ESTATUS DE LA BOLETA

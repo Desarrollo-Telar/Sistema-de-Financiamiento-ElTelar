@@ -7,15 +7,17 @@ def generar():
 
     for banco in bancos:
         pagos = Payment.objects.filter(numero_referencia=banco.referencia)
+       
 
         if pagos.exists():  # Verifica si hay pagos asociados al banco
             for pago in pagos:
                 banco_referencia = get_object_or_404(Banco, referencia=pago.numero_referencia)
+                
              
                 # Actualiza el monto del pago si no coincide con el del banco
                 # Inicializa un flag para determinar si se debe cambiar el estado
                 cambiar_estado = False
-
+                """
                 # Verifica y actualiza el monto del pago
                 if pago.monto != banco_referencia.credito:
                     pago.monto = banco_referencia.credito
@@ -37,9 +39,11 @@ def generar():
                         pago.estado_transaccion = 'FALLIDO'
                         pago.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES FALLIDA DEBIDO A QUE LA FECHA DE EMISION NO CORRESPONDE AL REGISTRO DE BANCOS\n\n'
                     pago.save()
+                """
 
 
                 # Si la transacción está pendiente, se realiza el pago
                 if pago.estado_transaccion == 'PENDIENTE' or pago.estado_transaccion == 'Pendiente':
+                   
                     realizar_pago(pago.credit, pago)
                 #pago.realizar_pago()

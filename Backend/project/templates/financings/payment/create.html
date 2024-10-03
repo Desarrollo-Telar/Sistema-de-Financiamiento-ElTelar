@@ -49,8 +49,9 @@
     </div>
     <hr>
     <div style="background-color: white; padding: 2rem;">
-        <button type="submit" class="btn_edit">Crear Registro</button>
-        <a href="{% url 'financings:list_payment'  %}">Cancelar</a>
+        <button type="submit" class="btn_edit" onclick="window.history.back()">Crear Registro</button>
+        <button onclick="window.history.back()" type="button" class="btn btn-link">Cancelar</button>
+
     </div>
 
 

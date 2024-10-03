@@ -1,0 +1,25 @@
+[
+{
+    "model": "financings.credit",
+    "pk": 15,
+    "fields": {
+        "proposito": "fdsfd",
+        "monto": "7000.00",
+        "plazo": 5,
+        "tasa_interes": "0.10",
+        "forma_de_pago": "NIVELADA",
+        "frecuencia_pago": "MENSUAL",
+        "fecha_inicio": "2024-08-02",
+        "fecha_vencimiento": "2025-01-02",
+        "tipo_credito": "COMERCIO",
+        "codigo_credito": "2024-S1 / 1",
+        "destino_id": null,
+        "customer_id": 1,
+        "creation_date": "2024-10-02T17:17:10.377Z",
+        "is_paid_off": false,
+        "tasa_mora": "0.10",
+        "saldo_pendiente": "7000.00",
+        "saldo_actual": "8470.00"
+    }
+}
+]
