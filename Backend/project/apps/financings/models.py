@@ -257,7 +257,7 @@ class Payment(models.Model):
             return f'EL CREDITO YA FUE PAGO'
 
         cuota = self._cuota_pagar()
-        print(cuota)
+        print(cuota.interest)
         if cuota is None:
             return f'CUOTA NO ENCONTRADA'
         
@@ -318,7 +318,7 @@ class Payment(models.Model):
         aporte_capital = monto_depositado
         saldo_pendiente -= aporte_capital
         self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente)
-        return f"Pago realizado con éxito. Q{self.monto} restante. Saldo pendiente total: Q{self.saldo_pendiente}"
+        return f"Pago realizado con éxito. Q{self.monto} restante. Saldo pendiente total: Q{saldo_pendiente}"
     
     def _registrar_pago(self, pagado_mora, pagado_interes,aporte_capital, saldo_pendiente):
         credito = self.credito()
@@ -335,6 +335,7 @@ class Payment(models.Model):
         if recibos.exists():
             for recibo in recibos:
                 # Actualizamos cada recibo existente
+                """
                 recibo.mora = cuota.mora
                 recibo.interes = cuota.interest
                 recibo.pago = pago
@@ -344,6 +345,8 @@ class Payment(models.Model):
                 recibo.mora_pagada = pagado_mora
                 recibo.cliente = credito.customer_id
                 recibo.save()
+                """
+                pass
         else:
             # Creamos un nuevo recibo si no hay existentes
             recibo = Recibo(
@@ -397,7 +400,7 @@ class Payment(models.Model):
                 # Actualizamos cada estado de cuenta existente
                 for key, value in datos_estado_cuenta.items():
                     setattr(estado_cuenta, key, value)
-                estado_cuenta.save()
+                #estado_cuenta.save()
         else:
             # Creamos un nuevo estado de cuenta si no hay existentes
             estado_cuenta = AccountStatement(**datos_estado_cuenta)
@@ -410,8 +413,10 @@ class Payment(models.Model):
             credito.is_paid_off = True
             credito.saldo_pendiente = 0
             credito.save()
+            print('CREDITO CANCELADO')
 
             return f'EL CREDITO PAGADO COMPLETAMENTE'
+            
         
         # SE ACTUALIZA EL SALDO PENDIENTE DEL CREDITO
         credito.saldo_pendiente = saldo_pendiente
@@ -461,6 +466,7 @@ class Payment(models.Model):
         return f'PAGO {self.numero_referencia} - {self.estado_transaccion}'
 
 # PLAN DE PAGOS
+from decimal import Decimal
 class PaymentPlan(models.Model):
     mes = models.IntegerField('No.Mes',blank=True, null=True,default=1)  
     start_date = models.DateTimeField('Fecha de Inicio') # obligatorio
@@ -528,40 +534,52 @@ class PaymentPlan(models.Model):
         return round(self.mora_acumulada,2)
     
     def total(self):
+        total = 0
         if self.calculo_capital() > 0:
             total = self.interest+self.mora +self.calculo_capital()
         else:
             total = self.interest+self.mora
         return round(total,2)
     
-    def calculo_cuota(self):
-        forma_pago = self.credit_id.forma_de_pago
-        tasa_interes = self.credit_id.tasa_interes
-        plazo = self.credit_id.plazo
-        monto = self.credit_id.monto
-
-        if forma_pago == 'NIVELADA':
-            #default_interes = self.interes / 12
-            default_interes = tasa_interes
-            parte1 = (1 + default_interes) ** plazo * default_interes
-            parte2 = (1 + default_interes) ** plazo - 1
-            cuota = ((parte1 / parte2) * monto) 
-        else:
-            cuota = self.interest + self.calculo_capital()
-        return round(cuota, 2)
+    
     
     def calculo_capital(self):
         forma_pago = self.credit_id.forma_de_pago
-        cuota = self.calculo_cuota()
-        monto_inicial = self.credit_id.monto
+        monto_inicial = Decimal(self.credit_id.monto)
         plazo = self.credit_id.plazo
-        intereses = self.interest
+        intereses = Decimal(self.interest)
 
         if forma_pago == 'NIVELADA':
-            
+            cuota = Decimal(self.calculo_cuota())  # Solo llamamos una vez
+            if intereses >= cuota:
+                intereses = self.calculo_interes()
+
+            # Capital es la diferencia entre la cuota y los intereses
             return round(cuota - intereses, 2)
         else:
+            # En el caso de amortización a capital, capital es fijo
             return round(monto_inicial / plazo, 2)
+
+    def calculo_cuota(self):
+        forma_pago = self.credit_id.forma_de_pago
+        tasa_interes = Decimal(self.credit_id.tasa_interes)   # Aseguramos que sea decimal
+        plazo = self.credit_id.plazo
+        monto = Decimal(self.credit_id.monto)
+
+        if forma_pago == 'NIVELADA':
+            # Cálculo de la cuota nivelada basado en la fórmula de cuota fija
+            default_interes = tasa_interes  # Asumiendo tasa mensual
+            parte1 = (1 + default_interes) ** plazo * default_interes
+            parte2 = (1 + default_interes) ** plazo - 1
+            cuota = (monto * parte1) / parte2
+        else:
+            # En el caso de amortización a capital, no llamamos a calculo_capital aquí
+            # Capital y cuota se calculan de forma separada
+            capital = round(monto / plazo, 2)
+            cuota = Decimal(self.interest) + capital
+
+        return round(cuota, 2)
+
     
     
    
@@ -573,7 +591,7 @@ class PaymentPlan(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return f'{self.mes}'
+        return f'CREDITO: {self.credit_id} FECHA INICIO: {self.start_date} FECHA LIMITE: {self.fecha_limite}'
         
     class Meta:
         verbose_name = 'Plan de Pago'
