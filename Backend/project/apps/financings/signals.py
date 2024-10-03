@@ -24,9 +24,14 @@ logger = logging.getLogger(__name__)
 
 # ENVIO DE EMAIL
 from .task import envio_mensaje_alerta, envio_mensaje_alerta_recibo
-
+from apps.financings.functions_payment import generar
 
 # Señales
+@receiver(post_save, sender=Payment)
+def generar_plan_pagos(sender, instance, created, **kwargs):
+    if created:
+        generar()
+
 # GENERACION DE NUMEROS DE RECIBO
 @receiver(pre_save, sender=Recibo)
 def generar_noRecibo(sender, instance, **kwargs):
