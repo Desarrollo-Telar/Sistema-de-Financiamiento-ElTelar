@@ -254,7 +254,7 @@ class Payment(models.Model):
             return f'EL CREDITO YA FUE PAGO'
 
         cuota = self._cuota_pagar()
-        print(cuota.interest)
+        
         if cuota is None:
             logger.error(f'NO SE HA ENCONTRADO NINGUNA CUOTA')
             return f'CUOTA NO ENCONTRADA'
@@ -362,11 +362,16 @@ class Payment(models.Model):
                             # 500 - 100 = 400
         
         cuota.interest -=pagado_interes
+        mora_existente = cuota.mora
         cuota.mora -= pagado_mora
+        cuota.principal = aporte_capital
         cuota.saldo_pendiente = saldo_pendiente
         cuota.numero_referencia = self.numero_referencia
         cuota.cambios = False
-        
+        """
+        if aporte_capital > 0:
+            cuota.status = True
+        """
         cuota.save()
 
         # ACTUALIZAR EL PAGO PARA REFREGAR LA CANTIDA PAGADA
@@ -437,10 +442,17 @@ class Payment(models.Model):
         if siguiente:
             # Actualizamos la siguiente cuota si ya existe
             cuota_a_actualizar = siguiente
-            logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES ANTIGUO{cuota_a_actualizar.interest}\nMORA ANTIGUA{cuota_a_actualizar.mora}\nSALDO PENDIENTE{cuota_a_actualizar.saldo_pendiente}')
+            logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES ANTIGUO: {cuota_a_actualizar.interest}\nMORA ANTIGUA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {cuota_a_actualizar.saldo_pendiente}')
             cuota_a_actualizar.cambios = True
-            cuota_a_actualizar.interest = max(0, cuota_a_actualizar.interest - pagado_interes)
-            cuota_a_actualizar.mora = max(0, cuota_a_actualizar.mora - pagado_mora)
+            if cuota.installment > 0:
+                cuota_a_actualizar.interest = max(0, cuota_a_actualizar.interest - pagado_interes)
+            else:
+                cuota_a_actualizar.interest = interes
+
+            if mora_existente > 0:
+                cuota_a_actualizar.mora = max(0, cuota_a_actualizar.mora - pagado_mora)
+            else:
+                cuota_a_actualizar.mora = Decimal(cuota.interest) *Decimal(0.10)
             
             
         else:
@@ -454,7 +466,7 @@ class Payment(models.Model):
         cuota_a_actualizar.saldo_pendiente = saldo_pendiente
         cuota_a_actualizar.credit_id = credito
         cuota_a_actualizar.outstanding_balance = saldo_pendiente
-        logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO{cuota_a_actualizar.interest}\nMORA NUEVA{cuota_a_actualizar.mora}\nSALDO PENDIENTE{saldo_pendiente}')
+        logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO: {cuota_a_actualizar.interest}\nMORA NUEVA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {saldo_pendiente}')
     
 
         # Guardamos los cambios
@@ -556,6 +568,8 @@ class PaymentPlan(models.Model):
         intereses = Decimal(self.interest)
         capital = 0
 
+        
+
         if forma_pago == 'NIVELADA':
             cuota = Decimal(self.calculo_cuota())  # Solo llamamos una vez
             if intereses >= cuota:
@@ -567,9 +581,11 @@ class PaymentPlan(models.Model):
         else:
             # En el caso de amortización a capital, capital es fijo
             capital =  round(monto_inicial / plazo, 2)
-        
+
         if self.principal > 0:
             capital = 0
+        
+        
         return Decimal(capital)
 
     def calculo_cuota(self):
@@ -603,7 +619,7 @@ class PaymentPlan(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return f'CREDITO: {self.credit_id} FECHA INICIO: {self.start_date} FECHA LIMITE: {self.fecha_limite}'
+        return f'CREDITO: {self.credit_id} FECHA INICIO: {self.start_date.strftime('%Y-%m-%d')} FECHA LIMITE: {self.fecha_limite.strftime('%Y-%m-%d')}'
         
     class Meta:
         verbose_name = 'Plan de Pago'

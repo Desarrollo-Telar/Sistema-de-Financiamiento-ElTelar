@@ -168,6 +168,9 @@ def detail_credit(request,id):
         credito.saldo_pendiente = pagos.saldo_pendiente
         credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
         credito.save()
+    
+    for x in siguiente_pago:
+        print(x.principal)
 
    
     

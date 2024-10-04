@@ -17,8 +17,8 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 import uuid
-import logging
-logger = logging.getLogger(__name__)
+# LOOGER
+from apps.financings.clases.personality_logs import logger
 
 
 
@@ -184,28 +184,43 @@ def eliminar_siguientes_cuotas(sender, instance, **kwargs):
     if siguiente_cuota:
         siguiente_cuota.delete()
 
-
+# DECIMAL
+from decimal import Decimal
 @receiver(post_save, sender=PaymentPlan)
 def cambios(sender, instance, **kwargs):
     if instance.cambios:
+        logger.info(f'\n\n')
+        logger.info('\nPOR REALIZAR CAMBIOS EN LA SIGUIENTE CUOTA\n')
         referencia = instance.numero_referencia
         #fecha_limite_aware = timezone.make_aware(instance.fecha_limite)
-        
+        logger.info(f'CUOTA ACTUAL: {instance}')
+        logger.info(f'\n\n')
         # Obtener la siguiente cuota
         siguiente_cuota = PaymentPlan.objects.filter(
             credit_id_id=instance.credit_id.id,  
             fecha_limite__gt=instance.fecha_limite  # Filtramos por fecha límite
         ).order_by('fecha_limite').first()
-        
 
+        logger.info(f'CAMBIO DE LA CUOTA: {siguiente_cuota}')
+        cuota_interes = instance.interest
+        logger.info(f'INTERES ANTERIOS: {round(cuota_interes,2)}')
+        mora = Decimal(cuota_interes) * Decimal(0.1)
         if siguiente_cuota:
             interes = calculo_interes(instance.saldo_pendiente, instance.credit_id.tasa_interes)
-            mora = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
+            #mora = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
+
+            logger.info(f'OPERACION POR REALIZAR: \nx = {cuota_interes} + {interes}\n')
+
+            cuota_interes = cuota_interes + interes
+
             
+            logger.info(f'INTERES: {round(cuota_interes,2)}')
+            logger.info(f'Mora: {round(mora,2)}')
+            logger.info(f'\n\n')
             # Actualizar la siguiente cuota
             siguiente_cuota.cambios = True
-            siguiente_cuota.interest = max(0, siguiente_cuota.interest - interes)  # Asegúrate de que no sea negativa
-            siguiente_cuota.mora = max(0, siguiente_cuota.mora - mora)  # Asegúrate de que no sea negativa
+            siguiente_cuota.interest = round(cuota_interes,2)  # Asegúrate de que no sea negativa
+            siguiente_cuota.mora = round(mora,2)  # Asegúrate de que no sea negativa
             siguiente_cuota.start_date = instance.due_date
             siguiente_cuota.saldo_pendiente = instance.saldo_pendiente
             siguiente_cuota.credit_id = instance.credit_id
