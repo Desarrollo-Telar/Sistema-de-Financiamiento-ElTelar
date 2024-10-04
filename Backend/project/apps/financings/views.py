@@ -164,13 +164,12 @@ def detail_credit(request,id):
     siguiente_pago = PaymentPlan.objects.filter(credit_id=credito,status=False)
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
     pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
-    
-    credito.saldo_pendiente = pagos.saldo_pendiente
-    credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
-    credito.save()
+    if pagos:
+        credito.saldo_pendiente = pagos.saldo_pendiente
+        credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
+        credito.save()
 
-    for x in siguiente_pago:
-        print(x.interest)
+   
     
 
     

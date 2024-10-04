@@ -1,4 +1,4 @@
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save, pre_save, pre_delete, post_delete
 from django.dispatch import receiver
 
 # MODELOS
@@ -25,8 +25,15 @@ logger = logging.getLogger(__name__)
 # ENVIO DE EMAIL
 from .task import envio_mensaje_alerta, envio_mensaje_alerta_recibo,comparacion
 
-
+from project.settings import MEDIA_URL, STATIC_URL
+from project.settings import MEDIA_ROOT
+import os
 # Señales
+@receiver(pre_delete, sender=Payment)
+def eliminar_documento_banco(sender,instance,**kwargs):
+    file_path = os.path.join(MEDIA_ROOT, str(instance.boleta))  
+    instance.boleta.delete()
+
 @receiver(post_save, sender=Payment)
 def generar_plan_pagos(sender, instance, created, **kwargs):
     if created:
@@ -166,6 +173,16 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
             estado_cuenta.save()
 
 # VER SI HUBO CAMBIOS
+@receiver(post_delete,  sender=PaymentPlan)
+def eliminar_siguientes_cuotas(sender, instance, **kwargs):
+    # Obtener la siguiente cuota
+    siguiente_cuota = PaymentPlan.objects.filter(
+        credit_id_id=instance.credit_id.id,  
+        fecha_limite__gt=instance.fecha_limite  # Filtramos por fecha límite
+    ).order_by('fecha_limite').first()
+
+    if siguiente_cuota:
+        siguiente_cuota.delete()
 
 
 @receiver(post_save, sender=PaymentPlan)

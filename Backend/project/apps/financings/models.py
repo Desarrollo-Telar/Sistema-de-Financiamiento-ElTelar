@@ -22,6 +22,8 @@ from decimal import Decimal
 # CALCULOS
 from apps.financings.calculos import calculo_mora
 
+# LOOGER
+from apps.financings.clases.personality_logs import logger
 
 from django.shortcuts import render, get_object_or_404, redirect
 # Create your models here.
@@ -68,11 +70,10 @@ class Credit(models.Model):
     
     def tasa_interes_c(self):
 
-        tasa = float(self.tasa_interes)
+        tasa = Decimal(self.tasa_interes) *100
+        return round(tasa,2)
 
-        if tasa > 1:
-            return (self.tasa_interes / 12)/100
-        return (self.tasa_interes/12)
+        
 
 
     
@@ -232,19 +233,15 @@ class Payment(models.Model):
         cuota = self._cuota_pagar()
         total = cuota.interest + cuota.mora
         return round(total)
-    
-  
-    
 
     def realizar_pago(self):
-        
         
         if self.tipo_pago == 'DESEMBOLSO':
             # registrar en el apartado de desembolso
             pago = self.pago()
             pago.estado_transaccion = 'COMPLETADO'
-            pago.save()
-            print('desembolso')
+            #pago.save()
+            logger.info(f'EL PAGO {pago.numero_referencia} CORRESPONDE A UN DESEMBOLSO')
 
             return f'REGISTRO DE DESEMBOLSO'
         
@@ -252,13 +249,14 @@ class Payment(models.Model):
             pago = self.pago()
             pago.estado_transaccion = 'FALLIDO'
             pago.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
-            pago.save()
-            print('completado')
+            #pago.save()
+            logger.error(f'EL PAGO {pago.numero_referencia} NO ES APLICADO DEBIDO A QUE YA CREDIO HA SIDO PAGADO')
             return f'EL CREDITO YA FUE PAGO'
 
         cuota = self._cuota_pagar()
         print(cuota.interest)
         if cuota is None:
+            logger.error(f'NO SE HA ENCONTRADO NINGUNA CUOTA')
             return f'CUOTA NO ENCONTRADA'
         
 
@@ -299,19 +297,17 @@ class Payment(models.Model):
 
         # Procesar pago de mora
         mora = procesar_pago('Mora', mora) 
-        if mora > 0:     
+        if mora > 0:
             aporte_capital = monto_depositado       
             self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente)
-            
             return f"Pago realizado parcialmente. Quedan Q{mora} de mora pendiente. "
 
        
         # Procesar pago de intereses
         interes = procesar_pago('Interes', interes)
         
-        if interes > 0:       
+        if interes > 0:
             aporte_capital = monto_depositado
-            
             self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente)
             return f"Pago realizado parcialmente. Quedan Q{interes} de intereses pendientes. "
         
@@ -392,6 +388,7 @@ class Payment(models.Model):
             'late_fee_paid': pagado_mora,
             'capital_paid': aporte_capital,
             'numero_referencia': self.numero_referencia,
+            'saldo_pendiente':saldo_pendiente,
             'description': 'PAGO DE CREDITO'
         }
         
@@ -413,7 +410,9 @@ class Payment(models.Model):
             credito.is_paid_off = True
             credito.saldo_pendiente = 0
             credito.save()
-            print('CREDITO CANCELADO')
+            logger.error(f'EL CREDITO PAGADO COMPLETAMENTE')
+            if siguiente:
+                siguiente.delete()
 
             return f'EL CREDITO PAGADO COMPLETAMENTE'
             
@@ -438,9 +437,11 @@ class Payment(models.Model):
         if siguiente:
             # Actualizamos la siguiente cuota si ya existe
             cuota_a_actualizar = siguiente
+            logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES ANTIGUO{cuota_a_actualizar.interest}\nMORA ANTIGUA{cuota_a_actualizar.mora}\nSALDO PENDIENTE{cuota_a_actualizar.saldo_pendiente}')
             cuota_a_actualizar.cambios = True
             cuota_a_actualizar.interest = max(0, cuota_a_actualizar.interest - pagado_interes)
             cuota_a_actualizar.mora = max(0, cuota_a_actualizar.mora - pagado_mora)
+            
             
         else:
             # Creamos una nueva cuota si no existe
@@ -453,6 +454,7 @@ class Payment(models.Model):
         cuota_a_actualizar.saldo_pendiente = saldo_pendiente
         cuota_a_actualizar.credit_id = credito
         cuota_a_actualizar.outstanding_balance = saldo_pendiente
+        logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO{cuota_a_actualizar.interest}\nMORA NUEVA{cuota_a_actualizar.mora}\nSALDO PENDIENTE{saldo_pendiente}')
     
 
         # Guardamos los cambios
@@ -464,6 +466,10 @@ class Payment(models.Model):
 
     def __str__(self):
         return f'PAGO {self.numero_referencia} - {self.estado_transaccion}'
+
+    class Meta:
+        verbose_name = 'Pago'
+        verbose_name_plural = 'Pagos'
 
 # PLAN DE PAGOS
 from decimal import Decimal
@@ -514,8 +520,8 @@ class PaymentPlan(models.Model):
 
     def calculo_interes(self):
         interes = (self.saldo_pendiente * self.credit_id.tasa_interes)
-        self.interest = round(interes,2)
-        return self.interest
+        si = round(interes,2)
+        return si
 
     def acumulacion_interes(self):
         interes = 12
@@ -535,10 +541,10 @@ class PaymentPlan(models.Model):
     
     def total(self):
         total = 0
-        if self.calculo_capital() > 0:
-            total = self.interest+self.mora +self.calculo_capital()
-        else:
-            total = self.interest+self.mora
+        capital = Decimal(self.calculo_capital())
+        interes = Decimal(self.interest)
+        mora = Decimal(self.mora)
+        total = interes + mora + capital
         return round(total,2)
     
     
@@ -548,6 +554,7 @@ class PaymentPlan(models.Model):
         monto_inicial = Decimal(self.credit_id.monto)
         plazo = self.credit_id.plazo
         intereses = Decimal(self.interest)
+        capital = 0
 
         if forma_pago == 'NIVELADA':
             cuota = Decimal(self.calculo_cuota())  # Solo llamamos una vez
@@ -555,10 +562,15 @@ class PaymentPlan(models.Model):
                 intereses = self.calculo_interes()
 
             # Capital es la diferencia entre la cuota y los intereses
-            return round(cuota - intereses, 2)
+            capital = round(cuota - intereses, 2)
+             
         else:
             # En el caso de amortización a capital, capital es fijo
-            return round(monto_inicial / plazo, 2)
+            capital =  round(monto_inicial / plazo, 2)
+        
+        if self.principal > 0:
+            capital = 0
+        return Decimal(capital)
 
     def calculo_cuota(self):
         forma_pago = self.credit_id.forma_de_pago
