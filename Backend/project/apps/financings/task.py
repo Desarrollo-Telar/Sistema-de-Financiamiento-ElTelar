@@ -60,7 +60,7 @@ def cambiar_plan():
             mora = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
             mora_acumulada = pago.mora + mora
             
-            #pago.mora += mora_acumulada   
+            pago.mora += mora_acumulada   
             pago.save()
 
             interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
@@ -73,7 +73,7 @@ def cambiar_plan():
                 saldo_pendiente=pago.saldo_pendiente, 
                 credit_id= pago.credit_id, 
                 start_date=pago.due_date,
-                mora=mora_acumulada, 
+                mora=pago.mora, 
                 outstanding_balance=pago.saldo_pendiente,
                 interest=interes_acumulado
                 )

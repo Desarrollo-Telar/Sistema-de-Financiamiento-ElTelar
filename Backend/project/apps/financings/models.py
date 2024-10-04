@@ -449,17 +449,16 @@ class Payment(models.Model):
             else:
                 cuota_a_actualizar.interest = interes
 
-            if mora_existente > 0:
-                cuota_a_actualizar.mora = max(0, cuota_a_actualizar.mora - pagado_mora)
-            else:
-                cuota_a_actualizar.mora = Decimal(cuota.interest) *Decimal(0.10)
+            
+            cuota_a_actualizar.mora = max(0, cuota_a_actualizar.mora - pagado_mora)
+            
             
             
         else:
             # Creamos una nueva cuota si no existe
             cuota_a_actualizar = PaymentPlan()
             cuota_a_actualizar.interest = interes
-            cuota_a_actualizar.mora = mora
+            #cuota_a_actualizar.mora = mora
 
         # En ambos casos (cuota nueva o existente), actualizamos los campos comunes
         cuota_a_actualizar.start_date = cuota.due_date

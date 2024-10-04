@@ -37,7 +37,7 @@ def eliminar_documento_banco(sender,instance,**kwargs):
 @receiver(post_save, sender=Payment)
 def generar_plan_pagos(sender, instance, created, **kwargs):
     if created:
-        comparacion()
+        comparacion.delay()
 
 # GENERACION DE NUMEROS DE RECIBO
 @receiver(pre_save, sender=Recibo)
@@ -107,6 +107,8 @@ def generar_planes(sender, instance,created, **kwargs):
     interes = calculo_interes(instance.saldo_pendiente, instance.credit_id.tasa_interes)
     mora_acumulada = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
     interes_acumulado = instance.interest + interes
+    more = instance.mora +mora_acumulada
+    logger.info(f'MORA: {more}')
 
     if created:
         fecha_actual = str(datetime.now().date())  # Obtén la fecha actual aware
@@ -114,8 +116,10 @@ def generar_planes(sender, instance,created, **kwargs):
         
         if fecha_actual >= limite_fecha:
             # Acumular mora y marcar estado
-            instance.mora += mora_acumulada
-            instance.status = True
+            
+            instance.mora = more
+            #instance.status = True
+            instance.save()
 
             # Crear nueva cuota
             cuota_nueva = PaymentPlan(
@@ -220,7 +224,8 @@ def cambios(sender, instance, **kwargs):
             # Actualizar la siguiente cuota
             siguiente_cuota.cambios = True
             siguiente_cuota.interest = round(cuota_interes,2)  # Asegúrate de que no sea negativa
-            siguiente_cuota.mora = round(mora,2)  # Asegúrate de que no sea negativa
+            #siguiente_cuota.mora = max(0, siguiente_cuota.mora - mora)  # Asegúrate de que no sea negativa
+            siguiente_cuota.mora = mora # Asegúrate de que no sea negativa
             siguiente_cuota.start_date = instance.due_date
             siguiente_cuota.saldo_pendiente = instance.saldo_pendiente
             siguiente_cuota.credit_id = instance.credit_id
