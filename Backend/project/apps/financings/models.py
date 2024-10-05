@@ -174,26 +174,55 @@ class Payment(models.Model):
 
     def _cuota_pagar(self):
         """
-        PaymentPlan.objects.filter(credit_id=self.credit).order_by('due_date')
-        El resultado será una lista de objetos PaymentPlan correspondientes al crédito especificado, ordenados por la fecha de vencimiento, desde la más cercana hasta la más lejana.
-        return PaymentPlan.objects.filter(credit_id=self.credit, status=False).order_by('due_date').first()
+        Encuentra la próxima cuota a pagar en función de la fecha de emisión y el historial de pagos.
         """
-        cuotas = PaymentPlan.objects.filter(credit_id_id=self.credit.id).order_by('fecha_limite')
-        # Recorre las cuotas para realizar las comparaciones
+        # Obtener todas las cuotas del crédito ordenadas por la fecha límite
+        cuotas = PaymentPlan.objects.filter(credit_id=self.credit).order_by('fecha_limite')
+
+        # Fecha de emisión (como objeto datetime)
+        fecha_emision = self.fecha_emision
+        logger.info(f"Fecha de emisión: {fecha_emision}")
+
+        # Historial de pagos anteriores (último pago realizado)
+        historial_a = AccountStatement.objects.filter(credit=self.credit, description='PAGO DE CREDITO').order_by('-id').first()
+
+        # Verifica si hay historial de pagos
+        if historial_a:
+            ultima_fecha = historial_a.payment.fecha_emision
+            logger.info(f"Última fecha de pago: {ultima_fecha}")
+
+            # Calcular la diferencia en días
+            diferencia = (ultima_fecha - fecha_emision).days
+            logger.info(f"Diferencia en días desde el último pago: {diferencia} días")
+
+            # Si han pasado 31 días desde el último pago
+            if diferencia >= 31:
+                # Devolver la cuota más reciente impaga
+                logger.info('COBRANDO LA ULTIMA CUOTA POR DIFERENCIA DE DÍAS >= 31')
+                cuota_a_pagar = PaymentPlan.objects.filter(credit_id=self.credit.id).order_by('-id').first()
+                return cuota_a_pagar
+
+        else:
+            logger.info("No hay historial de pagos")
+
+        # Si no han pasado 31 días, se recorre las cuotas por fechas
+        logger.info("Pasando a comparar cuotas por rangos de fechas")
+
+        # Recorre las cuotas para realizar las comparaciones por fechas
         for cuota in cuotas:
-            encontrada = False
-            # No conviertas las fechas a cadenas, manténlas como objetos datetime
-            fecha_inicio = cuota.start_date.strftime('%Y-%m-%d')
-            fecha_limite = cuota.fecha_limite.strftime('%Y-%m-%d')
-            fecha_emision = self.fecha_emision.strftime('%Y-%m-%d')
-            
-            
-            # Compara los objetos datetime directamente
-            if fecha_inicio <= fecha_emision and fecha_limite >= fecha_emision:
-                # Si cae dentro del rango, haz lo que necesites con la cuota
-            
+            # Usar objetos datetime directamente
+            fecha_inicio = cuota.start_date
+            fecha_limite = cuota.fecha_limite
+            logger.info(f"Comparando cuota con rango: {fecha_inicio} a {fecha_limite}")
+                        
+            # Comparar directamente objetos datetime
+            if fecha_inicio <= fecha_emision <= fecha_limite:
+                # Si la fecha de emisión cae dentro del rango de esta cuota
+                logger.info("Cuota encontrada en rango de fechas")
                 return cuota
 
+        # Si no se encuentra ninguna cuota aplicable
+        logger.info("No se encontró ninguna cuota aplicable")
         return None
 
     def _siguiente_cuota(self):

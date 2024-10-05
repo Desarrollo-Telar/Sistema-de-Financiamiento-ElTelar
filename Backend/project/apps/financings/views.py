@@ -8,7 +8,7 @@ from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfI
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.pictures.models import ImagenCustomer
 from apps.documents.models import DocumentCustomer, DocumentBank
-
+#from .models import AccountStatement
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
 from django.views.generic.list import ListView
@@ -31,6 +31,8 @@ from .clases.credit import Credit as Credito
 
 # TAREA ASINCRONICO
 from .task import cambiar_plan
+# TIEMPO
+from datetime import datetime, timedelta
 
 # Create your views here.
 ### ------------------- CREAR ---------------------- ###
@@ -164,13 +166,30 @@ def detail_credit(request,id):
     siguiente_pago = PaymentPlan.objects.filter(credit_id=credito,status=False)
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
     pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
+
+    historial_a = AccountStatement.objects.filter(credit=credito, description='PAGO DE CREDITO').order_by('-id').first()
+    if historial_a:
+        ultima_fecha  = historial_a.payment.fecha_emision.strftime('%Y-%m-%d')
+        fecha_antes = '2023-08-02'
+        # Convertir las cadenas a objetos datetime
+        fecha_antes_dt = datetime.strptime(fecha_antes, '%Y-%m-%d')
+        ultima_fecha_dt = datetime.strptime(ultima_fecha, '%Y-%m-%d')
+
+        # Calcular la diferencia en días
+        diferencia = (ultima_fecha_dt - fecha_antes_dt).days
+        print(diferencia)
+        if diferencia >= 31:
+            print('BUSCAR LA ULTIMA CUOTA')
+            cuotas = PaymentPlan.objects.filter(credit_id_id=credito.id).order_by('-id').first()
+            print(cuotas)
+
+    
     if pagos:
         credito.saldo_pendiente = pagos.saldo_pendiente
         credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
         credito.save()
     
-    for x in siguiente_pago:
-        print(x.principal)
+    
 
    
     
