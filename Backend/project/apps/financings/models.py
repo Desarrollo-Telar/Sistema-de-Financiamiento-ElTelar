@@ -478,9 +478,13 @@ class Payment(models.Model):
             if cuota.interest <=0:
             
                 cuota_a_actualizar.interest =  interes
+            else:
+                cuota_a_actualizar.interest  = max (0, cuota_a_actualizar.interest - pagado_interes)
+
 
                 
-            cuota_a_actualizar.mora = cuota_a_actualizar.mora - mora_existente
+            cuota_a_actualizar.mora = max(0,cuota_a_actualizar.mora - pagado_mora)
+            
                 
                 
                 
