@@ -37,7 +37,7 @@ def eliminar_documento_banco(sender,instance,**kwargs):
 @receiver(post_save, sender=Payment)
 def generar_plan_pagos(sender, instance, created, **kwargs):
     if created:
-        comparacion.delay()
+        comparacion()
 
 # GENERACION DE NUMEROS DE RECIBO
 @receiver(pre_save, sender=Recibo)

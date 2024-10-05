@@ -434,42 +434,44 @@ class Payment(models.Model):
             interes = saldo_pendiente * (tasa_interes )
             return round(interes,2)
 
-        interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
-        mora = calculo_mora(saldo_pendiente, credito.tasa_interes)
-        
-        
+        if self.monto > self._calcular_total():
 
-        if siguiente:
-            # Actualizamos la siguiente cuota si ya existe
-            cuota_a_actualizar = siguiente
-            logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES ANTIGUO: {cuota_a_actualizar.interest}\nMORA ANTIGUA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {cuota_a_actualizar.saldo_pendiente}')
-            cuota_a_actualizar.cambios = True
-            if cuota.installment > 0:
-                cuota_a_actualizar.interest = max(0, cuota_a_actualizar.interest - pagado_interes)
+            interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
+            mora = calculo_mora(saldo_pendiente, credito.tasa_interes)
+            
+            
+
+            if siguiente:
+                # Actualizamos la siguiente cuota si ya existe
+                cuota_a_actualizar = siguiente
+                logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES ANTIGUO: {cuota_a_actualizar.interest}\nMORA ANTIGUA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {cuota_a_actualizar.saldo_pendiente}')
+                cuota_a_actualizar.cambios = True
+                if cuota.installment > 0:
+                    cuota_a_actualizar.interest = max(0, cuota_a_actualizar.interest - pagado_interes)
+                else:
+                    cuota_a_actualizar.interest = interes
+
+                
+                cuota_a_actualizar.mora = max(0, cuota_a_actualizar.mora - pagado_mora)
+                
+                
+                
             else:
+                # Creamos una nueva cuota si no existe
+                cuota_a_actualizar = PaymentPlan()
                 cuota_a_actualizar.interest = interes
+                #cuota_a_actualizar.mora = mora
 
-            
-            cuota_a_actualizar.mora = max(0, cuota_a_actualizar.mora - pagado_mora)
-            
-            
-            
-        else:
-            # Creamos una nueva cuota si no existe
-            cuota_a_actualizar = PaymentPlan()
-            cuota_a_actualizar.interest = interes
-            #cuota_a_actualizar.mora = mora
+            # En ambos casos (cuota nueva o existente), actualizamos los campos comunes
+            cuota_a_actualizar.start_date = cuota.due_date
+            cuota_a_actualizar.saldo_pendiente = saldo_pendiente
+            cuota_a_actualizar.credit_id = credito
+            cuota_a_actualizar.outstanding_balance = saldo_pendiente
+            logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO: {cuota_a_actualizar.interest}\nMORA NUEVA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {saldo_pendiente}')
+        
 
-        # En ambos casos (cuota nueva o existente), actualizamos los campos comunes
-        cuota_a_actualizar.start_date = cuota.due_date
-        cuota_a_actualizar.saldo_pendiente = saldo_pendiente
-        cuota_a_actualizar.credit_id = credito
-        cuota_a_actualizar.outstanding_balance = saldo_pendiente
-        logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO: {cuota_a_actualizar.interest}\nMORA NUEVA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {saldo_pendiente}')
-    
-
-        # Guardamos los cambios
-        cuota_a_actualizar.save()
+            # Guardamos los cambios
+            cuota_a_actualizar.save()
 
         
 
