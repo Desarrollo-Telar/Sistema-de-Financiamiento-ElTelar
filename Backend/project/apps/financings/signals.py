@@ -208,14 +208,17 @@ def cambios(sender, instance, **kwargs):
         logger.info(f'CAMBIO DE LA CUOTA: {siguiente_cuota}')
         cuota_interes = instance.interest
         logger.info(f'INTERES ANTERIOS: {round(cuota_interes,2)}')
-        mora = Decimal(cuota_interes) * Decimal(0.1)
+        mora_a = instance.mora
+
         if siguiente_cuota:
             interes = calculo_interes(instance.saldo_pendiente, instance.credit_id.tasa_interes)
-            #mora = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
+            mora = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
 
             logger.info(f'OPERACION POR REALIZAR: \nx = {cuota_interes} + {interes}\n')
 
             cuota_interes = cuota_interes + interes
+            cuota_mora = mora_a + mora
+
 
             
             logger.info(f'INTERES: {round(cuota_interes,2)}')
@@ -225,7 +228,7 @@ def cambios(sender, instance, **kwargs):
             siguiente_cuota.cambios = True
             siguiente_cuota.interest = round(cuota_interes,2)  # Asegúrate de que no sea negativa
             #siguiente_cuota.mora = max(0, siguiente_cuota.mora - mora)  # Asegúrate de que no sea negativa
-            siguiente_cuota.mora = mora # Asegúrate de que no sea negativa
+            siguiente_cuota.mora = round(cuota_mora,2) # Asegúrate de que no sea negativa
             siguiente_cuota.start_date = instance.due_date
             siguiente_cuota.saldo_pendiente = instance.saldo_pendiente
             siguiente_cuota.credit_id = instance.credit_id
