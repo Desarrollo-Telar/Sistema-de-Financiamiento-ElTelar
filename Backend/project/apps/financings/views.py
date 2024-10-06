@@ -163,9 +163,12 @@ def detail_credit(request,id):
     list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('-id')
 
     formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
-    siguiente_pago = PaymentPlan.objects.filter(credit_id=credito,status=False)
+    siguiente_pago = PaymentPlan.objects.filter(credit_id=credito)
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
     pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
+    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), status=False)
+    print(planes)
+    cambiar_plan()
 
     historial_a = AccountStatement.objects.filter(credit=credito, description='PAGO DE CREDITO').order_by('-id').first()
     if historial_a:

@@ -195,10 +195,10 @@ class Payment(models.Model):
             diferencia = (ultima_fecha - fecha_emision).days
             logger.info(f"Diferencia en días desde el último pago: {diferencia} días")
 
-            # Si han pasado 31 días desde el último pago
-            if diferencia >= 31:
+            # Si han pasado 15 días desde el último pago
+            if diferencia >= 15:
                 # Devolver la cuota más reciente impaga
-                logger.info('COBRANDO LA ULTIMA CUOTA POR DIFERENCIA DE DÍAS >= 31')
+                logger.info('COBRANDO LA ULTIMA CUOTA POR DIFERENCIA DE DÍAS >= 15')
                 cuota_a_pagar = PaymentPlan.objects.filter(credit_id=self.credit.id).order_by('-id').first()
                 return cuota_a_pagar
 

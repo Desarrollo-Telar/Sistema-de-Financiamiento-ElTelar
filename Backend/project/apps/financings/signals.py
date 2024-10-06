@@ -192,6 +192,7 @@ def eliminar_siguientes_cuotas(sender, instance, **kwargs):
 from decimal import Decimal
 @receiver(post_save, sender=PaymentPlan)
 def cambios(sender, instance, **kwargs):
+    
     if instance.cambios:
         logger.info(f'\n\n')
         logger.info('\nPOR REALIZAR CAMBIOS EN LA SIGUIENTE CUOTA\n')
@@ -212,8 +213,8 @@ def cambios(sender, instance, **kwargs):
 
         if siguiente_cuota:
             interes = calculo_interes(instance.saldo_pendiente, instance.credit_id.tasa_interes)
-            mora = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
-
+            #mora = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
+            mora = Decimal(cuota_interes) * Decimal(0.1)
             logger.info(f'OPERACION POR REALIZAR: \nx = {cuota_interes} + {interes}\n')
 
             cuota_interes = cuota_interes + interes
