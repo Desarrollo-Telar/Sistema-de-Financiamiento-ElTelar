@@ -74,11 +74,19 @@ class Credit(models.Model):
         return round(tasa,2)
 
         
-
-
-    
     def tasa_mensual(self):
         return self.tasa_interes
+    
+    def fecha_vencimiento(self):
+        self.fecha_vencimiento =  self.fecha_inicio + relativedelta(months=self.plazo)
+        return self.fecha_vencimiento
+    
+    def save(self,*args, **kwargs):
+        #self.calculo_mora()
+        self.fecha_vencimiento()
+        self.calculo_fecha_limite()
+        #self.calculo_interes()
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Credito"
@@ -540,6 +548,7 @@ class PaymentPlan(models.Model):
     fecha_limite = models.DateTimeField('Fecha de Limite',blank=True,null=True)
     cambios = models.BooleanField(default=False)
     numero_referencia = models.CharField('Numero de Referencia', max_length=255, null=True, blank=True, default="NAN")
+    cuota_vencida = models.BooleanField(default=False)
    
     def no_mes(self):
         contar = 0
@@ -745,14 +754,4 @@ class Recibo(models.Model):
         capital = num2words(self.aporte_capital,lang='es')
         return f'{capital} Quetzales'
         
-
-
-
-    
-
-
-
-
-
-
 

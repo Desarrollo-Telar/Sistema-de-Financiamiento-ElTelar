@@ -79,12 +79,12 @@ def cambiar_plan():
         # Validar si hay algún pago registrado para este crédito y plan
         boleta = Payment.objects.filter(credit=pago.credit_id)
         if not boleta:
-            pago.status = True     
+            #pago.status = True     
             # Calcular la mora acumulada solo si hay atraso (después de 15 días)
             #mora = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
             mora = Decimal(pago.interest) * Decimal(0.1)
             mora_acumulada = pago.mora + mora
-            
+            pago.cuota_vencida = True
             pago.mora += mora_acumulada   
             pago.save()
 

@@ -118,7 +118,7 @@ def generar_planes(sender, instance,created, **kwargs):
             # Acumular mora y marcar estado
             
             instance.mora = more
-            #instance.status = True
+            instance.cuota_vencida = True
             instance.save()
 
             # Crear nueva cuota
@@ -131,21 +131,12 @@ def generar_planes(sender, instance,created, **kwargs):
                 interest=interes_acumulado
             )
             cuota_nueva.save()
+            actualizar(instance.id)
         
-
-    # Actualizar el saldo del crédito
-    """
-    credito = Credit.objects.get(id=instance.credit_id.id)
-    credito.saldo_pendiente = instance.saldo_pendiente
-    credito.saldo_actual = instance.saldo_pendiente + instance.mora + instance.interest
-    print(instance.interest)
-    credito.save()
-    """
-    actualizar(instance.id)
+    
         
 def actualizar(id):
     pagos = PaymentPlan.objects.filter(id=id).order_by('-id').first()
-   
     credito = Credit.objects.get(id=pagos.credit_id.id)
     credito.saldo_pendiente = pagos.saldo_pendiente
     credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
