@@ -18,3 +18,6 @@ from .recibo import Recibo
 
 # ESTADO DE CUENTA
 from .accountstatement import AccountStatement
+
+# BANCO
+from .bank import Banco

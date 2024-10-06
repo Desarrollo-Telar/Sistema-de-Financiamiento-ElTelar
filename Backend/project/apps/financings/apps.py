@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 # MODELO
-from .models import PaymentPlan
+#from .models import PaymentPlan
 
 class FinancingsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -10,6 +10,6 @@ class FinancingsConfig(AppConfig):
     def ready(self):
         import apps.financings.signals
 
-        cuotas = PaymentPlan.objects.filter(cuota_vencida=False)
+        #cuotas = PaymentPlan.objects.filter(cuota_vencida=False)
 
 

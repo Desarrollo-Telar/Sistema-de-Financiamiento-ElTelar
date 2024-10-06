@@ -16,9 +16,10 @@ from apps.financings.clases.personality_logs import logger
 
 # MODELO
 
-from .payment_plan import PaymentPlan
-from .recibo import Recibo
-from .accountstatement import AccountStatement, Disbursement, Credit
+
+from .disbursement import Disbursement
+from .credit import Credit
+
 
 # PAGOS
 class Payment(models.Model):
@@ -54,20 +55,33 @@ class Payment(models.Model):
 
     def credito(self):
         return Credit.objects.get(id=self.credit.id)
+    
+    def get_recibo(self):
+        from .recibo import Recibo
+        return Recibo
+    
+    def get_estado_cuenta(self):
+        from .accountstatement import AccountStatement
+        return AccountStatement
+    
+    def get_plan_pagos(self):
+        from .payment_plan import PaymentPlan
+        return PaymentPlan
+
 
     def _cuota_pagar(self):
         """
         Encuentra la próxima cuota a pagar en función de la fecha de emisión y el historial de pagos.
         """
         # Obtener todas las cuotas del crédito ordenadas por la fecha límite
-        cuotas = PaymentPlan.objects.filter(credit_id=self.credit).order_by('fecha_limite')
+        cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit).order_by('fecha_limite')
 
         # Fecha de emisión (como objeto datetime)
         fecha_emision = self.fecha_emision
         logger.info(f"Fecha de emisión: {fecha_emision}")
 
         # Historial de pagos anteriores (último pago realizado)
-        historial_a = AccountStatement.objects.filter(credit=self.credit, description='PAGO DE CREDITO').order_by('-id').first()
+        historial_a = self.get_estado_cuenta().objects.filter(credit=self.credit, description='PAGO DE CREDITO').order_by('-id').first()
 
         # Verifica si hay historial de pagos
         if historial_a:
@@ -117,7 +131,7 @@ class Payment(models.Model):
 
         if cuota_actual:
             # Obtener todas las cuotas ordenadas por fecha límite
-            cuotas = PaymentPlan.objects.filter(credit_id_id=self.credit.id).order_by('fecha_limite')
+            cuotas = self.get_plan_pagos().objects.filter(credit_id_id=self.credit.id).order_by('fecha_limite')
             
             # Iterar sobre las cuotas después de la cuota actual
             encontrada = False
@@ -238,7 +252,8 @@ class Payment(models.Model):
         """
         VERIFICAR SI YA EXISTE UN RECIBO ASOCIADO CON EL PAGO O GENERAR UNO NUEVO
         """
-        recibos = Recibo.objects.filter(pago=pago)
+        
+        recibos = self.get_recibo().objects.filter(pago=pago)
     
         if recibos.exists():
             for recibo in recibos:
@@ -294,7 +309,7 @@ class Payment(models.Model):
         pago.save()
 
         # REFLEJAR EN EL ESTADO DE CUENTA
-        estados_cuenta = AccountStatement.objects.filter(payment=pago)
+        estados_cuenta = self.get_estado_cuenta().objects.filter(payment=pago)
 
         # Definimos los datos que se asignarán a los estados de cuenta
         datos_estado_cuenta = {
@@ -317,7 +332,7 @@ class Payment(models.Model):
                 #estado_cuenta.save()
         else:
             # Creamos un nuevo estado de cuenta si no hay existentes
-            estado_cuenta = AccountStatement(**datos_estado_cuenta)
+            estado_cuenta = self.get_estado_cuenta()(**datos_estado_cuenta)
             estado_cuenta.save()
 
         
@@ -365,7 +380,7 @@ class Payment(models.Model):
                 
         else:
             # Creamos una nueva cuota si no existe
-            cuota_a_actualizar = PaymentPlan()
+            cuota_a_actualizar = self.get_plan_pagos()
             cuota_a_actualizar.interest = interes
             #cuota_a_actualizar.mora = mora
 

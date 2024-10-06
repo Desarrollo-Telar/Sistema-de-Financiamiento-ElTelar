@@ -1,18 +1,12 @@
 from django.db import models
-
-# MODELOS
-from apps.customers.models import Customer
-from apps.InvestmentPlan.models import InvestmentPlan
-
-# TIEMPO
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.utils import timezone
-
-# DECIMAL
 from decimal import Decimal
 
-# CREDITO
+from apps.customers.models import Customer
+from apps.InvestmentPlan.models import InvestmentPlan
+
 class Credit(models.Model):
     formaPago = [
         ('NIVELADA', 'NIVELADA'),
@@ -44,33 +38,22 @@ class Credit(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Cliente')
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     is_paid_off = models.BooleanField(default=False)
-    # NUEVOS ATRIBUTOS
     tasa_mora = models.DecimalField("Tasa de Morosidad", decimal_places=2, max_digits=15, default=0.1)
     saldo_pendiente = models.DecimalField("Saldo Pendiente", decimal_places=2, max_digits=15, default=0)
     saldo_actual = models.DecimalField("Saldo Actual", decimal_places=2, max_digits=15, default=0)
 
-
     def __str__(self):
         return self.codigo_credito
-    
-    def tasa_interes_c(self):
 
-        tasa = Decimal(self.tasa_interes) *100
-        return round(tasa,2)
-
-        
-    def tasa_mensual(self):
-        return self.tasa_interes
-    
-    def fecha_vencimiento(self):
-        self.fecha_vencimiento =  self.fecha_inicio + relativedelta(months=self.plazo)
+    def calcular_fecha_vencimiento(self):
+        self.fecha_vencimiento = self.fecha_inicio + relativedelta(months=self.plazo)
         return self.fecha_vencimiento
-    
-    def save(self,*args, **kwargs):
-        #self.calculo_mora()
-        self.fecha_vencimiento()
-        self.calculo_fecha_limite()
-        #self.calculo_interes()
+
+    def tasa_mensual(self):
+        return self.tasa_interes / 12
+
+    def save(self, *args, **kwargs):
+        self.calcular_fecha_vencimiento()
         super().save(*args, **kwargs)
 
     class Meta:

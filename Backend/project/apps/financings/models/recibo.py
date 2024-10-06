@@ -1,7 +1,8 @@
 # MODELOS
 from django.db import models
 from apps.customers.models import Customer
-from .payment import Payment
+
+from apps.financings.models import Payment
 
 # TIEMPO
 from django.utils import timezone

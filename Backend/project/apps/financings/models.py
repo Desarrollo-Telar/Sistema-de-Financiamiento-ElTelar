@@ -1,13 +1,14 @@
 from django.db import models
 from apps.customers.models import Customer
 
-from .models.accountstatement import AccountStatement
-from .models.credit import Credit
-from .models.disbursement import Disbursement
-from .models.guarantees import Guarantees, DetailsGuarantees
-from .models.payment_plan import PaymentPlan
-from .models.payment import Payment
-from .models.recibo import Recibo
+
+from apps.financings.models.accountstatement import AccountStatement
+from apps.financings.models.credit import Credit
+from apps.financings.models.disbursement import Disbursement
+from apps.financings.models.guarantees import Guarantees, DetailsGuarantees
+from apps.financings.models.payment_plan import PaymentPlan
+from apps.financings.models.payment import Payment
+from apps.financings.models.recibo import Recibo
 
 # Create your models here.
 
@@ -23,19 +24,6 @@ class Alert(models.Model):
         verbose_name = 'Alerta'
         verbose_name_plural = 'Alertas'
 
-# BANCOS
-class Banco(models.Model):
-    fecha = models.DateField()
-    referencia = models.CharField('No.Referencia',max_length=100, unique=True)
-    credito = models.DecimalField('Monto', decimal_places=2, max_digits=12)
-    debito = models.DecimalField('Debito', decimal_places=2, max_digits=12, default=0)
-    
-    def __str__(self):
-        return f'Fecha: {self.fecha} Referencia: {self.referencia} Monto: {self.credito}'
-
-    class Meta:
-        verbose_name = 'Banco'
-        verbose_name_plural = 'Bancos'
 
 
         
