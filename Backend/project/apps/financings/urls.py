@@ -32,7 +32,7 @@ urlpatterns = [
     # -------------- BOLETAS ---------------------
     path('payment/search/',login_required(views.PaymentSearch.as_view()),name='payment_search'),
     path('payment/',login_required(views.list_payment),name='list_payment'),
-    path('payment/create',login_required(views.create_payment),name='create_payment'),
+    path('payment/create/',login_required(views.create_payment),name='create_payment'),
     path('payment/update/<int:id>/',login_required(views.update_pago),name='actualizar_boleta'),
     path('payment/detail/<int:id>/',login_required(views.detalle_boleta),name='detalle_boleta'),
 
