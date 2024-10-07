@@ -37,27 +37,32 @@ class AutoLogoutMiddleware:
 
 
 from apps.financings.task import cambiar_plan
+
 class RestrictedAccessByTimeMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
+        self.exempt_paths = settings.EXEMPT_PATHS  # Lista de rutas permitidas
 
     def __call__(self, request):
-        # Definir el horario de acceso permitido (en 24 horas)
-        hora_inicio = settings.ALLOWED_ACCESS_START_HOUR  # Hora de inicio de acceso permitido
-        hora_fin = settings.ALLOWED_ACCESS_END_HOUR  # Hora de fin de acceso permitido
+        # Definir el horario de acceso permitido
+        hora_inicio = settings.ALLOWED_ACCESS_START_HOUR
+        hora_fin = settings.ALLOWED_ACCESS_END_HOUR
 
         # Obtener la hora actual
         hora_actual = datetime.now().hour
 
+        # Verificar si la URL de la solicitud está en la lista de rutas exentas
+        for path in self.exempt_paths:
+            if request.path.startswith(path):
+                return self.get_response(request)
 
         # Verificar si la hora actual está fuera del horario permitido
         if not (hora_inicio <= hora_actual < hora_fin):
-            
             context = {
-                'status':403,
-                'title':'EL TELAR'
+                'status': 403,
+                'title': 'EL TELAR'
             }
-            return render(request, 'http/400/403.html',context)
+            return render(request, 'http/400/403.html', context)
 
         # Si está dentro del horario, continúa con la solicitud
         response = self.get_response(request)
