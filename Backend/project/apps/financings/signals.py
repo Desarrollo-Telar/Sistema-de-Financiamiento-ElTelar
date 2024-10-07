@@ -105,10 +105,11 @@ from django.utils import timezone
 def generar_planes(sender, instance,created, **kwargs):
     # Cálculo de interés y mora acumulada
     interes = calculo_interes(instance.saldo_pendiente, instance.credit_id.tasa_interes)
-    mora_acumulada = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
+    #mora_acumulada = calculo_mora(instance.saldo_pendiente, instance.credit_id.tasa_interes)
+    mora_acumulada = Decimal(instance.interest) * Decimal(0.1)
     interes_acumulado = instance.interest + interes
     more = instance.mora +mora_acumulada
-    logger.info(f'MORA: {more}')
+    logger.info(f'MORA: {round(more,2)}')
 
     if created:
         fecha_actual = str(datetime.now().date())  # Obtén la fecha actual aware
@@ -126,7 +127,7 @@ def generar_planes(sender, instance,created, **kwargs):
                 saldo_pendiente=instance.saldo_pendiente,
                 credit_id=instance.credit_id,
                 start_date=instance.due_date,
-                mora=instance.mora,
+                mora=more,
                 outstanding_balance=instance.saldo_pendiente,
                 interest=interes_acumulado
             )
