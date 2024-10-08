@@ -6,8 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MENSAJE DE ALERTA</title>
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
 
 
@@ -17,7 +16,7 @@
     {%block content %}
     {% endblock %}
 
-    {% bootstrap_javascript %}
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 
 </body>

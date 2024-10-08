@@ -15,8 +15,6 @@ from apps.financings.clases.personality_logs import logger
 
 
 # MODELO
-
-
 from .disbursement import Disbursement
 from .credit import Credit
 

@@ -12,7 +12,10 @@ from apps.users.models import User
 
 
 # ENVIO DE MENSAJE DE EMAIL PARA CODIGO DE VERIFICACION
+
 def send_email_code_verification(user, code):
+    
+  
     template = get_template('email/send_code.html')
     user_mail = user.email
     context = {
@@ -30,6 +33,8 @@ def send_email_code_verification(user, code):
     )
     email.attach_alternative(content, 'text/html')
     email.send()
+
+
 
 
 # ENVIO DE MENSAJE DE EMAIL PARA DARLE LA BIENVENIDA A UN CLIENTE

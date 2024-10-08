@@ -6,8 +6,9 @@ from django.utils import timezone
 
 # MODELOS
 
+from .credit import Credit
 from .payment import Payment
-from .disbursement import Disbursement, Credit
+from .disbursement import Disbursement
 
 # ESTADOS DE CUENTAS
 class AccountStatement(models.Model):
