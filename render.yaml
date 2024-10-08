@@ -6,6 +6,6 @@ services:
   repo: https://github.com/Desarrollo-Telar/Sistema-de-Financiamiento-ElTelar
   plan: free
   region: oregon
-  dockerContext: .
+  dockerContext: ./Backend/project/
   dockerfilePath: ./Backend/project/Dockerfile
 version: "1"
