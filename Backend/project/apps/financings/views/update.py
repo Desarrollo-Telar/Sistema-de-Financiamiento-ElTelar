@@ -17,6 +17,9 @@ from django.views.generic import DeleteView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
 
+# FORMULARIO
+from apps.financings.forms import PaymentPlanForms
+
 # Create your views here.
 
 ### ---------------- ACTUALIZAR --------------------
@@ -29,6 +32,27 @@ def update_pago(request,id):
         'title':'ELTELAR'
     }
     return render(request)
+
+@login_required
+@usuario_activo
+def update_cuota(request, id):
+    template_name = ''
+    cuota = get_object_or_404(PaymentPlan, id=id)
+    
+    if request.method == 'POST':
+        form = PaymentPlanForms(request.POST, instance=cuota)
+        if form.is_valid():
+            form.save()
+            return redirect('financings:detail_credit',cuota.credit_id.id)
+    else:
+        form = PaymentPlanForms(instance=cuota)
+    
+    context = {
+        'form':form,
+        'title': f'ELTELAR - ACTUALIZACION DE CUOTA',
+    }
+
+    return render(request, template_name, context)
 
 
 
