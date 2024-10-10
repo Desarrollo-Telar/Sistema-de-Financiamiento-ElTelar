@@ -15,6 +15,8 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from rest_framework.documentation import include_docs_urls
 
+from django.conf.urls import handler404, handler500, handler400, handler403
+from .http import request_400
 
 from django.core.mail import send_mail
 from django.conf import settings
@@ -62,3 +64,6 @@ if settings.DEBUG:
 
 #template_name='user/autentication/password-reset.html'
 #email_template_name='user/autentication/password-message.html'
+
+handler400 = request_400.error400
+handler403 = request_400.error403

@@ -60,7 +60,7 @@ class RestrictedAccessByTimeMiddleware:
         if not (hora_inicio <= hora_actual < hora_fin):
             context = {
                 'status': 403,
-                'title': 'EL TELAR'
+                
             }
             return render(request, 'http/400/403.html', context)
 
