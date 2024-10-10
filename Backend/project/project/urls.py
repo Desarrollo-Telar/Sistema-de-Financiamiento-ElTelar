@@ -67,3 +67,4 @@ if settings.DEBUG:
 
 handler400 = request_400.error400
 handler403 = request_400.error403
+handler404 = request_400.error404

@@ -17,3 +17,9 @@ def error403(request, exception=None):
         'title':'ERROR 403',
         'status': 403,
     })
+
+def error404(request, exception=None):
+    return render(request, 'http/400/404.html',{
+        'title':'ERROR 404',
+        'status': 404,
+    })
