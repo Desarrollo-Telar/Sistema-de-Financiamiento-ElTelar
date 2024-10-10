@@ -15,11 +15,11 @@ from django.utils.decorators import method_decorator
 
 
 # CLASES
-from .clases.paymentplan import PaymentPlan as PlanPagoos
-from .clases.credit import Credit as Credito
+from apps.financings.clases.paymentplan import PaymentPlan as PlanPagoos
+from apps.financings.clases.credit import Credit as Credito
 
 # TAREA ASINCRONICO
-from .task import cambiar_plan
+from apps.financings.task import cambiar_plan
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
@@ -94,12 +94,20 @@ def detail_credit(request,id):
 
 @login_required
 @usuario_activo
-def detallar_recibo(request,id):
-    """
+def detallar_desembolso(request,id):
+    
     desembolso = get_object_or_404(Disbursement,id=id)
-    if desembolso:
-        return redirect('index')
-    """
+    template_name = 'index.html'
+    context = {
+        'title':'ELTELAR - DESEMBOLSO {}'.format(desembolso.credit_id)
+    }
+    return render(request, template_name, context)
+   
+
+@login_required
+@usuario_activo
+def detallar_recibo(request,id):
+    
     pago = get_object_or_404(Payment, id=id)
     
     recibo = get_object_or_404(Recibo, pago=pago)

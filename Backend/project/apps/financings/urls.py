@@ -25,6 +25,7 @@ urlpatterns = [
     # ---------------- DESEMBOLSO ------------
     path('disbursement/create',login_required(views.create_disbursement),name='create_disbursement'),  
     path('disbursement/',login_required(views.list_disbursement), name='list_disbursement'),
+    path('disbursement/<int:id>/',login_required(views.detallar_desembolso), name='detail_disbursement'),
 
     # --------------- RECIBO ------------------
     path('recibo/<int:id>/',login_required(views.detallar_recibo), name='recibo'),

@@ -66,7 +66,7 @@
                             {% endif %}
 
                             {% if credit.disbursement %}
-                            <a href="{% url 'financings:recibo' credit.disbursement.id %}">DESEMBOLSO</a>
+                            <a href="{% url 'financings:detail_disbursement' credit.disbursement.id %}">DESEMBOLSO</a>
                             {% endif %}
 
                         </td>

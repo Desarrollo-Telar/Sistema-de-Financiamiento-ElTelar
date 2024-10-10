@@ -25,8 +25,8 @@ from django.views.generic.detail import DetailView
 from django.db.models import Q
 
 ### ----------------- LISTAR ------------------------ ###    
-from .functions import realizar_pago
-from .functions_payment import generar
+from apps.financings.functions import realizar_pago
+from apps.financings.functions_payment import generar
 @login_required
 @usuario_activo
 def list_payment(request):

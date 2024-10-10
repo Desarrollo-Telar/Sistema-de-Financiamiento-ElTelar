@@ -50,7 +50,7 @@ class Credit(models.Model):
         return self.fecha_vencimiento
 
     def tasa_mensual(self):
-        return self.tasa_interes / 12
+        return round(self.tasa_interes * Decimal(100),2)
 
     def save(self, *args, **kwargs):
         self.calcular_fecha_vencimiento()

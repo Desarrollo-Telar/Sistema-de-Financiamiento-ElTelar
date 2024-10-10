@@ -74,25 +74,21 @@ def envio_mensaje_alerta_recibo( modelo):
 @shared_task
 def cambiar_plan():
     logger.info(f'PROCEDIENDO A HACER CAMBIO EN LAS CUOTAS')
-
-    print("Plan cambiado correctamente")
-
     planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), status=False, cuota_vencida=False)
     if planes:
         for pago in planes:
-            print(pago)
+            
             # Validar si hay algún pago registrado para este crédito y plan
             boleta = Payment.objects.filter(credit=pago.credit_id, id=pago.id )
-            print(boleta)
+          
             if not boleta:
                 #pago.status = True     
                 # Calcular la mora acumulada solo si hay atraso (después de 15 días)
                 #mora = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
                 mora = Decimal(pago.interest) * Decimal(0.1)
-                print(pago.interest)
-                print(mora)
+                
                 #mora_acumulada = pago.mora + mora
-                print(mora_acumulada)
+                
                 pago.cuota_vencida = True
                 #pago.mora = mora_acumulada   
                 pago.mora = mora
@@ -100,17 +96,33 @@ def cambiar_plan():
 
                 interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
                 interes_acumulado = pago.interest + interes
+               
                 
-                
-                
-                # CARGAR UNA NUEVA CUOTA CON POSIBLE ACUMULO DE INTERES Y DE MORA
-                nuevo_plan = PaymentPlan(
-                    saldo_pendiente=pago.saldo_pendiente, 
-                    credit_id= pago.credit_id, 
-                    start_date=pago.due_date,
-                    mora=pago.mora, 
-                    outstanding_balance=pago.saldo_pendiente,
-                    interest=interes_acumulado
-                    )
-                nuevo_plan.save()
+            
+                siguiente_cuota = PaymentPlan.objects.filter(
+                    credit_id_id=pago.credit_id.id,  
+                    fecha_limite__gt=pago.fecha_limite  # Filtramos por fecha límite
+                ).order_by('fecha_limite').first()
+
+                if siguiente_cuota:
+                    siguiente_cuota.saldo_pendiente =pago.saldo_pendiente
+                    siguiente_cuota.credit_id =pago.credit_id
+                    siguiente_cuota.start_date =pago.due_date
+                    siguiente_cuota.mora =pago.mora
+                    siguiente_cuota.outstanding_balance =pago.saldo_pendiente
+                    siguiente_cuota.interest =interes_acumulado
+                    
+                    siguiente_cuota.save()
+                else:
+                    # CARGAR UNA NUEVA CUOTA CON POSIBLE ACUMULO DE INTERES Y DE MORA
+                    nuevo_plan = PaymentPlan(
+                        saldo_pendiente=pago.saldo_pendiente, 
+                        credit_id= pago.credit_id, 
+                        start_date=pago.due_date,
+                        mora=pago.mora, 
+                        outstanding_balance=pago.saldo_pendiente,
+                        interest=interes_acumulado
+                        )
+                    nuevo_plan.save()
+            
             
