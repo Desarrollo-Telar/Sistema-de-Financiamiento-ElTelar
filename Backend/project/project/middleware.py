@@ -62,7 +62,7 @@ class RestrictedAccessByTimeMiddleware:
                 'status': 403,
                 
             }
-            return render(request, 'http/400/403.html', context)
+            return render(request, 'http/400/403.html', context, status=403)
 
         # Si está dentro del horario, continúa con la solicitud
         response = self.get_response(request)

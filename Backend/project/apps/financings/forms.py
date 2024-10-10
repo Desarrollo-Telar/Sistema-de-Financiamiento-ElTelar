@@ -2,7 +2,7 @@
 from django import forms
 
 # MODELS
-from .models import Payment
+from apps.financings.models import Payment
 
 class PaymentForms(forms.ModelForm):
     class Meta:
