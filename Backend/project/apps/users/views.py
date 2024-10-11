@@ -1,7 +1,7 @@
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo
+from project.decorador import usuario_activo, usuario_secretaria, usuario_administrador
 from django.utils.decorators import method_decorator
 
 # Metodos HTTP
@@ -42,6 +42,7 @@ from django.contrib import messages
 # ----- DESACTIVAR A UN USUARIO ---- #
 @login_required
 @usuario_activo
+@usuario_administrador
 def deactivate(request, id):
     user = get_object_or_404(User, id=id)
     user.status = False
@@ -51,6 +52,7 @@ def deactivate(request, id):
 # ----- LISTADO DE USUARIOS ----- #
 @login_required
 @usuario_activo
+@usuario_administrador
 def list_user(request):
     template_name = 'user/list_user.html'
     users = User.objects.all().order_by('user_code')
@@ -85,7 +87,7 @@ class userCreateView(CreateView):
 
     success_url = reverse_lazy(('users:users'))
 
-    @method_decorator(usuario_activo)
+    @method_decorator([usuario_activo, usuario_administrador])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -103,7 +105,7 @@ class userUpdateView(UpdateView):
 
     success_url = reverse_lazy(('users:users'))
 
-    @method_decorator(usuario_activo)
+    @method_decorator([usuario_activo, usuario_administrador])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -209,7 +211,7 @@ class UserSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator(usuario_activo)
+    @method_decorator([usuario_activo, usuario_administrador])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -223,6 +225,7 @@ class UserSearch(ListView):
 # ----- VER DETALLES DE UN USUARIOS ----- #
 @login_required
 @usuario_activo
+@usuario_administrador
 def detail_user(request,username):
     user_id = get_object_or_404(User, username=username)
     template_name = 'user/detail.html'
