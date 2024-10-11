@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -192,7 +192,7 @@ CELERY_BEAT_SCHEDULE = {
     'tarea-diaria-a-medianoche': {
         'task': 'apps.financings.task.cambiar_plan',
         'schedule': crontab(minute=0, hour=0),  # A las 00:00 hrs
-        #'options': {'time_limit': 300},
+        'options': {'time_limit': 180},
     },
 }
 

@@ -18,14 +18,14 @@ from django.db.models import Q
 
 # DECORADORES
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo
+from project.decorador import usuario_activo, usuario_secretaria, usuario_administrador
 from django.utils.decorators import method_decorator
 
 # Create your views here.
 
 # --- CREAR DIRECCION NUEVA --- #
 class AddressCreateView(CreateView):
-    @method_decorator(usuario_activo)
+    @method_decorator([usuario_activo, usuario_administrador, usuario_secretaria])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -67,8 +67,10 @@ class AddressCreateView(CreateView):
         else:
             return self.render_to_response(self.get_context_data(form=form,form2=form2))
 
+# --- ACTUALIZAR DIRECION -----
 @usuario_activo
 @login_required
+@usuario_administrador
 def addressUpdateView(request, id,customer_code):
     template_name = 'addresses/address_update.html'
     cliente = get_object_or_404(Customer, customer_code= str(customer_code))

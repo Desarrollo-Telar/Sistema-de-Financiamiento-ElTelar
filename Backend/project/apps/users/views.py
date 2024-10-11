@@ -1,7 +1,7 @@
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo, usuario_secretaria, usuario_administrador
+from project.decorador import usuario_activo, usuario_administrador
 from django.utils.decorators import method_decorator
 
 # Metodos HTTP
