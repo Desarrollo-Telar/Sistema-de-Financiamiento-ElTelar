@@ -37,5 +37,10 @@ def alerta(sender, instance, **kwargs):
     elif instance.estado_transaccion == 'COMPLETADO':
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
         envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO',instance.id)
+    elif instance.estado_transaccion == 'PENDIENTE':
+        comparacion()
+        logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
+        envio_mensaje_alerta('HAY UNA BOLETA DE PAGO CON ESTADO PENDIENTE', 'PENDIENTE',instance.id)
+
 
 #JKDSJAKDJSA

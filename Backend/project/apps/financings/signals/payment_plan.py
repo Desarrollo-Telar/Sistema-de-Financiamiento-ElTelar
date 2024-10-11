@@ -109,6 +109,7 @@ def cambios(sender, instance, **kwargs):
         cuota_interes = instance.interest
         logger.info(f'DESDE SIGNALS DE PAYMENT_PLAN: INTERES ANTERIOS: {round(cuota_interes,2)}')
         mora_a = instance.mora
+        
 
         if siguiente_cuota:
             interes = calculo_interes(instance.saldo_pendiente, instance.credit_id.tasa_interes)
@@ -138,6 +139,9 @@ def cambios(sender, instance, **kwargs):
         else:
             logger.warning("DESDE SIGNALS DE PAYMENT_PLAN: No hay más cuotas disponibles.")
 
+        instance.cambios = False
+        instance.save()
+
         # Manejo de pagos
         try:
             pago = Payment.objects.get(numero_referencia=referencia)
@@ -145,7 +149,3 @@ def cambios(sender, instance, **kwargs):
                 pago.realizar_pago()
         except Payment.DoesNotExist:
             logger.error(f"DESDE SIGNALS DE PAYMENT_PLAN: No se encontró el pago con número de referencia: {referencia}")
-        
-   
-
-   
