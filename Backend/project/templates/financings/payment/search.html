@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=" row box">
+    <div class="row">
+        <div class="col" style="padding: 2.5rem">
+            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Pagos</span> !</h3>
+            <div class="d-flex justify-content-center fs-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'financings:list_payment' %}">Pagos</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+
+                    </ol>
+                </nav>
+            </div>
+
+            <p>
+                En este módulo, podrás gestionar toda la información relacionada con los pagos realizados por los
+                clientes de manera eficiente y
+                organizada.
+            </p>
+            <p>
+                Este módulo está diseñado para brindarte el control y la flexibilidad
+                necesarios para administrar eficazmente el registro de todas las transacciones recibidas por parte de
+                los clientes
+                en la empresa por medio de la
+                plataforma.
+            </p>
+        </div>
+
+    </div>
+    <hr>
+    <div class="row" style="margin-top: 2rem">
+        <div class="col-2 ">
+            <a href="{% url 'financings:create_payment' %}"
+                style="background-color: black; color: white; text-decoration: none; padding: 0.8rem; border-radius: 2rem;">Generar
+                Pago</a>
+        </div>
+        {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+        <div class="col-2 ">
+            <a href="{% url 'document:banco' %}"
+                style="background-color: black; color: white; text-decoration: none; padding: 0.8rem; border-radius: 2rem;">Subir
+                Documento</a>
+
+        </div>
+        {% endif %}
+        <div class="col-8 d-flex flex-row-reverse">
+            {% include 'financings/payment/snippets/search.html' with query=query %}
+        </div>
+        <div class="col-12" style="margin-top: 0.5rem;">
+            <p>Resultados para: {{ query }} ({{ count }})</p>
+        </div>
+
+
+    </div>
+    <div class="row" style="margin-top: 2rem;">
+        {% include 'financings/payment/table/table.html' %}
+    </div>
+
+</div>
+
+</div>
+
+
+{% if page_obj %}
+{% include 'snippets/pages.html' %}
+{% endif %}
+
+{% endblock %}

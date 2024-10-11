@@ -62,7 +62,7 @@ MIDDLEWARE = [
 ]
 
 # Modo de mantenimiento
-MAINTENANCE_MODE = False  # Cambia a False para desactivar el modo de mantenimiento
+MAINTENANCE_MODE = True  # Cambia a False para desactivar el modo de mantenimiento
 
 # Configura el tiempo de expiración de la sesión a 30 minutos
 SESSION_COOKIE_AGE = 1800  # 30 minutos en segundos

@@ -138,7 +138,6 @@ class BankSearch(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(context)
         context['query'] = self.query()
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
@@ -146,6 +145,7 @@ class BankSearch(ListView):
 
 class PaymentSearch(ListView):
     template_name = 'financings/payment/search.html'
+    paginate_by = 25
 
     def get_queryset(self):
         try:
