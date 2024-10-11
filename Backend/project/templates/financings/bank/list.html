@@ -36,12 +36,14 @@
                 Pago</a>
 
         </div>
+        {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
         <div class="col-4">
             <a href="{% url 'document:banco' %}"
                 style="background-color: black; color: white; text-decoration: none; padding: 0.8rem; border-radius: 2rem;">Subir
                 Documento</a>
 
         </div>
+        {% endif %}
 
 
 
