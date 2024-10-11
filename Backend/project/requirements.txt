@@ -28,6 +28,7 @@ cron-descriptor==1.4.5
 cryptography==42.0.8
 cssselect2==0.7.0
 cssutils==2.11.1
+dj-database-url==2.2.0
 Django==5.0.4
 django-autoslug==1.9.9
 django-celery-beat==2.7.0
@@ -85,6 +86,7 @@ pypng==0.20220715.0
 python-bidi==0.4.2
 python-crontab==3.2.0
 python-dateutil==2.9.0.post0
+python-decouple==3.8
 pytz==2024.1
 PyYAML==6.0.1
 qrcode==7.4.2
