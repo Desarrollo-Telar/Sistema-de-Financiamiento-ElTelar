@@ -95,12 +95,14 @@
                     {% include 'customer/snippets/detail/informacion_personal.html' %}
 
                 </div>
+                {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
                 <div>
                     <hr>
                     <a href="{% url 'customers:update_customer' customer_list.customer_code %}" class="btn_edit">Editar
                         informacion
                         Personal</a>
                 </div>
+                {% endif %}
 
 
             </div>
