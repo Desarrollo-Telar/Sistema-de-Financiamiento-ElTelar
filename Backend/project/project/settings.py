@@ -58,7 +58,7 @@ MIDDLEWARE = [
     #'project.middleware.AutoLogoutMiddleware',
     #'project.middleware.RestrictedAccessByTimeMiddleware',
     # WhiteNoise 
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 # Modo de mantenimiento
@@ -118,7 +118,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 import project.database as db
-DATABASES = db.MYSQL
+if DEBUG:
+    DATABASES = db.MYSQL
+else:
+    print('PRODUCCION')
+    #DATABASES = db.POSTGRES_HEROKU
 
 
 # Password validation
@@ -223,3 +227,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
