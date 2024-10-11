@@ -13,7 +13,9 @@
 
         <th scope="col">Longitud</th>
         <th scope="col">Latitud</th>
+        {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
         <th scope="col">Editar</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -32,11 +34,12 @@
 
         <td>{{dire.longitud}}</td>
         <td>{{dire.latitud}}</td>
-
+        {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
         <td>
           <a href="{% url 'addresses:update' dire.id customer_list.customer_code %}" class="btn_add">Editar
             direccion</a>
         </td>
+        {% endif %}
       </tr>
 
       {% endfor %}

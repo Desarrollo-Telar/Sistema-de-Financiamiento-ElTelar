@@ -6,7 +6,9 @@
                 <th scope="col">Nombre Completo</th>
                 <th scope="col">Numero de telefono</th>
                 <th scope="col">Tipo de referencia</th>
+                {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
                 <th scope="col">Editar</th>
+                {% endif %}
 
             </tr>
         </thead>
@@ -16,9 +18,12 @@
                 <th>{{referencia.full_name}}</th>
                 <td>{{referencia.phone_number}}</td>
                 <td>{{referencia.reference_type}}</td>
+                {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
                 <td>
-                    <a href="{%url 'financial_information:update_reference' referencia.id customer_code %}" class="btn_add">Editar Referencia</a>
+                    <a href="{%url 'financial_information:update_reference' referencia.id customer_code %}"
+                        class="btn_add">Editar Referencia</a>
                 </td>
+                {% endif %}
 
             </tr>
 

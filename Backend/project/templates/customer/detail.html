@@ -78,17 +78,18 @@
             </div>
 
 
-            
+            {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
             <div style="margin-left: 0.5rem;">
-                <a href="{% url 'customers:delete' customer_list.id %}"
-                    style="text-decoration: none; color: black;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708"/>
-                      </svg>
+                <a href="{% url 'customers:delete' customer_list.id %}" style="text-decoration: none; color: black;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-person-x-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708" />
+                    </svg>
                     Eliminar registro de cliente</a>
 
             </div>
-
+            {% endif %}
 
 
         </div>
@@ -133,10 +134,13 @@
                     {% include 'customer/snippets/detail/informacion_personal.html' %}
 
                 </div>
+                {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
                 <div>
                     <hr>
-                    <a href="{% url 'customers:update_customer' customer_code %}" class="btn_edit">Editar informacion Personal</a>
+                    <a href="{% url 'customers:update_customer' customer_code %}" class="btn_edit">Editar informacion
+                        Personal</a>
                 </div>
+                {% endif %}
 
 
             </div>
@@ -144,33 +148,34 @@
                 tabindex="0">
                 <div class="contenido">
                     <input type="hidden" value="{{customer_code}}" id="customer_code">
-                    
-                    {% if laboral or otra %}
-                        {% include 'customer/snippets/detail/informacion_laboral.html' %}                        
-                    
-                    {% else %}
-                        <!-- SELECCION -->
-                        <div class="row" style="margin: 2rem;">
-                            Agregar Información de:
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="working_information">
-                                <label class="form-check-label" for="working_information">
-                                    Información Laboral
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="other_information">
-                                <label class="form-check-label" for="other_information">
-                                    Otra Fuente de Ingreso
-                                </label>
-                            </div>
-                        </div>
-                    {% endif %}
-                    
-                    
-                    
 
-                    
+                    {% if laboral or otra %}
+                    {% include 'customer/snippets/detail/informacion_laboral.html' %}
+
+                    {% else %}
+                    <!-- SELECCION -->
+                    <div class="row" style="margin: 2rem;">
+                        Agregar Información de:
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                id="working_information">
+                            <label class="form-check-label" for="working_information">
+                                Información Laboral
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="other_information">
+                            <label class="form-check-label" for="other_information">
+                                Otra Fuente de Ingreso
+                            </label>
+                        </div>
+                    </div>
+                    {% endif %}
+
+
+
+
+
                 </div>
 
 
@@ -183,13 +188,14 @@
                     {% else %}
                     <div class="row" style="margin: 1.5rem;">
                         <div class="col-5">
-                            <a href="{% url 'addresses:add' customer_code %}" class="btn_add" style="margin: 1rem;" >Agregar Registro de una Direccion</a>
+                            <a href="{% url 'addresses:add' customer_code %}" class="btn_add"
+                                style="margin: 1rem;">Agregar Registro de una Direccion</a>
 
                         </div>
-                        
+
 
                     </div>
-                    
+
                     {% endif %}
                 </div>
 
@@ -203,10 +209,11 @@
                     {% else %}
                     <div class="row" style="margin: 1.5rem;">
                         <div class="col-5">
-                            <a href="{% url 'financial_information:create_reference_information' customer_code %}" class="btn_add" style="margin: 1rem;" >Agregar Registro de una Referencia</a>
+                            <a href="{% url 'financial_information:create_reference_information' customer_code %}"
+                                class="btn_add" style="margin: 1rem;">Agregar Registro de una Referencia</a>
 
                         </div>
-                        
+
 
                     </div>
                     {% endif %}
@@ -215,19 +222,20 @@
             </div>
             <div class="tab-pane fade show " id="nav-plan_inversion" role="tabpanel"
                 aria-labelledby="nav-plan_inversion-tab" tabindex="0">
-                <div class="contenido" >
+                <div class="contenido">
                     {% if plan_inversion %}
                     {% include 'customer/snippets/detail/plan_inversion.html' %}
                     {% else %}
                     <div class="row" style="margin: 1.5rem;">
                         <div class="col-5">
-                            <a href="{% url 'investment_plan:create' customer_code %}" class="btn_add" style="margin: 1rem;" >Agregar Registro de Plan de Inversión(Destino)</a>
+                            <a href="{% url 'investment_plan:create' customer_code %}" class="btn_add"
+                                style="margin: 1rem;">Agregar Registro de Plan de Inversión(Destino)</a>
 
                         </div>
-                        
+
 
                     </div>
-                    
+
                     {% endif %}
                 </div>
             </div>
@@ -273,15 +281,15 @@
     const other_information = document.getElementById('other_information');
     const customer_code = document.getElementById('customer_code').value;
 
-    working_information.addEventListener('input',function(event){
+    working_information.addEventListener('input', function (event) {
         let on = event.target.value;
-        if(on){
+        if (on) {
             window.location.href = `/financial_information/create/working_information/${customer_code}/`
         }
     });
-    other_information.addEventListener('input',function(event){
+    other_information.addEventListener('input', function (event) {
         let on = event.target.value;
-        if(on){
+        if (on) {
             window.location.href = `/financial_information/create/other_information/${customer_code}/`
         }
     });

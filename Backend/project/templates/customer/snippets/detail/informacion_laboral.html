@@ -31,11 +31,16 @@
     <hr>
     <p class="fw-semibold">Descripción</p>
     <p>{{laboral.description}}</p>
-    
+
+    {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
     <div>
         <hr>
-        <a href="{% url 'financial_information:update_working_information' laboral.id customer_code %}" class="btn_edit">Editar informacion Personal</a>
+        <a href="{% url 'financial_information:update_working_information' laboral.id customer_code %}"
+            class="btn_edit">Editar informacion Personal</a>
     </div>
+
+    {% endif %}
+
     {% endfor %}
     {% endif %}
 
@@ -52,10 +57,13 @@
     <hr>
     <p class="fw-semibold">Salario</p>
     <p>Q{{other.salary}}</p>
+    {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
     <div>
         <hr>
-        <a href="{% url 'financial_information:update_other_information' other.id customer_code %}" class="btn_edit">Editar informacion Personal</a>
+        <a href="{% url 'financial_information:update_other_information' other.id customer_code %}"
+            class="btn_edit">Editar informacion Personal</a>
     </div>
+    {% endif %}
     {% endfor %}
     {% endif %}
 
