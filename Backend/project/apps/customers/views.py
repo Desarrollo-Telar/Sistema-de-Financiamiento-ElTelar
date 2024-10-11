@@ -19,7 +19,7 @@ from django.db.models import Q
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo
+from project.decorador import usuario_activo, usuario_administrador, usuario_secretaria
 from django.utils.decorators import method_decorator
 
 # Paginacion
@@ -34,6 +34,9 @@ from apps.InvestmentPlan.forms import InvestmentPlanForms
 from django.apps import apps
 
 # ----- EDITAR INFORMACION PERSONAL DE UN CLIENTE ----- #
+@login_required
+@usuario_activo
+@usuario_administrador
 def update_customer(request, customer_code):
     template_name = 'customer/update.html'
     customer = get_object_or_404(Customer, customer_code=str(customer_code))
@@ -57,6 +60,7 @@ def update_customer(request, customer_code):
 # ----- ELIMINACION DE CLIENTES ----- #
 @login_required
 @usuario_activo
+@usuario_administrador
 def delete_customer(request,id):
     customer = get_object_or_404(Customer, id=id)
     customer.delete()
@@ -65,6 +69,8 @@ def delete_customer(request,id):
 # ----- LISTADO DE CLIENTES ----- #
 @login_required
 @usuario_activo
+@usuario_administrador
+@usuario_secretaria
 def list_customer(request):
     status = ['Revisión de documentos', 'Aprobado', 'No Aprobado', 'Posible Cliente']
     customer_list = Customer.objects.all().order_by('-id').filter(status__in=status)
@@ -82,6 +88,8 @@ def list_customer(request):
 # ----- CREANDO USUARIOS NUEVOS ----- #
 @login_required
 @usuario_activo
+@usuario_administrador
+@usuario_secretaria
 def add_customer(request):     
     ime = ImmigrationStatus.objects.all()    
     template_name = 'customer/add.html'    
@@ -122,7 +130,7 @@ class CustomerSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator(usuario_activo)
+    @method_decorator([usuario_activo, usuario_administrador, usuario_secretaria])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -138,6 +146,8 @@ class CustomerSearch(ListView):
 # ----- VER DETALLES DE UN CLIENTE ----- #
 @login_required
 @usuario_activo
+@usuario_administrador
+@usuario_secretaria
 def detail_customer(request,customer_code):
     template_name = 'customer/detail.html'
     customer_list = get_object_or_404(Customer,customer_code = str(customer_code))    
@@ -179,6 +189,8 @@ def detail_customer(request,customer_code):
 # ----- VER FORMULARIO IVE ----- #
 @login_required
 @usuario_activo
+@usuario_administrador
+@usuario_secretaria
 def formulario_ive(request, id):
     template_name = 'customer/forms/forms_ive.html'
     customer_list = get_object_or_404(Customer, id=id)
