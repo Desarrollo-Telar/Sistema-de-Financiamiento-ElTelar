@@ -42,7 +42,7 @@
             <label class="fw-medium" for="saldo_anterior">Saldo Anterior</label>
             <div class="input-group mb-3">
                 <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                <input type="number" min="0" step="any" class="form-control" id="saldo_anterior" disabled>
+                <input type="number" min="0" step="any" class="form-control" id="saldo_anterior">
             </div>
 
         </div>
@@ -130,17 +130,22 @@
         $(".credit").on('select2:select', async function (e) {
             var data = e.params.data;
             var credit_id = data.id;
+            const saldo = document.getElementById('saldo_anterior');
+            saldo.disabled = true;
 
             suma = 0; // Reiniciar suma para cada cálculo
 
             try {
                 const laboral = await filtro(credit_id);
 
+
+
                 if (Array.isArray(laboral)) {
                     laboral.forEach(element => {
                         suma += parseFloat(element['monto_total_desembolso']);
                         // Deshabilitar la opción en forma de desembolso
                         const select = document.getElementById('forma_desembolso');
+
                         let dese = element['forma_desembolso'];
 
 
@@ -152,6 +157,7 @@
 
                             } else {
                                 opt.disabled = false;
+
 
 
                             }
