@@ -102,8 +102,8 @@
               </li>
             </ul>
           </li>
-
-          <li class="nav-item ">
+          {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+          <li class="nav-item">
             <a class="nav-link active" href="{{users}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                 class="bi bi-people-fill" viewBox="0 0 16 16" style="margin-right: 1rem">
@@ -112,8 +112,8 @@
               </svg>
               Usuarios
             </a>
-
           </li>
+          {% endif %}
           <hr />
 
           <li class="nav-item dropdown">
