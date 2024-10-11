@@ -6,9 +6,12 @@
     <div class="row">
         <div class="row">
             <div class="col" style="padding: 2.5rem">
-                <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark"> <a href="{% url 'customers:customers' %}" style="text-decoration: none; color: white;">Clientes</a></span> !</h3>
+                <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark"> <a
+                            href="{% url 'customers:customers' %}"
+                            style="text-decoration: none; color: white;">Clientes</a></span> !</h3>
                 <p>
-                    En este módulo, podrás gestionar toda la información relacionada con tus clientes de manera eficiente y
+                    En este módulo, podrás gestionar toda la información relacionada con tus clientes de manera
+                    eficiente y
                     organizada.
                 </p>
                 <p>
@@ -17,15 +20,15 @@
                     plataforma.
                 </p>
             </div>
-    
-        </div>
-        <div class="col-12 d-flex flex-row-reverse">
-            
-                {% include 'customer/snippets/search.html' with query=query %}
-            
 
         </div>
-        
+        <div class="col-12 d-flex flex-row-reverse">
+
+            {% include 'customer/snippets/search.html' with query=query %}
+
+
+        </div>
+
         <div class="col">
             <p>Resultados para: {{ query }} ({{ count }})</p>
         </div>
@@ -38,4 +41,7 @@
     </div>
 
 </div>
+{% if page_obj %}
+{% include 'snippets/pages.html' %}
+{% endif %}
 {% endblock %}

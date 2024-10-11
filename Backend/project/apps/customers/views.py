@@ -88,8 +88,8 @@ def list_customer(request):
 # ----- CREANDO USUARIOS NUEVOS ----- #
 @login_required
 @usuario_activo
-@usuario_administrador
 @usuario_secretaria
+@usuario_administrador
 def add_customer(request):     
     ime = ImmigrationStatus.objects.all()    
     template_name = 'customer/add.html'    

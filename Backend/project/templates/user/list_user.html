@@ -1,8 +1,10 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
 <div class=" row box">
     <div class="row">
         <div class="col" style="padding: 2.5rem">
-            <h3>¡Bienvenido al Apartado de  <span class="badge text-bg-dark">Usuarios</span> !</h3>
+            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Usuarios</span> !</h3>
             <p>
                 Bienvenido al módulo de usuarios. Este módulo te permite administrar todos
                 los aspectos relacionados con los usuarios de la plataforma.
@@ -21,7 +23,7 @@
         </div>
         <div class="col-12 d-flex flex-row-reverse" style="margin-top: 2rem;">
             {% include 'user/snippets/search.html' with query=query %}
-            
+
 
         </div>
     </div>

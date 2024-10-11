@@ -29,25 +29,37 @@
 
     </div>
     <hr>
-    <div class="row" style="display: flex; margin-top: 1rem;">
-        <div class="col-4">
+    <div class="row" style="margin-bottom: 2rem">
+        <div class="col d-flex flex-row-reverse">
             <a href="{% url 'financings:create_payment' %}"
                 style="background-color: black; color: white; text-decoration: none; padding: 0.8rem; border-radius: 2rem;">Generar
                 Pago</a>
-
         </div>
         {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
-        <div class="col-4">
+        <div class="col d-flex flex-row-reverse">
             <a href="{% url 'document:banco' %}"
                 style="background-color: black; color: white; text-decoration: none; padding: 0.8rem; border-radius: 2rem;">Subir
                 Documento</a>
 
         </div>
         {% endif %}
+        <div class="row" style="display: flex; align-items: center; justify-content: end; margin-top: 2rem;">
 
+
+            <div class="col-6" style="display: flex; align-items: center; justify-content: end;">
+                {% include 'financings/bank/snippets/search.html' with query=query %}
+
+            </div>
+
+
+
+
+
+        </div>
 
 
     </div>
+
     <div class="row" style="margin-top: 2rem;">
         {% include 'financings/bank/table/table.html' %}
     </div>

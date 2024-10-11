@@ -54,7 +54,7 @@ def list_bank(request):
     context = {
         'title':'EL TELAR - BANCOS',
         'page_obj':page_obj,
-        'bank_list':page_obj
+        'banco_list':page_obj
     }
     return render(request,template_name, context)
 
@@ -101,6 +101,7 @@ def list_disbursement(request):
 # ------------------ BUSCADOR ------------------------------
 class BankSearch(ListView):
     template_name = 'financings/bank/search.html'
+    paginate_by = 25
 
     def get_queryset(self):
         try:
@@ -137,6 +138,7 @@ class BankSearch(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        print(context)
         context['query'] = self.query()
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
