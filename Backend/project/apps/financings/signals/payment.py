@@ -33,14 +33,14 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
 def alerta(sender, instance, **kwargs):
     if instance.estado_transaccion == 'FALLIDO':
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
-        envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO',instance.id)
+        #envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO',instance.id)
     elif instance.estado_transaccion == 'COMPLETADO':
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
-        envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO',instance.id)
+        #envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO',instance.id)
     elif instance.estado_transaccion == 'PENDIENTE':
         comparacion()
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
-        envio_mensaje_alerta('HAY UNA BOLETA DE PAGO CON ESTADO PENDIENTE', 'PENDIENTE',instance.id)
+        #envio_mensaje_alerta('HAY UNA BOLETA DE PAGO CON ESTADO PENDIENTE', 'PENDIENTE',instance.id)
 
 
 #JKDSJAKDJSA

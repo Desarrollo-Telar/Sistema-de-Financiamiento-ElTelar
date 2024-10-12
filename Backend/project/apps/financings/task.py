@@ -35,7 +35,7 @@ def envio_mensaje_alerta(mensaje, estado, modelo=None):
             logger.error(f'No se encontró el objeto Payment con ID {modelo}')
             return
     
-    send_email_alert(mensaje, estado, pago)
+    #send_email_alert(mensaje, estado, pago)
 
 @shared_task
 def envio_mensaje_alerta_recibo( modelo):
@@ -44,7 +44,7 @@ def envio_mensaje_alerta_recibo( modelo):
     except Recibo.DoesNotExist:
         logger.error(f'No se encontró el objeto Recibo con ID {modelo}')
         return
-    send_email_recibo(pago)
+    #send_email_recibo(pago)
 
 
 @shared_task
@@ -59,7 +59,7 @@ def envio_mensaje_alerta(mensaje, estado, modelo=None):
             logger.error(f'No se encontró el objeto Payment con ID {modelo}')
             return
     
-    send_email_alert(mensaje, estado, pago)
+    #send_email_alert(mensaje, estado, pago)
 
 @shared_task
 def envio_mensaje_alerta_recibo( modelo):
@@ -68,7 +68,7 @@ def envio_mensaje_alerta_recibo( modelo):
     except Recibo.DoesNotExist:
         logger.error(f'No se encontró el objeto Recibo con ID {modelo}')
         return
-    send_email_recibo(pago)
+    #send_email_recibo(pago)
 
 
 @shared_task

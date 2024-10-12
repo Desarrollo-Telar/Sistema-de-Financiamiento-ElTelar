@@ -208,7 +208,8 @@ def login_view(request):
         if user and user.status:
             
             request.session['pk'] = user.pk
-            return redirect('verification')
+            login(request, user)
+            return redirect('index')
         else:
             messages.error(request, 'Credenciales no validos, por favor revise si ingreso correctamente su correo electronico o su contraseña')
     
