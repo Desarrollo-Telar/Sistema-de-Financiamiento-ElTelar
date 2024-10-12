@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
-    'anymail',
+    #'anymail',
     'apps.users',
     'apps.customers',
     'apps.roles',
