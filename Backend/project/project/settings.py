@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     #'project.middleware.AutoLogoutMiddleware',
     #'project.middleware.RestrictedAccessByTimeMiddleware',
     # WhiteNoise 
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 # Modo de mantenimiento
@@ -117,22 +117,20 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-"""
-import project.database as db
-if DEBUG:
-    DATABASES = db.MYSQL
-else:
-    print('PRODUCCION')
-    DATABASES = db.POSTGRES_HEROKU
-"""
 
-import dj_database_url
-from decouple import config
-POSTGRES_HEROKU = {
-    'default': dj_database_url.config(
-        default = config('DATABASE_URL')
-    )
-}
+import project.database as db
+"""
+if DEBUG:
+    #DATABASES = db.MYSQL
+    DATABASES = db.SQLITE
+else:
+    
+    DATABASES = db.SQLITE
+    #DATABASES = db.POSTGRES_HEROKU
+"""
+DATABASES = db.SQLITE
+
+
 
 
 # Password validation
@@ -237,4 +235,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
