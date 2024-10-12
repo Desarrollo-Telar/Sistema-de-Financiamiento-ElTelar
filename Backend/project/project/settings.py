@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
-    #'anymail',
+    'anymail',
     'apps.users',
     'apps.customers',
     'apps.roles',
@@ -182,9 +182,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.cloudmta.net'  # El host SMTP de Trustifi (verifica con Trustifi si es correcto)
 EMAIL_PORT = 587  # Puerto para TLS
 EMAIL_USE_TLS = True  # Usa TLS
-EMAIL_HOST_USER = 'c2ab2f948c506dea'  # Tu dirección de correo de Trustifi
-EMAIL_HOST_PASSWORD = 'fKaakbhf7MB2zqaGup8tC8tw'  # La contraseña de tu correo de Trustifi
-
+EMAIL_HOST_USER = '641948c506dea731'  # Tu dirección de correo de Trustifi
+EMAIL_HOST_PASSWORD = 'hKmEzV4778tSKdsJLs9M92pD'  # La contraseña de tu correo de Trustifi
+#CLOUDMAILIN_FORWARD_ADDRESS = '9321b45c3f847613700e@cloudmailin.net'
+#CLOUDMAILIN_SMTP_URL = 'smtp://f70a731b2f948c50:s6NvHRcpqdWtEtwJZJzMr4bs@smtp.cloudmta.net:587?starttls=true'
 # Configuración adicional de correo
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 """
