@@ -122,16 +122,16 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 import project.database as db
-"""
+
 if DEBUG:
-    #DATABASES = db.MYSQL
-    DATABASES = db.SQLITE
+    DATABASES = db.MYSQL
+    #DATABASES = db.SQLITE
 else:
     
-    DATABASES = db.SQLITE
-    #DATABASES = db.POSTGRES_HEROKU
-"""
-DATABASES = db.POSTGRES_HEROKU
+    #DATABASES = db.SQLITE
+    DATABASES = db.POSTGRES_HEROKU
+
+#DATABASES = db.POSTGRES_HEROKU
 
 
 
