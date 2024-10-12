@@ -117,12 +117,22 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+"""
 import project.database as db
 if DEBUG:
     DATABASES = db.MYSQL
 else:
     print('PRODUCCION')
     DATABASES = db.POSTGRES_HEROKU
+"""
+
+import dj_database_url
+from decouple import config
+POSTGRES_HEROKU = {
+    'default': dj_database_url.config(
+        default = config('DATABASE_URL')
+    )
+}
 
 
 # Password validation
