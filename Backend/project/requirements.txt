@@ -30,6 +30,7 @@ cssselect2==0.7.0
 cssutils==2.11.1
 dj-database-url==2.2.0
 Django==5.0.4
+django-anymail==12.0
 django-autoslug==1.9.9
 django-celery-beat==2.7.0
 django-crispy-forms==2.1

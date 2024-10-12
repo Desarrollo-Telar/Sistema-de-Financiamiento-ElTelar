@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
+    'anymail',
     'apps.users',
     'apps.customers',
     'apps.roles',
@@ -174,10 +175,20 @@ USE_TZ = True
 
 # Configuración de correo electrónico
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = '/code/tpm/email'  # Asegúrate de que este directorio exista.
+#EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+"""
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'smtp-mail.outlook.com'  
+EMAIL_HOST = 'smtp.cloudmta.net'  # El host SMTP de Trustifi (verifica con Trustifi si es correcto)
+EMAIL_PORT = 587  # Puerto para TLS
+EMAIL_USE_TLS = True  # Usa TLS
+EMAIL_HOST_USER = 'c2ab2f948c506dea'  # Tu dirección de correo de Trustifi
+EMAIL_HOST_PASSWORD = 'fKaakbhf7MB2zqaGup8tC8tw'  # La contraseña de tu correo de Trustifi
+
+# Configuración adicional de correo
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+"""
+"""
 EMAIL_PORT = 587  
 EMAIL_USE_TLS = True
 #EMAIL_USE_SSL = True
@@ -185,6 +196,7 @@ EMAIL_HOST_USER = 'DesarrolloElTelar@outlook.com'
 #EMAIL_HOST_PASSWORD = 'tmmbkxogfsvfrimo'
 EMAIL_HOST_PASSWORD = 'fmfuzehmqcmrcvqo'
 DEFAULT_FROM_EMAIL = 'DesarrolloElTelar@outlook.com'
+"""
 # UP3HB-9X2AR-YWK8K-UCQCS-Q63T7
 
 # Configuración de Celery
