@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -122,7 +122,7 @@ if DEBUG:
     DATABASES = db.MYSQL
 else:
     print('PRODUCCION')
-    #DATABASES = db.POSTGRES_HEROKU
+    DATABASES = db.POSTGRES_HEROKU
 
 
 # Password validation
