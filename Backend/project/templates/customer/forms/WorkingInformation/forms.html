@@ -112,63 +112,66 @@
     <hr>
     <h5>Dirección</h5>
     <hr>
-    <div class="row g-3">
-        <div class="col-12">
-            <div class="form-group">
-                <label for="calle2">Dirección particular o sede social completa:</label>
-                <input type="text" class="form-control" id="street2"
-                    placeholder="Calle o avenida, casa, colonia, sector, lote, manzana, otros" name="street2">
-                <div class="form-text" id="basic-addon4">Ejemplo: 11 AVENIDA 5 CALLE 5-09</div>
-            </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="calle2">Dirección particular o sede social completa:</label>
+            <input type="text" class="form-control" id="street2"
+                placeholder="Calle o avenida, casa, colonia, sector, lote, manzana, otros" name="street2">
+            <div class="form-text" id="basic-addon4">Ejemplo: 11 AVENIDA 5 CALLE 5-09</div>
         </div>
-        <div class="col-2">
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <div class="col">
             <div class="form-group">
                 <label for="number2">Zona</label>
                 <input type="number" min="0" class="form-control" id="number2" name="number2">
             </div>
         </div>
-        <div class="col-5">
+        <div class="col">
             <div class="form-group">
-                <label for="city2">Departamento</label>    
+                <label for="city2">Departamento</label>
                 <div>
                     <select class="form-control city2" style="width: 100%" name="city2" id="city2"></select>
 
-                </div>            
-                
-            </div>
-        </div>
-        <div class="col-5">
-            <div class="form-group">
-                <label for="state2">Municipio</label>    
-                <div class="">
-                    <select class="state2 form-control"  style="width: 100%"  name="state2" id="state2"></select>
+                </div>
 
-                </div>                        
-                
             </div>
         </div>
-       
-        
-        
-        <div class="col-12">
+        <div class="col">
             <div class="form-group">
-                <label for="country2">País</label>
-                <input type="text" class="form-control" id="country2" name="country2" value="GUATEMALA" placeholder="GUATEMALA" disabled>
+                <label for="state2">Municipio</label>
+                <div class="">
+                    <select class="state2 form-control" style="width: 100%" name="state2" id="state2"></select>
+
+                </div>
+
             </div>
         </div>
+
+    </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="country2">País</label>
+            <input type="text" class="form-control" id="country2" name="country2" value="GUATEMALA"
+                placeholder="GUATEMALA" disabled>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-6">
             <div class="form-group">
                 <label for="latitud2">Latitud</label>
-                <input type="text" class="form-control" id="latitud2" name="latitud2" >
+                <input type="text" class="form-control" id="latitud2" name="latitud2">
             </div>
         </div>
         <div class="col-6">
             <div class="form-group">
                 <label for="longitud2">Longitud</label>
-                <input type="text" class="form-control" id="longitud2" name="longitud2" >
+                <input type="text" class="form-control" id="longitud2" name="longitud2">
             </div>
         </div>
 
     </div>
+
     <br>
 </div>
