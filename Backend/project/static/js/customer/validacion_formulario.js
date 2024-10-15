@@ -1,4 +1,4 @@
-
+/*
 import { Cliente } from '../class/customer.js'
 
 //output_name_customer
@@ -110,3 +110,4 @@ inputField_cui.addEventListener('input', async function (event) {
     }
 
 });
+*/
