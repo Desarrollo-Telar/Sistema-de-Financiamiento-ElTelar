@@ -26,6 +26,7 @@ from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
 from apps.InvestmentPlan.models import InvestmentPlan
 from django.db.models import Q
+from django.db import models  
 from apps.financings.models import Recibo
 
 # DJANGO HTTP
@@ -86,7 +87,7 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
 
-from .decorador import usuario_activo, usuario_administrador, usuario_secretaria, usuario_contabilidad
+
 
 def link_callback(uri, rel):
     """
@@ -321,27 +322,13 @@ class Search(TemplateView):
         Obtiene el queryset filtrado para un modelo dado.
         """
         try:
-            fields = []
-
-            for field in model._meta.fields:
-                
-                if isinstance(field, models.CharField):
-                    # Si el campo es CharField
-                    fields.append(field.name)
-                elif isinstance(field, models.TextField):
-                    # Si el campo es TextField
-                    fields.append(field.name)
-                
-                
-            print(fields)
-            print(''.center(60,'-'))
-
+            # Verificar si el campo es CharField o TextField
+            fields = [field.name for field in model._meta.fields if isinstance(field, (models.CharField, models.TextField))]
             if fields:  
                 query_filter = Q()
                 for field in fields:
                     query_filter |= Q(**{f"{field}__icontains": query})
-                model_results = model.objects.filter(query_filter)[:100]  # Limitar a 100 resultados por modelo
-                return model_results
+                return model.objects.filter(query_filter)
             return model.objects.none()  # Si no hay campos de texto
         except Exception as e:
             print(f"Error al filtrar el queryset para el modelo {model}: {e}")
@@ -362,7 +349,6 @@ class Search(TemplateView):
         Construye el contexto para la plantilla con los resultados de búsqueda.
         """
         context = super().get_context_data(**kwargs)
-        
         query = self.query()
         results = {}
         count = 0
@@ -374,14 +360,9 @@ class Search(TemplateView):
             for model in all_models:
                 # Filtrar los resultados para cada modelo
                 model_results = self.get_queryset(model, query)
-                print(model)
-                print(''.center(60,'-'))
                 if model_results.exists():
                     results[model._meta.verbose_name_plural] = model_results
-                    
-
                     count += model_results.count()
-        
 
         context['query'] = query
         context['results'] = results
