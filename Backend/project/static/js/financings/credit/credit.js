@@ -216,34 +216,24 @@ async function registrarCredito(url, credito) {
         };
         console.log(json);
 
-        // Obtener el token CSRF del meta tag
-        const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
-        if (!csrfTokenElement) {
-            throw new Error('CSRF token not found');
-        }
-        const csrfToken = csrfTokenElement.getAttribute('content');
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        const response = await fetch(url, {
-            method: 'POST',
+        const response = await axios.post(url, json, {
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
-            },
-            body: JSON.stringify(json)
+                'X-CSRFToken': csrfToken
+            }
         });
 
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(data);
-        return data;
+        console.log(response.data);
+        return response.data;
     } catch (error) {
+        alert('ERROR: ',error);
         console.error('Error:', error);
         throw error;
     }
 }
+
 
 
 /*

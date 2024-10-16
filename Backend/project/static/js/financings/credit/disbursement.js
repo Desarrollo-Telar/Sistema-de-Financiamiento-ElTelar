@@ -88,34 +88,24 @@ async function registrarDesembolso(url, credit_id) {
     try {
         desembolso.credit_id = credit_id;
 
-        const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
-        if (!csrfTokenElement) {
-            throw new Error('CSRF token not found');
-        }
-        const csrfToken = csrfTokenElement.getAttribute('content');
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        const response = await fetch(url, {
-            method: 'POST',
+        const response = await axios.post(url, desembolso.toJson(), {
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken
-            },
-            body: JSON.stringify(desembolso.toJson())
+            }
         });
 
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(data);
-
-        return data;
+        console.log(response.data);
+        return response.data;
     } catch (error) {
+        alert('Error: ',error);
         console.error('Error al registrar el desembolso:', error);
         throw error;
     }
 }
+
 
 async function informacionDesembolso() {
     return fetch('http://127.0.0.1:8000/financings/api/desembolso/')
