@@ -136,22 +136,26 @@
                 tabindex="0">
                 <div class="row">
                     <div class="col-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Mes</th>
-                                    <th scope="col">Fecha de Inicio</th>
-                                    <th scope="col">Fecha de Vencimiento</th>
-                                    <th scope="col">Monto Prestado</th>
-                                    <th scope="col">Interes</th>
-                                    <th scope="col">Capital</th>
-                                    <th scope="col">Cuota</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody_plan">
+                        <div class="table-responsive">
 
-                            </tbody>
-                        </table>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Mes</th>
+                                        <th scope="col">Fecha de Inicio</th>
+                                        <th scope="col">Fecha de Vencimiento</th>
+                                        <th scope="col">Monto Prestado</th>
+                                        <th scope="col">Interes</th>
+                                        <th scope="col">Capital</th>
+                                        <th scope="col">Cuota</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_plan">
+
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
                 </div>
@@ -189,6 +193,7 @@
 
 
 {% block js %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript">
     const plazo = document.getElementById('plazo');
