@@ -13,17 +13,50 @@ import {
     recoletarInformacionReferencias
 } from '../customer/recolectar.js';
 
+
+
 document.getElementById('customer').addEventListener('submit', async function (event) {
     event.preventDefault();
     let customer_id;
 
     try {
-        /*
-        let direccionData = recoletarInformacionDirecciones(1);
-        direccionData.forEach(element => console.log(element.toJSON()));
+        let cliente = recoletarInformacionCliente();
+        if(!cliente.validar()){
+            alert('Falta Informacion sobre el cliente');
+            throw new Error('Falta Informacion sobre el cliente');
+
+        }
         
-       
-*/
+        let direcciones = recoletarInformacionDirecciones();
+        direcciones.forEach(element =>{
+            if(!element.validar()){
+                alert('Falta Informacion las direcciones del cliente');
+                throw new Error('Falta Informacion las direcciones del cliente');
+
+            }
+        })
+
+        let laboral = recolectarInformacionLaboral();
+        if(!laboral.validar()){
+            alert('Falta Informacion sobre información laboral del cliente');
+            throw new Error('Falta Informacion sobre informacion laboral del cliente');
+        }
+
+        let destino = recoletarInformacionPlanInversion();
+        if(!destino.validar()){
+            alert('Falta Informacion sobre informacion del destino del cliente');
+            throw new Error('Falta Informacion sobre informacion del destino del cliente');
+        }
+
+        let referencias = recoletarInformacionReferencias();
+        referencias.forEach(element =>{
+            if(!element.validar()){
+                alert('Falta Informacion sobre referencias del cliente');
+                throw new Error('Falta Informacion sobre las referencias del cliente');
+
+            }
+        })
+
         
         
 

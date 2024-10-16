@@ -422,6 +422,7 @@ export class Cliente {
 
     // Validar que todos los campos no esten vacios
     validar() {
+        
         if (
             (
                 this.#first_name.trim() ==='' && this.#last_name.trim() ==='' && this.#type_identification.trim() ==='' && this.#identification_number.trim() ==='' && this.#telephone.trim() ==='' &&this.#email.trim() ==='' &&this.#status.trim() ==='' &&
