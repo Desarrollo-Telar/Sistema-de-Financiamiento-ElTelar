@@ -340,7 +340,8 @@ class Search(TemplateView):
                 query_filter = Q()
                 for field in fields:
                     query_filter |= Q(**{f"{field}__icontains": query})
-                return model.objects.filter(query_filter)
+                model_results = model.objects.filter(query_filter)[:100]  # Limitar a 100 resultados por modelo
+                return model_results
             return model.objects.none()  # Si no hay campos de texto
         except Exception as e:
             print(f"Error al filtrar el queryset para el modelo {model}: {e}")
@@ -377,6 +378,8 @@ class Search(TemplateView):
                 print(''.center(60,'-'))
                 if model_results.exists():
                     results[model._meta.verbose_name_plural] = model_results
+                    
+
                     count += model_results.count()
         
 

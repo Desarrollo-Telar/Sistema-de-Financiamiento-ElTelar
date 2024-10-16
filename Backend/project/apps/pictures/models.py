@@ -54,7 +54,7 @@ class ImagenGuarantee(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Imagen de la Garantía {self.address_id}"
+        return self.image_id
 
     class Meta:
         verbose_name = "Imagen de Garantía"
@@ -64,6 +64,9 @@ class ImagenOther(models.Model):
     description = models.CharField("Descripción",max_length=150,blank=True, null=True)
     image_id = models.ForeignKey(Imagen, on_delete=models.CASCADE)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.description or 'NO TIENE DESCRIPCION'
 
 
     class Meta:

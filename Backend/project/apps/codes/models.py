@@ -26,6 +26,10 @@ class Code(models.Model):
         code_string = "".join(str(item) for item in code_items)
         self.number = code_string
         super().save()
+    
+    class Meta:
+        verbose_name = 'Codigo'
+        verbose_name_plural = 'Codigos'
 """ 
 #Funcion clave para codigos de verificacion
 @receiver(pre_save, sender=User)

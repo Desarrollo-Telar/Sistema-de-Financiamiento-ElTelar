@@ -21,6 +21,9 @@ class Disbursement(models.Model):
     def save(self, *args, **kwargs):
         self.monto_total_desembolso = self.monto_credito - (self.honorarios + self.poliza_seguro + self.saldo_anterior)
         super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return self.credit_id
 
     class Meta:
         verbose_name = "Desembolso"

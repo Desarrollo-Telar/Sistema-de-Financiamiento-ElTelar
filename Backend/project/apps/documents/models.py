@@ -17,6 +17,9 @@ from project.settings import MEDIA_URL, STATIC_URL
 class DocumentBank(models.Model):
     document = models.FileField("Documento",blank=True, null=True,upload_to='documents/banco')
     uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+    
+    def __str__(self):
+        return self.document
 
     class Meta:
         verbose_name = "Documeto de Banco"
@@ -59,6 +62,9 @@ class DocumentAddress(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='address_documents')
     document_id = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='address_documents')
 
+    def __str__(self):
+        return self.document_id.description
+
 
     class Meta:
         verbose_name = "Documento de dirección"
@@ -69,6 +75,9 @@ class DocumentGuarantee(models.Model):
     document_id = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='guarantee_documents')
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='guarantee_documents')
 
+    def __str__(self):
+        return self.document_id.description
+
     class Meta:
         verbose_name = "Documento de Garantía"
         verbose_name_plural = "Documentos de Garantías"
@@ -78,6 +87,9 @@ class DocumentOther(models.Model):
     description = models.CharField("Descripción", max_length=150, blank=True, null=True)
     document_id = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='other_documents')
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='other_documents')
+
+    def __str__(self):
+        return self.description
     
     
     class Meta:
