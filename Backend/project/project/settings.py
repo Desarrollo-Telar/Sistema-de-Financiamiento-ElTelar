@@ -124,8 +124,9 @@ WSGI_APPLICATION = 'project.wsgi.application'
 import project.database as db
 
 if DEBUG:
-    DATABASES = db.MYSQL
+    #DATABASES = db.MYSQL
     #DATABASES = db.SQLITE
+    DATABASES = db.POSTGRES_HEROKU
 else:
     
     #DATABASES = db.SQLITE
