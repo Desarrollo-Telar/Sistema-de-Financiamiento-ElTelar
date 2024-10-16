@@ -15,6 +15,7 @@ import {
 
 document.getElementById('customer').addEventListener('submit', async function (event) {
     event.preventDefault();
+    let customer_id;
 
     try {
         /*
@@ -23,51 +24,14 @@ document.getElementById('customer').addEventListener('submit', async function (e
         
        
 */
-        let info_cliente = recoletarInformacionCliente();
-        if (info_cliente.validar()){
-            alert('FALTA INFORMACION PERSONAL DEL CLIENTE POR REGISTRAR')
-            throw new Error('FALTA INFORMACION PERSONAL DEL CLIENTE POR REGISTRAR');
-
-        }
-
-        let infor_direcciones = recoletarInformacionDirecciones();
-        infor_direcciones.forEach(element => {
-            if (!element.validar()) { // Se verifica si NO es válido
-                alert('FALTA INFORMACION DE DIRECCIONES DEL CLIENTE POR REGISTRAR');
-                throw new Error('FALTA INFORMACION DE DIRECCIONES DEL CLIENTE POR REGISTRAR');
-            }
-        });
-
-        let info_laboral = recolectarInformacionLaboral();
-        if(!info_laboral.validar()){
-            alert('FALTA INFORMACION DE LA FUENTE DE INGRESO DEL CLIENTE POR REGISTRAR');
-            throw new Error('FALTA INFORMACION DE LA FUENTE DE INGRESO DEL CLIENTE POR REGISTRAR');
-
-        }
-
-        let info_destino = recoletarInformacionPlanInversion();
-        if(!info_destino.validar()){
-            alert('FALTA INFORMACION DEL DESTINO DEL CREDITO DEL CLIENTE POR REGISTRAR');
-            throw new Error('FALTA INFORMACION DEL DESTINO DEL CREDITO DEL CLIENTE POR REGISTRAR');
-
-        }
-
-        let info_refe = recoletarInformacionReferencias();
-        info_refe.forEach(element =>{
-            if(!element.validar()){
-                alert('FALTA INFORMACION DE LAS REFERENCIAS DEL CLIENTE POR REGISTRAR');
-                throw new Error('FALTA INFORMACION DE LAS REFERENCIAS DEL CLIENTE POR REGISTRAR');
-
-            }
-
-        });
+        
         
 
         // Realizar llamadas a la API
         
         const customerData = await postCustomer(urls.api_url_cliente);
         console.log('Cliente registrado con éxito:', customerData);
-        const customer_id = customerData.id;
+        customer_id = customerData.id;
         
 
         const direccionData = await postDireccion(urls.api_url_direccion, customer_id);
@@ -92,6 +56,7 @@ document.getElementById('customer').addEventListener('submit', async function (e
         
     } catch (error) {
         console.error('Error al registrar los datos:', error);
+        window.location.href = `/customers/delete/${customer_id}/`;
         alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
     }
 });
