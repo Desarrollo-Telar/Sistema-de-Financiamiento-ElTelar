@@ -10,7 +10,7 @@ from django.db.models import Q
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo
+from project.decorador import usuario_activo, usuario_administrador, usuario_contabilidad, usuario_secretaria
 from django.utils.decorators import method_decorator
 
 # Paginacion
@@ -58,11 +58,15 @@ def list_bank(request):
     }
     return render(request,template_name, context)
 
+
 @login_required
 @usuario_activo
+@usuario_secretaria
 def list_credit(request):
     template_name = 'financings/credit/list.html'
     page_obj = paginacion(request, Credit.objects.all().order_by('-id'))
+    
+    
     context = {
         'title':'ELTELAR - CREDITOS',
         'page_obj':page_obj,
