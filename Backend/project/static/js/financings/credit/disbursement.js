@@ -1,5 +1,5 @@
 import { Desembolso } from '../../class/disbursement.js';
-
+import {urls, urls_p} from '../../API/urls_api.js'
 export const desembolso = new Desembolso();
 
 // Variables globales para acumulación y control
@@ -73,7 +73,7 @@ if (document.getElementById('desembolso')) {
         try {
             const credi_id = parseInt(document.getElementById('credit_id').value);
     
-            const desembolsos = await registrarDesembolso('http://127.0.0.1:8000/financings/api/desembolso/', credi_id);
+            const desembolsos = await registrarDesembolso(urls_p.api_url_desembolso, credi_id);
             console.log(desembolsos);
             alert('¡Formulario enviado con éxito!');
             window.location.href = `/financings/credit/${credi_id}`;
@@ -108,7 +108,7 @@ async function registrarDesembolso(url, credit_id) {
 
 
 async function informacionDesembolso() {
-    return fetch('http://127.0.0.1:8000/financings/api/desembolso/')
+    return fetch(urls_p.api_url_desembolso)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error al obtener información de desembolso: ' + response.statusText);

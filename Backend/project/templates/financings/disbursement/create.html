@@ -90,7 +90,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         async function informacionDesembolso() {
-            return fetch('http://127.0.0.1:8000/financings/api/desembolso/')
+            return fetch('https://www.ii-eltelarsa.com/financings/api/desembolso/')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Error al obtener información de desembolso: ' + response.statusText);
@@ -187,7 +187,7 @@
         $(".credit").select2({
             width: 'resolve',
             ajax: {
-                url: 'http://127.0.0.1:8000/financings/api/credit/',
+                url: 'https://www.ii-eltelarsa.com/financings/api/credit/',
                 dataType: 'json',
                 delay: 250,
                 processResults: function (data) {

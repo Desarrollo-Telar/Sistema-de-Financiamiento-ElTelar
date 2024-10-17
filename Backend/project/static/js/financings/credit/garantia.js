@@ -4,6 +4,7 @@ import { Hipoteca, Cheque, DerechoDePosesionHipoteca, Fiador, Mobiliaria, Vehicu
 const tbody_garantia = document.getElementById('tbody_garantia');
 const suma = document.getElementById('total_garantia');
 export const lista_garantia = [];
+import {urls, urls_p} from '../../API/urls_api.js'
 
 export let suma_total = '';
 
@@ -243,7 +244,7 @@ if(document.getElementById('garantia')){
             const credi_id = document.getElementById('credit_id').value;
     
            
-            const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/', credi_id);
+            const garantia = await registroGarantia(urls_p.api_url_garantia, credi_id);
             console.log(garantia);
             alert('¡Formulario enviado con éxito!');
             window.location.href = `/financings/credit/${credi_id}`;
@@ -279,7 +280,7 @@ async function registroGarantia(url, credito_id) {
 
         const data = response.data;
         console.log(data);
-        const detalle = await registrarDetalle('http://127.0.0.1:8000/financings/api/detalle_garantia/', data.id);
+        const detalle = await registrarDetalle(urls_p.api_url_detalle_garantia, data.id);
         console.log(detalle);
         return data;
     } catch (error) {

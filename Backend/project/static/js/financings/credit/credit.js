@@ -3,6 +3,7 @@ import { PaymentPlan } from '../../class/paymentplan.js';
 import { suma_total, lista_garantia } from './garantia.js'
 import {desembolso} from './disbursement.js'
 
+import {urls, urls_p} from '../../API/urls_api.js'
 const proposito = document.getElementById('proposito');
 const monto = document.getElementById('monto');
 const plazo = document.getElementById('plazo');
@@ -178,11 +179,11 @@ document.getElementById('credito').addEventListener('submit', async function (ev
             credito.fechaVencimiento.setFullYear(credito.fechaVencimiento.getFullYear() + 1);
 
             console.log(credito.toJSON());
-            const credi = await registrarCredito('http://127.0.0.1:8000/financings/api/credit/', credito);
+            const credi = await registrarCredito(urls_p.api_url_credit, credito);
             console.log('Credito Registrado', credi);
-            const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/', credi.id);
+            const garantia = await registroGarantia(urls_p.api_url_garantia, credi.id);
             console.log(garantia);
-            const desembolsos = await registrarDesembolso('http://127.0.0.1:8000/financings/api/desembolso/',credi.id);
+            const desembolsos = await registrarDesembolso(urls_p.api_url_desembolso,credi.id);
             console.log(desembolsos)
 
             alert('¡Formulario enviado con éxito!');
@@ -309,7 +310,7 @@ async function registroGarantia(url, credito_id) {
 
         const data = await response.json();
         console.log(data);
-        const detalle = await registrarDetalle('http://127.0.0.1:8000/financings/api/detalle_garantia/', data.id);
+        const detalle = await registrarDetalle(urls_p.api_url_detalle_garantia, data.id);
         console.log(detalle);
         return data;
     } catch (error) {

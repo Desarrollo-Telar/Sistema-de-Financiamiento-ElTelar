@@ -225,7 +225,7 @@
         $(".customer_id").select2({
             width: 'resolve',
             ajax: {
-                url: 'http://127.0.0.1:8000/customers/api/customers/',
+                url: 'https://www.ii-eltelarsa.com/customers/api/customers/',
                 dataType: 'json',
                 delay: 250,
                 processResults: function (data) {
@@ -255,7 +255,7 @@
         $(".customer_id_fiador").select2({
             width: 'resolve',
             ajax: {
-                url: 'http://127.0.0.1:8000/customers/api/customers/',
+                url: 'https://www.ii-eltelarsa.com/customers/api/customers/',
                 dataType: 'json',
                 delay: 250,
                 processResults: function (data) {
@@ -283,7 +283,7 @@
             minimumInputLength: 1
         });
         async function fetchInformacion_laboral() {
-            return fetch('http://127.0.0.1:8000/financial_information/api/working_information/')
+            return fetch('https://www.ii-eltelarsa.com/financial_information/api/working_information/')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Error al momento de obtener informacion laboral ' + response.statusText);
@@ -301,7 +301,7 @@
 
         }
         async function fetchOtraInformacion_laboral() {
-            return fetch('http://127.0.0.1:8000/financial_information/api/other_sources/')
+            return fetch('https://www.ii-eltelarsa.com/financial_information/api/other_sources/')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Error al momento de obtener informacion laboral ' + response.statusText);
@@ -367,7 +367,7 @@
                 });
 
                 // Realizar una solicitud para obtener detalles adicionales del cliente
-                const response = await fetch(`http://127.0.0.1:8000/customers/api/customers/${clienteId}/`);
+                const response = await fetch(`https://www.ii-eltelarsa.com/customers/api/customers/${clienteId}/`);
                 if (!response.ok) {
                     throw new Error(`Error en la solicitud: ${response.statusText}`);
                 }

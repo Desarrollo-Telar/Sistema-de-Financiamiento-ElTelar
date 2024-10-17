@@ -1,4 +1,5 @@
 
+import {urls, urls_p} from '../../API/urls_api.js'
 
 document.getElementById('pago').addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -18,7 +19,7 @@ document.getElementById('pago').addEventListener('submit', async function (event
 
     axios({
         method: 'post',
-        url: 'http://127.0.0.1:8000/financings/api/payment/',
+        url: urls_p.api_url_pago,
         headers: {
             'Content-Type': 'multipart/form-data',
             'X-CSRFToken': csrfToken
