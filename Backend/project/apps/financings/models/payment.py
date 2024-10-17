@@ -18,6 +18,7 @@ from apps.financings.clases.personality_logs import logger
 from .disbursement import Disbursement
 from .credit import Credit
 
+from project.settings import MEDIA_URL, STATIC_URL
 
 # PAGOS
 class Payment(models.Model):
@@ -65,6 +66,9 @@ class Payment(models.Model):
     def get_plan_pagos(self):
         from .payment_plan import PaymentPlan
         return PaymentPlan
+    
+    def get_document(self):
+        return '{}{}'.format(MEDIA_URL,self.boleta)
 
 
     def _cuota_pagar(self):
