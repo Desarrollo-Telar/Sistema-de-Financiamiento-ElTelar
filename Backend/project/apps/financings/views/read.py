@@ -193,3 +193,55 @@ class PaymentSearch(ListView):
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
         return context
+
+class CreditSearch(ListView):
+    template_name = 'financings/credit/search.html'
+    paginate_by = 25
+
+    def get_queryset(self):
+        try:
+            # Asignar la consulta a una variable local
+            query = self.query()
+
+            # Crear una lista para almacenar los filtros
+            filters = Q()
+
+            # Añadir filtros si la consulta no está vacía
+            if query:
+                filters |= Q(fecha_inicio__icontains=query)
+                filters |= Q(fecha_vencimiento__icontains=query)
+                filters |= Q(tipo_credito__icontains=query)
+                filters |= Q(proposito__icontains=query)
+                filters |= Q(tipo_credito__icontains=query)
+                filters |= Q(forma_de_pago__icontains=query)
+                filters |= Q(codigo_credito__icontains=query)
+                filters |= Q(customer_id__customer_code__icontains=query)
+
+                # Si la consulta es numérica, usar filtro exacto para campos numéricos
+                if query.isdigit():
+                    filters |= Q(monto__exact=query)
+                    filters |= Q(plazo__exact=query)
+                    filters |= Q(tasa_interes__exact=query)
+                    
+
+            # Filtrar los objetos Banco usando los filtros definidos
+            return Credit.objects.filter(filters)
+        except Exception as e:
+            # Manejar cualquier excepción que ocurra y devolver un queryset vacío
+            print(f"Error al filtrar el queryset: {e}")
+            return Credit.objects.none()
+    
+
+    def query(self):
+        return self.request.GET.get('q')
+    
+    @method_decorator(usuario_activo)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.query()
+        context['title'] = 'ELTELAR - Buscar'
+        context['count'] = context['object_list'].count()
+        return context
