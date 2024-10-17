@@ -317,6 +317,15 @@ class Search(TemplateView):
     template_name = 'search.html'
     paginate_by = 25
 
+    # Lista de aplicaciones cuyos modelos no queremos incluir en la búsqueda
+    excluded_apps = [
+        'auth', 
+        'contenttypes', 
+        'sessions', 
+        'admin',
+        'django_celery_beat',
+    ]
+
     def get_queryset(self, model, query):
         """
         Obtiene el queryset filtrado para un modelo dado.
@@ -358,6 +367,11 @@ class Search(TemplateView):
             all_models = apps.get_models()
 
             for model in all_models:
+                # Excluir modelos que pertenezcan a las aplicaciones listadas en excluded_apps
+                app_label = model._meta.app_label
+                if app_label in self.excluded_apps:
+                    continue  # Saltar este modelo
+
                 # Filtrar los resultados para cada modelo
                 model_results = self.get_queryset(model, query)
                 if model_results.exists():
