@@ -40,11 +40,17 @@ def update_cuota(request, id):
     cuota = get_object_or_404(PaymentPlan, id=id)
     
     if request.method == 'POST':
+        print("POST recibido")  # Verificar si el método POST se recibe
         form = PaymentPlanForms(request.POST, instance=cuota)
+        print(form)  # Verificar el contenido del formulario
         if form.is_valid():
+            print("Formulario válido")
             form.save()
-            return redirect('financings:detail_credit',cuota.credit_id.id)
+            return redirect('financings:detail_credit', cuota.credit_id.id)
+        else:
+            print("Formulario inválido", form.errors)  # Mostrar errores si hay
     else:
+
         form = PaymentPlanForms(instance=cuota)
     
     context = {
