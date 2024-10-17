@@ -36,7 +36,7 @@ def update_pago(request,id):
 @login_required
 @usuario_activo
 def update_cuota(request, id):
-    template_name = ''
+    template_name = 'financings/cuota/update.html'
     cuota = get_object_or_404(PaymentPlan, id=id)
     
     if request.method == 'POST':
@@ -50,6 +50,7 @@ def update_cuota(request, id):
     context = {
         'form':form,
         'title': f'ELTELAR - ACTUALIZACION DE CUOTA',
+        'cuota':cuota,
     }
 
     return render(request, template_name, context)

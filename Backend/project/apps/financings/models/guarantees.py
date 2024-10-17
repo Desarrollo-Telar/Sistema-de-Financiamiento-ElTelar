@@ -9,6 +9,9 @@ class Guarantees(models.Model):
     suma_total = models.DecimalField("Suma Total de Garantia", decimal_places=2, max_digits=15)
     credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE, verbose_name="Credito")
 
+    def __str__(self):
+        return self.descripcion
+
     class Meta:
         verbose_name = 'Garantia'
         verbose_name_plural = 'Garantias'
@@ -27,6 +30,9 @@ class DetailsGuarantees(models.Model):
     tipo_garantia = models.CharField("Tipo de Garantia", choices=tipoGarantia, max_length=75)
     especificaciones = models.JSONField("Especificaciones")
     valor_cobertura = models.DecimalField("Valor de Cobertura", decimal_places=2, max_digits=15)
+
+    def __str__(self):
+        return self.tipo_garantia
 
     class Meta:
         verbose_name = 'Detalle de Garantia'

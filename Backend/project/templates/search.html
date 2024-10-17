@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+{% if query %}
+<h3>Resultados de búsqueda para "{{ query }}":</h3>
+
+{% for model_name, model_results in results.items %}
+
+<h4>{{ model_name }}</h4>
+<ul>
+    {% for result in model_results %}
+    <li>{{ result }}</li> <!-- Personaliza este campo si quieres mostrar más detalles del objeto -->
+    {% empty %}
+    <li>No se encontraron resultados.</li>
+    {% endfor %}
+</ul>
+
+{% endfor %}
+
+{% endif %}
+
+{% if page_obj %}
+{% include 'snippets/pages.html' %}
+{% endif %}
+{% endblock %}

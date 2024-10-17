@@ -8,24 +8,19 @@ export async function postReferencia(url, customer_id) {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         for (const direccion of direc) {
-            const response = await fetch(url, {
-                method: 'POST',
+            const response = await axios.post(url, direccion, {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
-                },
-                body: JSON.stringify(direccion)
+                }
             });
 
-            if (!response.ok) {
-                throw new Error(`Error en la solicitud: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log('Respuesta de la API:', data);
+            console.log('Respuesta de la API:', response.data);
         }
     } catch (error) {
-        console.error('Error en el envío de direcciones:', error);
+        alert('Error: ',error);
+        console.error('Error en el envío de referencias:', error);
         throw error;
     }
 }
+

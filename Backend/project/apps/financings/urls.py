@@ -16,14 +16,15 @@ urlpatterns = [
     # -------------- CREDITO -----------
     path('credit/',login_required(views.list_credit), name='list_credit'),
     path('credit/<int:id>/',login_required(views.detail_credit), name='detail_credit'),
-    path('credit/create',login_required(views.create_credit),name='create_credit'),
-
+    path('credit/create/',login_required(views.create_credit),name='create_credit'),
+    path('credit/search/',login_required(views.CreditSearch.as_view()),name='credit_search'),
+    
     # ---------------- GARANTIA ------------
     path('guarantee/',login_required(views.list_guarantee), name='list_guarantee'),
-    path('guarantee/create',login_required(views.create_guarantee),name='create_guarantee'),
+    path('guarantee/create/',login_required(views.create_guarantee),name='create_guarantee'),
 
     # ---------------- DESEMBOLSO ------------
-    path('disbursement/create',login_required(views.create_disbursement),name='create_disbursement'),  
+    path('disbursement/create/',login_required(views.create_disbursement),name='create_disbursement'),  
     path('disbursement/',login_required(views.list_disbursement), name='list_disbursement'),
     path('disbursement/<int:id>/',login_required(views.detallar_desembolso), name='detail_disbursement'),
 
@@ -36,6 +37,7 @@ urlpatterns = [
     path('payment/update/<int:id>/',login_required(views.update_pago),name='actualizar_boleta'),
     path('payment/detail/<int:id>/',login_required(views.detalle_boleta),name='detalle_boleta'),
     path('payment/search/',login_required(views.PaymentSearch.as_view()),name='payment_search'),
+    path('payment/cuota/update/<int:id>/',login_required(views.update_cuota), name='paymente_update_cuota'),
 
     # ---------------- BANCOS --------------------
     path('bank/',login_required(views.list_bank),name='list_bank'),

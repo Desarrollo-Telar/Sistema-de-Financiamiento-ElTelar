@@ -32,6 +32,7 @@ urlpatterns = [
     path('logout/',views.logout_view, name='logout'),
     path('admin/', admin.site.urls),
     path('users/', include('apps.users.urls')),
+    path('search/', login_required(views.Search.as_view()), name='busqueda_general'),
     path('roles&permissions/', include('apps.roles.urls')),
     #path('prueba/', views.prueba, name='prueba'),
     path('customers/', include('apps.customers.urls')),

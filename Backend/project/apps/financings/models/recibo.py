@@ -38,3 +38,10 @@ class Recibo(models.Model):
     def aporte_capital_letras(self):
         capital = num2words(self.aporte_capital,lang='es')
         return f'{capital} Quetzales'
+    
+    def __str__(self):
+        return self.recibo
+    
+    class Meta:
+        verbose_name = 'Recibo'
+        verbose_name_plural = 'Recibos'

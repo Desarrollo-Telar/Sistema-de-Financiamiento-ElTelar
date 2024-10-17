@@ -10,7 +10,7 @@ from django.db.models import Q
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo
+from project.decorador import usuario_activo, usuario_administrador, usuario_contabilidad, usuario_secretaria
 from django.utils.decorators import method_decorator
 
 # Paginacion
@@ -58,11 +58,15 @@ def list_bank(request):
     }
     return render(request,template_name, context)
 
+
 @login_required
 @usuario_activo
+@usuario_secretaria
 def list_credit(request):
     template_name = 'financings/credit/list.html'
     page_obj = paginacion(request, Credit.objects.all().order_by('-id'))
+    
+    
     context = {
         'title':'ELTELAR - CREDITOS',
         'page_obj':page_obj,
@@ -174,6 +178,58 @@ class PaymentSearch(ListView):
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")
             return Payment.objects.none()
+    
+
+    def query(self):
+        return self.request.GET.get('q')
+    
+    @method_decorator(usuario_activo)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.query()
+        context['title'] = 'ELTELAR - Buscar'
+        context['count'] = context['object_list'].count()
+        return context
+
+class CreditSearch(ListView):
+    template_name = 'financings/credit/search.html'
+    paginate_by = 25
+
+    def get_queryset(self):
+        try:
+            # Asignar la consulta a una variable local
+            query = self.query()
+
+            # Crear una lista para almacenar los filtros
+            filters = Q()
+
+            # Añadir filtros si la consulta no está vacía
+            if query:
+                filters |= Q(fecha_inicio__icontains=query)
+                filters |= Q(fecha_vencimiento__icontains=query)
+                filters |= Q(tipo_credito__icontains=query)
+                filters |= Q(proposito__icontains=query)
+                filters |= Q(tipo_credito__icontains=query)
+                filters |= Q(forma_de_pago__icontains=query)
+                filters |= Q(codigo_credito__icontains=query)
+                filters |= Q(customer_id__customer_code__icontains=query)
+
+                # Si la consulta es numérica, usar filtro exacto para campos numéricos
+                if query.isdigit():
+                    filters |= Q(monto__exact=query)
+                    filters |= Q(plazo__exact=query)
+                    filters |= Q(tasa_interes__exact=query)
+                    
+
+            # Filtrar los objetos Banco usando los filtros definidos
+            return Credit.objects.filter(filters)
+        except Exception as e:
+            # Manejar cualquier excepción que ocurra y devolver un queryset vacío
+            print(f"Error al filtrar el queryset: {e}")
+            return Credit.objects.none()
     
 
     def query(self):

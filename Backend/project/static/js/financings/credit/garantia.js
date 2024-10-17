@@ -263,31 +263,21 @@ async function registroGarantia(url, credito_id) {
         let json = {
             suma_total: suma_total,
             credit_id: credito_id,
-            descripcion:'REGISTRO DE GARANTIA',
+            descripcion: 'REGISTRO DE GARANTIA',
         };
 
         console.log(json);
 
-        const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
-        if (!csrfTokenElement) {
-            throw new Error('CSRF token not found');
-        }
-        const csrfToken = csrfTokenElement.getAttribute('content');
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        const response = await fetch(url, {
-            method: 'POST',
+        const response = await axios.post(url, json, {
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken
-            },
-            body: JSON.stringify(json)
+            }
         });
 
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-
-        const data = await response.json();
+        const data = response.data;
         console.log(data);
         const detalle = await registrarDetalle('http://127.0.0.1:8000/financings/api/detalle_garantia/', data.id);
         console.log(detalle);
@@ -297,7 +287,6 @@ async function registroGarantia(url, credito_id) {
         throw error;
     }
 }
-
 
 async function registrarDetalle(url, garantia_id) {
     try {
@@ -310,25 +299,17 @@ async function registrarDetalle(url, garantia_id) {
                 valor_cobertura: element['valor_cobertura'],
                 especificaciones: element['especificacion'],
             };
-            console.log(`DETALLE DE GARANTIA ${JSON.stringify(js)}`)
+            console.log(`DETALLE DE GARANTIA ${JSON.stringify(js)}`);
 
-            const response = await fetch(url, {
-                method: 'POST',
+            const response = await axios.post(url, js, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
-                },
-                body: JSON.stringify(js)
+                    'X-CSRFToken': csrfToken
+                }
             });
 
-            if (!response.ok) {
-                throw new Error(`Error en la solicitud: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log('Respuesta de la API:', data);
+            console.log('Respuesta de la API:', response.data);
         }
-
     } catch (error) {
         console.error('Error en el envío de detalles:', error);
         throw error;

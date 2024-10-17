@@ -15,6 +15,7 @@
 
                         <th scope="col">Saldo Capital</th>
                         <th scope="col">Cuota A Cancelar</th>
+                        <th></th>
 
 
                     </tr>
@@ -45,6 +46,10 @@
                         </td>
                         <td class="border border-dark-subtle">
                             {{credit.total}}
+                        </td>
+                        <td class="border border-dark-subtle">
+                            <a href="{% url 'financings:paymente_update_cuota' credit.id %}">Modificar</a>
+
                         </td>
 
                     </tr>
