@@ -126,11 +126,11 @@ def detallar_recibo(request,id):
 @login_required
 @usuario_activo
 def detalle_boleta(request,id):
-    #pago = get_object_or_404(Payment, id=id)
+    pago = get_object_or_404(Payment, id=id)
     template_name = 'financings/payment/detail.html'
     context = {
-        #'title':f'ELTELAR - BOLETA {pago.numero_referencia}',
-        #'pago':pago,
+        'title':f'ELTELAR - BOLETA {pago.numero_referencia}',
+        'pago':pago,
     }
     return render(request, template_name, context)
 

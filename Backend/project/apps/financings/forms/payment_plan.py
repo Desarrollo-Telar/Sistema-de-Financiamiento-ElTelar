@@ -24,9 +24,9 @@ class PaymentPlanForms(forms.ModelForm):
         }
 
         widgets = {
-            'start_date': forms.DateTimeInput(attrs={'class':'form-control'}),
-            'due_date': forms.DateTimeInput(attrs={'class':'form-control'}),
-            'fecha_limite': forms.DateTimeInput(attrs={'class':'form-control'}),
+            'start_date': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
+            'due_date': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
+            'fecha_limite': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
             'saldo_pendiente': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"0.1"}),
             'mora': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"0.1"}),
             'interest': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"0.1"}),
