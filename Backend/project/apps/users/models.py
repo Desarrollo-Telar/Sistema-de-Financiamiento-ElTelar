@@ -112,8 +112,10 @@ def set_rol(sender, instance, *args, **kwargs):
     # Si el rol del usuario está en la lista de roles de superusuario, establecer is_superuser a True
     if instance.rol in roles_superuser:
         instance.is_superuser = True
+        instance.is_staff = True
     else:
         instance.is_superuser = False
+        instance.is_staff = False
 
     
 
