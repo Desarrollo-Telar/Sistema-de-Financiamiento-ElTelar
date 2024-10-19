@@ -40,7 +40,7 @@ class Recibo(models.Model):
         return f'{capital} Quetzales'
     
     def __str__(self):
-        return self.recibo
+        return f'{self.fecha}'
     
     class Meta:
         verbose_name = 'Recibo'
