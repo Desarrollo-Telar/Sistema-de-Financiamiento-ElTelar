@@ -24,7 +24,7 @@
                         <td>{{user.username}}</td>
                         <td>{{user.gender}}</td>
                         <td>
-                            <p >{{user.get_telephone}}</p>
+                            <p>{{user.get_telephone}}</p>
                         </td>
                         <td>
                             <p class="{% if not user.status %} inactivo {% endif %} activo">
@@ -38,7 +38,8 @@
                                     ...
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="{% url 'users:detail' user.username %}">Ver informacion</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'users:detail' user.username %}">Ver
+                                            informacion</a></li>
                                     <li>
                                         <a class="dropdown-item" href="{% url 'users:update' user.pk %}">Editar
                                             informacion</a>
@@ -49,11 +50,20 @@
                                         </a>
                                     </li>
                                     <hr>
+                                    {% if user.status %}
                                     <li>
                                         <a class="dropdown-item" href="{% url 'users:deactivate' user.id%}">
                                             Inhabilitar Usuario
                                         </a>
                                     </li>
+                                    {% else %}
+
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'users:activar' user.id%}">
+                                            Activar Usuario
+                                        </a>
+                                    </li>
+                                    {% endif %}
 
                                 </ul>
                             </div>

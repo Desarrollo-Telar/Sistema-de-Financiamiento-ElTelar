@@ -44,8 +44,20 @@ from django.contrib import messages
 @usuario_activo
 @usuario_administrador
 def deactivate(request, id):
+    
     user = get_object_or_404(User, id=id)
+    if request.user == user:
+        return redirect('users:users')
     user.status = False
+    user.save()
+    return redirect('users:users')
+    
+@login_required
+@usuario_activo
+@usuario_administrador
+def habilitar_usuario(request,id):
+    user = get_object_or_404(User, id=id)
+    user.status = True
     user.save()
     return redirect('users:users')
 
