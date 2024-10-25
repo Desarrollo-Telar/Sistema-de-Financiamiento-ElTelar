@@ -2,7 +2,7 @@ from django.db.models.signals import post_save, pre_save, pre_delete, post_delet
 from django.dispatch import receiver
 
 # MODELOS
-from apps.financings.models import AccountStatement, Disbursement
+from apps.financings.models import AccountStatement, Disbursement, Credit
 
 
 import uuid
@@ -12,6 +12,11 @@ from django.db import transaction, IntegrityError
 # EL DESEMBOLSO REALIZADO SE REFLEJA EN EL ESTADO DE CUENTAS DEL CLIENTE
 @receiver(post_save, sender=Disbursement)
 def reflejar_estado_cuenta(sender, instance, created, **kwargs):
+    monto = instance.monto_credito
+    credit = Credit.objects.filter(id=instance.credit_id.id)
+    credit.monto = monto
+    credit.save()
+
     if created:
         desembolso_credito = Disbursement.objects.filter(
             credit_id_id=instance.credit_id.id, 
