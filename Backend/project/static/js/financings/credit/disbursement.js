@@ -87,6 +87,19 @@ if (document.getElementById('desembolso')) {
 async function registrarDesembolso(url, credit_id) {
     try {
         desembolso.credit_id = credit_id;
+        const forma_desembolso = document.getElementById('forma_desembolso');
+        if (forma_desembolso){
+            forma_desembolso.addEventListener('change', function(event){
+                const valor_seleccionado = event.target.value;
+                if(valor_seleccionado){
+                    desembolso._forma_desembolso = valor_seleccionado;
+                }else{
+                    alert('SELECCIONE UNA OPCION')
+                    throw error;
+                }
+            });
+            
+        }
 
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -140,4 +153,42 @@ async function filtro(valor) {
         console.error('Error en el filtro de desembolsos:', error);
         throw error;
     }
+}
+
+// Obtener el elemento select y verificar si existe
+const forma_desembolso = document.getElementById('forma_desembolso');
+if (forma_desembolso) {
+    forma_desembolso.addEventListener('change', (event) => {
+        const valorSeleccionado = event.target.value;
+        const divMontoCredito = document.getElementById('div_monto_credito');
+
+        if (!valorSeleccionado) {
+            alert('SELECCIONE UNA OPCION');
+            throw new Error('Opción no seleccionada');
+        }
+
+        let montoAgregado = document.getElementById('monto_agregado');
+
+        switch (valorSeleccionado) {
+            case 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE':
+                if (!montoAgregado) {
+                    divMontoCredito.innerHTML += `
+                        <div class="form-group" style="margin-top: 2rem;" id="monto_agregado">
+                            <label class="fw-medium" for="monto_sumar">Monto por agregar</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                                <input type="number" min="0" step="any" class="form-control" id="monto_sumar">
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    montoAgregado.style.display = 'block';
+                }
+                break;
+
+            case 'CANCELACIÓN DE CRÉDITO VIGENTE':
+                if (montoAgregado) montoAgregado.style.display = 'none';
+                break;
+        }
+    });
 }

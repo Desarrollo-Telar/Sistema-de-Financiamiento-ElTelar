@@ -1,4 +1,4 @@
-/*
+
 import { Cliente } from '../class/customer.js'
 
 //output_name_customer
@@ -23,7 +23,7 @@ function updateOutput() {
 first_name.addEventListener('input', updateOutput);
 last_name.addEventListener('input', updateOutput);
 
-
+/*
 const inputField_email = document.getElementById('email');
 const outputDiv_email = document.getElementById('output_email');
 // Agregar un event listener para el evento input

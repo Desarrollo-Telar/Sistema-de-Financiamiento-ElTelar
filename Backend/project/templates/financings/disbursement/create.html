@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token }}">
     <div style="background-color: white; padding: 2rem;">
         <div class="row">
+            <!-- SELECCION DEL CREDITO-->
             <div class="col-12" style="margin-bottom: 2rem;">
                 <div class="form-group">
                     <label class="fw-medium" for="credit_id">Credito</label>
@@ -21,16 +22,18 @@
         </div>
         <div class="form-group" style="margin-top: 2rem;">
             <label class="fw-medium" for="forma_desembolso">Forma de Desembolso</label>
+            <!-- SELECCION DE LA FORMA DE DESEMBOLSOS-->
             <select class="form-select" id="forma_desembolso" aria-label="Default select example">
+                <option selected>SELECCIONAR UN TIPO DE DESEMBOLSO</option>
 
-                <option value="APLICACIÓN GASTOS">APLICACIÓN GASTOS</option>
+
                 <option value="APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE">APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE
                 </option>
                 <option value="CANCELACIÓN DE CRÉDITO VIGENTE">CANCELACIÓN DE CRÉDITO VIGENTE</option>
             </select>
 
         </div>
-        <div class="form-group" style="margin-top: 2rem;">
+        <div class="form-group" style="margin-top: 2rem;" id="div_monto_credito">
             <label class="fw-medium" for="monto">Monto del Credito</label>
             <div class="input-group mb-3">
                 <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
@@ -144,28 +147,6 @@
                 if (Array.isArray(laboral)) {
                     laboral.forEach(element => {
                         suma += parseFloat(element['monto_total_desembolso']);
-                        // Deshabilitar la opción en forma de desembolso
-                        const select = document.getElementById('forma_desembolso');
-
-                        let dese = element['forma_desembolso'];
-
-
-                        const option = Array.from(select.options).find(opt => {
-                            if (dese === 'APLICACIÓN GASTOS' && opt.value === dese) {
-                                console.log('POR OCULTAR');
-
-                                opt.disabled = true;
-
-                            } else {
-                                opt.disabled = false;
-
-
-
-                            }
-
-                        });
-
-
                     });
                 }
 
