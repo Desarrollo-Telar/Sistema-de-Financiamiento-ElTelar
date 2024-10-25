@@ -190,5 +190,16 @@ if (forma_desembolso) {
                 if (montoAgregado) montoAgregado.style.display = 'none';
                 break;
         }
+
+        if(montoAgregado){
+            // Función auxiliar para convertir el valor de un elemento a número flotante o 0
+            const obtenerValorNumerico = (id) => parseFloat(document.getElementById(id).value) || 0;
+
+            const monto = obtenerValorNumerico('monto');
+            const agg = obtenerValorNumerico('monto_agregado');
+
+            // Asignación al monto de crédito en el objeto desembolso
+            desembolso.monto_credito = monto + agg;
+        }
     });
 }
