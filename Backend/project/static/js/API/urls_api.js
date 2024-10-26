@@ -11,6 +11,7 @@ export const urls = {
     api_url_imagen:'http://127.0.0.1:8000/imagen/api/imagen/',
     api_url_imagen_cliente:'http://127.0.0.1:8000/imagen/api/imagen_cliente/',
     api_url_imagen_direccion:'http://127.0.0.1:8000/imagen/api/imagen_direccion/',
+    api_url_desembolso:'http://127.0.0.1:8000/financings/api/desembolso/'
     
 }
 
