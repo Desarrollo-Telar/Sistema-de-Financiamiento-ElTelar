@@ -26,7 +26,7 @@
             <label for="telephone">Numero de Telefono</label>
             <div class="input-group">
                 <div class="input-group-text">+502</div>
-                <input type="num" min="0" name="telephone" id="telephone" class="form-control" required>
+                <input type="number" min="0" name="telephone" id="telephone" class="form-control" required>
                 <div id="output_telephone"></div>
 
             </div>
@@ -46,7 +46,7 @@
     <div class="col-8">
         <div class="form-group">
             <label for="identification_number">Numero de identificación</label>
-            <input type="num" min="0" name="identification_number" id="identification_number" class="form-control"
+            <input type="number" min="0" name="identification_number" id="identification_number" class="form-control"
                 required>
             <div id="output_identification_number"></div>
         </div>
@@ -64,7 +64,7 @@
 
     <div class="col-4">
         <div class="form-group">
-            <label for="place_birth">Lugar de Nacimiento</label>
+            <label for="place_birth">Lugar de Vencidad</label>
             <input type="text" name="place_birth" id="place_birth" class="form-control" required>
             <div id="output_place_birth"></div>
         </div>
@@ -72,7 +72,8 @@
     <div class="col-4">
         <div class="form-group">
             <label for="nationality">Nacionalidad</label>
-            <input type="text" name="nationality" id="nationality" class="form-control" required>
+            <input type="text" name="nationality" id="nationality" class="form-control" placeholder="GUATEMALTECA"
+                required>
             <div id="output_nationality"></div>
         </div>
     </div>
@@ -97,7 +98,14 @@
     <div class="col-6">
         <div class="form-group">
             <label for="marital_status">Estado Civil</label>
-            <input type="text" name="marital_status" id="marital_status" class="form-control" required>
+            <select class="form-select" name="marital_status" id="marital_status" required>
+                <option value="SOLTER@">SOLTER@</option>
+                <option value="CASAD@">CASAD@</option>
+                <option value="DIVORCIAD@">DIVORCIAD@</option>
+                <option value="VIUD@">VIUD@</option>
+                <option value="UNIÓN DE HECHO">UNIÓN DE HECHO</option>
+            </select>
+
             <div id="output_marital_status"></div>
         </div>
     </div>
