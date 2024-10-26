@@ -20,6 +20,8 @@ from django.db.models import Q
 # FORMULARIO
 from apps.financings.forms import PaymentPlanForms
 
+# Manejo de mensajes
+from django.contrib import messages
 # Create your views here.
 
 ### ---------------- ACTUALIZAR --------------------
@@ -45,9 +47,11 @@ def update_cuota(request, id):
         # Verificar el contenido del formulario
         if form.is_valid():
             print("Formulario válido")
+            messages.success(request,'CUOTA ACTUALIZADA')
             form.save()
             return redirect('financings:detail_credit', cuota.credit_id.id)
         else:
+            messages.error(request, 'FORMULARIO INVALIDO')
             print("Formulario inválido", form.errors)  # Mostrar errores si hay
     else:
 

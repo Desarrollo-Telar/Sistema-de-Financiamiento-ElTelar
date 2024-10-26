@@ -9,3 +9,6 @@ from .update import update_pago, update_cuota
 
 # FUNCIONES PARA DETALLAR
 from .detail import detail_credit, detallar_recibo, detalle_boleta, detallar_desembolso
+
+# FUNCIONES PARA ELIMINAR
+from .delete import delete_desembolso
