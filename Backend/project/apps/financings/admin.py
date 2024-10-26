@@ -12,7 +12,7 @@ class CreditAdmin(admin.ModelAdmin):
         'forma_de_pago',
         'frecuencia_pago',
         'fecha_inicio',
-        'fecha_vencimiento',
+        #'fecha_vencimiento',
         'tipo_credito',        
         'customer_id',
     )
