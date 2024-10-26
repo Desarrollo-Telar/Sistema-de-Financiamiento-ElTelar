@@ -16,10 +16,14 @@ async function actualizarTotalDepositar() {
     
     const honorarios = obtenerValorNumerico('honorarios');
     
-    const agg = obtenerValorNumerico('monto_sumar');
+    let agg = obtenerValorNumerico('monto_sumar');
+    if(desembolso.forma_desembolso == 'CANCELACIÓN DE CRÉDITO VIGENTE' || desembolso.forma_desembolso == 'APLICACIÓN GASTOS'){
+        agg = 0;
+    }
     
     const saldo_anterior = obtenerValorNumerico('saldo_anterior');
     const total = monto + agg;
+    
     
     const total_desembolsar = total - (poliza_seguro+honorarios+saldo_anterior);
     
@@ -49,7 +53,7 @@ async function actualizarTotalDepositar() {
             return;
         }
 
-        document.getElementById('total_depositar').value = Math.round(total_desembolsar);
+        document.getElementById('total_depositar').value =  parseFloat( total_desembolsar).toFixed(2);
         const addDesembolsoElement = document.getElementById('add_Desembolso');
         if (addDesembolsoElement) {
             addDesembolsoElement.style.display = '';
@@ -157,6 +161,8 @@ document.getElementById('forma_desembolso')?.addEventListener('change', (event) 
         case 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE':
             desembolso.forma_desembolso = valorSeleccionado;
             console.log(desembolso.forma_desembolso);
+
+            // Añade el campo solo si no existe
             if (!montoAgregado) {
                 divMontoCredito.innerHTML += `
                     <div class="form-group" style="margin-top: 2rem;" id="monto_agregado">
@@ -167,13 +173,26 @@ document.getElementById('forma_desembolso')?.addEventListener('change', (event) 
                         </div>
                     </div>
                 `;
-            } else montoAgregado.style.display = 'block';
+
+                // Añade el listener después de crear el campo
+                document.getElementById('monto_sumar').addEventListener('input', actualizarTotalDepositar);
+            } else {
+                montoAgregado.style.display = 'block';
+            }
             break;
 
         case 'CANCELACIÓN DE CRÉDITO VIGENTE':
             desembolso.forma_desembolso = valorSeleccionado;
             console.log(desembolso.forma_desembolso);
-            if (montoAgregado) montoAgregado.style.display = 'none';
+
+            // Oculta y limpia el campo `monto_sumar` si ya existe
+            if (montoAgregado) {
+                document.getElementById('monto_sumar').value = ''; // Limpia el valor
+                actualizarTotalDepositar();
+                montoAgregado.style.display = 'none';
+            }
             break;
     }
 });
+
+

@@ -93,73 +93,48 @@
 <script type="text/javascript">
     $(document).ready(function () {
         async function informacionDesembolso() {
-            return fetch('http://127.0.0.1:8000/financings/api/desembolso/')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error al obtener información de desembolso: ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Lista de desembolsos obtenida:', data);
-
-                    return data;
-                })
-                .catch(error => {
-                    console.error('Error al obtener la lista de desembolsos:', error);
-                    throw error;
-                });
+            try {
+                const response = await fetch('http://127.0.0.1:8000/financings/api/desembolso/');
+                if (!response.ok) throw new Error(`Error al obtener información de desembolso: ${response.statusText}`);
+                return await response.json();
+            } catch (error) {
+                console.error('Error al obtener la lista de desembolsos:', error);
+                throw error;
+            }
         }
 
-        async function filtro(valor) {
+        async function filtro(creditId) {
             try {
-                const desembolso = await informacionDesembolso();
-                let filterList = [];
-
-                if (desembolso && Array.isArray(desembolso) && desembolso.length > 0) {
-                    filterList = desembolso.filter(item => item['credit_id'] === valor);
-                }
-
-                console.log(filterList);
-                return filterList;
-
+                const desembolsos = await informacionDesembolso();
+                return desembolsos?.filter(item => item['credit_id'] === creditId) || [];
             } catch (error) {
                 console.error('Error en el filtro', error);
                 throw error;
             }
         }
 
-        var suma = 0;
+        let suma = 0;
 
         $(".credit").on('select2:select', async function (e) {
-            var data = e.params.data;
-            var credit_id = data.id;
+            const creditId = e.params.data.id;
             const saldo = document.getElementById('saldo_anterior');
             saldo.disabled = true;
-
-            suma = 0; // Reiniciar suma para cada cálculo
+            suma = 0;
 
             try {
-                const laboral = await filtro(credit_id);
+                const laboral = await filtro(creditId);
+                suma = laboral.reduce((total, element) => total + parseFloat(element['monto_total_desembolso'] || 0), 0);
 
-
-
-                if (Array.isArray(laboral)) {
-                    laboral.forEach(element => {
-                        suma += parseFloat(element['monto_total_desembolso']);
-                    });
-                }
-
-                const monto_credito = parseFloat(document.getElementById('monto').value);
-
-                if (suma >= monto_credito) {
+                const montoCredito = parseFloat(document.getElementById('monto').value);
+                if (suma >= montoCredito) {
                     alert('NO SE PUEDE REALIZAR OTRO DESEMBOLSO');
                     window.location.href = '/financings/disbursement/';
+                    return;
                 }
-
                 console.log('Suma total de desembolsos:', suma);
-
-                // Aquí puedes usar los detalles de cliente para llenar otros campos, como lugar_trabajo e ingreso
+                console.log(montoCredito);
+                console.log(saldo.value);
+                document.getElementById('total_depositar').value = parseFloat(montoCredito - saldo.value).toFixed(2);
             } catch (error) {
                 console.error('Error obteniendo detalles del cliente:', error);
             }
@@ -172,41 +147,35 @@
                 dataType: 'json',
                 delay: 250,
                 processResults: function (data) {
-                    console.log(data);
-                    if (Array.isArray(data)) {
-                        return {
-                            results: data.map(function (item) {
-                                // Actualizar monto
-                                document.getElementById('monto').value = item.monto;
-
-
-
-                                // Actualizar saldo anterior
-                                document.getElementById('saldo_anterior').value = item.saldo_actual;
-
-                                // Retornar resultado para Select2
-                                return {
-                                    id: item.id,
-                                    text: item.codigo_credito + ' ' + item.customer_id.first_name + ' ' + item.customer_id.last_name
-                                };
-                            })
-                        };
-                    } else {
+                    if (!Array.isArray(data)) {
                         console.error('Estructura de datos inesperada:', data);
-                        return {
-                            results: []
-                        };
+                        return { results: [] };
                     }
+
+                    return {
+                        results: data.map(item => {
+                            // Actualizar monto y saldo anterior
+                            document.getElementById('monto').value = item.monto || '';
+                            document.getElementById('saldo_anterior').value = item.saldo_actual || '';
+
+                            // Retornar resultado para Select2
+                            return {
+                                id: item.id,
+                                text: `${item.codigo_credito} ${item.customer_id.first_name} ${item.customer_id.last_name}`
+                            };
+                        })
+                    };
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
                 },
                 cache: true
             },
-            placeholder: 'Seleccione un Credito',
+            placeholder: 'Seleccione un Crédito',
             minimumInputLength: 1
         });
     });
+
 </script>
 
 
