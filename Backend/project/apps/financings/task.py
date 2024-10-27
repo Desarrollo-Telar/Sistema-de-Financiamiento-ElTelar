@@ -74,7 +74,7 @@ def envio_mensaje_alerta_recibo( modelo):
 @shared_task
 def cambiar_plan():
     logger.info(f'PROCEDIENDO A HACER CAMBIO EN LAS CUOTAS')
-    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), status=False, cuota_vencida=False)
+    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date())
     if planes:
         for pago in planes:
             
@@ -88,8 +88,8 @@ def cambiar_plan():
                 mora = Decimal(pago.interest) * Decimal(0.1)
                 
                 #mora_acumulada = pago.mora + mora
-                
-                pago.cuota_vencida = True
+                if not pago.status:
+                    pago.cuota_vencida = True
                 #pago.mora = mora_acumulada   
                 pago.mora = mora
                 pago.save()
@@ -103,6 +103,7 @@ def cambiar_plan():
                     credit_id_id=pago.credit_id.id,  
                     fecha_limite__gt=pago.fecha_limite  # Filtramos por fecha límite
                 ).order_by('fecha_limite').first()
+                print(siguiente_cuota)
 
                 if siguiente_cuota:
                     siguiente_cuota.saldo_pendiente =pago.saldo_pendiente
