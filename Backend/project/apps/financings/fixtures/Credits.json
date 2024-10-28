@@ -1,21 +1,21 @@
 [
     {
-        "id": 1,
-        "customer_id": {
-            "first_name": "GLENDA NATALY",
-            "last_name": "DE LA CRUZ TZALAM"
-        },
-        "proposito": "CONSUMO",
-        "monto": 4000.0,
-        "plazo": 4,
-        "tasa_interes": 0.1,
-        "forma_de_pago": "NIVELADA",
-        "frecuencia_pago": "MENSUAL",
-        "fecha_inicio": "2024-09-03",
-        "fecha_vencimiento": "2025-01-03",
-        "tipo_credito": "CONSUMO",
-        "codigo_credito": "2024-1 / 1",
-        "saldo_actual": 4840.0,
-        "saldo_pendiente": 4000.0
+        "models":"financings.Credit",
+        "pk": 1,
+        "fields" :{
+            "customer_id": 1,
+            "proposito": "CONSUMO",
+            "monto": 4000.0,
+            "plazo": 4,
+            "tasa_interes": 0.1,
+            "forma_de_pago": "NIVELADA",
+            "frecuencia_pago": "MENSUAL",
+            "fecha_inicio": "2024-09-03",
+            "fecha_vencimiento": "2025-01-03",
+            "tipo_credito": "CONSUMO",
+            "codigo_credito": "2024-1 / 1",
+            "saldo_actual": 4840.0,
+            "saldo_pendiente": 4000.0
+        }
     }
 ]
