@@ -70,6 +70,7 @@ services:
       - DJANGO_SETTINGS_MODULE=project.settings
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - DATABASE_URL = postgres://ujk26eh44uas7:p7332df51812bd4ef8ae416067cf0d2c86a7f37d64310c1c4dbdfe15b3a4a29c8@c1i13pt05ja4ag.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d2vsiqgm64ct40
 
     env_file:
       - .env
