@@ -63,7 +63,7 @@ class Customer(models.Model):
         ('FEMENINO', 'FEMENINO')
     ]
     type_person = [
-        ('Indivicual (PI)', 'Indivicual (PI)'),
+        ('Individual (PI)', 'Individual (PI)'),
         ('Juridica (PJ)', 'Juridica (PJ)')
     ]
     status = [

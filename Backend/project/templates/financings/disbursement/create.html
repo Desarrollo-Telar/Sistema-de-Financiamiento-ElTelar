@@ -93,6 +93,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         async function informacionDesembolso() {
+<<<<<<< HEAD
             try {
                 const response = await fetch('http://127.0.0.1:8000/financings/api/desembolso/');
                 if (!response.ok) throw new Error(`Error al obtener información de desembolso: ${response.statusText}`);
@@ -101,6 +102,24 @@
                 console.error('Error al obtener la lista de desembolsos:', error);
                 throw error;
             }
+=======
+            return fetch('https://www.ii-eltelarsa.com/financings/api/desembolso/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al obtener información de desembolso: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Lista de desembolsos obtenida:', data);
+
+                    return data;
+                })
+                .catch(error => {
+                    console.error('Error al obtener la lista de desembolsos:', error);
+                    throw error;
+                });
+>>>>>>> server
         }
 
         async function filtro(creditId) {
@@ -143,7 +162,7 @@
         $(".credit").select2({
             width: 'resolve',
             ajax: {
-                url: 'http://127.0.0.1:8000/financings/api/credit/',
+                url: 'https://www.ii-eltelarsa.com/financings/api/credit/',
                 dataType: 'json',
                 delay: 250,
                 processResults: function (data) {

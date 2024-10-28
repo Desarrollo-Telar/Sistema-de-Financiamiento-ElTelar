@@ -1,7 +1,7 @@
 
 
 import { recolectarInformacionLaboral } from '../../customer/recolectar.js';
-
+import {urls_p, urls} from '../urls_api.js'
 
 export async function postLaboral(customer_id) {
     try {
@@ -9,8 +9,8 @@ export async function postLaboral(customer_id) {
         let sourceOfIncome1 = document.getElementById('source_of_income1').value;
 
         let url = sourceOfIncome1 === 'Otra'
-            ? 'http://127.0.0.1:8000/financial_information/api/other_sources/'
-            : 'http://127.0.0.1:8000/financial_information/api/working_information/';
+            ? urls_p.api_url_otra_informacion_laboral
+            :urls_p.api_url_informacion_laboral;
         
         console.log(url);
 

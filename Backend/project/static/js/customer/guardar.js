@@ -1,4 +1,4 @@
-import { urls } from '../API/urls_api.js';
+import { urls, urls_p } from '../API/urls_api.js';
 import { postCustomer } from '../API/customer/post_api.js';
 import { postDireccion } from '../API/address/post_api.js';
 import { postPlanInversion } from '../API/investmentplan/post_api.js';
@@ -62,21 +62,21 @@ document.getElementById('customer').addEventListener('submit', async function (e
 
         // Realizar llamadas a la API
         
-        const customerData = await postCustomer(urls.api_url_cliente);
+        const customerData = await postCustomer(urls_p.api_url_cliente);
         console.log('Cliente registrado con éxito:', customerData);
         customer_id = customerData.id;
         
 
-        const direccionData = await postDireccion(urls.api_url_direccion, customer_id);
+        const direccionData = await postDireccion(urls_p.api_url_direccion, customer_id);
         console.log('Dirección registrada con éxito:', direccionData);
 
         const laboralData = await postLaboral(customer_id);
         console.log('Información laboral registrada con éxito:', laboralData);
 
-        const planInversionData = await postPlanInversion(urls.api_url_investment_plan, customer_id);
+        const planInversionData = await postPlanInversion(urls_p.api_url_investment_plan, customer_id);
         console.log('Plan de inversión registrado con éxito:', planInversionData);
 
-        const referenciaData = await postReferencia(urls.api_url_referencia, customer_id);
+        const referenciaData = await postReferencia(urls_p.api_url_referencia, customer_id);
         console.log('Referencias guardadas con éxito:', referenciaData);
 
         alert('¡Formulario enviado con éxito!');

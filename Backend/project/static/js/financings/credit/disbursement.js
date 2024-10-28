@@ -76,6 +76,7 @@ campos.forEach(id => {
     }
 });
 
+<<<<<<< HEAD
 document.getElementById('desembolso')?.addEventListener('submit', async (event) => {
     event.preventDefault();
     try {
@@ -90,6 +91,36 @@ document.getElementById('desembolso')?.addEventListener('submit', async (event) 
         alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
     }
 });
+=======
+    // Actualiza el valor en el elemento HTML
+    document.getElementById('total_depositar').value = Math.round(total);
+}
+
+// Agregar event listeners a los campos relevantes
+document.getElementById('monto').addEventListener('input', actualizarTotalDepositar);
+document.getElementById('poliza_seguro').addEventListener('input', actualizarTotalDepositar);
+document.getElementById('honorarios').addEventListener('input', actualizarTotalDepositar);
+if (document.getElementById('saldo_anterior')) {
+    document.getElementById('saldo_anterior').addEventListener('input', actualizarTotalDepositar);
+}
+
+if (document.getElementById('desembolso')) {
+    document.getElementById('desembolso').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        try {
+            const credi_id = parseInt(document.getElementById('credit_id').value);
+    
+            const desembolsos = await registrarDesembolso(urls_p.api_url_desembolso, credi_id);
+            console.log(desembolsos);
+            alert('¡Formulario enviado con éxito!');
+            window.location.href = `/financings/credit/${credi_id}`;
+        } catch (error) {
+            console.error('Error al registrar los datos:', error);
+            alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        }
+    });
+}
+>>>>>>> server
 
 async function registrarDesembolso(url, credit_id) {
     try {
@@ -127,6 +158,7 @@ async function registrarDesembolso(url, credit_id) {
 }
 
 async function informacionDesembolso() {
+<<<<<<< HEAD
     try {
         const response = await fetch(urls.api_url_desembolso);
         
@@ -138,6 +170,23 @@ async function informacionDesembolso() {
         console.error('Error al obtener la lista de desembolsos:', error);
         throw error;
     }
+=======
+    return fetch(urls_p.api_url_desembolso)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al obtener información de desembolso: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Lista de desembolsos obtenida:', data);
+            return data;
+        })
+        .catch(error => {
+            console.error('Error al obtener la lista de desembolsos:', error);
+            throw error;
+        });
+>>>>>>> server
 }
 
 async function filtro(valor) {

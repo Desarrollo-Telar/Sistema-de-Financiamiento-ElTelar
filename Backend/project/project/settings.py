@@ -1,7 +1,7 @@
 
 from pathlib import Path
 import os.path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -124,8 +124,9 @@ WSGI_APPLICATION = 'project.wsgi.application'
 import project.database as db
 
 if DEBUG:
-    DATABASES = db.MYSQL
+    #DATABASES = db.MYSQL
     #DATABASES = db.SQLITE
+    DATABASES = db.POSTGRES_HEROKU
 else:
     
     #DATABASES = db.SQLITE
@@ -217,9 +218,9 @@ from celery.schedules import crontab
 
 """
 from urllib.parse import urlparse
-REDISCLOUD_URL = 'redis://default:PTSGV1jP5KdITaOQxjLZotZZyG623CGf@redis-12001.c52.us-east-1-4.ec2.redns.redis-cloud.com:12001'
+#REDISCLOUD_URL = 'redis://default:PTSGV1jP5KdITaOQxjLZotZZyG623CGf@redis-12001.c52.us-east-1-4.ec2.redns.redis-cloud.com:12001'
 
-redis_url = urlparse(REDISCLOUD_URL)
+redis_url = urlparse(os.environ.get('REDISCLOUD_URL'))
 CACHES = {
         'default': {
             'BACKEND': 'redis_cache.RedisCache',

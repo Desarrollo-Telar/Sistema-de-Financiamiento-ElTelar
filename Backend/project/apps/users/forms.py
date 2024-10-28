@@ -152,7 +152,8 @@ class UpdateUserForm(forms.ModelForm):
             'gender',
             'nationality',
             'profile_pic',
-            'rol'
+            'rol',
+            'status'
 
             
         ]
