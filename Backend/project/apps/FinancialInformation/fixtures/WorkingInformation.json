@@ -1,6 +1,6 @@
 [
     {
-        "models":"FinancialInformation.WorkingInformation",
+        "models":"FinancialInformation.workinginformation",
         "pk": 1,
         "fields":{
             "position": "ASISTENTE DE SERVICIOS Y NEGOCIOS",

@@ -1,6 +1,6 @@
 [
     {
-        "models":"financings.DetailsGuarantees",
+        "models":"financings.guarantees",
         "pk": 1,
         "fields":{
             "descripcion": "REGISTRO DE GARANTIA",

@@ -1,6 +1,6 @@
 [
     {
-        "models":"FinancialInformation.Reference",
+        "models":"FinancialInformation.reference",
         "pk": 1,
         "fields":{
             "full_name": "MARIA VICTORIA DE LA CRUZ",
@@ -10,7 +10,7 @@
         }
     },
     {
-        "models":"FinancialInformation.Reference",
+        "models":"FinancialInformation.reference",
         "pk": 2,
         "fields":{
             "full_name": "JOSUE VAIDES DE LA CRUZ",
@@ -20,7 +20,7 @@
         }
     },
     {
-        "models":"FinancialInformation.Reference",
+        "models":"FinancialInformation.reference",
         "pk": 3,
         "fields":{
             "full_name": "EVELIN CU",
@@ -30,7 +30,7 @@
         }
     },
     {
-        "models":"FinancialInformation.Reference",
+        "models":"FinancialInformation.reference",
         "pk": 4,
         "fields":{
         "full_name": "JENIFER GONZALEZ",

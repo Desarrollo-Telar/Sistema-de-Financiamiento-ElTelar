@@ -1,6 +1,6 @@
 [
     {
-        "models":"financings.Credit",
+        "models":"financings.credit",
         "pk": 1,
         "fields" :{
             "customer_id": 1,

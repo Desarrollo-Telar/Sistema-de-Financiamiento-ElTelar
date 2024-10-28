@@ -1,6 +1,6 @@
 [
     {
-        "model":"InvestmentPlan.InvestmentPlan",
+        "model":"InvestmentPlan.investmentplan",
         "pk":1,
         "fields":{
             "type_of_product_or_service": "CONSUMO",

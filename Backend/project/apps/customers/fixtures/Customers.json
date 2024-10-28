@@ -1,6 +1,6 @@
 [
     {
-        "models":"customers.Customer",
+        "models":"customers.customer",
         "pk": 1,
         "fields":{
             "first_name": "GLENDA NATALY",
