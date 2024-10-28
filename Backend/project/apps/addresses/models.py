@@ -21,8 +21,8 @@ class Address(models.Model):
     state = models.CharField("Municipio", max_length=90, blank=False, null=False)    
     country = models.CharField("País", max_length=90, blank=False, null=False, default='GUATEMALA')
     type_address = models.CharField("Tipo de Dirección", choices=tipo_direccion, max_length=90, blank=False, null=False)
-    latitud = models.DecimalField("Latitud", max_digits=20, decimal_places=20, blank=False, null=False)
-    longitud = models.DecimalField("Longitud", max_digits=20, decimal_places=20, blank=False, null=False)
+    latitud = models.CharField("Latitud", max_length=120, blank=False, null=False)
+    longitud = models.DecimalField("Longitud",max_length=120, blank=False, null=False)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):
