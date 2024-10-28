@@ -1,7 +1,7 @@
 [
     {
         "model":"users.user",
-        "pk":1,
+        "pk":3,
         "fields":{
             "first_name": "Grecia",
             "last_name": "Rodríguez",
@@ -15,7 +15,16 @@
             "nationality": "Guatemala",
             "profile_pic": null,
             "status": true,
-            "rol": "Administrador"
+            "rol": "Administrador",
+            "last_login": null,
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-10-28T23:41:45.284Z",
+            "user_code": "2024-3",
+            "creation_date": "2024-10-28T23:41:45.515Z",
+            "groups": [],
+            "user_permissions": []
 
         } 
         
@@ -36,26 +45,44 @@
             "nationality": "Guatemala",
             "profile_pic": null,
             "status": true,
-            "rol": "Administrador"
+            "rol": "Administrador",
+            "last_login": null,
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-10-28T23:41:45.284Z",
+            "user_code": "2024-2",
+            "creation_date": "2024-10-28T23:41:45.515Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
-        "model":"users.user",
-        "pk":3,
-        "fields":{
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$uwyxV31bqAM5toRV388iDx$Kz2oHP8ZjJGa7N8yYMP1VBFZBxng1M6rZmiNHB06GxE=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "choc1403",
             "first_name": "",
             "last_name": "",
-            "username": "choc1403",
-            "email": "eloicx@gmail.com",
-            "password": "pbkdf2_sha256$720000$E2wBTZ3NV0YK0BbsjWNqSi$6Av/47yxMWF1NjiPsiK5r3bHQArW464C5OblRkUH0ZA=",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-10-28T23:41:45.284Z",
             "type_identification": "DPI",
-            "identification_number": "3238438161601",
-            "telephone": "42249955",
-            "gender": "MASCULINO",
-            "nationality": "Guatemala",
-            "profile_pic": null,
+            "identification_number": "",
+            "telephone": null,
+            "email": "eloicx@gmail.com",
             "status": true,
-            "rol": "Administrador"
+            "gender": "MASCULINO",
+            "user_code": "2024-1",
+            "nationality": "Guatemala",
+            "profile_pic": "",
+            "rol": "Administrador",
+            "creation_date": "2024-10-28T23:41:45.515Z",
+            "groups": [],
+            "user_permissions": []
         }
     }
 ]
