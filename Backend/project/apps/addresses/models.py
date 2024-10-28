@@ -15,7 +15,7 @@ class Address(models.Model):
     ]
     
     
-    street = models.CharField("Dirección particular o sede social completa", max_length=90, blank=False, null=False)
+    street = models.CharField("Dirección particular o sede social completa", max_length=120, blank=False, null=False)
     number = models.CharField("Zona", max_length=90, blank=False, null=False)
     city = models.CharField("Departamento", max_length=100, blank=False, null=False)
     state = models.CharField("Municipio", max_length=90, blank=False, null=False)    
