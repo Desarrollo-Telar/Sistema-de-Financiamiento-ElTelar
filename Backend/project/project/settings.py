@@ -59,8 +59,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # MIDDLEWARE 
-    #'project.middleware.AutoLogoutMiddleware',
-    #'project.middleware.RestrictedAccessByTimeMiddleware',
+    'project.middleware.AutoLogoutMiddleware',
+    'project.middleware.RestrictedAccessByTimeMiddleware',
     
 ]
 
@@ -215,7 +215,7 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 from celery.schedules import crontab
-
+'''
 from urllib.parse import urlparse
 #REDISCLOUD_URL = 'redis://default:PTSGV1jP5KdITaOQxjLZotZZyG623CGf@redis-12001.c52.us-east-1-4.ec2.redns.redis-cloud.com:12001'
 
@@ -230,7 +230,7 @@ CACHES = {
         }
     }
 }
-
+'''
 CELERY_BEAT_SCHEDULE = {
     'tarea-diaria-a-medianoche': {
         'task': 'apps.financings.task.cambiar_plan',
