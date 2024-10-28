@@ -1,47 +1,61 @@
 [
     {
-        "first_name": "Grecia",
-        "last_name": "Rodríguez",
-        "username": "g_rodriguez",
-        "email": "g_rodriguez@gmail.com",
-        "password": "pbkdf2_sha256$720000$Kvpb5uCInvweu6sBS4rXiW$0U4qhD2Ig2hh57Lc6eOKJFoNH+R1hUWveAUDjw977Bw=",
-        "type_identification": "DPI",
-        "identification_number": "3692585565",
-        "telephone": "37160995",
-        "gender": "FEMENINO",
-        "nationality": "Guatemala",
-        "profile_pic": null,
-        "status": true,
-        "rol": "Administrador"
+        "model":"users.user",
+        "pk":1,
+        "fields":{
+            "first_name": "Grecia",
+            "last_name": "Rodríguez",
+            "username": "g_rodriguez",
+            "email": "g_rodriguez@gmail.com",
+            "password": "pbkdf2_sha256$720000$Kvpb5uCInvweu6sBS4rXiW$0U4qhD2Ig2hh57Lc6eOKJFoNH+R1hUWveAUDjw977Bw=",
+            "type_identification": "DPI",
+            "identification_number": "3692585565",
+            "telephone": "37160995",
+            "gender": "FEMENINO",
+            "nationality": "Guatemala",
+            "profile_pic": null,
+            "status": true,
+            "rol": "Administrador"
+
+        } 
+        
     },
     {
-        "first_name": "LUISA FERNANDA",
-        "last_name": "CHEN PACAY",
-        "username": "l_chenof1",
-        "email": "luisachenpacay@gmail.com",
-        "password": "pbkdf2_sha256$720000$EEvuqArXW8Z3mbY4KUNKzu$54gL75TfPQoCF6J5jU+VqTqKNhrhXtGmXb+S1DD8Rao=",
-        "type_identification": "DPI",
-        "identification_number": "3246850171601",
-        "telephone": "53373687",
-        "gender": "FEMENINO",
-        "nationality": "Guatemala",
-        "profile_pic": null,
-        "status": true,
-        "rol": "Administrador"
+        "model":"users.user",
+        "pk":2,
+        "fields":{
+            "first_name": "LUISA FERNANDA",
+            "last_name": "CHEN PACAY",
+            "username": "l_chenof1",
+            "email": "luisachenpacay@gmail.com",
+            "password": "pbkdf2_sha256$720000$EEvuqArXW8Z3mbY4KUNKzu$54gL75TfPQoCF6J5jU+VqTqKNhrhXtGmXb+S1DD8Rao=",
+            "type_identification": "DPI",
+            "identification_number": "3246850171601",
+            "telephone": "53373687",
+            "gender": "FEMENINO",
+            "nationality": "Guatemala",
+            "profile_pic": null,
+            "status": true,
+            "rol": "Administrador"
+        }
     },
     {
-        "first_name": "",
-        "last_name": "",
-        "username": "choc1403",
-        "email": "eloicx@gmail.com",
-        "password": "pbkdf2_sha256$720000$E2wBTZ3NV0YK0BbsjWNqSi$6Av/47yxMWF1NjiPsiK5r3bHQArW464C5OblRkUH0ZA=",
-        "type_identification": "DPI",
-        "identification_number": "3238438161601",
-        "telephone": "42249955",
-        "gender": "MASCULINO",
-        "nationality": "Guatemala",
-        "profile_pic": null,
-        "status": true,
-        "rol": "Administrador"
+        "model":"users.user",
+        "pk":3,
+        "fields":{
+            "first_name": "",
+            "last_name": "",
+            "username": "choc1403",
+            "email": "eloicx@gmail.com",
+            "password": "pbkdf2_sha256$720000$E2wBTZ3NV0YK0BbsjWNqSi$6Av/47yxMWF1NjiPsiK5r3bHQArW464C5OblRkUH0ZA=",
+            "type_identification": "DPI",
+            "identification_number": "3238438161601",
+            "telephone": "42249955",
+            "gender": "MASCULINO",
+            "nationality": "Guatemala",
+            "profile_pic": null,
+            "status": true,
+            "rol": "Administrador"
+        }
     }
 ]
