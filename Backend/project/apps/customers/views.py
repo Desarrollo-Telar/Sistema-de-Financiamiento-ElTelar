@@ -69,7 +69,6 @@ def delete_customer(request,id):
 # ----- LISTADO DE CLIENTES ----- #
 @login_required
 @usuario_activo
-@usuario_administrador
 @usuario_secretaria
 def list_customer(request):
     status = ['Revisión de documentos', 'Aprobado', 'No Aprobado', 'Posible Cliente']
@@ -89,7 +88,6 @@ def list_customer(request):
 @login_required
 @usuario_activo
 @usuario_secretaria
-@usuario_administrador
 def add_customer(request):     
     ime = ImmigrationStatus.objects.all()    
     template_name = 'customer/add.html'    
@@ -130,7 +128,7 @@ class CustomerSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator([usuario_activo, usuario_administrador, usuario_secretaria])
+    @method_decorator([usuario_activo,  usuario_secretaria])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -146,7 +144,6 @@ class CustomerSearch(ListView):
 # ----- VER DETALLES DE UN CLIENTE ----- #
 @login_required
 @usuario_activo
-@usuario_administrador
 @usuario_secretaria
 def detail_customer(request,customer_code):
     template_name = 'customer/detail.html'
@@ -189,7 +186,6 @@ def detail_customer(request,customer_code):
 # ----- VER FORMULARIO IVE ----- #
 @login_required
 @usuario_activo
-@usuario_administrador
 @usuario_secretaria
 def formulario_ive(request, id):
     template_name = 'customer/forms/forms_ive.html'

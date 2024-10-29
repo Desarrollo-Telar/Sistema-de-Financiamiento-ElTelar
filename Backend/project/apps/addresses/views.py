@@ -25,7 +25,7 @@ from django.utils.decorators import method_decorator
 
 # --- CREAR DIRECCION NUEVA --- #
 class AddressCreateView(CreateView):
-    @method_decorator([usuario_activo, usuario_administrador, usuario_secretaria])
+    @method_decorator([usuario_activo,  usuario_secretaria])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
