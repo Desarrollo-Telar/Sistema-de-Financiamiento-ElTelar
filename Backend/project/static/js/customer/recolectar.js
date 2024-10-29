@@ -31,7 +31,9 @@ export function recoletarInformacionCliente() {
         'status',
         'immigration_status_id',
         'user_id',
-        'description'
+        'description',
+        'asesor',
+        'fehca_vencimiento_de_tipo_identificacion'
     ];
 
     fields.forEach(field => {

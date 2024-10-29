@@ -59,6 +59,9 @@ class CustomerForm(forms.ModelForm):
             'status',              
             'immigration_status_id',
             'description',
+            
+            "asesor",
+            "fehca_vencimiento_de_tipo_identificacion"
         ]
 
         labels = {

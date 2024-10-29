@@ -21,11 +21,13 @@ export class Cliente {
     #immigration_status_id;
     #user_id;
     #description;
+    #asesor;
+    #fehca_vencimiento_de_tipo_identificacion;
 
 
     constructor(first_name = '', last_name = '', type_identification = '', identification_number = '',
         telephone = '', email = '', status = '', date_birth = '', number_nit = '', place_birth = '',
-        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '', immigration_status_id = '', user_id = '', description = '') {
+        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '', immigration_status_id = '', user_id = '', description = '', asesor='',fehca_vencimiento_de_tipo_identificacion='') {
         this.#first_name = first_name;
         this.#last_name = last_name;
         this.#type_identification = type_identification;
@@ -44,6 +46,8 @@ export class Cliente {
         this.#immigration_status_id = immigration_status_id;
         this.#user_id = user_id;
         this.#description = description;
+        this.#asesor = asesor;
+        this.#fehca_vencimiento_de_tipo_identificacion = fehca_vencimiento_de_tipo_identificacion;
     }
 
     // Getters and Setters for each property
@@ -119,6 +123,21 @@ export class Cliente {
         return this.#description;
     }
 
+    get asesor(){
+        return this.#asesor;
+    }
+
+    get fehca_vencimiento_de_tipo_identificacion(){
+        return this.#fehca_vencimiento_de_tipo_identificacion;
+    }
+
+    set asesor(value){
+        this.#asesor = value.trim();
+    }
+    set fehca_vencimiento_de_tipo_identificacion(value){
+        this.#fehca_vencimiento_de_tipo_identificacion = value.trim();
+    }
+
     set first_name(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el nombre del cliente');
@@ -153,7 +172,7 @@ export class Cliente {
             throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
         }
         // Expresión regular para exactamente 13 dígitos
-        const regex = /^\d{13}$/;
+        const regex = /^\d{20}$/;
 
         // Validar el formato del número de identificacion
         if (!regex.test(value)) {
@@ -181,7 +200,7 @@ export class Cliente {
             throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
         }
         // Expresión regular para exactamente 13 dígitos
-        const regex = /^\d{13}$/;
+        const regex = /^\d{20}$/;
 
         // Validar el formato del número de identificacion
         if (!regex.test(value)) {
@@ -204,7 +223,7 @@ export class Cliente {
 
 
         // Expresión regular para exactamente 8 dígitos
-        const regex = /^\d{8}$/;
+        const regex = /^\d{12}$/;
 
         // Validar el formato del número de teléfono
         if (!regex.test(value)) {
@@ -458,6 +477,8 @@ export class Cliente {
             immigration_status_id: this.#immigration_status_id,
             user_id: this.#user_id,
             description: this.#description,
+            fehca_vencimiento_de_tipo_identificacion:this.#fehca_vencimiento_de_tipo_identificacion,
+            asesor:this.#asesor
         };
     }
     // Método toString para representar el objeto como una cadena

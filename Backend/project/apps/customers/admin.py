@@ -23,7 +23,10 @@ class CustomerAdmin(admin.ModelAdmin):
         'status',  
         'description',
         'user_id',
-        'immigration_status_id'
+        'immigration_status_id',
+        "description",
+        "asesor",
+        "fehca_vencimiento_de_tipo_identificacion"
     )
     list_display = ('customer_code', 'first_name', 'last_name', 'telephone', 'identification_number', 'email', 'status')
     search_fields = ('customer_code', 'identification_number', 'first_name', 'last_name', 'email', 'status')
