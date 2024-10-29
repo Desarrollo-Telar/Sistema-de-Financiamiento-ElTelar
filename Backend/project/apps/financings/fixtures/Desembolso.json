@@ -1,6 +1,6 @@
 [
     {
-        "models":"financings.disbursement",
+        "model":"financings.disbursement",
         "pk": 1,
         "fields":{
             "forma_desembolso": "APLICACIÓN GASTOS",

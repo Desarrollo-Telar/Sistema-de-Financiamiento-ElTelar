@@ -1,8 +1,8 @@
 [
     {
-        "models":"FinancialInformation.workinginformation",
+        "model": "FinancialInformation.workinginformation",
         "pk": 1,
-        "fields":{
+        "fields": {
             "position": "ASISTENTE DE SERVICIOS Y NEGOCIOS",
             "company_name": "BANCO INTERNACIONAL",
             "start_date": "2022-01-03",

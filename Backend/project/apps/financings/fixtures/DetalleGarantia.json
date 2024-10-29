@@ -1,6 +1,6 @@
 [
     {
-        "models":"financings.detailsguarantees",
+        "model":"financings.detailsguarantees",
         "pk": 1,
         "fields":{
             "tipo_garantia": "CHEQUE",
