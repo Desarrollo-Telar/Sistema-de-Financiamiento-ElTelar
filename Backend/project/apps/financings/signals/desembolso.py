@@ -15,6 +15,7 @@ from django.db import transaction, IntegrityError
 @receiver(post_save, sender=Disbursement)
 def reflejar_estado_cuenta(sender, instance, created, **kwargs):
     if created:
+        """
         monto_agregado = instance.monto_credito
         credit = Credit.objects.filter(id=instance.credit_id.id)
        
@@ -38,7 +39,7 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
         cuota_actual.saldo_pendiente += diferencia_monto
         cuota_actual.cambios = True
         cuota_actual.save()
-
+        """
         desembolso_credito = Disbursement.objects.filter(
             credit_id_id=instance.credit_id.id, 
             forma_desembolso='APLICACIÓN GASTOS'
