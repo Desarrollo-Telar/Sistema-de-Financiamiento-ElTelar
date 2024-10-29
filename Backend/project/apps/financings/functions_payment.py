@@ -17,7 +17,7 @@ def generar():
                 # Actualiza el monto del pago si no coincide con el del banco
                 # Inicializa un flag para determinar si se debe cambiar el estado
                 cambiar_estado = False
-                """
+                
                 # Verifica y actualiza el monto del pago
                 if pago.monto != banco_referencia.credito:
                     pago.monto = banco_referencia.credito
@@ -39,7 +39,7 @@ def generar():
                         pago.estado_transaccion = 'FALLIDO'
                         pago.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES FALLIDA DEBIDO A QUE LA FECHA DE EMISION NO CORRESPONDE AL REGISTRO DE BANCOS\n\n'
                     pago.save()
-                """
+             
 
 
                 # Si la transacción está pendiente, se realiza el pago
