@@ -43,10 +43,13 @@ INSTALLED_APPS = [
     'apps.documents',
     'apps.financings',
     'django_celery_beat',
+    'django.contrib.sites',
     #'bootstrap5',
     #'django_inlinecss',
     #'otp',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
