@@ -30,47 +30,62 @@ from django.views.generic.detail import DetailView
 from django.db.models import Q
 
 
+def planPagosCredito(credito):
+    formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
+    credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1,None,credito.fecha_vencimiento)
+    plan_pago = PlanPagoos(credit)
+    return plan_pago
 
+def total_garantia(list_guarantee):
+    total_garantia = 0
+    for garantia in list_guarantee:
+        total_garantia += garantia.suma_total
+    
+    return total_garantia
 
+def total_desembolso(list_disbursement):
+    total_desembolso = 0
+    for desembolso in list_disbursement:
+        total_desembolso +=desembolso.monto_total_desembolso
+    
+    return total_desembolso
 
 ### ------------ DETALLE -------------- ###
 @login_required
 @usuario_activo
 def detail_credit(request,id):
-    template_name = 'financings/credit/detail.html'
-    credito= get_object_or_404(Credit,id=id)
-    cambiar_plan()
     
-    customer_list = get_object_or_404(Customer,id= credito.customer_id.id)
-    list_guarantee = Guarantees.objects.filter(credit_id=credito).order_by('-id')
-    list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('-id')
+    template_name = 'financings/credit/detail.html' # TEMPLATE
+    credito= get_object_or_404(Credit,id=id) # DETALLE DEL CREDITO
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    
+    customer_list = get_object_or_404(Customer,id= credito.customer_id.id) # LISTAR LA INFORMACION DEL CLIENTE
 
-    formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
+    # LISTAR LAS GARANTIAS REGISTRADAS
+    list_guarantee = Guarantees.objects.filter(credit_id=credito).order_by('-id') 
+
+    list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('-id') # LISTAR DESEMBOLSOS
+
+    
     siguiente_pago = PaymentPlan.objects.filter(credit_id=credito)
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
     pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
     
 
     
-    
+    # ACTUALIZAR EL SALDO ACTUAL
     if pagos:
         credito.saldo_pendiente = pagos.saldo_pendiente
         credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
         credito.save()
     
     
-    credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1,None,credito.fecha_vencimiento)
     
-    plan_pago = PlanPagoos(credit)
-    total_garantia = 0
-    total_desembolso = 0
-    for garantia in list_guarantee:
-        total_garantia += garantia.suma_total
     
-    for desembolso in list_disbursement:
-        total_desembolso +=desembolso.monto_total_desembolso
     
-    plan = plan_pago.generar_plan()
+
+    # PLAN DE PAGOS
+    plan = planPagosCredito(credito).generar_plan()
    
    
     context = {
@@ -81,13 +96,13 @@ def detail_credit(request,id):
         'list_guarantee':list_guarantee,
         'list_disbursement':list_disbursement,
         'detalle_garantia':DetailsGuarantees.objects.all(),
-        'total_garantia':total_garantia,
-        'total_desembolso':total_desembolso,
+        'total_garantia':total_garantia(list_guarantee),
+        'total_desembolso':total_desembolso(list_disbursement),
         'estado_cuenta':estado_cuenta,
         'siguiente_pago':siguiente_pago,
-        'total_cuota':plan_pago.calcular_total_cuotas(),
-        'total_capital':plan_pago.calcular_total_capital(),
-        'total_interes':plan_pago.calcular_total_interes()
+        'total_cuota':planPagosCredito(credito).calcular_total_cuotas(),
+        'total_capital':planPagosCredito(credito).calcular_total_capital(),
+        'total_interes':planPagosCredito(credito).calcular_total_interes()
 
     }
     return render(request, template_name,context)

@@ -7,10 +7,10 @@ class PaymentPlanForms(forms.ModelForm):
     class Meta:
         model = PaymentPlan
         fields = [
-            'start_date',
-            'due_date',
-            'fecha_limite',
-            'saldo_pendiente',
+            #'start_date',
+            #'due_date',
+            #'fecha_limite',
+            #'saldo_pendiente',
             'mora',
             'interest',
         ]
