@@ -126,7 +126,7 @@ import project.database as db
 if DEBUG:
     #DATABASES = db.MYSQL
     #DATABASES = db.SQLITE
-    DATABASES = db.MYSQL
+    DATABASES = db.POSTGRES_HEROKU
 else:
     
     #DATABASES = db.SQLITE
