@@ -1,28 +1,28 @@
 [
-{
-    "model": "customers.customer",
-    "pk": 1,
-    "fields": {
-        "user_id": 1,
-        "immigration_status_id": 1,
-        "customer_code": "2024-S1",
-        "first_name": "Juan",
-        "last_name": "Xol",
-        "type_identification": "DPI",
-        "identification_number": "3238438161601",
-        "telephone": "39046965",
-        "email": "eloicx@gmail.com",
-        "status": "Posible Cliente",
-        "date_birth": "2024-09-21",
-        "number_nit": "1808964K",
-        "place_birth": "Coban",
-        "marital_status": "Estado",
-        "profession_trade": "profesor",
-        "gender": "MASCULINO",
-        "nationality": "Guatemala",
-        "person_type": "Indivicual (PI)",
-        "description": "",
-        "creation_date": "2024-09-21T11:34:46.408Z"
+    {
+        "model": "customers.customer",
+        "pk": 1,
+        "fields": {
+            "user_id": 3,
+            "immigration_status_id": 3,
+            "customer_code": "2024-1",
+            "first_name": "GLENDA NATALY",
+            "last_name": "DE LA CRUZ TZALAM",
+            "type_identification": "DPI",
+            "identification_number": "2618480111601",
+            "telephone": "46339008",
+            "email": "dglenda721@gmail.com",
+            "status": "Aprobado",
+            "date_birth": "1986-09-26",
+            "number_nit": "37989502",
+            "place_birth": "COBAN",
+            "marital_status": "SOLTERA",
+            "profession_trade": "PERITO CONTADOR",
+            "gender": "FEMENINO",
+            "nationality": "GUATEMALTECA",
+            "person_type": "Individual (PI)",
+            "description": "CONTRATACION FIJA",
+            "creation_date": "2024-10-28T23:50:02.569Z"
+        }
     }
-}
 ]

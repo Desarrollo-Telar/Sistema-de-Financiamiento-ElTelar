@@ -1,6 +1,10 @@
 import { Desembolso } from '../../class/disbursement.js';
+<<<<<<< HEAD
 import { urls, urls_p } from '../../API/urls_api.js'
+=======
+>>>>>>> server
 export const desembolso = new Desembolso();
+import {urls, urls_p} from '../../API/urls_api.js';
 
 // Variables globales para acumulación y control
 let suma = 0, saldo_anterior = 0, credi_id = 0;
@@ -11,6 +15,7 @@ const obtenerValorNumerico = (id) => parseFloat(document.getElementById(id)?.val
 // Función para actualizar el total a depositar
 async function actualizarTotalDepositar() {
     const monto = obtenerValorNumerico('monto');
+<<<<<<< HEAD
 
     const poliza_seguro = obtenerValorNumerico('poliza_seguro');
 
@@ -37,9 +42,21 @@ async function actualizarTotalDepositar() {
 
     suma = 0;
 
+=======
+    const poliza_seguro = obtenerValorNumerico('poliza_seguro');
+    const honorarios = obtenerValorNumerico('honorarios');
+    const agg = obtenerValorNumerico('monto_sumar');
+    const total = monto + agg;
+
+    // Actualiza los valores en el objeto desembolso
+    Object.assign(desembolso, { monto_credito: total, poliza_seguro, honorarios, saldo_anterior });
+
+    suma = 0;
+    
+>>>>>>> server
     try {
         const laboral = await filtro(credi_id);
-
+        
         if (Array.isArray(laboral)) {
             suma = laboral.reduce((acum, el) => acum + parseFloat(el.monto_total_desembolso), 0);
         }
@@ -53,7 +70,11 @@ async function actualizarTotalDepositar() {
             return;
         }
 
+<<<<<<< HEAD
         document.getElementById('total_depositar').value = parseFloat(total_desembolsar).toFixed(2);
+=======
+        document.getElementById('total_depositar').value = parseFloat(desembolso.total_a_depositar).toFixed(2);
+>>>>>>> server
         const addDesembolsoElement = document.getElementById('add_Desembolso');
         if (addDesembolsoElement) {
             addDesembolsoElement.style.display = '';
@@ -68,6 +89,7 @@ const campos = ['monto', 'poliza_seguro', 'honorarios', 'monto_sumar', 'saldo_an
 campos.forEach(id => {
     const elemento = document.getElementById(id);
     if (elemento) {
+<<<<<<< HEAD
 
         elemento.addEventListener('input', (event) => {
             //console.log(event.target.value);
@@ -77,13 +99,24 @@ campos.forEach(id => {
 });
 
 
+=======
+        elemento.addEventListener('input', actualizarTotalDepositar);
+    }
+});
+
+>>>>>>> server
 document.getElementById('desembolso')?.addEventListener('submit', async (event) => {
     event.preventDefault();
     try {
         const credi_id = obtenerValorNumerico('credit_id');
+<<<<<<< HEAD
         const desembolsos = await registrarDesembolso(urls.api_url_desembolso, credi_id);
         console.log(desembolsos);
 
+=======
+        const desembolsos = await registrarDesembolso(urls_p.api_url_desembolso, credi_id);
+        
+>>>>>>> server
         alert('¡Formulario enviado con éxito!');
         window.location.href = `/financings/credit/${credi_id}`;
     } catch (error) {
@@ -91,6 +124,7 @@ document.getElementById('desembolso')?.addEventListener('submit', async (event) 
         alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
     }
 });
+<<<<<<< HEAD
 
 // Actualiza el valor en el elemento HTML
 
@@ -120,12 +154,15 @@ if (document.getElementById('desembolso')) {
         }
     });
 }
+=======
+>>>>>>> server
 
 
 async function registrarDesembolso(url, credit_id) {
     try {
         desembolso.credit_id = credit_id;
         const forma_desembolso = document.getElementById('forma_desembolso');
+<<<<<<< HEAD
 
         if (forma_desembolso) {
             forma_desembolso.addEventListener('change', (event) => {
@@ -139,6 +176,14 @@ async function registrarDesembolso(url, credit_id) {
                     throw new Error('Seleccione una opción');
 
                 }
+=======
+        
+        if (forma_desembolso) {
+            forma_desembolso.addEventListener('change', (event) => {
+                const valor_seleccionado = event.target.value;
+                if (valor_seleccionado) desembolso._forma_desembolso = valor_seleccionado;
+                else throw new Error('Seleccione una opción');
+>>>>>>> server
             });
         }
 
@@ -158,18 +203,27 @@ async function registrarDesembolso(url, credit_id) {
 }
 
 async function informacionDesembolso() {
+<<<<<<< HEAD
 
     try {
         const response = await fetch(urls.api_url_desembolso);
 
         if (!response.ok) throw new Error('Error al obtener información de desembolso: ' + response.statusText);
 
+=======
+    try {
+        const response = await fetch(urls_p.api_url_desembolso);
+        
+        if (!response.ok) throw new Error('Error al obtener información de desembolso: ' + response.statusText);
+        
+>>>>>>> server
         const data = await response.json();
         return data;
     } catch (error) {
         console.error('Error al obtener la lista de desembolsos:', error);
         throw error;
     }
+<<<<<<< HEAD
 
     return fetch(urls_p.api_url_desembolso)
         .then(response => {
@@ -187,6 +241,8 @@ async function informacionDesembolso() {
             throw error;
         });
 
+=======
+>>>>>>> server
 }
 
 async function filtro(valor) {
@@ -237,11 +293,17 @@ document.getElementById('forma_desembolso')?.addEventListener('change', (event) 
             // Oculta y limpia el campo `monto_sumar` si ya existe
             if (montoAgregado) {
                 document.getElementById('monto_sumar').value = ''; // Limpia el valor
+<<<<<<< HEAD
                 actualizarTotalDepositar();
+=======
+>>>>>>> server
                 montoAgregado.style.display = 'none';
             }
             break;
     }
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> server

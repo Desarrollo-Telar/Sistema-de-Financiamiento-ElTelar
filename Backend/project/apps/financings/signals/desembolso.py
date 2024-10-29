@@ -67,4 +67,3 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
                     estado_cuenta.numero_referencia = referencia
                     estado_cuenta.save()
 
-

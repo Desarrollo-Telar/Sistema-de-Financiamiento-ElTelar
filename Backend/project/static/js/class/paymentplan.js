@@ -35,7 +35,7 @@ export class PaymentPlan {
         if (monto === null) {
             monto = this.montoInicial;
         }
-        const intereses = ((monto * this.interes) / 365) * dia;
+        const intereses = ((monto * this.interes) );
         return parseFloat(intereses).toFixed(2);
     }
 
@@ -43,7 +43,7 @@ export class PaymentPlan {
         let cuota = 0;
         let capi = parseFloat(capital);
         if (this.formaPago === 'NIVELADA') {
-            const defaultInteres = this.interes / 12;
+            const defaultInteres = this.interes;
             const parte1 = (Math.pow(1 + defaultInteres, this.plazo) * defaultInteres);
             const parte2 = (Math.pow(1 + defaultInteres, this.plazo) - 1);
             cuota = (parte1 / parte2) * this.montoInicial;

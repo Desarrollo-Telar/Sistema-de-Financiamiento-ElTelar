@@ -15,14 +15,14 @@ class Address(models.Model):
     ]
     
     
-    street = models.CharField("Dirección particular o sede social completa", max_length=90, blank=False, null=False)
+    street = models.CharField("Dirección particular o sede social completa", max_length=120, blank=False, null=False)
     number = models.CharField("Zona", max_length=90, blank=False, null=False)
     city = models.CharField("Departamento", max_length=100, blank=False, null=False)
     state = models.CharField("Municipio", max_length=90, blank=False, null=False)    
     country = models.CharField("País", max_length=90, blank=False, null=False, default='GUATEMALA')
     type_address = models.CharField("Tipo de Dirección", choices=tipo_direccion, max_length=90, blank=False, null=False)
-    latitud = models.DecimalField("Latitud", max_digits=10, decimal_places=6, blank=False, null=False)
-    longitud = models.DecimalField("Longitud", max_digits=10, decimal_places=6, blank=False, null=False)
+    latitud = models.CharField("Latitud", max_length=120, blank=False, null=False)
+    longitud = models.CharField("Longitud",max_length=120, blank=False, null=False)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):

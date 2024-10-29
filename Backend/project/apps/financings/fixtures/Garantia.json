@@ -1,0 +1,13 @@
+[
+    {
+        "model":"financings.guarantees",
+        "pk": 1,
+        "fields":{
+            "descripcion": "REGISTRO DE GARANTIA",
+            "suma_total": "4000.00",
+            "credit_id": 1
+
+        }
+        
+    }
+]

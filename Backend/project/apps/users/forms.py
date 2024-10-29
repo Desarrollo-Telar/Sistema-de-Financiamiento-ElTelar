@@ -77,7 +77,8 @@ class RegistroForm(UserCreationForm):
             'gender',
             'nationality',
             'profile_pic',
-            'rol'
+            'rol',
+            'status'
 
         ]
 

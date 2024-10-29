@@ -1,0 +1,19 @@
+[
+    {
+        "model": "FinancialInformation.workinginformation",
+        "pk": 1,
+        "fields": {
+            "position": "ASISTENTE DE SERVICIOS Y NEGOCIOS",
+            "company_name": "BANCO INTERNACIONAL",
+            "start_date": "2022-01-03",
+            "description": "CONTRATACION FIJA",
+            "salary": "5300.00",
+            "working_hours": "DIARIO",
+            "phone_number": "39407253",
+            "source_of_income": "Relación de Dependencia",
+            "income_detail": "SALARIO Y COMISIONES POR ASISTENCIA A CLIENTES",
+            "employment_status": "Empleado a Tiempo Completo",
+            "customer_id": 1
+        }
+    }
+]

@@ -1,25 +1,21 @@
 [
-{
-    "model": "financings.credit",
-    "pk": 1,
-    "fields": {
-        "proposito": "dsadsf",
-        "monto": "50000.00",
-        "plazo": 6,
-        "tasa_interes": "0.100",
-        "forma_de_pago": "NIVELADA",
-        "frecuencia_pago": "MENSUAL",
-        "fecha_inicio": "2024-09-06",
-        "fecha_vencimiento": "2025-03-06",
-        "tipo_credito": "AGROPECUARIO Y/O PRODUCTIVO",
-        "codigo_credito": "2024-S1 / 1",
-        "destino_id": null,
-        "customer_id": 1,
-        "creation_date": "2024-10-07T03:34:37.581Z",
-        "is_paid_off": false,
-        "tasa_mora": "0.10",
-        "saldo_pendiente": "50000.00",
-        "saldo_actual": "55000.00"
+    {
+        "model":"financings.credit",
+        "pk": 1,
+        "fields" :{
+            "customer_id": 1,
+            "proposito": "CONSUMO",
+            "monto": 4000.0,
+            "plazo": 4,
+            "tasa_interes": 0.1,
+            "forma_de_pago": "NIVELADA",
+            "frecuencia_pago": "MENSUAL",
+            "fecha_inicio": "2024-09-03",
+            "fecha_vencimiento": "2025-01-03",
+            "tipo_credito": "CONSUMO",
+            "codigo_credito": "2024-1 / 1",
+            "saldo_actual": 4840.0,
+            "saldo_pendiente": 4000.0
+        }
     }
-}
 ]
