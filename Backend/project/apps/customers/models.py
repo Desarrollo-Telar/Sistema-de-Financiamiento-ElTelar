@@ -93,6 +93,10 @@ class Customer(models.Model):
     person_type = models.CharField("Tipo de Persona", choices=type_person, max_length=50, blank=False, null=False)
     description = models.TextField("Observaciones",blank=True, null=True )
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+    # NUEVOS CAMPOS
+    asesor  = models.CharField("Asesor del Credito", max_length=100, blank=True, null=True, default="PENDIENTE")
+    fehca_vencimiento_de_tipo_identificacion = models.DateField("Fecha de Vencimiento del Tipo de Identificacion", blank=True, null=True, auto_now_add=True)
+
 
     def __str__(self):
         return self.get_full_name()

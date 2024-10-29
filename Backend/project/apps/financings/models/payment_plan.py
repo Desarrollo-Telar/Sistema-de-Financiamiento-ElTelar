@@ -60,12 +60,17 @@ class PaymentPlan(models.Model):
     
     def calculo_fecha_limite(self):
         #fecha_inicio = datetime.strptime(self.start_date)
-        self.fecha_limite = self.start_date + relativedelta(months=1, days=15)
+        self.fecha_limite = self.start_date + relativedelta(months=1, days=16)
         return self.fecha_limite
     
     def acumulacion_mora(self):
         self.mora_acumulada -= self.mora_pagado
         return round(self.mora_acumulada,2)
+    
+    def mostrar_fecha_limite(self):
+        limite = self.fecha_limite - relativedelta(days=1)
+        limite = self.fecha_limite.replace(hour=5, minute=59, second=0, microsecond=0)
+        return limite
     
     def total(self):
         total = 0

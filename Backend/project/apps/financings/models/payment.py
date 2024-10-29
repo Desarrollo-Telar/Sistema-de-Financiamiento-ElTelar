@@ -383,9 +383,10 @@ class Payment(models.Model):
                 
         else:
             # Creamos una nueva cuota si no existe
-            cuota_a_actualizar = self.get_plan_pagos()()
-            cuota_a_actualizar.interest = interes
+            #cuota_a_actualizar = self.get_plan_pagos()()
+            #cuota_a_actualizar.interest = interes
             #cuota_a_actualizar.mora = mora
+            logger.info('CREACION DE NUEVA CUOTA')
 
         # En ambos casos (cuota nueva o existente), actualizamos los campos comunes
         cuota_a_actualizar.start_date = cuota.due_date
