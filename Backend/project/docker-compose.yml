@@ -66,6 +66,7 @@ services:
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=db
       - MYSQL_ROOT_PASSWORD=password
+      - REDISCLOUD_URL = redis://default:PTSGV1jP5KdITaOQxjLZotZZyG623CGf@redis-12001.c52.us-east-1-4.ec2.redns.redis-cloud.com:12001
 
       - DJANGO_SETTINGS_MODULE=project.settings
       - CELERY_BROKER_URL=redis://redis:6379/0
