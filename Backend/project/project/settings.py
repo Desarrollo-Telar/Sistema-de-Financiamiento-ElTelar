@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+SERVIDOR = True
 ALLOWED_HOSTS = ['*']
 
 
@@ -129,11 +129,15 @@ import project.database as db
 if DEBUG:
     #DATABASES = db.MYSQL
     #DATABASES = db.SQLITE
-    DATABASES = db.POSTGRES_HEROKU
+    if SERVIDOR:
+        DATABASES = db.POSTGRES_HEROKU
+    DATABASES = db.MYSQL
 else:
     
     #DATABASES = db.SQLITE
     DATABASES = db.POSTGRES_HEROKU
+
+
 
 #DATABASES = db.POSTGRES_HEROKU
 
@@ -205,10 +209,16 @@ DEFAULT_FROM_EMAIL = 'DesarrolloElTelar@outlook.com'
 # UP3HB-9X2AR-YWK8K-UCQCS-Q63T7
 
 # Configuración de Celery
-CELERY_BROKER_URL = 'redis://:mystrongpassword@redis:6379/0'  # Usamos Redis como broker
+if SERVIDOR:
+    CELERY_BROKER_URL = os.environ.get('REDIS_URL')  # Usamos Redis como broker
+    CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
+
+else:
+    CELERY_BROKER_URL = 'redis://:mystrongpassword@redis:6379/0'  # Usamos Redis como broker
+    CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+
 #CELERY_TIMEZONE = 'UTC-6'  # Asegúrate de usar la misma zona horaria que tu proyecto Django
 CELERY_TIMEZONE = "America/Guatemala"
 CELERY_TASK_TRACK_STARTED = True
