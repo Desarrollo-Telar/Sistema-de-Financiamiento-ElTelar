@@ -1,0 +1,14 @@
+https://coolors.co/palette/c52233-a51c30-a7333f-74121d-580c1f
+
+https://coolors.co/palette/0b090a-161a1d-660708-a4161a-ba181b-e5383b-b1a7a6-d3d3d3-f5f3f4-ffffff
+
+<!--
+            <div class="form-group ">
+                <label class="fw-medium" for="username">Nombre de usuario o Correo Electronico</label>
+                <input type="text" name="username" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="fw-medium" for="password">Contraseña</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+        -->

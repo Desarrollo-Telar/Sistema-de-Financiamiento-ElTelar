@@ -131,11 +131,15 @@ if DEBUG:
     #DATABASES = db.SQLITE
     if SERVIDOR:
         DATABASES = db.POSTGRES_HEROKU
-    DATABASES = db.MYSQL
+    else:
+        DATABASES = db.MYSQL
 else:
     
     #DATABASES = db.SQLITE
-    DATABASES = db.POSTGRES_HEROKU
+    if SERVIDOR:
+        DATABASES = db.POSTGRES_HEROKU
+    else:
+        DATABASES = db.MYSQL
 
 
 
