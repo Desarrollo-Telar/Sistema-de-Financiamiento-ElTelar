@@ -60,11 +60,26 @@ def update_customer(request, customer_code):
 # ----- ELIMINACION DE CLIENTES ----- #
 @login_required
 @usuario_activo
-@usuario_administrador
 def delete_customer(request,id):
     customer = get_object_or_404(Customer, id=id)
     customer.delete()
     return redirect('customers:customers')
+
+@login_required
+@usuario_activo
+@usuario_administrador
+def delete_customers(request,id):
+    template_name ='customer/delete.html'
+    customer = get_object_or_404(Customer, id=id)
+    context = {
+        'title':f'ELTELAR - CLIENTE {customer}',
+        'customer':customer
+    }
+    if request.method == 'POST':
+        customer.delete()
+        return redirect('customers:customers')
+
+    return render(request, template_name, context)
 
 # ----- LISTADO DE CLIENTES ----- #
 @login_required
@@ -184,9 +199,6 @@ def detail_customer(request,customer_code):
     return render(request, template_name, context)
 
 # ----- VER FORMULARIO IVE ----- #
-@login_required
-@usuario_activo
-@usuario_secretaria
 def formulario_ive(request, id):
     template_name = 'customer/forms/forms_ive.html'
     customer_list = get_object_or_404(Customer, id=id)

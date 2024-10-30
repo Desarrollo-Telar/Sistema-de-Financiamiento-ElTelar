@@ -20,6 +20,7 @@ urlpatterns = [
     path('update/<str:customer_code>/', views.update_customer, name='update_customer'),
     path('search/', login_required(views.CustomerSearch.as_view()), name='search'),
     path('delete/<int:id>/',views.delete_customer,name='delete'),
+    path('delete_customer/<int:id>/',views.delete_customers,name='delete_customer'),
     path('formulario_ive/<int:id>/', login_required(views.formulario_ive), name='formulario_ive'),
     path('detail/<str:customer_code>/', login_required(views.detail_customer), name='detail'),
     path('recent/', login_required(filters.recent_customer), name='recent'),
