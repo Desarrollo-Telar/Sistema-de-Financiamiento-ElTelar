@@ -31,6 +31,9 @@ from apps.addresses.forms import AddressForms
 from apps.FinancialInformation.forms import WorkingInformationForms, OtherSourcesOfIncomeForms, ReferenceForms
 from apps.InvestmentPlan.forms import InvestmentPlanForms
 
+# MENSAJES
+from django.contrib import messages
+
 from django.apps import apps
 
 # ----- EDITAR INFORMACION PERSONAL DE UN CLIENTE ----- #
@@ -77,6 +80,7 @@ def delete_customers(request,id):
     }
     if request.method == 'POST':
         customer.delete()
+        messages.success(request,'CLIENTE ELIMINADO')
         return redirect('customers:customers')
 
     return render(request, template_name, context)

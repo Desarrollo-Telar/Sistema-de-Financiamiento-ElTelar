@@ -221,7 +221,7 @@ def login_view(request):
             login(request, user)
             return redirect('index')
         else:
-            messages.error(request, 'Credenciales no validos, por favor revise si ingreso correctamente su correo electronico o su contraseña')
+            messages.error(request, 'Credenciales no validos')
     
 
     context = {

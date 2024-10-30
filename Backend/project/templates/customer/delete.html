@@ -4,7 +4,7 @@
 {% block content %}
 <div class="row box">
     <div class="row">
-        <div class="col">
+        <div class="col" style="padding: 5rem;">
             <form method="post">
                 {% csrf_token %}
                 <h2>¿Desea eliminar al siguiente Cliente: <span>{{customer.get_full_name}}</span> ?</h2>
