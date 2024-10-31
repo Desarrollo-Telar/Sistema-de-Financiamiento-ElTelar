@@ -130,7 +130,7 @@ pdf_mostrar.addEventListener('input',function (event){
 
 });
 
-var municipios = [
+export var municipios = [
     // GUATEMALA
     {
         id:0,
@@ -1342,7 +1342,7 @@ var municipios = [
     }
 ]
 
-var departamentos = [
+export var departamentos = [
     {
         id:0,
         text: 'GUATEMALA'

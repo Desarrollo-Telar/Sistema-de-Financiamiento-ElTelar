@@ -5,7 +5,7 @@ import PlanInversion from '../class/investmentplan.js';
 import OtraInformacionLaboral from '../class/othersourcesofincome.js';
 import Referencia from '../class/reference.js';
 import InformacionLaboral from '../class/workinginformation.js';
-
+import {departamentos, municipios} from './mostrar.js'
 // ------------------------------------------------
 //                  CLIENTE
 // ------------------------------------------------
@@ -63,6 +63,30 @@ export function recoletarInformacionCliente() {
 //                  DIRECCIONES
 // ------------------------------------------------
 
+function municipio(selectedId){
+    let selectedMunicipio = municipios.find(municipio => municipio.id === selectedId);
+    if (selectedMunicipio){
+        return selectedMunicipio.text
+    }else{
+        return 'COBAN PENDIENTE'
+
+    }
+
+}
+
+function departamento(selectedId){
+    let selectedDepartamento = departamentos.find(departamento => departamento.id === selectedId);
+    if (selectedDepartamento){
+        return selectedDepartamento.text
+
+    }else{
+        return 'COBAN PENDIENTE'
+    }
+    
+
+}
+
+
 export function recoletarInformacionDirecciones(customer_id) {
     let direcciones = [
         new Direccion(),
@@ -73,8 +97,8 @@ export function recoletarInformacionDirecciones(customer_id) {
     
         direcciones[0].street = document.getElementById('street1').value;
         direcciones[0].number = document.getElementById('number1').value;
-        direcciones[0].city = document.getElementById('city1').value;
-        direcciones[0].state = document.getElementById('state1').value;
+        direcciones[0].city = departamento(document.getElementById('city1').value);
+        direcciones[0].state = municipio(document.getElementById('state1').value);
         
         direcciones[0].country = document.getElementById('country1').value;
         direcciones[0].type_address = 'Dirección Personal';
@@ -84,8 +108,8 @@ export function recoletarInformacionDirecciones(customer_id) {
     
         direcciones[1].street = document.getElementById('street2').value;
         direcciones[1].number = document.getElementById('number2').value;
-        direcciones[1].city = document.getElementById('city2').value;
-        direcciones[1].state = document.getElementById('state2').value;
+        direcciones[1].city = departamento(document.getElementById('city2').value);
+        direcciones[1].state = municipio(document.getElementById('state2').value);
         
         direcciones[1].country = document.getElementById('country2').value;
         direcciones[1].type_address = 'Dirección de Trabajo';
