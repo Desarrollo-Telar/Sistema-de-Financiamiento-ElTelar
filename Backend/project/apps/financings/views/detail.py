@@ -116,7 +116,7 @@ def detail_credit(request,id):
 def detallar_desembolso(request,id):
     
     desembolso = get_object_or_404(Disbursement,id=id)
-    template_name = 'index.html'
+    template_name = 'financings/disbursement/detail.html'
     context = {
         'title':'ELTELAR - DESEMBOLSO {}'.format(desembolso.credit_id)
     }

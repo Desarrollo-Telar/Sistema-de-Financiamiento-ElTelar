@@ -96,8 +96,9 @@ class PaymentPlan(models.Model):
             if intereses >= cuota:
                 intereses = self.calculo_interes()
 
+            #intereses -= self.calculo_interes()
             # Capital es la diferencia entre la cuota y los intereses
-            capital = round(cuota - intereses, 2)
+            capital = round(cuota - self.calculo_interes(), 2)
              
         else:
             # En el caso de amortización a capital, capital es fijo
@@ -135,6 +136,7 @@ class PaymentPlan(models.Model):
     def save(self,*args, **kwargs):
         self.fecha_vencimiento()
         self.calculo_fecha_limite()
+        #self.principal = self.calculo_capital()
         super().save(*args, **kwargs)
     
     def __str__(self):
