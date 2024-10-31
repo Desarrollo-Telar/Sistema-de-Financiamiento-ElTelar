@@ -60,7 +60,8 @@ class CustomerForm(forms.ModelForm):
             'immigration_status_id',
             'description',
             
-            
+            'asesor',
+            'fehca_vencimiento_de_tipo_identificacion'
         ]
 
         labels = {
@@ -78,7 +79,9 @@ class CustomerForm(forms.ModelForm):
             'gender': 'Género',
             'nationality': 'Nacionalidad',
             'description': 'Observaciones',
-            'immigration_status_id': 'Condición Migratoria'
+            'immigration_status_id': 'Condición Migratoria',
+            'asesor':'Asesor del Credito',
+            'fehca_vencimiento_de_tipo_identificacion':'Fecha de Vencimiento del Tipo de Identificación'
         }
 
         widgets = {
@@ -97,4 +100,6 @@ class CustomerForm(forms.ModelForm):
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
             'immigration_status_id': forms.Select(attrs={'class': 'form-control'}),
+            'fehca_vencimiento_de_tipo_identificacion': forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'asesor': forms.TextInput(attrs={'class': 'form-control'}),
         }
