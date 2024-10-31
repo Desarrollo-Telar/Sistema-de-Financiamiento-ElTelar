@@ -162,7 +162,7 @@ export class InformacionLaboral {
                 this.#position.trim() === '' &&
                 this.#company_name.trim() === '' &&
                 this.#start_date.trim() === '' &&
-                this.#description.trim() === '' &&
+              //  this.#description.trim() === '' &&
                 this.#salary.trim() === '' &&
                 this.#working_hours.trim() === '' &&
                 this.#phone_number.trim() === '' &&
@@ -172,7 +172,7 @@ export class InformacionLaboral {
                 !this.#position &&
                 !this.#company_name &&
                 !this.#start_date &&
-                !this.#description &&
+                //!this.#description &&
                 !this.#salary &&
                 !this.#working_hours &&
                 !this.#phone_number &&

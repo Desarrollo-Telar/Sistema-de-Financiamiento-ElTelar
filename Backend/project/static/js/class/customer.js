@@ -224,7 +224,7 @@ export class Cliente {
 
         // Expresión regular para exactamente 8 dígitos
         const regex = /^\d{12}$/;
-
+/*
         // Validar el formato del número de teléfono
         if (!regex.test(value)) {
             console.error('Numero de telefono no valido, no cumple con el estandar de un numero de telefono. Verificar!!!')
@@ -232,6 +232,7 @@ export class Cliente {
             throw new Error('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
 
         }
+        */
         this.#telephone = value.trim();
 
     }
@@ -248,7 +249,7 @@ export class Cliente {
         // Validar el formato del correo electrónico
         if (!regex.test(value)) {
             console.error('Verifique bien si esta escribiendo el correo electronico...');
-            //alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
+            alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito.');
 
         }
@@ -258,7 +259,7 @@ export class Cliente {
         // Verificar si el dominio está en la lista de dominios conocidos
         if (!dominiosConocidos.includes(dominio)) {
             console.error('Verifique bien si esta escribiendo el dominio del correo electronico...');
-            //alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
+            alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
 
         }
@@ -290,7 +291,7 @@ export class Cliente {
         // Validar el formato del correo electrónico
         if (!regex.test(value)) {
             console.error('Verifique bien si esta escribiendo el correo electronico...');
-            //alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
+            alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito.');
 
         }
@@ -300,7 +301,7 @@ export class Cliente {
         // Verificar si el dominio está en la lista de dominios conocidos
         if (!dominiosConocidos.includes(dominio)) {
             console.error('Verifique bien si esta escribiendo el dominio del correo electronico...');
-            //alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
+            alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
 
         }
