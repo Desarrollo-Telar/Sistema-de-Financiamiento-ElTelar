@@ -50,6 +50,16 @@ def total_desembolso(list_disbursement):
     
     return total_desembolso
 
+def actualizacion(credito):
+    pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
+    
+    # ACTUALIZAR EL SALDO ACTUAL
+    if pagos:
+        credito.saldo_pendiente = pagos.saldo_pendiente
+        credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
+        credito.save()
+
+
 ### ------------ DETALLE -------------- ###
 @login_required
 @usuario_activo
@@ -67,17 +77,10 @@ def detail_credit(request,id):
     list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('-id') # LISTAR DESEMBOLSOS
 
     
-    siguiente_pago = PaymentPlan.objects.filter(credit_id=credito)
+    siguiente_pago = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
+    cuotas_vencidas = PaymentPlan.objects.filter(credit_id=credito, cuota_vencida=True)
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
-    pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
-    
-
-    
-    # ACTUALIZAR EL SALDO ACTUAL
-    if pagos:
-        credito.saldo_pendiente = pagos.saldo_pendiente
-        credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
-        credito.save()
+    actualizacion(credito)
     
     
     
@@ -100,6 +103,7 @@ def detail_credit(request,id):
         'total_desembolso':total_desembolso(list_disbursement),
         'estado_cuenta':estado_cuenta,
         'siguiente_pago':siguiente_pago,
+        'cuotas_vencidas':cuotas_vencidas,
         'total_cuota':planPagosCredito(credito).calcular_total_cuotas(),
         'total_capital':planPagosCredito(credito).calcular_total_capital(),
         'total_interes':planPagosCredito(credito).calcular_total_interes()

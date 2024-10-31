@@ -1,7 +1,7 @@
 {% load static %}
 
 
-<div class="row">
+<div class="row" style="margin-top: 1rem;">
     <div class="col-12 ">
         <div class="table-responsive">
             <table class="table table-hover">
@@ -23,64 +23,88 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for credit in estado_cuenta %}
+                    {% for cuenta_estado in estado_cuenta %}
 
                     <tr>
 
                         <td scope="row">
 
-                            {{credit.fecha_emision}}
+                            {{cuenta_estado.fecha_emision}}
 
                         </td>
                         <td scope="row">
 
 
-                            {{credit.numero_referencia}}
+                            {{cuenta_estado.numero_referencia}}
 
                         </td>
                         <td scope="row">
-                            <p>{{credit.description}}</p>
+                            <p>{{cuenta_estado.description}}</p>
 
                         </td>
                         <td scope="row">
-                            {{credit.abono}}
+                            Q {{cuenta_estado.abono}}
                         </td>
                         <td scope="row">
-                            {{credit.disbursement_paid}}
+                            Q {{cuenta_estado.disbursement_paid}}
                         </td>
                         <td scope="row">
-                            {{credit.late_fee_paid}}
+                            Q {{cuenta_estado.late_fee_paid}}
                         </td>
                         <td scope="row">
-                            {{credit.interest_paid}}
+                            Q {{cuenta_estado.interest_paid}}
                         </td>
                         <td scope="row">
-                            {{credit.capital_paid}}
+                            Q {{cuenta_estado.capital_paid}}
                         </td>
                         <td scope="row">
-                            {{credit.saldo_pendiente}}
+                            Q {{cuenta_estado.saldo_pendiente}}
                         </td>
                         <td>
-                            {% if credit.payment %}
-                            <a href="{% url 'financings:recibo' credit.payment.id %}">RECIBO</a>
+                            {% if cuenta_estado.payment %}
+                            <a href="{% url 'financings:recibo' cuenta_estado.payment.id %}">RECIBO</a>
                             {% endif %}
 
-                            {% if credit.disbursement %}
-                            <a href="{% url 'financings:detail_disbursement' credit.disbursement.id %}">DESEMBOLSO</a>
+                            {% if cuenta_estado.disbursement %}
+                            <a
+                                href="{% url 'financings:detail_disbursement' cuenta_estado.disbursement.id %}">DESEMBOLSO</a>
                             {% endif %}
 
                         </td>
-
-
-
-
-
-
-
-
                     </tr>
 
                     {% endfor %}
+                    <tr style="margin-top: 1rem; text-align: center;">
+                        <td colspan="10">SIGUIENTE CUOTA</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Fecha de Inicio</th>
+                        <th scope="col">Fecha de Vencimiento</th>
+                        <th scope="col">Fecha Limite de Pago</th>
+                        <th scope="col">Mora Acumulado</th>
+                        <th scope="col">Interes Acumulado</th>
+                        <th scope="col">Cuota A Cancelar</th>
+                        <th scope="col">Saldo A Capital Pendiente</th>
+                        <th colspan="3"></th>
+
+                    </tr>
+                    <tr>
+                        <td scope="row">{{siguiente_pago.start_date}}</td>
+                        <td scope="row">{{siguiente_pago.due_date}}</td>
+                        <td scope="row">{{siguiente_pago.mostrar_fecha_limite}}</td>
+                        <td scope="row">Q {{siguiente_pago.mora}}</td>
+                        <td scope="row">Q {{siguiente_pago.interest}}</td>
+                        <td scope="row">Q {{siguiente_pago.total}}</td>
+                        <td scope="row">Q {{siguiente_pago.saldo_pendiente}}</td>
+
+
+                        <td scope="row" colspan="3" style="text-align: center;">
+                            <a href="{% url 'financings:paymente_update_cuota' siguiente_pago.id %}">Modificar</a>
+
+                        </td>
+
+
+                    </tr>
                 </tbody>
             </table>
         </div>
