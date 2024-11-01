@@ -199,6 +199,7 @@ export class Cliente {
             alert('Debe ingresar el numero del tipo de identificación del cliente');
             throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
         }
+        /*
         // Expresión regular para exactamente 13 dígitos
         const regex = /^\d{20}$/;
 
@@ -210,7 +211,7 @@ export class Cliente {
 
         }
 
-
+        */
         this.#identification_number = value.trim();
 
     }
@@ -283,7 +284,7 @@ export class Cliente {
             alert('Debe ingresar el correo electronico del cliente');
             throw new Error('Debe ingresar el correo electronico del cliente');
         }
-
+/*
         // Expresión regular básica para validar el formato del correo electrónico
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         // Lista de dominios conocidos
@@ -305,7 +306,7 @@ export class Cliente {
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
 
         }
-
+*/
         // Falta por agregar el filtro de ver si ya existe el correo electronico registrado
         this.#email = value.trim();
     }
