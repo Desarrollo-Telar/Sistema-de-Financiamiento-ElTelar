@@ -26,6 +26,17 @@ class DocumentOtherSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class DocumentGuaranteeSerializer(serializers.ModelSerializer):
+    document_id = DocumentSerializer()  
+
     class Meta:
         model = DocumentGuarantee
-        fields = '__all__'
+        fields = [
+            'garantia',
+            'document_id',
+            'customer_id'
+        ]
+
+    def create(self, validated_data):
+        document_data = validated_data.pop('document_id')
+        document = Document.objects.create(**document_data)
+        return DocumentGuarantee.objects.create(document_id=document, **validated_data)
