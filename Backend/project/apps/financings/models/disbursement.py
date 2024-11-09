@@ -23,7 +23,7 @@ class Disbursement(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return self.credit_id
+        return f'{self.forma_desembolso}'
 
     class Meta:
         verbose_name = "Desembolso"
