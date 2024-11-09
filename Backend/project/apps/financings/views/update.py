@@ -55,5 +55,13 @@ def update_cuota(request, id):
 
     return render(request, template_name, context)
 
+@login_required
+@usuario_activo
+def generar_factura(request,id):
+    recibo = get_object_or_404(Recibo, id=id)
+    recibo.factura = True
+    recibo.save()
+    return redirect(request.path)
+
 
 

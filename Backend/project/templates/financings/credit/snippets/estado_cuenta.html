@@ -18,6 +18,7 @@
                         <th scope="col">Aporte a Capital</th>
                         <th scope="col">Saldo Capital Pendiente</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
 
 
                     </tr>
@@ -68,8 +69,20 @@
                             {% if cuenta_estado.disbursement %}
                             <a
                                 href="{% url 'financings:detail_disbursement' cuenta_estado.disbursement.id %}">DESEMBOLSO</a>
+
                             {% endif %}
 
+                        </td>
+                        <td>
+                            {% if cuenta_estado.payment %}
+                            {% if cuenta_estado.payment.factura %}
+                            <a href="#">Ver factura</a>
+                            {% else %}
+                            <a href="{% url 'financings:generar_factura' cuenta_estado.payment.id %}">Generar
+                                Factura</a>
+                            {% endif %}
+
+                            {% endif%}
                         </td>
                     </tr>
 
@@ -85,7 +98,7 @@
                         <th scope="col">Interes Acumulado</th>
                         <th scope="col">Capital</th>
                         <th scope="col">Cuota A Cancelar</th>
-                        <th scope="col">Saldo A Capital Pendiente</th>
+                        <th scope="col" colspan="2">Saldo A Capital Pendiente</th>
                         <th colspan="2"></th>
 
                     </tr>
@@ -97,7 +110,7 @@
                         <td scope="row">Q {{siguiente_pago.interest}}</td>
                         <td scope="row">Q {{siguiente_pago.calculo_capital}}</td>
                         <td scope="row">Q {{siguiente_pago.total}}</td>
-                        <td scope="row">Q {{siguiente_pago.saldo_pendiente}}</td>
+                        <td scope="row" colspan="2">Q {{siguiente_pago.saldo_pendiente}}</td>
 
 
                         <td scope="row" colspan="2" style="text-align: center;">
