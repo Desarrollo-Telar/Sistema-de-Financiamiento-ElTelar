@@ -31,6 +31,7 @@ urlpatterns = [
     # --------------- RECIBO ------------------
     path('recibo/<int:id>/',login_required(views.detallar_recibo), name='recibo'),
     path('factura/generar/<int:id>/',login_required(views.generar_factura), name='generar_factura'),
+    path('factura/<int:id>/',login_required(views.detalle_factura), name='factura'),
     
     # -------------- BOLETAS ---------------------
     path('payment/',login_required(views.list_payment),name='list_payment'),

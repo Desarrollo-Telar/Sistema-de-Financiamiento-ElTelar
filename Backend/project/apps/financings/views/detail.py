@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Models
 from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
 from apps.customers.models import Customer
+from apps.financings.models import Invoice
 
 
 from django.db.models import Q
@@ -157,5 +158,22 @@ def detalle_boleta(request,id):
         'pago':pago,
     }
     return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def detalle_factura(request,id):
+    
+    recibo = get_object_or_404(Recibo, id=id)
+    if not recibo.factura:
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    factura = Invoice.objects.filter(Q(recibo_id=recibo))
+    
+    template_name = 'financings/credit/factura/detail.html'
+    context = {
+        'title':'ELTELAR',
+        #'factura':factura,
+        #'recibo':recibo
+    }
+    return render(request,template_name,context)
 
 

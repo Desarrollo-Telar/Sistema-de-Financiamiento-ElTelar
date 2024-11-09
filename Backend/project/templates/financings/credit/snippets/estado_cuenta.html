@@ -76,7 +76,7 @@
                         <td>
                             {% if cuenta_estado.payment %}
                             {% if cuenta_estado.payment.factura %}
-                            <a href="#">Ver factura</a>
+                            <a href="{% url 'financings:factura' cuenta_estado.payment.id %}">Ver factura</a>
                             {% else %}
                             <a href="{% url 'financings:generar_factura' cuenta_estado.payment.id %}">Generar
                                 Factura</a>
