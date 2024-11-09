@@ -87,8 +87,18 @@
                     </tr>
 
                     {% endfor %}
+                    <tr>
+                        <th scope="row" colspan="4" class="text-center">TOTALES</th>
+                        <td>Q {{total_desembolsos}}</td>
+                        <td>Q {{total_moras}}</td>
+                        <td>Q {{total_intereses}}</td>
+                        <td>Q {{total_capital}}</td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
                     <tr style="margin-top: 1rem; text-align: center;">
-                        <td colspan="10">SIGUIENTE CUOTA</td>
+                        <td colspan="11">SIGUIENTE CUOTA</td>
                     </tr>
                     <tr>
                         <th scope="col">Fecha de Inicio</th>
@@ -117,6 +127,12 @@
                             <a href="{% url 'financings:paymente_update_cuota' siguiente_pago.id %}">Modificar</a>
 
                         </td>
+                    </tr>
+                    <tr style="margin-top: 1rem; text-align: center;">
+                        <td colspan="11">
+                            <a href="{% url 'financings:estado_cuenta' credit_list.id %}">ESTADO DE CUENTA</a>
+                        </td>
+
 
 
                     </tr>

@@ -13,8 +13,9 @@ from django.contrib.auth.decorators import login_required
 from project.decorador import usuario_activo
 from django.utils.decorators import method_decorator
 
-
-
+from datetime import datetime,timedelta
+# Obtener la fecha y hora actual
+now = datetime.now()
 # CLASES
 from apps.financings.clases.paymentplan import PaymentPlan as PlanPagoos
 from apps.financings.clases.credit import Credit as Credito
@@ -60,6 +61,29 @@ def actualizacion(credito):
         credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
         credito.save()
 
+def total_desembolsos(estado_cuenta):
+    contador = 0
+    for estado in estado_cuenta:
+        contador+=estado.disbursement_paid
+    return contador
+
+def total_mora_pagada(estado_cuenta):
+    contador = 0
+    for estado in estado_cuenta:
+        contador+=estado.late_fee_paid
+    return contador
+
+def total_interes_pagada(estado_cuenta):
+    contador = 0
+    for estado in estado_cuenta:
+        contador+=estado.interest_paid
+    return contador
+
+def total_capital_pagada(estado_cuenta):
+    contador = 0
+    for estado in estado_cuenta:
+        contador+=estado.capital_paid
+    return contador
 
 ### ------------ DETALLE -------------- ###
 @login_required
@@ -107,7 +131,11 @@ def detail_credit(request,id):
         'cuotas_vencidas':cuotas_vencidas,
         'total_cuota':planPagosCredito(credito).calcular_total_cuotas(),
         'total_capital':planPagosCredito(credito).calcular_total_capital(),
-        'total_interes':planPagosCredito(credito).calcular_total_interes()
+        'total_interes':planPagosCredito(credito).calcular_total_interes(),
+        'total_desembolsos':total_desembolsos(estado_cuenta),
+        'total_moras':total_mora_pagada(estado_cuenta),
+        'total_intereses':total_interes_pagada(estado_cuenta),
+        'total_capital':total_capital_pagada(estado_cuenta),
 
     }
     return render(request, template_name,context)
@@ -162,7 +190,6 @@ def detalle_boleta(request,id):
 @login_required
 @usuario_activo
 def detalle_factura(request,id):
-
     recibo = get_object_or_404(Recibo, id=id)
     if not recibo.factura:
         return redirect(request.META.get('HTTP_REFERER', '/'))
@@ -177,3 +204,27 @@ def detalle_factura(request,id):
     return render(request,template_name,context)
 
 
+
+
+@login_required
+@usuario_activo
+def detalle_estado_cuenta(request,id):
+    credito = get_object_or_404(Credit,id=id)
+    estado_cuenta = AccountStatement.objects.filter(credit=credito)
+    siguiente_pago = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
+
+    template_name = 'financings/credit/estado_cuenta/detail.html'
+    actualizacion(credito)
+    context = {
+        'title':'ELTELAR',
+        'credito':credito,
+        'estado_cuenta':estado_cuenta,
+        'total_desembolsos':total_desembolsos(estado_cuenta),
+        'total_moras':total_mora_pagada(estado_cuenta),
+        'total_intereses':total_interes_pagada(estado_cuenta),
+        'total_capital':total_capital_pagada(estado_cuenta),
+        'dia':now,
+        'siguiente_pago':siguiente_pago,
+    }
+
+    return render(request,template_name,context)

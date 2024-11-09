@@ -18,7 +18,8 @@ urlpatterns = [
     path('credit/<int:id>/',login_required(views.detail_credit), name='detail_credit'),
     path('credit/create/',login_required(views.create_credit),name='create_credit'),
     path('credit/search/',login_required(views.CreditSearch.as_view()),name='credit_search'),
-    
+    path('credit/estado_cuenta/<int:id>/',login_required(views.detalle_estado_cuenta),name='estado_cuenta'),
+    path('credit/estado_cuenta/pdf/<int:id>/',login_required(views.render_pdf_estado_cuenta),name='estado_cuenta_pdf'),
     # ---------------- GARANTIA ------------
     path('guarantee/',login_required(views.list_guarantee), name='list_guarantee'),
     path('guarantee/create/',login_required(views.create_guarantee),name='create_guarantee'),

@@ -25,6 +25,7 @@
                 <div class="text-end">
                     <button onclick="window.history.back()" class="fw-bold fs-3 text-uppercase"
                         style="background: none; border: none;padding: 0;outline: none; cursor: pointer; margin-right: 1rem;">factura</button>
+                    <a href="{% url 'financings:pdf_factura' recibo.id %}">DESCARGAR</a>
 
                 </div>
                 <div class="d-flex justify-content-start"

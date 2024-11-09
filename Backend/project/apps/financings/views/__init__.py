@@ -9,7 +9,7 @@ from .read import CreditSearch
 from .update import update_pago, update_cuota, generar_factura
 
 # FUNCIONES PARA DETALLAR
-from .detail import detail_credit, detallar_recibo, detalle_boleta, detallar_desembolso,detalle_factura
+from .detail import detail_credit, detallar_recibo, detalle_boleta, detallar_desembolso,detalle_factura, detalle_estado_cuenta
 
 # FUNCIONES PARA GENERAR PDFS
-from .generar_pdf import render_pdf_factura
+from .generar_pdf import render_pdf_factura, render_pdf_estado_cuenta
