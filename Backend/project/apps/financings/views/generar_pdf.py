@@ -20,12 +20,12 @@ from weasyprint import HTML
 
 
 def render_pdf_factura(request,id):
-    """
+    
     recibo = get_object_or_404(Recibo, id=id)
     if not recibo.factura:
         return redirect(request.META.get('HTTP_REFERER', '/'))
     factura = Invoice.objects.filter(Q(recibo_id=recibo))
-    """
+   
     template_path = 'financings/credit/factura/factura_pdf.html'
     template = get_template(template_path)
     context = {
