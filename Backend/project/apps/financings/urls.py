@@ -30,8 +30,10 @@ urlpatterns = [
 
     # --------------- RECIBO ------------------
     path('recibo/<int:id>/',login_required(views.detallar_recibo), name='recibo'),
+    # --------------- FACTURA ------------------
     path('factura/generar/<int:id>/',login_required(views.generar_factura), name='generar_factura'),
     path('factura/<int:id>/',login_required(views.detalle_factura), name='factura'),
+    path('factura/pdf/<int:id>/',login_required(views.render_pdf_factura),name='pdf_factura'),
     
     # -------------- BOLETAS ---------------------
     path('payment/',login_required(views.list_payment),name='list_payment'),

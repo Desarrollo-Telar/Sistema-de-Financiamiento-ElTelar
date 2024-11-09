@@ -162,12 +162,12 @@ def detalle_boleta(request,id):
 @login_required
 @usuario_activo
 def detalle_factura(request,id):
-    
+    """
     recibo = get_object_or_404(Recibo, id=id)
     if not recibo.factura:
         return redirect(request.META.get('HTTP_REFERER', '/'))
     factura = Invoice.objects.filter(Q(recibo_id=recibo))
-    
+    """
     template_name = 'financings/credit/factura/detail.html'
     context = {
         'title':'ELTELAR',
