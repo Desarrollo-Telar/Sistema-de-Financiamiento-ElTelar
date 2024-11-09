@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
-
+from apps.financings.models import Invoice
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -61,6 +61,11 @@ def generar_factura(request,id):
     recibo = get_object_or_404(Recibo, id=id)
     recibo.factura = True
     recibo.save()
+
+    factura = Invoice()
+    factura.recibo_id = recibo
+    factura.save()
+
     return redirect(request.path)
 
 
