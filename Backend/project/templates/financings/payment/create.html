@@ -71,7 +71,7 @@
         $(".customer_id").select2({
             width: 'resolve',
             ajax: {
-                url: 'https://www.ii-eltelarsa.com/financings/api/credit/',
+                url: 'http://127.0.0.1:8000/financings/api/credit/',
                 dataType: 'json',
                 delay: 250,
                 processResults: function (data) {
@@ -80,6 +80,7 @@
                     if (Array.isArray(data)) {
                         return {
                             results: data.map(function (item) {
+                                console.log(item);
                                 return {
                                     id: item.id,
                                     text: item.codigo_credito + ' ' + item.customer_id.first_name + ' ' + item.customer_id.last_name

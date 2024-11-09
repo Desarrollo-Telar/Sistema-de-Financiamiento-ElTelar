@@ -74,8 +74,10 @@ def envio_mensaje_alerta_recibo( modelo):
 
 @shared_task
 def cambiar_plan():
-    logger.info(f'PROCEDIENDO A HACER CAMBIO EN LAS CUOTAS')
-    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date())
+    print("CAMBIANDO")
+    
+    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), cuota_vencida=False)
+    print(planes)
     if planes:
         for pago in planes:
             

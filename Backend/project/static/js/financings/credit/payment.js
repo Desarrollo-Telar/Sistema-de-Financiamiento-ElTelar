@@ -19,7 +19,7 @@ document.getElementById('pago').addEventListener('submit', async function (event
 
     axios({
         method: 'post',
-        url: urls_p.api_url_pago,
+        url: 'http://127.0.0.1:8000/financings/api/payment/',
         headers: {
             'Content-Type': 'multipart/form-data',
             'X-CSRFToken': csrfToken

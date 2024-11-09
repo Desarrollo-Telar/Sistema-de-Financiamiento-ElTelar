@@ -98,12 +98,13 @@ def generar_factura(request,id):
     recibo = get_object_or_404(Recibo, id=id)
     recibo.factura = True
     recibo.save()
-
+    """
     factura = Invoice()
     factura.recibo_id = recibo
     factura.save()
+    """
 
-    return redirect(request.path)
+    return redirect('financings:detail_credit',recibo.pago.credit.id)
 
 
 
