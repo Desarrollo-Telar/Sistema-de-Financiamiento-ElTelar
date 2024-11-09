@@ -90,7 +90,7 @@ def render_pdf_estado_cuenta(request,id):
         'total_desembolsos':total_desembolsos(estado_cuenta),
         'total_moras':total_mora_pagada(estado_cuenta),
         'total_intereses':total_interes_pagada(estado_cuenta),
-        'total_capital':total_capital_pagada(estado_cuenta),
+        'total_capitales':total_capital_pagada(estado_cuenta),
         'dia':now,
         'siguiente_pago':siguiente_pago,
     }

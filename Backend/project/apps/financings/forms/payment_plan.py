@@ -31,7 +31,7 @@ class PaymentPlanForms(forms.ModelForm):
             'mora': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"0.1"}),
             'interest': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"0.1"}),
         }
-
+"""
     def save(self, commit=True):
         # Recogemos los datos limpios desde cleaned_data
         cuota = PaymentPlan(
@@ -49,3 +49,4 @@ class PaymentPlanForms(forms.ModelForm):
             cuota.save()
         
         return cuota
+"""

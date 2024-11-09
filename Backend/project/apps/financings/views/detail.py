@@ -114,6 +114,7 @@ def detail_credit(request,id):
 
     # PLAN DE PAGOS
     plan = planPagosCredito(credito).generar_plan()
+    print(planPagosCredito(credito).calcular_total_capital())
    
    
     context = {
@@ -135,7 +136,7 @@ def detail_credit(request,id):
         'total_desembolsos':total_desembolsos(estado_cuenta),
         'total_moras':total_mora_pagada(estado_cuenta),
         'total_intereses':total_interes_pagada(estado_cuenta),
-        'total_capital':total_capital_pagada(estado_cuenta),
+        'total_capitales':total_capital_pagada(estado_cuenta),
 
     }
     return render(request, template_name,context)
@@ -222,7 +223,7 @@ def detalle_estado_cuenta(request,id):
         'total_desembolsos':total_desembolsos(estado_cuenta),
         'total_moras':total_mora_pagada(estado_cuenta),
         'total_intereses':total_interes_pagada(estado_cuenta),
-        'total_capital':total_capital_pagada(estado_cuenta),
+        'total_capitales':total_capital_pagada(estado_cuenta),
         'dia':now,
         'siguiente_pago':siguiente_pago,
     }
