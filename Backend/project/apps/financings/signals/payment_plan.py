@@ -2,7 +2,7 @@ from django.db.models.signals import post_save, pre_save, pre_delete, post_delet
 from django.dispatch import receiver
 
 # MODELOS
-from apps.financings.models import Credit, PaymentPlan
+from apps.financings.models import Credit, PaymentPlan,Payment
 
 
 # CLASES

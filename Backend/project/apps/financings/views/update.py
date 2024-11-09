@@ -38,22 +38,59 @@ def update_pago(request,id):
 def update_cuota(request, id):
     template_name = 'financings/cuota/update.html'
     cuota = get_object_or_404(PaymentPlan, id=id)
-    
+    mora_antigua = cuota.mora 
+    interes_antiguo = cuota.interest
+
     if request.method == 'POST':
         form = PaymentPlanForms(request.POST, instance=cuota)
         if form.is_valid():
-            form.save()
+            estado_cuenta = AccountStatement()
+            estado_cuenta.credit = cuota.credit_id
+
+            interes_nuevo = form.cleaned_data['interest']
+            mora_nueva = form.cleaned_data['mora']
+
+            # Si hay cambios en los intereses o mora, registramos un estado de cuenta
+            if interes_antiguo != interes_nuevo or mora_antigua != mora_nueva:
+                # Descripción del cambio
+                if interes_antiguo != interes_nuevo:
+                    print('DESCUENTO APLICADO POR INTERES')
+                    estado_cuenta.description = f'DESCUENTO APLICADO POR INTERES '
+                    estado_cuenta.interest_paid = -interes_nuevo
+
+                if mora_antigua != mora_nueva:
+                    print('DESCUENTO APLICADO POR MOROSIDAD')
+                    # Si ya había un descuento por interés, lo sumamos con el de mora
+                    estado_cuenta.description=f'DESCUENTO APLICADO POR MOROSIDAD '
+                    
+                    estado_cuenta.late_fee_paid = -mora_nueva  # Restar el monto de mora
+
+                # Si ambos valores cambian, la descripción reflejará ambos descuentos
+                if interes_antiguo != interes_nuevo and mora_antigua != mora_nueva:
+                    print('DESCUENTOS APLICADOS')
+                    estado_cuenta.description = 'DESCUENTOS APLICADOS'
+
+                estado_cuenta.save()  # Guardamos solo una vez el estado de cuenta
+
+            # Actualizamos los valores de la cuota
+            cuota.interest = interes_nuevo
+            cuota.mora = mora_nueva
+            cuota.cambios = True
+            cuota.save()
+
             return redirect('financings:detail_credit',cuota.credit_id.id)
+            
     else:
         form = PaymentPlanForms(instance=cuota)
-    
+
     context = {
-        'form':form,
+        'form': form,
         'title': f'ELTELAR - ACTUALIZACION DE CUOTA',
-        'cuota':cuota,
+        'cuota': cuota,
     }
 
     return render(request, template_name, context)
+
 
 @login_required
 @usuario_activo

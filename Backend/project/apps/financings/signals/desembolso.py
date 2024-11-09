@@ -1,6 +1,7 @@
 from django.db.models.signals import post_save, pre_save, pre_delete, post_delete
 from django.dispatch import receiver
-
+# LOOGER
+from apps.financings.clases.personality_logs import logger
 # MODELOS
 from apps.financings.models import AccountStatement, Disbursement, Credit, PaymentPlan
 

@@ -12,3 +12,9 @@ from .recibo import generar_noRecibo
 
 # DESEMBOLSOS
 from .desembolso import reflejar_estado_cuenta
+
+# FACTURA
+from .factura import generar_noFactura
+
+# ESTADO DE CUENTA
+from .estado_cuenta import set_numero_referencia_estado_cuenta
