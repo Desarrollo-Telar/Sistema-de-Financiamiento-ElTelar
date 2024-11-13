@@ -31,6 +31,9 @@ from django.views.generic import DeleteView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
 
+def formatear_numero(numero):
+    # Convertir el número a un formato con coma para miles y punto para decimales
+    return f"{numero:,.2f}".replace(".", "X").replace(".", ",").replace("X", ".")
 
 def planPagosCredito(credito):
     formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
@@ -43,14 +46,14 @@ def total_garantia(list_guarantee):
     for garantia in list_guarantee:
         total_garantia += garantia.suma_total
     
-    return total_garantia
+    return formatear_numero(total_garantia)
 
 def total_desembolso(list_disbursement):
     total_desembolso = 0
     for desembolso in list_disbursement:
         total_desembolso +=desembolso.monto_total_desembolso
     
-    return total_desembolso
+    return formatear_numero(total_desembolso)
 
 def actualizacion(credito):
     pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
@@ -65,25 +68,25 @@ def total_desembolsos(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
         contador+=estado.disbursement_paid
-    return contador
+    return formatear_numero(contador)
 
 def total_mora_pagada(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
         contador+=estado.late_fee_paid
-    return contador
+    return formatear_numero(contador)
 
 def total_interes_pagada(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
         contador+=estado.interest_paid
-    return contador
+    return formatear_numero(contador)
 
 def total_capital_pagada(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
         contador+=estado.capital_paid
-    return contador
+    return formatear_numero(contador)
 
 ### ------------ DETALLE -------------- ###
 @login_required
@@ -130,9 +133,9 @@ def detail_credit(request,id):
         'estado_cuenta':estado_cuenta,
         'siguiente_pago':siguiente_pago,
         'cuotas_vencidas':cuotas_vencidas,
-        'total_cuota':planPagosCredito(credito).calcular_total_cuotas(),
-        'total_capital':planPagosCredito(credito).calcular_total_capital(),
-        'total_interes':planPagosCredito(credito).calcular_total_interes(),
+        'total_cuota':formatear_numero(planPagosCredito(credito).calcular_total_cuotas()),
+        'total_capital':formatear_numero(planPagosCredito(credito).calcular_total_capital()),
+        'total_interes':formatear_numero(planPagosCredito(credito).calcular_total_interes()),
         'total_desembolsos':total_desembolsos(estado_cuenta),
         'total_moras':total_mora_pagada(estado_cuenta),
         'total_intereses':total_interes_pagada(estado_cuenta),

@@ -12,6 +12,9 @@ from decimal import Decimal
 # MODELOS
 from .credit import Credit
 
+# FORMATO
+from apps.financings.formato import formatear_numero
+
 class PaymentPlan(models.Model):
     mes = models.IntegerField('No.Mes',blank=True, null=True,default=1)  
     start_date = models.DateTimeField('Fecha de Inicio') # obligatorio
@@ -31,6 +34,21 @@ class PaymentPlan(models.Model):
     cambios = models.BooleanField(default=False)
     numero_referencia = models.CharField('Numero de Referencia', max_length=255, null=True, blank=True, default="NAN")
     cuota_vencida = models.BooleanField(default=False)
+
+    def formato_cuota_mora(self):
+        return formatear_numero(self.mora)
+
+    def formato_cuota_interes(self):
+        return formatear_numero(self.interest)
+    
+    def formato_cuota_capital(self):
+        return formatear_numero(self.calculo_capital())
+    
+    def formato_cuota_total(self):
+        return formatear_numero(self.total())
+    
+    def formato_cuota_saldo_pendiente(self):
+        return formatear_numero(self.saldo_pendiente)
    
     def no_mes(self):
         contar = 0

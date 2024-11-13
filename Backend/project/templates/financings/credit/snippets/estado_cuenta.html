@@ -44,22 +44,22 @@
 
                         </td>
                         <td scope="row">
-                            Q {{cuenta_estado.abono}}
+                            Q{{cuenta_estado.Fabono}}
                         </td>
                         <td scope="row">
-                            Q {{cuenta_estado.disbursement_paid}}
+                            Q{{cuenta_estado.Fdisbursement_paid}}
                         </td>
                         <td scope="row">
-                            Q {{cuenta_estado.late_fee_paid}}
+                            Q{{cuenta_estado.Flate_fee_paid}}
                         </td>
                         <td scope="row">
-                            Q {{cuenta_estado.interest_paid}}
+                            Q{{cuenta_estado.Finterest_paid}}
                         </td>
                         <td scope="row">
-                            Q {{cuenta_estado.capital_paid}}
+                            Q{{cuenta_estado.Fcapital_paid}}
                         </td>
                         <td scope="row">
-                            Q {{cuenta_estado.saldo_pendiente}}
+                            Q{{cuenta_estado.Fsaldo_pendiente}}
                         </td>
                         <td>
                             {% if cuenta_estado.payment %}
@@ -89,10 +89,13 @@
                     {% endfor %}
                     <tr>
                         <th scope="row" colspan="4" class="text-center">TOTALES</th>
-                        <td>Q {{total_desembolsos}}</td>
-                        <td>Q {{total_moras}}</td>
-                        <td>Q {{total_intereses}}</td>
-                        <td>Q {{total_capitales}}</td>
+                        <td>
+                            Q{{total_desembolsos}}
+
+                        </td>
+                        <td>Q{{total_moras}}</td>
+                        <td>Q{{total_intereses}}</td>
+                        <td>Q{{total_capitales}}</td>
                         <td></td>
                         <td></td>
 
@@ -116,11 +119,20 @@
                         <td scope="row">{{siguiente_pago.start_date}}</td>
                         <td scope="row">{{siguiente_pago.due_date}}</td>
                         <td scope="row">{{siguiente_pago.mostrar_fecha_limite}}</td>
-                        <td scope="row">Q {{siguiente_pago.mora}}</td>
-                        <td scope="row">Q {{siguiente_pago.interest}}</td>
-                        <td scope="row">Q {{siguiente_pago.calculo_capital}}</td>
-                        <td scope="row">Q {{siguiente_pago.total}}</td>
-                        <td scope="row" colspan="2">Q {{siguiente_pago.saldo_pendiente}}</td>
+                        <td scope="row">
+                            Q{{siguiente_pago.formato_cuota_mora}}
+                        </td>
+                        <td scope="row">
+                            Q{{siguiente_pago.formato_cuota_interes}}
+                        </td>
+                        <td scope="row">
+                            Q{{siguiente_pago.formato_cuota_capital}}
+                        </td>
+                        <td scope="row">
+                            Q{{siguiente_pago.formato_cuota_total}}
+
+                        </td>
+                        <td scope="row" colspan="2">Q{{siguiente_pago.formato_cuota_saldo_pendiente}}</td>
 
 
                         <td scope="row" colspan="2" style="text-align: center;">
