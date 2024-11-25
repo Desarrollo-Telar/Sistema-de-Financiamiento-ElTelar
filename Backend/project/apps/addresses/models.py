@@ -36,3 +36,16 @@ class Address(models.Model):
         verbose_name_plural = "Direcciones"
 
 
+
+class Departamento(models.Model):
+    nombre = models.CharField("Nombre del Departamento", max_length=120, blank=False, null=False)
+    class Meta:
+        verbose_name ='Departamento'
+        verbose_name_plural = 'Departamentos'
+
+class Municiopio(models.Model):
+    nombre = models.CharField("Nombre del Municiopio", max_length=120, blank=False, null=False)
+    depart = models.ForeignKey(Departamento, on_delete=models.CASCADE, blank=False, null=False)
+    class Meta:
+        verbose_name ='Municiopio'
+        verbose_name_plural = 'Municipios'

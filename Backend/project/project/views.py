@@ -219,6 +219,7 @@ def login_view(request):
             
             request.session['pk'] = user.pk
             login(request, user)
+            messages.success(request,'Bienvenido')
             return redirect('index')
         else:
             messages.error(request, 'Credenciales no validos')

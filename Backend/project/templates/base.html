@@ -30,7 +30,7 @@
 
 <body>
   <header>
-    {% include 'messages.html'%} {% include 'navbar.html' %}
+    {% include 'navbar.html' %}
     <!--  -->
   </header>
 
@@ -50,6 +50,19 @@
   <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <!-- Incluye Axios en tu archivo HTML desde una CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="{% static 'js/node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
+  <script>
+    {% if messages %}
+    {% for message in messages %}
+    Swal.fire({
+      icon: "{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% elif message.tags == 'warning' %}warning{% else %}info{% endif %}",
+      title: "{{ message }}",
+      timer: 3000,
+      showConfirmButton: false,
+    });
+    {% endfor %}
+    {% endif %}
+  </script>
 
 
   {%block js%} {%endblock%}

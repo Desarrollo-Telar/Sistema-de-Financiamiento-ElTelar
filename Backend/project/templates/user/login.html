@@ -20,7 +20,7 @@
 </head>
 
 <body>
-  <header>{% include 'messages.html'%}</header>
+
   <main>
     <div class="container shadow p-3 mb-5 bg-body-tertiary rounded" style="margin-top: 10rem; margin-bottom: 10rem;">
       <div class="row" style="padding:5rem">
@@ -57,6 +57,19 @@
 
   </main>
   <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
+  <script>
+    {% if messages %}
+    {% for message in messages %}
+    Swal.fire({
+      icon: "{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% elif message.tags == 'warning' %}warning{% else %}info{% endif %}",
+      title: "{{ message }}",
+      timer: 3000,
+      showConfirmButton: false,
+    });
+    {% endfor %}
+    {% endif %}
+  </script>
 </body>
 
 </html>
