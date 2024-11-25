@@ -94,9 +94,9 @@
 
         </div>
         <hr>
-        <div class="row text-uppercase" style="margin-top: 2rem; background-color: white;">
+        <div class="row text-uppercase" style="margin-top: 2rem; ">
             <div class="table-responsive">
-                <table class="table ">
+                <table>
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -126,85 +126,56 @@
 
                             </td>
                             <td scope="row">
-                                Q {{cuenta_estado.abono}}
+                                Q{{cuenta_estado.Fabono}}
                             </td>
                             <td scope="row">
-                                Q {{cuenta_estado.disbursement_paid}}
+                                Q{{cuenta_estado.Fdisbursement_paid}}
                             </td>
                             <td scope="row">
-                                Q {{cuenta_estado.late_fee_paid}}
+                                Q{{cuenta_estado.Flate_fee_paid}}
                             </td>
                             <td scope="row">
-                                Q {{cuenta_estado.interest_paid}}
+                                Q{{cuenta_estado.Finterest_paid}}
                             </td>
                             <td scope="row">
-                                Q {{cuenta_estado.capital_paid}}
+                                Q{{cuenta_estado.Fcapital_paid}}
                             </td>
                             <td scope="row">
-                                Q {{cuenta_estado.saldo_pendiente}}
+                                Q{{cuenta_estado.Fsaldo_pendiente}}
                             </td>
 
 
 
                         </tr>
                         {% endfor %}
+                        <tr style="border-top: 1px solid black;">
+                            <td colspan="10"></td>
+
+                        </tr>
+                        <tr style="border-top: 1px solid black;">
+                            <td colspan="10"></td>
+
+                        </tr>
 
 
 
 
                         <tr>
                             <th scope="row" colspan="5" class="text-center">TOTALES</th>
-                            <td>Q {{total_desembolsos}}</td>
-                            <td>Q {{total_moras}}</td>
-                            <td>Q {{total_intereses}}</td>
-                            <td>Q {{total_capitales}}</td>
+                            <td>Q{{total_desembolsos}}</td>
+                            <td>Q{{total_moras}}</td>
+                            <td>Q{{total_intereses}}</td>
+                            <td>Q{{total_capitales}}</td>
                             <td></td>
 
                         </tr>
-                        <tr style="margin-top: 1rem; text-align: center;">
-                            <td colspan="10">SIGUIENTE CUOTA</td>
-                        </tr>
+
 
 
 
                     </tbody>
                 </table>
-                <table class="table ">
-                    <thead>
-                        <tr>
-                            <th scope="col">Fecha de Inicio</th>
-                            <th scope="col">Fecha de Vencimiento</th>
-                            <th scope="col">Fecha Limite de Pago</th>
-                            <th scope="col">Mora Acumulado</th>
-                            <th scope="col">Interes Acumulado</th>
-                            <th scope="col">Capital</th>
-                            <th scope="col">Cuota A Cancelar</th>
-                            <th scope="col" colspan="2">Saldo A Capital Pendiente</th>
 
-
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">{{siguiente_pago.start_date}}</td>
-                            <td scope="row">{{siguiente_pago.due_date}}</td>
-                            <td scope="row">{{siguiente_pago.mostrar_fecha_limite}}</td>
-                            <td scope="row">Q {{siguiente_pago.mora}}</td>
-                            <td scope="row">Q {{siguiente_pago.interest}}</td>
-                            <td scope="row">Q {{siguiente_pago.calculo_capital}}</td>
-                            <td scope="row">Q {{siguiente_pago.total}}</td>
-                            <td scope="row" colspan="2">Q {{siguiente_pago.saldo_pendiente}}</td>
-
-
-
-                        </tr>
-
-                    </tbody>
-
-
-
-                </table>
             </div>
         </div>
 
