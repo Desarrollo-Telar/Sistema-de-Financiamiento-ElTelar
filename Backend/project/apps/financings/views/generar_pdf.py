@@ -21,6 +21,10 @@ from datetime import datetime,timedelta
 # Obtener la fecha y hora actual
 now = datetime.now()
 
+def formatear_numero(numero):
+    # Convertir el número a un formato con coma para miles y punto para decimales
+    return f"{numero:,.2f}".replace(".", "X").replace(".", ",").replace("X", ".")
+
 def actualizacion(credito):
     pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
     
@@ -34,25 +38,25 @@ def total_desembolsos(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
         contador+=estado.disbursement_paid
-    return contador
+    return formatear_numero(contador)
 
 def total_mora_pagada(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
         contador+=estado.late_fee_paid
-    return contador
+    return formatear_numero(contador)
 
 def total_interes_pagada(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
         contador+=estado.interest_paid
-    return contador
+    return formatear_numero(contador)
 
 def total_capital_pagada(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
         contador+=estado.capital_paid
-    return contador
+    return formatear_numero(contador)
 
 
 def render_pdf_factura(request,id):    
@@ -80,7 +84,7 @@ def render_pdf_estado_cuenta(request,id):
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
     siguiente_pago = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
 
-    template_path = 'financings/credit/estado_cuenta/detail.html'
+    template_path = 'financings/credit/estado_cuenta/pdf.html'
     template = get_template(template_path)
     actualizacion(credito)
     context = {
@@ -97,7 +101,7 @@ def render_pdf_estado_cuenta(request,id):
 
     html = template.render(context)
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="Estado de Cuenta.pdf"'
+    response['Content-Disposition'] = ' filename="Estado de Cuenta.pdf"'
     HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
 
     return response
