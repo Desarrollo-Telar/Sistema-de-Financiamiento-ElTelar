@@ -5,6 +5,8 @@ from .credit import Credit
 
 from apps.customers.clases.customer import Customer
 from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
+# FORMATO
+from apps.financings.formato import formatear_numero
 
 class PaymentPlan:
     contador = 0
@@ -88,6 +90,7 @@ class PaymentPlan:
             'fecha_inicio': mes_inicial,
             'fecha_final': mes_final,
             'monto_prestado': self.monto_inicial,
+            'fmonto_prestado': formatear_numero(self.monto_inicial),
             'mora': 0,
         }
         intereses = self.calculo_intereses(dias_diferencia, self.monto_inicial)
@@ -101,10 +104,14 @@ class PaymentPlan:
 
         dicio.update({
             'intereses': intereses,
+            'fintereses':formatear_numero(intereses),
             'capital': capital,
+            'fcapital':formatear_numero(capital),
             'cuota': cuota,
+            'fcuota': formatear_numero(cuota),
             'saldo_pendiente': 0,
             'total': cuota,
+            'ftotal': formatear_numero(cuota),
             'estado': 'PENDIENTE'
         })
         return dicio
@@ -129,8 +136,10 @@ class PaymentPlan:
                 'fecha_inicio': mes_inicial,
                 'fecha_final': mes_final,
                 'monto_prestado': monto_prestado,
+                'fmonto_prestado': formatear_numero(monto_prestado),
                 'mora':0,
-                'intereses': intereses
+                'intereses': intereses,
+                'fintereses':formatear_numero(intereses),
             }
             if self.forma_pago == 'NIVELADA':
                 cuota = self.calculo_cuota()
@@ -140,9 +149,12 @@ class PaymentPlan:
                 cuota = self.calculo_cuota(intereses, capital)
             dicio.update({
                 'capital': capital,
+                'fcapital':formatear_numero(capital),
                 'cuota': cuota,
+                'fcuota': formatear_numero(cuota),
                 'saldo_pendiente':0,
                 'total':cuota,
+                'ftotal': formatear_numero(cuota),
                 'estado':'PENDIENTE'
             })
             self.__plan.append(dicio)

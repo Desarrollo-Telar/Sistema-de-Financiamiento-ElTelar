@@ -1,7 +1,7 @@
 {% load static %}
 <div class="row">
-    <div class="col-12">
-        <table class="table">
+    <div class="table-responsive">
+        <table class="table align-middle">
             <thead>
                 <tr>
                     <th scope="col">Mes</th>
@@ -26,26 +26,25 @@
                         {{pago.fecha_final}}
                     </td>
                     <td>
-                        Q {{pago.monto_prestado}}
+                        Q{{pago.fmonto_prestado}}
                     </td>
                     <td>
-                        Q {{pago.intereses}}
+                        Q{{pago.fintereses}}
                     </td>
                     <td>
-                        Q {{pago.capital}}
+                        Q{{pago.fcapital}}
                     </td>
                     <td>
-                        Q {{pago.cuota}}
+                        Q{{pago.fcuota}}
                     </td>
 
                 </tr>
                 {% endfor %}
                 <tr>
                     <td style="background-color: black; color: white;" colspan="4">TOTALES</td>
-
-                    <td style="background-color: black; color: white;">Q {{total_interes}}</td>
-                    <td style="background-color: black; color: white;">Q {{total_capital}}</td>
-                    <td style="background-color: black; color: white;">Q {{total_cuota}}</td>
+                    <td style="background-color: black; color: white;">Q{{total_interes}}</td>
+                    <td style="background-color: black; color: white;">Q{{total_capital}}</td>
+                    <td style="background-color: black; color: white;">Q{{total_cuota}}</td>
                 </tr>
 
             </tbody>

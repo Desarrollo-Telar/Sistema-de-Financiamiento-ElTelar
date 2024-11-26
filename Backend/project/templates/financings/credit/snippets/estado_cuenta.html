@@ -73,12 +73,7 @@
                             {% endif %}
 
                         </td>
-                        <td>
-                            <a href="{% url 'financings:factura' cuenta_estado.payment.id %}">Ver factura</a>
 
-
-
-                        </td>
                     </tr>
 
                     {% endfor %}
@@ -95,61 +90,14 @@
                         <td></td>
 
                     </tr>
-                    <tr style="margin-top: 1rem; text-align: center;">
-                        <td colspan="11">SIGUIENTE CUOTA</td>
-                    </tr>
-                    <tr>
-                        <th scope="col">Fecha de Inicio</th>
-                        <th scope="col">Fecha de Vencimiento</th>
-                        <th scope="col">Fecha Limite de Pago</th>
-                        <th scope="col">Mora Acumulado</th>
-                        <th scope="col">Interes Acumulado</th>
-                        <th scope="col">Capital</th>
-                        <th scope="col">Cuota A Cancelar</th>
-                        <th scope="col" colspan="2">Saldo A Capital Pendiente</th>
-                        <th colspan="2"></th>
-
-                    </tr>
-                    <tr>
-                        <td scope="row">{{siguiente_pago.start_date}}</td>
-                        <td scope="row">{{siguiente_pago.due_date}}</td>
-                        <td scope="row">{{siguiente_pago.mostrar_fecha_limite}}</td>
-                        <td scope="row">
-                            Q{{siguiente_pago.formato_cuota_mora}}
-                        </td>
-                        <td scope="row">
-                            Q{{siguiente_pago.formato_cuota_interes}}
-                        </td>
-                        <td scope="row">
-                            Q{{siguiente_pago.formato_cuota_capital}}
-                        </td>
-                        <td scope="row">
-                            Q{{siguiente_pago.formato_cuota_total}}
-
-                        </td>
-                        <td scope="row" colspan="2">Q{{siguiente_pago.formato_cuota_saldo_pendiente}}</td>
 
 
-                        <td scope="row" colspan="2" style="text-align: center;">
-                            <a href="{% url 'financings:paymente_update_cuota' siguiente_pago.id %}">Modificar</a>
-
-                        </td>
-                    </tr>
-                    <tr style="margin-top: 1rem; text-align: center;">
-                        <td colspan="11">
-                            <a href="{% url 'financings:estado_cuenta' credit_list.id %}">ESTADO DE CUENTA</a>
-                        </td>
-
-
-
-                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <hr>
+
 
 
 
 </div>
-<!-- CONENCTORES -->
