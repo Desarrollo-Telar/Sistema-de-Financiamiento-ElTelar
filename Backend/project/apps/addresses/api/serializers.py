@@ -9,10 +9,10 @@ class AddressSerializaer(serializers.ModelSerializer):
         model = Address
         fields = '__all__'
 
-class MuniciopioSerializaer(serializers.ModelSerializer):
+class MunicipioSerializaer(serializers.ModelSerializer):
     class Meta:
         model = Municiopio
-        fields = '__all__'
+        fields = ['id','nombre','depart']
 
 class DepartamentoSerializaer(serializers.ModelSerializer):
     class Meta:

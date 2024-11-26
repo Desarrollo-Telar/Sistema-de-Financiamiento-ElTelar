@@ -47,7 +47,7 @@ class Departamento(models.Model):
         verbose_name_plural = 'Departamentos'
 
 class Municiopio(models.Model):
-    nombre = models.CharField("Nombre del Municiopio", max_length=120, blank=False, null=False, unique=True)
+    nombre = models.CharField("Nombre del Municipio", max_length=120, blank=False, null=False, unique=True)
     depart = models.ForeignKey(Departamento, on_delete=models.CASCADE, blank=False, null=False)
 
     def __str__(self):
