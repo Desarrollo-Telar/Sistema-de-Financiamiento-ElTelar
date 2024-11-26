@@ -15,68 +15,9 @@ const fecha_inicio = document.getElementById('fecha_inicio');
 const tipo_credito = document.getElementById('tipo_credito');
 const customer_id = document.getElementById('customer_id');
 const tbody_plan = document.getElementById('tbody_plan');
-/*
-function generar_plan() {
-    tbody_plan.innerHTML = '';
-
-    const fechaInicioValue = new Date(fecha_inicio.value);
 
 
-    let credito = new Credit(proposito.value, monto.value, plazo.value, tasa_interes.value, forma_de_pago.value, 'MENSUAL', fechaInicioValue, tipo_credito.value, null, customer_id.value);
 
-    let plan_pago = new PaymentPlan(credito);
-    let plan = plan_pago.generarPlan();
-    console.log(credito.toJSON());
-    plan.forEach(element => {
-        var nueva_fila = tbody_plan.insertRow();
-        var mes = nueva_fila.insertCell(0);
-        mes.textContent = element['mes'];
-        var fechaIni = nueva_fila.insertCell(1);
-        fechaIni.textContent = transformarFecha(element['fecha inicio']);
-        var fechaVenc = nueva_fila.insertCell(2);
-        fechaVenc.textContent = transformarFecha(element['fecha final']);
-        var monto = nueva_fila.insertCell(3);
-        monto.textContent = 'Q' + element['monto_prestado'];
-        var interes = nueva_fila.insertCell(4);
-        interes.textContent = 'Q' + element['intereses'];
-        var capital = nueva_fila.insertCell(5);
-        capital.textContent = 'Q' + element['capital'];
-        var cuota = nueva_fila.insertCell(6);
-        cuota.textContent = 'Q' + element['cuota'];
-    });
-}
-*/
-/*
-function generar_plan() {
-    tbody_plan.innerHTML = '';
-
-    const fechaInicioValue = new Date(fecha_inicio.value);
-
-    let credito = new Credit(proposito.value, monto.value, plazo.value, tasa_interes.value, forma_de_pago.value, 'MENSUAL', fechaInicioValue, tipo_credito.value, null, customer_id.value);
-    let plan_pago = new PaymentPlan(credito);
-    let plan = plan_pago.generarPlan();
-
-    console.log(credito.toJSON());
-
-    plan.forEach(element => {
-        var nueva_fila = tbody_plan.insertRow();
-        var mes = nueva_fila.insertCell(0);
-        mes.textContent = element['mes'];
-        var fechaIni = nueva_fila.insertCell(1);
-        fechaIni.textContent = transformarFecha(element['fecha inicio']);
-        var fechaVenc = nueva_fila.insertCell(2);
-        fechaVenc.textContent = transformarFecha(element['fecha final']);
-        var monto = nueva_fila.insertCell(3);
-        monto.textContent = 'Q' + element['monto_prestado'];
-        var interes = nueva_fila.insertCell(4);
-        interes.textContent = 'Q' + element['intereses'];
-        var capital = nueva_fila.insertCell(5);
-        capital.textContent = 'Q' + element['capital'];
-        var cuota = nueva_fila.insertCell(6);
-        cuota.textContent = 'Q' + element['cuota'];
-    });
-}
-*/
 function generar_plan() {
     tbody_plan.innerHTML = '';
 
@@ -123,42 +64,7 @@ function transformarFecha(ele) {
 }
 
 document.getElementById('generar_plan').onclick = generar_plan;
-/*
-document.getElementById('credito').addEventListener('submit', async function (event) {
-    event.preventDefault();
 
-
-
-    
-    try {
-        let credito = new Credit();
-        credito.proposito = proposito.value;
-        credito.monto = monto.value;
-        credito.plazo = plazo.value;
-        credito.tasaInteres = tasa_interes.value; // Asegúrate de que este valor es el correcto
-        credito.formaDePago = forma_de_pago.value;
-        credito.frecuenciaPago = 'MENSUAL';
-        credito.fechaInicio = new Date(fecha_inicio.value);
-        credito.tipoCredito = tipo_credito.value;
-        credito.customerId = customer_id.value;
-        credito.fechaVencimiento = new Date(fecha_inicio.value); // Corregido para obtener la fecha de vencimiento correcta
-        credito.fechaVencimiento.setFullYear(credito.fechaVencimiento.getFullYear() + 1);
-        
-        console.log(credito.toJSON());
-
-        const credi = await registrarCredito('http://127.0.0.1:8000/financings/api/credit/', credito);
-        console.log('Credito Registrado', credi);
-        const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/',credi.id)
-        console.log(garantia)
-        alert('¡Formulario enviado con éxito!');
-        window.location.href = '/customers/';
-    } catch (error) {
-        console.error('Error al registrar los datos:', error);
-        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
-    }
-    
-});
-*/
 document.getElementById('credito').addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -186,7 +92,14 @@ document.getElementById('credito').addEventListener('submit', async function (ev
             const desembolsos = await registrarDesembolso(urls_p.api_url_desembolso,credi.id);
             console.log(desembolsos)
 
-            alert('¡Formulario enviado con éxito!');
+           
+            Swal.fire({
+                icon: "success",
+                title: `Registro Completado`,
+                text: '¡Formulario enviado con éxito!',
+                timer: 3000,
+                showConfirmButton: false,
+            });
             window.location.href = `/financings/credit/${credi.id}`;
 
         }else{

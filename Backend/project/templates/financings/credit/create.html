@@ -196,6 +196,15 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript">
+    // Obtener el protocolo (HTTP/HTTPS)
+    const protocolo = window.location.protocol; // Ejemplo: "https:"
+
+    // Obtener el dominio (hostname)
+    const dominio = window.location.hostname; // Ejemplo: "example.com"
+
+    // Obtener el puerto
+    const puerto = window.location.port; // Ejemplo: "8080" o "" si no está explícito
+
     const plazo = document.getElementById('plazo');
     const fecha_inicio = document.getElementById('fecha_inicio');
     const fecha_vencimiento = document.getElementById('fecha_vencimiento');
@@ -219,13 +228,14 @@
         }
     });
 
-
+    const baseUrl = `${protocolo}//${dominio}${puerto ? `:${puerto}` : ''}`;
+    console.log(`Base URL: ${baseUrl}`);
 
     $(document).ready(function () {
         $(".customer_id").select2({
             width: 'resolve',
             ajax: {
-                url: 'https://www.ii-eltelarsa.com/customers/api/customers/',
+                url: `${baseUrl}/customers/api/customers/`,
                 dataType: 'json',
                 delay: 250,
                 processResults: function (data) {
@@ -255,7 +265,8 @@
         $(".customer_id_fiador").select2({
             width: 'resolve',
             ajax: {
-                url: 'https://www.ii-eltelarsa.com/customers/api/customers/',
+                url: `${baseUrl}/customers/api/customers/`,
+
                 dataType: 'json',
                 delay: 250,
                 processResults: function (data) {
@@ -283,7 +294,8 @@
             minimumInputLength: 1
         });
         async function fetchInformacion_laboral() {
-            return fetch('https://www.ii-eltelarsa.com/financial_information/api/working_information/')
+
+            return fetch(`${baseUrl}/financial_information/api/working_information/`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Error al momento de obtener informacion laboral ' + response.statusText);
@@ -301,7 +313,8 @@
 
         }
         async function fetchOtraInformacion_laboral() {
-            return fetch('https://www.ii-eltelarsa.com/financial_information/api/other_sources/')
+
+            return fetch(`${baseUrl}/financial_information/api/other_sources/`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Error al momento de obtener informacion laboral ' + response.statusText);
@@ -367,7 +380,7 @@
                 });
 
                 // Realizar una solicitud para obtener detalles adicionales del cliente
-                const response = await fetch(`https://www.ii-eltelarsa.com/customers/api/customers/${clienteId}/`);
+                const response = await fetch(`${baseUrl}/customers/api/customers/${clienteId}/`);
                 if (!response.ok) {
                     throw new Error(`Error en la solicitud: ${response.statusText}`);
                 }

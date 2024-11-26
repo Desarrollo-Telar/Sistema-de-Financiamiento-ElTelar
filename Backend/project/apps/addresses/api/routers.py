@@ -9,7 +9,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'address', views.AddressViewSet,'direccion')
 router.register(r'departamento', views.DepartamentoViewSet,'departamento')
-router.register(r'municiopio', views.MuniciopioViewSet,'municipio')
+router.register(r'municipio', views.MuniciopioViewSet,'municipio')
 urlpatterns = [
     path('api/', include(router.urls)),
 ]
