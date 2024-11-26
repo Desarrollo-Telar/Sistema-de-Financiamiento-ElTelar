@@ -20,6 +20,8 @@ from django.db.models import Q
 # FORMULARIO
 from apps.financings.forms import PaymentPlanForms
 
+# Manejo de mensajes
+from django.contrib import messages
 # Create your views here.
 
 ### ---------------- ACTUALIZAR --------------------
@@ -95,14 +97,20 @@ def update_cuota(request, id):
 @login_required
 @usuario_activo
 def generar_factura(request,id):
-    recibo = get_object_or_404(Recibo, id=id)
-    recibo.factura = True
-    recibo.save()
-    """
-    factura = Invoice()
-    factura.recibo_id = recibo
-    factura.save()
-    """
+    pago = get_object_or_404(Payment, id=id)
+    
+    recibo = get_object_or_404(Recibo, pago=pago)
+    print(recibo.factura)
+    if not recibo.factura:
+        recibo.factura = True
+        recibo.save()
+    
+        factura = Invoice()
+        factura.recibo_id = recibo
+        factura.save()
+
+        messages.success(request, 'Factura Creada')
+    
 
     return redirect('financings:detail_credit',recibo.pago.credit.id)
 

@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # MODELS
-from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice
+from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
 
 class CreditSerializer(serializers.ModelSerializer):
     class Meta:
@@ -75,4 +75,9 @@ class PaymentSerializer(serializers.ModelSerializer):
 class FacturaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invoice
+        fields = '__all__'
+
+class ReciboSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recibo
         fields = '__all__'

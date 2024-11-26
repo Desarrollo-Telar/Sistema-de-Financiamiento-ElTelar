@@ -10,6 +10,9 @@ from django.utils import timezone
 # CONVERTIR LOS NUMEROS A LETRAS
 from num2words import num2words
 
+# FORMATO
+from apps.financings.formato import formatear_numero
+
 class Recibo(models.Model):
     fecha = models.DateField('Fecha De Recibo',default=timezone.now)
     recibo = models.IntegerField("No. Recibo", default=0)
@@ -22,6 +25,15 @@ class Recibo(models.Model):
     aporte_capital = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     total  = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     factura = models.BooleanField(default=False)
+
+    def Fmora_pagada(self):
+        return formatear_numero(self.mora_pagada)
+    
+    def Finteres_pagado(self):
+        return formatear_numero(self.interes_pagado)
+    
+    def Faporte_capital(self):
+        return formatear_numero(self.aporte_capital)
 
     def total_letras(self):
         total = num2words(self.total,lang='es')

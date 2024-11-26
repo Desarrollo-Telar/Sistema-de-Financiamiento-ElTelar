@@ -12,6 +12,8 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from project.decorador import usuario_activo
 from django.utils.decorators import method_decorator
+# Manejo de mensajes
+from django.contrib import messages
 
 from datetime import datetime,timedelta
 # Obtener la fecha y hora actual
@@ -194,16 +196,27 @@ def detalle_boleta(request,id):
 @login_required
 @usuario_activo
 def detalle_factura(request,id):
-    recibo = get_object_or_404(Recibo, id=id)
+    pago = get_object_or_404(Payment, id=id)
+    
+    recibo = get_object_or_404(Recibo, pago=pago)
     if not recibo.factura:
-        return redirect(request.META.get('HTTP_REFERER', '/'))
-    factura = Invoice.objects.filter(Q(recibo_id=recibo))
+        messages.error(request, 'Este pago no tiene factura')
+        recibo.factura = True
+        recibo.save()
+    
+        factura = Invoice()
+        factura.recibo_id = recibo
+        factura.save()
+        messages.success(request, 'Factura creada')
+    
+    factura = Invoice.objects.filter(Q(recibo_id=recibo)).first()
+    print(factura)
  
     template_name = 'financings/credit/factura/detail.html'
     context = {
         'title':'ELTELAR',
-        #'factura':factura,
-        #'recibo':recibo
+        'factura':factura,
+        'recibo':recibo
     }
     return render(request,template_name,context)
 
