@@ -7,6 +7,9 @@ from decimal import Decimal
 from apps.customers.models import Customer
 from apps.InvestmentPlan.models import InvestmentPlan
 
+# FORMATO
+from apps.financings.formato import formatear_numero
+
 class Credit(models.Model):
     formaPago = [
         ('NIVELADA', 'NIVELADA'),
@@ -55,6 +58,12 @@ class Credit(models.Model):
     def save(self, *args, **kwargs):
         self.calcular_fecha_vencimiento()
         super().save(*args, **kwargs)
+    
+    def formato_monto(self):
+        return formatear_numero(self.monto)
+    
+    def formato_saldo_actual(self):
+        return formatear_numero(self.saldo_actual)
 
     class Meta:
         verbose_name = "Credito"

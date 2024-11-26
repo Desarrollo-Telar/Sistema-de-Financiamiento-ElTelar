@@ -3,32 +3,13 @@
 {% block content %}
 <div class=" row box">
     <div class="row">
-        <div class="col" style="padding: 2.5rem">
-            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Creditos</span> !</h3>
-            <div class="d-flex justify-content-center fs-5">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{% url 'financings:list_credit' %}">Creditos</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+        {% include 'financings/credit/snippets/presentation.html' %}
 
-                    </ol>
-                </nav>
-            </div>
-            <p>
-                Bienvenido al módulo de Creditos. Este módulo te permite administrar todos
-                los aspectos relacionados con los creditos de la plataforma.
-            </p>
-            <p>
-                Este módulo está diseñado para brindarte el control y la flexibilidad
-                necesarios para administrar eficazmente el registro de los creditos de los clientes en la
-                plataforma.
-            </p>
-        </div>
     </div>
     <hr />
     <div class="row">
         <div class="col d-flex flex-row-reverse">
-            <a class="btn_add" href="{% url 'financings:create_credit'%}">Añadir Credito Nuevo</a>
+            <a class="btn_guardar" href="{% url 'financings:create_credit'%}">Añadir Credito Nuevo</a>
         </div>
 
     </div>
@@ -41,10 +22,11 @@
     <div class="row" style="margin-top: 2rem;">
         {% include 'financings/credit/table/table.html' %}
     </div>
+    {% if page_obj %}
+    {% include 'snippets/pages.html' %}
+    {% endif %}
 
 </div>
-{% if page_obj %}
-{% include 'snippets/pages.html' %}
-{% endif %}
+
 
 {% endblock%}

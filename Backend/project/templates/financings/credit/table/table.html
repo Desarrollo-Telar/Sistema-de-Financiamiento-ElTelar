@@ -47,19 +47,19 @@
                         <td scope="row">
                             <a style="text-decoration: none; color: black;"
                                 href="{% url 'financings:detail_credit' credit.id %}">
-                                Q <span>{{credit.monto}}</span>
+                                <span>Q{{credit.formato_monto}}</span>
                             </a>
                         </td>
                         <td scope="row">
                             <a style="text-decoration: none; color: black;"
                                 href="{% url 'financings:detail_credit' credit.id %}">
-                                {{credit.plazo}} Meses
+                                {{credit.plazo}}Meses
                             </a>
                         </td>
                         <td scope="row">
                             <a style="text-decoration: none; color: black;"
                                 href="{% url 'financings:detail_credit' credit.id %}">
-                                % {{credit.tasa_interes}}
+                                {{credit.tasa_mensual}}%
                             </a>
                         </td>
                         <td scope="row">
