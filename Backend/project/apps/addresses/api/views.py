@@ -22,3 +22,9 @@ class MuniciopioViewSet(viewsets.ModelViewSet):
 class DepartamentoViewSet(viewsets.ModelViewSet):
     serializer_class = DepartamentoSerializaer
     queryset = Departamento.objects.all()
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
+        if search_term:
+            queryset = queryset.filter(nombre__icontains=search_term)  # Filtrar por el término de búsqueda
+        return queryset

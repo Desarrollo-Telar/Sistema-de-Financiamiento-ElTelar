@@ -17,4 +17,4 @@ class MuniciopioSerializaer(serializers.ModelSerializer):
 class DepartamentoSerializaer(serializers.ModelSerializer):
     class Meta:
         model = Departamento
-        fields = '__all__'
+        fields = ['id', 'nombre']

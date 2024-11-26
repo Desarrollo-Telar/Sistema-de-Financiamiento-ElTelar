@@ -39,13 +39,20 @@ class Address(models.Model):
 
 class Departamento(models.Model):
     nombre = models.CharField("Nombre del Departamento", max_length=120, blank=False, null=False)
+    def __str__(self):
+        return f'{self.nombre}'
+        
     class Meta:
         verbose_name ='Departamento'
         verbose_name_plural = 'Departamentos'
 
 class Municiopio(models.Model):
-    nombre = models.CharField("Nombre del Municiopio", max_length=120, blank=False, null=False)
+    nombre = models.CharField("Nombre del Municiopio", max_length=120, blank=False, null=False, unique=True)
     depart = models.ForeignKey(Departamento, on_delete=models.CASCADE, blank=False, null=False)
+
+    def __str__(self):
+        return f'{self.nombre}'
+
     class Meta:
-        verbose_name ='Municiopio'
+        verbose_name ='Municipio'
         verbose_name_plural = 'Municipios'

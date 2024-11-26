@@ -127,3 +127,12 @@ def addressUpdateView(request, id,customer_code):
         }
 
         return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def crear_municipio(request):
+    template_name = 'addresses/created_municipio.html'
+    context = {
+        'title':'ELTELAR'
+    }
+    return render(request, template_name, context)
