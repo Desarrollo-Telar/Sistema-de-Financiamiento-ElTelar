@@ -17,6 +17,7 @@ router.register(r'factura',views.FacturaViewSet,'factura')
 router.register(r'recibo',views.ReciboViewSet,'recibo')
 router.register(r'cuota',views.PaymentPlanUltimoViewSet,'cuota')
 router.register(r'cuotas',views.PaymentPlanViewSet,'cuotas')
+router.register(r'estado_cuenta',views.EstadoCuentaViewSet,'estado_cuenta')
 urlpatterns = [
     path('api/', include(router.urls)),
 ]

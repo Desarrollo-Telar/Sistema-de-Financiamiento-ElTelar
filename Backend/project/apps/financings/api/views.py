@@ -1,15 +1,19 @@
 # Serializador
 from .serializers import CreditSerializer, GuaranteesSerializer, DetailsGuaranteesSerializer, DisbursementSerializer, FacturaSerializer, ReciboSerializer
-from .serializers import PaymentSerializer, PaymentPlanSerializer
+from .serializers import PaymentSerializer, PaymentPlanSerializer, EstadoCuentaSerializer
 # MODELS
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
-from apps.financings.models import PaymentPlan
+from apps.financings.models import PaymentPlan, AccountStatement
 
 # API
 from rest_framework import viewsets, status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.db.models import Q
+
+class EstadoCuentaViewSet(viewsets.ModelViewSet):
+    serializer_class = EstadoCuentaSerializer
+    queryset = AccountStatement.objects.all()
 
 class CreditViewSet(viewsets.ModelViewSet):
     serializer_class = CreditSerializer

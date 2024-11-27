@@ -9,7 +9,18 @@ from dateutil.relativedelta import relativedelta
 
 # MODELS
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
-from apps.financings.models import PaymentPlan
+from apps.financings.models import PaymentPlan, AccountStatement
+
+# ------------ FUNCIONES ----------------------
+def mostrar_fecha_limite(fecha_limite):
+        limite = fecha_limite - relativedelta(days=1)
+        #limite = fecha_limite.replace(hour=5, minute=59, second=0, microsecond=0)
+        return limite
+
+def total(capital, interes,mora):
+    total = 0
+    total = interes + mora + capital
+    return formatear_numero(total)
 
 class CreditSerializer(serializers.ModelSerializer):
     class Meta:
@@ -90,16 +101,11 @@ class ReciboSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class EstadoCuentaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AccountStatement
+        fields = '__all__'
 
-def mostrar_fecha_limite(fecha_limite):
-        limite = fecha_limite - relativedelta(days=1)
-        #limite = fecha_limite.replace(hour=5, minute=59, second=0, microsecond=0)
-        return limite
-
-def total(capital, interes,mora):
-    total = 0
-    total = interes + mora + capital
-    return formatear_numero(total)
 
 class PaymentPlanSerializer(serializers.ModelSerializer):
     class Meta:
