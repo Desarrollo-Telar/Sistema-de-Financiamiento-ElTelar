@@ -8,8 +8,6 @@
     
 }
 
-
-
 .btn_edit{
     background-color: #0B090A;
     color: #efefef;
@@ -48,4 +46,17 @@
     border:#e5383b 1px solid;
     color: white;
     
+}
+.btn_siguiente{
+    background-color:#fef2f2 ;
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    border: 1px solid #fea3a5;
+    color: #ba181b;
+}
+
+.btn_siguiente:hover{
+    color: #fef2f2;
+    background-color:#e02226 ;
 }

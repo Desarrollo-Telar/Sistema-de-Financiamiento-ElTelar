@@ -8,7 +8,7 @@
 
 
 {% block content %}
-<div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+<div class="box">
 
 
     <form method="POST" enctype="multipart/form-data" autocomplete="off" id="customer">
@@ -19,13 +19,14 @@
         <input type="text" value="{{user_id}}" style="display: none;" id="user_id">
         <div class="row">
             <div class="col-12" style="display: flex; align-items: end; justify-content: end">
-                <a type="button" class="cancelar" href=" {% url 'customers:customers' %}"><svg
+                <a type="button" class="btn_cancel" href=" {% url 'customers:customers' %}"><svg
                         xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-right:0.5rem"
                         fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                         <path
                             d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
                     </svg>Cancelar</a>
             </div>
+            <!-- INFORMACION PERSONAL-->
             <div id="PersonalInformation">
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
@@ -39,28 +40,29 @@
 
                 <div class="row" style="margin-top: 3rem">
                     <hr />
-                    <div class="col">
-                        <a type="button" class="cancelar" href=" {% url 'customers:customers' %}">
+                    <div class="d-flex">
+                        <a type="button" class="btn_cancel" href=" {% url 'customers:customers' %}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-right:0.5rem"
                                 fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                 <path
                                     d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-                            </svg>Cancelar</a>
-                    </div>
-
-                    <div class="col">
+                            </svg>Cancelar
+                        </a>
                         <a type="button" style="cursor: pointer"
                             onclick="mostrarOcultar('WorkingInformation','PersonalInformation')"
-                            class="siguiente">Siguiente
+                            class="btn_siguiente">Siguiente
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-left: 0.5rem"
                                 fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                            </svg></a>
+                            </svg>
+                        </a>
                     </div>
+
+
                 </div>
             </div>
-
+            <!-- INFORMACION FINANCIERA-->
             <div id="WorkingInformation" style="display: none;">
                 <hr />
                 <div class="row">
@@ -75,19 +77,17 @@
                 <div class="row" style="margin-top: 3rem">
                     <hr />
 
-                    <div class="col">
+                    <div class="d-flex">
                         <a type="button" onclick="mostrarOcultar('WorkingInformation','PersonalInformation')"
-                            class="anterior">
+                            class="btn_cancel">
                             <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5rem" width="20" height="20"
                                 fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                             </svg>Anterior
                         </a>
-                    </div>
-                    <div class="col">
                         <a type="button" onclick="mostrarOcultar('InvestmentPlan','WorkingInformation')"
-                            class="siguiente">
+                            class="btn_siguiente">
                             Siguiente
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-left: 0.5rem"
                                 fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
@@ -96,9 +96,10 @@
                             </svg>
                         </a>
                     </div>
+
                 </div>
             </div>
-
+            <!-- DESTINO-->
             <div id="InvestmentPlan" style="display: none">
                 <hr />
                 <div class="row">
@@ -113,23 +114,22 @@
                 <div class="row" style="margin-top: 3rem">
                     <hr />
 
-                    <div class="col">
+                    <div class="d-flex">
                         <a type="button" onclick="mostrarOcultar('InvestmentPlan','WorkingInformation', 'agregar')"
-                            class="anterior"><svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5rem"
+                            class="btn_cancel"><svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5rem"
                                 width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                             </svg>Anterior</a>
-                    </div>
-                    <div class="col">
                         <a type="button" onclick="mostrarOcultar('References','InvestmentPlan','agregar')"
-                            class="siguiente">Siguiente
+                            class="btn_siguiente">Siguiente
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-left: 0.5rem;"
                                 fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
                             </svg></a>
                     </div>
+
                 </div>
             </div>
 
@@ -149,7 +149,7 @@
 
                     <div class="col">
                         <a type="button" onclick="mostrarOcultar('References','InvestmentPlan', 'agregar')"
-                            class="anterior"><svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5rem"
+                            class="btn_cancel"><svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5rem"
                                 width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
@@ -203,28 +203,20 @@
         <br />
         <div id="agregar" style="display: none; margin-top: 5rem">
             <hr />
-            <div class="col">
-                <a type="button" class="cancelar" href=" {% url 'customers:customers' %}"><svg
+            <div class="d-flex">
+                <a type="button" class="btn_cancel" href=" {% url 'customers:customers' %}"><svg
                         xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-right:0.5rem"
                         fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                         <path
                             d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
                     </svg>Cancelar
                 </a>
-
-            </div>
-            <div class="col">
-                <button type="submit" style="
-        background-color: #161a1d;
-        color: #effaf3;
-        border: 1px solid #161a1d;
-        padding: 0.5rem 1rem;
-        border-radius: 2rem;
-      ">
+                <button type="submit" class="btn_guardar">
                     {{accion}}
                 </button>
 
             </div>
+
         </div>
 
     </form>
