@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     #'anymail',
     'apps.users',
+    'apps.actividades',
     'apps.customers',
     'apps.roles',
     'crispy_forms',
