@@ -9,30 +9,37 @@
 <div class=" row box">
     <div class="row">
         {% include 'customer/snippets/presentation.html' %}
-
     </div>
     <hr>
     <div class="row" style="margin-bottom: 2rem">
-        <div class="col d-flex flex-row-reverse">
-            <a class="btn_guardar" href="{% url 'customers:create'%}">Añadir cliente nuevo</a>
+        <div class="col">
+            <p class="text-body-secondary fs-6 text-uppercase">TOTAL DE TODOS LOS CLIENTES REGISTRADOS {{message}}:
+                <span class="badge rounded-pill text-bg-dark">{{count}}</span>
+            </p>
         </div>
-        <div class="row" style="display: flex; align-items: center; justify-content: end; margin-top: 2rem;">
-
-
-            <div class="col-6" style="display: flex; align-items: center; justify-content: end;">
-                {% include 'customer/snippets/search.html' with query=query %}
-
-            </div>
-            <div class="col-1">
-                {% include 'customer/snippets/filters.html' %}
-            </div>
-        </div>
-
-
     </div>
-    <p class="text-body-secondary fs-6 text-uppercase">TOTAL DE TODOS LOS CLIENTES REGISTRADOS {{message}}: <span
-            class="badge rounded-pill text-bg-dark">{{count}}</span> </p>
-    <hr>
+
+    <div class="row" style="margin-bottom: 2rem;">
+        <div class="col d-flex justify-content-start" style="display: flex; align-items: center; justify-content: end;">
+            {% include 'customer/snippets/search.html' with query=query %}
+
+        </div>
+        <div class="col d-flex flex-row-reverse">
+            <a class="btn_guardar" href="{% url 'customers:create'%}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                </svg>
+                Añadir cliente nuevo</a>
+        </div>
+        <div class="col-1">
+            {% include 'customer/snippets/filters.html' %}
+        </div>
+    </div>
+
+
+
     {% include 'customer/table/table.html' %}
     <hr>
     {% if page_obj %}

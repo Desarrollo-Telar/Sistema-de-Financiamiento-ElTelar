@@ -132,6 +132,7 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
             "cuota_vencida":instance.cuota_vencida,
             'total_cancelar': total(instance.principal,instance.interest,instance.mora),
             "credit_id":{
-                "id":instance.credit_id.id
+                "id":instance.credit_id.id,
+                "codigo_credito":instance.credit_id.codigo_credito,
             }
         }

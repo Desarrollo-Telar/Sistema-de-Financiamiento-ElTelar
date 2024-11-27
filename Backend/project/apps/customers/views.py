@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
+# Manejo de mensajes
+from django.contrib import messages
+
 # Models
 from .models import Customer
 from apps.addresses.models import Address
@@ -121,6 +124,7 @@ def add_customer(request):
 # ----- BUSCAR CLIENTES ----- #
 class CustomerSearch(ListView):
     template_name = 'customer/search.html'
+    paginate_by = 25
 
     def get_queryset(self):
         try:
@@ -141,6 +145,7 @@ class CustomerSearch(ListView):
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")
+            
             return Customer.objects.none()
     
 
@@ -153,9 +158,12 @@ class CustomerSearch(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if not (context['object_list']):
+            messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['customer_list'].count()
+        context['posicion'] = self.query() 
         
 
         return context
