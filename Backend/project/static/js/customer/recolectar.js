@@ -71,11 +71,11 @@ export function recoletarInformacionCliente() {
 import {get_departamento, get_municipio} from '../API/address/get_api.js'
 
 
-let departamento1 = await get_departamento(document.getElementById('city1').value);
-let departamento2= await get_departamento(document.getElementById('city2').value);
+let departamento1 = await get_departamento(document.getElementById('city1').value || 1);
+let departamento2= await get_departamento(document.getElementById('city2').value || 1);
 
-let municipio1 = await get_municipio(document.getElementById('state1').value);
-let municipio2 = await get_municipio(document.getElementById('state2').value);
+let municipio1 = await get_municipio(document.getElementById('state1').value || 1);
+let municipio2 = await get_municipio(document.getElementById('state2').value || 1);
 export function recoletarInformacionDirecciones(customer_id) {
     let direcciones = [
         new Direccion(),
