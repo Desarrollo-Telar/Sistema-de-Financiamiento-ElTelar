@@ -6,7 +6,6 @@ const first_name = document.getElementById('first_name');
 const last_name = document.getElementById('last_name');
 
 
-
 function updateOutput() {
     const output_name_customer = document.getElementById('output_name_customer');
     const workingInformation = document.getElementById('output_info_name_customer');
