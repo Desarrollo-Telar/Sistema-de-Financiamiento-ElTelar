@@ -154,7 +154,8 @@ class PaymentPlan(models.Model):
     def save(self,*args, **kwargs):
         self.fecha_vencimiento()
         self.calculo_fecha_limite()
-        #self.principal = self.calculo_capital()
+        self.principal = self.calculo_capital()
+        self.installment = self.calculo_cuota()
         super().save(*args, **kwargs)
     
     def __str__(self):

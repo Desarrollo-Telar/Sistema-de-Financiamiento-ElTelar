@@ -1,8 +1,15 @@
 # SERIALIZADOR
 from rest_framework import serializers
 
+# FORMATO
+from apps.financings.formato import formatear_numero
+# DIAS
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+
 # MODELS
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
+from apps.financings.models import PaymentPlan
 
 class CreditSerializer(serializers.ModelSerializer):
     class Meta:
@@ -81,3 +88,44 @@ class ReciboSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recibo
         fields = '__all__'
+
+
+
+def mostrar_fecha_limite(fecha_limite):
+        limite = fecha_limite - relativedelta(days=1)
+        #limite = fecha_limite.replace(hour=5, minute=59, second=0, microsecond=0)
+        return limite
+
+def total(capital, interes,mora):
+    total = 0
+    total = interes + mora + capital
+    return formatear_numero(total)
+
+class PaymentPlanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentPlan
+        fields = '__all__'
+    def to_representation(self, instance):
+        return {
+            "id":instance.id,
+            "mes": instance.mes,
+            "start_date": instance.start_date,
+            "due_date": instance.due_date,
+            "outstanding_balance": formatear_numero(instance.outstanding_balance),
+            "mora": formatear_numero(instance.mora),
+            "interest": formatear_numero(instance.interest),
+            "principal": formatear_numero(instance.principal),
+            "installment": formatear_numero(instance.installment),
+            "status": instance.status,
+            "saldo_pendiente": formatear_numero(instance.saldo_pendiente),
+            "interes_pagado": instance.interes_pagado,
+            "mora_pagado": instance.mora_pagado,
+            "fecha_limite": mostrar_fecha_limite(instance.fecha_limite),
+            "cambios": instance.cambios,
+            "numero_referencia":instance.numero_referencia,
+            "cuota_vencida":instance.cuota_vencida,
+            'total_cancelar': total(instance.principal,instance.interest,instance.mora),
+            "credit_id":{
+                "id":instance.credit_id.id
+            }
+        }

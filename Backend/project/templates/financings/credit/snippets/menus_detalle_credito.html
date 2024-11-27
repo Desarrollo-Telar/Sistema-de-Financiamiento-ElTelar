@@ -12,11 +12,11 @@
             type="button" role="tab" aria-controls="nav-desembolsos" aria-selected="true">Desembolso</button>
         <button class="nav-link" id="nav-creditos-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos" type="button"
             role="tab" aria-controls="nav-creditos" aria-selected="true">Estado de Cuenta</button>
-
+        {% if cuotas_vencidas %}
         <button class="nav-link" id="nav-historial-tab" data-bs-toggle="tab" data-bs-target="#nav-historial"
             type="button" role="tab" aria-controls="nav-historial" aria-selected="true">Historial de
             Cuotas Vencidas</button>
-
+        {% endif %}
     </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">

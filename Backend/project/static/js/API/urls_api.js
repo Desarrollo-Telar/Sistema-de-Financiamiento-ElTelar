@@ -43,6 +43,7 @@ export const urls = {
     api_url_detalle_garantia: `${baseUrl}/financings/api/detalle_garantia/`,
     api_url_desembolso: `${baseUrl}/financings/api/desembolso/`,
     api_url_pago: `${baseUrl}/financings/api/payment/`,
+    api_url_cuota: `${baseUrl}/financings/api/cuota/`,
     
 }
 
@@ -81,4 +82,5 @@ export const urls_p = {
     api_url_detalle_garantia: `${baseUrl}/financings/api/detalle_garantia/`,
     api_url_desembolso: `${baseUrl}/financings/api/desembolso/`,
     api_url_pago: `${baseUrl}/financings/api/payment/`,
+    api_url_cuota: `${baseUrl}/financings/api/cuota/`,
 }

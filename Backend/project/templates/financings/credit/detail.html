@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="row box">
+    <input type="hidden" id="credit_id" value="{{credit_list.id}}">
     <div class="row">
         {% include 'financings/credit/snippets/descripcion_credito.html' %}
 
@@ -21,11 +23,7 @@
 
 
 {% block js %}
-<script>
-    document.getElementById('cuota_por_cobrar').addEventListener('click', () => {
-        Swal.fire("SweetAlert2 is working!");
-    });
-</script>
-
-
+<script type="module" src="{% static 'js/financings/credit/detail.js' %}"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 {% endblock %}
