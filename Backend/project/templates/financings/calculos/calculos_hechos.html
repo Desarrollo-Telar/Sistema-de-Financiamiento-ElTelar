@@ -36,7 +36,7 @@
         <div class="col">
             <p>Fecha de Inicio: <span>{{cuota.start_date.date}}</span></p>
             <p>Fecha de Vencimiento: <span>{{cuota.due_date.date}}</span></p>
-            <p>Fecha de Limite: <span>{{cuota.fecha_limite.date}}</span></p>
+            <p>Fecha de Limite: <span>{{cuota.mostrar_fecha_limite}}</span></p>
             <p>Saldo Capital Pendiente: <span>Q{{cuota.formato_saldo_capital_pendiente}}</span></p>
             {% if cuota.interes_acumulado_generado %}
             <p>Interes Acumulado: <span>Q{{cuota.formato_cuota_interes_acumulado_generado}}</span></p>
@@ -50,13 +50,15 @@
             {% if cuota.mora %}
             <p>Mora Generada: <span>Q{{cuota.formato_cuota_mora_generado}}</span></p>
             {% endif %}
+            <p>Capital Generado: <span>Q{{cuota.formato_cuota_capital_generado}}</span> </p>
         </div>
     </div>
     {% for recibo in recibos %}
     {% if recibo.cuota == cuota %}
-    <div class="row" style="margin-top: 0.5rem; padding: 1rem;">
-        <p style="font-weight:600; font-style: oblique;">Pago: {{forloop.counter}} </p>
-        <div class="col">
+    <div class="row"
+        style="margin-top: 0.5rem; padding: 1rem; border: 1px solid #fea3a5; background-color: #fef2f2; color: #46090a; border-radius: 1rem;">
+        <p style="font-weight:600; ">Pago: {{forloop.counter}} </p>
+        <div class="col" style="font-weight: 300; color: #811b1d;">
             <p>Monto: Q{{recibo.Fmonto}}</p>
             <p>Fecha de Pago: {{recibo.fecha}}</p>
             <p>Interes Pagado: Q{{recibo.Finteres_pagado}} </p>

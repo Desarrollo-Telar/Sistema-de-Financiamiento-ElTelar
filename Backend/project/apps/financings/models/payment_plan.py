@@ -63,6 +63,9 @@ class PaymentPlan(models.Model):
     
     def formato_cuota_capital(self):
         return formatear_numero(self.calculo_capital())
+    
+    def formato_cuota_capital_generado(self):
+        return formatear_numero(self.capital_generado)
 
     def formato_saldo_capital_pendiente(self):
         return formatear_numero(self.outstanding_balance)
@@ -145,8 +148,7 @@ class PaymentPlan(models.Model):
             # En el caso de amortización a capital, capital es fijo
             capital =  round(monto_inicial / plazo, 2)
 
-        if self.principal > 0:
-            capital = 0
+        
         
         
         return Decimal(capital)
