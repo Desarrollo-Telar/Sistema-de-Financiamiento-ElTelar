@@ -2,7 +2,7 @@
 from django.db import models
 from apps.customers.models import Customer
 
-from apps.financings.models import Payment
+from apps.financings.models import Payment, PaymentPlan
 
 # TIEMPO
 from django.utils import timezone
@@ -25,9 +25,19 @@ class Recibo(models.Model):
     aporte_capital = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     total  = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     factura = models.BooleanField(default=False)
+    cuota = models.ForeignKey(PaymentPlan, on_delete=models.CASCADE, null=True, blank=True)
+
+    def Fmora(self):
+        return formatear_numero(self.mora)
+    
+    def Fmonto(self):
+        return formatear_numero(self.pago.monto)
 
     def Fmora_pagada(self):
         return formatear_numero(self.mora_pagada)
+    
+    def Finteres(self):
+        return formatear_numero(self.interes)
     
     def Finteres_pagado(self):
         return formatear_numero(self.interes_pagado)
@@ -52,7 +62,10 @@ class Recibo(models.Model):
         return f'{capital} Quetzales'
     
     def __str__(self):
-        return f'RECIBO'
+        mensaje = 'Recibo'
+        if self.cuota:
+            mensaje += f' - {self.cuota}'
+        return mensaje
     
     class Meta:
         verbose_name = 'Recibo'

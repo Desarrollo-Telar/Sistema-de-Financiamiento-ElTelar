@@ -12,4 +12,4 @@ from .update import update_pago, update_cuota, generar_factura
 from .detail import detail_credit, detallar_recibo, detalle_boleta, detallar_desembolso,detalle_factura, detalle_estado_cuenta
 
 # FUNCIONES PARA GENERAR PDFS
-from .generar_pdf import render_pdf_factura, render_pdf_estado_cuenta
+from .generar_pdf import render_pdf_factura, render_pdf_estado_cuenta, render_pdf_calculos_credito

@@ -41,7 +41,9 @@ class Payment(models.Model):
     descripcion = models.TextField(blank=True, null=True)
     mora = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     interes = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    interes_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     capital = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    capital_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     boleta = models.FileField("Boleta",blank=True, null=True,upload_to='pagos/boletas/')
     tipo_pago = models.CharField('Tipo de Pago', choices=TYPE_PAYMENT, max_length=75, default='CREDITO')
     descripcion_estado = models.TextField(blank=True, null=True)
@@ -277,7 +279,8 @@ class Payment(models.Model):
                 aporte_capital=aporte_capital,
                 interes_pagado=pagado_interes,
                 mora_pagada=pagado_mora,
-                cliente=credito.customer_id
+                cliente=credito.customer_id,
+                cuota=cuota
             )
             recibo.save()
        
@@ -307,9 +310,11 @@ class Payment(models.Model):
         
         ''')
         
-        
+        interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
         if aporte_capital > 0:
             cuota.status = True
+            cuota_a_actualizar = self.get_plan_pagos()()
+            cuota_a_actualizar.interest =  interes
         
         cuota.save()
 
@@ -367,7 +372,7 @@ class Payment(models.Model):
         
 
 
-        interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
+        
         mora = calculo_mora(saldo_pendiente, credito.tasa_interes)
         
         print('CALCULANDO...')
@@ -388,8 +393,9 @@ class Payment(models.Model):
                 
         else:
             logger.info('CREACION DE UNA NUEVA  CUOTA')
-            if cuota_a_actualizar>0:
-                cuota_a_actualizar = self.get_plan_pagos()()
+            
+            
+                
 
         # En ambos casos (cuota nueva o existente), actualizamos los campos comunes
         
@@ -402,8 +408,8 @@ class Payment(models.Model):
         
 
         # Guardamos los cambios
-        if cuota_a_actualizar:
-            cuota_a_actualizar.save()
+        #if cuota_a_actualizar:
+        cuota_a_actualizar.save()
         
 
         

@@ -5,6 +5,8 @@ import { postPlanInversion } from '../API/investmentplan/post_api.js';
 import { postLaboral } from '../API/workinginformation/post_api.js';
 import { postReferencia } from '../API/reference/post_api.js';
 
+import {alerta_m} from '../alertas/alertas.js'
+
 import {
     recoletarInformacionCliente, 
     recoletarInformacionDirecciones,
@@ -22,7 +24,8 @@ document.getElementById('customer').addEventListener('submit', async function (e
     try {
         let cliente = recoletarInformacionCliente();
         if(!cliente.validar()){
-            alert('Falta Informacion sobre el cliente');
+            
+            alerta_m('Falta Informacion sobre el cliente',false);
             throw new Error('Falta Informacion sobre el cliente');
 
         }
@@ -30,7 +33,8 @@ document.getElementById('customer').addEventListener('submit', async function (e
         let direcciones = recoletarInformacionDirecciones();
         direcciones.forEach(element =>{
             if(!element.validar()){
-                alert('Falta Informacion las direcciones del cliente');
+                
+                alerta_m('Falta Informacion las direcciones del cliente',false);
                 throw new Error('Falta Informacion las direcciones del cliente');
 
             }
@@ -38,20 +42,23 @@ document.getElementById('customer').addEventListener('submit', async function (e
 
         let laboral = recolectarInformacionLaboral();
         if(!laboral.validar()){
-            alert('Falta Informacion sobre información laboral del cliente');
+            
+            alerta_m('Falta Informacion sobre información laboral del cliente',false);
             throw new Error('Falta Informacion sobre informacion laboral del cliente');
         }
 
         let destino = recoletarInformacionPlanInversion();
         if(!destino.validar()){
-            alert('Falta Informacion sobre informacion del destino del cliente');
+            
+            alerta_m('Falta Informacion sobre informacion del destino del cliente',false);
             throw new Error('Falta Informacion sobre informacion del destino del cliente');
         }
 
         let referencias = recoletarInformacionReferencias();
         referencias.forEach(element =>{
             if(!element.validar()){
-                alert('Falta Informacion sobre referencias del cliente');
+              
+                alerta_m('Falta Informacion sobre referencias del cliente',false);
                 throw new Error('Falta Informacion sobre las referencias del cliente');
 
             }
@@ -79,7 +86,7 @@ document.getElementById('customer').addEventListener('submit', async function (e
         const referenciaData = await postReferencia(urls_p.api_url_referencia, customer_id);
         console.log('Referencias guardadas con éxito:', referenciaData);
 
-        alert('¡Formulario enviado con éxito!');
+        alerta_m('Registro Realizado',true);
 
         // Redirigir a la página de éxito
         const { protocol, hostname, port } = window.location;
@@ -89,7 +96,12 @@ document.getElementById('customer').addEventListener('submit', async function (e
         
     } catch (error) {
         console.error('Error al registrar los datos:', error);
-        window.location.href = `/customers/delete/${customer_id}/`;
-        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        if(customer_id){
+            window.location.href = `/customers/delete/${customer_id}/`;
+
+        }
+        
+        
+        alerta_m(`Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo. ${error}`,false)
     }
 });

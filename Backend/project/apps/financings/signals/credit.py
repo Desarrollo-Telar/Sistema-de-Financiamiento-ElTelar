@@ -49,6 +49,7 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
             outstanding_balance=instance.monto, 
             saldo_pendiente=instance.monto,
             interest=interes,
+            interes_generado=interes,
             fecha_limite = fecha_limite,
             due_date=fecha_vencimiento
             )

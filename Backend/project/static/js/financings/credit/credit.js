@@ -100,16 +100,31 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                 timer: 3000,
                 showConfirmButton: false,
             });
-            window.location.href = `/financings/credit/${credi.id}`;
+            
+            setTimeout(() => { window.location.href = `/financings/credit/${credi.id}`; }, 1000);
 
         }else{
             alert('NO SE HA REGISTRADO NINGUNA GARANTIA')
+            Swal.fire({
+                icon: "error",
+                title: `NO SE HA REGISTRADO NINGUNA GARANTIA`,
+                
+                timer: 3000,
+                showConfirmButton: false,
+            });
         }
 
 
     } catch (error) {
         console.error('Error al registrar los datos:', error);
-        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        
+        Swal.fire({
+            icon: "error",
+            title: `Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.`,
+            text:`${error}`,
+            timer: 3000,
+            showConfirmButton: false,
+        });
     }
 });
 

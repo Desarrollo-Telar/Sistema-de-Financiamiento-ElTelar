@@ -2,7 +2,7 @@ from django.db.models.signals import post_save, pre_save, pre_delete, post_delet
 from django.dispatch import receiver
 
 # MODELOS
-from apps.financings.models import Credit, PaymentPlan,Payment
+from apps.financings.models import Credit, PaymentPlan,Payment, Cuota
 
 
 # CLASES
@@ -36,7 +36,17 @@ def generar_planes(sender, instance,created, **kwargs):
 
     if created:
         fecha_actual = str(datetime.now().date())  # Obtén la fecha actual aware
-        limite_fecha = instance.fecha_limite.strftime('%Y-%m-%d')       
+        limite_fecha = instance.fecha_limite.strftime('%Y-%m-%d')     
+        cuota = Cuota(
+                saldo_pendiente=instance.saldo_pendiente,
+                credit_id=instance.credit_id,
+                start_date=instance.due_date,
+                mora=instance.mora,
+                outstanding_balance=instance.saldo_pendiente,
+                interest=interes_acumulado
+            )
+        
+        cuota.save()  
         
         if fecha_actual >= limite_fecha:
             # Acumular mora y marcar estado
@@ -58,9 +68,11 @@ def generar_planes(sender, instance,created, **kwargs):
                 start_date=instance.due_date,
                 mora=more,
                 outstanding_balance=instance.saldo_pendiente,
-                interest=interes_acumulado
+                interest=interes_acumulado,
+                interes_generado=interes_acumulado,
             )
             cuota_nueva.save()
+            
             actualizar(instance.id)
         
     
@@ -128,6 +140,7 @@ def cambios(sender, instance, **kwargs):
             # Actualizar la siguiente cuota
             siguiente_cuota.cambios = True
             siguiente_cuota.interest = round(cuota_interes,2)  # Asegúrate de que no sea negativa
+            siguiente_cuota.interes_generado = round(cuota_interes,2)  # Asegúrate de que no sea negativa
             #siguiente_cuota.mora = max(0, siguiente_cuota.mora - mora)  # Asegúrate de que no sea negativa
             siguiente_cuota.mora = round(cuota_mora,2) # Asegúrate de que no sea negativa
             siguiente_cuota.start_date = instance.due_date

@@ -8,7 +8,7 @@ from django.contrib.staticfiles import finders
 from django.shortcuts import render, get_object_or_404, redirect
 
 # MODELOS
-from apps.financings.models import Recibo, Invoice,AccountStatement,Credit,PaymentPlan
+from apps.financings.models import Recibo, Invoice,AccountStatement,Credit,PaymentPlan, Payment, Cuota
 
 import os
 from django.conf import settings
@@ -102,6 +102,38 @@ def render_pdf_estado_cuenta(request,id):
     html = template.render(context)
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = ' filename="Estado de Cuenta.pdf"'
+    HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
+
+    return response
+
+def render_pdf_calculos_credito(request,id):
+    credito = get_object_or_404(Credit,id=id)
+    cuotas = PaymentPlan.objects.filter(credit_id=credito)
+    pagos = Payment.objects.filter(credit=credito)
+    recibos = Recibo.objects.filter(pago__credit=credito)
+
+    template_path = 'financings/calculos/calculos_hechos.html'
+    template = get_template(template_path)
+    actualizacion(credito)
+    cuotas_data = []
+    for cuota in cuotas:
+        recibos_asociados = recibos.filter(
+            fecha__range=[cuota.start_date.date(), cuota.fecha_limite.date()]
+        )
+        cuotas_data.append({'cuota': cuota, 'recibos': recibos_asociados})
+
+    context = {
+        'title':'ELTELAR',
+        'credito':credito,
+        'cuotas':cuotas,
+        'pagos':pagos,
+        'recibos':recibos,
+        'cuotas_data': cuotas_data,
+    }
+
+    html = template.render(context)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = ' filename="CalculosRealizados.pdf"'
     HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
 
     return response
