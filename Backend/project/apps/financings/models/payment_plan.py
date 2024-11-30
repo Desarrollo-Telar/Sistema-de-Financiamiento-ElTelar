@@ -26,7 +26,7 @@ class PaymentPlan(models.Model):
     principal_pagado = models.DecimalField('Capital Pagado',max_digits=12, decimal_places=2, default=0)
     installment = models.DecimalField('Cuota',max_digits=12, decimal_places=2, default=0)
     status = models.BooleanField(default=False)
-    credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE)
+    credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE, verbose_name='Credito')
     
     saldo_pendiente = models.DecimalField('Saldo Pendiente',max_digits=12, decimal_places=2, default=0) # obligatorio
     interes_pagado = models.DecimalField('Interes Pagado',max_digits=12, decimal_places=2, default=0)
@@ -184,7 +184,7 @@ class PaymentPlan(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return f'{self.mes}'
+        return f'{self.mes} - {self.credit_id}'
         
     class Meta:
         verbose_name = 'Plan de Pago'

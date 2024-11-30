@@ -10,6 +10,12 @@ from apps.financings.models import AccountStatement, Disbursement, Credit, Payme
 
 @receiver(post_save, sender=AccountStatement)
 def set_numero_referencia_estado_cuenta(sender, instance, created, **kwargs):
+    if instance.description == 'CUOTA VENCIDA':
+        credito_id = instance.credit.id
+        credito = Credit.objects.get(id=credito_id)
+        credito.estado_fecha = False
+        credito.save()
+        
     if created:
         if not instance.numero_referencia or instance.numero_referencia == '':
             # Generar un código de referencia único

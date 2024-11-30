@@ -72,6 +72,7 @@ def envio_mensaje_alerta_recibo( modelo):
 
 
 import uuid
+from django.db import transaction
 
 @shared_task
 def cambiar_plan():
@@ -82,71 +83,70 @@ def cambiar_plan():
     if planes:
         for pago in planes:
             
+            
+            
             # Validar si hay algún pago registrado para este crédito y plan
             boleta = Payment.objects.filter(credit=pago.credit_id, id=pago.id )
           
             if not boleta and not pago.credit_id.is_paid_off:
-                #pago.status = True     
-                # Calcular la mora acumulada solo si hay atraso (después de 15 días)
-                #mora = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
-                mora = Decimal(pago.interest) * Decimal(0.1)
-                
-                #mora_acumulada = pago.mora + mora
-                if not pago.status:
-                    pago.cuota_vencida = True
-                #pago.mora = mora_acumulada   
-                pago.mora = mora
-                interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
-
-                pago.mora_generado = Decimal(interes) * Decimal(0.1)
-                pago.credit_id
-                credito = Credit.objects.filter(id=pago.credit_id.id)
-                credito.estado_fecha = False
-                credito.save()
-
-
-
-                pago.save()
-
-                estado_cuenta = AccountStatement(credit=pago.credit_id,numero_referencia=str(uuid.uuid4())[:8],description="CUOTA VENCIDA")
-                estado_cuenta.save()
-
-
-                
-                interes_acumulado = pago.interest + interes
-               
-                
-            
-                siguiente_cuota = PaymentPlan.objects.filter(
-                    credit_id_id=pago.credit_id.id,  
-                    fecha_limite__gt=pago.fecha_limite  # Filtramos por fecha límite
-                ).order_by('fecha_limite').first()
-                print(siguiente_cuota)
-
-                if siguiente_cuota:
-                    siguiente_cuota.saldo_pendiente =pago.saldo_pendiente
-                    siguiente_cuota.credit_id =pago.credit_id
-                    siguiente_cuota.start_date =pago.due_date
-                    siguiente_cuota.mora =pago.mora
-                    siguiente_cuota.outstanding_balance =pago.saldo_pendiente
-                    siguiente_cuota.interest =interes_acumulado
-
-                    siguiente_cuota.interes_generado = interes
-                    siguiente_cuota.interes_acumulado_generado = pago.interest
+                with transaction.atomic():
+                    #pago.status = True     
+                    # Calcular la mora acumulada solo si hay atraso (después de 15 días)
+                    #mora = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
+                    mora = Decimal(pago.interest) * Decimal(0.1)
                     
-                    siguiente_cuota.save()
-                else:
-                    # CARGAR UNA NUEVA CUOTA CON POSIBLE ACUMULO DE INTERES Y DE MORA
-                    nuevo_plan = PaymentPlan(
-                        saldo_pendiente=pago.saldo_pendiente, 
-                        credit_id= pago.credit_id, 
-                        start_date=pago.due_date,
-                        mora=pago.mora, 
-                        outstanding_balance=pago.saldo_pendiente,
-                        interest=interes_acumulado,
-                        interes_generado=interes,
-                        interes_acumulado_generado=pago.interest,
-                        mora_acumulado_generado=pago.mora,
+                    #mora_acumulada = pago.mora + mora
+                    if not pago.status:
+                        pago.cuota_vencida = True
+                    #pago.mora = mora_acumulada   
+                    pago.mora = mora
+                    interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
+
+                    pago.mora_generado = Decimal(interes) * Decimal(0.1)
+                
+                    
+
+                    pago.save()
+
+                    estado_cuenta = AccountStatement(credit=pago.credit_id,numero_referencia=str(uuid.uuid4())[:8],description="CUOTA VENCIDA",cuota=pago)
+                    estado_cuenta.save()
+
+
+                    
+                    interes_acumulado = pago.interest + interes
+                
+                    
+                
+                    siguiente_cuota = PaymentPlan.objects.filter(
+                        credit_id_id=pago.credit_id.id,  
+                        fecha_limite__gt=pago.fecha_limite  # Filtramos por fecha límite
+                    ).order_by('fecha_limite').first()
+                    
+
+                    if siguiente_cuota:
+                        siguiente_cuota.saldo_pendiente =pago.saldo_pendiente
+                        siguiente_cuota.credit_id =pago.credit_id
+                        siguiente_cuota.start_date =pago.due_date
+                        siguiente_cuota.mora =pago.mora
+                        siguiente_cuota.outstanding_balance =pago.saldo_pendiente
+                        siguiente_cuota.interest =interes_acumulado
+
+                        siguiente_cuota.interes_generado = interes
+                        siguiente_cuota.interes_acumulado_generado = pago.interest
                         
-                        )
-                    nuevo_plan.save()
+                        siguiente_cuota.save()
+                    else:
+                        # CARGAR UNA NUEVA CUOTA CON POSIBLE ACUMULO DE INTERES Y DE MORA
+                        nuevo_plan = PaymentPlan(
+                            saldo_pendiente=pago.saldo_pendiente, 
+                            credit_id= pago.credit_id, 
+                            start_date=pago.due_date,
+                            mora=pago.mora, 
+                            outstanding_balance=pago.saldo_pendiente,
+                            interest=interes_acumulado,
+                            interes_generado=interes,
+                            interes_acumulado_generado=pago.interest,
+                            mora_acumulado_generado=pago.mora,
+                            
+                            )
+                        nuevo_plan.save()

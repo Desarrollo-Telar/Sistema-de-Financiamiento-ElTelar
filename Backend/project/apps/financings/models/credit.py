@@ -66,10 +66,7 @@ class Credit(models.Model):
     def tasa_mensual(self):
         convertir =  round(self.tasa_interes * Decimal(100),2)
         return formatear_numero(convertir)
-
-    def save(self, *args, **kwargs):
-        self.calcular_fecha_vencimiento()
-        super().save(*args, **kwargs)
+   
     
     def formato_monto(self):
         return formatear_numero(self.monto)

@@ -9,6 +9,7 @@ from django.utils import timezone
 from .credit import Credit
 from .payment import Payment
 from .disbursement import Disbursement
+from .payment_plan import PaymentPlan
 
 # FORMATO
 from apps.financings.formato import formatear_numero
@@ -17,6 +18,7 @@ class AccountStatement(models.Model):
     credit = models.ForeignKey(Credit, on_delete=models.CASCADE, related_name='account_statements')
     payment = models.ForeignKey(Payment, on_delete=models.CASCADE, related_name='account_statement', blank=True, null=True)
     disbursement = models.ForeignKey(Disbursement, on_delete=models.CASCADE, related_name='account_statement', blank=True, null=True)
+    cuota = models.ForeignKey(PaymentPlan, on_delete=models.CASCADE, related_name='account_statement', blank=True, null=True)
     issue_date = models.DateField(default=timezone.now)
     disbursement_paid = models.DecimalField('Desembolso Pagado',max_digits=10, decimal_places=2, default=0.0)
     interest_paid = models.DecimalField('Interes Pagado',max_digits=10, decimal_places=2, default=0.0)
