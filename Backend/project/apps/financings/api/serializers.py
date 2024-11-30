@@ -60,6 +60,7 @@ class CreditSerializer(serializers.ModelSerializer):
             'codigo_credito':instance.codigo_credito,
             'saldo_actual':instance.saldo_actual,
             'saldo_pendiente':instance.saldo_pendiente,
+            'is_paid_off':instance.is_paid_off
         }
 
 
@@ -130,7 +131,7 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
             "cambios": instance.cambios,
             "numero_referencia":instance.numero_referencia,
             "cuota_vencida":instance.cuota_vencida,
-            'total_cancelar': total(instance.principal,instance.interest,instance.mora),
+            'total_cancelar': total(instance.capital_generado,instance.interest,instance.mora),
             "capital_generado":instance.capital_generado,
             "credit_id":{
                 "id":instance.credit_id.id,

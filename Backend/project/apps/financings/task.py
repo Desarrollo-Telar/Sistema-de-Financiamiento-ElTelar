@@ -4,7 +4,7 @@ from celery import shared_task
 from datetime import datetime
 from time import sleep
 # MODELOS
-from .models import PaymentPlan, Payment, Recibo
+from .models import PaymentPlan, Payment, Recibo,AccountStatement, Credit
 from decimal import Decimal
 from django.shortcuts import render, get_object_or_404
 
@@ -71,6 +71,7 @@ def envio_mensaje_alerta_recibo( modelo):
     #send_email_recibo(pago)
 
 
+import uuid
 
 @shared_task
 def cambiar_plan():
@@ -84,7 +85,7 @@ def cambiar_plan():
             # Validar si hay algún pago registrado para este crédito y plan
             boleta = Payment.objects.filter(credit=pago.credit_id, id=pago.id )
           
-            if not boleta:
+            if not boleta and not pago.credit_id.is_paid_off:
                 #pago.status = True     
                 # Calcular la mora acumulada solo si hay atraso (después de 15 días)
                 #mora = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
@@ -95,9 +96,23 @@ def cambiar_plan():
                     pago.cuota_vencida = True
                 #pago.mora = mora_acumulada   
                 pago.mora = mora
+                interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
+
+                pago.mora_generado = Decimal(interes) * Decimal(0.1)
+                pago.credit_id
+                credito = Credit.objects.filter(id=pago.credit_id.id)
+                credito.estado_fecha = False
+                credito.save()
+
+
+
                 pago.save()
 
-                interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
+                estado_cuenta = AccountStatement(credit=pago.credit_id,numero_referencia=str(uuid.uuid4())[:8],description="CUOTA VENCIDA")
+                estado_cuenta.save()
+
+
+                
                 interes_acumulado = pago.interest + interes
                
                 
@@ -115,6 +130,9 @@ def cambiar_plan():
                     siguiente_cuota.mora =pago.mora
                     siguiente_cuota.outstanding_balance =pago.saldo_pendiente
                     siguiente_cuota.interest =interes_acumulado
+
+                    siguiente_cuota.interes_generado = interes
+                    siguiente_cuota.interes_acumulado_generado = pago.interest
                     
                     siguiente_cuota.save()
                 else:
@@ -125,6 +143,10 @@ def cambiar_plan():
                         start_date=pago.due_date,
                         mora=pago.mora, 
                         outstanding_balance=pago.saldo_pendiente,
-                        interest=interes_acumulado
+                        interest=interes_acumulado,
+                        interes_generado=interes,
+                        interes_acumulado_generado=pago.interest,
+                        mora_acumulado_generado=pago.mora,
+                        
                         )
                     nuevo_plan.save()

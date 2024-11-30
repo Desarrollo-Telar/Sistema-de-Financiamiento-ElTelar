@@ -16,14 +16,14 @@ from .credit import Credit
 from apps.financings.formato import formatear_numero
 
 class PaymentPlan(models.Model):
-    mes = models.IntegerField('No.Mes',blank=True, null=True,default=1)  
+    mes = models.IntegerField('No.Mes',blank=True, null=True,default=0)  
     start_date = models.DateTimeField('Fecha de Inicio') # obligatorio
     due_date = models.DateTimeField('Fecha de Vencimiento',blank=True,null=True)
     outstanding_balance = models.DecimalField('Monto Prestado', max_digits=12, decimal_places=2, default=0) 
     mora = models.DecimalField('Mora', max_digits=12, decimal_places=2, default=0)
     interest = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     principal = models.DecimalField('Capital',max_digits=12, decimal_places=2, default=0)
-    principal_pagado = models.DecimalField('Capital',max_digits=12, decimal_places=2, default=0)
+    principal_pagado = models.DecimalField('Capital Pagado',max_digits=12, decimal_places=2, default=0)
     installment = models.DecimalField('Cuota',max_digits=12, decimal_places=2, default=0)
     status = models.BooleanField(default=False)
     credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE)
@@ -130,7 +130,7 @@ class PaymentPlan(models.Model):
         forma_pago = self.credit_id.forma_de_pago
         monto_inicial = Decimal(self.credit_id.monto)
         plazo = self.credit_id.plazo
-        intereses = Decimal(self.interest)
+        intereses = Decimal(self.interes_generado)
         capital = 0
 
         
@@ -142,7 +142,7 @@ class PaymentPlan(models.Model):
 
             #intereses -= self.calculo_interes()
             # Capital es la diferencia entre la cuota y los intereses
-            capital = round(cuota - self.calculo_interes(), 2)
+            capital = round(cuota - intereses, 2)
              
         else:
             # En el caso de amortización a capital, capital es fijo

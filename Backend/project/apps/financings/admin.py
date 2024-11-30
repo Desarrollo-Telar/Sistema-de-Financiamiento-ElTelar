@@ -16,6 +16,9 @@ class CreditAdmin(admin.ModelAdmin):
         'fecha_vencimiento',
         'tipo_credito',        
         'customer_id',
+        'estado_aportacion',
+        'estado_fecha',
+        'is_paid_off'
     )
     list_display = ('customer_id','codigo_credito' ,'tipo_credito', 'monto','plazo','tasa_interes','fecha_inicio','creation_date')
 

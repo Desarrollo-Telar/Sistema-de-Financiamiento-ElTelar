@@ -24,6 +24,15 @@ from decimal import Decimal
 # PERO LA FECHA DEL LA PRIMERA CUOTA ESTA PARA EL 2 DE FEBRERO
 # ESTO CREAR NUEVAS CUOTAS
 
+@receiver(pre_save, sender=PaymentPlan)
+def numeracion_cuota(sender, instance, *args, **kwargs):
+    if not instance.mes:  # Si mes no está definido aún
+        contador = 1
+        # Busca el siguiente número disponible para el crédito específico
+        while PaymentPlan.objects.filter(mes=contador, credit_id=instance.credit_id).exists():
+            contador += 1
+        instance.mes = contador
+
 
 @receiver(post_save, sender=PaymentPlan)
 def generar_planes(sender, instance,created, **kwargs):
@@ -37,16 +46,7 @@ def generar_planes(sender, instance,created, **kwargs):
     if created:
         fecha_actual = str(datetime.now().date())  # Obtén la fecha actual aware
         limite_fecha = instance.fecha_limite.strftime('%Y-%m-%d')     
-        cuota = Cuota(
-                saldo_pendiente=instance.saldo_pendiente,
-                credit_id=instance.credit_id,
-                start_date=instance.due_date,
-                mora=instance.mora,
-                outstanding_balance=instance.saldo_pendiente,
-                interest=interes_acumulado
-            )
-        
-        cuota.save()  
+         
         
         if fecha_actual >= limite_fecha:
             # Acumular mora y marcar estado
@@ -67,9 +67,12 @@ def generar_planes(sender, instance,created, **kwargs):
                 credit_id=instance.credit_id,
                 start_date=instance.due_date,
                 mora=more,
+                mora_acumulado_generado=more,
                 outstanding_balance=instance.saldo_pendiente,
                 interest=interes_acumulado,
-                interes_generado=interes_acumulado,
+                interes_generado=interes,
+                interes_acumulado_generado=instance.interest,
+                
             )
             cuota_nueva.save()
             
@@ -139,6 +142,13 @@ def cambios(sender, instance, **kwargs):
             logger.info(f'\n\n')
             # Actualizar la siguiente cuota
             siguiente_cuota.cambios = True
+            siguiente_cuota.interes_generado = interes
+            siguiente_cuota.interes_acumulado_generado = cuota_interes
+
+            siguiente_cuota.mora_acumulado_generado = mora_a
+            siguiente_cuota.mora_generado = mora
+
+
             siguiente_cuota.interest = round(cuota_interes,2)  # Asegúrate de que no sea negativa
             siguiente_cuota.interes_generado = round(cuota_interes,2)  # Asegúrate de que no sea negativa
             #siguiente_cuota.mora = max(0, siguiente_cuota.mora - mora)  # Asegúrate de que no sea negativa

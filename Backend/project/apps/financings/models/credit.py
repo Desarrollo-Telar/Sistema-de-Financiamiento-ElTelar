@@ -44,9 +44,20 @@ class Credit(models.Model):
     tasa_mora = models.DecimalField("Tasa de Morosidad", decimal_places=2, max_digits=15, default=0.1)
     saldo_pendiente = models.DecimalField("Saldo Pendiente", decimal_places=2, max_digits=15, default=0)
     saldo_actual = models.DecimalField("Saldo Actual", decimal_places=2, max_digits=15, default=0)
+    estado_aportacion = models.BooleanField(default=False)
+    estado_fecha =  models.BooleanField(default=True)
 
     def __str__(self):
         return self.codigo_credito
+    
+    def formato_estado_aportacion(self):
+        return 'VIGENTE' if self.estado_aportacion else 'EN ATRASO'
+    
+    def formato_estado_fecha(self):
+        return 'VIGENTE' if self.estado_fecha else 'EN ATRASO'
+    
+    def formato_credito_cancelado(self):
+        return 'CANCELADO' if self.is_paid_off else 'VIGENTE'
 
     def calcular_fecha_vencimiento(self):
         self.fecha_vencimiento = self.fecha_inicio + relativedelta(months=self.plazo)

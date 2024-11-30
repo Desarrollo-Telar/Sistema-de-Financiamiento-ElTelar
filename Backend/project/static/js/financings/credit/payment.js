@@ -19,7 +19,7 @@ document.getElementById('pago').addEventListener('submit', async function (event
 
     axios({
         method: 'post',
-        url: 'http://127.0.0.1:8000/financings/api/payment/',
+        url: urls_p.api_url_pago,
         headers: {
             'Content-Type': 'multipart/form-data',
             'X-CSRFToken': csrfToken
@@ -28,8 +28,14 @@ document.getElementById('pago').addEventListener('submit', async function (event
     })
         .then(response => {
             console.log(response.data);
-            alert('¡Formulario enviado con éxito!');
-            window.location.href = `/financings/payment/`;
+            Swal.fire({
+                icon: "success",
+                title: `Registro Completado`,
+                text: '¡Formulario enviado con éxito!',
+                timer: 3000,
+                showConfirmButton: false,
+            });
+            setTimeout(() => { window.history.back();}, 1000);
         })
         .catch(error => {
             if (error.response) {
@@ -43,5 +49,12 @@ document.getElementById('pago').addEventListener('submit', async function (event
                 // Algo más pasó al hacer la solicitud
                 console.error('Error:', error.message);
             }
+            Swal.fire({
+                icon: "error",
+                title: `Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.`,
+                text:`${error}`,
+                timer: 3000,
+                showConfirmButton: false,
+            });
         });
 });

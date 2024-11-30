@@ -256,6 +256,7 @@ class Payment(models.Model):
         pago = self.pago()
         cuota = self._cuota_pagar()
         siguiente = self._siguiente_cuota()
+        cuota_a_actualizar = False
 
         # SE GENERA EL RECIBO
         """
@@ -315,6 +316,14 @@ class Payment(models.Model):
             cuota.status = True
             cuota_a_actualizar = self.get_plan_pagos()()
             cuota_a_actualizar.interest =  interes
+            cuota_a_actualizar.interes_generado =  interes
+            capital_original = cuota.capital_generado
+
+            if aporte_capital >= capital_generado:
+                credito.estado_aportacion = True
+            else:
+                credito.estado_aportacion = False
+            credito.estado_fecha = True
         
         cuota.save()
 
@@ -390,6 +399,7 @@ class Payment(models.Model):
             else:
                 cuota_a_actualizar.interest  = max (0, cuota_a_actualizar.interest - pagado_interes)
             cuota_a_actualizar.mora = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)  
+            cuota_a_actualizar.mora_generado = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)
                 
         else:
             logger.info('CREACION DE UNA NUEVA  CUOTA')
@@ -398,18 +408,18 @@ class Payment(models.Model):
                 
 
         # En ambos casos (cuota nueva o existente), actualizamos los campos comunes
-        
-        cuota_a_actualizar.start_date = cuota.due_date
-        cuota_a_actualizar.saldo_pendiente = saldo_pendiente
-        cuota_a_actualizar.credit_id = credito
-        cuota_a_actualizar.outstanding_balance = saldo_pendiente
-        
-        logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO: {cuota_a_actualizar.interest}\nMORA NUEVA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {saldo_pendiente}')
-        
+        if cuota_a_actualizar:
+            cuota_a_actualizar.start_date = cuota.due_date
+            cuota_a_actualizar.saldo_pendiente = saldo_pendiente
+            cuota_a_actualizar.credit_id = credito
+            cuota_a_actualizar.outstanding_balance = saldo_pendiente
+            
+            logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO: {cuota_a_actualizar.interest}\nMORA NUEVA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {saldo_pendiente}')
+            
 
-        # Guardamos los cambios
-        #if cuota_a_actualizar:
-        cuota_a_actualizar.save()
+            # Guardamos los cambios
+            #if cuota_a_actualizar:
+            cuota_a_actualizar.save()
         
 
         

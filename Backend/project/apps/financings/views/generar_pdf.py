@@ -7,6 +7,9 @@ from django.contrib.staticfiles import finders
 
 from django.shortcuts import render, get_object_or_404, redirect
 
+# TAREA ASINCRONICO
+from apps.financings.task import cambiar_plan
+
 # MODELOS
 from apps.financings.models import Recibo, Invoice,AccountStatement,Credit,PaymentPlan, Payment, Cuota
 
@@ -86,6 +89,8 @@ def render_pdf_estado_cuenta(request,id):
 
     template_path = 'financings/credit/estado_cuenta/pdf.html'
     template = get_template(template_path)
+    
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     actualizacion(credito)
     context = {
         'title':'ELTELAR',
@@ -107,6 +112,7 @@ def render_pdf_estado_cuenta(request,id):
     return response
 
 def render_pdf_calculos_credito(request,id):
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     credito = get_object_or_404(Credit,id=id)
     cuotas = PaymentPlan.objects.filter(credit_id=credito)
     pagos = Payment.objects.filter(credit=credito)
@@ -133,7 +139,7 @@ def render_pdf_calculos_credito(request,id):
 
     html = template.render(context)
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = ' filename="CalculosRealizados.pdf"'
+    response['Content-Disposition'] = ' filename="ReporteSobrePagos.pdf"'
     HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
 
     return response
