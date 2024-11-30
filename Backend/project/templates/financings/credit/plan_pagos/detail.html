@@ -1,7 +1,28 @@
+{% extends 'pdf/base.html' %}
 {% load static %}
-<div class="row">
-    <div class="table-responsive">
-        <table class="table align-middle">
+
+{% block content %}
+
+<div class="container" style="font-size: 12px;">
+    <div class="row">
+        <div class="col-4">
+            <img src="{% static 'img/logo.png' %}" alt="imagen_de_la_empresa" style="width: 150px">
+        </div>
+        <div class="col" style="font-weight: bold;">
+            <p>PLAN DE PAGOS SOBRE EL CREDITO: <span>{{credito}}</span> </p>
+            <p>Tasa de Interes Mensual: <span style="font-weight: 100;">{{credito.tasa_mensual}}%</span> </p>
+            <p>Plazo: <span style="font-weight: 100;">{{credito.plazo}} Meses</span> </p>
+
+            <p>Monto: <span style="font-weight: 100;">Q{{credito.formato_monto}}</span> </p>
+            <p>Forma de Pago: <span style="font-weight: 100;">{{credito.forma_de_pago}}</span> </p>
+            <p>Saldo Actual: <span style="font-weight: 100;">Q{{credito.formato_saldo_actual}}</span> </p>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Mes</th>
@@ -15,7 +36,7 @@
             </thead>
             <tbody>
                 {% for pago in plan %}
-                <tr>
+                <tr style="margin-top: 1rem; margin-bottom: 1rem;">
                     <td>
                         {{pago.mes}}
                     </td>
@@ -50,5 +71,9 @@
             </tbody>
         </table>
 
+
     </div>
 </div>
+
+
+{% endblock%}

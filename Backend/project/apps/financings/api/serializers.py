@@ -136,5 +136,6 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
             "credit_id":{
                 "id":instance.credit_id.id,
                 "codigo_credito":instance.credit_id.codigo_credito,
+                "is_paid_off":instance.credit_id.is_paid_off,
             }
         }

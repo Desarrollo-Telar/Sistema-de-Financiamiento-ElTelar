@@ -3,9 +3,9 @@ import { urls_p } from '../../API/urls_api.js'
 
 document.getElementById('cuota_por_cobrar').addEventListener('click', () => {
     const id_credito = document.getElementById('credit_id').value;
-    console.log(id_credito);
+    
     let resultado = fetchLastPaymentPlan(id_credito);
-    console.log(resultado.data);
+    console.log(resultado);
 });
 
 function formato_fechas(fecha) {
@@ -29,21 +29,35 @@ async function fetchLastPaymentPlan(searchTerm) {
         // Procesar la respuesta
         if (response.data) {
             //console.log('Último PaymentPlan:', response.data);
+            console.log(response.data['credit_id'].is_paid_off);
 
-            Swal.fire({
-                title: "Cuota por Cobrar:",
-                html: `<p>Fecha de Inicio: ${formato_fechas(response.data['start_date'])} </p>
-            <p>Fecha de Vencimiento:  ${formato_fechas(response.data['due_date'])} </p>
-            <p>Fecha Limite:  ${formato_fechas(response.data['fecha_limite'])} </p>
-            <p>Mora: Q${response.data['mora']}</p>
-            <p>Interes: Q${response.data['interest']}</p>
-            <p>Total de la Cuota a Cancelar: Q${response.data['total_cancelar']}</p>
-                       
-            `,
-                icon: "info",
+            if (response.data['credit_id'].is_paid_off){
+                Swal.fire({
+                    title: "Este Credito ya ha sido cancelado por completo",
+                   
+                    icon: "info",
+    
+                });
 
-            });
-            console.log(response.data['mora']);
+            }else{
+                Swal.fire({
+                    title: "Cuota por Cobrar:",
+                    html: `<p>Fecha de Inicio: ${formato_fechas(response.data['start_date'])} </p>
+                <p>Fecha de Vencimiento:  ${formato_fechas(response.data['due_date'])} </p>
+                <p>Fecha Limite:  ${formato_fechas(response.data['fecha_limite'])} </p>
+                <p>Mora: Q${response.data['mora']}</p>
+                <p>Interes: Q${response.data['interest']}</p>
+                <p>Total de la Cuota a Cancelar: Q${response.data['total_cancelar']}</p>
+                           
+                `,
+                    icon: "info",
+    
+                });
+
+            }
+
+            
+            
 
         } else {
             console.log('No se encontraron datos para el término de búsqueda:', searchTerm);

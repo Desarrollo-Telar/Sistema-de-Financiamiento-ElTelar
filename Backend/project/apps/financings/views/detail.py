@@ -119,7 +119,7 @@ def detail_credit(request,id):
 
     # PLAN DE PAGOS
     plan = planPagosCredito(credito).generar_plan()
-    print(planPagosCredito(credito).calcular_total_capital())
+    
    
    
     context = {

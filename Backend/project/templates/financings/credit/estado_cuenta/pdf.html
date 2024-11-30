@@ -11,6 +11,21 @@
 
     <link rel="icon" href="{% static 'img/logo.png' %}" />
     <style type="text/css">
+        @font-face {
+            font-family: 'Quicksand';
+            src: url("{% static 'css/text/Quicksand/Quicksand-VariableFont_wght.ttf' %}") format('truetype'),
+            url("{% static 'css/text/Quicksand/static/Quicksand-Regular.ttf' %}") format('truetype');
+            font-weight: 500;
+            /* Peso normal */
+            font-style: normal;
+            /* Estilo normal */
+        }
+
+        body {
+            font-family: "Quicksand", serif;
+
+        }
+
         @page {
             size: A4 landscape;
             margin: 1cm;
@@ -56,41 +71,45 @@
 
             <div class="col-xs-12 col-sm-12 " style="line-height: 1;">
                 <div class="d-flex justify-content-start" style="line-height: 1;">
-                    <p class="fw-semibold" style="margin-right: 0.2rem; ">DE:</p>
+                    <p style="margin-right: 0.2rem; font-weight: bold;">DE:</p>
                     <p>{{credito.customer_id.get_full_name}}</p>
 
                 </div>
                 <div class="d-flex justify-content-start" style="line-height: 1;">
-                    <p class="fw-semibold" style="margin-right: 0.2rem; ">CODIGO DEL CREDITO:</p>
+                    <p style="margin-right: 0.2rem;font-weight: bold; ">CODIGO DEL CREDITO:</p>
                     <p>{{credito.codigo_credito}}</p>
 
                 </div>
                 <div class="d-flex justify-content-start">
-                    <p class="fw-semibold" style="margin-right: 0.2rem; ">FECHA DE INICIO:</p>
+                    <p style="margin-right: 0.2rem; font-weight: bold;">FECHA DE INICIO:</p>
                     <p>{{credito.fecha_inicio}}</p>
-                    <p style="margin-left: 0.2rem; margin-right: 0.2rem;">Al</p>
+                    <p style="margin-left: 0.2rem; margin-right: 0.2rem; font-weight: bold;">Al</p>
 
                     <p>{{credito.fecha_vencimiento}}</p>
 
                 </div>
                 <div class="d-flex justify-content-start">
-                    <p class="fw-semibold" style="margin-right: 0.2rem; ">PLAZO:</p>
+                    <p style="margin-right: 0.2rem;font-weight: bold; ">PLAZO:</p>
                     <p>{{credito.plazo}} MESES</p>
 
                 </div>
                 <div class="d-flex justify-content-start">
-                    <p class="fw-semibold" style="margin-right: 0.2rem; ">MONTO:</p>
+                    <p style="margin-right: 0.2rem;font-weight: bold; ">MONTO:</p>
                     <p>Q {{credito.monto}}</p>
 
                 </div>
                 <div class="d-flex justify-content-start">
-                    <p class="fw-semibold" style="margin-right: 0.2rem; ">TASA DE INTERES:</p>
+                    <p style="margin-right: 0.2rem; font-weight: bold;">TASA DE INTERES:</p>
                     <p> {{credito.tasa_mensual}} %</p>
 
                 </div>
                 <div class="d-flex justify-content-start">
-                    <p class="fw-semibold" style="margin-right: 0.2rem; ">Saldo Actual:</p>
+                    <p style="margin-right: 0.2rem; font-weight: bold;">Saldo Actual:</p>
+                    {% if credito.saldo_actual > 0 %}
                     <p> Q{{credito.formato_saldo_actual}} </p>
+                    {% else %}
+                    <p> Q0.00 </p>
+                    {%endif%}
 
                 </div>
 
@@ -103,7 +122,7 @@
         <hr>
         <div class="row text-uppercase" style="margin-top: 0.5rem; font-size: 10px; text-align: center;">
 
-            <table border="1">
+            <table>
                 <thead style="font-size: 8px;">
                     <tr style="border: 1px solid black;">
                         <th scope="col">#</th>
@@ -122,7 +141,7 @@
                 </thead>
                 <tbody>
                     {% for cuenta_estado in estado_cuenta %}
-                    <tr>
+                    <tr style="border-bottom: 1px solid rgba(226, 224, 225, 0.85);">
                         <th scope="row"><small>{{ forloop.counter }}</small></th>
                         <td> <small>{{cuenta_estado.issue_date}}</small></td>
                         <td scope="row">
@@ -148,7 +167,11 @@
                             Q {{cuenta_estado.Fcapital_paid}}
                         </td>
                         <td scope="row">
+                            {% if cuenta_estado.saldo_pendiente > 0 %}
                             Q {{cuenta_estado.Fsaldo_pendiente}}
+                            {% else %}
+                            Q 0.00
+                            {% endif %}
                         </td>
 
 

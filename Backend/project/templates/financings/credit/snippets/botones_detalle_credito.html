@@ -1,5 +1,5 @@
 {% load static %}
-<div class="d-flex">
+<div class="d-flex table-responsive">
     <a href="{% url 'financings:create_payment' %}" class="btn_cancel">Generar Pago</a>
 
 
@@ -9,5 +9,8 @@
         Cuenta</a>
     <a href="{% url 'financings:calculos_realizados' credit_list.id  %}" class="btn_cancel">
         Informe Sobre los Calculos Realizados
+    </a>
+    <a href="{% url 'financings:plan_pagos' credit_list.id  %}" class="btn_cancel">
+        Plan de Pagos
     </a>
 </div>

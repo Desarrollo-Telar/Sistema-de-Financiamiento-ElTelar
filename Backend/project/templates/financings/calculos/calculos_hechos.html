@@ -17,6 +17,15 @@
             <p>Monto: <span style="font-weight: 100;">Q{{credito.formato_monto}}</span> </p>
             <p>Forma de Pago: <span style="font-weight: 100;">{{credito.forma_de_pago}}</span> </p>
             <p>Saldo Actual: <span style="font-weight: 100;">Q{{credito.formato_saldo_actual}}</span> </p>
+            <p>Estado del Credito: <span style="font-weight: 100;"
+                    class="{% if not credito.is_paid_off %} inactivo {% endif %} activo">{{credito.formato_credito_cancelado}}</span>
+            </p>
+            <p>Estado por Aportacion: <span style="font-weight: 100;"
+                    class="{% if not credito.estado_aportacion %} inactivo {% endif %} activo">{{credito.formato_estado_aportacion}}</span>
+            </p>
+            <p>Estado por Fecha: <span style="font-weight: 100;"
+                    class="{% if not credito.estado_fecha %} inactivo {% endif %} activo">{{credito.formato_estado_fecha}}</span>
+            </p>
         </div>
     </div>
     <hr>

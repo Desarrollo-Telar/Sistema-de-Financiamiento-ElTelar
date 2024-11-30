@@ -143,3 +143,42 @@ def render_pdf_calculos_credito(request,id):
     HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
 
     return response
+
+# CLASES
+from apps.financings.clases.paymentplan import PaymentPlan as PlanPagoos
+from apps.financings.clases.credit import Credit as Credito
+
+def planPagosCredito(credito):
+    formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
+    credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1,None,credito.fecha_vencimiento)
+    plan_pago = PlanPagoos(credit)
+    return plan_pago
+
+def render_pdf_plan_pagos(request,id):
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    credito = get_object_or_404(Credit,id=id)
+    plan = planPagosCredito(credito).recalcular_capital()
+    
+
+    template_path = 'financings/credit/plan_pagos/detail.html'
+    template = get_template(template_path)
+    actualizacion(credito)
+    
+
+    context = {
+        'title':'ELTELAR',
+        'credito':credito,
+        'plan':plan,
+        'total_cuota':formatear_numero(planPagosCredito(credito).calcular_total_cuotas()),
+        'total_capital':formatear_numero(planPagosCredito(credito).calcular_total_capital()),
+        'total_interes':formatear_numero(planPagosCredito(credito).calcular_total_interes()),
+        
+        
+    }
+
+    html = template.render(context)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = ' filename="plan_pagos.pdf"'
+    HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
+
+    return response
