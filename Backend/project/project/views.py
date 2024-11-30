@@ -28,6 +28,7 @@ from apps.InvestmentPlan.models import InvestmentPlan
 from django.db.models import Q
 from django.db import models  
 from apps.financings.models import Recibo
+from apps.financings.models import *
 
 # DJANGO HTTP
 from django.http import HttpResponse
@@ -277,6 +278,7 @@ def verification(request):
 
 
 ### --- APARTADO INICIAL DEL PROYECTO --- ###
+from apps.financings.formato import formatear_numero
 @usuario_activo
 def index(request):
     template_name = 'index.html'
@@ -289,14 +291,26 @@ def index(request):
     tomorrow = today + timedelta(days=1)
     customer_id = Customer.objects.filter(creation_date__range=(today, tomorrow))
     recibos = Recibo.objects.filter(fecha=datetime.now().date(), factura=False)
+    bancos = Banco.objects.all()
+    ingresos = 0
+    egresos = 0
+
+    for bank in bancos:
+        ingresos += bank.credito
+        egresos += bank.debito
+        
     context = {
         'title':'EL TELAR',
-        'dia':dia_actual,
+        'dia':now,
         'mes':mes_actual_nombre,
         'customer_list':customer_id,
         'count':customer_id.count(),
         'recibos':recibos,
         'count_re':recibos.count(),
+        'clientes':Customer.objects.all(),
+        'creditos':Credit.objects.all(),
+        'ingresos':formatear_numero(ingresos),
+        'egresos':formatear_numero(egresos),
     }
     return render(request, template_name, context)
 

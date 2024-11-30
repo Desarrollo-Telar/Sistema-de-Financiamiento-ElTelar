@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+            <div class="card-header" style="background-color: #e02226; color: #f4f7f7; font-size: 1.2rem;">
+                ¡Hola! {{user}}
+            </div>
+            <div class="card-body" style="padding: 2rem">
+                <p class="card-text" style="font-size: 1.2rem">
+                    ¡Bienvenido/a a nuestro portal de control de financiamientos El Telar!
+                    Estamos encantados de tenerte aquí. Este es tu centro de operaciones
+                    para gestionar las finanzas de todos nuestros clientes de manera
+                    eficiente y efectiva. Desde el seguimiento del plan de inversion hasta
+                    el siguimiento de sus pagos, estamos aquí para ayudarte en cada paso
+                    del camino.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row"></div>
+<div class="row box row-cols-2 align-items-center" style="margin-top:2rem ;">
+    <div class="col ">
+        <h3>Calendario</h3>
+        <hr />
+        <div class="" id="demo-calendar-apppearance"></div>
+    </div>
+    <div class="col " style="
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e02226;
+      color: #ffffff;
+      border-radius: 2rem;
+    ">
+        <div style="font-size: 2.5rem;text-align: center;">
+            <h3>El día de hoy:</h3>
+            <p>{{dia}}</p>
+            <p>{{mes}}</p>
+        </div>
+    </div>
+</div>
+<div class="row"></div>
+<div class="row box" style="margin:3rem 0 ; background-color: #fffefe; padding: 2rem;">
+
+    <div class="col-12">
+        <p>Clientes registrados ultimamente:<span class="badge rounded-pill text-bg-dark"
+                style="margin-left: 0.5rem;">{{count}}</span> </p>
+        <div class="table-responsive">
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Codigo Cliente</th>
+                        <th>Nombre</th>
+                        <th>Numero de Telefono</th>
+                        <th>Correo Electronico</th>
+                        <th>Estado</th>
+                        <th>Fecha de Registro</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in customer_list %}
+                    <tr>
+                        <td>{{cliente.customer_code}}</td>
+                        <td>{{cliente.first_name}} {{cliente.last_name}}</td>
+                        <td>{{cliente.telephone}}</td>
+                        <td>{{cliente.email}}</td>
+                        <td>{{cliente.status}}</td>
+                        <td>{{cliente.fecha_creacion}}</td>
+
+                        <td>
+
+                            <a href="{% url 'customers:detail' cliente.customer_code %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-eye" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                    <path
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                </svg>
+
+                            </a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<div class="row"></div>
+<div class="row box" style="margin:3rem 0 ; background-color: #fffefe; padding: 2rem;">
+
+    <div class="col-12">
+        <p>Recibos registrados ultimamente:<span class="badge rounded-pill text-bg-dark"
+                style="margin-left: 0.5rem;">{{count_re}}</span> </p>
+        <div class="table-responsive">
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Numero de Recibo</th>
+                        <th>Cliente</th>
+                        <th>Monto</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recib in recibos %}
+                    <tr>
+                        <td>{{recib.fecha}}</td>
+                        <td>{{recib.recibo}} </td>
+                        <td>{{recib.cliente}}</td>
+                        <td>{{recib.total}}</td>
+                        <td>
+                            <a href="{% url 'financings:recibo' recib.pago.id %}">Ver Recibo</a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+{% block js %}
+
+<script>
+    $(document).ready(function () {
+        $("#demo-calendar-apppearance").zabuto_calendar({
+            language: "es",
+            header_format: "[month] [year]",
+            week_starts: "sunday",
+            show_days: true,
+            today_markup:
+                '<span style="background-color:#e02226; padding:0.5rem; border-radius:0.4rem; color:#FFFFFF">[day]</span>',
+            navigation_markup: {
+                prev: '<i class=""><</i>',
+                next: '<i class=""> ></i>',
+            },
+        });
+    });
+</script>
+<script src="{% static 'js/calendar/dist/zabuto_calendar.min.js' %}"></script>
+
+{% endblock %} {% block css %}
+<style>
+    table.lightgrey-weekends tbody td:nth-child(n + 6) {
+        background-color: #f3f3f3;
+    }
+</style>
+<link href="{% static 'js/calendar/dist/zabuto_calendar.min.css' %}" rel="stylesheet" />
+{% endblock %}
