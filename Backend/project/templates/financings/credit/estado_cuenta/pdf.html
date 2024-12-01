@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/list.css' %}">
 
     <link rel="icon" href="{% static 'img/logo.png' %}" />
     <style type="text/css">
@@ -23,6 +23,7 @@
 
         body {
             font-family: "Quicksand", serif;
+            font-size: 12px;
 
         }
 
@@ -35,12 +36,25 @@
 
 </head>
 
-<body style="line-height: 1;">
-    <div class="container">
+<body>
+    <div class="container" style="line-height: 1;">
         <div class="row">
             <div class="col-12">
                 <p class="text-center fw-bold fs-2">ESTADO DE CUENTA POR: <span
                         class="fw-normal fs-2">{{credito.tipo_credito}}</span></p>
+                <div style="text-align: center;">
+                    <p style="margin-right: 0.2rem; font-weight: bold;">FECHA DE INICIO:
+
+                        <span style="font-weight: 100;"> {{credito.fecha_inicio}} </span>
+                        Al
+                        <span style="font-weight: 100;">
+                            {{credito.fecha_vencimiento}}
+                        </span>
+                    </p>
+
+
+
+                </div>
 
             </div>
         </div>
@@ -67,56 +81,53 @@
 
         </div>
         <hr>
-        <div class="row text-uppercase" style="margin-top: 0.5rem; font-size: 10px;">
-
-            <div class="col-xs-12 col-sm-12 " style="line-height: 1;">
-                <div class="d-flex justify-content-start" style="line-height: 1;">
-                    <p style="margin-right: 0.2rem; font-weight: bold;">DE:</p>
-                    <p>{{credito.customer_id.get_full_name}}</p>
-
-                </div>
-                <div class="d-flex justify-content-start" style="line-height: 1;">
-                    <p style="margin-right: 0.2rem;font-weight: bold; ">CODIGO DEL CREDITO:</p>
-                    <p>{{credito.codigo_credito}}</p>
-
-                </div>
-                <div class="d-flex justify-content-start">
-                    <p style="margin-right: 0.2rem; font-weight: bold;">FECHA DE INICIO:</p>
-                    <p>{{credito.fecha_inicio}}</p>
-                    <p style="margin-left: 0.2rem; margin-right: 0.2rem; font-weight: bold;">Al</p>
-
-                    <p>{{credito.fecha_vencimiento}}</p>
-
-                </div>
-                <div class="d-flex justify-content-start">
-                    <p style="margin-right: 0.2rem;font-weight: bold; ">PLAZO:</p>
-                    <p>{{credito.plazo}} MESES</p>
-
-                </div>
-                <div class="d-flex justify-content-start">
-                    <p style="margin-right: 0.2rem;font-weight: bold; ">MONTO:</p>
-                    <p>Q {{credito.monto}}</p>
-
-                </div>
-                <div class="d-flex justify-content-start">
-                    <p style="margin-right: 0.2rem; font-weight: bold;">TASA DE INTERES:</p>
-                    <p> {{credito.tasa_mensual}} %</p>
-
-                </div>
-                <div class="d-flex justify-content-start">
-                    <p style="margin-right: 0.2rem; font-weight: bold;">Saldo Actual:</p>
+        <div class="row text-uppercase"
+            style="margin-top: 0.5rem; font-size: 10px; line-height: 0.1; font-weight: bold;">
+            <p>DE:
+                <span style="font-weight: 100;">
+                    {{credito.customer_id.get_full_name}}
+                </span>
+            </p>
+            <p>CODIGO DEL CREDITO:
+                <span style="font-weight: 100;">
+                    {{credito.codigo_credito}}
+                </span>
+            </p>
+            <p>PLAZO:
+                <span style="font-weight: 100;">
+                    {{credito.plazo}} Meses
+                </span>
+            </p>
+            <p>Monto:
+                <span style="font-weight: 100;">
+                    Q {{credito.formato_monto}}
+                </span>
+            </p>
+            <p>TASA DE INTERES:
+                <span style="font-weight: 100;">
+                    {{credito.tasa_mensual}} %
+                </span>
+            </p>
+            <p>Saldo Actual:
+                <span style="font-weight: 100;">
                     {% if credito.saldo_actual > 0 %}
-                    <p> Q{{credito.formato_saldo_actual}} </p>
+                    Q{{credito.formato_saldo_actual}}
                     {% else %}
-                    <p> Q0.00 </p>
+                    Q0.00
                     {%endif%}
 
-                </div>
+                </span>
+            </p>
+            <p>Estado del Credito: <span style="font-weight: 100;"
+                    class="{% if  credito.is_paid_off %} inactivo {% endif %} activo">{{credito.formato_credito_cancelado}}</span>
+            </p>
+            <p>Estado por Aportacion: <span style="font-weight: 100;"
+                    class="{% if not credito.estado_aportacion %} inactivo {% endif %} activo">{{credito.formato_estado_aportacion}}</span>
+            </p>
+            <p>Estado por Fecha: <span style="font-weight: 100;"
+                    class="{% if not credito.estados_fechas %} inactivo {% endif %} activo">{{credito.formato_estado_fecha}}</span>
+            </p>
 
-
-
-
-            </div>
 
         </div>
         <hr>
@@ -206,7 +217,7 @@
 
 
         </div>
-        <hr>
+
 
 
 

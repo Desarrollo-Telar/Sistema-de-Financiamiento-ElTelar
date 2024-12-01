@@ -45,7 +45,7 @@ class Credit(models.Model):
     saldo_pendiente = models.DecimalField("Saldo Pendiente", decimal_places=2, max_digits=15, default=0)
     saldo_actual = models.DecimalField("Saldo Actual", decimal_places=2, max_digits=15, default=0)
     estado_aportacion = models.BooleanField(default=False)
-    estado_fecha =  models.BooleanField(default=True)
+    estados_fechas =  models.BooleanField(default=True)
 
     def __str__(self):
         return self.codigo_credito
@@ -54,7 +54,7 @@ class Credit(models.Model):
         return 'VIGENTE' if self.estado_aportacion else 'EN ATRASO'
     
     def formato_estado_fecha(self):
-        return 'VIGENTE' if self.estado_fecha else 'EN ATRASO'
+        return 'VIGENTE' if self.estados_fechas else 'EN ATRASO'
     
     def formato_credito_cancelado(self):
         return 'CANCELADO' if self.is_paid_off else 'VIGENTE'
@@ -66,6 +66,10 @@ class Credit(models.Model):
     def tasa_mensual(self):
         convertir =  round(self.tasa_interes * Decimal(100),2)
         return formatear_numero(convertir)
+    
+    def save(self, *args, **kwargs):
+        self.calcular_fecha_vencimiento()
+        super().save(*args, **kwargs)
    
     
     def formato_monto(self):

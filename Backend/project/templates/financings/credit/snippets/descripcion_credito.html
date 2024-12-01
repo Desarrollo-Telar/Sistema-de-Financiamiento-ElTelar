@@ -32,13 +32,13 @@
         </div>
         <div class="col" style="font-weight: bolder;">
             <p>ESTADO DEL CREDITO : <span style="font-weight: lighter;"
-                    class="{% if not credit_list.is_paid_off %} inactivo {% endif %} activo">{{credit_list.formato_credito_cancelado}}</span>
+                    class="{% if  credit_list.is_paid_off %} inactivo {% endif %} activo">{{credit_list.formato_credito_cancelado}}</span>
             </p>
             <p>ESTADO POR APORTACION: <span style="font-weight: lighter;"
                     class="{% if not credit_list.estado_aportacion %} inactivo {% endif %} activo">{{credit_list.formato_estado_aportacion}}</span>
             </p>
             <p>ESTADO POR FECHAS: <span style="font-weight: lighter;"
-                    class="{% if not credit_list.estado_fecha %} inactivo {% endif %} activo">{{credit_list.formato_estado_fecha}}</span>
+                    class="{% if not credit_list.estados_fechas %} inactivo {% endif %} activo">{{credit_list.formato_estado_fecha}}</span>
             </p>
         </div>
     </div>

@@ -165,6 +165,24 @@ def detallar_desembolso(request,id):
 
 @login_required
 @usuario_activo
+def clasificacion_detallar(request,numero_referencia):
+    
+    estado_cuenta = get_object_or_404(AccountStatement,numero_referencia=numero_referencia)
+    
+    if estado_cuenta.cuota:
+        messages.success(request, "CUOTA")
+        return redirect('financings:detail_credit',estado_cuenta.credit.id)
+
+    if estado_cuenta.payment:
+        messages.success(request, "PAGO")
+        return redirect('financings:recibo',estado_cuenta.payment.id)
+
+    if estado_cuenta.disbursement:
+        messages.success(request, 'DESEMBOLSO')
+        return redirect('financings:detail_disbursement', estado_cuenta.disbursement.id)
+
+@login_required
+@usuario_activo
 def detallar_recibo(request,id):
     
     pago = get_object_or_404(Payment, id=id)

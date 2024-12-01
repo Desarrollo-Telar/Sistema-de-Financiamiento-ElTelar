@@ -104,11 +104,11 @@ def cambiar_plan():
 
                     pago.mora_generado = Decimal(interes) * Decimal(0.1)
                 
-                    
+                    pago.status = True
 
                     pago.save()
 
-                    estado_cuenta = AccountStatement(credit=pago.credit_id,numero_referencia=str(uuid.uuid4())[:8],description="CUOTA VENCIDA",cuota=pago)
+                    estado_cuenta = AccountStatement(credit=pago.credit_id,numero_referencia=str(uuid.uuid4())[:8],description="CUOTA VENCIDA",cuota=pago, saldo_pendiente=pago.saldo_pendiente)
                     estado_cuenta.save()
 
 

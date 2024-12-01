@@ -301,7 +301,7 @@ def index(request):
         
     context = {
         'title':'EL TELAR',
-        'dia':now,
+        'dia':datetime.now(),
         'mes':mes_actual_nombre,
         'customer_list':customer_id,
         'count':customer_id.count(),

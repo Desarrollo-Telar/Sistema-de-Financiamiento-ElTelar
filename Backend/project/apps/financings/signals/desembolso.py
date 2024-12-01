@@ -58,7 +58,8 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
                     disbursement=instance,
                     disbursement_paid=instance.monto_total_desembolso,
                     numero_referencia=referencia,
-                    description=f'{instance.forma_desembolso}'
+                    description=f'{instance.forma_desembolso}',
+                    saldo_pendiente=instance.credit_id.saldo_pendiente
                 )
 
                 try:

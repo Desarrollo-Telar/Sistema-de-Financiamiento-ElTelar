@@ -8,14 +8,16 @@ from apps.financings.clases.personality_logs import logger
 # MODELOS
 from apps.financings.models import AccountStatement, Disbursement, Credit, PaymentPlan
 
-@receiver(post_save, sender=AccountStatement)
-def set_numero_referencia_estado_cuenta(sender, instance, created, **kwargs):
+@receiver(pre_save, sender=AccountStatement)
+def set_estado(sender, instance,  **kwargs):
     if instance.description == 'CUOTA VENCIDA':
         credito_id = instance.credit.id
         credito = Credit.objects.get(id=credito_id)
-        credito.estado_fecha = False
+        credito.estados_fechas = False
         credito.save()
-        
+
+@receiver(post_save, sender=AccountStatement)
+def set_numero_referencia_estado_cuenta(sender, instance, created, **kwargs):
     if created:
         if not instance.numero_referencia or instance.numero_referencia == '':
             # Generar un código de referencia único

@@ -18,7 +18,7 @@
                         <th scope="col">Aporte a Capital</th>
                         <th scope="col">Saldo Capital Pendiente</th>
                         <th scope="col"></th>
-                        <th scope="col"></th>
+
 
 
                     </tr>
@@ -30,13 +30,14 @@
 
                         <td scope="row">
 
-                            {{cuenta_estado.fecha_emision.date}}
+                            {{cuenta_estado.issue_date}}
 
                         </td>
                         <td scope="row">
 
-
-                            {{cuenta_estado.numero_referencia}}
+                            <a href="{% url 'financings:clasificar' cuenta_estado.numero_referencia %}">
+                                {{cuenta_estado.numero_referencia}}
+                            </a>
 
                         </td>
                         <td scope="row">
@@ -61,18 +62,7 @@
                         <td scope="row">
                             Q{{cuenta_estado.Fsaldo_pendiente}}
                         </td>
-                        <td>
-                            {% if cuenta_estado.payment %}
-                            <a href="{% url 'financings:recibo' cuenta_estado.payment.id %}">RECIBO</a>
-                            {% endif %}
 
-                            {% if cuenta_estado.disbursement %}
-                            <a
-                                href="{% url 'financings:detail_disbursement' cuenta_estado.disbursement.id %}">DESEMBOLSO</a>
-
-                            {% endif %}
-
-                        </td>
 
                     </tr>
 

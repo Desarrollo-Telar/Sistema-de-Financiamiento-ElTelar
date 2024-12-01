@@ -17,9 +17,12 @@ def mostrar_fecha_limite(fecha_limite):
         #limite = fecha_limite.replace(hour=5, minute=59, second=0, microsecond=0)
         return limite
 
-def total(capital, interes,mora):
+def total(capital, interes,mora, aporte_capital):
     total = 0
-    total = interes + mora + capital
+    capitals = capital - aporte_capital
+    if capitals <=0:
+        capitals = 0
+    total = interes + mora + capitals
     return formatear_numero(total)
 
 class CreditSerializer(serializers.ModelSerializer):
@@ -107,6 +110,12 @@ class EstadoCuentaSerializer(serializers.ModelSerializer):
         model = AccountStatement
         fields = '__all__'
 
+def resultado_capital(capital_aportado, capital_generado):
+    resutaldo = 0
+    resultado = capital_generado - capital_aportado
+    if resultado <0:
+        resultado = 0
+    return formatear_numero(resultado)
 
 class PaymentPlanSerializer(serializers.ModelSerializer):
     class Meta:
@@ -118,6 +127,8 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
             "mes": instance.mes,
             "start_date": instance.start_date,
             "due_date": instance.due_date,
+            "Fstart_date": instance.start_date,
+            "Fdue_date": instance.due_date,
             "outstanding_balance": formatear_numero(instance.outstanding_balance),
             "mora": formatear_numero(instance.mora),
             "interest": formatear_numero(instance.interest),
@@ -131,13 +142,14 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
             "cambios": instance.cambios,
             "numero_referencia":instance.numero_referencia,
             "cuota_vencida":instance.cuota_vencida,
-            'total_cancelar': total(instance.capital_generado,instance.interest,instance.mora),
-            "capital_generado":instance.capital_generado,
+            'total_cancelar': total(instance.capital_generado,instance.interest,instance.mora,instance.principal),
+            "capital_generado": resultado_capital(instance.principal, instance.capital_generado),
             "credit_id":{
                 "id":instance.credit_id.id,
                 "codigo_credito":instance.credit_id.codigo_credito,
                 "is_paid_off":instance.credit_id.is_paid_off,
                 "estado_aportacion":instance.credit_id.estado_aportacion,
-                "estado_fecha":instance.credit_id.estado_fecha
+                "estados_fechas":instance.credit_id.estados_fechas,
+                "forma_de_pago":instance.credit_id.forma_de_pago
             }
         }

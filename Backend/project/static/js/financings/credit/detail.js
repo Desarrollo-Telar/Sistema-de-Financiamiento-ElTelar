@@ -10,12 +10,16 @@ document.getElementById('cuota_por_cobrar').addEventListener('click', () => {
 
 function formato_fechas(fecha) {
     const date = new Date(fecha);
+    const meses = [
+        "enero", "febrero", "marzo", "abril", "mayo", "junio",
+        "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+    ];
 
     // Extraer día, mes y año
     const day = String(date.getDate()).padStart(2, '0'); // Asegura dos dígitos
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Meses empiezan desde 0
+    const month = meses[date.getUTCMonth()]; // Meses empiezan desde 0
     const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    return `${day} de ${month} de ${year}`;
 
 }
 async function fetchLastPaymentPlan(searchTerm) {
@@ -47,6 +51,7 @@ async function fetchLastPaymentPlan(searchTerm) {
                 <p>Fecha Limite:  ${formato_fechas(response.data['fecha_limite'])} </p>
                 <p>Mora: Q${response.data['mora']}</p>
                 <p>Interes: Q${response.data['interest']}</p>
+                <p>Capital aportar: Q${response.data['capital_generado']}</p>
                 <p>Total de la Cuota a Cancelar: Q${response.data['total_cancelar']}</p>
                            
                 `,

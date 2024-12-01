@@ -17,4 +17,4 @@ from .desembolso import reflejar_estado_cuenta
 from .factura import generar_noFactura
 
 # ESTADO DE CUENTA
-from .estado_cuenta import set_numero_referencia_estado_cuenta
+from .estado_cuenta import set_numero_referencia_estado_cuenta, set_estado

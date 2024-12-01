@@ -17,13 +17,11 @@ from dateutil.relativedelta import relativedelta
 
 
 # PARA CODIGO DEL CREDITO
-def calcular_fecha_vencimiento(fecha_inicio, plazo):
-    fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
-    return fecha_vencimiento
+
 
 @receiver(pre_save, sender=Credit)
 def pre_save_credito(sender, instance, **kwargs):
-    instance.fecha_vencimiento = calcular_fecha_vencimiento(instance.fecha_inicio, instance.plazo)
+    
     if not instance.codigo_credito or instance.codigo_credito == '':
         counter = 1
         customer_code = instance.customer_id.customer_code

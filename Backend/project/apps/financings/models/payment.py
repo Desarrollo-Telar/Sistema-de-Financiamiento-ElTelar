@@ -192,10 +192,12 @@ class Payment(models.Model):
         
         if cuota is None:
             logger.error(f'NO SE HA ENCONTRADO NINGUNA CUOTA')
-            return f'CUOTA NO ENCONTRADA'
+            cuota = self._siguiente_cuota()
+            #return f'CUOTA NO ENCONTRADA'
         
 
         saldo_pendiente = self.credito().saldo_pendiente
+        
         mora = self._calculo_mora()
         interes = self._calculo_intereses()
         
@@ -298,7 +300,7 @@ class Payment(models.Model):
         cuota.interest -=pagado_interes
         mora_existente = cuota.mora
         cuota.mora -= pagado_mora
-        cuota.principal = aporte_capital
+        cuota.principal += aporte_capital
         cuota.saldo_pendiente = saldo_pendiente
         cuota.numero_referencia = self.numero_referencia
         cuota.cambios = False
@@ -313,17 +315,17 @@ class Payment(models.Model):
         
         interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
         if aporte_capital > 0:
-            cuota.status = True
-            cuota_a_actualizar = self.get_plan_pagos()()
-            cuota_a_actualizar.interest =  interes
-            cuota_a_actualizar.interes_generado =  interes
+            #cuota.status = True
+            #cuota_a_actualizar = self.get_plan_pagos()()
+            #cuota_a_actualizar.interest =  interes
+            #cuota_a_actualizar.interes_generado =  interes
             capital_original = cuota.capital_generado
 
-            if aporte_capital >= capital_generado:
+            if cuota.principal >= capital_original:
                 credito.estado_aportacion = True
             else:
                 credito.estado_aportacion = False
-            credito.estado_fecha = True
+            credito.estados_fechas = True
         
         cuota.save()
 
