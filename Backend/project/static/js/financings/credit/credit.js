@@ -104,7 +104,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
             setTimeout(() => { window.location.href = `/financings/credit/${credi.id}`; }, 1000);
 
         }else{
-            alert('NO SE HA REGISTRADO NINGUNA GARANTIA')
+            
             Swal.fire({
                 icon: "error",
                 title: `NO SE HA REGISTRADO NINGUNA GARANTIA`,
@@ -142,6 +142,7 @@ async function registrarCredito(url, credito) {
             proposito: credito.proposito,
             tasa_interes: credito.tasaInteres,
             tipo_credito: credito.tipoCredito,
+            saldo_pendiente:credito.monto
         };
         console.log(json);
 
@@ -157,7 +158,7 @@ async function registrarCredito(url, credito) {
         console.log(response.data);
         return response.data;
     } catch (error) {
-        alert('ERROR: ',error);
+        //alert('ERROR: ',error);
         console.error('Error:', error);
         throw error;
     }

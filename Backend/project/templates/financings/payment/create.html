@@ -74,6 +74,11 @@
                 url: 'http://127.0.0.1:8000/financings/api/credit/',
                 dataType: 'json',
                 delay: 250,
+                data: function (params) {
+                    return {
+                        term: params.term // Parámetro que el backend debe esperar
+                    };
+                },
                 processResults: function (data) {
                     console.log(data);
                     // Verificar si 'data' es un array de objetos
@@ -96,7 +101,7 @@
                 },
                 cache: true
             },
-            placeholder: 'Seleccione un Cliente',
+            placeholder: 'Seleccione un Credito',
             minimumInputLength: 1
         });
     });

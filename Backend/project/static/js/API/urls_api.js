@@ -78,6 +78,7 @@ export const urls_p = {
 
     // FINANZAS
     api_url_credit: `${baseUrl}/financings/api/credit/`,
+    api_url_credit_vigente: `${baseUrl}/financings/api/credit-vigente/`,
     api_url_garantia: `${baseUrl}/financings/api/garantia/`,
     api_url_detalle_garantia: `${baseUrl}/financings/api/detalle_garantia/`,
     api_url_desembolso: `${baseUrl}/financings/api/desembolso/`,

@@ -19,6 +19,32 @@ class CreditViewSet(viewsets.ModelViewSet):
     serializer_class = CreditSerializer
     queryset = Credit.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
+        if search_term:
+            queryset = queryset.filter(
+                Q(customer_id__first_name__icontains =search_term)|
+                Q(customer_id__last_name__icontains =search_term)|
+                Q(codigo_credito__icontains =search_term)
+            )  # Filtrar por el término de búsqueda
+        return queryset
+
+class CreditVigentesViewSet(viewsets.ModelViewSet):
+    serializer_class = CreditSerializer
+    queryset = Credit.objects.filter(is_paid_off=False)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
+        if search_term:
+            queryset = queryset.filter(
+                Q(customer_id__first_name__icontains =search_term)|
+                Q(customer_id__last_name__icontains =search_term)|
+                Q(codigo_credito__icontains =search_term)
+            )  # Filtrar por el término de búsqueda
+        return queryset
+
 class GuaranteesViewSet(viewsets.ModelViewSet):
     serializer_class = GuaranteesSerializer
     queryset = Guarantees.objects.all()
@@ -30,7 +56,18 @@ class DetailsGuaranteesViewSet(viewsets.ModelViewSet):
 class DisbursementViewSet(viewsets.ModelViewSet):
     serializer_class = DisbursementSerializer
     queryset = Disbursement.objects.all()
-
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
+        if search_term:
+            queryset = queryset.filter(
+                #Q(credit_id__id__icontains=search_term) |
+                #Q(credit_id__customer_id__last_name__icontains =search_term)|
+                Q(credit_id__codigo_credito__icontains =search_term)
+            )  # Filtrar por el término de búsqueda
+        return queryset
+   
 class PaymentViewSet(viewsets.ModelViewSet):
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()

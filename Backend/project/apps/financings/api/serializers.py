@@ -40,6 +40,7 @@ class CreditSerializer(serializers.ModelSerializer):
             'tipo_credito',
             'destino_id',
             'customer_id',
+            'saldo_pendiente'
             
         ]
     def to_representation(self, instance):
@@ -51,7 +52,8 @@ class CreditSerializer(serializers.ModelSerializer):
 
             },
             'proposito':instance.proposito,
-            'monto':instance.monto,
+            'monto': instance.monto,
+            'Fmonto': formatear_numero(instance.monto),
             'plazo':instance.plazo,
             'tasa_interes':instance.tasa_interes,
             'forma_de_pago':instance.forma_de_pago,
@@ -61,7 +63,8 @@ class CreditSerializer(serializers.ModelSerializer):
             'tipo_credito':instance.tipo_credito,
             #'destino_id':instance.destino_id,
             'codigo_credito':instance.codigo_credito,
-            'saldo_actual':instance.saldo_actual,
+            'saldo_actual': instance.saldo_actual,
+            'Fsaldo_actual': formatear_numero(instance.saldo_actual),
             'saldo_pendiente':instance.saldo_pendiente,
             'is_paid_off':instance.is_paid_off
         }
@@ -82,6 +85,27 @@ class DisbursementSerializer(serializers.ModelSerializer):
         model = Disbursement
         fields = '__all__'
 
+    def to_representation(self,instance):
+        return {
+            "id":instance.id,
+    "forma_desembolso": instance.forma_desembolso,
+    "monto_credito": instance.monto_credito,
+    "saldo_anterior": instance.saldo_anterior,
+    "honorarios": instance.honorarios,
+    "poliza_seguro": instance.poliza_seguro,
+    "monto_total_desembolso": instance.monto_total_desembolso,
+    "credit_id": {
+        "id":instance.credit_id.id,
+        'customer_id':{
+                'first_name':instance.credit_id.customer_id.first_name,
+                'last_name':instance.credit_id.customer_id.last_name,
+
+        },
+        'codigo_credito':instance.credit_id.codigo_credito,
+
+    }
+}
+
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
@@ -91,7 +115,9 @@ class PaymentSerializer(serializers.ModelSerializer):
             'numero_referencia',
             'fecha_emision',
             'descripcion',
-            'boleta'
+            'boleta',
+            'tipo_pago',
+            'disbursement'
         ]
 
 class FacturaSerializer(serializers.ModelSerializer):

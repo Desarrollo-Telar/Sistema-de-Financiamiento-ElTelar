@@ -5,367 +5,236 @@
 {% endblock %}
 
 {% block content %}
-<form method="POST" id="desembolso">
-    {% csrf_token %}
-    <meta name="csrf-token" content="{{ csrf_token }}">
-    <div style="background-color: white; padding: 2rem;">
-        <div class="row">
-            <!-- SELECCION DEL CREDITO-->
-            <div class="col-12" style="margin-bottom: 2rem;">
-                <div class="form-group">
-                    <label class="fw-medium" for="credit_id">Credito</label>
-                    <select class="form-control credit" id="credit_id" name="credit_id" style="width: 100%" required>
-                    </select>
-                </div>
+<div class="box">
+    <form method="POST" id="desembolso">
+        {% csrf_token %}
+        <meta name="csrf-token" content="{{ csrf_token }}">
+        <div class="form-group">
+            <label class="fw-medium" for="credit_id">Credito</label>
+            <select class="form-control credit" id="credit_id" name="credit_id" style="width: 100%" required>
+            </select>
+            <div id="informacion_credito" style="margin-top: 0.5rem;"></div>
 
-            </div>
+
         </div>
-        <div class="form-group" style="margin-top: 2rem;">
+        <div class="form-group" style="margin-top: 2rem;display: none;" id="div_forma_desembolso">
             <label class="fw-medium" for="forma_desembolso">Forma de Desembolso</label>
             <!-- SELECCION DE LA FORMA DE DESEMBOLSOS-->
             <select class="form-select" id="forma_desembolso" aria-label="Default select example">
                 <option selected>SELECCIONAR UN TIPO DE DESEMBOLSO</option>
 
 
-                <option value="APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE">APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE
+                <option value="APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE">APLICACIÓN DE AMPLIACIÓN DE CRÉDITO
+                    VIGENTE
                 </option>
                 <option value="CANCELACIÓN DE CRÉDITO VIGENTE">CANCELACIÓN DE CRÉDITO VIGENTE</option>
             </select>
 
         </div>
-        <div class="form-group" style="margin-top: 2rem;" id="div_monto_credito">
+        <div class="form-group" style="margin-top: 2rem; display: none;" id="div_monto_credito">
             <label class="fw-medium" for="monto">Monto del Credito</label>
             <div class="input-group mb-3">
                 <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                <input type="number" min="0" step="any" class="form-control" id="monto" disabled>
+                <input type="number" step="any" class="form-control" id="monto" disabled>
             </div>
 
         </div>
-        <div class="form-group" style="margin-top: 2rem;">
+        <div class="form-group" style="margin-top: 2rem; display: none;" id="div_saldo_anterior">
 
             <label class="fw-medium" for="saldo_anterior">Saldo Anterior</label>
 
             <div class="input-group mb-3">
                 <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                <input type="number" min="0" step="any" class="form-control" id="saldo_anterior">
+                <input type="number" step="any" class="form-control" id="saldo_anterior">
             </div>
+        </div>
+        <div class="form-group" id="div_honorarios" style="display: none; padding: 2rem;">
+            <hr>
+            <div class=" row">
+                <div class=" col-xs-12 col-sm-4">
+                    <label class="fw-medium" for="honorarios">Honorarios</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    <div>
+                        <label class="fw-medium" for="honorarios">Monto de Honorarios</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                            <input type="number" min="0" step="any" class="form-control" id="honorarios"
+                                placeholder="Monto de Honorarios">
+                        </div>
+
+                    </div>
+
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="honorarios">Numero de Referencia</label>
+                        <input type="number" min="0" class="form-control" placeholder="Numero de Referencia"
+                            id="numero_referencia_honorarios">
+
+                    </div>
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="honorarios">Fecha de Emision</label>
+                        <input type="date" class="form-control" placeholder="Fecha de Emision"
+                            id="fecha_emision_honorarios">
+
+                    </div>
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="honorarios">Documento de la Boleta</label>
+                        <input type="file" class="form-control" placeholder="Fecha de Emision" id="boleta_honorarios">
+
+
+                    </div>
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="honorarios">Observaciones</label>
+                        <textarea type="te" class="form-control"
+                            placeholder="Observaciones o Informacion extra sobre el pago de honorarios"
+                            id="descripcion_honorarios" rows="3"></textarea>
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <hr>
+
 
 
         </div>
 
+        <div class="form-group" style="display: none; padding: 2rem;" id="div_poliza_seguro">
+            <hr>
+            <div class="row">
+                <div class=" col-xs-12 col-sm-4">
+                    <label class=" fw-medium" for="poliza_seguro">Poliza de Seguro</label>
+
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    <div>
+                        <label class=" fw-medium" for="poliza_seguro">Monto de Poliza de Seguro</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                            <input type="number" min="0" step="any" class="form-control" id="poliza_seguro"
+                                placeholder="Monto Sobre la Poliza de Seguro">
+                        </div>
+                    </div>
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="poliza_seguro">Numero de Referencia</label>
+                        <input type="number" min="0" class="form-control" placeholder="Numero de Referencia"
+                            id="numero_referencia_poliza">
+
+                    </div>
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="poliza_seguro">Fecha de Emision</label>
+                        <input type="date" class="form-control" placeholder="Fecha de Emision"
+                            id="fecha_emision_poliza">
+
+                    </div>
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="poliza_seguro">Documento de la Boleta</label>
+                        <input type="file" class="form-control" placeholder="Documento de la Boleta" id="boleta_poliza"
+                            accept=".pdf, image/*">
 
 
-    </div>
-    <div class="form-group" style="background-color: white; padding: 2rem;">
-        <hr>
-        <div class=" row">
-            <div class=" col-xs-12 col-sm-4">
-                <label class="fw-medium" for="honorarios">Honorarios</label>
-            </div>
-            <div class="col-xs-12 col-sm-8">
-                <div>
-                    <label class="fw-medium" for="honorarios">Monto de Honorarios</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                        <input type="number" min="0" step="any" class="form-control" id="honorarios"
-                            placeholder="Monto de Honorarios">
+                    </div>
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="poliza_seguro">Observaciones</label>
+                        <textarea type="te" class="form-control"
+                            placeholder="Observaciones o Informacion extra sobre el pago de Poliza de Seguro"
+                            id="descripcion_poliza" rows="3"></textarea>
+
+
                     </div>
 
                 </div>
-
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="honorarios">Numero de Referencia</label>
-                    <input type="number" min="0" class="form-control" placeholder="Numero de Referencia"
-                        id="numero_referencia_honorarios">
-
-                </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="honorarios">Fecha de Emision</label>
-                    <input type="date" class="form-control" placeholder="Fecha de Emision"
-                        id="fecha_emision_honorarios">
-
-                </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="honorarios">Documento de la Boleta</label>
-                    <input type="file" class="form-control" placeholder="Fecha de Emision" id="boleta_honorarios">
-
-
-                </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="honorarios">Observaciones</label>
-                    <textarea type="te" class="form-control"
-                        placeholder="Observaciones o Informacion extra sobre el pago de honorarios"
-                        id="descripcion_honorarios" rows="3"></textarea>
-
-
-                </div>
-
-
-
             </div>
+            <hr>
+
+
 
         </div>
-        <hr>
-
-
-
-    </div>
-    <div class="form-group" style="background-color: white; padding: 2rem;">
-        <hr>
-        <div class="row">
-            <div class=" col-xs-12 col-sm-4">
-                <label class=" fw-medium" for="poliza_seguro">Poliza de Seguro</label>
-
-            </div>
-            <div class="col-xs-12 col-sm-8">
-                <div>
-                    <label class=" fw-medium" for="poliza_seguro">Monto de Poliza de Seguro</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                        <input type="number" min="0" step="any" class="form-control" id="poliza_seguro"
-                            placeholder="Monto Sobre la Poliza de Seguro">
-                    </div>
-                </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="poliza_seguro">Numero de Referencia</label>
-                    <input type="number" min="0" class="form-control" placeholder="Numero de Referencia"
-                        id="numero_referencia_poliza">
-
-                </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="poliza_seguro">Fecha de Emision</label>
-                    <input type="date" class="form-control" placeholder="Fecha de Emision" id="fecha_emision_poliza">
-
-                </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="poliza_seguro">Documento de la Boleta</label>
-                    <input type="file" class="form-control" placeholder="Documento de la Boleta" id="boleta_poliza"
-                        accept=".pdf, image/*">
-
-
-                </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="poliza_seguro">Observaciones</label>
-                    <textarea type="te" class="form-control"
-                        placeholder="Observaciones o Informacion extra sobre el pago de Poliza de Seguro"
-                        id="descripcion_poliza" rows="3"></textarea>
-
-
-                </div>
-
-            </div>
-        </div>
-        <hr>
-
-
-
-    </div>
-    <div class="form-group" style="background-color: white; padding: 2rem;">
-        <hr>
-        <div class="row">
-            <div class=" col-xs-12 col-sm-4">
-                <label class=" fw-medium" for="total_depositar">Total a Depositar</label>
-
-            </div>
-            <div class="col-xs-12 col-sm-8">
-                <div>
+        <div class="form-group" style="display: none; padding: 2rem;" id="div_total_depositar">
+            <hr>
+            <div class="row">
+                <div class=" col-xs-12 col-sm-4">
                     <label class=" fw-medium" for="total_depositar">Total a Depositar</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                        <input type="number" min="0" step="any" class="form-control" id="total_depositar" disabled>
+
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    <div>
+                        <label class=" fw-medium" for="total_depositar">Total a Depositar</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                            <input type="number" min="0" step="any" class="form-control" id="total_depositar" disabled>
+                        </div>
                     </div>
-                </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="total_depositar">Numero de Referencia</label>
-                    <input type="number" min="0" class="form-control" placeholder="Numero de Referencia"
-                        id="numero_referencia_total">
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="total_depositar">Numero de Referencia</label>
+                        <input type="number" min="0" class="form-control" placeholder="Numero de Referencia"
+                            id="numero_referencia_total">
+
+                    </div>
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="total_depositar">Fecha de Emision</label>
+                        <input type="date" class="form-control" placeholder="Fecha de Emision" id="fecha_emision_total">
+
+                    </div>
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="total_depositar">Documento de la Boleta</label>
+                        <input type="file" class="form-control" placeholder="Documento de la Boleta" id="boleta_total"
+                            accept=".pdf, image/*">
+
+
+                    </div>
+                    <div style="margin: 1rem 0; ">
+                        <label class="fw-medium" for="total_depositar">Observaciones</label>
+                        <textarea type="te" class="form-control"
+                            placeholder="Observaciones o Informacion extra sobre el total a Desembolsar"
+                            id="descripcion_total" rows="3"></textarea>
+
+
+                    </div>
 
                 </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="total_depositar">Fecha de Emision</label>
-                    <input type="date" class="form-control" placeholder="Fecha de Emision" id="fecha_emision_total">
-
-                </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="total_depositar">Documento de la Boleta</label>
-                    <input type="file" class="form-control" placeholder="Documento de la Boleta" id="boleta_total"
-                        accept=".pdf, image/*">
+            </div>
+            <hr>
 
 
-                </div>
-                <div style="margin: 1rem 0; ">
-                    <label class="fw-medium" for="total_depositar">Observaciones</label>
-                    <textarea type="te" class="form-control"
-                        placeholder="Observaciones o Informacion extra sobre el total a Desembolsar"
-                        id="descripcion_total" rows="3"></textarea>
 
+        </div>
 
-                </div>
+        <div class="form-group">
+            <hr>
+            <div class="d-flex">
+                <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+                <button type="submit" class="btn_guardar" id="add_Desembolso" style="display: none;"
+                    onclick="window.history.back()">Agregar</button>
 
             </div>
+
         </div>
-        <hr>
 
 
 
-    </div>
-    </div>
-    <hr>
-    <div style="background-color: white; padding: 2rem;">
-        <button onclick="window.history.back()" type="button" class="btn btn-link">Cancelar</button>
-        <button type="submit" class="btn_edit" id="add_Desembolso" onclick="window.history.back()">Agregar</button>
-    </div>
 
 
-</form>
+    </form>
+
+</div>
+
 {% endblock %}
 
 
 
 {% block js %}
-<script type="module" src="{% static 'js/financings/credit/disbursement.js'%}"></script>
+<script type="module" src="{% static 'js/API/desembolsos/clasificacion.js'%}"></script>
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        async function informacionDesembolso() {
-            return fetch('https://www.ii-eltelarsa.com/financings/api/desembolso/')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error al obtener información de desembolso: ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Lista de desembolsos obtenida:', data);
 
-                    return data;
-                })
-                .catch(error => {
-                    console.error('Error al obtener la lista de desembolsos:', error);
-                    throw error;
-                });
-        }
-
-        async function filtro(valor) {
-            try {
-                const desembolso = await informacionDesembolso();
-                let filterList = [];
-
-                if (desembolso && Array.isArray(desembolso) && desembolso.length > 0) {
-                    filterList = desembolso.filter(item => item['credit_id'] === valor);
-                }
-
-                console.log(filterList);
-                return filterList;
-
-            } catch (error) {
-                console.error('Error en el filtro', error);
-                throw error;
-            }
-        }
-
-        var suma = 0;
-
-        $(".credit").on('select2:select', async function (e) {
-            var data = e.params.data;
-            var credit_id = data.id;
-            const saldo = document.getElementById('saldo_anterior');
-
-
-            suma = 0; // Reiniciar suma para cada cálculo
-
-            try {
-                const laboral = await filtro(credit_id);
-
-
-
-                if (Array.isArray(laboral)) {
-                    laboral.forEach(element => {
-                        suma += parseFloat(element['monto_total_desembolso']);
-                        // Deshabilitar la opción en forma de desembolso
-                        const select = document.getElementById('forma_desembolso');
-
-                        let dese = element['forma_desembolso'];
-
-
-                        const option = Array.from(select.options).find(opt => {
-                            if (dese === 'APLICACIÓN GASTOS' && opt.value === dese) {
-                                console.log('POR OCULTAR');
-
-                                opt.disabled = true;
-
-                            } else {
-                                opt.disabled = false;
-
-
-
-                            }
-
-                        });
-
-
-                    });
-                }
-
-                const monto_credito = parseFloat(document.getElementById('monto').value);
-
-                if (suma >= monto_credito) {
-                    alert('NO SE PUEDE REALIZAR OTRO DESEMBOLSO');
-                    window.location.href = '/financings/disbursement/';
-                }
-
-                console.log('Suma total de desembolsos:', suma);
-
-                // Aquí puedes usar los detalles de cliente para llenar otros campos, como lugar_trabajo e ingreso
-            } catch (error) {
-                console.error('Error obteniendo detalles del cliente:', error);
-            }
-        });
-
-        $(".credit").select2({
-            width: 'resolve',
-            ajax: {
-                url: 'https://www.ii-eltelarsa.com/financings/api/credit/',
-                dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    console.log(data);
-                    if (Array.isArray(data)) {
-                        return {
-                            results: data.map(function (item) {
-                                // Actualizar monto
-                                document.getElementById('monto').value = item.monto;
-
-
-
-                                // Actualizar saldo anterior
-                                document.getElementById('saldo_anterior').value = item.saldo_actual;
-
-                                // Retornar resultado para Select2
-                                return {
-                                    id: item.id,
-                                    text: item.codigo_credito + ' ' + item.customer_id.first_name + ' ' + item.customer_id.last_name
-                                };
-                            })
-                        };
-                    } else {
-                        console.error('Estructura de datos inesperada:', data);
-                        return {
-                            results: []
-                        };
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error('Error en la solicitud AJAX:', textStatus, errorThrown);
-                },
-                cache: true
-            },
-            placeholder: 'Seleccione un Credito',
-            minimumInputLength: 1
-        });
-    });
-</script>
 
 
 {% endblock %}
