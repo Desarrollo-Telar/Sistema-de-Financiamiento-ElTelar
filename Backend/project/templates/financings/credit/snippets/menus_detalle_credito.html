@@ -36,12 +36,7 @@
 
     <div class="tab-pane fade show " id="nav-garantia" role="tabpanel" aria-labelledby="nav-garantia-tab" tabindex="0">
         <div class="contenido">
-            <div class="row" style="margin-top: 1rem;">
-                <div class="col d-flex flex-row-reverse">
-                    <a class="btn_cancel" href="{% url 'financings:create_guarantee' %}">Añadir Garantia
-                        Nueva</a>
-                </div>
-            </div>
+
             <div class="row" style="margin-top: 1rem;">
                 {% include 'financings/guarantee/table/table.html' %}
 

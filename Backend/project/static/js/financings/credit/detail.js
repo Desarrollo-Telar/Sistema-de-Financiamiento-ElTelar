@@ -34,6 +34,7 @@ async function fetchLastPaymentPlan(searchTerm) {
         if (response.data) {
             //console.log('Último PaymentPlan:', response.data);
             console.log(response.data['credit_id'].is_paid_off);
+            
 
             if (response.data['credit_id'].is_paid_off){
                 Swal.fire({

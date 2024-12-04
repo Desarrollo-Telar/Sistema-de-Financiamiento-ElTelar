@@ -38,6 +38,7 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
     if created:
         instance.saldo_pendiente = instance.monto
         instance.plazo_restante = instance.plazo
+        instance.estados_fechas = True
         # CALCULO DE INTERES
         interes = calculo_interes(instance.monto, instance.tasa_interes)
         # GENERACION DE FECHA LIMITE DE PAGO 15 DIAS

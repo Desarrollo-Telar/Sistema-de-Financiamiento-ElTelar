@@ -15,7 +15,8 @@ const div_honorarios = document.getElementById('div_honorarios');
 const div_poliza_seguro = document.getElementById('div_poliza_seguro');
 const div_total_depositar = document.getElementById('div_total_depositar');
 const div_plazo_restante = document.getElementById('div_plazo_restante');
-
+const div_monto_credito_agregar = document.getElementById('div_monto_credito_agregar');
+const div_monto_credito_cancelar = document.getElementById('div_monto_credito_cancelar');
 const informacion_credito = document.getElementById('informacion_credito');
 
 
@@ -39,54 +40,12 @@ function ocultar() {
 
 }
 
-function generar(){
-    // Crear el contenedor principal
-const divMontoAgregado = document.createElement('div');
-divMontoAgregado.classList.add('form-group');
-divMontoAgregado.style.marginTop = '2rem';
-divMontoAgregado.id = 'monto_agregado';
-
-// Crear y configurar el label
-const labelMontoSumar = document.createElement('label');
-labelMontoSumar.classList.add('fw-medium');
-labelMontoSumar.setAttribute('for', 'monto_sumar');
-labelMontoSumar.textContent = 'Monto por agregar';
-
-// Crear el contenedor del grupo de entrada
-const divInputGroup = document.createElement('div');
-divInputGroup.classList.add('input-group', 'mb-3');
-
-// Crear el span del prefijo
-const spanInputGroupText = document.createElement('span');
-spanInputGroupText.classList.add('input-group-text', 'fw-medium');
-spanInputGroupText.setAttribute('id', 'basic-addon1');
-spanInputGroupText.textContent = 'Q';
-
-// Crear el campo de entrada
-const inputMontoSumar = document.createElement('input');
-inputMontoSumar.type = 'number';
-inputMontoSumar.min = '0';
-inputMontoSumar.step = 'any';
-inputMontoSumar.classList.add('form-control');
-inputMontoSumar.id = 'monto_sumar';
-
-// Construir la estructura
-divInputGroup.appendChild(spanInputGroupText);
-divInputGroup.appendChild(inputMontoSumar);
-
-divMontoAgregado.appendChild(labelMontoSumar);
-divMontoAgregado.appendChild(divInputGroup);
-
-// Agregar el nuevo contenedor al div original
-div_monto_credito.appendChild(divMontoAgregado);
 
 
-}
-
-const credito_monto = document.getElementById('monto');
+const credito_monto = document.getElementById('monto_credito');
 
 
-let credit_id, saldo_anterior=0;
+let credit_id, saldo_anterior = 0;
 //const saldo = document.getElementById('saldo_anterior');
 // Función para obtener valor numérico de un campo por ID
 const obtenerValorNumerico = (id) => parseFloat(document.getElementById(id)?.value) || 0;
@@ -141,9 +100,6 @@ document.getElementById('forma_desembolso')?.addEventListener('change', async (e
     const valorSeleccionado = event.target.value;
     const credito = await get_credit(credit_id);
 
-
-    const montoAgregado = document.getElementById('monto_agregado');
-
     if (!valorSeleccionado) throw new Error('Opción no seleccionada');
     credito_monto.value = credito.monto;
 
@@ -155,17 +111,10 @@ document.getElementById('forma_desembolso')?.addEventListener('change', async (e
 
 
             //console.log(desembolso.forma_desembolso);
+            div_monto_credito_cancelar.style.display = 'none';
+            div_monto_credito_agregar.style.display = 'block';
+            
 
-            // Añade el campo solo si no existe
-            if (!montoAgregado) {
-                generar();
-
-
-                // Añade el listener después de crear el campo
-                document.getElementById('monto_sumar').addEventListener('input', actualizarTotalDepositar);
-            } else {
-                montoAgregado.style.display = 'block';
-            }
 
             break;
 
@@ -173,12 +122,11 @@ document.getElementById('forma_desembolso')?.addEventListener('change', async (e
             //desembolso.forma_desembolso = valorSeleccionado;
             //console.log(desembolso.forma_desembolso);
             mostrar();
+            document.getElementById('monto_credito_agregar').value = ''; // Limpia el valor
+            div_monto_credito_agregar.style.display = 'none';
+            div_plazo_restante.style.display = 'none';
+            div_monto_credito_cancelar.style.display = 'block';
 
-            // Oculta y limpia el campo `monto_sumar` si ya existe
-            if (montoAgregado) {
-                document.getElementById('monto_sumar').value = ''; // Limpia el valor
-                montoAgregado.style.display = 'none';
-            }
 
             break;
         default:
@@ -208,6 +156,7 @@ $(document).ready(function () {
             <p>Intereses: ${cuota.interest} </p>
             <p>Mora: ${cuota.mora} </p>
             <p>Plazo del Credito: ${credito.plazo} Meses </p>
+            <p>Plazo Restante del Credito: ${credito.plazo_restante} Meses </p>
             <hr>
             <p>Saldo Anterior: ${credito.Fsaldo_actual} </p>
             `
@@ -218,7 +167,7 @@ $(document).ready(function () {
             // Actualizar saldo anterior
             document.getElementById('saldo_anterior').value = credito.saldo_actual;
             const monto_credito = parseFloat(credito.monto);
-            document.getElementById('plazo_restante').value = credito.plazo_restante;
+
             credito_monto.value = credito.monto;
 
 

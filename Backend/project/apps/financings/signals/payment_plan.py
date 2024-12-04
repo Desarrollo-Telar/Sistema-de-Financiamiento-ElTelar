@@ -32,6 +32,11 @@ def numeracion_cuota(sender, instance, *args, **kwargs):
         while PaymentPlan.objects.filter(mes=contador, credit_id=instance.credit_id).exists():
             contador += 1
         instance.mes = contador
+    if instance.cuota_vencida:
+        credito = Credit.objects.get(id=instance.credit_id.id)
+        print(credito)
+        credito.estados_fechas = False
+        credito.save()
 
 
 @receiver(post_save, sender=PaymentPlan)

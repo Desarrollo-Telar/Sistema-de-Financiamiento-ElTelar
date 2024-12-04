@@ -11,10 +11,13 @@ from apps.financings.models import AccountStatement, Disbursement, Credit, Payme
 @receiver(pre_save, sender=AccountStatement)
 def set_estado(sender, instance,  **kwargs):
     if instance.description == 'CUOTA VENCIDA':
+        print('Cambiando el estado a false')
         credito_id = instance.credit.id
         credito = Credit.objects.get(id=credito_id)
+        print(credito.estados_fechas)
         credito.estados_fechas = False
         credito.save()
+        print(credito.estados_fechas)
 
 @receiver(post_save, sender=AccountStatement)
 def set_numero_referencia_estado_cuenta(sender, instance, created, **kwargs):

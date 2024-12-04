@@ -42,6 +42,7 @@ class PaymentPlan(models.Model):
     mora_acumulado_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     mora_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     # NUEVOS CAMPOS
+    paso_por_task = models.BooleanField(default=False)
 
     def formato_cuota_mora(self):
         return formatear_numero(self.mora)
