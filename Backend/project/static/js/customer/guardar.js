@@ -22,53 +22,8 @@ document.getElementById('customer').addEventListener('submit', async function (e
     let customer_id;
 
     try {
-        let cliente = recoletarInformacionCliente();
-        if(!cliente.validar()){
-            
-            alerta_m('Falta Informacion sobre el cliente',false);
-            throw new Error('Falta Informacion sobre el cliente');
-
-        }
-        
-        let direcciones = recoletarInformacionDirecciones();
-        direcciones.forEach(element =>{
-            if(!element.validar()){
-                
-                alerta_m('Falta Informacion las direcciones del cliente',false);
-                throw new Error('Falta Informacion las direcciones del cliente');
-
-            }
-        })
-
-        let laboral = recolectarInformacionLaboral();
-        if(!laboral.validar()){
-            
-            alerta_m('Falta Informacion sobre información laboral del cliente',false);
-            throw new Error('Falta Informacion sobre informacion laboral del cliente');
-        }
-
-        let destino = recoletarInformacionPlanInversion();
-        if(!destino.validar()){
-            
-            alerta_m('Falta Informacion sobre informacion del destino del cliente',false);
-            throw new Error('Falta Informacion sobre informacion del destino del cliente');
-        }
-
-        let referencias = recoletarInformacionReferencias();
-        referencias.forEach(element =>{
-            if(!element.validar()){
-              
-                alerta_m('Falta Informacion sobre referencias del cliente',false);
-                throw new Error('Falta Informacion sobre las referencias del cliente');
-
-            }
-        })
-
-        
-        
-
+   
         // Realizar llamadas a la API
-        
         const customerData = await postCustomer(urls_p.api_url_cliente);
         console.log('Cliente registrado con éxito:', customerData);
         customer_id = customerData.id;
@@ -96,12 +51,13 @@ document.getElementById('customer').addEventListener('submit', async function (e
         
     } catch (error) {
         console.error('Error al registrar los datos:', error);
+        /*
         if(customer_id){
             window.location.href = `/customers/delete/${customer_id}/`;
 
         }
         
-        
+        */
         alerta_m(`Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo. ${error}`,false)
     }
 });

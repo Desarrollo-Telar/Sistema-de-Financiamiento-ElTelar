@@ -32,11 +32,7 @@ def numeracion_cuota(sender, instance, *args, **kwargs):
         while PaymentPlan.objects.filter(mes=contador, credit_id=instance.credit_id).exists():
             contador += 1
         instance.mes = contador
-    if instance.cuota_vencida:
-        credito = Credit.objects.get(id=instance.credit_id.id)
-        print(credito)
-        credito.estados_fechas = False
-        credito.save()
+    
 
 
 @receiver(post_save, sender=PaymentPlan)
@@ -80,16 +76,16 @@ def generar_planes(sender, instance,created, **kwargs):
                 
             )
             cuota_nueva.save()
-            
+    
             
         
     
         
-def actualizar(id):
-    pagos = PaymentPlan.objects.filter(id=id).order_by('-id').first()
-    credito = Credit.objects.get(id=pagos.credit_id.id)
-    credito.saldo_pendiente = pagos.saldo_pendiente
-    credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
+def actualizar(instance):
+    print('ACTUALIZANDO EL SALDO ACTUAL')
+    credito = Credit.objects.get(id=instance.credit_id.id)
+    credito.saldo_pendiente = instance.saldo_pendiente
+    credito.saldo_actual = instance.saldo_pendiente + instance.mora + instance.interest
     credito.save()
 
 

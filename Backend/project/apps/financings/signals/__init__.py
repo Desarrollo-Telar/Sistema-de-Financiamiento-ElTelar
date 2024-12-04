@@ -5,7 +5,7 @@ from .payment import eliminar_documento_banco,generar_plan_pagos,alerta
 from .payment_plan import generar_planes, eliminar_siguientes_cuotas, cambios
 
 # CREDITOS
-from .credit import pre_save_credito, generar_plan_pagos_nuevo
+from .credit import  generar_plan_pagos_nuevo
 
 # RECIBOS
 from .recibo import generar_noRecibo
@@ -17,4 +17,4 @@ from .desembolso import reflejar_estado_cuenta
 from .factura import generar_noFactura
 
 # ESTADO DE CUENTA
-from .estado_cuenta import set_numero_referencia_estado_cuenta, set_estado
+from .estado_cuenta import set_numero_referencia_estado_cuenta

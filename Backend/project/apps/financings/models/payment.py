@@ -267,12 +267,7 @@ class Payment(models.Model):
         
         recibos = self.get_recibo().objects.filter(pago=pago)
     
-        if recibos.exists():
-            for recibo in recibos:
-                # Actualizamos cada recibo existente
-               
-                pass
-        else:
+        if not recibos.exists():
             # Creamos un nuevo recibo si no hay existentes
             recibo = self.get_recibo()(
                 mora=cuota.mora,
@@ -329,6 +324,7 @@ class Payment(models.Model):
         
         cuota.save()
 
+
         # ACTUALIZAR EL PAGO PARA REFREGAR LA CANTIDA PAGADA
         pago.mora =  pagado_mora
         pago.interes =  pagado_interes
@@ -379,6 +375,12 @@ class Payment(models.Model):
         
         # SE ACTUALIZA EL SALDO PENDIENTE DEL CREDITO
         credito.saldo_pendiente = saldo_pendiente
+
+        # Actualizar el saldo actual
+        if saldo_pendiente <= 0:
+            saldo_pendiente = 0
+        credito.saldo_actual = saldo_pendiente + cuota.mora + cuota.interest
+
         credito.save()
         
 
@@ -415,6 +417,10 @@ class Payment(models.Model):
             cuota_a_actualizar.saldo_pendiente = saldo_pendiente
             cuota_a_actualizar.credit_id = credito
             cuota_a_actualizar.outstanding_balance = saldo_pendiente
+            
+            credito.saldo_actual = saldo_pendiente + cuota_a_actualizar.mora + cuota_a_actualizar.interest
+
+            credito.save()
             
             logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO: {cuota_a_actualizar.interest}\nMORA NUEVA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {saldo_pendiente}')
             

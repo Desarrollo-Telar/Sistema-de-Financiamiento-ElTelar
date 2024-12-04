@@ -3,6 +3,8 @@ import { PaymentPlan } from '../../class/paymentplan.js';
 import { suma_total, lista_garantia } from './garantia.js'
 import {desembolso} from './disbursement.js'
 
+import {registrar_documento_garantia} from '../../API/documents/garantia_documento.js'
+
 import {urls, urls_p} from '../../API/urls_api.js'
 const proposito = document.getElementById('proposito');
 const monto = document.getElementById('monto');
@@ -168,48 +170,7 @@ async function registrarCredito(url, credito) {
 
 
 
-/*
-async function registroGarantia(url, credito_id) {
 
-    try {
-        let json = {
-            suma_total: suma_total,
-            credit_id: credito_id
-        };
-        console.log(json);
-
-        // Obtener el token CSRF del meta tag
-        const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
-        if (!csrfTokenElement) {
-            throw new Error('CSRF token not found');
-        }
-        const csrfToken = csrfTokenElement.getAttribute('content');
-
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
-            },
-            body: JSON.stringify(json)
-        });
-
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(data);
-        const detalle = await registrarDetalle('http://127.0.0.1:8000/financings/api/detalle_garantia/',data.id);
-        console.log(detalle);
-        return data;
-    } catch (error) {
-        console.error('Error:', error);
-        throw error;
-    }
-
-}
-*/
 async function registroGarantia(url, credito_id) {
     try {
         let json = {
@@ -278,7 +239,31 @@ async function registrarDetalle(url, garantia_id) {
             }
 
             const data = await response.json();
+            /*
+            if (data.avaluoBien !== ''){
+                let formData = new FormData();
+                formData.append('garantia', data.id);
+                formData.append('document_id.description', 'Avaluo del Bien');
+                formData.append('document_id.document', data.avaluoBien);
+                formData.append('customer_id', parseInt(document.getElementById('customer_id').value));
+                const documento_garantia = await registrar_documento_garantia(formData);
+                console.log(documento_garantia);
+
+            }
+            if (data.docDigitalSoporte !== ''){
+                let formData1 = new FormData();
+                formData1.append('garantia', data.id);
+                formData1.append('document_id.description', 'Avaluo del Bien');
+                formData1.append('document_id.document', data.docDigitalSoporte);
+                formData1.append('customer_id', parseInt(document.getElementById('customer_id').value));
+                const documento_garantia1 = await registrar_documento_garantia(formData1);
+                console.log(documento_garantia1);
+
+            }
+            */
+            
             console.log('Respuesta de la API:', data);
+            return data;
         }
 
     } catch (error) {
