@@ -49,6 +49,7 @@ class CreditSerializer(serializers.ModelSerializer):
         return {
             'id':instance.id,
             'customer_id':{
+                'id':instance.customer_id.id,
                 'first_name':instance.customer_id.first_name,
                 'last_name':instance.customer_id.last_name,
 
