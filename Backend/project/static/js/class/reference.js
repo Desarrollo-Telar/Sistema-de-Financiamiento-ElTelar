@@ -30,22 +30,12 @@ export class Referencia {
 
     // Setters
     set full_name(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar el nombre completo de la referencia del cliente');
-            throw new Error('Debe ingresar el nombre completo de la referencia del cliente');
-        }
+        
 
         this.#full_name = value.trim();
     }
 
     set phone_number(value) {
-        if (!value || value.trim() === '') {
-            alert('Debe ingresar el numero de telefono de la referencia del cliente');
-            throw new Error('Debe ingresar el numero de telefono de la referencia del cliente');
-        }
-
-
-       
 
         this.#phone_number = value.trim();
     }

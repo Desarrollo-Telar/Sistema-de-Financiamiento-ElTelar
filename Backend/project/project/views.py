@@ -337,6 +337,16 @@ def list_api(request):
     }
     return render(request, template_name, context)
 
+@login_required
+@usuario_activo
+def actualizacion_test_api(request):
+    template_name = 'API/actualizacion.html'
+    context = {
+        'title':'ELTELAR - API'
+
+    }
+    return render(request, template_name, context)
+
 class Search(TemplateView):
     template_name = 'search.html'
     paginate_by = 25

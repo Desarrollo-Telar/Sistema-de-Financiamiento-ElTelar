@@ -298,6 +298,7 @@ class Payment(models.Model):
         cuota.principal += aporte_capital
         cuota.saldo_pendiente = saldo_pendiente
         cuota.numero_referencia = self.numero_referencia
+        cuota.interes_pagado += pagado_interes
         cuota.cambios = False
         logger.info(f'''
         CUOTA ACTUALIZADA

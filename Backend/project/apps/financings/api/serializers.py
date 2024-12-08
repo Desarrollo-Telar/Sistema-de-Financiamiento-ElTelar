@@ -42,7 +42,10 @@ class CreditSerializer(serializers.ModelSerializer):
             'customer_id',
             'saldo_pendiente',
             'estados_fechas',
-            'plazo_restante'
+            'plazo_restante',
+            'is_paid_off',
+            'estado_aportacion',
+            'saldo_actual',
             
         ]
     def to_representation(self, instance):
@@ -71,7 +74,9 @@ class CreditSerializer(serializers.ModelSerializer):
             'saldo_pendiente':instance.saldo_pendiente,
             'is_paid_off':instance.is_paid_off,
             'estados_fechas':instance.estados_fechas,
-            'plazo_restante':instance.plazo_restante
+            'plazo_restante':instance.plazo_restante,
+            'estado_aportacion':instance.estado_aportacion,
+
         }
 
 
@@ -99,6 +104,8 @@ class DisbursementSerializer(serializers.ModelSerializer):
     "honorarios": instance.honorarios,
     "poliza_seguro": instance.poliza_seguro,
     "monto_total_desembolso": instance.monto_total_desembolso,
+    'monto_credito_agregar':instance.monto_credito_agregar,
+    'monto_credito_cancelar':instance.monto_credito_cancelar,
     "credit_id": {
         "id":instance.credit_id.id,
         'customer_id':{
@@ -175,6 +182,10 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
             "cuota_vencida":instance.cuota_vencida,
             'total_cancelar': total(instance.capital_generado,instance.interest,instance.mora,instance.principal),
             "capital_generado": resultado_capital(instance.principal, instance.capital_generado),
+            "interes_generado":instance.interes_generado,
+            "interes_acumulado_generado":instance.interes_acumulado_generado,
+            "mora_acumulado_generado":instance.mora_acumulado_generado,
+            "mora_generado": instance.mora_generado,
             "credit_id":{
                 "id":instance.credit_id.id,
                 "codigo_credito":instance.credit_id.codigo_credito,

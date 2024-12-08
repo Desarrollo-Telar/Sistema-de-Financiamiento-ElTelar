@@ -140,7 +140,10 @@ $(document).ready(function () {
         try {
 
             const credito = await get_credit(credit_id);
-
+            document.getElementById('saldo_pendiente_credito').value = credito.saldo_pendiente;
+            document.getElementById('plazo_credito').value = credito.plazo;
+            document.getElementById('plazo_credito_restante').value = credito.plazo_restante;
+            document.getElementById('tasa_interes_credito').value = credito.tasa_interes;
             const cuota = await get_ultima_cuota(credito.id);
             informacion_credito.innerHTML = `
             <p>Saldo Capital Pendiente: ${cuota.saldo_pendiente} </p>

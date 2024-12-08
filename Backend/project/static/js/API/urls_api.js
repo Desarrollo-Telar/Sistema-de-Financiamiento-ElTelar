@@ -30,7 +30,7 @@ export const urls = {
     api_url_rol: `${baseUrl}/roles&permissions/api/role/`,
 
     // PLAN DE INVERSION (DESTINO)
-    api_url_investment_plan: `${baseUrl}/customers/api/customers/`,
+    api_url_investment_plan: `${baseUrl}/plan_inversion/api/plan_inversion/`,
 
     // IMAGENES
     api_url_imagen: `${baseUrl}/imagen/api/imagen/`,
@@ -69,7 +69,7 @@ export const urls_p = {
     api_url_rol: `${baseUrl}/roles&permissions/api/role/`,
 
     // PLAN DE INVERSION (DESTINO)
-    api_url_investment_plan: `${baseUrl}/customers/api/customers/`,
+    api_url_investment_plan: `${baseUrl}/plan_inversion/api/plan_inversion/`,
 
     // IMAGENES
     api_url_imagen: `${baseUrl}/imagen/api/imagen/`,

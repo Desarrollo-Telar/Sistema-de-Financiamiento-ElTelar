@@ -22,8 +22,6 @@
             <!-- SELECCION DE LA FORMA DE DESEMBOLSOS-->
             <select class="form-select" id="forma_desembolso" aria-label="Default select example">
                 <option selected>SELECCIONAR UN TIPO DE DESEMBOLSO</option>
-
-
                 <option value="APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE">APLICACIÓN DE AMPLIACIÓN DE CRÉDITO
                     VIGENTE
                 </option>
@@ -39,6 +37,12 @@
             </div>
 
         </div>
+
+        <input type="hidden" name="saldo_pendiente_credito" id="saldo_pendiente_credito">
+        <input type="hidden" name="plazo_credito" id="plazo_credito">
+        <input type="hidden" name="plazo_credito_restante" id="plazo_credito_restante">
+        <input type="hidden" name="tasa_interes_credito" id="tasa_interes_credito">
+
         <div class="form-group" style="margin-top: 2rem; display: none;" id="div_monto_credito_agregar">
             <label class="fw-medium" for="monto_credito_agregar">Monto del Credito por Añadir</label>
             <div class="input-group mb-3">
@@ -59,7 +63,7 @@
             <label class="fw-medium" for="monto">Meses más por añadir</label>
             <div class="input-group mb-3">
 
-                <input type="number" step="any" class="form-control" id="plazo_restante">
+                <input type="number" min="0" class="form-control" id="plazo_restante">
                 <span class="input-group-text fw-medium" id="basic-addon1">Meses</span>
             </div>
 
@@ -104,7 +108,8 @@
                     </div>
                     <div style="margin: 1rem 0; ">
                         <label class="fw-medium" for="honorarios">Documento de la Boleta</label>
-                        <input type="file" class="form-control" placeholder="Fecha de Emision" id="boleta_honorarios">
+                        <input type="file" class="form-control" placeholder="Fecha de Emision" id="boleta_honorarios"
+                            accept=".pdf,image/*">
 
 
                     </div>
@@ -191,7 +196,7 @@
                         <label class=" fw-medium" for="total_depositar">Total a Depositar</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                            <input type="number" min="0" step="any" class="form-control" id="total_depositar" disabled>
+                            <input type="number" min="0" step="any" class="form-control" id="total_depositar">
                         </div>
                     </div>
                     <div style="margin: 1rem 0; ">
@@ -233,8 +238,7 @@
             <hr>
             <div class="d-flex">
                 <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
-                <button type="submit" class="btn_guardar" id="add_Desembolso" style="display: none;"
-                    onclick="window.history.back()">Agregar</button>
+                <button type="submit" class="btn_guardar" id="add_Desembolso" style="display: none;">Agregar</button>
 
             </div>
 
@@ -254,7 +258,7 @@
 
 {% block js %}
 <script type="module" src="{% static 'js/API/desembolsos/clasificacion.js'%}"></script>
-
+<script type="module" src="{% static 'js/API/desembolsos/guardar.js'%}"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

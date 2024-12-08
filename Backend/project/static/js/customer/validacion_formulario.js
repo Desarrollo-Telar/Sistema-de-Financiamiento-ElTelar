@@ -1,6 +1,7 @@
 
 import { Cliente } from '../class/customer.js'
 
+import {alerta_m} from '../alertas/alertas.js'
 //output_name_customer
 const first_name = document.getElementById('first_name');
 const last_name = document.getElementById('last_name');
@@ -21,4 +22,38 @@ function updateOutput() {
 
 first_name.addEventListener('input', updateOutput);
 last_name.addEventListener('input', updateOutput);
+
+export function validateFormFields() {
+    const fields = [
+        'immigration_status_id',
+        'first_name',
+        'last_name',
+        'type_identification',
+        'identification_number',
+        'telephone',
+        'email',
+        'status',
+        'date_birth',
+        'number_nit',
+        'place_birth',
+        'marital_status',
+        'profession_trade',
+        'gender',
+        'nationality',
+        'person_type',
+        'description_customer',
+        'asesor',
+        'fehca_vencimiento_de_tipo_identificacion'
+    ];
+
+    for (const field of fields) {
+        const value = document.getElementById(field)?.value || '';
+        if (!value.trim()) {
+            alerta_m(`El campo "${field}" no puede estar vacío.`);
+            return false;
+        }
+    }
+
+    return true; // Todos los campos están llenos.
+}
 

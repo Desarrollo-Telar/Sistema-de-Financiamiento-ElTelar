@@ -17,10 +17,7 @@ from project.settings import MEDIA_ROOT
 import os
 
 # Señales
-@receiver(pre_delete, sender=Payment)
-def eliminar_documento_banco(sender,instance,**kwargs):
-    file_path = os.path.join(MEDIA_ROOT, str(instance.boleta))  
-    instance.boleta.delete()
+
 
 @receiver(post_save, sender=Payment)
 def generar_plan_pagos(sender, instance, created, **kwargs):
