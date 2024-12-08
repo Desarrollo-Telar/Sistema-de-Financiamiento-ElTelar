@@ -10,6 +10,7 @@ from django.db.models.signals import pre_save, post_save
 # Django
 from django.dispatch import receiver
 
+from apps.financings.formato import formatear_numero
 
 class InvestmentPlan(models.Model):
     tipo_producto_servicio = [
@@ -42,7 +43,16 @@ class InvestmentPlan(models.Model):
     
     def transferencias_o_traslado_de_Fondos(self):
         return 'Si' if self.transfers_or_transfer_of_funds else 'No'
+
+    def f_initial_amount(self):
+        return formatear_numero(self.initial_amount)
+
+    def f_monthly_amount(self):
+        return formatear_numero(self.monthly_amount)
     
+    def f_total_value_of_the_product_or_service(self):
+        return formatear_numero(self.total_value_of_the_product_or_service)
+
     def tipo_transferencia(self):
         return 'Local' if self.transfers_or_transfer_of_funds else 'Internacional'
 

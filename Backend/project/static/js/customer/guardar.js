@@ -56,20 +56,21 @@ document.getElementById('customer').addEventListener('submit', async function (e
         alerta_m('Registro Realizado', true);
 
         // Redirigir a la página de éxito
-        //const { protocol, hostname, port } = window.location;
-        // const generar = `${protocol}//${hostname}:${port}/qr/${protocol}//${hostname}:${port}/formulario_ive/${customer_id}//`;
-        //console.log(generar);
-        //window.location.href = '/customers/';
+        const { protocol, hostname, port } = window.location;
+        const generar = `${protocol}//${hostname}:${port}/qr/${protocol}//${hostname}:${port}/formulario_ive/${customer_id}//`;
+        console.log(generar);
+        
+        setTimeout(() => { window.location.href = '/customers/'; }, 1000);
 
     } catch (error) {
         console.error('Error al registrar los datos:', error);
-        /*
+        alerta_m(`Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo. ${error.response.data}`, false)
         if (customer_id) {
-            window.location.href = `/customers/delete/${customer_id}/`;
+            setTimeout(() => { window.location.href = `/customers/delete/${customer_id}/`; }, 1000);
 
         }
-        */
-        alerta_m(`Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo. ${error.response.data}`, false)
+        
+        
     }
 
 
