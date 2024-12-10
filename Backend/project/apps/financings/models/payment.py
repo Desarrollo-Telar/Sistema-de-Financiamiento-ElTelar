@@ -17,6 +17,7 @@ from apps.financings.clases.personality_logs import logger
 # MODELO
 from .disbursement import Disbursement
 from .credit import Credit
+from .bank import Banco
 
 from project.settings import MEDIA_URL, STATIC_URL
 
@@ -47,12 +48,16 @@ class Payment(models.Model):
     boleta = models.FileField("Boleta",blank=True, null=True,upload_to='pagos/boletas/')
     tipo_pago = models.CharField('Tipo de Pago', choices=TYPE_PAYMENT, max_length=75, default='CREDITO')
     descripcion_estado = models.TextField(blank=True, null=True)
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     
     def fechaEmision(self):
         return datetime.strftime(self.fecha_emision,'%Y-%m-%d')
 
     def pago(self):
         return Payment.objects.get(id=self.id)
+    
+    def banco(self):
+        return Banco.objects.filter(referencia=self.numero_referencia)
 
     def credito(self):
         return Credit.objects.get(id=self.credit.id)
@@ -161,8 +166,32 @@ class Payment(models.Model):
         return interes
 
     def _calculo_mora(self):
+        # Obtener la cuota actual asociada
         cuota = self._cuota_pagar()
+        
+        # Fecha de creación del pago
+        fecha_creacion_pago = self.creation_date
+
+        # Obtener información del banco
+        info_banco = self.banco()
+
+        if info_banco:
+            # Fecha de creación del registro en el banco
+            fecha_creacion_registro_banco = info_banco.creation_date
+
+            # Verificar si el registro del banco es anterior al pago
+            if fecha_creacion_registro_banco > fecha_creacion_pago:
+                # Ajustar mora si ya fue generada
+                if cuota.cuota_vencida:
+                    if cuota.mora_generado:
+                        cuota.mora -= cuota.mora_generado
+                        cuota.mora_generado = 0
+                        cuota.cambios = True
+                        cuota.save()  # Guardar los cambios en la base de datos
+
+        # Retornar la mora actualizada
         return cuota.mora
+
     
     def _calcular_total(self):
         cuota = self._cuota_pagar()

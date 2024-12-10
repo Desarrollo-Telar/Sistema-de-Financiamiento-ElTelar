@@ -8,7 +8,8 @@ class Disbursement(models.Model):
     formaDesembolso = [
         ('APLICACIÓN GASTOS', 'APLICACIÓN GASTOS'),
         ('APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE', 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE'),
-        ('CANCELACIÓN DE CRÉDITO VIGENTE', 'CANCELACIÓN DE CRÉDITO VIGENTE')
+        ('CANCELACIÓN DE CRÉDITO VIGENTE', 'CANCELACIÓN DE CRÉDITO VIGENTE'),
+        ('DESEMBOLSAR', 'DESEMBOLSAR')
     ]
     credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE, verbose_name='Credito')
     forma_desembolso = models.CharField("Forma de Desembolso", choices=formaDesembolso, max_length=75, blank=False, null=False)
@@ -18,9 +19,12 @@ class Disbursement(models.Model):
     saldo_anterior = models.DecimalField("Saldo Anterior", decimal_places=2, max_digits=15, default=0)
     honorarios = models.DecimalField("Honorarios", decimal_places=2, max_digits=15, default=0)
     poliza_seguro = models.DecimalField("Poliza de Seguro", decimal_places=2, max_digits=15, default=0)
+    monto_desembolsado = models.DecimalField("Monto Desembolsado", decimal_places=2, max_digits=15, default=0)
+    total_gastos  = models.DecimalField("Total de gastos", decimal_places=2, max_digits=15, default=0)
     monto_total_desembolso = models.DecimalField("Monto Total a Desembolsar", decimal_places=2, max_digits=15, default=0)
 
     def save(self, *args, **kwargs):
+        self.total_gastos = self.honorarios + self.poliza_seguro
         if not self.forma_desembolso == 'CANCELACIÓN DE CRÉDITO VIGENTE':
             self.monto_total_desembolso = (self.monto_credito + self.monto_credito_agregar) - (self.honorarios + self.poliza_seguro + self.saldo_anterior)
         super().save(*args, **kwargs)
