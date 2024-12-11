@@ -50,6 +50,7 @@ export const urls = {
 export const urls_p = {
     // CLIENTE
     api_url_cliente: `${baseUrl}/customers/api/customers/`,
+    api_url_clientes_aceptados: `${baseUrl}/customers/api/customers_accept/`,
     api_url_condicion_migratoria:  `${baseUrl}/customers/api/immigration_status/`,
 
     // DIRECCION
