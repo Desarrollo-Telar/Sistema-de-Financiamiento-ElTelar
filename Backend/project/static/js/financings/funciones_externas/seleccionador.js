@@ -14,27 +14,44 @@ const vehiculo = document.getElementById('vehiculo');
 const forma_desembolso = document.getElementById('forma_desembolso');
 const credito_vigente = document.getElementById('credito_vigente');
 
-
-
-
+const honorarios_desembolso = document.getElementById('honorarios_desembolso');
+const poliza_seguro_desembolso = document.getElementById('poliza_seguro_desembolso');
+const monto_desembolsado_desembolsar = document.getElementById('monto_desembolsado_desembolsar');
+const total_a_desembolsar = document.getElementById('total_a_desembolsar');
 
 export function seleccion_desembolso(){
     forma_desembolso.addEventListener('change',function(event){
         const valor_seleccionado = event.target.value;
         if (valor_seleccionado === 'APLICACIÓN GASTOS' ){
             ocultar(credito_vigente);
-            
+            mostrar(honorarios_desembolso);
+            mostrar(poliza_seguro_desembolso);
+            mostrar(monto_desembolsado_desembolsar);
+            mostrar(total_a_desembolsar);
 
         } else if (valor_seleccionado === 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE' ){
+            ocultar(honorarios_desembolso);
+            ocultar(poliza_seguro_desembolso);
+            ocultar(monto_desembolsado_desembolsar);
+            ocultar(total_a_desembolsar);
             mostrar(credito_vigente);
 
             
 
         } else if (valor_seleccionado === 'CANCELACIÓN DE CRÉDITO VIGENTE' ){
+            ocultar(honorarios_desembolso);
+            ocultar(poliza_seguro_desembolso);
+            ocultar(monto_desembolsado_desembolsar);
+            ocultar(total_a_desembolsar);
             mostrar(credito_vigente);
 
         } else{
             ocultar(credito_vigente);
+
+            ocultar(honorarios_desembolso);
+            ocultar(poliza_seguro_desembolso);
+            ocultar(monto_desembolsado_desembolsar);
+            ocultar(total_a_desembolsar);
 
         }
     });

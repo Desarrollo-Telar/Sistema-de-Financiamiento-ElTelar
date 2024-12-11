@@ -56,13 +56,20 @@
 
 <!-- HONORARIOS -->
 <div class="row" id="honorarios_desembolso" style="margin-top: 2rem; display: none;">
-    <div class="form-group">
-        <label for="credito_saldo_capital_vigente">Honorarios</label>
-        <div class="input-group mb-3">
-            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-            <input type="number" min="0" step="any" class="form-control" id="credito_saldo_capital_vigente">
-        </div>
+    {% include 'financings/disbursement/snippets/forms/honorarios.html' %}
+</div>
 
-    </div>
+<!-- POLIZA DE SEGURO  -->
+<div class="row" id="poliza_seguro_desembolso" style="margin-top: 2rem; display: none;">
+    {% include 'financings/disbursement/snippets/forms/poliza.html' %}
+</div>
 
+<!-- MONTO A DESEMBOLSAR  -->
+<div class="row" id="monto_desembolsado_desembolsar" style="margin-top: 2rem; display: none;">
+    {% include 'financings/disbursement/snippets/forms/monto_desembolsado.html' %}
+</div>
+
+<!-- TOTAL A DEPOSITAR  -->
+<div class="row" id="total_a_desembolsar" style="margin-top: 2rem; display: none;">
+    {% include 'financings/disbursement/snippets/forms/total_depositar.html' %}
 </div>

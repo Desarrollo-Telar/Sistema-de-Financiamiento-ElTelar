@@ -13,6 +13,9 @@ const fecha_vencimiento = document.getElementById('fecha_vencimiento');
 const monto_credito_vigente = document.getElementById('monto_credito_vigente');
 const saldo_capital_credito_vigente = document.getElementById('saldo_capital_credito_vigente');
 const honorarios_desembolso = document.getElementById('honorarios_desembolso');
+const poliza_seguro_desembolso = document.getElementById('poliza_seguro_desembolso');
+const monto_desembolsado_desembolsar = document.getElementById('monto_desembolsado_desembolsar');
+const total_a_desembolsar = document.getElementById('total_a_desembolsar');
 seleccion_garantia();
 seleccion_desembolso();
 
@@ -125,11 +128,14 @@ $(document).ready(function () {
             <p>Saldo Actual: ${credito_v.Fsaldo_actual} </p>
             `
             document.getElementById('credito_saldo_capital_vigente').value = credito_v.saldo_actual;
+
             // Habilitar que se muestre los divs
             mostrar(monto_credito_vigente);
             mostrar(saldo_capital_credito_vigente);
             mostrar(honorarios_desembolso);
-
+            mostrar(poliza_seguro_desembolso);
+            mostrar(monto_desembolsado_desembolsar);
+            mostrar(total_a_desembolsar);
 
 
 
