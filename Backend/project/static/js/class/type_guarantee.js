@@ -251,8 +251,8 @@ export class DerechoDePosesionHipoteca {
             Titular: this._titular,
             Estatus: this._estatus,
             NoContrato_de_Arrendamiento: this._noContratoArrendamiento,
-            Avaluo_del_Bien: this._avaluoBien,
-            Documento_Digital_de_Soporte: this._docDigitalSoporte
+            avaluoBien: this._avaluoBien,
+            docDigitalSoporte: this._docDigitalSoporte
         };
     }
 }
@@ -315,7 +315,7 @@ export class Fiador {
             Lugar_de_Trabajo: this._lugar_trabajo,
             Ingresos: this._ingresos,
             Numero_de_Telefono: this._numeroTelefono,
-            Fotografia: this._fotografia
+            fotografia: this._fotografia
         };
     }
 }
@@ -378,7 +378,7 @@ export class Cheque {
             Banco: this._banco,
             Cheque_girado_a: this._cheque_girado_a,
             Monto_cheque: this._monto_cheque,
-            Fotografia_Cheque: this._fotografia_cheque
+            fotografia_cheque: this._fotografia_cheque
         };
     }
 }
@@ -490,9 +490,9 @@ export class Vehiculo {
             NoChasis: this._noChasis,
             NoMotor: this._noMotor,
             Valor_Comercial: this._valor_comercial,
-            Fotografias: this._fotografias,
-            TarjetaCirculacion: this._tarjetaCirculacion,
-            Titulo: this._titulo,
+            fotografia: this._fotografias,
+            tarjeta_circulacion: this._tarjetaCirculacion,
+            titulo: this._titulo,
             NoPoliza: this._noPoliza,
             MontoSeguro: this._montoSeguro,
             NoContratoArrendamiento: this._noContratoArrendamiento
@@ -555,8 +555,8 @@ export class Mobiliaria {
         return {            
             DescripcionBien: this._descripcionBien,
             DocumentoAcredita: this._documentoAcredita,
-            ImagenDocumentoAcredita: this._imagenDocumentoAcredita,
-            FotografiaBien: this._fotografiaBien,
+            imagen_documento_acredita: this._imagenDocumentoAcredita,
+            fotografia_bien: this._fotografiaBien,
             NoPoliza: this._noPoliza,
             MontoSeguro: this._montoSeguro
         };

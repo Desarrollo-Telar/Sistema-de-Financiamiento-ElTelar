@@ -14,7 +14,22 @@ export function agregar_derecho_posesion(addGuarantee) {
             alert('DEBE DE INGRESAR EL VALOR DE COBERTURA');
             return; // Cambiado para evitar el uso de `throw` en un evento DOM
         }
+
         const dh = new DerechoDePosesionHipoteca();
+        const formData = new FormData();
+        formData.append('noEscritura', document.getElementById('noEscritura1').value);
+        formData.append('notario', document.getElementById('notario1').value);
+        formData.append('area', document.getElementById('area1').value);
+        formData.append('ubicacion', document.getElementById('ubicacion1').value);
+        formData.append('descripcion', document.getElementById('descripcion1').value);
+        formData.append('valor_comercial', document.getElementById('valor_comercial1').value);
+        formData.append('titular', document.getElementById('titular1').value);
+        formData.append('estatus', document.getElementById('estatus1').value);
+        formData.append('noContratoArrendamiento', document.getElementById('noContratoArrendamiento1').value);
+        formData.append('avaluoBien', document.getElementById('avaluoBien1').files[0]);
+        formData.append('docDigitalSoporte', document.getElementById('docDigitalSoporte1').files[0]);
+
+
         dh.noEscritura = document.getElementById('noEscritura1').value;
         dh.notario = document.getElementById('notario1').value;
         dh.area = document.getElementById('area1').value;
@@ -27,7 +42,7 @@ export function agregar_derecho_posesion(addGuarantee) {
         dh.avaluoBien = document.getElementById('avaluoBien1').files[0];
         dh.docDigitalSoporte = document.getElementById('docDigitalSoporte1').files[0];
 
-        addGuarantee('DERECHO DE POSESION HIPOTECA', dh.toJSON());
+        addGuarantee('DERECHO DE POSESION HIPOTECA', dh.toJSON(),formData);
         clearFields();
         ocultar(document.getElementById('derecho_posesion'));
         document.getElementById('tipo_garantia').value = 0;

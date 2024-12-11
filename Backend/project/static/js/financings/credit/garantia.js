@@ -13,12 +13,10 @@ import { agregar_mobiliaria } from '../funciones_externas/agregar_garantia_mobil
 const tbody_garantia = document.getElementById('tbody_garantia');
 const suma = document.getElementById('total_garantia');
 export const lista_garantia = [];
+export const list_form_data = [];
 import {urls, urls_p} from '../../API/urls_api.js'
 
 // ------ divs -----
-
-const mobiliaria = document.getElementById('mobiliaria');
-const vehiculo = document.getElementById('vehiculo');
 export let suma_total = '';
 
 // Función para actualizar la suma total
@@ -29,7 +27,7 @@ function garantias() {
 }
 
 // Función genérica para agregar una nueva garantía
-function addGuarantee(tipoGarantia, especificacion) {
+function addGuarantee(tipoGarantia, especificacion,formData=NaN) {
     console.log(especificacion)
     const tipo = {
         garantia_id:1,
@@ -38,7 +36,15 @@ function addGuarantee(tipoGarantia, especificacion) {
         especificacion: especificacion
     };
     
+    const tipo_f = {
+        garantia_id:1,
+        tipo_garantia: tipoGarantia,
+        valor_cobertura: parseFloat(document.getElementById('valor_cobertura').value),
+        especificacion: formData
+    };
+    
     lista_garantia.push(tipo);
+    list_form_data.push(tipo_f);
     
     // Añadir una nueva fila en la tabla
     var nueva_fila = tbody_garantia.insertRow();
@@ -60,6 +66,7 @@ function addGuarantee(tipoGarantia, especificacion) {
 
         tbody_garantia.removeChild(fila);
         lista_garantia.splice(index, 1); // Eliminar de la lista de garantías
+        list_form_data.splice(index,1);
 
         garantias(); // Actualizar la suma total
     });

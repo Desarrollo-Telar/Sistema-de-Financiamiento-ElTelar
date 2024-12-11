@@ -16,6 +16,15 @@ export function agregar_cheque(addGuarantee) {
         }
 
         const cheque = new Cheque();
+
+        const formData = new FormData();
+        formData.append('noCheque', document.getElementById('noCheque').value);
+        formData.append('nombreCuenta', document.getElementById('nombreCuenta').value);
+        formData.append('banco', document.getElementById('banco').value);
+        formData.append('cheque_girado_a', document.getElementById('cheque_girado_a').value);
+        formData.append('monto_cheque', document.getElementById('monto_cheque').value);
+        formData.append('fotografia_cheque', document.getElementById('cheque').files[0]);
+
         cheque.noCheque = document.getElementById('noCheque').value;
         cheque.nombreCuenta = document.getElementById('nombreCuenta').value;
         cheque.banco = document.getElementById('banco').value;
@@ -23,7 +32,7 @@ export function agregar_cheque(addGuarantee) {
         cheque.monto_cheque = document.getElementById('monto_cheque').value;
         cheque.fotografia_cheque = document.getElementById('cheque').files[0];
 
-        addGuarantee('CHEQUE', cheque.toJSON());
+        addGuarantee('CHEQUE', cheque.toJSON(),formData);
         clearFields();
         ocultar(document.getElementById('cheque'));
         document.getElementById('tipo_garantia').value = 0;
