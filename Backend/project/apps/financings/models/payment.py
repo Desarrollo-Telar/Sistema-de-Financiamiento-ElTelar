@@ -182,12 +182,12 @@ class Payment(models.Model):
             # Verificar si el registro del banco es anterior al pago
             if fecha_creacion_registro_banco > fecha_creacion_pago:
                 # Ajustar mora si ya fue generada
-                if cuota.cuota_vencida:
-                    if cuota.mora_generado:
-                        cuota.mora -= cuota.mora_generado
-                        cuota.mora_generado = 0
-                        cuota.cambios = True
-                        cuota.save()  # Guardar los cambios en la base de datos
+                
+                if cuota.mora_generado:
+                    cuota.mora -= cuota.mora_generado
+                    cuota.mora_generado = 0
+                    cuota.cambios = True
+                    cuota.save()  # Guardar los cambios en la base de datos
 
         # Retornar la mora actualizada
         return cuota.mora

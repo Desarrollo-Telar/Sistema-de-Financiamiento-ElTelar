@@ -1,0 +1,105 @@
+
+import {ocultar, mostrar} from './ocultar_mostrar.js'
+
+// COMPONENTES PARA LA SELECCION DE GARANTIA
+const tipo_garantia = document.getElementById('tipo_garantia');
+const hipoteca = document.getElementById('hipoteca');
+const derecho_posesion = document.getElementById('derecho_posesion');
+const cheque = document.getElementById('cheque');
+const fiador = document.getElementById('fiador');
+const mobiliaria = document.getElementById('mobiliaria');
+const vehiculo = document.getElementById('vehiculo');
+
+// COMPONENTES PARA LA SELECCION DEL DESEMBOLSO
+const forma_desembolso = document.getElementById('forma_desembolso');
+const credito_vigente = document.getElementById('credito_vigente');
+
+
+
+
+
+export function seleccion_desembolso(){
+    forma_desembolso.addEventListener('change',function(event){
+        const valor_seleccionado = event.target.value;
+        if (valor_seleccionado === 'APLICACIÓN GASTOS' ){
+            ocultar(credito_vigente);
+            
+
+        } else if (valor_seleccionado === 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE' ){
+            mostrar(credito_vigente);
+
+            
+
+        } else if (valor_seleccionado === 'CANCELACIÓN DE CRÉDITO VIGENTE' ){
+            mostrar(credito_vigente);
+
+        } else{
+            ocultar(credito_vigente);
+
+        }
+    });
+
+}
+
+export function seleccion_garantia(){
+    tipo_garantia.addEventListener('change', function (event) {
+        const valor = event.target.value;
+        if (valor === 'HIPOTECA') {
+            mostrar(hipoteca);
+            ocultar(derecho_posesion);
+            ocultar(cheque);
+            ocultar(fiador);
+            ocultar(mobiliaria);
+            ocultar(vehiculo);
+    
+        } else if (valor === 'DERECHO DE POSESIÓN HIPOTECA') {
+            ocultar(hipoteca);
+            ocultar(cheque);
+            mostrar(derecho_posesion);
+            ocultar(fiador);
+            ocultar(mobiliaria);
+            ocultar(vehiculo);
+    
+    
+        } else if (valor === 'FIADOR') {
+            ocultar(hipoteca);
+            ocultar(derecho_posesion);
+            ocultar(cheque);
+            mostrar(fiador);
+            ocultar(mobiliaria);
+            ocultar(vehiculo);
+    
+        } else if (valor === 'CHEQUE') {
+            ocultar(hipoteca);
+            ocultar(derecho_posesion);
+            mostrar(cheque);
+            ocultar(fiador);
+            ocultar(mobiliaria);
+            ocultar(vehiculo);
+    
+        } else if (valor === 'VEHICULO') {
+            ocultar(hipoteca);
+            ocultar(derecho_posesion);
+            ocultar(fiador);
+            ocultar(mobiliaria);
+            mostrar(vehiculo);
+    
+        } else if (valor === 'MOBILIARIA') {
+            ocultar(hipoteca);
+            ocultar(derecho_posesion);
+            ocultar(fiador);
+            mostrar(mobiliaria);
+            ocultar(vehiculo);
+    
+        } else {
+            ocultar(hipoteca);
+            ocultar(derecho_posesion);
+            ocultar(cheque);
+            ocultar(fiador);
+            ocultar(mobiliaria);
+            ocultar(vehiculo);
+            console.log('Buenoooo');
+        }
+    });
+    
+}

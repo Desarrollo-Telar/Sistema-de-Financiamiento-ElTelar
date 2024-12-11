@@ -1,9 +1,21 @@
 
 import {urls_p} from '../../API/urls_api.js'
+import {seleccion_garantia, seleccion_desembolso} from '../funciones_externas/seleccionador.js'
+import {ocultar, mostrar} from '../funciones_externas/ocultar_mostrar.js'
+// FILTROS 
+import { get_ultima_cuota } from '../../API/credito/obtener_ultima_cuota.js'
+import {get_credit} from '../../API/credito/obtener_credito.js'
+
 
 const plazo = document.getElementById('plazo');
 const fecha_inicio = document.getElementById('fecha_inicio');
 const fecha_vencimiento = document.getElementById('fecha_vencimiento');
+const monto_credito_vigente = document.getElementById('monto_credito_vigente');
+const saldo_capital_credito_vigente = document.getElementById('saldo_capital_credito_vigente');
+const honorarios_desembolso = document.getElementById('honorarios_desembolso');
+seleccion_garantia();
+seleccion_desembolso();
+
 
 fecha_inicio.addEventListener('input', function (event) {
     const plazoValue = parseInt(plazo.value, 10); // Obtén el valor del plazo
@@ -56,6 +68,80 @@ $(document).ready(function () {
         },
         placeholder: 'Seleccione un Cliente',
         minimumInputLength: 1
+    });
+    $(".credito_vigente").select2({
+        width: 'resolve',
+        ajax: {
+            url: urls_p.api_url_credit_vigente,
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    term: params.term // Parámetro que el backend debe esperar
+                };
+            },
+            processResults: function (data) {
+                console.log(data);
+                    // Verificar si 'data' es un array de objetos
+                    if (Array.isArray(data)) {
+                        return {
+                            results: data.map(function (item) {
+                                console.log(item);
+                                return {
+                                    id: item.id,
+                                    text: item.codigo_credito + ' ' + item.customer_id.first_name + ' ' + item.customer_id.last_name
+                                };
+                            })
+                    };
+                } else {
+                    console.error('Estructura de datos inesperada:', data);
+                    return {
+                        results: []
+                    };
+                }
+            },
+            cache: true
+        },
+        placeholder: 'Seleccione un Credito Vigente',
+        minimumInputLength: 1
+    });
+    $(".credito_vigente").on('select2:select', async function (e) {
+        let data = e.params.data;
+        try{
+            // Obtener toda la informacion relacionada con el credito vigente seleccionado
+            const credito_v = await get_credit(data.id);
+            // Obtener la ultima cuota vigente para el credito vigente seleccionado
+            const cuota = await get_ultima_cuota(credito_v.id);
+
+            // Mostrando la informacion relevante al credito vigente seleccionado
+            const informacion_credito = document.getElementById('informacion_credito');
+            informacion_credito.innerHTML = `
+            <p>Saldo Capital Pendiente: ${cuota.saldo_pendiente} </p>
+            <p>Intereses: ${cuota.interest} </p>
+            <p>Mora: ${cuota.mora} </p>
+            <p>Plazo del Credito: ${credito_v.plazo} Meses </p>
+            <p>Plazo Restante del Credito: ${credito_v.plazo_restante} Meses </p>
+            <hr>
+            <p>Saldo Actual: ${credito_v.Fsaldo_actual} </p>
+            `
+            document.getElementById('credito_saldo_capital_vigente').value = credito_v.saldo_actual;
+            // Habilitar que se muestre los divs
+            mostrar(monto_credito_vigente);
+            mostrar(saldo_capital_credito_vigente);
+            mostrar(honorarios_desembolso);
+
+
+
+
+
+            console.log(credito_v);
+            const credito_monto_vigente = document.getElementById('credito_monto_vigente');
+            credito_monto_vigente.value = credito_v.monto;
+
+        }catch(error){
+            console.error('Error obteniendo detalles del credito:', error);
+        }
+        
     });
     $(".customer_id_fiador").select2({
         width: 'resolve',
@@ -189,86 +275,9 @@ $(document).ready(function () {
     });
 
 });
-const tipo_garantia = document.getElementById('tipo_garantia');
-
-const hipoteca = document.getElementById('hipoteca');
-const derecho_posesion = document.getElementById('derecho_posesion');
-const cheque = document.getElementById('cheque');
-const fiador = document.getElementById('fiador');
-const mobiliaria = document.getElementById('mobiliaria');
-const vehiculo = document.getElementById('vehiculo');
-
-tipo_garantia.addEventListener('change', function (event) {
-    const valor = event.target.value;
-    if (valor === 'HIPOTECA') {
-        mostrar(hipoteca);
-        ocultar(derecho_posesion);
-        ocultar(cheque);
-        ocultar(fiador);
-        ocultar(mobiliaria);
-        ocultar(vehiculo);
-
-    } else if (valor === 'DERECHO DE POSESIÓN HIPOTECA') {
-        ocultar(hipoteca);
-        ocultar(cheque);
-        mostrar(derecho_posesion);
-        ocultar(fiador);
-        ocultar(mobiliaria);
-        ocultar(vehiculo);
 
 
-    } else if (valor === 'FIADOR') {
-        ocultar(hipoteca);
-        ocultar(derecho_posesion);
-        ocultar(cheque);
-        mostrar(fiador);
-        ocultar(mobiliaria);
-        ocultar(vehiculo);
 
-    } else if (valor === 'CHEQUE') {
-        ocultar(hipoteca);
-        ocultar(derecho_posesion);
-        mostrar(cheque);
-        ocultar(fiador);
-        ocultar(mobiliaria);
-        ocultar(vehiculo);
-
-    } else if (valor === 'VEHICULO') {
-        ocultar(hipoteca);
-        ocultar(derecho_posesion);
-        ocultar(fiador);
-        ocultar(mobiliaria);
-        mostrar(vehiculo);
-
-    } else if (valor === 'MOBILIARIA') {
-        ocultar(hipoteca);
-        ocultar(derecho_posesion);
-        ocultar(fiador);
-        mostrar(mobiliaria);
-        ocultar(vehiculo);
-
-    } else {
-        ocultar(hipoteca);
-        ocultar(derecho_posesion);
-        ocultar(cheque);
-        ocultar(fiador);
-        ocultar(mobiliaria);
-        ocultar(vehiculo);
-        console.log('Buenoooo');
-    }
-});
-
-const ocultar = (element) => {
-    if (element) {
-        element.style.display = 'none';
-    }
-};
-
-const mostrar = (element) => {
-    if (element) {
-        element.style.display = 'block';
-    }
-};
 
 
 
