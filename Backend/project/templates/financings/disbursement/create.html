@@ -1,248 +1,63 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block css %}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
-<div class="box">
-    <form method="POST" id="desembolso">
+<div class="row box">
+    <form method="POST" id="pago" enctype="multipart/form-data">
         {% csrf_token %}
         <meta name="csrf-token" content="{{ csrf_token }}">
-        <div class="form-group">
-            <label class="fw-medium" for="credit_id">Credito</label>
-            <select class="form-control credit" id="credit_id" name="credit_id" style="width: 100%" required>
-            </select>
-            <div id="informacion_credito" style="margin-top: 0.5rem;"></div>
-
-
-        </div>
-        <div class="form-group" style="margin-top: 2rem;display: none;" id="div_forma_desembolso">
-            <label class="fw-medium" for="forma_desembolso">Forma de Desembolso</label>
-            <!-- SELECCION DE LA FORMA DE DESEMBOLSOS-->
-            <select class="form-select" id="forma_desembolso" aria-label="Default select example">
-                <option selected>SELECCIONAR UN TIPO DE DESEMBOLSO</option>
-                <option value="APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE">APLICACIÓN DE AMPLIACIÓN DE CRÉDITO
-                    VIGENTE
-                </option>
-                <option value="CANCELACIÓN DE CRÉDITO VIGENTE">CANCELACIÓN DE CRÉDITO VIGENTE</option>
-            </select>
-
-        </div>
-        <div class="form-group" style="margin-top: 2rem; display: none;" id="div_monto_credito">
-            <label class="fw-medium" for="monto_credito">Monto del Credito</label>
-            <div class="input-group mb-3">
-                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                <input type="number" step="any" class="form-control" id="monto_credito" disabled>
-            </div>
-
-        </div>
-
-        <input type="hidden" name="saldo_pendiente_credito" id="saldo_pendiente_credito">
-        <input type="hidden" name="plazo_credito" id="plazo_credito">
-        <input type="hidden" name="plazo_credito_restante" id="plazo_credito_restante">
-        <input type="hidden" name="tasa_interes_credito" id="tasa_interes_credito">
-
-        <div class="form-group" style="margin-top: 2rem; display: none;" id="div_monto_credito_agregar">
-            <label class="fw-medium" for="monto_credito_agregar">Monto del Credito por Añadir</label>
-            <div class="input-group mb-3">
-                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                <input type="number" step="any" class="form-control" id="monto_credito_agregar">
-            </div>
-
-        </div>
-        <div class="form-group" style="margin-top: 2rem; display: none;" id="div_monto_credito_cancelar">
-            <label class="fw-medium" for="monto_credito_cancelar">Monto del Credito por Cancelar</label>
-            <div class="input-group mb-3">
-                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                <input type="number" step="any" class="form-control" id="monto_credito_cancelar">
-            </div>
-
-        </div>
-        <div class="form-group" style="margin-top: 2rem; display: none;" id="div_plazo_restante">
-            <label class="fw-medium" for="monto">Meses más por añadir</label>
-            <div class="input-group mb-3">
-
-                <input type="number" min="0" class="form-control" id="plazo_restante">
-                <span class="input-group-text fw-medium" id="basic-addon1">Meses</span>
-            </div>
-
-        </div>
-        <div class="form-group" style="margin-top: 2rem; display: none;" id="div_saldo_anterior">
-
-            <label class="fw-medium" for="saldo_anterior">Saldo Anterior</label>
-
-            <div class="input-group mb-3">
-                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                <input type="number" step="any" class="form-control" id="saldo_anterior">
-            </div>
-        </div>
-        <div class="form-group" id="div_honorarios" style="display: none; padding: 2rem;">
-            <hr>
-            <div class=" row">
-                <div class=" col-xs-12 col-sm-4">
-                    <label class="fw-medium" for="honorarios">Honorarios</label>
-                </div>
-                <div class="col-xs-12 col-sm-8">
-                    <div>
-                        <label class="fw-medium" for="honorarios">Monto de Honorarios</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                            <input type="number" min="0" step="any" class="form-control" id="honorarios"
-                                placeholder="Monto de Honorarios">
-                        </div>
-
-                    </div>
-
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="honorarios">Numero de Referencia</label>
-                        <input type="number" min="0" class="form-control" placeholder="Numero de Referencia"
-                            id="numero_referencia_honorarios">
-
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="honorarios">Fecha de Emision</label>
-                        <input type="date" class="form-control" placeholder="Fecha de Emision"
-                            id="fecha_emision_honorarios">
-
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="honorarios">Documento de la Boleta</label>
-                        <input type="file" class="form-control" placeholder="Fecha de Emision" id="boleta_honorarios"
-                            accept=".pdf,image/*">
-
-
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="honorarios">Observaciones</label>
-                        <textarea type="te" class="form-control"
-                            placeholder="Observaciones o Informacion extra sobre el pago de honorarios"
-                            id="descripcion_honorarios" rows="3"></textarea>
-
-
-                    </div>
-
-
-
-                </div>
-
-            </div>
-            <hr>
-
-
-
-        </div>
-
-        <div class="form-group" style="display: none; padding: 2rem;" id="div_poliza_seguro">
-            <hr>
+        <div>
             <div class="row">
-                <div class=" col-xs-12 col-sm-4">
-                    <label class=" fw-medium" for="poliza_seguro">Poliza de Seguro</label>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="customer_id">Credito</label>
+                    <select class="form-control customer_id" id="credit" name="customer_id" style="width: 100%"
+                        required>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="customer_id">Monto</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                        <input type="number" min="0" step="any" class="form-control" name="monto" id="monto" required>
+
+                    </div>
 
                 </div>
-                <div class="col-xs-12 col-sm-8">
-                    <div>
-                        <label class=" fw-medium" for="poliza_seguro">Monto de Poliza de Seguro</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                            <input type="number" min="0" step="any" class="form-control" id="poliza_seguro"
-                                placeholder="Monto Sobre la Poliza de Seguro">
-                        </div>
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="poliza_seguro">Numero de Referencia</label>
-                        <input type="number" min="0" class="form-control" placeholder="Numero de Referencia"
-                            id="numero_referencia_poliza">
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="customer_id">Numero de Referencia</label>
+                    <input type="number" min="0" class="form-control" name="numero_referencia" id="numero_referencia"
+                        required>
 
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="poliza_seguro">Fecha de Emision</label>
-                        <input type="date" class="form-control" placeholder="Fecha de Emision"
-                            id="fecha_emision_poliza">
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="fecha_emision">Fecha de Emision</label>
+                    <input type="date" class="form-control" name="fecha_emision" id="fecha_emision" required>
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="descripcion">Descripcion</label>
+                    <textarea class="form-control" name="descripcion" id="descripcion" rows="2" required></textarea>
 
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="poliza_seguro">Documento de la Boleta</label>
-                        <input type="file" class="form-control" placeholder="Documento de la Boleta" id="boleta_poliza"
-                            accept=".pdf, image/*">
-
-
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="poliza_seguro">Observaciones</label>
-                        <textarea type="te" class="form-control"
-                            placeholder="Observaciones o Informacion extra sobre el pago de Poliza de Seguro"
-                            id="descripcion_poliza" rows="3"></textarea>
-
-
-                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="boleta">Imagen de Boleta</label>
+                    <input class="form-control" type="file" id="boleta" accept=".pdf, image/*" required>
 
                 </div>
             </div>
-            <hr>
-
-
-
         </div>
-        <div class="form-group" style="display: none; padding: 2rem;" id="div_total_depositar">
-            <hr>
-            <div class="row">
-                <div class=" col-xs-12 col-sm-4">
-                    <label class=" fw-medium" for="total_depositar">Total a Depositar</label>
-
-                </div>
-                <div class="col-xs-12 col-sm-8">
-                    <div>
-                        <label class=" fw-medium" for="total_depositar">Total a Depositar</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                            <input type="number" min="0" step="any" class="form-control" id="total_depositar">
-                        </div>
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="total_depositar">Numero de Referencia</label>
-                        <input type="number" min="0" class="form-control" placeholder="Numero de Referencia"
-                            id="numero_referencia_total">
-
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="total_depositar">Fecha de Emision</label>
-                        <input type="date" class="form-control" placeholder="Fecha de Emision" id="fecha_emision_total">
-
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="total_depositar">Documento de la Boleta</label>
-                        <input type="file" class="form-control" placeholder="Documento de la Boleta" id="boleta_total"
-                            accept=".pdf, image/*">
-
-
-                    </div>
-                    <div style="margin: 1rem 0; ">
-                        <label class="fw-medium" for="total_depositar">Observaciones</label>
-                        <textarea type="te" class="form-control"
-                            placeholder="Observaciones o Informacion extra sobre el total a Desembolsar"
-                            id="descripcion_total" rows="3"></textarea>
-
-
-                    </div>
-
-                </div>
-            </div>
-            <hr>
-
-
+        <hr>
+        <div>
+            <button type="submit" class="btn_guardar">Crear Registro</button>
+            <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
 
         </div>
 
-        <div class="form-group">
-            <hr>
-            <div class="d-flex">
-                <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
-                <button type="submit" class="btn_guardar" id="add_Desembolso" style="display: none;">Agregar</button>
 
-            </div>
 
-        </div>
 
 
 
@@ -254,16 +69,10 @@
 
 {% endblock %}
 
-
-
 {% block js %}
-<script type="module" src="{% static 'js/API/desembolsos/clasificacion.js'%}"></script>
-<script type="module" src="{% static 'js/API/desembolsos/guardar.js'%}"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-
-
+<script type="module" src="{% static 'js/financings/credit/inicio_pago.js'%}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="module" src="{% static 'js/financings/credit/desembolsar.js'%}"></script>
 {% endblock %}

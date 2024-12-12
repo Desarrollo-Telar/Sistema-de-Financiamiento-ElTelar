@@ -23,11 +23,6 @@ class Disbursement(models.Model):
     total_gastos  = models.DecimalField("Total de gastos", decimal_places=2, max_digits=15, default=0)
     monto_total_desembolso = models.DecimalField("Monto Total a Desembolsar", decimal_places=2, max_digits=15, default=0)
 
-    def save(self, *args, **kwargs):
-        self.total_gastos = self.honorarios + self.poliza_seguro
-        if not self.forma_desembolso == 'CANCELACIÓN DE CRÉDITO VIGENTE':
-            self.monto_total_desembolso = (self.monto_credito + self.monto_credito_agregar) - (self.honorarios + self.poliza_seguro + self.saldo_anterior)
-        super().save(*args, **kwargs)
     
     def __str__(self):
         return f'{self.forma_desembolso}'
