@@ -1,5 +1,5 @@
 import {urls_p} from '../urls_api.js'
-import axios from 'axios';
+
 const URL = urls_p.api_url_pago;
 
 export async function registrar_pago(formData) {

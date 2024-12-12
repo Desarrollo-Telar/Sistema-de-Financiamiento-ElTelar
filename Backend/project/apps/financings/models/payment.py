@@ -204,7 +204,7 @@ class Payment(models.Model):
             # registrar en el apartado de desembolso
             pago = self.pago()
             pago.estado_transaccion = 'COMPLETADO'
-            #pago.save()
+            pago.save()
             logger.info(f'EL PAGO {pago.numero_referencia} CORRESPONDE A UN DESEMBOLSO')
 
             return f'REGISTRO DE DESEMBOLSO'

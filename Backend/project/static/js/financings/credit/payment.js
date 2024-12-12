@@ -4,6 +4,7 @@ import {urls, urls_p} from '../../API/urls_api.js'
 document.getElementById('pago').addEventListener('submit', async function (event) {
     event.preventDefault();
     console.log('BUEEEENOOOO')
+    const credit = document.getElementById('credit').value;
     let formData = new FormData();
     formData.append('credit', document.getElementById('credit').value);
     formData.append('monto', document.getElementById('monto').value);
@@ -35,7 +36,7 @@ document.getElementById('pago').addEventListener('submit', async function (event
                 timer: 3000,
                 showConfirmButton: false,
             });
-            setTimeout(() => { window.history.back();}, 1000);
+            setTimeout(() => { window.location.href = `/financings/credit/${credit}`; }, 1000);
         })
         .catch(error => {
             if (error.response) {
