@@ -1,6 +1,6 @@
 from django.db.models.signals import post_save, pre_save, pre_delete, post_delete
 from django.dispatch import receiver
-# LOOGER
+# LOGGER
 from apps.financings.clases.personality_logs import logger
 # MODELOS
 from apps.financings.models import AccountStatement, Disbursement, Credit, PaymentPlan
@@ -11,12 +11,35 @@ from apps.financings.calculos import calculo_interes
 import uuid
 from django.db import transaction, IntegrityError
 
+def buscar_tipo_desembolso(elemento):
+    lista = [
+        'APLICACIÓN GASTOS', 
+        'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE',
+        'CANCELACIÓN DE CRÉDITO VIGENTE'
+    ]
+    try:
+        indice = lista.index(elemento)
+        return indice
+    except ValueError:
+        if elemento == 'DESEMBOLSAR':
+            return -1
+        return 0
+
+def informacion_estado_cuenta(instance, disbursement_paid, referencia, description):
+    estado_cuenta = AccountStatement(
+        credit=instance.credit_id,
+        disbursement=instance,
+        disbursement_paid=disbursement_paid,
+        numero_referencia=referencia,
+        description=description,
+        saldo_pendiente=instance.credit_id.monto
+    )
+    return estado_cuenta
 
 # EL DESEMBOLSO REALIZADO SE REFLEJA EN EL ESTADO DE CUENTAS DEL CLIENTE
 @receiver(post_save, sender=Disbursement)
 def reflejar_estado_cuenta(sender, instance, created, **kwargs):
     if created:
-        
         desembolso_credito = Disbursement.objects.filter(
             credit_id_id=instance.credit_id.id, 
             forma_desembolso='APLICACIÓN GASTOS'
@@ -24,25 +47,44 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
 
         if desembolso_credito.count() > 1:
             instance.delete()
+            return
         
         referencia = str(uuid.uuid4())[:8]
-            
+
         # Usar una transacción atómica para asegurar la consistencia
         with transaction.atomic():
-            estado_cuenta = AccountStatement(
-                credit=instance.credit_id,
-                disbursement=instance,
-                disbursement_paid=instance.monto_total_desembolso,
-                numero_referencia=referencia,
-                description=f'{instance.forma_desembolso}',
-                saldo_pendiente=instance.credit_id.monto
-            )
-
             try:
-                estado_cuenta.save()
+                # Cuando solo se está ejecutando un desembolso
+                if buscar_tipo_desembolso(instance.forma_desembolso) == -1:
+                    disbursement_paid = instance.monto_desembolsado
+                    description = f'{instance.forma_desembolso}'
+                    estado_cuenta = informacion_estado_cuenta(instance, disbursement_paid, referencia,description)
+                    estado_cuenta.save()
+                # Cuando se está creando un tipo de desembolso diferente a desembolsar
+                else:
+                    disbursement_paid = instance.monto_desembolsado
+                    description = f'{instance.forma_desembolso}'
+                    estado_cuenta = informacion_estado_cuenta(instance, 0, referencia, description)
+                    estado_cuenta.save()
+
+                    referencia2 = str(uuid.uuid4())[:8]
+                    description2 = 'Monto Desembolsado'
+                    estado_cuenta2 = informacion_estado_cuenta(instance, disbursement_paid, referencia2,description2)
+                    estado_cuenta2.save()
             except IntegrityError:
-                # En caso de colisión, generar una nueva referencia y volver a intentar
+                # En caso de colisión, generar nuevas referencias y volver a intentar
                 referencia = str(uuid.uuid4())[:8]
                 estado_cuenta.numero_referencia = referencia
+
+                if 'estado_cuenta2' in locals():
+                    referencia2 = str(uuid.uuid4())[:8]
+                    estado_cuenta2.numero_referencia = referencia2
+
                 estado_cuenta.save()
 
+                if 'estado_cuenta2' in locals():
+                    estado_cuenta2.save()
+                    
+                logger.info(f'Nueva referencia generada y guardada: {referencia}')
+                if 'estado_cuenta2' in locals():
+                    logger.info(f'Nueva referencia2 generada y guardada: {referencia2}')
