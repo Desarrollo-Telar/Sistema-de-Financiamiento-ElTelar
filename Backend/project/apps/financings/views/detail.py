@@ -53,7 +53,7 @@ def total_garantia(list_guarantee):
 def total_desembolso(list_disbursement):
     total_desembolso = 0
     for desembolso in list_disbursement:
-        total_desembolso +=desembolso.monto_desembolsado
+        total_desembolso +=desembolso.total_gastos
     
     return formatear_numero(total_desembolso)
 
