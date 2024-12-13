@@ -1,5 +1,6 @@
 from django.db.models.signals import post_save, pre_save, pre_delete, post_delete
 from django.dispatch import receiver
+from django.core.exceptions import ValidationError
 # LOGGER
 from apps.financings.clases.personality_logs import logger
 # MODELOS
@@ -35,6 +36,22 @@ def informacion_estado_cuenta(instance, disbursement_paid, referencia, descripti
         saldo_pendiente=instance.credit_id.monto
     )
     return estado_cuenta
+
+@receiver(pre_save, sender=Disbursement) 
+def verificar_montos_desembolsados(sender, instance, **kwargs): 
+    # Verificar que los montos desembolsados no excedan el monto del crédito 
+    total_desembolso = 0 
+    total_credito = instance.credit_id.monto 
+    listar_desembolsos = Disbursement.objects.filter(credit_id=instance.credit_id.id).order_by('-id') 
+    for desembolsado in listar_desembolsos: 
+        total_desembolso += desembolsado.monto_desembolsado 
+        # Incluir el monto del desembolso actual 
+
+    total_desembolso += instance.monto_desembolsado 
+    if total_desembolso > total_credito: 
+        raise ValidationError('El monto total desembolsado excede el monto del crédito.') 
+    # Puedes añadir un logger para registrar información adicional si es necesario 
+    logger.info(f'Total desembolsado: {total_desembolso}, Total crédito: {total_credito}')
 
 # EL DESEMBOLSO REALIZADO SE REFLEJA EN EL ESTADO DE CUENTAS DEL CLIENTE
 @receiver(post_save, sender=Disbursement)
