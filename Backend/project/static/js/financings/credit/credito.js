@@ -80,7 +80,10 @@ document.getElementById('credito').addEventListener('submit', async function (ev
         if (lista_garantia.length > 0) {
             const forma_desembolso = document.getElementById('forma_desembolso').value;
 
-            const credit_vigente = document.getElementById('credit_vigente').value;
+            let credit_vigente = null;
+            if (document.getElementById('credit_vigente')){
+                credit_vigente = document.getElementById('credit_vigente').value;
+            }
             const saldo_anterior = document.getElementById('credito_saldo_capital_vigente').value;
             const honorarios = parseFloat(document.getElementById('honorarios').value || 0);
             const poliza = parseFloat(document.getElementById('poliza_seguro').value || 0);
@@ -139,7 +142,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
 
                 case 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE':
                     const monto_credito = document.getElementById('monto').value;
-                    const nuevo_monto = parseFloat(saldo_anterior) + parseFloat(monto_credito);
+                    const nuevo_monto = parseFloat(monto_credito);
                     const m_a = parseFloat(nuevo_monto).toFixed(2);
 
                     const formData = new FormData();

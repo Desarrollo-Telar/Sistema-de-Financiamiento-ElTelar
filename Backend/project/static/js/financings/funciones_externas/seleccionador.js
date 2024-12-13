@@ -12,7 +12,11 @@ const vehiculo = document.getElementById('vehiculo');
 
 // COMPONENTES PARA LA SELECCION DEL DESEMBOLSO
 const forma_desembolso = document.getElementById('forma_desembolso');
-const credito_vigente = document.getElementById('credito_vigente');
+let  credito_vigente = null;
+if (document.getElementById('credito_vigente')){
+    credito_vigente = document.getElementById('credito_vigente');
+}
+
 
 const honorarios_desembolso = document.getElementById('honorarios_desembolso');
 const poliza_seguro_desembolso = document.getElementById('poliza_seguro_desembolso');
@@ -23,7 +27,7 @@ export function seleccion_desembolso(){
     forma_desembolso.addEventListener('change',function(event){
         const valor_seleccionado = event.target.value;
         if (valor_seleccionado === 'APLICACIÓN GASTOS' ){
-            ocultar(credito_vigente);
+            
             mostrar(honorarios_desembolso);
             mostrar(poliza_seguro_desembolso);
             mostrar(monto_desembolsado_desembolsar);

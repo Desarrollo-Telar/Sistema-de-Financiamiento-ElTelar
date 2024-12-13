@@ -72,6 +72,7 @@ $(document).ready(function () {
         placeholder: 'Seleccione un Cliente',
         minimumInputLength: 1
     });
+    
     $(".credito_vigente").select2({
         width: 'resolve',
         ajax: {
