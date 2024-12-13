@@ -33,7 +33,7 @@ def informacion_estado_cuenta(instance, disbursement_paid, referencia, descripti
         disbursement_paid=disbursement_paid,
         numero_referencia=referencia,
         description=description,
-        saldo_pendiente=instance.credit_id.monto
+        saldo_pendiente=instance.total_t
     )
     return estado_cuenta
 
@@ -48,6 +48,7 @@ def verificar_montos_desembolsados(sender, instance, **kwargs):
         # Incluir el monto del desembolso actual 
 
     total_desembolso += instance.total_gastos 
+    instance.total_t = total_desembolso
     if total_desembolso > total_credito: 
         raise ValidationError('El monto total desembolsado excede el monto del crédito.') 
     # Puedes añadir un logger para registrar información adicional si es necesario 

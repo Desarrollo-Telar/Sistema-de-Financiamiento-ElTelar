@@ -22,19 +22,24 @@ const honorarios_desembolso = document.getElementById('honorarios_desembolso');
 const poliza_seguro_desembolso = document.getElementById('poliza_seguro_desembolso');
 const monto_desembolsado_desembolsar = document.getElementById('monto_desembolsado_desembolsar');
 const total_a_desembolsar = document.getElementById('total_a_desembolsar');
-
+const monto_credito_vigente = document.getElementById('monto_credito_vigente');
+const saldo_capital_credito_vigente = document.getElementById('saldo_capital_credito_vigente');
 export function seleccion_desembolso(){
     forma_desembolso.addEventListener('change',function(event){
         const valor_seleccionado = event.target.value;
         if (valor_seleccionado === 'APLICACIÓN GASTOS' ){
-            
+            ocultar(credito_vigente);
+            ocultar(document.getElementById('informacion_credito'));
             mostrar(honorarios_desembolso);
             mostrar(poliza_seguro_desembolso);
             mostrar(monto_desembolsado_desembolsar);
             mostrar(total_a_desembolsar);
-            document.getElementById('credito_monto_vigente').value = 0;
-            document.getElementById('credito_saldo_capital_vigente').value = 0;
+            ocultar(monto_credito_vigente);
+            ocultar(saldo_capital_credito_vigente);
             actualizarTotalDepositar();
+            document.getElementById('credito_saldo_capital_vigente').value = 0;
+            document.getElementById('credito_monto_vigente').value=0;
+            document.getElementById('total_depositar').value = 0;
             
 
         } else if (valor_seleccionado === 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE' ){
@@ -42,7 +47,9 @@ export function seleccion_desembolso(){
             ocultar(poliza_seguro_desembolso);
             ocultar(monto_desembolsado_desembolsar);
             ocultar(total_a_desembolsar);
+            mostrar(monto_credito_vigente);
             mostrar(credito_vigente);
+            mostrar(saldo_capital_credito_vigente);
             actualizarTotalDepositar();
 
             
@@ -53,6 +60,8 @@ export function seleccion_desembolso(){
             ocultar(monto_desembolsado_desembolsar);
             ocultar(total_a_desembolsar);
             mostrar(credito_vigente);
+            mostrar(monto_credito_vigente);
+            mostrar(saldo_capital_credito_vigente);
             actualizarTotalDepositar();
 
         } else{
@@ -61,8 +70,9 @@ export function seleccion_desembolso(){
             ocultar(poliza_seguro_desembolso);
             ocultar(monto_desembolsado_desembolsar);
             ocultar(total_a_desembolsar);
-            document.getElementById('credito_monto_vigente').value = 0;
-            document.getElementById('credito_saldo_capital_vigente').value = 0;
+            ocultar(monto_credito_vigente);
+            ocultar(saldo_capital_credito_vigente);
+            
 
         }
     });
