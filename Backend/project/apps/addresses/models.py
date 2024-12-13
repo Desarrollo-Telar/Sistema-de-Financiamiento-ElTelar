@@ -4,8 +4,11 @@ from django.db import models
 # Relaciones
 from apps.customers.models import Customer
 
+from django.db.models.signals import post_save, pre_save, pre_delete, post_delete
+from django.dispatch import receiver
 
 
+from django.db.models import Q
 
 class Address(models.Model):
     tipo_direccion = [
@@ -56,3 +59,18 @@ class Municiopio(models.Model):
     class Meta:
         verbose_name ='Municipio'
         verbose_name_plural = 'Municipios'
+
+@receiver(post_save, sender=Address) 
+def actualizar_info_direcciones(sender, instance, created, **kwargs): 
+    if created: 
+        departamento = instance.city 
+        municipio = instance.state 
+        filtrar_d = Q(nombre__icontains=departamento) | Q(id=departamento) 
+        departamento_f = Departamento.objects.filter(filtrar_d).first() 
+        filtrar_m = Q(nombre__icontains=municipio) | Q(id=municipio) 
+        municipio_f = Municipio.objects.filter(filtrar_m).first() 
+        
+        if departamento_f and municipio_f: 
+            instance.city = departamento_f.nombre 
+            instance.state = municipio_f.nombre 
+            instance.save()
