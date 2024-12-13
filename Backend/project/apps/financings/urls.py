@@ -13,23 +13,33 @@ from . import views
 app_name = 'financings'
 
 urlpatterns = [
+    #------------- CLASIFICACION
+    path('clasificar/<str:numero_referencia>/',login_required(views.clasificacion_detallar), name='clasificar'),
     # -------------- CREDITO -----------
     path('credit/',login_required(views.list_credit), name='list_credit'),
     path('credit/<int:id>/',login_required(views.detail_credit), name='detail_credit'),
     path('credit/create/',login_required(views.create_credit),name='create_credit'),
     path('credit/search/',login_required(views.CreditSearch.as_view()),name='credit_search'),
-    
+    path('credit/estado_cuenta/<int:id>/',login_required(views.detalle_estado_cuenta),name='estado_cuenta'),
+    path('credit/estado_cuenta/pdf/<int:id>/',login_required(views.render_pdf_estado_cuenta),name='estado_cuenta_pdf'),
+    path('credit/calculos_realizados/pdf/<int:id>/',login_required(views.render_pdf_calculos_credito),name='calculos_realizados'),
+    path('credit/plan_pagos/pdf/<int:id>/',login_required(views.render_pdf_plan_pagos),name='plan_pagos'),
     # ---------------- GARANTIA ------------
     path('guarantee/',login_required(views.list_guarantee), name='list_guarantee'),
     path('guarantee/create/',login_required(views.create_guarantee),name='create_guarantee'),
 
     # ---------------- DESEMBOLSO ------------
-    path('disbursement/create/',login_required(views.create_disbursement),name='create_disbursement'),  
+    path('disbursement/create/<int:id>/',login_required(views.create_disbursement),name='create_disbursement'),  
     path('disbursement/',login_required(views.list_disbursement), name='list_disbursement'),
     path('disbursement/<int:id>/',login_required(views.detallar_desembolso), name='detail_disbursement'),
 
     # --------------- RECIBO ------------------
     path('recibo/<int:id>/',login_required(views.detallar_recibo), name='recibo'),
+    # --------------- FACTURA ------------------
+    path('factura/generar/<int:id>/',login_required(views.generar_factura), name='generar_factura'),
+    path('factura/<int:id>/',login_required(views.detalle_factura), name='factura'),
+    path('factura/pdf/<int:id>/',login_required(views.render_pdf_factura),name='pdf_factura'),
+    
     
     # -------------- BOLETAS ---------------------
     path('payment/',login_required(views.list_payment),name='list_payment'),

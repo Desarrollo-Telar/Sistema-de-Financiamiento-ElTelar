@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body style="font-size: 12px;">
     <div class="container">
 
 
@@ -423,12 +423,12 @@
                                 </p>
                             </div>
                             <div class="col">
-                                <p style="border: 1px solid;  font-size: 5px;"> Departamento:
+                                <p style="border: 1px solid; "> Departamento:
                                     <span>{{direccion_1.state}}</span>
                                 </p>
                             </div>
                             <div class="col">
-                                <p style="border: 1px solid; font-size: 5px; "> Municipio:
+                                <p style="border: 1px solid;  "> Municipio:
                                     <span>{{direccion_1.city}}</span>
                                 </p>
                             </div>
@@ -596,12 +596,12 @@
                                 </p>
                             </div>
                             <div class="col">
-                                <p style="border: 1px solid;  font-size: 5px;"> Departamento:
+                                <p style="border: 1px solid; "> Departamento:
                                     <span>{{direccion_1.state}}</span>
                                 </p>
                             </div>
                             <div class="col">
-                                <p style="border: 1px solid; font-size: 5px; "> Municipio:
+                                <p style="border: 1px solid;  "> Municipio:
                                     <span>{{direccion_1.city}}</span>
                                 </p>
                             </div>
@@ -642,13 +642,13 @@
                                 <p style="border: 1px solid; text-align: center;">
                                     {% if working_information %}
                                     {% for trabajo in working_information%}
-                                    Q<span>{{trabajo.salary}}</span>
+                                    <span>Q{{trabajo.f_salary}}</span>
                                     {% endfor %}
                                     {% endif %}
 
                                     {% if other_information %}
                                     {% for trabajo in other_information%}
-                                    Q<span>{{trabajo.salary}}</span>
+                                    <span>Q{{trabajo.f_salary}}</span>
                                     {% endfor %}
                                     {% endif %}
 
@@ -690,13 +690,13 @@
                         <div class="seccion" style="width: 38rem;">
                             <div class="col">
                                 <p style="border: 1px solid; text-align: center;">
-                                    <span>Q {{plan_list.type_of_product_or_service }}</span>
+                                    <span> {{plan_list.type_of_product_or_service }}</span>
 
                                 </p>
                             </div>
                             <div class="col">
                                 <p style="border: 1px solid; text-align: center;">
-                                    <span>{{plan_list.total_value_of_the_product_or_service }}</span>
+                                    <span>Q{{plan_list.f_total_value_of_the_product_or_service }}</span>
 
                                 </p>
                             </div>
@@ -730,13 +730,13 @@
                         <div class="seccion" style="width: 38rem;">
                             <div class="col">
                                 <p style="border: 1px solid; text-align: center;">
-                                    Q<span>{{plan_list.initial_amount}}</span>
+                                    <span>Q{{plan_list.f_initial_amount}}</span>
 
                                 </p>
                             </div>
                             <div class="col">
                                 <p style="border: 1px solid; text-align: center;">
-                                    Q<span>{{plan_list.monthly_amount}}</span>
+                                    <span>Q{{plan_list.f_monthly_amount}}</span>
 
                                 </p>
                             </div>

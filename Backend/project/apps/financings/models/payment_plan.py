@@ -12,18 +12,22 @@ from decimal import Decimal
 # MODELOS
 from .credit import Credit
 
+# FORMATO
+from apps.financings.formato import formatear_numero
+
 class PaymentPlan(models.Model):
-    mes = models.IntegerField('No.Mes',blank=True, null=True,default=1)  
+    mes = models.IntegerField('No.Mes',blank=True, null=True,default=0)  
     start_date = models.DateTimeField('Fecha de Inicio') # obligatorio
     due_date = models.DateTimeField('Fecha de Vencimiento',blank=True,null=True)
     outstanding_balance = models.DecimalField('Monto Prestado', max_digits=12, decimal_places=2, default=0) 
     mora = models.DecimalField('Mora', max_digits=12, decimal_places=2, default=0)
     interest = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     principal = models.DecimalField('Capital',max_digits=12, decimal_places=2, default=0)
+    principal_pagado = models.DecimalField('Capital Pagado',max_digits=12, decimal_places=2, default=0)
     installment = models.DecimalField('Cuota',max_digits=12, decimal_places=2, default=0)
     status = models.BooleanField(default=False)
-    credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE)
-    # NUEVOS CAMPOS
+    credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE, verbose_name='Credito')
+    
     saldo_pendiente = models.DecimalField('Saldo Pendiente',max_digits=12, decimal_places=2, default=0) # obligatorio
     interes_pagado = models.DecimalField('Interes Pagado',max_digits=12, decimal_places=2, default=0)
     mora_pagado = models.DecimalField('Mora Pagada', max_digits=12, decimal_places=2, default=0)
@@ -31,6 +35,47 @@ class PaymentPlan(models.Model):
     cambios = models.BooleanField(default=False)
     numero_referencia = models.CharField('Numero de Referencia', max_length=255, null=True, blank=True, default="NAN")
     cuota_vencida = models.BooleanField(default=False)
+    # NUEVOS CAMPOS
+    interes_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    capital_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    interes_acumulado_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    mora_acumulado_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    mora_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    # NUEVOS CAMPOS
+    paso_por_task = models.BooleanField(default=False)
+
+    def formato_cuota_mora(self):
+        return formatear_numero(self.mora)
+    
+    def formato_cuota_mora_generado(self):
+        return formatear_numero(self.mora_generado)
+    
+    def formato_cuota_mora_acumulado_generado(self):
+        return formatear_numero(self.mora_acumulado_generado)
+
+    def formato_cuota_interes(self):
+        return formatear_numero(self.interest)
+    
+    def formato_cuota_interes_generado(self):
+        return formatear_numero(self.interes_generado)
+    
+    def formato_cuota_interes_acumulado_generado(self):
+        return formatear_numero(self.interes_acumulado_generado)
+    
+    def formato_cuota_capital(self):
+        return formatear_numero(self.calculo_capital())
+    
+    def formato_cuota_capital_generado(self):
+        return formatear_numero(self.capital_generado)
+
+    def formato_saldo_capital_pendiente(self):
+        return formatear_numero(self.outstanding_balance)
+
+    def formato_cuota_total(self):
+        return formatear_numero(self.total())
+    
+    def formato_cuota_saldo_pendiente(self):
+        return formatear_numero(self.saldo_pendiente)
    
     def no_mes(self):
         contar = 0
@@ -66,12 +111,20 @@ class PaymentPlan(models.Model):
     def acumulacion_mora(self):
         self.mora_acumulada -= self.mora_pagado
         return round(self.mora_acumulada,2)
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> server
     def mostrar_fecha_limite(self):
         limite = self.fecha_limite - relativedelta(days=1)
         limite = self.fecha_limite.replace(hour=5, minute=59, second=0, microsecond=0)
         return limite
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> server
     def total(self):
         total = 0
         capital = Decimal(self.calculo_capital())
@@ -86,7 +139,7 @@ class PaymentPlan(models.Model):
         forma_pago = self.credit_id.forma_de_pago
         monto_inicial = Decimal(self.credit_id.monto)
         plazo = self.credit_id.plazo
-        intereses = Decimal(self.interest)
+        intereses = Decimal(self.interes_generado)
         capital = 0
 
         
@@ -96,6 +149,7 @@ class PaymentPlan(models.Model):
             if intereses >= cuota:
                 intereses = self.calculo_interes()
 
+            #intereses -= self.calculo_interes()
             # Capital es la diferencia entre la cuota y los intereses
             capital = round(cuota - intereses, 2)
              
@@ -103,8 +157,7 @@ class PaymentPlan(models.Model):
             # En el caso de amortización a capital, capital es fijo
             capital =  round(monto_inicial / plazo, 2)
 
-        if self.principal > 0:
-            capital = 0
+        
         
         
         return Decimal(capital)
@@ -135,10 +188,12 @@ class PaymentPlan(models.Model):
     def save(self,*args, **kwargs):
         self.fecha_vencimiento()
         self.calculo_fecha_limite()
+        self.capital_generado = self.calculo_capital()
+        self.installment = self.calculo_cuota()
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return f'CREDITO: {self.credit_id} FECHA INICIO: {self.start_date.strftime('%Y-%m-%d')} FECHA LIMITE: {self.fecha_limite.strftime('%Y-%m-%d')}'
+        return f'{self.mes} - {self.credit_id}'
         
     class Meta:
         verbose_name = 'Plan de Pago'

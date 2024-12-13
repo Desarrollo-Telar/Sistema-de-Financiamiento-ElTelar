@@ -15,42 +15,43 @@
 
                         <th scope="col">Saldo Capital</th>
                         <th scope="col">Cuota A Cancelar</th>
-                        <th></th>
+
 
 
                     </tr>
                 </thead>
                 <tbody>
-                    {% for credit in siguiente_pago %}
+                    {% for cuota in cuotas_vencidas %}
 
                     <tr>
                         <td class="border border-dark-subtle">
-                            {{credit.start_date}}
+                            {{cuota.start_date}}
                         </td>
                         <td class="border border-dark-subtle">
-                            {{credit.due_date}}
+                            {{cuota.due_date}}
                         </td>
                         <td class="border border-dark-subtle">
+<<<<<<< HEAD
                             {{credit.mostrar_fecha_limite}}
+=======
+                            {{cuota.mostrar_fecha_limite}}
+>>>>>>> server
                         </td>
                         <td class="border border-dark-subtle">
-                            {{credit.mora}}
+                            Q{{cuota.formato_cuota_mora}}
                         </td>
                         <td class="border border-dark-subtle">
-                            {{credit.interest}}
+                            Q{{cuota.formato_cuota_interes}}
                         </td>
 
 
                         <td class="border border-dark-subtle">
-                            {{credit.saldo_pendiente}}
+                            Q{{cuota.formato_cuota_saldo_pendiente}}
                         </td>
                         <td class="border border-dark-subtle">
-                            {{credit.total}}
+                            Q{{cuota.formato_cuota_total}}
                         </td>
-                        <td class="border border-dark-subtle">
-                            <a href="{% url 'financings:paymente_update_cuota' credit.id %}">Modificar</a>
 
-                        </td>
 
                     </tr>
 

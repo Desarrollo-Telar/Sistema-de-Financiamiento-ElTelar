@@ -2,7 +2,7 @@
 from django.urls import path, include
 
 # API
-from apps.pictures.api import routers
+from apps.documents.api import routers
 
 # Views
 from . import views

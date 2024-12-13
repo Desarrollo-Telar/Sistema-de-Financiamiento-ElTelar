@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Banco, Payment, AccountStatement, PaymentPlan, Recibo
 # Register your models here.
+from apps.financings.models import Invoice, Cuota
 @admin.register(Credit)
 class CreditAdmin(admin.ModelAdmin):
     fields = (
@@ -15,8 +16,11 @@ class CreditAdmin(admin.ModelAdmin):
         #'fecha_vencimiento',
         'tipo_credito',        
         'customer_id',
+        'estado_aportacion',
+        'estados_fechas',
+        'is_paid_off'
     )
-    list_display = ('customer_id','codigo_credito' ,'tipo_credito', 'monto','plazo','tasa_interes','fecha_inicio','creation_date')
+    list_display = ('customer_id','codigo_credito' ,'tipo_credito', 'monto','plazo','tasa_interes','fecha_inicio','estados_fechas','creation_date')
 
 
 
@@ -28,3 +32,5 @@ admin.site.register(Payment)
 admin.site.register(AccountStatement)
 admin.site.register(PaymentPlan)
 admin.site.register(Recibo)
+admin.site.register(Invoice)
+admin.site.register(Cuota)

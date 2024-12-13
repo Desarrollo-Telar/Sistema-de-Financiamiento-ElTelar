@@ -5,7 +5,9 @@ from .credit import Credit
 
 from apps.customers.clases.customer import Customer
 from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
-
+# FORMATO
+from apps.financings.formato import formatear_numero
+import re
 class PaymentPlan:
     contador = 0
 
@@ -82,12 +84,18 @@ class PaymentPlan:
         
         mes_final = mes_inicial + relativedelta(months=1)
         dias_diferencia = (mes_final - mes_inicial).days
+        Fmes_inicio = mes_inicial.strftime('%d-%m-%Y')  # Convierte a cadena con formato "YYYY-MM-DD"
+        Fmes_fin = mes_final.strftime('%d-%m-%Y')      # Convierte a cadena con formato "YYYY-MM-DD"
+
 
         dicio = {
             'mes': 1,
             'fecha_inicio': mes_inicial,
             'fecha_final': mes_final,
+            'Ffecha_inicio': mes_inicial.date,
+            'Ffecha_final': mes_final.date,
             'monto_prestado': self.monto_inicial,
+            'fmonto_prestado': formatear_numero(self.monto_inicial),
             'mora': 0,
         }
         intereses = self.calculo_intereses(dias_diferencia, self.monto_inicial)
@@ -101,10 +109,14 @@ class PaymentPlan:
 
         dicio.update({
             'intereses': intereses,
+            'fintereses':formatear_numero(intereses),
             'capital': capital,
+            'fcapital':formatear_numero(capital),
             'cuota': cuota,
+            'fcuota': formatear_numero(cuota),
             'saldo_pendiente': 0,
             'total': cuota,
+            'ftotal': formatear_numero(cuota),
             'estado': 'PENDIENTE'
         })
         return dicio
@@ -123,14 +135,21 @@ class PaymentPlan:
             dias_diferencia = (mes_final - mes_inicial).days
 
             intereses = self.calculo_intereses(dias_diferencia,monto_prestado)
+            Fmes_inicio = mes_inicial.strftime('%d-%m-%Y')  # Convierte a cadena con formato "YYYY-MM-DD"
+            Fmes_fin = mes_final.strftime('%d-%m-%Y')      # Convierte a cadena con formato "YYYY-MM-DD"
+
             #print(f'MES: {anterior['mes']}, Fecha Inicio: {anterior['fecha_inicio'].strftime('%Y-%m-%d')}, Fecha Final: {anterior['fecha_final'].strftime('%Y-%m-%d')}')
             dicio = {
                 'mes': mes,
                 'fecha_inicio': mes_inicial,
                 'fecha_final': mes_final,
+                'Ffecha_inicio': mes_inicial.date,
+                'Ffecha_final': mes_final.date,
                 'monto_prestado': monto_prestado,
+                'fmonto_prestado': formatear_numero(monto_prestado),
                 'mora':0,
-                'intereses': intereses
+                'intereses': intereses,
+                'fintereses':formatear_numero(intereses),
             }
             if self.forma_pago == 'NIVELADA':
                 cuota = self.calculo_cuota()
@@ -140,9 +159,12 @@ class PaymentPlan:
                 cuota = self.calculo_cuota(intereses, capital)
             dicio.update({
                 'capital': capital,
+                'fcapital':formatear_numero(capital),
                 'cuota': cuota,
+                'fcuota': formatear_numero(cuota),
                 'saldo_pendiente':0,
                 'total':cuota,
+                'ftotal': formatear_numero(cuota),
                 'estado':'PENDIENTE'
             })
             self.__plan.append(dicio)

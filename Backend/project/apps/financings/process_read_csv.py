@@ -12,7 +12,7 @@ def process(nuevo):
     #print("Columnas del archivo CSV:", df)
 
     # Filtrar las columnas 'Fecha', 'Referencia' y 'Crédito (+)'
-    df_filtered = df[['Fecha', 'Referencia', 'Débito (-)', 'Crédito (+)']].copy()  # Asegúrate de hacer una copia explícita
+    df_filtered = df[['Fecha', 'Descripción','Referencia', 'Débito (-)', 'Crédito (+)']].copy()  # Asegúrate de hacer una copia explícita
 
 
     # Convertir la columna 'Crédito (+)' a numérica, en caso de que no lo sea
@@ -27,13 +27,14 @@ def process(nuevo):
         referencia = str(row['Referencia'])
         credito = row['Crédito (+)']
         debito = row['Débito (-)']
+        descripcion = row['Descripción']
         # Verificar si la referencia ya existe en la base de datos
         if Banco.objects.filter(referencia=referencia).exists():
             print(f"La referencia {referencia} ya existe. Ignorando...")
             continue  # Si ya existe, saltar este registro
         
-        banco = Banco(fecha=fecha,referencia=referencia,credito=credito, debito=debito)
+        banco = Banco(fecha=fecha,referencia=referencia,credito=credito, debito=debito, descripcion=descripcion)
         banco.save()
         
         # Realizar alguna acción con los datos
-        print(f"Fecha: {fecha}, Referencia: {referencia}, Crédito: {credito}, Débito: {debito}")
+        print(f"Fecha: {fecha}, Referencia: {referencia}, Crédito: {credito}, Débito: {debito}, Descripción: {descripcion}")

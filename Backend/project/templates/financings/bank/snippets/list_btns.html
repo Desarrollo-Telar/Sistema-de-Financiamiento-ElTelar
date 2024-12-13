@@ -1,0 +1,12 @@
+{% load static %}
+
+<a href="{% url 'financings:create_payment' %}" class="btn_guardar">Generar
+    Pago</a>
+
+{% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+
+<a href="{% url 'document:banco' %}" class="btn_guardar">Subir
+    Documento</a>
+
+
+{% endif %}

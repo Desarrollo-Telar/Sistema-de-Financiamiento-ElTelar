@@ -5,7 +5,7 @@ from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.users.models import User
-from apps.financings.models import Banco
+from apps.financings.models import Banco, DetailsGuarantees
 
 # SIGNALS
 from django.db.models.signals import post_delete, post_save, pre_save, pre_delete
@@ -71,7 +71,8 @@ class DocumentAddress(models.Model):
         verbose_name_plural ="Documentos de Direcciones"
 
 class DocumentGuarantee(models.Model):
-    investment_plan_id = models.ForeignKey(InvestmentPlan, on_delete=models.CASCADE, related_name='documents')
+    investment_plan_id = models.ForeignKey(InvestmentPlan, on_delete=models.CASCADE, related_name='documents', blank=True, null=True)
+    garantia = models.ForeignKey(DetailsGuarantees, on_delete=models.CASCADE, related_name="guarantee_documents", blank=True,null=True)
     document_id = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='guarantee_documents')
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='guarantee_documents')
 

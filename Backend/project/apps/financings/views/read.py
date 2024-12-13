@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Models
 from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
 
+# Manejo de mensajes
+from django.contrib import messages
 
 # LIBRERIAS PARA CRUD
 from django.views.generic.list import ListView
@@ -142,9 +144,12 @@ class BankSearch(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if not (context['object_list']):
+            messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
+        context['posicion'] = self.query()
         return context
 
 class PaymentSearch(ListView):
@@ -189,9 +194,12 @@ class PaymentSearch(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if not (context['object_list']):
+            messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
+        context['posicion'] = self.query()
         return context
 
 class CreditSearch(ListView):
@@ -241,7 +249,10 @@ class CreditSearch(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if not (context['object_list']):
+            messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
+        context['posicion'] = self.query()
         return context

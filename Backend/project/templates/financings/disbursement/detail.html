@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row box" style="padding-bottom:5rem;">
+    <div class="row" style="margin-top: 2rem;">
+        <h3>Detalles del Desembolso para el Credito: <span
+                class="fst-italic">{{desembolso.credit_id.codigo_credito}}</span></h3>
+        <div style="margin-top: 1rem;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+
+                    <li class="breadcrumb-item"><a href="{% url 'customers:customers' %}"
+                            style="text-decoration: none;">Clientes</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'financings:list_credit' %}"
+                            style="text-decoration: none;">Creditos</a></li>
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'customers:detail' desembolso.credit_id.customer_id.customer_code %}"
+                            style="text-decoration: none;">{{desembolso.credit_id.customer_id.first_name}}
+                            {{desembolso.credit_id.customer_id.last_name}}</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{% url 'financings:detail_credit' desembolso.credit_id.id %}"
+                            style="text-decoration: none;">{{desembolso.credit_id.codigo_credito}}</a>
+
+                    </li>
+                    <li class="breadcrumb-item "></li>
+
+                </ol>
+            </nav>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <p class="fw-medium">PROPOSITO: <span class="fw-light">{{desembolso.credit_id.proposito}}</span></p>
+        <p class="fw-medium">TIPO DE CREDITO: <span class="fw-light">{{desembolso.credit_id.tipo_credito}}</span></p>
+        <p class="fw-medium">FORMA DE PAGO: <span class="fw-light">{{desembolso.credit_id.forma_de_pago}}</span></p>
+        <div class="row">
+            <hr>
+            <div class="col-6">
+                <p class="fw-medium">MONTO DEL PRESTAMO: <span class="fw-light">Q {{desembolso.credit_id.monto}}</span>
+                </p>
+                <p class="fw-medium">SALDO ACTUAL: <span class="fw-light">Q {{desembolso.credit_id.saldo_actual}}</span>
+                </p>
+                <p class="fw-medium">PLAZO: <span class="fw-light">{{desembolso.credit_id.plazo}} MESES</span></p>
+                <p class="fw-medium">TASA DE INTERES MENSUAL: <span class="fw-light">
+                        {{desembolso.credit_id.tasa_mensual}}%</span>
+                </p>
+
+            </div>
+            <div class="col-6">
+                <p class="fw-medium">FECHA DE INICIO: <span
+                        class="fw-light">{{desembolso.credit_id.fecha_inicio}}</span></p>
+                <p class="fw-medium">FECHA DE VENCIMIENTO: <span
+                        class="fw-light">{{desembolso.credit_id.fecha_vencimiento}}</span>
+                </p>
+                <p class="fw-medium">FECHA DE CREACION DEL CREDITO: <span
+                        class="fw-light">{{desembolso.credit_id.creation_date}}</span>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <hr>
+        {% if boletas%}
+        {% for boleta in boletas%}
+        <div>
+            {{boleta.disbursement.forma_desembolso}}
+            {{boleta.boleta}}
+
+        </div>
+        <div>
+            {{boleta.disbursement.saldo_anterior}}
+
+        </div>
+        <div>
+            {{boleta.disbursement.honorarios}}
+
+        </div>
+        <div>
+            {{boleta.disbursement.poliza_seguro}}
+
+        </div>
+        <div>
+            {{boleta.disbursement.monto_total_desembolso}}
+
+        </div>
+        {% endfor %}
+        {% else %}
+        <div>
+            {{desembolso.forma_desembolso}}
+
+
+        </div>
+        <div>
+            {{desembolso.saldo_anterior}}
+
+        </div>
+        <div>
+            {{desembolso.honorarios}}
+
+        </div>
+        <div>
+            {{desembolso.poliza_seguro}}
+
+        </div>
+        <div>
+            {{desembolso.monto_total_desembolso}}
+
+        </div>
+        {% endif%}
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -17,6 +17,7 @@ from apps.financings.clases.personality_logs import logger
 # MODELO
 from .disbursement import Disbursement
 from .credit import Credit
+from .bank import Banco
 
 from project.settings import MEDIA_URL, STATIC_URL
 
@@ -41,16 +42,22 @@ class Payment(models.Model):
     descripcion = models.TextField(blank=True, null=True)
     mora = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     interes = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    interes_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     capital = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    capital_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     boleta = models.FileField("Boleta",blank=True, null=True,upload_to='pagos/boletas/')
     tipo_pago = models.CharField('Tipo de Pago', choices=TYPE_PAYMENT, max_length=75, default='CREDITO')
     descripcion_estado = models.TextField(blank=True, null=True)
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     
     def fechaEmision(self):
         return datetime.strftime(self.fecha_emision,'%Y-%m-%d')
 
     def pago(self):
         return Payment.objects.get(id=self.id)
+    
+    def banco(self):
+        return Banco.objects.filter(referencia=self.numero_referencia)
 
     def credito(self):
         return Credit.objects.get(id=self.credit.id)
@@ -76,7 +83,7 @@ class Payment(models.Model):
         Encuentra la próxima cuota a pagar en función de la fecha de emisión y el historial de pagos.
         """
         # Obtener todas las cuotas del crédito ordenadas por la fecha límite
-        cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit, status=False).order_by('fecha_limite')
+        cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit ).order_by('fecha_limite')
 
         # Fecha de emisión (como objeto datetime)
         fecha_emision = self.fecha_emision
@@ -98,7 +105,7 @@ class Payment(models.Model):
             if diferencia >= 15:
                 # Devolver la cuota más reciente impaga
                 logger.info('COBRANDO LA ULTIMA CUOTA POR DIFERENCIA DE DÍAS >= 15')
-                cuota_a_pagar = PaymentPlan.objects.filter(credit_id=self.credit.id).order_by('-id').first()
+                cuota_a_pagar = self.get_plan_pagos().objects.filter(credit_id=self.credit.id).order_by('-id').first()
                 return cuota_a_pagar
 
         else:
@@ -118,6 +125,9 @@ class Payment(models.Model):
             if fecha_inicio <= fecha_emision <= fecha_limite:
                 # Si la fecha de emisión cae dentro del rango de esta cuota
                 logger.info("Cuota encontrada en rango de fechas")
+                if fecha_emision == fecha_limite:
+                    logger.info("Fecha de emisión es igual a la fecha límite, continuando a la siguiente cuota")
+                    continue 
                 return cuota
 
         # Si no se encuentra ninguna cuota aplicable
@@ -134,13 +144,15 @@ class Payment(models.Model):
         if cuota_actual:
             # Obtener todas las cuotas ordenadas por fecha límite
             cuotas = self.get_plan_pagos().objects.filter(credit_id_id=self.credit.id).order_by('fecha_limite')
+           
             
             # Iterar sobre las cuotas después de la cuota actual
             encontrada = False
             for cuota in cuotas:
                 if encontrada:
                     # Si ya encontramos la cuota actual, la siguiente será la segunda cuota
-                    
+                    if cuota == cuota_actual:
+                        return None
                     return cuota
                 
                 if cuota == cuota_actual:
@@ -154,8 +166,32 @@ class Payment(models.Model):
         return interes
 
     def _calculo_mora(self):
+        # Obtener la cuota actual asociada
         cuota = self._cuota_pagar()
+        
+        # Fecha de creación del pago
+        fecha_creacion_pago = self.creation_date
+
+        # Obtener información del banco
+        info_banco = self.banco()
+
+        if info_banco:
+            # Fecha de creación del registro en el banco
+            fecha_creacion_registro_banco = info_banco.creation_date
+
+            # Verificar si el registro del banco es anterior al pago
+            if fecha_creacion_registro_banco > fecha_creacion_pago:
+                # Ajustar mora si ya fue generada
+                
+                if cuota.mora_generado:
+                    cuota.mora -= cuota.mora_generado
+                    cuota.mora_generado = 0
+                    cuota.cambios = True
+                    cuota.save()  # Guardar los cambios en la base de datos
+
+        # Retornar la mora actualizada
         return cuota.mora
+
     
     def _calcular_total(self):
         cuota = self._cuota_pagar()
@@ -168,7 +204,7 @@ class Payment(models.Model):
             # registrar en el apartado de desembolso
             pago = self.pago()
             pago.estado_transaccion = 'COMPLETADO'
-            #pago.save()
+            pago.save()
             logger.info(f'EL PAGO {pago.numero_referencia} CORRESPONDE A UN DESEMBOLSO')
 
             return f'REGISTRO DE DESEMBOLSO'
@@ -185,10 +221,12 @@ class Payment(models.Model):
         
         if cuota is None:
             logger.error(f'NO SE HA ENCONTRADO NINGUNA CUOTA')
-            return f'CUOTA NO ENCONTRADA'
+            cuota = self._siguiente_cuota()
+            #return f'CUOTA NO ENCONTRADA'
         
 
         saldo_pendiente = self.credito().saldo_pendiente
+        
         mora = self._calculo_mora()
         interes = self._calculo_intereses()
         
@@ -249,6 +287,7 @@ class Payment(models.Model):
         pago = self.pago()
         cuota = self._cuota_pagar()
         siguiente = self._siguiente_cuota()
+        cuota_a_actualizar = False
 
         # SE GENERA EL RECIBO
         """
@@ -257,22 +296,7 @@ class Payment(models.Model):
         
         recibos = self.get_recibo().objects.filter(pago=pago)
     
-        if recibos.exists():
-            for recibo in recibos:
-                # Actualizamos cada recibo existente
-                """
-                recibo.mora = cuota.mora
-                recibo.interes = cuota.interest
-                recibo.pago = pago
-                recibo.total = self.monto
-                recibo.aporte_capital = aporte_capital
-                recibo.interes_pagado = pagado_interes
-                recibo.mora_pagada = pagado_mora
-                recibo.cliente = credito.customer_id
-                recibo.save()
-                """
-                pass
-        else:
+        if not recibos.exists():
             # Creamos un nuevo recibo si no hay existentes
             recibo = self.get_recibo()(
                 mora=cuota.mora,
@@ -282,26 +306,54 @@ class Payment(models.Model):
                 aporte_capital=aporte_capital,
                 interes_pagado=pagado_interes,
                 mora_pagada=pagado_mora,
-                cliente=credito.customer_id
+                cliente=credito.customer_id,
+                cuota=cuota
             )
             recibo.save()
        
 
         # ACTUALIZAR LA CUOTA QUE SE ESTA CREANDO 
                             # 500 - 100 = 400
+        logger.info('CAMBIOS EN SOBRE CUOTA, DESDE EL PAGO')
+        logger.info(f'''
+        {cuota.interest}
+        {cuota.mora}
+        {cuota.principal}
         
+        ''')
         cuota.interest -=pagado_interes
         mora_existente = cuota.mora
         cuota.mora -= pagado_mora
-        cuota.principal = aporte_capital
+        cuota.principal += aporte_capital
         cuota.saldo_pendiente = saldo_pendiente
         cuota.numero_referencia = self.numero_referencia
+        cuota.interes_pagado += pagado_interes
         cuota.cambios = False
+        logger.info(f'''
+        CUOTA ACTUALIZADA
+        {cuota.interest}
+        {cuota.mora}
+        {cuota.principal}
         
+        
+        ''')
+        
+        interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
         if aporte_capital > 0:
             cuota.status = True
+            #cuota_a_actualizar = self.get_plan_pagos()()
+            #cuota_a_actualizar.interest =  interes
+            #cuota_a_actualizar.interes_generado =  interes
+            capital_original = cuota.capital_generado
+
+            if cuota.principal >= capital_original:
+                credito.estado_aportacion = True
+            else:
+                credito.estado_aportacion = False
+            credito.estados_fechas = True
         
         cuota.save()
+
 
         # ACTUALIZAR EL PAGO PARA REFREGAR LA CANTIDA PAGADA
         pago.mora =  pagado_mora
@@ -353,51 +405,68 @@ class Payment(models.Model):
         
         # SE ACTUALIZA EL SALDO PENDIENTE DEL CREDITO
         credito.saldo_pendiente = saldo_pendiente
+
+        # Actualizar el saldo actual
+        if saldo_pendiente <= 0:
+            saldo_pendiente = 0
+        credito.saldo_actual = saldo_pendiente + cuota.mora + cuota.interest
+
         credito.save()
         
 
 
-        interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
+        
         mora = calculo_mora(saldo_pendiente, credito.tasa_interes)
-            
-            
-
+        
+        print('CALCULANDO...')
+        print(siguiente)
+       
+        
         if siguiente:
             # Actualizamos la siguiente cuota si ya existe
             cuota_a_actualizar = siguiente
             logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES ANTIGUO: {cuota_a_actualizar.interest}\nMORA ANTIGUA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {cuota_a_actualizar.saldo_pendiente}')
             cuota_a_actualizar.cambios = True
             if cuota.interest <=0:
-            
                 cuota_a_actualizar.interest =  interes
                 pago.cuota_vencida = False
             else:
                 cuota_a_actualizar.interest  = max (0, cuota_a_actualizar.interest - pagado_interes)
-
-
-                
-            cuota_a_actualizar.mora = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)
-            
-                
-                
+            cuota_a_actualizar.mora = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)  
+            cuota_a_actualizar.mora_generado = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)
                 
         else:
+<<<<<<< HEAD
             # Creamos una nueva cuota si no existe
             #cuota_a_actualizar = self.get_plan_pagos()()
             #cuota_a_actualizar.interest = interes
             logger.info('CREACION DE UNA NUEVA CUOTA')
             #cuota_a_actualizar.mora = mora
+=======
+            logger.info('CREACION DE UNA NUEVA  CUOTA')
+            
+            
+                
+>>>>>>> server
 
         # En ambos casos (cuota nueva o existente), actualizamos los campos comunes
-        cuota_a_actualizar.start_date = cuota.due_date
-        cuota_a_actualizar.saldo_pendiente = saldo_pendiente
-        cuota_a_actualizar.credit_id = credito
-        cuota_a_actualizar.outstanding_balance = saldo_pendiente
-        logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO: {cuota_a_actualizar.interest}\nMORA NUEVA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {saldo_pendiente}')
-        
+        if cuota_a_actualizar:
+            cuota_a_actualizar.start_date = cuota.due_date
+            cuota_a_actualizar.saldo_pendiente = saldo_pendiente
+            cuota_a_actualizar.credit_id = credito
+            cuota_a_actualizar.outstanding_balance = saldo_pendiente
+            
+            credito.saldo_actual = saldo_pendiente + cuota_a_actualizar.mora + cuota_a_actualizar.interest
 
-        # Guardamos los cambios
-        cuota_a_actualizar.save()
+            credito.save()
+            
+            logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO: {cuota_a_actualizar.interest}\nMORA NUEVA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {saldo_pendiente}')
+            
+
+            # Guardamos los cambios
+            #if cuota_a_actualizar:
+            cuota_a_actualizar.save()
+        
 
         
 

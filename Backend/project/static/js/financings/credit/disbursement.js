@@ -12,6 +12,8 @@ let suma = 0, saldo_anterior = 0, credi_id = 0;
 // Función para obtener valor numérico de un campo por ID
 const obtenerValorNumerico = (id) => parseFloat(document.getElementById(id)?.value) || 0;
 
+
+
 // Función para actualizar el total a depositar
 async function actualizarTotalDepositar() {
     const monto = obtenerValorNumerico('monto');

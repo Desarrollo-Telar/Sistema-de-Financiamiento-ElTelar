@@ -13,6 +13,10 @@ class CustomerViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()
 
+class CustomerAcceptViewSet(viewsets.ModelViewSet):
+    serializer_class = CustomerSerializer
+    queryset = Customer.objects.filter(status='Aprobado')
+
 class ImmigrationStatusViewSet(viewsets.ModelViewSet):
     serializer_class = ImmigrationStatusSerializer
     queryset = ImmigrationStatus.objects.all()

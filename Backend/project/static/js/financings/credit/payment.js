@@ -4,6 +4,7 @@ import {urls, urls_p} from '../../API/urls_api.js'
 document.getElementById('pago').addEventListener('submit', async function (event) {
     event.preventDefault();
     console.log('BUEEEENOOOO')
+    const credit = document.getElementById('credit').value;
     let formData = new FormData();
     formData.append('credit', document.getElementById('credit').value);
     formData.append('monto', document.getElementById('monto').value);
@@ -28,8 +29,14 @@ document.getElementById('pago').addEventListener('submit', async function (event
     })
         .then(response => {
             console.log(response.data);
-            alert('¡Formulario enviado con éxito!');
-            window.location.href = `/financings/payment/`;
+            Swal.fire({
+                icon: "success",
+                title: `Registro Completado`,
+                text: '¡Formulario enviado con éxito!',
+                timer: 3000,
+                showConfirmButton: false,
+            });
+            setTimeout(() => { window.location.href = `/financings/credit/${credit}`; }, 1000);
         })
         .catch(error => {
             if (error.response) {
@@ -43,5 +50,12 @@ document.getElementById('pago').addEventListener('submit', async function (event
                 // Algo más pasó al hacer la solicitud
                 console.error('Error:', error.message);
             }
+            Swal.fire({
+                icon: "error",
+                title: `Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.`,
+                text:`${error}`,
+                timer: 3000,
+                showConfirmButton: false,
+            });
         });
 });

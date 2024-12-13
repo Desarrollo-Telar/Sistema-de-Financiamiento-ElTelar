@@ -1,162 +1,126 @@
-{% extends "base.html" %} {% load static %} {% block content %}
-<div class="row">
-    <div class="col">
-        <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
-            <div class="card-header" style="background-color: #e02226; color: #f4f7f7; font-size: 1.2rem;">
-                ¡Hola! {{user}}
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="row box">
+    <div class="row">
+        <h3 style="font-weight: bold;">Hola, {{user}}!</h3>
+        <div>
+            <p style="font-size: small;">{{dia}}</p>
+        </div>
+        <p>¡Bienvenido/a a nuestro portal de control de financiamientos El Telar!
+            Estamos encantados de tenerte aquí. Este es tu centro de operaciones
+            para gestionar las finanzas de todos nuestros clientes de manera
+            eficiente y efectiva. Desde el seguimiento del plan de inversion hasta
+            el siguimiento de sus pagos, estamos aquí para ayudarte en cada paso
+            del camino.</p>
+        <hr>
+
+    </div>
+    <div class="row">
+        <div class="col" style="background-color: #ffe1e2; padding: 1rem;border-radius: 1rem; ">
+            <a href="{% url 'customers:customers' %}"
+                style="text-decoration: none; color: #46090a; font-weight: bold;">Total de Clientes
+                Registrados</a>
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <span>{{clientes.count}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div style="background-color: #e02226;border-radius: 2rem; padding: 1rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-people-fill"
+                            viewBox="0 0 16 16" style="color: white;  width: 1rem; ">
+                            <path
+                                d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                        </svg>
+
+                    </div>
+
+
+                </div>
+
             </div>
-            <div class="card-body" style="padding: 2rem">
-                <p class="card-text" style="font-size: 1.2rem">
-                    ¡Bienvenido/a a nuestro portal de control de financiamientos El Telar!
-                    Estamos encantados de tenerte aquí. Este es tu centro de operaciones
-                    para gestionar las finanzas de todos nuestros clientes de manera
-                    eficiente y efectiva. Desde el seguimiento del plan de inversion hasta
-                    el siguimiento de sus pagos, estamos aquí para ayudarte en cada paso
-                    del camino.
-                </p>
+
+        </div>
+
+        <div class="col" style="background-color: #ffe1e2; padding: 1rem;border-radius: 1rem; margin-left:0.5rem ;">
+            <a href="{% url 'financings:list_credit' %}"
+                style="text-decoration: none; color: #46090a; font-weight: bold;">
+                Total de Creditos Registrados
+            </a>
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <span>{{creditos.count}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div style="background-color: #e02226;border-radius: 2rem; padding: 1rem; color: white;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1" />
+                        </svg>
+
+                    </div>
+
+
+                </div>
+
             </div>
+
         </div>
-    </div>
-</div>
-<div class="row"></div>
-<div class="row box row-cols-2 align-items-center" style="margin-top:2rem ;">
-    <div class="col ">
-        <h3>Calendario</h3>
-        <hr />
-        <div class="" id="demo-calendar-apppearance"></div>
-    </div>
-    <div class="col " style="
-      padding: 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #e02226;
-      color: #ffffff;
-      border-radius: 2rem;
-    ">
-        <div style="font-size: 2.5rem;text-align: center;">
-            <h3>El día de hoy:</h3>
-            <p>{{dia}}</p>
-            <p>{{mes}}</p>
+        <div class="col" style="background-color: #ffe1e2; padding: 1rem;border-radius: 1rem; margin-left:0.5rem ;">
+            <a href="{% url 'financings:list_bank'%}" style="text-decoration: none; color: #46090a; font-weight: bold;">
+                Total De Ingresos
+            </a>
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <span>Q{{ingresos}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div style="background-color: #e02226;border-radius: 2rem; padding: 1rem; color: white;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                            <path
+                                d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
+                        </svg>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
         </div>
-    </div>
-</div>
-<div class="row"></div>
-<div class="row box" style="margin:3rem 0 ; background-color: #fffefe; padding: 2rem;">
+        <div class="col" style="background-color: #ffe1e2; padding: 1rem;border-radius: 1rem; margin-left:0.5rem ;">
+            <a href="{% url 'financings:list_bank'%}" style="text-decoration: none; color: #46090a; font-weight: bold;">
+                Total De Egresos
+            </a>
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <span>Q{{egresos}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div style="background-color: #e02226;border-radius: 2rem; padding: 1rem; color: white;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                            <path
+                                d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z" />
+                        </svg>
 
-    <div class="col-12">
-        <p>Clientes registrados ultimamente:<span class="badge rounded-pill text-bg-dark"
-                style="margin-left: 0.5rem;">{{count}}</span> </p>
-        <div class="table-responsive">
+                    </div>
 
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Codigo Cliente</th>
-                        <th>Nombre</th>
-                        <th>Numero de Telefono</th>
-                        <th>Correo Electronico</th>
-                        <th>Estado</th>
-                        <th>Fecha de Registro</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for cliente in customer_list %}
-                    <tr>
-                        <td>{{cliente.customer_code}}</td>
-                        <td>{{cliente.first_name}} {{cliente.last_name}}</td>
-                        <td>{{cliente.telephone}}</td>
-                        <td>{{cliente.email}}</td>
-                        <td>{{cliente.status}}</td>
-                        <td>{{cliente.fecha_creacion}}</td>
+                </div>
 
-                        <td>
+            </div>
 
-                            <a href="{% url 'customers:detail' cliente.customer_code %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-eye" viewBox="0 0 16 16">
-                                    <path
-                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
-                                    <path
-                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
-                                </svg>
-
-                            </a>
-
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
         </div>
 
     </div>
+
 </div>
-<div class="row"></div>
-<div class="row box" style="margin:3rem 0 ; background-color: #fffefe; padding: 2rem;">
-
-    <div class="col-12">
-        <p>Recibos registrados ultimamente:<span class="badge rounded-pill text-bg-dark"
-                style="margin-left: 0.5rem;">{{count_re}}</span> </p>
-        <div class="table-responsive">
 
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Numero de Recibo</th>
-                        <th>Cliente</th>
-                        <th>Monto</th>
-
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for recib in recibos %}
-                    <tr>
-                        <td>{{recib.fecha}}</td>
-                        <td>{{recib.recibo}} </td>
-                        <td>{{recib.cliente}}</td>
-                        <td>{{recib.total}}</td>
-                        <td>
-                            <a href="{% url 'financings:recibo' recib.pago.id %}">Ver Recibo</a>
-                        </td>
-
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-</div>
-{% endblock %} {% block js %}
-<script>
-    $(document).ready(function () {
-        $("#demo-calendar-apppearance").zabuto_calendar({
-            language: "es",
-            header_format: "[month] [year]",
-            week_starts: "sunday",
-            show_days: true,
-            today_markup:
-                '<span style="background-color:#e02226; padding:0.5rem; border-radius:0.4rem; color:#FFFFFF">[day]</span>',
-            navigation_markup: {
-                prev: '<i class=""><</i>',
-                next: '<i class=""> ></i>',
-            },
-        });
-    });
-</script>
-<script src="{% static 'js/calendar/dist/zabuto_calendar.min.js' %}"></script>
-
-{% endblock %} {% block css %}
-<style>
-    table.lightgrey-weekends tbody td:nth-child(n + 6) {
-        background-color: #f3f3f3;
-    }
-</style>
-<link href="{% static 'js/calendar/dist/zabuto_calendar.min.css' %}" rel="stylesheet" />
 {% endblock %}

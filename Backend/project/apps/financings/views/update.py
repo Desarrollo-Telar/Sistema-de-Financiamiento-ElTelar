@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
-
+from apps.financings.models import Invoice
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -40,30 +40,78 @@ def update_pago(request,id):
 def update_cuota(request, id):
     template_name = 'financings/cuota/update.html'
     cuota = get_object_or_404(PaymentPlan, id=id)
-    
-    if request.method == 'POST':
-          # Verificar si el método POST se recibe
-        form = PaymentPlanForms(request.POST, instance=cuota)
-        # Verificar el contenido del formulario
-        if form.is_valid():
-            print("Formulario válido")
-            messages.success(request,'CUOTA ACTUALIZADA')
-            form.save()
-            return redirect('financings:detail_credit', cuota.credit_id.id)
-        else:
-            messages.error(request, 'FORMULARIO INVALIDO')
-            print("Formulario inválido", form.errors)  # Mostrar errores si hay
-    else:
+    mora_antigua = cuota.mora 
+    interes_antiguo = cuota.interest
 
+    if request.method == 'POST':
+        form = PaymentPlanForms(request.POST, instance=cuota)
+        if form.is_valid():
+            estado_cuenta = AccountStatement()
+            estado_cuenta.credit = cuota.credit_id
+
+            interes_nuevo = form.cleaned_data['interest']
+            mora_nueva = form.cleaned_data['mora']
+
+            # Si hay cambios en los intereses o mora, registramos un estado de cuenta
+            if interes_antiguo != interes_nuevo or mora_antigua != mora_nueva:
+                # Descripción del cambio
+                if interes_antiguo != interes_nuevo:
+                    print('DESCUENTO APLICADO POR INTERES')
+                    estado_cuenta.description = f'DESCUENTO APLICADO POR INTERES '
+                    estado_cuenta.interest_paid = -interes_nuevo
+
+                if mora_antigua != mora_nueva:
+                    print('DESCUENTO APLICADO POR MOROSIDAD')
+                    # Si ya había un descuento por interés, lo sumamos con el de mora
+                    estado_cuenta.description=f'DESCUENTO APLICADO POR MOROSIDAD '
+                    
+                    estado_cuenta.late_fee_paid = -mora_nueva  # Restar el monto de mora
+
+                # Si ambos valores cambian, la descripción reflejará ambos descuentos
+                if interes_antiguo != interes_nuevo and mora_antigua != mora_nueva:
+                    print('DESCUENTOS APLICADOS')
+                    estado_cuenta.description = 'DESCUENTOS APLICADOS'
+
+                estado_cuenta.save()  # Guardamos solo una vez el estado de cuenta
+
+            # Actualizamos los valores de la cuota
+            cuota.interest = interes_nuevo
+            cuota.mora = mora_nueva
+            cuota.cambios = True
+            cuota.save()
+
+            return redirect('financings:detail_credit',cuota.credit_id.id)
+            
+    else:
         form = PaymentPlanForms(instance=cuota)
-    
+
     context = {
-        'form':form,
+        'form': form,
         'title': f'ELTELAR - ACTUALIZACION DE CUOTA',
-        'cuota':cuota,
+        'cuota': cuota,
     }
 
     return render(request, template_name, context)
 
+
+@login_required
+@usuario_activo
+def generar_factura(request,id):
+    pago = get_object_or_404(Payment, id=id)
+    
+    recibo = get_object_or_404(Recibo, pago=pago)
+    print(recibo.factura)
+    if not recibo.factura:
+        recibo.factura = True
+        recibo.save()
+    
+        factura = Invoice()
+        factura.recibo_id = recibo
+        factura.save()
+
+        messages.success(request, 'Factura Creada')
+    
+
+    return redirect('financings:detail_credit',recibo.pago.credit.id)
 
 

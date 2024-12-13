@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+SERVIDOR = False
 ALLOWED_HOSTS = ['*']
 
 
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     #'anymail',
     'apps.users',
+    'apps.actividades',
     'apps.customers',
     'apps.roles',
     'crispy_forms',
@@ -43,10 +44,13 @@ INSTALLED_APPS = [
     'apps.documents',
     'apps.financings',
     'django_celery_beat',
+    'django.contrib.sites',
     #'bootstrap5',
     #'django_inlinecss',
     #'otp',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,6 +83,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 # Definir las horas de acceso permitido
+
 ALLOWED_ACCESS_START_HOUR = 1   # Hora de inicio permitida (01:00 AM)
 
 ALLOWED_ACCESS_END_HOUR = 23    # Hora de fin permitida (11:00 PM)
@@ -126,11 +131,19 @@ import project.database as db
 if DEBUG:
     #DATABASES = db.MYSQL
     #DATABASES = db.SQLITE
-    DATABASES = db.POSTGRES_HEROKU
+    if SERVIDOR:
+        DATABASES = db.POSTGRES_HEROKU
+    else:
+        DATABASES = db.MYSQL
 else:
     
     #DATABASES = db.SQLITE
-    DATABASES = db.POSTGRES_HEROKU
+    if SERVIDOR:
+        DATABASES = db.POSTGRES_HEROKU
+    else:
+        DATABASES = db.MYSQL
+
+
 
 #DATABASES = db.POSTGRES_HEROKU
 
@@ -180,13 +193,12 @@ USE_TZ = True
 """
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'smtp.cloudmta.net'  # El host SMTP de Trustifi (verifica con Trustifi si es correcto)
+EMAIL_HOST = 'smtp-mail.outlook.com'  # El host SMTP de Trustifi (verifica con Trustifi si es correcto)
 EMAIL_PORT = 587  # Puerto para TLS
 EMAIL_USE_TLS = True  # Usa TLS
-EMAIL_HOST_USER = '641948c506dea731'  # Tu dirección de correo de Trustifi
-EMAIL_HOST_PASSWORD = 'hKmEzV4778tSKdsJLs9M92pD'  # La contraseña de tu correo de Trustifi
-#CLOUDMAILIN_FORWARD_ADDRESS = '9321b45c3f847613700e@cloudmailin.net'
-#CLOUDMAILIN_SMTP_URL = 'smtp://f70a731b2f948c50:s6NvHRcpqdWtEtwJZJzMr4bs@smtp.cloudmta.net:587?starttls=true'
+EMAIL_HOST_USER = 'develtelar@gmail.com'  # Tu dirección de correo de Trustifi
+EMAIL_HOST_PASSWORD = 'uubdyhfxiqtywgmm'  # La contraseña de tu correo de Trustifi
+
 # Configuración adicional de correo
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 """
@@ -202,10 +214,16 @@ DEFAULT_FROM_EMAIL = 'DesarrolloElTelar@outlook.com'
 # UP3HB-9X2AR-YWK8K-UCQCS-Q63T7
 
 # Configuración de Celery
-CELERY_BROKER_URL = 'redis://:mystrongpassword@redis:6379/0'  # Usamos Redis como broker
+if SERVIDOR:
+    CELERY_BROKER_URL = os.environ.get('REDIS_URL')  # Usamos Redis como broker
+    CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
+
+else:
+    CELERY_BROKER_URL = 'redis://:mystrongpassword@redis:6379/0'  # Usamos Redis como broker
+    CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+
 #CELERY_TIMEZONE = 'UTC-6'  # Asegúrate de usar la misma zona horaria que tu proyecto Django
 CELERY_TIMEZONE = "America/Guatemala"
 CELERY_TASK_TRACK_STARTED = True

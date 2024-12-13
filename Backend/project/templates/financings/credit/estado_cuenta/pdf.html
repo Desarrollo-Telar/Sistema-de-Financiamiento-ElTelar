@@ -1,0 +1,232 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/list.css' %}">
+
+    <link rel="icon" href="{% static 'img/logo.png' %}" />
+    <style type="text/css">
+        @font-face {
+            font-family: 'Quicksand';
+            src: url("{% static 'css/text/Quicksand/Quicksand-VariableFont_wght.ttf' %}") format('truetype'),
+            url("{% static 'css/text/Quicksand/static/Quicksand-Regular.ttf' %}") format('truetype');
+            font-weight: 500;
+            /* Peso normal */
+            font-style: normal;
+            /* Estilo normal */
+        }
+
+        body {
+            font-family: "Quicksand", serif;
+            font-size: 12px;
+
+        }
+
+        @page {
+            size: A4 landscape;
+            margin: 1cm;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container" style="line-height: 1;">
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center fw-bold fs-2">ESTADO DE CUENTA POR: <span
+                        class="fw-normal fs-2">{{credito.tipo_credito}}</span></p>
+                <div style="text-align: center;">
+                    <p style="margin-right: 0.2rem; font-weight: bold;">FECHA DE INICIO:
+
+                        <span style="font-weight: 100;"> {{credito.fecha_inicio}} </span>
+                        Al
+                        <span style="font-weight: 100;">
+                            {{credito.fecha_vencimiento}}
+                        </span>
+                    </p>
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row" style="margin-top: 0.5rem;">
+            <div class="col-4">
+                <img src="{% static 'img/logo.png' %}" alt="imagen_de_la_empresa" style="width: 150px">
+
+            </div>
+            <div class="col-8 text-uppercase">
+                <div class="text-end">
+                    <small style="font-weight: bold; font-size: 12px;">INVERSIONES INTEGRALES EL TELAR, S.A.</small>
+                </div>
+                <div class="text-end ">
+                    <small style="font-weight: bold; font-size: 10px;">8 Avenida 1-12 Zona 1, Coban Alta Verapaz</small>
+
+                </div>
+                <div class="text-end ">
+                    <small style="font-weight: bold; font-size: 10px;">Tel: 3716 - 0995</small>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <hr>
+        <div class="row text-uppercase"
+            style="margin-top: 0.5rem; font-size: 10px; line-height: 0.1; font-weight: bold;">
+            <p>DE:
+                <span style="font-weight: 100;">
+                    {{credito.customer_id.get_full_name}}
+                </span>
+            </p>
+            <p>CODIGO DEL CREDITO:
+                <span style="font-weight: 100;">
+                    {{credito.codigo_credito}}
+                </span>
+            </p>
+            <p>PLAZO:
+                <span style="font-weight: 100;">
+                    {{credito.plazo}} Meses
+                </span>
+            </p>
+            <p>Monto:
+                <span style="font-weight: 100;">
+                    Q {{credito.formato_monto}}
+                </span>
+            </p>
+            <p>TASA DE INTERES:
+                <span style="font-weight: 100;">
+                    {{credito.tasa_mensual}} %
+                </span>
+            </p>
+            <p>Saldo Actual:
+                <span style="font-weight: 100;">
+                    {% if credito.saldo_actual > 0 %}
+                    Q{{credito.formato_saldo_actual}}
+                    {% else %}
+                    Q0.00
+                    {%endif%}
+
+                </span>
+            </p>
+            <p>Estado del Credito: <span style="font-weight: 100;"
+                    class="{% if  credito.is_paid_off %} inactivo {% endif %} activo">{{credito.formato_credito_cancelado}}</span>
+            </p>
+            <p>Estado por Aportacion: <span style="font-weight: 100;"
+                    class="{% if not credito.estado_aportacion %} inactivo {% endif %} activo">{{credito.formato_estado_aportacion}}</span>
+            </p>
+            <p>Estado por Fecha: <span style="font-weight: 100;"
+                    class="{% if not credito.estados_fechas %} inactivo {% endif %} activo">{{credito.formato_estado_fecha}}</span>
+            </p>
+
+
+        </div>
+        <hr>
+        <div class="row text-uppercase" style="margin-top: 0.5rem; font-size: 10px; text-align: center;">
+
+            <table>
+                <thead style="font-size: 8px;">
+                    <tr style="border: 1px solid black;">
+                        <th scope="col">#</th>
+                        <th scope="col">Fecha de Emision</th>
+                        <th scope="col">No. Referencia</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Monto Pagado</th>
+                        <th scope="col">Desembolso</th>
+                        <th scope="col">Mora Pagado</th>
+                        <th scope="col">Interes Pagado</th>
+                        <th scope="col">Aporte a Capital</th>
+                        <th scope="col">Saldo Capital Pendiente</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cuenta_estado in estado_cuenta %}
+                    <tr style="border-bottom: 1px solid rgba(226, 224, 225, 0.85);">
+                        <th scope="row"><small>{{ forloop.counter }}</small></th>
+                        <td> <small>{{cuenta_estado.issue_date}}</small></td>
+                        <td scope="row">
+                            <small>{{cuenta_estado.numero_referencia}}</small>
+                        </td>
+                        <td scope="row">
+                            <p><small>{{cuenta_estado.description}}</small></p>
+
+                        </td>
+                        <td scope="row">
+                            Q{{cuenta_estado.Fabono}}
+                        </td>
+                        <td scope="row">
+                            Q {{cuenta_estado.Fdisbursement_paid}}
+                        </td>
+                        <td scope="row">
+                            Q {{cuenta_estado.Flate_fee_paid}}
+                        </td>
+                        <td scope="row">
+                            Q {{cuenta_estado.Finterest_paid}}
+                        </td>
+                        <td scope="row">
+                            Q {{cuenta_estado.Fcapital_paid}}
+                        </td>
+                        <td scope="row">
+                            {% if cuenta_estado.saldo_pendiente > 0 %}
+                            Q {{cuenta_estado.Fsaldo_pendiente}}
+                            {% else %}
+                            Q 0.00
+                            {% endif %}
+                        </td>
+
+
+
+                    </tr>
+                    {% endfor %}
+
+
+                    <tr style="border-top: 1px solid black;">
+                        <td colspan="10"></td>
+                    </tr>
+                    <tr style="border-top: 1px solid black;">
+                        <td colspan="10"></td>
+                    </tr>
+
+
+                    <tr>
+                        <th scope="row" colspan="5" class="text-center">TOTALES</th>
+                        <td>Q{{total_desembolsos}}</td>
+                        <td>Q{{total_moras}}</td>
+                        <td>Q{{total_intereses}}</td>
+                        <td>Q{{total_capitales}}</td>
+                        <td></td>
+
+                    </tr>
+
+
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

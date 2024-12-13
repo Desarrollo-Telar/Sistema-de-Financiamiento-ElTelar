@@ -5,91 +5,73 @@ import { postPlanInversion } from '../API/investmentplan/post_api.js';
 import { postLaboral } from '../API/workinginformation/post_api.js';
 import { postReferencia } from '../API/reference/post_api.js';
 
+import { alerta_m } from '../alertas/alertas.js'
+
 import {
-    recoletarInformacionCliente, 
-    recoletarInformacionDirecciones,
+    recoletarInformacionCliente,
+    recoletarInformacionDireccionPersonal,
+    recoletarInformacionDireccionTrabajo,
     recolectarInformacionLaboral,
     recoletarInformacionPlanInversion,
     recoletarInformacionReferencias
 } from '../customer/recolectar.js';
 
-
+import { validateFormFields } from '../customer/validacion_formulario.js'
 
 document.getElementById('customer').addEventListener('submit', async function (event) {
-    event.preventDefault();
+
+
+    event.preventDefault(); // Evita el envío del formulario si hay campos vacíos.
+    // Evita el envío del formulario si hay campos vacíos.
     let customer_id;
 
     try {
-        let cliente = recoletarInformacionCliente();
-        if(!cliente.validar()){
-            alert('Falta Informacion sobre el cliente');
-            throw new Error('Falta Informacion sobre el cliente');
-
-        }
-        
-        let direcciones = recoletarInformacionDirecciones();
-        direcciones.forEach(element =>{
-            if(!element.validar()){
-                alert('Falta Informacion las direcciones del cliente');
-                throw new Error('Falta Informacion las direcciones del cliente');
-
-            }
-        })
-
-        let laboral = recolectarInformacionLaboral();
-        if(!laboral.validar()){
-            alert('Falta Informacion sobre información laboral del cliente');
-            throw new Error('Falta Informacion sobre informacion laboral del cliente');
-        }
-
-        let destino = recoletarInformacionPlanInversion();
-        if(!destino.validar()){
-            alert('Falta Informacion sobre informacion del destino del cliente');
-            throw new Error('Falta Informacion sobre informacion del destino del cliente');
-        }
-
-        let referencias = recoletarInformacionReferencias();
-        referencias.forEach(element =>{
-            if(!element.validar()){
-                alert('Falta Informacion sobre referencias del cliente');
-                throw new Error('Falta Informacion sobre las referencias del cliente');
-
-            }
-        })
-
-        
-        
 
         // Realizar llamadas a la API
-        
-        const customerData = await postCustomer(urls_p.api_url_cliente);
+        const customerData = await postCustomer(recoletarInformacionCliente());
         console.log('Cliente registrado con éxito:', customerData);
         customer_id = customerData.id;
-        
 
-        const direccionData = await postDireccion(urls_p.api_url_direccion, customer_id);
-        console.log('Dirección registrada con éxito:', direccionData);
+        let direcion_personal = recoletarInformacionDireccionPersonal(customer_id);
+        let direcion_trabajo = recoletarInformacionDireccionTrabajo(customer_id);
 
-        const laboralData = await postLaboral(customer_id);
+        const direccionDataPersonal = await postDireccion(direcion_personal);
+        console.log('Dirección Personal registrada con éxito:', direccionDataPersonal);
+
+        let laboral = recolectarInformacionLaboral(customer_id);
+        const laboralData = await postLaboral(laboral);
         console.log('Información laboral registrada con éxito:', laboralData);
 
-        const planInversionData = await postPlanInversion(urls_p.api_url_investment_plan, customer_id);
+        const direccionDataTrabajo = await postDireccion(direcion_trabajo);
+        console.log('Dirección de la Fuente de Ingreso registrada con éxito:', direccionDataTrabajo);
+
+        let destino = recoletarInformacionPlanInversion(customer_id);
+
+        const planInversionData = await postPlanInversion(destino);
         console.log('Plan de inversión registrado con éxito:', planInversionData);
 
         const referenciaData = await postReferencia(urls_p.api_url_referencia, customer_id);
         console.log('Referencias guardadas con éxito:', referenciaData);
 
-        alert('¡Formulario enviado con éxito!');
+        alerta_m('Registro Realizado', true);
 
         // Redirigir a la página de éxito
         const { protocol, hostname, port } = window.location;
         const generar = `${protocol}//${hostname}:${port}/qr/${protocol}//${hostname}:${port}/formulario_ive/${customer_id}//`;
         console.log(generar);
-        window.location.href = '/customers/';
         
+        setTimeout(() => { window.location.href = '/customers/'; }, 1000);
+
     } catch (error) {
         console.error('Error al registrar los datos:', error);
-        window.location.href = `/customers/delete/${customer_id}/`;
-        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        alerta_m(`Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo. ${error.response.data}`, false)
+        if (customer_id) {
+            setTimeout(() => { window.location.href = `/customers/delete/${customer_id}/`; }, 1000);
+
+        }
+        
+        
     }
+
+
 });

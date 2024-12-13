@@ -22,7 +22,7 @@ export class Credit {
         this.#tasa_interes = parseFloat(tasa_interes);
         this.#forma_de_pago = forma_de_pago;
         this.#frecuencia_pago = frecuencia_pago;
-        this.#fecha_inicio = new Date(fecha_inicio);
+        this.#fecha_inicio = new Date(fecha_inicio + 'T00:00:00-06:00');
         this.#fecha_vencimiento = fecha_vencimiento ? new Date(fecha_vencimiento) : this.calcularFechaVencimiento();
         this.#tipo_credito = tipo_credito;
         this.#destino_id = destino_id;
@@ -114,7 +114,7 @@ export class Credit {
     }
 
     set fechaInicio(value) {
-        this.#fecha_inicio = new Date(value);
+        this.#fecha_inicio = new Date(value + 'T00:00:00-06:00');;
     }
 
     set fechaVencimiento(value) {

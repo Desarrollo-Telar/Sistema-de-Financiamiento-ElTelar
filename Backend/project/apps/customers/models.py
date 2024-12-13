@@ -26,6 +26,9 @@ from project.generate_qr import generate_qr
 # OS
 import os
 
+from django.contrib.sites.models import Site
+from django.conf import settings
+
 # Create your models here.
 condition = [
         ('Residente temporal','Residente temporal'),
@@ -93,6 +96,10 @@ class Customer(models.Model):
     person_type = models.CharField("Tipo de Persona", choices=type_person, max_length=50, blank=False, null=False)
     description = models.TextField("Observaciones",blank=True, null=True )
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+    # NUEVOS CAMPOS
+    asesor  = models.CharField("Asesor del Credito", max_length=100, blank=True, null=True, default="PENDIENTE")
+    fehca_vencimiento_de_tipo_identificacion = models.DateField("Fecha de Vencimiento del Tipo de Identificacion", blank=True, null=True,default=datetime.now)
+
 
     def __str__(self):
         return self.get_full_name()
@@ -167,21 +174,17 @@ def set_customer_code_and_update_status(sender, instance, **kwargs):
 @receiver(post_save, sender=Customer)
 def send_message(sender, instance, created, **kwargs):
     customer = instance
-    if created:
-        
-        #send_email_new_customer(customer)
-        #nuevo_cliente(customer)
+    current_site = Site.objects.get_current()
+    domain = current_site.domain
 
-        #send_email_welcome_customer(customer)
-        
-        filename = f'codigoQr_{customer.customer_code}.png'
-        dato = f'http://127.0.0.1:8000/pdf/{customer.id}/'
-        generate_qr(dato,filename)
-    else:
-        filename = f'codigoQr_{customer.customer_code}.png'
-        dato = f'http://127.0.0.1:8000/pdf/{customer.id}/'
-
-        generate_qr(dato,filename)
+    # Verifica si está en HTTPS o HTTP basándose en la configuración
+    protocol = 'https' if settings.SECURE_SSL_REDIRECT else 'http'
+    
+    # Construir la URL completa con el protocolo y el dominio
+    filename = f'codigoQr_{customer.customer_code}.png'
+    dato = f'{protocol}://{domain}/pdf/{customer.id}/'
+    
+    generate_qr(dato, filename)
 
 @receiver(post_delete, sender=Customer)
 def delete_image_qr_customer(sender, instance, **kwargs):

@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
+# Manejo de mensajes
+from django.contrib import messages
+
 # Models
 from .models import Customer
 from apps.addresses.models import Address
@@ -31,6 +34,9 @@ from apps.addresses.forms import AddressForms
 from apps.FinancialInformation.forms import WorkingInformationForms, OtherSourcesOfIncomeForms, ReferenceForms
 from apps.InvestmentPlan.forms import InvestmentPlanForms
 
+# MENSAJES
+from django.contrib import messages
+
 from django.apps import apps
 
 # ----- EDITAR INFORMACION PERSONAL DE UN CLIENTE ----- #
@@ -60,11 +66,27 @@ def update_customer(request, customer_code):
 # ----- ELIMINACION DE CLIENTES ----- #
 @login_required
 @usuario_activo
-@usuario_administrador
 def delete_customer(request,id):
     customer = get_object_or_404(Customer, id=id)
     customer.delete()
     return redirect('customers:customers')
+
+@login_required
+@usuario_activo
+@usuario_administrador
+def delete_customers(request,id):
+    template_name ='customer/delete.html'
+    customer = get_object_or_404(Customer, id=id)
+    context = {
+        'title':f'ELTELAR - CLIENTE {customer}',
+        'customer':customer
+    }
+    if request.method == 'POST':
+        customer.delete()
+        messages.success(request,'CLIENTE ELIMINADO')
+        return redirect('customers:customers')
+
+    return render(request, template_name, context)
 
 # ----- LISTADO DE CLIENTES ----- #
 @login_required
@@ -102,6 +124,7 @@ def add_customer(request):
 # ----- BUSCAR CLIENTES ----- #
 class CustomerSearch(ListView):
     template_name = 'customer/search.html'
+    paginate_by = 25
 
     def get_queryset(self):
         try:
@@ -122,6 +145,7 @@ class CustomerSearch(ListView):
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")
+            
             return Customer.objects.none()
     
 
@@ -134,9 +158,12 @@ class CustomerSearch(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if not (context['object_list']):
+            messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['customer_list'].count()
+        context['posicion'] = self.query() 
         
 
         return context
@@ -184,9 +211,6 @@ def detail_customer(request,customer_code):
     return render(request, template_name, context)
 
 # ----- VER FORMULARIO IVE ----- #
-@login_required
-@usuario_activo
-@usuario_secretaria
 def formulario_ive(request, id):
     template_name = 'customer/forms/forms_ive.html'
     customer_list = get_object_or_404(Customer, id=id)

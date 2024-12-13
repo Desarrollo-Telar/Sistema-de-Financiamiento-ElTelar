@@ -1,30 +1,42 @@
-import { recoletarInformacionDirecciones } from '../../customer/recolectar.js';
+import {urls_p} from '../urls_api.js'
+
+const URL = urls_p.api_url_direccion;
 
 
-export async function postDireccion(url, customer_id) {
+export async function postDireccion(formData) {
     try {
-        let direccionData = recoletarInformacionDirecciones(customer_id);
-        let direc = direccionData.map(direccion => direccion.toJSON());
-
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-        for (const direccion of direc) {
-            const response = await axios.post(url, direccion, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
-                }
-            });
-
-            console.log('Respuesta de la API:', response.data);
+        const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+        if (!csrfTokenElement) {
+            throw new Error('CSRF token not found');
         }
+        const csrfToken = csrfTokenElement.getAttribute('content');
+
+        const response = await axios({
+            method: 'post',
+            url: URL,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'X-CSRFToken': csrfToken
+            },
+            data: formData
+        });
+
+        console.log(response.data);
+        return response.data;
     } catch (error) {
-        alert('ERROR: ',error);
-        console.error('Error en el envío de direcciones:', error);
-        throw error;
+        if (error.response) {
+            // El servidor respondió con un código de estado diferente a 2xx
+            console.error('Error en la respuesta del servidor:', error.response.data);
+            console.error('Código de estado:', error.response.status);
+        } else if (error.request) {
+            // La solicitud fue hecha pero no hubo respuesta
+            console.error('Error en la solicitud (no hubo respuesta):', error.request);
+        } else {
+            // Algo más pasó al hacer la solicitud
+            console.error('Error:', error.message);
+        }
+        throw error; // Lanza el error para que pueda manejarse en un nivel superior
     }
 }
-
-
 
 

@@ -31,3 +31,27 @@ def calcular_fecha_maxima(fecha_inicio):
     fecha_limite = fecha_inicio + relativedelta(months=plazo, days= 15)
     # Devolver la fecha en formato string
     return fecha_limite
+
+def calculo_capital(forma_pago,monto_inicial,plazo,intereses):
+    capital = 0
+
+        
+
+    if forma_pago == 'NIVELADA':
+        cuota = Decimal(self.calculo_cuota())  # Solo llamamos una vez
+        if intereses >= cuota:
+            intereses = self.calculo_interes()
+
+            #intereses -= self.calculo_interes()
+            # Capital es la diferencia entre la cuota y los intereses
+        capital = round(cuota - self.calculo_interes(), 2)
+             
+    else:
+            # En el caso de amortización a capital, capital es fijo
+        capital =  round(monto_inicial / plazo, 2)
+
+    if self.principal > 0:
+        capital = 0
+        
+        
+    return Decimal(capital)

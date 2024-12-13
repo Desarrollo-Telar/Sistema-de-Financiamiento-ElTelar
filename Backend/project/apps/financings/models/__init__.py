@@ -21,3 +21,9 @@ from .accountstatement import AccountStatement
 
 # BANCO
 from .bank import Banco
+
+# FACTURA
+from .factura import Invoice
+
+# CUOTAS
+from .cuotas import Cuota

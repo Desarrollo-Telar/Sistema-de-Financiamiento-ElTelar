@@ -1,7 +1,7 @@
 {% load static %}
 
 
-<div class="row">
+<div class="row" style="margin-top: 1rem;">
     <div class="col-12 ">
         <div class="table-responsive">
             <table class="table table-hover">
@@ -20,74 +20,74 @@
                         <th scope="col"></th>
 
 
+
                     </tr>
                 </thead>
                 <tbody>
-                    {% for credit in estado_cuenta %}
+                    {% for cuenta_estado in estado_cuenta %}
 
                     <tr>
 
                         <td scope="row">
 
-                            {{credit.fecha_emision}}
+                            {{cuenta_estado.issue_date}}
 
                         </td>
                         <td scope="row">
 
-
-                            {{credit.numero_referencia}}
-
-                        </td>
-                        <td scope="row">
-                            <p>{{credit.description}}</p>
+                            <a href="{% url 'financings:clasificar' cuenta_estado.numero_referencia %}">
+                                {{cuenta_estado.numero_referencia}}
+                            </a>
 
                         </td>
                         <td scope="row">
-                            {{credit.abono}}
+                            <p>{{cuenta_estado.description}}</p>
+
                         </td>
                         <td scope="row">
-                            {{credit.disbursement_paid}}
+                            Q{{cuenta_estado.Fabono}}
                         </td>
                         <td scope="row">
-                            {{credit.late_fee_paid}}
+                            Q{{cuenta_estado.Fdisbursement_paid}}
                         </td>
                         <td scope="row">
-                            {{credit.interest_paid}}
+                            Q{{cuenta_estado.Flate_fee_paid}}
                         </td>
                         <td scope="row">
-                            {{credit.capital_paid}}
+                            Q{{cuenta_estado.Finterest_paid}}
                         </td>
                         <td scope="row">
-                            {{credit.saldo_pendiente}}
+                            Q{{cuenta_estado.Fcapital_paid}}
                         </td>
-                        <td>
-                            {% if credit.payment %}
-                            <a href="{% url 'financings:recibo' credit.payment.id %}">RECIBO</a>
-                            {% endif %}
-
-                            {% if credit.disbursement %}
-                            <a href="{% url 'financings:detail_disbursement' credit.disbursement.id %}">DESEMBOLSO</a>
-                            {% endif %}
-
+                        <td scope="row">
+                            Q{{cuenta_estado.Fsaldo_pendiente}}
                         </td>
-
-
-
-
-
-
 
 
                     </tr>
 
                     {% endfor %}
+                    <tr>
+                        <th scope="row" colspan="4" class="text-center">TOTALES</th>
+                        <td>
+                            Q{{total_desembolsos}}
+
+                        </td>
+                        <td>Q{{total_moras}}</td>
+                        <td>Q{{total_intereses}}</td>
+                        <td>Q{{total_capitales}}</td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+
+
                 </tbody>
             </table>
         </div>
     </div>
-    <hr>
+
 
 
 
 </div>
-<!-- CONENCTORES -->

@@ -21,11 +21,13 @@ export class Cliente {
     #immigration_status_id;
     #user_id;
     #description;
+    #asesor;
+    #fehca_vencimiento_de_tipo_identificacion;
 
 
     constructor(first_name = '', last_name = '', type_identification = '', identification_number = '',
         telephone = '', email = '', status = '', date_birth = '', number_nit = '', place_birth = '',
-        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '', immigration_status_id = '', user_id = '', description = '') {
+        marital_status = '', profession_trade = '', gender = '', nationality = '', person_type = '', immigration_status_id = '', user_id = '', description = '', asesor='',fehca_vencimiento_de_tipo_identificacion='') {
         this.#first_name = first_name;
         this.#last_name = last_name;
         this.#type_identification = type_identification;
@@ -44,6 +46,8 @@ export class Cliente {
         this.#immigration_status_id = immigration_status_id;
         this.#user_id = user_id;
         this.#description = description;
+        this.#asesor = asesor;
+        this.#fehca_vencimiento_de_tipo_identificacion = fehca_vencimiento_de_tipo_identificacion;
     }
 
     // Getters and Setters for each property
@@ -119,6 +123,21 @@ export class Cliente {
         return this.#description;
     }
 
+    get asesor(){
+        return this.#asesor;
+    }
+
+    get fehca_vencimiento_de_tipo_identificacion(){
+        return this.#fehca_vencimiento_de_tipo_identificacion;
+    }
+
+    set asesor(value){
+        this.#asesor = value.trim();
+    }
+    set fehca_vencimiento_de_tipo_identificacion(value){
+        this.#fehca_vencimiento_de_tipo_identificacion = value.trim();
+    }
+
     set first_name(value) {
         if (!value || value.trim() === '') {
             alert('Debe ingresar el nombre del cliente');
@@ -153,7 +172,7 @@ export class Cliente {
             throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
         }
         // Expresión regular para exactamente 13 dígitos
-        const regex = /^\d{13}$/;
+        const regex = /^\d{20}$/;
 
         // Validar el formato del número de identificacion
         if (!regex.test(value)) {
@@ -180,8 +199,9 @@ export class Cliente {
             alert('Debe ingresar el numero del tipo de identificación del cliente');
             throw new Error('Debe ingresar el numero del tipo de identificación del cliente');
         }
+        /*
         // Expresión regular para exactamente 13 dígitos
-        const regex = /^\d{13}$/;
+        const regex = /^\d{20}$/;
 
         // Validar el formato del número de identificacion
         if (!regex.test(value)) {
@@ -191,7 +211,7 @@ export class Cliente {
 
         }
 
-
+        */
         this.#identification_number = value.trim();
 
     }
@@ -204,8 +224,8 @@ export class Cliente {
 
 
         // Expresión regular para exactamente 8 dígitos
-        const regex = /^\d{8}$/;
-
+        const regex = /^\d{12}$/;
+/*
         // Validar el formato del número de teléfono
         if (!regex.test(value)) {
             console.error('Numero de telefono no valido, no cumple con el estandar de un numero de telefono. Verificar!!!')
@@ -213,6 +233,7 @@ export class Cliente {
             throw new Error('Número de teléfono no válido. Debe contener exactamente 8 dígitos.');
 
         }
+        */
         this.#telephone = value.trim();
 
     }
@@ -229,7 +250,7 @@ export class Cliente {
         // Validar el formato del correo electrónico
         if (!regex.test(value)) {
             console.error('Verifique bien si esta escribiendo el correo electronico...');
-            //alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
+            alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito.');
 
         }
@@ -239,7 +260,7 @@ export class Cliente {
         // Verificar si el dominio está en la lista de dominios conocidos
         if (!dominiosConocidos.includes(dominio)) {
             console.error('Verifique bien si esta escribiendo el dominio del correo electronico...');
-            //alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
+            alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
 
         }
@@ -263,7 +284,7 @@ export class Cliente {
             alert('Debe ingresar el correo electronico del cliente');
             throw new Error('Debe ingresar el correo electronico del cliente');
         }
-
+/*
         // Expresión regular básica para validar el formato del correo electrónico
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         // Lista de dominios conocidos
@@ -271,7 +292,7 @@ export class Cliente {
         // Validar el formato del correo electrónico
         if (!regex.test(value)) {
             console.error('Verifique bien si esta escribiendo el correo electronico...');
-            //alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
+            alert('Correo electrónico no válido. Verifique si está correctamente escrito.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito.');
 
         }
@@ -281,11 +302,11 @@ export class Cliente {
         // Verificar si el dominio está en la lista de dominios conocidos
         if (!dominiosConocidos.includes(dominio)) {
             console.error('Verifique bien si esta escribiendo el dominio del correo electronico...');
-            //alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
+            alert('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
             throw new Error('Correo electrónico no válido. Verifique si está correctamente escrito el dominio proporcionado.');
 
         }
-
+*/
         // Falta por agregar el filtro de ver si ya existe el correo electronico registrado
         this.#email = value.trim();
     }
@@ -422,6 +443,7 @@ export class Cliente {
 
     // Validar que todos los campos no esten vacios
     validar() {
+        
         if (
             (
                 this.#first_name.trim() ==='' && this.#last_name.trim() ==='' && this.#type_identification.trim() ==='' && this.#identification_number.trim() ==='' && this.#telephone.trim() ==='' &&this.#email.trim() ==='' &&this.#status.trim() ==='' &&
@@ -457,6 +479,8 @@ export class Cliente {
             immigration_status_id: this.#immigration_status_id,
             user_id: this.#user_id,
             description: this.#description,
+            fehca_vencimiento_de_tipo_identificacion:this.#fehca_vencimiento_de_tipo_identificacion,
+            asesor:this.#asesor
         };
     }
     // Método toString para representar el objeto como una cadena

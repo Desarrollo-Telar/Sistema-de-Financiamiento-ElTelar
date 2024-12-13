@@ -12,12 +12,11 @@ from apps.financings.calculos import calcular_fecha_maxima, calcular_fecha_venci
 # LOOGER
 from apps.financings.clases.personality_logs import logger
 
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
-
-# PARA CODIGO DEL CREDITO
-@receiver(pre_save, sender=Credit)
-def pre_save_credito(sender, instance, **kwargs):
+def codigo(instance):
     if not instance.codigo_credito or instance.codigo_credito == '':
         counter = 1
         customer_code = instance.customer_id.customer_code
@@ -29,11 +28,17 @@ def pre_save_credito(sender, instance, **kwargs):
 
         instance.codigo_credito = credit_code
 
+    
+@receiver(pre_save, sender=Credit)
+def generar_codigo(sender, instance, **kwargs):
+    codigo(instance)
+
 # LA CREACION DE LA PRIMERA CUOTA DE UN CREDITO
 @receiver(post_save, sender=Credit)
 def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
+    print('desde signals post save de credit, de la funcion generar plan de pagos nuevos')
     if created:
-        instance.saldo_pendiente = instance.monto
+        
         # CALCULO DE INTERES
         interes = calculo_interes(instance.monto, instance.tasa_interes)
         # GENERACION DE FECHA LIMITE DE PAGO 15 DIAS
@@ -49,7 +54,16 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
             outstanding_balance=instance.monto, 
             saldo_pendiente=instance.monto,
             interest=interes,
+            interes_generado=interes,
             fecha_limite = fecha_limite,
             due_date=fecha_vencimiento
             )
         plan_pago.save()
+    
+
+@receiver(post_save, sender=Credit)
+def ver_credito(sender, instance, created, **kwargs):
+    print('desde signals post save de credit de la funcion ver el credito')
+    print(instance.estados_fechas)
+    # Actualizar solo un campo sin disparar nuevamente la señal
+    #Credit.objects.filter(pk=instance.pk).update(estados_fechas=instance.estados_fechas)

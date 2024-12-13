@@ -42,7 +42,7 @@
     <hr>
 
 
-    <p class="fw-semibold">Lugar de Nacimiento</p>
+    <p class="fw-semibold">Lugar de Vencidad</p>
 
     <p style="margin-left: 0.5rem;">
         {{customer_list.place_birth}}
@@ -96,6 +96,20 @@
 
     <p style="margin-left: 0.5rem;">
         {{customer_list.status}}
+    </p>
+    <hr>
+
+    <p class="fw-semibold">Fecha de Vencimiento del Tipo de Identificación</p>
+
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.fehca_vencimiento_de_tipo_identificacion}}
+    </p>
+    <hr>
+
+    <p class="fw-semibold">Asesor del Credito</p>
+
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.asesor}}
     </p>
     {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
     <hr>

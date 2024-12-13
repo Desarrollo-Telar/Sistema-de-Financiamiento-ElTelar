@@ -10,7 +10,8 @@ from django.db.models.signals import pre_save, post_save
 # Django
 from django.dispatch import receiver
 
-
+# FORMATO
+from apps.financings.formato import formatear_numero
 
 class WorkingInformation(models.Model):
     fuente_ingreso = [
@@ -47,6 +48,9 @@ class WorkingInformation(models.Model):
 
     def __str__(self):
         return f"{self.position} - {self.company_name}"
+    
+    def f_salary(self):
+        return formatear_numero(self.salary)
 
     class Meta:
         verbose_name = "Información Laboral"
@@ -62,6 +66,9 @@ class OtherSourcesOfIncome(models.Model):
 
     def __str__(self):
         return self.source_of_income
+    
+    def f_salary(self):
+        return formatear_numero(self.salary)
 
     class Meta:
         verbose_name = "Otra Fuente de Ingreso"

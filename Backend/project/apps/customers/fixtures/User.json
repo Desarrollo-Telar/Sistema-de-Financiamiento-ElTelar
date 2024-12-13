@@ -1,0 +1,88 @@
+[
+    {
+        "model":"users.user",
+        "pk":3,
+        "fields":{
+            "first_name": "Grecia",
+            "last_name": "Rodríguez",
+            "username": "g_rodriguez",
+            "email": "g_rodriguez@gmail.com",
+            "password": "pbkdf2_sha256$720000$Kvpb5uCInvweu6sBS4rXiW$0U4qhD2Ig2hh57Lc6eOKJFoNH+R1hUWveAUDjw977Bw=",
+            "type_identification": "DPI",
+            "identification_number": "3692585565",
+            "telephone": "37160995",
+            "gender": "FEMENINO",
+            "nationality": "Guatemala",
+            "profile_pic": null,
+            "status": true,
+            "rol": "Administrador",
+            "last_login": null,
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-10-28T23:41:45.284Z",
+            "user_code": "2024-3",
+            "creation_date": "2024-10-28T23:41:45.515Z",
+            "groups": [],
+            "user_permissions": []
+
+        } 
+        
+    },
+    {
+        "model":"users.user",
+        "pk":2,
+        "fields":{
+            "first_name": "LUISA FERNANDA",
+            "last_name": "CHEN PACAY",
+            "username": "l_chenof1",
+            "email": "luisachenpacay@gmail.com",
+            "password": "pbkdf2_sha256$720000$EEvuqArXW8Z3mbY4KUNKzu$54gL75TfPQoCF6J5jU+VqTqKNhrhXtGmXb+S1DD8Rao=",
+            "type_identification": "DPI",
+            "identification_number": "3246850171601",
+            "telephone": "53373687",
+            "gender": "FEMENINO",
+            "nationality": "Guatemala",
+            "profile_pic": null,
+            "status": true,
+            "rol": "Administrador",
+            "last_login": null,
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-10-28T23:41:45.284Z",
+            "user_code": "2024-2",
+            "creation_date": "2024-10-28T23:41:45.515Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$uwyxV31bqAM5toRV388iDx$Kz2oHP8ZjJGa7N8yYMP1VBFZBxng1M6rZmiNHB06GxE=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "choc1403",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-10-28T23:41:45.284Z",
+            "type_identification": "DPI",
+            "identification_number": "",
+            "telephone": null,
+            "email": "eloicx@gmail.com",
+            "status": true,
+            "gender": "MASCULINO",
+            "user_code": "2024-1",
+            "nationality": "Guatemala",
+            "profile_pic": "",
+            "rol": "Administrador",
+            "creation_date": "2024-10-28T23:41:45.515Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

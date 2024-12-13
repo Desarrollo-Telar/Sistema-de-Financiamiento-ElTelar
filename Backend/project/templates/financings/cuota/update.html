@@ -6,6 +6,20 @@
     <form method="POST" action="{% url 'financings:paymente_update_cuota' cuota.id %}">
         {% csrf_token %}
         {% include 'financings/cuota/forms/forms.html' %}
+<<<<<<< HEAD
+=======
+        <div class="row">
+            <hr>
+            <p>DATOS ANTERIORES</p>
+            <hr>
+            <p class="fw-bold">FECHA DE INICIO: <span class="fw-normal">{{cuota.start_date}}</span></p>
+            <p class="fw-bold">FECHA DE VENCIMIENTO: <span class="fw-normal">{{cuota.due_date}}</span></p>
+            <p class="fw-bold">FECHA LIMITE: <span class="fw-normal">{{cuota.mostrar_fecha_limite}}</span></p>
+            <p class="fw-bold">FECHA SALDO CAPITAL PENDIENTE: <span class="fw-normal">{{cuota.saldo_pendiente}}</span>
+            </p>
+            <p class="fw-bold">MORA: <span class="fw-normal">{{cuota.mora}}</span></p>
+            <p class="fw-bold">INTERES: <span class="fw-normal">{{cuota.interest}}</span></p>
+>>>>>>> server
 
         <button type="submit" class="btn_edit" onclick="window.history.back()">Guardar Registro</button>
         <button onclick="window.history.back()" type="button" class="btn btn-link">Cancelar</button>

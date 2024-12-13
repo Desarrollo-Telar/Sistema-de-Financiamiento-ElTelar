@@ -9,7 +9,9 @@
                         <th scope="col">Cliente</th>
                         <th scope="col">Forma de Desembolso</th>
                         <th scope="col">Detalles</th>
-                        <th scope="col">Monto Total de Desembolso</th>
+                        <th scope="col">Gastos</th>
+                        <th scope="col">Monto Desembolsado</th>
+                        <th scope="col">Monto Total para de Desembolso</th>
 
 
 
@@ -45,16 +47,29 @@
                         <td scope="row">
                             <a style="text-decoration: none; color: black;"
                                 href="{% url 'financings:detail_credit' disbursement.credit_id.id %}">
-                                <p>MONTO DEL CREDITO: <span>Q {{disbursement.monto_credito}}</span></p>
-                                <p>SALDO ANTERIOR: <span>Q {{disbursement.saldo_anterior}}</span></p>
-                                <p>HONORARIOS: <span>Q {{disbursement.honorarios}}</span></p>
-                                <p>POLIZA DE SEGURO: <span>Q {{disbursement.poliza_seguro}}</span></p>
+                                <p>MONTO DEL CREDITO: <span>Q{{disbursement.f_monto_credito}}</span></p>
+                                <p>SALDO ANTERIOR: <span>Q{{disbursement.f_saldo_anterior}}</span></p>
+                                <p>HONORARIOS: <span>Q{{disbursement.f_honorarios}}</span></p>
+                                <p>POLIZA DE SEGURO: <span>Q{{disbursement.f_poliza_seguro}}</span></p>
+                                <p>TOTAL DE GASTOS: <span>Q{{disbursement.f_total_gastos}}</span></p>
                             </a>
                         </td>
                         <td scope="row">
                             <a style="text-decoration: none; color: black;"
                                 href="{% url 'financings:detail_credit' disbursement.credit_id.id %}">
-                                Q {{disbursement.monto_total_desembolso}}
+                                Q{{disbursement.f_total_gastos}}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' disbursement.credit_id.id %}">
+                                Q{{disbursement.f_monto_desembolsado}}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' disbursement.credit_id.id %}">
+                                Q{{disbursement.f_monto_total_desembolso}}
                             </a>
                         </td>
 

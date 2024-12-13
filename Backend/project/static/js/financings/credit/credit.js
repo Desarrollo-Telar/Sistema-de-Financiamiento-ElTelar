@@ -1,7 +1,9 @@
 import { Credit } from '../../class/credit.js';
 import { PaymentPlan } from '../../class/paymentplan.js';
-import { suma_total, lista_garantia } from './garantia.js'
+import { suma_total, lista_garantia, list_form_data} from './garantia.js'
 import {desembolso} from './disbursement.js'
+
+import {registrar_documento_garantia} from '../../API/documents/garantia_documento.js'
 
 import {urls, urls_p} from '../../API/urls_api.js'
 const proposito = document.getElementById('proposito');
@@ -15,68 +17,9 @@ const fecha_inicio = document.getElementById('fecha_inicio');
 const tipo_credito = document.getElementById('tipo_credito');
 const customer_id = document.getElementById('customer_id');
 const tbody_plan = document.getElementById('tbody_plan');
-/*
-function generar_plan() {
-    tbody_plan.innerHTML = '';
-
-    const fechaInicioValue = new Date(fecha_inicio.value);
 
 
-    let credito = new Credit(proposito.value, monto.value, plazo.value, tasa_interes.value, forma_de_pago.value, 'MENSUAL', fechaInicioValue, tipo_credito.value, null, customer_id.value);
 
-    let plan_pago = new PaymentPlan(credito);
-    let plan = plan_pago.generarPlan();
-    console.log(credito.toJSON());
-    plan.forEach(element => {
-        var nueva_fila = tbody_plan.insertRow();
-        var mes = nueva_fila.insertCell(0);
-        mes.textContent = element['mes'];
-        var fechaIni = nueva_fila.insertCell(1);
-        fechaIni.textContent = transformarFecha(element['fecha inicio']);
-        var fechaVenc = nueva_fila.insertCell(2);
-        fechaVenc.textContent = transformarFecha(element['fecha final']);
-        var monto = nueva_fila.insertCell(3);
-        monto.textContent = 'Q' + element['monto_prestado'];
-        var interes = nueva_fila.insertCell(4);
-        interes.textContent = 'Q' + element['intereses'];
-        var capital = nueva_fila.insertCell(5);
-        capital.textContent = 'Q' + element['capital'];
-        var cuota = nueva_fila.insertCell(6);
-        cuota.textContent = 'Q' + element['cuota'];
-    });
-}
-*/
-/*
-function generar_plan() {
-    tbody_plan.innerHTML = '';
-
-    const fechaInicioValue = new Date(fecha_inicio.value);
-
-    let credito = new Credit(proposito.value, monto.value, plazo.value, tasa_interes.value, forma_de_pago.value, 'MENSUAL', fechaInicioValue, tipo_credito.value, null, customer_id.value);
-    let plan_pago = new PaymentPlan(credito);
-    let plan = plan_pago.generarPlan();
-
-    console.log(credito.toJSON());
-
-    plan.forEach(element => {
-        var nueva_fila = tbody_plan.insertRow();
-        var mes = nueva_fila.insertCell(0);
-        mes.textContent = element['mes'];
-        var fechaIni = nueva_fila.insertCell(1);
-        fechaIni.textContent = transformarFecha(element['fecha inicio']);
-        var fechaVenc = nueva_fila.insertCell(2);
-        fechaVenc.textContent = transformarFecha(element['fecha final']);
-        var monto = nueva_fila.insertCell(3);
-        monto.textContent = 'Q' + element['monto_prestado'];
-        var interes = nueva_fila.insertCell(4);
-        interes.textContent = 'Q' + element['intereses'];
-        var capital = nueva_fila.insertCell(5);
-        capital.textContent = 'Q' + element['capital'];
-        var cuota = nueva_fila.insertCell(6);
-        cuota.textContent = 'Q' + element['cuota'];
-    });
-}
-*/
 function generar_plan() {
     tbody_plan.innerHTML = '';
 
@@ -123,42 +66,7 @@ function transformarFecha(ele) {
 }
 
 document.getElementById('generar_plan').onclick = generar_plan;
-/*
-document.getElementById('credito').addEventListener('submit', async function (event) {
-    event.preventDefault();
 
-
-
-    
-    try {
-        let credito = new Credit();
-        credito.proposito = proposito.value;
-        credito.monto = monto.value;
-        credito.plazo = plazo.value;
-        credito.tasaInteres = tasa_interes.value; // Asegúrate de que este valor es el correcto
-        credito.formaDePago = forma_de_pago.value;
-        credito.frecuenciaPago = 'MENSUAL';
-        credito.fechaInicio = new Date(fecha_inicio.value);
-        credito.tipoCredito = tipo_credito.value;
-        credito.customerId = customer_id.value;
-        credito.fechaVencimiento = new Date(fecha_inicio.value); // Corregido para obtener la fecha de vencimiento correcta
-        credito.fechaVencimiento.setFullYear(credito.fechaVencimiento.getFullYear() + 1);
-        
-        console.log(credito.toJSON());
-
-        const credi = await registrarCredito('http://127.0.0.1:8000/financings/api/credit/', credito);
-        console.log('Credito Registrado', credi);
-        const garantia = await registroGarantia('http://127.0.0.1:8000/financings/api/garantia/',credi.id)
-        console.log(garantia)
-        alert('¡Formulario enviado con éxito!');
-        window.location.href = '/customers/';
-    } catch (error) {
-        console.error('Error al registrar los datos:', error);
-        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
-    }
-    
-});
-*/
 document.getElementById('credito').addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -186,17 +94,39 @@ document.getElementById('credito').addEventListener('submit', async function (ev
             const desembolsos = await registrarDesembolso(urls_p.api_url_desembolso,credi.id);
             console.log(desembolsos)
 
-            alert('¡Formulario enviado con éxito!');
-            window.location.href = `/financings/credit/${credi.id}`;
+           
+            Swal.fire({
+                icon: "success",
+                title: `Registro Completado`,
+                text: '¡Formulario enviado con éxito!',
+                timer: 3000,
+                showConfirmButton: false,
+            });
+            
+            //setTimeout(() => { window.location.href = `/financings/credit/${credi.id}`; }, 1000);
 
         }else{
-            alert('NO SE HA REGISTRADO NINGUNA GARANTIA')
+            
+            Swal.fire({
+                icon: "error",
+                title: `NO SE HA REGISTRADO NINGUNA GARANTIA`,
+                
+                timer: 3000,
+                showConfirmButton: false,
+            });
         }
 
 
     } catch (error) {
         console.error('Error al registrar los datos:', error);
-        alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        
+        Swal.fire({
+            icon: "error",
+            title: `Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.`,
+            text:`${error}`,
+            timer: 3000,
+            showConfirmButton: false,
+        });
     }
 });
 
@@ -214,6 +144,9 @@ async function registrarCredito(url, credito) {
             proposito: credito.proposito,
             tasa_interes: credito.tasaInteres,
             tipo_credito: credito.tipoCredito,
+            saldo_pendiente:credito.monto,
+            estados_fechas:true,
+            plazo_restante:credito.plazo
         };
         console.log(json);
 
@@ -229,7 +162,7 @@ async function registrarCredito(url, credito) {
         console.log(response.data);
         return response.data;
     } catch (error) {
-        alert('ERROR: ',error);
+        //alert('ERROR: ',error);
         console.error('Error:', error);
         throw error;
     }
@@ -237,48 +170,7 @@ async function registrarCredito(url, credito) {
 
 
 
-/*
-async function registroGarantia(url, credito_id) {
 
-    try {
-        let json = {
-            suma_total: suma_total,
-            credit_id: credito_id
-        };
-        console.log(json);
-
-        // Obtener el token CSRF del meta tag
-        const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
-        if (!csrfTokenElement) {
-            throw new Error('CSRF token not found');
-        }
-        const csrfToken = csrfTokenElement.getAttribute('content');
-
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
-            },
-            body: JSON.stringify(json)
-        });
-
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(data);
-        const detalle = await registrarDetalle('http://127.0.0.1:8000/financings/api/detalle_garantia/',data.id);
-        console.log(detalle);
-        return data;
-    } catch (error) {
-        console.error('Error:', error);
-        throw error;
-    }
-
-}
-*/
 async function registroGarantia(url, credito_id) {
     try {
         let json = {
@@ -347,7 +239,10 @@ async function registrarDetalle(url, garantia_id) {
             }
 
             const data = await response.json();
-            console.log('Respuesta de la API:', data);
+            
+            
+            console.log('Respuesta de la API del registro de detalle de la garantia:', data);
+            return data;
         }
 
     } catch (error) {

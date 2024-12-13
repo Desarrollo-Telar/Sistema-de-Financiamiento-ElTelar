@@ -13,6 +13,7 @@
     <style>
         .seccion {
             display: flex;
+
         }
     </style>
 
@@ -635,13 +636,13 @@
                                             <p style="border: 1px solid; text-align: center;">
                                                 {% if working_information %}
                                                 {% for trabajo in working_information%}
-                                                Q<span>{{trabajo.salary}}</span>
+                                                <span>Q {{trabajo.salary}}</span>
                                                 {% endfor %}
                                                 {% endif %}
 
                                                 {% if other_information %}
                                                 {% for trabajo in other_information%}
-                                                Q<span>{{trabajo.salary}}</span>
+                                                <span>Q {{trabajo.salary}}</span>
                                                 {% endfor %}
                                                 {% endif %}
 
@@ -683,13 +684,13 @@
                                     <div class="seccion">
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
-                                                <span>Q {{plan.type_of_product_or_service }}</span>
+                                                <span> {{plan.type_of_product_or_service }}</span>
 
                                             </p>
                                         </div>
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
-                                                <span>{{plan.total_value_of_the_product_or_service }}</span>
+                                                <span>Q {{plan.total_value_of_the_product_or_service }}</span>
 
                                             </p>
                                         </div>
@@ -722,13 +723,13 @@
                                     <div class="seccion">
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
-                                                Q<span>{{plan.initial_amount}}</span>
+                                                <span>Q {{plan.initial_amount}}</span>
 
                                             </p>
                                         </div>
                                         <div class="col">
                                             <p style="border: 1px solid; text-align: center;">
-                                                Q<span>{{plan.monthly_amount}}</span>
+                                                <span>Q {{plan.monthly_amount}}</span>
 
                                             </p>
                                         </div>

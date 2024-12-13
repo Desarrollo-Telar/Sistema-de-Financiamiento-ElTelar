@@ -25,7 +25,9 @@ class CustomerSerializer(serializers.ModelSerializer):
             "person_type",
             "user_id",
             "immigration_status_id",
-            "description"
+            "description",
+            "asesor",
+            "fehca_vencimiento_de_tipo_identificacion"
         ]
     def to_representation(self, instance):
         return {

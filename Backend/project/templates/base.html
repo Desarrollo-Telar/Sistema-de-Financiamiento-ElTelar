@@ -16,13 +16,28 @@
   <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+  <!-- PARA AGREGAR FONTS -->
+
+
 
 
   {% block css %}
   {% endblock%}
   <style type="text/css">
+    @font-face {
+      font-family: 'Quicksand';
+      src: url("{% static 'css/text/Quicksand/Quicksand-VariableFont_wght.ttf' %}") format('truetype'),
+      url("{% static 'css/text/Quicksand/static/Quicksand-Regular.ttf' %}") format('truetype');
+      font-weight: 500;
+      /* Peso normal */
+      font-style: normal;
+      /* Estilo normal */
+    }
+
     body {
-      background-color: #eef0f2;
+      background-color: #F5F3F4;
+      font-family: "Quicksand", serif;
 
     }
   </style>
@@ -30,7 +45,7 @@
 
 <body>
   <header>
-    {% include 'messages.html'%} {% include 'navbar.html' %}
+    {% include 'navbar.html' %}
     <!--  -->
   </header>
 
@@ -50,6 +65,21 @@
   <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <!-- Incluye Axios en tu archivo HTML desde una CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="{% static 'js/node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
+  <script src="{% static 'js/node_modules/chart.js/dist/chart.umd.js' %}"></script>
+  <script src="{% static 'js/node_modules/axios/dist/axios.min.js' %}"></script>
+  <script>
+    {% if messages %}
+    {% for message in messages %}
+    Swal.fire({
+      icon: "{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% elif message.tags == 'warning' %}warning{% else %}info{% endif %}",
+      title: "{{ message }}",
+      timer: 3000,
+      showConfirmButton: false,
+    });
+    {% endfor %}
+    {% endif %}
+  </script>
 
 
   {%block js%} {%endblock%}

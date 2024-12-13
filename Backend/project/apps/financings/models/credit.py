@@ -7,6 +7,9 @@ from decimal import Decimal
 from apps.customers.models import Customer
 from apps.InvestmentPlan.models import InvestmentPlan
 
+# FORMATO
+from apps.financings.formato import formatear_numero
+
 class Credit(models.Model):
     formaPago = [
         ('NIVELADA', 'NIVELADA'),
@@ -41,20 +44,42 @@ class Credit(models.Model):
     tasa_mora = models.DecimalField("Tasa de Morosidad", decimal_places=2, max_digits=15, default=0.1)
     saldo_pendiente = models.DecimalField("Saldo Pendiente", decimal_places=2, max_digits=15, default=0)
     saldo_actual = models.DecimalField("Saldo Actual", decimal_places=2, max_digits=15, default=0)
+    estado_aportacion = models.BooleanField(default=False)
+    estados_fechas =  models.BooleanField(blank=True, null=True)
+
+    # nuevos atributos
+    plazo_restante = models.IntegerField("Plazo", blank=True, null=True, default=0)
 
     def __str__(self):
         return self.codigo_credito
+    
+    def formato_estado_aportacion(self):
+        return 'VIGENTE' if self.estado_aportacion else 'EN ATRASO'
+    
+    def formato_estado_fecha(self):
+        return 'VIGENTE' if self.estados_fechas else 'EN ATRASO'
+    
+    def formato_credito_cancelado(self):
+        return 'CANCELADO' if self.is_paid_off else 'VIGENTE'
 
     def calcular_fecha_vencimiento(self):
         self.fecha_vencimiento = self.fecha_inicio + relativedelta(months=self.plazo)
         return self.fecha_vencimiento
 
     def tasa_mensual(self):
-        return round(self.tasa_interes * Decimal(100),2)
-
+        convertir =  round(self.tasa_interes * Decimal(100),2)
+        return formatear_numero(convertir)
+    
     def save(self, *args, **kwargs):
         self.calcular_fecha_vencimiento()
         super().save(*args, **kwargs)
+   
+    
+    def formato_monto(self):
+        return formatear_numero(self.monto)
+    
+    def formato_saldo_actual(self):
+        return formatear_numero(self.saldo_actual)
 
     class Meta:
         verbose_name = "Credito"
