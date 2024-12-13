@@ -44,10 +44,10 @@ def verificar_montos_desembolsados(sender, instance, **kwargs):
     total_credito = instance.credit_id.monto 
     listar_desembolsos = Disbursement.objects.filter(credit_id=instance.credit_id.id).order_by('-id') 
     for desembolsado in listar_desembolsos: 
-        total_desembolso += desembolsado.monto_desembolsado 
+        total_desembolso += desembolsado.total_gastos 
         # Incluir el monto del desembolso actual 
 
-    total_desembolso += instance.monto_desembolsado 
+    total_desembolso += instance.total_gastos 
     if total_desembolso > total_credito: 
         raise ValidationError('El monto total desembolsado excede el monto del crédito.') 
     # Puedes añadir un logger para registrar información adicional si es necesario 
@@ -81,14 +81,14 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
                 else:
                     disbursement_paid = instance.monto_desembolsado
                     description = f'{instance.forma_desembolso}'
-                    estado_cuenta = informacion_estado_cuenta(instance, 0, referencia, description)
+                    estado_cuenta = informacion_estado_cuenta(instance, instance.total_gastos, referencia, description)
                     estado_cuenta.save()
                     
                     if instance.monto_desembolsado > 0:
                         referencia2 = str(uuid.uuid4())[:8]
                         description2 = 'MONTO DESEMBOLSADO'
                         estado_cuenta2 = informacion_estado_cuenta(instance, disbursement_paid, referencia2,description2)
-                        estado_cuenta2.save()
+                        #estado_cuenta2.save()
             except IntegrityError:
                 # En caso de colisión, generar nuevas referencias y volver a intentar
                 referencia = str(uuid.uuid4())[:8]

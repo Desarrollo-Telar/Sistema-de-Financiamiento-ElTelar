@@ -7,6 +7,7 @@ async function agregar_desembolso() {
     formData.append('credit_id', document.getElementById('credit').value);
     formData.append('forma_desembolso', 'DESEMBOLSAR');
     formData.append('monto_desembolsado', document.getElementById('monto').value);
+    formData.append('total_gastos', document.getElementById('monto').value);
     return await registrar_desembolso(formData);
 }
 
