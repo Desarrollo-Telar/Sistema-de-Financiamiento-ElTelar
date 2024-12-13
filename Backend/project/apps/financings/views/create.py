@@ -13,6 +13,8 @@ from django.views.generic import DeleteView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
 
+# Models
+from apps.financings.models import Credit
 
 # Create your views here.
 ### ------------------- CREAR ---------------------- ###
@@ -38,10 +40,13 @@ def create_credit(request):
 
 @login_required
 @usuario_activo
-def create_disbursement(request):
+def create_disbursement(request,id):
+    credit_id = get_object_or_404(Credit, id=id)
+
     template_name = 'financings/disbursement/create.html'
     context = {
-        'title':'ELTELAR - DESEMBOLSO'
+        'title':'ELTELAR - DESEMBOLSO',
+        'credit_id':credit_id,
     }
 
     return render(request,template_name,context)

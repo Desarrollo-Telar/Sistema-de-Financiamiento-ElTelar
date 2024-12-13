@@ -1,4 +1,4 @@
-
+import {actualizarTotalDepositar} from './desembolso.js'
 import {urls_p} from '../../API/urls_api.js'
 import {seleccion_garantia, seleccion_desembolso} from '../funciones_externas/seleccionador.js'
 import {ocultar, mostrar} from '../funciones_externas/ocultar_mostrar.js'
@@ -127,7 +127,7 @@ $(document).ready(function () {
             <hr>
             <p>Saldo Actual: ${credito_v.Fsaldo_actual} </p>
             `
-            document.getElementById('credito_saldo_capital_vigente').value = credito_v.saldo_actual;
+            
 
             // Habilitar que se muestre los divs
             mostrar(monto_credito_vigente);
@@ -137,12 +137,10 @@ $(document).ready(function () {
             mostrar(monto_desembolsado_desembolsar);
             mostrar(total_a_desembolsar);
 
-
-
-
-            console.log(credito_v);
-            const credito_monto_vigente = document.getElementById('credito_monto_vigente');
-            credito_monto_vigente.value = credito_v.monto;
+            // Asignando valores a credito vigente
+            document.getElementById('credito_monto_vigente').value = credito_v.monto;
+            document.getElementById('credito_saldo_capital_vigente').value = credito_v.saldo_actual;
+            actualizarTotalDepositar();
 
         }catch(error){
             console.error('Error obteniendo detalles del credito:', error);

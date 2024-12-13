@@ -77,12 +77,12 @@ def generar_planes(sender, instance,created, **kwargs):
             )
             cuota_nueva.save()
     
+    actualizar(instance)
             
         
     
         
 def actualizar(instance):
-    print('ACTUALIZANDO EL SALDO ACTUAL')
     credito = Credit.objects.get(id=instance.credit_id.id)
     credito.saldo_pendiente = instance.saldo_pendiente
     credito.saldo_actual = instance.saldo_pendiente + instance.mora + instance.interest

@@ -66,11 +66,12 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
                     description = f'{instance.forma_desembolso}'
                     estado_cuenta = informacion_estado_cuenta(instance, 0, referencia, description)
                     estado_cuenta.save()
-
-                    referencia2 = str(uuid.uuid4())[:8]
-                    description2 = 'Monto Desembolsado'
-                    estado_cuenta2 = informacion_estado_cuenta(instance, disbursement_paid, referencia2,description2)
-                    estado_cuenta2.save()
+                    
+                    if instance.monto_desembolsado > 0:
+                        referencia2 = str(uuid.uuid4())[:8]
+                        description2 = 'MONTO DESEMBOLSADO'
+                        estado_cuenta2 = informacion_estado_cuenta(instance, disbursement_paid, referencia2,description2)
+                        estado_cuenta2.save()
             except IntegrityError:
                 # En caso de colisión, generar nuevas referencias y volver a intentar
                 referencia = str(uuid.uuid4())[:8]

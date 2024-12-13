@@ -29,7 +29,7 @@ urlpatterns = [
     path('guarantee/create/',login_required(views.create_guarantee),name='create_guarantee'),
 
     # ---------------- DESEMBOLSO ------------
-    path('disbursement/create/',login_required(views.create_disbursement),name='create_disbursement'),  
+    path('disbursement/create/<int:id>/',login_required(views.create_disbursement),name='create_disbursement'),  
     path('disbursement/',login_required(views.list_disbursement), name='list_disbursement'),
     path('disbursement/<int:id>/',login_required(views.detallar_desembolso), name='detail_disbursement'),
 

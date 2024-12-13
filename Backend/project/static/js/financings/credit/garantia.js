@@ -17,7 +17,7 @@ export const list_form_data = [];
 import {urls, urls_p} from '../../API/urls_api.js'
 
 // ------ divs -----
-export let suma_total = '';
+export let suma_total = 0;
 
 // Función para actualizar la suma total
 function garantias() {

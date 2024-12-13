@@ -57,7 +57,8 @@
         <div class="contenido">
             <div class="row" style="margin-top: 1rem;">
                 <div class="col d-flex flex-row-reverse">
-                    <a class="btn_cancel" href="{% url 'financings:create_disbursement' %}">Añadir Desembolso
+                    <a class="btn_cancel" href="{% url 'financings:create_disbursement' customer_list.id %}">Añadir
+                        Desembolso
                         Nuevo</a>
                 </div>
             </div>

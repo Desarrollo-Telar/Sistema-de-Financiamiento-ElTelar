@@ -3,6 +3,9 @@ from django.db import models
 # MODELO
 from .credit import Credit
 
+# FORMATO
+from apps.financings.formato import formatear_numero
+
 # DESEMBOLSO
 class Disbursement(models.Model):
     formaDesembolso = [
@@ -23,7 +26,33 @@ class Disbursement(models.Model):
     total_gastos  = models.DecimalField("Total de gastos", decimal_places=2, max_digits=15, default=0)
     monto_total_desembolso = models.DecimalField("Monto Total a Desembolsar", decimal_places=2, max_digits=15, default=0)
 
+    def f_monto_credito(self):
+        return formatear_numero(self.monto_credito)
+
+    def f_monto_credito_agregar(self):
+        return formatear_numero(self.monto_credito_agregar)
     
+    def f_monto_credito_cancelar(self):
+        return formatear_numero(self.monto_credito_cancelar)
+    
+    def f_saldo_anterior(self):
+        return formatear_numero(self.saldo_anterior)
+    
+    def f_honorarios(self):
+        return formatear_numero(self.honorarios)
+    
+    def f_poliza_seguro(self):
+        return formatear_numero(self.poliza_seguro)
+    
+    def f_monto_desembolsado(self):
+        return formatear_numero(self.monto_desembolsado)
+    
+    def f_total_gastos(self):
+        return formatear_numero(self.total_gastos)
+    
+    def f_monto_total_desembolso(self):
+        return formatear_numero(self.monto_total_desembolso)
+
     def __str__(self):
         return f'{self.forma_desembolso}'
 
