@@ -174,7 +174,7 @@ class Payment(models.Model):
 
         # Obtener información del banco
         info_banco = self.banco()
-
+        """
         if info_banco:
             # Fecha de creación del registro en el banco
             fecha_creacion_registro_banco = info_banco.creation_date
@@ -188,6 +188,9 @@ class Payment(models.Model):
                     cuota.mora_generado = 0
                     cuota.cambios = True
                     cuota.save()  # Guardar los cambios en la base de datos
+        
+        """
+        
 
         # Retornar la mora actualizada
         return cuota.mora

@@ -43,6 +43,9 @@ class Recibo(models.Model):
         return formatear_numero(self.interes_pagado)
     
     def Faporte_capital(self):
+        return formatear_numero(self.total)
+    
+    def Ftotal(self):
         return formatear_numero(self.aporte_capital)
 
     def total_letras(self):

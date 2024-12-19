@@ -16,34 +16,73 @@ from django.contrib import messages
 
 # Manejador de filtros
 from django.db.models import Q
+from django.db.models import Q, Sum
 
-def reportes_sobre_mora(request):
-    pass
-"""
-def eventos_por_mes(request):
-    # Inicializamos mes y año con los valores actuales
+
+def reportes_generales(request):
+    template_name = 'reports/base.html'
     mes = datetime.now().month
     anio = datetime.now().year
+    filtro_seleccionado = 'mora_pagada'  # Valor predeterminado
+    total = 0
 
-    # Si el formulario ha sido enviado (POST)
     if request.method == 'POST':
         mes = request.POST.get('mes')
         anio = request.POST.get('anio')
+        filtro_seleccionado = request.POST.get('filtro')
 
-        # Si no se proporcionan valores en el formulario, usamos los valores por defecto
+        # Validación de mes y año
         if not mes:
             mes = datetime.now().month
         else:
             mes = int(mes)
-        
+
         if not anio:
             anio = datetime.now().year
         else:
             anio = int(anio)
 
-    # Filtrar los eventos según el mes y año
-    eventos = Evento.objects.filter(fecha_year=anio, fecha_month=mes)
+    # Filtros por fecha
+    filters = Q()
+    filters &= Q(fecha__year=anio)
+    filters &= Q(fecha__month=mes)
 
-    return render(request, 'eventos/lista_eventos.html', {'eventos': eventos, 'mes': mes, 'anio': anio})
+    # Filtro dinámico según selección del usuario
+    filtros_validos = {
+        'mora_pagada': 'mora_pagada__gt',
+        'interes_pagado': 'interes_pagado__gt',
+        'aporte_capital': 'aporte_capital__gt',
+    }
+    if filtro_seleccionado in filtros_validos:
+        filtro_dinamico = {filtros_validos[filtro_seleccionado]: 0}
+        reportes = Recibo.objects.filter(filters).filter(**filtro_dinamico)
 
-"""
+
+        for reporte in reportes:
+            if filtro_seleccionado == 'mora_pagada':
+                total += reporte.mora_pagada
+            elif filtro_seleccionado == 'interes_pagado':
+                total += reporte.interes_pagado
+            else:
+                total += reporte.aporte_capital
+
+        
+
+    else:
+        return redirect('financings:reportes')
+
+    # Calcular el total del campo seleccionado
+    total_seleccionado = reportes.aggregate(Sum(filtro_seleccionado))[f'{filtro_seleccionado}__sum'] or 0
+
+    context = {
+        'title': 'ElTELAR',
+        'posicion': filtro_seleccionado,
+        'reportes': reportes,
+        'mes': mes,
+        'anio': anio,
+        'filtro_seleccionado': filtro_seleccionado,
+        'total_seleccionado': total_seleccionado,
+        'total':total
+    }
+    return render(request, template_name, context)
+

@@ -9,7 +9,7 @@ from dateutil.relativedelta import relativedelta
 
 # MODELS
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
-from apps.financings.models import PaymentPlan, AccountStatement
+from apps.financings.models import PaymentPlan, AccountStatement, Banco
 
 # ------------ FUNCIONES ----------------------
 def mostrar_fecha_limite(fecha_limite):

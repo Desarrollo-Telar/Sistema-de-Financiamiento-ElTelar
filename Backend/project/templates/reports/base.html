@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row box">
+    <div class="row">
+        {% include 'reports/snippets/presentacion.html'%}
+    </div>
+    <div class="row">
+        {% include 'reports/snippets/filtro.html' %}
+    </div>
+    <div class="row" style="margin-top: 1rem;">
+        <div class="col fs-5">
+            <p>Total: <span class="badge text-bg-danger">Q{{total}}</span></p>
+        </div>
+
+    </div>
+    <div class="row" style="padding: 2rem;">
+        {% include 'reports/tabla/tabla.html' %}
+    </div>
+
+</div>
+
+
+{% endblock %}
