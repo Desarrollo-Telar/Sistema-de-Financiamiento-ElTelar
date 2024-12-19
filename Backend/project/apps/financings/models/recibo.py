@@ -65,14 +65,7 @@ class Recibo(models.Model):
         return f'{capital} Quetzales'
     
     def __str__(self):
-<<<<<<< HEAD
         return f'{self.fecha}'
-=======
-        mensaje = 'Recibo'
-        if self.cuota:
-            mensaje += f' - {self.cuota}'
-        return mensaje
->>>>>>> server
     
     class Meta:
         verbose_name = 'Recibo'

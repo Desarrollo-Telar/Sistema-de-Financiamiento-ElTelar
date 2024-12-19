@@ -54,11 +54,7 @@ class Disbursement(models.Model):
         return formatear_numero(self.monto_total_desembolso)
 
     def __str__(self):
-<<<<<<< HEAD
-        return f'{self.credit_id.codigo_credito}'
-=======
         return f'{self.forma_desembolso}'
->>>>>>> server
 
     class Meta:
         verbose_name = "Desembolso"
