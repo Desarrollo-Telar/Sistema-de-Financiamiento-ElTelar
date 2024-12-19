@@ -72,6 +72,7 @@ $(document).ready(function () {
         placeholder: 'Seleccione un Cliente',
         minimumInputLength: 1
     });
+    
     $(".credito_vigente").select2({
         width: 'resolve',
         ajax: {
@@ -118,6 +119,7 @@ $(document).ready(function () {
 
             // Mostrando la informacion relevante al credito vigente seleccionado
             const informacion_credito = document.getElementById('informacion_credito');
+            informacion_credito.style.display = 'block';
             informacion_credito.innerHTML = `
             <p>Saldo Capital Pendiente: ${cuota.saldo_pendiente} </p>
             <p>Intereses: ${cuota.interest} </p>

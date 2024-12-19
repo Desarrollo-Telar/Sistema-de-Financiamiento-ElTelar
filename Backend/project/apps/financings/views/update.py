@@ -58,14 +58,14 @@ def update_cuota(request, id):
                 if interes_antiguo != interes_nuevo:
                     print('DESCUENTO APLICADO POR INTERES')
                     estado_cuenta.description = f'DESCUENTO APLICADO POR INTERES '
-                    estado_cuenta.interest_paid = -interes_nuevo
+                    estado_cuenta.interest_paid = -(interes_antiguo - interes_nuevo)
 
                 if mora_antigua != mora_nueva:
                     print('DESCUENTO APLICADO POR MOROSIDAD')
                     # Si ya había un descuento por interés, lo sumamos con el de mora
                     estado_cuenta.description=f'DESCUENTO APLICADO POR MOROSIDAD '
                     
-                    estado_cuenta.late_fee_paid = -mora_nueva  # Restar el monto de mora
+                    estado_cuenta.late_fee_paid = -(mora_antigua - mora_nueva ) # Restar el monto de mora
 
                 # Si ambos valores cambian, la descripción reflejará ambos descuentos
                 if interes_antiguo != interes_nuevo and mora_antigua != mora_nueva:
@@ -97,9 +97,9 @@ def update_cuota(request, id):
 @login_required
 @usuario_activo
 def generar_factura(request,id):
-    pago = get_object_or_404(Payment, id=id)
+   
     
-    recibo = get_object_or_404(Recibo, pago=pago)
+    recibo = get_object_or_404(Recibo, id=id)
     print(recibo.factura)
     if not recibo.factura:
         recibo.factura = True

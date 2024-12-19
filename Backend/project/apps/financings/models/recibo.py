@@ -44,6 +44,9 @@ class Recibo(models.Model):
     
     def Faporte_capital(self):
         return formatear_numero(self.aporte_capital)
+    
+    def Ftotal(self):
+        return formatear_numero(self.total)
 
     def total_letras(self):
         total = num2words(self.total,lang='es')

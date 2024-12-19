@@ -290,7 +290,7 @@ def index(request):
     today = datetime.now().date()
     tomorrow = today + timedelta(days=1)
     customer_id = Customer.objects.filter(creation_date__range=(today, tomorrow))
-    recibos = Recibo.objects.filter(fecha=datetime.now().date(), factura=False)
+    recibos = Recibo.objects.filter( factura=False)
     bancos = Banco.objects.all()
     ingresos = 0
     egresos = 0

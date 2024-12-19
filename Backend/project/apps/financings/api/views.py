@@ -3,7 +3,7 @@ from .serializers import CreditSerializer, GuaranteesSerializer, DetailsGuarante
 from .serializers import PaymentSerializer, PaymentPlanSerializer, EstadoCuentaSerializer
 # MODELS
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
-from apps.financings.models import PaymentPlan, AccountStatement
+from apps.financings.models import PaymentPlan, AccountStatement, Banco
 
 # API
 from rest_framework import viewsets, status, generics

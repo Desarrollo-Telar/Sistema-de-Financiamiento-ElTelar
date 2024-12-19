@@ -19,8 +19,8 @@ class PaymentPlanForms(forms.ModelForm):
             'due_date': 'FECHA DE VENCIMIENTO',
             'fecha_limite':'FECHA LIMITE',
             'saldo_pendiente': 'SALDO CAPITAL PENDIENTE',
-            'mora': 'MORA SOBRE INTERES ACUMULADO',
-            'interest': 'INTERES ACUMULADO',
+            'mora': 'MORA A PAGAR',
+            'interest': 'INTERES A PAGAR',
         }
 
         widgets = {

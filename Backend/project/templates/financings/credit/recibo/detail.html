@@ -161,9 +161,11 @@
         </div>
         <div class="col-6">
             {% if recibo.factura %}
-            <p>ESTE RECIBO YA FUE FACTURADO</p>
+            <p>
+                <a href="{% url 'financings:factura' recibo.id %}">ESTE RECIBO YA FUE FACTURADO</a>
+            </p>
             {% else %}
-            <a href="#">FACTURAR</a>
+            <a href="{% url 'financings:generar_factura' recibo.id %}">FACTURAR</a>
             {% endif %}
         </div>
         <div class="col-3">

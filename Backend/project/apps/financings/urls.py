@@ -53,6 +53,9 @@ urlpatterns = [
     # ---------------- BANCOS --------------------
     path('bank/',login_required(views.list_bank),name='list_bank'),
     path('bank/search/',login_required(views.BankSearch.as_view()),name='bank_search'),
+
+    # ---------------- REPORTES ----------------
+    path('reports/',login_required(views.reportes_generales),name='reportes'),
 ]
 
 urlpatterns+=routers.urlpatterns
