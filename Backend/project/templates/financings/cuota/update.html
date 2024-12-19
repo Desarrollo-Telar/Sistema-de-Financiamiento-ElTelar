@@ -10,13 +10,23 @@
             <hr>
             <p>DATOS ANTERIORES</p>
             <hr>
-            <p class="fw-bold">FECHA DE INICIO: <span class="fw-normal">{{cuota.start_date}}</span></p>
-            <p class="fw-bold">FECHA DE VENCIMIENTO: <span class="fw-normal">{{cuota.due_date}}</span></p>
+            <p class="fw-bold">FECHA DE INICIO: <span class="fw-normal">{{cuota.start_date.date}}</span></p>
+            <p class="fw-bold">FECHA DE VENCIMIENTO: <span class="fw-normal">{{cuota.due_date.date}}</span></p>
             <p class="fw-bold">FECHA LIMITE: <span class="fw-normal">{{cuota.mostrar_fecha_limite}}</span></p>
-            <p class="fw-bold">FECHA SALDO CAPITAL PENDIENTE: <span class="fw-normal">{{cuota.saldo_pendiente}}</span>
+            <hr>
+            <p class="fw-bold">FECHA SALDO CAPITAL PENDIENTE: <span
+                    class="fw-normal">Q{{cuota.formato_cuota_saldo_pendiente}}</span>
             </p>
-            <p class="fw-bold">MORA: <span class="fw-normal">{{cuota.mora}}</span></p>
-            <p class="fw-bold">INTERES: <span class="fw-normal">{{cuota.interest}}</span></p>
+            <hr>
+            <p>MORA ACUMULADA: <span class="fw-normal">Q{{cuota.formato_cuota_mora_acumulado_generado}}</span></p>
+            <p>MORA GENERADA: <span class="fw-normal">Q{{cuota.formato_cuota_mora_acumulado_generado}}</span></p>
+            <hr>
+            <p class="fw-bold">TOTAL DE MORA: <span class="fw-normal">Q{{cuota.formato_cuota_mora}}</span></p>
+            <hr>
+            <p>INTERES ACUMULADO: <span class="fw-normal">Q{{cuota.formato_cuota_mora_acumulado_generado}}</span></p>
+            <p>INTERES GENERADO: <span class="fw-normal">Q{{cuota.formato_cuota_interes_generado}}</span></p>
+            <hr>
+            <p class="fw-bold">TOTAL DE INTERES: <span class="fw-normal">Q{{cuota.formato_cuota_interes}}</span></p>
 
 
 
@@ -25,8 +35,8 @@
 
             <hr>
         </div>
-        <button type="submit" class="btn_edit" onclick="window.history.back()">Guardar Registro</button>
-        <button onclick="window.history.back()" type="button" class="btn btn-link">Cancelar</button>
+        <button type="submit" class="btn_guardar" onclick="window.history.back()">Guardar Registro</button>
+        <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
 
 
     </form>
