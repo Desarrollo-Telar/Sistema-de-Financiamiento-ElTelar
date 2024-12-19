@@ -89,7 +89,7 @@ def render_pdf_estado_cuenta(request,id):
 
     template_path = 'financings/credit/estado_cuenta/pdf.html'
     template = get_template(template_path)
-    
+   
     cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     actualizacion(credito)
     context = {

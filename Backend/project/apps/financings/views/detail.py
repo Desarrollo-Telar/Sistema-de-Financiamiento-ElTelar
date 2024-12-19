@@ -104,7 +104,7 @@ def detail_credit(request,id):
     # LISTAR LAS GARANTIAS REGISTRADAS
     list_guarantee = Guarantees.objects.filter(credit_id=credito).order_by('-id') 
 
-    list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('-id') # LISTAR DESEMBOLSOS
+    list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('id') # LISTAR DESEMBOLSOS
 
     
     siguiente_pago = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
