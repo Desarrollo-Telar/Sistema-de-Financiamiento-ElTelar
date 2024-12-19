@@ -1,0 +1,66 @@
+<div class="container " id="hanging-icons" style="padding: 2rem;">
+    <h2 class="pb-2 border-bottom">Informacion Relevante</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+        <div class="col d-flex align-items-start">
+            <div
+                style="background-color: #ffc9ca; font-size: 2rem; border-radius: 2rem; padding: 2rem; margin-right: 1rem; color: #46090a;">
+                {{clientes.count}}
+            </div>
+            <div>
+                <h6 class="fs-4 text-body-emphasis">
+                    <a href="{% url 'customers:customers'%}" style="text-decoration: none;">
+                        Total de Clientes Registrados
+                    </a>
+                </h6>
+                <hr>
+
+
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                style="background-color: #ffc9ca; font-size: 2rem; border-radius: 2rem; padding: 2rem; margin-right: 1rem; color: #46090a;">
+                {{creditos.count}}
+            </div>
+            <div>
+                <h6 class="fs-4 text-body-emphasis">
+                    <a href="{% url 'financings:list_credit'%}" style="text-decoration: none;">
+                        Total de Creditos Registrados
+                    </a>
+                </h6>
+                <hr>
+
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                style="background-color: #ffc9ca; font-size: 1rem; border-radius: 2rem; padding: 2rem; margin-right: 1rem; color: #46090a;">
+                Q{{ingresos}}
+            </div>
+            <div>
+                <h6 class="fs-4 text-body-emphasis">
+                    <a href="{% url 'financings:list_bank'%}" style="text-decoration: none;">
+                        Total de Ingresos Registrados
+                    </a>
+                </h6>
+                <hr>
+
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                style="background-color: #ffc9ca; font-size: 1rem; border-radius: 2rem; padding: 2rem; margin-right: 1rem; color: #46090a;">
+                Q{{egresos}}
+            </div>
+            <div>
+                <h6 class="fs-4 text-body-emphasis">
+                    <a href="{% url 'financings:list_bank'%}" style="text-decoration: none;">
+                        Total de Egresos Registrados
+                    </a>
+                </h6>
+                <hr>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -97,9 +97,9 @@ def update_cuota(request, id):
 @login_required
 @usuario_activo
 def generar_factura(request,id):
-    pago = get_object_or_404(Payment, id=id)
+   
     
-    recibo = get_object_or_404(Recibo, pago=pago)
+    recibo = get_object_or_404(Recibo, id=id)
     print(recibo.factura)
     if not recibo.factura:
         recibo.factura = True

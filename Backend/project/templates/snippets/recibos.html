@@ -1,0 +1,32 @@
+{% load static %}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Nombre del Cliente</th>
+            <th scope="col">Codigo del Credito</th>
+            <th scope="col">Monto</th>
+            <th scope="col">...</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for recibo in recibos %}
+        <tr>
+            <th scope="row">
+                {{ forloop.counter }}
+            </th>
+            <td>{{recibo.fecha}}</td>
+            <td>{{recibo.cliente}}</td>
+            <td>{{recibo.pago.credit}}</td>
+            <td>Q{{recibo.Ftotal}}</td>
+            <td>
+                <a href="{% url 'financings:factura' recibo.id%}">Facturar</a>
+            </td>
+        </tr>
+        {% endfor%}
+
+    </tbody>
+</table>

@@ -61,12 +61,14 @@ def total_capital_pagada(estado_cuenta):
         contador+=estado.capital_paid
     return formatear_numero(contador)
 
+from django.db.models import Q
 
 def render_pdf_factura(request,id):    
     recibo = get_object_or_404(Recibo, id=id)
     if not recibo.factura:
         return redirect(request.META.get('HTTP_REFERER', '/'))
-    factura = Invoice.objects.filter(Q(recibo_id=recibo))
+    factura = Invoice.objects.filter(Q(recibo_id=recibo)).first()
+    
    
     template_path = 'financings/credit/factura/factura_pdf.html'
     template = get_template(template_path)
@@ -77,7 +79,7 @@ def render_pdf_factura(request,id):
     }
     html = template.render(context)
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="Factura.pdf"'
+    response['Content-Disposition'] = 'filename="Factura.pdf"'
     HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
 
     return response
