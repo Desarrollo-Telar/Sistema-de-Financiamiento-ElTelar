@@ -421,8 +421,6 @@ class Payment(models.Model):
         
         mora = calculo_mora(saldo_pendiente, credito.tasa_interes)
         
-        print('CALCULANDO...')
-        print(siguiente)
        
         
         if siguiente:
@@ -439,11 +437,10 @@ class Payment(models.Model):
             cuota_a_actualizar.mora_generado = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)
                 
         else:
-            # Creamos una nueva cuota si no existe
-            #cuota_a_actualizar = self.get_plan_pagos()()
-            #cuota_a_actualizar.interest = interes
-            logger.info('CREACION DE UNA NUEVA CUOTA')
-            #cuota_a_actualizar.mora = mora
+            logger.info('CREACION DE UNA NUEVA  CUOTA')
+            
+            
+                
 
         # En ambos casos (cuota nueva o existente), actualizamos los campos comunes
         if cuota_a_actualizar:

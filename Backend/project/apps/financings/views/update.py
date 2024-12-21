@@ -115,3 +115,4 @@ def generar_factura(request,id):
     return redirect('financings:detail_credit',recibo.pago.credit.id)
 
 
+

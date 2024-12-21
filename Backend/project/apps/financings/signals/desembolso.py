@@ -11,6 +11,7 @@ from apps.financings.calculos import calculo_interes
 
 import uuid
 from django.db import transaction, IntegrityError
+from django.db.models import Q, Sum
 
 def buscar_tipo_desembolso(elemento):
     lista = [
@@ -37,21 +38,29 @@ def informacion_estado_cuenta(instance, disbursement_paid, referencia, descripti
     )
     return estado_cuenta
 
-@receiver(pre_save, sender=Disbursement) 
-def verificar_montos_desembolsados(sender, instance, **kwargs): 
-    # Verificar que los montos desembolsados no excedan el monto del crédito 
-    total_desembolso = 0 
-    total_credito = instance.credit_id.monto 
-    listar_desembolsos = Disbursement.objects.filter(credit_id=instance.credit_id.id).order_by('-id') 
-    for desembolsado in listar_desembolsos: 
-        total_desembolso += desembolsado.total_gastos 
-        # Incluir el monto del desembolso actual 
 
-    total_desembolso += instance.total_gastos 
+@receiver(pre_save, sender=Disbursement)
+def verificar_montos_desembolsados(sender, instance, **kwargs):
+    # Verificar que los montos desembolsados no excedan el monto del crédito
+    total_credito = instance.credit_id.monto
+    total_desembolso = Disbursement.objects.filter(credit_id=instance.credit_id.id).aggregate(
+        total_gastos_sum=Sum('total_gastos')
+    )['total_gastos_sum'] or 0  # Sumar todos los gastos previos, manejando None como 0
+
+    # Incluir el monto del desembolso actual
+    total_desembolso += instance.total_gastos
     instance.total_t = total_desembolso
-    if total_desembolso > total_credito: 
-        raise ValidationError('El monto total desembolsado excede el monto del crédito.') 
-    # Puedes añadir un logger para registrar información adicional si es necesario 
+
+    if total_desembolso > total_credito:
+        raise ValidationError('El monto total desembolsado excede el monto del crédito.')
+    
+    if total_desembolso == total_credito:
+        # Indicar que ya se desembolsó completamente
+        credito = instance.credit_id
+        credito.desembolsado_completo = True
+        credito.save()
+
+    # Registrar información adicional
     logger.info(f'Total desembolsado: {total_desembolso}, Total crédito: {total_credito}')
 
 # EL DESEMBOLSO REALIZADO SE REFLEJA EN EL ESTADO DE CUENTAS DEL CLIENTE

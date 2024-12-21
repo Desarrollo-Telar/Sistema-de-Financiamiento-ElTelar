@@ -111,10 +111,12 @@ class PaymentPlan(models.Model):
     def acumulacion_mora(self):
         self.mora_acumulada -= self.mora_pagado
         return round(self.mora_acumulada,2)
+    
     def mostrar_fecha_limite(self):
         limite = self.fecha_limite - relativedelta(days=1)
         limite = self.fecha_limite.replace(hour=5, minute=59, second=0, microsecond=0)
         return limite
+    
     def total(self):
         total = 0
         capital = Decimal(self.calculo_capital())
@@ -137,7 +139,7 @@ class PaymentPlan(models.Model):
         if forma_pago == 'NIVELADA':
             cuota = Decimal(self.calculo_cuota())  # Solo llamamos una vez
             if intereses >= cuota:
-                intereses = Decimal(self.interes_generado)
+                intereses = self.calculo_interes()
 
             #intereses -= self.calculo_interes()
             # Capital es la diferencia entre la cuota y los intereses

@@ -46,6 +46,7 @@ class Credit(models.Model):
     saldo_actual = models.DecimalField("Saldo Actual", decimal_places=2, max_digits=15, default=0)
     estado_aportacion = models.BooleanField(default=False)
     estados_fechas =  models.BooleanField(blank=True, null=True)
+    desembolsado_completo = models.BooleanField(default=False)
 
     # nuevos atributos
     plazo_restante = models.IntegerField("Plazo", blank=True, null=True, default=0)
