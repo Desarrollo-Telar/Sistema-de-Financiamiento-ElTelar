@@ -14,6 +14,7 @@ from apps.financings.clases.personality_logs import logger
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from django.db.models import Q, Sum
 
 
 def codigo(instance):
@@ -47,6 +48,7 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
         # FECHA DE VENCIMIENTO
         fecha_vencimiento = calcular_fecha_vencimiento(instance.fecha_inicio)
         
+    if instance.desembolsado_completo:
         # GENERAR LA PRIMERA CUOTA
         plan_pago = PaymentPlan(
             credit_id=instance,

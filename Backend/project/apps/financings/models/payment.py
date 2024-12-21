@@ -421,8 +421,6 @@ class Payment(models.Model):
         
         mora = calculo_mora(saldo_pendiente, credito.tasa_interes)
         
-        print('CALCULANDO...')
-        print(siguiente)
        
         
         if siguiente:
