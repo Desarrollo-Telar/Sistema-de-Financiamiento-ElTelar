@@ -13,7 +13,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Descubre automáticamente las tareas definidas en los `tasks.py` de cada app
 app.autodiscover_tasks()
-
+app.autodiscover_tasks(['apps.financings'])
 @app.task(bind=True)
 def debug_task(self):
     print(f'Request: {self.request!r}')

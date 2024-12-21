@@ -166,26 +166,9 @@ def detail_credit(request,id):
     siguiente_pago = PaymentPlan.objects.filter(credit_id=credito)
     estado_cuenta = AccountStatement.objects.filter(credit=credito)
     pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
-    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), status=False)
-    print(planes)
-    cambiar_plan()
+    
 
-    historial_a = AccountStatement.objects.filter(credit=credito, description='PAGO DE CREDITO').order_by('-id').first()
-    if historial_a:
-        ultima_fecha  = historial_a.payment.fecha_emision.strftime('%Y-%m-%d')
-        fecha_antes = '2023-08-02'
-        # Convertir las cadenas a objetos datetime
-        fecha_antes_dt = datetime.strptime(fecha_antes, '%Y-%m-%d')
-        ultima_fecha_dt = datetime.strptime(ultima_fecha, '%Y-%m-%d')
-
-        # Calcular la diferencia en días
-        diferencia = (ultima_fecha_dt - fecha_antes_dt).days
-        print(diferencia)
-        if diferencia >= 31:
-            print('BUSCAR LA ULTIMA CUOTA')
-            cuotas = PaymentPlan.objects.filter(credit_id_id=credito.id).order_by('-id').first()
-            print(cuotas)
-
+    
     
     if pagos:
         credito.saldo_pendiente = pagos.saldo_pendiente

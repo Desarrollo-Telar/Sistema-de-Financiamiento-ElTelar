@@ -72,7 +72,7 @@ class Payment(models.Model):
         Encuentra la próxima cuota a pagar en función de la fecha de emisión y el historial de pagos.
         """
         # Obtener todas las cuotas del crédito ordenadas por la fecha límite
-        cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit).order_by('fecha_limite')
+        cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit, status=False, cuota_vencida=False).order_by('fecha_limite')
 
         # Fecha de emisión (como objeto datetime)
         fecha_emision = self.fecha_emision
@@ -270,7 +270,7 @@ class Payment(models.Model):
                 pass
         else:
             # Creamos un nuevo recibo si no hay existentes
-            recibo = Recibo(
+            recibo = self.get_recibo()(
                 mora=cuota.mora,
                 interes=cuota.interest,
                 pago=pago,
@@ -293,10 +293,10 @@ class Payment(models.Model):
         cuota.saldo_pendiente = saldo_pendiente
         cuota.numero_referencia = self.numero_referencia
         cuota.cambios = False
-        """
+        
         if aporte_capital > 0:
             cuota.status = True
-        """
+        
         cuota.save()
 
         # ACTUALIZAR EL PAGO PARA REFREGAR LA CANTIDA PAGADA
@@ -366,6 +366,7 @@ class Payment(models.Model):
             if cuota.interest <=0:
             
                 cuota_a_actualizar.interest =  interes
+                pago.cuota_vencida = False
             else:
                 cuota_a_actualizar.interest  = max (0, cuota_a_actualizar.interest - pagado_interes)
 

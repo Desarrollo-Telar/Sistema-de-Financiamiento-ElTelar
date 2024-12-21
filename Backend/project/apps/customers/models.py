@@ -169,10 +169,10 @@ def send_message(sender, instance, created, **kwargs):
     customer = instance
     if created:
         
-        #send_email_new_customer(customer)
+        send_email_new_customer(customer)
         #nuevo_cliente(customer)
 
-        #send_email_welcome_customer(customer)
+        send_email_welcome_customer(customer)
         
         filename = f'codigoQr_{customer.customer_code}.png'
         dato = f'http://127.0.0.1:8000/pdf/{customer.id}/'

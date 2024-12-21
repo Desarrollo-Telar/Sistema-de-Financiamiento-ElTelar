@@ -36,7 +36,7 @@ class AutoLogoutMiddleware:
 
 
 
-
+from apps.financings.task import cambiar_plan
 class RestrictedAccessByTimeMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -49,8 +49,10 @@ class RestrictedAccessByTimeMiddleware:
         # Obtener la hora actual
         hora_actual = datetime.now().hour
 
+
         # Verificar si la hora actual está fuera del horario permitido
         if not (hora_inicio <= hora_actual < hora_fin):
+            
             context = {
                 'status':403,
                 'title':'EL TELAR'
