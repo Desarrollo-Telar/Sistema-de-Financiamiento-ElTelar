@@ -18,6 +18,9 @@ from django.contrib import messages
 # Formularios
 from apps.codes.forms import CodeForm
 
+# TAREA ASINCRONICO
+from apps.financings.task import cambiar_plan
+
 # Modelos
 from apps.users.models import User
 from django.contrib.auth.models import AnonymousUser
@@ -202,6 +205,7 @@ def logout_view(request):
 ### --- APARTADO PARA INICIAR SESION --- ###
 def login_view(request):
     template_name = 'user/login.html'
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     
     # Verificar que no este autenticado
     if request.user.is_authenticated:
@@ -282,6 +286,7 @@ from apps.financings.formato import formatear_numero
 @usuario_activo
 def index(request):
     template_name = 'index.html'
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     # Obtener el día de la fecha actual
     dia_actual = now.day
     mes_actual = now.month
