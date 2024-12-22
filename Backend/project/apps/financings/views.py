@@ -152,11 +152,13 @@ def list_disbursement(request):
 
 ### ------------ DETALLE -------------- ###
 from datetime import datetime
+from .task import cambiar_plan
 @login_required
 @usuario_activo
 def detail_credit(request,id):
     template_name = 'financings/credit/detail.html'
     credito= get_object_or_404(Credit,id=id)
+    cambiar_plan()
     
     customer_list = get_object_or_404(Customer,id= credito.customer_id.id)
     list_guarantee = Guarantees.objects.filter(credit_id=credito).order_by('-id')

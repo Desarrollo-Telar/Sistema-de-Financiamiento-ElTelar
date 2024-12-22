@@ -372,14 +372,14 @@ class Payment(models.Model):
 
 
                 
-            cuota_a_actualizar.mora = max(0,cuota_a_actualizar.mora - pagado_mora)
+            cuota_a_actualizar.mora = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)
             
                 
                 
                 
         else:
             # Creamos una nueva cuota si no existe
-            cuota_a_actualizar = self.get_plan_pagos()
+            cuota_a_actualizar = self.get_plan_pagos()()
             cuota_a_actualizar.interest = interes
             #cuota_a_actualizar.mora = mora
 

@@ -55,8 +55,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # MIDDLEWARE 
-    'project.middleware.AutoLogoutMiddleware',
-    'project.middleware.RestrictedAccessByTimeMiddleware',
+    #'project.middleware.AutoLogoutMiddleware',
+    #'project.middleware.RestrictedAccessByTimeMiddleware',
     # WhiteNoise 
     #'whitenoise.middleware.WhiteNoiseMiddleware',
 ]

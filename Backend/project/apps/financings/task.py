@@ -77,19 +77,25 @@ def cambiar_plan():
 
     print("Plan cambiado correctamente")
 
-    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), cuota_vencida=False)
+    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), status=False, cuota_vencida=False)
     if planes:
         for pago in planes:
+            print(pago)
             # Validar si hay algún pago registrado para este crédito y plan
-            boleta = Payment.objects.filter(credit=pago.credit_id)
+            boleta = Payment.objects.filter(credit=pago.credit_id, id=pago.id )
+            print(boleta)
             if not boleta:
                 #pago.status = True     
                 # Calcular la mora acumulada solo si hay atraso (después de 15 días)
                 #mora = calculo_mora(pago.saldo_pendiente, pago.credit_id.tasa_interes)
                 mora = Decimal(pago.interest) * Decimal(0.1)
-                mora_acumulada = pago.mora + mora
+                print(pago.interest)
+                print(mora)
+                #mora_acumulada = pago.mora + mora
+                print(mora_acumulada)
                 pago.cuota_vencida = True
-                pago.mora += mora_acumulada   
+                #pago.mora = mora_acumulada   
+                pago.mora = mora
                 pago.save()
 
                 interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
