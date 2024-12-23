@@ -48,6 +48,11 @@ $(document).ready(function () {
             url: urls_p.api_url_clientes_aceptados,
             dataType: 'json',
             delay: 250,
+            data: function (params) {
+                return {
+                    term: params.term // Parámetro que el backend debe esperar
+                };
+            },
             processResults: function (data) {
                 console.log(data);
                 // Verificar si 'data' es un array de objetos
@@ -79,6 +84,11 @@ $(document).ready(function () {
             url: urls_p.api_url_credit_vigente,
             dataType: 'json',
             delay: 250,
+            data: function (params) {
+                return {
+                    term: params.term // Parámetro que el backend debe esperar
+                };
+            },
             data: function (params) {
                 return {
                     term: params.term // Parámetro que el backend debe esperar
