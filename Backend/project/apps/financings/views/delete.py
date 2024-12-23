@@ -30,3 +30,11 @@ def delete_desembolso(request, id):
     desembolso = get_object_or_404(Disbursement, id=id)
     desembolso.delete()
     return redirect('financings:list_disbursement')
+
+
+@login_required
+@usuario_activo
+def delete_credit(request, id):
+    credit = get_object_or_404(Credit,id=id)
+    credit.delete()
+    return redirect('financings:list_credit')

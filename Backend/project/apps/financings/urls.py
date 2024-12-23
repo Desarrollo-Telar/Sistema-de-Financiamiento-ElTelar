@@ -24,6 +24,7 @@ urlpatterns = [
     path('credit/estado_cuenta/pdf/<int:id>/',login_required(views.render_pdf_estado_cuenta),name='estado_cuenta_pdf'),
     path('credit/calculos_realizados/pdf/<int:id>/',login_required(views.render_pdf_calculos_credito),name='calculos_realizados'),
     path('credit/plan_pagos/pdf/<int:id>/',login_required(views.render_pdf_plan_pagos),name='plan_pagos'),
+    path('credit/delete/<int:id>',login_required(views.delete_credit),name="delete_credit"),
     # ---------------- GARANTIA ------------
     path('guarantee/',login_required(views.list_guarantee), name='list_guarantee'),
     path('guarantee/create/',login_required(views.create_guarantee),name='create_guarantee'),
