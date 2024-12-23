@@ -38,6 +38,13 @@ def informacion_estado_cuenta(instance, disbursement_paid, referencia, descripti
     )
     return estado_cuenta
 
+<<<<<<< HEAD
+=======
+def credito_desembolsado(instance):
+    credito = instance.credit_id
+    credito.desembolsado_completo = True
+    credito.save()
+>>>>>>> server
 
 @receiver(pre_save, sender=Disbursement)
 def verificar_montos_desembolsados(sender, instance, **kwargs):
@@ -52,6 +59,7 @@ def verificar_montos_desembolsados(sender, instance, **kwargs):
     instance.total_t = total_desembolso
 
     if total_desembolso > total_credito:
+<<<<<<< HEAD
         raise ValidationError('El monto total desembolsado excede el monto del crédito.')
     
     if total_desembolso == total_credito:
@@ -59,6 +67,14 @@ def verificar_montos_desembolsados(sender, instance, **kwargs):
         credito = instance.credit_id
         credito.desembolsado_completo = True
         credito.save()
+=======
+        credito_desembolsado(instance)
+        #raise ValidationError('El monto total desembolsado excede el monto del crédito.')
+    
+    if total_desembolso == total_credito:
+        # Indicar que ya se desembolsó completamente
+        credito_desembolsado(instance)
+>>>>>>> server
 
     # Registrar información adicional
     logger.info(f'Total desembolsado: {total_desembolso}, Total crédito: {total_credito}')

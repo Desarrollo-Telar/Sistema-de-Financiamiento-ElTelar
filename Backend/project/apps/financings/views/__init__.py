@@ -16,3 +16,6 @@ from .generar_pdf import render_pdf_factura, render_pdf_estado_cuenta, render_pd
 
 # REPORTES
 from .reportes import reportes_generales
+
+# Funcion para eliminar
+from .delete import delete_credit

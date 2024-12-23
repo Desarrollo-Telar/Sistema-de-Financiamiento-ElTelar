@@ -174,11 +174,13 @@ class Payment(models.Model):
 
         # Obtener información del banco
         info_banco = self.banco()
-        """
+        
         if info_banco:
             # Fecha de creación del registro en el banco
             fecha_creacion_registro_banco = info_banco.creation_date
-
+            print(fecha_creacion_registro_banco)
+            print(fecha_creacion_pago)
+            """
             # Verificar si el registro del banco es anterior al pago
             if fecha_creacion_registro_banco > fecha_creacion_pago:
                 # Ajustar mora si ya fue generada
@@ -189,7 +191,7 @@ class Payment(models.Model):
                     cuota.cambios = True
                     cuota.save()  # Guardar los cambios en la base de datos
         
-        """
+            """
         
 
         # Retornar la mora actualizada
