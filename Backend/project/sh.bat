@@ -19,4 +19,3 @@ if %errorlevel% equ 0 (
 )
 
 endlocal
-pause

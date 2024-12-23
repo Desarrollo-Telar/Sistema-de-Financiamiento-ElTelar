@@ -39,7 +39,6 @@ def generar_codigo(sender, instance, **kwargs):
 def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
     print('desde signals post save de credit, de la funcion generar plan de pagos nuevos')
     if created:
-        
         # CALCULO DE INTERES
         interes = calculo_interes(instance.monto, instance.tasa_interes)
         # GENERACION DE FECHA LIMITE DE PAGO 15 DIAS
@@ -48,7 +47,7 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
         # FECHA DE VENCIMIENTO
         fecha_vencimiento = calcular_fecha_vencimiento(instance.fecha_inicio)
         
-    if instance.desembolsado_completo:
+    
         # GENERAR LA PRIMERA CUOTA
         plan_pago = PaymentPlan(
             credit_id=instance,
