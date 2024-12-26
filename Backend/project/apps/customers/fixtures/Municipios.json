@@ -1,0 +1,162 @@
+[
+{
+    "model": "addresses.municiopio",
+    "pk": 1,
+    "fields": {
+        "nombre": "Coban",
+        "depart": 1
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 2,
+    "fields": {
+        "nombre": "San Pedro Carcha",
+        "depart": 1
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 3,
+    "fields": {
+        "nombre": "Santa Cruz Verapaz",
+        "depart": 1
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 4,
+    "fields": {
+        "nombre": "San Cristobal Verapaz",
+        "depart": 1
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 5,
+    "fields": {
+        "nombre": "Tactic",
+        "depart": 1
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 6,
+    "fields": {
+        "nombre": "Guatemala",
+        "depart": 7
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 7,
+    "fields": {
+        "nombre": "Santa Catarina Pinula",
+        "depart": 7
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 8,
+    "fields": {
+        "nombre": "San Jose Pinula",
+        "depart": 7
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 9,
+    "fields": {
+        "nombre": "Mixco",
+        "depart": 7
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 10,
+    "fields": {
+        "nombre": "Villa Nueva",
+        "depart": 7
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 11,
+    "fields": {
+        "nombre": "Quetzaltenango",
+        "depart": 13
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 12,
+    "fields": {
+        "nombre": "Salcaja",
+        "depart": 13
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 13,
+    "fields": {
+        "nombre": "San Carlos Sija",
+        "depart": 13
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 14,
+    "fields": {
+        "nombre": "Olintepeque",
+        "depart": 13
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 15,
+    "fields": {
+        "nombre": "La Esperanza",
+        "depart": 13
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 16,
+    "fields": {
+        "nombre": "Zacapa",
+        "depart": 22
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 17,
+    "fields": {
+        "nombre": "Estanzuela",
+        "depart": 22
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 18,
+    "fields": {
+        "nombre": "Rio Hondo",
+        "depart": 22
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 19,
+    "fields": {
+        "nombre": "Teculutan",
+        "depart": 22
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 20,
+    "fields": {
+        "nombre": "Usumatlan",
+        "depart": 22
+    }
+}
+]
