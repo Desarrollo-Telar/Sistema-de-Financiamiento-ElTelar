@@ -1,5 +1,5 @@
 # FUNCIONES PARA CREAR
-from .create import create_credit, create_disbursement, create_guarantee, create_payment
+from .create import create_credit, create_disbursement, create_guarantee
 
 # FUNCIONES PARA LISTAR
 from .read import list_bank, list_credit, list_disbursement, list_guarantee, list_payment,PaymentSearch,BankSearch
@@ -19,3 +19,8 @@ from .reportes import reportes_generales
 
 # Funcion para eliminar
 from .delete import delete_credit
+
+
+# ORGANIZACION DEL CODIGO
+# PAGOS
+from .payment import create_payment

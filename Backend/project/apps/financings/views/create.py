@@ -18,15 +18,7 @@ from apps.financings.models import Credit
 
 # Create your views here.
 ### ------------------- CREAR ---------------------- ###
-@login_required
-@usuario_activo
-def create_payment(request):
-    template_name = 'financings/payment/create.html'
-    context = {
-        'title':'ELTELAR - PAGOS'
-    }
 
-    return render(request,template_name,context)
 
 @login_required
 @usuario_activo
