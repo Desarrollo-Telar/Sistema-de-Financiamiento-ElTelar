@@ -72,7 +72,7 @@ MIDDLEWARE = [
 MAINTENANCE_MODE = True  # Cambia a False para desactivar el modo de mantenimiento
 
 # Configura el tiempo de expiración de la sesión a 30 minutos
-SESSION_COOKIE_AGE = 1800  # 30 minutos en segundos
+SESSION_COOKIE_AGE = 2700  # 30 minutos en segundos
 
 # Define que la sesión se cierre cuando el navegador se cierre
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
