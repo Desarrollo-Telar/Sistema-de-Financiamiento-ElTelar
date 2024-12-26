@@ -63,16 +63,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # MIDDLEWARE 
-    #'project.middleware.AutoLogoutMiddleware',
-    #'project.middleware.RestrictedAccessByTimeMiddleware',
+    'project.middleware.AutoLogoutMiddleware',
+#'project.middleware.RestrictedAccessByTimeMiddleware',
     
 ]
 
 # Modo de mantenimiento
 MAINTENANCE_MODE = True  # Cambia a False para desactivar el modo de mantenimiento
 
-# Configura el tiempo de expiración de la sesión a 30 minutos
-SESSION_COOKIE_AGE = 2700  # 30 minutos en segundos
+# Configura el tiempo de expiración de la sesión a 45 minutos
+SESSION_COOKIE_AGE = 2700  # 45 minutos en segundos
 
 # Define que la sesión se cierre cuando el navegador se cierre
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
