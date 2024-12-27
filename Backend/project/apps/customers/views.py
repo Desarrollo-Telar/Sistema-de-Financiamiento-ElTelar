@@ -91,7 +91,6 @@ def delete_customers(request,id):
 # ----- LISTADO DE CLIENTES ----- #
 @login_required
 @usuario_activo
-@usuario_secretaria
 def list_customer(request):
     status = ['Revisión de documentos', 'Aprobado', 'No Aprobado', 'Posible Cliente']
     customer_list = Customer.objects.all().order_by('-id').filter(status__in=status)
@@ -109,7 +108,6 @@ def list_customer(request):
 # ----- CREANDO USUARIOS NUEVOS ----- #
 @login_required
 @usuario_activo
-@usuario_secretaria
 def add_customer(request):     
     ime = ImmigrationStatus.objects.all()    
     template_name = 'customer/add.html'    
@@ -152,7 +150,7 @@ class CustomerSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator([usuario_activo,  usuario_secretaria])
+    @method_decorator([usuario_activo])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -171,7 +169,6 @@ class CustomerSearch(ListView):
 # ----- VER DETALLES DE UN CLIENTE ----- #
 @login_required
 @usuario_activo
-@usuario_secretaria
 def detail_customer(request,customer_code):
     template_name = 'customer/detail.html'
     customer_list = get_object_or_404(Customer,customer_code = str(customer_code))    
