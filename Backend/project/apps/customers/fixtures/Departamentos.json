@@ -1,0 +1,156 @@
+[
+{
+    "model": "addresses.departamento",
+    "pk": 1,
+    "fields": {
+        "nombre": "Alta Verapaz"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 2,
+    "fields": {
+        "nombre": "Baja Verapaz"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 3,
+    "fields": {
+        "nombre": "Chimaltenango"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 4,
+    "fields": {
+        "nombre": "Chiquimula"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 5,
+    "fields": {
+        "nombre": "El Progreso"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 6,
+    "fields": {
+        "nombre": "Escuintla"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 7,
+    "fields": {
+        "nombre": "Guatemala"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 8,
+    "fields": {
+        "nombre": "Huehuetenango"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 9,
+    "fields": {
+        "nombre": "Izabal"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 10,
+    "fields": {
+        "nombre": "Jalapa"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 11,
+    "fields": {
+        "nombre": "Jutiapa"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 12,
+    "fields": {
+        "nombre": "Peten"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 13,
+    "fields": {
+        "nombre": "Quetzaltenango"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 14,
+    "fields": {
+        "nombre": "Quiche"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 15,
+    "fields": {
+        "nombre": "Retalhuleu"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 16,
+    "fields": {
+        "nombre": "Sacatepequez"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 17,
+    "fields": {
+        "nombre": "San Marcos"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 18,
+    "fields": {
+        "nombre": "Santa Rosa"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 19,
+    "fields": {
+        "nombre": "Solola"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 20,
+    "fields": {
+        "nombre": "Suchitepquez"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 21,
+    "fields": {
+        "nombre": "Totonicapan"
+    }
+},
+{
+    "model": "addresses.departamento",
+    "pk": 22,
+    "fields": {
+        "nombre": "Zacapa"
+    }
+}
+]
