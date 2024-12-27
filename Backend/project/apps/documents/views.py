@@ -22,6 +22,8 @@ from django.contrib.auth.decorators import login_required
 from project.decorador import usuario_activo
 from django.utils.decorators import method_decorator
 
+# Manejo de mensajes
+from django.contrib import messages
 
 # Create your views here.
 @login_required
@@ -34,7 +36,8 @@ def subir_banco(request):
         if form.is_valid():
             documento = DocumentBank()
             documento.document = form.cleaned_data.get('document')
-            documento.save()            
+            documento.save()       
+            messages.success(request, 'Documento Subido')
             return redirect('financings:list_bank')
 
     form = DocumentBankForms
@@ -63,6 +66,7 @@ def create_document_customer(request, customer_code):
             documento.save()
             document_customer = DocumentCustomer(document_id=documento, customer_id=customer_id)
             document_customer.save()
+            messages.success(request, 'Documento Subido')
             return redirect('customers:detail',customer_code)
 
     form = DocumentForms
@@ -90,6 +94,7 @@ def create_documente_address(request, addrress_id ,customer_code):
             documento.save()
             document_customer = DocumentAddress(document_id=documento, customer_id=customer_id, addrress_id=addrress_id)
             document_customer.save()
+            messages.success(request, 'Documento Subido')
             return redirect('customers:detail',customer_code)
 
     form = DocumentForms
@@ -118,6 +123,7 @@ def create_documente_guarantee(request, investment_plan_id ,customer_code):
             documento.save()
             document_customer = DocumentGuarantee(document_id=documento, customer_id=customer_id, investment_plan_id=investment_plan_id)
             document_customer.save()
+            messages.success(request, 'Documento Subido')
             return redirect('customers:detail',customer_code)
 
     form = DocumentForms
@@ -135,6 +141,7 @@ def create_documente_guarantee(request, investment_plan_id ,customer_code):
 def delete(request, id, customer_code):    
     document = get_object_or_404(Document, id=id)
     document.delete()
+    messages.success(request, 'Documento Eliminado')
     return redirect('customers:detail',customer_code)
 
 @login_required
@@ -148,6 +155,7 @@ def update_document(request, id, customer_code):
         form = DocumentForms(request.POST, request.FILES, instance=documento)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Documento Actualizado')
             return redirect('customers:detail', customer_code=customer_code)
     else:
         form = DocumentForms(instance=documento)
