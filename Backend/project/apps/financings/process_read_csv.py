@@ -25,6 +25,9 @@ def process(nuevo):
         # Acceder a los valores de cada fila
         fecha = datetime.strptime(row['Fecha'], '%d/%m/%Y')
         referencia = str(row['Referencia'])
+
+        if '.' in referencia:
+            referencia = referencia.split('.')[0]
         credito = row['Crédito (+)']
         debito = row['Débito (-)']
         descripcion = row['Descripción']
