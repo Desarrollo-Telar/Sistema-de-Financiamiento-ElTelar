@@ -6,7 +6,7 @@ def validar_correo(correo):
     regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     
     # Lista de dominios conocidos
-    dominios_conocidos = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com']  # Agrega más dominios según sea necesario
+    dominios_conocidos = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'yahoo.es','yahoo.s']  # Agrega más dominios según sea necesario
     
     # Validar el formato del correo electrónico
     if not re.match(regex, correo):
