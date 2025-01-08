@@ -158,5 +158,13 @@
         "nombre": "Usumatlan",
         "depart": 22
     }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 21,
+    "fields": {
+        "nombre": "FRAY BARTOLOME DE LAS CASAS",
+        "depart": 1
+    }
 }
 ]

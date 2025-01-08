@@ -1,0 +1,131 @@
+[
+{
+    "model": "financings.detailsguarantees",
+    "pk": 2,
+    "fields": {
+        "garantia_id": 2,
+        "tipo_garantia": "CHEQUE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL",
+            "noCheque": "21",
+            "Monto_cheque": 2656,
+            "NombreCuenta": "ELMER GIOVANI QUEZADA GARCÍA",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "2759.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 3,
+    "fields": {
+        "garantia_id": 3,
+        "tipo_garantia": "CHEQUE",
+        "especificaciones": {
+            "Banco": "BANCO BANRURAL ",
+            "noCheque": "14",
+            "Monto_cheque": 6500,
+            "NombreCuenta": "JOSE PEREZ CHENAL",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "6500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 4,
+    "fields": {
+        "garantia_id": 4,
+        "tipo_garantia": "CHEQUE",
+        "especificaciones": {
+            "Banco": "BANRURAL ",
+            "noCheque": "00",
+            "Monto_cheque": 5000,
+            "NombreCuenta": "HARY DARIO HUN CAAL",
+            "Cheque_girado_a": "0"
+        },
+        "valor_cobertura": "4000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 5,
+    "fields": {
+        "garantia_id": 5,
+        "tipo_garantia": "CHEQUE",
+        "especificaciones": {
+            "Banco": "BANRURAL ",
+            "noCheque": "389",
+            "Monto_cheque": 4500,
+            "NombreCuenta": "MARIO ICAL",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "4500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 6,
+    "fields": {
+        "garantia_id": 6,
+        "tipo_garantia": "FIADOR",
+        "especificaciones": {
+            "Nombre": "",
+            "Ingresos": 2500,
+            "fotografia": {},
+            "Lugar_de_Trabajo": "MAGA",
+            "Codigo_de_Cliente": "2025-6",
+            "Numero_de_Telefono": "48310001"
+        },
+        "valor_cobertura": "2500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 7,
+    "fields": {
+        "garantia_id": 7,
+        "tipo_garantia": "CHEQUE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL",
+            "noCheque": "1853",
+            "Monto_cheque": 3500,
+            "NombreCuenta": "MARIA BOTZOC",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGUEZ ROQUEL"
+        },
+        "valor_cobertura": "4500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 8,
+    "fields": {
+        "garantia_id": 8,
+        "tipo_garantia": "CHEQUE",
+        "especificaciones": {
+            "Banco": "BANRURAL",
+            "noCheque": "456",
+            "Monto_cheque": 9000,
+            "NombreCuenta": "CESAR CAAL MORALES",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "9000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 9,
+    "fields": {
+        "garantia_id": 9,
+        "tipo_garantia": "CHEQUE",
+        "especificaciones": {
+            "Banco": "BANRURAL",
+            "noCheque": "11",
+            "Monto_cheque": 9000,
+            "NombreCuenta": "CESAR ASIG",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "9000.00"
+    }
+}
+]
