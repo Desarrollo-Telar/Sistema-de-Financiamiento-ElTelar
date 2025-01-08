@@ -11,20 +11,47 @@ from apps.customers.models import Customer, ImmigrationStatus
 
 from django.db.models import Q
 
+from django.db.models import Q
+from django.utils.timezone import datetime
+
 class CustomerViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
+
+        # Obtener el término de búsqueda opcional
+        search_term = self.request.query_params.get('term', '')
+
+        # Obtener el mes de creación opcional
+        month = self.request.query_params.get('month', None)
+        year = self.request.query_params.get('year', None)
+
+        # Filtrar por término de búsqueda si existe
         if search_term:
             queryset = queryset.filter(
                 Q(first_name__icontains=search_term) |
                 Q(last_name__icontains=search_term) |
                 Q(customer_code__icontains=search_term)
-                ) # Filtrar por el término de búsqueda
+            )
+
+        # Filtrar por mes y año si se proporcionan
+        if month and year:
+            try:
+                # Validar que el mes y el año son valores válidos
+                month = int(month)
+                year = int(year)
+                queryset = queryset.filter(
+                    created_at__year=year,
+                    created_at__month=month
+                )
+            except ValueError:
+                # Si los valores no son válidos, se ignora el filtro de mes/año
+                pass
+
         return queryset
+
 
 class CustomerAcceptViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer

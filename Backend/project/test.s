@@ -1,81 +1,177 @@
-// Programa en ensamblador para generar números naturales en un archivo de texto
+.global _start
 
-section .data
-    filename db "numeros.txt", 0    // Nombre del archivo
-    msg db "números naturales generados", 0
+.bss
+memory: .space 240
+offset: .quad 0 
+buff_1: .space 22 
+buff_2: .space 22
+buff_3: .space 22
 
-section .bss
-    buffer resb 1024                // Buffer para los números
-
-section .text
-    global _start
-
+.text
 _start:
-    // Abrir archivo
-    mov eax, 8                      // sys_open
-    mov ebx, filename
-    mov ecx, 2                      // O_WRONLY
-    int 0x80
+    mov x0, 5
+    ldr x1, =memory
+    ldr x2, =offset
+    bl func1
 
-    // Guardar descriptor de archivo
-    mov ebx, eax
+    mov x0, 7
+    ldr x1, =memory
+    ldr x2, =offset
+    bl func1
 
-    // Generar números y escribir en el archivo
-    mov ecx, 1                      // Contador de números
-    mov edx, buffer
+    mov x0, 2
+    ldr x1, =memory
+    ldr x2, =offset
+    bl func1
+    
+    mov x0, 4
+    ldr x1, =memory
+    ldr x2, =offset
+    bl func1
 
-generate_numbers:
-    // Convertir número a cadena
-    mov eax, ecx
-    call int_to_str
+    ldr x0, =memory
+    ldr x1, =offset
+    ldr x2, =buff_1
+    bl func2
 
-    // Añadir cero y nueva línea
-    mov byte [edx], 0
-    inc edx
-    mov byte [edx], 10
-    inc edx
+    mov x0, 1
+    ldr x1, =buff_1
+    mov x2, 22
+    mov x8, 64
+    svc 0
 
+    ldr x0, =memory
+    ldr x1, =buff_2
+    bl func3
+    
+    mov x2, 10
+    strb w2, [x1], 1
+    strb wzr, [x1]
+    mov x0, 1
+    ldr x1, =buff_2
+    mov x2, 22
+    mov x8, 64
+    svc 0
 
-    inc ecx
+    ldr x0, =memory
+    ldr x1, =buff_3
+    bl func4
+    
+    mov x2, 10
+    strb w2, [x1], 1
+    strb wzr, [x1]
+    mov x0, 1
+    ldr x1, =buff_3
+    mov x2, 22
+    mov x8, 64
+    svc 0
 
+    mov x8, 93
+    svc 0
 
-    cmp ecx, 10                     
-    jle generate_numbers
+func1:
+    mov x3, x1
+    ldr x4, [x2]
+    cmp x4, 0
+    beq l0
+l1:
+    ldr x5, [x3]
+    cmp x0, x5
+    bge l2
+    ldr x6, [x3, 8]
+    cmp x6, 0
+    beq l3
+    mov x3, x6
+    b l1
+l3:
+    add x1, x1, x4
+    str x1, [x3, 8]
+    str x0, [x1]
+    str xzr, [x1, 8]
+    str xzr, [x1, 16]
+    add x4, x4, 24
+    str x4, [x2]
+    ret
+l2:
+    ldr x6, [x3, 16]
+    cmp x6, 0
+    beq l4
+    mov x3, x6
+    b l1
+l4:
+    add x1, x1, x4
+    str x1, [x3, 16]
+    str x0, [x1]
+    str xzr, [x1, 8]
+    str xzr, [x1, 16]
+    add x4, x4, 24
+    str x4, [x2]
+    ret
+l0:
+    str x0, [x1]
+    str xzr, [x1, 8]
+    str xzr, [x1, 16]
+    add x4, x4, 24
+    str x4, [x2]
+    ret
 
-    // Escribir buffer en el archivo
-    mov eax, 4                      
-    mov ecx, buffer
-    mov edx, edx
-    int 0x80
+func2:
+    mov x9, 24
+    ldr x10, [x1] 
+    sdiv x10, x10, x9
+l5:
+    cmp x10, 0
+    beq l6
+    ldr x3, [x0]
+    add x3, x3, '0'
+    strb w3, [x2]
+    add x0, x0, 24
+    add x2, x2, 1
+    mov x3, ' '
+    strb w3, [x2]
+    add x2, x2, 1
+    sub x10, x10, 1
+    b l5
+l6:
+    mov x3, 10
+    strb w3, [x2]
+    strb wzr, [x2, 1]
+    ret
 
-    // Cerrar archivo
-    mov eax, 6                      
-    int 0x80
+func3: 
+    stp fp, lr, [sp, -16]!
+    stp x0, x2, [sp, -16]!
+    cbz x0, end_func3
+    mov x2, x0
+    ldr x0, [x0, 8]
+    bl func3
+    ldr x3, [x2]
+    add x3, x3, '0'
+    strb w3, [x1], 1
+    mov x3, ' '
+    strb w3, [x1], 1
+    ldr x0, [x2, 16]
+    bl func3 
+end_func3:
+    ldp x0, x2, [sp], 16
+    ldp fp, lr, [sp], 16
+    ret
 
-    // Salida
-    mov eax, 1                      // sys_exit
-    int 0x80
-
-// Rutina para convertir entero a cadena
-int_to_str:
-    push eax
-    mov ebx, 10
-    xor ecx, ecx
-
-convert_loop:
-    xor edx, edx
-    div ebx
-    add dl, '0'
-    push edx
-    inc ecx
-    test eax, eax
-    jnz convert_loop
-
-print_loop:
-    pop eax
-    mov [edx], al
-    inc edx
-    loop print_loop
-
-    pop eax
+func4: 
+    stp fp, lr, [sp, -16]!
+    stp x0, x2, [sp, -16]!
+    cbz x0, end_func4
+    ldr x3, [x0]
+    add x3, x3, '0'
+    strb w3, [x1], 1
+    mov x3, ' '
+    strb w3, [x1], 1
+    mov x2, x0
+    ldr x0, [x0, 8]
+    bl func3
+    ldr x0, [x2, 16]
+    bl func3 
+end_func4:
+    ldp x0, x2, [sp], 16
+    ldp fp, lr, [sp], 16
     ret

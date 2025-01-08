@@ -4,33 +4,118 @@
 
 {% block content %}
 <div class="row box">
-    <div class="row">
-        <h3 style="font-weight: bold;">Hola, {{user}}!</h3>
-        <div>
-            <p style="font-size: small;">{{dia}}</p>
-        </div>
-        <p>¡Bienvenido/a a nuestro portal de control de financiamientos El Telar!
-            Estamos encantados de tenerte aquí. Este es tu centro de operaciones
-            para gestionar las finanzas de todos nuestros clientes de manera
-            eficiente y efectiva. Desde el seguimiento del plan de inversion hasta
-            el siguimiento de sus pagos, estamos aquí para ayudarte en cada paso
-            del camino.</p>
-        <hr>
-
+    <h3 style="font-weight: bold;">Hola, {{user}}!</h3>
+    <div>
+        <p style="font-size: small;">{{dia}}</p>
     </div>
-    <div class="row">
-        {% include 'snippets/informacion.html'%}
-    </div>
-    {% if recibos %}
-    <div class="row table-responsive">
-        {% include 'snippets/recibos.html' with recibos=recibos %}
-    </div>
-    {% endif %}
-
-
-
+    <p>¡Bienvenido/a a nuestro portal de control de financiamientos El Telar!
+        Estamos encantados de tenerte aquí. Este es tu centro de operaciones
+        para gestionar las finanzas de todos nuestros clientes de manera
+        eficiente y efectiva. Desde el seguimiento del plan de inversion hasta
+        el siguimiento de sus pagos, estamos aquí para ayudarte en cada paso
+        del camino.</p>
+    <hr>
 
 </div>
+<div class="row box">
+    {% include 'snippets/informacion.html'%}
+</div>
+<div class="row box">
+    {% include 'snippets/graficas.html'%}
+</div>
+{% if recibos %}
+<div class="row box table-responsive">
+    {% include 'snippets/recibos.html' with recibos=recibos %}
+</div>
+{% endif %}
 
 
 {% endblock %}
+
+{% block js %}
+<script>
+    const ctx = document.getElementById('myChart');
+
+    // Función para obtener datos desde la API
+    async function fetchData(year) {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/customers/api/customers/'); // Reemplaza con tu endpoint
+            if (!response.ok) throw new Error('Error al obtener los datos');
+
+            const apiData = await response.json();
+
+            // Preprocesar los datos para obtener la cantidad de registros por mes para un año específico
+            const monthlyData = Array(12).fill(0); // Inicializar un array con 12 elementos en 0 (uno por mes)
+
+            apiData.forEach(item => {
+                const creationDate = new Date(item.creation_date); // Convertir la fecha de creación en un objeto Date
+                const recordYear = creationDate.getFullYear(); // Obtener el año de la fecha
+                const month = creationDate.getMonth(); // Obtener el mes (0 = Enero, 11 = Diciembre)
+
+                // Filtrar por el año proporcionado
+                if (recordYear === year) {
+                    monthlyData[month] += 1; // Incrementar el contador del mes correspondiente
+                }
+            });
+
+            // Configurar las etiquetas para los meses
+            const labels = [
+                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+            ];
+
+            // Configura el gráfico con los datos procesados
+            createChart(labels, monthlyData, year);
+        } catch (error) {
+            console.error('Error al obtener los datos:', error);
+        }
+    }
+
+    // Función para crear el gráfico
+    function createChart(labels, data, year) {
+        const chartData = {
+            labels: labels,
+            datasets: [{
+                label: `Registros de Clientes por Mes del año (${year})`,
+                data: data,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1 // Suaviza la línea del gráfico
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: chartData,
+            options: {
+                animations: {
+                    tension: {
+                        duration: 1000,
+                        easing: 'linear',
+                        from: 1,
+                        to: 0,
+                        loop: true
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 0,
+                        ticks: {
+                            stepSize: 1 // Incrementos en 1 en el eje Y
+                        }
+                    }
+                }
+            }
+        };
+
+        new Chart(ctx, config);
+    }
+
+    // Llama a la función para obtener datos y renderizar el gráfico
+    const currentYear = new Date().getFullYear(); // Puedes cambiarlo por el año deseado
+    fetchData(currentYear);
+</script>
+
+
+
+{% endblock%}
