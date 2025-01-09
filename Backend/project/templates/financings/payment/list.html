@@ -52,14 +52,12 @@
     <div class="row" style="margin-top: 2rem;">
         {% include 'financings/payment/table/table.html' %}
     </div>
+    {% if page_obj %}
+    {% include 'snippets/pages.html' %}
+    {% endif %}
+
+    {% endblock %}
 
 </div>
 
 </div>
-
-
-{% if page_obj %}
-{% include 'snippets/pages.html' %}
-{% endif %}
-
-{% endblock %}

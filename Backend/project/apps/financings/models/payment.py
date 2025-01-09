@@ -7,6 +7,9 @@ from django.utils import timezone
 # DECIMAL
 from decimal import Decimal
 
+# FORMATO
+from apps.financings.formato import formatear_numero
+
 # CALCULOS
 from apps.financings.calculos import calculo_mora, calculo_interes
 
@@ -49,6 +52,8 @@ class Payment(models.Model):
     tipo_pago = models.CharField('Tipo de Pago', choices=TYPE_PAYMENT, max_length=75, default='CREDITO')
     descripcion_estado = models.TextField(blank=True, null=True)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+    def Fmonto(self):
+        return formatear_numero(self.monto)
     
     def fechaEmision(self):
         return datetime.strftime(self.fecha_emision,'%Y-%m-%d')
@@ -174,7 +179,7 @@ class Payment(models.Model):
 
         # Obtener información del banco
         info_banco = self.banco()
-        
+        """
         if info_banco:
             # Fecha de creación del registro en el banco
             fecha_creacion_registro_banco = info_banco.creation_date
@@ -191,7 +196,7 @@ class Payment(models.Model):
                     cuota.cambios = True
                     cuota.save()  # Guardar los cambios en la base de datos
         
-            
+        """
         
 
         # Retornar la mora actualizada

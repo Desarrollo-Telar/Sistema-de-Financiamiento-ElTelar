@@ -28,11 +28,11 @@
 
                     <tr>
 
-                        <td scope="row">
-
-                            {{cuenta_estado.issue_date}}
-
-                        </td>
+                        {% if cuenta_estado.payment %}
+                        <td>{{cuenta_estado.payment.fecha_emision.date}}</td>
+                        {%else%}
+                        <td>{{cuenta_estado.issue_date}}</td>
+                        {% endif %}
                         <td scope="row">
 
                             <a href="{% url 'financings:clasificar' cuenta_estado.numero_referencia %}">

@@ -34,3 +34,13 @@ desc tabla;
 -- Ejecutar archivos SQL
 
 SOURCE <direccion del archivo sql>
+
+UPDATE financings_paymentplan SET mora = 0, cuota_vencida = 0 WHERE credit_id_id = 3;
+
+
+
+ UPDATE financings_paymentplan SET mora = 0, cuota_vencida = 0 WHERE credit_id_id = 4;
+
+
+
+ UPDATE financings_paymentplan SET mora = 0, cuota_vencida = 0 WHERE credit_id_id = 5;
