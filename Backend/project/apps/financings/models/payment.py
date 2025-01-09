@@ -21,6 +21,7 @@ from apps.financings.clases.personality_logs import logger
 from .disbursement import Disbursement
 from .credit import Credit
 from .bank import Banco
+from apps.customers.models import Customer
 
 from project.settings import MEDIA_URL, STATIC_URL
 
@@ -52,6 +53,9 @@ class Payment(models.Model):
     tipo_pago = models.CharField('Tipo de Pago', choices=TYPE_PAYMENT, max_length=75, default='CREDITO')
     descripcion_estado = models.TextField(blank=True, null=True)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+
+    # Nuevos atributos
+    cliente = models.ForeignKey(Customer, on_delete=models.CASCADE,null=True, blank=True, verbose_name="Cliente")
     def Fmonto(self):
         return formatear_numero(self.monto)
     

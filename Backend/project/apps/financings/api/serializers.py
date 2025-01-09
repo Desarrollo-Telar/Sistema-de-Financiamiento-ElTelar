@@ -46,6 +46,7 @@ class CreditSerializer(serializers.ModelSerializer):
             'is_paid_off',
             'estado_aportacion',
             'saldo_actual',
+            'cliente'
             
         ]
     def to_representation(self, instance):
@@ -76,7 +77,8 @@ class CreditSerializer(serializers.ModelSerializer):
             'estados_fechas':instance.estados_fechas,
             'plazo_restante':instance.plazo_restante,
             'estado_aportacion':instance.estado_aportacion,
-            'creation_date':instance.creation_date.date()
+            'creation_date':instance.creation_date.date(),
+            'cliente':instance.cliente
 
         }
 
