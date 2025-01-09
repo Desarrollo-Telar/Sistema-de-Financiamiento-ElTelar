@@ -20,7 +20,7 @@ class CreditAdmin(admin.ModelAdmin):
         'estados_fechas',
         'is_paid_off'
     )
-    list_display = ('customer_id','codigo_credito' ,'tipo_credito', 'monto','plazo','tasa_interes','fecha_inicio','estados_fechas','creation_date')
+    list_display = ('id','customer_id','codigo_credito' ,'tipo_credito', 'monto','plazo','tasa_interes','fecha_inicio','estados_fechas','creation_date')
 
 
 

@@ -87,6 +87,7 @@ export const urls_p = {
     api_url_cuota: `${baseUrl}/financings/api/cuota/`,
     api_url_cuotas: `${baseUrl}/financings/api/cuotas/`,
     api_url_estado_cuenta: `${baseUrl}/financings/api/estado_cuenta/`,
+    api_url_recibo:`${baseUrl}/financings/api/recibo/`,
 
     // DOCUMENTOS
     api_url_documento_garantia: `${baseUrl}/documents/api/documento_garantia/`,

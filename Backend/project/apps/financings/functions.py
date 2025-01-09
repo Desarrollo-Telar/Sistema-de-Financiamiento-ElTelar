@@ -5,6 +5,8 @@ from django.db.models import Sum  # Importar Sum para el cálculo del saldo pend
 from apps.financings.models import Credit, PaymentPlan, AccountStatement, Payment, Disbursement
 from apps.financings.utils import calcular_capital, calcular_interes, calcular_mora
 from datetime import datetime, timedelta
+
+from apps.financings.models import Banco
 def realizar_pago(payment, credito_id = None, disbursement_id = None ):
     try:
         
@@ -22,6 +24,9 @@ def realizar_pago(payment, credito_id = None, disbursement_id = None ):
                 pagoss.estado_transaccion = 'FALLIDO'
                 pagoss.descripcion_estado  = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
                 pagoss.save()
+                banco = Banco.objects.filter(referencia=payment.numero_referencia)
+                banco.status = True
+                banco.save()
                 return "Este crédito ya está pagado en su totalidad."
 
 

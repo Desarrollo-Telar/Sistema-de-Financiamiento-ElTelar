@@ -313,7 +313,7 @@ def index(request):
         'recibos':recibos,
         'count_re':recibos.count(),
         'clientes':Customer.objects.all(),
-        'creditos':Credit.objects.all(),
+        'creditos':Credit.objects.filter(is_paid_off=False),
         'ingresos':formatear_numero(ingresos),
         'egresos':formatear_numero(egresos),
     }

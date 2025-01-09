@@ -10,10 +10,16 @@ from rest_framework import viewsets, status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.db.models import Q
+from django.utils.timezone import datetime
+from datetime import datetime
+from rest_framework.request import Request
+
 
 class EstadoCuentaViewSet(viewsets.ModelViewSet):
     serializer_class = EstadoCuentaSerializer
     queryset = AccountStatement.objects.all()
+
+
 
 class CreditViewSet(viewsets.ModelViewSet):
     serializer_class = CreditSerializer
@@ -21,14 +27,38 @@ class CreditViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
+        
+        # Filtro por término de búsqueda
+        search_term = self.request.query_params.get('term', '')
+        # Obtener el mes de creación opcional
+        month = self.request.query_params.get('month', None)
+        year = self.request.query_params.get('year', None)
+
         if search_term:
             queryset = queryset.filter(
-                Q(customer_id__first_name__icontains =search_term)|
-                Q(customer_id__last_name__icontains =search_term)|
-                Q(codigo_credito__icontains =search_term)
-            )  # Filtrar por el término de búsqueda
+                Q(customer_id__first_name__icontains=search_term) |
+                Q(customer_id__last_name__icontains=search_term) |
+                Q(codigo_credito__icontains=search_term)
+            )
+
+        
+
+        # Filtrar por mes y año si se proporcionan
+        if month and year:
+            try:
+                # Validar que el mes y el año son valores válidos
+                month = int(month)
+                year = int(year)
+                queryset = queryset.filter(
+                    created_at__year=year,
+                    created_at__month=month
+                )
+            except ValueError:
+                # Si los valores no son válidos, se ignora el filtro de mes/año
+                pass
+
         return queryset
+
 
 class CreditVigentesViewSet(viewsets.ModelViewSet):
     serializer_class = CreditSerializer
@@ -76,9 +106,45 @@ class FacturaViewSet(viewsets.ModelViewSet):
     serializer_class = FacturaSerializer
     queryset = Invoice.objects.all()
 
+
+
 class ReciboViewSet(viewsets.ModelViewSet):
     serializer_class = ReciboSerializer
     queryset = Recibo.objects.all()
+
+    def get_queryset(self):
+        # Obtener parámetros de la solicitud
+        request = self.request
+        query_params = request.query_params
+
+        # Valores predeterminados
+        mes = query_params.get('mes', datetime.now().month)
+        anio = query_params.get('anio', datetime.now().year)
+        filtro_seleccionado = query_params.get('filtro', 'mora_pagada')
+
+        try:
+            mes = int(mes)
+            anio = int(anio)
+        except ValueError:
+            mes = datetime.now().month
+            anio = datetime.now().year
+
+        # Filtros por fecha
+        filters = Q(fecha__year=anio, fecha__month=mes)
+
+        # Filtros dinámicos según selección del usuario
+        filtros_validos = {
+            'mora_pagada': 'mora_pagada__gt',
+            'interes_pagado': 'interes_pagado__gt',
+            'aporte_capital': 'aporte_capital__gt',
+        }
+
+        if filtro_seleccionado in filtros_validos:
+            filtro_dinamico = {filtros_validos[filtro_seleccionado]: 0}
+            return Recibo.objects.filter(filters, **filtro_dinamico)
+
+        return Recibo.objects.filter(filters)
+
 
 from rest_framework.response import Response
 class PaymentPlanViewSet(viewsets.ModelViewSet):

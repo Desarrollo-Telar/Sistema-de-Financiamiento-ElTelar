@@ -4,11 +4,11 @@
 <div class=" row box">
     <div class="row">
         <div class="col" style="padding: 2.5rem">
-            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Pagos</span> !</h3>
+            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Boletas</span> !</h3>
             <div class="d-flex justify-content-center fs-5">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{% url 'financings:list_payment' %}">Pagos</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'financings:list_payment' %}">Boletas</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
 
                     </ol>
@@ -16,7 +16,7 @@
             </div>
 
             <p>
-                En este módulo, podrás gestionar toda la información relacionada con los pagos realizados por los
+                En este módulo, podrás gestionar toda la información relacionada con los Boletas realizados por los
                 clientes de manera eficiente y
                 organizada.
             </p>
@@ -52,14 +52,12 @@
     <div class="row" style="margin-top: 2rem;">
         {% include 'financings/payment/table/table.html' %}
     </div>
+    {% if page_obj %}
+    {% include 'snippets/pages.html' %}
+    {% endif %}
+
+    {% endblock %}
 
 </div>
 
 </div>
-
-
-{% if page_obj %}
-{% include 'snippets/pages.html' %}
-{% endif %}
-
-{% endblock %}

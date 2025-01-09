@@ -50,7 +50,8 @@ class CustomerSerializer(serializers.ModelSerializer):
             "user_id": instance.user_id.id,
             "immigration_status_id": instance.immigration_status_id.id,
             'customer_code':instance.customer_code,
-            "description":instance.description
+            "description":instance.description,
+            "creation_date":instance.creation_date.date()
         }
 
 

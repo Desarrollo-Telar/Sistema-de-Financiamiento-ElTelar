@@ -4,7 +4,14 @@
 <div class=" row box">
     <div class="row">
         {% include 'financings/credit/snippets/presentation.html' %}
-
+        <div class="row" style="margin-bottom: 2rem">
+            <div class="col">
+                <p class="text-body-secondary fs-6 text-uppercase">TOTAL DE TODOS LOS CREDITOS REGISTRADOS
+                    {{x}}:
+                    <span class="badge rounded-pill text-bg-dark">{{count}}</span>
+                </p>
+            </div>
+        </div>
     </div>
     <hr />
     <div class="row">

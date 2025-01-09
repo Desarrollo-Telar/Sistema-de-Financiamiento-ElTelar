@@ -7,7 +7,7 @@
                     <tr>
                         <th scope="col">Codigo Credito</th>
                         <th scope="col">Cliente</th>
-                        <th scope="col">Proposito</th>
+
                         <th scope="col">Monto</th>
                         <th scope="col">Plazo</th>
                         <th scope="col">Tasa de Interes</th>
@@ -15,6 +15,7 @@
                         <th scope="col">Tipo de Credito</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Vencimiento</th>
+                        <th>Vigente</th>
 
 
 
@@ -38,12 +39,7 @@
                                 {{credit.customer_id}}
                             </a>
                         </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black; "
-                                href="{% url 'financings:detail_credit' credit.id %}">
-                                {{credit.proposito}}
-                            </a>
-                        </td>
+
                         <td scope="row">
                             <a style="text-decoration: none; color: black;"
                                 href="{% url 'financings:detail_credit' credit.id %}">
@@ -86,6 +82,24 @@
                                 {{credit.fecha_vencimiento}}
                             </a>
                         </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' credit.id %}"
+                                class="{% if  credit.is_paid_off %} activo {% else %} inactivo{% endif %} ">
+                                {%if credit.is_paid_off %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+
+                                {% else %}
+                                Credito Vigente
+
+                                {%endif%}
+                            </a>
+                        </td>
+
 
 
 

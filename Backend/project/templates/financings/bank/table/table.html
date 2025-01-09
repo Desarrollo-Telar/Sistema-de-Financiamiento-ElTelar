@@ -1,4 +1,5 @@
 {% load static %}
+
 <div class="row">
     <div class="col-12 ">
         <div class="table-responsive">
@@ -7,9 +8,10 @@
                     <tr>
                         <th scope="col">Fecha</th>
                         <th scope="col">No. Referencia</th>
+                        <th scope="col">Descripcion</th>
                         <th scope="col">Debito (-)</th>
                         <th scope="col">Credito (+)</th>
-
+                        <th scope="col">Status</th>
 
 
 
@@ -31,10 +33,18 @@
 
                         </td>
                         <td scope="row">
+
+                            {{credit.descripcion}}
+
+                        </td>
+                        <td scope="row">
                             Q{{credit.f_debito}}
                         </td>
                         <td scope="row">
                             Q{{credit.f_credito}}
+                        </td>
+                        <td class=" activo  ">
+                            {{credit.status}}
                         </td>
 
 

@@ -53,7 +53,7 @@ def generar_planes(sender, instance,created, **kwargs):
             # Acumular mora y marcar estado
             logger.info(f'DESDE SIGNALS DE PAYMENT_PLAN: CUOTA VENCIDA: {instance.cuota_vencida}')
             logger.info(f'DESDE SIGNALS DE PAYMENT_PLAN: PAGADO: {instance.status}')
-
+            more = 0
             if not instance.cuota_vencida and not instance.status:
                 #more = instance.mora +mora_acumulada
                 more = mora_acumulada
