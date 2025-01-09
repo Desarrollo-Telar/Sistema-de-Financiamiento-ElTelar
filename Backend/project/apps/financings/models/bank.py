@@ -12,6 +12,12 @@ class Banco(models.Model):
     debito = models.DecimalField('Debito', decimal_places=2, max_digits=12, default=0)
     descripcion = models.TextField('Descripción', blank=True, null=True)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+    # Nuevos Atributos
+    status = models.BooleanField("Status", default=False)
+    secuencials = models.CharField('Secuencial',max_length=100,  blank=True)
+    cheques= models.CharField('Cheque',max_length=100, blank=True)
+    saldo_contables= models.DecimalField('Saldo Contable', decimal_places=2, max_digits=12, default=0)
+    saldo_disponibles= models.DecimalField('Saldo Disponible', decimal_places=2, max_digits=12, default=0)
 
     def f_credito(self):
         return formatear_numero(self.credito)

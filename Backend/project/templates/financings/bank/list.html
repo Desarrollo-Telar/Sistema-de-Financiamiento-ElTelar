@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <div class=" row box">
     <div class="row">
@@ -30,11 +30,9 @@
     <div class="row" style="margin-top: 2rem;">
         {% include 'financings/bank/table/table.html' %}
     </div>
+    {% if page_obj %}
+    {% include 'snippets/pages.html' %}
+    {% endif %}
+    {% endblock %}
 
 </div>
-
-
-{% if page_obj %}
-{% include 'snippets/pages.html' %}
-{% endif %}
-{% endblock %}
