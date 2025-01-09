@@ -179,7 +179,7 @@ class Payment(models.Model):
 
         # Obtener información del banco
         info_banco = self.banco()
-        """
+        
         if info_banco:
             # Fecha de creación del registro en el banco
             fecha_creacion_registro_banco = info_banco.creation_date
@@ -196,7 +196,7 @@ class Payment(models.Model):
                     cuota.cambios = True
                     cuota.save()  # Guardar los cambios en la base de datos
         
-        """
+        
         
 
         # Retornar la mora actualizada
@@ -214,6 +214,9 @@ class Payment(models.Model):
             # registrar en el apartado de desembolso
             pago = self.pago()
             pago.estado_transaccion = 'COMPLETADO'
+            info_banco = self.banco()
+            info_banco.status = True
+            info_banco.save()
             pago.save()
             logger.info(f'EL PAGO {pago.numero_referencia} CORRESPONDE A UN DESEMBOLSO')
 
@@ -225,6 +228,9 @@ class Payment(models.Model):
             pago.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
             #pago.save()
             logger.error(f'EL PAGO {pago.numero_referencia} NO ES APLICADO DEBIDO A QUE YA CREDIO HA SIDO PAGADO')
+            info_banco = self.banco()
+            info_banco.status = True
+            info_banco.save()
             return f'EL CREDITO YA FUE PAGO'
 
         cuota = self._cuota_pagar()
