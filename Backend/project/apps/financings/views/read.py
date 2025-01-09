@@ -63,7 +63,7 @@ def list_bank(request):
 
 @login_required
 @usuario_activo
-@usuario_secretaria
+
 def list_credit(request):
     template_name = 'financings/credit/list.html'
     page_obj = paginacion(request, Credit.objects.all().order_by('-id'))
@@ -72,7 +72,8 @@ def list_credit(request):
     context = {
         'title':'ELTELAR - CREDITOS',
         'page_obj':page_obj,
-        'credit_list':page_obj
+        'credit_list':page_obj,
+        'count': Credit.objects.all().count()
     }
     return render(request, template_name, context)
 

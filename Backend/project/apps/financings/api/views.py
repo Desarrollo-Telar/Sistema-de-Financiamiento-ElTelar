@@ -10,6 +10,7 @@ from rest_framework import viewsets, status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.db.models import Q
+from django.utils.timezone import datetime
 
 class EstadoCuentaViewSet(viewsets.ModelViewSet):
     serializer_class = EstadoCuentaSerializer

@@ -76,6 +76,7 @@ class CreditSerializer(serializers.ModelSerializer):
             'estados_fechas':instance.estados_fechas,
             'plazo_restante':instance.plazo_restante,
             'estado_aportacion':instance.estado_aportacion,
+            'creation_date':instance.creation_date.date()
 
         }
 

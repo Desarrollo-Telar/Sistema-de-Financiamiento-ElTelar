@@ -43,7 +43,7 @@ function createChart(ctx, labels, data, title) {
             label: title,
             data: data,
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(72, 7, 9)',
             tension: 0.1 // Suaviza la línea del gráfico
         }]
     };
@@ -52,7 +52,15 @@ function createChart(ctx, labels, data, title) {
         type: 'line',
         data: chartData,
         options: {
-            
+            animations: {
+                tension: {
+                    duration: 1000,
+                    easing: 'linear',
+                    from: 1,
+                    to: 0,
+                    loop: true
+                }
+            },
             scales: {
                 y: {
                     min: 0,
