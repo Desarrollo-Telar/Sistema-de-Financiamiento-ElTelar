@@ -17,8 +17,8 @@ export function agregar_mobiliaria(addGuarantee) {
         const mobiliaria = new Mobiliaria();
         mobiliaria.descripcionBien = document.getElementById('descripcionBien').value;
         mobiliaria.documentoAcredita = document.getElementById('documentoAcredita1').value;
-        mobiliaria.imagenDocumentoAcredita = document.getElementById('imagenDocumentoAcredita').files[0];
-        mobiliaria.fotografiaBien = document.getElementById('fotografiaBien1').files[0];
+        //mobiliaria.imagenDocumentoAcredita = document.getElementById('imagenDocumentoAcredita').files[0];
+        //mobiliaria.fotografiaBien = document.getElementById('fotografiaBien1').files[0];
         mobiliaria.noPoliza = document.getElementById('noPoliza1').value;
         mobiliaria.montoSeguro = document.getElementById('montoSeguro').value;
 

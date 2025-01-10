@@ -73,7 +73,7 @@ function transformarFecha(ele) {
 }
 
 document.getElementById('generar_plan').onclick = generar_plan;
-
+let credit, desembolso;
 document.getElementById('credito').addEventListener('submit', async function (event) {
     event.preventDefault();
     try {
@@ -94,7 +94,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                 await guardar_boleta_desembolso(credit.id, desembolso.id, monto, referencia, fecha, descripcion, boleta);
             };
 
-            let credit, desembolso;
+            
 
             switch (forma_desembolso) {
                 case 'APLICACIÓN GASTOS':
@@ -260,5 +260,6 @@ document.getElementById('credito').addEventListener('submit', async function (ev
             timer: 3000,
             showConfirmButton: false,
         });
+        setTimeout(() => { window.location.href = `/financings/credit/delete/${credit.id}`; }, 3000);
     }
 });

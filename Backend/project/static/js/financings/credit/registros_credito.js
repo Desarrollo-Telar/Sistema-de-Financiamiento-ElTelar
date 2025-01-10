@@ -45,6 +45,7 @@ export async function guardar_desembolso(credit_id) {
     formData.append('monto_desembolsado', document.getElementById('monto_desembolsado').value||0);
     formData.append('monto_total_desembolso', document.getElementById('total_depositar').value||0);
     formData.append('total_gastos', document.getElementById('total_gastos').value||0);
+    formData.append('description', document.getElementById('description').value||0);
     return await registrar_desembolso(formData);
     
 }
@@ -99,6 +100,7 @@ export async function guardar_boleta_desembolso(credit, disbursement, monto,nume
     formData.append('descripcion', descripcion);
     formData.append('boleta', boleta);
     formData.append('tipo_pago', 'DESEMBOLSO');
+    //formData.append('cliente',document.getElementById('cliente').value);
     return await registrar_pago(formData);
     
 }

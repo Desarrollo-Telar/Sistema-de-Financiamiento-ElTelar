@@ -12,8 +12,8 @@ export function clearFields() {
     document.getElementById('titular').value = '';
     document.getElementById('estatus').value = '';
     document.getElementById('noContratoArrendamiento').value = '';
-    document.getElementById('avaluoBien').value = '';
-    document.getElementById('docDigitalSoporte').value = '';
+    //document.getElementById('avaluoBien').value = '';
+    //document.getElementById('docDigitalSoporte').value = '';
     document.getElementById('valor_cobertura').value = '';
     document.getElementById('noCheque').value = '';
     document.getElementById('nombreCuenta').value= '';

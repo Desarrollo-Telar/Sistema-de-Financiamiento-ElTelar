@@ -46,7 +46,7 @@ class CreditSerializer(serializers.ModelSerializer):
             'is_paid_off',
             'estado_aportacion',
             'saldo_actual',
-            'cliente'
+            
             
         ]
     def to_representation(self, instance):
@@ -78,7 +78,7 @@ class CreditSerializer(serializers.ModelSerializer):
             'plazo_restante':instance.plazo_restante,
             'estado_aportacion':instance.estado_aportacion,
             'creation_date':instance.creation_date.date(),
-            'cliente':instance.cliente
+            
 
         }
 
@@ -109,6 +109,7 @@ class DisbursementSerializer(serializers.ModelSerializer):
     "monto_total_desembolso": instance.monto_total_desembolso,
     'monto_credito_agregar':instance.monto_credito_agregar,
     'monto_credito_cancelar':instance.monto_credito_cancelar,
+    'description':instance.description,
     "credit_id": {
         "id":instance.credit_id.id,
         'customer_id':{
@@ -132,7 +133,8 @@ class PaymentSerializer(serializers.ModelSerializer):
             'descripcion',
             'boleta',
             'tipo_pago',
-            'disbursement'
+            'disbursement',
+            'cliente'
         ]
 
 class FacturaSerializer(serializers.ModelSerializer):

@@ -26,6 +26,7 @@ class Disbursement(models.Model):
     total_gastos  = models.DecimalField("Total de gastos", decimal_places=2, max_digits=15, default=0)
     monto_total_desembolso = models.DecimalField("Monto Total a Desembolsar", decimal_places=2, max_digits=15, default=0)
     total_t = models.DecimalField("Total de totales", decimal_places=2, max_digits=15, default=0)
+    description = models.TextField("Descripcion", blank=True, null=True)
     def f_monto_credito(self):
         return formatear_numero(self.monto_credito)
 

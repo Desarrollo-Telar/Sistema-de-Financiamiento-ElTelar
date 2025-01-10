@@ -21,9 +21,9 @@ export function agregar_vehiculo(addGuarantee) {
         vehiculo.noChasis = document.getElementById('noChasis').value;
         vehiculo.noMotor = document.getElementById('noMotor').value;
         vehiculo.valor_comercial = document.getElementById('valor_comercial5').value;
-        vehiculo.fotografias = document.getElementById('fotografiaC').files[0];
-        vehiculo.tarjetaCirculacion = document.getElementById('tarjetaC').files[0];
-        vehiculo.titulo = document.getElementById('tituloC').files[0];
+        //vehiculo.fotografias = document.getElementById('fotografiaC').files[0];
+        //vehiculo.tarjetaCirculacion = document.getElementById('tarjetaC').files[0];
+        //vehiculo.titulo = document.getElementById('tituloC').files[0];
         vehiculo.noPoliza = document.getElementById('noPoliza5').value;
         vehiculo.montoSeguro = document.getElementById('montoSeguroC').value;
         vehiculo.noContratoArrendamiento = document.getElementById('arrendamientoC').value;

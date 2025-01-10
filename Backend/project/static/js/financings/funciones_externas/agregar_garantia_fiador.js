@@ -20,7 +20,7 @@ export function agregar_fiador(addGuarantee) {
         fiador.numeroTelefono = document.getElementById('telefono2').value;
         fiador.lugar_trabajo = document.getElementById('lugar_trabajo').value;
         fiador.ingresos = document.getElementById('ingreso').value;
-        fiador.fotografia = document.getElementById('fotografiaF').files[0];
+        //fiador.fotografia = document.getElementById('fotografiaF').files[0];
 
 
         addGuarantee('FIADOR', fiador.toJSON());

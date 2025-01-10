@@ -28,8 +28,8 @@ export function agregar_hipoteca(addGuarantee){
         formData.append('titular', document.getElementById('titular').value);
         formData.append('estatus', document.getElementById('estatus').value);
         formData.append('noContratoArrendamiento', document.getElementById('noContratoArrendamiento').value);
-        formData.append('avaluoBien', document.getElementById('avaluoBien').files[0]); // Archivo
-        formData.append('docDigitalSoporte', document.getElementById('docDigitalSoporte').files[0]); // Archivo
+        //formData.append('avaluoBien', document.getElementById('avaluoBien').files[0]); // Archivo
+        //formData.append('docDigitalSoporte', document.getElementById('docDigitalSoporte').files[0]); // Archivo
     
         hipoteca.noEscritura = document.getElementById('noEscritura').value;
         hipoteca.notario = document.getElementById('notario').value;
@@ -43,8 +43,8 @@ export function agregar_hipoteca(addGuarantee){
         hipoteca.titular = document.getElementById('titular').value;
         hipoteca.estatus = document.getElementById('estatus').value;
         hipoteca.noContratoArrendamiento = document.getElementById('noContratoArrendamiento').value;
-        hipoteca.avaluoBien = document.getElementById('avaluoBien').files[0];
-        hipoteca.docDigitalSoporte = document.getElementById('docDigitalSoporte').files[0];
+        //hipoteca.avaluoBien = document.getElementById('avaluoBien').files[0];
+        //hipoteca.docDigitalSoporte = document.getElementById('docDigitalSoporte').files[0];
 
         
 
