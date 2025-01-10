@@ -64,7 +64,7 @@ document.getElementById('customer').addEventListener('submit', async function (e
 
     } catch (error) {
         console.error('Error al registrar los datos:', error);
-        alerta_m(`Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo. ${error.response.data}`, false)
+        alerta_m(`Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo. ${error}`, false)
         if (customer_id) {
             setTimeout(() => { window.location.href = `/customers/delete/${customer_id}/`; }, 1000);
 
