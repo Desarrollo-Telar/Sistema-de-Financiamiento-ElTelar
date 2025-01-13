@@ -84,7 +84,7 @@ class Customer(models.Model):
     type_identification = models.CharField("Tipo de Identificación", choices=identification, default='DPI', max_length=50)
     identification_number = models.CharField("Número de Identificación", max_length=15, blank=False, null=False, unique=True)
     telephone = models.CharField("Teléfono", max_length=20, blank=True, null=True)
-    email = models.EmailField("Correo Electrónico", unique=True)
+    email = models.EmailField("Correo Electrónico")
     status = models.CharField("Estado", choices=status, default='Posible Cliente', max_length=75)
     date_birth = models.DateField("Fecha de Nacimiento", blank=False, null=False)
     number_nit = models.CharField("NIT", max_length=20, blank=False, null=False, unique=True)

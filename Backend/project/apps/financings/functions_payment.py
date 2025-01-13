@@ -46,6 +46,6 @@ def generar():
                     # Si la transacción está pendiente, se realiza el pago
                     if pago.estado_transaccion == 'PENDIENTE' or pago.estado_transaccion == 'Pendiente':
                     
-                        realizar_pago(pago, pago.credit,  pago.disbursement)
+                        realizar_pago(pago, pago.credit,  pago.disbursement, pago.cliente)
                         
                     #pago.realizar_pago()

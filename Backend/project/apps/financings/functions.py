@@ -7,16 +7,19 @@ from apps.financings.utils import calcular_capital, calcular_interes, calcular_m
 from datetime import datetime, timedelta
 
 from apps.financings.models import Banco
-def realizar_pago(payment, credito_id = None, disbursement_id = None ):
+def realizar_pago(payment, credito_id = None, disbursement_id = None, cliente=None):
     try:
         
         
         
         if disbursement_id:
             pass
+        if cliente:
+            pass
         
         pagoss = Payment.objects.get(id=payment.id)
         # Obtener el crédito
+        """
         if credito_id:
             credito = Credit.objects.get(id=credito_id.id)
             # Verificar si el crédito ya está pagado
@@ -28,7 +31,7 @@ def realizar_pago(payment, credito_id = None, disbursement_id = None ):
                 banco.status = True
                 banco.save()
                 return "Este crédito ya está pagado en su totalidad."
-
+        """
 
         # Registrar el pago
         
