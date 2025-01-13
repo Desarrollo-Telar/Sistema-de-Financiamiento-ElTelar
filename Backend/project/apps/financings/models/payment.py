@@ -69,7 +69,9 @@ class Payment(models.Model):
         return Banco.objects.get(referencia=self.numero_referencia)
 
     def credito(self):
-        return Credit.objects.get(id=self.credit.id)
+        if self.credit:
+            return Credit.objects.get(id=self.credit.id)
+        return None
     
     def get_recibo(self):
         from .recibo import Recibo
@@ -213,7 +215,16 @@ class Payment(models.Model):
         return round(total)
 
     def realizar_pago(self):
-        
+
+        if self.cliente:
+            pago = self.pago()
+            pago.estado_transaccion = 'COMPLETADO'
+            info_banco = self.banco()
+            info_banco.status = True
+            info_banco.save()
+            pago.save()
+            return f'REGISTRO DE PAGO A CLIENTE'
+
         if self.tipo_pago == 'DESEMBOLSO':
             # registrar en el apartado de desembolso
             pago = self.pago()
@@ -226,16 +237,17 @@ class Payment(models.Model):
 
             return f'REGISTRO DE DESEMBOLSO'
         
-        if self.credito().is_paid_off:
-            pago = self.pago()
-            pago.estado_transaccion = 'FALLIDO'
-            pago.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
-            #pago.save()
-            logger.error(f'EL PAGO {pago.numero_referencia} NO ES APLICADO DEBIDO A QUE YA CREDIO HA SIDO PAGADO')
-            info_banco = self.banco()
-            info_banco.status = True
-            info_banco.save()
-            return f'EL CREDITO YA FUE PAGO'
+        if self.credito():
+            if self.credito().is_paid_off:
+                pago = self.pago()
+                pago.estado_transaccion = 'FALLIDO'
+                pago.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
+                #pago.save()
+                logger.error(f'EL PAGO {pago.numero_referencia} NO ES APLICADO DEBIDO A QUE YA CREDIO HA SIDO PAGADO')
+                info_banco = self.banco()
+                info_banco.status = True
+                info_banco.save()
+                return f'EL CREDITO YA FUE PAGO'
 
         cuota = self._cuota_pagar()
         
