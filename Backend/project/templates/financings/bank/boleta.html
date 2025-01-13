@@ -21,8 +21,9 @@
             <div class="card-body">
                 <h5 class="card-title">Boleta No.{{boleta.numero_referencia}}</h5>
                 <p class="card-text">Esta boleta esta relacionada a un pago del credito: {{boleta.credit}}</p>
-                <p class="card-text">Por un monto de: Q{{boleta.Fmonto}}</p>
+                <p class="card-text">Con Referencia: {{boleta.numero_referencia}}</p>
                 <p class="card-text">Con fecha de: {{boleta.fecha_emision.date}}</p>
+                <p class="card-text">Por un monto de: Q{{boleta.Fmonto}}</p>
                 {% if boleta.descripcion %}
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
                     disabled>
@@ -50,8 +51,10 @@
                 <h5 class="card-title">Boleta No.{{boleta.numero_referencia}}</h5>
                 <p class="card-text">Esta boleta esta relacionada a un desembolso para el credito de:
                     {{boleta.disbursement.credit_id}}</p>
-                <p class="card-text">Por un monto de: Q{{boleta.Fmonto}}</p>
+                <p class="card-text">Con Referencia: {{boleta.numero_referencia}}</p>
                 <p class="card-text">Con fecha de: {{boleta.fecha_emision.date}}</p>
+                <p class="card-text">Por un monto de: Q{{boleta.Fmonto}}</p>
+
                 {% if boleta.descripcion %}
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
                     disabled>
@@ -80,8 +83,9 @@
             <div class="card-body">
                 <h5 class="card-title">Boleta No.{{boleta.numero_referencia}}</h5>
                 <p class="card-text">Esta boleta esta relacionada a un realizado por el cliente: {{boleta.cliente}}</p>
-                <p class="card-text">Por un monto de: Q{{boleta.Fmonto}}</p>
+                <p class="card-text">Con Referencia: {{boleta.numero_referencia}}</p>
                 <p class="card-text">Con fecha de: {{boleta.fecha_emision.date}}</p>
+                <p class="card-text">Por un monto de: Q{{boleta.Fmonto}}</p>
                 {% if boleta.descripcion %}
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
                     disabled>
