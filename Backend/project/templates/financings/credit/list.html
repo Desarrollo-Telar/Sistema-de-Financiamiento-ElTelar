@@ -20,11 +20,16 @@
         </div>
 
     </div>
+
     <div class="row" style="display: flex; align-items: center; justify-content: end; margin-top: 2rem;">
         <div class="col-4">
             {% include 'financings/credit/snippets/search.html' with query=query %}
         </div>
+        <div class="col-1">
+            {% include 'financings/credit/snippets/filters.html' %}
+        </div>
     </div>
+
 
     <div class="row" style="margin-top: 2rem;">
         {% include 'financings/credit/table/table.html' %}

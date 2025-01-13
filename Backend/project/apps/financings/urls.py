@@ -27,6 +27,10 @@ urlpatterns = [
     path('credit/calculos_realizados/pdf/<int:id>/',login_required(views.render_pdf_calculos_credito),name='calculos_realizados'),
     path('credit/plan_pagos/pdf/<int:id>/',login_required(views.render_pdf_plan_pagos),name='plan_pagos'),
     path('credit/delete/<int:id>',login_required(views.delete_credit),name="delete_credit"),
+    path('credit/cancelados/',login_required(views.filter_credito_cancelado),name='creditos_cancelados'),
+    path('credit/atrasados/',login_required(views.filter_credito_en_atraso),name='creditos_en_atrasos'),
+    path('credit/aportacion/',login_required(views.filter_credito_en_falta_aportacion),name='creditos_falta_aportacion'),
+    path('credit/reciente/',login_required(views.filter_credito_reciente),name='creditos_recientes'),
     # ---------------- GARANTIA ------------
     path('guarantee/',login_required(views.list_guarantee), name='list_guarantee'),
     path('guarantee/create/',login_required(views.create_guarantee),name='create_guarantee'),

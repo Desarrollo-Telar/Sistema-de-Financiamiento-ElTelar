@@ -167,7 +167,7 @@ def detallar_desembolso(request,id):
 def boleta(request,numero_referencia):
     template_name = 'financings/bank/boleta.html'
     
-    boleta = get_object_or_404(Payment,numero_referencia=numero_referencia)
+    boleta = Payment.objects.filter(numero_referencia=numero_referencia).first()
     context = {
         'title':'EL TELAR',
         'boleta':boleta,

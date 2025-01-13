@@ -24,3 +24,6 @@ from .delete import delete_credit
 # ORGANIZACION DEL CODIGO
 # PAGOS
 from .payment import create_payment
+
+# Filtros
+from .filtros import filter_credito_cancelado, filter_credito_en_atraso, filter_credito_en_falta_aportacion, filter_credito_reciente
