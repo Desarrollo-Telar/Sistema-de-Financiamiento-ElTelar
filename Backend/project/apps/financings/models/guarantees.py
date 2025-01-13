@@ -22,7 +22,7 @@ class DetailsGuarantees(models.Model):
         ('HIPOTECA', 'HIPOTECA'),
         ('DERECHO DE POSESION HIPOTECA', 'DERECHO DE POSESION HIPOTECA'),
         ('FIADOR', 'FIADOR'),
-        ('CHEQUE', 'CHEQUE'),
+        ('CHEQUE / PAGARE', 'CHEQUE / PAGARE'),
         ('VEHICULO', 'VEHICULO'),
         ('MOBILIARIA', 'MOBILIARIA')
     ]

@@ -162,13 +162,28 @@ def detallar_desembolso(request,id):
     }
     return render(request, template_name, context)
    
+@login_required
+@usuario_activo
+def boleta(request,numero_referencia):
+    template_name = 'financings/bank/boleta.html'
+    
+    boleta = get_object_or_404(Payment,numero_referencia=numero_referencia)
+    context = {
+        'title':'EL TELAR',
+        'boleta':boleta,
+        'posicion':numero_referencia
+    }
+
+    return render(request, template_name, context)
 
 @login_required
 @usuario_activo
 def clasificacion_detallar(request,numero_referencia):
-    
-    estado_cuenta = get_object_or_404(AccountStatement,numero_referencia=numero_referencia)
-    
+    estado_cuenta = AccountStatement.objects.filter(numero_referencia=numero_referencia).first()
+
+    if not estado_cuenta:
+        return redirect('financings:boleta', numero_referencia)
+
     if estado_cuenta.cuota:
         messages.success(request, "CUOTA")
         return redirect('financings:detail_credit',estado_cuenta.credit.id)
@@ -180,6 +195,8 @@ def clasificacion_detallar(request,numero_referencia):
     if estado_cuenta.disbursement:
         messages.success(request, 'DESEMBOLSO')
         return redirect('financings:detail_disbursement', estado_cuenta.disbursement.id)
+
+    
 
 @login_required
 @usuario_activo

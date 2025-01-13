@@ -15,6 +15,8 @@ app_name = 'financings'
 urlpatterns = [
     #------------- CLASIFICACION
     path('clasificar/<str:numero_referencia>/',login_required(views.clasificacion_detallar), name='clasificar'),
+    #------------- Boleta
+    path('boleta/<str:numero_referencia>/',login_required(views.boleta), name='boleta'),
     # -------------- CREDITO -----------
     path('credit/',login_required(views.list_credit), name='list_credit'),
     path('credit/<int:id>/',login_required(views.detail_credit), name='detail_credit'),

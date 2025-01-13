@@ -80,7 +80,7 @@ def verificar_por_ausencia():
             continue
 
         boleta = Payment.objects.filter(credit=pago.credit_id).exists()
-        if boleta == None and pago.fecha_limite.date() < now().date():
+        if boleta != None and pago.fecha_limite.date() < now().date():
             pago.paso_por_task = True
             pago.save()
             continue

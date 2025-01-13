@@ -32,7 +32,7 @@ export function agregar_cheque(addGuarantee) {
         cheque.monto_cheque = document.getElementById('monto_cheque').value|| 0;
         //cheque.fotografia_cheque = document.getElementById('cheque').value || 0;
 
-        addGuarantee('CHEQUE', cheque.toJSON(),formData);
+        addGuarantee('CHEQUE / PAGARE', cheque.toJSON(),formData);
         clearFields();
         ocultar(document.getElementById('cheque'));
         document.getElementById('tipo_garantia').value = 0;

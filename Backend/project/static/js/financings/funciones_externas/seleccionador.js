@@ -107,7 +107,7 @@ export function seleccion_garantia(){
             ocultar(mobiliaria);
             ocultar(vehiculo);
     
-        } else if (valor === 'CHEQUE') {
+        } else if (valor === 'CHEQUE / PAGARE') {
             ocultar(hipoteca);
             ocultar(derecho_posesion);
             mostrar(cheque);
@@ -121,6 +121,7 @@ export function seleccion_garantia(){
             ocultar(fiador);
             ocultar(mobiliaria);
             mostrar(vehiculo);
+            ocultar(cheque);
     
         } else if (valor === 'MOBILIARIA') {
             ocultar(hipoteca);
@@ -128,6 +129,7 @@ export function seleccion_garantia(){
             ocultar(fiador);
             mostrar(mobiliaria);
             ocultar(vehiculo);
+            ocultar(cheque);
     
         } else {
             ocultar(hipoteca);

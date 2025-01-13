@@ -5,6 +5,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th scope="col">#</th>
                         <th scope="col">Codigo Credito</th>
                         <th scope="col">Cliente</th>
 
@@ -25,6 +26,7 @@
                     {% for credit in credit_list %}
 
                     <tr>
+                        <td>{{ forloop.counter }}</td>
                         <th scope="row">
                             <a style="text-decoration: none; color: black;"
                                 href="{% url 'financings:detail_credit' credit.id %}">

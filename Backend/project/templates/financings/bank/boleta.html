@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+
+    <div class="row box" style="padding: 5rem;">
+        <div class="d-flex justify-content-center fs-5">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'financings:list_bank' %}">Bancos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+
+                </ol>
+            </nav>
+        </div>
+        {% if boleta.credit %}
+        <div class="card">
+
+            <div class="card-body">
+                <h5 class="card-title">Boleta No.{{boleta.numero_referencia}}</h5>
+                <p class="card-text">Esta boleta esta relacionada a un pago del credito: {{boleta.credit}}</p>
+                <p class="card-text">Por un monto de: Q{{boleta.Fmonto}}</p>
+                <p class="card-text">Con fecha de: {{boleta.fecha_emision.date}}</p>
+                {% if boleta.descripcion %}
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
+                    disabled>
+                    {{boleta.descripcion}}
+                </textarea>
+                {% endif %}
+                {% if boleta.descripcion_estado %}
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
+                    disabled>
+                    {{boleta.descripcion_estado}}
+                </textarea>
+                {% endif %}
+                <a href="{% url 'financings:detail_credit' boleta.credit.id %}"
+                    class="btn_guardar">{{boleta.credit}}</a>
+            </div>
+        </div>
+
+        <hr>
+        {% endif %}
+
+        {% if boleta.disbursement %}
+        <div class="card">
+
+            <div class="card-body">
+                <h5 class="card-title">Boleta No.{{boleta.numero_referencia}}</h5>
+                <p class="card-text">Esta boleta esta relacionada a un desembolso para el credito de:
+                    {{boleta.disbursement.credit_id}}</p>
+                <p class="card-text">Por un monto de: Q{{boleta.Fmonto}}</p>
+                <p class="card-text">Con fecha de: {{boleta.fecha_emision.date}}</p>
+                {% if boleta.descripcion %}
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
+                    disabled>
+                    {{boleta.descripcion}}
+                </textarea>
+                {% endif %}
+                {% if boleta.descripcion_estado %}
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
+                    disabled>
+                    {{boleta.descripcion_estado}}
+                </textarea>
+                {% endif %}
+
+                <a class="btn_guardar"
+                    href="{% url 'financings:detail_credit' boleta.disbursement.credit_id.id %}">{{boleta.disbursement.credit_id}}</a>
+            </div>
+        </div>
+
+        <hr>
+
+        {% endif %}
+
+        {% if boleta.cliente %}
+        <div class="card">
+
+            <div class="card-body">
+                <h5 class="card-title">Boleta No.{{boleta.numero_referencia}}</h5>
+                <p class="card-text">Esta boleta esta relacionada a un realizado por el cliente: {{boleta.cliente}}</p>
+                <p class="card-text">Por un monto de: Q{{boleta.Fmonto}}</p>
+                <p class="card-text">Con fecha de: {{boleta.fecha_emision.date}}</p>
+                {% if boleta.descripcion %}
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
+                    disabled>
+                    {{boleta.descripcion}}
+                </textarea>
+                {% endif %}
+                {% if boleta.descripcion_estado %}
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
+                    disabled>
+                    {{boleta.descripcion_estado}}
+                </textarea>
+                {% endif %}
+                <a href="{% url 'customers:detail' boleta.cliente.customer_code %}"
+                    class="btn_guardar">{{boleta.cliente.customer_code}}</a>
+            </div>
+        </div>
+
+        <hr>
+
+        {% endif %}
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}
