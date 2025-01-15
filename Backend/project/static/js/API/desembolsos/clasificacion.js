@@ -14,6 +14,8 @@ const div_saldo_anterior = document.getElementById('div_saldo_anterior');
 const div_honorarios = document.getElementById('div_honorarios');
 const div_poliza_seguro = document.getElementById('div_poliza_seguro');
 const div_total_depositar = document.getElementById('div_total_depositar');
+const div_plazo_restante = document.getElementById('div_plazo_restante');
+
 const informacion_credito = document.getElementById('informacion_credito');
 
 
@@ -24,6 +26,7 @@ function mostrar() {
     div_honorarios.style.display = 'block';
     div_poliza_seguro.style.display = 'block';
     div_total_depositar.style.display = 'block';
+    div_plazo_restante.style.display = 'block';
 }
 function ocultar() {
     add_Desembolso.style.display = 'none';
@@ -32,6 +35,51 @@ function ocultar() {
     div_honorarios.style.display = 'none';
     div_poliza_seguro.style.display = 'none';
     div_total_depositar.style.display = 'none';
+    div_plazo_restante.style.display = 'none';
+
+}
+
+function generar(){
+    // Crear el contenedor principal
+const divMontoAgregado = document.createElement('div');
+divMontoAgregado.classList.add('form-group');
+divMontoAgregado.style.marginTop = '2rem';
+divMontoAgregado.id = 'monto_agregado';
+
+// Crear y configurar el label
+const labelMontoSumar = document.createElement('label');
+labelMontoSumar.classList.add('fw-medium');
+labelMontoSumar.setAttribute('for', 'monto_sumar');
+labelMontoSumar.textContent = 'Monto por agregar';
+
+// Crear el contenedor del grupo de entrada
+const divInputGroup = document.createElement('div');
+divInputGroup.classList.add('input-group', 'mb-3');
+
+// Crear el span del prefijo
+const spanInputGroupText = document.createElement('span');
+spanInputGroupText.classList.add('input-group-text', 'fw-medium');
+spanInputGroupText.setAttribute('id', 'basic-addon1');
+spanInputGroupText.textContent = 'Q';
+
+// Crear el campo de entrada
+const inputMontoSumar = document.createElement('input');
+inputMontoSumar.type = 'number';
+inputMontoSumar.min = '0';
+inputMontoSumar.step = 'any';
+inputMontoSumar.classList.add('form-control');
+inputMontoSumar.id = 'monto_sumar';
+
+// Construir la estructura
+divInputGroup.appendChild(spanInputGroupText);
+divInputGroup.appendChild(inputMontoSumar);
+
+divMontoAgregado.appendChild(labelMontoSumar);
+divMontoAgregado.appendChild(divInputGroup);
+
+// Agregar el nuevo contenedor al div original
+div_monto_credito.appendChild(divMontoAgregado);
+
 
 }
 
@@ -110,15 +158,7 @@ document.getElementById('forma_desembolso')?.addEventListener('change', async (e
 
             // Añade el campo solo si no existe
             if (!montoAgregado) {
-                div_monto_credito.innerHTML += `
-                    <div class="form-group" style="margin-top: 2rem;" id="monto_agregado">
-                        <label class="fw-medium" for="monto_sumar">Monto por agregar</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
-                            <input type="number" min="0" step="any" class="form-control" id="monto_sumar">
-                        </div>
-                    </div>
-                `;
+                generar();
 
 
                 // Añade el listener después de crear el campo
@@ -167,6 +207,7 @@ $(document).ready(function () {
             <p>Saldo Capital Pendiente: ${cuota.saldo_pendiente} </p>
             <p>Intereses: ${cuota.interest} </p>
             <p>Mora: ${cuota.mora} </p>
+            <p>Plazo del Credito: ${credito.plazo} Meses </p>
             <hr>
             <p>Saldo Anterior: ${credito.Fsaldo_actual} </p>
             `
@@ -177,6 +218,7 @@ $(document).ready(function () {
             // Actualizar saldo anterior
             document.getElementById('saldo_anterior').value = credito.saldo_actual;
             const monto_credito = parseFloat(credito.monto);
+            document.getElementById('plazo_restante').value = credito.plazo_restante;
             credito_monto.value = credito.monto;
 
 

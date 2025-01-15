@@ -76,7 +76,7 @@ def generar_planes(sender, instance,created, **kwargs):
             )
             cuota_nueva.save()
             
-            actualizar(instance.id)
+            
         
     
         

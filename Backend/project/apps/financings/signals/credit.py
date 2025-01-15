@@ -21,7 +21,6 @@ from dateutil.relativedelta import relativedelta
 
 @receiver(pre_save, sender=Credit)
 def pre_save_credito(sender, instance, **kwargs):
-    
     if not instance.codigo_credito or instance.codigo_credito == '':
         counter = 1
         customer_code = instance.customer_id.customer_code
@@ -38,6 +37,7 @@ def pre_save_credito(sender, instance, **kwargs):
 def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
     if created:
         instance.saldo_pendiente = instance.monto
+        instance.plazo_restante = instance.plazo
         # CALCULO DE INTERES
         interes = calculo_interes(instance.monto, instance.tasa_interes)
         # GENERACION DE FECHA LIMITE DE PAGO 15 DIAS

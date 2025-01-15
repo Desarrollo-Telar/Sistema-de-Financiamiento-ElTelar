@@ -40,7 +40,9 @@ class CreditSerializer(serializers.ModelSerializer):
             'tipo_credito',
             'destino_id',
             'customer_id',
-            'saldo_pendiente'
+            'saldo_pendiente',
+            'estados_fechas',
+            'plazo_restante'
             
         ]
     def to_representation(self, instance):
@@ -66,7 +68,9 @@ class CreditSerializer(serializers.ModelSerializer):
             'saldo_actual': instance.saldo_actual,
             'Fsaldo_actual': formatear_numero(instance.saldo_actual),
             'saldo_pendiente':instance.saldo_pendiente,
-            'is_paid_off':instance.is_paid_off
+            'is_paid_off':instance.is_paid_off,
+            'estados_fechas':instance.estados_fechas,
+            'plazo_restante':instance.plazo_restante
         }
 
 

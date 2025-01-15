@@ -142,7 +142,9 @@ async function registrarCredito(url, credito) {
             proposito: credito.proposito,
             tasa_interes: credito.tasaInteres,
             tipo_credito: credito.tipoCredito,
-            saldo_pendiente:credito.monto
+            saldo_pendiente:credito.monto,
+            estados_fechas:true,
+            plazo_restante:credito.plazo
         };
         console.log(json);
 

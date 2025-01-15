@@ -327,6 +327,15 @@ def test(request):
     }
     return render(request, template_name, context)
 
+@login_required
+@usuario_activo
+def list_api(request):
+    template_name = 'API/list.html'
+    context = {
+        'title':'ELTELAR - API'
+
+    }
+    return render(request, template_name, context)
 
 class Search(TemplateView):
     template_name = 'search.html'

@@ -47,6 +47,9 @@ class Credit(models.Model):
     estado_aportacion = models.BooleanField(default=False)
     estados_fechas =  models.BooleanField(default=True)
 
+    # nuevos atributos
+    plazo_restante = models.IntegerField("Plazo", blank=True, null=True, default=0)
+
     def __str__(self):
         return self.codigo_credito
     

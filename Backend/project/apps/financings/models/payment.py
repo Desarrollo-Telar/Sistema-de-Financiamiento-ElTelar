@@ -78,7 +78,7 @@ class Payment(models.Model):
         Encuentra la próxima cuota a pagar en función de la fecha de emisión y el historial de pagos.
         """
         # Obtener todas las cuotas del crédito ordenadas por la fecha límite
-        cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit, status=False ).order_by('fecha_limite')
+        cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit ).order_by('fecha_limite')
 
         # Fecha de emisión (como objeto datetime)
         fecha_emision = self.fecha_emision
@@ -315,7 +315,7 @@ class Payment(models.Model):
         
         interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
         if aporte_capital > 0:
-            #cuota.status = True
+            cuota.status = True
             #cuota_a_actualizar = self.get_plan_pagos()()
             #cuota_a_actualizar.interest =  interes
             #cuota_a_actualizar.interes_generado =  interes

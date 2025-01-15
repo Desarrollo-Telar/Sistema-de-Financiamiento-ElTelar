@@ -76,15 +76,11 @@ from django.db import transaction
 
 @shared_task
 def cambiar_plan():
-    print("CAMBIANDO")
-    
     planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), cuota_vencida=False)
     print(planes)
     if planes:
         for pago in planes:
-            
-            
-            
+
             # Validar si hay algún pago registrado para este crédito y plan
             boleta = Payment.objects.filter(credit=pago.credit_id, id=pago.id )
           
@@ -96,20 +92,28 @@ def cambiar_plan():
                     mora = Decimal(pago.interest) * Decimal(0.1)
                     
                     #mora_acumulada = pago.mora + mora
-                    if not pago.status:
-                        pago.cuota_vencida = True
+                    
+                        
                     #pago.mora = mora_acumulada   
                     pago.mora = mora
                     interes = calculo_interes(pago.saldo_pendiente,pago.credit_id.tasa_interes)
 
                     pago.mora_generado = Decimal(interes) * Decimal(0.1)
                 
-                    pago.status = True
+                    
+                    if not pago.status:
+                        pago.cuota_vencida = True
+                        estado_cuenta = AccountStatement(credit=pago.credit_id,numero_referencia=str(uuid.uuid4())[:8],description="CUOTA VENCIDA",cuota=pago, saldo_pendiente=pago.saldo_pendiente)
+                        estado_cuenta.save()
+                    
+                    
+                    
+                    
+
 
                     pago.save()
-
-                    estado_cuenta = AccountStatement(credit=pago.credit_id,numero_referencia=str(uuid.uuid4())[:8],description="CUOTA VENCIDA",cuota=pago, saldo_pendiente=pago.saldo_pendiente)
-                    estado_cuenta.save()
+                    
+                    
 
 
                     
@@ -121,6 +125,7 @@ def cambiar_plan():
                         credit_id_id=pago.credit_id.id,  
                         fecha_limite__gt=pago.fecha_limite  # Filtramos por fecha límite
                     ).order_by('fecha_limite').first()
+                    print(siguiente_cuota)
                     
 
                     if siguiente_cuota:
@@ -150,3 +155,8 @@ def cambiar_plan():
                             
                             )
                         nuevo_plan.save()
+                    credito = Credit.objects.get(id=pago.credit_id.id)
+                    print(credito.estados_fechas)
+                    credito.estados_fechas = False
+                    credito.save()
+                    print(credito.estados_fechas)
