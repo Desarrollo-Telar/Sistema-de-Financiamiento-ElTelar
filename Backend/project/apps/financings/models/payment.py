@@ -34,7 +34,15 @@ class Payment(models.Model):
     ]
     
     TYPE_PAYMENT = [
-        ('DESEMBOLSO','DESEMBOLSO'),('CREDITO','CREDITO'),('GASTO','GASTO'),('COMPRA','COMPRA'),('SEGURO','SEGURO'),('INGRESO','INGRESO')
+        ('DESEMBOLSO','DESEMBOLSO'),
+        ('CREDITO','CREDITO'),
+        ('GASTO','GASTO'),
+        ('COMPRA','COMPRA'),
+        ('SEGURO','SEGURO'),
+        ('INGRESO','INGRESO'),
+        ('CLIENTE','CLIENTE'),
+        ('ACREEDOR','ACREEDOR'),
+        ('SEGURO','SEGURO')
     ]
     credit = models.ForeignKey(Credit, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Credito')
     disbursement = models.ForeignKey(Disbursement, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Desembolso')

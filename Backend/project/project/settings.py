@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.financings',
     'django_celery_beat',
     'django.contrib.sites',
+    'apps.accountings'
     #'bootstrap5',
     #'django_inlinecss',
     #'otp',

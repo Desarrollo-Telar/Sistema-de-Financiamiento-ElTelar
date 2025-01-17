@@ -126,7 +126,7 @@ def cambiar_plan():
 
             if pago.credit_id.desembolsado_completo:
                 # Validar si hay algún pago registrado para este crédito
-                boleta = Payment.objects.filter(credit=pago.credit_id, id=pago.id )
+                boleta = Payment.objects.filter(credit=pago.credit_id )
                 # Credito de la cuota
                 credito = get_credito(pago.credit_id.id)
 
