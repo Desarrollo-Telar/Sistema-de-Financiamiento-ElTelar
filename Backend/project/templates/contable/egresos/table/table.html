@@ -6,39 +6,33 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Codigo de Seguro</th>
-                        <th scope="col">Nombre</th>
+                        <th scope="col">Codigo de Egreso</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Monto Otorgado</th>
-                        <th scope="col">Tasa</th>
-                        <th scope="col">Plazo</th>
+                        <th scope="col">Monto</th>
                         <th scope="col">Referencia</th>
+                        <th scope="col">Fecha de Documento</th>
+                        <th scope="col">Numero de Documento</th>
+                        <th scope="col">NIT</th>
+                        <th scope="col">Monto del Documento</th>
                         <th scope="col">Fecha De Registro</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     {% for acreedor in object_list %}
-
-
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{acreedor.codigo_seguro}}</td>
-                        <td>{{acreedor.nombre_acreedor}}</td>
-                        <td>{{acreedor.fecha_inicio}}</td>
+                        <td>{{acreedor.codigo_egreso}}</td>
+                        <td>{{acreedor.fecha}}</td>
                         <td>Q{{acreedor.fmonto}}</td>
-                        <td>{{acreedor.ftasa}}%</td>
-                        <td>{{acreedor.plazo}} meses</td>
                         <td>{{acreedor.numero_referencia}}</td>
+                        <td>{{acreedor.fecha_doc_fiscal}}</td>
+                        <td>{{acreedor.numero_doc}} meses</td>
+                        <td>{{acreedor.nit}}</td>
+                        <td>Q{{acreedor.fmontoD}}</td>
                         <td>{{acreedor.fecha_registro}}</td>
 
                     </tr>
-
-
-
-
-
-
                     {% endfor %}
                 </tbody>
             </table>

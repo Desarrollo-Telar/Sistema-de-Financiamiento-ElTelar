@@ -5,7 +5,7 @@ from django.contrib import messages
 
 # Models
 from apps.accountings.models import Creditor, Insurance,  Egress, Income
-from apps.financings.models import Payment
+from apps.financings.models import Payment, PaymentPlan
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
@@ -27,20 +27,39 @@ from project.pagination import paginacion
 # MENSAJES
 from django.contrib import messages
 
+# CLASES
+from apps.financings.clases.paymentplan import PaymentPlan as PlanPagoos
+from apps.financings.clases.credit import Credit as Credito
 
+def formatear_numero(numero):
+    # Convertir el número a un formato con coma para miles y punto para decimales
+    return f"{numero:,.2f}".replace(".", "X").replace(".", ",").replace("X", ".")
+    
+def planPagosCredito(credito):
+    formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
+    credit = Credito('credito.proposito',credito.monto,credito.plazo,credito.tasa,credito.forma_de_pago,'MENSAUL',formatted_date,'credito.tipo_credito',1,None,credito.fecha_vencimiento)
+    plan_pago = PlanPagoos(credit)
+    return plan_pago
 
 # Create your views here.
 @login_required
 @usuario_activo
-def list_acreedores(request):
-    template_name = 'contable/acreedores/list.html'
-    acreedores_list = Creditor.objects.all().order_by('-id')
-    page_obj = paginacion(request, acreedores_list)
+def detail_acreedores(request, id):
+    template_name = 'contable/acreedores/detail.html'
+    object_list = get_object_or_404(Creditor, id=id)
+
+    siguiente_pago = PaymentPlan.objects.filter(acreedor=object_list).order_by('-id').first()
+    plan = planPagosCredito(object_list).generar_plan()
+  
+
     context = {
         'title':'EL TELAR',
-        'page_obj':page_obj,
-        'acreedores_list':page_obj,
-        'count':acreedores_list.count(),
+        'object_list':object_list,
+        'plan':plan,
+        'siguiente_pago':siguiente_pago,
+        'total_cuota':formatear_numero(planPagosCredito(object_list).calcular_total_cuotas()),
+        'total_capital':formatear_numero(planPagosCredito(object_list).calcular_total_capital()),
+        'total_interes':formatear_numero(planPagosCredito(object_list).calcular_total_interes()),
         
     }
         
@@ -48,15 +67,20 @@ def list_acreedores(request):
 
 @login_required
 @usuario_activo
-def list_seguros(request):
-    template_name = 'contable/seguros/list.html'
-    object_list = Insurance.objects.all().order_by('-id')
-    page_obj = paginacion(request, object_list)
+def detail_seguro(request, id):
+    template_name = 'contable/seguros/detail.html'
+    object_list = get_object_or_404(Insurance, id=id)
+    siguiente_pago = PaymentPlan.objects.filter(seguro=object_list).order_by('-id').first()
+    plan = planPagosCredito(object_list).generar_plan()
+  
     context = {
         'title':'EL TELAR',
-        'page_obj':page_obj,
-        'object_list':page_obj,
-        'count':object_list.count(),
+        'object_list':object_list,
+        'plan':plan,
+        'siguiente_pago':siguiente_pago,
+        'total_cuota':formatear_numero(planPagosCredito(object_list).calcular_total_cuotas()),
+        'total_capital':formatear_numero(planPagosCredito(object_list).calcular_total_capital()),
+        'total_interes':formatear_numero(planPagosCredito(object_list).calcular_total_interes()),
         
     }
         
@@ -64,15 +88,13 @@ def list_seguros(request):
 
 @login_required
 @usuario_activo
-def list_ingresos(request):
-    template_name = 'contable/ingresos/list.html'
-    object_list = Income.objects.all().order_by('-id')
-    page_obj = paginacion(request, object_list)
+def detail_ingreso(request, id):
+    template_name = 'contable/acreedores/detail.html'
+    object_list = get_object_or_404(Creditor, id=id)
+  
     context = {
         'title':'EL TELAR',
-        'page_obj':page_obj,
-        'object_list':page_obj,
-        'count':object_list.count(),
+        'object_list':object_list
         
     }
         
@@ -80,15 +102,13 @@ def list_ingresos(request):
 
 @login_required
 @usuario_activo
-def list_egresos(request):
-    template_name = 'contable/egresos/list.html'
-    object_list = Egress.objects.all().order_by('-id')
-    page_obj = paginacion(request, object_list)
+def detail_egreso(request, id):
+    template_name = 'contable/acreedores/detail.html'
+    object_list = get_object_or_404(Creditor, id=id)
+  
     context = {
         'title':'EL TELAR',
-        'page_obj':page_obj,
-        'object_list':page_obj,
-        'count':object_list.count(),
+        'object_list':object_list
         
     }
         

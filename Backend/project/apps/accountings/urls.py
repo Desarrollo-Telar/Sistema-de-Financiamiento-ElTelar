@@ -27,5 +27,11 @@ urlpatterns = [
     path('ingresos/create', views.add_ingreso, name='ingresos_create'),
     path('egresos/create', views.add_egresos, name='egresos_create'),
 
+    # DETAIL
+    path('acreedores/detail/<int:id>', views.detail_acreedores, name='acreedores_detail'),
+    path('seguros/detail/<int:id>', views.detail_seguro, name='seguros_detail'),
+    path('ingresos/detail/<int:id>', views.detail_ingreso, name='ingresos_detail'),
+    path('egresos/detail/<int:id>', views.detail_egreso, name='egresos_detail'),
+
     
 ]

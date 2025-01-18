@@ -22,7 +22,13 @@
 
 
                     <tr>
-                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:seguros_detail' acreedor.id %}">
+                                {{ forloop.counter }}
+                            </a>
+
+                        </td>
                         <td>{{acreedor.codigo_seguro}}</td>
                         <td>{{acreedor.nombre_acreedor}}</td>
                         <td>{{acreedor.fecha_inicio}}</td>

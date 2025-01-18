@@ -223,7 +223,7 @@ def add_egresos(request):
             boleta.save()
             """    
             messages.success(request, 'Egreso Creado con Exito')
-            return redirect('contable:ingresos')
+            return redirect('contable:egresos')
 
     form = EgresoForm
     context = {

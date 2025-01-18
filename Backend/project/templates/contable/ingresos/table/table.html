@@ -6,14 +6,15 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Codigo de Seguro</th>
-                        <th scope="col">Nombre</th>
+                        <th scope="col">Codigo de Ingreso</th>
+
                         <th scope="col">Fecha</th>
-                        <th scope="col">Monto Otorgado</th>
-                        <th scope="col">Tasa</th>
-                        <th scope="col">Plazo</th>
-                        <th scope="col">Referencia</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Numero de Referencia</th>
                         <th scope="col">Fecha De Registro</th>
+                        <th scope="col">Status</th>
+
+
 
                     </tr>
                 </thead>
@@ -23,15 +24,12 @@
 
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{acreedor.codigo_seguro}}</td>
-                        <td>{{acreedor.nombre_acreedor}}</td>
-                        <td>{{acreedor.fecha_inicio}}</td>
+                        <td>{{acreedor.codigo_ingreso}}</td>
+                        <td>{{acreedor.fecha}}</td>
                         <td>Q{{acreedor.fmonto}}</td>
-                        <td>{{acreedor.ftasa}}%</td>
-                        <td>{{acreedor.plazo}} meses</td>
                         <td>{{acreedor.numero_referencia}}</td>
                         <td>{{acreedor.fecha_registro}}</td>
-
+                        <td>{{acreedor.status}}</td>
                     </tr>
 
 

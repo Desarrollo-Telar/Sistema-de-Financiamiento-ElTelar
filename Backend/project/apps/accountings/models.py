@@ -31,6 +31,18 @@ class Creditor(models.Model):
     def ftasa(self):
         convertir =  self.tasa *100
         return formatear_numero(convertir)
+
+    def formato_estado_aportacion(self):
+        return 'VIGENTE' if self.estado_aportacion else 'EN ATRASO'
+    
+    def formato_estado_fecha(self):
+        return 'VIGENTE' if self.estados_fechas else 'EN ATRASO'
+    
+    def formato_credito_cancelado(self):
+        return 'CANCELADO' if self.is_paid_off else 'VIGENTE'
+    
+    def formato_saldo_actual(self):
+        return formatear_numero(self.saldo_actual)
         
 
     def calcular_fecha_vencimiento(self):
@@ -72,6 +84,18 @@ class Insurance(models.Model):
     def fmonto(self):
         return formatear_numero(self.monto)
     
+    def formato_saldo_actual(self):
+        return formatear_numero(self.saldo_actual)
+    
+    def formato_estado_aportacion(self):
+        return 'VIGENTE' if self.estado_aportacion else 'EN ATRASO'
+    
+    def formato_estado_fecha(self):
+        return 'VIGENTE' if self.estados_fechas else 'EN ATRASO'
+    
+    def formato_credito_cancelado(self):
+        return 'CANCELADO' if self.is_paid_off else 'VIGENTE'
+    
     def ftasa(self):
         convertir =  self.tasa *100
         return formatear_numero(convertir)
@@ -104,6 +128,9 @@ class Income(models.Model):
     status = models.BooleanField("Status",default=False)
     fecha_registro = models.DateField("Fecha de registro",auto_now_add=True)
 
+    def fmonto(self):
+        return formatear_numero(self.monto)
+
     class Meta:
         verbose_name = "Ingreso"
         verbose_name_plural = "Ingresos"
@@ -124,6 +151,12 @@ class Egress(models.Model):
     documento = models.FileField("Documento",blank=True, null=True,upload_to='pagos/boletas/gasto/documento/')
     status = models.BooleanField("Status",default=False)
     fecha_registro = models.DateField("Fecha de registro",auto_now_add=True)
+
+    def fmonto(self):
+        return formatear_numero(self.monto)
+    
+    def fmontoD(self):
+        return formatear_numero(self.monto)
 
     class Meta:
         verbose_name = "Egreso"
