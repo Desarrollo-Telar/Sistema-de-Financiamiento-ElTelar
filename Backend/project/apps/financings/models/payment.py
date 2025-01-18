@@ -22,6 +22,9 @@ from .disbursement import Disbursement
 from .credit import Credit
 from .bank import Banco
 from apps.customers.models import Customer
+from apps.accountings.models import Creditor, Insurance
+
+from django.db.models import Q
 
 from project.settings import MEDIA_URL, STATIC_URL
 
@@ -64,6 +67,9 @@ class Payment(models.Model):
 
     # Nuevos atributos
     cliente = models.ForeignKey(Customer, on_delete=models.CASCADE,null=True, blank=True, verbose_name="Cliente")
+    acreedor = models.ForeignKey(Creditor, on_delete=models.CASCADE, related_name='payment', blank=True, null=True)
+    seguro = models.ForeignKey(Insurance, on_delete=models.CASCADE, related_name='payment', blank=True, null=True)
+
     def Fmonto(self):
         return formatear_numero(self.monto)
     
@@ -102,7 +108,10 @@ class Payment(models.Model):
         Encuentra la próxima cuota a pagar en función de la fecha de emisión y el historial de pagos.
         """
         # Obtener todas las cuotas del crédito ordenadas por la fecha límite
-        cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit ).order_by('fecha_limite')
+        cuotas = self.get_plan_pagos().filter(
+            Q(credit_id=self.credit) | Q(acreedor=self.acreedor) | Q(seguro=self.seguro)
+        ).order_by('fecha_limite')
+
 
         # Fecha de emisión (como objeto datetime)
         fecha_emision = self.fecha_emision
@@ -162,7 +171,10 @@ class Payment(models.Model):
 
         if cuota_actual:
             # Obtener todas las cuotas ordenadas por fecha límite
-            cuotas = self.get_plan_pagos().objects.filter(credit_id_id=self.credit.id).order_by('fecha_limite')
+            cuotas = self.get_plan_pagos().filter(
+            Q(credit_id=self.credit) | Q(acreedor=self.acreedor) | Q(seguro=self.seguro)
+        ).order_by('fecha_limite')
+            
            
             
             # Iterar sobre las cuotas después de la cuota actual
@@ -263,9 +275,16 @@ class Payment(models.Model):
             logger.error(f'NO SE HA ENCONTRADO NINGUNA CUOTA')
             cuota = self._siguiente_cuota()
             #return f'CUOTA NO ENCONTRADA'
-        
 
-        saldo_pendiente = self.credito().saldo_pendiente
+        saldo_pendiente = None
+
+        if self.credito() is not None:
+            saldo_pendiente = self.credito().saldo_pendiente
+        if self.acreedor is not None:
+            saldo_pendiente = self.acreedor.saldo_pendiente
+        
+        if self.seguro is not None:
+            saldo_pendiente = self.seguro.saldo_pendiente
         
         mora = self._calculo_mora()
         interes = self._calculo_intereses()
@@ -324,10 +343,14 @@ class Payment(models.Model):
     
     def _registrar_pago(self, pagado_mora, pagado_interes,aporte_capital, saldo_pendiente):
         credito = self.credito()
+        acreedor = self.acreedor
+        seguro = self.seguro
         pago = self.pago()
         cuota = self._cuota_pagar()
         siguiente = self._siguiente_cuota()
         cuota_a_actualizar = False
+        descripcion = None
+        tasa_interes = None
 
         # SE GENERA EL RECIBO
         """
@@ -335,8 +358,20 @@ class Payment(models.Model):
         """
         
         recibos = self.get_recibo().objects.filter(pago=pago)
+
+        if credito is not None:
+            descripcion = 'PAGO DE CREDITO'
+            tasa_interes = credito.tasa_interes
+
+        if acreedor is not None:
+            descripcion = 'PAGO PARA EL ACREEDOR'
+            tasa_interes = self.acreedor.tasa
+
+        if seguro is not None:
+            descripcion = 'PAGO PARA EL SEGURO'
+            tasa_interes = self.seguro.tasa
     
-        if not recibos.exists():
+        if not recibos.exists() and credito is not None:
             # Creamos un nuevo recibo si no hay existentes
             recibo = self.get_recibo()(
                 mora=cuota.mora,
@@ -346,9 +381,11 @@ class Payment(models.Model):
                 aporte_capital=aporte_capital,
                 interes_pagado=pagado_interes,
                 mora_pagada=pagado_mora,
+                
                 cliente=credito.customer_id,
                 cuota=cuota
             )
+            
             recibo.save()
        
 
@@ -378,7 +415,7 @@ class Payment(models.Model):
         
         ''')
         
-        interes = calculo_interes(saldo_pendiente, credito.tasa_interes)
+        interes = calculo_interes(saldo_pendiente, tasa_interes)
         if aporte_capital > 0:
             cuota.status = True
             #cuota_a_actualizar = self.get_plan_pagos()()
@@ -387,11 +424,27 @@ class Payment(models.Model):
             capital_original = cuota.capital_generado
 
             if cuota.principal >= capital_original:
-                credito.estado_aportacion = True
+                if credito is not None:
+                    credito.estado_aportacion = True
+
+                if acreedor is not None:
+                    acreedor.estado_aportacion = True
+
+                if seguro is not None:
+                    seguro.estado_aportacion = True
+                
+                
             else:
-                credito.estado_aportacion = False
-            credito.estados_fechas = True
-        
+                if credito is not None:
+                    credito.estado_aportacion = False
+
+                if acreedor is not None:
+                    acreedor.estado_aportacion = False
+
+                if seguro is not None:
+                    seguro.estado_aportacion = False
+                
+            
         cuota.save()
 
 
@@ -406,8 +459,12 @@ class Payment(models.Model):
         estados_cuenta = self.get_estado_cuenta().objects.filter(payment=pago)
 
         # Definimos los datos que se asignarán a los estados de cuenta
+        
+
+        
+
         datos_estado_cuenta = {
-            'abono': self.monto,
+            'abono': self.monto,            
             'credit': credito,
             'payment': pago,
             'interest_paid': pagado_interes,
@@ -415,7 +472,9 @@ class Payment(models.Model):
             'capital_paid': aporte_capital,
             'numero_referencia': self.numero_referencia,
             'saldo_pendiente':saldo_pendiente,
-            'description': 'PAGO DE CREDITO'
+            'description':  descripcion,
+            'acreedor': acreedor,
+            'seguro':seguro
         }
         
         if estados_cuenta.exists():
@@ -432,10 +491,22 @@ class Payment(models.Model):
         
         # VERIFICAR SI EL CREDITO YA FUE PAGADO POR COMPLETO
         if saldo_pendiente <= 0:
+            if credito is not None:
+                credito.is_paid_off = True
+                credito.saldo_pendiente = 0
+                credito.save()
+
+            if acreedor is not None:
+                acreedor.is_paid_off = True
+                acreedor.saldo_pendiente = 0
+                acreedor.save()
+
+            if seguro is not None:
+                seguro.is_paid_off = True
+                seguro.saldo_pendiente = 0
+                seguro.save()
             
-            credito.is_paid_off = True
-            credito.saldo_pendiente = 0
-            credito.save()
+            
             logger.error(f'EL CREDITO PAGADO COMPLETAMENTE')
             if siguiente:
                 siguiente.delete()
@@ -444,19 +515,37 @@ class Payment(models.Model):
             
         
         # SE ACTUALIZA EL SALDO PENDIENTE DEL CREDITO
-        credito.saldo_pendiente = saldo_pendiente
+        if credito is not None:
+            credito.saldo_pendiente = saldo_pendiente
+
+        if acreedor is not None:
+            acreedor.saldo_pendiente = saldo_pendiente
+
+        if seguro is not None:
+            seguro.saldo_pendiente = saldo_pendiente
+        
 
         # Actualizar el saldo actual
         if saldo_pendiente <= 0:
             saldo_pendiente = 0
-        credito.saldo_actual = saldo_pendiente + cuota.mora + cuota.interest
 
-        credito.save()
+        if credito is not None:
+            credito.saldo_actual = saldo_pendiente + cuota.mora + cuota.interest
+            credito.save()
+
+        if acreedor is not None:
+            acreedor.saldo_actual = saldo_pendiente + cuota.mora + cuota.interest
+            acreedor.save()
+            
+        if seguro is not None:
+            seguro.saldo_actual = saldo_pendiente + cuota.mora + cuota.interest
+            seguro.save()
+        
         
 
 
         
-        mora = calculo_mora(saldo_pendiente, credito.tasa_interes)
+        mora = calculo_mora(saldo_pendiente, tasa_interes)
         
        
         
@@ -485,10 +574,20 @@ class Payment(models.Model):
             cuota_a_actualizar.saldo_pendiente = saldo_pendiente
             cuota_a_actualizar.credit_id = credito
             cuota_a_actualizar.outstanding_balance = saldo_pendiente
-            
-            credito.saldo_actual = saldo_pendiente + cuota_a_actualizar.mora + cuota_a_actualizar.interest
 
-            credito.save()
+            if credito is not None:
+                credito.saldo_actual = saldo_pendiente + cuota_a_actualizar.mora + cuota_a_actualizar.interest
+                credito.save()
+
+            if acreedor is not None:
+                acreedor.saldo_actual = saldo_pendiente + cuota_a_actualizar.mora + cuota_a_actualizar.interest
+                acreedor.save()
+                
+            if seguro is not None:
+                seguro.saldo_actual = saldo_pendiente + cuota_a_actualizar.mora + cuota_a_actualizar.interest
+                seguro.save()
+            
+            
             
             logger.info(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO: {cuota_a_actualizar.interest}\nMORA NUEVA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {saldo_pendiente}')
             

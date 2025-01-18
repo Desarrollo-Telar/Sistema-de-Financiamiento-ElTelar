@@ -22,7 +22,11 @@ def get_credito(id):
     return Credit.objects.get(id=id)
 
 def calcular_interes_y_mora(pago):
-    interes = calculo_interes(pago.saldo_pendiente, pago.credit_id.tasa_interes)
+    tasa_interes = 0
+    if pago.credit_id is not None:
+        tasa_interes =  pago.credit_id.tasa_interes
+    
+    interes = calculo_interes(pago.saldo_pendiente,tasa_interes)
     mora = Decimal(pago.interest) * Decimal(0.1)
     return interes, mora
 
@@ -69,31 +73,73 @@ def verificar_por_ausencia():
     logger.info("Hay datos para procesar")
 
     for pago in planes:
-        credito = get_credito(pago.credit_id.id)
+        boleta = None 
+        if pago.credit_id:
+            credito = get_credito(pago.credit_id.id)
+            
 
-        if pago.credit_id.is_paid_off:
-            logger.error(f'El crédito {pago.credit_id} ya ha sido cancelado')
-            continue
+            if pago.credit_id.is_paid_off :
+                logger.error(f'El crédito {pago.credit_id} ya ha sido cancelado')
+                continue
 
-        if not pago.credit_id.desembolsado_completo:
-            logger.error(f'El crédito {pago.credit_id} no está desembolsado completamente')
-            continue
+            if not pago.credit_id.desembolsado_completo:
+                logger.error(f'El crédito {pago.credit_id} no está desembolsado completamente')
+                continue
 
-        boleta = Payment.objects.filter(credit=pago.credit_id).exists()
+            boleta = Payment.objects.filter(credit=pago.credit_id).exists()
+        if pago.acreedor:
+            acreedor = pago.acreedor
+            
+
+            if pago.acreedor.is_paid_off :
+                logger.error(f'El crédito {pago.credit_id} ya ha sido cancelado')
+                continue
+
+            
+
+            boleta = Payment.objects.filter(acreedor=pago.acreedor).exists()
+
+        if pago.seguro:
+            seguro = pago.seguro
+            
+
+            if pago.seguro.is_paid_off :
+                logger.error(f'El crédito {pago.credit_id} ya ha sido cancelado')
+                continue
+
+
+            boleta = Payment.objects.filter(seguro=pago.seguro).exists()
+
         if boleta != None and pago.fecha_limite.date() < now().date():
             pago.paso_por_task = True
             pago.save()
             continue
 
             interes, mora = calcular_interes_y_mora(pago)
-            siguiente_cuota = PaymentPlan.objects.filter(
-                credit_id=pago.credit_id,
-                fecha_limite__gt=pago.fecha_limite
-            ).order_by('fecha_limite').first()
+            siguiente_cuota = None
+
+            if pago.credit_id:
+                siguiente_cuota = PaymentPlan.objects.filter(
+                    credit_id=pago.credit_id,
+                    fecha_limite__gt=pago.fecha_limite
+                ).order_by('fecha_limite').first()
+                pago.paso_por_task = True
+
+            if pago.acreedor:
+                siguiente_cuota = PaymentPlan.objects.filter(
+                    acreedor=pago.acreedor,
+                    fecha_limite__gt=pago.fecha_limite
+                ).order_by('fecha_limite').first()
+            
+            if pago.seguro:
+                siguiente_cuota = PaymentPlan.objects.filter(
+                    seguro=pago.seguro,
+                    fecha_limite__gt=pago.fecha_limite
+                ).order_by('fecha_limite').first()
 
             pago.mora = mora
             pago.mora_generado = mora
-            pago.paso_por_task = True
+            
 
             if not pago.status:
                 pago.cuota_vencida = True
@@ -113,6 +159,8 @@ def verificar_por_ausencia():
 
 @shared_task
 def cambiar_plan():
+    pass
+    """
     verificar_por_ausencia()
     # Obtener todas las cuotas con respecto al dia de hoy
     planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), cuota_vencida=False,paso_por_task=False)
@@ -253,5 +301,5 @@ def cambiar_plan():
                         credito.saldo_actual = nuevo_plan.saldo_pendiente +  nuevo_plan.mora + nuevo_plan.interest
                         credito.save()
                         
-            
+        """
             

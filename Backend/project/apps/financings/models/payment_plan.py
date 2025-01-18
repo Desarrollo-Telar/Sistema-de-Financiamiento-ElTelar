@@ -11,6 +11,7 @@ from decimal import Decimal
 
 # MODELOS
 from .credit import Credit
+from apps.accountings.models import Creditor, Insurance
 
 # FORMATO
 from apps.financings.formato import formatear_numero
@@ -26,8 +27,11 @@ class PaymentPlan(models.Model):
     principal_pagado = models.DecimalField('Capital Pagado',max_digits=12, decimal_places=2, default=0)
     installment = models.DecimalField('Cuota',max_digits=12, decimal_places=2, default=0)
     status = models.BooleanField(default=False)
-    credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE, verbose_name='Credito')
-    
+
+    credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Credito')
+    acreedor = models.ForeignKey(Creditor, on_delete=models.CASCADE, related_name='payment_plan', blank=True, null=True)
+    seguro = models.ForeignKey(Insurance, on_delete=models.CASCADE, related_name='payment_plan', blank=True, null=True)
+
     saldo_pendiente = models.DecimalField('Saldo Pendiente',max_digits=12, decimal_places=2, default=0) # obligatorio
     interes_pagado = models.DecimalField('Interes Pagado',max_digits=12, decimal_places=2, default=0)
     mora_pagado = models.DecimalField('Mora Pagada', max_digits=12, decimal_places=2, default=0)
@@ -92,7 +96,17 @@ class PaymentPlan(models.Model):
    
 
     def calculo_interes(self):
-        interes = (self.saldo_pendiente * self.credit_id.tasa_interes)
+        tasa_interes = 0
+        if self.credit_id is not None:
+            tasa_interes = self.credit_id.tasa_interes
+        
+        if  self.acreedor is not None:
+            tasa_interes = self.acreedor.tasa
+        
+        if  self.seguro is not None:
+            tasa_interes = self.seguro.tasa
+
+        interes = (self.saldo_pendiente * tasa_interes)
         si = round(interes,2)
         return si
 
@@ -128,9 +142,29 @@ class PaymentPlan(models.Model):
     
     
     def calculo_capital(self):
-        forma_pago = self.credit_id.forma_de_pago
-        monto_inicial = Decimal(self.credit_id.monto)
-        plazo = self.credit_id.plazo
+        forma_pago = 'NIVELADA'
+        tasa_interes = 0
+        plazo = 0
+        monto_inicial = 0
+
+        if self.credit_id is not None:
+            forma_pago = self.credit_id.forma_de_pago
+            tasa_interes = Decimal(self.credit_id.tasa_interes)   # Aseguramos que sea decimal
+            plazo = self.credit_id.plazo
+            monto_inicial = Decimal(self.credit_id.monto)
+        
+        if self.acreedor is not None:
+            forma_pago = self.acreedor.forma_de_pago
+            tasa_interes = Decimal(self.acreedor.tasa)   # Aseguramos que sea decimal
+            plazo = self.acreedor.plazo
+            monto_inicial = Decimal(self.acreedor.monto)
+        
+        if  self.seguro is not None:
+            forma_pago = self.seguro.forma_de_pago
+            tasa_interes = Decimal(self.seguro.tasa)   # Aseguramos que sea decimal
+            plazo = self.seguro.plazo
+            monto_inicial = Decimal(self.seguro.monto)
+        
         intereses = Decimal(self.interes_generado)
         capital = 0
 
@@ -155,10 +189,29 @@ class PaymentPlan(models.Model):
         return Decimal(capital)
 
     def calculo_cuota(self):
-        forma_pago = self.credit_id.forma_de_pago
-        tasa_interes = Decimal(self.credit_id.tasa_interes)   # Aseguramos que sea decimal
-        plazo = self.credit_id.plazo
-        monto = Decimal(self.credit_id.monto)
+        forma_pago = 'NIVELADA'
+        tasa_interes = 0
+        plazo = 0
+        monto = 0
+
+        if  self.credit_id is not None:
+            forma_pago = self.credit_id.forma_de_pago
+            tasa_interes = Decimal(self.credit_id.tasa_interes)   # Aseguramos que sea decimal
+            plazo = self.credit_id.plazo
+            monto = Decimal(self.credit_id.monto)
+        
+        if  self.acreedor is not None:
+            forma_pago = self.acreedor.forma_de_pago
+            tasa_interes = Decimal(self.acreedor.tasa)   # Aseguramos que sea decimal
+            plazo = self.acreedor.plazo
+            monto = Decimal(self.acreedor.monto)
+        
+        if  self.seguro is not None:
+            forma_pago = self.seguro.forma_de_pago
+            tasa_interes = Decimal(self.seguro.tasa)   # Aseguramos que sea decimal
+            plazo = self.seguro.plazo
+            monto = Decimal(self.seguro.monto)
+        
 
         if forma_pago == 'NIVELADA':
             # Cálculo de la cuota nivelada basado en la fórmula de cuota fija
@@ -185,7 +238,17 @@ class PaymentPlan(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return f'{self.mes} - {self.credit_id}'
+        mensaje = None
+        if  self.credit_id is not None:
+            mensaje = self.credit_id
+        
+        if  self.acreedor is not None:
+            mensaje = self.acreedor
+        
+        if  self.seguro is not None:
+            mensaje = self.seguro
+
+        return f'{self.mes} - {mensaje}'
         
     class Meta:
         verbose_name = 'Plan de Pago'
