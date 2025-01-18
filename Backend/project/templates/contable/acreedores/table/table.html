@@ -1,0 +1,49 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 " style="text-align: center;">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Codigo de Acreedor</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Monto Otorgado</th>
+                        <th scope="col">Tasa</th>
+                        <th scope="col">Plazo</th>
+                        <th scope="col">Referencia</th>
+                        <th scope="col">Fecha De Registro</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for acreedor in acreedores_list %}
+
+
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{acreedor.codigo_acreedor}}</td>
+                        <td>{{acreedor.nombre_acreedor}}</td>
+                        <td>{{acreedor.fecha_inicio}}</td>
+                        <td>Q{{acreedor.fmonto}}</td>
+                        <td>{{acreedor.ftasa}}%</td>
+                        <td>{{acreedor.plazo}} meses</td>
+                        <td>{{acreedor.numero_referencia}}</td>
+                        <td>{{acreedor.fecha_registro}}</td>
+
+                    </tr>
+
+
+
+
+
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

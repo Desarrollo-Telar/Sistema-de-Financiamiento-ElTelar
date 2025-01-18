@@ -42,6 +42,7 @@ urlpatterns = [
     path('plan_inversion/', include('apps.InvestmentPlan.urls')),
     path('imagen/', include('apps.pictures.urls')),
     path('documents/', include('apps.documents.urls')),
+    path('contable/', include('apps.accountings.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),
     path('test/', views.test, name='test'),

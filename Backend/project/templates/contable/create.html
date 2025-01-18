@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data" class="box">
+    {% csrf_token %}
+    {% include 'contable/forms/forms.html' %}
+    <button type="submit" class="btn_guardar">Crear Registro</button>
+    <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+
+
+</form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load static %}
+
+<div style="padding: 2.5rem">
+    <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Ingresos</span> !</h3>
+    <div class="d-flex justify-content-center fs-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'contable:ingresos' %}">Ingresos</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+
+            </ol>
+        </nav>
+    </div>
+
+    <p>
+        En este módulo, podrás gestionar toda la información relacionada con los Ingresos de manera eficiente y
+        organizada.
+    </p>
+    <p>
+        Este módulo está diseñado para brindarte el control y la flexibilidad
+        necesarios para administrar eficazmente el registro de los Ingresos en la
+        plataforma.
+    </p>
+</div>

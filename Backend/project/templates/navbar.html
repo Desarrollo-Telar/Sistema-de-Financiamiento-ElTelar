@@ -5,6 +5,10 @@
 {% url 'users:update_password' as update_password%}
 {% url 'customers:customers' as customers%}
 {% url 'financings:reportes' as reportes %}
+{% url 'contable:acreedores' as acreedores %}
+{% url 'contable:seguros' as seguros %}
+{% url 'contable:ingresos' as ingresos %}
+{% url 'contable:egresos' as egresos %}
 <style>
   .btn_outline {
     background-color: #e02226;
@@ -87,6 +91,35 @@
               </li>
               <li>
                 <a class="dropdown-item" href="{% url 'financings:list_bank' %}">Bancos</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 1rem" width="25" height="25"
+                fill="currentColor" class="bi bi-border-width" viewBox="0 0 16 16">
+                <path
+                  d="M0 3.5A.5.5 0 0 1 .5 3h15a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5zm0 5A.5.5 0 0 1 .5 8h15a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5" />
+              </svg>
+              Contable
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="{{acreedores}}">Acreedores</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{seguros}}">Seguros</a>
+              </li>
+
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{ingresos}}">Ingresos</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{egresos}}">Egresos</a>
               </li>
             </ul>
           </li>

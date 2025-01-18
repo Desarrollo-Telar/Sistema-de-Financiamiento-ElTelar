@@ -1,6 +1,8 @@
 from django.db import models
 from dateutil.relativedelta import relativedelta
 # Create your models here.
+# FORMATO
+from apps.financings.formato import formatear_numero
 
 # Acreedor
 class Creditor(models.Model):
@@ -23,9 +25,21 @@ class Creditor(models.Model):
     estados_fechas =  models.BooleanField(blank=True, null=True)
     forma_de_pago = models.CharField("Forma de Pago", max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
 
+    def fmonto(self):
+        return formatear_numero(self.monto)
+    
+    def ftasa(self):
+        convertir =  self.tasa *100
+        return formatear_numero(convertir)
+        
+
     def calcular_fecha_vencimiento(self):
         self.fecha_vencimiento = self.fecha_inicio + relativedelta(months=self.plazo)
         return self.fecha_vencimiento
+
+    def save(self, *args, **kwargs):
+        self.calcular_fecha_vencimiento()
+        super().save(*args, **kwargs)
     
     def __str__(self):
         return self.nombre_acreedor
@@ -55,9 +69,21 @@ class Insurance(models.Model):
     estados_fechas =  models.BooleanField(blank=True, null=True)
     forma_de_pago = models.CharField("Forma de Pago",  max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
 
+    def fmonto(self):
+        return formatear_numero(self.monto)
+    
+    def ftasa(self):
+        convertir =  self.tasa *100
+        return formatear_numero(convertir)
+        
+
     def calcular_fecha_vencimiento(self):
         self.fecha_vencimiento = self.fecha_inicio + relativedelta(months=self.plazo)
         return self.fecha_vencimiento
+
+    def save(self, *args, **kwargs):
+        self.calcular_fecha_vencimiento()
+        super().save(*args, **kwargs)
         
     def __str__(self):
         return self.nombre_acreedor
@@ -95,7 +121,7 @@ class Egress(models.Model):
     observaciones = models.TextField("Observaciones",blank=True, null=True)
     numero_referencia = models.CharField('Numero de Referencia', max_length=255, unique=True)
     boleta = models.FileField("Boleta",blank=True, null=True,upload_to='pagos/boletas/gasto/')
-    documento = models.FileField("Boleta",blank=True, null=True,upload_to='pagos/boletas/gasto/documento/')
+    documento = models.FileField("Documento",blank=True, null=True,upload_to='pagos/boletas/gasto/documento/')
     status = models.BooleanField("Status",default=False)
     fecha_registro = models.DateField("Fecha de registro",auto_now_add=True)
 
