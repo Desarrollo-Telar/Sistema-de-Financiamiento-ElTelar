@@ -21,7 +21,8 @@ class SeguroForm(forms.ModelForm):
         'plazo',
         'numero_referencia',
         'observaciones',
-        'boleta'
+        'boleta',
+        'credito'
         ]
 
         labels = {
@@ -32,7 +33,8 @@ class SeguroForm(forms.ModelForm):
             'plazo':'Plazo',
             'numero_referencia':'Numero de Referencia',
             'observaciones': 'Observaciones',
-            'boleta':'Boleta'
+            'boleta':'Boleta',
+            'credito':'Credito'
         }
 
         widgets = {
@@ -44,5 +46,5 @@ class SeguroForm(forms.ModelForm):
             'numero_referencia': forms.TextInput(attrs={'class': 'form-control'}),
             'observaciones': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
             'boleta':forms.FileInput(attrs={'type':'file','class':'form-control','name':'document','accept':'.pdf, .doc, .docx,.xls,.xlsx,.txt,image/*'}),  
-           
+            'credito':forms.Select(attrs={'class':'form-control credito_vigente'})
         }

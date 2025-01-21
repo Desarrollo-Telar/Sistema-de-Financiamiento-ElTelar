@@ -50,7 +50,6 @@ class IngresoForm(forms.ModelForm):
         opciones_codigo_ingreso = [
             ('', 'Seleccione un código'),  # Opción inicial
             ('Servicios terceros', 'Servicios terceros'),
-            ('Financiamiento Externo', 'Financiamiento Externo'),
             ('Otros Ingresos', 'Otros Ingresos'),
         ]
 
