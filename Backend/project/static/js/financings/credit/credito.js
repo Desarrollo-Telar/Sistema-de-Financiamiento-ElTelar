@@ -253,13 +253,34 @@ document.getElementById('credito').addEventListener('submit', async function (ev
     } catch (error) {
         console.error('Error al registrar los datos:', error);
 
-        Swal.fire({
-            icon: "error",
-            title: 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.',
-            text: `${error}`,
-            timer: 3000,
-            showConfirmButton: false,
-        });
+        if (error.response) {
+            console.error('Error en la respuesta del servidor:', error.response.data);
+            Swal.fire({
+                icon: "error",
+                title: `Error ${error.response.status}`,
+                text: error.response.data.message || 'Ocurrió un problema en el servidor.',
+                timer: 3000,
+                showConfirmButton: false,
+            });
+        } else if (error.request) {
+            console.error('Error en la solicitud:', error.request);
+            Swal.fire({
+                icon: "error",
+                title: `Sin respuesta del servidor`,
+                text: `No se obtuvo respuesta del servidor. Por favor, inténtalo más tarde.`,
+                timer: 3000,
+                showConfirmButton: false,
+            });
+        } else {
+            console.error('Error:', error.message);
+            Swal.fire({
+                icon: "error",
+                title: `Error inesperado`,
+                text: error.message,
+                timer: 3000,
+                showConfirmButton: false,
+            });
+        }
         setTimeout(() => { window.location.href = `/financings/credit/delete/${credit.id}`; }, 3000);
     }
 });
