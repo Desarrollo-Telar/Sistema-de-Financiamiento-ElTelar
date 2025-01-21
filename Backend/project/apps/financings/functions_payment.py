@@ -32,13 +32,11 @@ def generar():
                     
                     if pago.fecha_emision.date() != banco_referencia.fecha:
                         cambiar_estado = True
+                        pago.fecha_emision = banco_referencia.fecha
                         
 
                     # Si se ha modificado el monto o la fecha, guarda el pago
                     if cambiar_estado or (pago.monto != banco_referencia.credito or pago.monto != banco_referencia.debito):
-                        if cambiar_estado:
-                            pago.estado_transaccion = 'FALLIDO'
-                            pago.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES FALLIDA DEBIDO A QUE LA FECHA DE EMISION NO CORRESPONDE AL REGISTRO DE BANCOS\n\n'
                         pago.save()
                     
 
