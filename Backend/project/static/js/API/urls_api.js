@@ -92,4 +92,8 @@ export const urls_p = {
     // DOCUMENTOS
     api_url_documento_garantia: `${baseUrl}/documents/api/documento_garantia/`,
 
+    // CONTABLE
+    api_url_acreedor: `${baseUrl}/contable/api/acreedores_vigentes/`,
+    api_url_seguro: `${baseUrl}/contable/api/seguros_vigentes/`,
+
 }

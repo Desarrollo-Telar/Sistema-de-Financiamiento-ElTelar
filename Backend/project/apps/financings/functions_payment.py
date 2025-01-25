@@ -1,49 +1,74 @@
 from apps.financings.functions import realizar_pago
+# MODELOS
 from apps.financings.models import Payment, Banco
+from apps.accountings.models import Income, Egress
 from django.shortcuts import get_object_or_404
 from datetime import datetime
+
 def generar():
-    bancos = Banco.objects.all()
-    if bancos:
-
-        for banco in bancos:
-            pagos = Payment.objects.filter(numero_referencia=banco.referencia)
+    try:
+    
+        print('Validando las boletas con bancos')
+        boletas = Banco.objects.filter(status=False)
         
+        if not boletas:
+            print('No hay comprobacion')
+            return f'No hay comprobacion aun...'
+        
+        for boleta in boletas:
+            print('Se estaran evaluando las boletas')
+            pago = Payment.objects.get(numero_referencia=boleta.referencia)
+            
 
-            if pagos.exists():  # Verifica si hay pagos asociados al banco
-                for pago in pagos:
-                    #banco_referencia = get_object_or_404(Banco, referencia=pago.numero_referencia)
-                    banco_referencia = Banco.objects.filter(referencia=pago.numero_referencia)
+            if not pago :
+                print('No hay registro, para la comparacion en bancos')
+                return f'No hay registro, para la comparacion en bancos'
+            
+            if pago.estado_transaccion == 'COMPLETADO':
+                print('La boleta ya fue comprobada')
+                return f'La boleta ya fue comprobada'
+            cambiar_estado = False
+                        
+                        
+                        # Verifica y actualiza el monto del pago
+            if pago.monto != boleta.credito:
+                pago.monto = boleta.credito
+                        
+            elif pago.monto != boleta.debito:
+                pago.monto = boleta.debito
+
+                        
+                        
+            if pago.fecha_emision.date() != boleta.fecha:
+                cambiar_estado = True
+                pago.fecha_emision = boleta.fecha
+                        
+                        
+
+            # Si se ha modificado el monto o la fecha, guarda el pago
+            if cambiar_estado or (pago.monto != boleta.credito or pago.monto != boleta.debito):
+                pago.save()
+
+            # Si la transacción está pendiente, se realiza el pago
+            if pago.estado_transaccion == 'PENDIENTE' or pago.estado_transaccion == 'Pendiente':
+                ingreso = Income.objects.get(numero_referencia=boleta.referencia)
+                egreso = Egress.objects.get(numero_referencia=boleta.referencia)
+
+                if ingreso:
+                    ingreso.status = True
+                    ingreso.save()
                 
-                    # Actualiza el monto del pago si no coincide con el del banco
-                    # Inicializa un flag para determinar si se debe cambiar el estado
-                    cambiar_estado = False
-                    
-                    # Verifica y actualiza el monto del pago
-                    if pago.monto != banco_referencia.credito:
-                        pago.monto = banco_referencia.credito
-
-                    if pago.monto != banco_referencia.debito:
-                        pago.monto = banco_referencia.debito
-
-                    # Verifica la fecha de emisión
-                    print(banco_referencia.fecha)
-                    print(pago.fecha_emision.date())
-                    
-                    if pago.fecha_emision.date() != banco_referencia.fecha:
-                        cambiar_estado = True
-                        pago.fecha_emision = banco_referencia.fecha
-                        
-
-                    # Si se ha modificado el monto o la fecha, guarda el pago
-                    if cambiar_estado or (pago.monto != banco_referencia.credito or pago.monto != banco_referencia.debito):
-                        pago.save()
-                    
-
-
-                    # Si la transacción está pendiente, se realiza el pago
-                    if pago.estado_transaccion == 'PENDIENTE' or pago.estado_transaccion == 'Pendiente':
-                    
-                        realizar_pago(pago, pago.credit,  pago.disbursement, pago.cliente)
-                        
-                    #pago.realizar_pago()
+                if egreso:
+                    egreso.status = True
+                    egreso.save()
+                
+                pago.estado_transaccion = 'COMPLETADO'
+                boleta.status = True
+                boleta.save()
+                pago.save()
+                            
+                if pago.credit or pago.disbursement or pago.cliente or pago.acreedor or pago.seguro:
+                    realizar_pago(pago)
+    except Exception as e:
+        print(f'Error: {e}')
+       

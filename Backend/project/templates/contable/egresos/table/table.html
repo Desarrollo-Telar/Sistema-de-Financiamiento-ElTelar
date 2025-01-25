@@ -15,7 +15,7 @@
                         <th scope="col">NIT</th>
                         <th scope="col">Monto del Documento</th>
                         <th scope="col">Fecha De Registro</th>
-
+                        <th scope="col">--- </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,10 +27,33 @@
                         <td>Q{{acreedor.fmonto}}</td>
                         <td>{{acreedor.numero_referencia}}</td>
                         <td>{{acreedor.fecha_doc_fiscal}}</td>
-                        <td>{{acreedor.numero_doc}} meses</td>
+                        <td>{{acreedor.numero_doc}} </td>
                         <td>{{acreedor.nit}}</td>
                         <td>Q{{acreedor.fmontoD}}</td>
                         <td>{{acreedor.fecha_registro}}</td>
+                        <td>
+                            {% if acreedor.status %}
+                            <div class="activo ">
+                                <a href="{% url 'financings:clasificar' acreedor.numero_referencia %}"
+                                    style="text-decoration: none; color: #00340c;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                    </svg>
+
+                                </a>
+
+
+                            </div>
+                            {% else %}
+                            <div class=" inactivo ">
+                                Pendiente de vincular
+
+
+                            </div>
+                            {% endif %}
+                        </td>
 
                     </tr>
                     {% endfor %}

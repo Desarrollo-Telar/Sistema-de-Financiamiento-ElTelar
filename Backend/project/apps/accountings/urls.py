@@ -10,6 +10,7 @@ from . import views
 from django.contrib.auth.decorators import login_required
 
 # Routes
+from apps.accountings.api import routers
 
 
 app_name = 'contable'
@@ -33,5 +34,11 @@ urlpatterns = [
     path('ingresos/detail/<int:id>', views.detail_ingreso, name='ingresos_detail'),
     path('egresos/detail/<int:id>', views.detail_egreso, name='egresos_detail'),
 
+    # BOLETAS
+    path('seguros/boleta', views.add_boleta_seguro, name='seguros_boleta'),
+    path('acreedores/boleta', views.add_boleta_acreedor, name='seguros_acreedores'),
+
     
 ]
+
+urlpatterns+=routers.urlpatterns

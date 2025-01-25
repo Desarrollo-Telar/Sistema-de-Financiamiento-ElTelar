@@ -61,8 +61,8 @@ def add_acreedor(request):
             acreedor.boleta = boleta
             
             acreedor.save() 
-            print(acreedor.codigo_acreedor)
-            """
+            
+            
             boleta = Payment(
                 acreedor=acreedor, 
                 fecha_emision=inicio,
@@ -73,7 +73,7 @@ def add_acreedor(request):
                 descripcion=descripcion
                 )  
             boleta.save()
-            """    
+                
             messages.success(request, 'Acreedor Creado con Exito')
             return redirect('contable:acreedores')
 
@@ -116,18 +116,18 @@ def add_seguro(request):
             
             acreedor.save() 
             print(acreedor.codigo_seguro)
-            """
+            
             boleta = Payment(
-                acreedor=acreedor, 
+                seguro=acreedor, 
                 fecha_emision=inicio,
                 numero_referencia=numero_referencia,
-                tipo_pago='ACREEDOR',
+                tipo_pago='SEGURO',
                 boleta = boleta,
                 monto=monto,
                 descripcion=descripcion
                 )  
             boleta.save()
-            """    
+                
             messages.success(request, 'Seguro Creado con Exito')
             return redirect('contable:seguros')
 
@@ -148,7 +148,7 @@ def add_ingreso(request):
         form = IngresoForm(request.POST, request.FILES)
 
         if form.is_valid():
-            ingreso = Income()
+            
 
             inicio = form.cleaned_data.get('fecha')
             numero_referencia = form.cleaned_data.get('numero_referencia')
@@ -157,28 +157,22 @@ def add_ingreso(request):
             descripcion = form.cleaned_data.get('descripcion')
             
 
-            ingreso.fecha = inicio
-            ingreso.monto = monto
-            ingreso.codigo_ingreso = form.cleaned_data.get('codigo_ingreso')
-            ingreso.descripcion = descripcion
-            ingreso.observaciones = form.cleaned_data.get('observaciones')
-            ingreso.numero_referencia = numero_referencia
-            ingreso.boleta = boleta
             
-            ingreso.save() 
             
-            """
+            ingreso = form.save()
+            
+            
             boleta = Payment(
-                acreedor=acreedor, 
+                
                 fecha_emision=inicio,
                 numero_referencia=numero_referencia,
-                tipo_pago='ACREEDOR',
+                tipo_pago='INGRESO',
                 boleta = boleta,
                 monto=monto,
                 descripcion=descripcion
                 )  
             boleta.save()
-            """    
+               
             messages.success(request, 'Ingreso Creado con Exito')
             return redirect('contable:ingresos')
 
@@ -199,7 +193,7 @@ def add_egresos(request):
         form = EgresoForm(request.POST, request.FILES)
 
         if form.is_valid():
-            ingreso = Egress()
+            
 
             inicio = form.cleaned_data.get('fecha')
             numero_referencia = form.cleaned_data.get('numero_referencia')
@@ -210,18 +204,18 @@ def add_egresos(request):
 
             ingreso = form.save()
             
-            """
+            
             boleta = Payment(
-                acreedor=acreedor, 
+               
                 fecha_emision=inicio,
                 numero_referencia=numero_referencia,
-                tipo_pago='ACREEDOR',
+                tipo_pago='EGRESO', 
                 boleta = boleta,
                 monto=monto,
                 descripcion=descripcion
                 )  
             boleta.save()
-            """    
+             
             messages.success(request, 'Egreso Creado con Exito')
             return redirect('contable:egresos')
 

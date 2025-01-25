@@ -45,7 +45,8 @@ class Payment(models.Model):
         ('INGRESO','INGRESO'),
         ('CLIENTE','CLIENTE'),
         ('ACREEDOR','ACREEDOR'),
-        ('SEGURO','SEGURO')
+        ('SEGURO','SEGURO'),
+        ('EGRESO','EGRESO')
     ]
     credit = models.ForeignKey(Credit, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Credito')
     disbursement = models.ForeignKey(Disbursement, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Desembolso')
@@ -108,17 +109,40 @@ class Payment(models.Model):
         Encuentra la próxima cuota a pagar en función de la fecha de emisión y el historial de pagos.
         """
         # Obtener todas las cuotas del crédito ordenadas por la fecha límite
-        cuotas = self.get_plan_pagos().filter(
-            Q(credit_id=self.credit) | Q(acreedor=self.acreedor) | Q(seguro=self.seguro)
-        ).order_by('fecha_limite')
+        cuotas = None
+        historial_a = None
+        cuota_a_pagar = None
+
+        if self.credit:
+            cuotas = self.get_plan_pagos().filter(
+                Q(credit_id=self.credit)
+            ).order_by('fecha_limite')
+            # Historial de pagos anteriores (último pago realizado)
+            historial_a = self.get_estado_cuenta().objects.filter(credit=self.credit, description='PAGO DE CREDITO').order_by('-id').first()
+            cuota_a_pagar = self.get_plan_pagos().objects.filter(credit_id=self.credit.id).order_by('-id').first()
+        
+        if self.acreedor:
+            cuotas = self.get_plan_pagos().filter(
+                Q(acreedor=self.acreedor)
+            ).order_by('fecha_limite')
+            # Historial de pagos anteriores (último pago realizado)
+            historial_a = self.get_estado_cuenta().objects.filter(acreedor=self.acreedor, description='PAGO DE ACREEDOR').order_by('-id').first()
+            cuota_a_pagar = self.get_plan_pagos().objects.filter(acreedor=self.acreedor.id).order_by('-id').first()
+        
+        if self.seguro:
+            cuotas = self.get_plan_pagos().filter(
+                 Q(acreedor=self.acreedor)
+            ).order_by('fecha_limite')
+            # Historial de pagos anteriores (último pago realizado)
+            historial_a = self.get_estado_cuenta().objects.filter(seguro=self.seguro, description='PAGO DE SEGURO').order_by('-id').first()
+            cuota_a_pagar = self.get_plan_pagos().objects.filter(seguro=self.seguro.id).order_by('-id').first()
 
 
         # Fecha de emisión (como objeto datetime)
         fecha_emision = self.fecha_emision
         logger.info(f"Fecha de emisión: {fecha_emision}")
 
-        # Historial de pagos anteriores (último pago realizado)
-        historial_a = self.get_estado_cuenta().objects.filter(credit=self.credit, description='PAGO DE CREDITO').order_by('-id').first()
+       
 
         # Verifica si hay historial de pagos
         if historial_a:
@@ -133,7 +157,7 @@ class Payment(models.Model):
             if diferencia >= 15:
                 # Devolver la cuota más reciente impaga
                 logger.info('COBRANDO LA ULTIMA CUOTA POR DIFERENCIA DE DÍAS >= 15')
-                cuota_a_pagar = self.get_plan_pagos().objects.filter(credit_id=self.credit.id).order_by('-id').first()
+                
                 return cuota_a_pagar
 
         else:
@@ -168,12 +192,32 @@ class Payment(models.Model):
         """
         # Obtener la cuota actual a pagar
         cuota_actual = self._cuota_pagar()
-
+        cuotas = None
         if cuota_actual:
             # Obtener todas las cuotas ordenadas por fecha límite
-            cuotas = self.get_plan_pagos().filter(
-            Q(credit_id=self.credit) | Q(acreedor=self.acreedor) | Q(seguro=self.seguro)
-        ).order_by('fecha_limite')
+            if self.credit:
+                cuotas = self.get_plan_pagos().filter(
+                    Q(credit_id=self.credit)
+                ).order_by('fecha_limite')
+                # Historial de pagos anteriores (último pago realizado)
+                historial_a = self.get_estado_cuenta().objects.filter(credit=self.credit, description='PAGO DE CREDITO').order_by('-id').first()
+                cuota_a_pagar = self.get_plan_pagos().objects.filter(credit_id=self.credit.id).order_by('-id').first()
+            
+            if self.acreedor:
+                cuotas = self.get_plan_pagos().filter(
+                    Q(acreedor=self.acreedor)
+                ).order_by('fecha_limite')
+                # Historial de pagos anteriores (último pago realizado)
+                historial_a = self.get_estado_cuenta().objects.filter(acreedor=self.acreedor, description='PAGO DE ACREEDOR').order_by('-id').first()
+                cuota_a_pagar = self.get_plan_pagos().objects.filter(acreedor=self.acreedor.id).order_by('-id').first()
+            
+            if self.seguro:
+                cuotas = self.get_plan_pagos().filter(
+                    Q(acreedor=self.acreedor)
+                ).order_by('fecha_limite')
+                # Historial de pagos anteriores (último pago realizado)
+                historial_a = self.get_estado_cuenta().objects.filter(seguro=self.seguro, description='PAGO DE SEGURO').order_by('-id').first()
+                cuota_a_pagar = self.get_plan_pagos().objects.filter(seguro=self.seguro.id).order_by('-id').first()
             
            
             
@@ -235,40 +279,6 @@ class Payment(models.Model):
         return round(total)
 
     def realizar_pago(self):
-
-        if self.cliente:
-            pago = self.pago()
-            pago.estado_transaccion = 'COMPLETADO'
-            info_banco = self.banco()
-            info_banco.status = True
-            info_banco.save()
-            pago.save()
-            return f'REGISTRO DE PAGO A CLIENTE'
-
-        if self.tipo_pago == 'DESEMBOLSO':
-            # registrar en el apartado de desembolso
-            pago = self.pago()
-            pago.estado_transaccion = 'COMPLETADO'
-            info_banco = self.banco()
-            info_banco.status = True
-            info_banco.save()
-            pago.save()
-            logger.info(f'EL PAGO {pago.numero_referencia} CORRESPONDE A UN DESEMBOLSO')
-
-            return f'REGISTRO DE DESEMBOLSO'
-        
-        if self.credito():
-            if self.credito().is_paid_off:
-                pago = self.pago()
-                pago.estado_transaccion = 'FALLIDO'
-                pago.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
-                #pago.save()
-                logger.error(f'EL PAGO {pago.numero_referencia} NO ES APLICADO DEBIDO A QUE YA CREDIO HA SIDO PAGADO')
-                info_banco = self.banco()
-                info_banco.status = True
-                info_banco.save()
-                return f'EL CREDITO YA FUE PAGO'
-
         cuota = self._cuota_pagar()
         
         if cuota is None:
