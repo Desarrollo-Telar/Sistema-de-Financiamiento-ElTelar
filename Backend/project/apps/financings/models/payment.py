@@ -113,26 +113,20 @@ class Payment(models.Model):
         historial_a = None
         cuota_a_pagar = None
 
-        if self.credit:
-            cuotas = self.get_plan_pagos().filter(
-                Q(credit_id=self.credit)
-            ).order_by('fecha_limite')
+        if self.credit is not None:
+            cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit).order_by('fecha_limite')
             # Historial de pagos anteriores (último pago realizado)
             historial_a = self.get_estado_cuenta().objects.filter(credit=self.credit, description='PAGO DE CREDITO').order_by('-id').first()
             cuota_a_pagar = self.get_plan_pagos().objects.filter(credit_id=self.credit.id).order_by('-id').first()
         
-        if self.acreedor:
-            cuotas = self.get_plan_pagos().filter(
-                Q(acreedor=self.acreedor)
-            ).order_by('fecha_limite')
+        if self.acreedor is not None:
+            cuotas = self.get_plan_pagos().objects.filter(acreedor=self.acreedor).order_by('fecha_limite')
             # Historial de pagos anteriores (último pago realizado)
             historial_a = self.get_estado_cuenta().objects.filter(acreedor=self.acreedor, description='PAGO DE ACREEDOR').order_by('-id').first()
             cuota_a_pagar = self.get_plan_pagos().objects.filter(acreedor=self.acreedor.id).order_by('-id').first()
         
-        if self.seguro:
-            cuotas = self.get_plan_pagos().filter(
-                 Q(acreedor=self.acreedor)
-            ).order_by('fecha_limite')
+        if self.seguro is not None:
+            cuotas = self.get_plan_pagos().objects.filter(acreedor=self.acreedor).order_by('fecha_limite')
             # Historial de pagos anteriores (último pago realizado)
             historial_a = self.get_estado_cuenta().objects.filter(seguro=self.seguro, description='PAGO DE SEGURO').order_by('-id').first()
             cuota_a_pagar = self.get_plan_pagos().objects.filter(seguro=self.seguro.id).order_by('-id').first()
@@ -196,7 +190,7 @@ class Payment(models.Model):
         if cuota_actual:
             # Obtener todas las cuotas ordenadas por fecha límite
             if self.credit:
-                cuotas = self.get_plan_pagos().filter(
+                cuotas = self.get_plan_pagos().objects.filter(
                     Q(credit_id=self.credit)
                 ).order_by('fecha_limite')
                 # Historial de pagos anteriores (último pago realizado)
@@ -204,7 +198,7 @@ class Payment(models.Model):
                 cuota_a_pagar = self.get_plan_pagos().objects.filter(credit_id=self.credit.id).order_by('-id').first()
             
             if self.acreedor:
-                cuotas = self.get_plan_pagos().filter(
+                cuotas = self.get_plan_pagos().objects.filter(
                     Q(acreedor=self.acreedor)
                 ).order_by('fecha_limite')
                 # Historial de pagos anteriores (último pago realizado)
@@ -212,7 +206,7 @@ class Payment(models.Model):
                 cuota_a_pagar = self.get_plan_pagos().objects.filter(acreedor=self.acreedor.id).order_by('-id').first()
             
             if self.seguro:
-                cuotas = self.get_plan_pagos().filter(
+                cuotas = self.get_plan_pagos().objects.filter(
                     Q(acreedor=self.acreedor)
                 ).order_by('fecha_limite')
                 # Historial de pagos anteriores (último pago realizado)
@@ -279,6 +273,7 @@ class Payment(models.Model):
         return round(total)
 
     def realizar_pago(self):
+        print('realizando el pago')
         cuota = self._cuota_pagar()
         
         if cuota is None:
@@ -351,6 +346,7 @@ class Payment(models.Model):
         self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente)
         return f"Pago realizado con éxito. Q{self.monto} restante. Saldo pendiente total: Q{saldo_pendiente}"
     
+
     def _registrar_pago(self, pagado_mora, pagado_interes,aporte_capital, saldo_pendiente):
         credito = self.credito()
         acreedor = self.acreedor

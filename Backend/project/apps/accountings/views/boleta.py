@@ -38,13 +38,11 @@ def add_boleta_seguro(request):
         form = BoletaSeguroForm(request.POST, request.FILES)
 
         if form.is_valid():
+            monto = form.cleaned_data.get('monto')
             instance = form.save(commit=False)  
             instance.tipo_pago = 'SEGURO'
             instance.save()
-            
-            
-           
-             
+
             messages.success(request, 'Boleta Registrada')
             return redirect('contable:seguros')
 

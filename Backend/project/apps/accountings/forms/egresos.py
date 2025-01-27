@@ -78,7 +78,8 @@ class EgresoForm(forms.ModelForm):
             ('ALQUILER', 'ALQUILER'),
             ('COMUNICACIONES', 'COMUNICACIONES'),
             ('GASTOS POR DESEMBOLSOS', 'GASTOS POR DESEMBOLSOS'),
-         
+            ('ACREEDORES','ACREEDORES'),
+            ('PAGO DE SEGUROS','PAGO DE SEGUROS')
 
         ]
 

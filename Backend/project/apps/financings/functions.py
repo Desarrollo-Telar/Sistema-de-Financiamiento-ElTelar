@@ -13,16 +13,19 @@ from apps.financings.models import Banco
 def realizar_pago(payment):
     try:
         pagoss = Payment.objects.get(id=payment.id)
-        banco = Banco.objects.get(referencia = payment.numero_referencia)
-        acreedor = Creditor.objects.get(numero_referencia = payment.numero_referencia)
-        seguro = Insurance.objects.get(numero_referencia = payment.numero_referencia)
+        banco = Banco.objects.filter(referencia = payment.numero_referencia).first()
+        acreedor = Creditor.objects.filter(numero_referencia = payment.numero_referencia).first()
+        seguro = Insurance.objects.filter(numero_referencia = payment.numero_referencia).first()
+
         if acreedor:
             acreedor.status = True
             acreedor.save()
+            return
         
         if seguro:
             seguro.status = True
             seguro.save()
+            return
 
 
         if pagoss.cliente:
@@ -42,9 +45,6 @@ def realizar_pago(payment):
             pagoss.save()
             banco.status = False
             banco.save()
-
-            
-
             return f'EL CREDITO YA FUE PAGO'
         
         if pagoss.acreedor and pagoss.acreedor.is_paid_off:

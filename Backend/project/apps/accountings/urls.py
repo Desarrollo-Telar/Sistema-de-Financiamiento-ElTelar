@@ -36,7 +36,7 @@ urlpatterns = [
 
     # BOLETAS
     path('seguros/boleta', views.add_boleta_seguro, name='seguros_boleta'),
-    path('acreedores/boleta', views.add_boleta_acreedor, name='seguros_acreedores'),
+    path('acreedores/boleta', views.add_boleta_acreedor, name='acreedores_boleta'),
 
     
 ]

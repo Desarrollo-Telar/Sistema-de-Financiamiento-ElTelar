@@ -23,6 +23,12 @@
 
 
         </div>
+        <div class="col">
+            <p style="font-weight: bolder;">CREDITO: <span class="fw-light">{{object_list.credito}}</span>
+            </p>
+
+
+        </div>
         <div class="col" style="font-weight: bolder;">
             <p>ESTADO DEL CREDITO : <span style="font-weight: lighter;"
                     class="{% if  object_list.is_paid_off %} inactivo {% endif %} activo">{{object_list.formato_credito_cancelado}}</span>

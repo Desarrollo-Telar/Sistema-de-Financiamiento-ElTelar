@@ -63,4 +63,10 @@ class AccountStatement(models.Model):
 
 
     def __str__(self):
-        return f"Estado de cuenta para crédito {self.credit.id} "
+        mensajes = None
+        if self.credit:
+            mensajes = f"Estado de cuenta para crédito {self.credit.id} "
+        
+        if self.acreedor:
+            mensajes = f"Estado de cuenta para acreedor {self.acreedor.id} "
+        return mensajes

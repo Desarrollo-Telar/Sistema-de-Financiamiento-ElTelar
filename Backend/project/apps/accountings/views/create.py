@@ -200,21 +200,22 @@ def add_egresos(request):
             boleta = form.cleaned_data.get('boleta')
             monto = form.cleaned_data.get('monto')
             descripcion = form.cleaned_data.get('descripcion')
+            codigo_egreso = form.cleaned_data.get('codigo_egreso')
             
 
             ingreso = form.save()
             
+            if codigo_egreso != 'ACREEDORES' or codigo_egreso !='PAGO DE SEGUROS':
             
-            boleta = Payment(
-               
-                fecha_emision=inicio,
-                numero_referencia=numero_referencia,
-                tipo_pago='EGRESO', 
-                boleta = boleta,
-                monto=monto,
-                descripcion=descripcion
-                )  
-            boleta.save()
+                boleta = Payment(
+                    fecha_emision=inicio,
+                    numero_referencia=numero_referencia,
+                    tipo_pago='EGRESO', 
+                    boleta = boleta,
+                    monto=monto,
+                    descripcion=descripcion
+                    )  
+                boleta.save()
              
             messages.success(request, 'Egreso Creado con Exito')
             return redirect('contable:egresos')

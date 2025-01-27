@@ -31,24 +31,23 @@
 
     </div>
     <hr>
-    <div class="row" style="margin-top: 2rem">
-        <div class="col-2 ">
-            <a href="{% url 'financings:create_payment' %}"
-                style="background-color: black; color: white; text-decoration: none; padding: 0.8rem; border-radius: 2rem;">Generar
-                Pago</a>
-        </div>
-        {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
-        <div class="col-2 ">
-            <a href="{% url 'document:banco' %}"
-                style="background-color: black; color: white; text-decoration: none; padding: 0.8rem; border-radius: 2rem;">Subir
-                Documento</a>
+    <div class="row" style="margin-top: 2rem;">
+        <div class="col d-flex justify-content-start" style="display: flex; align-items: center; justify-content: end;">
+            {% include 'financings/payment/snippets/search.html' with query=query %}
 
         </div>
-        {% endif %}
-        <div class="col-8 d-flex flex-row-reverse">
-            {% include 'financings/payment/snippets/search.html' with query=query %}
+        <div class="col d-flex flex-row-reverse">
+            <a href="{% url 'financings:create_payment' %}" class="btn_guardar">Generar
+                Pago</a>
+            {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+            <a href="{% url 'document:banco' %}" class="btn_guardar">Subir
+                Documento</a>
+            {% endif %}
+
         </div>
+
     </div>
+
     <div class="row" style="margin-top: 2rem;">
         {% include 'financings/payment/table/table.html' %}
     </div>

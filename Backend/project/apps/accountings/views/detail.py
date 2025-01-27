@@ -5,7 +5,7 @@ from django.contrib import messages
 
 # Models
 from apps.accountings.models import Creditor, Insurance,  Egress, Income
-from apps.financings.models import Payment, PaymentPlan
+from apps.financings.models import Payment, PaymentPlan, AccountStatement
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
@@ -41,6 +41,24 @@ def planPagosCredito(credito):
     plan_pago = PlanPagoos(credit)
     return plan_pago
 
+def total_mora_pagada(estado_cuenta):
+    contador = 0
+    for estado in estado_cuenta:
+        contador+=estado.late_fee_paid
+    return formatear_numero(contador)
+
+def total_interes_pagada(estado_cuenta):
+    contador = 0
+    for estado in estado_cuenta:
+        contador+=estado.interest_paid
+    return formatear_numero(contador)
+
+def total_capital_pagada(estado_cuenta):
+    contador = 0
+    for estado in estado_cuenta:
+        contador+=estado.capital_paid
+    return formatear_numero(contador)
+
 # Create your views here.
 @login_required
 @usuario_activo
@@ -50,7 +68,8 @@ def detail_acreedores(request, id):
 
     siguiente_pago = PaymentPlan.objects.filter(acreedor=object_list).order_by('-id').first()
     plan = planPagosCredito(object_list).generar_plan()
-  
+    estado_cuenta = AccountStatement.objects.filter(acreedor=object_list)
+    
 
     context = {
         'title':'EL TELAR',
@@ -60,7 +79,10 @@ def detail_acreedores(request, id):
         'total_cuota':formatear_numero(planPagosCredito(object_list).calcular_total_cuotas()),
         'total_capital':formatear_numero(planPagosCredito(object_list).calcular_total_capital()),
         'total_interes':formatear_numero(planPagosCredito(object_list).calcular_total_interes()),
-        
+        'estado_cuenta':estado_cuenta,
+        'total_moras':total_mora_pagada(estado_cuenta),
+        'total_intereses':total_interes_pagada(estado_cuenta),
+        'total_capitales':total_capital_pagada(estado_cuenta),
     }
         
     return render(request, template_name, context)
@@ -72,6 +94,7 @@ def detail_seguro(request, id):
     object_list = get_object_or_404(Insurance, id=id)
     siguiente_pago = PaymentPlan.objects.filter(seguro=object_list).order_by('-id').first()
     plan = planPagosCredito(object_list).generar_plan()
+    estado_cuenta = AccountStatement.objects.filter(seguro=object_list)
   
     context = {
         'title':'EL TELAR',
@@ -81,7 +104,10 @@ def detail_seguro(request, id):
         'total_cuota':formatear_numero(planPagosCredito(object_list).calcular_total_cuotas()),
         'total_capital':formatear_numero(planPagosCredito(object_list).calcular_total_capital()),
         'total_interes':formatear_numero(planPagosCredito(object_list).calcular_total_interes()),
-        
+        'estado_cuenta':estado_cuenta,
+        'total_moras':total_mora_pagada(estado_cuenta),
+        'total_intereses':total_interes_pagada(estado_cuenta),
+        'total_capitales':total_capital_pagada(estado_cuenta),
     }
         
     return render(request, template_name, context)
