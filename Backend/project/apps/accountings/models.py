@@ -57,7 +57,7 @@ class Creditor(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return self.nombre_acreedor
+        return f'{self.codigo_acreedor} {self.nombre_acreedor}'
 
     class Meta:
         verbose_name = "Acreedor"
@@ -114,7 +114,7 @@ class Insurance(models.Model):
         super().save(*args, **kwargs)
         
     def __str__(self):
-        return self.nombre_acreedor
+        return f'{self.codigo_seguro} {self.nombre_acreedor}'
 
     class Meta:
         verbose_name = "Seguro"
