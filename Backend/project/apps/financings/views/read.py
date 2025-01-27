@@ -51,7 +51,7 @@ def list_payment(request):
 def list_bank(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.all().order_by('-fecha'))
-    
+    generar()
 
     context = {
         'title':'EL TELAR - BANCOS',
