@@ -377,7 +377,7 @@ class Payment(models.Model):
             descripcion = 'PAGO PARA EL SEGURO'
             tasa_interes = self.seguro.tasa
     
-        if not recibos.exists() and credito is not None:
+        if not recibos.exists():
             # Creamos un nuevo recibo si no hay existentes
             recibo = self.get_recibo()(
                 mora=cuota.mora,
