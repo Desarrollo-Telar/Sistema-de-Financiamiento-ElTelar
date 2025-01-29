@@ -25,8 +25,7 @@ class CustomerForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         
-        if not validar_correo(email):
-            raise forms.ValidationError('El formato del correo electrónico no es válido.')
+        
         
         return email
     

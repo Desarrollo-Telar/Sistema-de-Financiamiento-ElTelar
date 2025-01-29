@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" class="box">
     {% csrf_token %}
     {% include 'documents/snippets/forms.html' %}
     <button type="submit" class="btn_guardar">Crear Registro</button>

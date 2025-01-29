@@ -24,6 +24,12 @@ class Banco(models.Model):
     
     def f_debito(self):
         return formatear_numero(self.debito)
+
+    def f_saldo_contable(self):
+        return formatear_numero(self.saldo_contable)
+    
+    def f_saldo_disponible(self):
+        return formatear_numero(self.saldo_disponible)
     
     def __str__(self):
         return f'Fecha: {self.fecha} Referencia: {self.referencia} Monto: {self.credito}'

@@ -23,6 +23,7 @@ import os
 def generar_plan_pagos(sender, instance, created, **kwargs):
     if created:
         comparacion()
+        
 
 
 # ENVIO DE ALERTA PARA EL ESTATUS DE LA BOLETA
@@ -35,7 +36,7 @@ def alerta(sender, instance, **kwargs):
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
         #envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO',instance.id)
     elif instance.estado_transaccion == 'PENDIENTE':
-        comparacion()
+        #comparacion()
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
         #envio_mensaje_alerta('HAY UNA BOLETA DE PAGO CON ESTADO PENDIENTE', 'PENDIENTE',instance.id)
 

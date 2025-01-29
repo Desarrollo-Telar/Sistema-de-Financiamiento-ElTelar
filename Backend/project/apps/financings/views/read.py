@@ -33,7 +33,7 @@ from apps.financings.functions_payment import generar
 @usuario_activo
 def list_payment(request):
     template_name = 'financings/payment/list.html'
-    page_obj = paginacion(request, Payment.objects.all().order_by('id'))
+    page_obj = paginacion(request, Payment.objects.all().order_by('-id'))
     generar()
 
 
@@ -51,7 +51,7 @@ def list_payment(request):
 def list_bank(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.all().order_by('-fecha'))
-    
+    generar()
 
     context = {
         'title':'EL TELAR - BANCOS',

@@ -1,0 +1,47 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 " style="text-align: center;">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Codigo de Ingreso</th>
+
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Numero de Referencia</th>
+                        <th scope="col">Fecha De Registro</th>
+                        <th scope="col">Status</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for acreedor in object_list %}
+
+
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{acreedor.codigo_ingreso}}</td>
+                        <td>{{acreedor.fecha}}</td>
+                        <td>Q{{acreedor.fmonto}}</td>
+                        <td>{{acreedor.numero_referencia}}</td>
+                        <td>{{acreedor.fecha_registro}}</td>
+                        <td>{{acreedor.status}}</td>
+                    </tr>
+
+
+
+
+
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

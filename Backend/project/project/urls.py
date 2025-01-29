@@ -4,6 +4,7 @@ from django.urls import path, include
 
 # Vistas
 from . import views
+from . import reports_excel
 from django.contrib.auth import views as auth_views
 from . import generate_pdf
 
@@ -27,6 +28,7 @@ from django.conf import settings
 
 urlpatterns = [    
     path('',login_required(views.index),name='index'),
+    path('reporte/banco/',login_required(reports_excel.report_banco),name='reporte_banco_excel'),
     path('accounts/login/',views.login_view, name='login'),
     path('verification/', views.verification, name='verification'),
     path('logout/',views.logout_view, name='logout'),
@@ -42,6 +44,7 @@ urlpatterns = [
     path('plan_inversion/', include('apps.InvestmentPlan.urls')),
     path('imagen/', include('apps.pictures.urls')),
     path('documents/', include('apps.documents.urls')),
+    path('contable/', include('apps.accountings.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),
     path('test/', views.test, name='test'),
