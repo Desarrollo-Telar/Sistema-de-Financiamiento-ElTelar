@@ -27,15 +27,19 @@ def generar():
             cambiar_estado = False
             cambia = False
 
-            if pago.monto != boleta.credito:
+            if pago.monto == boleta.credito or pago.monto == boleta.debito:
+                print('No hay cambios')
+
+            elif pago.monto != boleta.credito:
                 pago.monto = boleta.credito
                 cambia = True
                 pago.save()
                         
-            if pago.monto != boleta.debito:
+            elif pago.monto != boleta.debito:
                 pago.monto = boleta.debito
                 cambia = True
                 pago.save()
+            
 
             
             if pago.fecha_emision.date() != boleta.fecha:

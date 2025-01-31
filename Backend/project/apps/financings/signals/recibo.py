@@ -24,11 +24,12 @@ def generar_noRecibo(sender, instance, **kwargs):
     logger.info('DESDE SIGNALS DE RECIBO: ENVIO DE MENSAJE DE RECIBO CARGADO')
 
 
-
+""" 
 @receiver(post_delete, sender=Recibo)
 def volver_a_colocar(sender, instance, **kwargs):
     if not instance.cuota:
         return  # Evitar errores si la cuota no está asociada
+    
 
     cuota = instance.cuota  # Evitamos hacer otra consulta a la base de datos
     cuota.mora = max(0, cuota.mora + instance.mora_pagada)  # Evitamos valores negativos
@@ -36,6 +37,6 @@ def volver_a_colocar(sender, instance, **kwargs):
     cuota.saldo_pendiente = max(0, cuota.saldo_pendiente + instance.aporte_capital)
     cuota.cambios = True
     cuota.save()
-
+"""
 
 
