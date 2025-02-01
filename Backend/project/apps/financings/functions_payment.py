@@ -32,7 +32,7 @@ def generar():
                 cambia = True
                 pago.save()
                         
-            if pago.monto != boleta.debito:
+            elif pago.monto != boleta.debito:
                 pago.monto = boleta.debito
                 cambia = True
                 pago.save()
