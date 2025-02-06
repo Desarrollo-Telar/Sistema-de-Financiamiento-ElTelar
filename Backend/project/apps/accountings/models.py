@@ -7,6 +7,7 @@ from apps.financings.formato import formatear_numero
 # RELACIONES
 from apps.financings.models import Credit
 
+from project.settings import MEDIA_URL, STATIC_URL
 # Acreedor
 class Creditor(models.Model):
     codigo_acreedor = models.CharField("Codigo de Acreedor", max_length=100) # AC-2024-001
@@ -27,6 +28,9 @@ class Creditor(models.Model):
     estado_aportacion = models.BooleanField(default=False)
     estados_fechas =  models.BooleanField(blank=True, null=True)
     forma_de_pago = models.CharField("Forma de Pago", max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
+
+    def get_boleta(self):
+        return '{}{}'.format(MEDIA_URL,self.boleta)
 
     def fmonto(self):
         return formatear_numero(self.monto)
@@ -85,6 +89,9 @@ class Insurance(models.Model):
     forma_de_pago = models.CharField("Forma de Pago",  max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
     credito = models.ForeignKey(Credit, on_delete=models.CASCADE, blank=True, null=True)
 
+    def get_boleta(self):
+        return '{}{}'.format(MEDIA_URL,self.boleta)
+
     def fmonto(self):
         return formatear_numero(self.monto)
     
@@ -132,6 +139,9 @@ class Income(models.Model):
     status = models.BooleanField("Status",default=False)
     fecha_registro = models.DateField("Fecha de registro",auto_now_add=True)
 
+    def get_boleta(self):
+        return '{}{}'.format(MEDIA_URL,self.boleta)
+
     def fmonto(self):
         return formatear_numero(self.monto)
 
@@ -155,6 +165,16 @@ class Egress(models.Model):
     documento = models.FileField("Documento",blank=True, null=True,upload_to='pagos/boletas/gasto/documento/')
     status = models.BooleanField("Status",default=False)
     fecha_registro = models.DateField("Fecha de registro",auto_now_add=True)
+
+    # NUEVOS ATRIBUTOS
+    nombre = models.CharField("Nombre de Colaborador", max_length=150, null=True, blank=True)
+    pago_correspondiente = models.CharField("Pago Correspondiente", blank=True, null=True, max_length=150)
+    tipo_impuesto = models.CharField("Tipo de Impuesto", blank=True, null=True, max_length=150)
+    def get_boleta(self):
+        return '{}{}'.format(MEDIA_URL,self.boleta)
+
+    def get_documento(self):
+        return '{}{}'.format(MEDIA_URL,self.documento)
 
     def fmonto(self):
         return formatear_numero(self.monto)

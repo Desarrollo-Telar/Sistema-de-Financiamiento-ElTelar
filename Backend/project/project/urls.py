@@ -29,6 +29,7 @@ from django.conf import settings
 urlpatterns = [    
     path('',login_required(views.index),name='index'),
     path('reporte/banco/',login_required(reports_excel.report_banco),name='reporte_banco_excel'),
+    path('reporte/pagos/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(reports_excel.report_pagos),name='reporte_pagos_excel'),
     path('accounts/login/',views.login_view, name='login'),
     path('verification/', views.verification, name='verification'),
     path('logout/',views.logout_view, name='logout'),

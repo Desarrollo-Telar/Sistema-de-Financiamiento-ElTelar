@@ -19,10 +19,14 @@ from django.db.models import Q
 from django.db.models import Q, Sum
 
 # REPORTE EXCEL
-from project.reports_excel import report_filtro_banco
+from project.reports_excel import report_pagos
 from apps.financings.models import Banco, Payment
 from openpyxl import Workbook
 from django.http import HttpResponse
+
+from apps.financings.formato import formatear_numero
+
+from project.reports_excel import report_pagos
 
 def reportes_generales(request):
     template_name = 'reports/base.html'
@@ -71,6 +75,8 @@ def reportes_generales(request):
                     total += reporte.interes_pagado
                 else:
                     total += reporte.aporte_capital
+            
+            
         else:
             workbook = Workbook()
             sheet = workbook.active
@@ -156,16 +162,19 @@ def reportes_generales(request):
     if filtro_seleccionado in filtros_validos:
         if filtro_seleccionado != 'banco':
             total_seleccionado = reportes.aggregate(Sum(filtro_seleccionado))[f'{filtro_seleccionado}__sum'] or 0
+    
+    to = formatear_numero(total_seleccionado)
 
     context = {
         'title': 'ElTELAR',
         'posicion': filtro_seleccionado,
         'reportes': reportes,
+        'filters':filters,
         'mes': mes,
         'anio': anio,
         'filtro_seleccionado': filtro_seleccionado,
-        'total_seleccionado': total_seleccionado,
-        'total':total
+        'total_seleccionado': to,
+        'total':formatear_numero(total)
     }
     return render(request, template_name, context)
 
