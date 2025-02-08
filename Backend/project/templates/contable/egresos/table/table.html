@@ -21,16 +21,75 @@
                 <tbody>
                     {% for acreedor in object_list %}
                     <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{acreedor.codigo_egreso}}</td>
-                        <td>{{acreedor.fecha}}</td>
-                        <td>Q{{acreedor.fmonto}}</td>
-                        <td>{{acreedor.numero_referencia}}</td>
-                        <td>{{acreedor.fecha_doc_fiscal}}</td>
-                        <td>{{acreedor.numero_doc}} </td>
-                        <td>{{acreedor.nit}}</td>
-                        <td>Q{{acreedor.fmontoD}}</td>
-                        <td>{{acreedor.fecha_registro}}</td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{ forloop.counter }}
+                            </a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.codigo_egreso}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.fecha}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                Q{{acreedor.fmonto}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.numero_referencia}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.fecha_doc_fiscal}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.numero_doc}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.nit}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                Q{{acreedor.fmontoD}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.fecha_registro}}
+                            </a>
+
+                        </td>
                         <td>
                             {% if acreedor.status %}
                             <div class="activo ">

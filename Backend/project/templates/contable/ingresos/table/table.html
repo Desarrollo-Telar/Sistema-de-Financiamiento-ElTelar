@@ -30,6 +30,9 @@
                         <td>{{acreedor.numero_referencia}}</td>
                         <td>{{acreedor.fecha_registro}}</td>
                         <td>{{acreedor.status}}</td>
+                        <td>
+                            <a href="{% url 'contable:ingresos_detail' acreedor.id %}">Ver</a>
+                        </td>
                     </tr>
 
 

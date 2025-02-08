@@ -191,7 +191,7 @@ def add_egresos(request):
     template_name = 'contable/create.html'
     if request.method == 'POST':
         form = EgresoForm(request.POST, request.FILES)
-
+        print(form)
         if form.is_valid():
             
 
@@ -199,7 +199,7 @@ def add_egresos(request):
             numero_referencia = form.cleaned_data.get('numero_referencia')
             boleta = form.cleaned_data.get('boleta')
             monto = form.cleaned_data.get('monto')
-            descripcion = form.cleaned_data.get('descripcion')
+            descripcion = form.cleaned_data.get('observaciones')
             codigo_egreso = form.cleaned_data.get('codigo_egreso')
             
 

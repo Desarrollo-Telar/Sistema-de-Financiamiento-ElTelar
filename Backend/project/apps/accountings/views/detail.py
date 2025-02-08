@@ -115,8 +115,8 @@ def detail_seguro(request, id):
 @login_required
 @usuario_activo
 def detail_ingreso(request, id):
-    template_name = 'contable/acreedores/detail.html'
-    object_list = get_object_or_404(Creditor, id=id)
+    template_name = 'contable/ingresos/detail.html'
+    object_list = get_object_or_404(Income, id=id)
   
     context = {
         'title':'EL TELAR',
@@ -129,8 +129,8 @@ def detail_ingreso(request, id):
 @login_required
 @usuario_activo
 def detail_egreso(request, id):
-    template_name = 'contable/acreedores/detail.html'
-    object_list = get_object_or_404(Creditor, id=id)
+    template_name = 'contable/egresos/detail.html'
+    object_list = get_object_or_404(Egress, id=id)
   
     context = {
         'title':'EL TELAR',
