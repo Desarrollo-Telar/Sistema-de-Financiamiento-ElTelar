@@ -74,7 +74,7 @@ class DocumentGuarantee(models.Model):
     investment_plan_id = models.ForeignKey(InvestmentPlan, on_delete=models.CASCADE, related_name='documents', blank=True, null=True)
     garantia = models.ForeignKey(DetailsGuarantees, on_delete=models.CASCADE, related_name="guarantee_documents", blank=True,null=True)
     document_id = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='guarantee_documents')
-    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='guarantee_documents')
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='guarantee_documents',blank=True,null=True)
 
     def __str__(self):
         return self.document_id.description

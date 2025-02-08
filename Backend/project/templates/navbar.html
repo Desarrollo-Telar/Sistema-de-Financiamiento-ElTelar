@@ -94,7 +94,7 @@
               </li>
             </ul>
           </li>
-
+          {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 1rem" width="25" height="25"
@@ -123,6 +123,7 @@
               </li>
             </ul>
           </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link active" href="{{reportes}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"

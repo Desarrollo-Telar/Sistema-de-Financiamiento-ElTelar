@@ -40,7 +40,7 @@ urlpatterns = [
     # ---------------- GARANTIA ------------
     path('guarantee/',login_required(views.list_guarantee), name='list_guarantee'),
     path('guarantee/create/',login_required(views.create_guarantee),name='create_guarantee'),
-
+    path('guarantee/detail/<int:id>/',login_required(views.detallar_garantia),name='detallar_garantia'),
     # ---------------- DESEMBOLSO ------------
     path('disbursement/create/<int:id>/',login_required(views.create_disbursement),name='create_disbursement'),  
     path('disbursement/',login_required(views.list_disbursement), name='list_disbursement'),

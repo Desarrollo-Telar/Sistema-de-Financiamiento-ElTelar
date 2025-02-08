@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
 from apps.customers.models import Customer
 from apps.financings.models import Invoice
+from apps.documents.models import DocumentGuarantee
 
 
 from django.db.models import Q
@@ -152,13 +153,36 @@ def detallar_desembolso(request,id):
     
     desembolso = get_object_or_404(Disbursement,id=id)
     boletas = Payment.objects.filter(disbursement=desembolso)
-    
-    
+    credit_list = Credit.objects.filter(codigo_credito=desembolso.credit_id.codigo_credito).first()
+    customer_list = Customer.objects.filter(id=credit_list.customer_id.id).first()
     template_name = 'financings/disbursement/detail.html'
     context = {
         'title':'ELTELAR - DESEMBOLSO {}'.format(desembolso.credit_id),
         'desembolso':desembolso,
         'boletas':boletas,
+        'credit_list':credit_list,
+        'customer_list':customer_list
+    }
+    return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def detallar_garantia(request, id):
+    detalle = get_object_or_404(DetailsGuarantees, garantia_id__id=id)
+    #detalle_garantia = DetailsGuarantees.objects.filter(garantia_id=garantia)
+
+    credit_list = Credit.objects.filter(codigo_credito=detalle.garantia_id.credit_id.codigo_credito).first()
+    customer_list = Customer.objects.filter(id=credit_list.customer_id.id).first()
+    documentos = DocumentGuarantee.objects.filter(garantia=detalle)
+
+    template_name = 'financings/guarantee/detail.html'
+
+    context = {
+        'title':'ELTELAR - GARANTIA {}'.format(detalle.garantia_id.credit_id),
+        'documentos':documentos,
+        'detalle':  detalle,     
+        'credit_list':credit_list,
+        'customer_list':customer_list
     }
     return render(request, template_name, context)
    

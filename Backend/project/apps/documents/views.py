@@ -7,6 +7,7 @@ from .models import Document, DocumentAddress, DocumentCustomer, DocumentGuarant
 from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
+from apps.financings.models import DetailsGuarantees
 
 
 # LIBRERIAS PARA CRUD
@@ -135,6 +136,33 @@ def create_documente_guarantee(request, investment_plan_id ,customer_code):
     } 
 
     return render(request, template_name, context) 
+
+@login_required
+@usuario_activo
+def create_documente_detalle_garantia(request, id):
+    detalle_garantia = get_object_or_404(DetailsGuarantees, id = id)
+    template_name = 'financings/guarantee/documento.html'
+    if request.method == 'POST':
+        form = DocumentForms(request.POST, request.FILES)
+
+        if form.is_valid():
+            documento = Document()
+            documento.document = form.cleaned_data.get('document')
+            documento.description = form.cleaned_data.get('description')
+            documento.save()
+            document_customer = DocumentGuarantee(document_id=documento,garantia= detalle_garantia)
+            document_customer.save()
+            messages.success(request, 'Documento Subido')
+            return redirect('financings:detallar_garantia',detalle_garantia.garantia_id.id)
+
+    form = DocumentForms
+    context = {
+        'form':form,
+        'title':'ELTELAR',
+
+    } 
+
+    return render(request, template_name, context)
 
 @login_required
 @usuario_activo
