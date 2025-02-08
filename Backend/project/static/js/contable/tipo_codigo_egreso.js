@@ -224,7 +224,7 @@ export function tipo_codigo(input_id_codigo_egreso) {
             mostrar(document.getElementById('id_documento'));
             mostrar(document.querySelector('label[for="id_documento"]'));
             break;
-        case 'ALIMENTACION':
+        case 'ALIMENTACIÓN':
             oculto();
             mostrar(document.getElementById('btn_registro'));
             mostrar(document.getElementById('id_fecha'));
@@ -289,7 +289,7 @@ export function tipo_codigo(input_id_codigo_egreso) {
             mostrar(document.getElementById('id_documento'));
             mostrar(document.querySelector('label[for="id_documento"]'));
             break;
-        case 'EQUIPO DE COMPUTACION':
+        case 'EQUIPO DE COMPUTACIÓN':
             oculto();
             mostrar(document.getElementById('btn_registro'));
             mostrar(document.getElementById('id_fecha'));

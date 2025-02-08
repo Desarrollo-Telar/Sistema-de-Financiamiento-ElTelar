@@ -14,7 +14,8 @@ from django import forms
 class EgresoForm(forms.ModelForm):
     monto_doc = forms.DecimalField(
         required=False,  # Permite que el campo sea opcional
-        widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any'}),
+        label='Monto del Documento'
     )
 
     class Meta:
