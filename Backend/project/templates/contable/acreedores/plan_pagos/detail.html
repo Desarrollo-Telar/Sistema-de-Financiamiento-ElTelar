@@ -1,0 +1,79 @@
+{% extends 'pdf/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container" style="font-size: 12px;">
+    <div class="row">
+        <div class="col-4">
+            <img src="{% static 'img/logo.png' %}" alt="imagen_de_la_empresa" style="width: 150px">
+        </div>
+        <div class="col" style="font-weight: bold;">
+            <p>PLAN DE PAGOS SOBRE EL CREDITO: <span>{{credito}}</span> </p>
+            <p>Tasa de Interes Mensual: <span style="font-weight: 100;">{{credito.ftasa}}%</span> </p>
+            <p>Plazo: <span style="font-weight: 100;">{{credito.plazo}} Meses</span> </p>
+
+            <p>Monto: <span style="font-weight: 100;">Q{{credito.fmonto}}</span> </p>
+            <p>Forma de Pago: <span style="font-weight: 100;">{{credito.forma_de_pago}}</span> </p>
+            <p>Saldo Actual: <span style="font-weight: 100;">Q{{credito.formato_saldo_actual}}</span> </p>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Mes</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Fecha de Vencimiento</th>
+                    <th scope="col">Monto Prestado</th>
+                    <th scope="col">Interes</th>
+                    <th scope="col">Capital</th>
+                    <th scope="col">Cuota</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pago in plan %}
+                <tr style="margin-top: 1rem; margin-bottom: 1rem;">
+                    <td>
+                        {{pago.mes}}
+                    </td>
+                    <td>
+                        {{pago.Ffecha_inicio}}
+                    </td>
+                    <td>
+                        {{pago.Ffecha_final}}
+                    </td>
+                    <td>
+                        Q{{pago.fmonto_prestado}}
+                    </td>
+                    <td>
+                        Q{{pago.fintereses}}
+                    </td>
+                    <td>
+                        Q{{pago.fcapital}}
+                    </td>
+                    <td>
+                        Q{{pago.fcuota}}
+                    </td>
+
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td style="background-color: black; color: white;" colspan="4">TOTALES</td>
+                    <td style="background-color: black; color: white;">Q{{total_interes}}</td>
+                    <td style="background-color: black; color: white;">Q{{total_capital}}</td>
+                    <td style="background-color: black; color: white;">Q{{total_cuota}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+{% endblock%}

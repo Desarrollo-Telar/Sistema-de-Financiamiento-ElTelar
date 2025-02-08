@@ -85,6 +85,8 @@ export const urls_p = {
     api_url_desembolso: `${baseUrl}/financings/api/desembolso/`,
     api_url_pago: `${baseUrl}/financings/api/payment/`,
     api_url_cuota: `${baseUrl}/financings/api/cuota/`,
+    api_url_cuota_acreedor: `${baseUrl}/financings/api/cuota_acreedor/`,
+    api_url_cuota_seguro: `${baseUrl}/financings/api/cuota_seguro/`,
     api_url_cuotas: `${baseUrl}/financings/api/cuotas/`,
     api_url_estado_cuenta: `${baseUrl}/financings/api/estado_cuenta/`,
     api_url_recibo:`${baseUrl}/financings/api/recibo/`,

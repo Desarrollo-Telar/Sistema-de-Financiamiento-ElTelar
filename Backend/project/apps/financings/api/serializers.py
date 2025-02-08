@@ -200,3 +200,85 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
                 "forma_de_pago":instance.credit_id.forma_de_pago
             }
         }
+
+class PaymentPlanSerializerAcreedor(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentPlan
+        fields = '__all__'
+    def to_representation(self, instance):
+        return {
+            "id":instance.id,
+            "mes": instance.mes,
+            "start_date": instance.start_date,
+            "due_date": instance.due_date,
+            "Fstart_date": instance.start_date,
+            "Fdue_date": instance.due_date,
+            "outstanding_balance": formatear_numero(instance.outstanding_balance),
+            "mora": formatear_numero(instance.mora),
+            "interest": formatear_numero(instance.interest),
+            "principal": formatear_numero(instance.principal),
+            "installment": formatear_numero(instance.installment),
+            "status": instance.status,
+            "saldo_pendiente": formatear_numero(instance.saldo_pendiente),
+            "interes_pagado": instance.interes_pagado,
+            "mora_pagado": instance.mora_pagado,
+            "fecha_limite": mostrar_fecha_limite(instance.fecha_limite),
+            "cambios": instance.cambios,
+            "numero_referencia":instance.numero_referencia,
+            "cuota_vencida":instance.cuota_vencida,
+            'total_cancelar': total(instance.capital_generado,instance.interest,instance.mora,instance.principal),
+            "capital_generado": resultado_capital(instance.principal, instance.capital_generado),
+            "interes_generado":instance.interes_generado,
+            "interes_acumulado_generado":instance.interes_acumulado_generado,
+            "mora_acumulado_generado":instance.mora_acumulado_generado,
+            "mora_generado": instance.mora_generado,
+            "acreedor":{
+                "id":instance.acreedor.id,
+                "codigo_acreedor":instance.acreedor.codigo_acreedor,
+                "is_paid_off":instance.acreedor.is_paid_off,
+                "estado_aportacion":instance.acreedor.estado_aportacion,
+                "estados_fechas":instance.acreedor.estados_fechas,
+                
+            }
+        }
+
+class PaymentPlanSerializerSeguro(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentPlan
+        fields = '__all__'
+    def to_representation(self, instance):
+        return {
+            "id":instance.id,
+            "mes": instance.mes,
+            "start_date": instance.start_date,
+            "due_date": instance.due_date,
+            "Fstart_date": instance.start_date,
+            "Fdue_date": instance.due_date,
+            "outstanding_balance": formatear_numero(instance.outstanding_balance),
+            "mora": formatear_numero(instance.mora),
+            "interest": formatear_numero(instance.interest),
+            "principal": formatear_numero(instance.principal),
+            "installment": formatear_numero(instance.installment),
+            "status": instance.status,
+            "saldo_pendiente": formatear_numero(instance.saldo_pendiente),
+            "interes_pagado": instance.interes_pagado,
+            "mora_pagado": instance.mora_pagado,
+            "fecha_limite": mostrar_fecha_limite(instance.fecha_limite),
+            "cambios": instance.cambios,
+            "numero_referencia":instance.numero_referencia,
+            "cuota_vencida":instance.cuota_vencida,
+            'total_cancelar': total(instance.capital_generado,instance.interest,instance.mora,instance.principal),
+            "capital_generado": resultado_capital(instance.principal, instance.capital_generado),
+            "interes_generado":instance.interes_generado,
+            "interes_acumulado_generado":instance.interes_acumulado_generado,
+            "mora_acumulado_generado":instance.mora_acumulado_generado,
+            "mora_generado": instance.mora_generado,
+            "seguro":{
+                "id":instance.seguro.id,
+                "codigo_seguro":instance.seguro.codigo_seguro,
+                "is_paid_off":instance.seguro.is_paid_off,
+                "estado_aportacion":instance.seguro.estado_aportacion,
+                "estados_fechas":instance.seguro.estados_fechas,
+                
+            }
+        }

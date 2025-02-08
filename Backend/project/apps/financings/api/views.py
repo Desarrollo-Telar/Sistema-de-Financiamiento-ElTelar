@@ -1,6 +1,7 @@
 # Serializador
 from .serializers import CreditSerializer, GuaranteesSerializer, DetailsGuaranteesSerializer, DisbursementSerializer, FacturaSerializer, ReciboSerializer
 from .serializers import PaymentSerializer, PaymentPlanSerializer, EstadoCuentaSerializer
+from .serializers import PaymentPlanSerializerSeguro,PaymentPlanSerializerAcreedor
 # MODELS
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
 from apps.financings.models import PaymentPlan, AccountStatement, Banco
@@ -161,6 +162,40 @@ class PaymentPlanUltimoViewSet(viewsets.ModelViewSet):
         if search_term:
             queryset = queryset.filter(
                 Q(credit_id__id__icontains=search_term) 
+            )
+        last_item = queryset.order_by('-id').first()
+        if last_item:
+            serializer = self.get_serializer(last_item)
+            return Response(serializer.data)
+        return Response([])  # Si no hay datos que coincidan, devolver una lista vacía
+
+class PaymentPlanAcreedorUltimoViewSet(viewsets.ModelViewSet):
+    serializer_class = PaymentPlanSerializerAcreedor
+    queryset = PaymentPlan.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        search_term = self.request.query_params.get('term', '')
+        if search_term:
+            queryset = queryset.filter(
+                Q(acreedor__id__icontains=search_term) 
+            )
+        last_item = queryset.order_by('-id').first()
+        if last_item:
+            serializer = self.get_serializer(last_item)
+            return Response(serializer.data)
+        return Response([])  # Si no hay datos que coincidan, devolver una lista vacía
+
+class PaymentPlanSeguroUltimoViewSet(viewsets.ModelViewSet):
+    serializer_class = PaymentPlanSerializerSeguro
+    queryset = PaymentPlan.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        search_term = self.request.query_params.get('term', '')
+        if search_term:
+            queryset = queryset.filter(
+                Q(seguro__id__icontains=search_term) 
             )
         last_item = queryset.order_by('-id').first()
         if last_item:

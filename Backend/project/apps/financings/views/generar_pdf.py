@@ -12,6 +12,7 @@ from apps.financings.task import cambiar_plan
 
 # MODELOS
 from apps.financings.models import Recibo, Invoice,AccountStatement,Credit,PaymentPlan, Payment, Cuota
+from apps.accountings.models import Creditor, Insurance
 
 import os
 from django.conf import settings
@@ -146,6 +147,72 @@ def render_pdf_calculos_credito(request,id):
 
     return response
 
+def render_pdf_calculos_credito_acreedor(request,id):
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    credito = get_object_or_404(Credito,id=id)
+    cuotas = PaymentPlan.objects.filter(acreedor=credito)
+    pagos = Payment.objects.filter(acreedor=credito)
+    recibos = Recibo.objects.filter(pago__acreedor=credito)
+
+    template_path = 'contable/calculos/calculos_hechos.html'
+    template = get_template(template_path)
+    actualizacion(credito)
+    cuotas_data = []
+    for cuota in cuotas:
+        recibos_asociados = recibos.filter(
+            fecha__range=[cuota.start_date.date(), cuota.fecha_limite.date()]
+        )
+        cuotas_data.append({'cuota': cuota, 'recibos': recibos_asociados})
+
+    context = {
+        'title':'ELTELAR',
+        'credito':credito,
+        'cuotas':cuotas,
+        'pagos':pagos,
+        'recibos':recibos,
+        'cuotas_data': cuotas_data,
+    }
+
+    html = template.render(context)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = ' filename="ReporteSobrePagos.pdf"'
+    HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
+
+    return response
+
+def render_pdf_calculos_credito_seguro(request,id):
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    credito = get_object_or_404(Insurance,id=id)
+    cuotas = PaymentPlan.objects.filter(seguro=credito)
+    pagos = Payment.objects.filter(seguro=credito)
+    recibos = Recibo.objects.filter(pago__seguro=credito)
+
+    template_path = 'contable/calculos/calculos_hechos.html'
+    template = get_template(template_path)
+    actualizacion(credito)
+    cuotas_data = []
+    for cuota in cuotas:
+        recibos_asociados = recibos.filter(
+            fecha__range=[cuota.start_date.date(), cuota.fecha_limite.date()]
+        )
+        cuotas_data.append({'cuota': cuota, 'recibos': recibos_asociados})
+
+    context = {
+        'title':'ELTELAR',
+        'credito':credito,
+        'cuotas':cuotas,
+        'pagos':pagos,
+        'recibos':recibos,
+        'cuotas_data': cuotas_data,
+    }
+
+    html = template.render(context)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = ' filename="ReporteSobrePagos.pdf"'
+    HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
+
+    return response
+
 # CLASES
 from apps.financings.clases.paymentplan import PaymentPlan as PlanPagoos
 from apps.financings.clases.credit import Credit as Credito
@@ -156,15 +223,79 @@ def planPagosCredito(credito):
     plan_pago = PlanPagoos(credit)
     return plan_pago
 
+def planPagosCreditoAS(credito):
+    formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
+    credit = Credito('credito.proposito',credito.monto,credito.plazo,credito.tasa,credito.forma_de_pago,'MENSAUL',formatted_date,'credito.tipo_credito',1,None,credito.fecha_vencimiento)
+    plan_pago = PlanPagoos(credit)
+    return plan_pago
+
 def render_pdf_plan_pagos(request,id):
     cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
-    credito = get_object_or_404(Credit,id=id)
+    credito = get_object_or_404(Credit,id=id)    
     plan = planPagosCredito(credito).recalcular_capital()
     
 
     template_path = 'financings/credit/plan_pagos/detail.html'
     template = get_template(template_path)
     actualizacion(credito)
+    
+
+    context = {
+        'title':'ELTELAR',
+        'credito':credito,
+        'plan':plan,
+        'total_cuota':formatear_numero(planPagosCredito(credito).calcular_total_cuotas()),
+        'total_capital':formatear_numero(planPagosCredito(credito).calcular_total_capital()),
+        'total_interes':formatear_numero(planPagosCredito(credito).calcular_total_interes()),
+        
+        
+    }
+
+    html = template.render(context)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = ' filename="plan_pagos.pdf"'
+    HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
+
+    return response
+
+def render_pdf_plan_pagos_acreedor(request,id):
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    credito = get_object_or_404(Creditor,id=id)    
+    plan = planPagosCreditoAS(credito).recalcular_capital()
+    
+
+    template_path = 'contable/acreedores/plan_pagos/detail.html'
+    template = get_template(template_path)
+    
+    
+
+    context = {
+        'title':'ELTELAR',
+        'credito':credito,
+        'plan':plan,
+        'total_cuota':formatear_numero(planPagosCredito(credito).calcular_total_cuotas()),
+        'total_capital':formatear_numero(planPagosCredito(credito).calcular_total_capital()),
+        'total_interes':formatear_numero(planPagosCredito(credito).calcular_total_interes()),
+        
+        
+    }
+
+    html = template.render(context)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = ' filename="plan_pagos.pdf"'
+    HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
+
+    return response
+
+def render_pdf_plan_pagos_seguro(request,id):
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    credito = get_object_or_404(Insurance,id=id)    
+    plan = planPagosCreditoAS(credito).recalcular_capital()
+    
+
+    template_path = 'contable/acreedores/plan_pagos/detail.html'
+    template = get_template(template_path)
+    
     
 
     context = {

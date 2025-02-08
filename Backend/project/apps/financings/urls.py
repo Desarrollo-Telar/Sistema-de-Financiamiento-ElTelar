@@ -26,6 +26,12 @@ urlpatterns = [
     path('credit/estado_cuenta/pdf/<int:id>/',login_required(views.render_pdf_estado_cuenta),name='estado_cuenta_pdf'),
     path('credit/calculos_realizados/pdf/<int:id>/',login_required(views.render_pdf_calculos_credito),name='calculos_realizados'),
     path('credit/plan_pagos/pdf/<int:id>/',login_required(views.render_pdf_plan_pagos),name='plan_pagos'),
+
+    path('contable/acreedor/plan_pagos/pdf/<int:id>/',login_required(views.render_pdf_plan_pagos_acreedor),name='plan_pagos_acreedor'),
+    path('contable/acreedor/calculos_realizados/pdf/<int:id>/',login_required(views.render_pdf_calculos_credito_acreedor),name='calculos_realizados_acreedor'),
+    path('contable/seguro/plan_pagos/pdf/<int:id>/',login_required(views.render_pdf_plan_pagos_seguro),name='plan_pagos_seguro'),
+    path('contable/seguro/calculos_realizados/pdf/<int:id>/',login_required(views.render_pdf_calculos_credito_seguro),name='calculos_realizados_seguro'),
+
     path('credit/delete/<int:id>',login_required(views.delete_credit),name="delete_credit"),
     path('credit/cancelados/',login_required(views.filter_credito_cancelado),name='creditos_cancelados'),
     path('credit/atrasados/',login_required(views.filter_credito_en_atraso),name='creditos_en_atrasos'),
