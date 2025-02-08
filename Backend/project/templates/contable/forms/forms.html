@@ -3,13 +3,13 @@
 
 {% for field in form %}
 
-<div class="form-group">
+<div class="form-group" style="margin-bottom: 1rem;">
   {{ field.label_tag }}
   {{ field }}
   {% if field.errors %}
   {{ field.errors }}
   {% endif %}
 </div>
-<br />
+
 
 {% endfor %}

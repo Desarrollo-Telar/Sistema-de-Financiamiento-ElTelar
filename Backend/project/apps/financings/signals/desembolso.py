@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from apps.financings.clases.personality_logs import logger
 # MODELOS
 from apps.financings.models import AccountStatement, Disbursement, Credit, PaymentPlan
+from apps.accountings.models import Egress
 
 # CALCULOS
 from apps.financings.calculos import calculo_interes
@@ -81,6 +82,7 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
             return
         
         referencia = str(uuid.uuid4())[:8]
+        
 
         # Usar una transacción atómica para asegurar la consistencia
         with transaction.atomic():

@@ -15,6 +15,7 @@ class EgresoForm(forms.ModelForm):
     class Meta:
         model = Egress
         fields = [
+            'codigo_egreso',
             'fecha',
             'fecha_doc_fiscal',
             'numero_doc',
@@ -22,11 +23,16 @@ class EgresoForm(forms.ModelForm):
             'monto',
             'monto_doc',
             'numero_referencia',
-            'codigo_egreso',
+            
             'descripcion',
             'observaciones',
             'boleta',
-            'documento'
+            'documento',
+            'nombre',
+            'pago_correspondiente',
+            'tipo_impuesto',
+            'tipo_gasto'
+
         ]
         labels = {
             'fecha': 'Fecha',
@@ -40,7 +46,11 @@ class EgresoForm(forms.ModelForm):
             'descripcion': 'Descripcion',
             'observaciones': 'Observaciones',
             'boleta': 'Boleta',
-            'documento': 'Documento'
+            'documento': 'Documento',
+            'nombre':'Nombre del Colaborador',
+            'pago_correspondiente':'Pago Correspondiente',
+            'tipo_gasto':'Tipo de Gastos',
+            'tipo_impuesto':'Tipo de Impuesto'
         }
         widgets = {
             'fecha': forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
@@ -57,6 +67,11 @@ class EgresoForm(forms.ModelForm):
             
             'boleta':forms.FileInput(attrs={'type':'file','class':'form-control','name':'document','accept':'.pdf, .doc, .docx,.xls,.xlsx,.txt,image/*'}),  
             'documento':forms.FileInput(attrs={'type':'file','class':'form-control','name':'document','accept':'.pdf, .doc, .docx,.xls,.xlsx,.txt,image/*'}), 
+
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'pago_correspondiente': forms.TextInput(attrs={'class': 'form-control'}),
+            'tipo_gasto':forms.TextInput(attrs={'class': 'form-control'}),
+            'tipo_impuesto':forms.TextInput(attrs={'class': 'form-control'}),
         }   
 
     def __init__(self, *args, **kwargs):
@@ -65,22 +80,18 @@ class EgresoForm(forms.ModelForm):
         # Opciones para el campo 'codigo_ingreso' (pueden venir de la base de datos)
         opciones_codigo_ingreso = [
             ('', 'Seleccione un código'),  # Opción inicial
+            ('SALARIOS', 'SALARIOS'),
+            ('ALQUILER', 'ALQUILER'),
+            ('GASTOS POR DESEMBOLSOS', 'GASTOS POR DESEMBOLSOS'),
             ('OTROS GASTOS GENERALES', 'OTROS GASTOS GENERALES'),
             ('COMBUSTIBLES', 'COMBUSTIBLES'),
-            ('ALIMENTACIÓN', 'ALIMENTACIÓN'),
-            ('GASTOS DE MANTENIMIENTO', 'GASTOS DE MANTENIMIENTO'),
-            ('SERVICIOS TERCEROS', 'SERVICIOS TERCEROS'),
             ('PAPELERIA Y UTILES', 'PAPELERIA Y UTILES'),
+            ('ALIMENTACIÓN', 'ALIMENTACIÓN'),            
+            ('GASTOS DE MANTENIMIENTO', 'GASTOS DE MANTENIMIENTO'),
             ('EQUIPO DE COMPUTACIÓN', 'EQUIPO DE COMPUTACIÓN'),
-            ('GASTOS ADMINISTRATIVOS', 'GASTOS ADMINISTRATIVOS'),
-            ('SALARIOS', 'SALARIOS'),
             ('PAGO DE IMPUESTOS', 'PAGO DE IMPUESTOS'),
-            ('ALQUILER', 'ALQUILER'),
+            ('SERVICIOS TERCEROS', 'SERVICIOS TERCEROS'),
             ('COMUNICACIONES', 'COMUNICACIONES'),
-            ('GASTOS POR DESEMBOLSOS', 'GASTOS POR DESEMBOLSOS'),
-            ('ACREEDORES','ACREEDORES'),
-            ('PAGO DE SEGUROS','PAGO DE SEGUROS')
-
         ]
 
         # Asignar las opciones al widget 'Select'

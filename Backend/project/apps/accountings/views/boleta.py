@@ -43,6 +43,17 @@ def add_boleta_seguro(request):
             instance.tipo_pago = 'SEGURO'
             instance.save()
 
+            gasto = Egress(
+                monto=monto,
+                fecha= form.cleaned_data.get('fecha_emision'),
+                codigo_egreso='SEGUROS',
+                seguro = form.cleaned_data.get('seguro'),
+                observaciones=form.cleaned_data.get('descripcion'),
+                numero_referencia = form.cleaned_data.get('numero_referencia'),
+                boleta = forms.cleaned_data.get('boleta')
+            )
+            gastos.save()
+
             messages.success(request, 'Boleta Registrada')
             return redirect('contable:seguros')
 
@@ -66,6 +77,16 @@ def add_boleta_acreedor(request):
             instance = form.save(commit=False)  
             instance.tipo_pago = 'ACREEDOR'
             instance.save()
+            gasto = Egress(
+                monto=monto,
+                fecha= form.cleaned_data.get('fecha_emision'),
+                codigo_egreso='ACREEDORES',
+                acreedor = form.cleaned_data.get('acreedor'),
+                observaciones=form.cleaned_data.get('descripcion'),
+                numero_referencia = form.cleaned_data.get('numero_referencia'),
+                boleta = forms.cleaned_data.get('boleta')
+            )
+            gastos.save()
             
             
            

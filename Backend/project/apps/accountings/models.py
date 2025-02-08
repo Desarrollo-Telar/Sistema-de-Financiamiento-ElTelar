@@ -170,6 +170,11 @@ class Egress(models.Model):
     nombre = models.CharField("Nombre de Colaborador", max_length=150, null=True, blank=True)
     pago_correspondiente = models.CharField("Pago Correspondiente", blank=True, null=True, max_length=150)
     tipo_impuesto = models.CharField("Tipo de Impuesto", blank=True, null=True, max_length=150)
+    
+    # MAS ATRIBUTOS NUEVOS
+    acreedor = models.ForeignKey(Creditor, on_delete=models.CASCADE, related_name='egress', blank=True, null=True)
+    seguro = models.ForeignKey(Insurance, on_delete=models.CASCADE, related_name='egress', blank=True, null=True)
+    tipo_gasto = models.CharField("Tipo de Gasto", blank=True, null=True, max_length=150)
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
 

@@ -9,8 +9,12 @@
 <form method="POST" enctype="multipart/form-data" class="box">
     {% csrf_token %}
     {% include 'contable/forms/forms.html' %}
-    <button type="submit" class="btn_guardar">Crear Registro</button>
-    <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+    <div class="d-flex">
+        <button type="submit" class="btn_guardar" id="btn_registro">Crear Registro</button>
+        <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+
+    </div>
+
 
 
 </form>
@@ -19,4 +23,5 @@
 {% block js %}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="module" src="{% static 'js/contable/inicio.js' %}"></script>
+<script type="module" src="{% static 'js/contable/filtros.js' %}"></script>
 {% endblock %}
