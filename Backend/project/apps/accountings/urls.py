@@ -38,6 +38,10 @@ urlpatterns = [
     path('seguros/boleta', views.add_boleta_seguro, name='seguros_boleta'),
     path('acreedores/boleta', views.add_boleta_acreedor, name='acreedores_boleta'),
 
+    # UPDATE
+    path('egresos/update/<int:id>/',views.actualizar_egresos, name='egresos_update'),
+    path('ingresos/update/<int:id>/',views.actualizar_ingresos, name='ingresos_update')
+
     
 ]
 
