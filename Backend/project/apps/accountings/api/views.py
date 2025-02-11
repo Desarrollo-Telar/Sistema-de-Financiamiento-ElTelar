@@ -22,7 +22,8 @@ class AcreedoresVigentesViewSet(viewsets.ModelViewSet):
         search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
         if search_term:
             queryset = queryset.filter(
-                Q(codigo_acreedor__icontains =search_term)
+                Q(codigo_acreedor__icontains =search_term),
+                Q(nombre_acreedor__icontains=search_term)
             )  # Filtrar por el término de búsqueda
         return queryset
 
@@ -35,6 +36,7 @@ class SegurosVigentesViewSet(viewsets.ModelViewSet):
         search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
         if search_term:
             queryset = queryset.filter(
-                Q(codigo_seguro__icontains =search_term)
+                Q(codigo_seguro__icontains =search_term),
+                Q(nombre_acreedor__icontains=search_term)
             )  # Filtrar por el término de búsqueda
         return queryset

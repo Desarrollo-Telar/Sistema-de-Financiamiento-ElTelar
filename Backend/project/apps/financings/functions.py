@@ -39,6 +39,18 @@ def realizar_pago(payment):
             pagoss.save()
             return f'REGISTRO DE DESEMBOLSO'
         
+        if pagoss.tipo_pago == 'EGRESO':
+            # registrar en el apartado de desembolso
+            pagoss.estado_transaccion = 'COMPLETADO'
+            pagoss.save()
+            return f'REGISTRO DE EGRESO'
+        
+        if pagoss.tipo_pago == 'INGRESO':
+            # registrar en el apartado de desembolso
+            pagoss.estado_transaccion = 'COMPLETADO'
+            pagoss.save()
+            return f'REGISTRO DE INGRESO'
+        
         if pagoss.credit and pagoss.credit.is_paid_off:
             pagoss.estado_transaccion = 'FALLIDO'
             pagoss.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'

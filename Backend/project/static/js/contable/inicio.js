@@ -122,7 +122,7 @@ $(document).ready(function () {
             },
             cache: true
         },
-        placeholder: 'Seleccione un Seguro Vigente',
+        placeholder: 'Seleccione un Acreedor Vigente',
         minimumInputLength: 1
     });
 
