@@ -32,7 +32,7 @@ async function fetchLastPaymentPlan(searchTerm) {
         // Procesar la respuesta
         if (response.data) {
             //console.log('Último PaymentPlan:', response.data);
-            console.log(response.data['credit_id'].is_paid_off);
+            console.log(response.data['seguro'].is_paid_off);
             
 
             if (response.data['credit_id'].is_paid_off){
