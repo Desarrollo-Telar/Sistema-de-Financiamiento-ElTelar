@@ -15,7 +15,7 @@ class Credit:
     def __init__(self, proposito, monto, plazo, tasa_interes, forma_de_pago, frecuencia_pago, fecha_inicio, tipo_credito,  customer_id,destino_id=None, fecha_vencimiento=None):
         Credit.contador+=1
         self._id = Credit.contador
-        self.__proposito = proposito
+        self.__proposito = 'NADA'
         self.__monto = monto
         self.__plazo = plazo
         self.__tasa_interes = tasa_interes
