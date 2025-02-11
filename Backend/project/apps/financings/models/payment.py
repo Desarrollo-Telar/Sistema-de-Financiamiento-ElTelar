@@ -285,10 +285,10 @@ class Payment(models.Model):
 
         if self.credito() is not None:
             saldo_pendiente = self.credito().saldo_pendiente
-        if self.acreedor is not None:
+        elif self.acreedor is not None:
             saldo_pendiente = self.acreedor.saldo_pendiente
         
-        if self.seguro is not None:
+        elif self.seguro is not None:
             saldo_pendiente = self.seguro.saldo_pendiente
         
         mora = self._calculo_mora()
@@ -364,10 +364,11 @@ class Payment(models.Model):
         """
         
         recibos = self.get_recibo().objects.filter(pago=pago)
-
+        cliente = None
         if credito is not None:
             descripcion = 'PAGO DE CREDITO'
             tasa_interes = credito.tasa_interes
+            cliente=credito.customer_id
 
         if acreedor is not None:
             descripcion = 'PAGO PARA EL ACREEDOR'
@@ -388,7 +389,7 @@ class Payment(models.Model):
                 interes_pagado=pagado_interes,
                 mora_pagada=pagado_mora,
                 
-                cliente=credito.customer_id,
+                cliente=cliente,
                 cuota=cuota
             )
             
