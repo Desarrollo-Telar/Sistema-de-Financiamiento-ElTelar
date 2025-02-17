@@ -62,17 +62,17 @@ def add_acreedor(request):
             
             acreedor.save() 
             
-            
-            boleta = Payment(
-                acreedor=acreedor, 
-                fecha_emision=inicio,
-                numero_referencia=numero_referencia,
-                tipo_pago='ACREEDOR',
-                boleta = boleta,
-                monto=monto,
-                descripcion=descripcion
-                )  
-            boleta.save()
+            if numero_referencia is not None:
+                boleta = Payment(
+                    acreedor=acreedor, 
+                    fecha_emision=inicio,
+                    numero_referencia=numero_referencia,
+                    tipo_pago='ACREEDOR',
+                    boleta = boleta,
+                    monto=monto,
+                    descripcion=descripcion
+                    )  
+                boleta.save()
                 
             messages.success(request, 'Acreedor Creado con Exito')
             return redirect('contable:acreedores')
@@ -117,16 +117,17 @@ def add_seguro(request):
             acreedor.save() 
             print(acreedor.codigo_seguro)
             
-            boleta = Payment(
-                seguro=acreedor, 
-                fecha_emision=inicio,
-                numero_referencia=numero_referencia,
-                tipo_pago='SEGURO',
-                boleta = boleta,
-                monto=monto,
-                descripcion=descripcion
-                )  
-            boleta.save()
+            if numero_referencia is not None:
+                boleta = Payment(
+                    seguro=acreedor, 
+                    fecha_emision=inicio,
+                    numero_referencia=numero_referencia,
+                    tipo_pago='SEGURO',
+                    boleta = boleta,
+                    monto=monto,
+                    descripcion=descripcion
+                    )  
+                boleta.save()
                 
             messages.success(request, 'Seguro Creado con Exito')
             return redirect('contable:seguros')

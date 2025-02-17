@@ -44,7 +44,7 @@ def filter_credito_reciente(request):
         'title':'ELTELAR - CREDITOS',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(is_paid_off=True).count()
+        'count': Credit.objects.filter(Q(creation_date__range=[inicio,hoy])).count()
     }
     return render(request, template_name, context)
 
@@ -80,12 +80,12 @@ def filter_credito_en_atraso(request):
 @usuario_activo
 def filter_credito_en_falta_aportacion(request):
     template_name = 'financings/credit/list.html'
-    page_obj = paginacion(request, Credit.objects.filter(estado_aportacion=True).order_by('-id'))
+    page_obj = paginacion(request, Credit.objects.filter(estado_aportacion=False).order_by('-id'))
     
     context = {
         'title':'ELTELAR - CREDITOS',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(estado_aportacion=True).count()
+        'count': Credit.objects.filter(estado_aportacion=False).count()
     }
     return render(request, template_name, context)
