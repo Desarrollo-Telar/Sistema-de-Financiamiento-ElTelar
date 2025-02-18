@@ -56,7 +56,8 @@ def list_bank(request):
     context = {
         'title':'EL TELAR - BANCOS',
         'page_obj':page_obj,
-        'banco_list':page_obj
+        'banco_list':page_obj,
+        'count':Banco.objects.all().count()
     }
     return render(request,template_name, context)
 
@@ -107,7 +108,7 @@ def list_disbursement(request):
 
 # ------------------ BUSCADOR ------------------------------
 class BankSearch(ListView):
-    template_name = 'financings/bank/search.html'
+    template_name = 'financings/bank/list.html'
     paginate_by = 25
 
     def get_queryset(self):
@@ -154,7 +155,7 @@ class BankSearch(ListView):
         return context
 
 class PaymentSearch(ListView):
-    template_name = 'financings/payment/search.html'
+    template_name = 'financings/payment/list.html'
     paginate_by = 25
 
     def get_queryset(self):
@@ -204,7 +205,7 @@ class PaymentSearch(ListView):
         return context
 
 class CreditSearch(ListView):
-    template_name = 'financings/credit/search.html'
+    template_name = 'financings/credit/list.html'
     paginate_by = 25
 
     def get_queryset(self):

@@ -8,18 +8,28 @@
 
 
     </div>
+    <div class="row" style="margin-bottom: 2rem">
+        <div class="col">
+            <p class="text-body-secondary fs-6 text-uppercase">TOTAL DE TODOS LOS REGISTROS {{message}}:
+                <span class="badge rounded-pill text-bg-dark">{{count}}</span>
+            </p>
+        </div>
+    </div>
     <hr>
 
-    <div class="row d-flex" style="margin-top: 2rem;">
+    <div class="row d-flex" style="display: flex; align-items: center; justify-content: end; margin-top: 2rem;">
 
 
-        <div class="col d-flex justify-content-start">
+        <div class="col ">
             {% include 'financings/bank/snippets/search.html' with query=query %}
 
         </div>
-        <div class="col d-flex flex-row-reverse">
+        <div class="col ">
             {% include 'financings/bank/snippets/list_btns.html' %}
 
+        </div>
+        <div class="col-1">
+            {% include 'financings/bank/snippets/filters.html' %}
         </div>
 
 
