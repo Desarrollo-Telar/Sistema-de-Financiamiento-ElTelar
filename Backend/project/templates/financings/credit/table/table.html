@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-12 " style="text-align: center;">
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" style="font-size: 14px;">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -16,7 +16,9 @@
                         <th scope="col">Tipo de Credito</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Vencimiento</th>
-                        <th>Credito Cancelado</th>
+                        <th scope="col">Credito Cancelado</th>
+                        <th scope="col">Status de Aportacion</th>
+                        <th scope="col">Status por fechas</th>
 
 
 
@@ -89,6 +91,50 @@
                                 href="{% url 'financings:detail_credit' credit.id %}"
                                 class="{% if  credit.is_paid_off %} activo {% else %} inactivo{% endif %} ">
                                 {%if credit.is_paid_off %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+
+                                {% else %}
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+
+                                {%endif%}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' credit.id %}"
+                                class="{% if  credit.estado_aportacion %} activo {% else %} inactivo{% endif %} ">
+                                {%if credit.estado_aportacion %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+
+                                {% else %}
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+
+                                {%endif%}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detail_credit' credit.id %}"
+                                class="{% if  credit.estados_fechas %} activo {% else %} inactivo{% endif %} ">
+                                {%if credit.estados_fechas %}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-check2" viewBox="0 0 16 16">
                                     <path

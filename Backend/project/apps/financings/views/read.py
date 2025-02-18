@@ -226,6 +226,8 @@ class CreditSearch(ListView):
                 filters |= Q(forma_de_pago__icontains=query)
                 filters |= Q(codigo_credito__icontains=query)
                 filters |= Q(customer_id__customer_code__icontains=query)
+                filters |= Q(customer_id__first_name__icontains=query)
+                filters |= Q(customer_id__last_name__icontains=query)
 
                 # Si la consulta es numérica, usar filtro exacto para campos numéricos
                 if query.isdigit():

@@ -26,7 +26,7 @@ class CreditAdmin(admin.ModelAdmin):
 class PaymentPlanAdmin(admin.ModelAdmin):
 
     list_display = ('id', 'mes', '__str__')
-    search_fields = ('mes')
+    
 
 
 admin.site.register(Guarantees)

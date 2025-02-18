@@ -22,7 +22,11 @@ import os
 @receiver(post_save, sender=Payment)
 def generar_plan_pagos(sender, instance, created, **kwargs):
     if created:
+        if instance.cliente is not None:
+            Payment.objects.filter(id=instance.id).update(tipo_pago='CLIENTE')
         comparacion()
+
+
         
 
 
