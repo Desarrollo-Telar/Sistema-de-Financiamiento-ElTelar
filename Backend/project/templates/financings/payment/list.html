@@ -31,12 +31,12 @@
 
     </div>
     <hr>
-    <div class="row" style="margin-top: 2rem;">
-        <div class="col d-flex justify-content-start" style="display: flex; align-items: center; justify-content: end;">
+    <div class="row" style="display: flex; align-items: center; justify-content: end; margin-top: 2rem;">
+        <div class="col">
             {% include 'financings/payment/snippets/search.html' with query=query %}
 
         </div>
-        <div class="col d-flex flex-row-reverse">
+        <div class="col">
             <a href="{% url 'financings:create_payment' %}" class="btn_guardar">Generar
                 Pago</a>
             {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
@@ -44,6 +44,9 @@
                 Documento</a>
             {% endif %}
 
+        </div>
+        <div class="col-1">
+            {% include 'financings/payment/snippets/filters.html' %}
         </div>
 
     </div>

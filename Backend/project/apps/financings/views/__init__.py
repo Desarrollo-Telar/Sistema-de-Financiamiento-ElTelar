@@ -26,4 +26,4 @@ from .delete import delete_credit
 from .payment import create_payment
 
 # Filtros
-from .filtros import filter_credito_cancelado, filter_credito_en_atraso, filter_credito_en_falta_aportacion, filter_credito_reciente
+from .filtros import filter_credito_cancelado, filter_credito_en_atraso, filter_credito_en_falta_aportacion, filter_credito_reciente, filter_list_payment_pendiente, filter_list_payment_completados

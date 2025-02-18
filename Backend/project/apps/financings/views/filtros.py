@@ -89,3 +89,37 @@ def filter_credito_en_falta_aportacion(request):
         'count': Credit.objects.filter(estado_aportacion=False).count()
     }
     return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def filter_list_payment_pendiente(request):
+    template_name = 'financings/payment/list.html'
+    page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='PENDIENTE').order_by('-id'))
+    generar()
+
+
+    context = {
+        'title':'EL TELAR - PAGOS',
+        'page_obj':page_obj,
+        'payment_list':page_obj
+
+        
+    }
+    return render(request,template_name, context)
+
+@login_required
+@usuario_activo
+def filter_list_payment_completados(request):
+    template_name = 'financings/payment/list.html'
+    page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='COMPLETADO').order_by('-id'))
+    generar()
+
+
+    context = {
+        'title':'EL TELAR - PAGOS',
+        'page_obj':page_obj,
+        'payment_list':page_obj
+
+        
+    }
+    return render(request,template_name, context)
