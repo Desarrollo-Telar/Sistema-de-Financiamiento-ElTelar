@@ -71,9 +71,11 @@ def generar():
 
                      
                 if pago.credit or pago.disbursement or pago.cliente or pago.acreedor or pago.seguro:
+
                     print('procesando al estado de cuenta')
+                    print(boleta.referencia)
                     realizar_pago(pago)
-                
+            
                 
 
             

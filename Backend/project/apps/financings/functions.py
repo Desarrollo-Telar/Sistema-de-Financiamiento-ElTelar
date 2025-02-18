@@ -22,36 +22,37 @@ def realizar_pago(payment):
             acreedor.save()
             return
         
-        elif seguro:
+        if seguro:
             seguro.status = True
             seguro.save()
             return
 
 
-        elif pagoss.cliente:
+        if pagoss.cliente:
             pagoss.estado_transaccion = 'COMPLETADO'
+            pagoss.tipo_pago = 'CLIENTE'
             pagoss.save()
             return f'REGISTRO DE PAGO A CLIENTE'
         
-        elif pagoss.tipo_pago == 'DESEMBOLSO':
+        if pagoss.tipo_pago == 'DESEMBOLSO':
             # registrar en el apartado de desembolso
             pagoss.estado_transaccion = 'COMPLETADO'
             pagoss.save()
             return f'REGISTRO DE DESEMBOLSO'
         
-        elif pagoss.tipo_pago == 'EGRESO':
+        if pagoss.tipo_pago == 'EGRESO':
             # registrar en el apartado de desembolso
             pagoss.estado_transaccion = 'COMPLETADO'
             pagoss.save()
             return f'REGISTRO DE EGRESO'
         
-        elif pagoss.tipo_pago == 'INGRESO':
+        if pagoss.tipo_pago == 'INGRESO':
             # registrar en el apartado de desembolso
             pagoss.estado_transaccion = 'COMPLETADO'
             pagoss.save()
             return f'REGISTRO DE INGRESO'
         
-        elif pagoss.credit and pagoss.credit.is_paid_off:
+        if pagoss.credit and pagoss.credit.is_paid_off:
             pagoss.estado_transaccion = 'FALLIDO'
             pagoss.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
             pagoss.save()
@@ -59,7 +60,7 @@ def realizar_pago(payment):
             banco.save()
             return f'EL CREDITO YA FUE PAGO'
         
-        elif pagoss.acreedor and pagoss.acreedor.is_paid_off:
+        if pagoss.acreedor and pagoss.acreedor.is_paid_off:
             pagoss.estado_transaccion = 'FALLIDO'
             pagoss.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL ACREEDOR AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
             pagoss.save()
@@ -70,7 +71,7 @@ def realizar_pago(payment):
             acreedor.save()
             return f'EL ACREEDOR YA FUE PAGO'
         
-        elif pagoss.seguro and pagoss.seguro.is_paid_off:
+        if pagoss.seguro and pagoss.seguro.is_paid_off:
             pagoss.estado_transaccion = 'FALLIDO'
             pagoss.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL SEGURO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
             pagoss.save()
