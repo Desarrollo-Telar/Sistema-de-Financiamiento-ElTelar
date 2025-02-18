@@ -22,6 +22,11 @@ class CreditAdmin(admin.ModelAdmin):
     )
     list_display = ('id','customer_id','codigo_credito' ,'tipo_credito', 'monto','plazo','tasa_interes','fecha_inicio','estados_fechas','creation_date')
 
+@admin.register(PaymentPlan)
+class PaymentPlanAdmin(admin.ModelAdmin):
+
+    list_display = ('id', 'mes', '__str__')
+    search_fields = ('mes')
 
 
 admin.site.register(Guarantees)
@@ -30,7 +35,7 @@ admin.site.register(Disbursement)
 admin.site.register(Banco)
 admin.site.register(Payment)
 admin.site.register(AccountStatement)
-admin.site.register(PaymentPlan)
+
 admin.site.register(Recibo)
 admin.site.register(Invoice)
 admin.site.register(Cuota)

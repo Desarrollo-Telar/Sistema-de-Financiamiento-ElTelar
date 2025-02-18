@@ -248,7 +248,7 @@ class PaymentPlan(models.Model):
         if  self.seguro is not None:
             mensaje = self.seguro
 
-        return f'{self.mes} - {mensaje}'
+        return f'{mensaje}'
         
     class Meta:
         verbose_name = 'Plan de Pago'

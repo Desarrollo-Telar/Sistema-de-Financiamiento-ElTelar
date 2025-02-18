@@ -52,7 +52,7 @@ class Credit(models.Model):
     plazo_restante = models.IntegerField("Plazo", blank=True, null=True, default=0)
 
     def __str__(self):
-        return self.codigo_credito
+        return f'{self.codigo_credito} {self.customer_id}'
     
     def formato_estado_aportacion(self):
         return 'VIGENTE' if self.estado_aportacion else 'EN ATRASO'
