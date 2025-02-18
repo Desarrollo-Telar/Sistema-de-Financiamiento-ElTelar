@@ -6,6 +6,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">No. Referencia</th>
                         <th scope="col">No. Secuencial</th>
@@ -28,6 +29,7 @@
                     {% for credit in banco_list %}
 
                     <tr>
+                        <td>{{ forloop.counter }}</td>
                         <td scope="row">
 
                             {{credit.fecha}}
