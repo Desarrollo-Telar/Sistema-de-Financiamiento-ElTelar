@@ -37,5 +37,6 @@ MYSQL = {
         'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
         'HOST': 'db',
         'PORT': '3306',
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
