@@ -61,7 +61,7 @@ def total_capital_pagada(estado_cuenta):
 
 # Create your views here.
 @login_required
-@usuario_activo
+@usuario_administrador
 def detail_acreedores(request, id):
     template_name = 'contable/acreedores/detail.html'
     object_list = get_object_or_404(Creditor, id=id)
@@ -88,7 +88,7 @@ def detail_acreedores(request, id):
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@usuario_administrador
 def detail_seguro(request, id):
     template_name = 'contable/seguros/detail.html'
     object_list = get_object_or_404(Insurance, id=id)
