@@ -29,7 +29,7 @@ def codigo_seg(instance):
 
         while Insurance.objects.filter(codigo_seguro=codigo_acreedor).exists():
             counter += 1
-            codigo_acreedor = f'AC-{current_year}-{counter}'
+            codigo_acreedor = f'SEG-{current_year}-{counter}'
 
         instance.codigo_seguro = codigo_acreedor
 

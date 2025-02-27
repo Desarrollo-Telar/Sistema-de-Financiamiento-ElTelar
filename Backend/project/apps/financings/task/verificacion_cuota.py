@@ -103,7 +103,7 @@ def generar_estado_cuenta(pago):
     estado_cuenta.save()
 
 def verificar_por_ausencia():
-    planes = PaymentPlan.objects.filter(cuota_vencida=False, paso_por_task=False)
+    planes = PaymentPlan.objects.filter(cuota_vencida=False)
 
     if not planes.exists():
         logger.info("No hay registro")
@@ -143,7 +143,7 @@ def verificar_por_ausencia():
             
             boleta = Payment.objects.filter(seguro=pago.seguro).exists()
         
-        if boleta and pago.fecha_limite.date() < now().date():
+        if boleta is not None and pago.fecha_limite.date() < now().date():
             pago.paso_por_task = True
             pago.save()
             continue
@@ -188,9 +188,10 @@ def verificar_por_ausencia():
 
 @shared_task
 def cambiar_plan():
-    verificar_por_ausencia()
+    #verificar_por_ausencia()
 
-    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), cuota_vencida=False,paso_por_task=False)
+    planes = PaymentPlan.objects.filter(fecha_limite__date=datetime.now().date(), cuota_vencida=False)
+    print(datetime.now().date())
 
     if not planes.exists():
         logger.info("No hay registro")

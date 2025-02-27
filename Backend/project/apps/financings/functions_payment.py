@@ -62,6 +62,9 @@ def generar():
                 if egreso:
                     egreso.status = True
                     egreso.save()
+
+                if pago.tipo_pago == "EGRESO" or pago.tipo_pago == "INGRESO": 
+                    pago.estado_transaccion = "COMPLETADO"
                 
                 
                 #pago.estado_transaccion = 'COMPLETADO'

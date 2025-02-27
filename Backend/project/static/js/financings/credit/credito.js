@@ -134,10 +134,10 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                         icon: "success",
                         title: `Registro Completado`,
                         text: '¡Formulario enviado con éxito!',
-                        timer: 3000,
+                        timer: 10000,
                         showConfirmButton: false,
                     });
-                    setTimeout(() => { window.location.href = `/financings/credit/${credit.id}`; }, 1000);
+                    setTimeout(() => { window.location.href = `/financings/credit/${credit.id}`; }, 10000);
                     break;
 
                 case 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE':
@@ -183,10 +183,10 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                         icon: "success",
                         title: `Registro Completado`,
                         text: '¡Formulario enviado con éxito!',
-                        timer: 3000,
+                        timer: 10000,
                         showConfirmButton: false,
                     });
-                    setTimeout(() => { window.location.href = `/financings/credit/${credit.id}`; }, 1000);
+                    setTimeout(() => { window.location.href = `/financings/credit/${credit.id}`; }, 10000);
                     break;
 
                 case 'CANCELACIÓN DE CRÉDITO VIGENTE':
@@ -231,7 +231,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                         icon: "success",
                         title: `Registro Completado`,
                         text: '¡Formulario enviado con éxito!',
-                        timer: 3000,
+                        timer: 10000,
                         showConfirmButton: false,
                     });
                     setTimeout(() => { window.location.href = `/financings/credit/${credit.id}`; }, 1000);
@@ -244,7 +244,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                         icon: "error",
                         title: 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.',
                         text: 'No se puede enviar, debido a que no ha seleccionado ningún tipo de desembolso',
-                        timer: 3000,
+                        timer: 10000,
                         showConfirmButton: false,
                     });
                     break;
@@ -259,7 +259,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                 icon: "error",
                 title: `Error ${error.response.status}`,
                 text: error.response.data.message || 'Ocurrió un problema en el servidor.',
-                timer: 3000,
+                timer: 10000,
                 showConfirmButton: false,
             });
         } else if (error.request) {
@@ -268,7 +268,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                 icon: "error",
                 title: `Sin respuesta del servidor`,
                 text: `No se obtuvo respuesta del servidor. Por favor, inténtalo más tarde.`,
-                timer: 3000,
+                timer: 10000,
                 showConfirmButton: false,
             });
         } else {
@@ -277,10 +277,10 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                 icon: "error",
                 title: `Error inesperado`,
                 text: error.message,
-                timer: 3000,
+                timer: 10000,
                 showConfirmButton: false,
             });
         }
-        setTimeout(() => { window.location.href = `/financings/credit/delete/${credit.id}`; }, 3000);
+        setTimeout(() => { window.location.href = `/financings/credit/delete/${credit.id}`; }, 10000);
     }
 });
