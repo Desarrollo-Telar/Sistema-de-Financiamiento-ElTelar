@@ -19,8 +19,40 @@
                 {{ forloop.counter }}
             </th>
             <td>{{recibo.fecha}}</td>
-            <td>{{recibo.cliente}}</td>
-            <td>{{recibo.pago.credit}}</td>
+            <td>
+
+                {% if recibo.pago.credit %}
+                    {{recibo.cliente}}
+
+                {% elif recibo.pago.acreedor %}
+
+                    {{recibo.pago.acreedor.nombre_acreedor}}
+
+                {% elif recibo.pago.seguro %}
+
+                    {{reporte.pago.acreedor.nombre_acreedor}}
+
+                {% endif %}
+
+                
+            </td>
+            <td>
+                {% if recibo.pago.credit %}
+
+                    {{recibo.pago.credit.codigo_credito}}
+
+                {% elif recibo.pago.acreedor %}
+
+                    {{recibo.pago.acreedor.codigo_acreedor}}
+
+                {% elif recibo.pago.seguro %}
+
+                    {{recibo.pago.acreedor.codigo_seguro}}
+
+                {%endif%}
+                
+
+            </td>
             <td>Q{{recibo.Ftotal}}</td>
             <td>
                 <a href="{% url 'financings:factura' recibo.id%}">Facturar</a>
