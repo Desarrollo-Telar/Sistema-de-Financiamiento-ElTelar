@@ -57,18 +57,20 @@ def generar():
                 if ingreso:
                     ingreso.status = True
                     ingreso.save()
+                    pago.estado_transaccion = 'COMPLETADO'
                     
                 
                 if egreso:
                     egreso.status = True
                     egreso.save()
+                    pago.estado_transaccion = 'COMPLETADO'
 
                 if pago.tipo_pago == "EGRESO" or pago.tipo_pago == "INGRESO": 
                     pago.estado_transaccion = "COMPLETADO"
                 
                 
                 #pago.estado_transaccion = 'COMPLETADO'
-                boleta.status = True
+                #boleta.status = True
                 boleta.save()
                 pago.save()
 

@@ -22,13 +22,13 @@ POSTGRES = {
     }
 }
 
-
+"""
 POSTGRES_HEROKU = {
     'default': dj_database_url.config(
         default = config('DATABASE_URL')
     )
 }
-
+""" 
 MYSQL = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -36,7 +36,7 @@ MYSQL = {
         'USER': os.environ.get('MYSQL_USER'),
         'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
         'HOST': 'db',
-        'PORT': '3306',
+        'PORT': 3306,
         'OPTIONS': {
             'charset': 'utf8mb4',
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"

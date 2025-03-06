@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'apps.financings',
     'django_celery_beat',
     'django.contrib.sites',
-    'apps.accountings'
+    'apps.accountings',
+    'django_redis',
     #'bootstrap5',
     #'django_inlinecss',
     #'otp',
@@ -129,24 +130,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 import project.database as db
 
-if DEBUG:
-    #DATABASES = db.MYSQL
-    #DATABASES = db.SQLITE
-    if SERVIDOR:
-        DATABASES = db.POSTGRES_HEROKU
-    else:
-        DATABASES = db.MYSQL
-else:
-    
-    #DATABASES = db.SQLITE
-    if SERVIDOR:
-        DATABASES = db.POSTGRES_HEROKU
-    else:
-        DATABASES = db.MYSQL
 
 
 
-#DATABASES = db.POSTGRES_HEROKU
+
+DATABASES = db.MYSQL
 
 
 
@@ -215,13 +203,9 @@ DEFAULT_FROM_EMAIL = 'DesarrolloElTelar@outlook.com'
 # UP3HB-9X2AR-YWK8K-UCQCS-Q63T7
 
 # Configuración de Celery
-if SERVIDOR:
-    CELERY_BROKER_URL = os.environ.get('REDIS_URL')  # Usamos Redis como broker
-    CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
 
-else:
-    CELERY_BROKER_URL = 'redis://:mystrongpassword@redis:6379/0'  # Usamos Redis como broker
-    CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+CELERY_BROKER_URL = 'redis://:mystrongpassword@redis:6379/0'  # Usamos Redis como broker
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
@@ -238,7 +222,7 @@ from celery.schedules import crontab
 from urllib.parse import urlparse
 #REDISCLOUD_URL = 'redis://default:PTSGV1jP5KdITaOQxjLZotZZyG623CGf@redis-12001.c52.us-east-1-4.ec2.redns.redis-cloud.com:12001'
 
-
+"""
 redis_url = urlparse(os.environ.get('REDISCLOUD_URL'))
 CACHES = {
         'default': {
@@ -247,6 +231,16 @@ CACHES = {
             'OPTIONS': {
                 'PASSWORD': redis_url.password,
                 'DB': 0,
+        }
+    }
+}
+""" 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.getenv("REDISCLOUD_URL", "redis://redis:6379/0"),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     }
 }

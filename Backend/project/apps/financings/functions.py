@@ -20,12 +20,12 @@ def realizar_pago(payment):
         if acreedor:
             acreedor.status = True
             acreedor.save()
-            return
+            return f'ACREEDOR'
         
         if seguro:
             seguro.status = True
             seguro.save()
-            return
+            return f'SEGURO'
 
 
         if pagoss.cliente:

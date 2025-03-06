@@ -2,7 +2,7 @@ from django.db.models.signals import post_save, pre_save, pre_delete, post_delet
 from django.dispatch import receiver
 
 # MODELOS
-from apps.financings.models import Payment
+from apps.financings.models import Payment, Banco
 
 
 # LOOGER
@@ -33,11 +33,17 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
 # ENVIO DE ALERTA PARA EL ESTATUS DE LA BOLETA
 @receiver(post_save, sender=Payment)
 def alerta(sender, instance, **kwargs):
+    banco = Banco.objects.filter(referencia = instance.numero_referencia).first()
     if instance.estado_transaccion == 'FALLIDO':
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
+        banco.status = False
+        banco.save()
         #envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO',instance.id)
     elif instance.estado_transaccion == 'COMPLETADO':
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
+        
+        banco.status = True
+        banco.save()
         #envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO',instance.id)
     elif instance.estado_transaccion == 'PENDIENTE':
         #comparacion()
