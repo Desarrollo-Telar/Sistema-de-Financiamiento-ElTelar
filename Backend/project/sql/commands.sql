@@ -45,3 +45,5 @@ UPDATE financings_paymentplan SET start_date = "2025-02-13 06:00:00.000000" wher
 
 
  UPDATE financings_paymentplan SET mora = 0, cuota_vencida = 0 WHERE credit_id_id = 5;
+
+

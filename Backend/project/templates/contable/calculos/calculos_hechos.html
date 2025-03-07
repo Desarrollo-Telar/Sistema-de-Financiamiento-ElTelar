@@ -71,7 +71,7 @@
         <p style="font-weight:bold; font-style: italic; ">Pago: {{forloop.counter}} </p>
         <div class="col" style="font-weight: 300; color: #811b1d;">
             <p>Monto: Q{{recibo.Fmonto}}</p>
-            <p>Fecha de Pago: {{recibo.fecha}}</p>
+            <p>Fecha de Pago: {{recibo.pago.fecha_emision.date}}</p>
             <p>No. Referencia: {{recibo.pago.numero_referencia}}</p>
             {% if recibo.mora_pagada %}
             <p>Mora Pagado: Q{{recibo.Fmora_pagada}} </p>
