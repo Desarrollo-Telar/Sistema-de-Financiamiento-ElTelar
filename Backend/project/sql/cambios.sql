@@ -170,3 +170,34 @@ DELETE FROM financings_paymentplan WHERE id = 138;
 UPDATE accountings_creditor SET estados_fechas = 1, estado_aportacion = 1,  is_paid_off = 1,  saldo_pendiente  = 0, saldo_actual = 0 WHERE id = 25;
 UPDATE financings_recibo SET mora = 0, mora_pagada = 0, aporte_capital = 1833.44  WHERE id = 37;
 
+-- 10
+UPDATE financings_payment SET mora = 0, capital = 1250 WHERE id = 293;
+UPDATE financings_accountstatement SET late_fee_paid = 0, capital_paid = 1250, saldo_pendiente = 8750 WHERE id = 94;
+UPDATE financings_paymentplan SET saldo_pendiente = 8750 , cuota_vencida = 0  WHERE id = 110;
+UPDATE financings_recibo SET mora = 0, mora_pagada = 0, aporte_capital = 1250 WHERE id = 38;
+
+UPDATE financings_paymentplan 
+SET outstanding_balance = 8750, 
+mora = 0, 
+interest = 525, 
+saldo_pendiente = 8750, 
+interes_acumulado_generado = 0, 
+mora_acumulado_generado = 0, 
+mora_generado = 0 , 
+interes_generado = 525
+where id = 111; 
+
+INSERT INTO financings_paymentplan (
+     mes, start_date, due_date, outstanding_balance, mora, interest, principal, 
+    principal_pagado, installment, status, saldo_pendiente, interes_pagado, mora_pagado, 
+    fecha_limite, cambios, numero_referencia, cuota_vencida, interes_generado, 
+    capital_generado, interes_acumulado_generado, mora_acumulado_generado, mora_generado, 
+    paso_por_task, credit_id_id, acreedor_id, seguro_id
+) VALUES (
+     3, '2025-02-14 14:08:15.000000', '2025-03-14 14:08:15.000000', 8750.00, 0.00, 525.00, 0.00, 
+    0.00, 1775.00, 0, 8750.00, 0.00, 0.00, 
+    '2025-03-30 14:08:15.000000', 0, 'NAN', 0, 525.00, 
+    1250.00, 0.00, 0.00, 0.00, 
+    0, NULL, 10, NULL
+);
+
