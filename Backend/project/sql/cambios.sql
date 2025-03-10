@@ -201,3 +201,21 @@ INSERT INTO financings_paymentplan (
     0, NULL, 10, NULL
 );
 
+-- 11
+UPDATE financings_payment SET mora = 0, capital = 833.73 WHERE id = 300;
+UPDATE financings_accountstatement SET late_fee_paid = 0, capital_paid = 833.73, saldo_pendiente = 2513.65 WHERE id = 97;
+UPDATE financings_paymentplan SET saldo_pendiente = 2513.65 , cuota_vencida = 0  WHERE id = 110;
+UPDATE financings_recibo SET mora = 0, mora_pagada = 0, aporte_capital = 833.73 WHERE pago_id = 300;
+
+UPDATE financings_paymentplan 
+SET outstanding_balance = 2513.65, 
+mora = 0, 
+interest = 62.84, 
+saldo_pendiente = 2513.65, 
+interes_acumulado_generado = 0, 
+mora_acumulado_generado = 0, 
+mora_generado = 0 , 
+interes_generado = 62.84
+where id = 98; 
+
+-- 12
