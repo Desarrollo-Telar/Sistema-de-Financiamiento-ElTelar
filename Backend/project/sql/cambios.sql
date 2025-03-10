@@ -316,3 +316,18 @@ INSERT INTO financings_paymentplan (
     3333.08, 0.00, 0.00, 0.00, 
     0, NULL, 9, NULL
 );
+
+-- 17
+INSERT INTO financings_paymentplan (
+    id, mes, start_date, due_date, outstanding_balance, mora, interest, principal, 
+    principal_pagado, installment, status, saldo_pendiente, interes_pagado, mora_pagado, 
+    fecha_limite, cambios, numero_referencia, cuota_vencida, interes_generado, 
+    capital_generado, interes_acumulado_generado, mora_acumulado_generado, mora_generado, 
+    paso_por_task, credit_id_id, acreedor_id, seguro_id
+) VALUES (
+    190, 3, '2025-02-15 15:58:48.000000', '2025-03-15 15:58:48.000000', 954.00, 0.00, 0.00, 0.00, 
+    0.00, 318.00, 0, 954.00, 0.00, 0.00, 
+    '2025-03-31 15:58:48.000000', 0, 'NAN', 0, 0.00, 
+    318.00, 0.00, 0.00, 0.00, 
+    0, NULL, NULL, 1
+);

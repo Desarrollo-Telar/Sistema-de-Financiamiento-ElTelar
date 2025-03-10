@@ -28,6 +28,7 @@ urlpatterns = [
     path('credit/plan_pagos/pdf/<int:id>/',login_required(views.render_pdf_plan_pagos),name='plan_pagos'),
 
     path('contable/acreedor/plan_pagos/pdf/<int:id>/',login_required(views.render_pdf_plan_pagos_acreedor),name='plan_pagos_acreedor'),
+    
     path('contable/acreedor/calculos_realizados/pdf/<int:id>/',login_required(views.render_pdf_calculos_credito_acreedor),name='calculos_realizados_acreedor'),
     path('contable/seguro/plan_pagos/pdf/<int:id>/',login_required(views.render_pdf_plan_pagos_seguro),name='plan_pagos_seguro'),
     path('contable/seguro/calculos_realizados/pdf/<int:id>/',login_required(views.render_pdf_calculos_credito_seguro),name='calculos_realizados_seguro'),
