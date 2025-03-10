@@ -234,3 +234,20 @@ mora_acumulado_generado = 0,
 mora_generado = 0 , 
 interes_generado = 137.53
 where id = 95; 
+
+-- 13
+UPDATE financings_payment SET mora = 0, capital = 4178.53 WHERE id = 302;
+UPDATE financings_accountstatement SET late_fee_paid = 0, capital_paid = 4178.53 , saldo_pendiente = 20244.97 WHERE payment_id = 302;
+UPDATE financings_paymentplan SET saldo_pendiente = 20244.97 , cuota_vencida = 0  WHERE id = 102;
+UPDATE financings_recibo SET mora = 0, mora_pagada = 0, aporte_capital = 4178.53  WHERE pago_id = 302;
+
+UPDATE financings_paymentplan 
+SET outstanding_balance = 20244.97, 
+mora = 0, 
+interest = 404.9, 
+saldo_pendiente = 20244.97, 
+interes_acumulado_generado = 0, 
+mora_acumulado_generado = 0, 
+mora_generado = 0 , 
+interes_generado = 404.9
+where id = 103; 
