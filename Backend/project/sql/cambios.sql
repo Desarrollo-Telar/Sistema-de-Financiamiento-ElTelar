@@ -161,3 +161,12 @@ UPDATE financings_paymentplan SET saldo_pendiente = 0 , cuota_vencida = 0  WHERE
 DELETE FROM financings_paymentplan WHERE id = 132;
 UPDATE accountings_creditor SET estados_fechas = 1, estado_aportacion = 1,  is_paid_off = 1,  saldo_pendiente  = 0, saldo_actual = 0 WHERE id = 22;
 UPDATE financings_recibo SET mora = 0, mora_pagada = 0, aporte_capital = 8327.96  WHERE id = 36;
+
+-- 9
+UPDATE financings_payment SET mora = 0, capital = 1833.44 WHERE id = 292;
+UPDATE financings_accountstatement SET late_fee_paid = 0, capital_paid = 1833.44, saldo_pendiente = 0 WHERE id = 93;
+UPDATE financings_paymentplan SET saldo_pendiente = 0 , cuota_vencida = 0  WHERE id = 137;
+DELETE FROM financings_paymentplan WHERE id = 138;
+UPDATE accountings_creditor SET estados_fechas = 1, estado_aportacion = 1,  is_paid_off = 1,  saldo_pendiente  = 0, saldo_actual = 0 WHERE id = 25;
+UPDATE financings_recibo SET mora = 0, mora_pagada = 0, aporte_capital = 1833.44  WHERE id = 37;
+
