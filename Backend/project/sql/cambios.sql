@@ -285,3 +285,34 @@ mora_acumulado_generado = 0,
 mora_generado = 0 , 
 interes_generado = 12526.11
 where id = 99; 
+
+-- 16
+INSERT INTO financings_paymentplan (
+    mes, start_date, due_date, outstanding_balance, mora, interest, principal, 
+    principal_pagado, installment, status, saldo_pendiente, interes_pagado, mora_pagado, 
+    fecha_limite, cambios, numero_referencia, cuota_vencida, interes_generado, 
+    capital_generado, interes_acumulado_generado, mora_acumulado_generado, mora_generado, 
+    paso_por_task, credit_id_id, acreedor_id, seguro_id
+) VALUES (
+     3, '2025-02-05 14:58:46.000000', '2025-03-05 14:58:46.000000', 15542.64, 0.00, 388.57, 0.00, 
+    0.00, 2888.42, 0, 15542.64, 0.00, 0.00, 
+    '2025-03-21 14:58:46.000000', 0, 'NAN', 0, 388.57, 
+    2499.85, 0.00, 0.00, 0.00, 
+    0, NULL, 8, NULL
+);
+
+-- 17
+
+INSERT INTO financings_paymentplan (
+     mes, start_date, due_date, outstanding_balance, mora, interest, principal, 
+    principal_pagado, installment, status, saldo_pendiente, interes_pagado, mora_pagado, 
+    fecha_limite, cambios, numero_referencia, cuota_vencida, interes_generado, 
+    capital_generado, interes_acumulado_generado, mora_acumulado_generado, mora_generado, 
+    paso_por_task, credit_id_id, acreedor_id, seguro_id
+) VALUES (
+     3, '2025-02-05 15:03:30.000000', '2025-03-05 15:03:30.000000', 20722.47, 0.00, 518.06, 0.00, 
+    0.00, 3851.14, 0, 20722.47, 0.00, 0.00, 
+    '2025-03-21 15:03:30.000000', 0, 'NAN', 0, 518.06, 
+    3333.08, 0.00, 0.00, 0.00, 
+    0, NULL, 9, NULL
+);
