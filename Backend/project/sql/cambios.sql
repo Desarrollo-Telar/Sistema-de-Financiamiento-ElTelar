@@ -341,3 +341,24 @@ WHERE payment_id = 367;
 
 UPDATE financings_paymentplan SET saldo_pendiente = 9260.82  , cuota_vencida = 0  WHERE id = 178;
 UPDATE financings_recibo SET mora = 0, mora_pagada = 0, aporte_capital = 9260.82, total = 1587 WHERE pago_id = 367;
+
+
+-- 20
+UPDATE financings_accountstatement 
+SET  saldo_pendiente = 23900.92
+WHERE id = 147;
+
+UPDATE financings_paymentplan SET saldo_pendiente = 23900.92 , cuota_vencida = 0  WHERE id = 91;
+
+UPDATE financings_paymentplan 
+SET outstanding_balance =  23900.92  , 
+mora = 0, 
+interest = 597.52, 
+saldo_pendiente =  23900.92  , 
+interes_acumulado_generado = 0, 
+mora_acumulado_generado = 0, 
+mora_generado = 0 , 
+interes_generado = 597.52
+where id = 189; 
+
+-- 21
