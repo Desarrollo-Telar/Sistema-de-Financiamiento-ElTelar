@@ -270,5 +270,6 @@ def cambiar_plan():
             procesar_siguiente_cuota(pago, siguiente_cuota, interes_acumulado, mora)
         
         logger.info("Procesamiento finalizado")
+        
 
 

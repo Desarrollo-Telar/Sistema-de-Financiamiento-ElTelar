@@ -29,12 +29,39 @@ from django.db.models import Q
 ### ----------------- LISTAR ------------------------ ###    
 from apps.financings.functions import realizar_pago
 from apps.financings.functions_payment import generar
+
+## ----------- 
+# TIEMPO
+from datetime import datetime
+from django.utils.timezone import now
+def ver_cuotas_no_cargadas():
+    planes = PaymentPlan.objects.filter(fecha_limite__month=3, cuota_vencida = False)
+
+    for cuota in planes:
+        cuota_actual = cuota
+        if cuota.credit_id is None:
+            continue
+        
+        cuotas = PaymentPlan.objects.filter(credit_id = cuota.credit_id).order_by('fecha_limite')
+        encontrada = False
+        print('----------')
+        print(cuota.credit_id)
+        print('----------')
+        for cuota_de in cuotas:
+            
+            print(cuota_de.id)
+
+        
+        
+
 @login_required
 @usuario_activo
 def list_payment(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.all().order_by('-id'))
     generar()
+    
+    #ver_cuotas_no_cargadas()
 
 
     context = {

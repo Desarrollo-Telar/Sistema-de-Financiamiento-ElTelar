@@ -35,9 +35,12 @@ class PaymentAdmin(admin.ModelAdmin):
 
 admin.site.register(Guarantees)
 admin.site.register(DetailsGuarantees)
-admin.site.register(Disbursement)
-admin.site.register(Banco)
 
+@admin.register(Disbursement)
+class DisbursementAdmin(admin.ModelAdmin):
+    list_display = ('id', '__str__')
+
+admin.site.register(Banco)
 admin.site.register(AccountStatement)
 
 admin.site.register(Recibo)
