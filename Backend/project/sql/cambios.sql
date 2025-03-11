@@ -369,4 +369,8 @@ interes_generado = 597.52
 where id = 189; 
 
 -- 21
-385
+UPDATE financings_accountstatement 
+SET saldo_pendiente = 3988.65
+WHERE payment_id = 380;
+
+UPDATE financings_paymentplan SET saldo_pendiente = 3988.65, cuota_vencida = 0  WHERE id = 95;
