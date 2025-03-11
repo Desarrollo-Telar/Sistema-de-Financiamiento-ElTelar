@@ -16,41 +16,46 @@ def generar():
             return
         
         for boleta in boletas:
-            print('Se estaran evaluando las boletas')
+            #print('Se estaran evaluando las boletas')
             
-            pago = Payment.objects.filter(numero_referencia=boleta.referencia).first()
-            if not pago:
-                continue
+            pago = Payment.objects.filter(numero_referencia=boleta.referencia, estado_transaccion="PENDIENTE").first()
             
-            if pago.estado_transaccion == 'COMPLETADO':
-                continue
-            cambiar_estado = False
-            cambia = False
+            
 
+            if pago is None:
+                continue
+            
+
+            
+
+            
+            cambiar_estado = False
+
+            print(pago)
             if pago.monto == boleta.credito or pago.monto == boleta.debito:
                 print('No hay cambios')
 
             elif pago.monto != boleta.credito:
                 pago.monto = boleta.credito
-                cambia = True
-                pago.save()
+                cambiar_estado = True
+                #pago.save()
                         
             elif pago.monto != boleta.debito:
                 pago.monto = boleta.debito
-                cambia = True
-                pago.save()
+                cambiar_estado = True
+                #pago.save()
             
 
             
             if pago.fecha_emision.date() != boleta.fecha:
                 cambiar_estado = True
                 pago.fecha_emision = boleta.fecha
-                pago.save()
+                #pago.save()
 
             
 
-            if pago.estado_transaccion == 'PENDIENTE' or pago.estado_transaccion == 'Pendiente':
-                
+            if pago.estado_transaccion== "PENDIENTE" or pago.estado_transaccion == 'Pendiente':
+                print("Pendiente")
                 ingreso = Income.objects.filter(numero_referencia=boleta.referencia).first()
                 egreso = Egress.objects.filter(numero_referencia=boleta.referencia).first()
 
@@ -72,20 +77,22 @@ def generar():
                 #pago.estado_transaccion = 'COMPLETADO'
                 #boleta.status = True
                 boleta.save()
-                pago.save()
+                
 
                      
                 if pago.credit or pago.disbursement or pago.cliente or pago.acreedor or pago.seguro:
 
                     print('procesando al estado de cuenta')
                     print(boleta.referencia)
+                    if cambiar_estado:
+                        pago.save()
                     realizar_pago(pago)
             
-                
+            
 
             
 
             
     except Exception as e:
-        print(f'Error en funciones: {e}')
+        print(f'Error en funciones 1: {e}')
        

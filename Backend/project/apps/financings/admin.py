@@ -27,13 +27,17 @@ class PaymentPlanAdmin(admin.ModelAdmin):
 
     list_display = ('id', 'mes', '__str__')
     
-
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'numero_referencia', 'estado_transaccion','monto')
+    search_fields = ('numero_referencia', 'estado_transaccion')
+    list_filter = ('numero_referencia', 'estado_transaccion')
 
 admin.site.register(Guarantees)
 admin.site.register(DetailsGuarantees)
 admin.site.register(Disbursement)
 admin.site.register(Banco)
-admin.site.register(Payment)
+
 admin.site.register(AccountStatement)
 
 admin.site.register(Recibo)

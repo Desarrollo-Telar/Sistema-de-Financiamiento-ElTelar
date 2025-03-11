@@ -80,6 +80,7 @@ class AcreedoresSearch(ListView):
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query()
+        context['acreedores_list']  = context['object_list']
         return context
 
 class SeguroSearch(ListView):
@@ -133,6 +134,7 @@ class SeguroSearch(ListView):
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query()
+        context['object_list']  = context['object_list']
         return context
 
 class IngresoSearch(ListView):
@@ -185,6 +187,7 @@ class IngresoSearch(ListView):
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query()
+        context['object_list']  = context['object_list']
         return context
 
 class EgresoSearch(ListView):
@@ -238,4 +241,5 @@ class EgresoSearch(ListView):
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query()
+        context['object_list']  = context['object_list']
         return context

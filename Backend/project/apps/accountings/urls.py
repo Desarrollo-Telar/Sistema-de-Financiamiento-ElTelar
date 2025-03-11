@@ -40,8 +40,14 @@ urlpatterns = [
 
     # UPDATE
     path('egresos/update/<int:id>/',views.actualizar_egresos, name='egresos_update'),
-    path('ingresos/update/<int:id>/',views.actualizar_ingresos, name='ingresos_update')
+    path('ingresos/update/<int:id>/',views.actualizar_ingresos, name='ingresos_update'),
 
+
+    # SEARCH 
+    path('acreedores/search/', views.AcreedoresSearch.as_view(), name='acreedores_search'),
+    path('seguros/search/', views.SeguroSearch.as_view(), name='seguros_search'),
+    path('ingresos/search/', views.IngresoSearch.as_view(), name='ingresos_search'),
+    path('egresos/search/', views.EgresoSearch.as_view(), name='egresos_search'),
     
 ]
 

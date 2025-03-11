@@ -12,58 +12,60 @@ from datetime import datetime, timedelta
 from apps.financings.models import Banco
 def realizar_pago(payment):
     try:
-        pagoss = Payment.objects.get(id=payment.id)
         banco = Banco.objects.filter(referencia = payment.numero_referencia).first()
         acreedor = Creditor.objects.filter(numero_referencia = payment.numero_referencia).first()
         seguro = Insurance.objects.filter(numero_referencia = payment.numero_referencia).first()
 
-        if acreedor:
+        if acreedor is not None:
             acreedor.status = True
             acreedor.save()
-            return f'ACREEDOR'
+            payment.estado_transaccion = 'COMPLETADO'
+            banco.status = True
+            banco.save()
+            payment.save()
+            return f'VALIDACION DE LA BOLETA PARA ACREEDORES'
         
-        if seguro:
+        if seguro is not None:
             seguro.status = True
             seguro.save()
-            return f'SEGURO'
 
+            payment.estado_transaccion = 'COMPLETADO'
+            banco.status = True
 
-        if pagoss.cliente:
-            pagoss.estado_transaccion = 'COMPLETADO'
-            pagoss.tipo_pago = 'CLIENTE'
-            pagoss.save()
+            banco.save()
+            payment.save()
+            return f'VALIDACION DE LA BOLETA PARA SEGUROS'
+        
+        if payment.cliente is not None:
+            payment.estado_transaccion = 'COMPLETADO'
+            payment.tipo_pago = 'CLIENTE'
+            banco.status = True
+
+            banco.save()
+            payment.save()
+
             return f'REGISTRO DE PAGO A CLIENTE'
         
-        if pagoss.tipo_pago == 'DESEMBOLSO':
-            # registrar en el apartado de desembolso
-            pagoss.estado_transaccion = 'COMPLETADO'
-            pagoss.save()
-            return f'REGISTRO DE DESEMBOLSO'
-        
-        if pagoss.tipo_pago == 'EGRESO':
-            # registrar en el apartado de desembolso
-            pagoss.estado_transaccion = 'COMPLETADO'
-            pagoss.save()
-            return f'REGISTRO DE EGRESO'
-        
-        if pagoss.tipo_pago == 'INGRESO':
-            # registrar en el apartado de desembolso
-            pagoss.estado_transaccion = 'COMPLETADO'
-            pagoss.save()
-            return f'REGISTRO DE INGRESO'
-        
-        if pagoss.credit and pagoss.credit.is_paid_off:
-            pagoss.estado_transaccion = 'FALLIDO'
-            pagoss.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
-            pagoss.save()
+        if payment.tipo_pago == 'DESEMBOLSO' or payment.tipo_pago == 'INGRESO' or payment.tipo_pago == 'EGRESO':
+            payment.estado_transaccion = 'COMPLETADO'
+            banco.status = True
+
+            banco.save()
+            payment.save()
+            return f'REGISTRO PARA LOS DIFERENTES TIPOS DE PAGOS: EGRESO, INGRESO, DESEMBOLSO'
+
+        if payment.credit and payment.credit.is_paid_off:
+            payment.estado_transaccion = 'FALLIDO'
+            payment.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
+            payment.save()
             banco.status = False
             banco.save()
             return f'EL CREDITO YA FUE PAGO'
         
-        if pagoss.acreedor and pagoss.acreedor.is_paid_off:
-            pagoss.estado_transaccion = 'FALLIDO'
-            pagoss.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL ACREEDOR AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
-            pagoss.save()
+        if payment.acreedor and payment.acreedor.is_paid_off:
+            payment.estado_transaccion = 'FALLIDO'
+            payment.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL ACREEDOR AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
+            payment.save()
             banco.status = False
             banco.save()
 
@@ -71,10 +73,10 @@ def realizar_pago(payment):
             acreedor.save()
             return f'EL ACREEDOR YA FUE PAGO'
         
-        if pagoss.seguro and pagoss.seguro.is_paid_off:
-            pagoss.estado_transaccion = 'FALLIDO'
-            pagoss.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL SEGURO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
-            pagoss.save()
+        if payment.seguro and payment.seguro.is_paid_off:
+            payment.estado_transaccion = 'FALLIDO'
+            payment.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL SEGURO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
+            payment.save()
             banco.status = False
             banco.save()
             
@@ -82,16 +84,10 @@ def realizar_pago(payment):
             acreedor.save()
             return f'EL SEGURO YA FUE PAGO'
 
-        # Registrar el pago
-        
-        pagoss.realizar_pago()     
-        
-        
+        payment.realizar_pago()  
+        return f"Pago de {payment.monto} realizado exitosamente.  "
 
         
-            
 
-        return f"Pago de {pagoss.monto} realizado exitosamente. Saldo restante: "
-
-    except Credit.DoesNotExist:
-        return "Crédito no encontrado."
+    except Exception as e:
+        print(f'Error en funciones 2: {e}')
