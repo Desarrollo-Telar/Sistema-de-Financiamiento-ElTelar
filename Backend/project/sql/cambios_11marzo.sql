@@ -189,7 +189,7 @@ UPDATE financings_accountstatement
 SET late_fee_paid = 0, 
 interest_paid = 374.96,
 capital_paid = 2500.04 , 
-saldo_pendiente = 12498.38
+saldo_pendiente = 12498.38, interes_acumulado_generado = 0
 WHERE payment_id  IN (
     SELECT id FROM financings_payment WHERE numero_referencia = '1734063844'
 );
@@ -198,7 +198,7 @@ WHERE payment_id  IN (
 UPDATE financings_paymentplan 
 SET saldo_pendiente = 12498.38 , cuota_vencida = 0, 
 mora=0,  mora_acumulado_generado = 0,
-mora_generado = 0, interes_generado = 374.96
+mora_generado = 0, interes_generado = 374.96, interest = 0, interes_acumulado_generado = 0, outstanding_balance =14998.42
 WHERE numero_referencia = '1734063844';
 
 UPDATE financings_recibo 
@@ -208,3 +208,85 @@ interes=374.96
 WHERE pago_id IN (
     SELECT id FROM financings_payment WHERE numero_referencia = '1734063844'
 );
+
+UPDATE financings_paymentplan 
+SET saldo_pendiente = 12498.38 , cuota_vencida = 0, 
+mora=0,  mora_acumulado_generado = 0,
+mora_generado = 0, interes_generado = 312.46, interest = 312.46, interes_acumulado_generado = 0, outstanding_balance =12498.38
+WHERE id = 193;
+
+-- 9
+UPDATE financings_payment
+SET interes = 583.29, capital = 3333.71, mora = 0
+WHERE numero_referencia = "837643467";
+
+UPDATE financings_accountstatement 
+SET late_fee_paid = 0, 
+interest_paid = 583.29,
+capital_paid = 3333.71 , 
+saldo_pendiente = 19997.85
+WHERE payment_id  IN (
+    SELECT id FROM financings_payment WHERE numero_referencia = '837643467'
+);
+
+
+UPDATE financings_paymentplan 
+SET saldo_pendiente = 19997.85 , cuota_vencida = 0, interes_acumulado_generado = 0  WHERE numero_referencia = '837643467';
+
+UPDATE financings_recibo 
+SET mora = 0, mora_pagada = 0, 
+aporte_capital = 3333.71,  interes_pagado=583.29, 
+interes=583.29
+WHERE pago_id IN (
+    SELECT id FROM financings_payment WHERE numero_referencia = '837643467'
+);
+
+
+--
+
+UPDATE financings_payment
+SET interes = 499.95, capital = 3334.05, mora = 0
+WHERE numero_referencia = "1734071166";
+
+UPDATE financings_accountstatement 
+SET late_fee_paid = 0, 
+interest_paid = 499.95,
+capital_paid = 3334.05, 
+saldo_pendiente = 16663.80
+WHERE payment_id  IN (
+    SELECT id FROM financings_payment WHERE numero_referencia = '1734071166'
+);
+
+
+UPDATE financings_paymentplan 
+SET saldo_pendiente = 16663.80 , cuota_vencida = 0, 
+mora=0,  mora_acumulado_generado = 0,
+mora_generado = 0, interes_generado = 499.95, interest = 0, interes_acumulado_generado = 0, outstanding_balance = 19997.85
+WHERE numero_referencia = '1734071166';
+
+UPDATE financings_recibo 
+SET mora = 0, mora_pagada = 0, 
+aporte_capital = 3334.05,  interes_pagado=499.95, 
+interes=499.95
+WHERE pago_id IN (
+    SELECT id FROM financings_payment WHERE numero_referencia = '1734071166'
+);
+
+UPDATE financings_paymentplan 
+SET saldo_pendiente = 16663.80 , cuota_vencida = 0, 
+mora=0,  mora_acumulado_generado = 0,
+mora_generado = 0, interes_generado = 416.59, interest = 416.59, interes_acumulado_generado = 0, outstanding_balance = 16663.80
+WHERE id = 194;
+
+-- MODIFICACIONES
+SET @ultimo_id = (SELECT id from financings_accountstatement ORDER BY id DESC LIMIT 1) + 1;
+
+UPDATE financings_accountstatement
+SET id = @ultimo_id
+WHERE numero_referencia = '1734071166';
+
+SET @ultimo_id = (SELECT id from financings_accountstatement ORDER BY id DESC LIMIT 1) + 1;
+
+UPDATE financings_accountstatement
+SET id = @ultimo_id
+WHERE numero_referencia = '1734063844';
