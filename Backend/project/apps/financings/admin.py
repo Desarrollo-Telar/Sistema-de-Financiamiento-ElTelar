@@ -18,12 +18,17 @@ class CreditAdmin(admin.ModelAdmin):
         'customer_id',
         'estado_aportacion',
         'estados_fechas',
-        'is_paid_off'
+        'is_paid_off',
+        'saldo_actual'
     )
     list_display = ('id','customer_id','codigo_credito' ,'tipo_credito', 'monto','plazo','tasa_interes','fecha_inicio','estados_fechas','creation_date')
+    search_fields = ('codigo_credito',)
+    list_filter = ('codigo_credito',)
 
 @admin.register(PaymentPlan)
 class PaymentPlanAdmin(admin.ModelAdmin):
+    search_fields = ('credit_id__codigo_credito','acreedor__codigo_acreedor', 'seguro__codigo_seguro')
+    list_filter = ('credit_id__codigo_credito','acreedor__codigo_acreedor', 'seguro__codigo_seguro')
 
     list_display = ('id', 'mes', '__str__')
     

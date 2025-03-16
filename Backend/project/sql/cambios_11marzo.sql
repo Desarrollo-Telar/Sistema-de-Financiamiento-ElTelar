@@ -189,7 +189,7 @@ UPDATE financings_accountstatement
 SET late_fee_paid = 0, 
 interest_paid = 374.96,
 capital_paid = 2500.04 , 
-saldo_pendiente = 12498.38, interes_acumulado_generado = 0
+saldo_pendiente = 12498.38
 WHERE payment_id  IN (
     SELECT id FROM financings_payment WHERE numero_referencia = '1734063844'
 );
