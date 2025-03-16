@@ -1,0 +1,20 @@
+[
+{
+    "model": "financings.invoice",
+    "pk": 2,
+    "fields": {
+        "issue_date": "2025-01-21",
+        "numero_factura": 1,
+        "recibo_id": 3
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 3,
+    "fields": {
+        "issue_date": "2025-02-17",
+        "numero_factura": 2,
+        "recibo_id": 12
+    }
+}
+]

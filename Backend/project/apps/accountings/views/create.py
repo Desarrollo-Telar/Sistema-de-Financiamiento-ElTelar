@@ -94,6 +94,7 @@ def add_seguro(request):
         form = SeguroForm(request.POST, request.FILES)
 
         if form.is_valid():
+            numero_referencia = None
             acreedor = Insurance()
             inicio = form.cleaned_data.get('fecha_inicio')
             numero_referencia = form.cleaned_data.get('numero_referencia')
@@ -117,7 +118,7 @@ def add_seguro(request):
             acreedor.save() 
             print(acreedor.codigo_seguro)
             
-            if numero_referencia is not None:
+            if numero_referencia is not None or numero_referencia != "" or numero_referencia != "0":
                 boleta = Payment(
                     seguro=acreedor, 
                     fecha_emision=inicio,

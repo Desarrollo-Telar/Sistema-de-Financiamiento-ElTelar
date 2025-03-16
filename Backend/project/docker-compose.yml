@@ -1,5 +1,22 @@
 services:
   # Servicio de la base de datos PostgreSQL
+  db_p:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: databaseElTelar
+      POSTGRES_USER: telar
+      POSTGRES_PASSWORD: mypassword
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - app_fin
+
   db:
     #image: postgres:latest
     image: mysql
@@ -57,9 +74,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      #- POSTGRES_NAME=databaseElTelar
-      #- POSTGRES_USER=telar
-      #- POSTGRES_PASSWORD=mypassword
+      - POSTGRES_NAME=databaseElTelar
+      - POSTGRES_USER=telar
+      - POSTGRES_PASSWORD=mypassword
 
       #- MINIO_STORAGE_ENDPOINT=http://minio:9000
       #- MINIO_SERVER_ACCESS_KEY=choc1403
@@ -78,6 +95,8 @@ services:
     
     depends_on:
       - db
+      - db_p
+
     networks:
       - app_fin
 
@@ -90,6 +109,8 @@ services:
     depends_on:
       - redis
       - db
+      - db_p
+
     environment:
       - DJANGO_SETTINGS_MODULE=project.settings
       - CELERY_BROKER_URL=redis://redis:6379/0
@@ -107,6 +128,7 @@ services:
     depends_on:
       - redis
       - db
+      - db_p
     environment:
       - DJANGO_SETTINGS_MODULE=project.settings
       - CELERY_BROKER_URL=redis://redis:6379/0

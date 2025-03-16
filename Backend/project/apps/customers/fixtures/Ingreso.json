@@ -1,0 +1,32 @@
+[
+{
+    "model": "accountings.income",
+    "pk": 1,
+    "fields": {
+        "fecha": "2025-01-06",
+        "monto": "4444.40",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "POR PAGO DE OTROS SERVICIOS, PENDIENTES DE REINTEGRAR",
+        "numero_referencia": "28183137",
+        "boleta": "pagos/boletas/otros_ingresos/Captura_de_pantalla_2025-02-12_141849.png",
+        "status": true,
+        "fecha_registro": "2025-02-12"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 2,
+    "fields": {
+        "fecha": "2025-02-26",
+        "monto": "20000.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "FINANCIAMIENTO EXTERNO",
+        "observaciones": "POR FINANCIAMIENTO EXTERNO/ CASO AGUSTIN SIS",
+        "numero_referencia": "21719287",
+        "boleta": "pagos/boletas/otros_ingresos/Captura_de_pantalla_2025-03-10_105605.png",
+        "status": true,
+        "fecha_registro": "2025-03-10"
+    }
+}
+]

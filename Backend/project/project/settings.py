@@ -134,7 +134,7 @@ import project.database as db
 
 
 
-DATABASES = db.MYSQL
+DATABASES = db.POSTGRES
 
 
 

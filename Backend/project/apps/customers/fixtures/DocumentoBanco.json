@@ -1,0 +1,154 @@
+[
+{
+    "model": "documents.documentbank",
+    "pk": 2,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_10_2024_30_11_2024_rIV3us0.csv",
+        "uploaded_at": "2025-01-03T22:59:15.524Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 3,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_10_2024_30_11_2024_47uDJL0.csv",
+        "uploaded_at": "2025-01-03T22:59:16.383Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 4,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_10_2024_30_11_2024_nE3nHHo.csv",
+        "uploaded_at": "2025-01-03T22:59:16.607Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 28,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_22_01_2025_12_02_2025_Bzy5RKL.csv",
+        "uploaded_at": "2025-02-12T17:16:24.779Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 29,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_22_01_2025_12_02_2025_uwcZxpd.csv",
+        "uploaded_at": "2025-02-12T17:16:26.104Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 31,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_22_01_2025_12_02_2025_tz18LqS.csv",
+        "uploaded_at": "2025-02-12T17:16:30.205Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 32,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_22_01_2025_12_02_2025_YyO1xil.csv",
+        "uploaded_at": "2025-02-12T17:16:30.773Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 33,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_22_01_2025_12_02_2025.csv",
+        "uploaded_at": "2025-02-12T17:16:30.986Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 37,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_02_2025_18_02_2025_Hui8OfR.csv",
+        "uploaded_at": "2025-02-18T17:17:07.605Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 38,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_02_2025_18_02_2025_sCSFRVd.csv",
+        "uploaded_at": "2025-02-18T17:17:07.797Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 39,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_02_2025_18_02_2025_RyyPCVA.csv",
+        "uploaded_at": "2025-02-18T17:17:07.909Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 40,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_02_2025_18_02_2025_dN34qFk.csv",
+        "uploaded_at": "2025-02-18T17:17:08.433Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 41,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_02_2025_18_02_2025_nHgEZAo.csv",
+        "uploaded_at": "2025-02-18T17:17:08.686Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 42,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_02_2025_18_02_2025_0QF48xm.csv",
+        "uploaded_at": "2025-02-18T17:17:09.356Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 43,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_02_2025_18_02_2025_TLsBx0d.csv",
+        "uploaded_at": "2025-02-18T17:17:09.787Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 44,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_02_2025_18_02_2025_9cX1Whu.csv",
+        "uploaded_at": "2025-02-18T17:17:10.057Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 45,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_01_02_2025_18_02_2025_MMgJ4G7.csv",
+        "uploaded_at": "2025-02-18T17:17:10.261Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 48,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_10_02_2025_21_02_2025_ORe9yy1.csv",
+        "uploaded_at": "2025-02-21T22:32:45.343Z"
+    }
+},
+{
+    "model": "documents.documentbank",
+    "pk": 49,
+    "fields": {
+        "document": "documents/banco/Movs_XXXXXX8759_10_02_2025_21_02_2025_iVIOy4Q.csv",
+        "uploaded_at": "2025-02-21T22:32:45.524Z"
+    }
+}
+]
