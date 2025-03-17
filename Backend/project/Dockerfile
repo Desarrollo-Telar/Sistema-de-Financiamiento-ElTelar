@@ -1,5 +1,5 @@
 # Usa una imagen de Python como base
-FROM python:3.12
+FROM python:3.13
 
 # Establece las variables de entorno
 ENV PYTHONUNBUFFERED=1
