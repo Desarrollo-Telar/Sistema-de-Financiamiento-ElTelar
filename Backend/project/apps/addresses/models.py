@@ -60,7 +60,7 @@ class Municiopio(models.Model):
         verbose_name ='Municipio'
         verbose_name_plural = 'Municipios'
 
-""" 
+
 @receiver(post_save, sender=Address) 
 def actualizar_info_direcciones(sender, instance, created, **kwargs): 
     if created: 
@@ -75,4 +75,3 @@ def actualizar_info_direcciones(sender, instance, created, **kwargs):
             instance.city = departamento_f.nombre 
             instance.state = municipio_f.nombre 
             instance.save()
-"""
