@@ -122,7 +122,7 @@ class Customer(models.Model):
         verbose_name_plural = "Clientes"
 
     
-
+"""
 # Función para generar el código de cliente basado en el estado y año actual
 def generate_customer_code(status, current_year, counter):
     status_suffix = {
@@ -193,3 +193,4 @@ def delete_image_qr_customer(sender, instance, **kwargs):
     os.remove(qr)
     print('IMAGEN DE QR ELIMINADO')
     
+""" 

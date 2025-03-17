@@ -112,14 +112,16 @@ from .task import leer_documento
 from project.settings import MEDIA_ROOT
 import os
 
+
 @receiver(post_save, sender=DocumentBank)
 def subir(sender, instance, created, **kwargs):
     if created:  # Solo ejecutamos si el documento es nuevo
         file_path = os.path.join(MEDIA_ROOT, str(instance.document))     
         leer_documento(file_path,instance.id)
-   
+"""  
 
 @receiver(pre_delete, sender=DocumentBank)
 def eliminar_documento_banco(sender,instance,**kwargs):
     file_path = os.path.join(MEDIA_ROOT, str(instance.document))  
     instance.document.delete()
+"""

@@ -14,7 +14,7 @@ SQLITE = {
 POSTGRES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB'),
+        'NAME': os.environ.get('POSTGRES_NAME'),
         'USER': os.environ.get('POSTGRES_USER'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
         'HOST': 'db_p',
@@ -22,13 +22,13 @@ POSTGRES = {
     }
 }
 
-"""
+
 POSTGRES_HEROKU = {
     'default': dj_database_url.config(
         default = config('DATABASE_URL')
     )
 }
-""" 
+ 
 MYSQL = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

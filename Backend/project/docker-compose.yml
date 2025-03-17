@@ -4,9 +4,9 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_DB: databaseElTelar
-      POSTGRES_USER: telar
-      POSTGRES_PASSWORD: mypassword
+      - POSTGRES_DB=db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
 
     ports:
       - "5432:5432"
@@ -74,9 +74,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - POSTGRES_NAME=databaseElTelar
-      - POSTGRES_USER=telar
-      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_NAME=db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
 
       #- MINIO_STORAGE_ENDPOINT=http://minio:9000
       #- MINIO_SERVER_ACCESS_KEY=choc1403

@@ -134,7 +134,7 @@ import project.database as db
 
 
 
-DATABASES = db.POSTGRES
+DATABASES = db.POSTGRES_HEROKU
 
 
 

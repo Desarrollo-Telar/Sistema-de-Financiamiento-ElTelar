@@ -60,6 +60,7 @@ class InvestmentPlan(models.Model):
         verbose_name = "Plan de Inversión"
         verbose_name_plural = "Planes de Inversión"
 
+"""
 # Función para generar el código de plan de inversion basado en el Tipo de Producto o Servicio junto a la referencia del codigo de cliente
 def generate_investment_plan_code(type_of_product_or_service,customer_code, counter):
     status_suffix = {
@@ -100,3 +101,5 @@ def set_investment_plan_code(sender, instance, **kwargs):
                 investment_plan_code = generate_investment_plan_code(instance.type_of_product_or_service,customer_code, counter)
 
             instance.investment_plan_code = investment_plan_code
+
+"""
