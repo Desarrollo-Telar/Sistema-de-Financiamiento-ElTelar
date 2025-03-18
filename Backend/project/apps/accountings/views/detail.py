@@ -22,6 +22,8 @@ from django.utils.decorators import method_decorator
 
 # Paginacion
 from project.pagination import paginacion
+# TAREA ASINCRONICO
+from apps.financings.task import cambiar_plan
 
 
 # MENSAJES
@@ -70,7 +72,7 @@ def detail_acreedores(request, id):
     plan = planPagosCredito(object_list).generar_plan()
     estado_cuenta = AccountStatement.objects.filter(acreedor=object_list)
     
-
+    cambiar_plan()
     context = {
         'title':'EL TELAR',
         'object_list':object_list,
@@ -95,7 +97,7 @@ def detail_seguro(request, id):
     siguiente_pago = PaymentPlan.objects.filter(seguro=object_list).order_by('-id').first()
     plan = planPagosCredito(object_list).generar_plan()
     estado_cuenta = AccountStatement.objects.filter(seguro=object_list)
-  
+    cambiar_plan()
     context = {
         'title':'EL TELAR',
         'object_list':object_list,

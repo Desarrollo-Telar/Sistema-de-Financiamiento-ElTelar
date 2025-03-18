@@ -55,7 +55,7 @@ def generar():
             
 
             if pago.estado_transaccion in ["PENDIENTE", "Pendiente"]:
-                print("Pendiente")
+                print("Pendienteeee")
                 ingreso = Income.objects.filter(numero_referencia=boleta.referencia).first()
                 egreso = Egress.objects.filter(numero_referencia=boleta.referencia).first()
 
@@ -63,16 +63,20 @@ def generar():
                     ingreso.status = True
                     ingreso.save()
                     pago.estado_transaccion = 'COMPLETADO'
+                    pago.save()
                     
                 
                 if egreso:
                     egreso.status = True
                     egreso.save()
                     pago.estado_transaccion = 'COMPLETADO'
+                    pago.save()
 
                 if pago.tipo_pago == "EGRESO" or pago.tipo_pago == "INGRESO": 
+                    print("Egreso e Ingreso")
                     pago.estado_transaccion = "COMPLETADO"
-                
+                    cambiar_estado = True
+                    pago.save()
                 
                 #pago.estado_transaccion = 'COMPLETADO'
                 #boleta.status = True

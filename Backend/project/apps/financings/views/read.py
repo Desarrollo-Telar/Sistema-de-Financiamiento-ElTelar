@@ -54,13 +54,24 @@ def ver_cuotas_no_cargadas():
 
         
         
+def cargar_boletas_estado():
+    pagos_estado_completado = Payment.objects.filter(estado_transaccion = "COMPLETADO")
+    for pago in pagos_estado_completado:
+        boleta = Banco.objects.filter(referencia=pago.numero_referencia).first()
+        if boleta :
+            
+
+            boleta.status = True
+            boleta.save()
+
 
 @login_required
 @usuario_activo
 def list_payment(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.all().order_by('-id'))
-    generar()
+    #cargar_boletas_estado()
+    #generar()
     comparacion_para_boletas_divididas()
     
     #ver_cuotas_no_cargadas()
@@ -82,6 +93,7 @@ def list_bank(request):
     page_obj = paginacion(request, Banco.objects.all().order_by('-fecha'))
     generar()
     comparacion_para_boletas_divididas()
+    cargar_boletas_estado()
 
     context = {
         'title':'EL TELAR - BANCOS',

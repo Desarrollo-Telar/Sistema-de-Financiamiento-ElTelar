@@ -34,9 +34,9 @@ class PaymentPlanAdmin(admin.ModelAdmin):
     
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'numero_referencia', 'estado_transaccion','monto')
-    search_fields = ('numero_referencia', 'estado_transaccion')
-    list_filter = ('numero_referencia', 'estado_transaccion')
+    list_display = ('id', 'numero_referencia', 'estado_transaccion','monto','tipo_pago')
+    search_fields = ('numero_referencia', 'estado_transaccion','tipo_pago','cliente__customer_code')
+    list_filter = ('numero_referencia', 'estado_transaccion','tipo_pago', 'cliente__customer_code')
 
 admin.site.register(Guarantees)
 admin.site.register(DetailsGuarantees)
@@ -46,8 +46,21 @@ class DisbursementAdmin(admin.ModelAdmin):
     list_display = ('id', '__str__')
 
 admin.site.register(Banco)
-admin.site.register(AccountStatement)
 
-admin.site.register(Recibo)
+
+@admin.register(AccountStatement)
+class AccountStatementAdmin(admin.ModelAdmin):
+    search_fields = ('numero_referencia',)
+    list_filter = ('numero_referencia',)
+    list_display = ('id', 'numero_referencia')
+
+
+@admin.register(Recibo)
+class ReciboAdmin(admin.ModelAdmin):
+    search_fields = ('pago__numero_referencia',)
+    list_filter = ('pago__numero_referencia',)
+
+    list_display = ('id', 'recibo', '__str__')
+
 admin.site.register(Invoice)
 admin.site.register(Cuota)

@@ -23,6 +23,8 @@ from django.utils.decorators import method_decorator
 # Paginacion
 from project.pagination import paginacion
 
+# TAREA ASINCRONICO
+from apps.financings.task import cambiar_plan
 
 # MENSAJES
 from django.contrib import messages
@@ -36,6 +38,7 @@ def list_acreedores(request):
     template_name = 'contable/acreedores/list.html'
     acreedores_list = Creditor.objects.all().order_by('-id')
     page_obj = paginacion(request, acreedores_list)
+    cambiar_plan()
     context = {
         'title':'EL TELAR',
         'page_obj':page_obj,
@@ -52,6 +55,7 @@ def list_seguros(request):
     template_name = 'contable/seguros/list.html'
     object_list = Insurance.objects.all().order_by('-id')
     page_obj = paginacion(request, object_list)
+    cambiar_plan()
     context = {
         'title':'EL TELAR',
         'page_obj':page_obj,
@@ -68,6 +72,7 @@ def list_ingresos(request):
     template_name = 'contable/ingresos/list.html'
     object_list = Income.objects.all().order_by('-id')
     page_obj = paginacion(request, object_list)
+    cambiar_plan()
     context = {
         'title':'EL TELAR',
         'page_obj':page_obj,
@@ -84,6 +89,7 @@ def list_egresos(request):
     template_name = 'contable/egresos/list.html'
     object_list = Egress.objects.all().order_by('-id')
     page_obj = paginacion(request, object_list)
+    cambiar_plan()
     context = {
         'title':'EL TELAR',
         'page_obj':page_obj,

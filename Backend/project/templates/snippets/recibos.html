@@ -7,7 +7,9 @@
             <th scope="col">Fecha</th>
             <th scope="col">Nombre del Cliente</th>
             <th scope="col">Codigo del Credito</th>
+            <th scope="col">Numero de Referencia</th>
             <th scope="col">Monto</th>
+            
             <th scope="col">...</th>
 
         </tr>
@@ -53,6 +55,7 @@
                 
 
             </td>
+            <td>{{recibo.pago.numero_referencia}}</td>
             <td>Q{{recibo.Ftotal}}</td>
             <td>
                 <a href="{% url 'financings:factura' recibo.id%}">Facturar</a>
