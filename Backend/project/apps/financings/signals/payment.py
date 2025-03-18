@@ -38,22 +38,15 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
 def alerta(sender, instance, **kwargs):
     banco = None
     referencia_sin_d = None
+    print(instance.estado_transaccion)
 
     # Si la referencia termina en -D o -d
-    if re.match(r".*-D\d*$", instance.numero_referencia, re.IGNORECASE):
-        referencia_sin_d = re.sub(r"-D\d*$", "", instance.numero_referencia, flags=re.IGNORECASE)
-        banco = Banco.objects.filter(referencia=referencia_sin_d).first()
-
-        pago_completados = Payment.objects.filter(numero_referencia__regex=rf"^{referencia_sin_d}(-D\d*)?$")
-        monto_total = sum(pago.monto for pago in pago_completados)
-
-        if banco and monto_total > (banco.credito or 0):
-            instance.estado_transaccion = 'FALLIDO'
-            instance.descripcion_estado = "ESTA BOLETA EXCEDE EL MONTO TOTAL DE TODAS LAS BOLETAS DIVIDAS CON RESPECTO A LA BOLETA ORIGINAL"
-            instance.save()
-
+    if instance.numero_referencia.endswith(("-D", "-d")):
+        referencia_sin_d = instance.numero_referencia[:-2]
+        banco = Banco.objects.filter(referencia = referencia_sin_d).first()
+     
     else:
-        banco = Banco.objects.filter(referencia=instance.numero_referencia).first()
+        banco = Banco.objects.filter(referencia = instance.numero_referencia).first()
 
     if instance.estado_transaccion == 'FALLIDO':
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
@@ -62,19 +55,26 @@ def alerta(sender, instance, **kwargs):
             banco.save()
         # envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO', instance.id)
 
-    elif instance.estado_transaccion == 'COMPLETADO':
-        logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
+    if instance.estado_transaccion == 'COMPLETADO':
+        logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE - COMPLETADO')
+        
         if banco:
             banco.status = True
             banco.save()
 
-        if referencia_sin_d:
-            contador = Payment.objects.filter(numero_referencia__regex=rf"^{referencia_sin_d}-D\d*$").count()
-            instance.numero_referencia = f'{referencia_sin_d}-D{contador+1}'
+        if instance.numero_referencia.endswith(("-D", "-d")):
+            contador = 0
+            listado = Payment.objects.filter(numero_referencia__regex=rf"^{referencia_sin_d}-D\d*$")
+            
+            for lista in listado:
+                contador += 1
+            
+            instance.numero_referencia = f'{referencia_sin_d}-D{contador}'
             instance.save()
+            
 
         # envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO', instance.id)
 
-    elif instance.estado_transaccion == 'PENDIENTE':
+    if instance.estado_transaccion == 'PENDIENTE':
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
         # envio_mensaje_alerta('HAY UNA BOLETA DE PAGO CON ESTADO PENDIENTE', 'PENDIENTE', instance.id)

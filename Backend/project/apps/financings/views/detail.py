@@ -191,10 +191,10 @@ def detallar_garantia(request, id):
 def boleta(request,numero_referencia):
     template_name = 'financings/bank/boleta.html'
     
-    boleta = Payment.objects.filter(numero_referencia=numero_referencia).first()
+    boleta = Payment.objects.filter( Q(numero_referencia=numero_referencia)| Q(numero_referencia__regex=rf"^{numero_referencia}-D\d*$"))
     context = {
         'title':'EL TELAR',
-        'boleta':boleta,
+        'boletas':boleta,
         'posicion':numero_referencia
     }
 

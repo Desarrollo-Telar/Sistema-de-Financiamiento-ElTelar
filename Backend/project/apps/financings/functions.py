@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 from apps.financings.models import Banco
 def realizar_pago(payment):
     try:
+        
 
         if payment.numero_referencia.endswith(("-D", "-d")):
             referencia_sin_d = payment.numero_referencia[:-2]

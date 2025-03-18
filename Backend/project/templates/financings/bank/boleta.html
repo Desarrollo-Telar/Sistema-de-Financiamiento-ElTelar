@@ -15,6 +15,8 @@
                 </ol>
             </nav>
         </div>
+        {% for boleta in boletas %}
+        
         {% if boleta.credit %}
         <div class="card">
 
@@ -36,6 +38,7 @@
                     {{boleta.descripcion_estado}}
                 </textarea>
                 {% endif %}
+                {% if boleta.boleta %}
                 <div style="margin-bottom: 1rem;">
                     <a href="{{boleta.get_document}}" class="fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -47,6 +50,7 @@
                     </a>
 
                 </div>
+                {%endif%}
 
                 <a href="{% url 'financings:detail_credit' boleta.credit.id %}"
                     class="btn_guardar">{{boleta.credit}}</a>
@@ -77,6 +81,7 @@
                     {{boleta.descripcion_estado}}
                 </textarea>
                 {% endif %}
+                {% if boleta.boleta %}
                 <div style="margin-bottom: 1rem;">
                     <a href="{{boleta.get_document}}" class="fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -88,6 +93,7 @@
                     </a>
 
                 </div>
+                {%endif%}
 
                 <a class="btn_guardar"
                     href="{% url 'financings:detail_credit' boleta.disbursement.credit_id.id %}">{{boleta.disbursement.credit_id}}</a>
@@ -119,6 +125,7 @@
                     {{boleta.descripcion_estado}}
                 </textarea>
                 {% endif %}
+                {% if boleta.boleta %}
                 <div style="margin-bottom: 1rem;">
                     <a href="{{boleta.get_document}}" class="fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -130,6 +137,7 @@
                     </a>
 
                 </div>
+                {%endif%}
                 <a href="{% url 'customers:detail' boleta.cliente.customer_code %}"
                     class="btn_guardar">{{boleta.cliente.customer_code}}</a>
             </div>
@@ -156,6 +164,7 @@
                     {{boleta.descripcion_estado}}
                 </textarea>
                 {% endif %}
+                {% if boleta.boleta %}
                 <div style="margin-bottom: 1rem;">
                     <a href="{{boleta.get_document}}" class="fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -167,6 +176,7 @@
                     </a>
 
                 </div>
+                {%endif%}
                 <a href="{% url 'contable:acreedores_detail' boleta.acreedor.id %}"
                     class="btn_guardar">{{boleta.acreedor.codigo_acreedor}}</a>
             </div>
@@ -193,6 +203,7 @@
                     {{boleta.descripcion_estado}}
                 </textarea>
                 {% endif %}
+                {% if boleta.boleta %}
                 <div style="margin-bottom: 1rem;">
                     <a href="{{boleta.get_document}}" class="fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -204,11 +215,13 @@
                     </a>
 
                 </div>
+                {%endif%}
                 <a href="{% url 'contable:seguros_detail' boleta.seguro.id %}"
                     class="btn_guardar">{{boleta.seguro.codigo_seguro}}</a>
             </div>
         </div>
         {% endif %}
+        {% endfor %}
         <div class="row" style="margin-top: 1rem;">
             <button onclick="window.history.back()" type="button" class="btn_cancel">Atras</button>
         </div>

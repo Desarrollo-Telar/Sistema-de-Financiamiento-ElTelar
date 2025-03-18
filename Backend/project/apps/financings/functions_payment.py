@@ -7,6 +7,7 @@ from datetime import datetime
 
 def generar():
     try:
+        
     
         print('Validando las boletas con bancos')
         boletas = Banco.objects.all()
@@ -31,7 +32,7 @@ def generar():
             
             cambiar_estado = False
 
-            print(pago)
+            print(f'EN FUNCIONES DE PAGO - GENERAR:{pago}')
             # Comparar montos
             if pago.monto == boleta.credito or pago.monto == boleta.debito:
                 print('No hay cambios en monto')
