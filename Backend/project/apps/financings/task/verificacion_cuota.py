@@ -116,6 +116,21 @@ def get_boleta(credito):
     return boleta
 
 @shared_task
+def cambiar_estado():
+    dia = datetime.now().date()
+    planes = PaymentPlan.objects.filter(due_date__date=dia)
+    
+
+    if not planes.exists():
+        logger.info("No hay registro")
+        return
+    
+    
+    for pago in planes:
+        credito = get_credito(pago)
+        actualizar_estado_credito_seguro_acreedor(credito, pago)
+
+@shared_task
 def cambiar_plan():
     dia = datetime.now().date()
 

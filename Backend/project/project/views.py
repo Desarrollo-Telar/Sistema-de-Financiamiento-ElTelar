@@ -19,7 +19,7 @@ from django.contrib import messages
 from apps.codes.forms import CodeForm
 
 # TAREA ASINCRONICO
-from apps.financings.task import cambiar_plan
+from apps.financings.task import cambiar_plan,cambiar_estado
 
 # Modelos
 from apps.users.models import User
@@ -72,7 +72,7 @@ import logging
 from django.apps import apps
 
 # Obtener la fecha y hora actual
-now = datetime.now()
+
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView, TemplateView
@@ -286,36 +286,16 @@ from apps.financings.formato import formatear_numero
 @usuario_activo
 def index(request):
     template_name = 'index.html'
-    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
-    # Obtener el día de la fecha actual
-    dia_actual = now.day
-    mes_actual = now.month
-    # Obtener el nombre del mes usando el módulo calendar
-    mes_actual_nombre = calendar.month_name[mes_actual]
-    today = datetime.now().date()
-    tomorrow = today + timedelta(days=1)
-    customer_id = Customer.objects.filter(creation_date__range=(today, tomorrow))
     recibos = Recibo.objects.filter( factura=False)
-    bancos = Banco.objects.all()
-    ingresos = 0
-    egresos = 0
-
-    for bank in bancos:
-        ingresos += bank.credito
-        egresos += bank.debito
+    
+    
         
     context = {
         'title':'EL TELAR',
-        'dia':datetime.now(),
-        'mes':mes_actual_nombre,
-        'customer_list':customer_id,
-        'count':customer_id.count(),
         'recibos':recibos,
-        'count_re':recibos.count(),
         'clientes':Customer.objects.all(),
         'creditos':Credit.objects.filter(is_paid_off=False),
-        'ingresos':formatear_numero(ingresos),
-        'egresos':formatear_numero(egresos),
+        'creditos_atrasados':Credit.objects.filter(estados_fechas=False),
     }
     return render(request, template_name, context)
 
