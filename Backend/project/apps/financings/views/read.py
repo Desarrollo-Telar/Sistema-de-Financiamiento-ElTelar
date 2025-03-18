@@ -29,6 +29,7 @@ from django.db.models import Q
 ### ----------------- LISTAR ------------------------ ###    
 from apps.financings.functions import realizar_pago
 from apps.financings.functions_payment import generar
+from apps.financings.task import comparacion_para_boletas_divididas
 
 ## ----------- 
 # TIEMPO
@@ -60,6 +61,7 @@ def list_payment(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.all().order_by('-id'))
     generar()
+    comparacion_para_boletas_divididas()
     
     #ver_cuotas_no_cargadas()
 
@@ -79,6 +81,7 @@ def list_bank(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.all().order_by('-fecha'))
     generar()
+    comparacion_para_boletas_divididas()
 
     context = {
         'title':'EL TELAR - BANCOS',

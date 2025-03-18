@@ -12,7 +12,15 @@ from datetime import datetime, timedelta
 from apps.financings.models import Banco
 def realizar_pago(payment):
     try:
-        banco = Banco.objects.filter(referencia = payment.numero_referencia).first()
+
+        if payment.numero_referencia.endswith(("-D", "-d")):
+            referencia_sin_d = payment.numero_referencia[:-2]
+            banco = Banco.objects.filter(referencia = referencia_sin_d).first()
+            
+
+        else:
+            banco = Banco.objects.filter(referencia = payment.numero_referencia).first()
+            
         acreedor = Creditor.objects.filter(numero_referencia = payment.numero_referencia).first()
         seguro = Insurance.objects.filter(numero_referencia = payment.numero_referencia).first()
 

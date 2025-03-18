@@ -32,18 +32,17 @@ def generar():
             cambiar_estado = False
 
             print(pago)
+            # Comparar montos
             if pago.monto == boleta.credito or pago.monto == boleta.debito:
-                print('No hay cambios')
+                print('No hay cambios en monto')
+            else:
+                if pago.monto != boleta.credito:
+                    pago.monto = boleta.credito
+                    cambiar_estado = True
 
-            elif pago.monto != boleta.credito:
-                pago.monto = boleta.credito
-                cambiar_estado = True
-                #pago.save()
-                        
-            elif pago.monto != boleta.debito:
-                pago.monto = boleta.debito
-                cambiar_estado = True
-                #pago.save()
+                if pago.monto != boleta.debito:
+                    pago.monto = boleta.debito
+                    cambiar_estado = True
             
 
             
@@ -54,7 +53,7 @@ def generar():
 
             
 
-            if pago.estado_transaccion== "PENDIENTE" or pago.estado_transaccion == 'Pendiente':
+            if pago.estado_transaccion in ["PENDIENTE", "Pendiente"]:
                 print("Pendiente")
                 ingreso = Income.objects.filter(numero_referencia=boleta.referencia).first()
                 egreso = Egress.objects.filter(numero_referencia=boleta.referencia).first()

@@ -1,4 +1,4 @@
-from .banco import comparacion
+from .banco import comparacion, comparacion_para_boletas_divididas
 
 from .verificacion_cuota import cambiar_plan
 

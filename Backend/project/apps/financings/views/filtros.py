@@ -29,6 +29,7 @@ from django.db.models import Q
 ### ----------------- LISTAR ------------------------ ###    
 from apps.financings.functions import realizar_pago
 from apps.financings.functions_payment import generar
+from apps.financings.task import comparacion_para_boletas_divididas
 
 from datetime import datetime, timedelta
 
@@ -96,6 +97,7 @@ def filter_list_payment_pendiente(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='PENDIENTE').order_by('-id'))
     generar()
+    comparacion_para_boletas_divididas()
 
 
     context = {
@@ -114,6 +116,7 @@ def filter_list_payment_completados(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='COMPLETADO').order_by('-id'))
     generar()
+    comparacion_para_boletas_divididas()
 
 
     context = {
@@ -132,6 +135,7 @@ def filter_list_bank_vinculado(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.filter(status=True).order_by('-fecha'))
     generar()
+    comparacion_para_boletas_divididas()
 
     context = {
         'title':'EL TELAR - BANCOS',
@@ -147,6 +151,7 @@ def filter_list_bank_no_vinculado(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.filter(status=False).order_by('-fecha'))
     generar()
+    comparacion_para_boletas_divididas()
 
     context = {
         'title':'EL TELAR - BANCOS',

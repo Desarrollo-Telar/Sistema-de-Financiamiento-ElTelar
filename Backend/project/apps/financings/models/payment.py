@@ -15,7 +15,7 @@ from apps.financings.calculos import calculo_mora, calculo_interes
 
 # LOOGER
 from apps.financings.clases.personality_logs import logger
-
+import re
 
 # MODELO
 from .disbursement import Disbursement
@@ -81,7 +81,13 @@ class Payment(models.Model):
         return Payment.objects.get(id=self.id)
     
     def banco(self):
-        return Banco.objects.get(referencia=self.numero_referencia)
+        referencia = None 
+        if re.match(r".*-D\d*$", self.numero_referencia, re.IGNORECASE):
+            referencia = re.sub(r"-D\d*$", "", self.numero_referencia, flags=re.IGNORECASE)
+        else:
+            referencia = self.numero_referencia
+        
+        return Banco.objects.get(referencia=referencia)
 
     def credito(self):
         if self.credit:
