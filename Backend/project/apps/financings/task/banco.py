@@ -20,10 +20,17 @@ def comparacion_para_boletas_divididas():
         # Filtrar pagos con referencias que terminan en "-D" o "-d"
         payments_with_d = Payment.objects.filter(numero_referencia__iendswith="-D", estado_transaccion="PENDIENTE")
 
+        if payments_with_d is None:
+            print('Sin encontrar')
+            return
+
         for boletas_divididas in payments_with_d:
             referencia_sin_d = boletas_divididas.numero_referencia[:-2]
 
             boleta = Banco.objects.filter(referencia = referencia_sin_d).first()
+
+            if boleta is None:
+                continue
 
             cambiar_estado = False
 
