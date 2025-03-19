@@ -161,7 +161,11 @@
                 {% for cuenta_estado in estado_cuenta %}
                 <tr style="border-bottom: 1px solid rgba(0, 0, 0, 0.5);">
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ cuenta_estado.issue_date }}</td>
+                    {% if cuenta_estado.payment %}
+                        <td>{{cuenta_estado.payment.fecha_emision.date}}</td>
+                        {%else%}
+                        <td>{{cuenta_estado.issue_date}}</td>
+                        {% endif %}
                     <td>{{ cuenta_estado.numero_referencia }}</td>
                     <td>{{ cuenta_estado.description }}</td>
                     <td>Q{{ cuenta_estado.Fabono }}</td>

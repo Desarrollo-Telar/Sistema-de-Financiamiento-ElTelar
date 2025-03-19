@@ -87,7 +87,7 @@ def render_pdf_factura(request,id):
 
 def render_pdf_estado_cuenta(request,id):
     credito = get_object_or_404(Credit,id=id)
-    estado_cuenta = AccountStatement.objects.filter(credit=credito)
+    estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
     siguiente_pago = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
 
     template_path = 'financings/credit/estado_cuenta/pdf.html'
@@ -119,7 +119,7 @@ def render_pdf_calculos_credito(request,id):
     credito = get_object_or_404(Credit,id=id)
     cuotas = PaymentPlan.objects.filter(credit_id=credito)
     pagos = Payment.objects.filter(credit=credito)
-    recibos = Recibo.objects.filter(pago__credit=credito)
+    recibos = Recibo.objects.filter(pago__credit=credito).order_by('pago__fecha_emision')
 
     template_path = 'financings/calculos/calculos_hechos.html'
     template = get_template(template_path)

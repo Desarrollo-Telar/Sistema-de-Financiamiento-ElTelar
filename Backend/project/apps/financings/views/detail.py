@@ -110,7 +110,7 @@ def detail_credit(request,id):
     
     siguiente_pago = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
     cuotas_vencidas = PaymentPlan.objects.filter(credit_id=credito, cuota_vencida=True)
-    estado_cuenta = AccountStatement.objects.filter(credit=credito)
+    estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
     #actualizacion(credito)
     
     

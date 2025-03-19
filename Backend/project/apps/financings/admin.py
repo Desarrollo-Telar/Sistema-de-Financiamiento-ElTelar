@@ -50,9 +50,12 @@ admin.site.register(Banco)
 
 @admin.register(AccountStatement)
 class AccountStatementAdmin(admin.ModelAdmin):
-    search_fields = ('numero_referencia',)
-    list_filter = ('numero_referencia',)
+    search_fields = ('numero_referencia','payment__numero_referencia', 'credit__codigo_credito')
+    list_filter = ('numero_referencia','payment__numero_referencia','credit__codigo_credito')
+
     list_display = ('id', 'numero_referencia')
+    # Habilitar búsqueda en los campos relacionados
+    autocomplete_fields = ('credit', 'payment','cuota')
 
 
 @admin.register(Recibo)
@@ -61,6 +64,10 @@ class ReciboAdmin(admin.ModelAdmin):
     list_filter = ('pago__numero_referencia',)
 
     list_display = ('id', 'recibo', '__str__')
+    # Habilitar búsqueda en los campos relacionados
+    autocomplete_fields = ('cliente', 'pago', 'cuota')
+
+    
 
 admin.site.register(Invoice)
 admin.site.register(Cuota)
