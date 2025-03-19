@@ -4,16 +4,18 @@ import pandas as pd
 
 from .process_read_csv import process
 def read(file_path):
-
+    
     nuevo = 'apps/financings/clases/buenoo.csv'
     # Elimina el archivo si ya existe antes de empezar a escribir
     if os.path.exists(nuevo):
+        
         os.remove(nuevo)
 
     
 
     # Función para crear un archivo nuevo y escribir en él
     def crear_archivo_nuevo(info):
+        print('creando archivo nuevo')
         with open(nuevo, 'a', newline='') as archivo:
             writer = csv.writer(archivo)
             writer.writerow(info)

@@ -19,7 +19,7 @@ class DocumentBank(models.Model):
     uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     
     def __str__(self):
-        return self.document
+        return f'{self.uploaded_at}'
 
     class Meta:
         verbose_name = "Documeto de Banco"
@@ -111,13 +111,45 @@ from .task import leer_documento
 
 from project.settings import MEDIA_ROOT
 import os
+from minio import Minio
+from io import BytesIO
 
+minio_client = Minio(
+    "pcxl65.stackhero-network.com",  # Cambia por tu endpoint
+    access_key="WkXu9MHvOHvOsLiJjtda",
+    secret_key="g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe",
+    secure=True    # Cambia a False si no usas HTTPS
+)
+
+def download_from_minio(bucket_name, file_path, local_path):
+    """Descarga un archivo de MinIO y lo guarda localmente."""
+    minio_client.fget_object(bucket_name, file_path, local_path)
+    return local_path
 
 @receiver(post_save, sender=DocumentBank)
 def subir(sender, instance, created, **kwargs):
     if created:  # Solo ejecutamos si el documento es nuevo
-        file_path = os.path.join(MEDIA_ROOT, str(instance.document))     
-        leer_documento(file_path,instance.id)
+        local_path = "/tmp/temp_file.csv"
+        bucket_name = "asiatrip"  # Cambia al bucket correcto
+        file_path = str(instance.document)  # Esto suele ser la clave del objeto en MinIO.
+
+        try:
+            download_from_minio(bucket_name, file_path, local_path)
+            file_path = local_path  # Usar la ruta local descargada
+            leer_documento(file_path, instance.id)
+        except Exception as e:
+            print(f"Error descargando el archivo de MinIO: {e}")
+            return
+        
+        """
+        try:
+            response = minio_client.get_object(bucket_name, file_path)
+            file_data = BytesIO(response.read())  # Convertir a BytesIO para leerlo
+            print(file_data)
+            leer_documento(file_data, instance.id)
+        except Exception as e:
+            print(f"Error al leer documento {instance.id} desde MinIO: {e}")
+        """ 
 
 
 @receiver(pre_delete, sender=DocumentBank)

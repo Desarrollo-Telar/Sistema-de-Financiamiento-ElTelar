@@ -72,7 +72,7 @@ def list_payment(request):
     page_obj = paginacion(request, Payment.objects.all().order_by('-id'))
     #cargar_boletas_estado()
     #generar()
-    comparacion_para_boletas_divididas()
+    #comparacion_para_boletas_divididas()
     
     #ver_cuotas_no_cargadas()
 
@@ -91,9 +91,9 @@ def list_payment(request):
 def list_bank(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.all().order_by('-fecha'))
-    generar()
-    comparacion_para_boletas_divididas()
-    cargar_boletas_estado()
+    #generar()
+    #comparacion_para_boletas_divididas()
+    #cargar_boletas_estado()
 
     context = {
         'title':'EL TELAR - BANCOS',
