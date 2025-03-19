@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'apps.accountings',
     'django_redis',
+    'storages',
     #'bootstrap5',
     #'django_inlinecss',
     #'otp',
@@ -281,3 +282,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+AWS_ACCESS_KEY_ID = "WkXu9MHvOHvOsLiJjtda"  # Cambia según tu configuración
+AWS_SECRET_ACCESS_KEY = "g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe"
+AWS_STORAGE_BUCKET_NAME = "asiatrip"
+AWS_S3_ENDPOINT_URL = "https://pcxl65.stackhero-network.com"  # Reemplaza con la URL de tu MinIO
+AWS_S3_ADDRESSING_STYLE = "path"
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}"
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+

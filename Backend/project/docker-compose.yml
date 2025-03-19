@@ -41,18 +41,19 @@ services:
       - app_fin
 
   # Servicio de almacenamientos de objectos
-  #minio:
-  #image: "bitnami/minio:latest"
-  #ports:
-  #- "9000:9000"
-  #- "9001:9001"
-  #environment:
-  #- MINIO_ROOT_USER=choc1403
-  #- MINIO_ROOT_PASSWORD=choc1403
-  #networks:
-  #- app_fin
-  #volumes:
-  #- minio_data:/data
+  minio:
+
+    image: "bitnami/minio:latest"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=WkXu9MHvOHvOsLiJjtda
+      - MINIO_ROOT_PASSWORD=g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe
+    networks:
+      - app_fin
+    volumes:
+      - minio_data:/data
   # REDIS
   redis:
     image: redis:6
@@ -81,6 +82,11 @@ services:
       #- MINIO_STORAGE_ENDPOINT=http://minio:9000
       #- MINIO_SERVER_ACCESS_KEY=choc1403
       #- MINIO_SERVER_SECRET_KEY=choc1403
+      - STACKHERO_MINIO_CONSOLE_URL = https://pcxl65.stackhero-network.com:9348
+      - STACKHERO_MINIO_HOST = pcxl65.stackhero-network.com
+      - STACKHERO_MINIO_ROOT_ACCESS_KEY = WkXu9MHvOHvOsLiJjtda
+      - STACKHERO_MINIO_ROOT_SECRET_KEY = g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe
+      - STACKHERO_MINIO_BUCKET_NAME = tu_nombre_de_bucket
 
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
@@ -116,7 +122,11 @@ services:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
       - DATABASE_URL = postgres://u6687kmrek5hj:p7e84f83897f50f940f734176c6715488d7b2f4bac5bd2a69be880fa642942fdc@ec2-72-44-53-200.compute-1.amazonaws.com:5432/dnug6voonsn6l
-   
+      - STACKHERO_MINIO_CONSOLE_URL = https://pcxl65.stackhero-network.com:9348
+      - STACKHERO_MINIO_HOST = pcxl65.stackhero-network.com
+      - STACKHERO_MINIO_ROOT_ACCESS_KEY = WkXu9MHvOHvOsLiJjtda
+      - STACKHERO_MINIO_ROOT_SECRET_KEY = g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe
+      - STACKHERO_MINIO_BUCKET_NAME = tu_nombre_de_bucket
     networks:
       - app_fin
 
@@ -135,7 +145,11 @@ services:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
       - DATABASE_URL = postgres://u6687kmrek5hj:p7e84f83897f50f940f734176c6715488d7b2f4bac5bd2a69be880fa642942fdc@ec2-72-44-53-200.compute-1.amazonaws.com:5432/dnug6voonsn6l
-   
+      - STACKHERO_MINIO_CONSOLE_URL = https://pcxl65.stackhero-network.com:9348
+      - STACKHERO_MINIO_HOST = pcxl65.stackhero-network.com
+      - STACKHERO_MINIO_ROOT_ACCESS_KEY = WkXu9MHvOHvOsLiJjtda
+      - STACKHERO_MINIO_ROOT_SECRET_KEY = g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe
+      - STACKHERO_MINIO_BUCKET_NAME = tu_nombre_de_bucket
 
     networks:
       - app_fin
@@ -156,7 +170,7 @@ volumes:
   postgres_data:
   my-db:
   redis_data:
-  #minio_data:
+  minio_data:
 
 networks:
   app_fin:
