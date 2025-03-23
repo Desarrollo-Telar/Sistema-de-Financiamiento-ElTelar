@@ -65,11 +65,12 @@ class Payment(models.Model):
     tipo_pago = models.CharField('Tipo de Pago', choices=TYPE_PAYMENT, max_length=75, default='CREDITO')
     descripcion_estado = models.TextField(blank=True, null=True)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
-
-    # Nuevos atributos
     cliente = models.ForeignKey(Customer, on_delete=models.CASCADE,null=True, blank=True, verbose_name="Cliente")
     acreedor = models.ForeignKey(Creditor, on_delete=models.CASCADE, related_name='payment', blank=True, null=True)
     seguro = models.ForeignKey(Insurance, on_delete=models.CASCADE, related_name='payment', blank=True, null=True)
+
+    # Nuevos Atributos
+    registro_ficticio = models.BooleanField("Registro Ficticio", default=False)
 
     def Fmonto(self):
         return formatear_numero(self.monto)

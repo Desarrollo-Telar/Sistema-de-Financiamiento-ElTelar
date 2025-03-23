@@ -2,8 +2,11 @@
 from .create import create_credit, create_disbursement, create_guarantee
 
 # FUNCIONES PARA LISTAR
-from .read import list_bank, list_credit, list_disbursement, list_guarantee, list_payment,PaymentSearch,BankSearch
-from .read import CreditSearch
+from .read import list_bank, list_credit, list_disbursement, list_guarantee, list_payment
+
+
+# FUNCIONES PARA BUSCAR
+from .search import CreditSearch, PaymentSearch, BankSearch
 
 # FUNCIONES PARA ACTUALIZAR
 from .update import update_pago, update_cuota, generar_factura

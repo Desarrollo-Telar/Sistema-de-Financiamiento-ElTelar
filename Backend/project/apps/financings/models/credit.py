@@ -44,7 +44,7 @@ class Credit(models.Model):
     tasa_mora = models.DecimalField("Tasa de Morosidad", decimal_places=2, max_digits=15, default=0.1)
     saldo_pendiente = models.DecimalField("Saldo Pendiente", decimal_places=2, max_digits=15, default=0)
     saldo_actual = models.DecimalField("Saldo Actual", decimal_places=2, max_digits=15, default=0)
-    estado_aportacion = models.BooleanField(default=False)
+    estado_aportacion = models.BooleanField(blank=True, null=True)
     estados_fechas =  models.BooleanField(blank=True, null=True)
     desembolsado_completo = models.BooleanField(default=False)
 

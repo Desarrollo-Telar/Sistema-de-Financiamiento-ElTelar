@@ -25,7 +25,7 @@ class Creditor(models.Model):
     saldo_pendiente = models.DecimalField("Saldo Pendiente", decimal_places=2, max_digits=15, default=0)
     saldo_actual = models.DecimalField("Saldo Actual", decimal_places=2, max_digits=15, default=0)
     is_paid_off = models.BooleanField(default=False)
-    estado_aportacion = models.BooleanField(default=False)
+    estado_aportacion = models.BooleanField(blank=True, null=True)
     estados_fechas =  models.BooleanField(blank=True, null=True)
     forma_de_pago = models.CharField("Forma de Pago", max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
 
@@ -84,7 +84,7 @@ class Insurance(models.Model):
     saldo_pendiente = models.DecimalField("Saldo Pendiente", decimal_places=2, max_digits=15, default=0)
     saldo_actual = models.DecimalField("Saldo Actual", decimal_places=2, max_digits=15, default=0)
     is_paid_off = models.BooleanField(default=False)
-    estado_aportacion = models.BooleanField(default=False)
+    estado_aportacion = models.BooleanField(blank=True, null=True)
     estados_fechas =  models.BooleanField(blank=True, null=True)
     forma_de_pago = models.CharField("Forma de Pago",  max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
     credito = models.ForeignKey(Credit, on_delete=models.CASCADE, blank=True, null=True)
