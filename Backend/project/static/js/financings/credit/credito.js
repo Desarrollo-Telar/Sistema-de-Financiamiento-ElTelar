@@ -150,7 +150,8 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                     await actualizar_credito(credit_vigente, formData);
 
                     credit = await guardar_credito(m_a);
-                    desembolso = await guardar_desembolso(credit.id);
+                    desembolso = await guardar_desembolso(credit.id, document.getElementById('forma_desembolso').value, credit_vigente);
+                    await guardar_desembolso(credit_vigente, 'CANCELACIÓN DE CRÉDITO VIGENTE');
 
                     if (honorarios > 0) {
                         const boleta_h = document.getElementById('boleta_honorarios').files[0];

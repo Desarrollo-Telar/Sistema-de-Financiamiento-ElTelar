@@ -102,6 +102,16 @@ class DisbursementViewSet(viewsets.ModelViewSet):
 class PaymentViewSet(viewsets.ModelViewSet):
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
+        if search_term:
+            queryset = queryset.filter(
+                
+                Q(numero_referencia__icontains =search_term)
+            )  # Filtrar por el término de búsqueda
+        return queryset
 
 class FacturaViewSet(viewsets.ModelViewSet):
     serializer_class = FacturaSerializer

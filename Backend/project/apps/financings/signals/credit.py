@@ -61,10 +61,3 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
             )
         plan_pago.save()
     
-
-@receiver(post_save, sender=Credit)
-def ver_credito(sender, instance, created, **kwargs):
-    print('desde signals post save de credit de la funcion ver el credito')
-    print(instance.estados_fechas)
-    # Actualizar solo un campo sin disparar nuevamente la señal
-    #Credit.objects.filter(pk=instance.pk).update(estados_fechas=instance.estados_fechas)

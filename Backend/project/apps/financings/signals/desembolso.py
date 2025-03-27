@@ -4,11 +4,15 @@ from django.core.exceptions import ValidationError
 # LOGGER
 from apps.financings.clases.personality_logs import logger
 # MODELOS
-from apps.financings.models import AccountStatement, Disbursement, Credit, PaymentPlan
+from apps.financings.models import AccountStatement, Disbursement, Credit, PaymentPlan, Payment, Banco
 from apps.accountings.models import Egress
 
 # CALCULOS
 from apps.financings.calculos import calculo_interes
+
+# TIEMPO
+from datetime import datetime
+from django.utils import timezone
 
 import uuid
 from django.db import transaction, IntegrityError
@@ -76,6 +80,34 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
             credit_id_id=instance.credit_id.id, 
             forma_desembolso='APLICACIÓN GASTOS'
         )
+
+        if instance.forma_desembolso == "CANCELACIÓN DE CRÉDITO VIGENTE":
+            monto_saldo_actual = instance.credit_id.saldo_actual
+            referencia_ficticia = str(uuid.uuid4())[:8]
+
+            boleta_ficticia = Payment(
+                credit=instance.credit_id,
+                monto=monto_saldo_actual,
+                numero_referencia=referencia_ficticia,
+                fecha_emision=timezone.now(),
+                registro_ficticio=True
+            )
+            boleta_ficticia.save()
+
+            banco_registro_ficticio = Banco(
+                fecha=timezone.now().date(),
+                referencia=referencia_ficticia,
+                credito=monto_saldo_actual,
+                registro_ficticio=True
+            )
+            banco_registro_ficticio.save()
+
+
+
+
+
+
+
 
         if desembolso_credito.count() > 1:
             instance.delete()

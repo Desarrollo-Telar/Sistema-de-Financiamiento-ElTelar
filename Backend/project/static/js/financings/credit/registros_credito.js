@@ -9,6 +9,8 @@ import {registrar_pago} from '../../API/pagos/crear_pago.js'
 
 import { suma_total, lista_garantia, list_form_data} from './garantia.js'
 
+import {get_credit} from '../../API/credito/obtener_credito.js'
+
 function get_tasaInteres() {
     const tasa = document.getElementById('tasa_interes').value;
 
@@ -34,10 +36,18 @@ export async function guardar_credito(monto){
     return await registrar_credito(formData);
 }
 
-export async function guardar_desembolso(credit_id) {
+export async function guardar_desembolso(credit_id, forma_desembolso, credito_cancelado=NaN) {
     let formData = new FormData();
+    let descripcion = document.getElementById('description').value;
+
+    if (forma_desembolso == 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE'){
+        credito_cancelado = await get_credit(credito_cancelado);
+        descripcion = `${descripcion}\nCANCELACION PARA EL CREDITO: ${credito_cancelado.codigo_credito}`;
+
+    }
+
     formData.append('credit_id', credit_id);
-    formData.append('forma_desembolso', document.getElementById('forma_desembolso').value);
+    formData.append('forma_desembolso', forma_desembolso);
     formData.append('monto_credito', document.getElementById('monto').value);
     formData.append('saldo_anterior', document.getElementById('credito_saldo_capital_vigente').value||0);
     formData.append('honorarios', document.getElementById('honorarios').value||0);
@@ -45,7 +55,9 @@ export async function guardar_desembolso(credit_id) {
     formData.append('monto_desembolsado', document.getElementById('monto_desembolsado').value||0);
     formData.append('monto_total_desembolso', document.getElementById('total_depositar').value||0);
     formData.append('total_gastos', document.getElementById('total_gastos').value||0);
-    formData.append('description', document.getElementById('description').value||0);
+    formData.append('description', descripcion);
+
+
     return await registrar_desembolso(formData);
     
 }
