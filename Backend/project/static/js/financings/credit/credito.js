@@ -147,11 +147,12 @@ document.getElementById('credito').addEventListener('submit', async function (ev
 
                     const formData = new FormData();
                     formData.append('is_paid_off', true);
-                    await actualizar_credito(credit_vigente, formData);
+                    
 
                     credit = await guardar_credito(m_a);
                     desembolso = await guardar_desembolso(credit.id, document.getElementById('forma_desembolso').value, credit_vigente);
                     await guardar_desembolso(credit_vigente, 'CANCELACIÓN DE CRÉDITO VIGENTE');
+                    await actualizar_credito(credit_vigente, formData);
 
                     if (honorarios > 0) {
                         const boleta_h = document.getElementById('boleta_honorarios').files[0];
@@ -235,7 +236,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                         timer: 10000,
                         showConfirmButton: false,
                     });
-                    setTimeout(() => { window.location.href = `/financings/credit/${credit.id}`; }, 1000);
+                    setTimeout(() => { window.location.href = `/financings/credit/${credit.id}`; }, 10000);
                     
                     break;
                     

@@ -55,7 +55,15 @@ class Credit(models.Model):
         return f'{self.codigo_credito} {self.customer_id}'
     
     def formato_estado_aportacion(self):
-        return 'VIGENTE' if self.estado_aportacion else 'EN ATRASO'
+        mensaje = None
+        if self.estado_aportacion:
+            mensaje = 'VIGENTE'
+        elif self.estado_aportacion is None:
+            mensaje = 'SIN APORTACIONES'
+        else:
+            mensaje = 'EN ATRASO'
+
+        return mensaje
     
     def formato_estado_fecha(self):
         return 'VIGENTE' if self.estados_fechas else 'EN ATRASO'

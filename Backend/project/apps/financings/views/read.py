@@ -54,7 +54,7 @@ def cargar_boletas_estado():
 @usuario_activo
 def list_payment(request):
     template_name = 'financings/payment/list.html'
-    page_obj = paginacion(request, Payment.objects.all().order_by('-id'))
+    page_obj = paginacion(request, Payment.objects.filter(registro_ficticio=False).order_by('-id'))
     cargar_boletas_estado()
     generar()
     comparacion_para_boletas_divididas()
@@ -75,7 +75,7 @@ def list_payment(request):
 @usuario_activo
 def list_bank(request):
     template_name = 'financings/bank/list.html'
-    page_obj = paginacion(request, Banco.objects.all().order_by('-fecha'))
+    page_obj = paginacion(request, Banco.objects.filter(registro_ficticio=False).order_by('-fecha'))
     generar()
     comparacion_para_boletas_divididas()
     cargar_boletas_estado()

@@ -13,6 +13,9 @@
         <p class="fw-bold">Poliza de Seguro: <span class="fw-normal">Q{{desembolso.f_poliza_seguro}}</span></p>
         <p class="fw-bold">Monto Desembolsado: <span class="fw-normal">Q{{desembolso.f_monto_desembolsado}}</span></p>
     </div>
+    <div class="row">
+        <textarea class="form-control" rows="3" disabled> {{desembolso.description}}</textarea>
+    </div>
     {% if boletas %}
     {% for boleta in boletas%}
     <hr>

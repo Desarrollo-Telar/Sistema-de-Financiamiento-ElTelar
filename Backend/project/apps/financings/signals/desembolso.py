@@ -33,13 +33,19 @@ def buscar_tipo_desembolso(elemento):
         return 0
 
 def informacion_estado_cuenta(instance, disbursement_paid, referencia, description):
+    saldo_pendiente = None
+    if instance.forma_desembolso == "CANCELACIÓN DE CRÉDITO VIGENTE":
+        saldo_pendiente = 0
+    else:
+        saldo_pendiente = instance.total_t
+
     estado_cuenta = AccountStatement(
         credit=instance.credit_id,
         disbursement=instance,
         disbursement_paid=disbursement_paid,
         numero_referencia=referencia,
         description=description,
-        saldo_pendiente=instance.total_t
+        saldo_pendiente= saldo_pendiente
     )
     return estado_cuenta
 
@@ -56,6 +62,9 @@ def verificar_montos_desembolsados(sender, instance, **kwargs):
     total_desembolso = Disbursement.objects.filter(credit_id=instance.credit_id.id).aggregate(
         total_gastos_sum=Sum('total_gastos')
     )['total_gastos_sum'] or 0  # Sumar todos los gastos previos, manejando None como 0
+
+    if instance.forma_desembolso == "CANCELACIÓN DE CRÉDITO VIGENTE":
+        return f'No hacer suma'
 
     # Incluir el monto del desembolso actual
     total_desembolso += instance.total_gastos
@@ -82,6 +91,7 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
         )
 
         if instance.forma_desembolso == "CANCELACIÓN DE CRÉDITO VIGENTE":
+            instance.monto_total_desembolso = 0
             monto_saldo_actual = instance.credit_id.saldo_actual
             referencia_ficticia = str(uuid.uuid4())[:8]
 

@@ -32,7 +32,7 @@ export async function guardar_credito(monto){
     formData.append('estados_fechas',true);
     //formData.append('plazo_restante',document.getElementById('plazo_restante_c').value);
     formData.append('is_paid_off',false);
-    formData.append('estado_aportacion',false);
+    //formData.append('estado_aportacion',NaN);
     return await registrar_credito(formData);
 }
 
@@ -42,7 +42,7 @@ export async function guardar_desembolso(credit_id, forma_desembolso, credito_ca
 
     if (forma_desembolso == 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE'){
         credito_cancelado = await get_credit(credito_cancelado);
-        descripcion = `${descripcion}\nCANCELACION PARA EL CREDITO: ${credito_cancelado.codigo_credito}`;
+        descripcion = `${descripcion}\nSE AMPLIO DEL CREDITO: ${credito_cancelado.codigo_credito}`;
 
     }
 

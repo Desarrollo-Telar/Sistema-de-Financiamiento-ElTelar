@@ -373,7 +373,12 @@ class Payment(models.Model):
         recibos = self.get_recibo().objects.filter(pago=pago)
         cliente = None
         if credito is not None:
-            descripcion = 'PAGO DE CREDITO'
+
+            if self.registro_ficticio:
+                descripcion = 'PAGO PARA CANCELAR EL CREDITO'
+            else:
+                descripcion = 'PAGO DE CREDITO'
+                
             tasa_interes = credito.tasa_interes
             cliente=credito.customer_id
 

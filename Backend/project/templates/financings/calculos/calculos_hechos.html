@@ -21,7 +21,7 @@
                     class="{% if  credito.is_paid_off %} inactivo {% endif %} activo">{{credito.formato_credito_cancelado}}</span>
             </p>
             <p>Estado por Aportacion: <span style="font-weight: 100;"
-                    class="{% if not credito.estado_aportacion %} inactivo {% endif %} activo">{{credito.formato_estado_aportacion}}</span>
+                    class="{% if credito.estado_aportacion %} activo {% elif credito.estado_aportacion is None %} neutro {% else %} inactivo{% endif %}">{{credito.formato_estado_aportacion}}</span>
             </p>
             <p>Estado por Fecha: <span style="font-weight: 100;"
                     class="{% if not credito.estados_fechas %} inactivo {% endif %} activo">{{credito.formato_estado_fecha}}</span>
