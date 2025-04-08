@@ -119,7 +119,7 @@ class Payment(models.Model):
                 expires=timedelta(minutes=30)
             )
         except Exception as e:
-            return f"Error al generar URL: {str(e)}"
+            return '{}{}'.format(MEDIA_URL,self.boleta)
 
 
     def _cuota_pagar(self):
