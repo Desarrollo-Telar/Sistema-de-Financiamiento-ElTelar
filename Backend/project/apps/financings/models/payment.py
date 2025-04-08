@@ -444,6 +444,18 @@ class Payment(models.Model):
         
         
         ''')
+        if cuota.interest == 0:
+            if credito is not None:
+                credito.estados_fechas = True
+                credito.save()
+
+            if acreedor is not None:
+                acreedor.estados_fechas = True
+                acreedor.save()
+
+            if seguro is not None:
+                seguro.estados_fechas = True
+                seguro.save()
         
         interes = calculo_interes(saldo_pendiente, tasa_interes)
         if aporte_capital > 0:
