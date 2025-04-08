@@ -48,6 +48,13 @@ urlpatterns = [
     path('seguros/search/', views.SeguroSearch.as_view(), name='seguros_search'),
     path('ingresos/search/', views.IngresoSearch.as_view(), name='ingresos_search'),
     path('egresos/search/', views.EgresoSearch.as_view(), name='egresos_search'),
+
+    # FILTRO
+    path('ingresos/pendiente/', views.pendiente_ingresos_vincular, name='pendiente_ingresos_vincular'),
+    path('ingresos/completados/', views.ingresos_vinculados, name='ingresos_vinculados'),
+    path('egresos/pendiente/', views.pendiente_egresos_vincular, name='pendiente_egresos_vincular'),
+    path('egresos/completados/', views.egresos_vinculados, name='egresos_vinculados'),
+
     
 ]
 

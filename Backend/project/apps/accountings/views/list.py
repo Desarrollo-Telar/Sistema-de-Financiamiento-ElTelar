@@ -74,7 +74,7 @@ def list_ingresos(request):
     page_obj = paginacion(request, object_list)
     cambiar_plan()
     context = {
-        'title':'EL TELAR',
+        'title':'EL TELAR - INGRESOS',
         'page_obj':page_obj,
         'object_list':page_obj,
         'count':object_list.count(),
@@ -91,7 +91,7 @@ def list_egresos(request):
     page_obj = paginacion(request, object_list)
     cambiar_plan()
     context = {
-        'title':'EL TELAR',
+        'title':'EL TELAR - EGRESOS',
         'page_obj':page_obj,
         'object_list':page_obj,
         'count':object_list.count(),

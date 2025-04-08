@@ -1,7 +1,9 @@
 import { ocultar, mostrar } from './ocultar_mostrar.js';
 import { oculto } from './ocultar_todo.js';
 
-export function tipo_codigo(input_id_codigo_egreso) {
+export function tipo_codigo(input_id_codigo_egreso, seleccionado) {
+    console.log(input_id_codigo_egreso);
+
     switch (input_id_codigo_egreso) {
         case 'SALARIOS':
             oculto();
@@ -135,7 +137,12 @@ export function tipo_codigo(input_id_codigo_egreso) {
             break;
 
         case 'OTROS GASTOS GENERALES':
-            oculto();
+            if (seleccionado){
+                oculto();
+
+            }
+            console.log(seleccionado)
+            
             mostrar(document.getElementById('btn_registro'));
             mostrar(document.getElementById('id_fecha'));
             mostrar(document.querySelector('label[for="id_fecha"]'));

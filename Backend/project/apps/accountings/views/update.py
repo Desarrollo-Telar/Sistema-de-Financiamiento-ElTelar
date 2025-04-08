@@ -46,7 +46,7 @@ def actualizar_egresos(request, id):
         'form':form,
         'title':'ELTELAR'
     }
-    return render(request)
+    return render(request, template_name, context)
 
 @login_required
 @usuario_activo
@@ -66,4 +66,4 @@ def actualizar_ingresos(request, id):
         'form':form,
         'title':'ELTELAR'
     }
-    return render(request)
+    return render(request, template_name, context)

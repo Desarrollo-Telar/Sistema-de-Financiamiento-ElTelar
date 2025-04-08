@@ -9,3 +9,5 @@ from .boleta import add_boleta_acreedor, add_boleta_seguro
 from .update import actualizar_egresos, actualizar_ingresos
 
 from .search import AcreedoresSearch, SeguroSearch, IngresoSearch, EgresoSearch
+
+from .filtro import pendiente_egresos_vincular, egresos_vinculados, pendiente_ingresos_vincular, ingresos_vinculados

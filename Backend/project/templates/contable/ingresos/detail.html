@@ -27,7 +27,15 @@
         </div>
     </div>
     <div class="row" style="margin-top: 1rem;">
-        <button onclick="window.history.back()" type="button" class="btn_cancel">Atras</button>
+        <div class="col">
+            <a href="{% url 'contable:ingresos_update' object_list.id%}" class="btn_guardar">Editar</a>
+
+        </div>
+        <div class="col">
+            <button onclick="window.history.back()" type="button" class="btn_cancel">Atras</button>
+
+        </div>
+        
     </div>
 
 </div>

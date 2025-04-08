@@ -9,13 +9,15 @@ const label_id_codigo_egreso = document.querySelector('label[for="id_codigo_egre
 
 if (input_id_codigo_egreso){
     input_id_codigo_egreso.addEventListener("input", (event) => {
-        tipo_codigo(event.target.value);
+        tipo_codigo(event.target.value,true);
     });
+    
+    tipo_codigo(input_id_codigo_egreso.value, false);
 }
 
 
 
 
 
-oculto();
+
 
