@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <form method="POST" action="{% url 'imagen:update_image' imagen_id customer_code %}" enctype="multipart/form-data" >
+    <form method="POST" action="{% url 'imagen:update_image' imagen_id customer_code %}" enctype="multipart/form-data" class="box">
         
         {% csrf_token %}
         <div class="form-group">

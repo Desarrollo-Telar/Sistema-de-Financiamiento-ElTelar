@@ -20,26 +20,49 @@
                     {% for credit in payment_list %}
 
                     <tr>
-                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detalle_boleta' credit.id %}">
+                            {{ forloop.counter }}
+                            </a>
+                        
+                        </td>
                         <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detalle_boleta' credit.id %}">
                             {{credit.fecha_emision.date}}
+                            </a>
                         </td>
                         <td scope="row">
-
+                            <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detalle_boleta' credit.id %}">
                             {{credit.numero_referencia}}
+                            </a>
 
                         </td>
                         <td scope="row">
-
+                            <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detalle_boleta' credit.id %}">
                             Q{{credit.Fmonto}}
+                            </a>
 
 
                         </td>
-                        <td scope="row">{{credit.tipo_pago}}</td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detalle_boleta' credit.id %}">
+                            {{credit.tipo_pago}}
+                            </a>
+                        </td>
 
 
                         <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detalle_boleta' credit.id %}">
                             {{credit.estado_transaccion}}
+
+                            </a>
+                            
                         </td>
                         <td scope="row">
                             {% if credit.estado_transaccion == 'COMPLETADO' %}
@@ -58,17 +81,13 @@
                             </div>
                             {% else %}
                             <div class=" inactivo ">
-                                Pendiente de vincular
+                                <a href="{% url 'financings:detalle_boleta' credit.id %}">Pendiente de vincular</a>
+                                
 
 
                             </div>
                             {% endif %}
-                            {% if credit.estado_transaccion == 'FALLIDO' %}
-
-                            <a href="{% url 'financings:clasificar' credit.numero_referencia %}"
-                                style="text-decoration: none; color: #00340c;">Solucionar</a>
-
-                            {% endif %}
+                            
                         </td>
 
 

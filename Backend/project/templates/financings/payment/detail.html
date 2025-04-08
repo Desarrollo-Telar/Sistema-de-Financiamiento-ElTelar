@@ -14,8 +14,16 @@
         <p class="fw-bold">Numero de Referencia: <span class="fw-normal">{{pago.numero_referencia}}</span></p>
         <p class="fw-bold">Monto: <span class="fw-normal">{{pago.monto}}</span></p>
         <p class="fw-bold">Fecha de Emision: <span class="fw-normal">{{pago.fechaEmision}}</span></p>
-        <p class="fw-bold">Descripcion: <span class="fw-normal">{{pago.descripcion}}</span></p>
-        <p class="fw-bold">Estado de la Transaccion: <span class="fw-normal">{{pago.estado_transaccion}}</span></p>
+        <p class="fw-bold">Descripcion: </p>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
+                    disabled>
+                    {{pago.descripcion}}
+                </textarea>
+        <p class="fw-bold">Estado de la Transaccion: </p>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
+                    disabled>
+                    {{pago.estado_transaccion}}
+                </textarea>
 
     </div>
     <div class="row">
@@ -30,6 +38,17 @@
             {{pago.numero_referencia}}
         </a>
 
+    </div>
+    <div class="row">
+        {% if credit.estado_transaccion != 'COMPLETADO' %}
+        <div class="col">
+            <a href="{% url 'financings:actualizar_boleta' pago.id%}" class="btn_guardar">Editar Boleta</a>
+
+        </div>
+        {%endif%}
+        <div class="col">
+            <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+        </div>
     </div>
 
 </div>

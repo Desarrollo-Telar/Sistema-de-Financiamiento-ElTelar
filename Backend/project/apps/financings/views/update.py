@@ -18,7 +18,7 @@ from django.views.generic.detail import DetailView
 from django.db.models import Q
 
 # FORMULARIO
-from apps.financings.forms import PaymentPlanForms
+from apps.financings.forms import PaymentPlanForms, BoletaForm
 
 # Manejo de mensajes
 from django.contrib import messages
@@ -28,12 +28,23 @@ from django.contrib import messages
 @login_required
 @usuario_activo
 def update_pago(request,id):
-    template_name = ''
-    pago = get_object_or_404(Payment,id=id)
+    boleta = get_object_or_404(Payment, id=id)
+
+    template_name = 'financings/payment/update.html'
+
+    if request.method == 'POST':
+        form = BoletaForm(request.POST, request.FILES, instance=boleta)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Documento Actualizado')
+            return redirect('financings:detalle_boleta', boleta.id)
+
+    form = BoletaForm(instance=boleta)
     context = {
+        'form':form,
         'title':'ELTELAR'
     }
-    return render(request)
+    return render(request, template_name, context)
 
 @login_required
 @usuario_activo

@@ -162,6 +162,7 @@ def report_pagos(request, filtro_seleccionado, anio, mes, total):
     filters = Q()
     filters &= Q(fecha__year=anio)
     filters &= Q(fecha__month=mes)
+    ilters &= Q(pago__registro_ficticio=False)
 
    
 
@@ -197,7 +198,15 @@ def report_pagos(request, filtro_seleccionado, anio, mes, total):
             monto = reporte.aporte_capital
 
         # Agregar los datos a la fila correspondiente
-        aportacion = 'VIGENTE' if reporte.pago.credit.estado_aportacion else 'EN ATRASO'
+        mensaje = None
+        if reporte.pago.credit.estado_aportacion:
+            mensaje = 'VIGENTE'
+        elif reporte.pago.credit.estado_aportacion is None:
+            mensaje = 'SIN APORTACIONES'
+        else:
+            mensaje = 'EN ATRASO'
+
+        aportacion = mensaje
         s_fecha = 'VIGENTE' if reporte.pago.credit.estados_fechas else 'EN ATRASO'
         sheet.append([
             idx, 

@@ -3,7 +3,7 @@
 
 {% block content %}
   
-  <form method="POST" action="{% url 'document:update_document' document_id customer_code %}" enctype="multipart/form-data">
+  <form method="POST" action="{% url 'document:update_document' document_id customer_code %}" enctype="multipart/form-data" class="box">
     {% csrf_token %}
     <div class="form-group">
       {{ form.description.label_tag }}

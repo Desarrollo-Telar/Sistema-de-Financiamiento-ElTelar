@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <form method="POST" action="{% url 'imagen:create_image_guarantee' investment_plan_id customer_code %}" enctype="multipart/form-data">
+    <form method="POST" action="{% url 'imagen:create_image_guarantee' investment_plan_id customer_code %}" enctype="multipart/form-data" class="box">
         {% csrf_token %}
         {% include 'pictures/snippets/forms.html' %}
         <button type="submit" class="btn_edit">Crear Registro</button>
