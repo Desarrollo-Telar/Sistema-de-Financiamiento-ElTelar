@@ -12,6 +12,9 @@ from django.db.models.signals import post_delete, post_save, pre_save, pre_delet
 from django.dispatch import receiver
 
 from project.settings import MEDIA_URL, STATIC_URL
+from datetime import timedelta
+from project.database_store import minio_client  # asegúrate de que esté importado correctamente
+
 # Create your models here.
 
 class DocumentBank(models.Model):
@@ -34,7 +37,14 @@ class Document(models.Model):
         return self.description or "Sin Titulo"
     
     def get_document(self):
-        return '{}{}'.format(MEDIA_URL,self.document)
+        try:
+            return minio_client.presigned_get_object(
+                bucket_name='asiatrip',
+                object_name=self.document.name,  # ejemplo: documents/archivo.pdf
+                expires=timedelta(minutes=30)
+            )
+        except Exception as e:
+            return f"Error al generar URL: {str(e)}"
     
     def titulo(self):
         return self.description
@@ -111,15 +121,10 @@ from .task import leer_documento
 
 from project.settings import MEDIA_ROOT
 import os
-from minio import Minio
+
 from io import BytesIO
 
-minio_client = Minio(
-    "pcxl65.stackhero-network.com",  # Cambia por tu endpoint
-    access_key="WkXu9MHvOHvOsLiJjtda",
-    secret_key="g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe",
-    secure=True    # Cambia a False si no usas HTTPS
-)
+
 
 def download_from_minio(bucket_name, file_path, local_path):
     """Descarga un archivo de MinIO y lo guarda localmente."""

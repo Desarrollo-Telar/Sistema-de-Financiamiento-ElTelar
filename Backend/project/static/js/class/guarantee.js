@@ -74,7 +74,7 @@ export class DetailGuarantee {
                 return new DerechoDePosesionHipoteca(especificacion);
             case 'FIADOR':
                 return new Fiador(especificacion);
-            case 'CHEQUE':
+            case 'CHEQUE / PAGARE':
                 return new Cheque(especificacion);
             case 'VEHICULO':
                 return new Vehiculo(especificacion);

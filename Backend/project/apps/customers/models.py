@@ -21,8 +21,9 @@ from project.send_mail import send_email_welcome_customer, send_email_new_custom
 from .task import nuevo_cliente
 
 # QR
-from project.generate_qr import generate_qr
-
+from scripts.generate_qr import generate_qr
+from datetime import timedelta
+from project.database_store import minio_client
 # OS
 import os
 
@@ -104,9 +105,19 @@ class Customer(models.Model):
     def __str__(self):
         return self.get_full_name()
 
+    
+
     def get_qr(self):
-        codigo = f'/media/qr/codigoQr_{self.customer_code}.png'
-        return codigo if codigo else 'No hay info'
+        filename = f'qr/codigoQr_{self.customer_code}.png'
+        try:
+            url = minio_client.presigned_get_object(
+                bucket_name="asiatrip",
+                object_name=filename,
+                expires=timedelta(hours=1)
+            )
+            return url
+        except Exception as e:
+            return f'Error: {str(e)}'
     
     def get_full_name(self):
         return f'{self.first_name} {self.last_name}'
@@ -188,8 +199,12 @@ def send_message(sender, instance, created, **kwargs):
 
 @receiver(post_delete, sender=Customer)
 def delete_image_qr_customer(sender, instance, **kwargs):
-    qr = f'media/qr/codigoQr_{instance.customer_code}.png'
-    
-    os.remove(qr)
-    print('IMAGEN DE QR ELIMINADO')
+    bucket_name = 'asiatrip'
+    object_name = f'qr/codigoQr_{instance.customer_code}.png'
+
+    try:
+        minio_client.remove_object(bucket_name, object_name)
+        print('QR eliminado de MinIO')
+    except Exception as e:
+        print(f'Error al eliminar QR de MinIO: {str(e)}')
     

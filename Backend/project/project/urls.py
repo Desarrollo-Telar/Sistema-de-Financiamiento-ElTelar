@@ -51,7 +51,7 @@ urlpatterns = [
     path('test/', views.test, name='test'),
     path('qr/<str:data>/', views.generate_qr, name='generate_qr'),
     #path('pdf/<int:id>',login_required(views.render_pdf_view), name='pdf'),
-    path('pdf/<int:id>', login_required(generate_pdf.generar_pdf), name='pdf'),
+    path('pdf/<int:id>', generate_pdf.generar_pdf, name='pdf'),
     path('financings/',include('apps.financings.urls')),
     # ------------- API ---------------------------
     path('api/',views.list_api,name='list_api'),

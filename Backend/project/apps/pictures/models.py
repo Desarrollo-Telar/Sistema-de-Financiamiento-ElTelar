@@ -9,6 +9,8 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 # SETTINGS OF PROJECT
 from project.settings import MEDIA_URL, STATIC_URL
+from project.database_store import minio_client  # asegúrate de que esté importado correctamente
+from datetime import timedelta
 
 class Imagen(models.Model):
     image = models.ImageField("Imagen", blank=True, null=True, upload_to='documents/')
@@ -19,7 +21,14 @@ class Imagen(models.Model):
         return self.description or "Sin descripción"
     
     def get_image(self):
-        return '{}{}'.format(MEDIA_URL,self.image)
+        try:
+            return minio_client.presigned_get_object(
+                bucket_name='asiatrip',
+                object_name=self.image.name,  # ejemplo: documents/archivo.pdf
+                expires=timedelta(minutes=30)
+            )
+        except Exception as e:
+            return f"Error al generar URL: {str(e)}"
 
     class Meta:
         verbose_name = "Imagen"

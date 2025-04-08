@@ -88,6 +88,8 @@ def delete_customers(request,id):
     return render(request, template_name, context)
 
 # ----- LISTADO DE CLIENTES ----- #
+
+
 @login_required
 @usuario_activo
 def list_customer(request):
@@ -95,6 +97,10 @@ def list_customer(request):
     customer_list = Customer.objects.all().order_by('-id').filter(status__in=status)
     page_obj = paginacion(request, customer_list)
     template_name = 'customer/list.html'
+
+
+
+
     context = {
         'title':'EL TELAR - CLIENTES',
         'page_obj':page_obj,

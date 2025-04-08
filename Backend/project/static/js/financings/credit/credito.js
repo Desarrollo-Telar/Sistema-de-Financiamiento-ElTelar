@@ -100,7 +100,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                 case 'APLICACIÓN GASTOS':
                     const monto_g = parseFloat(document.getElementById('monto').value).toFixed(2);
                     credit = await guardar_credito(monto_g);
-                    desembolso = await guardar_desembolso(credit.id);
+                    desembolso = await guardar_desembolso(credit.id, 'APLICACIÓN GASTOS');
 
                     if (honorarios > 0) {
                         const boleta_h = document.getElementById('boleta_honorarios').files[0];

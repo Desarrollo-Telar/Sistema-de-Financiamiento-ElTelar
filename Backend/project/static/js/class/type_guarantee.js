@@ -378,7 +378,7 @@ export class Cheque {
             Banco: this._banco,
             Cheque_girado_a: this._cheque_girado_a,
             Monto_cheque: this._monto_cheque,
-            fotografia_cheque: this._fotografia_cheque
+            //fotografia_cheque: this._fotografia_cheque
         };
     }
 }

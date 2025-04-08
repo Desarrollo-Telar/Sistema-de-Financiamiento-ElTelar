@@ -28,6 +28,10 @@ from django.db.models import Q
 
 from project.settings import MEDIA_URL, STATIC_URL
 
+#
+from datetime import timedelta
+from project.database_store import minio_client  # asegúrate de que esté importado correctamente
+
 # PAGOS
 class Payment(models.Model):
     STATUS_CHOICES = [
@@ -108,7 +112,14 @@ class Payment(models.Model):
         return PaymentPlan
     
     def get_document(self):
-        return '{}{}'.format(MEDIA_URL,self.boleta)
+        try:
+            return minio_client.presigned_get_object(
+                bucket_name='asiatrip',
+                object_name=self.boleta.name,  # ejemplo: documents/archivo.pdf
+                expires=timedelta(minutes=30)
+            )
+        except Exception as e:
+            return f"Error al generar URL: {str(e)}"
 
 
     def _cuota_pagar(self):
