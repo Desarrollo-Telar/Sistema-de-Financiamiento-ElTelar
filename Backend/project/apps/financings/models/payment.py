@@ -533,19 +533,23 @@ class Payment(models.Model):
         
         # VERIFICAR SI EL CREDITO YA FUE PAGADO POR COMPLETO
         if saldo_pendiente <= 0:
+            saldo_pendiente = 0
             if credito is not None:
                 credito.is_paid_off = True
                 credito.saldo_pendiente = 0
+                credito.estado_aportacion = True
                 credito.save()
 
             if acreedor is not None:
                 acreedor.is_paid_off = True
                 acreedor.saldo_pendiente = 0
+                acreedor.estado_aportacion = True 
                 acreedor.save()
 
             if seguro is not None:
                 seguro.is_paid_off = True
                 seguro.saldo_pendiente = 0
+                seguro.estado_aportacion = True
                 seguro.save()
             
             
@@ -568,8 +572,8 @@ class Payment(models.Model):
         
 
         # Actualizar el saldo actual
-        if saldo_pendiente <= 0:
-            saldo_pendiente = 0
+        
+            
 
         if credito is not None:
             credito.saldo_actual = saldo_pendiente + cuota.mora + cuota.interest
