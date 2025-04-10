@@ -39,7 +39,20 @@ from django.contrib import messages
 
 from django.apps import apps
 
+
+@login_required
+@usuario_activo
+def list_filters(request):
+    template_name = 'customer/options.html'
+    context = {
+        'title':'EL TELAR / REPORTES - CLIENTES',
+        'posicion':'Clientes'
+    }
+
+    return render(request, template_name, context)
+
 # ----- EDITAR INFORMACION PERSONAL DE UN CLIENTE ----- #
+
 @login_required
 @usuario_activo
 def update_customer(request, customer_code):

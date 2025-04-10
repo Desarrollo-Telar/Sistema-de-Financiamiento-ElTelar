@@ -17,6 +17,8 @@ app_name = 'contable'
 
 urlpatterns = [
     path('',views.list_modulos,name='modulos_contables'),
+    path('reports/acreedores/',login_required(views.reportes_generales_acreedores),name='reportes_acreedores'),
+    path('reports/seguros/',login_required(views.reportes_generales_seguros),name='reportes_seguros'),
     # LIST
     path('acreedores', views.list_acreedores, name='acreedores'),
     path('seguros', views.list_seguros, name='seguros'),

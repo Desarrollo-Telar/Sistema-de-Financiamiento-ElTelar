@@ -26,7 +26,7 @@ def generar_pdf(request,id):
     template_path = 'customer/forms/forms_ive_pdf.html'  # Ruta a tu plantilla HTML
     template = get_template(template_path)
     
-    customer_list = get_object_or_404(Customer, id=id)
+    customer_list = Customer.objects.filter(id=id).first()
     address_list = Address.objects.filter(customer_id=customer_list)
     working_information = WorkingInformation.objects.filter(customer_id=customer_list)
     other_information = OtherSourcesOfIncome.objects.filter(customer_id=customer_list)

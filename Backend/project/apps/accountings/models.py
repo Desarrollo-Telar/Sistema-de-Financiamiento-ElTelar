@@ -108,6 +108,9 @@ class Insurance(models.Model):
     def formato_saldo_actual(self):
         return formatear_numero(self.saldo_actual)
     
+    def nombre_por_seguro(self):
+        return self.nombre_acreedor
+    
     def formato_estado_aportacion(self):
         mensaje = None
         if self.estado_aportacion:

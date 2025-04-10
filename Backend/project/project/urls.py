@@ -28,8 +28,13 @@ from django.conf import settings
 
 urlpatterns = [    
     path('',login_required(views.index),name='index'),
+
     path('reporte/banco/',login_required(reports_excel.report_banco),name='reporte_banco_excel'),
-    path('reporte/pagos/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(reports_excel.report_pagos),name='reporte_pagos_excel'),
+    path('reporte/pagos/creditos/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(reports_excel.report_pagos),name='reporte_pagos_excel'),
+    path('reporte/pagos/acreedores/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(reports_excel.report_pagos_acreedores),name='report_pagos_acreedores_excel'),
+    path('reporte/pagos/seguros/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(reports_excel.report_pagos_seguros),name='report_pagos_seguros_excel'),
+    path('reportes/clasificacion/',views.list_reportes_modulos,name='clasificacion_reportes'),
+
     path('accounts/login/',views.login_view, name='login'),
     path('verification/', views.verification, name='verification'),
     path('logout/',views.logout_view, name='logout'),
@@ -54,7 +59,7 @@ urlpatterns = [
     path('pdf/<int:id>', generate_pdf.generar_pdf, name='pdf'),
     path('financings/',include('apps.financings.urls')),
     
-    path('reportes/clasificacion/',views.list_reportes_modulos,name='clasificacion_reportes'),
+    
     # ------------- API ---------------------------
     path('api/',views.list_api,name='list_api'),
     path('api/patch/',views.actualizacion_test_api,name='actualizacion_test_api'),

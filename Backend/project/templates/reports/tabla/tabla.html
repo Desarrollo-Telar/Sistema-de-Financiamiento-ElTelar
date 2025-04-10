@@ -28,21 +28,33 @@
                             {{reporte.fecha}}
                         </td>
                         <td scope="row">
+
                             {% if reporte.pago.credit %}
+
                             {{reporte.pago.credit.codigo_credito}}
                             {% elif reporte.pago.acreedor %}
+
                             {{reporte.pago.acreedor.codigo_acreedor}}
+
                             {% elif reporte.pago.seguro %}
+
                             {{reporte.pago.acreedor.codigo_seguro}}
+
                             {%endif%}
                         </td>
                         <td scope="row">
+
                             {% if reporte.pago.credit %}
                             {{reporte.cliente}}
+
                             {% elif reporte.pago.acreedor %}
+
                             {{reporte.pago.acreedor.nombre_acreedor}}
+
                             {% elif reporte.pago.seguro %}
+
                             {{reporte.pago.acreedor.nombre_acreedor}}
+                            
                             {% endif %}
 
                         </td>

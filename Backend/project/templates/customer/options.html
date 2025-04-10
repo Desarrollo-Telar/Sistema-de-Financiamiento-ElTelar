@@ -18,8 +18,8 @@
         <div class="feature col">
             <div class="card text-bg-light">
                 <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
-                    <a href="{% url 'financings:filter_credito_con_excedente' %}" class="icon-link">
-                        Creditos Con Excedente Cancelado
+                    <a href="{% url 'customers:solicitude'%}" class="icon-link">
+                        Clientes en Proceso de Solicitud
                         <svg class="bi" aria-hidden="true">
                             <use xlink:href="#chevron-right"></use>
                         </svg>
@@ -35,8 +35,8 @@
         <div class="feature col">
             <div class="card text-bg-light">
                 <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
-                    <a href="{% url 'financings:creditos_en_atrasos' %}" class="icon-link">
-                        Creditos en Atraso por Fechas
+                    <a href="{% url 'customers:not_accepted' %}" class="icon-link">
+                        Clientes No Aceptados
                         <svg class="bi" aria-hidden="true">
                             <use xlink:href="#chevron-right"></use>
                         </svg>
@@ -44,28 +44,29 @@
                 </div>
             </div>
 
-            
+
         </div>
         <div class="feature col">
             <div class="card text-bg-light">
                 <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
-                    <a href="{% url 'financings:creditos_falta_aportacion' %}" class="icon-link">
-                        Creditos en Atraso por Aportacion
+                    <a href="{% url 'customers:document_review' %}" class="icon-link">
+                        Clientes en Revision de
+                        Documentos
                         <svg class="bi" aria-hidden="true">
                             <use xlink:href="#chevron-right"></use>
                         </svg>
                     </a>
                 </div>
             </div>
-            
 
-            
+
+
         </div>
         <div class="feature col">
             <div class="card text-bg-light">
                 <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
-                    <a href="{% url 'financings:creditos_cancelados'%}" class="icon-link">
-                        Creditos Cancelados
+                    <a href="{% url 'customers:inactive' %}" class="icon-link">
+                        Clientes Inactivos
                         <svg class="bi" aria-hidden="true">
                             <use xlink:href="#chevron-right"></use>
                         </svg>
@@ -73,13 +74,29 @@
                 </div>
             </div>
 
-           
+
+        </div>
+       
+        <div class="feature col">
+            <div class="card text-bg-light">
+                <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
+                    <a href="{% url 'customers:accepted' %}" class="icon-link">
+                        Clientes del El Telar
+                        <svg class="bi" aria-hidden="true">
+                            <use xlink:href="#chevron-right"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+
+
         </div>
         <div class="feature col">
             <div class="card text-bg-light">
                 <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
-                    <a href="{% url 'financings:filter_credito_por_mes_anio' %}" class="icon-link">
-                        Creditos creados en tal mes
+                    <a href="{% url 'customers:customers' %}" class="icon-link">
+                        Todos los Clientes Registrados
                         <svg class="bi" aria-hidden="true">
                             <use xlink:href="#chevron-right"></use>
                         </svg>
@@ -87,23 +104,8 @@
                 </div>
             </div>
 
-            
-          
-        </div>
-        <div class="feature col">
-            <div class="card text-bg-light">
-                <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
-                    <a href="{% url 'financings:reportes' %}" class="icon-link">
-                        Pagos
-                        <svg class="bi" aria-hidden="true">
-                            <use xlink:href="#chevron-right"></use>
-                        </svg>
-                    </a>
-                </div>
-            </div>
 
-            
-          
+
         </div>
 
     </div>

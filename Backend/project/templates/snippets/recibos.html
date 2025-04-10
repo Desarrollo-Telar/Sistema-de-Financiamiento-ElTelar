@@ -32,7 +32,7 @@
 
                 {% elif recibo.pago.seguro %}
 
-                    {{reporte.pago.acreedor.nombre_acreedor}}
+                    {{recibo.pago.seguro.nombre_acreedor}}
 
                 {% endif %}
 
@@ -49,7 +49,7 @@
 
                 {% elif recibo.pago.seguro %}
 
-                    {{recibo.pago.acreedor.codigo_seguro}}
+                    {{recibo.pago.seguro.codigo_seguro}}
 
                 {%endif%}
                 
