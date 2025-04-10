@@ -52,9 +52,13 @@
     <div class="row" style="margin-top: 2rem;">
         {% include 'financings/credit/table/table.html' %}
     </div>
-    {% if page_obj %}
+    <div class="row">
+        {% if page_obj %}
     {% include 'snippets/pages.html' %}
     {% endif %}
+
+    </div>
+    
 
 </div>
 

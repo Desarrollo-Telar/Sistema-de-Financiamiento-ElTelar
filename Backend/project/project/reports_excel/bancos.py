@@ -58,15 +58,18 @@ def report_filtro_banco(filters):
             sheet[f'O{idx}'] = boleta.fecha_emision.date()
             if boleta.acreedor:
                 sheet[f'P{idx}'] = str(boleta.acreedor)
-            if boleta.seguro:
+            elif boleta.seguro:
                 sheet[f'P{idx}'] = str(boleta.seguro)
-            if boleta.cliente:
+            elif boleta.cliente:
                 sheet[f'P{idx}'] = str(boleta.cliente)
-            if boleta.credit:
+            elif boleta.credit:
                 sheet[f'P{idx}'] = str(boleta.credit)
                 
-            if boleta.disbursement:
+            elif boleta.disbursement:
                 sheet[f'P{idx}'] = str(boleta.disbursement)
+            
+            else:
+                sheet[f'P{idx}'] = str(boleta.descripcion)
 
 
 
@@ -131,15 +134,18 @@ def report_banco(request):
             sheet[f'O{idx}'] = boleta.fecha_emision.date()
             if boleta.acreedor:
                 sheet[f'P{idx}'] = str(boleta.acreedor)
-            if boleta.seguro:
+            elif boleta.seguro:
                 sheet[f'P{idx}'] = str(boleta.seguro)
-            if boleta.cliente:
+            elif boleta.cliente:
                 sheet[f'P{idx}'] = str(boleta.cliente)
-            if boleta.credit:
+            elif boleta.credit:
                 sheet[f'P{idx}'] = str(boleta.credit)
                 
-            if boleta.disbursement:
+            elif boleta.disbursement:
                 sheet[f'P{idx}'] = str(boleta.disbursement)
+            
+            else:
+                sheet[f'P{idx}'] = str(boleta.descripcion)
 
 
 

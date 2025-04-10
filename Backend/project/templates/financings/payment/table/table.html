@@ -67,7 +67,7 @@
                         <td scope="row">
                             {% if credit.estado_transaccion == 'COMPLETADO' %}
                             <div class="activo ">
-                                <a href="{% url 'financings:clasificar' credit.numero_referencia %}"
+                                <a href="{% url 'financings:detalle_boleta' credit.id %}" 
                                     style="text-decoration: none; color: #00340c;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-check-circle-fill" viewBox="0 0 16 16">

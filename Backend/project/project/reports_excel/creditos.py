@@ -59,8 +59,7 @@ def report_creditos(request, filtro_seleccionado):
 
         aportacion = mensaje
         s_fecha = 'VIGENTE' if reporte.estados_fechas else 'EN ATRASO'
-        stat = f'''Status de Aportación: {aportacion}
-            Status por Fecha: {s_fecha}'''
+        stat = f'''Status de Aportación: {aportacion}, Status por Fecha: {s_fecha}'''
 
         sheet.append([
             idx,

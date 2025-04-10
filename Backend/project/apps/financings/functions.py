@@ -27,9 +27,10 @@ def realizar_pago(payment):
 
         if acreedor is not None:
             acreedor.status = True
-            acreedor.save()
+            
             payment.estado_transaccion = 'COMPLETADO'
             banco.status = True
+            acreedor.save()
             banco.save()
             payment.save()
             return f'VALIDACION DE LA BOLETA PARA ACREEDORES'
