@@ -56,6 +56,7 @@ def reportes_generales(request):
     filters &= Q(fecha__year=anio)
     filters &= Q(fecha__month=mes)
     filters &= Q(pago__registro_ficticio=False)
+    filters &= Q(pago__credit__isnull=False)
 
     # Filtro dinámico según selección del usuario
     filtros_validos = {

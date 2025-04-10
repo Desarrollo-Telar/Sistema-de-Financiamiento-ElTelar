@@ -28,6 +28,7 @@ class Creditor(models.Model):
     estado_aportacion = models.BooleanField(blank=True, null=True)
     estados_fechas =  models.BooleanField(blank=True, null=True)
     forma_de_pago = models.CharField("Forma de Pago", max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
 
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
@@ -96,6 +97,7 @@ class Insurance(models.Model):
     estados_fechas =  models.BooleanField(blank=True, null=True)
     forma_de_pago = models.CharField("Forma de Pago",  max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
     credito = models.ForeignKey(Credit, on_delete=models.CASCADE, blank=True, null=True)
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
 
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
@@ -154,6 +156,7 @@ class Income(models.Model):
     boleta = models.FileField("Boleta",blank=True, null=True,upload_to='pagos/boletas/otros_ingresos/')
     status = models.BooleanField("Status",default=False)
     fecha_registro = models.DateField("Fecha de registro",auto_now_add=True)
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
 
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
@@ -191,6 +194,8 @@ class Egress(models.Model):
     acreedor = models.ForeignKey(Creditor, on_delete=models.CASCADE, related_name='egress', blank=True, null=True)
     seguro = models.ForeignKey(Insurance, on_delete=models.CASCADE, related_name='egress', blank=True, null=True)
     tipo_gasto = models.CharField("Tipo de Gasto", blank=True, null=True, max_length=150)
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
+
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
 

@@ -1,6 +1,14 @@
-from django.http import JsonResponse
-import asyncio
+
+from django.shortcuts import render, get_object_or_404, redirect
+
 from apps.financings.tareas_ansicronicas import ver_cuotas_no_cargadas
-async def async_view(request):
+
+def async_view_banco(request):
+    ver_cuotas_no_cargadas()
+    return redirect('financings:banco')
     
-    return JsonResponse({'message': 'Vista asincrónica completada'})
+    
+def async_view_boletas(request):
+    ver_cuotas_no_cargadas()
+    return redirect('financings:boleta')
+    

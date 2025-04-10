@@ -402,3 +402,13 @@ class Search(TemplateView):
         context['count'] = count
         context['title'] = 'ELTELAR - Buscar'
         return context
+
+@login_required
+@usuario_activo
+def list_reportes_modulos(request):
+    template_name = 'reports/clasificacion.html'
+    context = {
+        'title':'EL TELAR - CLASIFICACION DE REPORTES',
+        'posicion':'Reportes'
+    }
+    return render(request, template_name, context)

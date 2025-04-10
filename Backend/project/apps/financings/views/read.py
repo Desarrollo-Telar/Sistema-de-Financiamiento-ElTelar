@@ -59,7 +59,7 @@ def list_payment(request):
 def list_bank(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.filter(registro_ficticio=False).order_by('-fecha'))
-    ver_cuotas_no_cargadas()
+    
 
     context = {
         'title':'EL TELAR - BANCOS',
@@ -72,7 +72,6 @@ def list_bank(request):
 
 @login_required
 @usuario_activo
-
 def list_credit(request):
     template_name = 'financings/credit/list.html'
     page_obj = paginacion(request, Credit.objects.all().order_by('-id'))
@@ -114,6 +113,20 @@ def list_disbursement(request):
 
 
 
+
+@login_required
+@usuario_activo
+def list_clasificacion(request):
+    template_name = 'financings/credit/clasificacion.html'
+    
+    context = {
+        'title':'ELTELAR - CLASIFICACION DE CREDITOS',
+        'posicion':'Creditos',
+        
+
+        
+    }
+    return render(request, template_name, context)
 
 
 

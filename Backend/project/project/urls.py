@@ -53,6 +53,8 @@ urlpatterns = [
     #path('pdf/<int:id>',login_required(views.render_pdf_view), name='pdf'),
     path('pdf/<int:id>', generate_pdf.generar_pdf, name='pdf'),
     path('financings/',include('apps.financings.urls')),
+    
+    path('reportes/clasificacion/',views.list_reportes_modulos,name='clasificacion_reportes'),
     # ------------- API ---------------------------
     path('api/',views.list_api,name='list_api'),
     path('api/patch/',views.actualizacion_test_api,name='actualizacion_test_api'),

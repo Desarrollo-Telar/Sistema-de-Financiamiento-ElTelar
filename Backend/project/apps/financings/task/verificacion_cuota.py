@@ -135,7 +135,7 @@ def cambiar_estado():
 def cambiar_plan():
     dia = datetime.now().date()
 
-    planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=False)
+    planes = PaymentPlan.objects.filter(fecha_limite__date=dia)
     print(planes)
 
     if not planes.exists():

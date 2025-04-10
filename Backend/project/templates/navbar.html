@@ -4,7 +4,7 @@
 {% url 'roles_permissions:roles_permissions' as roles %}
 {% url 'users:update_password' as update_password%}
 {% url 'customers:customers' as customers%}
-{% url 'financings:reportes' as reportes %}
+
 
 <style>
   .btn_outline {
@@ -109,7 +109,7 @@
           
           {% endif %}
           <li class="nav-item">
-            <a class="nav-link active" href="{{reportes}}">
+            <a class="nav-link active" href="{% url 'clasificacion_reportes' %}">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                 class="bi bi-clipboard-data-fill" viewBox="0 0 16 16" style="margin-right: 1rem">
                 <path

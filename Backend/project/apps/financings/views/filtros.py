@@ -93,6 +93,68 @@ def filter_credito_en_falta_aportacion(request):
 
 @login_required
 @usuario_activo
+def filter_credito_con_excedente(request):
+    template_name = 'financings/credit/list.html'
+    page_obj = paginacion(request, Credit.objects.filter(saldo_actual__lt=0).order_by('-id'))
+
+    
+
+    context = {
+        'title':'ELTELAR - CREDITOS',
+        'page_obj':page_obj,
+        'credit_list':page_obj,
+        'count': Credit.objects.filter(saldo_actual__lt=0).count(),
+        
+    }
+    return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def filter_credito_por_mes_anio(request):
+    template_name = 'financings/credit/list.html'
+    
+
+    mes = datetime.now().month
+    anio = datetime.now().year
+
+    if request.method == 'POST':
+        mes = request.POST.get('mes')
+        anio = request.POST.get('anio')
+        
+
+        # Validación de mes y año
+        if not mes:
+            mes = datetime.now().month
+        else:
+            mes = int(mes)
+
+        if not anio:
+            anio = datetime.now().year
+        else:
+            anio = int(anio)
+
+    filters = Q()
+    filters &= Q(creation_date__year=anio)
+    filters &= Q(creation_date__month=mes)
+    
+    object_list = Credit.objects.filter(filters).order_by('-id')
+    page_obj = paginacion(request, object_list)
+    
+
+    context = {
+        'title':'ELTELAR - CREDITOS',
+        #'page_obj':page_obj,
+        'credit_list':page_obj,
+        'reporte':True,
+        'count': object_list.count(),
+        'mes': mes,
+        'anio': anio,
+    }
+    return render(request, template_name, context)
+
+
+@login_required
+@usuario_activo
 def filter_list_payment_pendiente(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='PENDIENTE').order_by('-id'))
