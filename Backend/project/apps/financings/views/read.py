@@ -65,7 +65,7 @@ def list_bank(request):
         'title':'EL TELAR - BANCOS',
         'page_obj':page_obj,
         'banco_list':page_obj,
-        'count':Banco.objects.all().count()
+        'count':Banco.objects.filter(registro_ficticio=False).count()
     }
     return render(request,template_name, context)
 

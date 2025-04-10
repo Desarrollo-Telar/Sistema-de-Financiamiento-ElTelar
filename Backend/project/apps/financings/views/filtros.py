@@ -162,7 +162,7 @@ def filter_credito_por_mes_anio(request):
 @usuario_activo
 def filter_list_payment_pendiente(request):
     template_name = 'financings/payment/list.html'
-    page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='PENDIENTE').order_by('-id'))
+    page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='PENDIENTE', registro_ficticio=False).order_by('-id'))
     
 
 
@@ -170,7 +170,7 @@ def filter_list_payment_pendiente(request):
         'title':'EL TELAR - PAGOS',
         'page_obj':page_obj,
         'payment_list':page_obj,
-        'count':Payment.objects.filter(estado_transaccion='PENDIENTE').count()
+        'count':Payment.objects.filter(estado_transaccion='PENDIENTE', registro_ficticio=False).count()
 
         
     }
@@ -180,7 +180,7 @@ def filter_list_payment_pendiente(request):
 @usuario_activo
 def filter_list_payment_completados(request):
     template_name = 'financings/payment/list.html'
-    page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='COMPLETADO').order_by('-id'))
+    page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='COMPLETADO', registro_ficticio=False).order_by('-id'))
     
 
 
@@ -188,7 +188,7 @@ def filter_list_payment_completados(request):
         'title':'EL TELAR - PAGOS',
         'page_obj':page_obj,
         'payment_list':page_obj,
-        'count':Payment.objects.filter(estado_transaccion='COMPLETADO').count()
+        'count':Payment.objects.filter(estado_transaccion='COMPLETADO', registro_ficticio=False).count()
 
         
     }
@@ -198,14 +198,14 @@ def filter_list_payment_completados(request):
 @usuario_activo
 def filter_list_bank_vinculado(request):
     template_name = 'financings/bank/list.html'
-    page_obj = paginacion(request, Banco.objects.filter(status=True).order_by('-fecha'))
+    page_obj = paginacion(request, Banco.objects.filter(status=True, registro_ficticio=False).order_by('-fecha'))
     
 
     context = {
         'title':'EL TELAR - BANCOS',
         'page_obj':page_obj,
         'banco_list':page_obj,
-        'count':Banco.objects.filter(status=True).count()
+        'count':Banco.objects.filter(status=True, registro_ficticio=False).count()
     }
     return render(request,template_name, context)
 
@@ -213,13 +213,13 @@ def filter_list_bank_vinculado(request):
 @usuario_activo
 def filter_list_bank_no_vinculado(request):
     template_name = 'financings/bank/list.html'
-    page_obj = paginacion(request, Banco.objects.filter(status=False).order_by('-fecha'))
+    page_obj = paginacion(request, Banco.objects.filter(status=False, registro_ficticio=False).order_by('-fecha'))
     
 
     context = {
         'title':'EL TELAR - BANCOS',
         'page_obj':page_obj,
         'banco_list':page_obj,
-        'count':Banco.objects.filter(status=False).count()
+        'count':Banco.objects.filter(status=False, registro_ficticio=False).count()
     }
     return render(request,template_name, context)
