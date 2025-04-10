@@ -73,6 +73,7 @@ urlpatterns = [
 
     # ---------------- REPORTES ----------------
     path('reports/',login_required(views.reportes_generales),name='reportes'),
+    
 ]
 
 urlpatterns+=routers.urlpatterns

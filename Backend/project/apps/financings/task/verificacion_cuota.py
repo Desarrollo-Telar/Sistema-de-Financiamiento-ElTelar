@@ -66,6 +66,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 
     else:
         cuota = PaymentPlan()
+        cuota.outstanding_balance = pago.saldo_pendiente
         cuota.saldo_pendiente = pago.saldo_pendiente
 
         if pago.credit_id:

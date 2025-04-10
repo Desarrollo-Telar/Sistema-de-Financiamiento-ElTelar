@@ -73,10 +73,19 @@
 
                         </td>
                         <td>
+                            
                             <a style="text-decoration: none; color: black;"
                                 href="{% url 'contable:acreedores_detail' acreedor.id %}">
-                                {{acreedor.numero_referencia}}
+                                {% if acreedor.numero_referencia is not None %}
+                                <p>{{acreedor.numero_referencia}}</p>
+                                {% endif %}
+                                
+                                
+                                
                             </a>
+                            
+                            
+
 
                         </td>
                         <td>

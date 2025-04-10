@@ -40,7 +40,15 @@ class Creditor(models.Model):
         return formatear_numero(convertir)
 
     def formato_estado_aportacion(self):
-        return 'VIGENTE' if self.estado_aportacion else 'EN ATRASO'
+        mensaje = None
+        if self.estado_aportacion:
+            mensaje = 'VIGENTE'
+        elif self.estado_aportacion is None:
+            mensaje = 'SIN APORTACIONES'
+        else:
+            mensaje = 'EN ATRASO'
+
+        return mensaje
     
     def formato_estado_fecha(self):
         return 'VIGENTE' if self.estados_fechas else 'EN ATRASO'
@@ -99,7 +107,15 @@ class Insurance(models.Model):
         return formatear_numero(self.saldo_actual)
     
     def formato_estado_aportacion(self):
-        return 'VIGENTE' if self.estado_aportacion else 'EN ATRASO'
+        mensaje = None
+        if self.estado_aportacion:
+            mensaje = 'VIGENTE'
+        elif self.estado_aportacion is None:
+            mensaje = 'SIN APORTACIONES'
+        else:
+            mensaje = 'EN ATRASO'
+
+        return mensaje
     
     def formato_estado_fecha(self):
         return 'VIGENTE' if self.estados_fechas else 'EN ATRASO'

@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 
 # Models
-from apps.accountings.models import  Insurance
+from apps.accountings.models import  Creditor
 
 
 # Decoradores
@@ -23,17 +23,17 @@ from django.contrib import messages
 
 @login_required
 @usuario_activo
-def seguro_cancelado(request):
-    template_name = 'contable/seguros/list.html'
-    object_list = Insurance.objects.filter(is_paid_off=True).order_by('-id')
+def acreedores_cancelado(request):
+    template_name = 'contable/acreedores/list.html'
+    object_list = Creditor.objects.filter(is_paid_off=True).order_by('-id')
     page_obj = paginacion(request, object_list)
     cambiar_plan()
     context = {
-        'title':'EL TELAR - SEGUROS / SEGUROS CANCELADOS',
+        'title':'EL TELAR - ACREEDORES / ACREEDORES CANCELADOS',
         'page_obj':page_obj,
         'object_list':page_obj,
         'count':object_list.count(),
-        'posicion':'Seguros cancelados'
+        'posicion':'Acreedores cancelados'
         
     }
         
@@ -41,17 +41,17 @@ def seguro_cancelado(request):
 
 @login_required
 @usuario_activo
-def seguros_atraso_aportacion(request):
-    template_name = 'contable/seguros/list.html'
-    object_list = Insurance.objects.filter(estado_aportacion=False).order_by('-id')
+def acreedores_atraso_aportacion(request):
+    template_name = 'contable/acreedores/list.html'
+    object_list = Creditor.objects.filter(estado_aportacion=False).order_by('-id')
     page_obj = paginacion(request, object_list)
     cambiar_plan()
     context = {
-        'title':'EL TELAR - SEGUROS / SEGUROS ATRASO POR APORTACION',
+        'title':'EL TELAR - ACREEDORES / ACREEDORES ATRASO POR APORTACION',
         'page_obj':page_obj,
         'object_list':page_obj,
         'count':object_list.count(),
-        'posicion':'Seguros con atraso por aportacion'
+        'posicion':'Acreedores con atraso por aportacion'
         
     }
         
@@ -59,17 +59,17 @@ def seguros_atraso_aportacion(request):
 
 @login_required
 @usuario_activo
-def seguros_atraso_fechas(request):
-    template_name = 'contable/seguros/list.html'
-    object_list = Insurance.objects.filter(estados_fechas=False).order_by('-id')
+def acreedores_atraso_fechas(request):
+    template_name = 'contable/acreedores/list.html'
+    object_list = Creditor.objects.filter(estados_fechas=False).order_by('-id')
     page_obj = paginacion(request, object_list)
     cambiar_plan()
     context = {
-        'title':'EL TELAR - SEGUROS / SEGUROS ATRASO POR FECHAS',
+        'title':'EL TELAR - ACREEDORES / ACREEDORES ATRASO POR FECHAS',
         'page_obj':page_obj,
         'object_list':page_obj,
         'count':object_list.count(),
-        'posicion':'Seguros con atraso por fechas'
+        'posicion':'Acreedores con atraso por fechas'
     }
         
     return render(request, template_name, context)

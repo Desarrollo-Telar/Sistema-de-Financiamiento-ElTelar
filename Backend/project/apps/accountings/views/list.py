@@ -40,10 +40,11 @@ def list_acreedores(request):
     page_obj = paginacion(request, acreedores_list)
     cambiar_plan()
     context = {
-        'title':'EL TELAR',
+        'title':'EL TELAR - ACREEDORES',
         'page_obj':page_obj,
         'acreedores_list':page_obj,
         'count':acreedores_list.count(),
+        'posicion':'Todos los Acreedores'
         
     }
         
@@ -57,10 +58,11 @@ def list_seguros(request):
     page_obj = paginacion(request, object_list)
     cambiar_plan()
     context = {
-        'title':'EL TELAR',
+        'title':'EL TELAR - SEGUROS',
         'page_obj':page_obj,
         'object_list':page_obj,
         'count':object_list.count(),
+        'posicion':'Todos los Seguros'
         
     }
         
@@ -78,6 +80,7 @@ def list_ingresos(request):
         'page_obj':page_obj,
         'object_list':page_obj,
         'count':object_list.count(),
+        'posicion':'Todos los Ingresos'
         
     }
         
@@ -95,6 +98,23 @@ def list_egresos(request):
         'page_obj':page_obj,
         'object_list':page_obj,
         'count':object_list.count(),
+        'posicion':'Todos los Egresos'
+        
+    }
+        
+    return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def list_modulos(request):
+    template_name = 'contable/options.html'
+    
+    cambiar_plan()
+    context = {
+        'title':'EL TELAR - MODULOS CONTABLES',
+        'acreedores':Creditor.objects.filter(is_paid_off=False),
+        'seguros':Insurance.objects.filter(is_paid_off=False),
+        
         
     }
         

@@ -5,10 +5,7 @@
 {% url 'users:update_password' as update_password%}
 {% url 'customers:customers' as customers%}
 {% url 'financings:reportes' as reportes %}
-{% url 'contable:acreedores' as acreedores %}
-{% url 'contable:seguros' as seguros %}
-{% url 'contable:ingresos' as ingresos %}
-{% url 'contable:egresos' as egresos %}
+
 <style>
   .btn_outline {
     background-color: #e02226;
@@ -47,7 +44,7 @@
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
 
-          {% include 'snippets/search.html' %}
+          
           <hr />
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">
@@ -69,34 +66,37 @@
               Clientes
             </a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'financings:list_credit' %}">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                 class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16" style="margin-right: 1rem">
                 <path
                   d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
               </svg>
-              Finanzas
+              Creditos
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bank2" viewBox="0 0 16 16"  style="margin-right: 1rem">
+                <path d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916zM12.375 6v7h-1.25V6zm-2.5 0v7h-1.25V6zm-2.5 0v7h-1.25V6zm-2.5 0v7h-1.25V6zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2M.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1z"/>
+              </svg>
+              Bancos
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="{% url 'financings:list_credit' %}">Creditos</a>
+                <a class="dropdown-item" href="{% url 'financings:list_bank' %}">Estado de Cuentas de Bancos</a>
               </li>
-
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+              
               <li>
                 <a class="dropdown-item" href="{% url 'financings:list_payment' %}">Boletas Registradas</a>
               </li>
-              <li>
-                <a class="dropdown-item" href="{% url 'financings:list_bank' %}">Bancos</a>
-              </li>
+              
             </ul>
           </li>
           {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'contable:modulos_contables'%}">
               <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 1rem" width="25" height="25"
                 fill="currentColor" class="bi bi-border-width" viewBox="0 0 16 16">
                 <path
@@ -104,25 +104,9 @@
               </svg>
               Contable
             </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" href="{{acreedores}}">Acreedores</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{{seguros}}">Seguros</a>
-              </li>
-
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li>
-                <a class="dropdown-item" href="{{ingresos}}">Ingresos</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{{egresos}}">Egresos</a>
-              </li>
-            </ul>
           </li>
+
+          
           {% endif %}
           <li class="nav-item">
             <a class="nav-link active" href="{{reportes}}">

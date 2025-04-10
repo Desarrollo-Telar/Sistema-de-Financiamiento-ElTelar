@@ -32,22 +32,11 @@ from apps.financings.functions_payment import generar
 from apps.financings.task import comparacion_para_boletas_divididas
 
 ## ----------- 
+from apps.financings.tareas_ansicronicas import ver_cuotas_no_cargadas
+from asgiref.sync import async_to_sync
 # TIEMPO
 from datetime import datetime
 from django.utils.timezone import now
-
-
-        
-        
-def cargar_boletas_estado():
-    pagos_estado_completado = Payment.objects.filter(estado_transaccion = "COMPLETADO")
-    for pago in pagos_estado_completado:
-        boleta = Banco.objects.filter(referencia=pago.numero_referencia).first()
-        if boleta :
-            
-
-            boleta.status = True
-            boleta.save()
 
 
 @login_required
@@ -55,13 +44,7 @@ def cargar_boletas_estado():
 def list_payment(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.filter(registro_ficticio=False).order_by('-id'))
-    cargar_boletas_estado()
-    generar()
-    comparacion_para_boletas_divididas()
-    
-    #ver_cuotas_no_cargadas()
-
-
+    ver_cuotas_no_cargadas()
     context = {
         'title':'EL TELAR - PAGOS',
         'page_obj':page_obj,
@@ -76,9 +59,7 @@ def list_payment(request):
 def list_bank(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.filter(registro_ficticio=False).order_by('-fecha'))
-    generar()
-    comparacion_para_boletas_divididas()
-    cargar_boletas_estado()
+    ver_cuotas_no_cargadas()
 
     context = {
         'title':'EL TELAR - BANCOS',
