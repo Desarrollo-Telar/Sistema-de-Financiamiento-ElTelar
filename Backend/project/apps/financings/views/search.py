@@ -189,5 +189,6 @@ class CreditSearch(ListView):
         context['query'] = self.query()
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
+        context['reporte_excel'] = True
         context['posicion'] = self.query()
         return context

@@ -30,6 +30,7 @@ urlpatterns = [
     path('',login_required(views.index),name='index'),
 
     path('reporte/banco/',login_required(reports_excel.report_banco),name='reporte_banco_excel'),
+    path('reporte/creditos/<str:filtro_seleccionado>/',login_required(reports_excel.report_creditos),name='report_creditos_excel'),
     path('reporte/pagos/creditos/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(reports_excel.report_pagos),name='reporte_pagos_excel'),
     path('reporte/pagos/acreedores/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(reports_excel.report_pagos_acreedores),name='report_pagos_acreedores_excel'),
     path('reporte/pagos/seguros/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(reports_excel.report_pagos_seguros),name='report_pagos_seguros_excel'),

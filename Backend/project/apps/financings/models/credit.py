@@ -87,6 +87,9 @@ class Credit(models.Model):
     def formato_monto(self):
         return formatear_numero(self.monto)
     
+    def formato_saldo_pendiente(self):
+        return formatear_numero(self.saldo_pendiente)
+    
     def formato_saldo_actual(self):
         return formatear_numero(self.saldo_actual)
 

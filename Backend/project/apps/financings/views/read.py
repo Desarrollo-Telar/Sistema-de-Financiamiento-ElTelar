@@ -81,7 +81,8 @@ def list_credit(request):
         'title':'ELTELAR - CREDITOS',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.all().count()
+        'count': Credit.objects.all().count(),
+        'filtro_seleccionado':'Todos',
     }
     return render(request, template_name, context)
 

@@ -45,7 +45,8 @@ def filter_credito_reciente(request):
         'title':'ELTELAR - CREDITOS',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(Q(creation_date__range=[inicio,hoy])).count()
+        'count': Credit.objects.filter(Q(creation_date__range=[inicio,hoy])).count(),
+        'filtro_seleccionado':'Recientes'
     }
     return render(request, template_name, context)
 
@@ -59,7 +60,8 @@ def filter_credito_cancelado(request):
         'title':'ELTELAR - CREDITOS',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(is_paid_off=True).count()
+        'count': Credit.objects.filter(is_paid_off=True).count(),
+        'filtro_seleccionado':'Creditos Cancelados'
     }
     return render(request, template_name, context)
 
@@ -73,7 +75,8 @@ def filter_credito_en_atraso(request):
         'title':'ELTELAR - CREDITOS',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(estados_fechas=False).count()
+        'count': Credit.objects.filter(estados_fechas=False).count(),
+        'filtro_seleccionado':'Creditos en Atraso'
     }
     return render(request, template_name, context)
 
@@ -87,7 +90,8 @@ def filter_credito_en_falta_aportacion(request):
         'title':'ELTELAR - CREDITOS',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(estado_aportacion=False).count()
+        'count': Credit.objects.filter(estado_aportacion=False).count(),
+        'filtro_seleccionado':'Creditos con falta de Aportacion'
     }
     return render(request, template_name, context)
 
@@ -104,6 +108,7 @@ def filter_credito_con_excedente(request):
         'page_obj':page_obj,
         'credit_list':page_obj,
         'count': Credit.objects.filter(saldo_actual__lt=0).count(),
+        'filtro_seleccionado': 'Creditos con excedente',
         
     }
     return render(request, template_name, context)

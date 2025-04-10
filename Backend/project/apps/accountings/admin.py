@@ -54,3 +54,5 @@ class EgressAdmin(admin.ModelAdmin):
     search_fields = ('status','numero_referencia')
     list_filter = ('status','numero_referencia')
     actions = [marcar_completado, marcar_pendiente]
+
+admin.site.register(Income)

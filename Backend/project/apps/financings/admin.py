@@ -45,8 +45,12 @@ admin.site.register(DetailsGuarantees)
 class DisbursementAdmin(admin.ModelAdmin):
     list_display = ('id', '__str__')
 
-admin.site.register(Banco)
 
+@admin.register(Banco)
+class BancoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'fecha', 'referencia','status')
+    search_fields = ('referencia', 'status')
+    list_filter = ('referencia', 'status')
 
 @admin.register(AccountStatement)
 class AccountStatementAdmin(admin.ModelAdmin):
