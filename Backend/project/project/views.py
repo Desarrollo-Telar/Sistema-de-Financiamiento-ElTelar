@@ -286,7 +286,7 @@ from apps.financings.formato import formatear_numero
 @usuario_activo
 def index(request):
     template_name = 'index.html'
-    recibos = Recibo.objects.filter(factura=False)
+    recibos = Recibo.objects.filter(factura=False, pago__registro_ficticio =False)
     
     
         
