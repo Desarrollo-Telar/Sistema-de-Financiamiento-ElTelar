@@ -59,6 +59,7 @@ def add_acreedor(request):
             acreedor.numero_referencia = numero_referencia
             acreedor.observaciones = descripcion
             acreedor.boleta = boleta
+            acreedor.estados_fechas = True
             
             acreedor.save() 
             
@@ -114,6 +115,7 @@ def add_seguro(request):
             acreedor.numero_referencia = numero_referencia
             acreedor.observaciones = descripcion
             acreedor.boleta = boleta
+            acreedor.estados_fechas = True
             
             acreedor.save() 
             print(acreedor.codigo_seguro)

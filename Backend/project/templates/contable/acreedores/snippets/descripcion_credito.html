@@ -33,7 +33,7 @@
                     class="{% if  object_list.is_paid_off %} inactivo {% endif %} activo">{{object_list.formato_credito_cancelado}}</span>
             </p>
             <p>ESTADO POR APORTACION: <span style="font-weight: lighter;"
-                    class="{% if not object_list.estado_aportacion %} inactivo {% endif %} activo">{{object_list.formato_estado_aportacion}}</span>
+                class="{% if object_list.estado_aportacion %} activo {% elif object_list.estado_aportacion is None %} neutro {% else %} inactivo{% endif %} ">{{object_list.formato_estado_aportacion}}</span>
             </p>
             <p>ESTADO POR FECHAS: <span style="font-weight: lighter;"
                     class="{% if not object_list.estados_fechas %} inactivo {% endif %} activo">{{object_list.formato_estado_fecha}}</span>

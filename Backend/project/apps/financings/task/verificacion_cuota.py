@@ -86,7 +86,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 
 def actualizar_estado_credito_seguro_acreedor(credito, pago):
     if not pago.status:
-        credito.estados_fechas = False
+        credito.estado_aportacion = False
     else:
         
         credito.estado_aportacion = False
