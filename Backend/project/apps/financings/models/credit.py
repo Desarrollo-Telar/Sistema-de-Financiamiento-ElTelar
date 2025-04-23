@@ -50,6 +50,9 @@ class Credit(models.Model):
 
     # nuevos atributos
     plazo_restante = models.IntegerField("Plazo", blank=True, null=True, default=0)
+    modifico = models.BooleanField(default=False, blank=False, null=False, verbose_name="MOdificacion")
+    numero_credito = models.CharField(max_length=100, blank=True, null=True, default=0)
+    saldo_sin_modificar = models.DecimalField(max_digits=15, decimal_places=2, default=0, null=True, blank=True)
 
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'apps.accountings',
     'django_redis',
     'storages',
+    'modelos',
     #'bootstrap5',
     #'django_inlinecss',
     #'otp',
