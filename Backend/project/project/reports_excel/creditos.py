@@ -48,7 +48,7 @@ def report_creditos(request, filtro_seleccionado):
         desembolso = Disbursement.objects.filter(credit_id__id=reporte.id).first()
         fecha_limite_pago = cuota_limite.mostrar_fecha_limite().date() if cuota_limite else "---"
         desembolso_forma = desembolso.forma_desembolso if desembolso else "---"
-        numero_referencia = cuota_limite.numero_referencia if cuota_limite.numero_referencia else '---'
+        numero_referencia = cuota_limite.numero_referencia if cuota_limite else '---'
 
         # Mensajes de estado
         if reporte.estado_aportacion:
