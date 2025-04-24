@@ -13,6 +13,15 @@ class Guarantees(models.Model):
 
     def __str__(self):
         return self.descripcion
+    
+    def tipos_garantia(self):
+        tipos = ''
+        detalles_garantia = DetailsGuarantees.objects.filter(garantia_id__id = self.id)
+
+        for detalle in detalles_garantia:
+            tipos += f'{detalle.tipo_garantia}, '
+            
+        return tipos
 
     class Meta:
         verbose_name = 'Garantia'
