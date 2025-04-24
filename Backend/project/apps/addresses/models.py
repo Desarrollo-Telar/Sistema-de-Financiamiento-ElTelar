@@ -34,6 +34,30 @@ class Address(models.Model):
     def direccion(self):
         return '{} Zona: {} Departamento: {} Municipio: {}'.format(self.street, self.number, self.city, self.state)
 
+    def get_direccion_personal(self):
+        if self.type_address == 'Dirección Personal':
+            return self.direccion()
+        
+    def get_municipio_personal(self):
+        if self.type_address == 'Dirección Personal':
+            return self.state
+    
+    def get_departamento_personal(self):
+        if self.type_address == 'Dirección Personal':
+            return self.city
+        
+    def get_direccion_laboral(self):
+        if self.type_address == 'Dirección de Trabajo':
+            return self.direccion()
+        
+    def get_municipio_laboral(self):
+        if self.type_address == 'Dirección de Trabajo':
+            return self.state
+    
+    def get_departamento_laboral(self):
+        if self.type_address == 'Dirección de Trabajo':
+            return self.city
+
     class Meta:
         verbose_name = "Dirección"
         verbose_name_plural = "Direcciones"

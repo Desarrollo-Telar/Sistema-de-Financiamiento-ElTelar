@@ -51,6 +51,48 @@ class WorkingInformation(models.Model):
     
     def f_salary(self):
         return formatear_numero(self.salary)
+    
+    def get_fuente_ingreso(self):
+        fuente_ingreso_cliente = ''
+
+        if self.source_of_income != 'Otra':
+            fuente_ingreso_cliente = self.source_of_income
+        else:
+            otra_fuente_ingreso = OtherSourcesOfIncome.objects.filter(customer_id=self.customer_id.id).first()
+            fuente_ingreso_cliente = otra_fuente_ingreso.source_of_income
+
+        return fuente_ingreso_cliente
+    
+    def get_estado_laboral(self):
+        estado_laboral_cliente = ''
+
+        if self.source_of_income != 'Otra':
+            estado_laboral_cliente = self.employment_status
+        else:
+            estado_laboral_cliente = 'COMPLETO'
+
+        return estado_laboral_cliente
+    
+    def get_empresa_laburo(self):
+        empresa_laburo_cliente = ''
+        if self.source_of_income != 'Otra':
+            empresa_laburo_cliente = self.company_name
+        else:
+            otra_fuente_ingreso = OtherSourcesOfIncome.objects.filter(customer_id=self.customer_id.id).first()
+            empresa_laburo_cliente = otra_fuente_ingreso.source_of_income
+
+        return empresa_laburo_cliente
+    
+    def get_puesto(self):
+        puesto_cliente = ''
+
+        if self.source_of_income != 'Otra':
+            puesto_cliente = self.position
+        else:
+            puesto_cliente = 'Otra Fuente de Ingreso'
+
+        return puesto_cliente
+        
 
     class Meta:
         verbose_name = "Información Laboral"
@@ -88,6 +130,20 @@ class Reference(models.Model):
 
     def __str__(self):
         return self.full_name
+    
+    def get_listado_referencia(self):
+        listado_referencias = []
+        referencias = Reference.objects.filter(customer_id = self.customer_id.id)
+        referencia_s = {}
+        for referencia in referencias:
+            referencia_s += {
+                'nombre_completo': referencia.full_name,
+                'telefono': referencia.phone_number,
+                'tipo_referencia': referencia.reference_type
+            }
+            listado_referencias.append(referencia_s)
+
+        return referencia_s
 
     class Meta:
         verbose_name = "Referencia"

@@ -98,7 +98,7 @@ def detail_credit(request,id):
     
     template_name = 'financings/credit/detail.html' # TEMPLATE
     credito= get_object_or_404(Credit,id=id) # DETALLE DEL CREDITO
-    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    #cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     
     customer_list = get_object_or_404(Customer,id= credito.customer_id.id) # LISTAR LA INFORMACION DEL CLIENTE
 

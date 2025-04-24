@@ -10,6 +10,8 @@ from datetime import datetime
 # MODELOS
 from apps.customers.models import Customer
 from apps.financings.models import Credit, PaymentPlan, Disbursement, Guarantees
+from apps.addresses.models import Address
+from apps.FinancialInformation.models import WorkingInformation, Reference
 
 def informacion_credito(creditos):
     return creditos.first() if creditos.exists() else None
@@ -53,19 +55,19 @@ def report_clientes(request):
     sheet['AC1'] = "ESTADO POR APORTACION"
     sheet['AD1'] = 'FORMA DE DESEMBOLSO'
     sheet['AE1'] = 'TIPO DE GARANTIA'
-    
+
     sheet['AF1'] = 'DIRECCION DEL CLIENTE'
     sheet['AG1'] = 'MUNICIPIO DEL CLIENTE' 
     sheet['AH1'] = 'DEPARTAMENTO DEL CLIENTE' 
-
     sheet['AI1'] = 'DIRECCION DE TRABAJO'
     sheet['AJ1'] = 'MUNICIPIO DE LABURO' 
-
     sheet['AK1'] = 'DEPARTAMENTO DE LABURO' 
+
     sheet['AL1'] = 'FUENTE DE INGRESO'
     sheet['AM1'] =  'ESTADO LABORAL'
     sheet['AN1'] = 'EMPRESA DE LABURO'
     sheet['AO1'] =  'PUESTO'
+
     sheet['AP1'] = 'REFERENCIA 1'
     sheet['AQ1'] = 'REFERENCIA 2'
     sheet['AR1'] = 'REFERENCIA 3'
@@ -99,6 +101,15 @@ def report_clientes(request):
         mensaje = ''
         moroso = ''
         tipo_garantia = ''
+
+        informacion_laboral = WorkingInformation.objects.filter(customer_id=cliente.id).first()
+        direcion_personal = Address.objects.filter(customer_id=cliente.id ).exclude(type_address='Dirección de Trabajo').first()
+        filters = Q()
+        filters |= Q(type_address='Dirección de Trabajo')
+        filters |= Q(type_address='Direccin de Trabajo')
+
+        direccion_laboral = Address.objects.filter(Q(customer_id=cliente.id), filters).first()
+        referencias = Reference.objects.filter(customer_id=cliente.id)
 
 
         
@@ -143,6 +154,25 @@ def report_clientes(request):
         sheet[f'AD{idx}'] = desembolso.forma_desembolso if desembolso else ''
         sheet[f'AE{idx}'] = garantia.tipos_garantia() if garantia else ''
         
+        
+        sheet[f'AF{idx}'] = direcion_personal.street if direcion_personal else ''
+        sheet[f'AG{idx}'] = direcion_personal.state if direcion_personal else ''
+        sheet[f'AH{idx}'] = direcion_personal.city if direcion_personal else ''
+        sheet[f'AI{idx}'] = direccion_laboral.street  if direccion_laboral else ''
+        sheet[f'AJ{idx}'] = direccion_laboral.state  if direccion_laboral else ''
+        sheet[f'AK{idx}'] = direccion_laboral.city if direccion_laboral else ''
+        
+        sheet[f'AL{idx}'] = informacion_laboral.get_fuente_ingreso() if informacion_laboral else ''
+        sheet[f'AM{idx}'] = informacion_laboral.get_estado_laboral() if informacion_laboral else ''
+        sheet[f'AN{idx}'] = informacion_laboral.get_empresa_laburo() if informacion_laboral else ''
+        sheet[f'AO{idx}'] = informacion_laboral.get_puesto() if informacion_laboral else ''
+        
+        if referencias:
+            columnas = ['AP', 'AQ', 'AR', 'AS']
+
+            for i, referencia in enumerate(referencias[:4]):  # Limita a máximo 4 referencias
+                sheet[f'{columnas[i]}{idx}'] = referencia.full_name
+    
 
     
 
