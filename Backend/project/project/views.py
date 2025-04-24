@@ -205,7 +205,7 @@ def logout_view(request):
 ### --- APARTADO PARA INICIAR SESION --- ###
 def login_view(request):
     template_name = 'user/login.html'
-    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    #cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     
     # Verificar que no este autenticado
     if request.user.is_authenticated:
@@ -286,13 +286,13 @@ from apps.financings.formato import formatear_numero
 @usuario_activo
 def index(request):
     template_name = 'index.html'
-    recibos = Recibo.objects.filter(factura=False, pago__registro_ficticio =False)
+    #recibos = Recibo.objects.filter(factura=False, pago__registro_ficticio =False)
     
     
         
     context = {
         'title':'EL TELAR',
-        'recibos':recibos,
+        #'recibos':recibos,
         'clientes':Customer.objects.all(),
         'creditos':Credit.objects.filter(is_paid_off=False),
         'creditos_atrasados':Credit.objects.filter(estados_fechas=False),
