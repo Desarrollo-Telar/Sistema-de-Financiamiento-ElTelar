@@ -42,7 +42,11 @@ def report_clientes(request):
     sheet['R1'] = "TASA DE INTERES"
 
     # Obtener datos de la base de datos, ordenando por status (True primero)
-    clientes = Customer.objects.all()
+    from django.db.models import Count
+
+    # Obtener datos de la base de datos, ordenando para mostrar primero los que tienen créditos
+    clientes = Customer.objects.annotate(num_creditos=Count('credit')).order_by('-num_creditos')
+
     contador = 0
 
     # Agregar datos al archivo
