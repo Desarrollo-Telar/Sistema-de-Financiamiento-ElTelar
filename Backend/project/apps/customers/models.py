@@ -104,6 +104,15 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.get_full_name()
+    
+    
+    def get_age(self):
+        from datetime import date
+        today = date.today()
+        edad = today.year - self.date_birth.year
+        if (today.month, today.day) < (self.date_birth.month, self.date_birth.day):
+            edad -= 1
+        return edad
 
     
 

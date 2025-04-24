@@ -8,6 +8,8 @@ from apps.financings.formato import formatear_numero
 from apps.financings.models import Credit
 
 from project.settings import MEDIA_URL, STATIC_URL
+from project.database_store import minio_client  # asegúrate de que esté importado correctamente
+from datetime import timedelta
 # Acreedor
 class Creditor(models.Model):
     codigo_acreedor = models.CharField("Codigo de Acreedor", max_length=100) # AC-2024-001
@@ -200,10 +202,24 @@ class Egress(models.Model):
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
 
     def get_boleta(self):
-        return '{}{}'.format(MEDIA_URL,self.boleta)
+        try:
+            return minio_client.presigned_get_object(
+                bucket_name='asiatrip',
+                object_name=self.boleta.name,  # ejemplo: documents/archivo.pdf
+                expires=timedelta(minutes=30)
+            )
+        except Exception as e:
+            return '{}{}'.format(MEDIA_URL,self.boleta)
 
     def get_documento(self):
-        return '{}{}'.format(MEDIA_URL,self.documento)
+        try:
+            return minio_client.presigned_get_object(
+                bucket_name='asiatrip',
+                object_name=self.documento.name,  # ejemplo: documents/archivo.pdf
+                expires=timedelta(minutes=30)
+            )
+        except Exception as e:
+            return '{}{}'.format(MEDIA_URL,self.documento)
 
     def fmonto(self):
         return formatear_numero(self.monto)

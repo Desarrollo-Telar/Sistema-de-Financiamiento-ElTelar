@@ -48,7 +48,8 @@ def list_payment(request):
     context = {
         'title':'EL TELAR - PAGOS',
         'page_obj':page_obj,
-        'payment_list':page_obj
+        'payment_list':page_obj,
+        'count':Payment.objects.filter(registro_ficticio=False).count()
 
         
     }

@@ -39,7 +39,7 @@ def report_creditos(request, filtro_seleccionado):
         "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
         "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
         "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", 
-        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE", "STATUS DEL CREDITO"
+        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE", "STATUS DEL CREDITO", "NUMERO DE REFERENCIA"
     ])
 
     # Agregar los datos
@@ -48,6 +48,7 @@ def report_creditos(request, filtro_seleccionado):
         desembolso = Disbursement.objects.filter(credit_id__id=reporte.id).first()
         fecha_limite_pago = cuota_limite.mostrar_fecha_limite().date() if cuota_limite else "---"
         desembolso_forma = desembolso.forma_desembolso if desembolso else "---"
+        numero_referencia = cuota_limite.numero_referencia if cuota_limite.numero_referencia else '---'
 
         # Mensajes de estado
         if reporte.estado_aportacion:
@@ -78,7 +79,9 @@ def report_creditos(request, filtro_seleccionado):
             fecha_limite_pago,
             reporte.formato_saldo_actual(),
             reporte.formato_saldo_pendiente(),
-            stat
+            stat,
+            numero_referencia
+
         ])
 
     # Crear la respuesta HTTP

@@ -7,3 +7,7 @@ from .pagos_seguros import report_pagos_seguros
 from .pagos_acreedores import report_pagos_acreedores
 
 from .creditos import report_creditos
+
+from .boletas import report_base_boletas
+
+from .clientes import report_clientes
