@@ -60,12 +60,12 @@ def report_clientes(request):
     sheet['AG1'] = 'MUNICIPIO DEL CLIENTE' 
     sheet['AH1'] = 'DEPARTAMENTO DEL CLIENTE' 
     sheet['AI1'] = 'DIRECCION DE TRABAJO'
-    sheet['AJ1'] = 'MUNICIPIO DE LABURO' 
-    sheet['AK1'] = 'DEPARTAMENTO DE LABURO' 
+    sheet['AJ1'] = 'MUNICIPIO DE LABORAL' 
+    sheet['AK1'] = 'DEPARTAMENTO DE LABORAL' 
 
     sheet['AL1'] = 'FUENTE DE INGRESO'
     sheet['AM1'] =  'ESTADO LABORAL'
-    sheet['AN1'] = 'EMPRESA DE LABURO'
+    sheet['AN1'] = 'EMPRESA DE LABORAL'
     sheet['AO1'] =  'PUESTO'
 
     sheet['AP1'] = 'REFERENCIA 1'
@@ -164,7 +164,7 @@ def report_clientes(request):
         
         sheet[f'AL{idx}'] = informacion_laboral.get_fuente_ingreso() if informacion_laboral else ''
         sheet[f'AM{idx}'] = informacion_laboral.get_estado_laboral() if informacion_laboral else ''
-        sheet[f'AN{idx}'] = informacion_laboral.get_empresa_laburo() if informacion_laboral else ''
+        sheet[f'AN{idx}'] = informacion_laboral.get_empresa_LABORAL() if informacion_laboral else ''
         sheet[f'AO{idx}'] = informacion_laboral.get_puesto() if informacion_laboral else ''
         
         if referencias:

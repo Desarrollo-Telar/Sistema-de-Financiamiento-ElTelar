@@ -154,6 +154,7 @@ def filter_credito_por_mes_anio(request):
         'count': object_list.count(),
         'mes': mes,
         'anio': anio,
+        'filtro_seleccionado':'Creditos con falta de Aportacion'
     }
     return render(request, template_name, context)
 
