@@ -150,7 +150,7 @@ def filter_credito_por_mes_anio(request):
         'title':'ELTELAR - CREDITOS',
         #'page_obj':page_obj,
         'credit_list':page_obj,
-        'reporte':True,
+        'reporte_excel':True,
         'count': object_list.count(),
         'mes': mes,
         'anio': anio,

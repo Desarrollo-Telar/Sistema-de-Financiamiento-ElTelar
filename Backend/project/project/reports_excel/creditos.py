@@ -39,7 +39,7 @@ def report_creditos(request, filtro_seleccionado):
         "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
         "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
         "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", 
-        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE", "STATUS DEL CREDITO", "NUMERO DE REFERENCIA"
+        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE", "STATUS DEL CREDITO", "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
     ])
 
     # Agregar los datos
@@ -80,7 +80,9 @@ def report_creditos(request, filtro_seleccionado):
             reporte.formato_saldo_actual(),
             reporte.formato_saldo_pendiente(),
             stat,
-            numero_referencia
+            numero_referencia,
+            str(reporte.customer_id.asesor)
+
 
         ])
 

@@ -6,6 +6,7 @@ from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.users.models import User
 from apps.financings.models import Banco, DetailsGuarantees
+from apps.subsidiaries.models import Subsidiary
 
 # SIGNALS
 from django.db.models.signals import post_delete, post_save, pre_save, pre_delete
@@ -106,6 +107,21 @@ class DocumentOther(models.Model):
     class Meta:
         verbose_name = "Otro Documento"
         verbose_name_plural = "Otros Documentos"
+
+class DocumentSubsidiary(models.Model):
+    ddescription = models.TextField("Descripción",blank=True, null=True)
+    document = models.FileField("Documento",blank=True, null=True,upload_to='documents/sucursal/')
+    uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+
+    subsidiary = models.ForeignKey(Subsidiary, on_delete=models.CASCADE, related_name='subsidiary_documents')
+
+    def __str__(self):
+        return self.description
+    
+    
+    class Meta:
+        verbose_name = "Documento de Sucursal"
+        verbose_name_plural = "Documentos de Sucursales"
 
 @receiver(post_delete, sender=Document)
 def delete_document_files(sender, instance, **kwargs):

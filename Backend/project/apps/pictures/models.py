@@ -4,6 +4,8 @@ from django.db import models
 from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
+from apps.subsidiaries.models import Subsidiary
+
 # Create your models here.
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
@@ -53,6 +55,19 @@ class ImagenCustomer(models.Model):
     class Meta:
         verbose_name = "Imagen del Cliente"
         verbose_name_plural = "Imágenes de Clientes"
+
+class ImagenSubsidiary(models.Model):
+    subsidiary = models.ForeignKey(Subsidiary, on_delete=models.CASCADE)
+    image = models.ImageField("Imagen", blank=True, null=True, upload_to='documents/sucursal/')
+    description = models.TextField("Descripción", blank=True, null=True)
+    uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+
+    def __str__(self):
+        return f"Imagen de la sucursal {self.subsidiary}"
+
+    class Meta:
+        verbose_name = "Imagen de la Sucursal"
+        verbose_name_plural = "Imágenes de las Sucursales"
 
 class ImagenAddress(models.Model):
     address_id = models.ForeignKey(Address, on_delete=models.CASCADE)

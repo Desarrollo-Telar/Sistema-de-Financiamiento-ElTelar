@@ -34,7 +34,7 @@ class PaymentPlanAdmin(admin.ModelAdmin):
     
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'numero_referencia', 'estado_transaccion','monto','tipo_pago')
+    list_display = ('id', 'numero_referencia', 'estado_transaccion','monto','tipo_pago','fecha_creacion')
     search_fields = ('numero_referencia', 'estado_transaccion','tipo_pago','cliente__customer_code')
     list_filter = ('numero_referencia', 'estado_transaccion','tipo_pago', 'cliente__customer_code')
 

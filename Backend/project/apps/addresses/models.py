@@ -1,8 +1,10 @@
+# Create your models here.
 from django.db import models
 
-# Create your models here.
+
 # Relaciones
 from apps.customers.models import Customer
+from apps.subsidiaries.models import Subsidiary
 
 from django.db.models.signals import post_save, pre_save, pre_delete, post_delete
 from django.dispatch import receiver
@@ -15,6 +17,7 @@ class Address(models.Model):
         ('Dirección de Casa', 'Dirección de Casa'),
         ('Dirección de Trabajo', 'Dirección de Trabajo'),
         ('Dirección Personal', 'Dirección Personal'),
+        ('Dirección de Sucursal','Dirección de Sucursal'),
     ]
     
     
@@ -26,37 +29,15 @@ class Address(models.Model):
     type_address = models.CharField("Tipo de Dirección", choices=tipo_direccion, max_length=90, blank=False, null=False)
     latitud = models.CharField("Latitud", max_length=120, blank=False, null=False)
     longitud = models.CharField("Longitud",max_length=120, blank=False, null=False)
-    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
+    subsidiary = models.ForeignKey(Subsidiary, on_delete=models.CASCADE, blank=True, null=True)
+    codigo_postal = models.CharField("Codigo Postal", blank=True, null=True, max_length=100)
 
     def __str__(self):
-        return f'{self.street}, {self.city} / {self.customer_id}'
+        return f'{self.street}, {self.city} '
     
     def direccion(self):
         return '{} Zona: {} Departamento: {} Municipio: {}'.format(self.street, self.number, self.city, self.state)
-
-    def get_direccion_personal(self):
-        if self.type_address == 'Dirección Personal':
-            return self.direccion()
-        
-    def get_municipio_personal(self):
-        if self.type_address == 'Dirección Personal':
-            return self.state
-    
-    def get_departamento_personal(self):
-        if self.type_address == 'Dirección Personal':
-            return self.city
-        
-    def get_direccion_laboral(self):
-        if self.type_address == 'Dirección de Trabajo':
-            return self.direccion()
-        
-    def get_municipio_laboral(self):
-        if self.type_address == 'Dirección de Trabajo':
-            return self.state
-    
-    def get_departamento_laboral(self):
-        if self.type_address == 'Dirección de Trabajo':
-            return self.city
 
     class Meta:
         verbose_name = "Dirección"
@@ -66,6 +47,8 @@ class Address(models.Model):
 
 class Departamento(models.Model):
     nombre = models.CharField("Nombre del Departamento", max_length=120, blank=False, null=False)
+    codigo_postal = models.CharField("Codigo Postal", blank=True, null=True, max_length=100)
+
     def __str__(self):
         return f'{self.nombre}'
         
@@ -76,6 +59,7 @@ class Departamento(models.Model):
 class Municiopio(models.Model):
     nombre = models.CharField("Nombre del Municipio", max_length=120, blank=False, null=False, unique=True)
     depart = models.ForeignKey(Departamento, on_delete=models.CASCADE, blank=False, null=False)
+    codigo_postal = models.CharField("Codigo Postal", blank=True, null=True, max_length=100)
 
     def __str__(self):
         return f'{self.nombre}'
