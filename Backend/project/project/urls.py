@@ -33,7 +33,9 @@ urlpatterns = [
     path('reporte/boletas_base/',login_required(reports_excel.report_base_boletas),name='report_base_boletas'),
     path('reporte/clientes/',login_required(reports_excel.report_clientes),name='report_clientes'),
     path('reporte/desembolso/<str:mes>/<str:anio>/',login_required(reports_excel.report_desmbolso),name='report_desmbolso'),
-    
+    path('reporte/pagos/creditos/<str:anio>/<str:mes>/', login_required(reports_excel.report_pagos_generales),name='report_pagos_generales'),
+    path('reporte/pagos/acreedores/<str:anio>/<str:mes>/', login_required(reports_excel.report_pagos_generales_acreedores),name='report_pagos_generales_acreedores'),
+    path('reporte/pagos/seguros/<str:anio>/<str:mes>/', login_required(reports_excel.report_pagos_generales_seguros),name='report_pagos_generales_seguros'),
 
     path('reporte/creditos/<str:filtro_seleccionado>/',login_required(reports_excel.report_creditos),name='report_creditos_excel'),
     path('reporte/pagos/creditos/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(reports_excel.report_pagos),name='reporte_pagos_excel'),

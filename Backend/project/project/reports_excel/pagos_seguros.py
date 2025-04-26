@@ -8,6 +8,65 @@ import json
 from django.http import HttpResponse
 from openpyxl import Workbook
 from django.db.models import Q, Sum
+def report_pagos_generales_seguros(request, anio, mes):
+    filtro_seleccionado = f'BOLETAS GENERALES {mes} {anio}'
+
+    filters = Q()
+    filters &= Q(fecha__year=anio)
+    filters &= Q(fecha__month=mes)
+    filters &= Q(pago__seguro__isnull=False)
+
+    reportes = Recibo.objects.filter(filters)
+
+     # Crear el archivo Excel
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.title = f"Reporte de {filtro_seleccionado}"
+
+    # Agregar encabezados
+    sheet['A1'] = f'REPORTE SOBRE {filtro_seleccionado}'
+    
+    sheet.append(["#", "FECHA", "CODIGO DEL SEGURO", "NOMBRE", "NO. REFERENCIA", "MONTO PAGADO", "MORA PAGADA"
+                  ,"INTERES PAGADO", "CAPITAL APORTADO","STATUS DEL SEGURO"])
+
+    # Agregar los datos al archivo Excel
+    for idx, reporte in enumerate(reportes, start=1):
+        monto = reporte.total
+
+        # Agregar los datos a la fila correspondiente
+        mensaje = None
+        if reporte.pago.seguro.estado_aportacion:
+            mensaje = 'VIGENTE'
+        elif reporte.pago.seguro.estado_aportacion is None:
+            mensaje = 'SIN APORTACIONES'
+        else:
+            mensaje = 'EN ATRASO'
+
+        aportacion = mensaje
+        s_fecha = 'VIGENTE' if reporte.pago.seguro.estados_fechas else 'EN ATRASO'
+        sheet.append([
+            idx, 
+            str(reporte.fecha),
+            str(reporte.pago.seguro.codigo_seguro),
+            str(reporte.pago.seguro.nombre_acreedor),
+            str(reporte.pago.numero_referencia),
+            str(reporte.Ftotal()),
+            str(reporte.Fmora_pagada()),
+            str(reporte.Finteres_pagado()),
+            str(reporte.Faporte_capital()),
+            f"Status de Aportación: {aportacion}, "
+            f"Status por Fecha: {s_fecha}"
+        ])
+
+    # Crear respuesta HTTP para descargar el archivo Excel
+    response = HttpResponse(content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    response['Content-Disposition'] = f'attachment; filename="reportes_sobre_pagos_{filtro_seleccionado}.xlsx"'
+
+    # Guardar el archivo en la respuesta
+    workbook.save(response)
+    return response
+
+
 
 def report_pagos_seguros(request, filtro_seleccionado, anio, mes, total):
     # Mapeo de filtros válidos

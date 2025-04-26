@@ -63,10 +63,13 @@ def reportes_generales(request):
         'mora_pagada': 'mora_pagada__gt',
         'interes_pagado': 'interes_pagado__gt',
         'aporte_capital': 'aporte_capital__gt',
-        'banco':'banco',
+        'general':'general',
     }
     reportes = None
     if filtro_seleccionado in filtros_validos:
+
+        if filtro_seleccionado == 'general':
+            return redirect('report_pagos_generales',str(anio), str(mes))
         filtro_dinamico = {filtros_validos[filtro_seleccionado]: 0}
         
         reportes = Recibo.objects.filter(filters).filter(**filtro_dinamico)
