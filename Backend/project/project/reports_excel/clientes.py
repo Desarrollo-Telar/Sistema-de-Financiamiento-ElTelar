@@ -164,7 +164,7 @@ def report_clientes(request):
         
         sheet[f'AL{idx}'] = informacion_laboral.get_fuente_ingreso() if informacion_laboral else ''
         sheet[f'AM{idx}'] = informacion_laboral.get_estado_laboral() if informacion_laboral else ''
-        sheet[f'AN{idx}'] = informacion_laboral.get_empresa_LABORAL() if informacion_laboral else ''
+        sheet[f'AN{idx}'] = informacion_laboral.get_empresa_laburo() if informacion_laboral else ''
         sheet[f'AO{idx}'] = informacion_laboral.get_puesto() if informacion_laboral else ''
         
         if referencias:

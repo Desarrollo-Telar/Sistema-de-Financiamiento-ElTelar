@@ -11,3 +11,5 @@ from .creditos import report_creditos
 from .boletas import report_base_boletas
 
 from .clientes import report_clientes
+
+from .desembolso import report_desmbolso

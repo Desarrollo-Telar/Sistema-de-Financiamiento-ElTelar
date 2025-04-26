@@ -49,8 +49,8 @@ INSTALLED_APPS = [
     'django_redis',
     'storages',
     'modelos',
-    #'apps.subsidiaries',
-    #'apps.ratings'
+    'apps.subsidiaries',
+    'apps.ratings'
     #'bootstrap5',
     #'django_inlinecss',
     #'otp',

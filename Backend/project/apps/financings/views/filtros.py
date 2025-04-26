@@ -142,7 +142,7 @@ def filter_credito_por_mes_anio(request):
     filters &= Q(creation_date__year=anio)
     filters &= Q(creation_date__month=mes)
     
-    object_list = Credit.objects.filter(filters).order_by('-id')
+    object_list = Credit.objects.filter(filters).order_by('id')
     page_obj = paginacion(request, object_list)
     
 
@@ -150,7 +150,9 @@ def filter_credito_por_mes_anio(request):
         'title':'ELTELAR - CREDITOS',
         #'page_obj':page_obj,
         'credit_list':page_obj,
+        'reporte':True,
         'reporte_excel':True,
+        'reporte_desembolso':True,
         'count': object_list.count(),
         'mes': mes,
         'anio': anio,
