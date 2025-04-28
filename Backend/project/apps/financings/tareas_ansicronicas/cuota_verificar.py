@@ -16,10 +16,9 @@ def cargar_boletas_estado():
     for pago in pagos_estado_completado:
         boleta = Banco.objects.filter(referencia=pago.numero_referencia).first()
         if boleta :
-            
-
-            boleta.status = True
-            boleta.save()
+            if not boleta.status:
+                boleta.status = True
+                boleta.save()
     return 'Cargado'
 
 def boletas_ver():
@@ -57,6 +56,6 @@ def ver_cuotas_no_cargadas():
     
     #comparacion_para_boletas_divididas()
 
-    #cargar_boletas_estado()
+    cargar_boletas_estado()
     #boletas_ver()
     return 'Listo'
