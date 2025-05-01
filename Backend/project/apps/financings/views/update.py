@@ -57,6 +57,10 @@ def update_cuota(request, id):
     mora_antigua = cuota.mora 
     interes_antiguo = cuota.interest
 
+    if cuota.mora == 0 and cuota.interest == 0:
+        messages.error(request, 'No hay cuota por cobrar')
+        return redirect('index')
+
     if request.method == 'POST':
         form = PaymentPlanForms(request.POST, instance=cuota)
         if form.is_valid():
