@@ -49,6 +49,9 @@ def update_pago(request,id):
 @login_required
 @usuario_activo
 def update_cuota(request, id):
+    if request.user.rol == "Secretaria" or request.user.rol == "Secretario":
+        return redirect('index')
+    
     template_name = 'financings/cuota/update.html'
     cuota = get_object_or_404(PaymentPlan, id=id)
     mora_antigua = cuota.mora 

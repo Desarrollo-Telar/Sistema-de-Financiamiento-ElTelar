@@ -45,6 +45,7 @@
                             Q{{cuota.formato_cuota_saldo_pendiente}}
                         </td>
                         <td class="border border-dark-subtle">
+                            <a href="{% url 'financings:paymente_update_cuota' cuota.id %}"></a>
                             Q{{cuota.formato_cuota_total}}
                         </td>
 
