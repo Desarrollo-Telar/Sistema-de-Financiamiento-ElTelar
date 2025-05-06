@@ -61,7 +61,7 @@ urlpatterns = [
     path('contable/', include('apps.accountings.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),
-    path('test/', views.test, name='test'),
+    path('test/', views.prueba, name='test'),
     path('qr/<str:data>/', views.generate_qr, name='generate_qr'),
     #path('pdf/<int:id>',login_required(views.render_pdf_view), name='pdf'),
     path('pdf/<int:id>', generate_pdf.generar_pdf, name='pdf'),

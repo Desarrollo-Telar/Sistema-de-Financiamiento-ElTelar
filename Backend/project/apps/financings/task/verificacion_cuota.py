@@ -131,9 +131,10 @@ def cambiar_estado():
         credito = get_credito(pago)
         actualizar_estado_credito_seguro_acreedor(credito, pago)
 
-@shared_task
+@shared_task(name="apps.financings.task.cambiar_plan")
 def cambiar_plan():
     dia = datetime.now().date()
+    
 
     planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=False)
     print(planes)

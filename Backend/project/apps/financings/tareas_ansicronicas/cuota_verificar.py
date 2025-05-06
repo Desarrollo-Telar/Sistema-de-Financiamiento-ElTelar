@@ -52,10 +52,10 @@ def boletas_ver():
 
 
 def ver_cuotas_no_cargadas():
-    #generar()
+    generar()
     
     #comparacion_para_boletas_divididas()
 
-    cargar_boletas_estado()
+    #cargar_boletas_estado()
     #boletas_ver()
     return 'Listo'

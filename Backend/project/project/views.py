@@ -84,12 +84,16 @@ from django.db.models import Q
 
 
 ###-- CREACION DE PDFS PARA ALGUN FORMULARIO IVE --###
-import os
-from django.conf import settings
-from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
+
+
+def prueba(request):
+    cambiar_plan()
+
+    return redirect('index')
+
 
 
 
@@ -286,6 +290,7 @@ from apps.financings.formato import formatear_numero
 @usuario_activo
 def index(request):
     template_name = 'index.html'
+    cambiar_plan.delay()
     #recibos = Recibo.objects.filter(factura=False, pago__registro_ficticio =False)
     
     

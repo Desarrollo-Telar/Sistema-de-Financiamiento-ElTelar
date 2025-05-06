@@ -112,6 +112,7 @@ services:
     restart: always
     volumes:
       - .:/app
+    working_dir: /code
     depends_on:
       - redis
       - db
@@ -136,6 +137,7 @@ services:
     restart: always
     volumes:
       - .:/app
+    working_dir: /code
     depends_on:
       - redis
       - db

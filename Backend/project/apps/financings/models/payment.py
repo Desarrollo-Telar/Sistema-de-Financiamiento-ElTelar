@@ -605,8 +605,13 @@ class Payment(models.Model):
                 pago.cuota_vencida = False
             else:
                 cuota_a_actualizar.interest  = max (0, cuota_a_actualizar.interest - pagado_interes)
-            cuota_a_actualizar.mora = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)  
-            cuota_a_actualizar.mora_generado = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)
+            
+            if cuota.mora == 0:
+                cuota_a_actualizar.mora = 0
+                cuota_a_actualizar.mora_generado = 0
+            else:
+                cuota_a_actualizar.mora = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)  
+                cuota_a_actualizar.mora_generado = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)
                 
         else:
             logger.info('CREACION DE UNA NUEVA  CUOTA')
