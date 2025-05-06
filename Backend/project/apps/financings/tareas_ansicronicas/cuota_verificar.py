@@ -7,7 +7,7 @@ from django.utils.timezone import now
 
 from apps.financings.functions import realizar_pago
 from apps.financings.functions_payment import generar
-from apps.financings.task import comparacion_para_boletas_divididas
+from apps.financings.task import comparacion_para_boletas_divididas, comparacion
 
 from asgiref.sync import sync_to_async
 
@@ -52,10 +52,10 @@ def boletas_ver():
 
 
 def ver_cuotas_no_cargadas():
-    generar()
+    comparacion.delay()
     
     #comparacion_para_boletas_divididas()
 
-    #cargar_boletas_estado()
+    cargar_boletas_estado()
     #boletas_ver()
     return 'Listo'
