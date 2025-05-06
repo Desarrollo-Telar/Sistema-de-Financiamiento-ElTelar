@@ -290,7 +290,7 @@ from apps.financings.formato import formatear_numero
 @usuario_activo
 def index(request):
     template_name = 'index.html'
-    cambiar_plan.delay()
+    #cambiar_plan.delay()
     #recibos = Recibo.objects.filter(factura=False, pago__registro_ficticio =False)
     
     

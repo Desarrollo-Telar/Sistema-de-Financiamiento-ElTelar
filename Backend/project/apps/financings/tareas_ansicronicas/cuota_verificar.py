@@ -52,7 +52,7 @@ def boletas_ver():
 
 
 def ver_cuotas_no_cargadas():
-    comparacion.delay()
+    comparacion()
     
     #comparacion_para_boletas_divididas()
 
