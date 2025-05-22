@@ -98,7 +98,9 @@ def update_cuota(request, id):
             cuota.cambios = True
             cuota.save()
 
-            return redirect('financings:detail_credit',cuota.credit_id.id)
+            messages.success(request,'El descuento fue aplicado')
+
+            return redirect('index')
             
     else:
         form = PaymentPlanForms(instance=cuota)

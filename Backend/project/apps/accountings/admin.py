@@ -37,6 +37,10 @@ class InsuranceAdmin(admin.ModelAdmin):
         'observaciones',
         'boleta',
         'fecha_vencimiento',
+        'is_paid_off',
+        'estado_aportacion',
+        'estados_fechas',
+        'saldo_actual'
     )
 
     list_display = ('id', 'nombre_acreedor', 'codigo_seguro','monto','plazo','tasa','fecha_registro')

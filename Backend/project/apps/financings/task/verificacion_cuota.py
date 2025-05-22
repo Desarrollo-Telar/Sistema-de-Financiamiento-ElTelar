@@ -38,9 +38,13 @@ def get_credito(pago):
 def calcular_interes_y_mora(pago):
     logger.info("CALCULANDO EL INTERES")
     tasa_interes = 0
+    interes = 0
+    mora = 0
 
     if pago.credit_id is not None:
         tasa_interes =  pago.credit_id.tasa_interes
+        
+        mora = Decimal(pago.interest) * Decimal(0.1)
     
     if pago.acreedor is not None:
         tasa_interes = pago.acreedor.tasa
@@ -49,7 +53,6 @@ def calcular_interes_y_mora(pago):
         tasa_interes = pago.seguro.tasa
     
     interes = calculo_interes(pago.saldo_pendiente,tasa_interes)
-    mora = Decimal(pago.interest) * Decimal(0.1)
 
     return interes, mora
 
