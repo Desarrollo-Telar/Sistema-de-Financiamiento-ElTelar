@@ -1,14 +1,17 @@
 from django.db import models
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from django.utils import timezone
-from decimal import Decimal
 
+# RELACIONES
 from apps.customers.models import Customer
 from apps.InvestmentPlan.models import InvestmentPlan
 
 # FORMATO
 from apps.financings.formato import formatear_numero
+from decimal import Decimal
+
+# TIEMPO
+from datetime import datetime
+from django.utils import timezone
+from dateutil.relativedelta import relativedelta
 
 class Credit(models.Model):
     formaPago = [
@@ -53,6 +56,10 @@ class Credit(models.Model):
     modifico = models.BooleanField(default=False, blank=False, null=False, verbose_name="MOdificacion")
     numero_credito = models.CharField(max_length=100, blank=True, null=True, default=0)
     saldo_sin_modificar = models.DecimalField(max_digits=15, decimal_places=2, default=0, null=True, blank=True)
+    
+
+    fecha_actualizacion = models.DateField("Fecha en que se actualizo el credito", default=datetime.now, null=True, blank=True)
+
 
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'

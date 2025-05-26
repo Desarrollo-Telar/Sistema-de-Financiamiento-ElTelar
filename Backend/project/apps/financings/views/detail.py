@@ -92,12 +92,14 @@ def total_capital_pagada(estado_cuenta):
     return formatear_numero(contador)
 
 ### ------------ DETALLE -------------- ###
+from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito
 @login_required
 @usuario_activo
 def detail_credit(request,id):
     
     template_name = 'financings/credit/detail.html' # TEMPLATE
     credito= get_object_or_404(Credit,id=id) # DETALLE DEL CREDITO
+    generar_todas_las_cuotas_credito(credito.codigo_credito)
     #cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     
     customer_list = get_object_or_404(Customer,id= credito.customer_id.id) # LISTAR LA INFORMACION DEL CLIENTE
@@ -107,8 +109,14 @@ def detail_credit(request,id):
 
     list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('id') # LISTAR DESEMBOLSOS
 
+    dia = datetime.now().date()
     
-    siguiente_pago = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
+    
+    siguiente_pago = PaymentPlan.objects.filter(
+        credit_id=credito,
+        start_date__lte=dia,
+        fecha_limite__gte=dia
+    ).first()
     cuotas_vencidas = PaymentPlan.objects.filter(credit_id=credito, cuota_vencida=True)
     estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
     #actualizacion(credito)

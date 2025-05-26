@@ -33,11 +33,13 @@ def codigo(instance):
 @receiver(pre_save, sender=Credit)
 def generar_codigo(sender, instance, **kwargs):
     codigo(instance)
+    instance.fecha_actualizacion = datetime.now().date()
 
 # LA CREACION DE LA PRIMERA CUOTA DE UN CREDITO
 @receiver(post_save, sender=Credit)
 def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
     print('desde signals post save de credit, de la funcion generar plan de pagos nuevos')
+    
     if created:
         # CALCULO DE INTERES
         interes = calculo_interes(instance.monto, instance.tasa_interes)

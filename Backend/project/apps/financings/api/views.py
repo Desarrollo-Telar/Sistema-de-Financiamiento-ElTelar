@@ -171,7 +171,7 @@ class PaymentPlanUltimoViewSet(viewsets.ModelViewSet):
         search_term = self.request.query_params.get('term', '')
         if search_term:
             queryset = queryset.filter(
-                Q(credit_id__id__icontains=search_term) 
+                Q(id__icontains=search_term) 
             )
         last_item = queryset.order_by('-id').first()
         if last_item:

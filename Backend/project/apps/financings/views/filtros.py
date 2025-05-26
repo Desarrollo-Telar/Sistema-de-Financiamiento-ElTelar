@@ -69,7 +69,7 @@ def filter_credito_cancelado(request):
 @usuario_activo
 def filter_credito_en_atraso(request):
     template_name = 'financings/credit/list.html'
-    page_obj = paginacion(request, Credit.objects.filter(estados_fechas=False).order_by('-id'))
+    page_obj = paginacion(request, Credit.objects.filter(estados_fechas=False).order_by('-fecha_actualizacion'))
     
     context = {
         'title':'ELTELAR - CREDITOS',

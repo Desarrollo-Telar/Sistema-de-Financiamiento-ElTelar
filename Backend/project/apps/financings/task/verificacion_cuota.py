@@ -61,6 +61,15 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         siguiente_cuota.outstanding_balance = pago.saldo_pendiente
 
         siguiente_cuota.saldo_pendiente = pago.saldo_pendiente
+        if pago.credit_id:
+            siguiente_cuota.credit_id = pago.credit_id
+
+        if pago.seguro:
+            siguiente_cuota.seguro = pago.seguro
+        
+        if pago.acreedor:
+            siguiente_cuota.acreedor = pago.acreedor
+
         siguiente_cuota.mora = mora
         siguiente_cuota.interest = interes_acumulado
         siguiente_cuota.interes_generado =interes
@@ -90,9 +99,13 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 def actualizar_estado_credito_seguro_acreedor(credito, pago):
     if not pago.status:
         credito.estados_fechas = False
+
+        if credito.estado_aportacion is None:
+            credito.estado_aportacion = False
     else:
         
         credito.estado_aportacion = False
+    
     credito.save()
 
 def generar_estado_cuenta(pago):

@@ -20,6 +20,7 @@ from apps.codes.forms import CodeForm
 
 # TAREA ASINCRONICO
 from apps.financings.task import cambiar_plan,cambiar_estado
+from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito
 
 # Modelos
 from apps.users.models import User
@@ -209,7 +210,7 @@ def logout_view(request):
 ### --- APARTADO PARA INICIAR SESION --- ###
 def login_view(request):
     template_name = 'user/login.html'
-    #cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     
     # Verificar que no este autenticado
     if request.user.is_authenticated:
@@ -290,8 +291,9 @@ from apps.financings.formato import formatear_numero
 @usuario_activo
 def index(request):
     template_name = 'index.html'
-    #cambiar_plan()
+    cambiar_plan()
     #recibos = Recibo.objects.filter(factura=False, pago__registro_ficticio =False)
+    
     
     
         
