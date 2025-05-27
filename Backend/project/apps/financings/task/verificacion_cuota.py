@@ -169,7 +169,7 @@ def cambiar_plan():
         send_email_update_of_quotas(planes)
     else:
         print("Fuera del horario permitido para enviar correos.")
-        return
+        
     
     for pago in planes:
         
