@@ -121,6 +121,9 @@ def detail_credit(request,id):
     estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
     #actualizacion(credito)
     saldo_actual = siguiente_pago.saldo_pendiente + siguiente_pago.mora + siguiente_pago.interest
+
+    credito.saldo_actual = saldo_actual
+    credito.save()
     
     
     
