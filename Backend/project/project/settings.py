@@ -177,34 +177,17 @@ USE_I18N = True
 USE_TZ = True
 
 # Configuracion para enviar correos electronicos
+# nifs xjvc fbvo jxav
 # settings.py
-# DevElTelar30.
 
-# Configuración de correo electrónico
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-"""
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'smtp-mail.outlook.com'  # El host SMTP de Trustifi (verifica con Trustifi si es correcto)
-EMAIL_PORT = 587  # Puerto para TLS
-EMAIL_USE_TLS = True  # Usa TLS
-EMAIL_HOST_USER = 'develtelar@gmail.com'  # Tu dirección de correo de Trustifi
-EMAIL_HOST_PASSWORD = 'uubdyhfxiqtywgmm'  # La contraseña de tu correo de Trustifi
-
-# Configuración adicional de correo
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-"""
-"""
-EMAIL_PORT = 587  
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-#EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'DesarrolloElTelar@outlook.com' 
-#EMAIL_HOST_PASSWORD = 'tmmbkxogfsvfrimo'
-EMAIL_HOST_PASSWORD = 'fmfuzehmqcmrcvqo'
-DEFAULT_FROM_EMAIL = 'DesarrolloElTelar@outlook.com'
-"""
-# UP3HB-9X2AR-YWK8K-UCQCS-Q63T7
+EMAIL_HOST_USER = 'develtelar@gmail.com'
+EMAIL_HOST_PASSWORD = 'nifs xjvc fbvo jxav'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 
 # Configuración de Celery
 

@@ -20,7 +20,7 @@ def generar_noRecibo(sender, instance, **kwargs):
 
         instance.recibo = counter
     # ENVIAR MENSAJES AL CLIENTE, ADMINISTRADORES Y SECRETARIA
-    #envio_mensaje_alerta_recibo(instance.id)
+    envio_mensaje_alerta_recibo(instance.id)
     logger.info('DESDE SIGNALS DE RECIBO: ENVIO DE MENSAJE DE RECIBO CARGADO')
 
 

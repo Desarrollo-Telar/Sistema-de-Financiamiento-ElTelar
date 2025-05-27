@@ -6,12 +6,14 @@ from apps.financings.models import PaymentPlan, Credit, AccountStatement, Paymen
 from apps.accountings.models import Creditor, Insurance
 from django.db.models import Q
 
+# MENSAJES DE ALERTA
+from project.send_mail import send_email_update_of_quotas
 # CALCULOS
 from apps.financings.calculos import calculo_mora, calculo_interes
 from decimal import Decimal
 
 # TIEMPO
-from datetime import datetime
+from datetime import datetime, time
 from django.utils.timezone import now
 
 # UUID
@@ -159,6 +161,15 @@ def cambiar_plan():
         logger.info("No hay registro")
         return
     
+    hora_actual = datetime.now().time()
+    hora_inicio = time(8, 0)   # 08:00 AM
+    hora_fin = time(9, 0)      # 09:00 AM
+
+    if hora_inicio <= hora_actual <= hora_fin:
+        send_email_update_of_quotas(planes)
+    else:
+        print("Fuera del horario permitido para enviar correos.")
+        return
     
     for pago in planes:
         
@@ -217,8 +228,9 @@ def cambiar_plan():
             procesar_siguiente_cuota(pago, siguiente_cuota,interes ,interes_acumulado, mora)
 
 
-
+        
         logger.info("Procesamiento finalizado")
+
         
 
 

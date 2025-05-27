@@ -287,6 +287,8 @@ def verification(request):
 
 
 ### --- APARTADO INICIAL DEL PROYECTO --- ###
+
+
 from apps.financings.formato import formatear_numero
 @usuario_activo
 def index(request):

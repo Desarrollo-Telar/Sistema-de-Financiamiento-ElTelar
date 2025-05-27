@@ -76,6 +76,26 @@ class Payment(models.Model):
     # Nuevos Atributos
     registro_ficticio = models.BooleanField("Registro Ficticio", default=False)
 
+    def boleta_para(self):
+        mensaje = ''
+
+        if self.cliente:
+            mensaje = f'{self.cliente.get_full_name()}'
+        
+        if self.acreedor:
+            mensaje = f'{self.acreedor.nombre_acreedor}'
+        
+        if self.seguro:
+            mensaje = f'{self.seguro.nombre_acreedor}'
+        
+        if self.credit:
+            mensaje = f'{self.credit.codigo_credito}'
+        
+        if self.disbursement:
+            mensaje = f'Desembolso del credito: {self.disbursement.credit_id.codigo_credito}'
+
+        return mensaje
+
     def Fmonto(self):
         return formatear_numero(self.monto)
     

@@ -30,7 +30,7 @@ class PaymentPlanAdmin(admin.ModelAdmin):
     search_fields = ('credit_id__codigo_credito','acreedor__codigo_acreedor', 'seguro__codigo_seguro')
     list_filter = ('credit_id__codigo_credito','acreedor__codigo_acreedor', 'seguro__codigo_seguro')
 
-    list_display = ('id', 'mes', '__str__')
+    list_display = ('id', 'mes', '__str__','start_date','due_date')
     
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):

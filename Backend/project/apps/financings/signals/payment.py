@@ -73,8 +73,10 @@ def alerta(sender, instance, **kwargs):
             instance.save()
             
 
-        # envio_mensaje_alerta(instance.descripcion_estado, 'COMPLETADO', instance.id)
+        envio_mensaje_alerta(instance.descripcion_estado, 
+                             '''La boleta de pago ha sido procesada exitosamente. No se requiere ninguna acción adicional. Saludos cordiales,''', 
+                             instance.id)
 
     if instance.estado_transaccion == 'PENDIENTE':
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
-        # envio_mensaje_alerta('HAY UNA BOLETA DE PAGO CON ESTADO PENDIENTE', 'PENDIENTE', instance.id)
+        envio_mensaje_alerta('Por favor, asegúrense de revisar los detalles de la boleta de pago pendiente y tomar cualquier acción necesaria.Saludos cordiales,', 'PENDIENTE', instance.id)
