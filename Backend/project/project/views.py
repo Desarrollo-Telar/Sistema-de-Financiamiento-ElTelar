@@ -295,10 +295,7 @@ def index(request):
     template_name = 'index.html'
     cambiar_plan()
     #recibos = Recibo.objects.filter(factura=False, pago__registro_ficticio =False)
-    
-    
-    
-        
+
     context = {
         'title':'EL TELAR',
         #'recibos':recibos,

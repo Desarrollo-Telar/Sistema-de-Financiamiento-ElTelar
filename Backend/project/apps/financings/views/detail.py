@@ -100,7 +100,7 @@ def detail_credit(request,id):
     template_name = 'financings/credit/detail.html' # TEMPLATE
     credito= get_object_or_404(Credit,id=id) # DETALLE DEL CREDITO
     generar_todas_las_cuotas_credito(credito.codigo_credito)
-    #cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     
     customer_list = get_object_or_404(Customer,id= credito.customer_id.id) # LISTAR LA INFORMACION DEL CLIENTE
 
@@ -120,6 +120,7 @@ def detail_credit(request,id):
     cuotas_vencidas = PaymentPlan.objects.filter(credit_id=credito, cuota_vencida=True)
     estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
     #actualizacion(credito)
+    saldo_actual = siguiente_pago.saldo_pendiente + siguiente_pago.mora + siguiente_pago.interest
     
     
     
@@ -151,6 +152,7 @@ def detail_credit(request,id):
         'total_moras':total_mora_pagada(estado_cuenta),
         'total_intereses':total_interes_pagada(estado_cuenta),
         'total_capitales':total_capital_pagada(estado_cuenta),
+        'saldo_actual': formatear_numero(saldo_actual),
 
     }
     return render(request, template_name,context)
