@@ -23,11 +23,11 @@
     <p>
         Esta en un estado de: {{status}}
     </p>
-    {% if message %}
+  
     <p>
         {{message}}
     </p>
-    {% endif %}
+    
     {% if object.id %}
             <a href="{{ full_url }}{% url 'financings:actualizar_boleta' object.id %}">EDITAR BOLETA</a>
             {% endif %}

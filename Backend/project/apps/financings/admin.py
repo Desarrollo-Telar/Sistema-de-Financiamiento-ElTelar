@@ -19,7 +19,8 @@ class CreditAdmin(admin.ModelAdmin):
         'estado_aportacion',
         'estados_fechas',
         'is_paid_off',
-        'saldo_actual'
+        'saldo_actual',
+        'saldo_pendiente'
     )
     list_display = ('id','customer_id','codigo_credito' ,'tipo_credito', 'monto','plazo','tasa_interes','fecha_inicio','estados_fechas','creation_date','fecha_actualizacion')
     search_fields = ('codigo_credito',)
@@ -35,7 +36,7 @@ class PaymentPlanAdmin(admin.ModelAdmin):
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ('id', 'numero_referencia', 'estado_transaccion','monto','tipo_pago','fecha_creacion')
-    search_fields = ('numero_referencia', 'estado_transaccion','tipo_pago','cliente__customer_code')
+    search_fields = ('numero_referencia', 'estado_transaccion','tipo_pago','cliente__customer_code','acreedor__codigo_acreedor')
     list_filter = ('numero_referencia', 'estado_transaccion','tipo_pago', 'cliente__customer_code')
 
 admin.site.register(Guarantees)

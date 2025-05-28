@@ -24,6 +24,7 @@ from django.utils.decorators import method_decorator
 from project.pagination import paginacion
 # TAREA ASINCRONICO
 from apps.financings.task import cambiar_plan
+from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_acreedores
 
 
 # MENSAJES
@@ -73,6 +74,11 @@ def detail_acreedores(request, id):
     estado_cuenta = AccountStatement.objects.filter(acreedor=object_list)
     
     cambiar_plan()
+    acreedores = Creditor.objects.all()
+    
+
+    
+
     context = {
         'title':'EL TELAR',
         'object_list':object_list,

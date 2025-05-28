@@ -99,6 +99,8 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         cuota.save()
 
 def actualizar_estado_credito_seguro_acreedor(credito, pago):
+    if credito.estado_aportacion is None:
+        credito.estado_aportacion = False
     if not pago.status:
         credito.estados_fechas = False
 
@@ -154,7 +156,7 @@ def cambiar_estado():
 @shared_task(name="apps.financings.task.cambiar_plan")
 def cambiar_plan():
     dia = datetime.now().date()
-    
+   
 
     planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=False)
     print(planes)

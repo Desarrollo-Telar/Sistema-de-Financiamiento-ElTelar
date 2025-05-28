@@ -321,7 +321,7 @@ class Payment(models.Model):
         saldo_pendiente = None
 
         if self.credito() is not None:
-            saldo_pendiente = self.credito().saldo_pendiente
+            saldo_pendiente = cuota.saldo_pendiente
         elif self.acreedor is not None:
             saldo_pendiente = self.acreedor.saldo_pendiente
         

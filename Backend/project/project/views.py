@@ -207,7 +207,8 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Sesión cerrada exitosamente')
     hora = datetime.now()
-    send_email_user_conect_or_disconect(user,hora,'SALIDO DEL SISTEMA')
+    if user.username != 'choc1403':
+        send_email_user_conect_or_disconect(user,hora,'SALIDO DEL SISTEMA')
     return redirect('login')
 
 ### --- APARTADO PARA INICIAR SESION --- ###
@@ -234,7 +235,8 @@ def login_view(request):
             login(request, user)
             messages.success(request,'Bienvenido')
             hora = datetime.now()
-            send_email_user_conect_or_disconect(user,hora,'INGRESADO AL SISTEMA')
+            if user.username != 'choc1403':
+                send_email_user_conect_or_disconect(user,hora,'INGRESADO AL SISTEMA')
             return redirect('index')
         else:
             messages.error(request, 'Credenciales no validos')

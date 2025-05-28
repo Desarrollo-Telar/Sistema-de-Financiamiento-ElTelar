@@ -120,6 +120,10 @@ def detail_credit(request,id):
     cuotas_vencidas = PaymentPlan.objects.filter(credit_id=credito, cuota_vencida=True)
     estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
     #actualizacion(credito)
+    if siguiente_pago is None:
+        siguiente_pago = PaymentPlan.objects.filter(
+        credit_id=credito).order_by('-id').first()
+
     saldo_actual = siguiente_pago.saldo_pendiente + siguiente_pago.mora + siguiente_pago.interest
 
     credito.saldo_actual = saldo_actual
