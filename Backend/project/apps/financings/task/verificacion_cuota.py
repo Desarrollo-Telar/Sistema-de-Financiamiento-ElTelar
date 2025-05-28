@@ -156,8 +156,7 @@ def cambiar_estado():
 @shared_task(name="apps.financings.task.cambiar_plan")
 def cambiar_plan():
     dia = datetime.now().date()
-   
-
+    
     planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=False)
     print(planes)
 
