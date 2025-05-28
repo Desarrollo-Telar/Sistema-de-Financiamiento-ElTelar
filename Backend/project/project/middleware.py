@@ -4,6 +4,7 @@ from django.conf import settings
 from django.utils.timezone import now
 from django.http import HttpResponse
 from django.shortcuts import render
+from .send_mail import send_email_user_conect_or_disconect
 
 class AutoLogoutMiddleware:
     def __init__(self, get_response):
@@ -13,6 +14,8 @@ class AutoLogoutMiddleware:
         # Si el usuario está autenticado
         if request.user.is_authenticated:
             last_activity_str = request.session.get('last_activity')
+            user = request.user
+            hora = datetime.now()
 
             # Si hay actividad previa
             if last_activity_str:
@@ -24,6 +27,7 @@ class AutoLogoutMiddleware:
                 if elapsed_time > settings.SESSION_COOKIE_AGE:
                     from django.contrib.auth import logout
                     logout(request)
+                    send_email_user_conect_or_disconect(user,hora,'CERRADO SESION AUTOMATICAMENTE, POR FALTA DE ACTIVIDAD')
                     request.session.flush()  # Opcional: elimina toda la sesión
                 
             # Actualiza el tiempo de la última actividad (almacena como cadena ISO)
