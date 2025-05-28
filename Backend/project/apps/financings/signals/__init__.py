@@ -8,7 +8,7 @@ from .payment_plan import generar_planes, eliminar_siguientes_cuotas, cambios
 from .credit import  generar_plan_pagos_nuevo
 
 # RECIBOS
-from .recibo import generar_noRecibo
+from .recibo import generar_noRecibo, enviar_recibo
 
 # DESEMBOLSOS
 from .desembolso import reflejar_estado_cuenta

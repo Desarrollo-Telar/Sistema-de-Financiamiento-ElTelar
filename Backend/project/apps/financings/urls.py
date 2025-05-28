@@ -35,7 +35,7 @@ urlpatterns = [
     path('credit/atrasados/',login_required(views.filter_credito_en_atraso),name='creditos_en_atrasos'),
     path('credit/aportacion/',login_required(views.filter_credito_en_falta_aportacion),name='creditos_falta_aportacion'),
     path('credit/reciente/',login_required(views.filter_credito_reciente),name='creditos_recientes'),
-
+    path('credit/reciente/x',login_required(views.filter_credito_con_aportaciones),name='filter_credito_con_aportaciones'),
     path('contable/acreedor/plan_pagos/pdf/<int:id>/',login_required(views.render_pdf_plan_pagos_acreedor),name='plan_pagos_acreedor'),
     
     path('contable/acreedor/calculos_realizados/pdf/<int:id>/',login_required(views.render_pdf_calculos_credito_acreedor),name='calculos_realizados_acreedor'),

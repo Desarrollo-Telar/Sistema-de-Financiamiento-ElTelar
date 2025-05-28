@@ -82,6 +82,21 @@ def filter_credito_en_atraso(request):
 
 @login_required
 @usuario_activo
+def filter_credito_con_aportaciones(request):
+    template_name = 'financings/credit/list.html'
+    page_obj = paginacion(request, Credit.objects.filter(estado_aportacion__isnull=False, is_paid_off=False).order_by('-fecha_actualizacion'))
+    
+    context = {
+        'title':'ELTELAR - CREDITOS',
+        'page_obj':page_obj,
+        'credit_list':page_obj,
+        'count': Credit.objects.filter(estado_aportacion__isnull=False, is_paid_off=False).count(),
+        'filtro_seleccionado':'Creditos en Atraso'
+    }
+    return render(request, template_name, context)
+
+@login_required
+@usuario_activo
 def filter_credito_en_falta_aportacion(request):
     template_name = 'financings/credit/list.html'
     page_obj = paginacion(request, Credit.objects.filter(estado_aportacion=False).order_by('-id'))

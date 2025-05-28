@@ -18,7 +18,9 @@ def generar():
         
         for boleta in boletas:
             #print('Se estaran evaluando las boletas')
-            
+            if boleta.referencia != '191695343':
+                continue
+            print(boleta.referencia)
             pago = Payment.objects.filter(numero_referencia=boleta.referencia, estado_transaccion="PENDIENTE").first()
             
             
