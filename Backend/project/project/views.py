@@ -44,7 +44,7 @@ import qrcode
 from .utils import send_verification_code
 
 # Envio de correos
-from .send_mail import send_email_welcome_customer, send_email_code_verification
+from .send_mail import send_email_welcome_customer, send_email_code_verification, send_email_user_conect_or_disconect
 
 # Tiempo
 
@@ -203,8 +203,11 @@ def generate_qr(request, data):
 
 ### -- APARTADO DE SALIR --##
 def logout_view(request):
+    user = request.user
     logout(request)
     messages.success(request, 'Sesión cerrada exitosamente')
+    hora = datetime.now()
+    send_email_user_conect_or_disconect(user,hora,'SALIDO DEL SISTEMA')
     return redirect('login')
 
 ### --- APARTADO PARA INICIAR SESION --- ###
@@ -230,6 +233,8 @@ def login_view(request):
             request.session['pk'] = user.pk
             login(request, user)
             messages.success(request,'Bienvenido')
+            hora = datetime.now()
+            send_email_user_conect_or_disconect(user,hora,'INGRESADO AL SISTEMA')
             return redirect('index')
         else:
             messages.error(request, 'Credenciales no validos')

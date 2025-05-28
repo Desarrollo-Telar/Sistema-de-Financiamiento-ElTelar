@@ -108,6 +108,8 @@ def actualizar_estado_credito_seguro_acreedor(credito, pago):
         
         credito.estado_aportacion = False
     
+    
+    
     credito.save()
 
 def generar_estado_cuenta(pago):
@@ -165,7 +167,7 @@ def cambiar_plan():
     hora_inicio = time(8, 0)   # 08:00 AM
     hora_fin = time(9, 0)      # 09:00 AM
 
-    if hora_inicio <= hora_actual <= hora_fin:
+    if hora_actual <= hora_fin:
         send_email_update_of_quotas(planes)
     else:
         print("Fuera del horario permitido para enviar correos.")

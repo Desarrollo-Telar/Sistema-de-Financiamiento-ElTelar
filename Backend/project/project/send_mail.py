@@ -165,3 +165,28 @@ def send_email_update_of_quotas(cuotas):
     )
     email.attach_alternative(content, 'text/html')
     email.send()
+
+# MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
+def send_email_user_conect_or_disconect(usuario, hora, estado):
+    template = get_template('email/user_conect.html')
+    context = {
+        'user':usuario,
+        'hora':hora,
+        'estado':estado,
+        
+    }
+    # Recolectar correos electrónicos de todos los superusuarios
+    usuarios_email = ['eloicx@gmail.com','iieltelarsa@gmail.com']
+
+    # Renderizar el contenido del correo electrónico
+    content = template.render(context)
+
+    # Crear y enviar el correo electrónico
+    email = EmailMultiAlternatives(
+        f'USUARIO HA {estado}',
+        'ELTELAR',
+        settings.EMAIL_HOST_USER,
+        usuarios_email
+    )
+    email.attach_alternative(content, 'text/html')
+    email.send()
