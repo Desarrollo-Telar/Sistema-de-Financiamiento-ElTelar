@@ -426,7 +426,7 @@ class Payment(models.Model):
             descripcion = 'PAGO PARA EL SEGURO'
             tasa_interes = self.seguro.tasa
     
-        """ 
+        
         if not recibos.exists():
             # Creamos un nuevo recibo si no hay existentes
             recibo = self.get_recibo()(
@@ -443,7 +443,7 @@ class Payment(models.Model):
             )
             
             recibo.save()
-        """
+        
        
 
         # ACTUALIZAR LA CUOTA QUE SE ESTA CREANDO 
