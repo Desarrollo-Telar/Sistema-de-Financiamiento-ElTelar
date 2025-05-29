@@ -18,7 +18,7 @@ def report_pagos_generales(request, anio, mes):
     filters &= Q(fecha__year=anio)
     filters &= Q(fecha__month=mes)
     filters &= Q(pago__credit__isnull=False)
-
+    #filters &= Q(pago__registro_ficticio=False)
     reportes = Recibo.objects.filter(filters)
 
      # Crear el archivo Excel
@@ -30,7 +30,7 @@ def report_pagos_generales(request, anio, mes):
     sheet['A1'] = f'REPORTE SOBRE {filtro_seleccionado}'
     
     sheet.append(["#", "FECHA", "CODIGO DEL CREDITO", "CLIENTE", "NO. REFERENCIA", "MONTO PAGADO", "MORA PAGADA"
-                  ,"INTERES PAGADO", "CAPITAL APORTADO","STATUS DEL CREDITO"])
+                  ,"INTERES PAGADO", "CAPITAL APORTADO","BOLETA FICTICIA","STATUS DEL CREDITO"])
 
     # Agregar los datos al archivo Excel
     for idx, reporte in enumerate(reportes, start=1):
@@ -58,6 +58,7 @@ def report_pagos_generales(request, anio, mes):
             str(reporte.Fmora_pagada()),
             str(reporte.Finteres_pagado()),
             str(reporte.Faporte_capital()),
+            str(reporte.pago.get_registro_ficticio()),
             f"Status de Aportación: {aportacion}, "
             f"Status por Fecha: {s_fecha}"
         ])
@@ -107,7 +108,7 @@ def report_pagos(request, filtro_seleccionado, anio, mes, total):
     # Agregar encabezados
     sheet['A1'] = f'REPORTE SOBRE {filtro_seleccionado}'
     sheet['F1'] = str(total)
-    sheet.append(["#", "FECHA", "CODIGO DEL CREDITO", "CLIENTE", "NO. REFERENCIA", "MONTO PAGADO", "STATUS DEL CREDITO"])
+    sheet.append(["#", "FECHA", "CODIGO DEL CREDITO", "CLIENTE", "NO. REFERENCIA", "MONTO PAGADO", "BOLETA FICTICIA","STATUS DEL CREDITO"])
 
     # Agregar los datos al archivo Excel
     for idx, reporte in enumerate(reportes, start=1):
@@ -139,6 +140,7 @@ def report_pagos(request, filtro_seleccionado, anio, mes, total):
             str(reporte.cliente),
             str(reporte.pago.numero_referencia),
             str(monto),
+            str(reporte.pago.get_registro_ficticio()),
             f"Status de Aportación: {aportacion}, "
             f"Status por Fecha: {s_fecha}"
         ])

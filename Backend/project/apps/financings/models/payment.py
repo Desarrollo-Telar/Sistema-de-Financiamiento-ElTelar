@@ -76,6 +76,9 @@ class Payment(models.Model):
     # Nuevos Atributos
     registro_ficticio = models.BooleanField("Registro Ficticio", default=False)
 
+    def get_registro_ficticio(self):
+        return f'SI ES UNA BOLETA FICTICIA' if self.registro_ficticio else f'NO ES UNA BOLETA FICTICIA'
+
     def boleta_para(self):
         mensaje = ''
 
