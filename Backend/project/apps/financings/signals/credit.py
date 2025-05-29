@@ -8,6 +8,8 @@ from apps.financings.models import  Credit, PaymentPlan
 # CLASES
 from apps.financings.calculos import calcular_fecha_maxima, calcular_fecha_vencimiento, calculo_mora, calculo_interes
 
+# MENSAJES
+from project.send_mail import send_email_new_credit
 
 # LOOGER
 from apps.financings.clases.personality_logs import logger
@@ -62,4 +64,5 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
             due_date=fecha_vencimiento
             )
         plan_pago.save()
+        send_email_new_credit(instance)
     

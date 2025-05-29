@@ -133,7 +133,29 @@ def send_email_recibo(models):
     #usuarios_email.append(models.cliente.email)
     # Crear y enviar el correo electrónico
     email = EmailMultiAlternatives(
-        f'RECIBO DE {models.cliente}',
+        f'RECIBO DE {models.pago.boleta_para}',
+        'ELTELAR',
+        settings.EMAIL_HOST_USER,
+        usuarios_email
+    )
+    email.attach_alternative(content, 'text/html')
+    email.send()
+
+# MENSAJE DE CREDITO NUEVO
+def send_email_new_credit(models):
+    template = get_template('email/new_credit.html')
+    context = {
+        'object_list':models,
+    }
+    # Renderizar el contenido del correo electrónico
+    content = template.render(context)
+
+    # Recolectar correos electrónicos de todos los usuarios activos
+    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True, status=True)]
+    #usuarios_email.append(models.cliente.email)
+    # Crear y enviar el correo electrónico
+    email = EmailMultiAlternatives(
+        f'REGRISTRO DE UN NUEVO CREDITO',
         'ELTELAR',
         settings.EMAIL_HOST_USER,
         usuarios_email
