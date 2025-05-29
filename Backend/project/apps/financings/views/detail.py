@@ -17,8 +17,7 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 
 from datetime import datetime,timedelta
-# Obtener la fecha y hora actual
-now = datetime.now()
+
 # CLASES
 from apps.financings.clases.paymentplan import PaymentPlan as PlanPagoos
 from apps.financings.clases.credit import Credit as Credito
@@ -100,7 +99,7 @@ def detail_credit(request,id):
     template_name = 'financings/credit/detail.html' # TEMPLATE
     credito= get_object_or_404(Credit,id=id) # DETALLE DEL CREDITO
     generar_todas_las_cuotas_credito(credito.codigo_credito)
-    cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    #cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     
     customer_list = get_object_or_404(Customer,id= credito.customer_id.id) # LISTAR LA INFORMACION DEL CLIENTE
 
@@ -110,12 +109,12 @@ def detail_credit(request,id):
     list_disbursement = Disbursement.objects.filter(credit_id=credito).order_by('id') # LISTAR DESEMBOLSOS
 
     dia = datetime.now().date()
-    
+    dia_mas_uno = dia + timedelta(days=1)
     
     siguiente_pago = PaymentPlan.objects.filter(
         credit_id=credito,
         start_date__lte=dia,
-        fecha_limite__gte=dia
+        fecha_limite__gte=dia_mas_uno
     ).first()
     cuotas_vencidas = PaymentPlan.objects.filter(credit_id=credito, cuota_vencida=True)
     estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
@@ -123,6 +122,8 @@ def detail_credit(request,id):
     if siguiente_pago is None:
         siguiente_pago = PaymentPlan.objects.filter(
         credit_id=credito).order_by('-id').first()
+    
+    print(siguiente_pago.mes)
 
     saldo_actual = siguiente_pago.saldo_pendiente + siguiente_pago.mora + siguiente_pago.interest
 
@@ -306,7 +307,10 @@ def detalle_estado_cuenta(request,id):
     siguiente_pago = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
 
     template_name = 'financings/credit/estado_cuenta/detail.html'
-    actualizacion(credito)
+    #actualizacion(credito)
+    # Obtener la fecha y hora actual
+    now = datetime.now()
+
     context = {
         'title':'ELTELAR',
         'credito':credito,

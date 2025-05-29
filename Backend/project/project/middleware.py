@@ -26,8 +26,9 @@ class AutoLogoutMiddleware:
                 # Si el tiempo de inactividad excede el límite
                 if elapsed_time > settings.SESSION_COOKIE_AGE:
                     from django.contrib.auth import logout
-                    logout(request)
                     send_email_user_conect_or_disconect(user,hora,'CERRADO SESION AUTOMATICAMENTE, POR FALTA DE ACTIVIDAD')
+                    logout(request)
+                    
                     request.session.flush()  # Opcional: elimina toda la sesión
                 
             # Actualiza el tiempo de la última actividad (almacena como cadena ISO)

@@ -207,8 +207,8 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Sesión cerrada exitosamente')
     hora = datetime.now()
-    if user.username != 'choc1403':
-        send_email_user_conect_or_disconect(user,hora,'SALIDO DEL SISTEMA')
+    
+    send_email_user_conect_or_disconect(user,hora,'SALIDO DEL SISTEMA')
     return redirect('login')
 
 ### --- APARTADO PARA INICIAR SESION --- ###
