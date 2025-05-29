@@ -133,7 +133,7 @@ def send_email_recibo(models):
     #usuarios_email.append(models.cliente.email)
     # Crear y enviar el correo electrónico
     email = EmailMultiAlternatives(
-        f'RECIBO DE {models.pago.boleta_para}',
+        f'RECIBO DE {models.pago.boleta_para()}',
         'ELTELAR',
         settings.EMAIL_HOST_USER,
         usuarios_email
