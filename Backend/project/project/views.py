@@ -202,6 +202,7 @@ def generate_qr(request, data):
     return redirect('customers:customers')
 
 ### -- APARTADO DE SALIR --##
+@login_required
 def logout_view(request):
     user = request.user
     logout(request)
