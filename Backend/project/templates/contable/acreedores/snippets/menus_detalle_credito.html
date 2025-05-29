@@ -2,12 +2,12 @@
 <nav>
     <div class="nav nav-tabs listado" id="nav-tab" role="tablist">
 
-        <button class="nav-link active" id="nav-plan_pagos-tab" data-bs-toggle="tab" data-bs-target="#nav-plan_pagos"
+        <button class="nav-link " id="nav-plan_pagos-tab" data-bs-toggle="tab" data-bs-target="#nav-plan_pagos"
             type="button" role="tab" aria-controls="nav-plan_pagos" aria-selected="true">Plan de Pagos</button>
 
 
 
-        <button class="nav-link" id="nav-creditos-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos" type="button"
+        <button class="nav-link active" id="nav-creditos-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos" type="button"
             role="tab" aria-controls="nav-creditos" aria-selected="true">Estado de Cuenta</button>
         {% if cuotas_vencidas %}
         <button class="nav-link" id="nav-historial-tab" data-bs-toggle="tab" data-bs-target="#nav-historial"
@@ -17,7 +17,7 @@
     </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-plan_pagos" role="tabpanel" aria-labelledby="nav-plan_pagos-tab"
+    <div class="tab-pane fade show" id="nav-plan_pagos" role="tabpanel" aria-labelledby="nav-plan_pagos-tab"
         tabindex="0">
         <div class="contenido">
             <div class="row" style="margin-top: 1rem;">
@@ -75,7 +75,7 @@
     </div>
 </div>
 
-<div class="tab-pane fade show " id="nav-creditos" role="tabpanel" aria-labelledby="nav-creditos-tab" tabindex="0">
+<div class="tab-pane fade show active" id="nav-creditos" role="tabpanel" aria-labelledby="nav-creditos-tab" tabindex="0">
     <div class="contenido">
         {% include 'contable/acreedores/snippets/estado_cuenta.html' %}
 

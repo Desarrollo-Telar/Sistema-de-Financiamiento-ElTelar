@@ -118,19 +118,7 @@ def add_seguro(request):
             acreedor.estados_fechas = True
             
             acreedor.save() 
-            print(acreedor.codigo_seguro)
             
-            if numero_referencia is not None or numero_referencia != "" or numero_referencia != "0":
-                boleta = Payment(
-                    seguro=acreedor, 
-                    fecha_emision=inicio,
-                    numero_referencia=numero_referencia,
-                    tipo_pago='SEGURO',
-                    boleta = boleta,
-                    monto=monto,
-                    descripcion=descripcion
-                    )  
-                boleta.save()
                 
             messages.success(request, 'Seguro Creado con Exito')
             return redirect('contable:seguros')

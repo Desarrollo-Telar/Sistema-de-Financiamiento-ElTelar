@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
+# TIEMPO
+from datetime import datetime,timedelta
+
 # Manejo de mensajes
 from django.contrib import messages
 
@@ -68,15 +71,27 @@ def total_capital_pagada(estado_cuenta):
 def detail_acreedores(request, id):
     template_name = 'contable/acreedores/detail.html'
     object_list = get_object_or_404(Creditor, id=id)
+    dia = datetime.now().date()
+    dia_mas_uno = dia + timedelta(days=1)
 
-    siguiente_pago = PaymentPlan.objects.filter(acreedor=object_list).order_by('-id').first()
+    siguiente_pago = PaymentPlan.objects.filter(
+        acreedor=object_list,
+        start_date__lte=dia,
+        fecha_limite__gte=dia_mas_uno
+    ).first()
     plan = planPagosCredito(object_list).generar_plan()
-    estado_cuenta = AccountStatement.objects.filter(acreedor=object_list)
+    estado_cuenta = AccountStatement.objects.filter(acreedor=object_list).order_by('issue_date')
     
     cambiar_plan()
-    acreedores = Creditor.objects.all()
-    
+    generar_todas_las_cuotas_acreedores(object_list.codigo_acreedor)
 
+    if siguiente_pago is None:
+        siguiente_pago = PaymentPlan.objects.filter(acreedor=object_list).order_by('-id').first()
+    
+    saldo_actual = siguiente_pago.saldo_pendiente + siguiente_pago.mora + siguiente_pago.interest
+
+    object_list.saldo_actual = saldo_actual
+    object_list.save()
     
 
     context = {

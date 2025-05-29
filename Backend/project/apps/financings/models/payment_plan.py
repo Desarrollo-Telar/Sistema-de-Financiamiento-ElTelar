@@ -122,7 +122,7 @@ class PaymentPlan(models.Model):
         if self.credit_id is not None:
             self.fecha_limite = self.start_date + relativedelta(months=1, days=16)
         else:
-            self.fecha_limite = self.due_date
+            self.fecha_limite = self.due_date + relativedelta(days=1)
         return self.fecha_limite
     
     def acumulacion_mora(self):

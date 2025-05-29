@@ -20,7 +20,7 @@ from apps.codes.forms import CodeForm
 
 # TAREA ASINCRONICO
 from apps.financings.task import cambiar_plan,cambiar_estado
-from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito
+from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito, generar_todas_las_cuotas_acreedores
 
 # Modelos
 from apps.users.models import User
@@ -33,6 +33,7 @@ from django.db.models import Q
 from django.db import models  
 from apps.financings.models import Recibo
 from apps.financings.models import *
+from apps.accountings.models import Creditor
 
 # DJANGO HTTP
 from django.http import HttpResponse
