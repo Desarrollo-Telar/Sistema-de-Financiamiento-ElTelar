@@ -96,7 +96,7 @@ def render_pdf_estado_cuenta(request,id):
         start_date__lte=dia,
         fecha_limite__gte=dia_mas_uno
     ).first()
-    
+
     if siguiente_pago is None:
         siguiente_pago = PaymentPlan.objects.filter(
         credit_id=credito).order_by('-id').first()
@@ -134,7 +134,7 @@ def render_pdf_calculos_credito(request,id):
 
     template_path = 'financings/calculos/calculos_hechos.html'
     template = get_template(template_path)
-    actualizacion(credito)
+    #actualizacion(credito)
     cuotas_data = []
     for cuota in cuotas:
         recibos_asociados = recibos.filter(
