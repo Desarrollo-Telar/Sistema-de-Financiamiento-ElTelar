@@ -61,8 +61,8 @@ urlpatterns = [
     
     
     # -------------- BOLETAS ---------------------
-    path('status/boletas/',login_required(views.async_view_boletas),name='list_payment'),
-    path('payment/',login_required(views.list_payment),name='boleta'),
+    path('status/boletas/',login_required(views.async_view_boletas),name='comparacion_boletas'),
+    path('payment/',login_required(views.list_payment),name='list_payment'),
     path('payment/pendiente/',login_required(views.filter_list_payment_pendiente),name='filter_list_payment_pendiente'),
     path('payment/completado/',login_required(views.filter_list_payment_completados),name='filter_list_payment_completados'),
     path('payment/create/',login_required(views.create_payment),name='create_payment'),
@@ -72,8 +72,8 @@ urlpatterns = [
     path('payment/cuota/update/<int:id>/',login_required(views.update_cuota), name='paymente_update_cuota'),
 
     # ---------------- BANCOS --------------------
-    path('status/banco/',login_required(views.async_view_banco),name='list_bank'),
-    path('bank/',login_required(views.list_bank),name='banco'),
+    path('status/banco/',login_required(views.async_view_banco),name='comparacion_bancos'),
+    path('bank/',login_required(views.list_bank),name='list_bank'),
     path('bank/vinculado/',login_required(views.filter_list_bank_vinculado),name='filter_list_bank_vinculado'),
     path('bank/no_viculado/',login_required(views.filter_list_bank_no_vinculado),name='filter_list_bank_no_vinculado'),
     path('bank/search/',login_required(views.BankSearch.as_view()),name='bank_search'),

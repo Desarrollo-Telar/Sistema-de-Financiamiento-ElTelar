@@ -44,7 +44,7 @@ from django.utils.timezone import now
 def list_payment(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.filter(registro_ficticio=False).order_by('-id'))
-    ver_cuotas_no_cargadas()
+    
     context = {
         'title':'EL TELAR - PAGOS',
         'page_obj':page_obj,

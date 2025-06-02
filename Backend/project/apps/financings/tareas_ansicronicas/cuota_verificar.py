@@ -95,8 +95,8 @@ def boletas_ver():
 def ver_cuotas_no_cargadas():
     comparacion()
     
-    #comparacion_para_boletas_divididas()
+    comparacion_para_boletas_divididas()
 
     cargar_boletas_estado()
-    #boletas_ver()
+    boletas_ver()
     return 'Listo'
