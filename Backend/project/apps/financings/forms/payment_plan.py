@@ -27,9 +27,9 @@ class PaymentPlanForms(forms.ModelForm):
             'start_date': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
             'due_date': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
             'fecha_limite': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
-            'saldo_pendiente': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"0.1"}),
-            'mora': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"0.1"}),
-            'interest': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"0.1"}),
+            'saldo_pendiente': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"any"}),
+            'mora': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"any"}),
+            'interest': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"any"}),
         }
 """
     def save(self, commit=True):

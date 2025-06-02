@@ -63,6 +63,7 @@ def update_cuota(request, id):
 
     if request.method == 'POST':
         form = PaymentPlanForms(request.POST, instance=cuota)
+        print(form)
         if form.is_valid():
             estado_cuenta = AccountStatement()
             estado_cuenta.credit = cuota.credit_id
