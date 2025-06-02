@@ -109,7 +109,7 @@ def send_email_alert(message, status,models):
 
     # Crear y enviar el correo electrónico
     email = EmailMultiAlternatives(
-        f'ALERTA {status}',
+        f'ALERTA {status} PARA {models.numero_referencia}',
         'ELTELAR',
         settings.EMAIL_HOST_USER,
         usuarios_email
