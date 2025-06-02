@@ -153,8 +153,51 @@ def cambiar_estado():
         credito = get_credito(pago)
         actualizar_estado_credito_seguro_acreedor(credito, pago)
 
+import json
+import os
+
+
+DATA_FILE = 'function_counter.json'
+
+def load_counter():
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, 'r') as f:
+            return json.load(f)
+    else:
+        return {"date": "", "count": 0}
+
+def save_counter(data):
+    with open(DATA_FILE, 'w') as f:
+        json.dump(data, f)
+
+def ejecutar_max_3_veces_al_dia():
+    data = load_counter()
+    hoy = datetime.now().strftime('%Y-%m-%d')
+
+    if data["date"] != hoy:
+        # Nuevo día: reiniciar contador
+        data["date"] = hoy
+        data["count"] = 0
+
+    if data["count"] < 3:
+        data["count"] += 1
+        save_counter(data)
+        print("✅ Ejecutando función...")
+        # Aquí va tu lógica principal
+        return True
+    else:
+        print("⛔ Límite de 3 ejecuciones alcanzado para hoy.")
+        return False
+
+
+
+
 @shared_task(name="apps.financings.task.cambiar_plan")
 def cambiar_plan():
+    validacion = ejecutar_max_3_veces_al_dia()
+    
+    if not validacion:
+        return
     dia = datetime.now().date()
     
     planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=False)
