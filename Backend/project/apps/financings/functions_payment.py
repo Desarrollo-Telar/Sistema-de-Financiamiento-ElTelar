@@ -10,7 +10,7 @@ def generar():
         
     
         print('Validando las boletas con bancos')
-        boletas = Banco.objects.all()
+        boletas = Banco.objects.filter(status=False)
         
         if not boletas:
             print('No hay comprobacion')

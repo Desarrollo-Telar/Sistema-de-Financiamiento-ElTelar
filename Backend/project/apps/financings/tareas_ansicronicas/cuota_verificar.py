@@ -72,31 +72,41 @@ def boletas_ver():
         acreedor_pago = Creditor.objects.filter(numero_referencia = banco.referencia).first()
 
         if boleta_pago:
-            boleta_pago.estado_transaccion = 'COMPLETADO'
-            boleta_pago.save()
+            if boleta_pago.estado_transaccion != 'COMPLETADO':
+                boleta_pago.estado_transaccion = 'COMPLETADO'
+                boleta_pago.save()
         
         if egreso_pago:
-            egreso_pago.status = True
-            egreso_pago.save()
+            if not egreso_pago.status:
+                egreso_pago.status = True
+                egreso_pago.save()
 
         if seguro_pago:
-            seguro_pago.status = True
-            seguro_pago.save()
+            if not seguro_pago.status:
+                seguro_pago.status = True
+                seguro_pago.save()
         
         if ingreso_pago:
-            ingreso_pago.status = True
-            ingreso_pago.save()
+            if not ingreso_pago.status:
+                ingreso_pago.status = True
+                ingreso_pago.save()
         
         if acreedor_pago:
-            acreedor_pago.status = True
-            acreedor_pago.save()
+            if not acreedor_pago.status:
+                acreedor_pago.status = True
+                acreedor_pago.save()
 
+from django.db import transaction
 
 def ver_cuotas_no_cargadas():
-    comparacion()
-    
-    comparacion_para_boletas_divididas()
+    try:
+        with transaction.atomic():
+            comparacion()
+            
+            comparacion_para_boletas_divididas()
 
-    cargar_boletas_estado()
-    boletas_ver()
-    return 'Listo'
+            cargar_boletas_estado()
+            boletas_ver()
+            return 'Listo'
+    except Exception as e:
+        print(f'ERROR: {e}')
