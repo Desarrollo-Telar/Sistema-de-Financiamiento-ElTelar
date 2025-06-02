@@ -2,38 +2,44 @@
 {% load static %}
 
 {% block content %}
-<div class=" row box">
+<div class="container-fluid box">
+    <!-- Sección de presentación -->
     <div class="row">
         {% include 'financings/bank/snippets/presentation.html' %}
-
-
     </div>
-    <div class="row" style="margin-bottom: 2rem">
+
+    <!-- Total de registros -->
+    <div class="row mb-4">
         <div class="col">
-            <p class="text-body-secondary fs-6 text-uppercase">TOTAL DE TODOS LOS REGISTROS {{message}}:
-                <span class="badge rounded-pill text-bg-dark">{{count}}</span>
+            <p class="text-body-secondary fs-6 text-uppercase">
+                TOTAL DE TODOS LOS REGISTROS {{ message }}:
+                <span class="badge rounded-pill text-bg-dark">{{ count }}</span>
             </p>
         </div>
     </div>
     <hr>
 
-    <div class="row d-flex" style="display: flex; align-items: center; justify-content: end; margin-top: 2rem;">
-
-
-        <div class="col ">
+    <!-- Filtros y botones -->
+    <div class="row align-items-center mb-4 gx-3 gy-2">
+        <!-- Buscador -->
+        <div class="col-12 col-md-6 col-lg-5">
             {% include 'financings/bank/snippets/search.html' with query=query %}
-
         </div>
-        <div class="col ">
+
+        <!-- Botones -->
+        <div class="col-12 col-md-6 col-lg-5">
             {% include 'financings/bank/snippets/list_btns.html' %}
-
         </div>
-        <div class="col-1">
+
+        <!-- Filtros -->
+        <div class="col-2 col-md-2 col-lg-1">
             {% include 'financings/bank/snippets/filters.html' %}
         </div>
-        <div class="col-1">
-            <a href="{% url 'financings:comparacion_bancos' %}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+
+        <!-- Botón de recargar -->
+        <div class="col-2 col-md-2 col-lg-1">
+            <a href="{% url 'financings:comparacion_bancos' %}" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                     class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
                     <path
@@ -41,19 +47,22 @@
                 </svg>
             </a>
         </div>
-
-
-
-
-
     </div>
 
-    <div class="row" style="margin-top: 2rem;">
-        {% include 'financings/bank/table/table.html' %}
+    <!-- Tabla de datos -->
+    <div class="row">
+        <div class="col">
+            {% include 'financings/bank/table/table.html' %}
+        </div>
     </div>
+
+    <!-- Paginación -->
     {% if page_obj %}
-    {% include 'snippets/pages.html' %}
+    <div class="row mt-4">
+        <div class="col">
+            {% include 'snippets/pages.html' %}
+        </div>
+    </div>
     {% endif %}
-    {% endblock %}
-
 </div>
+{% endblock %}

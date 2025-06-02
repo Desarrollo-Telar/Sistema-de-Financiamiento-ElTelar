@@ -1,65 +1,66 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class=" row box">
-    <div class="row">
+<div class="container box">
+    <!-- Título y descripción -->
+    <div class="row mb-4">
         <div class="col" style="padding: 2.5rem">
-            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Boletas</span> !</h3>
-            <div class="d-flex justify-content-center fs-5">
+            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Boletas</span>!</h3>
+
+            <!-- Breadcrumb -->
+            <div class="d-flex justify-content-center fs-5 mt-2">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{% url 'financings:list_payment' %}">Boletas</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
-
+                        <li class="breadcrumb-item active" aria-current="page">{{ posicion }}</li>
                     </ol>
                 </nav>
             </div>
 
             <p>
                 En este módulo, podrás gestionar toda la información relacionada con los Boletas realizados por los
-                clientes de manera eficiente y
-                organizada.
+                clientes de manera eficiente y organizada.
             </p>
             <p>
-                Este módulo está diseñado para brindarte el control y la flexibilidad
-                necesarios para administrar eficazmente el registro de todas las transacciones recibidas por parte de
-                los clientes
-                en la empresa por medio de la
+                Este módulo está diseñado para brindarte el control y la flexibilidad necesarios para administrar
+                eficazmente el
+                registro de todas las transacciones recibidas por parte de los clientes en la empresa por medio de la
                 plataforma.
             </p>
         </div>
-
     </div>
-    <div class="row" style="margin-bottom: 2rem">
+
+    <!-- Total de registros -->
+    <div class="row mb-3">
         <div class="col">
-            <p class="text-body-secondary fs-6 text-uppercase">TOTAL DE TODOS LOS REGISTROS {{message}}:
-                <span class="badge rounded-pill text-bg-dark">{{count}}</span>
+            <p class="text-body-secondary fs-6 text-uppercase">
+                TOTAL DE TODOS LOS REGISTROS {{ message }}:
+                <span class="badge rounded-pill text-bg-dark">{{ count }}</span>
             </p>
         </div>
     </div>
-    <div class="row" style="margin-bottom: 1rem;">
-        <div class="col">
-            {% include 'financings/payment/snippets/search.html' with query=query %}
 
-        </div>
-    </div>
     <hr>
-    <div class="row" style=" margin-top: 2rem;">
 
-        <div class="col">
-            <a href="{% url 'financings:create_payment' %}" class="btn_guardar">Generar
-                Pago</a>
-            {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
-            <a href="{% url 'document:banco' %}" class="btn_guardar">Subir
-                Documento</a>
-            {% endif %}
-
+    <!-- Filtros, acciones y búsqueda -->
+    <div class="row align-items-center mb-4 gx-3 gy-2">
+        <div class="col-12 col-md-6 col-lg-5">
+            {% include 'financings/payment/snippets/search.html' with query=query %}
         </div>
-        <div class="col-1">
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <a href="{% url 'financings:create_payment' %}" class="btn_guardar">Generar Pago</a>
+            {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+            <a href="{% url 'document:banco' %}" class="btn_guardar">Subir Documento</a>
+            {% endif %}
+        </div>
+
+        <div class="col-2 col-md-2 col-lg-1">
             {% include 'financings/payment/snippets/filters.html' %}
         </div>
-        <div class="col-1">
-            <a href="{%url 'report_base_boletas'  %}">
+
+        <div class="col-2 col-md-2 col-lg-1">
+            <a href="{% url 'report_base_boletas' %}" title="Descargar reporte">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                     class="bi bi-cloud-download" viewBox="0 0 16 16">
                     <path
@@ -69,8 +70,9 @@
                 </svg>
             </a>
         </div>
-        <div class="col-1">
-            <a href="{% url 'financings:comparacion_boletas' %}">
+
+        <div class="col-2 col-md-2 col-lg-1">
+            <a href="{% url 'financings:comparacion_boletas' %}" title="Comparar boletas">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                     class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
@@ -79,20 +81,18 @@
                 </svg>
             </a>
         </div>
-
     </div>
 
-    <div class="row" style="margin-top: 2rem;">
+    <!-- Tabla de boletas -->
+    <div class="row mb-4">
         {% include 'financings/payment/table/table.html' %}
     </div>
+
+    <!-- Paginación -->
     <div class="row">
         {% if page_obj %}
         {% include 'snippets/pages.html' %}
         {% endif %}
-
-        {% endblock %}
-
     </div>
-
-
 </div>
+{% endblock %}
