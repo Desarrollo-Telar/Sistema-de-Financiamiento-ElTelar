@@ -199,7 +199,7 @@ def add_egresos(request):
             
             if codigo_egreso != 'ACREEDORES' or codigo_egreso !='PAGO DE SEGUROS':
             
-                boleta = Payment(
+                boletas = Payment(
                     fecha_emision=inicio,
                     numero_referencia=numero_referencia,
                     tipo_pago='EGRESO', 
@@ -207,7 +207,7 @@ def add_egresos(request):
                     monto=monto,
                     descripcion=descripcion
                     )  
-                boleta.save()
+                boletas.save()
              
             messages.success(request, 'Egreso Creado con Exito')
             return redirect('contable:egresos')

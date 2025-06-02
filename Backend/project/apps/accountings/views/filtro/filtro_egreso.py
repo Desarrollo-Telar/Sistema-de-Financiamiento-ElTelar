@@ -17,7 +17,7 @@ from project.pagination import paginacion
 
 # TAREA ASINCRONICO
 from apps.financings.task import cambiar_plan
-
+from apps.financings.tareas_ansicronicas import ver_caso_de_gastos
 # MENSAJES
 from django.contrib import messages
 
@@ -27,7 +27,8 @@ def pendiente_egresos_vincular(request):
     template_name = 'contable/egresos/list.html'
     object_list = Egress.objects.filter(status=False).order_by('-id')
     page_obj = paginacion(request, object_list)
-    cambiar_plan()
+    ver_caso_de_gastos()
+    
     context = {
         'title':'EL TELAR - EGRESOS / PENDIENTES DE VINCULAR',
         'page_obj':page_obj,
