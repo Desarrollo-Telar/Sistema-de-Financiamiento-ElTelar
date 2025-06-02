@@ -9,6 +9,9 @@ from dateutil.relativedelta import relativedelta
 
 from django.db import transaction
 
+# TIEMPO
+from datetime import datetime
+
 def generar_todas_las_cuotas_acreedores(codigo_acreedor: str) -> None:
     acreedor = Creditor.objects.filter(codigo_acreedor=codigo_acreedor).first()
     plazo = acreedor.plazo
@@ -34,6 +37,22 @@ def generar_todas_las_cuotas_acreedores(codigo_acreedor: str) -> None:
 
     if plazo_restante <= 0:
         print('YA TIENE TODAS LA CUOTAS GENERADAS')
+        ahora = datetime.now().date()
+
+        fecha_limite = primera_cuota.fecha_limite.date()
+
+        if fecha_limite < ahora:
+            print('POR GENERAR OTRA CUOTA')
+            cuota_n = PaymentPlan(
+                start_date=primera_cuota.due_date,
+                outstanding_balance=primera_cuota.saldo_pendiente,
+                interest = calculo_interes(primera_cuota.saldo_pendiente, tasa_i),
+                acreedor = acreedor,
+                interes_generado = calculo_interes(primera_cuota.saldo_pendiente, tasa_i),
+                saldo_pendiente=primera_cuota.saldo_pendiente
+            )
+            cuota_n.save()
+
         return
 
     for cuota in range(0, plazo_restante):
@@ -76,6 +95,21 @@ def generar_todas_las_cuotas_credito(codigo_credito: str) -> None:
 
     if plazo_restante <= 0:
         print('YA TIENE TODAS LA CUOTAS GENERADAS')
+        ahora = datetime.now().date()
+
+        fecha_limite = primera_cuota.fecha_limite.date()
+
+        if fecha_limite < ahora:
+            print('POR GENERAR OTRA CUOTA')
+            cuota_n = PaymentPlan(
+                start_date=primera_cuota.due_date,
+                outstanding_balance=primera_cuota.saldo_pendiente,
+                interest = calculo_interes(primera_cuota.saldo_pendiente,  credito.tasa_interes),
+                credit_id = credito,
+                interes_generado = calculo_interes(primera_cuota.saldo_pendiente,  credito.tasa_interes),
+                saldo_pendiente=primera_cuota.saldo_pendiente
+            )
+            cuota_n.save()
         return
 
     for cuota in range(0, plazo_restante):
