@@ -24,6 +24,7 @@ from apps.financings.clases.credit import Credit as Credito
 
 # TAREA ASINCRONICO
 from apps.financings.task import cambiar_plan
+from apps.financings.functions_payment import revisar
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
@@ -264,9 +265,14 @@ def detallar_recibo(request,id):
 def detalle_boleta(request,id):
     pago = get_object_or_404(Payment, id=id)
     template_name = 'financings/payment/detail.html'
+    boleta = Banco.objects.filter(referencia=pago.numero_referencia).first()
+    if pago.estado_transaccion != 'COMPLETADO':
+        revisar(boleta)
+
     context = {
         'title':f'ELTELAR - BOLETA {pago.numero_referencia}',
         'pago':pago,
+        
     }
     return render(request, template_name, context)
 
