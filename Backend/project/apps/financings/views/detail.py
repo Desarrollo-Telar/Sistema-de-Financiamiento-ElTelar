@@ -268,6 +268,7 @@ def detalle_boleta(request,id):
     boleta = Banco.objects.filter(referencia=pago.numero_referencia).first()
     if pago.estado_transaccion != 'COMPLETADO':
         revisar(boleta)
+        return redirect('financings:detalle_boleta', pago.id)
 
     context = {
         'title':f'ELTELAR - BOLETA {pago.numero_referencia}',
