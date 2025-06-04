@@ -62,8 +62,8 @@ def cargar_boletas_estado():
                 boleta.save()
     return 'Cargado'
 
-def boletas_ver():
-    bancos_status_true = Banco.objects.filter(status=True)
+def boletas_ver(estado):
+    bancos_status_true = Banco.objects.filter(status=estado)
     for banco in bancos_status_true:
         boleta_pago = Payment.objects.filter(numero_referencia = banco.referencia).first()
         egreso_pago = Egress.objects.filter(numero_referencia = banco.referencia).first()
@@ -75,26 +75,36 @@ def boletas_ver():
             if boleta_pago.estado_transaccion != 'COMPLETADO':
                 boleta_pago.estado_transaccion = 'COMPLETADO'
                 boleta_pago.save()
+            banco.status = True
+            banco.save()
         
         if egreso_pago:
             if not egreso_pago.status:
                 egreso_pago.status = True
                 egreso_pago.save()
+            banco.status = True
+            banco.save()
 
         if seguro_pago:
             if not seguro_pago.status:
                 seguro_pago.status = True
                 seguro_pago.save()
+            banco.status = True
+            banco.save()
         
         if ingreso_pago:
             if not ingreso_pago.status:
                 ingreso_pago.status = True
                 ingreso_pago.save()
+            banco.status = True
+            banco.save()
         
         if acreedor_pago:
             if not acreedor_pago.status:
                 acreedor_pago.status = True
                 acreedor_pago.save()
+            banco.status = True
+            banco.save()
 
 from django.db import transaction
 
@@ -106,7 +116,8 @@ def ver_cuotas_no_cargadas():
             comparacion_para_boletas_divididas()
 
             cargar_boletas_estado()
-            boletas_ver()
+            boletas_ver(True)
+            boletas_ver(False)
             return 'Listo'
     except Exception as e:
         print(f'ERROR: {e}')
