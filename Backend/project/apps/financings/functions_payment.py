@@ -7,16 +7,10 @@ from datetime import datetime
 
 def revisar(boleta):
     pago = Payment.objects.filter(numero_referencia=boleta.referencia, estado_transaccion="PENDIENTE").first()
-            
-            
 
     if pago is None:
         return
-            
-
-            
-
-            
+                
     cambiar_estado = False
 
     print(f'EN FUNCIONES DE PAGO - GENERAR:{pago}')
@@ -46,14 +40,14 @@ def revisar(boleta):
         ingreso = Income.objects.filter(numero_referencia=boleta.referencia).first()
         egreso = Egress.objects.filter(numero_referencia=boleta.referencia).first()
 
-        if ingreso:
+        if ingreso is not None:
             ingreso.status = True
             ingreso.save()
             pago.estado_transaccion = 'COMPLETADO'
             pago.save()
                     
                 
-        if egreso:
+        if egreso is not None:
             egreso.status = True
             egreso.save()
             pago.estado_transaccion = 'COMPLETADO'
@@ -81,8 +75,6 @@ def revisar(boleta):
 
 def generar():
     try:
-        
-    
         print('Validando las boletas con bancos')
         boletas = Banco.objects.filter(status=False)
         
@@ -92,14 +84,7 @@ def generar():
         
         for boleta in boletas:
             #print('Se estaran evaluando las boletas')
-            revisar(boleta)
-            
-            
-            
-            
-            
-
-            
+            revisar(boleta)  
 
             
     except Exception as e:

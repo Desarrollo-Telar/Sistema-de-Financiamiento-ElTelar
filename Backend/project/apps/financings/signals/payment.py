@@ -12,6 +12,9 @@ from apps.financings.clases.personality_logs import logger
 # ENVIO DE EMAIL
 from apps.financings.task import envio_mensaje_alerta, envio_mensaje_alerta_recibo,comparacion, comparacion_para_boletas_divididas
 
+# REVISION
+from apps.financings.functions_payment import revisar
+
 from project.settings import MEDIA_URL, STATIC_URL
 from project.settings import MEDIA_ROOT
 import os
@@ -29,7 +32,9 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
         if instance.numero_referencia.endswith(("-D", "-d")):
             comparacion_para_boletas_divididas()
         else:
-            comparacion()
+            boleta = Banco.objects.filter(referencia = instance.numero_referencia).first()
+            if boleta:
+                revisar(boleta)
 
 
         
@@ -38,7 +43,7 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
 def alerta(sender, instance, **kwargs):
     banco = None
     referencia_sin_d = None
-    print(instance.estado_transaccion)
+    
 
     # Si la referencia termina en -D o -d
     if instance.numero_referencia.endswith(("-D", "-d")):
@@ -54,6 +59,10 @@ def alerta(sender, instance, **kwargs):
             banco.status = False
             banco.save()
         # envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO', instance.id)
+        
+    if instance.estado_transaccion == 'PENDIENTE':
+        logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
+        envio_mensaje_alerta('Por favor, asegúrense de revisar los detalles de la boleta de pago pendiente y tomar cualquier acción necesaria.Saludos cordiales,', 'PENDIENTE', instance.id)
 
     if instance.estado_transaccion == 'COMPLETADO':
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE - COMPLETADO')
@@ -77,6 +86,4 @@ def alerta(sender, instance, **kwargs):
                              '''La boleta de pago ha sido procesada exitosamente. No se requiere ninguna acción adicional. Saludos cordiales,''', 
                              'COMPLETADO',instance.id)
 
-    if instance.estado_transaccion == 'PENDIENTE':
-        logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
-        envio_mensaje_alerta('Por favor, asegúrense de revisar los detalles de la boleta de pago pendiente y tomar cualquier acción necesaria.Saludos cordiales,', 'PENDIENTE', instance.id)
+    
