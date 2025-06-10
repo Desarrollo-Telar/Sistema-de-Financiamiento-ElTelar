@@ -11,7 +11,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.472373",
         "longitud": "-90383255",
-        "customer_id": 5
+        "customer_id": 5,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -26,7 +28,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.456562819686788",
         "longitud": "-90.39232339078104",
-        "customer_id": 5
+        "customer_id": 5,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -41,7 +45,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.470232",
         "longitud": "-90.367956",
-        "customer_id": 7
+        "customer_id": 7,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -56,7 +62,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.47074126682795",
         "longitud": "-90.3757720042732",
-        "customer_id": 7
+        "customer_id": 7,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -71,7 +79,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.469292",
         "longitud": "-90.364928",
-        "customer_id": 8
+        "customer_id": 8,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -86,7 +96,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.471337906025896",
         "longitud": "-90.4025559910132",
-        "customer_id": 8
+        "customer_id": 8,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -101,7 +113,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.477679",
         "longitud": "-90.368581",
-        "customer_id": 9
+        "customer_id": 9,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -116,7 +130,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.477679",
         "longitud": "-90.368581",
-        "customer_id": 9
+        "customer_id": 9,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -131,7 +147,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.465309",
         "longitud": "-90.399881",
-        "customer_id": 10
+        "customer_id": 10,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -146,7 +164,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.47740108162323",
         "longitud": "-90.38434383519231",
-        "customer_id": 10
+        "customer_id": 10,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -161,7 +181,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.465132",
         "longitud": "-90.368303",
-        "customer_id": 11
+        "customer_id": 11,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -176,7 +198,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.475674382210766",
         "longitud": "-90.37095358522787",
-        "customer_id": 11
+        "customer_id": 11,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -191,7 +215,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.468336",
         "longitud": "-90.404245",
-        "customer_id": 12
+        "customer_id": 12,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -206,7 +232,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.464934189572267",
         "longitud": "-90.37296706820675",
-        "customer_id": 12
+        "customer_id": 12,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -221,7 +249,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.465558",
         "longitud": "-90.405501",
-        "customer_id": 13
+        "customer_id": 13,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -236,7 +266,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15,471331",
         "longitud": "-90,375896",
-        "customer_id": 13
+        "customer_id": 13,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -251,7 +283,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.481589",
         "longitud": "-90.307022",
-        "customer_id": 14
+        "customer_id": 14,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -266,7 +300,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.481589",
         "longitud": "-90.307022",
-        "customer_id": 14
+        "customer_id": 14,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -281,7 +317,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.481537",
         "longitud": "-90.306979",
-        "customer_id": 15
+        "customer_id": 15,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -296,7 +334,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.46287220738868",
         "longitud": "-90.39170269259625",
-        "customer_id": 15
+        "customer_id": 15,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -311,7 +351,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.463723",
         "longitud": "-90.367348",
-        "customer_id": 16
+        "customer_id": 16,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -326,7 +368,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.463723",
         "longitud": "-90.367348",
-        "customer_id": 16
+        "customer_id": 16,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -341,7 +385,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.465156",
         "longitud": "-90.393810",
-        "customer_id": 17
+        "customer_id": 17,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -356,7 +402,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.465156",
         "longitud": "-90.393810",
-        "customer_id": 17
+        "customer_id": 17,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -371,7 +419,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.801856",
         "longitud": "-89.838440",
-        "customer_id": 18
+        "customer_id": 18,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -386,7 +436,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.806977534419815",
         "longitud": "-89.86082176165908",
-        "customer_id": 18
+        "customer_id": 18,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -401,7 +453,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.459699",
         "longitud": "-90.372911",
-        "customer_id": 19
+        "customer_id": 19,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -416,7 +470,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.470890268789757",
         "longitud": "-90.38536993413898",
-        "customer_id": 19
+        "customer_id": 19,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -431,7 +487,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.468134,",
         "longitud": "-90.364191",
-        "customer_id": 20
+        "customer_id": 20,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -446,7 +504,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.47175541232787",
         "longitud": "-90.3846314553206",
-        "customer_id": 20
+        "customer_id": 20,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -461,7 +521,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.462729",
         "longitud": "-90.367124",
-        "customer_id": 21
+        "customer_id": 21,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -476,7 +538,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.462729",
         "longitud": "-90.367124",
-        "customer_id": 21
+        "customer_id": 21,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -491,7 +555,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.462595",
         "longitud": "-90.367157",
-        "customer_id": 23
+        "customer_id": 23,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -506,7 +572,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.462595",
         "longitud": "-90.367157",
-        "customer_id": 23
+        "customer_id": 23,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -521,7 +589,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.468871528219402",
         "longitud": "-90.36525923334155",
-        "customer_id": 24
+        "customer_id": 24,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -536,7 +606,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.470860366726603",
         "longitud": "-90.38167900450567",
-        "customer_id": 24
+        "customer_id": 24,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -551,7 +623,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.666918",
         "longitud": "-90.429244",
-        "customer_id": 25
+        "customer_id": 25,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -566,7 +640,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.666918",
         "longitud": "-90.429244",
-        "customer_id": 25
+        "customer_id": 25,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -581,7 +657,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.666856",
         "longitud": "-90.429287",
-        "customer_id": 28
+        "customer_id": 28,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -596,7 +674,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.666856",
         "longitud": "-90.429287",
-        "customer_id": 28
+        "customer_id": 28,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -611,7 +691,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.356420532115008",
         "longitud": "-90.47814274666021",
-        "customer_id": 29
+        "customer_id": 29,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -626,7 +708,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.470853606831621",
         "longitud": "-90.37493219286416",
-        "customer_id": 29
+        "customer_id": 29,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -641,7 +725,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.479500",
         "longitud": "-90.309770",
-        "customer_id": 30
+        "customer_id": 30,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -656,7 +742,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "16.22947870651439",
         "longitud": "-90.15400943494413",
-        "customer_id": 30
+        "customer_id": 30,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -671,7 +759,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.467274507590945",
         "longitud": "-90.39814531665843",
-        "customer_id": 31
+        "customer_id": 31,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -686,7 +776,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.471186981741724",
         "longitud": "-90.37879770185094",
-        "customer_id": 31
+        "customer_id": 31,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -701,7 +793,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.475117",
         "longitud": "-90.390518",
-        "customer_id": 32
+        "customer_id": 32,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -716,7 +810,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "14.629846868332782",
         "longitud": "-90.4966022799108",
-        "customer_id": 32
+        "customer_id": 32,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -731,7 +827,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.463202",
         "longitud": "-90.385526",
-        "customer_id": 33
+        "customer_id": 33,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -746,7 +844,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.463202",
         "longitud": "-90.385526",
-        "customer_id": 33
+        "customer_id": 33,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -761,7 +861,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.467389155788858",
         "longitud": "-90.38620257845311",
-        "customer_id": 34
+        "customer_id": 34,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -776,7 +878,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.47126638384735",
         "longitud": "-90.3803869297943",
-        "customer_id": 34
+        "customer_id": 34,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -791,7 +895,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.316282",
         "longitud": "-90.352645",
-        "customer_id": 35
+        "customer_id": 35,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -806,7 +912,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.3198942661257",
         "longitud": "-90.3523941420635",
-        "customer_id": 35
+        "customer_id": 35,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -821,7 +929,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.366808",
         "longitud": "-90.485834",
-        "customer_id": 36
+        "customer_id": 36,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -836,7 +946,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.366808",
         "longitud": "-90.485834",
-        "customer_id": 36
+        "customer_id": 36,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -851,7 +963,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.473118",
         "longitud": "-90.367589",
-        "customer_id": 37
+        "customer_id": 37,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -866,7 +980,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.473089964831408",
         "longitud": "-90.36754718892975",
-        "customer_id": 37
+        "customer_id": 37,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -881,7 +997,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.470027",
         "longitud": "-90.395020",
-        "customer_id": 38
+        "customer_id": 38,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -896,7 +1014,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.471636258912225",
         "longitud": "-90.36711241753565",
-        "customer_id": 38
+        "customer_id": 38,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -911,7 +1031,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.366808",
         "longitud": "-90.485834",
-        "customer_id": 40
+        "customer_id": 40,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -926,7 +1048,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.104533314082497",
         "longitud": "-90.31807307219069",
-        "customer_id": 40
+        "customer_id": 40,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -941,7 +1065,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.427090",
         "longitud": "-90.388584",
-        "customer_id": 41
+        "customer_id": 41,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -956,7 +1082,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.427090",
         "longitud": "-90.388584",
-        "customer_id": 41
+        "customer_id": 41,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -971,7 +1099,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.457231676393397",
         "longitud": "-90.38664586197011",
-        "customer_id": 42
+        "customer_id": 42,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -986,7 +1116,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.469066854793907",
         "longitud": "-90.3789531962486",
-        "customer_id": 42
+        "customer_id": 42,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1001,7 +1133,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.468082",
         "longitud": "-90.364179",
-        "customer_id": 43
+        "customer_id": 43,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1016,7 +1150,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.468082",
         "longitud": "-90.364179",
-        "customer_id": 43
+        "customer_id": 43,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1031,7 +1167,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.469891",
         "longitud": "90.299183",
-        "customer_id": 44
+        "customer_id": 44,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1046,7 +1184,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.510231346807581",
         "longitud": "-90.24121803533994",
-        "customer_id": 44
+        "customer_id": 44,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1061,7 +1201,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.473152",
         "longitud": "-90.386242",
-        "customer_id": 46
+        "customer_id": 46,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1076,7 +1218,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.397207680098767",
         "longitud": "-90.40984743958268",
-        "customer_id": 46
+        "customer_id": 46,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1091,7 +1235,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.470838879694961",
         "longitud": "-90.29921357214451",
-        "customer_id": 47
+        "customer_id": 47,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1106,7 +1252,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.470838879694961",
         "longitud": "-90.29921357214451",
-        "customer_id": 47
+        "customer_id": 47,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1121,7 +1269,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.804837",
         "longitud": "-89.851144",
-        "customer_id": 49
+        "customer_id": 49,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1136,7 +1286,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.80352791946753",
         "longitud": "-89.86687363068678",
-        "customer_id": 49
+        "customer_id": 49,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1151,7 +1303,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.470971",
         "longitud": "-90.378900",
-        "customer_id": 50
+        "customer_id": 50,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1166,7 +1320,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.471280",
         "longitud": "-90.378845",
-        "customer_id": 50
+        "customer_id": 50,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1181,7 +1337,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.468601709924162",
         "longitud": "-90.37051932170007",
-        "customer_id": 51
+        "customer_id": 51,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1196,7 +1354,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.470754061900358",
         "longitud": "-90.3732951423283",
-        "customer_id": 51
+        "customer_id": 51,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1211,7 +1371,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.423198",
         "longitud": "-90.336279",
-        "customer_id": 52
+        "customer_id": 52,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1226,7 +1388,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.47247534549196",
         "longitud": "-90.37558903125809",
-        "customer_id": 52
+        "customer_id": 52,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1241,7 +1405,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.468674",
         "longitud": "-90.403434",
-        "customer_id": 53
+        "customer_id": 53,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1256,7 +1422,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.47082562665615",
         "longitud": "-90.37487560427317",
-        "customer_id": 53
+        "customer_id": 53,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1271,7 +1439,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.804588",
         "longitud": "-89.864629",
-        "customer_id": 54
+        "customer_id": 54,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1286,7 +1456,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.804588",
         "longitud": "-89.864629",
-        "customer_id": 54
+        "customer_id": 54,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1301,7 +1473,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.467014",
         "longitud": "-90.369996",
-        "customer_id": 55
+        "customer_id": 55,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1316,7 +1490,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.470622917459478",
         "longitud": "-90.380397622742",
-        "customer_id": 55
+        "customer_id": 55,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1331,7 +1507,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.469930",
         "longitud": "-90.404995",
-        "customer_id": 56
+        "customer_id": 56,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1346,7 +1524,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.471779666462247",
         "longitud": "-90.39537089066776",
-        "customer_id": 56
+        "customer_id": 56,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1361,7 +1541,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.367443",
         "longitud": "-90.479505",
-        "customer_id": 57
+        "customer_id": 57,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1376,7 +1558,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.472075953479028",
         "longitud": "-90.38575188913755",
-        "customer_id": 57
+        "customer_id": 57,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1391,7 +1575,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.479014",
         "longitud": "-90.359012",
-        "customer_id": 58
+        "customer_id": 58,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1406,7 +1592,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.472875453545557",
         "longitud": "-90.37562781949691",
-        "customer_id": 58
+        "customer_id": 58,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1421,7 +1609,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.424433",
         "longitud": "-90.328903",
-        "customer_id": 59
+        "customer_id": 59,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1436,7 +1626,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.475976606857158",
         "longitud": "-90.37537251312678",
-        "customer_id": 59
+        "customer_id": 59,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1451,7 +1643,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.485258",
         "longitud": "-90.378266",
-        "customer_id": 60
+        "customer_id": 60,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1466,7 +1660,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.473442666754742",
         "longitud": "-90.37319987651833",
-        "customer_id": 60
+        "customer_id": 60,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1481,7 +1677,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.485591",
         "longitud": "-90.372554",
-        "customer_id": 61
+        "customer_id": 61,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1496,7 +1694,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.469740067678853",
         "longitud": "-90.37255500427321",
-        "customer_id": 61
+        "customer_id": 61,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1511,7 +1711,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.484345",
         "longitud": "-90.310964",
-        "customer_id": 62
+        "customer_id": 62,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1526,7 +1728,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.464910173768567",
         "longitud": "-90.38977020242235",
-        "customer_id": 62
+        "customer_id": 62,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1541,7 +1745,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.484404",
         "longitud": "-90.366752",
-        "customer_id": 63
+        "customer_id": 63,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1556,7 +1762,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.468934499512944",
         "longitud": "-90.38229525099365",
-        "customer_id": 63
+        "customer_id": 63,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1571,7 +1779,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.467995",
         "longitud": "-90.367817",
-        "customer_id": 65
+        "customer_id": 65,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1586,7 +1796,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.472353518463779",
         "longitud": "-90.36484211682864",
-        "customer_id": 65
+        "customer_id": 65,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1601,7 +1813,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.467468704683434",
         "longitud": "-90.40133612718724",
-        "customer_id": 66
+        "customer_id": 66,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1616,7 +1830,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.4704909630646",
         "longitud": "-90.38506265314656",
-        "customer_id": 66
+        "customer_id": 66,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1631,7 +1847,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.471307201070347",
         "longitud": "-90.38924712651014",
-        "customer_id": 67
+        "customer_id": 67,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1646,7 +1864,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "16.26546572176092",
         "longitud": "-90.40506247575486",
-        "customer_id": 67
+        "customer_id": 67,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1661,7 +1881,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.470368",
         "longitud": "-90.380058",
-        "customer_id": 68
+        "customer_id": 68,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1676,7 +1898,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.470612012723205",
         "longitud": "-90.37786462147817",
-        "customer_id": 68
+        "customer_id": 68,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1691,7 +1915,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.466779",
         "longitud": "-90.370384",
-        "customer_id": 69
+        "customer_id": 69,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1706,7 +1932,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.473439811457947",
         "longitud": "-90.38478783269126",
-        "customer_id": 69
+        "customer_id": 69,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1721,7 +1949,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.468073",
         "longitud": "-90.366882",
-        "customer_id": 70
+        "customer_id": 70,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1736,7 +1966,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.474736757479889",
         "longitud": "-90.38874991111976",
-        "customer_id": 70
+        "customer_id": 70,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1751,7 +1983,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.462467",
         "longitud": "-90.369975",
-        "customer_id": 71
+        "customer_id": 71,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1766,7 +2000,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.471716306343453",
         "longitud": "-90.37834230427318",
-        "customer_id": 71
+        "customer_id": 71,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1781,7 +2017,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.316705452109375",
         "longitud": "-90.35074274988649",
-        "customer_id": 72
+        "customer_id": 72,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1796,7 +2034,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.326150844184701",
         "longitud": "-90.35246600289895",
-        "customer_id": 72
+        "customer_id": 72,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1811,7 +2051,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.477131",
         "longitud": "-90.364092",
-        "customer_id": 73
+        "customer_id": 73,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1826,7 +2068,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.31910055490628",
         "longitud": "-90.35117656256699",
-        "customer_id": 73
+        "customer_id": 73,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1841,7 +2085,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.482934",
         "longitud": "-90.372380",
-        "customer_id": 74
+        "customer_id": 74,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1856,7 +2102,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.480081841695764",
         "longitud": "-90.37283507709381",
-        "customer_id": 74
+        "customer_id": 74,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1871,7 +2119,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.466441853380367",
         "longitud": "-90.39878815413287",
-        "customer_id": 75
+        "customer_id": 75,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1886,7 +2136,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.4700533082554",
         "longitud": "-90.36649495824302",
-        "customer_id": 75
+        "customer_id": 75,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1901,7 +2153,9 @@
         "type_address": "Direccin Personal",
         "latitud": "14.679100436374119",
         "longitud": "-91.3115140331248",
-        "customer_id": 76
+        "customer_id": 76,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1916,7 +2170,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.473804124034555",
         "longitud": "-90.35557172015241",
-        "customer_id": 76
+        "customer_id": 76,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1931,7 +2187,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.415185803615257",
         "longitud": "-90.40279504604305",
-        "customer_id": 77
+        "customer_id": 77,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1946,7 +2204,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.470853606831584",
         "longitud": "-90.37477126009396",
-        "customer_id": 77
+        "customer_id": 77,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1961,7 +2221,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.46384377200017",
         "longitud": "-90.40194786618284",
-        "customer_id": 78
+        "customer_id": 78,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1976,7 +2238,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.470722548733603",
         "longitud": "-90.37441075844957",
-        "customer_id": 78
+        "customer_id": 78,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -1991,7 +2255,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.473505402404118",
         "longitud": "-90.39031546171702",
-        "customer_id": 79
+        "customer_id": 79,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2006,7 +2272,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.490801445970751",
         "longitud": "-90.22322140574005",
-        "customer_id": 79
+        "customer_id": 79,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2021,7 +2289,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.415458461277257",
         "longitud": "-90.40241585724449",
-        "customer_id": 81
+        "customer_id": 81,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2036,7 +2306,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.670057554760682",
         "longitud": "-90.47662023951565",
-        "customer_id": 81
+        "customer_id": 81,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2051,7 +2323,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.473538499223691",
         "longitud": "-90.37663861534335",
-        "customer_id": 82
+        "customer_id": 82,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2066,7 +2340,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.473946831890155",
         "longitud": "-90.31126508181315",
-        "customer_id": 82
+        "customer_id": 82,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2081,7 +2357,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.371470",
         "longitud": "-90.430753",
-        "customer_id": 83
+        "customer_id": 83,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2096,7 +2374,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.37440670202015",
         "longitud": "-90.43100073385298",
-        "customer_id": 83
+        "customer_id": 83,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2111,7 +2391,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.45876808319553",
         "longitud": "-90.36785836654795",
-        "customer_id": 84
+        "customer_id": 84,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2126,7 +2408,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.78886683159567",
         "longitud": "-89.60412747558992",
-        "customer_id": 84
+        "customer_id": 84,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2141,7 +2425,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.475349",
         "longitud": "-90.361628",
-        "customer_id": 86
+        "customer_id": 86,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2156,7 +2442,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.47613818174683",
         "longitud": "-90.37268590427304",
-        "customer_id": 86
+        "customer_id": 86,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2171,7 +2459,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.463910",
         "longitud": "-90.365510",
-        "customer_id": 87
+        "customer_id": 87,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2186,7 +2476,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "16.3735634",
         "longitud": "-90.2860633836",
-        "customer_id": 87
+        "customer_id": 87,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2201,7 +2493,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.608116",
         "longitud": "-89.812161",
-        "customer_id": 89
+        "customer_id": 89,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2216,7 +2510,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.467166463970736",
         "longitud": "-90.36854011380032",
-        "customer_id": 89
+        "customer_id": 89,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2231,7 +2527,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.426535",
         "longitud": "90.404485",
-        "customer_id": 90
+        "customer_id": 90,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2246,7 +2544,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.50872478433198",
         "longitud": "-90.31494772698491",
-        "customer_id": 90
+        "customer_id": 90,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2261,7 +2561,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.374583",
         "longitud": "-90.432886",
-        "customer_id": 91
+        "customer_id": 91,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2276,7 +2578,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.47091748108058",
         "longitud": "-90.38624253068679",
-        "customer_id": 91
+        "customer_id": 91,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2291,7 +2595,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.470651",
         "longitud": "-90.373323",
-        "customer_id": 92
+        "customer_id": 92,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2306,7 +2612,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.467770891164074",
         "longitud": "-90.37198270029113",
-        "customer_id": 92
+        "customer_id": 92,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2321,7 +2629,9 @@
         "type_address": "Direccin Personal",
         "latitud": "15.482509",
         "longitud": "-90.366672",
-        "customer_id": 93
+        "customer_id": 93,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2336,7 +2646,9 @@
         "type_address": "Direccin de Trabajo",
         "latitud": "15.482509",
         "longitud": "-90.366672",
-        "customer_id": 93
+        "customer_id": 93,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2351,7 +2663,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.466016",
         "longitud": "-90.401026",
-        "customer_id": 94
+        "customer_id": 94,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2366,7 +2680,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.466016",
         "longitud": "-90.401026",
-        "customer_id": 94
+        "customer_id": 94,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2381,7 +2697,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.458132",
         "longitud": "-90.368447",
-        "customer_id": 96
+        "customer_id": 96,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2396,7 +2714,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.458132",
         "longitud": "-90.368447",
-        "customer_id": 96
+        "customer_id": 96,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2411,7 +2731,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.382761",
         "longitud": "-90.415383",
-        "customer_id": 97
+        "customer_id": 97,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2426,7 +2748,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.424433437108583",
         "longitud": "-90.33748621896746",
-        "customer_id": 97
+        "customer_id": 97,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2441,7 +2765,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.464555",
         "longitud": "-90.363413",
-        "customer_id": 98
+        "customer_id": 98,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2456,7 +2782,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.464555",
         "longitud": "-90.363413",
-        "customer_id": 98
+        "customer_id": 98,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2471,7 +2799,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.468865",
         "longitud": "-90.366779",
-        "customer_id": 99
+        "customer_id": 99,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2486,7 +2816,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.468865",
         "longitud": "-90.366779",
-        "customer_id": 99
+        "customer_id": 99,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2501,7 +2833,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.485669",
         "longitud": "-90.373364",
-        "customer_id": 100
+        "customer_id": 100,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2516,7 +2850,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "14.611582031767536",
         "longitud": "-90.5396243177677",
-        "customer_id": 100
+        "customer_id": 100,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2531,7 +2867,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.460533",
         "longitud": "-90.368191",
-        "customer_id": 101
+        "customer_id": 101,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2546,7 +2884,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.813766263073145",
         "longitud": "-90.28800514194621",
-        "customer_id": 101
+        "customer_id": 101,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2561,7 +2901,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.466528",
         "longitud": "-90.373470",
-        "customer_id": 102
+        "customer_id": 102,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2576,7 +2918,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.473922",
         "longitud": "-90.392073",
-        "customer_id": 102
+        "customer_id": 102,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2591,7 +2935,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.490632",
         "longitud": "-90.290319",
-        "customer_id": 103
+        "customer_id": 103,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2606,7 +2952,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.346514481175463",
         "longitud": "-89.29178387752344",
-        "customer_id": 103
+        "customer_id": 103,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2621,7 +2969,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.490735",
         "longitud": "-90.290427",
-        "customer_id": 104
+        "customer_id": 104,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2636,7 +2986,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.51329629777604",
         "longitud": "-90.31694726700181",
-        "customer_id": 104
+        "customer_id": 104,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2651,7 +3003,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.464891377567138",
         "longitud": "-90.40264088488689",
-        "customer_id": 105
+        "customer_id": 105,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2666,7 +3020,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.469931027371851",
         "longitud": "-90.38501298894681",
-        "customer_id": 105
+        "customer_id": 105,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2681,7 +3037,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.462815",
         "longitud": "-90.386101",
-        "customer_id": 106
+        "customer_id": 106,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2696,7 +3054,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.456438730006004",
         "longitud": "-90.39228047567015",
-        "customer_id": 106
+        "customer_id": 106,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2711,7 +3071,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.319833",
         "longitud": "-90.360578",
-        "customer_id": 107
+        "customer_id": 107,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2726,7 +3088,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.321018527840524",
         "longitud": "-90.35349597127406",
-        "customer_id": 107
+        "customer_id": 107,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2741,7 +3105,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.470200",
         "longitud": "-90.299523",
-        "customer_id": 108
+        "customer_id": 108,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2756,7 +3122,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470200",
         "longitud": "-90.299523",
-        "customer_id": 108
+        "customer_id": 108,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2771,7 +3139,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.46392649550525",
         "longitud": "-90.40232337545432",
-        "customer_id": 109
+        "customer_id": 109,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2786,7 +3156,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470047662570735",
         "longitud": "-90.38557893862644",
-        "customer_id": 109
+        "customer_id": 109,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2801,7 +3173,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.470200",
         "longitud": "-90.299523",
-        "customer_id": 110
+        "customer_id": 110,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2816,7 +3190,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.47406105846668",
         "longitud": "-90.37654263068677",
-        "customer_id": 110
+        "customer_id": 110,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2831,7 +3207,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.477242",
         "longitud": "-90.369728",
-        "customer_id": 111
+        "customer_id": 111,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2846,7 +3224,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.08380575052653",
         "longitud": "-90.48544501055954",
-        "customer_id": 111
+        "customer_id": 111,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2861,7 +3241,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.420504",
         "longitud": "-90.405774",
-        "customer_id": 112
+        "customer_id": 112,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2876,7 +3258,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.420504",
         "longitud": "-90.405774",
-        "customer_id": 112
+        "customer_id": 112,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2891,7 +3275,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.466920",
         "longitud": "-90.370448",
-        "customer_id": 113
+        "customer_id": 113,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2906,7 +3292,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.466920",
         "longitud": "-90.370448",
-        "customer_id": 113
+        "customer_id": 113,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2921,7 +3309,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.472527",
         "longitud": "-90.374420",
-        "customer_id": 114
+        "customer_id": 114,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2936,7 +3326,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.476949509689867",
         "longitud": "-90.37249473774551",
-        "customer_id": 114
+        "customer_id": 114,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2951,7 +3343,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.463702",
         "longitud": "-90.371689",
-        "customer_id": 115
+        "customer_id": 115,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2966,7 +3360,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.47212372599307",
         "longitud": "-90.37443586217734",
-        "customer_id": 115
+        "customer_id": 115,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2981,7 +3377,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.465070",
         "longitud": "-90.384262",
-        "customer_id": 116
+        "customer_id": 116,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -2996,7 +3394,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.465070",
         "longitud": "-90.384262",
-        "customer_id": 116
+        "customer_id": 116,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3011,7 +3411,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.415942",
         "longitud": "-89.838602",
-        "customer_id": 117
+        "customer_id": 117,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3026,7 +3428,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.317393578376056",
         "longitud": "-89.87616773519575",
-        "customer_id": 117
+        "customer_id": 117,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3041,7 +3445,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.667253",
         "longitud": "-90.428204",
-        "customer_id": 118
+        "customer_id": 118,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3056,7 +3462,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.667253",
         "longitud": "-90.428204",
-        "customer_id": 118
+        "customer_id": 118,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3071,7 +3479,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.667181",
         "longitud": "-90.428204",
-        "customer_id": 119
+        "customer_id": 119,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3086,7 +3496,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.667181",
         "longitud": "-90.428204",
-        "customer_id": 119
+        "customer_id": 119,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3101,7 +3513,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.475838",
         "longitud": "-90.368125",
-        "customer_id": 120
+        "customer_id": 120,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3116,7 +3530,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.474986653414438",
         "longitud": "-90.40190525601322",
-        "customer_id": 120
+        "customer_id": 120,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3131,7 +3547,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.463637",
         "longitud": "-90.369975",
-        "customer_id": 121
+        "customer_id": 121,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3146,7 +3564,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.472790764805788",
         "longitud": "-90.37530335234422",
-        "customer_id": 121
+        "customer_id": 121,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3161,7 +3581,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.460395",
         "longitud": "-90.368300",
-        "customer_id": 123
+        "customer_id": 123,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3176,7 +3598,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470442",
         "longitud": "-90.369331",
-        "customer_id": 123
+        "customer_id": 123,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3191,7 +3615,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.473412",
         "longitud": "-90.375642",
-        "customer_id": 124
+        "customer_id": 124,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3206,7 +3632,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470065449099074",
         "longitud": "-90.38516319264771",
-        "customer_id": 124
+        "customer_id": 124,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3221,7 +3649,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.460554",
         "longitud": "-90.368184",
-        "customer_id": 125
+        "customer_id": 125,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3236,7 +3666,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.471062242247259",
         "longitud": "-90.3861567",
-        "customer_id": 125
+        "customer_id": 125,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3251,7 +3683,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.472343",
         "longitud": "-90.311072",
-        "customer_id": 126
+        "customer_id": 126,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3266,7 +3700,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470269759881038",
         "longitud": "-90.38494044901242",
-        "customer_id": 126
+        "customer_id": 126,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3281,7 +3717,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.472519",
         "longitud": "-90.311104",
-        "customer_id": 127
+        "customer_id": 127,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3296,7 +3734,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.472519",
         "longitud": "-90.311104",
-        "customer_id": 127
+        "customer_id": 127,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3311,7 +3751,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.459216",
         "longitud": "-90.339432",
-        "customer_id": 128
+        "customer_id": 128,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3326,7 +3768,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.480738308897578",
         "longitud": "-90.3052559423283",
-        "customer_id": 128
+        "customer_id": 128,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3341,7 +3785,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.475573",
         "longitud": "-90.387330",
-        "customer_id": 129
+        "customer_id": 129,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3356,7 +3802,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.473162359544215",
         "longitud": "-90.3675471846566",
-        "customer_id": 129
+        "customer_id": 129,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3371,7 +3819,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.471403",
         "longitud": "-90.380799",
-        "customer_id": 130
+        "customer_id": 130,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3386,7 +3836,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.469701610659596",
         "longitud": "-90.37370312963577",
-        "customer_id": 130
+        "customer_id": 130,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3401,7 +3853,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.467925",
         "longitud": "-90.370482",
-        "customer_id": 131
+        "customer_id": 131,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3416,7 +3870,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.479061401002738",
         "longitud": "-90.37259334661819",
-        "customer_id": 131
+        "customer_id": 131,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3431,7 +3887,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.466925",
         "longitud": "-90.367688",
-        "customer_id": 132
+        "customer_id": 132,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3446,7 +3904,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.481011643133632",
         "longitud": "-90.37345280474484",
-        "customer_id": 132
+        "customer_id": 132,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3461,7 +3921,9 @@
         "type_address": "Dirección Personal",
         "latitud": "14.608567713836011",
         "longitud": "-90.51533350615746",
-        "customer_id": 133
+        "customer_id": 133,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3476,7 +3938,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.468046548508347",
         "longitud": "-90.371217188032",
-        "customer_id": 133
+        "customer_id": 133,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3491,7 +3955,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.483490",
         "longitud": "90.371159",
-        "customer_id": 134
+        "customer_id": 134,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3506,7 +3972,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.479185492007906",
         "longitud": "-90.37257188465661",
-        "customer_id": 134
+        "customer_id": 134,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3521,7 +3989,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.47777",
         "longitud": "-90.373181",
-        "customer_id": 135
+        "customer_id": 135,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3536,7 +4006,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470751606923441",
         "longitud": "-90.3757720042732",
-        "customer_id": 135
+        "customer_id": 135,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3551,7 +4023,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.467656",
         "longitud": "-90.393592",
-        "customer_id": 136
+        "customer_id": 136,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3566,7 +4040,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.469315018950336",
         "longitud": "-90.37888882323352",
-        "customer_id": 136
+        "customer_id": 136,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3581,7 +4057,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.469222843717287",
         "longitud": "-90.36701501164153",
-        "customer_id": 137
+        "customer_id": 137,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3596,7 +4074,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.479154458102332",
         "longitud": "-90.3726791773044",
-        "customer_id": 137
+        "customer_id": 137,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3611,7 +4091,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.466950",
         "longitud": "-90.368967",
-        "customer_id": 138
+        "customer_id": 138,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3626,7 +4108,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.463111054284235",
         "longitud": "-90.36753158731152",
-        "customer_id": 138
+        "customer_id": 138,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3641,7 +4125,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.466929",
         "longitud": "-90.369053",
-        "customer_id": 139
+        "customer_id": 139,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3656,7 +4142,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.471026374612311",
         "longitud": "-90.36936429539459",
-        "customer_id": 139
+        "customer_id": 139,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3671,7 +4159,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.462647",
         "longitud": "-90.400955",
-        "customer_id": 140
+        "customer_id": 140,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3686,7 +4176,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.467492813323771",
         "longitud": "-90.37744966139351",
-        "customer_id": 140
+        "customer_id": 140,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3701,7 +4193,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.457210",
         "longitud": "-90.367783",
-        "customer_id": 141
+        "customer_id": 141,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3716,7 +4210,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.457210",
         "longitud": "-90.367783",
-        "customer_id": 141
+        "customer_id": 141,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3731,7 +4227,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.469604543423559",
         "longitud": "-90.3804123179238",
-        "customer_id": 142
+        "customer_id": 142,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3746,7 +4244,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.471003442256933",
         "longitud": "-90.37686850839611",
-        "customer_id": 142
+        "customer_id": 142,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3761,7 +4261,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.366860",
         "longitud": "-90.488692",
-        "customer_id": 143
+        "customer_id": 143,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3776,7 +4278,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.366860",
         "longitud": "-90.488692",
-        "customer_id": 143
+        "customer_id": 143,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3791,7 +4295,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.468760",
         "longitud": "-90.344263",
-        "customer_id": 144
+        "customer_id": 144,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3806,7 +4312,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.990782745498771",
         "longitud": "-90.77805548630059",
-        "customer_id": 144
+        "customer_id": 144,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3821,7 +4329,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.478923",
         "longitud": "-90.358928",
-        "customer_id": 145
+        "customer_id": 145,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3836,7 +4346,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.479082095243491",
         "longitud": "-90.37262552883584",
-        "customer_id": 145
+        "customer_id": 145,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3851,7 +4363,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.365109188452035",
         "longitud": "-90.46883920624528",
-        "customer_id": 146
+        "customer_id": 146,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3866,7 +4380,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.479133793632155",
         "longitud": "-90.37270063068677",
-        "customer_id": 146
+        "customer_id": 146,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3881,7 +4397,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.478083-90.310450",
         "longitud": "-90.310450",
-        "customer_id": 147
+        "customer_id": 147,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3896,7 +4414,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.479314723009074",
         "longitud": "-90.37287229646974",
-        "customer_id": 147
+        "customer_id": 147,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3911,7 +4431,9 @@
         "type_address": "Dirección Personal",
         "latitud": "14.632076",
         "longitud": "-90.516777",
-        "customer_id": 149
+        "customer_id": 149,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3926,7 +4448,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.47307534488229",
         "longitud": "-90.36489238360943",
-        "customer_id": 149
+        "customer_id": 149,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3941,7 +4465,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.471634",
         "longitud": "-90.389847",
-        "customer_id": 150
+        "customer_id": 150,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3956,7 +4482,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.471634",
         "longitud": "-90.389847",
-        "customer_id": 150
+        "customer_id": 150,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3971,7 +4499,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.462555069679434",
         "longitud": "-90.38789252698493",
-        "customer_id": 151
+        "customer_id": 151,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -3986,7 +4516,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.477744476987647",
         "longitud": "-90.3704398605945",
-        "customer_id": 151
+        "customer_id": 151,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4001,7 +4533,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.469047-90.343555",
         "longitud": "-90.343555",
-        "customer_id": 152
+        "customer_id": 152,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4016,7 +4550,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470723026738149",
         "longitud": "-90.37318785821512",
-        "customer_id": 152
+        "customer_id": 152,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4031,7 +4567,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.4728942",
         "longitud": "-90.367267",
-        "customer_id": 153
+        "customer_id": 153,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4046,7 +4584,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.6978107563839",
         "longitud": "-88.58503458481059",
-        "customer_id": 153
+        "customer_id": 153,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4061,7 +4601,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.472894",
         "longitud": "-90.367267",
-        "customer_id": 154
+        "customer_id": 154,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4076,7 +4618,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.472894",
         "longitud": "-90.367267",
-        "customer_id": 154
+        "customer_id": 154,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4091,7 +4635,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.486458004637687",
         "longitud": "-90.37245166013524",
-        "customer_id": 155
+        "customer_id": 155,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4106,7 +4652,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.486458004637687",
         "longitud": "-90.37245166013524",
-        "customer_id": 155
+        "customer_id": 155,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4121,7 +4669,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.374451",
         "longitud": "-90.419626",
-        "customer_id": 156
+        "customer_id": 156,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4136,7 +4686,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.472517625385326",
         "longitud": "-90.37096393920544",
-        "customer_id": 156
+        "customer_id": 156,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4151,7 +4703,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.455499",
         "longitud": "-90.368743",
-        "customer_id": 157
+        "customer_id": 157,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4166,7 +4720,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.455499",
         "longitud": "-90.368743",
-        "customer_id": 157
+        "customer_id": 157,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4181,7 +4737,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.468034",
         "longitud": "-90.405580",
-        "customer_id": 158
+        "customer_id": 158,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4196,7 +4754,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "14.331836725061134",
         "longitud": "-90.78208853591453",
-        "customer_id": 158
+        "customer_id": 158,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4211,7 +4771,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.469463",
         "longitud": "-90.398522",
-        "customer_id": 159
+        "customer_id": 159,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4226,7 +4788,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.479257854830575",
         "longitud": "-90.37267917729478",
-        "customer_id": 159
+        "customer_id": 159,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4241,7 +4805,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.471966459391206",
         "longitud": "-90.37699495639946",
-        "customer_id": 160
+        "customer_id": 160,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4256,7 +4822,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.50164",
         "longitud": "-90.34627",
-        "customer_id": 160
+        "customer_id": 160,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4271,7 +4839,9 @@
         "type_address": "Dirección Personal",
         "latitud": "14.605701199923171",
         "longitud": "-90.51120100429723",
-        "customer_id": 161
+        "customer_id": 161,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4286,7 +4856,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "14.605721964169575",
         "longitud": "-90.51120100429723",
-        "customer_id": 161
+        "customer_id": 161,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4301,7 +4873,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.46989689364004",
         "longitud": "-90.29863061989202",
-        "customer_id": 162
+        "customer_id": 162,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4316,7 +4890,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.468842066473877",
         "longitud": "-90.29893789872789",
-        "customer_id": 162
+        "customer_id": 162,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4331,7 +4907,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.318826",
         "longitud": "-90.351205",
-        "customer_id": 163
+        "customer_id": 163,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4346,7 +4924,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.31940181514876",
         "longitud": "-90.34922074582553",
-        "customer_id": 163
+        "customer_id": 163,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4361,7 +4941,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.466727",
         "longitud": "-90.339821",
-        "customer_id": 164
+        "customer_id": 164,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4376,7 +4958,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.461632912334498",
         "longitud": "-90.37027558893",
-        "customer_id": 164
+        "customer_id": 164,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4391,7 +4975,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.460856",
         "longitud": "-90.341242",
-        "customer_id": 165
+        "customer_id": 165,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4406,7 +4992,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.460856",
         "longitud": "-90.341242",
-        "customer_id": 165
+        "customer_id": 165,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4421,7 +5009,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.455246",
         "longitud": "-90.369632",
-        "customer_id": 166
+        "customer_id": 166,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4436,7 +5026,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.455246",
         "longitud": "-90.369632",
-        "customer_id": 166
+        "customer_id": 166,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4451,7 +5043,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.479858202637557",
         "longitud": "-90.3848706526205",
-        "customer_id": 167
+        "customer_id": 167,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4466,7 +5060,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.475866122622808",
         "longitud": "-90.37368097173538",
-        "customer_id": 167
+        "customer_id": 167,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4481,7 +5077,9 @@
         "type_address": "Dirección Personal",
         "latitud": "14.476036",
         "longitud": "-90.365943",
-        "customer_id": 168
+        "customer_id": 168,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4496,7 +5094,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470794",
         "longitud": "-90.374755",
-        "customer_id": 168
+        "customer_id": 168,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4511,7 +5111,9 @@
         "type_address": "Dirección Personal",
         "latitud": "14.469628",
         "longitud": "-90.3967594",
-        "customer_id": 169
+        "customer_id": 169,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4526,7 +5128,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.467887",
         "longitud": "-90.382256",
-        "customer_id": 169
+        "customer_id": 169,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4541,7 +5145,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.484056",
         "longitud": "-90.367740",
-        "customer_id": 170
+        "customer_id": 170,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4556,7 +5162,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.4708018",
         "longitud": "-90.3767815",
-        "customer_id": 170
+        "customer_id": 170,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4571,7 +5179,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.345943",
         "longitud": "-90.468758",
-        "customer_id": 171
+        "customer_id": 171,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4586,7 +5196,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.469912104178459",
         "longitud": "-90.38444149686947",
-        "customer_id": 171
+        "customer_id": 171,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4601,7 +5213,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.487278",
         "longitud": "-90.366335",
-        "customer_id": 172
+        "customer_id": 172,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4616,7 +5230,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470679141411717",
         "longitud": "-90.37483533568974",
-        "customer_id": 172
+        "customer_id": 172,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4631,7 +5247,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.422703",
         "longitud": "-90.301474",
-        "customer_id": 173
+        "customer_id": 173,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4646,7 +5264,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.469951722517054",
         "longitud": "-90.38373625320394",
-        "customer_id": 173
+        "customer_id": 173,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4661,7 +5281,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.462396897920764",
         "longitud": "-90.40540395586122",
-        "customer_id": 174
+        "customer_id": 174,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4676,7 +5298,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.47080496133805",
         "longitud": "-90.37419968349789",
-        "customer_id": 174
+        "customer_id": 174,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4691,7 +5315,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.472112",
         "longitud": "-90.374732",
-        "customer_id": 175
+        "customer_id": 175,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4706,7 +5332,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.479288873838966",
         "longitud": "-90.37249678727288",
-        "customer_id": 175
+        "customer_id": 175,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4721,7 +5349,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.466274",
         "longitud": "-90.410416",
-        "customer_id": 176
+        "customer_id": 176,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4736,7 +5366,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470655",
         "longitud": "-90.374806",
-        "customer_id": 176
+        "customer_id": 176,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4751,7 +5383,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.477832",
         "longitud": "-90.372386",
-        "customer_id": 177
+        "customer_id": 177,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4766,7 +5400,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.477832",
         "longitud": "-90.372386",
-        "customer_id": 177
+        "customer_id": 177,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4781,7 +5417,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.470802621194142",
         "longitud": "-90.37712984414448",
-        "customer_id": 178
+        "customer_id": 178,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4796,7 +5434,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.4699754121265",
         "longitud": "-90.37970476481138",
-        "customer_id": 178
+        "customer_id": 178,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4811,7 +5451,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.465098254903669",
         "longitud": "-90.39652872833175",
-        "customer_id": 179
+        "customer_id": 179,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4826,7 +5468,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15°29’22.65″N",
         "longitud": "90°14’11.43″O",
-        "customer_id": 179
+        "customer_id": 179,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4841,7 +5485,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.363585777610915",
         "longitud": "-90.48220040780306",
-        "customer_id": 180
+        "customer_id": 180,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4856,7 +5502,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.374767041619712",
         "longitud": "-90.43089566563849",
-        "customer_id": 180
+        "customer_id": 180,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4871,7 +5519,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.468909064639345",
         "longitud": "-90.3721243559539",
-        "customer_id": 181
+        "customer_id": 181,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4886,7 +5536,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.468909064639345",
         "longitud": "-90.3721243559539",
-        "customer_id": 181
+        "customer_id": 181,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4901,7 +5553,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.469935056941448",
         "longitud": "-90.38062518423787",
-        "customer_id": 182
+        "customer_id": 182,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4916,7 +5570,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.469935056941448",
         "longitud": "-90.38062518423787",
-        "customer_id": 182
+        "customer_id": 182,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4931,7 +5587,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.468507",
         "longitud": "-90.393616",
-        "customer_id": 183
+        "customer_id": 183,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4946,7 +5604,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.47175801796227",
         "longitud": "-90.38631394315685",
-        "customer_id": 183
+        "customer_id": 183,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4961,7 +5621,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.468620",
         "longitud": "-90.368935",
-        "customer_id": 184
+        "customer_id": 184,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4976,7 +5638,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.468620",
         "longitud": "-90.368935",
-        "customer_id": 184
+        "customer_id": 184,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -4991,7 +5655,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.463732",
         "longitud": "-90.402444",
-        "customer_id": 185
+        "customer_id": 185,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5006,7 +5672,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.472158266187924",
         "longitud": "-90.40739919702794",
-        "customer_id": 185
+        "customer_id": 185,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5021,7 +5689,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.467835",
         "longitud": "-90.394632",
-        "customer_id": 186
+        "customer_id": 186,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5036,7 +5706,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.466299631912351",
         "longitud": "-90.37430977532563",
-        "customer_id": 186
+        "customer_id": 186,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5051,7 +5723,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.481639",
         "longitud": "-90.303265",
-        "customer_id": 187
+        "customer_id": 187,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5066,7 +5740,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470898007284253",
         "longitud": "-90.37482195998027",
-        "customer_id": 187
+        "customer_id": 187,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5081,7 +5757,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.470806227705246",
         "longitud": "-90.37912080450572",
-        "customer_id": 188
+        "customer_id": 188,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5096,7 +5774,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470806227705246",
         "longitud": "-90.37912080450572",
-        "customer_id": 188
+        "customer_id": 188,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5111,7 +5791,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.446149938704844",
         "longitud": "-90.36346782000051",
-        "customer_id": 190
+        "customer_id": 190,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5126,7 +5808,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.470086087798908",
         "longitud": "-90.38600650427321",
-        "customer_id": 190
+        "customer_id": 190,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5141,7 +5825,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.463608",
         "longitud": "-90.367364",
-        "customer_id": 191
+        "customer_id": 191,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5156,7 +5842,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.463608",
         "longitud": "-90.367364",
-        "customer_id": 191
+        "customer_id": 191,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5171,7 +5859,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.46384591736836",
         "longitud": "-90.37024002599775",
-        "customer_id": 192
+        "customer_id": 192,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5186,7 +5876,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.46384591736836",
         "longitud": "-90.37024002599775",
-        "customer_id": 192
+        "customer_id": 192,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5201,7 +5893,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.469936435220417",
         "longitud": "-90.2985795305571",
-        "customer_id": 193
+        "customer_id": 193,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5216,7 +5910,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.260370268855995",
         "longitud": "-90.39605295820321",
-        "customer_id": 193
+        "customer_id": 193,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5231,7 +5927,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.466832",
         "longitud": "-90.369987",
-        "customer_id": 194
+        "customer_id": 194,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5246,7 +5944,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.466832",
         "longitud": "-90.369987",
-        "customer_id": 194
+        "customer_id": 194,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5261,7 +5961,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.472176",
         "longitud": "-90.386474",
-        "customer_id": 195
+        "customer_id": 195,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5276,7 +5978,9 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.472176",
         "longitud": "-90.386474",
-        "customer_id": 195
+        "customer_id": 195,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5291,7 +5995,9 @@
         "type_address": "Dirección Personal",
         "latitud": "15.463800",
         "longitud": "-90.367858",
-        "customer_id": 196
+        "customer_id": 196,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 },
 {
@@ -5306,7 +6012,1777 @@
         "type_address": "Dirección de Trabajo",
         "latitud": "15.463800",
         "longitud": "-90.367858",
-        "customer_id": 196
+        "customer_id": 196,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 374,
+    "fields": {
+        "street": "6 TA CALLE 3-17",
+        "number": "7",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.463732",
+        "longitud": "-90.380142",
+        "customer_id": 197,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 375,
+    "fields": {
+        "street": "8ª. CALLE 1-24",
+        "number": "11",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.479144118426671",
+        "longitud": "-90.37227148152591",
+        "customer_id": 197,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 376,
+    "fields": {
+        "street": "EL ESFUERZO 1",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.467824",
+        "longitud": "-90.397033",
+        "customer_id": 198,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 377,
+    "fields": {
+        "street": "EL ESFUERZO 1",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.467824",
+        "longitud": "-90.397033",
+        "customer_id": 198,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 378,
+    "fields": {
+        "street": "BARRIO SANTA ANA",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "San Cristobal Verapaz",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.371700",
+        "longitud": "-90.476255",
+        "customer_id": 199,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 379,
+    "fields": {
+        "street": "1ra. calle 3-13",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470863946921273",
+        "longitud": "-90.37488927728829",
+        "customer_id": 199,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 380,
+    "fields": {
+        "street": "5A, CALLE A. 1-15, BARRIO CHIMAX",
+        "number": "4",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.316872",
+        "longitud": "-89.876553",
+        "customer_id": 200,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 381,
+    "fields": {
+        "street": "BARRIO EL HOSPITAL",
+        "number": "11",
+        "city": "Alta Verapaz",
+        "state": "La Tinta",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.317208412538111",
+        "longitud": "-89.87618110639674",
+        "customer_id": 200,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 382,
+    "fields": {
+        "street": "5TA. CALLE A 4-96, ESFUERZO 1",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.467585100812768",
+        "longitud": "-90.3953408449196",
+        "customer_id": 201,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 383,
+    "fields": {
+        "street": "1A CALLE 313, COBAN 16001, LA TORRE",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470894967188018",
+        "longitud": "-90.37479271772825",
+        "customer_id": 201,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 384,
+    "fields": {
+        "street": "ESFUERZO, FRENTE A CANCHA SINTETICA",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.471571",
+        "longitud": "-90.406959",
+        "customer_id": 202,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 385,
+    "fields": {
+        "street": "ESFUERZO, FRENTE A CANCHA SINTETICA",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.471571",
+        "longitud": "-90.406959",
+        "customer_id": 202,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 386,
+    "fields": {
+        "street": "4TA AVENIDA 5-67",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.466581",
+        "longitud": "-90.395393",
+        "customer_id": 203,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 387,
+    "fields": {
+        "street": "2a. calle 4-28, Barrio Santa Cecilia,",
+        "number": "3",
+        "city": "Alta Verapaz",
+        "state": "Santa Cruz Verapaz",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470418973684824",
+        "longitud": "-90.35120659467744",
+        "customer_id": 203,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 388,
+    "fields": {
+        "street": "5TA CALLE 7-38 INTERIOR",
+        "number": "3",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.467874",
+        "longitud": "-90.367888",
+        "customer_id": 204,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 389,
+    "fields": {
+        "street": "8va. calle 9-55",
+        "number": "1",
+        "city": "Guatemala",
+        "state": "Guatemala",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "14.640981853670041",
+        "longitud": "-90.5099439601624",
+        "customer_id": 204,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 393,
+    "fields": {
+        "street": "CASERIO TRAPICHE VIEJO",
+        "number": "0",
+        "city": "Baja Verapaz",
+        "state": "CHOL",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "14.967639",
+        "longitud": "-90.486355",
+        "customer_id": 207,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 394,
+    "fields": {
+        "street": "5TA CALLE 19-55",
+        "number": "9",
+        "city": "ALTA VERAPAZ",
+        "state": "COBÁN",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "14-61192",
+        "longitud": "-90.52506",
+        "customer_id": 207,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 397,
+    "fields": {
+        "street": "6TA AVENIDA 4-08",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.466916860861216",
+        "longitud": "-90.39721604437767",
+        "customer_id": 209,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 398,
+    "fields": {
+        "street": "1A CALLE 15-20",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.473408326347307",
+        "longitud": "-90.39068544639134",
+        "customer_id": 209,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 399,
+    "fields": {
+        "street": "052 AVENIDA 11-05 CANTON LAS CASAS",
+        "number": "8",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.450231101133348",
+        "longitud": "-90.36683774426596",
+        "customer_id": 210,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 400,
+    "fields": {
+        "street": "052 AVENIDA 11-05 CANTON LAS CASAS",
+        "number": "8",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.450231101133348",
+        "longitud": "-90.36683774426596",
+        "customer_id": 210,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 401,
+    "fields": {
+        "street": "5a. Calle 2-02",
+        "number": "4",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.467870109516312",
+        "longitud": "-90.3719812331091",
+        "customer_id": 212,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 402,
+    "fields": {
+        "street": "5A. CALLE 5-19",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470836047458674",
+        "longitud": "-90.3767739889298",
+        "customer_id": 212,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 403,
+    "fields": {
+        "street": "PETET CENTRAL",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.463295743657811",
+        "longitud": "-90.40530858597955",
+        "customer_id": 213,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 404,
+    "fields": {
+        "street": "PETET CENTRAL",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.463295743657811",
+        "longitud": "-90.40530858597955",
+        "customer_id": 213,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 405,
+    "fields": {
+        "street": "4ta avenida 1-89  barrio bella vista",
+        "number": "8",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.460756971663276",
+        "longitud": "-90.36597006913792",
+        "customer_id": 214,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 406,
+    "fields": {
+        "street": "POR CAMPO MINERVA",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.46190628492518",
+        "longitud": "-90.39219260253614",
+        "customer_id": 214,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 407,
+    "fields": {
+        "street": "8A. CALLE 10-02",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "San Pedro Carcha",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.476868138639093",
+        "longitud": "-90.31262308016676",
+        "customer_id": 215,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 408,
+    "fields": {
+        "street": "5a. avenida 2-43",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.4731726846425",
+        "longitud": "-90.36754718892996",
+        "customer_id": 215,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 409,
+    "fields": {
+        "street": "COLONIA ESFUERZO 1",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.462719",
+        "longitud": "-90.399182",
+        "customer_id": 216,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 410,
+    "fields": {
+        "street": "1A CALLE 313",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470905307275826",
+        "longitud": "-90.37479271766804",
+        "customer_id": 216,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 411,
+    "fields": {
+        "street": "2DA CALLE 2-85 RESIDENCIALES CACIC",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.472426",
+        "longitud": "-90.403648",
+        "customer_id": 217,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 412,
+    "fields": {
+        "street": "10 AVENIDA 5-35, SAN PEDRO SAC. SAN MARCOS",
+        "number": "1",
+        "city": "Sacatepequez",
+        "state": "SAN MARCOS",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "14.966168502251376",
+        "longitud": "-91.77786474253992",
+        "customer_id": 217,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 413,
+    "fields": {
+        "street": "2DA CALLE 2-85 RESIDENCIALES CACIC",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.472426",
+        "longitud": "-90.403648",
+        "customer_id": 218,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 414,
+    "fields": {
+        "street": "2A. CALLE 16-94",
+        "number": "4",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.47391378397152",
+        "longitud": "-90.35870617353784",
+        "customer_id": 218,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 415,
+    "fields": {
+        "street": "5A AVENIDA 2-21 ZONA 1, BARRIO SAN JACINTO TACTIC ALTA VERAPAZ",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Tactic",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.319.032",
+        "longitud": "-90.352.893",
+        "customer_id": 219,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 416,
+    "fields": {
+        "street": "TACTIC ALTA VERAPAZ",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "Tactic",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.32331",
+        "longitud": "- 90.35602",
+        "customer_id": 219,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 417,
+    "fields": {
+        "street": "2a. avenida 4-23",
+        "number": "4",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.46778520",
+        "longitud": "-90.374038",
+        "customer_id": 220,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 418,
+    "fields": {
+        "street": "7 calle 6-24, Cobán",
+        "number": "11",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.485778172102181",
+        "longitud": "-90.37240298876654",
+        "customer_id": 220,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 419,
+    "fields": {
+        "street": "LOTIFICACIÓN GUALOM",
+        "number": "11",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.470905307275826",
+        "longitud": "-90.37479271766804",
+        "customer_id": 221,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 420,
+    "fields": {
+        "street": "PLAZA MAGDALENA",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470275187609838",
+        "longitud": "-90.38589741760336",
+        "customer_id": 221,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 421,
+    "fields": {
+        "street": "CALLEJÓN 4, 2-09, BARRIO CHICHÚN",
+        "number": "7",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.429144",
+        "longitud": "-90.330464",
+        "customer_id": 222,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 422,
+    "fields": {
+        "street": "7ª AVENIDA 11-109",
+        "number": "6",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.457114692923957",
+        "longitud": "-90.38361357527667",
+        "customer_id": 222,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 423,
+    "fields": {
+        "street": "12 AVENIDA 6-541 , CHIRRETZAAJ",
+        "number": "6",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.456291",
+        "longitud": "-90.381167",
+        "customer_id": 223,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 424,
+    "fields": {
+        "street": "12 AVENIDA 6-541, CHIRRETZAAJ",
+        "number": "6",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.456291",
+        "longitud": "-90.381167",
+        "customer_id": 223,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 425,
+    "fields": {
+        "street": "9A. CALLE 1-8 LOTIFICACIÓN CARLOS V",
+        "number": "6",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.462196",
+        "longitud": "-90.391506",
+        "customer_id": 224,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 426,
+    "fields": {
+        "street": "PLAZA DEL PARQUE LOCAL 119, 1RA. CALLE 3-13",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470866987018157",
+        "longitud": "-90.37492924845026",
+        "customer_id": 224,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 427,
+    "fields": {
+        "street": "9A. CALLE 1-8 LOTIFICACIÓN CARLOS V",
+        "number": "6",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.462196",
+        "longitud": "-90.391506",
+        "customer_id": 225,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 428,
+    "fields": {
+        "street": "0 Calle 0-05",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "SAN JUAN CHAMELCO",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.42451433329626",
+        "longitud": "-90.33177753310997",
+        "customer_id": 225,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 429,
+    "fields": {
+        "street": "7 ACCESO \"A\" LOS JAZMINES. 2 -60",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.470144",
+        "longitud": "-90.401632",
+        "customer_id": 226,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 430,
+    "fields": {
+        "street": "7 ACCESO \"A\" LOS JAZMINES. 2 -60",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470144",
+        "longitud": "-90.401632",
+        "customer_id": 226,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 431,
+    "fields": {
+        "street": "Diagonal 2 8-66 BARRIO CUATRO CAMINOS",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "San Pedro Carcha",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.4738531",
+        "longitud": "-90.3078871",
+        "customer_id": 227,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 432,
+    "fields": {
+        "street": "Diagonal 2 8-66 zona 1 San Pedro Carcha A.V BARRIO CUATRO CAMINOS",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "San Pedro Carcha",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.4738531",
+        "longitud": "-90.3078871",
+        "customer_id": 227,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 433,
+    "fields": {
+        "street": "DIAGONAL 1 5-42 ZONA 1",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.470144",
+        "longitud": "-90.401632",
+        "customer_id": 228,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 434,
+    "fields": {
+        "street": "DIAGONAL 3 11-36, COBÁN, PLAZA MAGDALENA",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.468919494783973",
+        "longitud": "-90.38285333862646",
+        "customer_id": 228,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 435,
+    "fields": {
+        "street": "BARRIO TALPETATE",
+        "number": "8",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.461260",
+        "longitud": "-90.380183",
+        "customer_id": 229,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 436,
+    "fields": {
+        "street": "2 av. 5-33 zona",
+        "number": "7",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.463443931768053",
+        "longitud": "-90.37519199202569",
+        "customer_id": 229,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 437,
+    "fields": {
+        "street": "COLONIA NUEVA ESPERANZA",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.461886",
+        "longitud": "-90.404029",
+        "customer_id": 230,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 438,
+    "fields": {
+        "street": "COBAN, FRENTE A PLAZA MAGDALENA",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.471478826831216",
+        "longitud": "-90.3861563312723",
+        "customer_id": 230,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 439,
+    "fields": {
+        "street": "17 CALLEJÓN 3-51, BARRIO LA LIBERTAD",
+        "number": "11",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.464272403826456",
+        "longitud": "-90.38339549665041",
+        "customer_id": 231,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 440,
+    "fields": {
+        "street": "CALLE 1-11",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470826427678947",
+        "longitud": "-90.373370248466",
+        "customer_id": 231,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 441,
+    "fields": {
+        "street": "16CALLE ZONA 11 BARRIO LA LIBERTAD",
+        "number": "11",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.47128999176481",
+        "longitud": "-90.37907344996646",
+        "customer_id": 232,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 442,
+    "fields": {
+        "street": "Agencias Plaza del Parque, Local 103, 1ra. Calle 3-13- TALLER HINO",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470898507789007",
+        "longitud": "-90.37480627543734",
+        "customer_id": 232,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 443,
+    "fields": {
+        "street": "1ra av 4-12",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.466598",
+        "longitud": "-90.391402",
+        "customer_id": 233,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 444,
+    "fields": {
+        "street": "SAN JUAN CHAMELCO",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "SAN JUAN CHAMELCO",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.402471663698414",
+        "longitud": "-90.33305190242362",
+        "customer_id": 233,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 445,
+    "fields": {
+        "street": "BULEVARD PRINCIPAL MINERVAS 5-15 JARDINES DE MINERVA 2",
+        "number": "11",
+        "city": "Guatemala",
+        "state": "Mixco",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "14.675174",
+        "longitud": "-90.554843",
+        "customer_id": 234,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 446,
+    "fields": {
+        "street": "SWISSCONTACT 18 AVENIDA B8-94, VISTA HERMOSA",
+        "number": "15",
+        "city": "Guatemala",
+        "state": "Guatemala",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "14.599154117083325",
+        "longitud": "-90.49196034851134",
+        "customer_id": 234,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 447,
+    "fields": {
+        "street": "8VA. AVENIDA 3-27, BARRIO SAN VICENTE",
+        "number": "6",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.466700360982088",
+        "longitud": "-90.38501333445336",
+        "customer_id": 235,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 448,
+    "fields": {
+        "street": "Diagonal 4 3-12",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470311836323608",
+        "longitud": "-90.37480522406835",
+        "customer_id": 235,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 449,
+    "fields": {
+        "street": "COMUNIDAD CHAJXUCUB",
+        "number": "11",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.487980",
+        "longitud": "-90.368525",
+        "customer_id": 237,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 450,
+    "fields": {
+        "street": "1 CALLE 15-20,CENTRO COMERCIAL PLAZA MAGDALENA",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.469962047778186",
+        "longitud": "-90.38503444657472",
+        "customer_id": 237,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 451,
+    "fields": {
+        "street": "PETET CHIXIC",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.474012",
+        "longitud": "-90.407162",
+        "customer_id": 238,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 452,
+    "fields": {
+        "street": "7A, AVENIDA 6-02, FRENTE A PUENTE EL ARCO",
+        "number": "9",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.473783444148012",
+        "longitud": "-90.35602233138579",
+        "customer_id": 238,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 453,
+    "fields": {
+        "street": "RESIDENCIALES AKALTIC",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "Tactic",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.32328829607267",
+        "longitud": "-90.36127408466028",
+        "customer_id": 239,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 454,
+    "fields": {
+        "street": "RESIDENCIALES AKALTIC",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "Tactic",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.323329685775192",
+        "longitud": "-90.36137064417466",
+        "customer_id": 239,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 455,
+    "fields": {
+        "street": "10A AVENIDA 8-34, ESFUERZO 2",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.46417047915086",
+        "longitud": "-90.40228597889823",
+        "customer_id": 240,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 456,
+    "fields": {
+        "street": "SANTA CRUZ ALTA VERAPAZ",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "Santa Cruz Verapaz",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.375257",
+        "longitud": "-90.429740",
+        "customer_id": 240,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 457,
+    "fields": {
+        "street": "COLONIA SAN FRANCISCO 8558,SAN PEDRO CARCHA",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "San Pedro Carcha",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.482202437882263",
+        "longitud": "-90.31375875145022",
+        "customer_id": 241,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 458,
+    "fields": {
+        "street": "ANTIGUAS INSTALACIONES DE LA TERMINAL DE BUSES  DE SAN CRISTOBAL ZONA 2 DE COBAN, ALTA VERAPAZ.",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.466793499937912",
+        "longitud": "-90.38414626804634",
+        "customer_id": 241,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 459,
+    "fields": {
+        "street": "15 AV 6-29B, PB",
+        "number": "10",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.479789100078312",
+        "longitud": "-90.36353595490351",
+        "customer_id": 242,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 460,
+    "fields": {
+        "street": "Diagonal 1",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.474817923461693",
+        "longitud": "-90.37304091776558",
+        "customer_id": 242,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 461,
+    "fields": {
+        "street": "15 AV 6-29B, PB",
+        "number": "10",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.47983045864893",
+        "longitud": "-90.3631926321601",
+        "customer_id": 243,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 462,
+    "fields": {
+        "street": "3a calle,",
+        "number": "3",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "14.639417735468312",
+        "longitud": "-90.5194967331532",
+        "customer_id": 243,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 463,
+    "fields": {
+        "street": "1 CALLE 2-36 ZONA 6",
+        "number": "6",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.471916005280443",
+        "longitud": "-90.38873800414072",
+        "customer_id": 244,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 464,
+    "fields": {
+        "street": "SEDE SAN JUAN CHAMELCO BARRIO CHIO",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "SAN JUAN CHAMELCO",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.426084417421066",
+        "longitud": "-90.3261576861253",
+        "customer_id": 244,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 465,
+    "fields": {
+        "street": "03 CL 14-50 PB, ZONA 1",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.47309270540038",
+        "longitud": "-90.38023727844539",
+        "customer_id": 245,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 466,
+    "fields": {
+        "street": "DIAGONAL 1  4-21",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470935682438476",
+        "longitud": "-90.37587400234054",
+        "customer_id": 245,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 467,
+    "fields": {
+        "street": "COLONIA LO DE TANO CASA #47 ZONA 8 COBAN",
+        "number": "8",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.45145914034691",
+        "longitud": "-90.36525916217778",
+        "customer_id": 246,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 468,
+    "fields": {
+        "street": "6ª CALLE 9-97",
+        "number": "10",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.472845325055227",
+        "longitud": "-90.37755948889938",
+        "customer_id": 246,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 469,
+    "fields": {
+        "street": "CASERÍO RIVERAS DEL RÍO ZONA 4 TACTIC ALTA VERAPAZ",
+        "number": "4",
+        "city": "Alta Verapaz",
+        "state": "Tactic",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.322470991875706",
+        "longitud": "-90.35500199999053",
+        "customer_id": 247,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 470,
+    "fields": {
+        "street": "7a. Ave. 4-10, Barrio San Jacinto",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Tactic",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.318364667433823",
+        "longitud": "-90.3509675912472",
+        "customer_id": 247,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 471,
+    "fields": {
+        "street": "11 AVENIDA 10-11 ZONA 10 EL MANANTIAL COBAN",
+        "number": "10",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.477368",
+        "longitud": "-90.359390",
+        "customer_id": 248,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 472,
+    "fields": {
+        "street": "11 AVENIDA 10-11 ZONA 10 EL MANANTIAL",
+        "number": "10",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.477368",
+        "longitud": "-90.359390",
+        "customer_id": 248,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 473,
+    "fields": {
+        "street": "5TA CALLE 10-59 ZONA9 SAN JOSÉ LA COLONIA",
+        "number": "9",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.47085926503326,",
+        "longitud": "-90.34621475996633",
+        "customer_id": 249,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 474,
+    "fields": {
+        "street": "1A AVENIDA 5-34",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.47590852107359",
+        "longitud": "-90.37254847531173",
+        "customer_id": 249,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 475,
+    "fields": {
+        "street": "COBAN ZONA 8 ,13CL",
+        "number": "8",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.456352240180866",
+        "longitud": "-90.36846872585664",
+        "customer_id": 250,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 476,
+    "fields": {
+        "street": "1A AVENIDA 5-34",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.475877501558434",
+        "longitud": "-90.37261284832994",
+        "customer_id": 250,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 477,
+    "fields": {
+        "street": "4TA CALLE 10-11 ZONA 1 CARCHA ALTA VERAPAZ",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.483323030976734",
+        "longitud": "-90.29025157316873",
+        "customer_id": 251,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 478,
+    "fields": {
+        "street": "BARRIO SAN PABLO CARCHA ALTA VERAPAZ",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "San Pedro Carcha",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.485184610954663",
+        "longitud": "-90.28944332203613",
+        "customer_id": 251,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 479,
+    "fields": {
+        "street": "13-53 DIAGONAL 4 LA ENCANTADA",
+        "number": "8",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.450770",
+        "longitud": "-90.365219",
+        "customer_id": 252,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 480,
+    "fields": {
+        "street": "13-53 DIAGONAL 4 LA ENCANTADA",
+        "number": "8",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.450770",
+        "longitud": "-90.365219",
+        "customer_id": 252,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 481,
+    "fields": {
+        "street": "Cooperativa chirrepec km 217 ruta San juan chamelco",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "SAN JUAN CHAMELCO",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.4253304",
+        "longitud": "-90.3633617",
+        "customer_id": 253,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 482,
+    "fields": {
+        "street": "Calz. la Paz 23-13, Cdad. de Guatemala",
+        "number": "17",
+        "city": "Guatemala",
+        "state": "Guatemala",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "14.6377042",
+        "longitud": "-90.4879475",
+        "customer_id": 253,
+        "subsidiary": null,
+        "codigo_postal": null
     }
 }
 ]

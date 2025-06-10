@@ -100,6 +100,6 @@ load_commands = [
 ]
 
 print("PROCESANDO...")
-for back in load_commands:
+for back in commands:
     os.system(back)
 print("FINALIZADO")

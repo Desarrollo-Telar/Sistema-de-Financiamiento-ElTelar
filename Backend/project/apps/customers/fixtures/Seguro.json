@@ -15,13 +15,14 @@
         "observaciones": "POLIZA VEHICULO TOYOTA COROLLA MODELO 2018 COLOR NEGRO PLACA P-794HSJ/ LIGADO CREDITO ANGEL LEAL",
         "boleta": "",
         "status": false,
-        "saldo_pendiente": "683.00",
-        "saldo_actual": "683.00",
-        "is_paid_off": false,
+        "saldo_pendiente": "1283.00",
+        "saldo_actual": "0.00",
+        "is_paid_off": true,
         "estado_aportacion": true,
-        "estados_fechas": null,
+        "estados_fechas": true,
         "forma_de_pago": "AMORTIZACIONES A CAPITAL",
-        "credito": null
+        "credito": null,
+        "creation_date": "2025-04-10T07:16:30.504Z"
     }
 },
 {
@@ -40,13 +41,14 @@
         "observaciones": "POLIZA VEHICULO JEEP SUZUKI MODELO 2002 ROJO - PLACA P-188DNS/ CREDITO DE ERICK CHUN",
         "boleta": "",
         "status": false,
-        "saldo_pendiente": "430.00",
-        "saldo_actual": "430.00",
+        "saldo_pendiente": "242.00",
+        "saldo_actual": "242.00",
         "is_paid_off": false,
         "estado_aportacion": true,
-        "estados_fechas": null,
+        "estados_fechas": false,
         "forma_de_pago": "AMORTIZACIONES A CAPITAL",
-        "credito": null
+        "credito": null,
+        "creation_date": "2025-04-10T07:16:30.504Z"
     }
 },
 {
@@ -68,10 +70,37 @@
         "saldo_pendiente": "1400.00",
         "saldo_actual": "1400.00",
         "is_paid_off": false,
-        "estado_aportacion": false,
-        "estados_fechas": null,
+        "estado_aportacion": true,
+        "estados_fechas": false,
         "forma_de_pago": "AMORTIZACIONES A CAPITAL",
-        "credito": null
+        "credito": null,
+        "creation_date": "2025-04-10T07:16:30.504Z"
+    }
+},
+{
+    "model": "accountings.insurance",
+    "pk": 8,
+    "fields": {
+        "codigo_seguro": "SEG-2025-4",
+        "nombre_acreedor": "EDGAR ARMANDO ALVARADO BERMUDEZ",
+        "fecha_inicio": "2025-04-15",
+        "monto": "3816.00",
+        "tasa": "0.000",
+        "plazo": 12,
+        "fecha_vencimiento": "2026-04-15",
+        "fecha_registro": "2025-05-15",
+        "numero_referencia": "",
+        "observaciones": "POLIZA VEHICULO TOYOTA COROLLA MODELO 2018 COLOR NEGRO PLACA P-794HSJ/ LIGADO CREDITO ANGEL LEAL",
+        "boleta": "",
+        "status": false,
+        "saldo_pendiente": "3498.00",
+        "saldo_actual": "3498.00",
+        "is_paid_off": false,
+        "estado_aportacion": true,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "credito": null,
+        "creation_date": "2025-05-15T16:56:33.802Z"
     }
 }
 ]

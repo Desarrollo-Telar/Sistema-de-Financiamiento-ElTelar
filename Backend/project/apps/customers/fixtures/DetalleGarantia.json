@@ -1131,5 +1131,1418 @@
         },
         "valor_cobertura": "5000.00"
     }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 80,
+    "fields": {
+        "garantia_id": 80,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "595",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0,
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "700.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 82,
+    "fields": {
+        "garantia_id": 82,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "427",
+            "Monto_cheque": 11440,
+            "NombreCuenta": "HECTOR CHUN BEB",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ",
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "8000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 83,
+    "fields": {
+        "garantia_id": 83,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "594",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0,
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "1500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 84,
+    "fields": {
+        "garantia_id": 84,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "141",
+            "Monto_cheque": 37700,
+            "NombreCuenta": "AUGUSTO GUILLERMO MENDOZA MARTILNEZ",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ",
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "20000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 85,
+    "fields": {
+        "garantia_id": 85,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE LOS TRABAJADORES",
+            "noCheque": "189",
+            "Monto_cheque": 32992,
+            "NombreCuenta": "SIERRA MAYRA LUCRECIA",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL",
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "20000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 86,
+    "fields": {
+        "garantia_id": 86,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "600",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0,
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "6000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 87,
+    "fields": {
+        "garantia_id": 87,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "593",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0,
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "1000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 88,
+    "fields": {
+        "garantia_id": 88,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": 0,
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0,
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "603.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 89,
+    "fields": {
+        "garantia_id": 89,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "85",
+            "Monto_cheque": 31126,
+            "NombreCuenta": "YOSELIN TAMRA LEAL ARRIOLA",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL",
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "15250.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 90,
+    "fields": {
+        "garantia_id": 90,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL S.A.",
+            "noCheque": "102",
+            "Monto_cheque": 11022,
+            "NombreCuenta": "CARLOS ARCHILA CHINCHILLA ",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ",
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "8000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 91,
+    "fields": {
+        "garantia_id": 91,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": 0,
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0,
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "604.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 92,
+    "fields": {
+        "garantia_id": 92,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "380",
+            "Monto_cheque": 21764,
+            "NombreCuenta": "RIGOBERTO ANIBAL CHUB YAT",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ",
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "15000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 93,
+    "fields": {
+        "garantia_id": 93,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO PROMERICA",
+            "noCheque": "248",
+            "Monto_cheque": 19906,
+            "NombreCuenta": "EDIN RAÚL CASASOLA SALAZAR",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ",
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "10000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 94,
+    "fields": {
+        "garantia_id": 94,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": 0,
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0,
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 95,
+    "fields": {
+        "garantia_id": 95,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "158",
+            "Monto_cheque": 7963,
+            "NombreCuenta": "KARLA ROCIO HERNANDEZ RAMIREZ",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL",
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "6000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 96,
+    "fields": {
+        "garantia_id": 96,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "255",
+            "Monto_cheque": 28644,
+            "NombreCuenta": "HEDDER EMILIO CAAL BOL",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL",
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "16000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 97,
+    "fields": {
+        "garantia_id": 97,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "611",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0,
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 98,
+    "fields": {
+        "garantia_id": 98,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "612",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0,
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "6775.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 99,
+    "fields": {
+        "garantia_id": 99,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "2",
+            "Monto_cheque": 4558,
+            "NombreCuenta": "FREDY ELIESMO CHOC PRADO",
+            "Cheque_girado_a": "EDGAR ARDMANDO ALVARADO BERMUDEZ",
+            "fotografia_cheque": ""
+        },
+        "valor_cobertura": "2000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 100,
+    "fields": {
+        "garantia_id": 100,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO G&T CONTINENTAL",
+            "noCheque": "30",
+            "Monto_cheque": 6500,
+            "NombreCuenta": "JOSE ROCAEL VASQUEZ HERNANDEZ",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 101,
+    "fields": {
+        "garantia_id": 101,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "614",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "2000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 102,
+    "fields": {
+        "garantia_id": 102,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "634",
+            "Monto_cheque": 41254,
+            "NombreCuenta": "GABRIELA JOHANA CHOC MALDONADO",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL"
+        },
+        "valor_cobertura": "10705.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 103,
+    "fields": {
+        "garantia_id": 103,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "617",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "6832.50"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 104,
+    "fields": {
+        "garantia_id": 104,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "615",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "3000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 105,
+    "fields": {
+        "garantia_id": 105,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL S.A.",
+            "noCheque": "14",
+            "Monto_cheque": 6066,
+            "NombreCuenta": "ADRIAN YAXCAL CUCUL ",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "4000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 106,
+    "fields": {
+        "garantia_id": 106,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "622",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 107,
+    "fields": {
+        "garantia_id": 107,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "618",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "11832.50"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 108,
+    "fields": {
+        "garantia_id": 108,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL S.A.",
+            "noCheque": "151",
+            "Monto_cheque": 13267,
+            "NombreCuenta": "ALEX GEOVANNY POP BAC",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 109,
+    "fields": {
+        "garantia_id": 109,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "621",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "1500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 110,
+    "fields": {
+        "garantia_id": 110,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "623",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "6000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 111,
+    "fields": {
+        "garantia_id": 111,
+        "tipo_garantia": "FIADOR",
+        "especificaciones": {
+            "Nombre": "",
+            "Ingresos": 4500,
+            "fotografia": "",
+            "Lugar_de_Trabajo": "NEGOCIO PROPIETARIO",
+            "Codigo_de_Cliente": "2025-13",
+            "Numero_de_Telefono": "55634365"
+        },
+        "valor_cobertura": "4000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 112,
+    "fields": {
+        "garantia_id": 112,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "676",
+            "Monto_cheque": 11060,
+            "NombreCuenta": "MIRIAM ANTONIETA SORIA LOPEZ DE AREVALO",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "8150.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 113,
+    "fields": {
+        "garantia_id": 113,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "628",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "6000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 114,
+    "fields": {
+        "garantia_id": 114,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO CREDITO HIPOTECARIO NACIONAL",
+            "noCheque": "30",
+            "Monto_cheque": 12125,
+            "NombreCuenta": "SUN PACAY MARCO ANTONIO",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "8000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 115,
+    "fields": {
+        "garantia_id": 115,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "1814",
+            "Monto_cheque": 7150,
+            "NombreCuenta": "ORALIA MARIZABETH DE LA CRUZ HENGSTENBERG",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL"
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 116,
+    "fields": {
+        "garantia_id": 116,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": 0,
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "3500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 117,
+    "fields": {
+        "garantia_id": 117,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "20",
+            "Monto_cheque": 10728,
+            "NombreCuenta": "BRITANY NAYELI CIFUENTES CHOCOOJ",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL"
+        },
+        "valor_cobertura": "6500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 118,
+    "fields": {
+        "garantia_id": 118,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE AMERICA CENTRAL S.A",
+            "noCheque": "32",
+            "Monto_cheque": 2657,
+            "NombreCuenta": "SERGIO ALEXANDER CAAL CAL",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "2000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 119,
+    "fields": {
+        "garantia_id": 119,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "144",
+            "Monto_cheque": 10780,
+            "NombreCuenta": "MARIA DISNARDA VILLALOBOS MOLLINEDO",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL"
+        },
+        "valor_cobertura": "8000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 120,
+    "fields": {
+        "garantia_id": 120,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "634",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "1000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 121,
+    "fields": {
+        "garantia_id": 121,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "635",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "10000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 122,
+    "fields": {
+        "garantia_id": 122,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL S.A.",
+            "noCheque": "30",
+            "Monto_cheque": 2782,
+            "NombreCuenta": "AURA RUIZ CEREN DE PAREDES",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL"
+        },
+        "valor_cobertura": "2500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 123,
+    "fields": {
+        "garantia_id": 123,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE AMERICA CENTRAL S.A",
+            "noCheque": "1",
+            "Monto_cheque": 2642,
+            "NombreCuenta": "CARLOS DENILSON COC CAL",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "2000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 124,
+    "fields": {
+        "garantia_id": 124,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "637",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "2000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 125,
+    "fields": {
+        "garantia_id": 125,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO G&T CONTINENTAL",
+            "noCheque": "4",
+            "Monto_cheque": 1994,
+            "NombreCuenta": "HECTOR ENRIQUE ESTRADA TAROT",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "1500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 126,
+    "fields": {
+        "garantia_id": 126,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "160",
+            "Monto_cheque": 9440,
+            "NombreCuenta": "KARLA ROCIO HERNANDEZ RAMIREZ",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL"
+        },
+        "valor_cobertura": "7150.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 127,
+    "fields": {
+        "garantia_id": 127,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "194",
+            "Monto_cheque": 6637,
+            "NombreCuenta": "LILI MAGALI COY MACZ",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL"
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 128,
+    "fields": {
+        "garantia_id": 128,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL S.A.",
+            "noCheque": "211",
+            "Monto_cheque": 22750,
+            "NombreCuenta": "MERCEDES JOSEFINA TORRES GALVEZ",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "15000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 129,
+    "fields": {
+        "garantia_id": 129,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": 0,
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "10000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 130,
+    "fields": {
+        "garantia_id": 130,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "644",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "2000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 131,
+    "fields": {
+        "garantia_id": 131,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "643",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 132,
+    "fields": {
+        "garantia_id": 132,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "645",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "1500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 133,
+    "fields": {
+        "garantia_id": 133,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "646",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "3000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 134,
+    "fields": {
+        "garantia_id": 134,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "647",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "2000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 135,
+    "fields": {
+        "garantia_id": 135,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "650",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "4000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 136,
+    "fields": {
+        "garantia_id": 136,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "649",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "20000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 137,
+    "fields": {
+        "garantia_id": 137,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE AMERICA CENTRAL S.A",
+            "noCheque": "3",
+            "Monto_cheque": 10442,
+            "NombreCuenta": "JOSE LUIS ENRIQUE CHUB TOT",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "6600.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 138,
+    "fields": {
+        "garantia_id": 138,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "651",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "10544.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 139,
+    "fields": {
+        "garantia_id": 139,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "652",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "4000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 140,
+    "fields": {
+        "garantia_id": 140,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "655",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "15000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 141,
+    "fields": {
+        "garantia_id": 141,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL S.A.",
+            "noCheque": "217",
+            "Monto_cheque": 19378,
+            "NombreCuenta": "ALEX GEOVANNY POP BAC",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "10000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 142,
+    "fields": {
+        "garantia_id": 142,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "656",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "4000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 143,
+    "fields": {
+        "garantia_id": 143,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "2",
+            "Monto_cheque": 4558,
+            "NombreCuenta": "FREDY ELIESMO CHOC PRADO",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "3000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 144,
+    "fields": {
+        "garantia_id": 144,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "660",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "2000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 145,
+    "fields": {
+        "garantia_id": 145,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL S.A.",
+            "noCheque": "218",
+            "Monto_cheque": 48444,
+            "NombreCuenta": "ALEX GEOVANNY POP BAC",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "25000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 146,
+    "fields": {
+        "garantia_id": 146,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "662",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "6000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 147,
+    "fields": {
+        "garantia_id": 147,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "11",
+            "Monto_cheque": 13273,
+            "NombreCuenta": "LUIS PEDRO TOT PEREZ",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "10000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 148,
+    "fields": {
+        "garantia_id": 148,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "661",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "7000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 149,
+    "fields": {
+        "garantia_id": 149,
+        "tipo_garantia": "FIADOR",
+        "especificaciones": {
+            "Nombre": "",
+            "Ingresos": 5000,
+            "fotografia": "",
+            "Lugar_de_Trabajo": "BEAUTY SALÓN",
+            "Codigo_de_Cliente": "2025-211",
+            "Numero_de_Telefono": "32397213"
+        },
+        "valor_cobertura": "10000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 150,
+    "fields": {
+        "garantia_id": 150,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "666",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 151,
+    "fields": {
+        "garantia_id": 151,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "60",
+            "Monto_cheque": 12593,
+            "NombreCuenta": "RODY LILIANA LAJ LEAL",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL"
+        },
+        "valor_cobertura": "6500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 152,
+    "fields": {
+        "garantia_id": 152,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "669",
+            "Monto_cheque": 15161,
+            "NombreCuenta": "MARTA LIDIA VASQUEZ CHOC",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL"
+        },
+        "valor_cobertura": "10000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 153,
+    "fields": {
+        "garantia_id": 153,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO AGROMERCANTIL",
+            "noCheque": "2",
+            "Monto_cheque": 13883,
+            "NombreCuenta": "BRYAN RUBEN CASTILLO FERNANDEZ",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "10000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 154,
+    "fields": {
+        "garantia_id": 154,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "668",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "10000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 155,
+    "fields": {
+        "garantia_id": 155,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "671",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "1500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 156,
+    "fields": {
+        "garantia_id": 156,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "670",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "4000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 157,
+    "fields": {
+        "garantia_id": 157,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO HIPOTECARIO NACIONAL ",
+            "noCheque": "6",
+            "Monto_cheque": 22440,
+            "NombreCuenta": "SIERRA GARCIA EVELYN PAOLA",
+            "Cheque_girado_a": "GRECIA MAYARI RODRIGREZ ROQUEL"
+        },
+        "valor_cobertura": "15000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 158,
+    "fields": {
+        "garantia_id": 158,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO G&T CONTINENTAL",
+            "noCheque": "2",
+            "Monto_cheque": 2642,
+            "NombreCuenta": "JUAN JOSE CHACON GONZALEZ",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "2000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 159,
+    "fields": {
+        "garantia_id": 159,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL S.A.",
+            "noCheque": "66",
+            "Monto_cheque": 6250,
+            "NombreCuenta": "DELGADO VAIDES ANA KELLE VERALY",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 160,
+    "fields": {
+        "garantia_id": 160,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL S.A.",
+            "noCheque": "68",
+            "Monto_cheque": 5250,
+            "NombreCuenta": "DELGADO VAIDES ANA KELLE VERALY",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "5000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 161,
+    "fields": {
+        "garantia_id": 161,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "677",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "3000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 162,
+    "fields": {
+        "garantia_id": 162,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO INDUSTRIAL S.A.",
+            "noCheque": "69",
+            "Monto_cheque": 8100,
+            "NombreCuenta": "DELGADO VAIDES ANA KELLE VERALY",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "6000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 163,
+    "fields": {
+        "garantia_id": 163,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": 0,
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "1000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 196,
+    "fields": {
+        "garantia_id": 196,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": "BANCO DE DESARROLLO RURAL",
+            "noCheque": "429",
+            "Monto_cheque": 8333,
+            "NombreCuenta": "GERSON ALFREDO LEAL XE",
+            "Cheque_girado_a": "EDGAR ARMANDO ALVARADO BERMUDEZ"
+        },
+        "valor_cobertura": "6000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 197,
+    "fields": {
+        "garantia_id": 197,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "681",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "1500.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 198,
+    "fields": {
+        "garantia_id": 198,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "680",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "2000.00"
+    }
+},
+{
+    "model": "financings.detailsguarantees",
+    "pk": 199,
+    "fields": {
+        "garantia_id": 199,
+        "tipo_garantia": "CHEQUE / PAGARE",
+        "especificaciones": {
+            "Banco": 0,
+            "noCheque": "683",
+            "Monto_cheque": 0,
+            "NombreCuenta": 0,
+            "Cheque_girado_a": 0
+        },
+        "valor_cobertura": "20000.00"
+    }
 }
 ]

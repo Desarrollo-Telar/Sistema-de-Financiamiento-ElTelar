@@ -24,7 +24,12 @@
         "description": "",
         "creation_date": "2024-12-27T20:15:02.283Z",
         "asesor": "Luis Macz",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-11-28"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-11-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -52,7 +57,12 @@
         "description": "",
         "creation_date": "2024-12-27T20:31:01.759Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-01-23"
+        "fehca_vencimiento_de_tipo_identificacion": "2034-01-23",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -80,7 +90,12 @@
         "description": "",
         "creation_date": "2024-12-27T21:10:15.244Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-11-17"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-11-17",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -108,7 +123,12 @@
         "description": "",
         "creation_date": "2024-12-30T23:31:22.731Z",
         "asesor": "GRECIA",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-10-28"
+        "fehca_vencimiento_de_tipo_identificacion": "2027-10-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -136,7 +156,12 @@
         "description": "",
         "creation_date": "2025-01-02T22:21:57.111Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-05-10"
+        "fehca_vencimiento_de_tipo_identificacion": "2032-05-10",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -164,7 +189,12 @@
         "description": "",
         "creation_date": "2025-01-02T22:48:35.627Z",
         "asesor": "HILDA VARGAS",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-09-29"
+        "fehca_vencimiento_de_tipo_identificacion": "2027-09-29",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -192,7 +222,12 @@
         "description": "",
         "creation_date": "2025-01-02T23:04:25.838Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-01-04"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-01-04",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -220,7 +255,12 @@
         "description": "",
         "creation_date": "2025-01-02T23:22:54.129Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-10-23"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-10-23",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -248,7 +288,12 @@
         "description": "",
         "creation_date": "2025-01-03T15:08:55.192Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-01-12"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-01-12",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -276,7 +321,12 @@
         "description": "",
         "creation_date": "2025-01-03T15:18:10.447Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-10-22"
+        "fehca_vencimiento_de_tipo_identificacion": "2030-10-22",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -303,8 +353,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T15:57:11.201Z",
-        "asesor": "MARIA DE LOS ANGELES BOTZOC",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-01-12"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-01-12",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -332,7 +387,12 @@
         "description": "",
         "creation_date": "2025-01-03T16:25:01.312Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-01-25"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-01-25",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -360,7 +420,12 @@
         "description": "",
         "creation_date": "2025-01-03T17:39:43.755Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-01-01"
+        "fehca_vencimiento_de_tipo_identificacion": "2027-01-01",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -388,7 +453,12 @@
         "description": "",
         "creation_date": "2025-01-03T17:56:55.816Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-10-05"
+        "fehca_vencimiento_de_tipo_identificacion": "2032-10-05",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -415,8 +485,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T18:16:20.812Z",
-        "asesor": "JESSICA TZUL",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-10-15"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-10-15",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -443,8 +518,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T18:36:06.525Z",
-        "asesor": "FLOR DE MARIA IGLESIAS PERDOMO",
-        "fehca_vencimiento_de_tipo_identificacion": "2023-01-27"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2023-01-27",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -471,8 +551,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T18:53:56.655Z",
-        "asesor": "BERNARDA AYALA",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-10-14"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-10-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -499,8 +584,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T18:58:06.191Z",
-        "asesor": "VICTORIA CAAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-12-06"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2027-12-06",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -528,7 +618,12 @@
         "description": "",
         "creation_date": "2025-01-03T19:04:14.848Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-12-06"
+        "fehca_vencimiento_de_tipo_identificacion": "2032-12-06",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -539,7 +634,7 @@
         "immigration_status_id": 3,
         "customer_code": "2025-16",
         "first_name": "CLAUDIA LETICIA",
-        "last_name": "LPEZ RAMIREZ",
+        "last_name": "LOPEZ RAMIREZ",
         "type_identification": "DPI",
         "identification_number": "2592189871601",
         "telephone": "39208802",
@@ -556,7 +651,12 @@
         "description": "",
         "creation_date": "2025-01-03T19:22:56.584Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-03-06"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-03-06",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -584,7 +684,12 @@
         "description": "",
         "creation_date": "2025-01-03T19:25:16.866Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-01-05"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-01-05",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -612,7 +717,12 @@
         "description": "",
         "creation_date": "2025-01-03T19:34:57.473Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-10-03"
+        "fehca_vencimiento_de_tipo_identificacion": "2029-10-03",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -640,7 +750,12 @@
         "description": "",
         "creation_date": "2025-01-03T19:50:21.551Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-08-09"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-08-09",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -668,7 +783,12 @@
         "description": "",
         "creation_date": "2025-01-03T19:52:39.008Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-09-02"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-09-02",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -696,7 +816,12 @@
         "description": "",
         "creation_date": "2025-01-03T20:03:20.588Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-01-05"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-01-05",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -724,7 +849,12 @@
         "description": "",
         "creation_date": "2025-01-03T20:07:46.866Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-04-29"
+        "fehca_vencimiento_de_tipo_identificacion": "2030-04-29",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -751,8 +881,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T20:22:59.042Z",
-        "asesor": "ANGEL ROMAN",
-        "fehca_vencimiento_de_tipo_identificacion": "2025-02-26"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2025-02-26",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -779,8 +914,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T20:47:23.474Z",
-        "asesor": "SONIA MORAN",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-11-02"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-11-02",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -807,8 +947,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T21:03:52.074Z",
-        "asesor": "KRIZZLEY ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-03-06"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-03-06",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -836,7 +981,12 @@
         "description": "",
         "creation_date": "2025-01-03T21:04:41.538Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-03-07"
+        "fehca_vencimiento_de_tipo_identificacion": "2030-03-07",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -863,8 +1013,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T21:31:37.930Z",
-        "asesor": "WILFREDO CIFUENTES",
-        "fehca_vencimiento_de_tipo_identificacion": "2026-06-14"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2026-06-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -892,7 +1047,12 @@
         "description": "",
         "creation_date": "2025-01-03T21:36:45.529Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-06-26"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-06-26",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -919,8 +1079,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T21:53:05.911Z",
-        "asesor": "JORGE MARIO CHUN",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-01-30"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2028-01-30",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -947,8 +1112,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T21:55:07.614Z",
-        "asesor": "WALTER CAAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-08-01"
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-08-01",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -975,8 +1145,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T22:16:04.856Z",
-        "asesor": "MARIA FERNANDA REYES",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-08-01"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-08-01",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1003,8 +1178,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T22:53:34.333Z",
-        "asesor": "ALEJANDRA RAYMUNDO",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-01-18"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-01-18",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1031,8 +1211,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-03T23:48:25.725Z",
-        "asesor": "MARTHA REYES",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-01-28"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-01-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1060,7 +1245,12 @@
         "description": "",
         "creation_date": "2025-01-04T00:14:00.895Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-09-13"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-09-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1087,8 +1277,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-04T00:26:59.720Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-02-10"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-02-10",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1115,8 +1310,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-06T16:28:38.874Z",
-        "asesor": "ARMANDO",
-        "fehca_vencimiento_de_tipo_identificacion": "2023-01-15"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2023-01-15",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1143,8 +1343,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-06T16:52:47.269Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2023-03-31"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2023-03-31",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1172,7 +1377,12 @@
         "description": "",
         "creation_date": "2025-01-06T17:07:15.165Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-08-02"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-08-02",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1200,7 +1410,12 @@
         "description": "",
         "creation_date": "2025-01-06T17:20:29.091Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2025-05-20"
+        "fehca_vencimiento_de_tipo_identificacion": "2025-05-20",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1228,7 +1443,12 @@
         "description": "",
         "creation_date": "2025-01-06T17:43:22.226Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-02-14"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-02-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1256,7 +1476,12 @@
         "description": "",
         "creation_date": "2025-01-06T18:01:56.455Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-06-10"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-06-10",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1284,7 +1509,12 @@
         "description": "",
         "creation_date": "2025-01-06T18:49:08.583Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-08-26"
+        "fehca_vencimiento_de_tipo_identificacion": "2029-08-26",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1312,7 +1542,12 @@
         "description": "",
         "creation_date": "2025-01-06T19:05:37.303Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-01-04"
+        "fehca_vencimiento_de_tipo_identificacion": "2032-01-04",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1339,8 +1574,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-06T20:31:12.953Z",
-        "asesor": "AXA CHUB",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-01-05"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-01-05",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1367,8 +1607,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-06T21:07:48.866Z",
-        "asesor": "ENGELVERTH ALEXANDER COY CAAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-07-13"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-07-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1395,8 +1640,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-06T21:25:02.490Z",
-        "asesor": "AURELIO QUEJ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-03-01"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-03-01",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1423,8 +1673,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-06T21:50:16.019Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-06-16"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2027-06-16",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1452,7 +1707,12 @@
         "description": "",
         "creation_date": "2025-01-06T22:17:57.912Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-11-20"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-11-20",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1480,7 +1740,12 @@
         "description": "",
         "creation_date": "2025-01-07T16:05:47.077Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-05-14"
+        "fehca_vencimiento_de_tipo_identificacion": "2027-05-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1508,7 +1773,12 @@
         "description": "",
         "creation_date": "2025-01-07T16:58:40.768Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-05-13"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-05-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1535,8 +1805,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-07T17:35:21.600Z",
-        "asesor": "ANA MARA BUENAF",
-        "fehca_vencimiento_de_tipo_identificacion": "2023-02-04"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2023-02-04",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1563,8 +1838,13 @@
         "person_type": "Individual (PI)",
         "description": "Domicilio alterno. 2 calle 9-35 zona 2",
         "creation_date": "2025-01-07T17:56:50.346Z",
-        "asesor": "MARIO CHEN",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-01-03"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-01-03",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1592,7 +1872,12 @@
         "description": "",
         "creation_date": "2025-01-07T18:12:19.721Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-06-04"
+        "fehca_vencimiento_de_tipo_identificacion": "2030-06-04",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1603,7 +1888,7 @@
         "immigration_status_id": 3,
         "customer_code": "2025-54",
         "first_name": "BRANDON RODOLFO",
-        "last_name": "MNDEZ",
+        "last_name": "MENDEZ",
         "type_identification": "DPI",
         "identification_number": "3222748691601",
         "telephone": "42553591",
@@ -1620,7 +1905,12 @@
         "description": "",
         "creation_date": "2025-01-07T18:24:24.270Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-10-14"
+        "fehca_vencimiento_de_tipo_identificacion": "2032-10-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1647,8 +1937,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-07T18:40:46.953Z",
-        "asesor": "HILDA VARGAS",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-10-24"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-10-24",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1676,7 +1971,12 @@
         "description": "",
         "creation_date": "2025-01-07T19:02:10.977Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-02-20"
+        "fehca_vencimiento_de_tipo_identificacion": "2030-02-20",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1704,7 +2004,12 @@
         "description": "",
         "creation_date": "2025-01-07T20:23:39.530Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-11-14"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-11-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1731,8 +2036,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-07T20:37:15.085Z",
-        "asesor": "WILMMER POP SANCHEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-12-15"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2027-12-15",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1760,7 +2070,12 @@
         "description": "",
         "creation_date": "2025-01-07T20:51:51.458Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-03-23"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-03-23",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1788,7 +2103,12 @@
         "description": "",
         "creation_date": "2025-01-07T21:11:17.160Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-05-17"
+        "fehca_vencimiento_de_tipo_identificacion": "2027-05-17",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1816,7 +2136,12 @@
         "description": "",
         "creation_date": "2025-01-07T21:39:03.345Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-10-30"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-10-30",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1843,8 +2168,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-07T21:56:07.570Z",
-        "asesor": "NATHALY CAAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2023-04-29"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2023-04-29",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1872,7 +2202,12 @@
         "description": "",
         "creation_date": "2025-01-07T22:10:38.616Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-06-22"
+        "fehca_vencimiento_de_tipo_identificacion": "2027-06-22",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1900,7 +2235,12 @@
         "description": "",
         "creation_date": "2025-01-07T22:50:00.931Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-01-25"
+        "fehca_vencimiento_de_tipo_identificacion": "2034-01-25",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1927,8 +2267,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-08T14:42:46.577Z",
-        "asesor": "LORENA GUAY",
-        "fehca_vencimiento_de_tipo_identificacion": "2025-06-15"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2025-06-15",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1956,7 +2301,12 @@
         "description": "",
         "creation_date": "2025-01-08T16:34:23.681Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-09-13"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-09-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -1984,7 +2334,12 @@
         "description": "",
         "creation_date": "2025-01-08T16:48:15.117Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-11-01"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-11-01",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2011,8 +2366,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-08T20:52:21.390Z",
-        "asesor": "ARMANDO BERMUDEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2022-11-27"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2022-11-27",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2039,8 +2399,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-09T16:05:02.456Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2023-01-24"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2023-01-24",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2067,8 +2432,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-09T16:32:19.689Z",
-        "asesor": "BRENDA SACUL",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-09-14"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-09-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2096,7 +2466,12 @@
         "description": "",
         "creation_date": "2025-01-09T16:32:30.472Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-01-25"
+        "fehca_vencimiento_de_tipo_identificacion": "2034-01-25",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2124,7 +2499,12 @@
         "description": "",
         "creation_date": "2025-01-09T16:47:04.981Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-01-28"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-01-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2151,8 +2531,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-09T17:31:41.253Z",
-        "asesor": "LUIS FERNANDO URBINA GONZALES",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-03-14"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2034-03-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2179,8 +2564,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-09T17:59:04.524Z",
-        "asesor": "AMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-11-27"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-11-27",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2208,7 +2598,12 @@
         "description": "",
         "creation_date": "2025-01-10T16:16:07.419Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-10-12"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-10-12",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2236,7 +2631,12 @@
         "description": "CLIENTE DEF",
         "creation_date": "2025-01-10T16:30:41Z",
         "asesor": "PENDIENTE",
-        "fehca_vencimiento_de_tipo_identificacion": "2025-01-10"
+        "fehca_vencimiento_de_tipo_identificacion": "2025-01-10",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2263,8 +2663,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-10T18:30:25.849Z",
-        "asesor": "JORGE LUCAS",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-06-02"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2027-06-02",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2291,8 +2696,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-10T21:37:33.446Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-11-16"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-11-16",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2319,8 +2729,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-10T22:04:40.774Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-07-27"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-07-27",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2347,8 +2762,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-10T22:21:46.918Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2019-10-16"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2019-10-16",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2375,8 +2795,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-10T22:54:14.078Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2022-06-28"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2022-06-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2404,7 +2829,12 @@
         "description": "",
         "creation_date": "2025-01-13T16:50:32.050Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-03-28"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-03-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2431,8 +2861,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-13T17:18:29.750Z",
-        "asesor": "GERSON LEAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-07-28"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-07-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2460,7 +2895,12 @@
         "description": "",
         "creation_date": "2025-01-14T15:24:15.772Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-01-27"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-01-27",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2488,7 +2928,12 @@
         "description": "",
         "creation_date": "2025-01-14T15:38:08.805Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-08-26"
+        "fehca_vencimiento_de_tipo_identificacion": "2034-08-26",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2515,8 +2960,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-14T15:38:27.387Z",
-        "asesor": "DARVIN ORLANDO CÚ CHÚN",
-        "fehca_vencimiento_de_tipo_identificacion": "2024-07-30"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2024-07-30",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2544,7 +2994,12 @@
         "description": "",
         "creation_date": "2025-01-14T15:50:27.997Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-05-17"
+        "fehca_vencimiento_de_tipo_identificacion": "2027-05-17",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2571,8 +3026,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-14T16:13:20.666Z",
-        "asesor": "HILDA VARGAS",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-05-02"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-05-02",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2599,8 +3059,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-14T16:25:20.107Z",
-        "asesor": "MARTHA REYES CRUZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-04-11"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-04-11",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2627,8 +3092,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-14T16:28:22.434Z",
-        "asesor": "MILSY GARZONA",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-06-03"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-06-03",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2655,8 +3125,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-14T16:42:01.204Z",
-        "asesor": "MARTHA GABRIELA REYES CRUZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2023-04-14"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2023-04-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2684,7 +3159,12 @@
         "description": "",
         "creation_date": "2025-01-14T16:51:25.203Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-01-09"
+        "fehca_vencimiento_de_tipo_identificacion": "2030-01-09",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2711,8 +3191,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-14T17:05:23.520Z",
-        "asesor": "WILIAN CATALAN",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-07-31"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-07-31",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2740,7 +3225,12 @@
         "description": "",
         "creation_date": "2025-01-14T17:08:44.301Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-10-18"
+        "fehca_vencimiento_de_tipo_identificacion": "2029-10-18",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2768,7 +3258,12 @@
         "description": "",
         "creation_date": "2025-01-14T17:24:14.920Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-06-25"
+        "fehca_vencimiento_de_tipo_identificacion": "2034-06-25",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2795,8 +3290,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-14T17:32:19.687Z",
-        "asesor": "LILIANA ORTIZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-01-23"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-01-23",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2823,8 +3323,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-14T18:07:24.577Z",
-        "asesor": "MARLYN YANINA MOLINA DE LA CRUZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-01-24"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-01-24",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2851,8 +3356,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-14T20:53:55.464Z",
-        "asesor": "OVIDIO CHOCOJ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-03-13"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2034-03-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2880,7 +3390,12 @@
         "description": "",
         "creation_date": "2025-01-14T21:26:44.364Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-08-15"
+        "fehca_vencimiento_de_tipo_identificacion": "2029-08-15",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2908,7 +3423,12 @@
         "description": "",
         "creation_date": "2025-01-14T21:33:46.953Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-09-07"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-09-07",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2936,7 +3456,12 @@
         "description": "",
         "creation_date": "2025-01-14T21:46:40.137Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-01-18"
+        "fehca_vencimiento_de_tipo_identificacion": "2032-01-18",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2964,7 +3489,12 @@
         "description": "",
         "creation_date": "2025-01-14T22:18:59.974Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2022-10-06"
+        "fehca_vencimiento_de_tipo_identificacion": "2022-10-06",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -2991,8 +3521,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-14T22:42:02.776Z",
-        "asesor": "AXA CHUB CAZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2026-09-26"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2026-09-26",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3020,7 +3555,12 @@
         "description": "",
         "creation_date": "2025-01-14T22:56:17.401Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-01-03"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-01-03",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3034,7 +3574,7 @@
         "last_name": "GONZALEZ QUEJ DE LINARES",
         "type_identification": "DPI",
         "identification_number": "2537960081601",
-        "telephone": "42750148",
+        "telephone": "38961903",
         "email": "wendyeudelinares@gmail.com",
         "status": "Aprobado",
         "date_birth": "1989-02-02",
@@ -3048,7 +3588,12 @@
         "description": "",
         "creation_date": "2025-01-15T15:03:43.059Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2022-10-05"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-04-20",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3076,7 +3621,12 @@
         "description": "",
         "creation_date": "2025-01-15T15:07:04.592Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2026-03-30"
+        "fehca_vencimiento_de_tipo_identificacion": "2026-03-30",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3104,7 +3654,12 @@
         "description": "",
         "creation_date": "2025-01-15T15:26:47.930Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-01-07"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-01-07",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3131,8 +3686,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T15:54:02.505Z",
-        "asesor": "GABRIELA CAAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2025-09-14"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2025-09-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3159,8 +3719,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T16:07:52.032Z",
-        "asesor": "KRIZZLEY ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-09-01"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-09-01",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3188,7 +3753,12 @@
         "description": "",
         "creation_date": "2025-01-15T16:16:35.764Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-09-19"
+        "fehca_vencimiento_de_tipo_identificacion": "2034-09-19",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3215,8 +3785,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T16:55:28.705Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-04-28"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2034-04-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3243,8 +3818,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T17:19:34.703Z",
-        "asesor": "LILIAN ORTIZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-10-30"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-10-30",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3272,7 +3852,12 @@
         "description": "",
         "creation_date": "2025-01-15T17:35:59.089Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-09-26"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-09-26",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3299,8 +3884,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T17:49:15.386Z",
-        "asesor": "ELIAS CAAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-11-29"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-11-29",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3327,8 +3917,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T18:04:08.574Z",
-        "asesor": "VILMA GONZÁLES",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-09-09"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-09-09",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3355,8 +3950,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T18:18:28.697Z",
-        "asesor": "MERCEDES JOSEFINA TORRES",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-07-21"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-07-21",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3383,8 +3983,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T18:34:48.278Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-07-01"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-07-01",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3411,8 +4016,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T18:41:42.852Z",
-        "asesor": "LIC ORDOÑEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-06-03"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2034-06-03",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3439,8 +4049,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T19:04:03.139Z",
-        "asesor": "ROSA LOPEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-11-24"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-11-24",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3467,8 +4082,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T20:25:49.210Z",
-        "asesor": "JUAN JOSE REYES",
-        "fehca_vencimiento_de_tipo_identificacion": "2027-07-17"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2027-07-17",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3495,8 +4115,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T20:30:09.410Z",
-        "asesor": "OSCAR TIUL",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-02-06"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-02-06",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3523,8 +4148,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T21:27:16.234Z",
-        "asesor": "HARRY LEAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-02-26"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-02-26",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3551,8 +4181,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T21:49:24.721Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-02-02"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-02-02",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3579,8 +4214,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T22:14:32.191Z",
-        "asesor": "JOSE ARMANDO TOT",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-03-08"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-03-08",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3607,8 +4247,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-15T22:45:09.337Z",
-        "asesor": "ALIDA GOMEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2025-11-10"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2025-11-10",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3635,8 +4280,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-16T17:08:45.104Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-06-18"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-06-18",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3663,8 +4313,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-16T17:14:29.954Z",
-        "asesor": "LORENA GUAY",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-11-14"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-11-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3691,8 +4346,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-16T17:38:01.987Z",
-        "asesor": "MARVIN ACTE CACAO",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-09-27"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-09-27",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3719,8 +4379,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-16T18:12:43.681Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2023-07-31"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2023-07-31",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3747,8 +4412,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-16T18:25:06.428Z",
-        "asesor": "ALEJANDRA BOL",
-        "fehca_vencimiento_de_tipo_identificacion": "2022-10-13"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2022-10-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3775,8 +4445,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-16T18:56:44.759Z",
-        "asesor": "GERSON LEAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-10-13"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-10-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3803,8 +4478,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-17T15:33:19.244Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-09-03"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-09-03",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3831,8 +4511,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-17T15:56:56.777Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2024-09-29"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2024-09-29",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3859,8 +4544,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-17T16:13:42.930Z",
-        "asesor": "MILTON LEAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-02-22"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-02-22",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3887,8 +4577,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-17T16:33:34.636Z",
-        "asesor": "MARIO MARTINEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-03-16"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-03-16",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3915,8 +4610,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-17T16:59:21.080Z",
-        "asesor": "CRISTIAN PONCE",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-06-14"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-06-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3943,8 +4643,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-17T17:25:19.682Z",
-        "asesor": "KEYLA LEAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2022-01-01"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2022-01-01",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3971,8 +4676,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-17T17:44:44.901Z",
-        "asesor": "AMALIA PAREDEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-10-14"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-10-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -3999,8 +4709,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-17T18:03:08.867Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-08-28"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-08-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4027,8 +4742,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-17T18:17:02.057Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2023-09-12"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2023-09-12",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4055,8 +4775,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-17T18:31:16.856Z",
-        "asesor": "MARIA FERNANDA REYES",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-07-24"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-07-24",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4083,8 +4808,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-01-20T15:03:37.958Z",
-        "asesor": "HEIDY SIERRA",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-11-01"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-11-01",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4112,7 +4842,12 @@
         "description": "",
         "creation_date": "2025-01-27T17:37:17.586Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-11-28"
+        "fehca_vencimiento_de_tipo_identificacion": "2029-11-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4140,7 +4875,12 @@
         "description": "",
         "creation_date": "2025-01-28T18:43:09.331Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-06-19"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-06-19",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4168,7 +4908,12 @@
         "description": "",
         "creation_date": "2025-01-29T22:49:12.213Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-02-09"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-02-09",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4196,7 +4941,12 @@
         "description": "",
         "creation_date": "2025-02-03T16:25:29.869Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2025-11-19"
+        "fehca_vencimiento_de_tipo_identificacion": "2025-11-19",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4224,7 +4974,12 @@
         "description": "PROM DIA DEL CARIÑO",
         "creation_date": "2025-02-15T21:39:44.394Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-05-11"
+        "fehca_vencimiento_de_tipo_identificacion": "2030-05-11",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4252,7 +5007,12 @@
         "description": "ACCESO A PROPIEDAD",
         "creation_date": "2025-02-15T21:57:00.397Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-01-31"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-01-31",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4280,7 +5040,12 @@
         "description": "",
         "creation_date": "2025-02-16T22:15:57.862Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-01-17"
+        "fehca_vencimiento_de_tipo_identificacion": "2032-01-17",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4308,7 +5073,12 @@
         "description": "",
         "creation_date": "2025-02-17T23:21:18.671Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2030-02-10"
+        "fehca_vencimiento_de_tipo_identificacion": "2030-02-10",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4336,7 +5106,12 @@
         "description": "",
         "creation_date": "2025-02-18T15:28:41.202Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2028-05-14"
+        "fehca_vencimiento_de_tipo_identificacion": "2028-05-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4364,7 +5139,12 @@
         "description": "",
         "creation_date": "2025-02-18T16:33:39.727Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-03-14"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-03-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4392,7 +5172,12 @@
         "description": "",
         "creation_date": "2025-02-20T22:14:42.978Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-08-14"
+        "fehca_vencimiento_de_tipo_identificacion": "2034-08-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4419,8 +5204,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-02-21T17:31:53.736Z",
-        "asesor": "NELSON CAAL",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-11-04"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-11-04",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4448,7 +5238,12 @@
         "description": "COCINERO CAMPERO DEL PARQUE",
         "creation_date": "2025-02-22T21:26:01.560Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-11-03"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-11-03",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4475,8 +5270,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-02-25T16:06:29.585Z",
-        "asesor": "MARVIN GALEANO",
-        "fehca_vencimiento_de_tipo_identificacion": "2025-09-17"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2025-09-17",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4490,7 +5290,7 @@
         "last_name": "MACILLA OLIVA",
         "type_identification": "DPI",
         "identification_number": "1689008231601",
-        "telephone": "000000",
+        "telephone": "00000000",
         "email": "notienecorreoluis@gmail.com",
         "status": "Aprobado",
         "date_birth": "1986-01-27",
@@ -4503,8 +5303,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-02-25T16:46:54.927Z",
-        "asesor": "LUIS MANCILLA",
-        "fehca_vencimiento_de_tipo_identificacion": "2021-04-16"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2021-04-16",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4532,7 +5337,12 @@
         "description": "",
         "creation_date": "2025-02-25T18:10:56.305Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2033-08-13"
+        "fehca_vencimiento_de_tipo_identificacion": "2033-08-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4560,7 +5370,12 @@
         "description": "",
         "creation_date": "2025-02-28T23:04:57.805Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-01-16"
+        "fehca_vencimiento_de_tipo_identificacion": "2034-01-16",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4587,8 +5402,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-03-04T18:19:32.496Z",
-        "asesor": "MARIANA RAX CHUN",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-12-11"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-12-11",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4616,7 +5436,12 @@
         "description": "",
         "creation_date": "2025-03-04T21:56:43.868Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-07-07"
+        "fehca_vencimiento_de_tipo_identificacion": "2034-07-07",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4644,7 +5469,12 @@
         "description": "",
         "creation_date": "2025-03-04T22:31:35.091Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-07-11"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-07-11",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4672,7 +5502,12 @@
         "description": "",
         "creation_date": "2025-03-05T15:02:49.869Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-08-12"
+        "fehca_vencimiento_de_tipo_identificacion": "2029-08-12",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4699,8 +5534,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-03-05T15:15:47.042Z",
-        "asesor": "ANA LÓPEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2029-07-30"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-07-30",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4728,7 +5568,12 @@
         "description": "",
         "creation_date": "2025-03-06T14:39:16.491Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2034-12-16"
+        "fehca_vencimiento_de_tipo_identificacion": "2034-12-16",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4756,7 +5601,12 @@
         "description": "",
         "creation_date": "2025-03-06T17:07:52.991Z",
         "asesor": "GRECIA RODRIGUEZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-02-25"
+        "fehca_vencimiento_de_tipo_identificacion": "2031-02-25",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4783,8 +5633,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-03-06T17:35:48.166Z",
-        "asesor": "FLOR DE MARIA IGLESIAS PERDOMO",
-        "fehca_vencimiento_de_tipo_identificacion": "2025-05-04"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2025-05-04",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4812,7 +5667,12 @@
         "description": "",
         "creation_date": "2025-03-10T17:09:31.457Z",
         "asesor": "LUIS MACZ",
-        "fehca_vencimiento_de_tipo_identificacion": "2032-01-20"
+        "fehca_vencimiento_de_tipo_identificacion": "2032-01-20",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4839,8 +5699,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-03-10T18:22:32.066Z",
-        "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2012-07-27"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2012-07-27",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4867,8 +5732,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-03-10T18:29:06.041Z",
-        "asesor": "SELVIN DIDIER",
-        "fehca_vencimiento_de_tipo_identificacion": "2012-05-15"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2012-05-15",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4895,8 +5765,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-03-10T18:39:17.685Z",
-        "asesor": "MATHA REYES",
-        "fehca_vencimiento_de_tipo_identificacion": "2031-09-22"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-09-22",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4923,8 +5798,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-03-11T22:52:01.330Z",
-        "asesor": "DANIELA MALDONADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2020-01-30"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2020-01-30",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4951,8 +5831,13 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-03-11T23:44:41.380Z",
-        "asesor": "SAUL MORENO",
-        "fehca_vencimiento_de_tipo_identificacion": "2011-04-14"
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2011-04-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 },
 {
@@ -4979,8 +5864,1729 @@
         "person_type": "Individual (PI)",
         "description": "",
         "creation_date": "2025-03-12T16:38:50.352Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2021-05-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 197,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-174",
+        "first_name": "MERCY BIBIANA",
+        "last_name": "MUÑOZ CASTRO",
+        "type_identification": "DPI",
+        "identification_number": "2267958961601",
+        "telephone": "41109515",
+        "email": "mercy_guatemala@hotmail.com",
+        "status": "Aprobado",
+        "date_birth": "1986-07-18",
+        "number_nit": "37986317",
+        "place_birth": "COBAN",
+        "marital_status": "SOLTER@",
+        "profession_trade": "MEDICA Y CIRUJANA",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-03-17T21:49:04.619Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2027-11-15",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 198,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-175",
+        "first_name": "LILIAN ROXANA",
+        "last_name": "ORTIZ RODRÍGUEZ",
+        "type_identification": "DPI",
+        "identification_number": "2628638711601",
+        "telephone": "53049272",
+        "email": "notienecorreolilian@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1984-04-11",
+        "number_nit": "37,986,740",
+        "place_birth": "GUATEMALA",
+        "marital_status": "SOLTER@",
+        "profession_trade": "COMERCIANTE",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-03-18T22:13:37.069Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2012-12-20",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 199,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-176",
+        "first_name": "ROSA ELIZABETH",
+        "last_name": "CORTEZ PÉREZ DE CHALIB",
+        "type_identification": "DPI",
+        "identification_number": "2329957101601",
+        "telephone": "41602941",
+        "email": "cortezchalib14@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1985-10-28",
+        "number_nit": "40,712,044",
+        "place_birth": "SAN CRISTÓBAL VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "BACHILLER EN CIENCIAS Y LETRAS",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-03-19T15:26:04.972Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-01-20",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 200,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-177",
+        "first_name": "AUGUSTO GUILLERMO",
+        "last_name": "MENDOZA MARTINEZ",
+        "type_identification": "DPI",
+        "identification_number": "1967681361601",
+        "telephone": "59076128",
+        "email": "agmm8316@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1977-09-29",
+        "number_nit": "24,207,535",
+        "place_birth": "COBAN",
+        "marital_status": "CASAD@",
+        "profession_trade": "PERITO CONTADOR",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-03-19T22:01:41.041Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-08-25",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 201,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-178",
+        "first_name": "ERIKSON JOEL",
+        "last_name": "LEAL GARCIA",
+        "type_identification": "DPI",
+        "identification_number": "2295093631601",
+        "telephone": "49802150",
+        "email": "Eriksonjoellealgarcia@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1985-10-22",
+        "number_nit": "3656333",
+        "place_birth": "COBAN",
+        "marital_status": "CASAD@",
+        "profession_trade": "PERITO CONTADOR",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-03-24T19:23:15.854Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-02-21",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 202,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-179",
+        "first_name": "GABRIELA STHEFANY",
+        "last_name": "VASQUEZ MELENDEZ",
+        "type_identification": "DPI",
+        "identification_number": "3218288601601",
+        "telephone": "58997795",
+        "email": "notienecorreogaby@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1998-08-11",
+        "number_nit": "97,809,020",
+        "place_birth": "COBAN",
+        "marital_status": "SOLTER@",
+        "profession_trade": "DOCENTE",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-03-27T17:51:36.259Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2017-01-15",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 203,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 1,
+        "customer_code": "2025-182",
+        "first_name": "KARLA ROCIO",
+        "last_name": "HERNANDEZ RAMIREZ",
+        "type_identification": "DPI",
+        "identification_number": "2340339401601",
+        "telephone": "57099200",
+        "email": "rocihernandezr25@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1994-01-02",
+        "number_nit": "80,258,050",
+        "place_birth": "COBAN, ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "ENFERMERA PROFESIONAL",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-03-28T19:46:05.124Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-02-21",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 204,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-180",
+        "first_name": "LINDA ANGELINA GUADALUPE",
+        "last_name": "CAAL BOL",
+        "type_identification": "DPI",
+        "identification_number": "2306143451601",
+        "telephone": "46603045",
+        "email": "guadalupevolca2912@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1983-12-12",
+        "number_nit": "29,210,127",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "MAESTRA DE EDUCACIÓN PRIMARIA  URBANA",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-03-31T17:24:46.719Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-03-05",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 207,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-181",
+        "first_name": "JOSE ROCAEL",
+        "last_name": "VASQUEZ HERNANDEZ",
+        "type_identification": "DPI",
+        "identification_number": "2721344730101",
+        "telephone": "37638350",
+        "email": "tigrerodeo12@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1977-03-20",
+        "number_nit": "40481113",
+        "place_birth": "SALAMA BAJA VERAPAZ",
+        "marital_status": "CASADO",
+        "profession_trade": "BACHILLER EN CIENCIAS Y LETRAS",
+        "gender": "MASCULINO",
+        "nationality": "Guatemala",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-04-04T18:05:42.326Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2025-04-04",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 209,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 1,
+        "customer_code": "2025-183",
+        "first_name": "RONALD ESTUARDO",
+        "last_name": "COC CASASOLA",
+        "type_identification": "DPI",
+        "identification_number": "3257575181601",
+        "telephone": "45880491",
+        "email": "casasolaronald@outlook.es",
+        "status": "Aprobado",
+        "date_birth": "2003-08-15",
+        "number_nit": "117,722,871",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "PERITO EN RECURSOS NATURALES / TÉCNICO AGROFORESTAL",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-04-14T20:45:34.551Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-10-17",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 210,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-184",
+        "first_name": "LIDIA AMABILIA",
+        "last_name": "OXOM SACRAB DE CHÚN",
+        "type_identification": "DPI",
+        "identification_number": "2416506661601",
+        "telephone": "40427155",
+        "email": "lidiaoxom22@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1992-05-10",
+        "number_nit": "110,898,273",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "COMERCIANTE",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-04-14T21:38:21.818Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-02-27",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 212,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-185",
+        "first_name": "MIRIAM ANTONIETA",
+        "last_name": "SORIA LÓPEZ DE ARÉVALO",
+        "type_identification": "DPI",
+        "identification_number": "2223817601603",
+        "telephone": "45853636",
+        "email": "miriamsorial1985@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1985-05-13",
+        "number_nit": "33464251",
+        "place_birth": "COBAN",
+        "marital_status": "CASAD@",
+        "profession_trade": "ADMINISTRADOR DE EMPRESAS",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-04-29T17:37:59.374Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-03-05",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 213,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-186",
+        "first_name": "AURA RUIZ",
+        "last_name": "CERÉN DE PAREDES",
+        "type_identification": "DPI",
+        "identification_number": "1684335081802",
+        "telephone": "30631201",
+        "email": "ruizcerenauri@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1990-05-13",
+        "number_nit": "5745754-9",
+        "place_birth": "IZABAL LIVINGSTON",
+        "marital_status": "CASAD@",
+        "profession_trade": "REPOSTERA",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-04-29T20:37:07.245Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-05-16",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 214,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 1,
+        "customer_code": "2025-187",
+        "first_name": "JOSE ANDRES",
+        "last_name": "GOMEZ AYALA",
+        "type_identification": "DPI",
+        "identification_number": "3224262351601",
+        "telephone": "33968234",
+        "email": "andresayala3261@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2002-07-09",
+        "number_nit": "109,345,126",
+        "place_birth": "COBAN",
+        "marital_status": "SOLTER@",
+        "profession_trade": "SEGURIDAD",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-01T20:44:54.350Z",
+        "asesor": "BERNARDA AYALA",
+        "fehca_vencimiento_de_tipo_identificacion": "2021-01-05",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 215,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-188",
+        "first_name": "ORALIA MARIZABETH",
+        "last_name": "DE LA CRUZ HENGSTENBERG",
+        "type_identification": "DPI",
+        "identification_number": "2560904671601",
+        "telephone": "45456600",
+        "email": "Coritadelacruz48@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1968-06-27",
+        "number_nit": "9783431",
+        "place_birth": "COBAN",
+        "marital_status": "SOLTER@",
+        "profession_trade": "PERITO CONTADOR",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-01T23:48:10.247Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-11-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 216,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-189",
+        "first_name": "FRANCISCO",
+        "last_name": "LÓPEZ JUAREZ",
+        "type_identification": "DPI",
+        "identification_number": "2329185541503",
+        "telephone": "46733293",
+        "email": "franjuarez1415@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1973-01-16",
+        "number_nit": "53,600,908",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "BACHILLER EN COMPUTACIÓN",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-07T21:36:43.677Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-10-20",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 217,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-190",
+        "first_name": "JOSE DAVID",
+        "last_name": "NAVARRO QUIROA",
+        "type_identification": "DPI",
+        "identification_number": "3303644051202",
+        "telephone": "48051188",
+        "email": "jose12navarro28@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1997-03-25",
+        "number_nit": "96960574",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "ESTUDIANTE UNIVERSITARIO INGENIERO CIVIL",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-08T17:39:59.646Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-02-24",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 218,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-191",
+        "first_name": "ESTEFANY ABIGAIL",
+        "last_name": "LEAL MAQUIM",
+        "type_identification": "DPI",
+        "identification_number": "3220218631601",
+        "telephone": "51913862",
+        "email": "estefanyleal2001@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2001-10-09",
+        "number_nit": "107886812",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "MAESTRA",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-08T18:56:11.088Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-10-23",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 219,
+    "fields": {
+        "user_id": 2,
+        "immigration_status_id": 3,
+        "customer_code": "2025-192",
+        "first_name": "GERSON MOISES",
+        "last_name": "ORELLANA GONZÁLEZ",
+        "type_identification": "DPI",
+        "identification_number": "3269943941604",
+        "telephone": "40467059",
+        "email": "gmorellana08@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2000-11-20",
+        "number_nit": "103410252",
+        "place_birth": "TACTIC ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "BACHILLER EN CIENCIAS Y LETRAS CON ORIENTACION EN CONSTRUCCION",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-09T23:09:33.913Z",
+        "asesor": "FRANCISCO ORELLANA",
+        "fehca_vencimiento_de_tipo_identificacion": "2028-12-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 220,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-193",
+        "first_name": "MARÍA DISNARDA",
+        "last_name": "VILLALOBOS MOLLINEDO",
+        "type_identification": "DPI",
+        "identification_number": "2586172331601",
+        "telephone": "30290932",
+        "email": "disnardavillalobos77@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2025-05-13",
+        "number_nit": "57,026,556",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "PSICOLOGA",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-12T20:33:17.950Z",
+        "asesor": "HERBERT VILLALOBOS",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-03-12",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 221,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-194",
+        "first_name": "HECTOR ENRIQUE",
+        "last_name": "ESTRADA TAROT",
+        "type_identification": "DPI",
+        "identification_number": "2512927971601",
+        "telephone": "49818348",
+        "email": "estradahector8@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1988-02-28",
+        "number_nit": "48686794",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "BACHILLERATO EN CIENCIAS Y LETRAS",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTEC0",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-12T21:19:38.036Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-06-07",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 222,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-195",
+        "first_name": "VITALINO ALEXANDER",
+        "last_name": "DE LOS SANTOS GOMEZ",
+        "type_identification": "DPI",
+        "identification_number": "2449108551601",
+        "telephone": "59315598",
+        "email": "Delos_santosalexander@yahoo.es",
+        "status": "Aprobado",
+        "date_birth": "1972-03-12",
+        "number_nit": "58,459,049",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "LICENCIADO EN PEDAGOGIA",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-13T18:44:29.319Z",
+        "asesor": "GRECIA RORIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-04-12",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 223,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-196",
+        "first_name": "LILI MAGALI",
+        "last_name": "COY MACZ",
+        "type_identification": "DPI",
+        "identification_number": "2637797931601",
+        "telephone": "33302020",
+        "email": "lilicda@yahoo.com",
+        "status": "Aprobado",
+        "date_birth": "1978-02-14",
+        "number_nit": "56,826,974",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "LICENCIADA EN COMUNICACION SOCIAL",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-14T15:35:53.862Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-01-04",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 224,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-197",
+        "first_name": "SILVIA ISMENE ANAHI",
+        "last_name": "CHOCÓN OLIVA",
+        "type_identification": "DPI",
+        "identification_number": "3235185081601",
+        "telephone": "38173637",
+        "email": "Anahioliva24@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2002-02-24",
+        "number_nit": "109,504,402",
+        "place_birth": "SAN PEDRO CARCHA",
+        "marital_status": "SOLTER@",
+        "profession_trade": "ENFERMERA",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-15T17:04:33.020Z",
+        "asesor": "FRANCISCO ORELLANA",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-11-24",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 225,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-198",
+        "first_name": "ALLAN OMAR",
+        "last_name": "PACAY CÚ",
+        "type_identification": "DPI",
+        "identification_number": "3213629261601",
+        "telephone": "32502022",
+        "email": "allanpacayoc22@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2001-09-22",
+        "number_nit": "108,159,043",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "PERITO EN COMPUTACIÓN",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-15T17:18:20.087Z",
+        "asesor": "FRANCISCO ORRELLANA",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-11-24",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 226,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-199",
+        "first_name": "NATHALY CLAUDETH",
+        "last_name": "CAAL ARCHILA",
+        "type_identification": "DPI",
+        "identification_number": "2680517200101",
+        "telephone": "42174090",
+        "email": "nosesabecaal@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1999-02-16",
+        "number_nit": "62,464,221",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "COMERCIANTE",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-15T23:00:52.041Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2023-04-23",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 227,
+    "fields": {
+        "user_id": 2,
+        "immigration_status_id": 3,
+        "customer_code": "2025-200",
+        "first_name": "JUAN CARLOS ELOÍ",
+        "last_name": "CHOC XOL",
+        "type_identification": "DPI",
+        "identification_number": "3238438161601",
+        "telephone": "42249955",
+        "email": "eloicx@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2002-03-14",
+        "number_nit": "110241630",
+        "place_birth": "SAN PEDRO CARCHA ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "Estudiante-Ingeniería en Ciencias Y Sistemas",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-15T23:12:57.599Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-07-08",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 228,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-201",
+        "first_name": "HELMUT ABRAHAM",
+        "last_name": "CHIQUÍN RIVERA",
+        "type_identification": "DPI",
+        "identification_number": "1866605101601",
+        "telephone": "57715004",
+        "email": "helmutchiquin9@gmail.con",
+        "status": "Aprobado",
+        "date_birth": "2025-02-08",
+        "number_nit": "33018278",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "BACHILLER EN CIENCIAS Y LETRAS",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-16T21:33:58.086Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-03-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 229,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-202",
+        "first_name": "IRMA YOLANDA",
+        "last_name": "CHIQUIN BAC DE HERRERA",
+        "type_identification": "DPI",
+        "identification_number": "1740000221608",
+        "telephone": "33271062",
+        "email": "irychiquin@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1980-06-01",
+        "number_nit": "24,297,364",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "TRABAJADORA SOCIAL",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-19T16:20:43.834Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-03-14",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 230,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-203",
+        "first_name": "GLADIS MARIBEL",
+        "last_name": "BIN TUT",
+        "type_identification": "DPI",
+        "identification_number": "3256969931601",
+        "telephone": "47816344",
+        "email": "bingladis62@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2006-04-20",
+        "number_nit": "325696993",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "BACHILLLER EN CIENCIAS Y LETRAS",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-19T17:31:11.877Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2034-12-02",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 231,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-204",
+        "first_name": "SANDRA ELIZABETH",
+        "last_name": "SAGUI SIERRA",
+        "type_identification": "DPI",
+        "identification_number": "2588803411601",
+        "telephone": "54554637",
+        "email": "sandy1993sagui@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1993-02-02",
+        "number_nit": "81384394",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "CASADA@",
+        "profession_trade": "PERITO CONTADOR",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-19T18:40:51.257Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-12-27",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 232,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-205",
+        "first_name": "ANGEL DONALDO",
+        "last_name": "CUCUL CAAL",
+        "type_identification": "DPI",
+        "identification_number": "3242980801601",
+        "telephone": "32414076",
+        "email": "angeldonaldo123@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2000-03-16",
+        "number_nit": "109586301",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "PERITO EN GERENCIA ADMINISTRATIVA",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-19T19:00:06.234Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2028-11-05",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 233,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-206",
+        "first_name": "MARVIN ANDRES",
+        "last_name": "MACZ MACZ",
+        "type_identification": "DPI",
+        "identification_number": "2215137601601",
+        "telephone": "42334710",
+        "email": "Marvin1987@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1987-01-03",
+        "number_nit": "76,808,831",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "EFERMERO",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-19T19:21:45.455Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-09-28",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 234,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-207",
+        "first_name": "ASTRID BETHZABÉ",
+        "last_name": "RODRÍGUEZ ROMÁN",
+        "type_identification": "DPI",
+        "identification_number": "1745655690101",
+        "telephone": "30675088",
+        "email": "becky.roman13@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1987-05-04",
+        "number_nit": "627,014,494",
+        "place_birth": "GUATEMALA MIXCO",
+        "marital_status": "SOLTER@",
+        "profession_trade": "LICENCIADA EN ADMINISTRACIÓN PUBLICA",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-23T18:34:04.752Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-07-18",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 235,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-208",
+        "first_name": "ANGELA RUFINA",
+        "last_name": "MACZ ARTOLA",
+        "type_identification": "DPI",
+        "identification_number": "3248360071601",
+        "telephone": "38352916",
+        "email": "maczanyi54@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2003-09-11",
+        "number_nit": "113,720,637",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "SECRETARIA Y OFICINISTA",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-26T17:59:42.322Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-09-26",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 237,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-209",
+        "first_name": "WENDY ROXANA",
+        "last_name": "CAC QUIB",
+        "type_identification": "DPI",
+        "identification_number": "2754112731601",
+        "telephone": "46663311",
+        "email": "mahonesbressantwendy97@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1997-10-06",
+        "number_nit": "96,149,620",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "BACHILLER EN CIENCIAS Y LETRAS",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-28T22:33:22.482Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2027-06-02",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 238,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-210",
+        "first_name": "LUIS PEDRO",
+        "last_name": "TOT PEREZ",
+        "type_identification": "DPI",
+        "identification_number": "3243186421601",
+        "telephone": "48697039",
+        "email": "Luispedrotot1998@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1996-03-19",
+        "number_nit": "106,724,657",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "MAESTRO DE EDUCACIÓN PRIMARIA",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-29T22:07:43.040Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-10-13",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 239,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-211",
+        "first_name": "PERLA NAHOMY",
+        "last_name": "MARROQUÍN MILIÁN",
+        "type_identification": "DPI",
+        "identification_number": "2794911581601",
+        "telephone": "32397213",
+        "email": "Nmarroquin460@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2005-01-03",
+        "number_nit": "1,000,148,378",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "TÉCNICO EN PRODUCCIÓN AGROPECUARIA",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-05-30T20:52:53.675Z",
+        "asesor": "FRANCISCO ORELLANA",
+        "fehca_vencimiento_de_tipo_identificacion": "2033-01-06",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 240,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-212",
+        "first_name": "MARTA LIDIA",
+        "last_name": "VÁSQUEZ CHOC DE GUA",
+        "type_identification": "DPI",
+        "identification_number": "1986464611601",
+        "telephone": "49978914",
+        "email": "martitagua119@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1979-09-22",
+        "number_nit": "19089260",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "SECRETARIA OFICINISTA",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-02T16:28:12.982Z",
+        "asesor": "TATIANA CIFUENTES",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-10-15",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 241,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-213",
+        "first_name": "LIDIA MARGARITA",
+        "last_name": "MAAS MORALES DE DE PAZ",
+        "type_identification": "DPI",
+        "identification_number": "2383916201601",
+        "telephone": "49083631",
+        "email": "margaritamaasmorales@hotmail.com",
+        "status": "Aprobado",
+        "date_birth": "1976-08-29",
+        "number_nit": "2,827,461k",
+        "place_birth": "SAN PEDRO CARCHÁ ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "COMERCIANTE",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-02T18:59:31.117Z",
+        "asesor": "TATIANA CIFUENTES",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-05-10",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 242,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-214",
+        "first_name": "BRYAN RUBÉN DARÍO",
+        "last_name": "CASTILLO FERNÁNDEZ",
+        "type_identification": "DPI",
+        "identification_number": "3253508091601",
+        "telephone": "45379647",
+        "email": "bryanfj77@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2001-04-13",
+        "number_nit": "107,736,578",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "TÉCNICO AGRÍCOLA",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-02T21:51:51.713Z",
+        "asesor": "TATIANA CIFUENTES",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-01-15",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 243,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-215",
+        "first_name": "AIANA ALEYDA",
+        "last_name": "BETSABÉ MAAS TUCHEZ",
+        "type_identification": "DPI",
+        "identification_number": "3266803491603",
+        "telephone": "32884008",
+        "email": "aianaaleydabetsabe.maastuchez@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1999-12-09",
+        "number_nit": "104,719,214",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "MEDICO Y CIRUJANO",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-02T22:02:01.242Z",
+        "asesor": "TATIANA CIFUENTES",
+        "fehca_vencimiento_de_tipo_identificacion": "2027-12-22",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 244,
+    "fields": {
+        "user_id": 2,
+        "immigration_status_id": 3,
+        "customer_code": "2025-216",
+        "first_name": "MAGDA ELIZABETH",
+        "last_name": "CANO",
+        "type_identification": "DPI",
+        "identification_number": "2635986591401",
+        "telephone": "49982404",
+        "email": "magdacano14@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1980-08-14",
+        "number_nit": "14082616",
+        "place_birth": "COBAN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "SECRETARIA COMERCIAL",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-02T23:03:27.722Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2034-01-09",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 245,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-217",
+        "first_name": "ANGEL LUIS ESTUARDO",
+        "last_name": "CAAL MENDIZABAL",
+        "type_identification": "DPI",
+        "identification_number": "3240354891601",
+        "telephone": "48391278",
+        "email": "ctcpangel@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "2001-03-27",
+        "number_nit": "107,482,851",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "MAESTRO DE PARVULOS",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-03T17:39:47.295Z",
+        "asesor": "TATIANA CIFUENTES",
+        "fehca_vencimiento_de_tipo_identificacion": "2029-11-05",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 246,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-218",
+        "first_name": "EVELYN PAOLA",
+        "last_name": "SIERRA GARCIA",
+        "type_identification": "DPI",
+        "identification_number": "2404870601601",
+        "telephone": "32035292",
+        "email": "evelynsierragarcia@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1989-02-26",
+        "number_nit": "51527340",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "PERITO EN MERCADOTECNIA Y PUBLICIDAD",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-03T18:38:12.500Z",
+        "asesor": "TATIANA CIFUENTES",
+        "fehca_vencimiento_de_tipo_identificacion": "2032-05-30",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 247,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-219",
+        "first_name": "JUAN JOSÉ",
+        "last_name": "CHACÓN GONZÁLEZ",
+        "type_identification": "DPI",
+        "identification_number": "3163881731503",
+        "telephone": "59683477",
+        "email": "Juanjosechacon15@yahoo.com",
+        "status": "Aprobado",
+        "date_birth": "1996-09-15",
+        "number_nit": "87700298",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "BACHILLER EN CONSTRUCCIÓN",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-04T17:58:28.325Z",
+        "asesor": "FRANCISCO ORELLANA",
+        "fehca_vencimiento_de_tipo_identificacion": "2034-07-16",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 248,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-220",
+        "first_name": "ANA KELLE VERALY",
+        "last_name": "DELGADO VAIDES",
+        "type_identification": "DPI",
+        "identification_number": "1956052411609",
+        "telephone": "41505992",
+        "email": "veraly_dv@hot.mail.com",
+        "status": "Aprobado",
+        "date_birth": "1989-06-13",
+        "number_nit": "68723032",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "MAESTRA EN EDUCACIÓN PRIMARIA",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-04T20:09:37.380Z",
+        "asesor": "EDGAR ARMANDO ALVARADO",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-05-03",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 249,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-221",
+        "first_name": "PEDRO EFRAIN",
+        "last_name": "CAN PAAU",
+        "type_identification": "DPI",
+        "identification_number": "2387663221601",
+        "telephone": "41227922",
+        "email": "notienecorreopedro@gmial.com",
+        "status": "Aprobado",
+        "date_birth": "1983-06-26",
+        "number_nit": "27,613,526",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "MESERO",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-04T21:59:17.572Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2026-07-26",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 250,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-222",
+        "first_name": "ALEX ESTUARDO JOSUÉ",
+        "last_name": "MACZ RAMIREZ",
+        "type_identification": "DPI",
+        "identification_number": "3211488511601",
+        "telephone": "32668014",
+        "email": "a3972226@gmail.com",
+        "status": "Aprobado",
+        "date_birth": "1999-04-25",
+        "number_nit": "106,338,307",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "MESERO",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-04T22:03:26.065Z",
+        "asesor": "LUIS MACZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2028-11-27",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 251,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-223",
+        "first_name": "KEYLA MYSHEL",
+        "last_name": "DELGADO VAIDES",
+        "type_identification": "DPI",
+        "identification_number": "2176268901609",
+        "telephone": "48561382",
+        "email": "misi_dv@hotmail.com",
+        "status": "Aprobado",
+        "date_birth": "1992-08-06",
+        "number_nit": "76,766,330",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "MAESTRA EN EDUACION PRIMARIA",
+        "gender": "FEMENINO",
+        "nationality": "GUATEMALTECA",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-05T22:41:23.336Z",
+        "asesor": "EDGAR ARMANDO ALVARADO",
+        "fehca_vencimiento_de_tipo_identificacion": "2031-05-02",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 252,
+    "fields": {
+        "user_id": 4,
+        "immigration_status_id": 3,
+        "customer_code": "2025-224",
+        "first_name": "BRYAN EDUARDO",
+        "last_name": "MORALES BAILÓN",
+        "type_identification": "DPI",
+        "identification_number": "3497868441002",
+        "telephone": "41801954",
+        "email": "Moraleseduardo216@gmail.con",
+        "status": "Aprobado",
+        "date_birth": "1996-08-27",
+        "number_nit": "101,414,935",
+        "place_birth": "COBÁN ALTA VERAPAZ",
+        "marital_status": "SOLTER@",
+        "profession_trade": "COMERCIANTE",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "",
+        "creation_date": "2025-06-06T20:31:32.165Z",
+        "asesor": "GRECIA RODRIGUEZ",
+        "fehca_vencimiento_de_tipo_identificacion": "2030-01-19",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
+    }
+},
+{
+    "model": "customers.customer",
+    "pk": 253,
+    "fields": {
+        "user_id": 3,
+        "immigration_status_id": 3,
+        "customer_code": "2025-225",
+        "first_name": "ALBERTO",
+        "last_name": "TOT CHOC",
+        "type_identification": "DPI",
+        "identification_number": "2108462241601",
+        "telephone": "48115045",
+        "email": "albertotchoc@hotmail.com",
+        "status": "Aprobado",
+        "date_birth": "1989-07-13",
+        "number_nit": "8111512-1",
+        "place_birth": "COBAN, ALTA VERAPAZ",
+        "marital_status": "CASAD@",
+        "profession_trade": "PERITO CONTADOR",
+        "gender": "MASCULINO",
+        "nationality": "GUATEMALTECO",
+        "person_type": "Individual (PI)",
+        "description": "COOPERATIVA CHIRREPEC",
+        "creation_date": "2025-06-07T16:23:55.806Z",
         "asesor": "ARMANDO ALVARADO",
-        "fehca_vencimiento_de_tipo_identificacion": "2021-05-14"
+        "fehca_vencimiento_de_tipo_identificacion": "2035-03-06",
+        "other_telephone": null,
+        "level_of_education": "Ninguna",
+        "level_of_education_superior": "Ninguna",
+        "ocupacion": null,
+        "profesion": null
     }
 }
 ]

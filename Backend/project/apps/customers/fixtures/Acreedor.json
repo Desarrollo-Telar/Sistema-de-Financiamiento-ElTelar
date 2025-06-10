@@ -15,12 +15,13 @@
         "observaciones": "REGISTRO DE ACREEDOR 15-2023",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-11_140211.png",
         "status": false,
-        "saldo_pendiente": "23978.81",
-        "saldo_actual": "24638.23",
+        "saldo_pendiente": "13045.97",
+        "saldo_actual": "13372.12",
         "is_paid_off": false,
-        "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estado_aportacion": true,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -39,12 +40,13 @@
         "observaciones": "POR CREACION DE FICHA DEL ACREEDOR AC-2-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-12_110526.png",
         "status": false,
-        "saldo_pendiente": "2503.37",
-        "saldo_actual": "2565.95",
-        "is_paid_off": false,
-        "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "saldo_pendiente": "0.00",
+        "saldo_actual": "-0.38",
+        "is_paid_off": true,
+        "estado_aportacion": true,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -63,12 +65,13 @@
         "observaciones": "POR CREACION DE REGISTRO DEL ACREEDOR 3-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-12_111309.png",
         "status": false,
-        "saldo_pendiente": "3988.65",
-        "saldo_actual": "4088.37",
-        "is_paid_off": false,
-        "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "saldo_pendiente": "0.00",
+        "saldo_actual": "-551.69",
+        "is_paid_off": true,
+        "estado_aportacion": true,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -87,12 +90,13 @@
         "observaciones": "TRASLADO Y CREACION DE FICHA DEL ACREEDOT  AC4-2024",
         "boleta": "",
         "status": false,
-        "saldo_pendiente": "626654.08",
-        "saldo_actual": "639187.16",
+        "saldo_pendiente": "625225.12",
+        "saldo_actual": "637729.62",
         "is_paid_off": false,
         "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -111,12 +115,13 @@
         "observaciones": "TRASLADO Y CREACION DE FICHA DE ACREEDOR AC-05-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_150109.png",
         "status": false,
-        "saldo_pendiente": "547.00",
+        "saldo_pendiente": "0.00",
         "saldo_actual": "547.00",
-        "is_paid_off": false,
+        "is_paid_off": true,
         "estado_aportacion": true,
         "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -135,12 +140,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE NUEVA FICHA DEL ACREEDOR AC-06-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_150417.png",
         "status": false,
-        "saldo_pendiente": "16065.87",
-        "saldo_actual": "16387.19",
+        "saldo_pendiente": "3528.09",
+        "saldo_actual": "3528.09",
         "is_paid_off": false,
-        "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estado_aportacion": true,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -159,12 +165,13 @@
         "observaciones": "",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_150721.png",
         "status": false,
-        "saldo_pendiente": "17843.34",
-        "saldo_actual": "18200.21",
+        "saldo_pendiente": "5414.35",
+        "saldo_actual": "5522.64",
         "is_paid_off": false,
         "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -183,12 +190,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE FICHA DEL ACREEDOR AC-12-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_151233.png",
         "status": true,
-        "saldo_pendiente": "10570.73",
-        "saldo_actual": "10861.43",
+        "saldo_pendiente": "4997.23",
+        "saldo_actual": "5122.16",
         "is_paid_off": false,
-        "estado_aportacion": true,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estado_aportacion": false,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -207,12 +215,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE NUEVA FICHA DEL ACREEDOR AC-13-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_151439.png",
         "status": true,
-        "saldo_pendiente": "14092.89",
-        "saldo_actual": "14480.44",
+        "saldo_pendiente": "6662.58",
+        "saldo_actual": "6829.14",
         "is_paid_off": false,
-        "estado_aportacion": true,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estado_aportacion": false,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -231,12 +240,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE NUEVA FICHA DEL ACREEDOR AC-20-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_151922.png",
         "status": false,
-        "saldo_pendiente": "7560.00",
-        "saldo_actual": "8058.96",
+        "saldo_pendiente": "3750.00",
+        "saldo_actual": "3975.00",
         "is_paid_off": false,
         "estado_aportacion": true,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -255,12 +265,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE NUEVA FICHA DEL ACREEDOR AC-21-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_152148.png",
         "status": false,
-        "saldo_pendiente": "16178.36",
-        "saldo_actual": "16178.36",
+        "saldo_pendiente": "9162.67",
+        "saldo_actual": "9483.36",
         "is_paid_off": false,
         "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -279,12 +290,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE NUEVA FICHA DEL ACREEDOR AC-22-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_152756.png",
         "status": false,
-        "saldo_pendiente": "35000.00",
-        "saldo_actual": "36225.00",
+        "saldo_pendiente": "20000.00",
+        "saldo_actual": "20700.00",
         "is_paid_off": false,
         "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estados_fechas": false,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -303,12 +315,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE FICHA DEL ACREEDOR AC-23-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_153419.png",
         "status": false,
-        "saldo_pendiente": "2568.85",
-        "saldo_actual": "2568.85",
+        "saldo_pendiente": "1000.00",
+        "saldo_actual": "1100.00",
         "is_paid_off": false,
         "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -327,12 +340,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE FICHA DEL ACREEDOR AC-24-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_160635.png",
         "status": false,
-        "saldo_pendiente": "1412.00",
-        "saldo_actual": "1412.00",
+        "saldo_pendiente": "803.00",
+        "saldo_actual": "803.00",
         "is_paid_off": false,
-        "estado_aportacion": true,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estado_aportacion": false,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -356,7 +370,8 @@
         "is_paid_off": true,
         "estado_aportacion": true,
         "estados_fechas": true,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -375,12 +390,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE NUEVA FICHA DEL ACREEDOR AC-26-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_161855.png",
         "status": false,
-        "saldo_pendiente": "1042.00",
-        "saldo_actual": "1042.00",
+        "saldo_pendiente": "694.00",
+        "saldo_actual": "694.00",
         "is_paid_off": false,
-        "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estado_aportacion": true,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -399,12 +415,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE NUEVA FICHA DEL ACREEDOR AC-27-2024",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_162828.png",
         "status": false,
-        "saldo_pendiente": "1653.00",
-        "saldo_actual": "1653.00",
+        "saldo_pendiente": "1155.00",
+        "saldo_actual": "1155.00",
         "is_paid_off": false,
-        "estado_aportacion": true,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estado_aportacion": false,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -423,12 +440,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE FICHA DEL ACREEDOR AC-01-2025",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_163808.png",
         "status": true,
-        "saldo_pendiente": "5500.00",
-        "saldo_actual": "5637.50",
-        "is_paid_off": false,
+        "saldo_pendiente": "-69.50",
+        "saldo_actual": "-0.76",
+        "is_paid_off": true,
         "estado_aportacion": true,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -447,12 +465,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE FICHA DEL ACREEDOT AC-02-2025",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_164257.png",
         "status": false,
-        "saldo_pendiente": "1468.01",
-        "saldo_actual": "1468.01",
+        "saldo_pendiente": "1140.01",
+        "saldo_actual": "1140.01",
         "is_paid_off": false,
         "estado_aportacion": true,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -471,12 +490,13 @@
         "observaciones": "POR TRASLADO Y CREACION DE FICHA DEL ACREEDOR AC-03-2025",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-02-17_164533.png",
         "status": false,
-        "saldo_pendiente": "1439.00",
-        "saldo_actual": "1439.00",
+        "saldo_pendiente": "959.00",
+        "saldo_actual": "959.00",
         "is_paid_off": false,
-        "estado_aportacion": false,
-        "estados_fechas": null,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "estado_aportacion": true,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -500,7 +520,8 @@
         "is_paid_off": true,
         "estado_aportacion": true,
         "estados_fechas": true,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -524,7 +545,8 @@
         "is_paid_off": true,
         "estado_aportacion": true,
         "estados_fechas": true,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -548,7 +570,8 @@
         "is_paid_off": true,
         "estado_aportacion": true,
         "estados_fechas": true,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
     }
 },
 {
@@ -572,7 +595,108 @@
         "is_paid_off": true,
         "estado_aportacion": true,
         "estados_fechas": true,
-        "forma_de_pago": "AMORTIZACIONES A CAPITAL"
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
+    }
+},
+{
+    "model": "accountings.creditor",
+    "pk": 26,
+    "fields": {
+        "codigo_acreedor": "AC-2025-14",
+        "nombre_acreedor": "EDGAR ARMANDO ALVARADO BERMUDEZ",
+        "fecha_inicio": "2025-03-07",
+        "monto": "9490.00",
+        "tasa": "0.000",
+        "plazo": 12,
+        "fecha_vencimiento": "2026-03-07",
+        "fecha_registro": "2025-04-01",
+        "numero_referencia": null,
+        "observaciones": "POR COMPRA DE MOTOCICLETA/ LIGADO AL CREDITO EDWIN GARCIA Y RACHELL LINDA YAT FICHA NUMERO 63-2025/ CREDITO",
+        "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-04-01_093901.png",
+        "status": false,
+        "saldo_pendiente": "7908.00",
+        "saldo_actual": "7908.00",
+        "is_paid_off": false,
+        "estado_aportacion": false,
+        "estados_fechas": false,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T07:16:29.822Z"
+    }
+},
+{
+    "model": "accountings.creditor",
+    "pk": 27,
+    "fields": {
+        "codigo_acreedor": "AC-2025-26",
+        "nombre_acreedor": "EDGAR ARMANDO ALVARADO BERMUDEZ",
+        "fecha_inicio": "2025-02-28",
+        "monto": "7075.00",
+        "tasa": "0.010",
+        "plazo": 12,
+        "fecha_vencimiento": "2026-02-28",
+        "fecha_registro": "2025-04-10",
+        "numero_referencia": null,
+        "observaciones": "POR COMPRA DE MOBILIARIO Y EQUIPO PARA NUEVA OFICINA",
+        "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-04-10_124835.png",
+        "status": false,
+        "saldo_pendiente": "5298.49",
+        "saldo_actual": "5351.47",
+        "is_paid_off": false,
+        "estado_aportacion": true,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T18:48:53.466Z"
+    }
+},
+{
+    "model": "accountings.creditor",
+    "pk": 28,
+    "fields": {
+        "codigo_acreedor": "AC-2025-27",
+        "nombre_acreedor": "EDGAR ARMANDO ALVARADO BERMUDEZ",
+        "fecha_inicio": "2025-02-26",
+        "monto": "20000.00",
+        "tasa": "0.100",
+        "plazo": 6,
+        "fecha_vencimiento": "2025-08-26",
+        "fecha_registro": "2025-04-10",
+        "numero_referencia": "21719287",
+        "observaciones": "SERVICIOS FINANCIERO/ CASO AUGUSTIN GARCIA SIS",
+        "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-04-10_130053.png",
+        "status": true,
+        "saldo_pendiente": "9998.86",
+        "saldo_actual": "10998.75",
+        "is_paid_off": false,
+        "estado_aportacion": true,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-04-10T19:02:09.745Z"
+    }
+},
+{
+    "model": "accountings.creditor",
+    "pk": 29,
+    "fields": {
+        "codigo_acreedor": "AC-2025-28",
+        "nombre_acreedor": "EDGAR ARMANDO ALVARADO BERMUDEZ",
+        "fecha_inicio": "2025-05-06",
+        "monto": "1595.00",
+        "tasa": "0.000",
+        "plazo": 3,
+        "fecha_vencimiento": "2025-08-06",
+        "fecha_registro": "2025-05-13",
+        "numero_referencia": null,
+        "observaciones": "POR COMPRA DE SILLA AL CREDITO EL MES DE MAYO",
+        "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-05-13_161704.png",
+        "status": false,
+        "saldo_pendiente": "1595.00",
+        "saldo_actual": "1595.00",
+        "is_paid_off": false,
+        "estado_aportacion": null,
+        "estados_fechas": true,
+        "forma_de_pago": "AMORTIZACIONES A CAPITAL",
+        "creation_date": "2025-05-13T22:17:21.238Z"
     }
 }
 ]
