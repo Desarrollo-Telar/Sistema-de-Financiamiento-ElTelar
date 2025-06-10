@@ -55,7 +55,7 @@ def send_email_next_update_of_quotas(cuotas):
 
     # Crear y enviar el correo electrónico
     email = EmailMultiAlternatives(
-        f'ALERTA CUOTAS PROXIMA A ACTUALIZARSE - {dia}',
+        f'ESTAS CUOTAS HOY LLEGARON A SU FECHA DE VENCIMIENTO - {dia}',
         'ELTELAR',
         settings.EMAIL_HOST_USER,
         usuarios_email
@@ -84,7 +84,7 @@ def send_email_update_of_quotas(cuotas):
 
     # Crear y enviar el correo electrónico
     email = EmailMultiAlternatives(
-        f'ALERTA CUOTAS ACTUALIZADAS - {dia}',
+        f'ESTAS CUOTAS LLEGARON A SU FECHA LIMITE - {dia}',
         'ELTELAR',
         settings.EMAIL_HOST_USER,
         usuarios_email
