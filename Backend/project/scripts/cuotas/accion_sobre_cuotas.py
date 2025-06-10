@@ -198,7 +198,7 @@ def recorrido_de_cuotas(cuotas, accion):
             interes_acumulado = cuota.interest + interes
             procesar_siguiente_cuota(cuota, siguiente_cuota,interes ,interes_acumulado, mora)
             
-        elif accion == 'FECHA_VENCIMIENTO':
+        if accion == 'FECHA_VENCIMIENTO':
             
             cuota.paso_por_task = True
 

@@ -20,12 +20,15 @@ def cambiar_plan():
     validacion = ejecutar_max_1_veces_al_dia()
     dia = datetime.now().date()
     
-    
     if not validacion:
         return
     
     
-    verificador_de_cuotas_fecha_limite(dia)
+    
     verificador_de_cuotas_vencidas(dia)
+    print()
+    verificador_de_cuotas_fecha_limite(dia)
+    print()
+    
     cuotas_por_vencerse_alerta()
 
