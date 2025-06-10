@@ -238,6 +238,7 @@ class PaymentPlan(models.Model):
         self.calculo_fecha_limite()
         self.capital_generado = self.calculo_capital()
         self.installment = self.calculo_cuota()
+        self.interes_generado = self.calculo_interes()
         super().save(*args, **kwargs)
     
     def __str__(self):

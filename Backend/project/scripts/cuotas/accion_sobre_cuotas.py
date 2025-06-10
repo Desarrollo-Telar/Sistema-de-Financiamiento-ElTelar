@@ -1,0 +1,221 @@
+
+# UUID
+import uuid
+
+# MODELOS
+from apps.financings.models import PaymentPlan, Credit, AccountStatement, Payment
+from apps.accountings.models import Creditor, Insurance
+from django.db.models import Q
+
+# CALCULOS
+from apps.financings.calculos import calculo_mora, calculo_interes
+from decimal import Decimal
+
+# MENSAJES DE ALERTA
+from project.send_mail import send_email_update_of_quotas
+
+# lOGS
+import logging
+logger = logging.getLogger(__name__)
+
+def get_credito(cuota):
+    logger.info("OBTENIENDO EL CREDITO")
+    credito = None
+
+    if cuota.credit_id is not None:
+        credito =  Credit.objects.get(id=cuota.credit_id.id)
+    
+    if cuota.acreedor is not None:
+        credito =  Creditor.objects.get(id=cuota.acreedor.id)
+    
+    if cuota.seguro is not None:
+        credito =  Insurance.objects.get(id=cuota.seguro.id)
+
+    return credito
+
+
+def calcular_interes_y_mora(cuota):
+    logger.info("Realizando los Calculos de Interes o de Mora")
+
+    tasa_interes = 0
+    interes = 0
+    mora = 0
+
+    if cuota.credit_id is not None:
+        tasa_interes =  cuota.credit_id.tasa_interes
+        
+        mora = calculo_mora(cuota.saldo_pendiente,tasa_interes) # Por lo establecido la mora es del 10%
+    
+    if cuota.acreedor is not None:
+        tasa_interes = cuota.acreedor.tasa
+    
+    if cuota.seguro is not None:
+        tasa_interes = cuota.seguro.tasa
+    
+    interes = calculo_interes(cuota.saldo_pendiente,tasa_interes)
+
+    return interes, mora
+
+def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, mora):
+    if siguiente_cuota is not None:
+        siguiente_cuota.outstanding_balance = pago.saldo_pendiente
+
+        siguiente_cuota.saldo_pendiente = pago.saldo_pendiente
+        if pago.credit_id:
+            siguiente_cuota.credit_id = pago.credit_id
+
+        if pago.seguro:
+            siguiente_cuota.seguro = pago.seguro
+        
+        if pago.acreedor:
+            siguiente_cuota.acreedor = pago.acreedor
+
+        siguiente_cuota.mora = mora
+        siguiente_cuota.interest = interes_acumulado
+        siguiente_cuota.interes_generado =interes
+        siguiente_cuota.start_date = pago.due_date
+        siguiente_cuota.cambios = True
+        siguiente_cuota.save()
+
+    else:
+        cuota = PaymentPlan()
+        cuota.outstanding_balance = pago.saldo_pendiente
+        cuota.saldo_pendiente = pago.saldo_pendiente
+
+        if pago.credit_id:
+            cuota.credit_id = pago.credit_id
+
+        if pago.seguro:
+            cuota.seguro = pago.seguro
+        
+        if pago.acreedor:
+            cuota.acreedor = pago.acreedor
+
+        cuota.start_date = pago.due_date
+        cuota.interes_generado =interes
+        cuota.interest = interes_acumulado
+        cuota.mora = mora
+        cuota.save()
+
+
+
+def generar_estado_cuenta(cuota, accion):
+    estado_cuenta = AccountStatement()
+
+    if cuota.credit_id:
+        estado_cuenta.credit = cuota.credit_id
+    
+    if cuota.acreedor:
+        estado_cuenta.acreedor = cuota.acreedor
+    
+    if cuota.seguro:
+        estado_cuenta.seguro = cuota.seguro
+
+    estado_cuenta.numero_referencia = str(uuid.uuid4())[:8]
+
+    if accion == 'FECHA_LIMITE':
+        if cuota.interes_pagado > 0:
+            estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida, ya que no se gestionó el pago completo dentro del plazo establecido. Se realizó un abono parcial acerca de los intereses, sin saldar el total de la cuota. Le recordamos la importancia de regularizar esta obligación a la brevedad para evitar la generación de cargos por mora.'
+        else:
+            estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida, ya que no se ha gestionado su pago en el tiempo establecido. Le recordamos la importancia de regularizar esta obligación lo antes posible para evitar cargos adicionales.'
+
+    if accion == 'FECHA_VENCIMIENTO':
+        estado_cuenta.description = f'La cuota No. {cuota.mes} ha pasado al estado de "Fechas en atraso" debido a que no fue pagada dentro del plazo estipulado. Este crédito otorga un máximo de 15 días para realizar el pago correspondiente a la cuota No. {cuota.mes}. De no hacerlo dentro de ese período, se aplicará un recargo por mora.'
+
+
+    estado_cuenta.cuota = cuota
+    estado_cuenta.saldo_pendiente = cuota.saldo_pendiente
+    estado_cuenta.save()
+
+
+def get_boleta(credito):
+    boleta = None
+
+    return boleta
+
+def obtener_la_siguiente_cuota(cuota):
+    siguiente_cuota = None
+
+    if cuota.credit_id:
+        siguiente_cuota = PaymentPlan.objects.filter(
+            credit_id=cuota.credit_id,
+            fecha_limite__gt=cuota.fecha_limite
+            ).order_by('fecha_limite').first()
+                
+
+    if cuota.acreedor:
+        siguiente_cuota = PaymentPlan.objects.filter(
+            acreedor=cuota.acreedor,
+            fecha_limite__gt=cuota.fecha_limite
+            ).order_by('fecha_limite').first()
+                
+            
+    if cuota.seguro:
+        siguiente_cuota = PaymentPlan.objects.filter(
+            seguro=cuota.seguro,
+            fecha_limite__gt=cuota.fecha_limite
+            ).order_by('fecha_limite').first()
+                
+    return siguiente_cuota
+
+def recorrido_de_cuotas(cuotas, accion):
+
+    print(f'SE ESTA ANALIZANDO: {accion}')
+
+    for cuota in cuotas:
+        boleta_cuota = None
+        credito = get_credito(cuota)
+
+        print(f'CUOTA: {cuota}')
+
+        if credito.is_paid_off:
+            print(f"El credito {credito} ya ha sido cancelado por completo")
+            continue
+
+        
+
+        if accion == 'FECHA_LIMITE':
+            interes, mora = calcular_interes_y_mora(cuota)
+            siguiente_cuota = obtener_la_siguiente_cuota(cuota)
+            cuota.mora = mora
+            cuota.mora_generado = mora
+
+            
+
+            if not cuota.status:
+                cuota.cuota_vencida = True
+                credito.estado_aportacion = False
+                generar_estado_cuenta(cuota, accion)
+                cuota.save()
+
+            else:
+                credito.estados_fechas = True
+                credito.estado_aportacion = False
+
+            credito.save()
+                
+
+            interes_acumulado = cuota.interest + interes
+            procesar_siguiente_cuota(cuota, siguiente_cuota,interes ,interes_acumulado, mora)
+            
+        elif accion == 'FECHA_VENCIMIENTO':
+            
+            cuota.paso_por_task = True
+
+            
+            if not cuota.status:
+                credito.estados_fechas = False
+                generar_estado_cuenta(cuota, accion)
+
+            else:
+                credito.estados_fechas = True
+
+            credito.save()
+            cuota.save()
+            
+            
+
+            
+   
+
+    print('PROCESO FINALIZADO')

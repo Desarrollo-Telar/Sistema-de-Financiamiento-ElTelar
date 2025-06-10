@@ -189,29 +189,25 @@ def cambios(sender, instance, **kwargs):
         logger.info('\nDESDE SIGNALS DE PAYMENT_PLAN: POR REALIZAR CAMBIOS EN LA SIGUIENTE CUOTA\n')
         referencia = instance.numero_referencia
         #fecha_limite_aware = timezone.make_aware(instance.fecha_limite)
-        logger.info(f'DESDE SIGNALS DE PAYMENT_PLAN: CUOTA ACTUAL: {instance}')
-        logger.info(f'\n\n')
         # Obtener la siguiente cuota
         siguiente_cuota = None
         if  instance.credit_id is not None:
             siguiente_cuota = PaymentPlan.objects.filter(
-    Q(credit_id=instance.credit_id.id) ,
-    fecha_limite__gt=instance.fecha_limite).order_by('fecha_limite').first()
+                Q(credit_id=instance.credit_id.id) ,
+                fecha_limite__gt=instance.fecha_limite).order_by('fecha_limite').first()
 
         if  instance.acreedor is not None: 
             siguiente_cuota = PaymentPlan.objects.filter(
-     Q(acreedor_id=instance.acreedor.id) ,
-    fecha_limite__gt=instance.fecha_limite).order_by('fecha_limite').first()
+                Q(acreedor_id=instance.acreedor.id) ,
+                fecha_limite__gt=instance.fecha_limite).order_by('fecha_limite').first()
 
         if  instance.seguro is not None:
             siguiente_cuota = PaymentPlan.objects.filter(
-     Q(seguro_id=instance.seguro.id),
-    fecha_limite__gt=instance.fecha_limite).order_by('fecha_limite').first()
+                Q(seguro_id=instance.seguro.id),
+                fecha_limite__gt=instance.fecha_limite).order_by('fecha_limite').first()
             
 
-        logger.info(f'DESDE SIGNALS DE PAYMENT_PLAN: CAMBIO DE LA CUOTA: {siguiente_cuota}')
         cuota_interes = instance.interest
-        logger.info(f'DESDE SIGNALS DE PAYMENT_PLAN: INTERES ANTERIOS: {round(cuota_interes,2)}')
         mora_a = instance.mora
 
         
@@ -222,29 +218,37 @@ def cambios(sender, instance, **kwargs):
             mora = Decimal(cuota_interes) * Decimal(0.1)
             logger.info(f'DESDE SIGNALS DE PAYMENT_PLAN: OPERACION POR REALIZAR: \nx = {cuota_interes} + {interes}\n')
 
-            cuota_interes = cuota_interes + interes
-            cuota_mora = mora_a + mora
+            
+
+            cuota_mora = 0
+
+            # Actualizar la siguiente cuota
+            if mora_a != 0:
+                cuota_interes = cuota_interes + interes
+                cuota_mora = mora_a + mora
+
+                siguiente_cuota.mora_acumulado_generado = mora_a
+                siguiente_cuota.mora_generado = mora
+                siguiente_cuota.interes_acumulado_generado = cuota_interes
+            
+            if  mora_a == 0:
+                siguiente_cuota.mora_acumulado_generado = 0
+                siguiente_cuota.mora_generado = 0
+                siguiente_cuota.interes_acumulado_generado = 0
+
 
 
             
-            logger.info(f'DESDE SIGNALS DE PAYMENT_PLAN: INTERES: {round(cuota_interes,2)}')
-            logger.info(f'DESDE SIGNALS DE PAYMENT_PLAN: Mora: {round(mora,2)}')
-            logger.info(f'\n\n')
-            # Actualizar la siguiente cuota
+         
+            
             siguiente_cuota.cambios = True
-            siguiente_cuota.interes_generado = interes
-            siguiente_cuota.interes_acumulado_generado = cuota_interes
-
-            siguiente_cuota.mora_acumulado_generado = mora_a
-            siguiente_cuota.mora_generado = mora
-
-
             siguiente_cuota.interest = round(cuota_interes,2)  # Asegúrate de que no sea negativa
             siguiente_cuota.interes_generado = round(cuota_interes,2)  # Asegúrate de que no sea negativa
             #siguiente_cuota.mora = max(0, siguiente_cuota.mora - mora)  # Asegúrate de que no sea negativa
             siguiente_cuota.mora = round(cuota_mora,2) # Asegúrate de que no sea negativa
             siguiente_cuota.start_date = instance.due_date
             siguiente_cuota.saldo_pendiente = instance.saldo_pendiente
+            siguiente_cuota.outstanding_balance = instance.saldo_pendiente
             siguiente_cuota.credit_id = instance.credit_id
             siguiente_cuota.acreedor = instance.acreedor
             siguiente_cuota.seguro = instance.seguro

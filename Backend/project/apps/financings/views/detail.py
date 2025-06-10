@@ -23,7 +23,7 @@ from apps.financings.clases.paymentplan import PaymentPlan as PlanPagoos
 from apps.financings.clases.credit import Credit as Credito
 
 # TAREA ASINCRONICO
-from apps.financings.task import cambiar_plan
+from apps.financings.task import cambiar_plan, comparacion_para_boletas_divididas
 from apps.financings.functions_payment import revisar
 
 # LIBRERIAS PARA CRUD
@@ -265,8 +265,15 @@ def detallar_recibo(request,id):
 def detalle_boleta(request,id):
     pago = get_object_or_404(Payment, id=id)
     template_name = 'financings/payment/detail.html'
+
     boleta = Banco.objects.filter(referencia=pago.numero_referencia).first()
+
     if pago.estado_transaccion != 'COMPLETADO':
+        if pago.numero_referencia.endswith(("-D", "-d")):
+            comparacion_para_boletas_divididas()
+            return redirect('financings:detalle_boleta', pago.id)
+
+
         revisar(boleta)
         return redirect('financings:detalle_boleta', pago.id)
 

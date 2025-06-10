@@ -215,7 +215,7 @@ def send_message(sender, instance, created, **kwargs):
     
     # Construir la URL completa con el protocolo y el dominio
     filename = f'codigoQr_{customer.customer_code}.png'
-    dato = f'{protocol}://{domain}/pdf/{customer.id}/'
+    dato = f'https://www.ii-eltelarsa.com/pdf/{customer.id}'
     
     generate_qr(dato, filename)
 

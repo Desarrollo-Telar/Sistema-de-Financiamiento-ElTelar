@@ -19,7 +19,7 @@ from django.contrib import messages
 from apps.codes.forms import CodeForm
 
 # TAREA ASINCRONICO
-from apps.financings.task import cambiar_plan,cambiar_estado
+from apps.financings.task import cambiar_plan
 from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito, generar_todas_las_cuotas_acreedores
 
 # Modelos

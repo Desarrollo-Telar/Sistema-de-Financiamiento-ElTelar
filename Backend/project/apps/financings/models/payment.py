@@ -466,14 +466,7 @@ class Payment(models.Model):
         cuota.numero_referencia = self.numero_referencia
         cuota.interes_pagado += pagado_interes
         cuota.cambios = False
-        print(f'''
-        CUOTA ACTUALIZADA
-        {cuota.interest}
-        {cuota.mora}
-        {cuota.principal}
         
-        
-        ''')
         if cuota.interest == 0:
             if credito is not None:
                 credito.estados_fechas = True

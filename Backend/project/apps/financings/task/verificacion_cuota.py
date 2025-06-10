@@ -1,282 +1,31 @@
 # CELERY
 from celery import shared_task
 
-# MODELOS
-from apps.financings.models import PaymentPlan, Credit, AccountStatement, Payment
-from apps.accountings.models import Creditor, Insurance
-from django.db.models import Q
-
-# MENSAJES DE ALERTA
-from project.send_mail import send_email_update_of_quotas
-# CALCULOS
-from apps.financings.calculos import calculo_mora, calculo_interes
-from decimal import Decimal
+# SCRIPTS
+from scripts.manejo_contador_por_dias import ejecutar_max_1_veces_al_dia
+from scripts.cuotas.cuotas_fecha_vencimiento import verificador_de_cuotas_vencidas
+from scripts.cuotas.cuotas_fecha_limite import verificador_de_cuotas_fecha_limite
+from scripts.cuotas.cuotas_por_vencerse import cuotas_por_vencerse_alerta
 
 # TIEMPO
 from datetime import datetime, time
 from django.utils.timezone import now
 
-# UUID
-import uuid
-
-# lOGS
-import logging
-logger = logging.getLogger(__name__)
-
-def get_credito(pago):
-    logger.info("OBTENIENDO EL CREDITO")
-    credito = None
-    if pago.credit_id is not None:
-        credito =  Credit.objects.get(id=pago.credit_id.id)
-    
-    if pago.acreedor is not None:
-        credito =  Creditor.objects.get(id=pago.acreedor.id)
-    
-    if pago.seguro is not None:
-        credito =  Insurance.objects.get(id=pago.seguro.id)
-
-    return credito
-
-def calcular_interes_y_mora(pago):
-    logger.info("CALCULANDO EL INTERES")
-    tasa_interes = 0
-    interes = 0
-    mora = 0
-
-    if pago.credit_id is not None:
-        tasa_interes =  pago.credit_id.tasa_interes
-        
-        mora = Decimal(pago.interest) * Decimal(0.1)
-    
-    if pago.acreedor is not None:
-        tasa_interes = pago.acreedor.tasa
-    
-    if pago.seguro is not None:
-        tasa_interes = pago.seguro.tasa
-    
-    interes = calculo_interes(pago.saldo_pendiente,tasa_interes)
-
-    return interes, mora
-
-def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, mora):
-    if siguiente_cuota is not None:
-        siguiente_cuota.outstanding_balance = pago.saldo_pendiente
-
-        siguiente_cuota.saldo_pendiente = pago.saldo_pendiente
-        if pago.credit_id:
-            siguiente_cuota.credit_id = pago.credit_id
-
-        if pago.seguro:
-            siguiente_cuota.seguro = pago.seguro
-        
-        if pago.acreedor:
-            siguiente_cuota.acreedor = pago.acreedor
-
-        siguiente_cuota.mora = mora
-        siguiente_cuota.interest = interes_acumulado
-        siguiente_cuota.interes_generado =interes
-        siguiente_cuota.start_date = pago.due_date
-        siguiente_cuota.save()
-
-    else:
-        cuota = PaymentPlan()
-        cuota.outstanding_balance = pago.saldo_pendiente
-        cuota.saldo_pendiente = pago.saldo_pendiente
-
-        if pago.credit_id:
-            cuota.credit_id = pago.credit_id
-
-        if pago.seguro:
-            cuota.seguro = pago.seguro
-        
-        if pago.acreedor:
-            cuota.acreedor = pago.acreedor
-
-        cuota.start_date = pago.due_date
-        cuota.interes_generado =interes
-        cuota.interest = interes_acumulado
-        cuota.mora = mora
-        cuota.save()
-
-def actualizar_estado_credito_seguro_acreedor(credito, pago):
-    if credito.estado_aportacion is None:
-        credito.estado_aportacion = False
-    if not pago.status:
-        credito.estados_fechas = False
-
-        if credito.estado_aportacion is None:
-            credito.estado_aportacion = False
-    else:
-        
-        credito.estado_aportacion = False
-    
-    
-    
-    credito.save()
-
-def generar_estado_cuenta(pago):
-    estado_cuenta = AccountStatement()
-
-    if pago.credit_id:
-        estado_cuenta.credit = pago.credit_id
-    
-    if pago.acreedor:
-        estado_cuenta.acreedor = pago.acreedor
-    
-    if pago.seguro:
-        estado_cuenta.seguro = pago.seguro
-
-    estado_cuenta.numero_referencia = str(uuid.uuid4())[:8]
-    estado_cuenta.description = "CUOTA VENCIDA"
-    estado_cuenta.cuota = pago
-    estado_cuenta.saldo_pendiente = pago.saldo_pendiente
-    estado_cuenta.save()
-
-
-def get_boleta(credito):
-    boleta = None
-
-    return boleta
-
-@shared_task
-def cambiar_estado():
-    dia = datetime.now().date()
-    planes = PaymentPlan.objects.filter(due_date__date=dia)
-    
-
-    if not planes.exists():
-        logger.info("No hay registro")
-        return
-    
-    
-    for pago in planes:
-        credito = get_credito(pago)
-        actualizar_estado_credito_seguro_acreedor(credito, pago)
-
-import json
-import os
-
-
-DATA_FILE = 'function_counter.json'
-
-def load_counter():
-    if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, 'r') as f:
-            return json.load(f)
-    else:
-        return {"date": "", "count": 0}
-
-def save_counter(data):
-    with open(DATA_FILE, 'w') as f:
-        json.dump(data, f)
-
-def ejecutar_max_3_veces_al_dia():
-    data = load_counter()
-    hoy = datetime.now().strftime('%Y-%m-%d')
-
-    if data["date"] != hoy:
-        # Nuevo día: reiniciar contador
-        data["date"] = hoy
-        data["count"] = 0
-
-    if data["count"] < 3:
-        data["count"] += 1
-        save_counter(data)
-        print("✅ Ejecutando función...")
-        # Aquí va tu lógica principal
-        return True
-    else:
-        print("⛔ Límite de 3 ejecuciones alcanzado para hoy.")
-        return False
 
 
 
 
 @shared_task(name="apps.financings.task.cambiar_plan")
 def cambiar_plan():
-    validacion = ejecutar_max_3_veces_al_dia()
+    validacion = ejecutar_max_1_veces_al_dia()
+    dia = datetime.now().date()
+    
     
     if not validacion:
         return
-    dia = datetime.now().date()
     
-    planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=False)
-    print(planes)
-
-    if not planes.exists():
-        logger.info("No hay registro")
-        return
     
-    hora_actual = datetime.now().time()
-    hora_inicio = time(8, 0)   # 08:00 AM
-    hora_fin = time(9, 0)      # 09:00 AM
-
-    if hora_actual <= hora_fin:
-        send_email_update_of_quotas(planes)
-    else:
-        print("Fuera del horario permitido para enviar correos.")
-        
-    
-    for pago in planes:
-        
-        boleta = None
-        credito = get_credito(pago)
-        
-        if credito.is_paid_off:
-            logger.error(f"El credito {credito} ya ha sido cancelado por completo")
-            continue
-
-        boleta = Payment.objects.filter(Q(credit=pago.credit_id) | Q(acreedor=pago.acreedor)| Q(seguro=pago.seguro)).first()
-
-        
-        if boleta.tipo_pago == "CREDITO":
-            pago.paso_por_task = True
-            pago.save()
-            continue
-        else:
-            logger.info(f"No se encontro boleta")
-            interes, mora = calcular_interes_y_mora(pago)
-            print(f'{interes}, {mora}')
-            siguiente_cuota = None
-            
-
-            if pago.credit_id:
-                siguiente_cuota = PaymentPlan.objects.filter(
-                    credit_id=pago.credit_id,
-                    fecha_limite__gt=pago.fecha_limite
-                ).order_by('fecha_limite').first()
-                pago.paso_por_task = True
-
-            if pago.acreedor:
-                siguiente_cuota = PaymentPlan.objects.filter(
-                    acreedor=pago.acreedor,
-                    fecha_limite__gt=pago.fecha_limite
-                ).order_by('fecha_limite').first()
-            
-            if pago.seguro:
-                siguiente_cuota = PaymentPlan.objects.filter(
-                    seguro=pago.seguro,
-                    fecha_limite__gt=pago.fecha_limite
-                ).order_by('fecha_limite').first()
-
-            pago.mora = mora
-            pago.mora_generado = mora
-
-            if not pago.status:
-                pago.cuota_vencida = True
-                generar_estado_cuenta(pago)
-                actualizar_estado_credito_seguro_acreedor(credito, pago)
-            else:
-                actualizar_estado_credito_seguro_acreedor(credito, pago)
-
-            pago.save()
-            interes_acumulado = pago.interest + interes
-            procesar_siguiente_cuota(pago, siguiente_cuota,interes ,interes_acumulado, mora)
-
-
-        
-        logger.info("Procesamiento finalizado")
-
-        
-
+    verificador_de_cuotas_fecha_limite(dia)
+    verificador_de_cuotas_vencidas(dia)
+    cuotas_por_vencerse_alerta()
 

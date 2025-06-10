@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
         
         filename = f'codigoQr_{customer.customer_code}.png'
-        dato = f'https://www.ii-eltelarsa.com/pdf/{customer.id}/'
+        dato = f'https://www.ii-eltelarsa.com/pdf/{customer.id}'
 
         generate_qr(dato, filename)
         

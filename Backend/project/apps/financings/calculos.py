@@ -10,7 +10,7 @@ def calculo_interes(saldo_pendiente, tasa_interes):
 def calculo_mora(saldo_pendiente, tasa_interes):
     # Convertir la tasa de interés a Decimal si no lo es
     tasa_interes_decimal = Decimal(tasa_interes)  # Asegúrate de que tasa_interes sea un float
-    mora = saldo_pendiente * tasa_interes_decimal * Decimal(0.1)
+    mora = (saldo_pendiente * tasa_interes_decimal) * Decimal(0.1)
     return round(mora, 2)
     
 def calcular_fecha_vencimiento(fecha_inicio):

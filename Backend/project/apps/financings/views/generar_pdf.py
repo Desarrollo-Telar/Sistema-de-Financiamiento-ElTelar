@@ -128,7 +128,7 @@ def render_pdf_estado_cuenta(request,id):
 def render_pdf_calculos_credito(request,id):
     cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     credito = get_object_or_404(Credit,id=id)
-    cuotas = PaymentPlan.objects.filter(credit_id=credito)
+    cuotas = PaymentPlan.objects.filter(credit_id=credito).order_by('mes')
     pagos = Payment.objects.filter(credit=credito)
     recibos = Recibo.objects.filter(pago__credit=credito).order_by('pago__fecha_emision')
 
