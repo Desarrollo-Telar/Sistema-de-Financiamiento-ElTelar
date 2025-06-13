@@ -13,7 +13,7 @@ from project.send_mail import send_email_next_update_of_quotas
 
 def verificador_de_cuotas_vencidas(dia):
     print('ANALISIS SOBRE FECHA_VENCIMIENTO')
-    planes = PaymentPlan.objects.filter(due_date__date=dia, paso_por_task=True)
+    planes = PaymentPlan.objects.filter(due_date__date=dia, paso_por_task=False)
     
     if not planes.exists():
         print("No hay registro")

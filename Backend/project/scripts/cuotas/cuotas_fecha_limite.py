@@ -13,7 +13,7 @@ from project.send_mail import send_email_update_of_quotas
 
 def verificador_de_cuotas_fecha_limite(dia):
     print('ANALISIS SOBRE FECHA_LIMITE')
-    planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=True)
+    planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=False)
     
     if not planes.exists():
         print("No hay registro")

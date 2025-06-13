@@ -70,7 +70,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         if pago.acreedor:
             siguiente_cuota.acreedor = pago.acreedor
 
-        siguiente_cuota.mora = mora
+        siguiente_cuota.mora = mora + pago.mora
         siguiente_cuota.interest = interes_acumulado
         siguiente_cuota.interes_generado =interes
         siguiente_cuota.start_date = pago.due_date
@@ -94,7 +94,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         cuota.start_date = pago.due_date
         cuota.interes_generado =interes
         cuota.interest = interes_acumulado
-        cuota.mora = mora
+        cuota.mora = mora + pago.mora
         cuota.save()
 
 
