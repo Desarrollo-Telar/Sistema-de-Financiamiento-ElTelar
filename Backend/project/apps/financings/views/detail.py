@@ -268,10 +268,9 @@ def detalle_boleta(request,id):
 
     boleta = Banco.objects.filter(referencia=pago.numero_referencia).first()
 
-    if pago.estado_transaccion == 'FALLIDO':
-        return redirect('financings:detalle_boleta', pago.id)
+    
 
-    if pago.estado_transaccion != 'COMPLETADO':
+    if pago.estado_transaccion != 'COMPLETADO' and not pago.estado_transaccion == 'FALLIDO':
         if pago.numero_referencia.endswith(("-D", "-d")):
             comparacion_para_boletas_divididas()
             return redirect('financings:detalle_boleta', pago.id)
