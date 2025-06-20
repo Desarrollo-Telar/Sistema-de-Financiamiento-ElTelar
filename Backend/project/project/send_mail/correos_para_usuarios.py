@@ -44,7 +44,7 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
         
     }
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = ['eloicx@gmail.com','iieltelarsa@gmail.com']
+    usuarios_email = ['choc1403.iieltelarsa@gmail.com	','iieltelarsa@gmail.com']
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
