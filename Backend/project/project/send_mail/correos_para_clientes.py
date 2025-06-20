@@ -8,6 +8,8 @@ from django.conf import settings
 
 from apps.users.models import User
 
+from project.settings import SERVIDOR
+
 # ENVIO DE MENSAJE DE EMAIL PARA DARLE LA BIENVENIDA A UN CLIENTE
 def send_email_welcome_customer(customer):
     # Envio de correos
@@ -29,7 +31,9 @@ def send_email_welcome_customer(customer):
         ['{}'.format(customer.email)]
     )
     email.attach_alternative(content, 'text/html')
-    email.send()
+
+    if SERVIDOR:
+        email.send()
 
 # NOTIFICAR A TODOS LOS ADMINISTRADORES DE UN NUEVO CLIENTE A LA EMPRESA
 def send_email_new_customer(customer):
@@ -59,4 +63,6 @@ def send_email_new_customer(customer):
         usuarios_email
     )
     email.attach_alternative(content, 'text/html')
-    email.send()
+    
+    if SERVIDOR:
+        email.send()

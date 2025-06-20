@@ -12,6 +12,7 @@ from apps.financings.formato import formatear_numero
 
 # CALCULOS
 from apps.financings.calculos import calculo_mora, calculo_interes
+from scripts.pagos.cuota_pagar import cuota_a_pagar
 
 # LOOGER
 from apps.financings.clases.personality_logs import logger

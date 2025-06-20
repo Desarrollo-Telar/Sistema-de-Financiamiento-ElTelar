@@ -8,7 +8,7 @@ from django.conf import settings
 
 from apps.users.models import User
 
-
+from project.settings import SERVIDOR
 
 
 # ENVIO DE MENSAJE DE EMAIL PARA CODIGO DE VERIFICACION
@@ -32,7 +32,9 @@ def send_email_code_verification(user, code):
         ['{}'.format(user_mail)]
     )
     email.attach_alternative(content, 'text/html')
-    email.send()
+
+    if SERVIDOR:
+        email.send()
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
 def send_email_user_conect_or_disconect(usuario, hora, estado):
@@ -57,5 +59,7 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
         usuarios_email
     )
     email.attach_alternative(content, 'text/html')
-    email.send()
+    
+    if SERVIDOR:
+        email.send()
 

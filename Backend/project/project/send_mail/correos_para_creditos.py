@@ -11,6 +11,8 @@ from apps.users.models import User
 # TIEMPO
 from datetime import datetime,timedelta
 
+from project.settings import SERVIDOR
+
 # MENSAJE DE CREDITO NUEVO
 def send_email_new_credit(models):
     template = get_template('email/new_credit.html')
@@ -31,7 +33,9 @@ def send_email_new_credit(models):
         usuarios_email
     )
     email.attach_alternative(content, 'text/html')
-    email.send()
+
+    if SERVIDOR:
+        email.send()
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
 def send_email_next_update_of_quotas(cuotas):
@@ -61,7 +65,9 @@ def send_email_next_update_of_quotas(cuotas):
         usuarios_email
     )
     email.attach_alternative(content, 'text/html')
-    email.send()
+
+    if SERVIDOR:
+        email.send()
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
 def send_email_update_of_quotas(cuotas):
@@ -90,7 +96,9 @@ def send_email_update_of_quotas(cuotas):
         usuarios_email
     )
     email.attach_alternative(content, 'text/html')
-    email.send()
+
+    if SERVIDOR:
+        email.send()
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
 def send_email_quotas_for_change(cuotas, hoy, hasta):
@@ -118,4 +126,6 @@ def send_email_quotas_for_change(cuotas, hoy, hasta):
         usuarios_email
     )
     email.attach_alternative(content, 'text/html')
-    email.send()
+    
+    if SERVIDOR:
+        email.send()

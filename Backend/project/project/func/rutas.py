@@ -57,10 +57,12 @@ load_commands = [
     
     "python manage.py loaddata apps/customers/fixtures/Departamento.json",
     "python manage.py loaddata apps/customers/fixtures/Municipio.json",
-    "python manage.py loaddata apps/customers/fixtures/Direccion.json",
+    
     
     "python manage.py loaddata apps/customers/fixtures/CondicionMigratoria.json",
     "python manage.py loaddata apps/customers/fixtures/Cliente.json",
+    
+    "python manage.py loaddata apps/customers/fixtures/Direccion.json",
 
     
     

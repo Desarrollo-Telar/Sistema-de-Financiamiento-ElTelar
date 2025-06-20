@@ -8,6 +8,7 @@ from django.conf import settings
 
 from apps.users.models import User
 
+from project.settings import SERVIDOR
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
 def send_email_alert(message, status,models):
@@ -36,7 +37,9 @@ def send_email_alert(message, status,models):
 
     if models.registro_ficticio:
         return
-    email.send()
+    
+    if SERVIDOR:
+        email.send()
 
 
 
@@ -61,4 +64,6 @@ def send_email_recibo(models):
         usuarios_email
     )
     email.attach_alternative(content, 'text/html')
-    email.send()
+    
+    if SERVIDOR:
+        email.send()
