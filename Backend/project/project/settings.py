@@ -136,9 +136,13 @@ import project.database as db
 
 
 
+_database = db.POSTGRES_HEROKU
+
+if not SERVIDOR:
+    _database = db.POSTGRES
 
 
-DATABASES = db.POSTGRES
+DATABASES = _database
 
 
 

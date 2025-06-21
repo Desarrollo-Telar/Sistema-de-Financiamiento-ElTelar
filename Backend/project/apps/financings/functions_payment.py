@@ -14,24 +14,20 @@ def revisar(boleta):
     cambiar_estado = False
 
     print(f'EN FUNCIONES DE PAGO - GENERAR:{pago}')
-            # Comparar montos
-    if pago.monto == boleta.credito or pago.monto == boleta.debito:
+    # Comparar montos
+    monto = boleta.credito + boleta.debito
+
+    if pago.monto == monto:
         print('No hay cambios en monto')
     else:
-        if pago.monto != boleta.credito:
-            pago.monto = boleta.credito
-            cambiar_estado = True
+        pago.monto = monto
+        cambiar_estado = True
 
-        if pago.monto != boleta.debito:
-            pago.monto = boleta.debito
-            cambiar_estado = True
-            
-
-            
-        if pago.fecha_emision.date() != boleta.fecha:
-            cambiar_estado = True
-            pago.fecha_emision = boleta.fecha
-            #pago.save()
+           
+    if pago.fecha_emision.date() != boleta.fecha:
+        cambiar_estado = True
+        pago.fecha_emision = boleta.fecha
+        #pago.save()
 
             
 

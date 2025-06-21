@@ -29,7 +29,14 @@ def sobre_que_es_pago(self):
         if cuota_a_pagar is None:
             cuota_a_pagar = self.get_plan_pagos().objects(credit_id=self.credit.id).order_by('-id').first()
         
-        contexto['tipo'] = 'CREDITO'
+        contexto['credito'] = self.credit
+        contexto['tasa_interes'] = self.credit.tasa_interes
+        contexto['cliente'] = self.credit.customer_id
+
+        contexto['credit'] = self.credit
+        contexto['acreedor'] = None
+        contexto['seguro'] = None
+
         contexto['ultimo_registro_estado_cuenta'] = historial_a
         contexto['ultima_cuota_pagar'] = cuota_a_pagar
         contexto['cuotas'] = cuotas
@@ -44,7 +51,14 @@ def sobre_que_es_pago(self):
         if cuota_a_pagar is None:
             cuota_a_pagar = self.get_plan_pagos().objects.filter(acreedor=self.acreedor.id).order_by('-id').first()
 
-        contexto['tipo'] = 'ACREEDOR'
+        contexto['credito'] = self.acreedor
+        contexto['tasa_interes'] = self.acreedor.tasa
+        contexto['cliente'] = None
+
+        contexto['credit'] = None
+        contexto['acreedor'] = self.acreedor
+        contexto['seguro'] = None
+
         contexto['ultimo_registro_estado_cuenta'] = historial_a
         contexto['ultima_cuota_pagar'] = cuota_a_pagar
         contexto['cuotas'] = cuotas
@@ -60,7 +74,14 @@ def sobre_que_es_pago(self):
         if cuota_a_pagar is None:
             cuota_a_pagar = self.get_plan_pagos().objects.filter(seguro=self.seguro.id).order_by('-id').first()
 
-        contexto['tipo'] = 'SEGURO'
+        contexto['credito'] = self.seguro
+        contexto['tasa_interes'] = self.seguro.tasa
+        contexto['cliente'] = None
+
+        contexto['credit'] = None
+        contexto['acreedor'] = None
+        contexto['seguro'] = self.seguro
+
         contexto['ultimo_registro_estado_cuenta'] = historial_a
         contexto['ultima_cuota_pagar'] = cuota_a_pagar
         contexto['cuotas'] = cuotas
