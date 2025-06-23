@@ -18,9 +18,7 @@ from django.contrib import messages
 
 from datetime import datetime,timedelta
 
-# CLASES
-from apps.financings.clases.paymentplan import PaymentPlan as PlanPagoos
-from apps.financings.clases.credit import Credit as Credito
+
 
 # TAREA ASINCRONICO
 from apps.financings.task import cambiar_plan, comparacion_para_boletas_divididas
@@ -34,62 +32,12 @@ from django.views.generic import DeleteView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
 
-def formatear_numero(numero):
-    # Convertir el número a un formato con coma para miles y punto para decimales
-    return f"{numero:,.2f}".replace(".", "X").replace(".", ",").replace("X", ".")
+# SCRIPTS 
+from scripts.generadores.formato_numero import formatear_numero
+from scripts.generadores.plan import planPagosCredito
+from scripts.generadores.actualizaciones_por_credito import total_garantia, total_desembolso, actualizacion, total_desembolsos, total_mora_pagada, total_interes_pagada, total_capital_pagada
 
-def planPagosCredito(credito):
-    formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
-    credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1,None,credito.fecha_vencimiento)
-    plan_pago = PlanPagoos(credit)
-    return plan_pago
 
-def total_garantia(list_guarantee):
-    total_garantia = 0
-    for garantia in list_guarantee:
-        total_garantia += garantia.suma_total
-    
-    return formatear_numero(total_garantia)
-
-def total_desembolso(list_disbursement):
-    total_desembolso = 0
-    for desembolso in list_disbursement:
-        total_desembolso +=desembolso.total_gastos
-    
-    return formatear_numero(total_desembolso)
-
-def actualizacion(credito):
-    pagos = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
-    
-    # ACTUALIZAR EL SALDO ACTUAL
-    if pagos:
-        credito.saldo_pendiente = pagos.saldo_pendiente
-        credito.saldo_actual = pagos.saldo_pendiente + pagos.mora + pagos.interest
-        credito.save()
-
-def total_desembolsos(estado_cuenta):
-    contador = 0
-    for estado in estado_cuenta:
-        contador+=estado.disbursement_paid
-    return formatear_numero(contador)
-
-def total_mora_pagada(estado_cuenta):
-    contador = 0
-    for estado in estado_cuenta:
-        contador+=estado.late_fee_paid
-    return formatear_numero(contador)
-
-def total_interes_pagada(estado_cuenta):
-    contador = 0
-    for estado in estado_cuenta:
-        contador+=estado.interest_paid
-    return formatear_numero(contador)
-
-def total_capital_pagada(estado_cuenta):
-    contador = 0
-    for estado in estado_cuenta:
-        contador+=estado.capital_paid
-    return formatear_numero(contador)
 
 ### ------------ DETALLE -------------- ###
 from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito

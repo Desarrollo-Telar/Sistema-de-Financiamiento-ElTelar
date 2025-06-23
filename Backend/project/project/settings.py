@@ -14,11 +14,12 @@ SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SERVIDOR = True
+SERVIDOR = False
 ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+from .apps_instaladas import INSTALLED_APPS_MODELS, INSTALLED_APPS_REST
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -28,34 +29,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
-    #'anymail',
-    'apps.users',
-    'apps.actividades',
-    'apps.customers',
-    'apps.roles',
     'crispy_forms',
-    'apps.codes',
-    'apps.pictures',
-    'apps.addresses',
-    'apps.FinancialInformation',
-    'apps.InvestmentPlan',
-    'rest_framework',
     'coreapi', 
-    'apps.documents',
-    'apps.financings',
     'django_celery_beat',
     'django.contrib.sites',
-    'apps.accountings',
     'django_redis',
     'storages',
-    'modelos',
-    'apps.subsidiaries',
-    'apps.ratings'
-    #'bootstrap5',
-    #'django_inlinecss',
-    #'otp',
+    'modelos',  
 ]
-
+INSTALLED_APPS += INSTALLED_APPS_MODELS + INSTALLED_APPS_REST
 SITE_ID = 1
 
 MIDDLEWARE = [
@@ -104,6 +86,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
 }
 ROOT_URLCONF = 'project.urls'
 

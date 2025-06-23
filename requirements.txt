@@ -45,6 +45,7 @@ django-storages==1.14.2
 django-timezone-field==7.0
 django-tinymce==4.0.0
 djangorestframework==3.15.1
+djangorestframework_simplejwt==5.5.0
 docopt==0.6.2
 easy-thumbnails==2.8.5
 et_xmlfile==2.0.0

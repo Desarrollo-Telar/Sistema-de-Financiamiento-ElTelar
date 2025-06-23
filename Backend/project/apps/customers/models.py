@@ -21,7 +21,7 @@ from project.send_mail import send_email_welcome_customer, send_email_new_custom
 from .task import nuevo_cliente
 
 # QR
-from scripts.generate_qr import generate_qr
+from scripts.generadores.generate_qr import generate_qr
 from datetime import timedelta
 from project.database_store import minio_client
 # OS

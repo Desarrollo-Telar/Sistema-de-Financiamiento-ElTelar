@@ -12,13 +12,16 @@ from datetime import datetime, time
 from django.utils.timezone import now
 
 
-
-
+# SETTINGS
+from project.settings import SERVIDOR
 
 @shared_task(name="apps.financings.task.cambiar_plan")
 def cambiar_plan():
     validacion = ejecutar_max_1_veces_al_dia()
     dia = datetime.now().date()
+    
+    if not SERVIDOR:
+        return
     
     if not validacion:
         return
