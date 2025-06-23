@@ -1,6 +1,8 @@
 # SERIALIZADOR
 from rest_framework import serializers
 
+
+
 # MODELS
 from apps.users.models import User
 
@@ -20,6 +22,9 @@ class UserSerializer(serializers.ModelSerializer):
             'nationality',
             'profile_pic',
             'status',
-            'rol'
+            'rol',
+            'nit',
+            'sucursal'
 
         ]
+

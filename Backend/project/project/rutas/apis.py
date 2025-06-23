@@ -17,12 +17,18 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+# vistas
+from project.view_api import view as v
+
 urlpatterns_api = [
     # ------------- API ---------------------------
-    path('api/login/',view.CustomAuthToken.as_view(), name='login_api'),
+    path('api/token/login/',view.CustomAuthToken.as_view(), name='login_api'), # TOKEN
 
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Login
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Login JWT
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Refresh token
+
+    path('api/login/', v.CustomTokenObtainPairView.as_view(), name='login_api'), # Login JWT
+    path('api/logout/', v.LogoutView.as_view(), name='logout_api'), # LOGOUT JWT
 
     path('api/',list_api,name='list_api'),
     path('api/patch/',actualizacion_test_api,name='actualizacion_test_api'),

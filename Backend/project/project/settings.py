@@ -81,6 +81,13 @@ EXEMPT_PATHS = [
    
 ]
 
+# ------------------------------------------------------------------------ #
+SIMPLE_JWT = {
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ROTATE_REFRESH_TOKENS': True,
+}
+
+
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_PERMISSION_CLASSES': [
@@ -94,6 +101,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
 }
+
+# ------------------------------------------------------------------------ #
+
 ROOT_URLCONF = 'project.urls'
 
 # Configuración de autenticación
