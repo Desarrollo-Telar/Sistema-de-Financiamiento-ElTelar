@@ -1,0 +1,54 @@
+# SIGNALS
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
+
+# TIEMPO
+from datetime import datetime
+from django.utils import timezone
+
+# MODELO
+from .models import User
+from rest_framework.authtoken.models import Token
+
+import random
+
+
+@receiver(post_save, sender=User)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
+
+# Funcion clave para la generacion de codigos de usuario, luego de haberse creado
+@receiver(pre_save, sender=User)
+def set_user_code(sender, instance, *args, **kwargs):
+    if instance.user_code == '':
+        # Obtiene la fecha y hora actual
+        current_date = datetime.now()
+
+        # Extrae el año de la fecha actual
+        current_year = current_date.year  
+
+        # Formato al codigo de usuario
+        user_code_base = f'{current_year}-'
+
+        # Contador
+        counter = 1
+
+        # Base final del codigo
+        # Ejemplo: 2024-1
+        user_code = f'{user_code_base}{counter}'
+
+        # Verificar si no existe un codigo igual, si no generar uno nuevo
+        while User.objects.filter(user_code=user_code).exists():
+            counter += 1
+            user_code = f'{user_code_base}{counter}'
+            print(instance.user_code)
+
+        # Guardar informacion
+        instance.user_code = user_code
+
+#Funcion clave para guardar el nombre de usuario utilizando el email registrado
+@receiver(pre_save, sender=User)
+def set_username(sender, instance, *args, **kwargs):
+    if not instance.username: # Verifica si el username está vacío
+        instance.username = instance.email # Usa el email como username si está vacío

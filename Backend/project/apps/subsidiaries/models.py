@@ -20,6 +20,7 @@ class Subsidiary(models.Model):
     otro_numero_telefono = models.CharField("Otro Numero de Telfono de la Sucursal", max_length=100, blank=True, null=True) 
     activa = models.BooleanField("Status de la Actividad de la Sucursal", default=True)
     codigo_postal = models.CharField("Codigo Postal", blank=True, null=True, max_length=100)
+    descripcion = models.TextField("Descripcion", blank=True, null=True)
 
     @property
     def esta_abierta_ahora(self):

@@ -4,6 +4,7 @@ from rest_framework.authtoken import views as v_iews
 from project.views import actualizacion_test_api, list_api
 from rest_framework.documentation import include_docs_urls
 from django.contrib.auth import views as auth_views
+from project.view_api import view
 
 # DECORADOR
 from django.contrib.auth.decorators import login_required
@@ -11,8 +12,18 @@ from django.contrib.auth.decorators import login_required
 # URLS
 from django.urls import path, include
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 urlpatterns_api = [
     # ------------- API ---------------------------
+    path('api/login/',view.CustomAuthToken.as_view(), name='login_api'),
+
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Login
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Refresh token
+
     path('api/',list_api,name='list_api'),
     path('api/patch/',actualizacion_test_api,name='actualizacion_test_api'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),

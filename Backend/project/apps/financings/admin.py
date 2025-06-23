@@ -3,6 +3,7 @@ from django.contrib import admin
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Banco, Payment, AccountStatement, PaymentPlan, Recibo
 # Register your models here.
 from apps.financings.models import Invoice, Cuota
+
 @admin.register(Credit)
 class CreditAdmin(admin.ModelAdmin):
     fields = (

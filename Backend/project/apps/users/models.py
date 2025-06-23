@@ -1,23 +1,20 @@
 # Archivo models de modulo
 
 # Librerias de DJANGO
-from datetime import datetime
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+# RELACION DE TABLAS
+from apps.roles.models import Role, Permiso
+from apps.subsidiaries.models import Subsidiary
 
-
-
-import random
+# TIEMPO
+from datetime import datetime
 
 # Creacion de todas las tablas para este modulo
 
+
 # Creacion de tabla de usuario
-
-
 class User(AbstractUser):
     tipo_identificacion = [
         ('DPI', 'DPI'),
@@ -29,6 +26,7 @@ class User(AbstractUser):
         ('MASCULINO', 'MASCULINO'),
         ('FEMENINO', 'FEMENINO')
     ]
+
     roles = [
         ('Administrador','Administrador'),
         ('Administradora','Administradora'),
@@ -39,6 +37,7 @@ class User(AbstractUser):
         ('Contador','Contador'),
         ('Contadora','Contadora'),
     ]
+    
     type_identification = models.CharField("Tipo de Identificación", choices=tipo_identificacion, default='DPI', max_length=50)
     identification_number = models.CharField("Número de Identificación", max_length=15, blank=False, null=False, unique=True)
     telephone = models.CharField("Teléfono", max_length=20, blank=True, null=True)
@@ -48,8 +47,11 @@ class User(AbstractUser):
     user_code = models.CharField("Código de Usuario", max_length=25, blank=False, null=False, unique=True)
     nationality = models.CharField("Nacionalidad", max_length=75, blank=False, null=False, default='Guatemala')
     profile_pic = models.ImageField("Foto de Perfil", blank=True, null=True, upload_to='users/profile_pics/')
-    rol = models.CharField("Rol de Usuario", choices=roles, max_length=50, default='Administrador')
+    rol = models.ForeignKey(Role, on_delete=models.CASCADE, blank=True, null=True)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+    fecha_actualizacion = models.DateField("Fecha en que se actualizo el usuario", default=datetime.now, null=True, blank=True)
+    nit = models.CharField(verbose_name="Numero de NIT", max_length=75, blank=True, null=True)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}' if self.first_name else self.username
@@ -67,55 +69,16 @@ class User(AbstractUser):
         verbose_name = "Usuario"
         verbose_name_plural = "Usuarios"
 
+class PermisoUsuario(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usuario")
+    permiso = models.ForeignKey(Permiso, on_delete=models.CASCADE, verbose_name="Permiso de Usuario")
+
+    class Meta:
+        verbose_name = "Permiso de Usuario"
+        verbose_name_plural = "Permisos de Usuarios"
 
 
-#Funcion clave para la generacion de codigos de usuario, luego de haberse creado
-@receiver(pre_save, sender=User)
-def set_user_code(sender, instance, *args, **kwargs):
-    if instance.user_code == '':
-        # Obtiene la fecha y hora actual
-        current_date = datetime.now()
 
-        # Extrae el año de la fecha actual
-        current_year = current_date.year  
-
-        # Formato al codigo de usuario
-        user_code_base = f'{current_year}-'
-
-        # Contador
-        counter = 1
-
-        # Base final del codigo
-        # Ejemplo: 2024-1
-        user_code = f'{user_code_base}{counter}'
-
-        # Verificar si no existe un codigo igual, si no generar uno nuevo
-        while User.objects.filter(user_code=user_code).exists():
-            counter += 1
-            user_code = f'{user_code_base}{counter}'
-            print(instance.user_code)
-
-        # Guardar informacion
-        instance.user_code = user_code
-
-#Funcion clave para guardar el nombre de usuario utilizando el email registrado
-@receiver(pre_save, sender=User)
-def set_username(sender, instance, *args, **kwargs):
-    if not instance.username: # Verifica si el username está vacío
-        instance.username = instance.email # Usa el email como username si está vacío
-
-# Funcion para permisos de administrador
-@receiver(pre_save, sender=User)
-def set_rol(sender, instance, *args, **kwargs):
-    roles_superuser = ['Administrador', 'Administradora', 'Programador', 'Programadora']
-    
-    # Si el rol del usuario está en la lista de roles de superusuario, establecer is_superuser a True
-    if instance.rol in roles_superuser:
-        instance.is_superuser = True
-        instance.is_staff = True
-    else:
-        instance.is_superuser = False
-        instance.is_staff = False
 
     
 

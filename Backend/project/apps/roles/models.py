@@ -1,12 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import Permission
-from apps.users.models import User
 
 
 # Create your models here.
 class Role(models.Model):
     role_name = models.CharField("Nombre del Rol", max_length=100, unique=True)
-    permissions = models.ManyToManyField(Permission, blank=True, verbose_name="Permisos")
     description = models.TextField("Descripción", blank=True, null=True)
 
     def __str__(self):
@@ -16,23 +14,17 @@ class Role(models.Model):
         verbose_name = "Rol"
         verbose_name_plural = "Roles"
 
-# Creacion de la tabla Usuario Rol
-class UserRole(models.Model):
-    idUser = models.ForeignKey(User, blank=False, null=False,on_delete=models.CASCADE, verbose_name='Usuario', related_name='rol_usuario')
-    idRole = models.ForeignKey(Role, blank=False, null=False, on_delete=models.CASCADE, verbose_name='Rol', related_name='rol_usuario')
-    
-    def __str__(self):
-        return f'Rol de {self.idRole} para {self.idUser}'
+
+
+
+# Creacion de Tabla Permisos
+class Permiso(models.Model):
+    nombre = models.CharField(verbose_name="Nombre del Permiso", max_length=100, blank=False, null=False)
+    descripcion = models.TextField(verbose_name="Descripcion acerca del permiso", blank=True, null=True)
+    codigo_permiso = models.CharField(verbose_name="Codigo del Permiso", max_length=75, unique=True)
+    estado = models.BooleanField(verbose_name="Estado del Permiso")
+    fecha_registro = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
     class Meta:
-        verbose_name = "Rol de Usuario"
-        verbose_name_plural = "Roles de Usuarios"
-
-
-class Meta:
-
-    permissions = [
-        ("agregar_usuario", "Tiene permiso de poder agregar un usuario al sistema"),
-        ("editar_usuario", "Tiene permiso para editar un usuario del sistema"),
-        ("eliminar_usuario","Tiene permiso puede eliminar un usuario del sistema")
-    ]
+        verbose_name = 'Permiso'
+        verbose_name_plural = 'Permisos'
