@@ -43,10 +43,20 @@ commands = [
     "python manage.py dumpdata pictures.ImagenGuarantee --format=json --indent=4 > apps/customers/fixtures/ImagenGarantia.json",
     "python manage.py dumpdata pictures.ImagenOther --format=json --indent=4 > apps/customers/fixtures/OtraImagen.json",
     
-    "python manage.py dumpdata users.User --format=json --indent=4 > apps/customers/fixtures/User.json"
+    "python manage.py dumpdata users.User --format=json --indent=4 > apps/customers/fixtures/User.json",
+
+    "python manage.py dumpdata roles.role --format=json --indent=4 > modelos/fixtures/Roles.json",
+    "python manage.py dumpdata roles.CategoriaPermiso --format=json --indent=4 > modelos/fixtures/CategoriasPermisos.json",
+    "python manage.py dumpdata roles.Permiso --format=json --indent=4 > modelos/fixtures/Permisos.json",
+    "python manage.py dumpdata users.PermisoUsuario --format=json --indent=4 > modelos/fixtures/PermisosUsuarios.json",
 ]
 
 load_commands = [
+    "python manage.py loaddata modelos/fixtures/Roles.json",
+    "python manage.py loaddata modelos/fixtures/CategoriasPermisos.json",
+    "python manage.py loaddata modelos/fixtures/Permisos.json",
+    "python manage.py loaddata modelos/fixtures/PermisosUsuarios.json",
+
     "python manage.py loaddata apps/customers/fixtures/User.json",
 
     "python manage.py loaddata apps/customers/fixtures/Acreedor.json",

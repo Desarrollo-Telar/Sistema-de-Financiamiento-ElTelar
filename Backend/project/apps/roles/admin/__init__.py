@@ -2,4 +2,4 @@
 from .rol import RoleAdministrador
 
 # ADMINISTRADOR DE PERMISOS
-from .permiso import PermisoAdministrador
+from .permiso import PermisoAdministrador, CategoriaPermisoAdmin

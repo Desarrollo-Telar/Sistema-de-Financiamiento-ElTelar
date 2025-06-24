@@ -21,7 +21,7 @@ class WorkingInformationAdmin(admin.ModelAdmin):
 
     list_display = ('__str__', 'customer_id','phone_number','salary')
     list_filter = ('customer_id',)
-
+    autocomplete_fields = ('customer_id',)
     search_fields = ('salary','customer_id')
     
 @admin.register(OtherSourcesOfIncome)
@@ -37,6 +37,7 @@ class OtherSourcesOfIncomeAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'source_of_income','customer_id','phone_number','salary')
     search_fields = ('source_of_income', 'customer_id')
     list_filter = ('customer_id',)
+    autocomplete_fields = ('customer_id',)
 
 @admin.register(Reference)
 class ReferenceAdmin(admin.ModelAdmin):
@@ -49,3 +50,4 @@ class ReferenceAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'full_name','customer_id','reference_type','phone_number')
     search_fields = ('full_name','reference_type','phone_number' ,'customer_id')
     list_filter = ('customer_id',)
+    autocomplete_fields = ('customer_id',)
