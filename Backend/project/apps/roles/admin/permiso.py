@@ -10,11 +10,12 @@ class PermisoAdministrador(admin.ModelAdmin):
         'nombre',
         'categoria_permiso',
         'descripcion',        
-        'codigo_permiso'
+        'codigo_permiso',
+        'estado'
         )
     search_fields = ('nombre', 'codigo_permiso','categoria_permiso')
     autocomplete_fields = ('categoria_permiso', )
-    list_display = ('categoria_permiso', 'nombre','codigo_permiso','fecha_registro')
+    list_display = ('categoria_permiso', 'nombre','codigo_permiso','fecha_registro', 'estado')
     list_filter = ('categoria_permiso',)
     ordering = ['categoria_permiso']
     list_per_page = 25
@@ -23,7 +24,8 @@ class PermisoAdministrador(admin.ModelAdmin):
 class CategoriaPermisoAdmin(admin.ModelAdmin):
     fields = (
         'nombre',
-        'descripcion'
+        'descripcion',
+        'estado'
     )
     list_display = ('nombre', 'estado', 'descripcion')
     list_filter = ('nombre',)

@@ -74,8 +74,10 @@ def actualizar_info_direcciones(sender, instance, created, **kwargs):
     if created: 
         departamento = instance.city 
         municipio = instance.state 
+
         filtrar_d = Q(nombre__icontains=departamento) | Q(id=departamento) 
         departamento_f = Departamento.objects.filter(filtrar_d).first() 
+        
         filtrar_m = Q(nombre__icontains=municipio) | Q(id=municipio) 
         municipio_f = Municiopio.objects.filter(filtrar_m).first() 
         

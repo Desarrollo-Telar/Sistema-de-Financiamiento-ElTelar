@@ -21,7 +21,7 @@
         "user_code": "2024-1",
         "nationality": "Guatemala",
         "profile_pic": "",
-        "rol": "Administrador",
+        "rol": null,
         "creation_date": "2024-10-28T23:41:45.515Z",
         "groups": [],
         "user_permissions": []
@@ -49,7 +49,7 @@
         "user_code": "2024-2",
         "nationality": "Guatemala",
         "profile_pic": "",
-        "rol": "Administrador",
+        "rol": null,
         "creation_date": "2024-10-28T23:41:45.515Z",
         "groups": [],
         "user_permissions": []
@@ -77,7 +77,7 @@
         "user_code": "2024-3",
         "nationality": "Guatemala",
         "profile_pic": "",
-        "rol": "Administrador",
+        "rol": null,
         "creation_date": "2024-10-28T23:41:45.515Z",
         "groups": [],
         "user_permissions": []
@@ -105,7 +105,7 @@
         "user_code": "2024-4",
         "nationality": "Guatemala",
         "profile_pic": "",
-        "rol": "Secretaria",
+        "rol": null,
         "creation_date": "2024-12-23T22:39:11.788Z",
         "groups": [],
         "user_permissions": []
@@ -133,7 +133,7 @@
         "user_code": "2025-1",
         "nationality": "Guatemala",
         "profile_pic": "users/profile_pics/Imagen_de_WhatsApp_2025-04-23_a_las_15.27.15_13d2601e.jpg",
-        "rol": "Secretario",
+        "rol": null,
         "creation_date": "2025-04-23T21:28:01.143Z",
         "groups": [],
         "user_permissions": []

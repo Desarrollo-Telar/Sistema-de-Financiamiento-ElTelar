@@ -55,45 +55,42 @@ load_commands = [
     "python manage.py loaddata modelos/fixtures/Roles.json",
     "python manage.py loaddata modelos/fixtures/CategoriasPermisos.json",
     "python manage.py loaddata modelos/fixtures/Permisos.json",
-    "python manage.py loaddata modelos/fixtures/PermisosUsuarios.json",
+    "python manage.py loaddata apps/customers/fixtures/CondicionMigratoria.json",
+    "python manage.py loaddata apps/customers/fixtures/Departamento.json",
+    "python manage.py loaddata apps/customers/fixtures/Municipio.json",
 
     "python manage.py loaddata apps/customers/fixtures/User.json",
+    "python manage.py loaddata apps/customers/fixtures/Cliente.json",
+    "python manage.py loaddata modelos/fixtures/PermisosUsuarios.json",
+    "python manage.py loaddata apps/customers/fixtures/Direccion.json",
 
     "python manage.py loaddata apps/customers/fixtures/Acreedor.json",
     "python manage.py loaddata apps/customers/fixtures/Seguro.json",
     "python manage.py loaddata apps/customers/fixtures/Ingreso.json",
     "python manage.py loaddata apps/customers/fixtures/Gastos.json",
     
-    
-    "python manage.py loaddata apps/customers/fixtures/Departamento.json",
-    "python manage.py loaddata apps/customers/fixtures/Municipio.json",
-    
-    
-    "python manage.py loaddata apps/customers/fixtures/CondicionMigratoria.json",
-    "python manage.py loaddata apps/customers/fixtures/Cliente.json",
-    
-    "python manage.py loaddata apps/customers/fixtures/Direccion.json",
-
-    
-    
     "python manage.py loaddata apps/customers/fixtures/InformacionLaboral.json",
     "python manage.py loaddata apps/customers/fixtures/OtraInformacionDeIngreso.json",
     "python manage.py loaddata apps/customers/fixtures/Referencia.json",
+    "python manage.py loaddata apps/customers/fixtures/Destino.json",
     
-    
-
-    "python manage.py loaddata apps/customers/fixtures/Banco.json",
-    "python manage.py loaddata apps/customers/fixtures/Boleta.json",
     "python manage.py loaddata apps/customers/fixtures/Credito.json",
     "python manage.py loaddata apps/customers/fixtures/Cuota.json",
     "python manage.py loaddata apps/customers/fixtures/Desembolso.json",
-    "python manage.py loaddata apps/customers/fixtures/Garantia.json",
-    "python manage.py loaddata apps/customers/fixtures/DetalleGarantia.json",
-    "python manage.py loaddata apps/customers/fixtures/EstadoCuenta.json",
+
+    "python manage.py loaddata apps/customers/fixtures/Banco.json",
+    "python manage.py loaddata apps/customers/fixtures/Boleta.json",
     "python manage.py loaddata apps/customers/fixtures/Recibo.json",
     "python manage.py loaddata apps/customers/fixtures/Factura.json",
     
-    "python manage.py loaddata apps/customers/fixtures/Destino.json",
+    
+    
+    "python manage.py loaddata apps/customers/fixtures/Garantia.json",
+    "python manage.py loaddata apps/customers/fixtures/DetalleGarantia.json",
+    "python manage.py loaddata apps/customers/fixtures/EstadoCuenta.json",
+    
+    
+    
     
     "python manage.py loaddata apps/customers/fixtures/Imagen.json",
     "python manage.py loaddata apps/customers/fixtures/ImagenCliente.json",
