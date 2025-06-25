@@ -1,40 +1,27 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render
 
 # Models
-from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
-
-# Manejo de mensajes
-from django.contrib import messages
-
-# LIBRERIAS PARA CRUD
-from django.views.generic.list import ListView
-from django.db.models import Q
+from apps.financings.models import Credit, Banco, Payment
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo, usuario_administrador, usuario_contabilidad, usuario_secretaria
+from project.decorador import usuario_activo, permiso_requerido
 from django.utils.decorators import method_decorator
 
 # Paginacion
 from project.pagination import paginacion
 
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+
 # LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
-from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
 from django.db.models import Q
 
-### ----------------- LISTAR ------------------------ ###    
-from apps.financings.functions import realizar_pago
-from apps.financings.functions_payment import generar
-from apps.financings.task import comparacion_para_boletas_divididas
-
+# Tiempo
 from datetime import datetime, timedelta
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_registros_credito')
 def filter_credito_reciente(request):
     template_name = 'financings/credit/list.html'
     hoy = datetime.now()
@@ -42,76 +29,81 @@ def filter_credito_reciente(request):
     page_obj = paginacion(request, Credit.objects.filter(Q(creation_date__range=[inicio,hoy])).order_by('-id'))
     
     context = {
-        'title':'ELTELAR - CREDITOS',
+        'title':'Registro de Creditos Agregados Recientemente.',
         'page_obj':page_obj,
         'credit_list':page_obj,
         'count': Credit.objects.filter(Q(creation_date__range=[inicio,hoy])).count(),
-        'filtro_seleccionado':'Recientes'
+        'filtro_seleccionado':'Recientes',
+        'permisos':recorrer_los_permisos_usuario,
     }
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_registros_credito')
 def filter_credito_cancelado(request):
     template_name = 'financings/credit/list.html'
     page_obj = paginacion(request, Credit.objects.filter(is_paid_off=True).order_by('-id'))
     
     context = {
-        'title':'ELTELAR - CREDITOS',
+        'title':'Registro de Creditos que ya estan Cancelados.',
         'page_obj':page_obj,
         'credit_list':page_obj,
         'count': Credit.objects.filter(is_paid_off=True).count(),
-        'filtro_seleccionado':'Creditos Cancelados'
+        'filtro_seleccionado':'Creditos Cancelados',
+        'permisos':recorrer_los_permisos_usuario,
     }
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_registros_credito')
 def filter_credito_en_atraso(request):
     template_name = 'financings/credit/list.html'
     page_obj = paginacion(request, Credit.objects.filter(estados_fechas=False).order_by('-fecha_actualizacion'))
     
     context = {
-        'title':'ELTELAR - CREDITOS',
+        'title':'Registro de Creditos que estan en Atraso por Fechas.',
         'page_obj':page_obj,
         'credit_list':page_obj,
         'count': Credit.objects.filter(estados_fechas=False).count(),
-        'filtro_seleccionado':'Creditos en Atraso'
+        'filtro_seleccionado':'Creditos en Atraso',
+        'permisos':recorrer_los_permisos_usuario,
     }
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_registros_credito')
 def filter_credito_con_aportaciones(request):
     template_name = 'financings/credit/list.html'
     page_obj = paginacion(request, Credit.objects.filter(estado_aportacion__isnull=False, is_paid_off=False).order_by('-fecha_actualizacion'))
     
     context = {
-        'title':'ELTELAR - CREDITOS',
+        'title':'Registro de Creditos que estan en Atrado por Aportacion.',
         'page_obj':page_obj,
         'credit_list':page_obj,
         'count': Credit.objects.filter(estado_aportacion__isnull=False, is_paid_off=False).count(),
-        'filtro_seleccionado':'Creditos en Atraso'
+        'filtro_seleccionado':'Creditos en Atraso',
+        'permisos':recorrer_los_permisos_usuario,
     }
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_registros_credito')
 def filter_credito_en_falta_aportacion(request):
     template_name = 'financings/credit/list.html'
     page_obj = paginacion(request, Credit.objects.filter(estado_aportacion=False).order_by('-id'))
     
     context = {
-        'title':'ELTELAR - CREDITOS',
+        'title':'Registro de Creditos que estan en Atrado por Aportacion.',
         'page_obj':page_obj,
         'credit_list':page_obj,
         'count': Credit.objects.filter(estado_aportacion=False).count(),
-        'filtro_seleccionado':'Creditos con falta de Aportacion'
+        'filtro_seleccionado':'Creditos con falta de Aportacion',
+        'permisos':recorrer_los_permisos_usuario,
     }
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_registros_credito')
 def filter_credito_con_excedente(request):
     template_name = 'financings/credit/list.html'
     page_obj = paginacion(request, Credit.objects.filter(saldo_actual__lt=0).order_by('-id'))
@@ -119,17 +111,18 @@ def filter_credito_con_excedente(request):
     
 
     context = {
-        'title':'ELTELAR - CREDITOS',
+        'title':'Registro de Creditos que estan con excedente.',
         'page_obj':page_obj,
         'credit_list':page_obj,
         'count': Credit.objects.filter(saldo_actual__lt=0).count(),
         'filtro_seleccionado': 'Creditos con excedente',
+        'permisos':recorrer_los_permisos_usuario,
         
     }
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_registros_credito')
 def filter_credito_por_mes_anio(request):
     template_name = 'financings/credit/list.html'
     
@@ -162,7 +155,7 @@ def filter_credito_por_mes_anio(request):
     
 
     context = {
-        'title':'ELTELAR - CREDITOS',
+        'title':f'Registro de Creditos Creatos en el mes de. {mes} {anio}',
         #'page_obj':page_obj,
         'credit_list':page_obj,
         'reporte':True,
@@ -171,13 +164,14 @@ def filter_credito_por_mes_anio(request):
         'count': object_list.count(),
         'mes': mes,
         'anio': anio,
-        'filtro_seleccionado':'Creditos con falta de Aportacion'
+        'filtro_seleccionado':'Creditos con falta de Aportacion',
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_registros_boletas_pagos')
 def filter_list_payment_pendiente(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='PENDIENTE', registro_ficticio=False).order_by('-id'))
@@ -185,17 +179,18 @@ def filter_list_payment_pendiente(request):
 
 
     context = {
-        'title':'EL TELAR - PAGOS',
+        'title':'Registro de Boletas que se encuentran en Pendientes de Vincular.',
         'page_obj':page_obj,
         'payment_list':page_obj,
-        'count':Payment.objects.filter(estado_transaccion='PENDIENTE', registro_ficticio=False).count()
+        'count':Payment.objects.filter(estado_transaccion='PENDIENTE', registro_ficticio=False).count(),
+        'permisos':recorrer_los_permisos_usuario(request),
 
         
     }
     return render(request,template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_registros_boletas_pagos')
 def filter_list_payment_completados(request):
     template_name = 'financings/payment/list.html'
     page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='COMPLETADO', registro_ficticio=False).order_by('-id'))
@@ -203,41 +198,44 @@ def filter_list_payment_completados(request):
 
 
     context = {
-        'title':'EL TELAR - PAGOS',
+        'title':'Registro de Boletas que estan Completamente Vinculados.',
         'page_obj':page_obj,
         'payment_list':page_obj,
-        'count':Payment.objects.filter(estado_transaccion='COMPLETADO', registro_ficticio=False).count()
+        'count':Payment.objects.filter(estado_transaccion='COMPLETADO', registro_ficticio=False).count(),
+        'permisos':recorrer_los_permisos_usuario(request),
 
         
     }
     return render(request,template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_listado_registro_bancos')
 def filter_list_bank_vinculado(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.filter(status=True, registro_ficticio=False).order_by('-fecha'))
     
 
     context = {
-        'title':'EL TELAR - BANCOS',
+        'title':'Registro de Bancos que no han sido vinculados.',
         'page_obj':page_obj,
         'banco_list':page_obj,
-        'count':Banco.objects.filter(status=True, registro_ficticio=False).count()
+        'count':Banco.objects.filter(status=True, registro_ficticio=False).count(),
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request,template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_listado_registro_bancos')
 def filter_list_bank_no_vinculado(request):
     template_name = 'financings/bank/list.html'
     page_obj = paginacion(request, Banco.objects.filter(status=False, registro_ficticio=False).order_by('-fecha'))
     
 
     context = {
-        'title':'EL TELAR - BANCOS',
+        'title':'Registro de Bancos que ya han sido vinculados.',
         'page_obj':page_obj,
         'banco_list':page_obj,
-        'count':Banco.objects.filter(status=False, registro_ficticio=False).count()
+        'count':Banco.objects.filter(status=False, registro_ficticio=False).count(),
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request,template_name, context)

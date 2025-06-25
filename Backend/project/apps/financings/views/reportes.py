@@ -1,9 +1,6 @@
 
 # ...abs
-from django.shortcuts import render, get_object_or_404, redirect
-
-# Paginacion
-from project.pagination import paginacion
+from django.shortcuts import render, redirect
 
 # Tiempo
 from datetime import datetime
@@ -11,22 +8,17 @@ from datetime import datetime
 # Modelos
 from apps.financings.models import Recibo
 
-# Manejo de mensajes
-from django.contrib import messages
+
 
 # Manejador de filtros
-from django.db.models import Q
 from django.db.models import Q, Sum
 
 # REPORTE EXCEL
 from project.reports_excel import report_pagos
-from apps.financings.models import Banco, Payment
-from openpyxl import Workbook
-from django.http import HttpResponse
-
 from apps.financings.formato import formatear_numero
 
-from project.reports_excel import report_pagos
+# SCRIPT
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 def reportes_generales(request):
     template_name = 'reports/base.html'
@@ -93,7 +85,7 @@ def reportes_generales(request):
     to = formatear_numero(total_seleccionado)
 
     context = {
-        'title': 'EL TELAR - REPORTES SOBRE PAGOS DE CREDITOS',
+        'title': f'Reporte de los pagos a los creditos. {filtro_seleccionado}',
         'posicion': f'CREDITOS / {filtro_seleccionado}',
         'reportes': reportes,
         'filters':filters,
@@ -103,6 +95,7 @@ def reportes_generales(request):
         'total_seleccionado': to,
         'total':formatear_numero(total),
         'descarga_credito':True,
+        'permisos':recorrer_los_permisos_usuario(request)
     }
     return render(request, template_name, context)
 

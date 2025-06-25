@@ -44,7 +44,7 @@
 
     </div>
     <div class="row" style="margin-top: 2rem;">
-        {% if pago.estado_transaccion != 'COMPLETADO' and request.user.is_superuser %}
+        {% if pago.estado_transaccion != 'COMPLETADO' and permisos.puede_editar_boleta_pago %}
         <div class="col">
             <a href="{% url 'financings:actualizar_boleta' pago.id%}" class="btn_guardar">Editar Boleta</a>
 

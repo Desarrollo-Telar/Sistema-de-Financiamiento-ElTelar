@@ -9,6 +9,7 @@ from django.utils import timezone
 # MODELO
 from .models import User, PermisoUsuario
 from apps.roles.models import Role, Permiso
+from apps.customers.models import CreditCounselor
 from rest_framework.authtoken.models import Token
 
 import random
@@ -51,12 +52,30 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 
     elif instance.rol == ASESORCREDITO:
-        pass
+        # CREACION DE REGISTRO DE ASESOR DE CREDITO
+        verificar_asesor = CreditCounselor.objects.filter(usuario=instance).first()
+
+        if verificar_asesor is not None:
+            return f'Este usuario ya esta registrado como asesor'
+        
+        # CREACION DE REGISTRO DE ASESOR DE CREDITO        
+        CreditCounselor.objects.create(
+            usuario=instance,
+            nombre=instance.first_name,
+            apellido=instance.last_name,
+            type_identification = instance.type_identification,
+            identification_number = instance.identification_number,
+            telephone = instance.telephone,
+            email = instance.email,
+            gender = instance.gender,
+            nit = instance.nit
+        )
 
     else:
         # Si al modificar o al quitar el rol, se le eliminar los permisos ya otorgados hasta el momento
 
         # Obtener todos los permisos que ya tiene el usuario
+        print(f'Eliminacion de permisos')
         permisos_existentes = PermisoUsuario.objects.filter(user=instance)
 
         for permiso in permisos_existentes:

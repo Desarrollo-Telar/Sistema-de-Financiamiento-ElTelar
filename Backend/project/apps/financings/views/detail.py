@@ -11,25 +11,22 @@ from django.db.models import Q
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo
+from project.decorador import usuario_activo, permiso_requerido
 from django.utils.decorators import method_decorator
 # Manejo de mensajes
 from django.contrib import messages
 
+# Tiempo
 from datetime import datetime,timedelta
 
-
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 # TAREA ASINCRONICO
-from apps.financings.task import cambiar_plan, comparacion_para_boletas_divididas
+from apps.financings.task import comparacion_para_boletas_divididas
 from apps.financings.functions_payment import revisar
 
 # LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
-from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
 from django.db.models import Q
 
 # SCRIPTS 
@@ -42,7 +39,7 @@ from scripts.generadores.actualizaciones_por_credito import total_garantia, tota
 ### ------------ DETALLE -------------- ###
 from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_detalle_credito')
 def detail_credit(request,id):
     
     template_name = 'financings/credit/detail.html' # TEMPLATE
@@ -90,7 +87,7 @@ def detail_credit(request,id):
    
    
     context = {
-        'title':'ELTELAR - CREDITO',
+        'title': f'Detalle del Credito. {credito}',
         'credit_list':credito,
         'customer_list':customer_list,
         'plan':plan,
@@ -110,6 +107,7 @@ def detail_credit(request,id):
         'total_intereses':total_interes_pagada(estado_cuenta),
         'total_capitales':total_capital_pagada(estado_cuenta),
         'saldo_actual': formatear_numero(saldo_actual),
+        'permisos':recorrer_los_permisos_usuario(request),
 
     }
     return render(request, template_name,context)
@@ -124,11 +122,12 @@ def detallar_desembolso(request,id):
     customer_list = Customer.objects.filter(id=credit_list.customer_id.id).first()
     template_name = 'financings/disbursement/detail.html'
     context = {
-        'title':'ELTELAR - DESEMBOLSO {}'.format(desembolso.credit_id),
+        'title':'Detalle del Desembolso. {}'.format(desembolso.credit_id),
         'desembolso':desembolso,
         'boletas':boletas,
         'credit_list':credit_list,
-        'customer_list':customer_list
+        'customer_list':customer_list,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
@@ -145,24 +144,26 @@ def detallar_garantia(request, id):
     template_name = 'financings/guarantee/detail.html'
 
     context = {
-        'title':'ELTELAR - GARANTIA {}'.format(detalle.garantia_id.credit_id),
+        'title':'Detalle de la Garantia. {}'.format(detalle.garantia_id.credit_id),
         'documentos':documentos,
         'detalle':  detalle,     
         'credit_list':credit_list,
-        'customer_list':customer_list
+        'customer_list':customer_list,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
    
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_detalle_boleta_pago')
 def boleta(request,numero_referencia):
     template_name = 'financings/bank/boleta.html'
     
     boleta = Payment.objects.filter( Q(numero_referencia=numero_referencia)| Q(numero_referencia__regex=rf"^{numero_referencia}-D\d*$"))
     context = {
-        'title':'EL TELAR',
+        'title':'Detalle de la boleta.',
         'boletas':boleta,
-        'posicion':numero_referencia
+        'posicion':numero_referencia,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
 
     return render(request, template_name, context)
@@ -176,21 +177,18 @@ def clasificacion_detallar(request,numero_referencia):
         return redirect('financings:boleta', numero_referencia)
 
     if estado_cuenta.cuota:
-        messages.success(request, "CUOTA")
         return redirect('financings:detail_credit',estado_cuenta.credit.id)
 
     if estado_cuenta.payment:
-        messages.success(request, "PAGO")
         return redirect('financings:recibo',estado_cuenta.payment.id)
 
     if estado_cuenta.disbursement:
-        messages.success(request, 'DESEMBOLSO')
         return redirect('financings:detail_disbursement', estado_cuenta.disbursement.id)
 
     
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_detalle_recibo_pago')
 def detallar_recibo(request,id):
     
     pago = get_object_or_404(Payment, id=id)
@@ -202,14 +200,15 @@ def detallar_recibo(request,id):
    
     template_name = 'financings/credit/recibo/detail.html'
     context = {
-        'title':'ELTELAR - RECIBO',
+        'title':f'Recibo del pago. {recibo.pago.numero_referencia}',
         'recibo':recibo,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_detalle_boleta_pago')
 def detalle_boleta(request,id):
     pago = get_object_or_404(Payment, id=id)
     template_name = 'financings/payment/detail.html'
@@ -218,7 +217,7 @@ def detalle_boleta(request,id):
 
     
 
-    if pago.estado_transaccion != 'COMPLETADO' and not pago.estado_transaccion == 'FALLIDO':
+    if pago.estado_transaccion == "PENDIENTE":
         if pago.numero_referencia.endswith(("-D", "-d")):
             comparacion_para_boletas_divididas()
             return redirect('financings:detalle_boleta', pago.id)
@@ -228,8 +227,9 @@ def detalle_boleta(request,id):
         return redirect('financings:detalle_boleta', pago.id)
 
     context = {
-        'title':f'ELTELAR - BOLETA {pago.numero_referencia}',
+        'title':f'Detalle de la boleta de pago. {pago.numero_referencia}',
         'pago':pago,
+        'permisos':recorrer_los_permisos_usuario(request),
         
     }
     return render(request, template_name, context)
@@ -254,9 +254,9 @@ def detalle_factura(request,id):
  
     template_name = 'financings/credit/factura/detail.html'
     context = {
-        'title':'ELTELAR',
         'factura':factura,
-        'recibo':recibo
+        'recibo':recibo,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request,template_name,context)
 
@@ -285,6 +285,7 @@ def detalle_estado_cuenta(request,id):
         'total_capitales':total_capital_pagada(estado_cuenta),
         'dia':now,
         'siguiente_pago':siguiente_pago,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
 
     return render(request,template_name,context)

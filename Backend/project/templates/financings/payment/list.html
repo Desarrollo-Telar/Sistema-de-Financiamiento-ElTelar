@@ -44,21 +44,29 @@
 
     <!-- Filtros, acciones y búsqueda -->
     <div class="row align-items-center mb-4 gx-3 gy-2">
+        {% if permisos.puede_realizar_consultas_boleta_pagos %}
         <div class="col-12 col-md-6 col-lg-5">
             {% include 'financings/payment/snippets/search.html' with query=query %}
         </div>
+        {% endif %}
 
+        {% if permisos.puede_crear_boleta_pago or permisos.puede_cargar_estado_cuenta %}
         <div class="col-12 col-md-6 col-lg-5">
+            {% if permisos.puede_crear_boleta_pago %}
             <a href="{% url 'financings:create_payment' %}" class="btn_guardar">Generar Pago</a>
-            {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+            {% endif %}
+
+            {% if permisos.puede_cargar_estado_cuenta %}
             <a href="{% url 'document:banco' %}" class="btn_guardar">Subir Documento</a>
             {% endif %}
         </div>
+        {% endif %}
 
         <div class="col-2 col-md-2 col-lg-1">
             {% include 'financings/payment/snippets/filters.html' %}
         </div>
 
+        {% if permisos.puede_descargar_imagen_boleta_pago %}
         <div class="col-2 col-md-2 col-lg-1">
             <a href="{% url 'report_base_boletas' %}" title="Descargar reporte">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -70,8 +78,9 @@
                 </svg>
             </a>
         </div>
+        {% endif %}
 
-        <div class="col-2 col-md-2 col-lg-1">
+        <div class="col-1 col-md-1 col-lg-1">
             <a href="{% url 'financings:comparacion_boletas' %}" title="Comparar boletas">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                     class="bi bi-arrow-clockwise" viewBox="0 0 16 16">

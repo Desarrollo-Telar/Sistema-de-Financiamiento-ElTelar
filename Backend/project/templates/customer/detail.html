@@ -31,6 +31,8 @@
         <div style="margin-top: 1rem;">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/"
+                            style="text-decoration: none;">Inicio</a></li>
                     <li class="breadcrumb-item"><a href="{% url 'customers:customers' %}"
                             style="text-decoration: none;">Clientes</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{customer_list.first_name}}
@@ -78,7 +80,7 @@
             </div>
 
 
-            {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+            {% if permisos.puede_eliminar_registro_cliente %}
             <div style="margin-left: 0.5rem;">
                 <a href="{% url 'customers:delete_customer' customer_list.id %}"
                     style="text-decoration: none; color: black;">
@@ -135,7 +137,7 @@
                     {% include 'customer/snippets/detail/informacion_personal.html' %}
 
                 </div>
-                {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+                {% if permisos.puede_editar_informacion_personal_cliente %}
                 <div>
                     <hr>
                     <a href="{% url 'customers:update_customer' customer_code %}" class="btn_edit">Editar informacion

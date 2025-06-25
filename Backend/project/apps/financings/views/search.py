@@ -1,8 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
+
 
 # Models
-from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
-
+from apps.financings.models import Credit,  Banco, Payment
 # Manejo de mensajes
 from django.contrib import messages
 
@@ -11,30 +10,17 @@ from django.views.generic.list import ListView
 from django.db.models import Q
 
 # Decoradores
-from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo, usuario_administrador, usuario_contabilidad, usuario_secretaria
+from project.decorador import permiso_requerido
 from django.utils.decorators import method_decorator
 
-# Paginacion
-from project.pagination import paginacion
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+
 
 # LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
 from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
 from django.db.models import Q
 
-### ----------------- LISTAR ------------------------ ###    
-from apps.financings.functions import realizar_pago
-from apps.financings.functions_payment import generar
-from apps.financings.task import comparacion_para_boletas_divididas
-
-## ----------- 
-# TIEMPO
-from datetime import datetime
-from django.utils.timezone import now
 
 # ------------------ BUSCADOR ------------------------------
 class BankSearch(ListView):
@@ -70,7 +56,7 @@ class BankSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator(usuario_activo)
+    @method_decorator(permiso_requerido('puede_buscar_registro_bancos'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -79,9 +65,10 @@ class BankSearch(ListView):
         if not (context['object_list']):
             messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
-        context['title'] = 'ELTELAR - Buscar'
+        context['title'] = f'Consulta de Registro de Bancos. {self.query()}'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query()
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
         return context
 
 class PaymentSearch(ListView):
@@ -120,7 +107,7 @@ class PaymentSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator(usuario_activo)
+    @method_decorator(permiso_requerido('puede_realizar_consultas_boleta_pagos'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -129,9 +116,10 @@ class PaymentSearch(ListView):
         if not (context['object_list']):
             messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
-        context['title'] = 'ELTELAR - Buscar'
+        context['title'] = f'Consulta de Registro de Pagos. {self.query()}'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query()
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
         return context
 
 
@@ -178,7 +166,7 @@ class CreditSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator(usuario_activo)
+    @method_decorator(permiso_requerido('puede_realizar_consultas_informacion_credito'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -187,8 +175,9 @@ class CreditSearch(ListView):
         if not (context['object_list']):
             messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
-        context['title'] = 'ELTELAR - Buscar'
+        context['title'] = f'Consulta de Registro de Creditos. {self.query()}'
         context['count'] = context['object_list'].count()
         context['reporte_excel'] = True
         context['posicion'] = self.query()
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
         return context

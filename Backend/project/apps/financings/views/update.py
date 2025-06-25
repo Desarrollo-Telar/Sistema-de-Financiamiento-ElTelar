@@ -1,21 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
-from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
+from apps.financings.models import Payment, PaymentPlan, AccountStatement, Recibo
 from apps.financings.models import Invoice
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo
+from project.decorador import usuario_activo, permiso_requerido
 from django.utils.decorators import method_decorator
 
-# LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
-from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
-from django.db.models import Q
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 # FORMULARIO
 from apps.financings.forms import PaymentPlanForms, BoletaForm
@@ -26,7 +21,7 @@ from django.contrib import messages
 
 ### ---------------- ACTUALIZAR --------------------
 @login_required
-@usuario_activo
+@permiso_requerido('puede_editar_boleta_pago')
 def update_pago(request,id):
     boleta = get_object_or_404(Payment, id=id)
 
@@ -42,16 +37,14 @@ def update_pago(request,id):
     form = BoletaForm(instance=boleta)
     context = {
         'form':form,
-        'title':'ELTELAR'
+        'title':f'Actualizar el registro de la boleta. {boleta.numero_referencia}',
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_aplicar_descuento_cuota')
 def update_cuota(request, id):
-    if request.user.rol == "Secretaria" or request.user.rol == "Secretario":
-        return redirect('index')
-    
     template_name = 'financings/cuota/update.html'
     cuota = get_object_or_404(PaymentPlan, id=id)
     mora_antigua = cuota.mora 
@@ -108,8 +101,9 @@ def update_cuota(request, id):
 
     context = {
         'form': form,
-        'title': f'ELTELAR - ACTUALIZACION DE CUOTA',
+        'title': f'Aplicacion de Descuento para la cuota. {cuota}',
         'cuota': cuota,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
 
     return render(request, template_name, context)

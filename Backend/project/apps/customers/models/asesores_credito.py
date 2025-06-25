@@ -25,7 +25,7 @@ class CreditCounselor(models.Model):
         ('FEMENINO', 'FEMENINO')
     ]
 
-    usuario = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+    usuario = models.OneToOneField(User, on_delete=models.SET_NULL, blank=True, null=True)
     nombre = models.CharField("Nombre del Asesor", max_length=150, blank=True, null=True)
     apellido = models.CharField("Apellido del Asesor", max_length=150, blank=True, null=True)
     codigo_asesor = models.CharField("Código de Asesor", max_length=50, blank=False, null=False, unique=True)
@@ -73,3 +73,14 @@ def set_user_code(sender, instance, *args, **kwargs):
 
         # Guardar informacion
         instance.codigo_asesor = user_code
+    
+    if instance.usuario is not None:
+        instance.nombre = instance.usuario.first_name
+        instance.apellido = instance.usuario.last_name
+        instance.type_identification = instance.usuario.type_identification
+        instance.identification_number = instance.usuario.identification_number
+        instance.telephone = instance.usuario.telephone
+        instance.email = instance.usuario.email
+        instance.gender = instance.usuario.gender
+        instance.nit = instance.usuario.nit
+       

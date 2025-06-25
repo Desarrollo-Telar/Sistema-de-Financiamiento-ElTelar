@@ -30,7 +30,7 @@
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
           {% if permisos.puede_ver_perfil_usuario %}
-          <li><a class="dropdown-item" href="#">Perfil</a></li>
+          <li><a class="dropdown-item" href="{% url 'users:profile' %}">Perfil</a></li>
           {% endif %}
           <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
