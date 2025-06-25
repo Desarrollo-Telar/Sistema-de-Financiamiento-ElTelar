@@ -27,16 +27,7 @@ class User(AbstractUser):
         ('FEMENINO', 'FEMENINO')
     ]
 
-    roles = [
-        ('Administrador','Administrador'),
-        ('Administradora','Administradora'),
-        ('Programador','Programador'),
-        ('Programadora','Programadora'),
-        ('Secretaria','Secretaria'),
-        ('Secretario','Secretario'),
-        ('Contador','Contador'),
-        ('Contadora','Contadora'),
-    ]
+
     
     type_identification = models.CharField("Tipo de Identificación", choices=tipo_identificacion, default='DPI', max_length=50)
     identification_number = models.CharField("Número de Identificación", max_length=15, blank=False, null=False, unique=True)
@@ -72,6 +63,9 @@ class User(AbstractUser):
 class PermisoUsuario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usuario")
     permiso = models.ForeignKey(Permiso, on_delete=models.CASCADE, verbose_name="Permiso de Usuario")
+
+    def __str__(self):
+        return f'{self.user} - {self.permiso}'
 
     class Meta:
         verbose_name = "Permiso de Usuario"

@@ -187,5 +187,14 @@
         "descripcion": "",
         "estado": true
     }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 23,
+    "fields": {
+        "nombre": "Reportes",
+        "descripcion": "",
+        "estado": true
+    }
 }
 ]

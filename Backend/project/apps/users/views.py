@@ -1,11 +1,9 @@
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo, usuario_administrador
+from project.decorador import permiso_requerido
 from django.utils.decorators import method_decorator
 
-# Metodos HTTP
-from django.http import HttpResponse
 
 # Modelos
 from .models import  User
@@ -20,8 +18,7 @@ from django.views.generic import View
 from django.views.generic import CreateView
 from django.views.generic.list import ListView
 from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
+
 from django.db.models import Q
 
 # URL
@@ -39,22 +36,24 @@ from django.contrib.auth import authenticate
 from django.apps import apps
 from django.contrib import messages
 
+# CONFIGURACION
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+
 # ----- DESACTIVAR A UN USUARIO ---- #
 @login_required
-@usuario_activo
-@usuario_administrador
+@permiso_requerido('puede_dar_de_baja_un_usuario')
 def deactivate(request, id):
     
     user = get_object_or_404(User, id=id)
     if request.user == user:
         return redirect('users:users')
+    
     user.status = False
     user.save()
     return redirect('users:users')
     
 @login_required
-@usuario_activo
-@usuario_administrador
+@permiso_requerido('puede_habilitar_usuario')
 def habilitar_usuario(request,id):
     user = get_object_or_404(User, id=id)
     user.status = True
@@ -63,8 +62,7 @@ def habilitar_usuario(request,id):
 
 # ----- LISTADO DE USUARIOS ----- #
 @login_required
-@usuario_activo
-@usuario_administrador
+@permiso_requerido('puede_ver_registro_usuarios')
 def list_user(request):
     template_name = 'user/list_user.html'
     users = User.objects.all().order_by('user_code')
@@ -72,22 +70,24 @@ def list_user(request):
     page_obj = paginacion(request,users)
 
     context = {
-        'title':'EL TELAR - USUARIOS',
+        'title':'LISTADO DE REGISTRO DE USUARIOS',
         'object_list':page_obj,
         'page_obj':page_obj,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
 # ----- PERFIL DE USUARIOS ----- #
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_perfil_usuario')
 def profile(request):
     template_name = 'user/user_profile.html'
     users =  get_object_or_404(User, username=request.user.username)
     
     context = {
-        'title':'EL TELAR - PERFIL {}'.format(users),
+        'title':'PERFIL {}'.format(users),
         'user':users,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
@@ -99,7 +99,7 @@ class userCreateView(CreateView):
 
     success_url = reverse_lazy(('users:users'))
 
-    @method_decorator([usuario_activo, usuario_administrador])
+    @method_decorator([permiso_requerido("puede_crear_usuario")])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -117,7 +117,7 @@ class userUpdateView(UpdateView):
 
     success_url = reverse_lazy(('users:users'))
 
-    @method_decorator([usuario_activo, usuario_administrador])
+    @method_decorator([permiso_requerido("puede_editar_usuario")])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -133,7 +133,7 @@ class ChangePassword(View):
     form_class = ChangePasswordForm
     success_url = reverse_lazy('index')
     
-    @method_decorator(usuario_activo)
+    @method_decorator([permiso_requerido("puede_editar_usuario")])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -167,7 +167,7 @@ class ChangePassword(View):
             })
 
 # ----- MODULO QUE CAMBIA LA CONTRASEÑA A USUARIOS ----- #
-@usuario_activo
+@permiso_requerido('puede_editar_usuario')
 def change_password_user(request, id):
     template_name ='user/change_password.html'
     user = get_object_or_404(User, id=id)
@@ -223,7 +223,7 @@ class UserSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator([usuario_activo, usuario_administrador])
+    @method_decorator([permiso_requerido("puede_ver_registro_usuarios")])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -236,8 +236,7 @@ class UserSearch(ListView):
 
 # ----- VER DETALLES DE UN USUARIOS ----- #
 @login_required
-@usuario_activo
-@usuario_administrador
+@permiso_requerido('puede_ver_detalle_usuario')
 def detail_user(request,username):
     user_id = get_object_or_404(User, username=username)
     template_name = 'user/detail.html'

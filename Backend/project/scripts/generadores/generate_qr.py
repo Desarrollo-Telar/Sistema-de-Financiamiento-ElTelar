@@ -1,20 +1,39 @@
 import os
-
 import qrcode
 import io
 
-from minio import Minio
+# ALMACENADOR DE ARCHIVOS
+from project.database_store import minio_client
 
+# AJUSTES
+from project.settings import SERVIDOR
 
+def generate_qr_not_servidor(data, filename):
+    # Crea un objeto QRCode
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    # Agrega los datos al objeto QRCode
+    qr.add_data(data)
+    qr.make(fit=True)
+    # Crea una imagen QR
+    img = qr.make_image(fill_color="black", back_color="white")
+    
+    # Especifica el directorio y el archivo donde se guardará la imagen QR
+    directory = 'media/qr'
+    
+    if not os.path.exists(directory):
+        os.makedirs(directory)  # Crea el directorio si no existe
+    
 
-minio_client = Minio(
-    "pcxl65.stackhero-network.com",
-    access_key="WkXu9MHvOHvOsLiJjtda",
-    secret_key="g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe",
-    secure=True
-)
+    filepath = os.path.join(directory, filename)
+    img.save(filepath)
+    print(f"QR code saved at {filepath}")
 
-def generate_qr(data, filename):
+def generate_qr_servidor(data, filename):
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -44,5 +63,11 @@ def generate_qr(data, filename):
     )
 
     print(f"QR code uploaded to MinIO bucket '{bucket_name}' at '{object_name}'")
+
+def generate_qr(data,filename):
+    if SERVIDOR:
+        generate_qr_servidor(data,filename)
+    else:
+        generate_qr_not_servidor(data,filename)
 
 

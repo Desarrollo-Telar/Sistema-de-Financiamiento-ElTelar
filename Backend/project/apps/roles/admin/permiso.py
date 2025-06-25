@@ -13,7 +13,7 @@ class PermisoAdministrador(admin.ModelAdmin):
         'codigo_permiso',
         'estado'
         )
-    search_fields = ('nombre', 'codigo_permiso','categoria_permiso')
+    search_fields = ('nombre', 'codigo_permiso')
     autocomplete_fields = ('categoria_permiso', )
     list_display = ('categoria_permiso', 'nombre','codigo_permiso','fecha_registro', 'estado')
     list_filter = ('categoria_permiso',)

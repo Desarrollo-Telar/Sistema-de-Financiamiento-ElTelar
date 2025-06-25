@@ -13,7 +13,7 @@ import random
 from datetime import datetime
 
 # Settings
-from project.settings import MEDIA_URL, STATIC_URL
+from project.settings import MEDIA_URL, STATIC_URL, SERVIDOR
 
 # SEND EMAILS
 from project.send_mail import send_email_welcome_customer, send_email_new_customer
@@ -117,6 +117,10 @@ class Customer(models.Model):
     
 
     def get_qr(self):
+        if not SERVIDOR:
+            codigo = f'/media/qr/codigoQr_{self.customer_code}.png'
+            return codigo if codigo else 'No hay info'
+
         filename = f'qr/codigoQr_{self.customer_code}.png'
         try:
             url = minio_client.presigned_get_object(
@@ -202,12 +206,20 @@ def send_message(sender, instance, created, **kwargs):
     
     # Construir la URL completa con el protocolo y el dominio
     filename = f'codigoQr_{customer.customer_code}.png'
-    dato = f'{protocol}://{domain}/pdf/{customer.id}/'
+    dato = f'https://www.ii-eltelarsa.com/pdf/{customer.id}'
+
+    if not SERVIDOR:
+        dato = f'{protocol}://{domain}/pdf/{customer.id}'
     
     generate_qr(dato, filename)
 
 @receiver(post_delete, sender=Customer)
 def delete_image_qr_customer(sender, instance, **kwargs):
+    if not SERVIDOR:
+        qr = f'media/qr/codigoQr_{instance.customer_code}.png'
+        os.remove(qr)
+        return f'IMAGEN DE QR ELIMINADO'
+    
     bucket_name = 'asiatrip'
     object_name = f'qr/codigoQr_{instance.customer_code}.png'
 

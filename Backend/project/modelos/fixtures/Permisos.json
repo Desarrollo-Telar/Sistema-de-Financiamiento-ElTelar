@@ -6,7 +6,7 @@
         "categoria_permiso": 2,
         "nombre": "Creacion",
         "descripcion": "Este permiso habilita la función de crear nuevos usuarios en el sistema y asignarles los permisos necesarios para su operación dentro de la plataforma.",
-        "codigo_permiso": "pude_crear_usuario",
+        "codigo_permiso": "puede_crear_usuario",
         "estado": true,
         "fecha_registro": "2025-06-24T03:40:18.108Z"
     }
@@ -993,6 +993,78 @@
         "codigo_permiso": "puede_eliminar_informacion_destino_credito",
         "estado": true,
         "fecha_registro": "2025-06-24T05:22:17.583Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 84,
+    "fields": {
+        "categoria_permiso": 2,
+        "nombre": "Dar de Baja a Usuario",
+        "descripcion": "",
+        "codigo_permiso": "puede_dar_de_baja_un_usuario",
+        "estado": true,
+        "fecha_registro": "2025-06-24T17:23:07.724Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 85,
+    "fields": {
+        "categoria_permiso": 2,
+        "nombre": "Habilitar a Usuario",
+        "descripcion": "",
+        "codigo_permiso": "puede_habilitar_usuario",
+        "estado": true,
+        "fecha_registro": "2025-06-24T17:24:36.799Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 86,
+    "fields": {
+        "categoria_permiso": 23,
+        "nombre": "Descargar Informe de Reportes",
+        "descripcion": "",
+        "codigo_permiso": "puede_descargar_informe_reportes",
+        "estado": true,
+        "fecha_registro": "2025-06-24T18:30:05.553Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 87,
+    "fields": {
+        "categoria_permiso": 23,
+        "nombre": "Ver Listado Reportes",
+        "descripcion": "",
+        "codigo_permiso": "puede_ver_los_distintos_reportes",
+        "estado": true,
+        "fecha_registro": "2025-06-24T18:30:40.891Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 88,
+    "fields": {
+        "categoria_permiso": 19,
+        "nombre": "Descargar Informe de Acreedores",
+        "descripcion": "",
+        "codigo_permiso": "puede_descargar_reporte_acreedores",
+        "estado": true,
+        "fecha_registro": "2025-06-25T01:46:00.939Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 89,
+    "fields": {
+        "categoria_permiso": 20,
+        "nombre": "Descargar Informe de Seguros",
+        "descripcion": "",
+        "codigo_permiso": "puede_descargar_reporte_seguros",
+        "estado": true,
+        "fecha_registro": "2025-06-25T01:47:03.846Z"
     }
 }
 ]

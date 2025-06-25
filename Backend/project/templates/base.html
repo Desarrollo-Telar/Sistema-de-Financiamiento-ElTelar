@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{title}}</title>
+  <title>INVERSIONES INTEGRALES EL TELAR S.A | {{title}}</title>
   <link rel="icon" href="{% static 'img/logo.png' %}" />
 
   <!-- Bootstrap-->
@@ -36,29 +36,61 @@
     }
 
     body {
-      background-color: rgba(229, 56, 59, 0.55);
-
-
+      background-color: #989898;
       font-family: "Quicksand", serif;
-
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    .main-container {
+      flex: 1;
+      display: flex;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #ffffff;
+      color: #464646;
+    }
+    .sidebar a {
+      color: #464646;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+    }
+    .sidebar a:hover {
+      background-color: #495057;
+      color:#ffffff;
+    }
+    .content {
+      flex-grow: 1;
+      padding: 20px;
+    }
+
   </style>
 </head>
 
 <body>
-  <header>
-    {% include 'navbar.html' %}
-    <!--  -->
-  </header>
 
-  <main style="margin-top: 2rem">
-    <div class="container-xxl themed-container">
-      <div class="row">
+  {% include 'navbar.html' %}
 
-        {% block content %} {% endblock %}
-
+  <div class="main-container">
+    {% include 'sidebar.html' %}
+    <main class="content">
+      <div class="container">
+        {% block content %}
+        {% endblock %}
       </div>
-    </div>
+
+    </main>
+    
+
+  </div>
+
+
+
+
+
   </main>
 
   <!--Bootstrap-->

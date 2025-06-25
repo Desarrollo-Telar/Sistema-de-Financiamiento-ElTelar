@@ -24,10 +24,12 @@
   </div>
 
   <div class="row align-items-center mb-4 gx-3 gy-2">
+    {% if permisos.puede_realizar_consultar_de_clientes %}
     <div class="col-12 col-md-6 col-lg-5">
       {% include 'customer/snippets/search.html' with query=query %}
     </div>
-
+    {% endif %}
+    {% if permisos.puede_crear_informacion_personal_cliente %}
     <div class="col-12 col-md-6 col-lg-5">
       <a class="btn_guardar" href="{% url 'customers:create' %}">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -37,11 +39,13 @@
         Añadir cliente nuevo
       </a>
     </div>
+    {% endif %}
 
     <div class="col-2 col-md-2 col-lg-1">
       {% include 'customer/snippets/filters.html' %}
     </div>
 
+    {% if permisos.puede_descargar_reporte_clientes %}
     <div class="col-2 col-md-2 col-lg-1">
       <a href="{% url 'report_clientes' %}">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -56,6 +60,7 @@
         </svg>
       </a>
     </div>
+    {% endif %}
   </div>
   <div class="row mb-4">
     {% include 'customer/table/table.html' %}

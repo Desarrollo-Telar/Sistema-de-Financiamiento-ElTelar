@@ -7,7 +7,8 @@ from datetime import datetime
 from django.utils import timezone
 
 # MODELO
-from .models import User
+from .models import User, PermisoUsuario
+from apps.roles.models import Role, Permiso
 from rest_framework.authtoken.models import Token
 
 import random
@@ -17,6 +18,53 @@ import random
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+    
+    DESARROLLADOR = Role.objects.filter(role_name='Programador').first()
+    ADMINISTRADOR = Role.objects.filter(role_name='Administrador').first()
+    SECRETARIA = Role.objects.filter(role_name='Secretari@').first()
+    ASESORCREDITO = Role.objects.filter(role_name='Asesor de Crédito').first()
+
+    if instance.rol == DESARROLLADOR or instance.rol == ADMINISTRADOR:
+        # Obtener todos los permisos existentes
+        todos_los_permisos = Permiso.objects.all()
+
+        # Obtener los permisos que ya tiene el usuario (solo los IDs)
+        permisos_existentes_ids = PermisoUsuario.objects.filter(user=instance).values_list('permiso_id', flat=True)
+
+        # Filtrar permisos que aún no tiene
+        permisos_faltantes = todos_los_permisos.exclude(id__in=permisos_existentes_ids)
+
+        # Asignar solo los permisos faltantes
+        for permiso in permisos_faltantes:
+            PermisoUsuario.objects.create(user=instance, permiso=permiso)
+
+    elif instance.rol == SECRETARIA:
+        # Obtener todos los permisos existentes
+        todos_los_permisos = Permiso.objects.all()
+
+        # Obtener los permisos que ya tiene el usuario (solo los IDs)
+        permisos_existentes_ids = PermisoUsuario.objects.filter(user=instance).values_list('permiso_id', flat=True)
+
+        # Filtrar permisos que aún no tiene
+        permisos_faltantes = todos_los_permisos.exclude(id__in=permisos_existentes_ids)
+        
+
+
+    elif instance.rol == ASESORCREDITO:
+        pass
+
+    else:
+        # Si al modificar o al quitar el rol, se le eliminar los permisos ya otorgados hasta el momento
+
+        # Obtener todos los permisos que ya tiene el usuario
+        permisos_existentes = PermisoUsuario.objects.filter(user=instance)
+
+        for permiso in permisos_existentes:
+            permiso.delete()
+
+            
+
+
 
 # Funcion clave para la generacion de codigos de usuario, luego de haberse creado
 @receiver(pre_save, sender=User)

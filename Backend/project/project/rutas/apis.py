@@ -1,7 +1,6 @@
 
 # VISTAS 
 from rest_framework.authtoken import views as v_iews
-from project.views import actualizacion_test_api, list_api
 from rest_framework.documentation import include_docs_urls
 from django.contrib.auth import views as auth_views
 from project.view_api import view
@@ -30,8 +29,7 @@ urlpatterns_api = [
     path('api/login/', CustomTokenObtainPairView.as_view(), name='login_api'), # Login JWT
     path('api/logout/', LogoutView.as_view(), name='logout_api'), # LOGOUT JWT
 
-    path('api/',list_api,name='list_api'),
-    path('api/patch/',actualizacion_test_api,name='actualizacion_test_api'),
+    
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api-token-auth/', v_iews.obtain_auth_token),
     path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),

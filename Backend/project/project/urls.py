@@ -38,7 +38,6 @@ urlpatterns = [
     path('logout/',views.logout_view, name='logout'),
     path('admin/', admin.site.urls),
     path('search/', login_required(views.Search.as_view()), name='busqueda_general'),
-    path('test/', views.prueba, name='test'),
     path('qr/<str:data>/', views.generate_qr, name='generate_qr'),
     path('pdf/<int:id>', generate_pdf.generar_pdf, name='pdf'),
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
