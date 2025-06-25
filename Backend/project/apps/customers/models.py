@@ -2,6 +2,7 @@ from django.db import models
 
 # Relaciones
 from apps.users.models import User
+from apps.customers.models import CreditCounselor
 
 # Signals
 from django.db.models.signals import pre_save, post_save, pre_delete, post_delete
@@ -100,7 +101,7 @@ class Customer(models.Model):
     # NUEVOS CAMPOS
     asesor  = models.CharField("Asesor del Credito", max_length=100, blank=True, null=True, default="PENDIENTE")
     fehca_vencimiento_de_tipo_identificacion = models.DateField("Fecha de Vencimiento del Tipo de Identificacion", blank=True, null=True,default=datetime.now)
-
+    new_asesor_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.get_full_name()

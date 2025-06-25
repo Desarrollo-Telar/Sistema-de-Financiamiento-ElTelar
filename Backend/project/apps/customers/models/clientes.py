@@ -5,6 +5,7 @@ from apps.users.models import User
 from .ocupaciones import Occupation
 from .profesiones import Profession
 from .condiciones_migratoria import ImmigrationStatus
+from .asesores_credito import CreditCounselor
 
 # Signals
 from django.db.models.signals import pre_save, post_save, pre_delete, post_delete
@@ -115,6 +116,7 @@ class Customer(models.Model):
     level_of_education_superior = models.CharField("Nivel de Escolaridad Superior", max_length=100, choices=escolaridad_superior, default='Ninguna',blank=True, null=True)
     ocupacion = models.ForeignKey(Occupation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Ocupacion")
     profesion = models.ForeignKey(Profession,  on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Profesion")
+    new_asesor_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Asesor de este Credito")
 
     def __str__(self):
         return self.get_full_name()
