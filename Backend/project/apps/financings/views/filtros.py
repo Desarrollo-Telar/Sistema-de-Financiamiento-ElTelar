@@ -31,7 +31,7 @@ def filter_credito_reciente(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         credito =  Credit.objects.filter(
             Q(creation_date__range=[inicio,hoy]),
             customer_id__new_asesor_credito=asesor_autenticado
@@ -57,7 +57,7 @@ def filter_credito_cancelado(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         credito =  Credit.objects.filter(
             is_paid_off=True,
             customer_id__new_asesor_credito=asesor_autenticado
@@ -85,7 +85,7 @@ def filter_credito_en_atraso(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         credito =  Credit.objects.filter(
             estados_fechas=False,
             customer_id__new_asesor_credito=asesor_autenticado
@@ -113,7 +113,7 @@ def filter_credito_con_aportaciones(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         credito =  Credit.objects.filter(
             estado_aportacion__isnull=False, is_paid_off=False,
             customer_id__new_asesor_credito=asesor_autenticado
@@ -141,7 +141,7 @@ def filter_credito_en_falta_aportacion(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         credito =  Credit.objects.filter(
             estado_aportacion=False,
             customer_id__new_asesor_credito=asesor_autenticado
@@ -169,7 +169,7 @@ def filter_credito_con_excedente(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         credito =  Credit.objects.filter(
             saldo_actual__lt=0,
             customer_id__new_asesor_credito=asesor_autenticado
@@ -221,7 +221,7 @@ def filter_credito_por_mes_anio(request):
     filters = Q()
     filters &= Q(creation_date__year=anio)
     filters &= Q(creation_date__month=mes)
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         filters &= Q(customer_id__new_asesor_credito=asesor_autenticado)
 
     

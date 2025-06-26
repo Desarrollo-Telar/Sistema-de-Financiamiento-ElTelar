@@ -59,7 +59,7 @@ def list_credit(request):
     
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         creditos =  Credit.objects.filter(customer_id__new_asesor_credito=asesor_autenticado)
 
     page_obj = paginacion(request,creditos)

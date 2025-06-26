@@ -68,7 +68,7 @@ def index(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None: 
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         clientes = Customer.objects.filter(new_asesor_credito=asesor_autenticado)
 
     context = {

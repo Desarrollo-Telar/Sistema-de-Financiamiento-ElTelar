@@ -108,7 +108,7 @@ def list_customer(request):
     customer_list = Customer.objects.all().order_by('-id').filter(status__in=status)
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         customer_list = Customer.objects.filter(new_asesor_credito=asesor_autenticado).order_by('-id').filter(status__in=status)
 
     page_obj = paginacion(request, customer_list)
@@ -159,7 +159,7 @@ class CustomerSearch(ListView):
             filters |= Q(type_identification__icontains=query)
             filters |= Q(gender__icontains=query)
 
-            if asesor_autenticado is not None:
+            if asesor_autenticado is not None and self.request.user.rol.role_name == 'Asesor de Crédito':
                 filters &= Q(new_asesor_credito=asesor_autenticado)
             
             

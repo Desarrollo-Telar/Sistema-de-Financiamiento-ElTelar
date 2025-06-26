@@ -151,7 +151,7 @@ class CreditSearch(ListView):
                 filters |= Q(customer_id__first_name__icontains=query)
                 filters |= Q(customer_id__last_name__icontains=query)
 
-                if asesor_autenticado is not None:
+                if asesor_autenticado is not None and self.request.user.rol.role_name == 'Asesor de Crédito':
                     filters &= Q(customer_id__new_asesor_credito=asesor_autenticado)
 
                 # Si la consulta es numérica, usar filtro exacto para campos numéricos
