@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
-from apps.customers.models import Customer
+from apps.customers.models import Customer, CreditCounselor
 from apps.financings.models import Invoice
 from apps.documents.models import DocumentGuarantee
 
@@ -44,6 +44,16 @@ def detail_credit(request,id):
     
     template_name = 'financings/credit/detail.html' # TEMPLATE
     credito= get_object_or_404(Credit,id=id) # DETALLE DEL CREDITO
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
+        credito = Credit.objects.filter(id=id, customer_id__new_asesor_credito=asesor_autenticado).first()
+
+        if credito is None:
+            messages.error(request, 'Usted no tiene permitido visualizar el credito de este cliente.')
+            return redirect('financings:list_credit')
+        
     generar_todas_las_cuotas_credito(credito.codigo_credito)
     #cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
     

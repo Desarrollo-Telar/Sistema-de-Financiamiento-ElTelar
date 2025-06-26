@@ -193,7 +193,18 @@ class CustomerSearch(ListView):
 @permiso_requerido('puede_visualizar_detalle_cliente')
 def detail_customer(request,customer_code):
     template_name = 'customer/detail.html'
-    customer_list = get_object_or_404(Customer,customer_code = str(customer_code))    
+    
+    customer_list = Customer.objects.filter(customer_code=str(customer_code)).first()
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
+        customer_list = Customer.objects.filter(customer_code=str(customer_code), new_asesor_credito=asesor_autenticado).first()
+        if customer_list is None:
+            messages.error(request,'No tienes permitido visualizar el perfil de este cliente.')
+            return redirect('customers:customers')
+
+
     informacion_laboral = WorkingInformation.objects.filter(Q(customer_id=customer_list))
     otra_informacion_laboral = OtherSourcesOfIncome.objects.filter(Q(customer_id=customer_list))
     direccion = Address.objects.filter(Q(customer_id=customer_list))
