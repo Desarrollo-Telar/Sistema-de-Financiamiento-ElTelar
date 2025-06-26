@@ -2,14 +2,18 @@
 {% load static %}
 
 {% block content %}
-<h2>Asignación de Permisos para {{ usuario.username }}</h2>
-
-<form method="POST" id="form-permisos">
+<div class="content">
+  <h2>Asignación de Permisos para {{ usuario.username }}</h2>
+  <form method="POST" id="form-permisos">
   {% csrf_token %}
 
   <div class="row">
+    {% for categoria in categorias_permisos %}
+    <h3 style="margin-top: 1rem;">Modulo de {{categoria.nombre}}</h3>
+    <hr>
     {% for permiso in todos_permisos %}
-      <div class="col-12 col-md-6 col-lg-4 mb-2">
+    {% if permiso.categoria_permiso == categoria %}
+      <div class="col-12 col-md-6 col-lg-4 mb-2" style="margin-top: 0.5rem;">
         <div class="form-check">
           <input class="form-check-input"
                  type="checkbox"
@@ -18,15 +22,23 @@
                  id="permiso_{{ permiso.id }}"
                  {% if permiso.id in permisos_asignados %}checked{% endif %}>
           <label class="form-check-label" for="permiso_{{ permiso.id }}">
-            {{ permiso.nombre }} - {{permiso.categoria_permiso}}
+            {{ permiso.nombre }} 
           </label>
         </div>
       </div>
+      {% endif %}
+    {% endfor %}
     {% endfor %}
   </div>
 
-  <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
+  <button type="submit" class="btn_guardar mt-3">Guardar Cambios</button>
+  <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
 </form>
+
+</div>
+
+
+
 
 <script>
   document.getElementById('form-permisos').addEventListener('submit', async function(e) {

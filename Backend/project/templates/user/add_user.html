@@ -13,29 +13,8 @@
 
     <br />
     <hr />
-    <a
-      type="button"
-      style="
-        border: 1px solid #ba181b;
-        color: #ba181b;
-        text-decoration: none;
-        padding: 0.5rem;
-        border-radius: 2rem;
-        background-color: #effaf3;
-      "
-      href=" {% url 'users:users' %}"
-      >Volver atrás</a
-    >
-    <button
-      type="submit"
-      style="
-        background-color: #161a1d;
-        color: #effaf3;
-        border: 1px solid #161a1d;
-        padding: 0.5rem 1rem;
-        border-radius: 2rem;
-      "
-    >
+    <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+    <button type="submit" class="btn_guardar">
       {{accion}}
     </button>
   </form>

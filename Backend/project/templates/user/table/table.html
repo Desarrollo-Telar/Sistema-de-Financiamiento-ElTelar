@@ -54,6 +54,10 @@
                                         </a>
                                     </li>
                                     {% endif %}
+                                    {% if permisos.puede_asignar_permisos_usuario %}
+                                    <li><a class="dropdown-item" href="{% url 'roles_permisos:asignacion_permisos' user.id %}">Asignarle Permisos</a></li>
+                                    {% endif %}
+
                                     <hr>
                                     {% if user.status %}
                                     {% if permisos.puede_dar_de_baja_un_usuario %}

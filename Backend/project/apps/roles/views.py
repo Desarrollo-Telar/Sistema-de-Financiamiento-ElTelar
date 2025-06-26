@@ -7,7 +7,7 @@ from project.decorador import permiso_requerido
 from django.utils.decorators import method_decorator
 
 # Modelos
-from .models import Permiso
+from .models import Permiso, CategoriaPermiso
 from apps.users.models import User, PermisoUsuario
 
 # CONFIGURACION
@@ -30,7 +30,8 @@ def asignacion_permisos(request, user_id):
         'usuario': usuario,
         'permisos': recorrer_los_permisos_usuario(request),
         'permisos_asignados': list(permisos_asignados),
-        'todos_permisos':todos_permisos
+        'todos_permisos':todos_permisos,
+        'categorias_permisos': CategoriaPermiso.objects.all()
     }
 
     return render(request, template_name, context)
