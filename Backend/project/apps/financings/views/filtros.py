@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Models
 from apps.financings.models import Credit, Banco, Payment
+from apps.customers.models import CreditCounselor
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -26,13 +27,23 @@ def filter_credito_reciente(request):
     template_name = 'financings/credit/list.html'
     hoy = datetime.now()
     inicio = hoy - timedelta(days=5)
-    page_obj = paginacion(request, Credit.objects.filter(Q(creation_date__range=[inicio,hoy])).order_by('-id'))
+    credito = Credit.objects.filter(Q(creation_date__range=[inicio,hoy])).order_by('-id')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        credito =  Credit.objects.filter(
+            Q(creation_date__range=[inicio,hoy]),
+            customer_id__new_asesor_credito=asesor_autenticado
+            ).order_by('-id')
+
+    page_obj = paginacion(request, credito)
     
     context = {
         'title':'Registro de Creditos Agregados Recientemente.',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(Q(creation_date__range=[inicio,hoy])).count(),
+        'count': credito.count(),
         'filtro_seleccionado':'Recientes',
         'permisos':recorrer_los_permisos_usuario,
     }
@@ -42,13 +53,24 @@ def filter_credito_reciente(request):
 @permiso_requerido('puede_ver_registros_credito')
 def filter_credito_cancelado(request):
     template_name = 'financings/credit/list.html'
-    page_obj = paginacion(request, Credit.objects.filter(is_paid_off=True).order_by('-id'))
+    credito =  Credit.objects.filter(is_paid_off=True).order_by('-id')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        credito =  Credit.objects.filter(
+            is_paid_off=True,
+            customer_id__new_asesor_credito=asesor_autenticado
+            ).order_by('-id')
+
+    page_obj = paginacion(request, credito)
+
     
     context = {
         'title':'Registro de Creditos que ya estan Cancelados.',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(is_paid_off=True).count(),
+        'count': credito.count(),
         'filtro_seleccionado':'Creditos Cancelados',
         'permisos':recorrer_los_permisos_usuario,
     }
@@ -58,13 +80,24 @@ def filter_credito_cancelado(request):
 @permiso_requerido('puede_ver_registros_credito')
 def filter_credito_en_atraso(request):
     template_name = 'financings/credit/list.html'
-    page_obj = paginacion(request, Credit.objects.filter(estados_fechas=False).order_by('-fecha_actualizacion'))
+
+    credito =  Credit.objects.filter(estados_fechas=False).order_by('-fecha_actualizacion')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        credito =  Credit.objects.filter(
+            estados_fechas=False,
+            customer_id__new_asesor_credito=asesor_autenticado
+            ).order_by('-fecha_actualizacion')
+
+    page_obj = paginacion(request, credito)
     
     context = {
         'title':'Registro de Creditos que estan en Atraso por Fechas.',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(estados_fechas=False).count(),
+        'count': credito.count(),
         'filtro_seleccionado':'Creditos en Atraso',
         'permisos':recorrer_los_permisos_usuario,
     }
@@ -74,13 +107,26 @@ def filter_credito_en_atraso(request):
 @permiso_requerido('puede_ver_registros_credito')
 def filter_credito_con_aportaciones(request):
     template_name = 'financings/credit/list.html'
-    page_obj = paginacion(request, Credit.objects.filter(estado_aportacion__isnull=False, is_paid_off=False).order_by('-fecha_actualizacion'))
+   
+
+    credito =  Credit.objects.filter(estado_aportacion__isnull=False, is_paid_off=False).order_by('-fecha_actualizacion')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        credito =  Credit.objects.filter(
+            estado_aportacion__isnull=False, is_paid_off=False,
+            customer_id__new_asesor_credito=asesor_autenticado
+            ).order_by('-fecha_actualizacion')
+
+    page_obj = paginacion(request, credito)
+
     
     context = {
         'title':'Registro de Creditos que estan en Atrado por Aportacion.',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(estado_aportacion__isnull=False, is_paid_off=False).count(),
+        'count': credito.count(),
         'filtro_seleccionado':'Creditos en Atraso',
         'permisos':recorrer_los_permisos_usuario,
     }
@@ -90,13 +136,24 @@ def filter_credito_con_aportaciones(request):
 @permiso_requerido('puede_ver_registros_credito')
 def filter_credito_en_falta_aportacion(request):
     template_name = 'financings/credit/list.html'
-    page_obj = paginacion(request, Credit.objects.filter(estado_aportacion=False).order_by('-id'))
+
+    credito =  Credit.objects.filter(estado_aportacion=False).order_by('-id')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        credito =  Credit.objects.filter(
+            estado_aportacion=False,
+            customer_id__new_asesor_credito=asesor_autenticado
+            ).order_by('-fecha_actualizacion')
+
+    page_obj = paginacion(request, credito)
     
     context = {
         'title':'Registro de Creditos que estan en Atrado por Aportacion.',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(estado_aportacion=False).count(),
+        'count': credito.count(),
         'filtro_seleccionado':'Creditos con falta de Aportacion',
         'permisos':recorrer_los_permisos_usuario,
     }
@@ -106,7 +163,19 @@ def filter_credito_en_falta_aportacion(request):
 @permiso_requerido('puede_ver_registros_credito')
 def filter_credito_con_excedente(request):
     template_name = 'financings/credit/list.html'
-    page_obj = paginacion(request, Credit.objects.filter(saldo_actual__lt=0).order_by('-id'))
+    
+
+    credito =  Credit.objects.filter(saldo_actual__lt=0).order_by('-id')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        credito =  Credit.objects.filter(
+            saldo_actual__lt=0,
+            customer_id__new_asesor_credito=asesor_autenticado
+            ).order_by('-fecha_actualizacion')
+
+    page_obj = paginacion(request, credito)
 
     
 
@@ -114,7 +183,7 @@ def filter_credito_con_excedente(request):
         'title':'Registro de Creditos que estan con excedente.',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.filter(saldo_actual__lt=0).count(),
+        'count': credito.count(),
         'filtro_seleccionado': 'Creditos con excedente',
         'permisos':recorrer_los_permisos_usuario,
         
@@ -129,6 +198,9 @@ def filter_credito_por_mes_anio(request):
 
     mes = datetime.now().month
     anio = datetime.now().year
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    
 
     if request.method == 'POST':
         mes = request.POST.get('mes')
@@ -149,6 +221,9 @@ def filter_credito_por_mes_anio(request):
     filters = Q()
     filters &= Q(creation_date__year=anio)
     filters &= Q(creation_date__month=mes)
+    if asesor_autenticado is not None:
+        filters &= Q(customer_id__new_asesor_credito=asesor_autenticado)
+
     
     object_list = Credit.objects.filter(filters).order_by('id')
     page_obj = paginacion(request, object_list)

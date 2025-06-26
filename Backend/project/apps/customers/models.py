@@ -118,9 +118,6 @@ class Customer(models.Model):
     
 
     def get_qr(self):
-        if not SERVIDOR:
-            codigo = f'/media/qr/codigoQr_{self.customer_code}.png'
-            return codigo if codigo else 'No hay info'
 
         filename = f'qr/codigoQr_{self.customer_code}.png'
         try:

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
-
+from apps.customers.models import CreditCounselor
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -55,14 +55,21 @@ def list_bank(request):
 @permiso_requerido('puede_ver_registros_credito')
 def list_credit(request):
     template_name = 'financings/credit/list.html'
-    page_obj = paginacion(request, Credit.objects.all().order_by('-id'))
+    creditos =  Credit.objects.all().order_by('-id')
+    
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        creditos =  Credit.objects.filter(customer_id__new_asesor_credito=asesor_autenticado)
+
+    page_obj = paginacion(request,creditos)
     
     
     context = {
         'title':'Registro de Creditos.',
         'page_obj':page_obj,
         'credit_list':page_obj,
-        'count': Credit.objects.all().count(),
+        'count':creditos.count(),
         'filtro_seleccionado':'Todos',
         'permisos':recorrer_los_permisos_usuario(request),
     }

@@ -30,7 +30,7 @@ export function recoletarInformacionCliente() {
     form_data.append('nationality', document.getElementById('nationality').value || "GUATEMALTECA");
     form_data.append('person_type', document.getElementById('person_type').value);
     form_data.append('description', document.getElementById('description_customer').value);
-    form_data.append('asesor', document.getElementById('asesor').value);
+    form_data.append('new_asesor_credito', document.getElementById('asesor').value ||  document.getElementById('user_id').value);
     form_data.append('fehca_vencimiento_de_tipo_identificacion', document.getElementById('fehca_vencimiento_de_tipo_identificacion').value);
 
     return form_data

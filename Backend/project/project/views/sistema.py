@@ -16,7 +16,7 @@ import qrcode
 from django.conf import settings
 
 # Modelos
-from apps.customers.models import Customer
+from apps.customers.models import Customer,CreditCounselor 
 
 # URLS
 from django.shortcuts import render, redirect
@@ -63,11 +63,18 @@ def generate_qr(request, data):
 @usuario_activo
 def index(request):
     template_name = 'index.html'
+    
+    clientes = Customer.objects.all()
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None: 
+        clientes = Customer.objects.filter(new_asesor_credito=asesor_autenticado)
 
     context = {
         'title':'Inicio',
-        'clientes':Customer.objects.all(),
-        'creditos':recolectar_informes_status_creditos(),
+        'clientes':clientes,
+        'creditos':recolectar_informes_status_creditos(request),
         'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)

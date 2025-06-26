@@ -1,10 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-# Manejo de mensajes
-from django.contrib import messages
+
 
 # Models
-from .models import Customer
+from .models import Customer, CreditCounselor
 from apps.addresses.models import Address
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
 from apps.InvestmentPlan.models import InvestmentPlan
@@ -13,16 +12,13 @@ from apps.documents.models import DocumentCustomer
 from apps.financings.models import Credit
 
 # LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
+
 from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
 from django.db.models import Q
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import permiso_requerido
+from project.decorador import permiso_requerido, usuario_activo
 from django.utils.decorators import method_decorator
 
 # Paginacion
@@ -30,14 +26,11 @@ from project.pagination import paginacion
 
 # Formularios
 from .forms import CustomerForm, ImmigrationStatus
-from apps.addresses.forms import AddressForms
-from apps.FinancialInformation.forms import WorkingInformationForms, OtherSourcesOfIncomeForms, ReferenceForms
-from apps.InvestmentPlan.forms import InvestmentPlanForms
 
 # MENSAJES
 from django.contrib import messages
 
-from django.apps import apps
+
 
 # SCRIPTS
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
@@ -82,7 +75,7 @@ def update_customer(request, customer_code):
 
 # ----- ELIMINACION DE CLIENTES ----- #
 @login_required
-@permiso_requerido('puede_eliminar_registro_cliente')
+@usuario_activo
 def delete_customer(request,id):
     customer = get_object_or_404(Customer, id=id)
     customer.delete()
@@ -111,7 +104,13 @@ def delete_customers(request,id):
 @permiso_requerido('puede_visualizar_el_registro_clientes')
 def list_customer(request):
     status = ['Revisión de documentos', 'Aprobado', 'No Aprobado', 'Posible Cliente']
+    
     customer_list = Customer.objects.all().order_by('-id').filter(status__in=status)
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+    if asesor_autenticado is not None:
+        customer_list = Customer.objects.filter(new_asesor_credito=asesor_autenticado).order_by('-id').filter(status__in=status)
+
     page_obj = paginacion(request, customer_list)
     template_name = 'customer/list.html'
     context = {
@@ -148,16 +147,23 @@ class CustomerSearch(ListView):
         try:
             # Asignar la consulta a una variable local
             query = self.query()
+
+            filters = Q()
+
+            asesor_autenticado = CreditCounselor.objects.filter(usuario=self.request.user).first()
             
             # Definir los filtros utilizando Q objects
-            filters = (
-                Q(first_name__icontains=query) | 
-                Q(customer_code__icontains=query) | 
-                Q(last_name__icontains=query) | 
-                Q(type_identification__icontains=query) |
-                Q(gender__icontains=query)
-            )
+            filters |= Q(first_name__icontains=query) 
+            filters |= Q(customer_code__icontains=query)
+            filters |= Q(last_name__icontains=query)
+            filters |= Q(type_identification__icontains=query)
+            filters |= Q(gender__icontains=query)
+
+            if asesor_autenticado is not None:
+                filters &= Q(new_asesor_credito=asesor_autenticado)
             
+            
+                
             # Filtrar los objetos Customer usando los filtros definidos
             return Customer.objects.filter(filters)
         except Exception as e:

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
-from .models import Customer
+from .models import Customer, CreditCounselor
 
 
 # LIBRERIAS PARA CRUD
@@ -26,7 +26,14 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 def recent_customer(request):
     hoy = datetime.now()
     inicio = hoy - timedelta(days=5)
+
     customer_list = Customer.objects.all().filter(Q(creation_date__range=[inicio,hoy])).order_by('-id')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        customer_list = Customer.objects.all().filter(Q(creation_date__range=[inicio,hoy]), new_asesor_credito=asesor_autenticado).order_by('-id')
+
     page_obj = paginacion(request, customer_list)
     template_name = 'customer/list.html'
     context = {
@@ -45,6 +52,12 @@ def recent_customer(request):
 @permiso_requerido('puede_visualizar_el_registro_clientes')
 def solicitude_customer(request):
     customer_list = Customer.objects.all().filter(Q(status='Posible Cliente')).order_by('-id')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        customer_list = Customer.objects.all().filter(Q(status='Posible Cliente'), new_asesor_credito=asesor_autenticado).order_by('-id')
+         
     page_obj = paginacion(request, customer_list)
     template_name = 'customer/list.html'
     context = {
@@ -63,6 +76,12 @@ def solicitude_customer(request):
 @permiso_requerido('puede_visualizar_el_registro_clientes')
 def not_accepted_customer(request):
     customer_list = Customer.objects.all().filter(Q(status='No Aprobado')).order_by('-id')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        customer_list = Customer.objects.all().filter(Q(status='No Aprobado'), new_asesor_credito=asesor_autenticado).order_by('-id')
+
     page_obj = paginacion(request, customer_list)
     template_name = 'customer/list.html'
     context = {
@@ -81,6 +100,12 @@ def not_accepted_customer(request):
 @permiso_requerido('puede_visualizar_el_registro_clientes')
 def accepted_customer(request):
     customer_list = Customer.objects.all().filter(Q(status='Aprobado')).order_by('-id')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        customer_list = Customer.objects.all().filter(Q(status='Aprobado'), new_asesor_credito=asesor_autenticado).order_by('-id')
+
     page_obj = paginacion(request, customer_list)
     template_name = 'customer/list.html'
     context = {
@@ -99,6 +124,11 @@ def accepted_customer(request):
 @permiso_requerido('puede_visualizar_el_registro_clientes')
 def inactive_customer(request):
     customer_list = Customer.objects.all().filter(Q(status='Dar de Baja')).order_by('-id')
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        customer_list = Customer.objects.all().filter(Q(status='Dar de Baja'), new_asesor_credito=asesor_autenticado).order_by('-id')
+
     page_obj = paginacion(request, customer_list)
     template_name = 'customer/list.html'
     context = {
@@ -117,6 +147,12 @@ def inactive_customer(request):
 @permiso_requerido('puede_visualizar_el_registro_clientes')
 def document_review_customer(request):
     customer_list = Customer.objects.all().filter(Q(status='Revisión de documentos')).order_by('-id')
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    if asesor_autenticado is not None:
+        customer_list = Customer.objects.all().filter(Q(status='Revisión de documentos'), new_asesor_credito=asesor_autenticado).order_by('-id')
+
     page_obj = paginacion(request, customer_list)
     template_name = 'customer/list.html'
     context = {

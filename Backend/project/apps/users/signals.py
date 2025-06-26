@@ -73,49 +73,61 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         # Listado de Permisos Como Rol de Secretaria
         permisos_secretaria_generales = [
             'puede_ver_perfil_usuario',
+
+            # -------- CREAR
             'puede_crear_informacion_personal_cliente',
-            'puede_realizar_consultar_de_clientes',
-            'puede_visualizar_el_registro_clientes',
-            'puede_visualizar_detalle_cliente',
             'puede_crear_informacion_laboral_cliente',
-            'puede_editar_informacion_laboral_cliente',
-            'puede_visualizar_detalle_informacion_laboral_cliente',
-            'puede_crear_informacion_destino_credito',
-            'puede_editar_informacion_destino_credito',
-            'puede_visualizar_detalle_informacion_destino_credito',
+            #'puede_crear_informacion_destino_credito',
             'puede_crear_direccion',
-            'puede_ver_detalle_direccion',
             'puede_crear_referencias',
-            'puede_ver_detalle_referencias',
             'puede_subir_imagenes',
-            'puede_descargar_imagenes',
             'puede_subir_archivos',
-            'puede_descargar_archivos',
             'puede_crear_informacion_credito',
-            'puede_realizar_consultas_informacion_credito',
-            'puede_ver_registros_credito',
-            'puede_ver_detalle_credito',
             'puede_crear_registro_desembolso',
             'puede_crear_registro_garantia',
-            'puede_ver_listado_plan_pagos_de_credito',
-            'puede_descargar_plan_de_pagos_de_credito',
-            'puede_ver_listado_de_cuotas_vencidas',
-            'puede_ver_detalle_garantia',
-            'puede_ver_listado_de_garantias_del_credito',
-            'puede_ver_detalle_desembolso',
-            'puede_ver_listado_de_desembolsos_aplicados_del_credito',
-            'puede_ver_detalle_estado_cuenta_credito',
-            'puede_descargar_estado_cuenta_credito',
-            'puede_consultar_cuota_por_cobrar',
-            'puede_descargar_informe_de_cuotas',
             'puede_crear_boleta_pago',
-            'puede_realizar_consultas_boleta_pagos',
-            'puede_ver_registros_boletas_pagos',
-            'puede_ver_detalle_boleta_pago',
+            
+            # ------- EDITAR
+            'puede_editar_informacion_laboral_cliente',
+
+            # ------- DESCARGAR
+            'puede_descargar_archivos',
+            'puede_descargar_imagenes',
+            'puede_descargar_plan_de_pagos_de_credito',
+            'puede_descargar_estado_cuenta_credito',
+            'puede_descargar_informe_de_cuotas',
             'puede_descargar_imagen_boleta_pago',
-            'puede_ver_detalle_recibo_pago',
-            'puede_buscar_registro_bancos',
+
+            # -------- VISUALIZAR
+            'puede_visualizar_el_registro_clientes',
+            'puede_ver_registros_credito',
+            'puede_ver_listado_plan_pagos_de_credito',
+            'puede_ver_listado_de_cuotas_vencidas',
+            'puede_ver_listado_de_garantias_del_credito',
+            'puede_ver_listado_de_desembolsos_aplicados_del_credito',
+            'puede_ver_registros_boletas_pagos',
             'puede_ver_listado_registro_bancos',
+
+            # -------- CONSULTAR
+            'puede_realizar_consultas_informacion_credito',
+            'puede_realizar_consultar_de_clientes',
+            'puede_consultar_cuota_por_cobrar',
+            'puede_realizar_consultas_boleta_pagos',
+            'puede_buscar_registro_bancos',
+
+            # ------- DETALLE
+            'puede_visualizar_detalle_cliente',
+            'puede_visualizar_detalle_informacion_laboral_cliente',
+            'puede_visualizar_detalle_informacion_destino_credito',
+            'puede_ver_detalle_direccion',
+            'puede_ver_detalle_referencias',
+            'puede_ver_detalle_credito',
+            'puede_ver_detalle_garantia',
+            'puede_ver_detalle_desembolso',
+            'puede_ver_detalle_estado_cuenta_credito',
+            'puede_ver_detalle_boleta_pago',
+            'puede_ver_detalle_recibo_pago',  
+            
         ]
 
         # Asignar solo los permisos faltantes
@@ -138,47 +150,52 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         # Listado de Permisos Como Rol de Secretaria
         permisos_secretaria_generales = [
             'puede_ver_perfil_usuario',
+            # ----- CREAR ---------
             'puede_crear_informacion_personal_cliente',
-            'puede_realizar_consultar_de_clientes',
-            'puede_visualizar_el_registro_clientes',
-            'puede_visualizar_detalle_cliente',
             'puede_crear_informacion_laboral_cliente',
-            'puede_editar_informacion_laboral_cliente',
-            'puede_visualizar_detalle_informacion_laboral_cliente',
-            'puede_crear_informacion_destino_credito',
-            'puede_editar_informacion_destino_credito',
-            'puede_visualizar_detalle_informacion_destino_credito',
             'puede_crear_direccion',
-            'puede_ver_detalle_direccion',
             'puede_crear_referencias',
-            'puede_ver_detalle_referencias',
             'puede_subir_imagenes',
-            'puede_descargar_imagenes',
             'puede_subir_archivos',
-            'puede_descargar_archivos',
-            'puede_crear_informacion_credito',
-            'puede_realizar_consultas_informacion_credito',
-            'puede_ver_registros_credito',
-            'puede_ver_detalle_credito',
             'puede_crear_registro_desembolso',
             'puede_crear_registro_garantia',
+            #'puede_crear_informacion_credito',
+
+            # ------- CONSULTAS -------
+            'puede_realizar_consultar_de_clientes',
+            #'puede_realizar_consultas_informacion_credito',
+            
+            
+            # ------ VISUALIZAR
+            'puede_visualizar_el_registro_clientes',
+            'puede_visualizar_detalle_cliente',
+            'puede_visualizar_detalle_informacion_laboral_cliente',
+            'puede_visualizar_detalle_informacion_destino_credito',
+            
+            'puede_ver_registros_credito',
             'puede_ver_listado_plan_pagos_de_credito',
-            'puede_descargar_plan_de_pagos_de_credito',
             'puede_ver_listado_de_cuotas_vencidas',
-            'puede_ver_detalle_garantia',
             'puede_ver_listado_de_garantias_del_credito',
-            'puede_ver_detalle_desembolso',
             'puede_ver_listado_de_desembolsos_aplicados_del_credito',
+
+            # -------- DETALLE --------
+            'puede_ver_detalle_direccion',
+            'puede_ver_detalle_referencias',
+            'puede_ver_detalle_credito',
+            'puede_ver_detalle_garantia',
+            'puede_ver_detalle_desembolso',
             'puede_ver_detalle_estado_cuenta_credito',
+
+            # --------- DESCARGAR -
+            'puede_descargar_imagenes',
+            'puede_descargar_archivos',
+            
+            'puede_descargar_plan_de_pagos_de_credito',
             'puede_descargar_estado_cuenta_credito',
-            'puede_consultar_cuota_por_cobrar',
             'puede_descargar_informe_de_cuotas',
-            'puede_crear_boleta_pago',
-            'puede_realizar_consultas_boleta_pagos',
-            'puede_ver_registros_boletas_pagos',
-            'puede_ver_detalle_boleta_pago',
-            'puede_descargar_imagen_boleta_pago',
-            'puede_ver_detalle_recibo_pago',
+           
+          
+
             
         ]
 

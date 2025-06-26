@@ -1,5 +1,5 @@
 # Serializador
-from .serializers import CustomerSerializer, ImmigrationStatusSerializer
+from .serializers import CustomerSerializer, ImmigrationStatusSerializer, CreditCounselorSerializer
 
 # API
 from rest_framework import viewsets, status, generics
@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 # Models
-from apps.customers.models import Customer, ImmigrationStatus
+from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor
 
 from django.db.models import Q
 
@@ -70,3 +70,19 @@ class CustomerAcceptViewSet(viewsets.ModelViewSet):
 class ImmigrationStatusViewSet(viewsets.ModelViewSet):
     serializer_class = ImmigrationStatusSerializer
     queryset = ImmigrationStatus.objects.all()
+
+class CreditCounselorSerializerViewSet(viewsets.ModelViewSet):
+    serializer_class = CreditCounselorSerializer
+
+    queryset = CreditCounselor.objects.filter(status=True)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
+        if search_term:
+            queryset = queryset.filter(
+                Q(nombre__icontains=search_term) |
+                Q(apellido__icontains=search_term) |
+                Q(codigo_asesor__icontains=search_term)
+                ) # Filtrar por el término de búsqueda
+        return queryset

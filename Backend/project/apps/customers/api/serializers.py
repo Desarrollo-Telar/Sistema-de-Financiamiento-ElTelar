@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # Models
-from apps.customers.models import Customer, ImmigrationStatus
+from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,7 +27,8 @@ class CustomerSerializer(serializers.ModelSerializer):
             "immigration_status_id",
             "description",
             "asesor",
-            "fehca_vencimiento_de_tipo_identificacion"
+            "fehca_vencimiento_de_tipo_identificacion",
+            "new_asesor_credito",
         ]
     def to_representation(self, instance):
         return {
@@ -51,6 +52,7 @@ class CustomerSerializer(serializers.ModelSerializer):
             "immigration_status_id": instance.immigration_status_id.id,
             'customer_code':instance.customer_code,
             "description":instance.description,
+            "new_asesor_credito":instance.new_asesor_credito,
             "creation_date":instance.creation_date.date()
         }
 
@@ -58,4 +60,9 @@ class CustomerSerializer(serializers.ModelSerializer):
 class ImmigrationStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = ImmigrationStatus
+        fields = '__all__'
+
+class CreditCounselorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CreditCounselor
         fields = '__all__'

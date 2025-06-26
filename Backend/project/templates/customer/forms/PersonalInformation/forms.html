@@ -164,12 +164,14 @@
       </div>
     </div>
 
+    {% if not request.user.role_name == 'Asesor de Crédito' %}
     <div class="col-12">
       <div class="form-group">
         <label for="asesor">Asesor del Credito</label>
-        <input type="text" name="asesor" id="asesor" class="form-control" required>
+        <select class="form-control asesor" name="asesor" id="asesor" style="width: 100%" value="{{user_id}}"></select>
       </div>
     </div>
+    {% endif %}
 
     <hr class="my-4">
     <h5>Dirección</h5>
@@ -202,7 +204,7 @@
       <div class="form-group">
         <label for="state1">Municipio</label>
         <select class="form-control state1" name="state1" id="state1" style="width: 100%"></select>
-        <a href="{% url 'addresses:crear_municipio' %}">Añadir municipio</a>
+        
       </div>
     </div>
 
