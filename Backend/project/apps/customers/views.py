@@ -150,8 +150,7 @@ class CustomerSearch(ListView):
 
             filters = Q()
 
-            asesor_autenticado = CreditCounselor.objects.filter(usuario=self.request.user).first()
-            
+
             # Definir los filtros utilizando Q objects
             filters |= Q(first_name__icontains=query) 
             filters |= Q(customer_code__icontains=query)
@@ -159,11 +158,7 @@ class CustomerSearch(ListView):
             filters |= Q(type_identification__icontains=query)
             filters |= Q(gender__icontains=query)
 
-            if asesor_autenticado is not None and self.request.user.rol.role_name == 'Asesor de Crédito':
-                filters &= Q(new_asesor_credito=asesor_autenticado)
-            
-            
-                
+ 
             # Filtrar los objetos Customer usando los filtros definidos
             return Customer.objects.filter(filters)
         except Exception as e:
