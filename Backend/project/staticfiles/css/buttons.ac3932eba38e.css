@@ -1,0 +1,94 @@
+.btn_add,
+.btn_edit,
+.btn_guardar,
+.btn_cancel,
+.btn_siguiente {
+    display: inline-block;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.5;
+    min-width: 120px;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+}
+
+/* Botón Agregar */
+.btn_add {
+    background-color: white;
+    border: 1px solid #0B090A;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    color: #0B090A;
+    text-decoration: none;
+}
+
+/* Botón Editar */
+.btn_edit {
+    background-color: #0B090A;
+    color: #efefef;
+    text-decoration: none;
+    border-radius: 2rem;
+    padding: 0.5rem 1.5rem;
+}
+
+/* Botón Guardar */
+.btn_guardar {
+    background-color: #e5383b;
+    border: 1px solid #e5383b;
+    color: #fdf3f3;
+    text-decoration: none;
+    border-radius: 2rem;
+    padding: 0.5rem 2rem;
+}
+
+.btn_guardar:hover {
+    background-color: #b22325;
+    color: #fdf3f3;
+    border: 1px solid #b22325;
+}
+
+/* Botón Cancelar */
+.btn_cancel {
+    background-color: white;
+    border: 1px solid #e5383b;
+    border-radius: 2rem;
+    padding: 0.5rem 2rem;
+    color: #e5383b;
+    text-decoration: none;
+}
+
+.btn_cancel:hover {
+    background: linear-gradient(#b22325, #d42e31);
+    color: white;
+}
+
+/* Botón Siguiente */
+.btn_siguiente {
+    background-color: #fef2f2;
+    border: 1px solid #fea3a5;
+    color: #ba181b;
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+}
+
+.btn_siguiente:hover {
+    background-color: #e02226;
+    color: #fef2f2;
+}
+
+@media (max-width: 576px) {
+    .btn_add,
+    .btn_edit,
+    .btn_guardar,
+    .btn_cancel,
+    .btn_siguiente {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.5rem;
+    }
+}

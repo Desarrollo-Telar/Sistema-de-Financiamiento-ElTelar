@@ -1,0 +1,20 @@
+.box {
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border-radius: 2rem;
+}
+
+.scroll-container {
+
+  height: 25rem;
+  /* Altura del contenedor */
+  overflow-y: auto;
+  /* Scroll vertical automático */
+  overflow-x: hidden;
+  /* Oculta el scroll horizontal */
+  border: 1px solid #ccc;
+  /* Bordes para distinguir el área */
+  padding: 10px;
+}
