@@ -11,10 +11,10 @@ from .models import Address
 from apps.customers.models import Customer
 
 # CRUD
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic import CreateView, DeleteView, UpdateView
-from django.db.models import Q 
+from django.views.generic import CreateView
+
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 # DECORADORES
 from django.contrib.auth.decorators import login_required
@@ -34,7 +34,7 @@ class AddressCreateView(CreateView):
         cliente = get_object_or_404(Customer, customer_code= str(customer_code))
         
         context = {
-            'title':'ELTELAR - DIRECCIONES',
+            'permisos':recorrer_los_permisos_usuario(request),
             'form':AddressForms,            
             'customer_code':cliente.customer_code
         }
@@ -105,7 +105,7 @@ def addressUpdateView(request, id,customer_code):
             form = AddressForms(instance=address)
             
             context = {
-                    'title':'ELTELAR - DIRECCIONES',
+                    'permisos':recorrer_los_permisos_usuario(request),
                     'form':form,
                     
                     'customer_code':cliente.customer_code,
@@ -119,7 +119,7 @@ def addressUpdateView(request, id,customer_code):
         form = AddressForms(instance=address)
         
         context = {
-                'title':'ELTELAR - DIRECCIONES',
+                'permisos':recorrer_los_permisos_usuario(request),
                 'form':form,
                 
                 'customer_code':cliente.customer_code,
@@ -133,6 +133,6 @@ def addressUpdateView(request, id,customer_code):
 def crear_municipio(request):
     template_name = 'addresses/created_municipio.html'
     context = {
-        'title':'ELTELAR'
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)

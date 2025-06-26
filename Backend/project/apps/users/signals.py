@@ -14,6 +14,27 @@ from rest_framework.authtoken.models import Token
 
 import random
 
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+
+
+
+@receiver(post_save, sender=PermisoUsuario)
+def despues_de_guardar(sender, instance, created, **kwargs):
+    if created:
+        print("🆕 Registro nuevo guardado")
+        permiso_otorgado = PermisoUsuario.objects.filter(user=instance.user, permiso=instance.permiso).count()
+        if permiso_otorgado > 1:
+            instance.delete()
+
+    else:
+        print("🔄 Registro existente actualizado")
+        permiso_otorgado = PermisoUsuario.objects.filter(user=instance.user, permiso=instance.permiso).count()
+        if permiso_otorgado > 1:
+            instance.delete()
+
+
+
 
 @receiver(post_save, sender=User)
 def create_auth_token(sender, instance=None, created=False, **kwargs):

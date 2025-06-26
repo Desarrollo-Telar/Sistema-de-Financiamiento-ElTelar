@@ -1,9 +1,6 @@
 
 # ...abs
-from django.shortcuts import render, get_object_or_404, redirect
-
-# Paginacion
-from project.pagination import paginacion
+from django.shortcuts import render,  redirect
 
 # Tiempo
 from datetime import datetime
@@ -11,23 +8,18 @@ from datetime import datetime
 # Modelos
 from apps.financings.models import Recibo
 
-# Manejo de mensajes
-from django.contrib import messages
 
 # Manejador de filtros
-from django.db.models import Q
 from django.db.models import Q, Sum
-
-# REPORTE EXCEL
-
-from apps.financings.models import Banco, Payment
-from openpyxl import Workbook
-from django.http import HttpResponse
-
 from apps.financings.formato import formatear_numero
 
+# SCRIPTS
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
+# Decoradores
+from project.decorador import permiso_requerido
 
+@permiso_requerido('puede_descargar_reporte_acreedores')
 def reportes_generales_acreedores(request):
     template_name = 'reports/base.html'
     mes = datetime.now().month
@@ -94,7 +86,7 @@ def reportes_generales_acreedores(request):
     to = formatear_numero(total_seleccionado)
 
     context = {
-        'title': 'EL TELAR - REPORTES SOBRE PAGOS DE ACREEDORES',
+        'title': 'Reporte de pagos sobre los acreedores.',
         'posicion': f'ACREEDORES / {filtro_seleccionado}',
         'reportes': reportes,
         'filters':filters,
@@ -103,10 +95,12 @@ def reportes_generales_acreedores(request):
         'filtro_seleccionado': filtro_seleccionado,
         'total_seleccionado': to,
         'total':formatear_numero(total),
-        'descarga_acreedor':True
+        'descarga_acreedor':True,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
+@permiso_requerido('puede_descargar_reporte_seguros')
 def reportes_generales_seguros(request):
     template_name = 'reports/base.html'
     mes = datetime.now().month
@@ -171,7 +165,7 @@ def reportes_generales_seguros(request):
     to = formatear_numero(total_seleccionado)
 
     context = {
-        'title': 'EL TELAR - REPORTES SOBRE PAGOS DE SEGUROS',
+        'title': 'Reporte de pagos de seguros.',
         'posicion': f'SEGUROS / {filtro_seleccionado}',
         'reportes': reportes,
         'filters':filters,
@@ -181,6 +175,7 @@ def reportes_generales_seguros(request):
         'total_seleccionado': to,
         'total':formatear_numero(total),
         'descarga_seguro':True,
+        'permisos':recorrer_los_permisos_usuario(request),
         
     }
     return render(request, template_name, context)

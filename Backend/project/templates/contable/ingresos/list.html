@@ -20,10 +20,13 @@
     </div>
 
     <div class="row" style="margin-bottom: 2rem;">
+        {% if permisos.puede_consultar_ingresos %}
         <div class="col d-flex justify-content-start" style="display: flex; align-items: center; justify-content: end;">
             {% include 'contable/ingresos/snippets/search.html' with query=query %}
 
         </div>
+        {% endif %}
+        {% if permisos.puede_crear_ingresos %}
         <div class="col d-flex flex-row-reverse">
             <a class="btn_guardar" href="{% url 'contable:ingresos_create'%}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus"
@@ -33,6 +36,7 @@
                 </svg>
                 Añadir Ingreso nuevo</a>
         </div>
+        {% endif %}
         
         <div class="col-1">
             {% include 'contable/ingresos/snippets/filters.html' %}

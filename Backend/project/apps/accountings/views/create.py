@@ -1,27 +1,17 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 
 # Manejo de mensajes
 from django.contrib import messages
 
 # Models
-from apps.accountings.models import Creditor, Income, Insurance, Egress
+from apps.accountings.models import Creditor, Insurance
 from apps.financings.models import Payment
 
-# LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
-from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
-from django.db.models import Q
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo, usuario_administrador, usuario_secretaria
-from django.utils.decorators import method_decorator
+from project.decorador import usuario_activo, permiso_requerido
 
-# Paginacion
-from project.pagination import paginacion
 
 # Formularios
 from apps.accountings.forms import AcreedorForm, SeguroForm, IngresoForm, EgresoForm
@@ -29,11 +19,12 @@ from apps.accountings.forms import AcreedorForm, SeguroForm, IngresoForm, Egreso
 # MENSAJES
 from django.contrib import messages
 
-
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_crear_acreedor')
 def add_acreedor(request):     
     template_name = 'contable/create.html'
     if request.method == 'POST':
@@ -82,13 +73,14 @@ def add_acreedor(request):
     context = {
         'form':form,
         
-        'title':'ELTELAR ',
+        'title':'Creacion de un nuevo Acreedor. ',
+        'permisos':recorrer_los_permisos_usuario(request),
     } 
 
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_crear_seguro')
 def add_seguro(request):     
     template_name = 'contable/create.html'
     if request.method == 'POST':
@@ -127,13 +119,14 @@ def add_seguro(request):
     context = {
         'form':form,
         
-        'title':'ELTELAR ',
+        'title':'Creacion de un Seguro Nuevo.',
+        'permisos':recorrer_los_permisos_usuario(request),
     } 
 
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_crear_ingresos')
 def add_ingreso(request):     
     template_name = 'contable/create.html'
     if request.method == 'POST':
@@ -147,11 +140,7 @@ def add_ingreso(request):
             boleta = form.cleaned_data.get('boleta')
             monto = form.cleaned_data.get('monto')
             descripcion = form.cleaned_data.get('descripcion')
-            
-
-            
-            
-            ingreso = form.save()
+            form.save()
             
             
             boleta = Payment(
@@ -172,13 +161,14 @@ def add_ingreso(request):
     context = {
         'form':form,
         
-        'title':'ELTELAR ',
+        'title':'Creacion de un Ingreso Nuevo. ',
+        'permisos':recorrer_los_permisos_usuario(request),
     } 
 
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_crear_egresos')
 def add_egresos(request):     
     template_name = 'contable/create.html'
     if request.method == 'POST':
@@ -195,7 +185,7 @@ def add_egresos(request):
             codigo_egreso = form.cleaned_data.get('codigo_egreso')
             
 
-            ingreso = form.save()
+            form.save()
             
             if codigo_egreso != 'ACREEDORES' or codigo_egreso !='PAGO DE SEGUROS':
             
@@ -215,8 +205,8 @@ def add_egresos(request):
     form = EgresoForm
     context = {
         'form':form,
-        
-        'title':'ELTELAR ',
+        'title':'Creacion de un Egreso Nuevo. ',
+        'permisos':recorrer_los_permisos_usuario(request),
     } 
 
     return render(request, template_name, context)

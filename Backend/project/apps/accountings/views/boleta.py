@@ -1,37 +1,26 @@
 
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render,  redirect
 
 # Manejo de mensajes
 from django.contrib import messages
 
 # Models
-from apps.accountings.models import Creditor, Income, Insurance, Egress
-from apps.financings.models import Payment
-
-# LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
-from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
-from django.db.models import Q
+from apps.accountings.models import Egress
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo, usuario_administrador, usuario_secretaria
+from project.decorador import usuario_activo, permiso_requerido
 from django.utils.decorators import method_decorator
 
-# Paginacion
-from project.pagination import paginacion
 
 # Formularios
-from apps.accountings.forms import AcreedorForm, SeguroForm, IngresoForm, EgresoForm
 from apps.financings.forms import BoletaSeguroForm, BoletaAcreedorForm
-# MENSAJES
-from django.contrib import messages
+
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_crear_boleta_pago')
 def add_boleta_seguro(request):     
     template_name = 'contable/create.html'
     if request.method == 'POST':
@@ -60,14 +49,14 @@ def add_boleta_seguro(request):
     form = BoletaSeguroForm
     context = {
         'form':form,
-        
-        'title':'ELTELAR ',
+        'title':'Registro de Boleta para Seguro ',
+        'permisos':recorrer_los_permisos_usuario(request),
     } 
 
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_crear_boleta_pago')
 def add_boleta_acreedor(request):     
     template_name = 'contable/create.html'
     if request.method == 'POST':
@@ -97,8 +86,8 @@ def add_boleta_acreedor(request):
     form = BoletaAcreedorForm
     context = {
         'form':form,
-        
-        'title':'ELTELAR ',
+        'title':'Registro de Boleta para Acreedor. ',
+        'permisos':recorrer_los_permisos_usuario(request),
     } 
 
     return render(request, template_name, context)

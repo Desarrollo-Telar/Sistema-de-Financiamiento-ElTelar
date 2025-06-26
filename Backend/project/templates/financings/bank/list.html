@@ -22,9 +22,11 @@
     <!-- Filtros y botones -->
     <div class="row align-items-center mb-4 gx-3 gy-2">
         <!-- Buscador -->
+         {% if permisos.puede_buscar_registro_bancos %}
         <div class="col-12 col-md-6 col-lg-5">
             {% include 'financings/bank/snippets/search.html' with query=query %}
         </div>
+        {% endif %}
 
         <!-- Botones -->
         <div class="col-12 col-md-6 col-lg-5">
@@ -37,6 +39,7 @@
         </div>
 
         <!-- Botón de recargar -->
+         
         <div class="col-2 col-md-2 col-lg-1">
             <a href="{% url 'financings:comparacion_bancos' %}" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"

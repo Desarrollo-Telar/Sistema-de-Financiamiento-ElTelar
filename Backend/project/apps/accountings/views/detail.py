@@ -3,35 +3,24 @@ from django.shortcuts import render, get_object_or_404, redirect
 # TIEMPO
 from datetime import datetime,timedelta
 
-# Manejo de mensajes
-from django.contrib import messages
-
 # Models
 from apps.accountings.models import Creditor, Insurance,  Egress, Income
 from apps.financings.models import Payment, PaymentPlan, AccountStatement
 
-# LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
-from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
-from django.db.models import Q
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo, usuario_administrador, usuario_secretaria
+from project.decorador import usuario_activo, usuario_administrador, permiso_requerido
 from django.utils.decorators import method_decorator
 
 # Paginacion
 from project.pagination import paginacion
+
 # TAREA ASINCRONICO
-from apps.financings.task import cambiar_plan
 from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_acreedores
 
-
-# MENSAJES
-from django.contrib import messages
 
 # CLASES
 from apps.financings.clases.paymentplan import PaymentPlan as PlanPagoos
@@ -67,7 +56,7 @@ def total_capital_pagada(estado_cuenta):
 
 # Create your views here.
 @login_required
-@usuario_administrador
+@permiso_requerido('puede_ver_detalle_acreedores')
 def detail_acreedores(request, id):
     template_name = 'contable/acreedores/detail.html'
     object_list = get_object_or_404(Creditor, id=id)
@@ -82,7 +71,7 @@ def detail_acreedores(request, id):
     plan = planPagosCredito(object_list).generar_plan()
     estado_cuenta = AccountStatement.objects.filter(acreedor=object_list).order_by('issue_date')
     
-    cambiar_plan()
+    
     generar_todas_las_cuotas_acreedores(object_list.codigo_acreedor)
 
     if siguiente_pago is None:
@@ -95,7 +84,7 @@ def detail_acreedores(request, id):
     
 
     context = {
-        'title':'EL TELAR',
+        'title':'Detalle de Acreedor.',
         'object_list':object_list,
         'plan':plan,
         'siguiente_pago':siguiente_pago,
@@ -106,21 +95,22 @@ def detail_acreedores(request, id):
         'total_moras':total_mora_pagada(estado_cuenta),
         'total_intereses':total_interes_pagada(estado_cuenta),
         'total_capitales':total_capital_pagada(estado_cuenta),
+        'permisos':recorrer_los_permisos_usuario(request),
     }
         
     return render(request, template_name, context)
 
 @login_required
-@usuario_administrador
+@permiso_requerido('puede_ver_detalle_seguros')
 def detail_seguro(request, id):
     template_name = 'contable/seguros/detail.html'
     object_list = get_object_or_404(Insurance, id=id)
     siguiente_pago = PaymentPlan.objects.filter(seguro=object_list).order_by('-id').first()
     plan = planPagosCredito(object_list).generar_plan()
     estado_cuenta = AccountStatement.objects.filter(seguro=object_list)
-    cambiar_plan()
+    
     context = {
-        'title':'EL TELAR',
+        'title':'Detalle de Seguro.',
         'object_list':object_list,
         'plan':plan,
         'siguiente_pago':siguiente_pago,
@@ -131,33 +121,36 @@ def detail_seguro(request, id):
         'total_moras':total_mora_pagada(estado_cuenta),
         'total_intereses':total_interes_pagada(estado_cuenta),
         'total_capitales':total_capital_pagada(estado_cuenta),
+        'permisos':recorrer_los_permisos_usuario(request),
     }
         
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_detalle_ingresos')
 def detail_ingreso(request, id):
     template_name = 'contable/ingresos/detail.html'
     object_list = get_object_or_404(Income, id=id)
   
     context = {
-        'title':'EL TELAR',
-        'object_list':object_list
+        'title':'Detalle de Ingreso.',
+        'object_list':object_list,
+        'permisos':recorrer_los_permisos_usuario(request),
         
     }
         
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_ver_detalle_egresos')
 def detail_egreso(request, id):
     template_name = 'contable/egresos/detail.html'
     object_list = get_object_or_404(Egress, id=id)
   
     context = {
-        'title':'EL TELAR',
-        'object_list':object_list
+        'title':'Detalle de Egreso.',
+        'object_list':object_list,
+        'permisos':recorrer_los_permisos_usuario(request),
         
     }
         

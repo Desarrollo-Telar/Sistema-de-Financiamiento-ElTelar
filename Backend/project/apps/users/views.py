@@ -107,6 +107,7 @@ class userCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Crear un Nuevo Usuario'
         context['accion'] = 'Añadir Usuario'
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
         return context
 
 # ----- MODIFICAR INFORMACION DE USUARIOS ----- #
@@ -125,6 +126,7 @@ class userUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Actualizar Usuario'
         context['accion'] = 'Actualizar Usuario'
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
         return context
 
 # ----- CAMBIO DE CONTRASEÑA DE USUARIOS ----- #
@@ -140,7 +142,7 @@ class ChangePassword(View):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {
             'form':self.form_class, 
-            'title': 'EL TELAR - CAMBIAR CONTRASEÑA',
+            'permisos':recorrer_los_permisos_usuario(request),
             'info': 'CAMBIAR CONTRASEÑA'
             })
 
@@ -162,7 +164,7 @@ class ChangePassword(View):
             form = self.form_class(request.POST)
             return render(request, self.template_name, {
             'form':form, 
-            'title': 'CAMBIAR CONTRASEÑA',
+            'permisos':recorrer_los_permisos_usuario(request),
             'info': 'CAMBIAR CONTRASEÑA'
             })
 
@@ -185,7 +187,7 @@ def change_password_user(request, id):
 
     context = {
         'form': form,
-        'title': 'CAMBIAR CONTRASEÑA',
+        'permisos':recorrer_los_permisos_usuario(request),
         'info': 'CAMBIAR CONTRASEÑA'
     }
     return render(request, template_name, context)
@@ -232,6 +234,7 @@ class UserSearch(ListView):
         context['query'] = self.query()
         context['title'] = 'ELTELAR - Buscar'
         context['count'] = context['object_list'].count()
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
         return context
 
 # ----- VER DETALLES DE UN USUARIOS ----- #
@@ -241,7 +244,8 @@ def detail_user(request,username):
     user_id = get_object_or_404(User, username=username)
     template_name = 'user/detail.html'
     context = {
-        'title':'EL TELAR - {}'.format(user_id),
-        'user_list':user_id
+        'title':'{}'.format(user_id),
+        'user_list':user_id,
+        'permisos':recorrer_los_permisos_usuario(request)
     }
     return render(request, template_name, context)

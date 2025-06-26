@@ -20,6 +20,9 @@ from django.contrib.auth.decorators import login_required
 from project.decorador import usuario_activo
 from django.utils.decorators import method_decorator
 
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+
 # Create your views here.
 
 @login_required
@@ -46,7 +49,7 @@ def create_working_information(request, customer_code):
     context = {
         'form':form,
         'customer_code':customer_code,
-        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
+        'permisos':recorrer_los_permisos_usuario(request)
     }
     if request.method == 'POST':
         form = WorkingInformationForms(request.POST)
@@ -80,7 +83,7 @@ def create_other_information(request, customer_code):
     context = {
         'form':form,
         'customer_code':customer_code,
-        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
+        'permisos':recorrer_los_permisos_usuario(request)
     }
     if request.method == 'POST':
         form = OtherSourcesOfIncomeForms(request.POST)
@@ -142,7 +145,7 @@ def update_working_information(request, id, customer_code):
             'form':form,
             'working_id':id,
             'customer_code':customer_code,
-            'title':'ELTELAR - CLIENTE {}'.format(customer_code),
+            'permisos':recorrer_los_permisos_usuario(request)
         }
         return render(request, template_name, context)
 
@@ -170,7 +173,7 @@ def update_other_information(request, id, customer_code):
         'form': form,
         'other_id': other.id,
         'customer_code': customer_code,
-        'title': 'ELTELAR - CLIENTE {}'.format(customer_code),
+        'permisos':recorrer_los_permisos_usuario(request)
     }
     return render(request, template_name, context)
 
@@ -194,7 +197,7 @@ def create_references_customer(request, customer_code):
     context = {
         'form':form,
         'customer_code':customer_code,
-        'title':'ELTELAR - CLIENTE {}'.format(customer_code),
+        'permisos':recorrer_los_permisos_usuario(request)
     }
 
     return render(request, template_name, context)
@@ -227,7 +230,7 @@ def update_references_customer(request, id,customer_code):
             'form':form,
             'references_id':id,
             'customer_code':customer_code,
-            'title':'ELTELAR - CLIENTE {}'.format(customer_code),
+            'permisos':recorrer_los_permisos_usuario(request)
         }
 
         return render(request, template_name, context)

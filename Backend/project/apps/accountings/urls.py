@@ -55,8 +55,10 @@ urlpatterns = [
     # FILTRO
     path('ingresos/pendiente/', views.pendiente_ingresos_vincular, name='pendiente_ingresos_vincular'),
     path('ingresos/completados/', views.ingresos_vinculados, name='ingresos_vinculados'),
+
     path('egresos/pendiente/', views.pendiente_egresos_vincular, name='pendiente_egresos_vincular'),
     path('egresos/completados/', views.egresos_vinculados, name='egresos_vinculados'),
+    
     path('seguros/seguros_cancelados/',views.seguro_cancelado, name='seguro_cancelado'),
     path('seguros/atraso_en_aportacion/',views.seguros_atraso_aportacion, name='seguros_atraso_aportacion'),
     path('seguros/atraso_por_fechas/',views.seguros_atraso_fechas, name='seguros_atraso_fechas'),

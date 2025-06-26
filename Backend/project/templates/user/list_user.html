@@ -18,9 +18,12 @@
     </div>
     <hr />
     <div class="row" style="margin-bottom: 2rem">
+        {% if permisos.puede_crear_usuario %}
         <div class="col d-flex flex-row-reverse">
             <a class="btn_add" href="{% url 'users:create'%}">Añadir usuario nuevo</a>
         </div>
+        {% endif %}
+        
         <div class="col-12 d-flex flex-row-reverse" style="margin-top: 2rem;">
             {% include 'user/snippets/search.html' with query=query %}
 
@@ -29,7 +32,14 @@
     </div>
     {% include 'user/table/table.html' %}
     <hr>
-{% include 'snippets/pages.html' %}
+<!-- Paginación -->
+    {% if page_obj %}
+    <div class="row mt-4">
+        <div class="col">
+            {% include 'snippets/pages.html' %}
+        </div>
+    </div>
+    {% endif %}
 
 </div>
 

@@ -21,7 +21,9 @@ from django.db.models import Q
 # DECORADORES
 from django.contrib.auth.decorators import login_required
 from project.decorador import usuario_activo
-from django.utils.decorators import method_decorator
+
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 # Create your views here.
 
@@ -48,6 +50,7 @@ def create_imagen_customer(request, customer_code):
     context = {
         'form': form,
         'customer_code':customer_code,
+        'permisos':recorrer_los_permisos_usuario(request)
     }
 
     return render(request, template_name, context)
@@ -77,6 +80,7 @@ def create_imagen_customer_address(request,address_id, customer_code):
         'form': form,
         'address_id':address_id.id,
         'customer_code':customer_code,
+        'permisos':recorrer_los_permisos_usuario(request)
     }
 
     return render(request, template_name, context)
@@ -105,7 +109,8 @@ def create_imagen_customer_guarantee(request,investment_plan_id, customer_code):
     context = {
         'form': form,
         'investment_plan_id':investment_plan_id.id,
-        'customer_code':customer_code
+        'customer_code':customer_code,
+        'permisos':recorrer_los_permisos_usuario(request)
     }
 
     return render(request, template_name, context)
@@ -138,7 +143,7 @@ def update_imagen(request, id, customer_code):
         'imagen_id':id,
         'imagen':imagen,
         'customer_code':customer_code,
-        'title':'ELTELAR - {}'.format(customer_code)
+        'permisos':recorrer_los_permisos_usuario(request)
     }
 
     return render(request, template_name, context)

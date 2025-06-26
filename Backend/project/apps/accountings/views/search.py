@@ -1,31 +1,21 @@
 
-
-from django.shortcuts import render, get_object_or_404, redirect
-
 # Manejo de mensajes
 from django.contrib import messages
 
 # Models
-from apps.accountings.models import Creditor, Insurance,  Egress, Income
-from apps.financings.models import Payment
+from apps.accountings.models import Creditor, Insurance,  Income
+
 
 # LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
 from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
 from django.db.models import Q
 
 # Decoradores
-from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo, usuario_administrador, usuario_secretaria
+from project.decorador import  permiso_requerido
 from django.utils.decorators import method_decorator
 
-# Paginacion
-from project.pagination import paginacion
-# Formularios
-from apps.accountings.forms import AcreedorForm, SeguroForm, IngresoForm, EgresoForm
+# Scripts
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 # MENSAJES
 from django.contrib import messages
@@ -68,7 +58,7 @@ class AcreedoresSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator(usuario_activo)
+    @method_decorator(permiso_requerido('puede_consultar_acreedores'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -77,10 +67,11 @@ class AcreedoresSearch(ListView):
         if not (context['object_list']):
             messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
-        context['title'] = 'ELTELAR - Buscar'
+        context['title'] = f'Registro de Acreedores con {self.query()}'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query()
         context['acreedores_list']  = context['object_list']
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
         return context
 
 class SeguroSearch(ListView):
@@ -122,7 +113,7 @@ class SeguroSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator(usuario_activo)
+    @method_decorator(permiso_requerido('puede_consultar_seguros'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -131,10 +122,11 @@ class SeguroSearch(ListView):
         if not (context['object_list']):
             messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
-        context['title'] = 'ELTELAR - Buscar'
+        context['title'] = f'Registro de Seguros con {self.query()}.'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query()
         context['object_list']  = context['object_list']
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
         return context
 
 class IngresoSearch(ListView):
@@ -175,7 +167,7 @@ class IngresoSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator(usuario_activo)
+    @method_decorator(permiso_requerido('puede_consultar_ingresos'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -184,10 +176,11 @@ class IngresoSearch(ListView):
         if not (context['object_list']):
             messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
-        context['title'] = 'ELTELAR - Buscar'
+        context['title'] = f'Registro de Ingresos con {self.query()}'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query()
         context['object_list']  = context['object_list']
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
         return context
 
 class EgresoSearch(ListView):
@@ -229,7 +222,7 @@ class EgresoSearch(ListView):
     def query(self):
         return self.request.GET.get('q')
     
-    @method_decorator(usuario_activo)
+    @method_decorator(permiso_requerido('puede_consultar_egresos'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
@@ -238,8 +231,9 @@ class EgresoSearch(ListView):
         if not (context['object_list']):
             messages.error(self.request,'No se encontrado ningun dato')
         context['query'] = self.query()
-        context['title'] = 'ELTELAR - Buscar'
+        context['title'] = f'Registro de Egresos con {self.query()}'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query()
         context['object_list']  = context['object_list']
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
         return context

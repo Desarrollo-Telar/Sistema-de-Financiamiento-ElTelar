@@ -27,10 +27,12 @@
         </div>
     </div>
     <div class="row" style="margin-top: 1rem;">
+        {% if permisos.puede_modificar_registro_ingreso %}
         <div class="col">
             <a href="{% url 'contable:ingresos_update' object_list.id%}" class="btn_guardar">Editar</a>
 
         </div>
+        {% endif %}
         <div class="col">
             <button onclick="window.history.back()" type="button" class="btn_cancel">Atras</button>
 

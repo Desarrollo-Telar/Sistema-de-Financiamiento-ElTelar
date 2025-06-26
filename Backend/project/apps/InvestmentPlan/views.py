@@ -18,7 +18,9 @@ from django.db.models import Q
 # Decoradores
 from django.contrib.auth.decorators import login_required
 from project.decorador import usuario_activo
-from django.utils.decorators import method_decorator
+
+#SCRIPTS
+from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 # Create your views here.
 
@@ -44,7 +46,8 @@ def create_plan_financiamiento(request, customer_code):
     form = InvestmentPlanForms
     context = {
         'form':form,
-        'customer_code':customer_code
+        'customer_code':customer_code,
+        'permisos':recorrer_los_permisos_usuario(request)
     }
     return render(request, template_name, context)
 
@@ -91,6 +94,6 @@ def update_plan_financiamiento(request,id,customer_code):
             'form':form,
             'customer_code':customer_code,
             'investment_plan_id':id,
-            'title':'ELTELAR CLIENTE{} - PLAN DE INVERSION'.format(customer_code),
+            'permisos':recorrer_los_permisos_usuario(request)
         }
         return render(request, template_name, context)

@@ -38,31 +38,39 @@
                                     ...
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
+                                    {% if permisos.puede_ver_detalle_usuario %}
                                     <li><a class="dropdown-item" href="{% url 'users:detail' user.username %}">Ver
                                             informacion</a></li>
+                                    {% endif %}
+                                    {% if permisos.puede_editar_usuario %}
                                     <li>
                                         <a class="dropdown-item" href="{% url 'users:update' user.pk %}">Editar
                                             informacion</a>
                                     </li>
+                                    
                                     <li>
                                         <a class="dropdown-item" href="{% url 'users:update_password_user' user.id %}">
                                             Cambiar su contraseña
                                         </a>
                                     </li>
+                                    {% endif %}
                                     <hr>
                                     {% if user.status %}
+                                    {% if permisos.puede_dar_de_baja_un_usuario %}
                                     <li>
                                         <a class="dropdown-item" href="{% url 'users:deactivate' user.id%}">
                                             Inhabilitar Usuario
                                         </a>
                                     </li>
+                                    {% endif %}
                                     {% else %}
-
+                                    {% if permisos.puede_habilitar_usuario %}
                                     <li>
                                         <a class="dropdown-item" href="{% url 'users:activar' user.id%}">
                                             Activar Usuario
                                         </a>
                                     </li>
+                                    {% endif %}
                                     {% endif %}
 
                                 </ul>
