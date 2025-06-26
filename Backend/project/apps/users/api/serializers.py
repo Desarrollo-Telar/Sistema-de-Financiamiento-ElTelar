@@ -1,10 +1,8 @@
 # SERIALIZADOR
 from rest_framework import serializers
 
-
-
 # MODELS
-from apps.users.models import User
+from apps.users.models import User, PermisoUsuario
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,3 +26,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         ]
 
+class PermisoUsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PermisoUsuario
+        fields = '__all__'

@@ -44,6 +44,11 @@ export const urls = {
     api_url_desembolso: `${baseUrl}/financings/api/desembolso/`,
     api_url_pago: `${baseUrl}/financings/api/payment/`,
     api_url_cuota: `${baseUrl}/financings/api/cuota/`,
+
+    // Roles y Permisos
+    api_url_permiso: `${baseUrl}/roles_permisos/api/permisos/`,
+    api_url_rol: `${baseUrl}/roles_permisos/api/role/`,
+    api_url_permiso_usuario:  `${baseUrl}/users/api/permisos_usuarios/`,
     
 }
 
@@ -97,5 +102,10 @@ export const urls_p = {
     // CONTABLE
     api_url_acreedor: `${baseUrl}/contable/api/acreedores_vigentes/`,
     api_url_seguro: `${baseUrl}/contable/api/seguros_vigentes/`,
+    
+    // Roles y Permisos
+    api_url_permiso: `${baseUrl}/roles_permisos/api/permisos/`,
+    api_url_rol: `${baseUrl}/roles_permisos/api/role/`,
+    api_url_permiso_usuario:  `${baseUrl}/users/api/permisos_usuarios/`,
 
 }

@@ -9,6 +9,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet, 'users')
+router.register(r'permisos_usuarios', views.PermisoUsuarioViewSet, 'permisos_usuarios')
 
 urlpatterns = [
     path('api/', include(router.urls)),
