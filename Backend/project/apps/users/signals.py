@@ -106,14 +106,14 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
             'puede_ver_listado_de_garantias_del_credito',
             'puede_ver_listado_de_desembolsos_aplicados_del_credito',
             'puede_ver_registros_boletas_pagos',
-            'puede_ver_listado_registro_bancos',
+            
 
             # -------- CONSULTAR
             'puede_realizar_consultas_informacion_credito',
             'puede_realizar_consultar_de_clientes',
             'puede_consultar_cuota_por_cobrar',
             'puede_realizar_consultas_boleta_pagos',
-            'puede_buscar_registro_bancos',
+            
 
             # ------- DETALLE
             'puede_visualizar_detalle_cliente',
