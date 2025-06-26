@@ -45,7 +45,7 @@ def filter_credito_reciente(request):
         'credit_list':page_obj,
         'count': credito.count(),
         'filtro_seleccionado':'Recientes',
-        'permisos':recorrer_los_permisos_usuario,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
@@ -72,7 +72,7 @@ def filter_credito_cancelado(request):
         'credit_list':page_obj,
         'count': credito.count(),
         'filtro_seleccionado':'Creditos Cancelados',
-        'permisos':recorrer_los_permisos_usuario,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
@@ -99,7 +99,7 @@ def filter_credito_en_atraso(request):
         'credit_list':page_obj,
         'count': credito.count(),
         'filtro_seleccionado':'Creditos en Atraso',
-        'permisos':recorrer_los_permisos_usuario,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
@@ -128,7 +128,7 @@ def filter_credito_con_aportaciones(request):
         'credit_list':page_obj,
         'count': credito.count(),
         'filtro_seleccionado':'Creditos en Atraso',
-        'permisos':recorrer_los_permisos_usuario,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
@@ -155,7 +155,7 @@ def filter_credito_en_falta_aportacion(request):
         'credit_list':page_obj,
         'count': credito.count(),
         'filtro_seleccionado':'Creditos con falta de Aportacion',
-        'permisos':recorrer_los_permisos_usuario,
+        'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 
@@ -185,7 +185,7 @@ def filter_credito_con_excedente(request):
         'credit_list':page_obj,
         'count': credito.count(),
         'filtro_seleccionado': 'Creditos con excedente',
-        'permisos':recorrer_los_permisos_usuario,
+        'permisos':recorrer_los_permisos_usuario(request),
         
     }
     return render(request, template_name, context)
