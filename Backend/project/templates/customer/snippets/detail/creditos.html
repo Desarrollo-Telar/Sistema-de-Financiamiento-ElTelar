@@ -2,10 +2,12 @@
 
 <div class="row" style="margin: 1rem 0; padding: 2rem;">
     {% if credit_list %}
+    {% if permisos.puede_crear_informacion_credito %}
     <div class="col">
         <a href="{% url 'financings:create_credit' %}" class="btn_edit">Crear Nuevo Credito</a>
 
     </div>
+    {% endif %}
     <div class="table-responsive">
         <table class="table" style="margin-top: 0.5rem;">
             <thead class="table-dark">
@@ -86,6 +88,8 @@
 
 
     {% else %}
+    {% if permisos.puede_crear_informacion_credito %}
     <a href="{% url 'financings:create_credit' %}" class="btn_edit">Crear Nuevo Credito</a>
+    {% endif %}
     {% endif %}
 </div>

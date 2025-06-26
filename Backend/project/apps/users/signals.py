@@ -69,10 +69,124 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
         # Filtrar permisos que aún no tiene
         permisos_faltantes = todos_los_permisos.exclude(id__in=permisos_existentes_ids)
+
+        # Listado de Permisos Como Rol de Secretaria
+        permisos_secretaria_generales = [
+            'puede_ver_perfil_usuario',
+            'puede_crear_informacion_personal_cliente',
+            'puede_realizar_consultar_de_clientes',
+            'puede_visualizar_el_registro_clientes',
+            'puede_visualizar_detalle_cliente',
+            'puede_crear_informacion_laboral_cliente',
+            'puede_editar_informacion_laboral_cliente',
+            'puede_visualizar_detalle_informacion_laboral_cliente',
+            'puede_crear_informacion_destino_credito',
+            'puede_editar_informacion_destino_credito',
+            'puede_visualizar_detalle_informacion_destino_credito',
+            'puede_crear_direccion',
+            'puede_ver_detalle_direccion',
+            'puede_crear_referencias',
+            'puede_ver_detalle_referencias',
+            'puede_subir_imagenes',
+            'puede_descargar_imagenes',
+            'puede_subir_archivos',
+            'puede_descargar_archivos',
+            'puede_crear_informacion_credito',
+            'puede_realizar_consultas_informacion_credito',
+            'puede_ver_registros_credito',
+            'puede_ver_detalle_credito',
+            'puede_crear_registro_desembolso',
+            'puede_crear_registro_garantia',
+            'puede_ver_listado_plan_pagos_de_credito',
+            'puede_descargar_plan_de_pagos_de_credito',
+            'puede_ver_listado_de_cuotas_vencidas',
+            'puede_ver_detalle_garantia',
+            'puede_ver_listado_de_garantias_del_credito',
+            'puede_ver_detalle_desembolso',
+            'puede_ver_listado_de_desembolsos_aplicados_del_credito',
+            'puede_ver_detalle_estado_cuenta_credito',
+            'puede_descargar_estado_cuenta_credito',
+            'puede_consultar_cuota_por_cobrar',
+            'puede_descargar_informe_de_cuotas',
+            'puede_crear_boleta_pago',
+            'puede_realizar_consultas_boleta_pagos',
+            'puede_ver_registros_boletas_pagos',
+            'puede_ver_detalle_boleta_pago',
+            'puede_descargar_imagen_boleta_pago',
+            'puede_ver_detalle_recibo_pago',
+            'puede_buscar_registro_bancos',
+            'puede_ver_listado_registro_bancos',
+        ]
+
+        # Asignar solo los permisos faltantes
+        for permiso in permisos_faltantes:
+            if permiso.codigo_permiso in permisos_secretaria_generales:
+                PermisoUsuario.objects.create(user=instance, permiso=permiso)
         
 
 
     elif instance.rol == ASESORCREDITO:
+        # Obtener todos los permisos existentes
+        todos_los_permisos = Permiso.objects.all()
+
+        # Obtener los permisos que ya tiene el usuario (solo los IDs)
+        permisos_existentes_ids = PermisoUsuario.objects.filter(user=instance).values_list('permiso_id', flat=True)
+
+        # Filtrar permisos que aún no tiene
+        permisos_faltantes = todos_los_permisos.exclude(id__in=permisos_existentes_ids)
+
+        # Listado de Permisos Como Rol de Secretaria
+        permisos_secretaria_generales = [
+            'puede_ver_perfil_usuario',
+            'puede_crear_informacion_personal_cliente',
+            'puede_realizar_consultar_de_clientes',
+            'puede_visualizar_el_registro_clientes',
+            'puede_visualizar_detalle_cliente',
+            'puede_crear_informacion_laboral_cliente',
+            'puede_editar_informacion_laboral_cliente',
+            'puede_visualizar_detalle_informacion_laboral_cliente',
+            'puede_crear_informacion_destino_credito',
+            'puede_editar_informacion_destino_credito',
+            'puede_visualizar_detalle_informacion_destino_credito',
+            'puede_crear_direccion',
+            'puede_ver_detalle_direccion',
+            'puede_crear_referencias',
+            'puede_ver_detalle_referencias',
+            'puede_subir_imagenes',
+            'puede_descargar_imagenes',
+            'puede_subir_archivos',
+            'puede_descargar_archivos',
+            'puede_crear_informacion_credito',
+            'puede_realizar_consultas_informacion_credito',
+            'puede_ver_registros_credito',
+            'puede_ver_detalle_credito',
+            'puede_crear_registro_desembolso',
+            'puede_crear_registro_garantia',
+            'puede_ver_listado_plan_pagos_de_credito',
+            'puede_descargar_plan_de_pagos_de_credito',
+            'puede_ver_listado_de_cuotas_vencidas',
+            'puede_ver_detalle_garantia',
+            'puede_ver_listado_de_garantias_del_credito',
+            'puede_ver_detalle_desembolso',
+            'puede_ver_listado_de_desembolsos_aplicados_del_credito',
+            'puede_ver_detalle_estado_cuenta_credito',
+            'puede_descargar_estado_cuenta_credito',
+            'puede_consultar_cuota_por_cobrar',
+            'puede_descargar_informe_de_cuotas',
+            'puede_crear_boleta_pago',
+            'puede_realizar_consultas_boleta_pagos',
+            'puede_ver_registros_boletas_pagos',
+            'puede_ver_detalle_boleta_pago',
+            'puede_descargar_imagen_boleta_pago',
+            'puede_ver_detalle_recibo_pago',
+            
+        ]
+
+        # Asignar solo los permisos faltantes
+        for permiso in permisos_faltantes:
+            if permiso.codigo_permiso in permisos_secretaria_generales:
+                PermisoUsuario.objects.create(user=instance, permiso=permiso)
+
         # CREACION DE REGISTRO DE ASESOR DE CREDITO
         verificar_asesor = CreditCounselor.objects.filter(usuario=instance).first()
 

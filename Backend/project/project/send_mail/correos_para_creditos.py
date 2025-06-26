@@ -13,6 +13,9 @@ from datetime import datetime,timedelta
 
 from project.settings import SERVIDOR
 
+# CONSULTAS
+from django.db.models import Q
+
 # MENSAJE DE CREDITO NUEVO
 def send_email_new_credit(models):
     template = get_template('email/new_credit.html')
@@ -23,7 +26,7 @@ def send_email_new_credit(models):
     content = template.render(context)
 
     # Recolectar correos electrónicos de todos los usuarios activos
-    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True, status=True)]
+    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Administrador'), status=True)]
     #usuarios_email.append(models.cliente.email)
     # Crear y enviar el correo electrónico
     email = EmailMultiAlternatives(
@@ -34,7 +37,7 @@ def send_email_new_credit(models):
     )
     email.attach_alternative(content, 'text/html')
 
-    if SERVIDOR:
+    if SERVIDOR and usuarios_email:
         email.send()
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
@@ -52,7 +55,7 @@ def send_email_next_update_of_quotas(cuotas):
         
     }
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True, status=True)]
+    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Administrador') | Q(rol__role_name='Programador'), status=True)]
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
@@ -66,7 +69,7 @@ def send_email_next_update_of_quotas(cuotas):
     )
     email.attach_alternative(content, 'text/html')
 
-    if SERVIDOR:
+    if SERVIDOR and usuarios_email:
         email.send()
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
@@ -83,7 +86,7 @@ def send_email_update_of_quotas(cuotas):
         
     }
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True, status=True)]
+    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Administrador') | Q(rol__role_name='Programador'), status=True)]
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
@@ -97,7 +100,7 @@ def send_email_update_of_quotas(cuotas):
     )
     email.attach_alternative(content, 'text/html')
 
-    if SERVIDOR:
+    if SERVIDOR and usuarios_email:
         email.send()
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
@@ -113,7 +116,7 @@ def send_email_quotas_for_change(cuotas, hoy, hasta):
         
     }
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True, status=True)]
+    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Administrador') | Q(rol__role_name='Programador'), status=True)]
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
@@ -127,5 +130,5 @@ def send_email_quotas_for_change(cuotas, hoy, hasta):
     )
     email.attach_alternative(content, 'text/html')
     
-    if SERVIDOR:
+    if SERVIDOR and usuarios_email:
         email.send()

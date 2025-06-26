@@ -10,6 +10,8 @@ from apps.users.models import User
 
 from project.settings import SERVIDOR
 
+# CONSULTAS
+from django.db.models import Q
 
 # ENVIO DE MENSAJE DE EMAIL PARA CODIGO DE VERIFICACION
 
@@ -46,7 +48,9 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
         
     }
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = ['choc1403.iieltelarsa@gmail.com	','iieltelarsa@gmail.com']
+    
+    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Administrador') | Q(rol__role_name='Programador'), status=True)]
+
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
@@ -60,6 +64,6 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
     )
     email.attach_alternative(content, 'text/html')
     
-    if SERVIDOR:
+    if SERVIDOR and usuarios_email:
         email.send()
 

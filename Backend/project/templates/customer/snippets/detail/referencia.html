@@ -7,7 +7,7 @@
                     <th scope="col">Nombre Completo</th>
                     <th scope="col">Numero de telefono</th>
                     <th scope="col">Tipo de referencia</th>
-                    {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+                    {% if permisos.puede_editar_referencias %}
                     <th scope="col">Editar</th>
                     {% endif %}
 
@@ -19,7 +19,7 @@
                     <th>{{referencia.full_name}}</th>
                     <td>{{referencia.phone_number}}</td>
                     <td>{{referencia.reference_type}}</td>
-                    {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+                    {% if permisos.puede_editar_referencias %}
                     <td>
                         <a href="{%url 'financial_information:update_reference' referencia.id customer_code %}"
                             class="btn btn-outline-dark" role="button" aria-disabled="true">Editar Referencia</a>

@@ -1,9 +1,11 @@
 {% load static %}
 <div class="row" style="margin: 2rem;">
+  {% if permisos.puede_subir_archivos %}
   <div>
     <a href="{% url 'document:create_document_customer' customer_code %}" class="btn_edit">Agregar un nuevo
       Documento</a>
   </div>
+  {% endif %}
 
   <div class="col-12" style="margin-top: 3rem;">
     <div class="row d-flex justify-content-center">
@@ -46,7 +48,7 @@
                   {{doc.titulo}}
                 </a>
               </td>
-              {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+              {% if permisos.puede_eliminar_archivos %}
               <td>
                 <a href="{% url 'document:delete_document' doc.document_id.id customer_code %}"
                   class="btn_add">Eliminar</a>

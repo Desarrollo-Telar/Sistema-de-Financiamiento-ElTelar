@@ -32,7 +32,7 @@
     <p class="fw-semibold">Descripción</p>
     <p>{{laboral.description}}</p>
 
-    {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+    {% if permisos.puede_editar_informacion_laboral_cliente %}
     <div>
         <hr>
         <a href="{% url 'financial_information:update_working_information' laboral.id customer_code %}"
@@ -57,7 +57,7 @@
     <hr>
     <p class="fw-semibold">Salario</p>
     <p>Q{{other.salary}}</p>
-    {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+    {% if permisos.puede_editar_informacion_laboral_cliente %}
     <div>
         <hr>
         <a href="{% url 'financial_information:update_other_information' other.id customer_code %}"

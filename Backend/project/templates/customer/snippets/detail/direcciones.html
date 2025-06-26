@@ -14,7 +14,7 @@
           <th scope="col">Latitud</th>
           <th scope="col">Longitud</th>
 
-          {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+          {% if permisos.puede_editar_direccion %}
           <th scope="col">Editar</th>
           {% endif %}
         </tr>
@@ -35,7 +35,7 @@
           <td>{{dire.latitud}}</td>
           <td>{{dire.longitud}}</td>
 
-          {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+          {% if permisos.puede_editar_direccion %}
           <td>
             <a href="{% url 'addresses:update' dire.id customer_list.customer_code %}" class="btn_add">Editar
               direccion</a>
@@ -49,9 +49,11 @@
     </table>
   </div>
   {% if limite_direccion %}
+  {% if permisos.puede_crear_direccion %}
   <div>
     <a href="{% url 'addresses:add' customer_code %}" class="btn_edit">Agregar Direccion</a>
   </div>
+   {% endif %}
   {% endif %}
 
 

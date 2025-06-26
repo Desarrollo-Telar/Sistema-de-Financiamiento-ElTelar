@@ -111,16 +111,13 @@
     <p style="margin-left: 0.5rem;">
         {{customer_list.asesor}}
     </p>
-    {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+    
     <hr>
     <p class="fw-semibold">Usuario quien registro a este Cliente</p>
 
     <p style="margin-left: 0.5rem;">
         {{customer_list.user_id}}
     </p>
-    {% endif %}
-
-
 
 
 </div>

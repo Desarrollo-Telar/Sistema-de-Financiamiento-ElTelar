@@ -25,14 +25,18 @@
           <td>{{plan.transferencias_o_traslado_de_Fondos}}</td>
           <td>{{plan.tipo_transferencia}}</td>
           <td>{{plan.investment_plan_description}}</td>
-          {% if request.user.rol == 'Administrador' or request.user.rol == 'Administradora' %}
+          {% if permisos.puede_eliminar_informacion_destino_credito  or permisos.puede_editar_informacion_destino_credito %}
+          {% if permisos.puede_editar_informacion_destino_credito %}
           <td>
             <a href="{% url 'investment_plan:update' plan.id customer_code %}" class="btn_add">Editar</a>
 
           </td>
+          {% endif %}
+          {% if permisos.puede_eliminar_informacion_destino_credito %}
           <td>
             <a href="{% url 'investment_plan:delete' plan.id customer_code %}" class="btn_edit">Eliminar</a>
           </td>
+          {% endif %}
           {% endif %}
 
         </tr>
@@ -41,10 +45,12 @@
       </tbody>
     </table>
   </div>
+  {% if permisos.puede_crear_informacion_destino_credito %}
   <div style="margin-top: 2rem;">
     <a href="{% url 'investment_plan:create' customer_code %}" class="btn_edit">Crear Nuevo Plan de Inversion</a>
 
   </div>
+  {% endif %}
 
 
 

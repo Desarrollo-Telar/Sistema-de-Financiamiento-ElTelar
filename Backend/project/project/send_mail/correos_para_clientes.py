@@ -9,6 +9,8 @@ from django.conf import settings
 from apps.users.models import User
 
 from project.settings import SERVIDOR
+# CONSULTAS
+from django.db.models import Q
 
 # ENVIO DE MENSAJE DE EMAIL PARA DARLE LA BIENVENIDA A UN CLIENTE
 def send_email_welcome_customer(customer):
@@ -50,7 +52,7 @@ def send_email_new_customer(customer):
 
     
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True, status=True)]
+    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Administrador'), status=True)]
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
@@ -64,5 +66,5 @@ def send_email_new_customer(customer):
     )
     email.attach_alternative(content, 'text/html')
     
-    if SERVIDOR:
+    if SERVIDOR and usuarios_email:
         email.send()

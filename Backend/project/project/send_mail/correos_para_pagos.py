@@ -10,6 +10,9 @@ from apps.users.models import User
 
 from project.settings import SERVIDOR
 
+# CONSULTAS
+from django.db.models import Q
+
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
 def send_email_alert(message, status,models):
     template = get_template('email/alert_message.html')
@@ -21,7 +24,7 @@ def send_email_alert(message, status,models):
         'status':status,
     }
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = [user.email for user in User.objects.filter(is_superuser=True, status=True)]
+    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Secretari@')| Q(rol__role_name='Administrador') | Q(rol__role_name='Programador') ,status=True)]
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
@@ -38,7 +41,7 @@ def send_email_alert(message, status,models):
     if models.registro_ficticio:
         return
     
-    if SERVIDOR:
+    if SERVIDOR and usuarios_email:
         email.send()
 
 
@@ -54,7 +57,7 @@ def send_email_recibo(models):
     content = template.render(context)
 
     # Recolectar correos electrónicos de todos los usuarios activos
-    usuarios_email = [user.email for user in User.objects.filter( status=True)]
+    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Secretari@')| Q(rol__role_name='Administrador') ,status=True)]
     #usuarios_email.append(models.cliente.email)
     # Crear y enviar el correo electrónico
     email = EmailMultiAlternatives(
@@ -65,5 +68,5 @@ def send_email_recibo(models):
     )
     email.attach_alternative(content, 'text/html')
     
-    if SERVIDOR:
+    if SERVIDOR and usuarios_email:
         email.send()

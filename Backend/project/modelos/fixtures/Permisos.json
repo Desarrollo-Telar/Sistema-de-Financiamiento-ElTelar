@@ -1066,5 +1066,41 @@
         "estado": true,
         "fecha_registro": "2025-06-25T01:47:03.846Z"
     }
+},
+{
+    "model": "roles.permiso",
+    "pk": 90,
+    "fields": {
+        "categoria_permiso": 3,
+        "nombre": "Consultar Clientes",
+        "descripcion": "",
+        "codigo_permiso": "puede_realizar_consultar_de_clientes",
+        "estado": true,
+        "fecha_registro": "2025-06-25T02:51:05.740Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 91,
+    "fields": {
+        "categoria_permiso": 21,
+        "nombre": "Actualizar Registro",
+        "descripcion": "",
+        "codigo_permiso": "puede_modificar_registro_ingreso",
+        "estado": true,
+        "fecha_registro": "2025-06-25T21:16:56.349Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 92,
+    "fields": {
+        "categoria_permiso": 22,
+        "nombre": "Actualizar Registro",
+        "descripcion": "",
+        "codigo_permiso": "puede_modificar_registro_egreso",
+        "estado": true,
+        "fecha_registro": "2025-06-25T21:20:02.043Z"
+    }
 }
 ]
