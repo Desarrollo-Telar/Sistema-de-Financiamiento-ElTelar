@@ -122,7 +122,7 @@ def generar_estado_cuenta(cuota, accion):
             estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida, ya que no se ha gestionado su pago en el tiempo establecido. Le recordamos la importancia de regularizar esta obligación lo antes posible para evitar cargos adicionales.'
 
     if accion == 'FECHA_VENCIMIENTO':
-        estado_cuenta.description = f'La cuota No. {cuota.mes} ha pasado al estado de "Fechas en atraso" debido a que no fue pagada dentro del plazo estipulado. Este crédito otorga un máximo de 15 días para realizar el pago correspondiente a la cuota No. {cuota.mes}. De no hacerlo dentro de ese período, se aplicará un recargo por mora.'
+        estado_cuenta.description = f'La cuota No. {cuota.mes} ha pasado al estado de "Fechas en atraso" debido a que no fue pagada dentro del plazo estipulado.'
 
 
     estado_cuenta.cuota = cuota
