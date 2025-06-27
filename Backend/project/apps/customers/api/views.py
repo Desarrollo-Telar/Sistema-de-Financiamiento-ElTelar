@@ -11,7 +11,6 @@ from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor
 
 from django.db.models import Q
 
-from django.db.models import Q
 from django.utils.timezone import datetime
 
 class CustomerViewSet(viewsets.ModelViewSet):
