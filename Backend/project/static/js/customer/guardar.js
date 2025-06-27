@@ -34,6 +34,7 @@ document.getElementById('customer').addEventListener('submit', async function (e
 
         let direcion_personal = recoletarInformacionDireccionPersonal(customer_id);
         let direcion_trabajo = recoletarInformacionDireccionTrabajo(customer_id);
+        console.log(`${direcion_personal}\n${direcion_trabajo}`)
 
         const direccionDataPersonal = await postDireccion(direcion_personal);
         console.log('Dirección Personal registrada con éxito:', direccionDataPersonal);
