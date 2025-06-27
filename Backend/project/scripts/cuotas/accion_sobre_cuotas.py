@@ -63,6 +63,8 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         siguiente_cuota.saldo_pendiente = pago.saldo_pendiente
         if pago.credit_id:
             siguiente_cuota.credit_id = pago.credit_id
+            siguiente_cuota.mora = mora + pago.mora
+            siguiente_cuota.interest = interes_acumulado
 
         if pago.seguro:
             siguiente_cuota.seguro = pago.seguro
@@ -70,8 +72,8 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         if pago.acreedor:
             siguiente_cuota.acreedor = pago.acreedor
 
-        siguiente_cuota.mora = mora + pago.mora
-        siguiente_cuota.interest = interes_acumulado
+        
+
         siguiente_cuota.interes_generado =interes
         siguiente_cuota.start_date = pago.due_date
         siguiente_cuota.cambios = True
