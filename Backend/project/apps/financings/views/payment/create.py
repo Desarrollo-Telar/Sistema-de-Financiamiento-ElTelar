@@ -35,6 +35,10 @@ def create_payment_credit(request, id):
 
     if credito is None:
         return redirect('actividades:cerrar_pestania')
+    
+    if credito.is_paid_off:
+        messages.error(request,'Este Credito Se Encuentra Cancelado')
+        return redirect('actividades:cerrar_pestania')
 
     # Formulario
     form = BoletaForm
