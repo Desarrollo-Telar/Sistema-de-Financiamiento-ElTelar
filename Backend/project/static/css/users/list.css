@@ -1,0 +1,31 @@
+.activo{
+    background-color: #b2ffc0; 
+    padding: 0 0.5rem; 
+    border-radius:2rem; 
+    text-align: center; 
+    color: #00340c;
+}
+
+.inactivo{
+    background-color: #fccccd; 
+    color: #420d0e;
+    padding: 0 0.5rem;  
+    border-radius:2rem; 
+    text-align: center; 
+
+}
+
+.action{
+    border: none;
+    background-color: white;
+}
+
+.add_user{
+    background-color: #e6e2e2;
+    border:#2a2525 1px solid;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: #2a2525;
+    
+}

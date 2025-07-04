@@ -1,0 +1,27 @@
+.btn_add{
+    background-color: white;
+    border:#0B090A 1px solid;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: #0B090A;
+    
+}
+
+.btn_cancel{
+    background-color: white;
+    border:#E5383B 1px solid;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: #E5383B;
+    
+}
+
+.btn_edit{
+    background-color: #0B090A;
+    color: #efefef;
+    text-decoration: none;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+}

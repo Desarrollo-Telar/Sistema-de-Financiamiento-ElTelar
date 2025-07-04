@@ -1,0 +1,240 @@
+{% load static %}
+<div class="container">
+  <div class="row g-3">
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="first_name">Nombre</label>
+        <input type="text" name="fist_name" id="first_name" class="form-control" required>
+        <div id="output_first_name"></div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="last_name">Apellido</label>
+        <input type="text" name="last_name" id="last_name" class="form-control" required>
+        <div id="output_last_name"></div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <div class="form-group">
+        <label for="email">Correo Electronico</label>
+        <input type="email" name="email" id="email" class="form-control" required>
+        <div id="output_email"></div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <div class="form-group">
+        <label for="telephone">Numero de Telefono</label>
+        <div class="input-group">
+          <div class="input-group-text">+502</div>
+          <input type="number" min="0" name="telephone" id="telephone" class="form-control" maxlength="8" required>
+        </div>
+        <div id="output_telephone"></div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-12">
+      <div class="form-group">
+        <label for="type_identification">Tipo de Identificación</label>
+        <select class="form-select" id="type_identification" required>
+          <option value="DPI">DPI</option>
+          <option value="PASAPORTE">PASAPORTE</option>
+          <option value="OTRO">OTRO</option>
+        </select>
+        <div id="output_type_identification"></div>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-12">
+      <div class="form-group">
+        <label for="identification_number">Numero de identificación</label>
+        <input type="number" min="0" name="identification_number" id="identification_number" class="form-control" required>
+        <div id="output_identification_number"></div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <div class="form-group">
+        <label for="date_birth">Fecha de Nacimiento</label>
+        <input type="date" name="date_birth" id="date_birth" class="form-control" required>
+        <div id="output_date_birth"></div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <div class="form-group">
+        <label for="place_birth">Lugar de Vencidad</label>
+        <input type="text" name="place_birth" id="place_birth" class="form-control" required>
+        <div id="output_place_birth"></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label for="nationality">Nacionalidad</label>
+        <input type="text" name="nationality" id="nationality" class="form-control">
+        <div id="output_nationality"></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label for="fehca_vencimiento_de_tipo_identificacion">Fecha de Vencimiento del Tipo de Identificación</label>
+        <input type="date" name="fehca_vencimiento_de_tipo_identificacion" id="fehca_vencimiento_de_tipo_identificacion" class="form-control" required>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label for="number_nit">NIT</label>
+        <input type="text" name="number_nit" id="number_nit" class="form-control" required>
+        <div id="output_number_nit"></div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <div class="form-group">
+        <label for="gender">Genero</label>
+        <select class="form-select" id="gender" required>
+          <option value="MASCULINO">MASCULINO</option>
+          <option value="FEMENINO">FEMENINO</option>
+        </select>
+        <div id="output_gender"></div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <div class="form-group">
+        <label for="marital_status">Estado Civil</label>
+        <select class="form-select" name="marital_status" id="marital_status" required>
+          <option value="SOLTER@">SOLTER@</option>
+          <option value="CASAD@">CASAD@</option>
+          <option value="DIVORCIAD@">DIVORCIAD@</option>
+          <option value="VIUD@">VIUD@</option>
+          <option value="UNIÓN DE HECHO">UNIÓN DE HECHO</option>
+        </select>
+        <div id="output_marital_status"></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label for="profession_trade">Profesión</label>
+        <input type="text" name="profession_trade" id="profession_trade" class="form-control" required>
+        <div id="output_profession_trade"></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label for="person_type">Tipo de Persona</label>
+        <select class="form-select" id="person_type" required>
+          <option value="Individual (PI)">Individual (PI)</option>
+          <option value="Juridica (PJ)">Juridica (PJ)</option>
+        </select>
+        <div id="output_person_type"></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label for="status">Status del cliente</label>
+        <select class="form-select" id="status" required>
+          <option value="Posible Cliente">Posible Cliente</option>
+          <option value="Revisión de documentos">Revisión de documentos</option>
+          <option value="Aprobado">Aprobado</option>
+          <option value="No Aprobado">No Aprobado</option>
+        </select>
+        <div id="output_status"></div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label for="immigration_status_id">Condicion Migratoria</label>
+        <select class="form-select" id="immigration_status_id" required>
+          {% for immigration in immigration_status %}
+          <option value="{{immigration.id}}">{{immigration.condition_name}}</option>
+          {% endfor %}
+        </select>
+        <div id="output_immigration_status_id"></div>
+      </div>
+    </div>
+
+    {% if not request.user.role_name == 'Asesor de Crédito' %}
+    <div class="col-12">
+      <div class="form-group">
+        <label for="asesor">Asesor del Credito</label>
+        <select class="form-control asesor" name="asesor" id="asesor" style="width: 100%" value="{{user_id}}"></select>
+      </div>
+    </div>
+    {% endif %}
+
+    <hr class="my-4">
+    <h5>Dirección</h5>
+    <hr>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label for="calle1">Dirección particular o sede social completa:</label>
+        <input type="text" class="form-control" id="street1" name="street1"
+          placeholder="Calle o avenida, casa, colonia, sector, lote, manzana, otros" required>
+        <div class="form-text">Ejemplo: 11 AVENIDA 5 CALLE 5-09</div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-12">
+      <div class="form-group">
+        <label for="number1">Zona</label>
+        <input type="number" min="0" class="form-control" id="number1" name="number1" required>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-12">
+      <div class="form-group">
+        <label for="city1">Departamento</label>
+        <select class="form-control city1" name="city1" id="city1" style="width: 100%"></select>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-12">
+      <div class="form-group">
+        <label for="state1">Municipio</label>
+        <select class="form-control state1" name="state1" id="state1" style="width: 100%"></select>
+        
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label for="country1">País</label>
+        <input type="text" class="form-control" id="country1" name="country1" value="GUATEMALA" disabled>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <div class="form-group">
+        <label for="latitud1">Latitud</label>
+        <input type="text" class="form-control" id="latitud1" name="latitud1" required>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <div class="form-group">
+        <label for="longitud1">Longitud</label>
+        <input type="text" class="form-control" id="longitud1" name="longitud1" required>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <hr class="my-4">
+      <h5>Observaciones</h5>
+      <div class="form-group">
+        <textarea class="form-control" id="description_customer" rows="3"></textarea>
+      </div>
+    </div>
+  </div>
+</div>

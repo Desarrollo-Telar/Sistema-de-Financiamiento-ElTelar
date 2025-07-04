@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="POST" action="{% url 'customers:update_customer' customer_code %}" style="margin: 2rem;" class="box">
+    {% csrf_token %}
+    {% include 'customer/forms/forms.html' %}
+    <button type="submit" class="btn_edit">Actualizar</button>
+    <a href="{% url 'customers:detail' customer_code %}">Cancelar</a>
+
+
+</form>
+{% endblock %}

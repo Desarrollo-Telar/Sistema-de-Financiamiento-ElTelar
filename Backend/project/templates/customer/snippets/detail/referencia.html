@@ -1,0 +1,38 @@
+{% load static %}
+<div class="row" style="margin: 2rem ;">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre Completo</th>
+                    <th scope="col">Numero de telefono</th>
+                    <th scope="col">Tipo de referencia</th>
+                    {% if permisos.puede_editar_referencias %}
+                    <th scope="col">Editar</th>
+                    {% endif %}
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for referencia in reference %}
+                <tr>
+                    <th>{{referencia.full_name}}</th>
+                    <td>{{referencia.phone_number}}</td>
+                    <td>{{referencia.reference_type}}</td>
+                    {% if permisos.puede_editar_referencias %}
+                    <td>
+                        <a href="{%url 'financial_information:update_reference' referencia.id customer_code %}"
+                            class="btn btn-outline-dark" role="button" aria-disabled="true">Editar Referencia</a>
+                    </td>
+                    {% endif %}
+
+                </tr>
+
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

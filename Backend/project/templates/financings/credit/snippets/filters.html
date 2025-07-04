@@ -1,0 +1,36 @@
+{% load static %}
+<div class="dropdown">
+    <button style="border: none; background-color: white;" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filter"
+            viewBox="0 0 16 16">
+            <path
+                d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+        </svg>
+    </button>
+
+
+    <ul class="dropdown-menu ">
+        <li><a class="dropdown-item fw-bold" href="{% url 'financings:list_credit' %}">Todos </a></li>
+        <li><a class="dropdown-item fw-normal" href="{% url 'financings:creditos_recientes' %}">Recientes </a></li>
+        <li><a class="dropdown-item fw-normal" href="{% url 'financings:creditos_cancelados'%}">Creditos Cancelados </a>
+        </li>
+        <li><a class="dropdown-item fw-normal" href="{% url 'financings:creditos_en_atrasos' %}">Creditos en Atraso
+            </a></li>
+        <li><a class="dropdown-item fw-normal" href="{% url 'financings:creditos_falta_aportacion' %}">Creditos con
+                falta de
+                Aportacion
+            </a></li>
+        <li>
+            <a class="dropdown-item fw-normal" href="{% url 'financings:filter_credito_por_mes_anio' %}">Creditos con
+                Creados en tal mes
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item fw-normal" href="{% url 'financings:filter_credito_con_excedente' %}">Creditos con Excedentes
+            </a>
+        </li>
+
+    </ul>
+
+</div>

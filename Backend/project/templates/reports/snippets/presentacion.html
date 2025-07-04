@@ -1,0 +1,18 @@
+{% load static %}
+<div style="padding: 2.5rem">
+    <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Reportes</span> !</h3>
+    <div class="d-flex justify-content-center fs-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'clasificacion_reportes' %}">Reportes</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+
+            </ol>
+        </nav>
+    </div>
+    <p>
+        Bienvenido al módulo de Reportes. Este módulo te ofrece una herramienta integral para gestionar todos los
+        aspectos relacionados con los pagos realizado con los créditos en la plataforma.
+    </p>
+
+</div>

@@ -1,0 +1,81 @@
+{% load static %}
+<div class="col-12">
+    <h3>Detalles del Acreedor: <span class="fst-italic">{{object_list.codigo_acreedor}}</span></h3>
+
+    <div style="margin-top: 1rem;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+
+                <li class="breadcrumb-item"><a href="{% url 'contable:acreedores' %}"
+                        style="text-decoration: none;">Acreedores</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{object_list.codigo_acreedor}}</li>
+            </ol>
+        </nav>
+
+    </div>
+</div>
+<hr>
+<div class="col" style="margin-top: 1rem;">
+    <div class="row">
+        <div class="col">
+            <p style="font-weight: bolder;">NOMBRE DEL ACREEDOR: <span
+                    class="fw-light">{{object_list.nombre_acreedor}}</span>
+            </p>
+            <p style="font-weight: bolder;">INFORMACION ACERCA DE ACREEDOR: <span
+                class="fw-light">{{object_list.observaciones}}</span>
+        </p>
+
+
+
+        </div>
+        <div class="col" style="font-weight: bolder;">
+            <p>ESTADO DEL CREDITO : <span style="font-weight: lighter;"
+                    class="{% if  object_list.is_paid_off %} inactivo {% endif %} activo">{{object_list.formato_credito_cancelado}}</span>
+            </p>
+            <p>ESTADO POR APORTACION: <span style="font-weight: lighter;"
+                class="{% if object_list.estado_aportacion %} activo {% elif object_list.estado_aportacion is None %} neutro {% else %} inactivo{% endif %} ">{{object_list.formato_estado_aportacion}}</span>
+            </p>
+            <p>ESTADO POR FECHAS: <span style="font-weight: lighter;"
+                    class="{% if not object_list.estados_fechas %} inactivo {% endif %} activo">{{object_list.formato_estado_fecha}}</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <hr>
+        <div class="col-6">
+            <p style="font-weight: bolder;">MONTO: <span class="fw-light">Q
+                    {{object_list.fmonto}}</span></p>
+            <p style="font-weight: bolder;">SALDO ACTUAL: <span class="fw-light">Q{{object_list.formato_saldo_actual}}
+                    <span id="ultima_cuota">Al {{siguiente_pago.mostrar_fecha_limite}}</span></span>
+            </p>
+            <p style="font-weight: bolder;">PLAZO: <span class="fw-light">{{object_list.plazo}} MESES</span></p>
+            <p style="font-weight: bolder;">TASA DE INTERES MENSUAL: <span class="fw-light">
+                    {{object_list.ftasa}}%</span>
+            </p>
+
+        </div>
+        <div class="col-6">
+            <p style="font-weight: bolder;">FECHA DE INICIO: <span class="fw-light">{{object_list.fecha_inicio}}</span>
+            </p>
+            <p style="font-weight: bolder;">FECHA DE VENCIMIENTO: <span
+                    class="fw-light">{{object_list.fecha_vencimiento}}</span>
+            </p>
+            <p style="font-weight: bolder;">FECHA DE CREACION DEL CREDITO: <span
+                    class="fw-light">{{object_list.fecha_registro}}</span>
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+</div>

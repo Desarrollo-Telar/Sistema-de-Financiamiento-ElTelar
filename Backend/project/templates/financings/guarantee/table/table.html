@@ -1,0 +1,78 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 " style="text-align: center;">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Codigo Credito</th>
+                        <th scope="col">Cliente</th>
+
+                        <th scope="col">Detalles</th>
+                        <th scope="col">Monto Total de Garantia</th>
+
+
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for guarantee in list_guarantee %}
+
+                    <tr>
+                        <th scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detallar_garantia' guarantee.id %}">
+                                {{guarantee.credit_id.codigo_credito}}
+                            </a>
+
+
+                        </th>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detallar_garantia' guarantee.id %}">
+                                {{guarantee.credit_id.customer_id.first_name}}
+                                {{guarantee.credit_id.customer_id.last_name}}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detallar_garantia' guarantee.id %}">
+                                {% for detalle in detalle_garantia %}
+                                {% if detalle.garantia_id == guarantee %}
+                                <p class="fw-medium">TIPO DE GARANTIA:
+                                    <span class="fw-lighter">{{detalle.tipo_garantia}}</span>
+
+                                </p>
+                                <p class="fw-medium">
+                                    Valor de Cobertura: <span class="fw-lighter">Q{{detalle.valor_cobertura}}</span>
+
+                                </p>
+                                {%endif %}
+
+                                {%endfor%}
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'financings:detallar_garantia' guarantee.id %}">
+
+                                Q {{guarantee.suma_total}}
+                            </a>
+                        </td>
+
+
+
+
+
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

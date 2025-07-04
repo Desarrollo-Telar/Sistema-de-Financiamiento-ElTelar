@@ -1,0 +1,51 @@
+{% load static %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <nav aria-label="Paginación responsive">
+        <ul class="pagination flex-wrap justify-content-center">
+
+          {# Botón anterior #}
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link">&laquo;</span>
+            </li>
+          {% endif %}
+
+          {# Números de página #}
+          {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" style="background-color:#fea3a5; color: #46090a; border: 1px solid #fea3a5;">{{ num }}</a>
+              </li>
+            {% else %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ num }}" style="color: black;">{{ num }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+
+          {# Botón siguiente #}
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Siguiente">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link">&raquo;</span>
+            </li>
+          {% endif %}
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data" class="box">
+    {% csrf_token %}
+    {% include 'contable/forms/forms.html' %}
+    <div class="d-flex">
+        <button type="submit" class="btn_guardar" id="btn_registro">Crear Registro</button>
+        <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+
+    </div>
+
+
+
+</form>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="module" src="{% static 'js/contable/inicio.js' %}"></script>
+<script type="module" src="{% static 'js/contable/filtros.js' %}"></script>
+{% endblock %}

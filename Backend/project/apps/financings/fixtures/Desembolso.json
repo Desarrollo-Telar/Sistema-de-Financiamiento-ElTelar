@@ -1,0 +1,15 @@
+[
+    {
+        "model": "financings.disbursement",
+        "pk": 2,
+        "fields": {
+            "credit_id": 1,
+            "forma_desembolso": "APLICACIÓN GASTOS",
+            "monto_credito": "4000.00",
+            "saldo_anterior": "0.00",
+            "honorarios": "300.00",
+            "poliza_seguro": "100.00",
+            "monto_total_desembolso": "3600.00"
+        }
+    }
+]

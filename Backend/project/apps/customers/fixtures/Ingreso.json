@@ -1,0 +1,162 @@
+[
+{
+    "model": "accountings.income",
+    "pk": 1,
+    "fields": {
+        "fecha": "2025-01-06",
+        "monto": "4444.40",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "POR PAGO DE OTROS SERVICIOS, PENDIENTES DE REINTEGRAR",
+        "numero_referencia": "28183137",
+        "boleta": "pagos/boletas/otros_ingresos/Captura_de_pantalla_2025-02-12_141849.png",
+        "status": true,
+        "fecha_registro": "2025-02-12",
+        "creation_date": "2025-04-10T07:16:30.295Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 3,
+    "fields": {
+        "fecha": "2025-04-09",
+        "monto": "8672.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "POR PAGO DE SERVICIOS PERSONALES, PENDIENTES DE REINTEGRAR",
+        "numero_referencia": "71774345",
+        "boleta": "pagos/boletas/otros_ingresos/Captura_de_pantalla_2025-04-10_144515.png",
+        "status": true,
+        "fecha_registro": "2025-04-10",
+        "creation_date": "2025-04-10T20:48:13.023Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 4,
+    "fields": {
+        "fecha": "2025-04-03",
+        "monto": "60000.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "REINTEGRO DE LOS OTROS EGRESOS DEL MES DE ABRIL",
+        "observaciones": "REGISTRO DE LOS OTROS EGRESOS DEL MES DE ABRIL",
+        "numero_referencia": "1171556511",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-05-01_a_las_13.57.27_11385062.jpg",
+        "status": true,
+        "fecha_registro": "2025-05-01",
+        "creation_date": "2025-05-01T20:02:29.369Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 5,
+    "fields": {
+        "fecha": "2025-04-04",
+        "monto": "50000.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "REINTEGRO DE LOS OTROS ENGRESOS DEL MES DE MARZO",
+        "observaciones": "REINTEGRO DE LOS OTROS EGRESOS DEL MES DE MARZO",
+        "numero_referencia": "1202535322",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-05-01_a_las_13.57.27_7821cfd1.jpg",
+        "status": true,
+        "fecha_registro": "2025-05-01",
+        "creation_date": "2025-05-01T20:03:42.937Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 6,
+    "fields": {
+        "fecha": "2025-04-28",
+        "monto": "2500.00",
+        "codigo_ingreso": "Servicios terceros",
+        "descripcion": "POR SERVICIO DE AVALUO INMOBILIARIO A MONICA GALINDO",
+        "observaciones": "POR SERVICIO DE AVALUO INMOBILIARIO A MONICA GALINDO",
+        "numero_referencia": "1796526201",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-05-01_a_las_13.58.07_ac2338c6.jpg",
+        "status": true,
+        "fecha_registro": "2025-05-01",
+        "creation_date": "2025-05-01T20:05:07.947Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 7,
+    "fields": {
+        "fecha": "2025-05-05",
+        "monto": "8672.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "DEPOSITO PENDIENTES DE REINTEGRAR",
+        "numero_referencia": "80677286",
+        "boleta": "pagos/boletas/otros_ingresos/Captura_de_pantalla_2025-05-13_153750.png",
+        "status": true,
+        "fecha_registro": "2025-05-13",
+        "creation_date": "2025-05-13T22:00:15.971Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 8,
+    "fields": {
+        "fecha": "2025-05-16",
+        "monto": "2500.00",
+        "codigo_ingreso": "Servicios terceros",
+        "descripcion": "SERVICIOS TERCEROS",
+        "observaciones": "PAGO POR SERVICIO DE AVALUO PRESTADOS EN EL MES DE MAYO",
+        "numero_referencia": "216151360",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-05-16_a_las_12.42.53_78e0db02.jpg",
+        "status": true,
+        "fecha_registro": "2025-05-22",
+        "creation_date": "2025-05-22T21:44:17.288Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 9,
+    "fields": {
+        "fecha": "2025-05-23",
+        "monto": "4000.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "REINTEGRO POR LOS SERVICIOS FINANCIEROS EXTERNOS REALIZADOS ESTE MES",
+        "numero_referencia": "428856277",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-05-26_a_las_15.03.50_b35b4051.jpg",
+        "status": true,
+        "fecha_registro": "2025-05-26",
+        "creation_date": "2025-05-26T21:43:38.652Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 10,
+    "fields": {
+        "fecha": "2025-05-13",
+        "monto": "1500.00",
+        "codigo_ingreso": "Servicios terceros",
+        "descripcion": "SERVICIOS TERCEROS",
+        "observaciones": "POR SERVICIOS DE AVALUO REALIZADO EN EL MES DE MAYO",
+        "numero_referencia": "133149502",
+        "boleta": "pagos/boletas/otros_ingresos/Captura_de_pantalla_2025-06-04_161525.png",
+        "status": true,
+        "fecha_registro": "2025-06-04",
+        "creation_date": "2025-06-04T22:15:55.023Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 43,
+    "fields": {
+        "fecha": "2025-06-04",
+        "monto": "10000.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "REINTEGRO POR LOS SERVICIOS FINANCIEROS EXTERNOS",
+        "numero_referencia": "814902438",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-06-11_a_las_12.29.59_7d4190b1.jpg",
+        "status": true,
+        "fecha_registro": "2025-06-11",
+        "creation_date": "2025-06-11T18:51:57.363Z"
+    }
+}
+]

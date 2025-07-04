@@ -1,0 +1,200 @@
+[
+{
+    "model": "roles.categoriapermiso",
+    "pk": 2,
+    "fields": {
+        "nombre": "Usuario",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 3,
+    "fields": {
+        "nombre": "Clientes",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 4,
+    "fields": {
+        "nombre": "Informacion Laboral",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 5,
+    "fields": {
+        "nombre": "Destino del Credito",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 6,
+    "fields": {
+        "nombre": "Direcciones",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 7,
+    "fields": {
+        "nombre": "Referencias",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 8,
+    "fields": {
+        "nombre": "Imagenes",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 9,
+    "fields": {
+        "nombre": "Archivos",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 10,
+    "fields": {
+        "nombre": "Credito",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 11,
+    "fields": {
+        "nombre": "Plan de Pagos",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 12,
+    "fields": {
+        "nombre": "Garantias",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 13,
+    "fields": {
+        "nombre": "Desembolsos",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 14,
+    "fields": {
+        "nombre": "Estados de Cuentas",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 15,
+    "fields": {
+        "nombre": "Cuotas",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 16,
+    "fields": {
+        "nombre": "Pagos",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 17,
+    "fields": {
+        "nombre": "Recibos",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 18,
+    "fields": {
+        "nombre": "Bancos",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 19,
+    "fields": {
+        "nombre": "Acreedores",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 20,
+    "fields": {
+        "nombre": "Seguros",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 21,
+    "fields": {
+        "nombre": "Ingresos",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 22,
+    "fields": {
+        "nombre": "Egresos",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 23,
+    "fields": {
+        "nombre": "Reportes",
+        "descripcion": "",
+        "estado": true
+    }
+}
+]

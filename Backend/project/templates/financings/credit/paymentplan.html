@@ -1,0 +1,54 @@
+{% load static %}
+<div class="row">
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Mes</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Fecha de Vencimiento</th>
+                    <th scope="col">Monto Prestado</th>
+                    <th scope="col">Interes</th>
+                    <th scope="col">Capital</th>
+                    <th scope="col">Cuota</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pago in plan %}
+                <tr>
+                    <td>
+                        {{pago.mes}}
+                    </td>
+                    <td>
+                        {{pago.Ffecha_inicio}}
+                    </td>
+                    <td>
+                        {{pago.Ffecha_final}}
+                    </td>
+                    <td>
+                        Q{{pago.fmonto_prestado}}
+                    </td>
+                    <td>
+                        Q{{pago.fintereses}}
+                    </td>
+                    <td>
+                        Q{{pago.fcapital}}
+                    </td>
+                    <td>
+                        Q{{pago.fcuota}}
+                    </td>
+
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td style="background-color: black; color: white;" colspan="4">TOTALES</td>
+                    <td style="background-color: black; color: white;">Q{{total_interes}}</td>
+                    <td style="background-color: black; color: white;">Q{{total_capital}}</td>
+                    <td style="background-color: black; color: white;">Q{{total_cuota}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

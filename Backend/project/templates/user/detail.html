@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <div class="row" style="text-align: center; padding: 5rem;">
+        <div class="col-12">
+            <h3>¡ Información Personal de <span class="badge text-bg-dark"> <a href="{% url 'users:users'%}" style="text-decoration: none; color: white;">{{user_list.first_name}} {{user_list.last_name}}</a></span> !</h3>
+        </div>
+
+    </div>
+    <hr>
+    <div class="row">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Información Personal</button>
+              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" disabled>Imagen de Usuario</button>
+              
+              
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="fw-semibold">Nombre Completo</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{user_list.first_name}} {{user_list.last_name}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="fw-semibold">Nombre de Usuario</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{user_list.username}} </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="fw-semibold">Correo Electronico</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{user_list.email}} </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="fw-semibold">Tipo de Indentificacion</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{user_list.type_identification}} </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="fw-semibold">Numero de Indentificacion</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{user_list.identification_number}} </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="fw-semibold">Numero de Telefono</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{user_list.telephone}} </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="fw-semibold">Estado</p>
+                                </div>
+                                <div class="col-6">
+                                    {% if not user_list.status %}
+                                    <p>Desactivado</p>
+                                    {% else %}
+                                    <p>Activado </p>
+                                    {% endif %}
+                                    
+                                </div>
+                                <div class="col-6">
+                                    <p class="fw-semibold">Fecha de creacion</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{user_list.creation_date}} </p>
+                                </div>
+                            </div>
+                          
+                        </div>
+                      </div>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
+            
+          </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

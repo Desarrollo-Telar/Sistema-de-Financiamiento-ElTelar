@@ -1,0 +1,255 @@
+{% load static %}
+<!-- Sidebar visible solo en pantallas md en adelante -->
+<div class="sidebar d-none d-md-flex flex-column justify-content-between ">
+
+  <!-- Parte superior del sidebar -->
+  <div>
+    <ul class="list_sidebar list-unstyled ps-0">
+
+      <li><a href="/" class="d-block py-2 px-3 text-decoration-none">
+          <img src="{% static 'img/icons/iniio.png' %}" alt="icono_inicio" width="20" height="20"> Inicio
+        </a></li>
+
+      {% if permisos.puede_visualizar_el_registro_clientes %}
+      <li><a href="{% url 'customers:customers' %}" class="d-block py-2 px-3 text-decoration-none">
+          <img src="{% static 'img/icons/clientes.png' %}" alt="icono_clientes" width="20" height="20"> Clientes</a>
+      </li>
+      {% endif %}
+
+      {% if permisos.puede_ver_registros_credito %}
+      <li><a href="{% url 'financings:list_credit' %}" class="d-block py-2 px-3 text-decoration-none">
+          <img src="{% static 'img/icons/credito.png' %}" alt="icono_credito" width="20" height="20"> Creditos</a>
+      </li>
+      {% endif %}
+
+      {% if permisos.puede_ver_registros_boletas_pagos %}
+      <li><a href="{% url 'financings:list_payment' %}" class="d-block py-2 px-3 text-decoration-none">
+        <img src="{% static 'img/icons/pagos.png' %}" alt="icono_credito" width="20" height="20"> Pagos</a>
+      </li>
+      {% endif %}
+      {% if permisos.puede_ver_registro_usuarios %}
+      <li><a href="{% url 'users:users' %}" class="d-block py-2 px-3 text-decoration-none">
+        <img src="{% static 'img/icons/cliente_01.png' %}" alt="icono_credito" width="20" height="20"> Usuarios</a>
+      </li>
+      {% endif %}
+
+{% if permisos.puede_ver_registro_acreedores or permisos.puede_ver_registro_seguros or permisos.puede_ver_registro_ingresos or permisos.puede_ver_registro_egresos or permisos.puede_ver_listado_registro_bancos %}
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle d-block py-2 px-3 text-decoration-none" href="#" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="{% static 'img/icons/banco.png' %}" alt="icono_credito" width="20" height="20"> Contabilidad
+        </a>
+        <ul class="dropdown-menu">
+          {% if permisos.puede_ver_registro_ingresos %}
+          <li><a class="dropdown-item" href="{% url 'contable:ingresos' %}">Ingresos</a></li>
+          {% endif %}
+          {% if permisos.puede_ver_registro_egresos%}
+          <li><a class="dropdown-item" href="{% url 'contable:egresos' %}">Egresos</a></li>
+          {% endif %}
+          {% if permisos.puede_ver_registro_acreedores%}
+          <li><a class="dropdown-item" href="{% url 'contable:acreedores' %}">Acreedores</a></li>
+          {% endif %}
+          {% if permisos.puede_ver_registro_seguros%}
+          <li><a class="dropdown-item" href="{% url 'contable:seguros' %}">Seguros</a></li>
+          {% endif %}
+
+          {% if permisos.puede_ver_listado_registro_bancos %}
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="{% url 'financings:list_bank' %}">Bancos</a></li>
+          {% endif %}
+        </ul>
+      </li>
+{% endif %}
+{% if permisos.puede_descargar_informe_bancos or permisos.puede_descargar_reporte_creditos or permisos.puede_descargar_reporte_acreedores or permisos.puede_descargar_reporte_seguros %}
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle d-block py-2 px-3 text-decoration-none" href="#" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="{% static 'img/icons/estadisticas.png' %}" alt="icono_credito" width="20" height="20"> Reportes
+        </a>
+        <ul class="dropdown-menu">
+          {% if permisos.puede_descargar_informe_bancos %}
+          <li><a class="dropdown-item" href="{% url 'reporte_banco_excel' %}">Bancos</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          {% endif %}
+
+          {% if permisos.puede_descargar_reporte_creditos %}
+          <li><a class="dropdown-item" href="{% url 'financings:reportes' %}">Pago de Creditos</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          {% endif %}
+
+          {% if permisos.puede_descargar_reporte_acreedores %}
+          <li><a class="dropdown-item" href="{% url 'contable:reportes_acreedores'%}">Pagos de Acreedores</a></li>
+          {% endif %}
+          {% if permisos.puede_descargar_reporte_seguros %}
+          <li><a class="dropdown-item" href="{% url 'contable:reportes_seguros' %}">Pagos de Seguros</a></li>
+          {% endif %}
+
+        </ul>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <!-- Parte inferior (configuración) -->
+  <div class="mt-auto">
+    <div class="d-flex">
+      <a href="{% url 'logout' %}" class="d-block py-2 px-3 text-decoration-none">
+        <img src="{% static 'img/icons/salida.png' %}" alt="icono_cerrar_sesion" width="20" height="20">
+        Cerrar Sesión
+      </a>
+      {% if permisos.puede_cargar_estado_cuenta %}
+      <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="{% static 'img/icons/configuracion.png' %}" alt="icono_configuracion" width="20" height="20">
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          {% if permisos.puede_cargar_estado_cuenta %}
+          <li><a class="dropdown-item" href="{% url 'document:banco' %}">Cargar Bancos</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+<!-- Sidebar tipo offcanvas para móviles -->
+<div class="d-md-none">
+  <button class="btn btn-light m-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMobile">
+    ☰ Menú
+  </button>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMobile">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menú</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column justify-content-between">
+      <ul class="list_sidebar list-unstyled ps-0">
+
+      <li><a href="/" class="d-block py-2 px-3 text-decoration-none">
+          <img src="{% static 'img/icons/iniio.png' %}" alt="icono_inicio" width="20" height="20"> Inicio
+        </a></li>
+
+      {% if permisos.puede_visualizar_el_registro_clientes %}
+      <li><a href="{% url 'customers:customers' %}" class="d-block py-2 px-3 text-decoration-none">
+          <img src="{% static 'img/icons/clientes.png' %}" alt="icono_clientes" width="20" height="20"> Clientes</a>
+      </li>
+      {% endif %}
+
+      {% if permisos.puede_ver_registros_credito %}
+      <li><a href="{% url 'financings:list_credit' %}" class="d-block py-2 px-3 text-decoration-none">
+          <img src="{% static 'img/icons/credito.png' %}" alt="icono_credito" width="20" height="20"> Creditos</a>
+      </li>
+      {% endif %}
+
+      {% if permisos.puede_ver_registros_boletas_pagos %}
+      <li><a href="{% url 'financings:list_payment' %}" class="d-block py-2 px-3 text-decoration-none">
+        <img src="{% static 'img/icons/pagos.png' %}" alt="icono_credito" width="20" height="20"> Pagos</a>
+      </li>
+      {% endif %}
+      {% if permisos.puede_ver_registro_usuarios %}
+      <li><a href="{% url 'users:users' %}" class="d-block py-2 px-3 text-decoration-none">
+        <img src="{% static 'img/icons/cliente_01.png' %}" alt="icono_credito" width="20" height="20"> Usuarios</a>
+      </li>
+      {% endif %}
+
+{% if permisos.puede_ver_registro_acreedores or permisos.puede_ver_registro_seguros or permisos.puede_ver_registro_ingresos or permisos.puede_ver_registro_egresos or permisos.puede_ver_listado_registro_bancos %}
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle d-block py-2 px-3 text-decoration-none" href="#" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="{% static 'img/icons/banco.png' %}" alt="icono_credito" width="20" height="20"> Contabilidad
+        </a>
+        <ul class="dropdown-menu">
+          {% if permisos.puede_ver_registro_ingresos %}
+          <li><a class="dropdown-item" href="{% url 'contable:ingresos' %}">Ingresos</a></li>
+          {% endif %}
+          {% if permisos.puede_ver_registro_egresos%}
+          <li><a class="dropdown-item" href="{% url 'contable:egresos' %}">Egresos</a></li>
+          {% endif %}
+          {% if permisos.puede_ver_registro_acreedores%}
+          <li><a class="dropdown-item" href="{% url 'contable:acreedores' %}">Acreedores</a></li>
+          {% endif %}
+          {% if permisos.puede_ver_registro_seguros%}
+          <li><a class="dropdown-item" href="{% url 'contable:seguros' %}">Seguros</a></li>
+          {% endif %}
+
+          {% if permisos.puede_ver_listado_registro_bancos %}
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="{% url 'financings:list_bank' %}">Bancos</a></li>
+          {% endif %}
+        </ul>
+      </li>
+{% endif %}
+{% if permisos.puede_descargar_informe_bancos or permisos.puede_descargar_reporte_creditos or permisos.puede_descargar_reporte_acreedores or permisos.puede_descargar_reporte_seguros %}
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle d-block py-2 px-3 text-decoration-none" href="#" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="{% static 'img/icons/estadisticas.png' %}" alt="icono_credito" width="20" height="20"> Reportes
+        </a>
+        <ul class="dropdown-menu">
+          {% if permisos.puede_descargar_informe_bancos %}
+          <li><a class="dropdown-item" href="{% url 'reporte_banco_excel' %}">Bancos</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          {% endif %}
+
+          {% if permisos.puede_descargar_reporte_creditos %}
+          <li><a class="dropdown-item" href="{% url 'financings:reportes' %}">Pago de Creditos</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          {% endif %}
+
+          {% if permisos.puede_descargar_reporte_acreedores %}
+          <li><a class="dropdown-item" href="{% url 'contable:reportes_acreedores'%}">Pagos de Acreedores</a></li>
+          {% endif %}
+          {% if permisos.puede_descargar_reporte_seguros %}
+          <li><a class="dropdown-item" href="{% url 'contable:reportes_seguros' %}">Pagos de Seguros</a></li>
+          {% endif %}
+
+        </ul>
+      </li>
+      {% endif %}
+    </ul>
+
+
+      <div class="mt-auto">
+        <div class="d-flex">
+          <a href="{% url 'logout' %}" class="d-block py-2 px-3 text-decoration-none">
+            <img src="{% static 'img/icons/salida.png' %}" alt="icono_cerrar_sesion" width="20" height="20">
+            Cerrar Sesión
+          </a>
+          {% if permisos.puede_cargar_estado_cuenta %}
+          <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{% static 'img/icons/configuracion.png' %}" alt="icono_configuracion" width="20" height="20">
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              {% if permisos.puede_cargar_estado_cuenta %}
+              <li><a class="dropdown-item" href="{% url 'document:banco' %}">Cargar Bancos</a></li>
+              {% endif %}
+            </ul>
+          </div>
+          {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

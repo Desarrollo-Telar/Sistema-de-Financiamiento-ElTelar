@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <form method="POST" action="{% url 'imagen:create_image' customer_code %}" enctype="multipart/form-data" class="box">
+        {% csrf_token %}
+        {% include 'pictures/snippets/forms.html' %}
+        <button type="submit" class="btn_edit">Crear Registro</button>
+        <a href="{% url 'customers:detail' customer_code  %}">Cancelar</a>
+
+
+    </form>
+{% endblock %}

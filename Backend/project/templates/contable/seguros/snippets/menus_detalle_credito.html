@@ -1,0 +1,93 @@
+{% load static %}
+<nav>
+    <div class="nav nav-tabs listado" id="nav-tab" role="tablist">
+
+        <button class="nav-link active" id="nav-plan_pagos-tab" data-bs-toggle="tab" data-bs-target="#nav-plan_pagos"
+            type="button" role="tab" aria-controls="nav-plan_pagos" aria-selected="true">Plan de Pagos</button>
+
+
+
+        <button class="nav-link" id="nav-creditos-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos" type="button"
+            role="tab" aria-controls="nav-creditos" aria-selected="true">Estado de Cuenta</button>
+        {% if cuotas_vencidas %}
+        <button class="nav-link" id="nav-historial-tab" data-bs-toggle="tab" data-bs-target="#nav-historial"
+            type="button" role="tab" aria-controls="nav-historial" aria-selected="true">Historial de
+            Cuotas Vencidas</button>
+        {% endif %}
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-plan_pagos" role="tabpanel" aria-labelledby="nav-plan_pagos-tab"
+        tabindex="0">
+        <div class="contenido">
+            <div class="row" style="margin-top: 1rem;">
+                {%include 'financings/credit/paymentplan.html' with plan=plan%}
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="tab-pane fade show " id="nav-garantia" role="tabpanel" aria-labelledby="nav-garantia-tab" tabindex="0">
+        <div class="contenido">
+
+            <div class="row" style="margin-top: 1rem;">
+                {% include 'financings/guarantee/table/table.html' %}
+
+            </div>
+            <div class="row" style="margin-top: 1rem;">
+                <p>TOTAL: <span>Q {{total_garantia}}</span></p>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="tab-pane fade show " id="nav-desembolsos" role="tabpanel" aria-labelledby="nav-desembolsos-tab"
+        tabindex="0">
+        <div class="contenido">
+            {% if total_desembolso < credit_list.formato_monto %} <div class="row" style="margin-top: 1rem;">
+                <div class="col d-flex flex-row-reverse">
+                    <a class="btn_cancel" href="{% url 'financings:create_disbursement' credit_list.id %}">Añadir
+                        Desembolso
+                        Nuevo
+
+                    </a>
+                </div>
+        </div>
+        {% endif %}
+        <div class="row" style="margin-top: 1rem;">
+            {% include 'financings/disbursement/table/table.html' %}
+
+        </div>
+        <div class="row" style="margin-top: 1rem;">
+            <p>TOTAL: <span>Q {{total_desembolso}}</span></p>
+
+        </div>
+
+
+    </div>
+</div>
+
+<div class="tab-pane fade show " id="nav-creditos" role="tabpanel" aria-labelledby="nav-creditos-tab" tabindex="0">
+    <div class="contenido">
+        {% include 'contable/seguros/snippets/estado_cuenta.html' %}
+
+    </div>
+</div>
+<div class="tab-pane fade show " id="nav-historial" role="tabpanel" aria-labelledby="nav-historial-tab" tabindex="0">
+    <div class="contenido">
+        {% include 'contable/seguros/snippets/historial.html' %}
+
+    </div>
+</div>
+
+
+
+</div>

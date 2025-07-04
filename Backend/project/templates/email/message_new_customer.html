@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mensaje de nuevo cliente</title>
+</head>
+
+<body>
+  <div style="background-color: #f2f2f2; padding: 20px; text-align: center">
+
+    <h1 style="text-transform: uppercase">
+        Estimados Administradores,
+        
+    </h1>
+    <h2>Nos complace informarles que un nuevo cliente se ha registrado en nuestra plataforma.</h2>
+    <p style="font-style: oblique">Detalles del Cliente: </p>
+        <p style="font-style: oblique">Nombre: {{ nombre_usuario }},</p>
+        <p>Correo Electrónico: {{email}}</p>
+        <p> Fecha de Registro: {{date}}</p>
+        <p>Codigo de Cliente: {{code}}</p>
+    <p>
+        Estamos entusiasmados por la oportunidad de servir a este nuevo cliente y esperamos que su experiencia con nosotros sea excepcional.
+    </p>
+    <p>
+        Por favor, asegúrense de revisar los detalles y tomar cualquier acción necesaria para asegurar que el cliente reciba una cálida bienvenida y el soporte que necesite.
+
+        Saludos cordiales,
+    </p>
+   
+  
+    <h1>EL TELAR</h1>
+    
+
+
+
+
+
+
+  </div>
+</body>
+
+</html>

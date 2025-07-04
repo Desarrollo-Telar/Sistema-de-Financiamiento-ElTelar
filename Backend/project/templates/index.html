@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="row box">
+    <h3 style="font-weight: bold;">Hola, {{user}}!</h3>
+    
+    <p>¡Bienvenido/a a nuestro portal de control de financiamientos El Telar!
+        Estamos encantados de tenerte aquí. Este es tu centro de operaciones
+        para gestionar las finanzas de todos nuestros clientes de manera
+        eficiente y efectiva. Desde el seguimiento del plan de inversion hasta
+        el siguimiento de sus pagos, estamos aquí para ayudarte en cada paso
+        del camino.</p>
+    <hr>
+
+</div>
+<div class="row box">
+    {% include 'snippets/informacion.html'%}
+</div>
+<div class="row">
+    {% include 'snippets/graficas.html'%}
+</div>
+
+
+
+{% endblock %}
+
+{% block js %}
+
+<script type="module" src="{% static 'js/grafica_index.js'%}"></script>
+
+
+{% endblock%}

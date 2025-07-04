@@ -1,0 +1,59 @@
+{% load static %}
+<div class="container-fluid bg-white">
+  <header class="row align-items-center py-2">
+
+    <!-- Logo -->
+    <div class="col-12 col-md-3 text-center text-md-start mb-2 mb-md-0">
+      <a href="/" class="d-inline-flex align-items-center text-decoration-none">
+        <img src="{% static './img/logo.png'%}" alt="Logo" style="height: 3rem; width: 10rem;">
+      </a>
+    </div>
+
+    <!-- Buscador -->
+    <div class="col-12 col-md-6 mb-2 mb-md-0">
+      <form class="d-flex justify-content-center justify-content-md-start" role="search">
+        <input type="search" class="form-control w-100 w-md-75" placeholder="Buscar..." aria-label="Buscar">
+      </form>
+    </div>
+
+    <!-- Íconos y usuario -->
+    <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center gap-2">
+      <!-- Notificaciones -->
+      <div class="dropdown" style="margin-right: 0.5rem;">
+        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+          onclick="cargarNotificaciones()" id="noti-btn">
+          <img src="{% static 'img/icons/notificacion.png' %}" alt="notificaciones" width="20" height="20">
+
+          <span id="noti-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            0
+            <span class="visually-hidden">unread messages</span>
+          </span>
+
+
+
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" id="notificaciones-list">
+         
+
+        </ul>
+      </div>
+
+
+
+
+      <!-- Usuario -->
+      <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="{% static 'img/icons/cliente_01.png' %}" alt="usuario" width="20" height="20">
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          {% if permisos.puede_ver_perfil_usuario %}
+          <li><a class="dropdown-item" href="{% url 'users:profile' %}">Perfil</a></li>
+          {% endif %}
+          <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </header>
+</div>

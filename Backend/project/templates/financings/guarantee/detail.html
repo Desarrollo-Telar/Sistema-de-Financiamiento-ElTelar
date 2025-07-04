@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row box">
+    <div class="row">
+        {% include 'financings/credit/snippets/descripcion_credito.html' with credit_list=credit_list%}
+    </div>
+
+
+    <hr>
+    <div class="row">
+        <p class="fw-bold">Tipo de Garantia: <span class="fw-normal">{{detalle.tipo_garantia}}</span></p>
+        <div class="fw-bold">
+            <p>Especificaciones</p>
+            {% for key, value in detalle.especificaciones.items %}
+            <p class="fw-normal">{{key}}: {{value}}</p>
+            {% endfor %}
+
+        </div>
+
+
+        <p class="fw-bold">Valor de Cobertura: <span class="fw-normal">Q{{detalle.fvalor_cobertura}}</span></p>
+
+    </div>
+    {% if documentos %}
+    {% for documento in documentos%}
+    <hr>
+    <div class="row">
+        <a href="{{documento.document_id.get_document}}" class="fw-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
+                <path
+                    d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z" />
+            </svg>
+            Documento sobre la Garantia: {{documento.document_id.description}}
+        </a>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <hr>
+    <div class="row " style="margin-top: 1rem; ">
+        <div class="col">
+            <a href="{% url 'document:create_documente_detalle_garantia' detalle.id %}" class="btn_guardar">Cargar
+                Documento</a>
+        </div>
+        <div class="col">
+            <button onclick="window.history.back()" type="button" class="btn_cancel">Atras</button>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+{% endblock %}

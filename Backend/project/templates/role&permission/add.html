@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        {% if field.name != 'permissions' %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+            {{ field.errors }}
+            {% endif %}
+        </div>
+        {% else %}
+
+        {% if field.name == 'permissions' %}
+        <br>
+        {{field.label_tag}}
+        <hr>
+        <div class="row row-cols-2">
+            <div class="col-12">
+                <div class="form-group">
+                    {{field}}
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        {% endif %}
+        <br>
+        {% endif %}
+
+
+
+        {% endfor %}
+
+        <br />
+        <hr />
+        <a type="button" style="
+        border: 1px solid #ba181b;
+        color: #ba181b;
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 2rem;
+        background-color: #effaf3;
+      " href=" {% url 'roles_permissions:roles_permissions' %}">Volver atrás</a>
+        <button type="submit" style="
+        background-color: #161a1d;
+        color: #effaf3;
+        border: 1px solid #161a1d;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+      ">
+            {{accion}}
+        </button>
+    </form>
+</div>
+
+{% endblock content %}

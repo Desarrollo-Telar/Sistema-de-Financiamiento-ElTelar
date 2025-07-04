@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <form method="POST" action="{% url 'imagen:update_image' imagen_id customer_code %}" enctype="multipart/form-data" class="box">
+        
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+          </div>
+          <div class="form-group">
+            <label for="current_image">Imagen Actual:</label>
+            <br>
+            {% if imagen.image %}
+              <img id="current_image" src="{{ imagen.image.url }}" alt="Current Image" style="max-width: 200px; max-height: 200px;">
+            {% else %}
+              <p>No hay imagen disponible</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            {{ form.image.label_tag }}
+            {{ form.image }}
+          </div>
+        <button type="submit" class="btn_edit" style="margin-top: 2rem;">Actualizar Registro</button>
+        <a href="{% url 'customers:detail' customer_code  %}">Cancelar</a>
+
+
+    </form>
+{% endblock %}
+

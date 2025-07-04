@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENSAJE DE ALERTA - EL TELAR</title>
+</head>
+<body>
+  <div style="background-color: #f2f2f2; padding: 20px; text-align: center">
+
+    <h1 style="text-transform: uppercase">
+        Estimados Administradores,
+        
+    </h1>
+    <h2 style="color: red;">¡ALERTA!</h2>
+    <p style="font-style: oblique">La boleta con: </p>
+        <p style="font-style: oblique">Numero de Referencia: {{ object.numero_referencia }},</p>
+        <p>Monto: Q {{object.Fmonto}}</p>
+        <p>Fecha de Registro: {{object.fecha_emision}}</p>
+        <p>Para: {{object.boleta_para}}</p>
+       
+    <p>
+        Esta en un estado de: {{status}}
+    </p>
+  
+    <p>
+        {{message}}
+    </p>
+    
+    {% if object.id %}
+            <a href="{{ full_url }}{% url 'financings:actualizar_boleta' object.id %}">EDITAR BOLETA</a>
+            {% endif %}
+   
+  
+    <h1>EL TELAR</h1>
+    
+
+
+
+
+
+
+  </div>
+</body>
+</html>

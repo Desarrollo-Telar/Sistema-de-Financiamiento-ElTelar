@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<form method="POST" id="garantia">
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <div style="background-color: white; padding: 2rem;">
+        <div class="row">
+            <div class="col-12" style="margin-bottom: 2rem;">
+                <div class="form-group">
+                    <label class="fw-medium" for="credit_id">Credito</label>
+                    <select class="form-control credit" id="credit_id" name="credit_id" style="width: 100%" required>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="fw-medium" for="tipo_garantia">Tipo de Garantia</label>
+            <select class="form-select" id="tipo_garantia">
+                <option selected>------------</option>
+                <option value="HIPOTECA">HIPOTECA</option>
+                <option value="DERECHO DE POSESIÓN HIPOTECA">DERECHO DE POSESIÓN HIPOTECA</option>
+                <option value="FIADOR">FIADOR</option>
+                <option value="CHEQUE">CHEQUE</option>
+                <option value="VEHICULO">VEHICULO</option>
+                <option value="MOBILIARIA">MOBILIARIA</option>
+            </select>
+
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="fw-medium" for="valor_cobertura">Valor De Cobertura</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                <input type="number" min="0" step="any" class="form-control" name="valor_cobertura"
+                    id="valor_cobertura">
+
+            </div>
+
+        </div>
+        {% include 'financings/guarantee/type/hipoteca.html' %}
+        {% include 'financings/guarantee/type/derecho_posesion.html' %}
+        {% include 'financings/guarantee/type/cheque.html' %}
+        {% include 'financings/guarantee/type/fiador.html' %}
+        {% include 'financings/guarantee/type/mobiliaria.html' %}
+        {% include 'financings/guarantee/type/vehiculo.html' %}
+
+
+
+    </div>
+    <hr>
+    <div style="background-color: white; padding: 2rem;">
+        {% include 'financings/guarantee/list.html' %}
+
+    </div>
+    <hr>
+    <div style="background-color: white; padding: 2rem;">
+        <a href="{% url 'financings:list_guarantee' %}" style="margin-right: 0.5rem;"> Cancelar</a>
+        <button type="submit" class="btn_edit">Agregar</button>
+    </div>
+
+
+</form>
+{% endblock %}
+
+
+
+{% block js %}
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+    const tipo_garantia = document.getElementById('tipo_garantia');
+
+    const hipoteca = document.getElementById('hipoteca');
+    const derecho_posesion = document.getElementById('derecho_posesion');
+    const cheque = document.getElementById('cheque');
+    const fiador = document.getElementById('fiador');
+    const mobiliaria = document.getElementById('mobiliaria');
+    const vehiculo = document.getElementById('vehiculo');
+
+    tipo_garantia.addEventListener('change', function (event) {
+        const valor = event.target.value;
+        if (valor === 'HIPOTECA') {
+            mostrar(hipoteca);
+            ocultar(derecho_posesion);
+            ocultar(cheque);
+            ocultar(fiador);
+            ocultar(mobiliaria);
+            ocultar(vehiculo);
+
+        } else if (valor === 'DERECHO DE POSESIÓN HIPOTECA') {
+            ocultar(hipoteca);
+            ocultar(cheque);
+            mostrar(derecho_posesion);
+            ocultar(fiador);
+            ocultar(mobiliaria);
+            ocultar(vehiculo);
+
+
+        } else if (valor === 'FIADOR') {
+            ocultar(hipoteca);
+            ocultar(derecho_posesion);
+            ocultar(cheque);
+            mostrar(fiador);
+            ocultar(mobiliaria);
+            ocultar(vehiculo);
+
+        } else if (valor === 'CHEQUE') {
+            ocultar(hipoteca);
+            ocultar(derecho_posesion);
+            mostrar(cheque);
+            ocultar(fiador);
+            ocultar(mobiliaria);
+            ocultar(vehiculo);
+
+        } else if (valor === 'VEHICULO') {
+            ocultar(hipoteca);
+            ocultar(derecho_posesion);
+            ocultar(fiador);
+            ocultar(mobiliaria);
+            mostrar(vehiculo);
+
+        } else if (valor === 'MOBILIARIA') {
+            ocultar(hipoteca);
+            ocultar(derecho_posesion);
+            ocultar(fiador);
+            mostrar(mobiliaria);
+            ocultar(vehiculo);
+
+        } else {
+            ocultar(hipoteca);
+            ocultar(derecho_posesion);
+            ocultar(cheque);
+            ocultar(fiador);
+            ocultar(mobiliaria);
+            ocultar(vehiculo);
+            console.log('Buenoooo');
+        }
+    });
+
+    const ocultar = (element) => {
+        if (element) {
+            element.style.display = 'none';
+        }
+    };
+
+    const mostrar = (element) => {
+        if (element) {
+            element.style.display = 'block';
+        }
+    };
+    $(document).ready(function () {
+        $(".credit").select2({
+            width: 'resolve',
+            ajax: {
+                url: 'https://www.ii-eltelarsa.com/financings/api/credit/',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    console.log(data);
+                    // Verificar si 'data' es un array de objetos
+                    if (Array.isArray(data)) {
+                        return {
+                            results: data.map(function (item) {
+
+                                return {
+                                    id: item.id,
+                                    text: item.codigo_credito + ' ' + item.customer_id.first_name + ' ' + item.customer_id.last_name
+                                };
+                            })
+                        };
+                    } else {
+                        console.error('Estructura de datos inesperada:', data);
+                        return {
+                            results: []
+                        };
+                    }
+                },
+                cache: true
+            },
+            placeholder: 'Seleccione un Credito',
+            minimumInputLength: 1
+        });
+    });
+
+
+</script>
+<script type="module" src="{% static 'js/financings/credit/garantia.js'%}"></script>
+
+{% endblock %}

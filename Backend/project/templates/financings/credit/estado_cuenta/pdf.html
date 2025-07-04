@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/list.css' %}">
+    <style type="text/css">
+        @font-face {
+            font-family: 'Quicksand';
+            src: url("{% static 'css/text/Quicksand/Quicksand-VariableFont_wght.ttf' %}") format('truetype'),
+            url("{% static 'css/text/Quicksand/static/Quicksand-Regular.ttf' %}") format('truetype');
+        }
+
+        body {
+            font-family: "Quicksand", serif;
+            font-size: 12px;
+        }
+
+        @page: first {
+            size: A4 portrait;
+            /* Primera página en orientación vertical */
+            margin: 2cm;
+        }
+
+        @page {
+            size: A4 landscape;
+            /* Páginas siguientes en orientación horizontal */
+            margin: 1cm;
+        }
+
+        @media print {
+            body {
+                position: relative;
+            }
+
+            .watermark {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                /* Coloca la marca detrás del contenido */
+                pointer-events: none;
+                background-image: url("{% static 'img/logo.png' %}");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                /* Ajusta la imagen para que se adapte al contenedor */
+                opacity: 0.1;
+                /* Hace que la marca sea translúcida */
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            tbody {
+                display: table-row-group;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th {
+                border-bottom: 1px solid black;
+                border-top: 1px solid black;
+            }
+
+            td {
+
+                padding: 4px;
+                word-wrap: break-word;
+            }
+        }
+
+        table {
+            margin-top: 10px;
+        }
+
+        thead th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Marca de Agua -->
+    <div class="watermark"></div>
+
+    <!-- Primera Página: Información del Crédito -->
+    <div class="container" style="line-height: 1;">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3>ESTADO DE CUENTA</h3>
+                <p class="fw-bold">DE: <span class="fw-normal">{{credito.customer_id.get_full_name}}</span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" style="width: 150px;">
+            </div>
+            <div class="col-6 text-end">
+                <p class="fw-bold" style="font-size: 16px;">Inversiones Integrales El Telar, S.A.</p>
+                <p>8 Avenida 1-12 Zona 1, Cobán, Alta Verapaz</p>
+                <p>Tel: 3716-0995</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row text-uppercase">
+            <p>CÓDIGO DEL CRÉDITO: <span class="fw-normal">{{credito.codigo_credito}}</span></p>
+            <p>PLAZO: <span class="fw-normal">{{credito.plazo}} Meses</span></p>
+            <p>MONTO: <span class="fw-normal">Q {{credito.formato_monto}}</span></p>
+            <p>TASA DE INTERÉS: <span class="fw-normal">{{credito.tasa_mensual}} %</span></p>
+            <p>SALDO ACTUAL: <span class="fw-normal">
+                    {% if credito.saldo_actual > 0 %} Q{{credito.formato_saldo_actual}} {% else %} Q0.00 {% endif %}
+                </span>
+            </p>
+            <p>ESTADO DEL CRÉDITO: <span
+                    class="fw-normal {% if  credit_list.is_paid_off %} inactivo {% endif %} activo">
+                    {{ credito.formato_credito_cancelado }}
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Salto de página -->
+    <div class=" page-break">
+    </div>
+
+    <!-- Páginas Siguientes: Tabla de Estado de Cuenta -->
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Fecha de Emisión</th>
+                    <th>No. Referencia</th>
+                    <th>Descripción</th>
+                    <th>Monto Pagado</th>
+                    <th>Desembolso</th>
+                    <th>Mora Pagado</th>
+                    <th>Interés Pagado</th>
+                    <th>Aporte a Capital</th>
+                    <th>Saldo Capital Pendiente</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cuenta_estado in estado_cuenta %}
+                <tr style="border-bottom: 1px solid rgba(0, 0, 0, 0.5);">
+                    <td>{{ forloop.counter }}</td>
+                    {% if cuenta_estado.payment %}
+                        <td>{{cuenta_estado.payment.fecha_emision.date}}</td>
+                        {%else%}
+                        <td>{{cuenta_estado.issue_date}}</td>
+                        {% endif %}
+                    <td>{{ cuenta_estado.numero_referencia }}</td>
+                    <td>{{ cuenta_estado.description }}</td>
+                    <td>Q{{ cuenta_estado.Fabono }}</td>
+                    <td>Q{{ cuenta_estado.Fdisbursement_paid }}</td>
+                    <td>Q{{ cuenta_estado.Flate_fee_paid }}</td>
+                    <td>Q{{ cuenta_estado.Finterest_paid }}</td>
+                    <td>Q{{ cuenta_estado.Fcapital_paid }}</td>
+                    <td>{% if cuenta_estado.saldo_pendiente > 0 %} Q{{ cuenta_estado.Fsaldo_pendiente }} {% else %}
+                        Q0.00 {% endif %}</td>
+                </tr>
+                {% endfor %}
+                <tr style="border: 1px solid black;"></tr>
+                <tr style="border: 1px solid black;"></tr>
+                <tr>
+                    <td colspan="5" class="text-center">TOTALES</td>
+                    <td>Q{{ total_desembolsos }}</td>
+                    <td>Q{{ total_moras }}</td>
+                    <td>Q{{ total_intereses }}</td>
+                    <td>Q{{ total_capitales }}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

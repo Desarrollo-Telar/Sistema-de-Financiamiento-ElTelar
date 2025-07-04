@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row box">
+    <input type="hidden" id="credit_id" value="{{siguiente_pago.id}}">
+    <div class="row">
+        {% include 'contable/acreedores/snippets/descripcion_credito.html' %}
+
+
+    </div>
+
+    <div class="row" style="margin-top: 2rem;">
+        <hr>
+        {% include 'contable/acreedores/snippets/menus_detalle_credito.html' %}
+    </div>
+    <div class="row" style="margin-top: 2rem;">
+        <hr>
+        {% include 'contable/acreedores/snippets/botones_detalle_credito.html' %}
+    </div>
+
+
+
+
+</div>
+{% endblock %}
+
+
+{% block js %}
+<script type="module" src="{% static 'js/contable/detail_acreedor.js' %}"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="box">
+    <div class="row">
+        LISTADO DE URL PARA ACCEDER A LAS APIS
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="/financings/api/">FINANZAS</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/customers/api/">CLIENTES</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/documents/api/">DOCUMENTOS</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/admin/">ADMIN</a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+{% endblock %}

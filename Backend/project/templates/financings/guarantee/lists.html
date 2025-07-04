@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class=" row box">
+    <div class="row">
+        <div class="col" style="padding: 2.5rem">
+            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">GARANTIAS</span> !</h3>
+            <p>
+                Bienvenido al módulo de Garantias. Este módulo te permite administrar todos
+                los aspectos relacionados con las garntias aplicadas a los creditos registrados a la plataforma.
+            </p>
+            <p>
+                Este módulo está diseñado para brindarte el control y la flexibilidad
+                necesarios para administrar eficazmente el registro de las garantias de los creditos de los clientes
+                en la plataforma.
+            </p>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col d-flex flex-row-reverse">
+            <a class="btn_add" href="{% url 'financings:create_guarantee' %}">Añadir Garantia Nueva</a>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 2rem;">
+        {% include 'financings/guarantee/table/table.html' %}
+    </div>
+
+
+</div>
+{% if page_obj %}
+{% include 'snippets/pages.html' %}
+{% endif %}
+
+{% endblock%}

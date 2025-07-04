@@ -1,0 +1,70 @@
+<div class="row g-3">
+    <div class="col-12 col-md-6">
+        <div class="form-group">
+            <label for="type_of_product_or_service">Tipo Producto o Servicio</label>
+            <select class="form-select" id="type_of_product_or_service" name="type_of_product_or_service">
+                <option value="AGROPECUARIO Y/O PRODUCTIVO">AGROPECUARIO Y/O PRODUCTIVO</option>
+                <option value="COMERCIO">COMERCIO</option>
+                <option value="SERVICIOS">SERVICIOS</option>
+                <option value="CONSUMO">CONSUMO</option>
+                <option value="VIVIENDA">VIVIENDA</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <div class="form-group">
+            <label for="total_value_of_the_product_or_service">Valor total del producto o servicio</label>
+            <div class="input-group">
+                <span class="input-group-text">Q</span>
+                <input type="number" min="0" step="any" class="form-control" id="total_value_of_the_product_or_service" name="total_value_of_the_product_or_service">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="form-group">
+            <label for="investment_plan_description">Descripción del plan de inversión</label>
+            <textarea id="investment_plan_description" name="investment_plan_description" class="form-control" rows="3"></textarea>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <div class="form-group">
+            <label for="initial_amount">Monto Inicial a manejar en el producto o servicios</label>
+            <div class="input-group">
+                <span class="input-group-text">Q</span>
+                <input type="number" min="0" step="any" class="form-control" id="initial_amount" name="initial_amount">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <div class="form-group">
+            <label for="monthly_amount">Monto Mensual a manejar en el producto o servicios</label>
+            <div class="input-group">
+                <span class="input-group-text">Q</span>
+                <input type="number" min="0" step="any" class="form-control" id="monthly_amount" name="monthly_amount">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="form-check form-switch mt-2">
+            <input type="checkbox" class="form-check-input" id="transfers_or_transfer_of_funds" name="transfers_or_transfer_of_funds">
+            <label class="form-check-label" for="transfers_or_transfer_of_funds">
+                Transferencias o traslado de fondos (Sí o No)
+            </label>
+        </div>
+    </div>
+
+    <div class="col-12" id="transferencias">
+        <div class="form-group">
+            <label for="type_of_transfers_or_transfer_of_funds">Tipo de transferencias o traslado de fondos: Local o Internacional</label>
+            <select class="form-select" id="type_of_transfers_or_transfer_of_funds" name="type_of_transfers_or_transfer_of_funds">
+                <option value="Local">Local</option>
+                <option value="Internacional">Internacional</option>
+            </select>
+        </div>
+    </div>
+</div>

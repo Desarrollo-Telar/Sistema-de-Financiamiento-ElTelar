@@ -1,0 +1,93 @@
+{% load static %}
+
+
+<div class="row" style="margin-top: 1rem;">
+    <div class="col-12 ">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Fecha de Emision</th>
+                        <th scope="col">No. Referencia</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Monto Pagado</th>
+                        <th scope="col">Desembolso</th>
+                        <th scope="col">Mora Pagado</th>
+                        <th scope="col">Interes Pagado</th>
+                        <th scope="col">Aporte a Capital</th>
+                        <th scope="col">Saldo Capital Pendiente</th>
+                        <th scope="col"></th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cuenta_estado in estado_cuenta %}
+
+                    <tr>
+
+                        {% if cuenta_estado.payment %}
+                        <td>{{cuenta_estado.payment.fecha_emision.date}}</td>
+                        {%else%}
+                        <td>{{cuenta_estado.issue_date}}</td>
+                        {% endif %}
+                        <td scope="row">
+
+                            <a href="{% url 'financings:clasificar' cuenta_estado.numero_referencia %}">
+                                {{cuenta_estado.numero_referencia}}
+                            </a>
+
+                        </td>
+                        <td scope="row">
+                            <p>{{cuenta_estado.description}}</p>
+
+                        </td>
+                        <td scope="row">
+                            Q{{cuenta_estado.Fabono}}
+                        </td>
+                        <td scope="row">
+                            Q{{cuenta_estado.Fdisbursement_paid}}
+                        </td>
+                        <td scope="row">
+                            Q{{cuenta_estado.Flate_fee_paid}}
+                        </td>
+                        <td scope="row">
+                            Q{{cuenta_estado.Finterest_paid}}
+                        </td>
+                        <td scope="row">
+                            Q{{cuenta_estado.Fcapital_paid}}
+                        </td>
+                        <td scope="row">
+                            Q{{cuenta_estado.Fsaldo_pendiente}}
+                        </td>
+
+
+                    </tr>
+
+                    {% endfor %}
+                    <tr>
+                        <th scope="row" colspan="4" class="text-center">TOTALES</th>
+                        <td>
+                            Q{{total_desembolsos}}
+
+                        </td>
+                        <td>Q{{total_moras}}</td>
+                        <td>Q{{total_intereses}}</td>
+                        <td>Q{{total_capitales}}</td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+</div>

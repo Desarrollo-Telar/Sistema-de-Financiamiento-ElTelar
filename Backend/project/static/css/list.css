@@ -1,0 +1,58 @@
+.activo{
+    background-color: #b2ffc0; 
+    padding: 0 0.5rem; 
+    border-radius:2rem; 
+    text-align: center; 
+    color: #00340c;
+}
+
+.inactivo{
+    background-color: #fccccd; 
+    color: #420d0e;
+    padding: 0 0.5rem;  
+    border-radius:2rem; 
+    text-align: center; 
+
+}
+
+.neutro{
+    background-color: #e2e9eb; 
+    color: #161a1d;
+    padding: 0 0.5rem;  
+    border-radius:2rem; 
+    text-align: center; 
+
+}
+
+.action{
+    border: none;
+    background-color: white;
+}
+
+.add{
+    background-color: #ffe1e2;
+    border:#fb6e71 1px solid;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: #46090a;
+    
+}
+
+.card_notificacion_no_leido{
+    background-color: #161A1D;
+    border: 1px solid #161A1D;
+    
+}
+
+.card_notificacion_no_leido  a{
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+
+.card_notificacion_leido  a {
+    text-decoration: none;
+    color: #161A1D;
+
+}

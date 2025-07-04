@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+
+    <link rel="icon" href="{% static 'img/logo.png' %}" />
+
+
+</head>
+
+<body>
+    <div class="container shadow p-3 mb-5 bg-body-tertiary rounded" style="margin-top: 1rem;">
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center fw-bold fs-2">ESTADO DE CUENTA POR: <span
+                        class="fw-normal fs-2">{{credito.tipo_credito}}</span></p>
+
+            </div>
+        </div>
+        <div class="row" style="margin-top: 2rem;">
+            <div class="col-xs-12 col-sm-4">
+                <img src="{% static 'img/logo.png' %}" alt="imagen_de_la_empresa" width="200rem">
+
+            </div>
+            <div class="col-xs-12 col-sm-8 text-uppercase">
+                <div class="text-end">
+                    <button onclick="window.history.back()" class="fw-bold fs-3 text-uppercase"
+                        style="background: none; border: none;padding: 0;outline: none; cursor: pointer; margin-right: 1rem;">INVERSIONES
+                        INTEGRALES EL TELAR, S.A.</button>
+
+                </div>
+                <div class="text-end fw-semibold" style="margin-right: 1rem;">
+                    <p>8 Avenida 1-12 Zona 1, Coban Alta Verapaz</p>
+                    <p>Tel: 3716 - 0995</p>
+                    <a href="{% url 'financings:estado_cuenta_pdf' credito.id %}">DESCARGAR</a>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <hr>
+        <div class="row text-uppercase" style="margin-top: 2rem;">
+            <div class="col-xs-12 col-sm-12 ">
+                <div class="d-flex justify-content-start">
+                    <p class="fw-semibold" style="margin-right: 1rem; ">DE</p>
+                    <p>{{credito.customer_id.get_full_name}}</p>
+
+                </div>
+                <div class="d-flex justify-content-start">
+                    <p class="fw-semibold" style="margin-right: 1rem; ">CODIGO DEL CREDITO:</p>
+                    <p>{{credito.codigo_credito}}</p>
+
+                </div>
+                <div class="d-flex justify-content-start">
+                    <p class="fw-semibold" style="margin-right: 1rem; ">FECHA DE INICIO:</p>
+                    <p>{{credito.fecha_inicio}}</p>
+                    <p style="margin-left: 1rem; margin-right: 1rem;">Al</p>
+
+                    <p>{{credito.fecha_vencimiento}}</p>
+
+                </div>
+                <div class="d-flex justify-content-start">
+                    <p class="fw-semibold" style="margin-right: 1rem; ">PLAZO:</p>
+                    <p>{{credito.plazo}} MESES</p>
+
+                </div>
+                <div class="d-flex justify-content-start">
+                    <p class="fw-semibold" style="margin-right: 1rem; ">MONTO:</p>
+                    <p>Q {{credito.monto}}</p>
+
+                </div>
+                <div class="d-flex justify-content-start">
+                    <p class="fw-semibold" style="margin-right: 1rem; ">TASA DE INTERES:</p>
+                    <p> {{credito.tasa_mensual}} %</p>
+
+                </div>
+                <div class="d-flex justify-content-start">
+                    <p class="fw-semibold" style="margin-right: 1rem; ">CONSULTANDO:</p>
+                    <p> {{dia}} </p>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <hr>
+        <div class="row text-uppercase" style="margin-top: 2rem; ">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Fecha de Emision</th>
+                            <th scope="col">No. Referencia</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Monto Pagado</th>
+                            <th scope="col">Desembolso</th>
+                            <th scope="col">Mora Pagado</th>
+                            <th scope="col">Interes Pagado</th>
+                            <th scope="col">Aporte a Capital</th>
+                            <th scope="col">Saldo Capital Pendiente</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cuenta_estado in estado_cuenta %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+
+                            {% if cuenta_estado.payment %}
+                            <td>{{cuenta_estado.payment.fecha_emision}}</td>
+                            {%else%}
+                            <td>{{cuenta_estado.issue_date}}</td>
+                            {% endif %}
+                            <td scope="row">
+                                {{cuenta_estado.numero_referencia}}
+                            </td>
+                            <td scope="row">
+                                <p>{{cuenta_estado.description}}</p>
+
+                            </td>
+                            <td scope="row">
+                                Q{{cuenta_estado.Fabono}}
+                            </td>
+                            <td scope="row">
+                                Q{{cuenta_estado.Fdisbursement_paid}}
+                            </td>
+                            <td scope="row">
+                                Q{{cuenta_estado.Flate_fee_paid}}
+                            </td>
+                            <td scope="row">
+                                Q{{cuenta_estado.Finterest_paid}}
+                            </td>
+                            <td scope="row">
+                                Q{{cuenta_estado.Fcapital_paid}}
+                            </td>
+                            <td scope="row">
+                                Q{{cuenta_estado.Fsaldo_pendiente}}
+                            </td>
+
+
+
+                        </tr>
+                        {% endfor %}
+                        <tr style="border-top: 1px solid black;">
+                            <td colspan="10"></td>
+
+                        </tr>
+                        <tr style="border-top: 1px solid black;">
+                            <td colspan="10"></td>
+
+                        </tr>
+
+
+
+
+                        <tr>
+                            <th scope="row" colspan="5" class="text-center">TOTALES</th>
+                            <td>Q{{total_desembolsos}}</td>
+                            <td>Q{{total_moras}}</td>
+                            <td>Q{{total_intereses}}</td>
+                            <td>Q{{total_capitales}}</td>
+                            <td></td>
+
+                        </tr>
+
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

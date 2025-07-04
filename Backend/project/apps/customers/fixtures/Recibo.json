@@ -1,0 +1,8120 @@
+[
+{
+    "model": "financings.recibo",
+    "pk": 3,
+    "fields": {
+        "fecha": "2025-01-21",
+        "recibo": 1,
+        "cliente": 97,
+        "pago": 85,
+        "interes": "1740.72",
+        "interes_pagado": "1740.72",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "11187.28",
+        "total": "12928.00",
+        "factura": true,
+        "cuota": 76
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 6,
+    "fields": {
+        "fecha": "2025-01-30",
+        "recibo": 2,
+        "cliente": 44,
+        "pago": 130,
+        "interes": "1796.85",
+        "interes_pagado": "1796.85",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "385.15",
+        "total": "2182.00",
+        "factura": true,
+        "cuota": 47
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 7,
+    "fields": {
+        "fecha": "2025-01-31",
+        "recibo": 3,
+        "cliente": 83,
+        "pago": 151,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1511.00",
+        "total": "2011.00",
+        "factura": true,
+        "cuota": 51
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 8,
+    "fields": {
+        "fecha": "2025-02-07",
+        "recibo": 4,
+        "cliente": 94,
+        "pago": 169,
+        "interes": "1000.00",
+        "interes_pagado": "1000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "875.00",
+        "total": "1875.00",
+        "factura": true,
+        "cuota": 46
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 9,
+    "fields": {
+        "fecha": "2025-02-07",
+        "recibo": 5,
+        "cliente": 65,
+        "pago": 171,
+        "interes": "800.00",
+        "interes_pagado": "800.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1037.00",
+        "total": "1837.00",
+        "factura": true,
+        "cuota": 53
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 10,
+    "fields": {
+        "fecha": "2025-02-07",
+        "recibo": 6,
+        "cliente": 10,
+        "pago": 172,
+        "interes": "550.00",
+        "interes_pagado": "550.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1186.00",
+        "total": "1736.00",
+        "factura": false,
+        "cuota": 48
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 11,
+    "fields": {
+        "fecha": "2025-02-07",
+        "recibo": 7,
+        "cliente": 144,
+        "pago": 173,
+        "interes": "2000.00",
+        "interes_pagado": "2000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2593.00",
+        "total": "4593.00",
+        "factura": true,
+        "cuota": 83
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 12,
+    "fields": {
+        "fecha": "2025-02-11",
+        "recibo": 8,
+        "cliente": null,
+        "pago": 189,
+        "interes": "778.85",
+        "interes_pagado": "778.85",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3628.15",
+        "total": "4407.00",
+        "factura": true,
+        "cuota": 90
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 13,
+    "fields": {
+        "fecha": "2025-02-12",
+        "recibo": 9,
+        "cliente": 96,
+        "pago": 201,
+        "interes": "130.00",
+        "interes_pagado": "130.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "434.00",
+        "total": "564.00",
+        "factura": true,
+        "cuota": 49
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 14,
+    "fields": {
+        "fecha": "2025-02-18",
+        "recibo": 10,
+        "cliente": 105,
+        "pago": 223,
+        "interes": "212.50",
+        "interes_pagado": "212.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "287.50",
+        "total": "500.00",
+        "factura": false,
+        "cuota": 55
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 15,
+    "fields": {
+        "fecha": "2025-02-18",
+        "recibo": 11,
+        "cliente": 130,
+        "pago": 226,
+        "interes": "1500.00",
+        "interes_pagado": "1500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4532.00",
+        "total": "6032.00",
+        "factura": false,
+        "cuota": 69
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 16,
+    "fields": {
+        "fecha": "2025-02-15",
+        "recibo": 12,
+        "cliente": 149,
+        "pago": 227,
+        "interes": "601.70",
+        "interes_pagado": "601.70",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1898.30",
+        "total": "2500.00",
+        "factura": false,
+        "cuota": 152
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 18,
+    "fields": {
+        "fecha": "2025-02-24",
+        "recibo": 14,
+        "cliente": 102,
+        "pago": 240,
+        "interes": "150.00",
+        "interes_pagado": "150.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "715.00",
+        "total": "865.00",
+        "factura": false,
+        "cuota": 54
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 19,
+    "fields": {
+        "fecha": "2025-02-24",
+        "recibo": 15,
+        "cliente": 32,
+        "pago": 243,
+        "interes": "600.00",
+        "interes_pagado": "600.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "400.00",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 70
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 20,
+    "fields": {
+        "fecha": "2025-02-24",
+        "recibo": 16,
+        "cliente": 32,
+        "pago": 242,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "893.00",
+        "total": "893.00",
+        "factura": false,
+        "cuota": 70
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 21,
+    "fields": {
+        "fecha": "2025-02-24",
+        "recibo": 17,
+        "cliente": 145,
+        "pago": 252,
+        "interes": "262.50",
+        "interes_pagado": "262.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "190.50",
+        "total": "453.00",
+        "factura": false,
+        "cuota": 72
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 22,
+    "fields": {
+        "fecha": "2025-02-24",
+        "recibo": 18,
+        "cliente": 86,
+        "pago": 255,
+        "interes": "137.50",
+        "interes_pagado": "137.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5642.50",
+        "total": "5780.00",
+        "factura": false,
+        "cuota": 50
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 23,
+    "fields": {
+        "fecha": "2025-02-24",
+        "recibo": 19,
+        "cliente": 21,
+        "pago": 261,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3000.00",
+        "total": "3300.00",
+        "factura": false,
+        "cuota": 78
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 24,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 20,
+        "cliente": 83,
+        "pago": 264,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3838.00",
+        "total": "3838.00",
+        "factura": false,
+        "cuota": 51
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 25,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 21,
+        "cliente": 63,
+        "pago": 265,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3000.00",
+        "total": "3300.00",
+        "factura": false,
+        "cuota": 52
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 26,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 22,
+        "cliente": 111,
+        "pago": 266,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "500.00",
+        "factura": false,
+        "cuota": 68
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 27,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 23,
+        "cliente": null,
+        "pago": 271,
+        "interes": "74.18",
+        "interes_pagado": "74.18",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2967.11",
+        "total": "3041.29",
+        "factura": false,
+        "cuota": 135
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 28,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 24,
+        "cliente": null,
+        "pago": 272,
+        "interes": "416.56",
+        "interes_pagado": "416.56",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "8333.44",
+        "total": "8750.00",
+        "factura": false,
+        "cuota": 133
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 29,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 25,
+        "cliente": null,
+        "pago": 273,
+        "interes": "721.83",
+        "interes_pagado": "721.83",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2292.17",
+        "total": "3014.00",
+        "factura": false,
+        "cuota": 112
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 30,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 26,
+        "cliente": null,
+        "pago": 277,
+        "interes": "1575.00",
+        "interes_pagado": "1575.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5000.00",
+        "total": "6575.00",
+        "factura": false,
+        "cuota": 114
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 31,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 27,
+        "cliente": null,
+        "pago": 278,
+        "interes": "350.00",
+        "interes_pagado": "350.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "500.00",
+        "total": "850.00",
+        "factura": false,
+        "cuota": 116
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 32,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 28,
+        "cliente": null,
+        "pago": 279,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "203.00",
+        "total": "203.00",
+        "factura": false,
+        "cuota": 120
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 33,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 29,
+        "cliente": null,
+        "pago": 280,
+        "interes": "374.96",
+        "interes_pagado": "374.96",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2500.04",
+        "total": "2875.00",
+        "factura": false,
+        "cuota": 122
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 34,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 30,
+        "cliente": null,
+        "pago": 281,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "166.00",
+        "total": "166.00",
+        "factura": false,
+        "cuota": 126
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 35,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 31,
+        "cliente": null,
+        "pago": 282,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "550.00",
+        "total": "550.00",
+        "factura": false,
+        "cuota": 100
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 36,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 32,
+        "cliente": null,
+        "pago": 283,
+        "interes": "208.20",
+        "interes_pagado": "208.20",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "8327.96",
+        "total": "8536.16",
+        "factura": false,
+        "cuota": 131
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 37,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 33,
+        "cliente": null,
+        "pago": 292,
+        "interes": "91.56",
+        "interes_pagado": "91.56",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1833.44",
+        "total": "1925.00",
+        "factura": false,
+        "cuota": 137
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 38,
+    "fields": {
+        "fecha": "2025-02-25",
+        "recibo": 34,
+        "cliente": null,
+        "pago": 293,
+        "interes": "600.00",
+        "interes_pagado": "600.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1250.00",
+        "total": "1850.00",
+        "factura": false,
+        "cuota": 110
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 39,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 35,
+        "cliente": null,
+        "pago": 300,
+        "interes": "83.42",
+        "interes_pagado": "83.42",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "833.73",
+        "total": "938.00",
+        "factura": false,
+        "cuota": 92
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 40,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 36,
+        "cliente": null,
+        "pago": 301,
+        "interes": "175.34",
+        "interes_pagado": "175.34",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1512.66",
+        "total": "1688.00",
+        "factura": false,
+        "cuota": 94
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 41,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 37,
+        "cliente": null,
+        "pago": 302,
+        "interes": "488.47",
+        "interes_pagado": "488.47",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4178.53",
+        "total": "4667.00",
+        "factura": false,
+        "cuota": 102
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 42,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 38,
+        "cliente": null,
+        "pago": 303,
+        "interes": "522.64",
+        "interes_pagado": "522.64",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4144.36",
+        "total": "4667.00",
+        "factura": false,
+        "cuota": 104
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 43,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 39,
+        "cliente": null,
+        "pago": 304,
+        "interes": "12551.21",
+        "interes_pagado": "12551.21",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "448.79",
+        "total": "13000.00",
+        "factura": false,
+        "cuota": 98
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 44,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 40,
+        "cliente": null,
+        "pago": 305,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "116.00",
+        "total": "116.00",
+        "factura": false,
+        "cuota": 124
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 45,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 41,
+        "cliente": null,
+        "pago": 320,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "550.00",
+        "total": "550.00",
+        "factura": false,
+        "cuota": 101
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 46,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 42,
+        "cliente": null,
+        "pago": 321,
+        "interes": "374.96",
+        "interes_pagado": "374.96",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2500.04",
+        "total": "2875.00",
+        "factura": false,
+        "cuota": 107
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 47,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 43,
+        "cliente": null,
+        "pago": 322,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "203.00",
+        "total": "203.00",
+        "factura": false,
+        "cuota": 121
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 48,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 44,
+        "cliente": null,
+        "pago": 324,
+        "interes": "499.95",
+        "interes_pagado": "499.95",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3334.05",
+        "total": "3834.00",
+        "factura": false,
+        "cuota": 109
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 49,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 45,
+        "cliente": null,
+        "pago": 325,
+        "interes": "1400.00",
+        "interes_pagado": "1400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5000.00",
+        "total": "6400.00",
+        "factura": false,
+        "cuota": 115
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 50,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 46,
+        "cliente": null,
+        "pago": 328,
+        "interes": "641.61",
+        "interes_pagado": "641.61",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2292.39",
+        "total": "2934.00",
+        "factura": false,
+        "cuota": 113
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 51,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 47,
+        "cliente": null,
+        "pago": 330,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "500.00",
+        "total": "800.00",
+        "factura": false,
+        "cuota": 117
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 52,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 48,
+        "cliente": null,
+        "pago": 331,
+        "interes": "187.46",
+        "interes_pagado": "187.46",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2500.54",
+        "total": "2688.00",
+        "factura": false,
+        "cuota": 123
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 53,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 49,
+        "cliente": null,
+        "pago": 334,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "166.00",
+        "total": "166.00",
+        "factura": false,
+        "cuota": 127
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 54,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 50,
+        "cliente": null,
+        "pago": 335,
+        "interes": "137.50",
+        "interes_pagado": "137.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2750.50",
+        "total": "2888.00",
+        "factura": false,
+        "cuota": 175
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 55,
+    "fields": {
+        "fecha": "2025-02-26",
+        "recibo": 51,
+        "cliente": 97,
+        "pago": 269,
+        "interes": "1803.34",
+        "interes_pagado": "1803.34",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "7026.66",
+        "total": "8830.00",
+        "factura": false,
+        "cuota": 176
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 56,
+    "fields": {
+        "fecha": "2025-03-03",
+        "recibo": 52,
+        "cliente": 165,
+        "pago": 349,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "431.00",
+        "total": "631.00",
+        "factura": false,
+        "cuota": 80
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 57,
+    "fields": {
+        "fecha": "2025-03-03",
+        "recibo": 53,
+        "cliente": 164,
+        "pago": 350,
+        "interes": "150.00",
+        "interes_pagado": "150.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "325.00",
+        "total": "475.00",
+        "factura": false,
+        "cuota": 79
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 58,
+    "fields": {
+        "fecha": "2025-03-03",
+        "recibo": 54,
+        "cliente": 46,
+        "pago": 351,
+        "interes": "250.00",
+        "interes_pagado": "250.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "834.00",
+        "total": "1084.00",
+        "factura": false,
+        "cuota": 82
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 59,
+    "fields": {
+        "fecha": "2025-03-03",
+        "recibo": 55,
+        "cliente": 173,
+        "pago": 353,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "75.00",
+        "total": "575.00",
+        "factura": false,
+        "cuota": 145
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 60,
+    "fields": {
+        "fecha": "2025-03-03",
+        "recibo": 56,
+        "cliente": 166,
+        "pago": 356,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1300.00",
+        "factura": false,
+        "cuota": 87
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 61,
+    "fields": {
+        "fecha": "2025-03-03",
+        "recibo": 57,
+        "cliente": 146,
+        "pago": 360,
+        "interes": "750.00",
+        "interes_pagado": "750.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "543.00",
+        "total": "1293.00",
+        "factura": false,
+        "cuota": 71
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 62,
+    "fields": {
+        "fecha": "2025-03-06",
+        "recibo": 58,
+        "cliente": 181,
+        "pago": 366,
+        "interes": "2014.98",
+        "interes_pagado": "1000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 181
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 63,
+    "fields": {
+        "fecha": "2025-03-06",
+        "recibo": 59,
+        "cliente": 181,
+        "pago": 368,
+        "interes": "1014.98",
+        "interes_pagado": "1000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 181
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 64,
+    "fields": {
+        "fecha": "2025-03-06",
+        "recibo": 60,
+        "cliente": 155,
+        "pago": 367,
+        "interes": "756.82",
+        "interes_pagado": "756.82",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "9260.82",
+        "total": "1587.00",
+        "factura": false,
+        "cuota": 178
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 65,
+    "fields": {
+        "fecha": "2025-03-06",
+        "recibo": 61,
+        "cliente": 181,
+        "pago": 369,
+        "interes": "14.98",
+        "interes_pagado": "14.98",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "985.02",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 181
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 66,
+    "fields": {
+        "fecha": "2025-03-06",
+        "recibo": 62,
+        "cliente": 185,
+        "pago": 370,
+        "interes": "1000.00",
+        "interes_pagado": "1000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "500.00",
+        "total": "1500.00",
+        "factura": false,
+        "cuota": 182
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 67,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 63,
+        "cliente": null,
+        "pago": 380,
+        "interes": "137.53",
+        "interes_pagado": "137.53",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1512.47",
+        "total": "1650.00",
+        "factura": false,
+        "cuota": 95
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 68,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 64,
+        "cliente": null,
+        "pago": 381,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "318.00",
+        "total": "318.00",
+        "factura": false,
+        "cuota": 155
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 69,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 65,
+        "cliente": null,
+        "pago": 382,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "253.00",
+        "total": "253.00",
+        "factura": false,
+        "cuota": 155
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 70,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 66,
+        "cliente": null,
+        "pago": 383,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "318.00",
+        "total": "318.00",
+        "factura": false,
+        "cuota": 156
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 71,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 67,
+        "cliente": null,
+        "pago": 384,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "253.00",
+        "total": "253.00",
+        "factura": false,
+        "cuota": 158
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 72,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 68,
+        "cliente": null,
+        "pago": 385,
+        "interes": "83.42",
+        "interes_pagado": "83.42",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "833.58",
+        "total": "917.00",
+        "factura": false,
+        "cuota": 93
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 73,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 69,
+        "cliente": null,
+        "pago": 388,
+        "interes": "688.14",
+        "interes_pagado": "688.14",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3624.86",
+        "total": "4313.00",
+        "factura": false,
+        "cuota": 91
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 74,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 70,
+        "cliente": null,
+        "pago": 389,
+        "interes": "404.90",
+        "interes_pagado": "404.90",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4179.10",
+        "total": "4584.00",
+        "factura": false,
+        "cuota": 103
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 75,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 71,
+        "cliente": null,
+        "pago": 391,
+        "interes": "12542.24",
+        "interes_pagado": "12542.24",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "457.76",
+        "total": "13000.00",
+        "factura": false,
+        "cuota": 99
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 76,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 72,
+        "cliente": 29,
+        "pago": 396,
+        "interes": "100.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "305.00",
+        "total": "405.00",
+        "factura": false,
+        "cuota": 81
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 77,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 73,
+        "cliente": null,
+        "pago": 397,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "116.00",
+        "total": "116.00",
+        "factura": false,
+        "cuota": 125
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 78,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 74,
+        "cliente": null,
+        "pago": 399,
+        "interes": "439.75",
+        "interes_pagado": "439.75",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4144.25",
+        "total": "4584.00",
+        "factura": false,
+        "cuota": 105
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 79,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 75,
+        "cliente": 152,
+        "pago": 403,
+        "interes": "344.32",
+        "interes_pagado": "344.32",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "255.68",
+        "total": "600.00",
+        "factura": false,
+        "cuota": 84
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 80,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 76,
+        "cliente": null,
+        "pago": 404,
+        "interes": "525.00",
+        "interes_pagado": "525.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1250.00",
+        "total": "1775.00",
+        "factura": false,
+        "cuota": 111
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 81,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 77,
+        "cliente": null,
+        "pago": 408,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "160.00",
+        "total": "160.00",
+        "factura": false,
+        "cuota": 130
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 82,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 78,
+        "cliente": null,
+        "pago": 411,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "164.00",
+        "total": "164.00",
+        "factura": false,
+        "cuota": 129
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 83,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 79,
+        "cliente": 144,
+        "pago": 407,
+        "interes": "1740.70",
+        "interes_pagado": "1740.70",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2852.30",
+        "total": "4593.00",
+        "factura": true,
+        "cuota": 198
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 84,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 80,
+        "cliente": 94,
+        "pago": 402,
+        "interes": "912.50",
+        "interes_pagado": "912.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "962.50",
+        "total": "1875.00",
+        "factura": false,
+        "cuota": 199
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 85,
+    "fields": {
+        "fecha": "2025-03-10",
+        "recibo": 81,
+        "cliente": 167,
+        "pago": 420,
+        "interes": "225.00",
+        "interes_pagado": "225.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5.00",
+        "total": "230.00",
+        "factura": false,
+        "cuota": 88
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 87,
+    "fields": {
+        "fecha": "2025-03-11",
+        "recibo": 83,
+        "cliente": 193,
+        "pago": 441,
+        "interes": "1093.40",
+        "interes_pagado": "1093.40",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "6.60",
+        "total": "1100.00",
+        "factura": false,
+        "cuota": 197
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 88,
+    "fields": {
+        "fecha": "2025-03-12",
+        "recibo": 84,
+        "cliente": null,
+        "pago": 209,
+        "interes": "437.47",
+        "interes_pagado": "437.47",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2500.53",
+        "total": "2938.00",
+        "factura": false,
+        "cuota": 106
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 89,
+    "fields": {
+        "fecha": "2025-03-12",
+        "recibo": 85,
+        "cliente": null,
+        "pago": 210,
+        "interes": "583.29",
+        "interes_pagado": "583.29",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3333.71",
+        "total": "3917.00",
+        "factura": false,
+        "cuota": 108
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 90,
+    "fields": {
+        "fecha": "2025-03-12",
+        "recibo": 86,
+        "cliente": 10,
+        "pago": 438,
+        "interes": "431.40",
+        "interes_pagado": "431.40",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1304.60",
+        "total": "1736.00",
+        "factura": false,
+        "cuota": 213
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 91,
+    "fields": {
+        "fecha": "2025-03-12",
+        "recibo": 87,
+        "cliente": 156,
+        "pago": 449,
+        "interes": "1153.58",
+        "interes_pagado": "1153.58",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "949.42",
+        "total": "2103.00",
+        "factura": false,
+        "cuota": 214
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 92,
+    "fields": {
+        "fecha": "2025-03-15",
+        "recibo": 88,
+        "cliente": 105,
+        "pago": 466,
+        "interes": "690.94",
+        "interes_pagado": "690.94",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "309.06",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 218
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 93,
+    "fields": {
+        "fecha": "2025-03-15",
+        "recibo": 89,
+        "cliente": 102,
+        "pago": 462,
+        "interes": "78.50",
+        "interes_pagado": "78.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "421.50",
+        "total": "500.00",
+        "factura": false,
+        "cuota": 219
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 94,
+    "fields": {
+        "fecha": "2025-03-15",
+        "recibo": 90,
+        "cliente": 65,
+        "pago": 457,
+        "interes": "696.30",
+        "interes_pagado": "696.30",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1140.70",
+        "total": "1837.00",
+        "factura": false,
+        "cuota": 220
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 95,
+    "fields": {
+        "fecha": "2025-03-15",
+        "recibo": 91,
+        "cliente": 44,
+        "pago": 450,
+        "interes": "1767.96",
+        "interes_pagado": "1767.96",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "414.04",
+        "total": "2182.00",
+        "factura": false,
+        "cuota": 221
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 96,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 92,
+        "cliente": 32,
+        "pago": 469,
+        "interes": "470.70",
+        "interes_pagado": "470.70",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1422.30",
+        "total": "1893.00",
+        "factura": false,
+        "cuota": 224
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 97,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 93,
+        "cliente": 130,
+        "pago": 472,
+        "interes": "1046.80",
+        "interes_pagado": "1046.80",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "253.20",
+        "total": "1300.00",
+        "factura": false,
+        "cuota": 223
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 98,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 94,
+        "cliente": 130,
+        "pago": 476,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4732.00",
+        "total": "4732.00",
+        "factura": false,
+        "cuota": 223
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 99,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 95,
+        "cliente": 173,
+        "pago": 477,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "575.00",
+        "total": "575.00",
+        "factura": false,
+        "cuota": 145
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 100,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 96,
+        "cliente": null,
+        "pago": 488,
+        "interes": "68.74",
+        "interes_pagado": "68.74",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2750.26",
+        "total": "2819.00",
+        "factura": false,
+        "cuota": 175
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 101,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 97,
+        "cliente": 169,
+        "pago": 489,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "667.00",
+        "total": "867.00",
+        "factura": false,
+        "cuota": 144
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 102,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 98,
+        "cliente": null,
+        "pago": 491,
+        "interes": "561.37",
+        "interes_pagado": "561.37",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2292.63",
+        "total": "2854.00",
+        "factura": false,
+        "cuota": 190
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 103,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 99,
+        "cliente": null,
+        "pago": 492,
+        "interes": "250.00",
+        "interes_pagado": "250.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "500.00",
+        "total": "750.00",
+        "factura": false,
+        "cuota": 191
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 104,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 100,
+        "cliente": null,
+        "pago": 493,
+        "interes": "1225.00",
+        "interes_pagado": "1225.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5000.00",
+        "total": "6225.00",
+        "factura": false,
+        "cuota": 211
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 105,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 101,
+        "cliente": null,
+        "pago": 495,
+        "interes": "597.52",
+        "interes_pagado": "597.52",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3621.48",
+        "total": "4219.00",
+        "factura": false,
+        "cuota": 189
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 106,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 102,
+        "cliente": null,
+        "pago": 496,
+        "interes": "416.60",
+        "interes_pagado": "416.60",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3333.40",
+        "total": "3750.00",
+        "factura": false,
+        "cuota": 194
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 107,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 103,
+        "cliente": null,
+        "pago": 497,
+        "interes": "312.46",
+        "interes_pagado": "312.46",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2500.54",
+        "total": "2813.00",
+        "factura": false,
+        "cuota": 193
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 108,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 104,
+        "cliente": 149,
+        "pago": 471,
+        "interes": "487.80",
+        "interes_pagado": "487.80",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2012.20",
+        "total": "2500.00",
+        "factura": false,
+        "cuota": 246
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 109,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 105,
+        "cliente": null,
+        "pago": 499,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "550.00",
+        "total": "550.00",
+        "factura": false,
+        "cuota": 247
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 110,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 106,
+        "cliente": null,
+        "pago": 490,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "166.00",
+        "total": "166.00",
+        "factura": false,
+        "cuota": 248
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 111,
+    "fields": {
+        "fecha": "2025-03-18",
+        "recibo": 107,
+        "cliente": null,
+        "pago": 486,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "203.00",
+        "total": "203.00",
+        "factura": false,
+        "cuota": 249
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 112,
+    "fields": {
+        "fecha": "2025-01-24",
+        "recibo": 108,
+        "cliente": 105,
+        "pago": 103,
+        "interes": "712.50",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "500.00",
+        "factura": false,
+        "cuota": 55
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 113,
+    "fields": {
+        "fecha": "2025-01-16",
+        "recibo": 109,
+        "cliente": 149,
+        "pago": 76,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 85
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 114,
+    "fields": {
+        "fecha": "2025-03-19",
+        "recibo": 110,
+        "cliente": 149,
+        "pago": 75,
+        "interes": "709.15",
+        "interes_pagado": "709.15",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "790.85",
+        "total": "1500.00",
+        "factura": false,
+        "cuota": 85
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 115,
+    "fields": {
+        "fecha": "2025-03-19",
+        "recibo": 13,
+        "cliente": 111,
+        "pago": 511,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "534.00",
+        "total": "1034.00",
+        "factura": false,
+        "cuota": 222
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 116,
+    "fields": {
+        "fecha": "2025-03-19",
+        "recibo": 111,
+        "cliente": 24,
+        "pago": 512,
+        "interes": "1500.00",
+        "interes_pagado": "1500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1875.00",
+        "total": "3375.00",
+        "factura": false,
+        "cuota": 143
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 117,
+    "fields": {
+        "fecha": "2025-03-19",
+        "recibo": 112,
+        "cliente": 175,
+        "pago": 513,
+        "interes": "100.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "100.00",
+        "factura": false,
+        "cuota": 147
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 118,
+    "fields": {
+        "fecha": "2025-03-21",
+        "recibo": 113,
+        "cliente": 183,
+        "pago": 522,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3000.00",
+        "total": "3400.00",
+        "factura": false,
+        "cuota": 186
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 119,
+    "fields": {
+        "fecha": "2025-03-21",
+        "recibo": 114,
+        "cliente": 21,
+        "pago": 529,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1600.00",
+        "total": "2000.00",
+        "factura": false,
+        "cuota": 149
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 120,
+    "fields": {
+        "fecha": "2025-03-21",
+        "recibo": 115,
+        "cliente": 21,
+        "pago": 530,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2400.00",
+        "total": "2400.00",
+        "factura": false,
+        "cuota": 149
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 121,
+    "fields": {
+        "fecha": "2025-03-21",
+        "recibo": 116,
+        "cliente": 102,
+        "pago": 531,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "164.00",
+        "total": "164.00",
+        "factura": false,
+        "cuota": 219
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 122,
+    "fields": {
+        "fecha": "2025-03-27",
+        "recibo": 117,
+        "cliente": 176,
+        "pago": 540,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "667.00",
+        "total": "867.00",
+        "factura": false,
+        "cuota": 151
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 123,
+    "fields": {
+        "fecha": "2025-03-27",
+        "recibo": 118,
+        "cliente": 77,
+        "pago": 541,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1110.00",
+        "total": "1510.00",
+        "factura": false,
+        "cuota": 150
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 124,
+    "fields": {
+        "fecha": "2025-03-27",
+        "recibo": 119,
+        "cliente": 172,
+        "pago": 543,
+        "interes": "375.00",
+        "interes_pagado": "375.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "479.00",
+        "total": "854.00",
+        "factura": false,
+        "cuota": 173
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 125,
+    "fields": {
+        "fecha": "2025-03-27",
+        "recibo": 120,
+        "cliente": 77,
+        "pago": 549,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "99.00",
+        "total": "99.00",
+        "factura": false,
+        "cuota": 150
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 126,
+    "fields": {
+        "fecha": "2025-03-27",
+        "recibo": 121,
+        "cliente": 63,
+        "pago": 552,
+        "interes": "600.00",
+        "interes_pagado": "600.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "300.00",
+        "total": "900.00",
+        "factura": false,
+        "cuota": 146
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 127,
+    "fields": {
+        "fecha": "2025-03-28",
+        "recibo": 122,
+        "cliente": 185,
+        "pago": 560,
+        "interes": "975.00",
+        "interes_pagado": "975.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "425.00",
+        "total": "1400.00",
+        "factura": false,
+        "cuota": 236
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 128,
+    "fields": {
+        "fecha": "2025-03-28",
+        "recibo": 123,
+        "cliente": 168,
+        "pago": 559,
+        "interes": "1125.00",
+        "interes_pagado": "1125.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "421.00",
+        "total": "1546.00",
+        "factura": false,
+        "cuota": 142
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 129,
+    "fields": {
+        "fecha": "2025-03-28",
+        "recibo": 124,
+        "cliente": 164,
+        "pago": 561,
+        "interes": "117.50",
+        "interes_pagado": "117.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "357.50",
+        "total": "475.00",
+        "factura": false,
+        "cuota": 227
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 130,
+    "fields": {
+        "fecha": "2025-03-28",
+        "recibo": 125,
+        "cliente": 146,
+        "pago": 562,
+        "interes": "709.28",
+        "interes_pagado": "709.28",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "583.72",
+        "total": "1293.00",
+        "factura": false,
+        "cuota": 225
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 131,
+    "fields": {
+        "fecha": "2025-03-28",
+        "recibo": 126,
+        "cliente": 174,
+        "pago": 563,
+        "interes": "1700.00",
+        "interes_pagado": "1700.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1100.00",
+        "total": "2800.00",
+        "factura": false,
+        "cuota": 148
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 132,
+    "fields": {
+        "fecha": "2025-03-31",
+        "recibo": 127,
+        "cliente": 77,
+        "pago": 567,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1609.00",
+        "total": "1609.00",
+        "factura": false,
+        "cuota": 150
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 133,
+    "fields": {
+        "fecha": "2025-03-31",
+        "recibo": 128,
+        "cliente": 171,
+        "pago": 568,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "649.00",
+        "total": "1149.00",
+        "factura": false,
+        "cuota": 141
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 134,
+    "fields": {
+        "fecha": "2025-03-31",
+        "recibo": 129,
+        "cliente": 173,
+        "pago": 570,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "575.00",
+        "total": "575.00",
+        "factura": false,
+        "cuota": 145
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 135,
+    "fields": {
+        "fecha": "2025-03-31",
+        "recibo": 130,
+        "cliente": 165,
+        "pago": 572,
+        "interes": "156.90",
+        "interes_pagado": "156.90",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "474.10",
+        "total": "631.00",
+        "factura": false,
+        "cuota": 228
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 137,
+    "fields": {
+        "fecha": "2025-03-31",
+        "recibo": 132,
+        "cliente": 166,
+        "pago": 577,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1200.00",
+        "factura": false,
+        "cuota": 232
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 138,
+    "fields": {
+        "fecha": "2025-03-31",
+        "recibo": 133,
+        "cliente": 46,
+        "pago": 578,
+        "interes": "166.60",
+        "interes_pagado": "166.60",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "833.40",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 229
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 139,
+    "fields": {
+        "fecha": "2025-03-31",
+        "recibo": 134,
+        "cliente": 197,
+        "pago": 587,
+        "interes": "50.00",
+        "interes_pagado": "50.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1050.00",
+        "factura": false,
+        "cuota": 267
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 140,
+    "fields": {
+        "fecha": "2025-03-31",
+        "recibo": 135,
+        "cliente": 103,
+        "pago": 586,
+        "interes": "100.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "311.00",
+        "total": "411.00",
+        "factura": false,
+        "cuota": 278
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 141,
+    "fields": {
+        "fecha": "2025-04-01",
+        "recibo": 136,
+        "cliente": 79,
+        "pago": 588,
+        "interes": "4000.00",
+        "interes_pagado": "4000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "4000.00",
+        "factura": false,
+        "cuota": 174
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 142,
+    "fields": {
+        "fecha": "2025-04-01",
+        "recibo": 137,
+        "cliente": 170,
+        "pago": 591,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "667.00",
+        "total": "867.00",
+        "factura": false,
+        "cuota": 140
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 143,
+    "fields": {
+        "fecha": "2025-04-01",
+        "recibo": 138,
+        "cliente": 87,
+        "pago": 592,
+        "interes": "1310.00",
+        "interes_pagado": "1310.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1456.00",
+        "total": "2766.00",
+        "factura": false,
+        "cuota": 210
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 144,
+    "fields": {
+        "fecha": "2025-04-01",
+        "recibo": 139,
+        "cliente": 145,
+        "pago": 600,
+        "interes": "248.21",
+        "interes_pagado": "248.21",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "204.79",
+        "total": "453.00",
+        "factura": false,
+        "cuota": 226
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 145,
+    "fields": {
+        "fecha": "2025-04-01",
+        "recibo": 140,
+        "cliente": 186,
+        "pago": 601,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1078.00",
+        "total": "1578.00",
+        "factura": false,
+        "cuota": 200
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 146,
+    "fields": {
+        "fecha": "2025-04-04",
+        "recibo": 82,
+        "cliente": 96,
+        "pago": 410,
+        "interes": "86.60",
+        "interes_pagado": "86.60",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "433.40",
+        "total": "520.00",
+        "factura": false,
+        "cuota": 250
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 147,
+    "fields": {
+        "fecha": "2025-04-04",
+        "recibo": 131,
+        "cliente": 65,
+        "pago": 576,
+        "interes": "582.23",
+        "interes_pagado": "582.23",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5822.77",
+        "total": "6405.00",
+        "factura": false,
+        "cuota": 304
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 148,
+    "fields": {
+        "fecha": "2025-04-04",
+        "recibo": 141,
+        "cliente": 87,
+        "pago": 612,
+        "interes": "550.00",
+        "interes_pagado": "550.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5500.00",
+        "total": "6050.00",
+        "factura": false,
+        "cuota": 96
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 149,
+    "fields": {
+        "fecha": "2025-04-04",
+        "recibo": 142,
+        "cliente": 97,
+        "pago": 613,
+        "interes": "374.68",
+        "interes_pagado": "374.68",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4996.32",
+        "total": "5371.00",
+        "factura": false,
+        "cuota": 262
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 150,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 143,
+        "cliente": 102,
+        "pago": 614,
+        "interes": "19.95",
+        "interes_pagado": "19.95",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "200.05",
+        "total": "220.00",
+        "factura": false,
+        "cuota": 279
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 151,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 144,
+        "cliente": 180,
+        "pago": 615,
+        "interes": "1000.00",
+        "interes_pagado": "1000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3022.00",
+        "total": "4022.00",
+        "factura": false,
+        "cuota": 183
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 152,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 145,
+        "cliente": 152,
+        "pago": 616,
+        "interes": "325.15",
+        "interes_pagado": "325.15",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "274.85",
+        "total": "600.00",
+        "factura": false,
+        "cuota": 245
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 153,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 146,
+        "cliente": 156,
+        "pago": 618,
+        "interes": "1082.37",
+        "interes_pagado": "1082.37",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1020.63",
+        "total": "2103.00",
+        "factura": false,
+        "cuota": 238
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 154,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 147,
+        "cliente": 96,
+        "pago": 620,
+        "interes": "43.25",
+        "interes_pagado": "43.25",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "433.75",
+        "total": "477.00",
+        "factura": false,
+        "cuota": 303
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 155,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 148,
+        "cliente": 10,
+        "pago": 621,
+        "interes": "300.94",
+        "interes_pagado": "300.94",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1435.06",
+        "total": "1736.00",
+        "factura": false,
+        "cuota": 259
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 156,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 149,
+        "cliente": 128,
+        "pago": 623,
+        "interes": "112.50",
+        "interes_pagado": "112.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "937.50",
+        "total": "1050.00",
+        "factura": false,
+        "cuota": 257
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 157,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 150,
+        "cliente": 167,
+        "pago": 628,
+        "interes": "224.55",
+        "interes_pagado": "224.55",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5.45",
+        "total": "230.00",
+        "factura": false,
+        "cuota": 251
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 158,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 151,
+        "cliente": 188,
+        "pago": 629,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "300.00",
+        "factura": false,
+        "cuota": 184
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 159,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 152,
+        "cliente": 77,
+        "pago": 630,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1182.00",
+        "total": "1182.00",
+        "factura": false,
+        "cuota": 309
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 160,
+    "fields": {
+        "fecha": "2025-04-07",
+        "recibo": 153,
+        "cliente": 173,
+        "pago": 632,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3775.00",
+        "total": "3775.00",
+        "factura": false,
+        "cuota": 301
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 161,
+    "fields": {
+        "fecha": "2025-04-09",
+        "recibo": 154,
+        "cliente": 41,
+        "pago": 638,
+        "interes": "232.50",
+        "interes_pagado": "232.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "67.50",
+        "total": "300.00",
+        "factura": false,
+        "cuota": 180
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 162,
+    "fields": {
+        "fecha": "2025-04-09",
+        "recibo": 155,
+        "cliente": 52,
+        "pago": 639,
+        "interes": "1200.00",
+        "interes_pagado": "1200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3000.00",
+        "total": "4200.00",
+        "factura": false,
+        "cuota": 203
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 163,
+    "fields": {
+        "fecha": "2025-04-09",
+        "recibo": 156,
+        "cliente": 190,
+        "pago": 640,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1511.00",
+        "total": "2011.00",
+        "factura": false,
+        "cuota": 208
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 164,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 157,
+        "cliente": 193,
+        "pago": 641,
+        "interes": "1093.04",
+        "interes_pagado": "1093.04",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "6.96",
+        "total": "1100.00",
+        "factura": false,
+        "cuota": 237
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 165,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 158,
+        "cliente": 12,
+        "pago": 642,
+        "interes": "600.00",
+        "interes_pagado": "600.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "500.00",
+        "total": "1100.00",
+        "factura": false,
+        "cuota": 188
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 166,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 159,
+        "cliente": 183,
+        "pago": 643,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 186
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 167,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 160,
+        "cliente": 144,
+        "pago": 644,
+        "interes": "1455.47",
+        "interes_pagado": "1455.47",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3137.53",
+        "total": "4593.00",
+        "factura": false,
+        "cuota": 242
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 168,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 161,
+        "cliente": 29,
+        "pago": 646,
+        "interes": "139.00",
+        "interes_pagado": "139.00",
+        "mora": "6.95",
+        "mora_pagada": "6.95",
+        "aporte_capital": "59.05",
+        "total": "205.00",
+        "factura": false,
+        "cuota": 320
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 169,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 162,
+        "cliente": 94,
+        "pago": 647,
+        "interes": "816.25",
+        "interes_pagado": "816.25",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1058.75",
+        "total": "1875.00",
+        "factura": false,
+        "cuota": 243
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 170,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 163,
+        "cliente": null,
+        "pago": 651,
+        "interes": "62.58",
+        "interes_pagado": "62.58",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "833.42",
+        "total": "896.00",
+        "factura": false,
+        "cuota": 239
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 171,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 164,
+        "cliente": null,
+        "pago": 653,
+        "interes": "70.75",
+        "interes_pagado": "70.75",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "590.25",
+        "total": "661.00",
+        "factura": false,
+        "cuota": 326
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 172,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 165,
+        "cliente": null,
+        "pago": 654,
+        "interes": "2000.00",
+        "interes_pagado": "2000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3334.00",
+        "total": "5334.00",
+        "factura": false,
+        "cuota": 327
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 173,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 166,
+        "cliente": null,
+        "pago": 655,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "160.00",
+        "total": "160.00",
+        "factura": false,
+        "cuota": 235
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 174,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 167,
+        "cliente": null,
+        "pago": 657,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "116.00",
+        "total": "116.00",
+        "factura": false,
+        "cuota": 240
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 175,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 168,
+        "cliente": null,
+        "pago": 658,
+        "interes": "356.87",
+        "interes_pagado": "356.87",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4143.13",
+        "total": "4500.00",
+        "factura": false,
+        "cuota": 234
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 176,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 169,
+        "cliente": null,
+        "pago": 659,
+        "interes": "321.32",
+        "interes_pagado": "321.32",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4178.68",
+        "total": "4500.00",
+        "factura": false,
+        "cuota": 231
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 177,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 170,
+        "cliente": null,
+        "pago": 660,
+        "interes": "12533.08",
+        "interes_pagado": "12533.08",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "466.92",
+        "total": "13000.00",
+        "factura": false,
+        "cuota": 233
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 178,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 171,
+        "cliente": null,
+        "pago": 661,
+        "interes": "99.72",
+        "interes_pagado": "99.72",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1513.28",
+        "total": "1613.00",
+        "factura": false,
+        "cuota": 230
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 179,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 172,
+        "cliente": null,
+        "pago": 662,
+        "interes": "450.00",
+        "interes_pagado": "450.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1250.00",
+        "total": "1700.00",
+        "factura": false,
+        "cuota": 283
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 180,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 173,
+        "cliente": null,
+        "pago": 663,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "318.00",
+        "total": "318.00",
+        "factura": false,
+        "cuota": 285
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 181,
+    "fields": {
+        "fecha": "2025-04-10",
+        "recibo": 174,
+        "cliente": null,
+        "pago": 664,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "253.00",
+        "total": "253.00",
+        "factura": false,
+        "cuota": 158
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 182,
+    "fields": {
+        "fecha": "2025-04-11",
+        "recibo": 175,
+        "cliente": null,
+        "pago": 656,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "164.00",
+        "total": "164.00",
+        "factura": false,
+        "cuota": 334
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 183,
+    "fields": {
+        "fecha": "2025-04-11",
+        "recibo": 176,
+        "cliente": 41,
+        "pago": 667,
+        "interes": "227.44",
+        "interes_pagado": "227.44",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3032.50",
+        "total": "3259.94",
+        "factura": false,
+        "cuota": 328
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 184,
+    "fields": {
+        "fecha": "2025-04-15",
+        "recibo": 177,
+        "cliente": 105,
+        "pago": 669,
+        "interes": "667.76",
+        "interes_pagado": "667.76",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "332.24",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 282
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 185,
+    "fields": {
+        "fecha": "2025-04-15",
+        "recibo": 178,
+        "cliente": 109,
+        "pago": 671,
+        "interes": "1500.00",
+        "interes_pagado": "1500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "702.00",
+        "total": "2202.00",
+        "factura": false,
+        "cuota": 216
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 186,
+    "fields": {
+        "fecha": "2025-04-15",
+        "recibo": 179,
+        "cliente": 12,
+        "pago": 672,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "278.00",
+        "total": "278.00",
+        "factura": false,
+        "cuota": 188
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 187,
+    "fields": {
+        "fecha": "2025-04-15",
+        "recibo": 180,
+        "cliente": 19,
+        "pago": 676,
+        "interes": "460.00",
+        "interes_pagado": "460.00",
+        "mora": "23.00",
+        "mora_pagada": "23.00",
+        "aporte_capital": "442.00",
+        "total": "925.00",
+        "factura": false,
+        "cuota": 336
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 188,
+    "fields": {
+        "fecha": "2025-04-15",
+        "recibo": 181,
+        "cliente": 103,
+        "pago": 680,
+        "interes": "0.00",
+        "interes_pagado": "68.90",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "334.10",
+        "total": "403.00",
+        "factura": false,
+        "cuota": 278
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 189,
+    "fields": {
+        "fecha": "2025-04-15",
+        "recibo": 182,
+        "cliente": 203,
+        "pago": 682,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5700.00",
+        "total": "6000.00",
+        "factura": false,
+        "cuota": 295
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 190,
+    "fields": {
+        "fecha": "2025-04-15",
+        "recibo": 183,
+        "cliente": 203,
+        "pago": 683,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "300.00",
+        "total": "300.00",
+        "factura": false,
+        "cuota": 295
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 191,
+    "fields": {
+        "fecha": "2025-04-15",
+        "recibo": 184,
+        "cliente": 173,
+        "pago": 689,
+        "interes": "677.50",
+        "interes_pagado": "589.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "589.00",
+        "factura": false,
+        "cuota": 312
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 192,
+    "fields": {
+        "fecha": "2025-04-15",
+        "recibo": 185,
+        "cliente": 41,
+        "pago": 690,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "6832.50",
+        "total": "6832.50",
+        "factura": false,
+        "cuota": 335
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 193,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 186,
+        "cliente": 89,
+        "pago": 694,
+        "interes": "800.00",
+        "interes_pagado": "800.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "800.00",
+        "factura": false,
+        "cuota": 256
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 194,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 187,
+        "cliente": 21,
+        "pago": 695,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1400.00",
+        "factura": false,
+        "cuota": 270
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 195,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 188,
+        "cliente": 21,
+        "pago": 696,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 270
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 196,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 189,
+        "cliente": 21,
+        "pago": 697,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2000.00",
+        "total": "2000.00",
+        "factura": false,
+        "cuota": 270
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 197,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 190,
+        "cliente": 169,
+        "pago": 698,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "800.00",
+        "total": "800.00",
+        "factura": false,
+        "cuota": 144
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 199,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 191,
+        "cliente": 66,
+        "pago": 704,
+        "interes": "250.00",
+        "interes_pagado": "250.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "756.00",
+        "total": "1006.00",
+        "factura": false,
+        "cuota": 215
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 200,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 192,
+        "cliente": 182,
+        "pago": 703,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1210.00",
+        "total": "1610.00",
+        "factura": false,
+        "cuota": 185
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 201,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 193,
+        "cliente": 199,
+        "pago": 705,
+        "interes": "600.00",
+        "interes_pagado": "600.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1813.00",
+        "total": "2413.00",
+        "factura": false,
+        "cuota": 266
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 202,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 194,
+        "cliente": 184,
+        "pago": 709,
+        "interes": "1890.00",
+        "interes_pagado": "1890.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "465.00",
+        "total": "2355.00",
+        "factura": false,
+        "cuota": 209
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 203,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 195,
+        "cliente": 165,
+        "pago": 713,
+        "interes": "109.49",
+        "interes_pagado": "109.49",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1095.51",
+        "total": "1205.00",
+        "factura": false,
+        "cuota": 337
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 204,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 196,
+        "cliente": 29,
+        "pago": 714,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "200.00",
+        "total": "200.00",
+        "factura": false,
+        "cuota": 320
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 205,
+    "fields": {
+        "fecha": "2025-04-21",
+        "recibo": 197,
+        "cliente": 32,
+        "pago": 717,
+        "interes": "328.47",
+        "interes_pagado": "328.47",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1564.53",
+        "total": "1893.00",
+        "factura": false,
+        "cuota": 289
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 206,
+    "fields": {
+        "fecha": "2025-04-22",
+        "recibo": 198,
+        "cliente": 130,
+        "pago": 720,
+        "interes": "548.28",
+        "interes_pagado": "548.28",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5483.72",
+        "total": "6032.00",
+        "factura": false,
+        "cuota": 286
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 207,
+    "fields": {
+        "fecha": "2025-04-22",
+        "recibo": 199,
+        "cliente": 108,
+        "pago": 721,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1500.00",
+        "factura": false,
+        "cuota": 204
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 208,
+    "fields": {
+        "fecha": "2025-04-22",
+        "recibo": 200,
+        "cliente": 138,
+        "pago": 722,
+        "interes": "963.45",
+        "interes_pagado": "963.45",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "534.55",
+        "total": "1498.00",
+        "factura": false,
+        "cuota": 325
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 209,
+    "fields": {
+        "fecha": "2025-04-22",
+        "recibo": 201,
+        "cliente": 200,
+        "pago": 723,
+        "interes": "1500.00",
+        "interes_pagado": "1500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1112.00",
+        "total": "2612.00",
+        "factura": false,
+        "cuota": 258
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 210,
+    "fields": {
+        "fecha": "2025-04-22",
+        "recibo": 202,
+        "cliente": 149,
+        "pago": 724,
+        "interes": "367.07",
+        "interes_pagado": "367.07",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2132.93",
+        "total": "2500.00",
+        "factura": false,
+        "cuota": 292
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 211,
+    "fields": {
+        "fecha": "2025-04-22",
+        "recibo": 203,
+        "cliente": 175,
+        "pago": 725,
+        "interes": "100.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "100.00",
+        "factura": false,
+        "cuota": 306
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 212,
+    "fields": {
+        "fecha": "2025-04-25",
+        "recibo": 204,
+        "cliente": 61,
+        "pago": 737,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2000.00",
+        "total": "2200.00",
+        "factura": false,
+        "cuota": 318
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 213,
+    "fields": {
+        "fecha": "2025-04-25",
+        "recibo": 205,
+        "cliente": 201,
+        "pago": 739,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "605.00",
+        "total": "805.00",
+        "factura": false,
+        "cuota": 276
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 214,
+    "fields": {
+        "fecha": "2025-04-25",
+        "recibo": 206,
+        "cliente": 42,
+        "pago": 740,
+        "interes": "2000.00",
+        "interes_pagado": "2000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1750.00",
+        "total": "3750.00",
+        "factura": false,
+        "cuota": 265
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 215,
+    "fields": {
+        "fecha": "2025-04-25",
+        "recibo": 207,
+        "cliente": 24,
+        "pago": 741,
+        "interes": "1312.50",
+        "interes_pagado": "1312.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1875.50",
+        "total": "3188.00",
+        "factura": false,
+        "cuota": 297
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 216,
+    "fields": {
+        "fecha": "2025-04-28",
+        "recibo": 208,
+        "cliente": 172,
+        "pago": 744,
+        "interes": "339.08",
+        "interes_pagado": "339.08",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "514.92",
+        "total": "854.00",
+        "factura": false,
+        "cuota": 298
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 217,
+    "fields": {
+        "fecha": "2025-04-28",
+        "recibo": 209,
+        "cliente": 197,
+        "pago": 745,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1511.00",
+        "total": "2011.00",
+        "factura": false,
+        "cuota": 294
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 218,
+    "fields": {
+        "fecha": "2025-04-28",
+        "recibo": 210,
+        "cliente": 79,
+        "pago": 746,
+        "interes": "4000.00",
+        "interes_pagado": "4000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "4000.00",
+        "factura": false,
+        "cuota": 329
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 219,
+    "fields": {
+        "fecha": "2025-04-28",
+        "recibo": 211,
+        "cliente": 146,
+        "pago": 747,
+        "interes": "665.50",
+        "interes_pagado": "665.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "627.50",
+        "total": "1293.00",
+        "factura": false,
+        "cuota": 291
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 220,
+    "fields": {
+        "fecha": "2025-04-28",
+        "recibo": 212,
+        "cliente": 176,
+        "pago": 748,
+        "interes": "133.30",
+        "interes_pagado": "133.30",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "666.70",
+        "total": "800.00",
+        "factura": false,
+        "cuota": 310
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 221,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 213,
+        "cliente": 164,
+        "pago": 752,
+        "interes": "81.75",
+        "interes_pagado": "81.75",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "393.25",
+        "total": "475.00",
+        "factura": false,
+        "cuota": 322
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 222,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 214,
+        "cliente": 168,
+        "pago": 755,
+        "interes": "1093.42",
+        "interes_pagado": "1093.42",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "456.58",
+        "total": "1550.00",
+        "factura": false,
+        "cuota": 300
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 223,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 215,
+        "cliente": 123,
+        "pago": 756,
+        "interes": "1500.00",
+        "interes_pagado": "1500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2457.00",
+        "total": "3957.00",
+        "factura": false,
+        "cuota": 277
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 224,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 216,
+        "cliente": 166,
+        "pago": 758,
+        "interes": "100.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1100.00",
+        "factura": false,
+        "cuota": 343
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 225,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 217,
+        "cliente": 53,
+        "pago": 759,
+        "interes": "1143.75",
+        "interes_pagado": "1143.75",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "428.25",
+        "total": "1572.00",
+        "factura": false,
+        "cuota": 271
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 226,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 218,
+        "cliente": 130,
+        "pago": 760,
+        "interes": "1000.00",
+        "interes_pagado": "1000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3022.00",
+        "total": "4022.00",
+        "factura": false,
+        "cuota": 280
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 227,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 219,
+        "cliente": 30,
+        "pago": 762,
+        "interes": "800.00",
+        "interes_pagado": "800.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1037.00",
+        "total": "1837.00",
+        "factura": false,
+        "cuota": 275
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 228,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 220,
+        "cliente": 111,
+        "pago": 763,
+        "interes": "446.60",
+        "interes_pagado": "446.60",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "228.40",
+        "total": "675.00",
+        "factura": false,
+        "cuota": 287
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 229,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 221,
+        "cliente": null,
+        "pago": 768,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "117.00",
+        "total": "117.00",
+        "factura": false,
+        "cuota": 258
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 230,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 222,
+        "cliente": null,
+        "pago": 769,
+        "interes": "274.00",
+        "interes_pagado": "274.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4143.00",
+        "total": "4417.00",
+        "factura": false,
+        "cuota": 344
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 231,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 223,
+        "cliente": null,
+        "pago": 770,
+        "interes": "237.74",
+        "interes_pagado": "237.74",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4179.26",
+        "total": "4417.00",
+        "factura": false,
+        "cuota": 340
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 232,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 224,
+        "cliente": null,
+        "pago": 771,
+        "interes": "12523.74",
+        "interes_pagado": "12523.74",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "476.26",
+        "total": "13000.00",
+        "factura": false,
+        "cuota": 345
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 233,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 225,
+        "cliente": null,
+        "pago": 772,
+        "interes": "61.88",
+        "interes_pagado": "61.88",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1513.12",
+        "total": "1575.00",
+        "factura": false,
+        "cuota": 339
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 234,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 226,
+        "cliente": null,
+        "pago": 773,
+        "interes": "41.75",
+        "interes_pagado": "41.75",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "833.25",
+        "total": "875.00",
+        "factura": false,
+        "cuota": 330
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 235,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 227,
+        "cliente": null,
+        "pago": 774,
+        "interes": "64.85",
+        "interes_pagado": "64.85",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "596.15",
+        "total": "661.00",
+        "factura": false,
+        "cuota": 422
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 237,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 229,
+        "cliente": null,
+        "pago": 776,
+        "interes": "1666.60",
+        "interes_pagado": "1666.60",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3333.40",
+        "total": "5000.00",
+        "factura": false,
+        "cuota": 331
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 238,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 230,
+        "cliente": null,
+        "pago": 778,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "166.00",
+        "total": "166.00",
+        "factura": false,
+        "cuota": 383
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 239,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 231,
+        "cliente": null,
+        "pago": 779,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "116.00",
+        "total": "116.00",
+        "factura": false,
+        "cuota": 332
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 240,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 232,
+        "cliente": null,
+        "pago": 780,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "203.00",
+        "total": "203.00",
+        "factura": false,
+        "cuota": 361
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 241,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 233,
+        "cliente": null,
+        "pago": 781,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "500.00",
+        "total": "700.00",
+        "factura": false,
+        "cuota": 384
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 242,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 234,
+        "cliente": null,
+        "pago": 782,
+        "interes": "1050.00",
+        "interes_pagado": "1050.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5000.00",
+        "total": "6050.00",
+        "factura": false,
+        "cuota": 381
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 243,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 235,
+        "cliente": null,
+        "pago": 783,
+        "interes": "481.13",
+        "interes_pagado": "481.13",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2291.87",
+        "total": "2773.00",
+        "factura": false,
+        "cuota": 385
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 244,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 236,
+        "cliente": null,
+        "pago": 784,
+        "interes": "333.26",
+        "interes_pagado": "333.26",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3333.74",
+        "total": "3667.00",
+        "factura": false,
+        "cuota": 364
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 245,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 237,
+        "cliente": null,
+        "pago": 785,
+        "interes": "249.95",
+        "interes_pagado": "249.95",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2500.05",
+        "total": "2750.00",
+        "factura": false,
+        "cuota": 365
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 246,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 238,
+        "cliente": 173,
+        "pago": 795,
+        "interes": "88.50",
+        "interes_pagado": "88.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "500.50",
+        "total": "589.00",
+        "factura": false,
+        "cuota": 312
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 247,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 239,
+        "cliente": 170,
+        "pago": 796,
+        "interes": "133.30",
+        "interes_pagado": "133.30",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1400.03",
+        "total": "1533.33",
+        "factura": false,
+        "cuota": 288
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 248,
+    "fields": {
+        "fecha": "2025-05-01",
+        "recibo": 240,
+        "cliente": 73,
+        "pago": 797,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "25.00",
+        "mora_pagada": "25.00",
+        "aporte_capital": "538.68",
+        "total": "1063.68",
+        "factura": false,
+        "cuota": 372
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 249,
+    "fields": {
+        "fecha": "2025-05-05",
+        "recibo": 241,
+        "cliente": null,
+        "pago": 786,
+        "interes": "506.99",
+        "interes_pagado": "506.99",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3618.01",
+        "total": "4125.00",
+        "factura": false,
+        "cuota": 397
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 250,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 242,
+        "cliente": 156,
+        "pago": 815,
+        "interes": "1005.82",
+        "interes_pagado": "1005.82",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1097.18",
+        "total": "2103.00",
+        "factura": false,
+        "cuota": 346
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 251,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 243,
+        "cliente": 207,
+        "pago": 816,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1511.00",
+        "total": "2011.00",
+        "factura": false,
+        "cuota": 321
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 252,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 244,
+        "cliente": 65,
+        "pago": 817,
+        "interes": "1600.00",
+        "interes_pagado": "1600.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1004.00",
+        "total": "2604.00",
+        "factura": false,
+        "cuota": 296
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 253,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 245,
+        "cliente": 29,
+        "pago": 819,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "436.00",
+        "total": "436.00",
+        "factura": false,
+        "cuota": 320
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 254,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 246,
+        "cliente": 77,
+        "pago": 820,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1512.00",
+        "total": "2012.00",
+        "factura": false,
+        "cuota": 311
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 255,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 247,
+        "cliente": 46,
+        "pago": 823,
+        "interes": "83.26",
+        "interes_pagado": "83.26",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "816.74",
+        "total": "900.00",
+        "factura": false,
+        "cuota": 338
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 256,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 248,
+        "cliente": 51,
+        "pago": 824,
+        "interes": "375.00",
+        "interes_pagado": "375.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1375.00",
+        "factura": false,
+        "cuota": 394
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 257,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 249,
+        "cliente": 94,
+        "pago": 825,
+        "interes": "710.38",
+        "interes_pagado": "710.38",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1164.62",
+        "total": "1875.00",
+        "factura": false,
+        "cuota": 355
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 258,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 250,
+        "cliente": 188,
+        "pago": 827,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "300.00",
+        "factura": false,
+        "cuota": 358
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 259,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 251,
+        "cliente": 10,
+        "pago": 829,
+        "interes": "157.43",
+        "interes_pagado": "157.43",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1578.57",
+        "total": "1736.00",
+        "factura": false,
+        "cuota": 362
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 260,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 252,
+        "cliente": 186,
+        "pago": 830,
+        "interes": "392.20",
+        "interes_pagado": "392.20",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1185.80",
+        "total": "1578.00",
+        "factura": false,
+        "cuota": 368
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 261,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 253,
+        "cliente": 46,
+        "pago": 831,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "17.00",
+        "total": "17.00",
+        "factura": false,
+        "cuota": 338
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 262,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 254,
+        "cliente": 169,
+        "pago": 834,
+        "interes": "53.30",
+        "interes_pagado": "53.30",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "680.03",
+        "total": "733.33",
+        "factura": false,
+        "cuota": 305
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 263,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 255,
+        "cliente": 44,
+        "pago": 835,
+        "interes": "90.00",
+        "interes_pagado": "90.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "700.00",
+        "total": "790.00",
+        "factura": false,
+        "cuota": 403
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 264,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 256,
+        "cliente": 171,
+        "pago": 836,
+        "interes": "435.10",
+        "interes_pagado": "435.10",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "714.90",
+        "total": "1150.00",
+        "factura": false,
+        "cuota": 299
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 265,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 257,
+        "cliente": 174,
+        "pago": 837,
+        "interes": "1590.00",
+        "interes_pagado": "1590.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "1590.00",
+        "factura": false,
+        "cuota": 307
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 266,
+    "fields": {
+        "fecha": "2025-05-06",
+        "recibo": 258,
+        "cliente": 167,
+        "pago": 838,
+        "interes": "224.06",
+        "interes_pagado": "224.06",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5.94",
+        "total": "230.00",
+        "factura": false,
+        "cuota": 359
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 267,
+    "fields": {
+        "fecha": "2025-05-07",
+        "recibo": 259,
+        "cliente": 32,
+        "pago": 839,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1720.17",
+        "total": "1720.17",
+        "factura": false,
+        "cuota": 400
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 268,
+    "fields": {
+        "fecha": "2025-05-09",
+        "recibo": 260,
+        "cliente": null,
+        "pago": 777,
+        "interes": "375.00",
+        "interes_pagado": "375.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1250.00",
+        "total": "1625.00",
+        "factura": false,
+        "cuota": 398
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 269,
+    "fields": {
+        "fecha": "2025-05-09",
+        "recibo": 228,
+        "cliente": null,
+        "pago": 775,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "791.00",
+        "total": "791.00",
+        "factura": false,
+        "cuota": 376
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 270,
+    "fields": {
+        "fecha": "2025-05-12",
+        "recibo": 261,
+        "cliente": 52,
+        "pago": 852,
+        "interes": "900.00",
+        "interes_pagado": "900.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3000.00",
+        "total": "3900.00",
+        "factura": false,
+        "cuota": 375
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 271,
+    "fields": {
+        "fecha": "2025-05-12",
+        "recibo": 262,
+        "cliente": 190,
+        "pago": 854,
+        "interes": "348.90",
+        "interes_pagado": "348.90",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1662.10",
+        "total": "2011.00",
+        "factura": false,
+        "cuota": 382
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 272,
+    "fields": {
+        "fecha": "2025-05-12",
+        "recibo": 263,
+        "cliente": 180,
+        "pago": 856,
+        "interes": "697.80",
+        "interes_pagado": "697.80",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3324.20",
+        "total": "4022.00",
+        "factura": false,
+        "cuota": 354
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 273,
+    "fields": {
+        "fecha": "2025-05-12",
+        "recibo": 264,
+        "cliente": 51,
+        "pago": 858,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1300.00",
+        "factura": false,
+        "cuota": 394
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 274,
+    "fields": {
+        "fecha": "2025-05-12",
+        "recibo": 265,
+        "cliente": 176,
+        "pago": 857,
+        "interes": "66.63",
+        "interes_pagado": "66.63",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "667.37",
+        "total": "734.00",
+        "factura": false,
+        "cuota": 434
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 275,
+    "fields": {
+        "fecha": "2025-05-13",
+        "recibo": 266,
+        "cliente": 144,
+        "pago": 862,
+        "interes": "1141.72",
+        "interes_pagado": "1141.72",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3451.28",
+        "total": "4593.00",
+        "factura": false,
+        "cuota": 357
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 276,
+    "fields": {
+        "fecha": "2025-05-13",
+        "recibo": 267,
+        "cliente": 152,
+        "pago": 865,
+        "interes": "304.54",
+        "interes_pagado": "304.54",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "295.46",
+        "total": "600.00",
+        "factura": false,
+        "cuota": 323
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 277,
+    "fields": {
+        "fecha": "2025-05-15",
+        "recibo": 268,
+        "cliente": 109,
+        "pago": 881,
+        "interes": "1429.80",
+        "interes_pagado": "1429.80",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "772.20",
+        "total": "2202.00",
+        "factura": false,
+        "cuota": 386
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 278,
+    "fields": {
+        "fecha": "2025-05-15",
+        "recibo": 269,
+        "cliente": 105,
+        "pago": 883,
+        "interes": "642.84",
+        "interes_pagado": "642.84",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "357.16",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 395
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 279,
+    "fields": {
+        "fecha": "2025-05-15",
+        "recibo": 270,
+        "cliente": 149,
+        "pago": 884,
+        "interes": "239.10",
+        "interes_pagado": "239.10",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2260.90",
+        "total": "2500.00",
+        "factura": false,
+        "cuota": 402
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 280,
+    "fields": {
+        "fecha": "2025-05-16",
+        "recibo": 271,
+        "cliente": 77,
+        "pago": 898,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2009.00",
+        "total": "2009.00",
+        "factura": false,
+        "cuota": 311
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 281,
+    "fields": {
+        "fecha": "2025-05-16",
+        "recibo": 272,
+        "cliente": 77,
+        "pago": 899,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1479.00",
+        "total": "1479.00",
+        "factura": false,
+        "cuota": 311
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 282,
+    "fields": {
+        "fecha": "2025-05-16",
+        "recibo": 273,
+        "cliente": 173,
+        "pago": 902,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "589.00",
+        "total": "589.00",
+        "factura": false,
+        "cuota": 312
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 283,
+    "fields": {
+        "fecha": "2025-05-16",
+        "recibo": 274,
+        "cliente": 12,
+        "pago": 903,
+        "interes": "522.20",
+        "interes_pagado": "522.20",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "855.80",
+        "total": "1378.00",
+        "factura": false,
+        "cuota": 363
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 284,
+    "fields": {
+        "fecha": "2025-05-16",
+        "recibo": 275,
+        "cliente": 209,
+        "pago": 904,
+        "interes": "150.00",
+        "interes_pagado": "150.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "454.00",
+        "total": "604.00",
+        "factura": false,
+        "cuota": 353
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 285,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 276,
+        "cliente": 175,
+        "pago": 915,
+        "interes": "100.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1100.00",
+        "factura": false,
+        "cuota": 415
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 286,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 277,
+        "cliente": 103,
+        "pago": 916,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "519.00",
+        "total": "919.00",
+        "factura": false,
+        "cuota": 349
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 287,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 278,
+        "cliente": 84,
+        "pago": 918,
+        "interes": "600.00",
+        "interes_pagado": "600.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "780.00",
+        "total": "1380.00",
+        "factura": false,
+        "cuota": 377
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 288,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 279,
+        "cliente": 184,
+        "pago": 919,
+        "interes": "1857.45",
+        "interes_pagado": "1857.45",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "497.55",
+        "total": "2355.00",
+        "factura": false,
+        "cuota": 379
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 289,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 280,
+        "cliente": 103,
+        "pago": 917,
+        "interes": "35.49",
+        "interes_pagado": "35.49",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "367.51",
+        "total": "403.00",
+        "factura": false,
+        "cuota": 461
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 290,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 281,
+        "cliente": 21,
+        "pago": 920,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "600.00",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 380
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 291,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 282,
+        "cliente": 21,
+        "pago": 921,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1650.00",
+        "total": "1650.00",
+        "factura": false,
+        "cuota": 380
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 292,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 283,
+        "cliente": 21,
+        "pago": 922,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "650.00",
+        "total": "650.00",
+        "factura": false,
+        "cuota": 380
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 293,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 284,
+        "cliente": 24,
+        "pago": 923,
+        "interes": "1124.95",
+        "interes_pagado": "1124.95",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1875.05",
+        "total": "3000.00",
+        "factura": false,
+        "cuota": 407
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 294,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 285,
+        "cliente": 108,
+        "pago": 924,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1400.00",
+        "factura": false,
+        "cuota": 373
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 295,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 286,
+        "cliente": 89,
+        "pago": 925,
+        "interes": "800.00",
+        "interes_pagado": "800.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "800.00",
+        "factura": false,
+        "cuota": 409
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 296,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 287,
+        "cliente": 106,
+        "pago": 926,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "78.00",
+        "total": "578.00",
+        "factura": false,
+        "cuota": 352
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 297,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 288,
+        "cliente": 106,
+        "pago": 927,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 352
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 298,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 289,
+        "cliente": 199,
+        "pago": 930,
+        "interes": "418.70",
+        "interes_pagado": "418.70",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1994.30",
+        "total": "2413.00",
+        "factura": false,
+        "cuota": 392
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 299,
+    "fields": {
+        "fecha": "2025-05-21",
+        "recibo": 290,
+        "cliente": 210,
+        "pago": 935,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1511.00",
+        "total": "2011.00",
+        "factura": false,
+        "cuota": 350
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 300,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 291,
+        "cliente": null,
+        "pago": 937,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "791.00",
+        "total": "791.00",
+        "factura": false,
+        "cuota": 376
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 301,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 292,
+        "cliente": null,
+        "pago": 939,
+        "interes": "400.92",
+        "interes_pagado": "400.92",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2292.08",
+        "total": "2693.00",
+        "factura": false,
+        "cuota": 385
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 302,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 293,
+        "cliente": null,
+        "pago": 938,
+        "interes": "150.00",
+        "interes_pagado": "150.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "500.00",
+        "total": "650.00",
+        "factura": false,
+        "cuota": 384
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 303,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 294,
+        "cliente": null,
+        "pago": 940,
+        "interes": "249.92",
+        "interes_pagado": "249.92",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3334.08",
+        "total": "3584.00",
+        "factura": false,
+        "cuota": 460
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 304,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 295,
+        "cliente": null,
+        "pago": 941,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "253.00",
+        "total": "253.00",
+        "factura": false,
+        "cuota": 159
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 305,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 296,
+        "cliente": null,
+        "pago": 942,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "117.00",
+        "total": "117.00",
+        "factura": false,
+        "cuota": 368
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 306,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 297,
+        "cliente": null,
+        "pago": 944,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "166.00",
+        "total": "166.00",
+        "factura": false,
+        "cuota": 383
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 307,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 298,
+        "cliente": null,
+        "pago": 945,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "203.00",
+        "total": "203.00",
+        "factura": false,
+        "cuota": 455
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 308,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 299,
+        "cliente": null,
+        "pago": 946,
+        "interes": "875.00",
+        "interes_pagado": "875.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5000.00",
+        "total": "5875.00",
+        "factura": false,
+        "cuota": 381
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 309,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 300,
+        "cliente": null,
+        "pago": 947,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1250.00",
+        "total": "1550.00",
+        "factura": false,
+        "cuota": 398
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 310,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 301,
+        "cliente": null,
+        "pago": 948,
+        "interes": "187.44",
+        "interes_pagado": "187.44",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2500.56",
+        "total": "2688.00",
+        "factura": false,
+        "cuota": 459
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 311,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 302,
+        "cliente": null,
+        "pago": 949,
+        "interes": "416.54",
+        "interes_pagado": "416.54",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3615.46",
+        "total": "4032.00",
+        "factura": false,
+        "cuota": 397
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 312,
+    "fields": {
+        "fecha": "2025-05-22",
+        "recibo": 303,
+        "cliente": 187,
+        "pago": 953,
+        "interes": "1500.00",
+        "interes_pagado": "1500.00",
+        "mora": "100.00",
+        "mora_pagada": "100.00",
+        "aporte_capital": "5000.00",
+        "total": "6600.00",
+        "factura": false,
+        "cuota": 464
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 313,
+    "fields": {
+        "fecha": "2025-05-26",
+        "recibo": 304,
+        "cliente": 193,
+        "pago": 961,
+        "interes": "1492.65",
+        "interes_pagado": "1492.65",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "19866.44",
+        "total": "21359.09",
+        "factura": false,
+        "cuota": 475
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 314,
+    "fields": {
+        "fecha": "2025-05-26",
+        "recibo": 305,
+        "cliente": 21,
+        "pago": 963,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1100.00",
+        "total": "1100.00",
+        "factura": false,
+        "cuota": 380
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 315,
+    "fields": {
+        "fecha": "2025-05-26",
+        "recibo": 306,
+        "cliente": 138,
+        "pago": 965,
+        "interes": "915.34",
+        "interes_pagado": "915.34",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "582.66",
+        "total": "1498.00",
+        "factura": false,
+        "cuota": 417
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 316,
+    "fields": {
+        "fecha": "2025-05-26",
+        "recibo": 307,
+        "cliente": 42,
+        "pago": 966,
+        "interes": "1825.00",
+        "interes_pagado": "1825.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1675.00",
+        "total": "3500.00",
+        "factura": false,
+        "cuota": 410
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 317,
+    "fields": {
+        "fecha": "2025-05-26",
+        "recibo": 308,
+        "cliente": 42,
+        "pago": 967,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "250.00",
+        "total": "250.00",
+        "factura": false,
+        "cuota": 410
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 318,
+    "fields": {
+        "fecha": "2025-05-26",
+        "recibo": 309,
+        "cliente": 201,
+        "pago": 964,
+        "interes": "139.50",
+        "interes_pagado": "139.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "665.50",
+        "total": "805.00",
+        "factura": false,
+        "cuota": 477
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 320,
+    "fields": {
+        "fecha": "2025-05-26",
+        "recibo": 311,
+        "cliente": 111,
+        "pago": 978,
+        "interes": "423.76",
+        "interes_pagado": "423.76",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "76.24",
+        "total": "500.00",
+        "factura": false,
+        "cuota": 388
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 321,
+    "fields": {
+        "fecha": "2025-05-28",
+        "recibo": 312,
+        "cliente": 19,
+        "pago": 984,
+        "interes": "185.80",
+        "interes_pagado": "185.80",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "739.20",
+        "total": "925.00",
+        "factura": false,
+        "cuota": 436
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 322,
+    "fields": {
+        "fecha": "2025-05-28",
+        "recibo": 313,
+        "cliente": null,
+        "pago": 943,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "160.00",
+        "total": "160.00",
+        "factura": false,
+        "cuota": 487
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 323,
+    "fields": {
+        "fecha": "2025-05-28",
+        "recibo": 314,
+        "cliente": 168,
+        "pago": 986,
+        "interes": "1059.18",
+        "interes_pagado": "1059.18",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "490.82",
+        "total": "1550.00",
+        "factura": false,
+        "cuota": 408
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 324,
+    "fields": {
+        "fecha": "2025-05-28",
+        "recibo": 315,
+        "cliente": 197,
+        "pago": 987,
+        "interes": "348.90",
+        "interes_pagado": "348.90",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1662.10",
+        "total": "2011.00",
+        "factura": false,
+        "cuota": 484
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 325,
+    "fields": {
+        "fecha": "2025-05-28",
+        "recibo": 316,
+        "cliente": 174,
+        "pago": 991,
+        "interes": "1590.00",
+        "interes_pagado": "1590.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3610.00",
+        "total": "5200.00",
+        "factura": false,
+        "cuota": 414
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 326,
+    "fields": {
+        "fecha": "2025-05-28",
+        "recibo": 317,
+        "cliente": 19,
+        "pago": 992,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "925.00",
+        "total": "925.00",
+        "factura": false,
+        "cuota": 436
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 327,
+    "fields": {
+        "fecha": "2025-05-28",
+        "recibo": 318,
+        "cliente": 172,
+        "pago": 993,
+        "interes": "300.46",
+        "interes_pagado": "300.46",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "553.54",
+        "total": "854.00",
+        "factura": false,
+        "cuota": 406
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 328,
+    "fields": {
+        "fecha": "2025-05-28",
+        "recibo": 319,
+        "cliente": 128,
+        "pago": 994,
+        "interes": "42.19",
+        "interes_pagado": "42.19",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "562.81",
+        "total": "605.00",
+        "factura": false,
+        "cuota": 404
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 329,
+    "fields": {
+        "fecha": "2025-05-29",
+        "recibo": 310,
+        "cliente": 106,
+        "pago": 997,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3922.00",
+        "total": "3922.00",
+        "factura": false,
+        "cuota": 352
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 330,
+    "fields": {
+        "fecha": "2025-05-29",
+        "recibo": 320,
+        "cliente": 130,
+        "pago": 1001,
+        "interes": "697.80",
+        "interes_pagado": "697.80",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3324.20",
+        "total": "4022.00",
+        "factura": false,
+        "cuota": 483
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 331,
+    "fields": {
+        "fecha": "2025-05-29",
+        "recibo": 321,
+        "cliente": 164,
+        "pago": 1002,
+        "interes": "42.42",
+        "interes_pagado": "42.42",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "432.58",
+        "total": "475.00",
+        "factura": false,
+        "cuota": 478
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 332,
+    "fields": {
+        "fecha": "2025-05-29",
+        "recibo": 322,
+        "cliente": 146,
+        "pago": 1003,
+        "interes": "618.43",
+        "interes_pagado": "618.43",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "674.57",
+        "total": "1293.00",
+        "factura": false,
+        "cuota": 401
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 333,
+    "fields": {
+        "fecha": "2025-05-29",
+        "recibo": 323,
+        "cliente": 79,
+        "pago": 1004,
+        "interes": "4000.00",
+        "interes_pagado": "4000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "4000.00",
+        "factura": false,
+        "cuota": 431
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 334,
+    "fields": {
+        "fecha": "2025-05-29",
+        "recibo": 324,
+        "cliente": 145,
+        "pago": 1005,
+        "interes": "465.71",
+        "interes_pagado": "431.71",
+        "mora": "23.29",
+        "mora_pagada": "23.29",
+        "aporte_capital": "0.00",
+        "total": "455.00",
+        "factura": false,
+        "cuota": 399
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 335,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 325,
+        "cliente": 219,
+        "pago": 1009,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2000.00",
+        "total": "2200.00",
+        "factura": false,
+        "cuota": 433
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 336,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 326,
+        "cliente": 30,
+        "pago": 1014,
+        "interes": "696.30",
+        "interes_pagado": "696.30",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1140.70",
+        "total": "1837.00",
+        "factura": false,
+        "cuota": 481
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 337,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 327,
+        "cliente": 212,
+        "pago": 1015,
+        "interes": "611.25",
+        "interes_pagado": "611.25",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.75",
+        "total": "612.00",
+        "factura": false,
+        "cuota": 390
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 338,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 328,
+        "cliente": 173,
+        "pago": 1017,
+        "interes": "568.55",
+        "interes_pagado": "568.55",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "20.45",
+        "total": "589.00",
+        "factura": false,
+        "cuota": 796
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 339,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 329,
+        "cliente": 53,
+        "pago": 1018,
+        "interes": "1111.63",
+        "interes_pagado": "1111.63",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "460.37",
+        "total": "1572.00",
+        "factura": false,
+        "cuota": 413
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 340,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 330,
+        "cliente": 171,
+        "pago": 1025,
+        "interes": "363.61",
+        "interes_pagado": "363.61",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "786.39",
+        "total": "1150.00",
+        "factura": false,
+        "cuota": 405
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 341,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 331,
+        "cliente": null,
+        "pago": 1027,
+        "interes": "58.89",
+        "interes_pagado": "58.89",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "590.11",
+        "total": "649.00",
+        "factura": false,
+        "cuota": 490
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 342,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 332,
+        "cliente": null,
+        "pago": 1028,
+        "interes": "1333.26",
+        "interes_pagado": "1333.26",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3333.74",
+        "total": "4667.00",
+        "factura": false,
+        "cuota": 1085
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 343,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 333,
+        "cliente": null,
+        "pago": 1029,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "160.00",
+        "total": "160.00",
+        "factura": false,
+        "cuota": 487
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 344,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 334,
+        "cliente": null,
+        "pago": 1030,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "164.00",
+        "total": "164.00",
+        "factura": false,
+        "cuota": 993
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 345,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 335,
+        "cliente": null,
+        "pago": 1031,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "116.00",
+        "total": "116.00",
+        "factura": false,
+        "cuota": 1015
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 346,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 336,
+        "cliente": null,
+        "pago": 1033,
+        "interes": "154.16",
+        "interes_pagado": "154.16",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4179.84",
+        "total": "4334.00",
+        "factura": false,
+        "cuota": 1084
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 347,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 337,
+        "cliente": null,
+        "pago": 1032,
+        "interes": "191.14",
+        "interes_pagado": "191.14",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "4142.86",
+        "total": "4334.00",
+        "factura": false,
+        "cuota": 488
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 348,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 338,
+        "cliente": null,
+        "pago": 1034,
+        "interes": "12514.22",
+        "interes_pagado": "12514.22",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "485.78",
+        "total": "13000.00",
+        "factura": false,
+        "cuota": 485
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 349,
+    "fields": {
+        "fecha": "2025-06-02",
+        "recibo": 339,
+        "cliente": null,
+        "pago": 1037,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "318.00",
+        "total": "318.00",
+        "factura": false,
+        "cuota": 350
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 350,
+    "fields": {
+        "fecha": "2025-06-04",
+        "recibo": 340,
+        "cliente": 96,
+        "pago": 1038,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "20.00",
+        "mora_pagada": "20.00",
+        "aporte_capital": "0.00",
+        "total": "420.00",
+        "factura": false,
+        "cuota": 794
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 360,
+    "fields": {
+        "fecha": "2025-06-04",
+        "recibo": 341,
+        "cliente": null,
+        "pago": 1036,
+        "interes": "20.92",
+        "interes_pagado": "20.92",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "837.08",
+        "total": "858.00",
+        "factura": false,
+        "cuota": 1167
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 361,
+    "fields": {
+        "fecha": "2025-06-04",
+        "recibo": 342,
+        "cliente": null,
+        "pago": 1035,
+        "interes": "24.06",
+        "interes_pagado": "24.06",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1513.94",
+        "total": "1538.00",
+        "factura": false,
+        "cuota": 1166
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 362,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 343,
+        "cliente": 215,
+        "pago": 1060,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "500.00",
+        "factura": false,
+        "cuota": 419
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 363,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 344,
+        "cliente": 166,
+        "pago": 1061,
+        "interes": "350.00",
+        "interes_pagado": "350.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1167.00",
+        "total": "1517.00",
+        "factura": false,
+        "cuota": 420
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 364,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 345,
+        "cliente": 67,
+        "pago": 1062,
+        "interes": "600.00",
+        "interes_pagado": "600.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "778.00",
+        "total": "1378.00",
+        "factura": false,
+        "cuota": 391
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 365,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 346,
+        "cliente": 65,
+        "pago": 1064,
+        "interes": "1499.60",
+        "interes_pagado": "1499.60",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1104.40",
+        "total": "2604.00",
+        "factura": false,
+        "cuota": 442
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 366,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 347,
+        "cliente": 32,
+        "pago": 1065,
+        "interes": "800.00",
+        "interes_pagado": "800.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1037.00",
+        "total": "1837.00",
+        "factura": false,
+        "cuota": 418
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 367,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 348,
+        "cliente": 144,
+        "pago": 1066,
+        "interes": "796.59",
+        "interes_pagado": "796.59",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3796.41",
+        "total": "4593.00",
+        "factura": false,
+        "cuota": 756
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 368,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 349,
+        "cliente": 180,
+        "pago": 1067,
+        "interes": "365.38",
+        "interes_pagado": "365.38",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3656.62",
+        "total": "4022.00",
+        "factura": false,
+        "cuota": 679
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 369,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 350,
+        "cliente": 37,
+        "pago": 1070,
+        "interes": "650.00",
+        "interes_pagado": "650.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "569.00",
+        "total": "1219.00",
+        "factura": false,
+        "cuota": 421
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 370,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 351,
+        "cliente": 94,
+        "pago": 1071,
+        "interes": "593.91",
+        "interes_pagado": "593.91",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1281.09",
+        "total": "1875.00",
+        "factura": false,
+        "cuota": 608
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 371,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 352,
+        "cliente": 207,
+        "pago": 1072,
+        "interes": "348.90",
+        "interes_pagado": "348.90",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "11.10",
+        "total": "360.00",
+        "factura": false,
+        "cuota": 454
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 372,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 353,
+        "cliente": 182,
+        "pago": 1073,
+        "interes": "558.00",
+        "interes_pagado": "558.00",
+        "mora": "27.90",
+        "mora_pagada": "27.90",
+        "aporte_capital": "0.10",
+        "total": "586.00",
+        "factura": false,
+        "cuota": 456
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 373,
+    "fields": {
+        "fecha": "2025-06-05",
+        "recibo": 354,
+        "cliente": 51,
+        "pago": 1074,
+        "interes": "225.00",
+        "interes_pagado": "225.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1225.00",
+        "factura": false,
+        "cuota": 702
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 374,
+    "fields": {
+        "fecha": "2025-06-06",
+        "recibo": 355,
+        "cliente": 87,
+        "pago": 1075,
+        "interes": "2328.80",
+        "interes_pagado": "2328.80",
+        "mora": "116.44",
+        "mora_pagada": "116.44",
+        "aporte_capital": "174.76",
+        "total": "2620.00",
+        "factura": false,
+        "cuota": 672
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 375,
+    "fields": {
+        "fecha": "2025-06-09",
+        "recibo": 356,
+        "cliente": 156,
+        "pago": 1077,
+        "interes": "923.53",
+        "interes_pagado": "923.53",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1179.47",
+        "total": "2103.00",
+        "factura": false,
+        "cuota": 489
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 376,
+    "fields": {
+        "fecha": "2025-06-09",
+        "recibo": 357,
+        "cliente": 167,
+        "pago": 1078,
+        "interes": "223.52",
+        "interes_pagado": "223.52",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2484.48",
+        "total": "2708.00",
+        "factura": false,
+        "cuota": 449
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 377,
+    "fields": {
+        "fecha": "2025-06-09",
+        "recibo": 358,
+        "cliente": 188,
+        "pago": 1079,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3000.00",
+        "total": "3300.00",
+        "factura": false,
+        "cuota": 450
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 378,
+    "fields": {
+        "fecha": "2025-06-09",
+        "recibo": 359,
+        "cliente": 152,
+        "pago": 1080,
+        "interes": "282.38",
+        "interes_pagado": "282.38",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "317.62",
+        "total": "600.00",
+        "factura": false,
+        "cuota": 479
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 379,
+    "fields": {
+        "fecha": "2025-06-09",
+        "recibo": 360,
+        "cliente": 220,
+        "pago": 1086,
+        "interes": "600.00",
+        "interes_pagado": "600.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "600.00",
+        "factura": false,
+        "cuota": 424
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 380,
+    "fields": {
+        "fecha": "2025-06-09",
+        "recibo": 361,
+        "cliente": 183,
+        "pago": 1087,
+        "interes": "600.00",
+        "interes_pagado": "600.00",
+        "mora": "30.00",
+        "mora_pagada": "30.00",
+        "aporte_capital": "2670.00",
+        "total": "3300.00",
+        "factura": false,
+        "cuota": 987
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 381,
+    "fields": {
+        "fecha": "2025-06-09",
+        "recibo": 362,
+        "cliente": 216,
+        "pago": 1088,
+        "interes": "100.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "303.00",
+        "total": "403.00",
+        "factura": false,
+        "cuota": 425
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 414,
+    "fields": {
+        "fecha": "2025-06-09",
+        "recibo": 363,
+        "cliente": 51,
+        "pago": 1123,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2000.00",
+        "total": "2000.00",
+        "factura": false,
+        "cuota": 702
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 415,
+    "fields": {
+        "fecha": "2025-06-11",
+        "recibo": 364,
+        "cliente": 190,
+        "pago": 1131,
+        "interes": "182.69",
+        "interes_pagado": "182.69",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1828.31",
+        "total": "2011.00",
+        "factura": false,
+        "cuota": 474
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 416,
+    "fields": {
+        "fecha": "2025-06-11",
+        "recibo": 365,
+        "cliente": 52,
+        "pago": 1132,
+        "interes": "600.00",
+        "interes_pagado": "600.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3000.00",
+        "total": "3600.00",
+        "factura": false,
+        "cuota": 758
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 417,
+    "fields": {
+        "fecha": "2025-06-12",
+        "recibo": 366,
+        "cliente": 24,
+        "pago": 1149,
+        "interes": "937.44",
+        "interes_pagado": "937.44",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1875.56",
+        "total": "2813.00",
+        "factura": false,
+        "cuota": 764
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 418,
+    "fields": {
+        "fecha": "2025-06-12",
+        "recibo": 367,
+        "cliente": 123,
+        "pago": 1150,
+        "interes": "2508.60",
+        "interes_pagado": "2508.60",
+        "mora": "250.86",
+        "mora_pagada": "250.86",
+        "aporte_capital": "1740.54",
+        "total": "4500.00",
+        "factura": false,
+        "cuota": 742
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 419,
+    "fields": {
+        "fecha": "2025-06-12",
+        "recibo": 368,
+        "cliente": 221,
+        "pago": 1151,
+        "interes": "150.00",
+        "interes_pagado": "150.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "454.00",
+        "total": "604.00",
+        "factura": false,
+        "cuota": 438
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 420,
+    "fields": {
+        "fecha": "2025-06-12",
+        "recibo": 369,
+        "cliente": 186,
+        "pago": 1152,
+        "interes": "273.62",
+        "interes_pagado": "273.62",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1304.38",
+        "total": "1578.00",
+        "factura": false,
+        "cuota": 465
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 421,
+    "fields": {
+        "fecha": "2025-06-13",
+        "recibo": 370,
+        "cliente": 24,
+        "pago": 1153,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "7498.89",
+        "total": "7498.89",
+        "factura": false,
+        "cuota": 764
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 422,
+    "fields": {
+        "fecha": "2025-06-13",
+        "recibo": 371,
+        "cliente": 105,
+        "pago": 1160,
+        "interes": "616.05",
+        "interes_pagado": "616.05",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "383.95",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 547
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 423,
+    "fields": {
+        "fecha": "2025-06-13",
+        "recibo": 372,
+        "cliente": 217,
+        "pago": 1161,
+        "interes": "1000.00",
+        "interes_pagado": "520.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "520.00",
+        "factura": false,
+        "cuota": 426
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 424,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 373,
+        "cliente": 209,
+        "pago": 1163,
+        "interes": "104.60",
+        "interes_pagado": "104.60",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "499.40",
+        "total": "604.00",
+        "factura": false,
+        "cuota": 902
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 425,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 374,
+        "cliente": 29,
+        "pago": 1164,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "200.00",
+        "total": "400.00",
+        "factura": false,
+        "cuota": 423
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 426,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 375,
+        "cliente": 29,
+        "pago": 1165,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "405.00",
+        "total": "405.00",
+        "factura": false,
+        "cuota": 423
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 427,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 376,
+        "cliente": 223,
+        "pago": 1167,
+        "interes": "500.00",
+        "interes_pagado": "500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1511.00",
+        "total": "2011.00",
+        "factura": false,
+        "cuota": 443
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 428,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 377,
+        "cliente": 109,
+        "pago": 1168,
+        "interes": "1352.58",
+        "interes_pagado": "1352.58",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "849.42",
+        "total": "2202.00",
+        "factura": false,
+        "cuota": 769
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 429,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 378,
+        "cliente": 173,
+        "pago": 1169,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5666.00",
+        "total": "5666.00",
+        "factura": false,
+        "cuota": 796
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 431,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 380,
+        "cliente": 213,
+        "pago": 1171,
+        "interes": "250.00",
+        "interes_pagado": "250.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1200.00",
+        "total": "1450.00",
+        "factura": false,
+        "cuota": 427
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 432,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 381,
+        "cliente": 210,
+        "pago": 1172,
+        "interes": "348.90",
+        "interes_pagado": "348.90",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3673.10",
+        "total": "4022.00",
+        "factura": false,
+        "cuota": 904
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 433,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 382,
+        "cliente": 224,
+        "pago": 1173,
+        "interes": "800.00",
+        "interes_pagado": "800.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "527.00",
+        "total": "1327.00",
+        "factura": true,
+        "cuota": 445
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 434,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 383,
+        "cliente": 12,
+        "pago": 1174,
+        "interes": "436.62",
+        "interes_pagado": "436.62",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "941.38",
+        "total": "1378.00",
+        "factura": false,
+        "cuota": 458
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 435,
+    "fields": {
+        "fecha": "2025-06-16",
+        "recibo": 384,
+        "cliente": 203,
+        "pago": 1175,
+        "interes": "715.00",
+        "interes_pagado": "715.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "20.00",
+        "total": "735.00",
+        "factura": false,
+        "cuota": 440
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 436,
+    "fields": {
+        "fecha": "2025-06-17",
+        "recibo": 385,
+        "cliente": 171,
+        "pago": 1181,
+        "interes": "284.97",
+        "interes_pagado": "284.97",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2850.03",
+        "total": "3135.00",
+        "factura": false,
+        "cuota": 535
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 437,
+    "fields": {
+        "fecha": "2025-06-17",
+        "recibo": 386,
+        "cliente": 227,
+        "pago": 1182,
+        "interes": "100.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "100.00",
+        "factura": false,
+        "cuota": 446
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 438,
+    "fields": {
+        "fecha": "2025-06-17",
+        "recibo": 387,
+        "cliente": 228,
+        "pago": 1183,
+        "interes": "150.00",
+        "interes_pagado": "150.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "454.00",
+        "total": "604.00",
+        "factura": false,
+        "cuota": 451
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 439,
+    "fields": {
+        "fecha": "2025-06-17",
+        "recibo": 388,
+        "cliente": 142,
+        "pago": 1184,
+        "interes": "1500.00",
+        "interes_pagado": "1500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1945.00",
+        "total": "3445.00",
+        "factura": false,
+        "cuota": 444
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 440,
+    "fields": {
+        "fecha": "2025-06-17",
+        "recibo": 389,
+        "cliente": 234,
+        "pago": 1186,
+        "interes": "750.00",
+        "interes_pagado": "750.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "943.00",
+        "total": "1693.00",
+        "factura": false,
+        "cuota": 469
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 441,
+    "fields": {
+        "fecha": "2025-06-17",
+        "recibo": 390,
+        "cliente": 149,
+        "pago": 1185,
+        "interes": "103.44",
+        "interes_pagado": "103.44",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1726.56",
+        "total": "1830.00",
+        "factura": false,
+        "cuota": 576
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 442,
+    "fields": {
+        "fecha": "2025-06-18",
+        "recibo": 391,
+        "cliente": 146,
+        "pago": 1188,
+        "interes": "567.84",
+        "interes_pagado": "567.84",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "7571.21",
+        "total": "8139.05",
+        "factura": false,
+        "cuota": 496
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 443,
+    "fields": {
+        "fecha": "2025-06-18",
+        "recibo": 392,
+        "cliente": 73,
+        "pago": 1192,
+        "interes": "196.13",
+        "interes_pagado": "196.13",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "511.87",
+        "total": "708.00",
+        "factura": false,
+        "cuota": 667
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 444,
+    "fields": {
+        "fecha": "2025-06-18",
+        "recibo": 393,
+        "cliente": 170,
+        "pago": 1195,
+        "interes": "1500.00",
+        "interes_pagado": "1500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "561.00",
+        "total": "2061.00",
+        "factura": false,
+        "cuota": 463
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 445,
+    "fields": {
+        "fecha": "2025-06-19",
+        "recibo": 394,
+        "cliente": 145,
+        "pago": 1215,
+        "interes": "266.85",
+        "interes_pagado": "266.85",
+        "mora": "3.40",
+        "mora_pagada": "3.40",
+        "aporte_capital": "182.76",
+        "total": "453.00",
+        "factura": false,
+        "cuota": 504
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 446,
+    "fields": {
+        "fecha": "2025-06-19",
+        "recibo": 395,
+        "cliente": 89,
+        "pago": 1216,
+        "interes": "800.00",
+        "interes_pagado": "800.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "8000.00",
+        "total": "8800.00",
+        "factura": false,
+        "cuota": 779
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 447,
+    "fields": {
+        "fecha": "2025-06-19",
+        "recibo": 396,
+        "cliente": 103,
+        "pago": 1217,
+        "interes": "348.10",
+        "interes_pagado": "348.10",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "570.90",
+        "total": "919.00",
+        "factura": false,
+        "cuota": 837
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 448,
+    "fields": {
+        "fecha": "2025-06-19",
+        "recibo": 397,
+        "cliente": 84,
+        "pago": 1218,
+        "interes": "522.00",
+        "interes_pagado": "522.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "856.00",
+        "total": "1378.00",
+        "factura": false,
+        "cuota": 844
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 449,
+    "fields": {
+        "fecha": "2025-06-19",
+        "recibo": 379,
+        "cliente": 248,
+        "pago": 1219,
+        "interes": "250.00",
+        "interes_pagado": "250.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5000.00",
+        "total": "5250.00",
+        "factura": false,
+        "cuota": 1199
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 450,
+    "fields": {
+        "fecha": "2025-06-20",
+        "recibo": 398,
+        "cliente": 201,
+        "pago": 1220,
+        "interes": "72.95",
+        "interes_pagado": "72.95",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "729.50",
+        "total": "802.45",
+        "factura": false,
+        "cuota": 613
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 451,
+    "fields": {
+        "fecha": "2025-06-20",
+        "recibo": 399,
+        "cliente": 77,
+        "pago": 1225,
+        "interes": "500.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "400.00",
+        "factura": false,
+        "cuota": 447
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 452,
+    "fields": {
+        "fecha": "2025-06-20",
+        "recibo": 400,
+        "cliente": 229,
+        "pago": 1226,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "907.00",
+        "total": "1207.00",
+        "factura": false,
+        "cuota": 452
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 453,
+    "fields": {
+        "fecha": "2025-06-20",
+        "recibo": 401,
+        "cliente": 184,
+        "pago": 1227,
+        "interes": "1822.62",
+        "interes_pagado": "1822.62",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "532.38",
+        "total": "2355.00",
+        "factura": false,
+        "cuota": 680
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 454,
+    "fields": {
+        "fecha": "2025-06-20",
+        "recibo": 402,
+        "cliente": 42,
+        "pago": 1228,
+        "interes": "1632.50",
+        "interes_pagado": "1632.50",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1067.50",
+        "total": "2700.00",
+        "factura": false,
+        "cuota": 661
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 455,
+    "fields": {
+        "fecha": "2025-06-20",
+        "recibo": 403,
+        "cliente": 68,
+        "pago": 1063,
+        "interes": "1054.40",
+        "interes_pagado": "1054.40",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1045.60",
+        "total": "2100.00",
+        "factura": false,
+        "cuota": 467
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 456,
+    "fields": {
+        "fecha": "2025-06-23",
+        "recibo": 404,
+        "cliente": 97,
+        "pago": 1231,
+        "interes": "1482.53",
+        "interes_pagado": "1482.53",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3045.47",
+        "total": "4528.00",
+        "factura": false,
+        "cuota": 1384
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 457,
+    "fields": {
+        "fecha": "2025-06-23",
+        "recibo": 405,
+        "cliente": 108,
+        "pago": 1232,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1300.00",
+        "factura": false,
+        "cuota": 669
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 458,
+    "fields": {
+        "fecha": "2025-06-23",
+        "recibo": 406,
+        "cliente": 199,
+        "pago": 1233,
+        "interes": "219.27",
+        "interes_pagado": "219.27",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2193.73",
+        "total": "2413.00",
+        "factura": false,
+        "cuota": 705
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 459,
+    "fields": {
+        "fecha": "2025-06-24",
+        "recibo": 407,
+        "cliente": 21,
+        "pago": 1238,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "600.00",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 468
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 460,
+    "fields": {
+        "fecha": "2025-06-24",
+        "recibo": 408,
+        "cliente": 21,
+        "pago": 1239,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1500.00",
+        "total": "1500.00",
+        "factura": false,
+        "cuota": 468
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 461,
+    "fields": {
+        "fecha": "2025-06-24",
+        "recibo": 409,
+        "cliente": 21,
+        "pago": 1240,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1900.00",
+        "total": "1900.00",
+        "factura": false,
+        "cuota": 468
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 462,
+    "fields": {
+        "fecha": "2025-06-24",
+        "recibo": 410,
+        "cliente": 35,
+        "pago": 1241,
+        "interes": "400.00",
+        "interes_pagado": "400.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "519.00",
+        "total": "919.00",
+        "factura": false,
+        "cuota": 462
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 463,
+    "fields": {
+        "fecha": "2025-06-24",
+        "recibo": 411,
+        "cliente": 102,
+        "pago": 1242,
+        "interes": "100.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1000.00",
+        "total": "1100.00",
+        "factura": false,
+        "cuota": 1213
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 464,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 412,
+        "cliente": 290,
+        "pago": 1250,
+        "interes": "50.00",
+        "interes_pagado": "50.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2000.00",
+        "total": "2050.00",
+        "factura": false,
+        "cuota": 1288
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 465,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 413,
+        "cliente": 172,
+        "pago": 1251,
+        "interes": "258.94",
+        "interes_pagado": "258.94",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "595.06",
+        "total": "854.00",
+        "factura": false,
+        "cuota": 530
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 466,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 414,
+        "cliente": 200,
+        "pago": 1252,
+        "interes": "2833.20",
+        "interes_pagado": "2833.20",
+        "mora": "141.66",
+        "mora_pagada": "141.66",
+        "aporte_capital": "1675.14",
+        "total": "4650.00",
+        "factura": false,
+        "cuota": 726
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 467,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 415,
+        "cliente": 77,
+        "pago": 1254,
+        "interes": "100.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1511.00",
+        "total": "1611.00",
+        "factura": false,
+        "cuota": 447
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 468,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 416,
+        "cliente": 111,
+        "pago": 1255,
+        "interes": "416.14",
+        "interes_pagado": "416.14",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "108.86",
+        "total": "525.00",
+        "factura": false,
+        "cuota": 520
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 469,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 417,
+        "cliente": 176,
+        "pago": 1256,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "667.00",
+        "total": "867.00",
+        "factura": false,
+        "cuota": 428
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 470,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 418,
+        "cliente": null,
+        "pago": 1257,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "791.00",
+        "total": "791.00",
+        "factura": false,
+        "cuota": 1096
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 471,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 419,
+        "cliente": null,
+        "pago": 1258,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "166.00",
+        "total": "166.00",
+        "factura": false,
+        "cuota": 1009
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 472,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 420,
+        "cliente": null,
+        "pago": 1259,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "203.00",
+        "total": "203.00",
+        "factura": false,
+        "cuota": 1023
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 473,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 421,
+        "cliente": null,
+        "pago": 1260,
+        "interes": "200.00",
+        "interes_pagado": "100.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "100.00",
+        "factura": false,
+        "cuota": 1006
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 474,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 422,
+        "cliente": null,
+        "pago": 1261,
+        "interes": "700.00",
+        "interes_pagado": "700.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "700.00",
+        "factura": false,
+        "cuota": 1003
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 475,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 423,
+        "cliente": null,
+        "pago": 1262,
+        "interes": "320.69",
+        "interes_pagado": "320.69",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.31",
+        "total": "321.00",
+        "factura": false,
+        "cuota": 1000
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 476,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 424,
+        "cliente": null,
+        "pago": 1263,
+        "interes": "450.00",
+        "interes_pagado": "225.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "225.00",
+        "factura": false,
+        "cuota": 998
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 477,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 425,
+        "cliente": null,
+        "pago": 1264,
+        "interes": "166.56",
+        "interes_pagado": "166.56",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3.44",
+        "total": "170.00",
+        "factura": false,
+        "cuota": 1022
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 478,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 426,
+        "cliente": null,
+        "pago": 1265,
+        "interes": "124.93",
+        "interes_pagado": "124.93",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "5.07",
+        "total": "130.00",
+        "factura": false,
+        "cuota": 1021
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 479,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 427,
+        "cliente": null,
+        "pago": 1266,
+        "interes": "652.30",
+        "interes_pagado": "330.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "330.00",
+        "factura": false,
+        "cuota": 1319
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 480,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 428,
+        "cliente": null,
+        "pago": 1267,
+        "interes": "348.80",
+        "interes_pagado": "235.56",
+        "mora": "17.44",
+        "mora_pagada": "17.44",
+        "aporte_capital": "0.00",
+        "total": "253.00",
+        "factura": false,
+        "cuota": 615
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 481,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 429,
+        "cliente": null,
+        "pago": 1268,
+        "interes": "113.24",
+        "interes_pagado": "113.24",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3.76",
+        "total": "117.00",
+        "factura": false,
+        "cuota": 615
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 482,
+    "fields": {
+        "fecha": "2025-06-26",
+        "recibo": 430,
+        "cliente": null,
+        "pago": 1269,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "532.00",
+        "total": "532.00",
+        "factura": false,
+        "cuota": 1007
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 483,
+    "fields": {
+        "fecha": "2025-06-27",
+        "recibo": 431,
+        "cliente": 61,
+        "pago": 1272,
+        "interes": "300.00",
+        "interes_pagado": "300.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "390.00",
+        "total": "690.00",
+        "factura": false,
+        "cuota": 994
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 484,
+    "fields": {
+        "fecha": "2025-06-27",
+        "recibo": 432,
+        "cliente": 30,
+        "pago": 1273,
+        "interes": "582.23",
+        "interes_pagado": "582.23",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1254.77",
+        "total": "1837.00",
+        "factura": false,
+        "cuota": 760
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 485,
+    "fields": {
+        "fecha": "2025-06-27",
+        "recibo": 433,
+        "cliente": 168,
+        "pago": 1274,
+        "interes": "1022.37",
+        "interes_pagado": "1022.37",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "527.63",
+        "total": "1550.00",
+        "factura": false,
+        "cuota": 646
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 486,
+    "fields": {
+        "fecha": "2025-06-27",
+        "recibo": 434,
+        "cliente": 197,
+        "pago": 1277,
+        "interes": "182.69",
+        "interes_pagado": "182.69",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1828.31",
+        "total": "2011.00",
+        "factura": false,
+        "cuota": 600
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 487,
+    "fields": {
+        "fecha": "2025-06-27",
+        "recibo": 435,
+        "cliente": 248,
+        "pago": 1278,
+        "interes": "125.00",
+        "interes_pagado": "125.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2500.00",
+        "total": "2625.00",
+        "factura": false,
+        "cuota": 1371
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 488,
+    "fields": {
+        "fecha": "2025-06-27",
+        "recibo": 436,
+        "cliente": 41,
+        "pago": 1279,
+        "interes": "2662.32",
+        "interes_pagado": "2662.32",
+        "mora": "177.48",
+        "mora_pagada": "177.48",
+        "aporte_capital": "6660.20",
+        "total": "9500.00",
+        "factura": false,
+        "cuota": 851
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 489,
+    "fields": {
+        "fecha": "2025-06-27",
+        "recibo": 437,
+        "cliente": 169,
+        "pago": 1280,
+        "interes": "200.00",
+        "interes_pagado": "200.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2000.00",
+        "total": "2200.00",
+        "factura": false,
+        "cuota": 995
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 490,
+    "fields": {
+        "fecha": "2025-06-27",
+        "recibo": 438,
+        "cliente": 174,
+        "pago": 1281,
+        "interes": "1229.00",
+        "interes_pagado": "1229.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1371.00",
+        "total": "2600.00",
+        "factura": false,
+        "cuota": 538
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 491,
+    "fields": {
+        "fecha": "2025-06-27",
+        "recibo": 439,
+        "cliente": 87,
+        "pago": 1282,
+        "interes": "1146.92",
+        "interes_pagado": "1146.92",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1328.08",
+        "total": "2475.00",
+        "factura": false,
+        "cuota": 673
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 492,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 440,
+        "cliente": 302,
+        "pago": 1285,
+        "interes": "50.00",
+        "interes_pagado": "50.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "500.00",
+        "total": "550.00",
+        "factura": false,
+        "cuota": 1420
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 493,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 441,
+        "cliente": 219,
+        "pago": 1288,
+        "interes": "1000.00",
+        "interes_pagado": "1000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "630.00",
+        "total": "1630.00",
+        "factura": false,
+        "cuota": 1140
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 494,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 442,
+        "cliente": 237,
+        "pago": 1290,
+        "interes": "700.00",
+        "interes_pagado": "700.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "2115.00",
+        "total": "2815.00",
+        "factura": false,
+        "cuota": 1136
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 495,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 443,
+        "cliente": 5,
+        "pago": 1294,
+        "interes": "1000.00",
+        "interes_pagado": "1000.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "1000.00",
+        "factura": false,
+        "cuota": 476
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 496,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 444,
+        "cliente": 5,
+        "pago": 1295,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "468.00",
+        "total": "468.00",
+        "factura": false,
+        "cuota": 476
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 497,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 445,
+        "cliente": 44,
+        "pago": 1296,
+        "interes": "6947.64",
+        "interes_pagado": "1660.93",
+        "mora": "521.07",
+        "mora_pagada": "521.07",
+        "aporte_capital": "0.00",
+        "total": "2182.00",
+        "factura": false,
+        "cuota": 707
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 498,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 446,
+        "cliente": 228,
+        "pago": 1298,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1050.00",
+        "total": "1050.00",
+        "factura": false,
+        "cuota": 451
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 499,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 447,
+        "cliente": 246,
+        "pago": 1299,
+        "interes": "900.00",
+        "interes_pagado": "900.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "0.00",
+        "total": "900.00",
+        "factura": false,
+        "cuota": 1186
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 500,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 448,
+        "cliente": 245,
+        "pago": 1297,
+        "interes": "150.00",
+        "interes_pagado": "150.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "1500.00",
+        "total": "1650.00",
+        "factura": false,
+        "cuota": 1180
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 501,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 449,
+        "cliente": 130,
+        "pago": 1302,
+        "interes": "365.38",
+        "interes_pagado": "365.38",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "3656.62",
+        "total": "4022.00",
+        "factura": false,
+        "cuota": 612
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 502,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 450,
+        "cliente": 106,
+        "pago": 1303,
+        "interes": "2500.00",
+        "interes_pagado": "2500.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "500.00",
+        "total": "3000.00",
+        "factura": false,
+        "cuota": 1113
+    }
+},
+{
+    "model": "financings.recibo",
+    "pk": 503,
+    "fields": {
+        "fecha": "2025-06-30",
+        "recibo": 451,
+        "cliente": 106,
+        "pago": 1304,
+        "interes": "0.00",
+        "interes_pagado": "0.00",
+        "mora": "0.00",
+        "mora_pagada": "0.00",
+        "aporte_capital": "670.00",
+        "total": "670.00",
+        "factura": false,
+        "cuota": 1113
+    }
+}
+]

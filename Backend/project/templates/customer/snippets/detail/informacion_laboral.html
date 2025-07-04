@@ -1,0 +1,70 @@
+{% load static %}
+<div class="row" style="margin: 1rem 0;">
+    {% if informacion_laboral%}
+    {% for laboral in informacion_laboral %}
+    <p class="fw-semibold">Puesto</p>
+    <p>{{laboral.position}}</p>
+    <hr>
+    <p class="fw-semibold">Nombre de la Empresa</p>
+    <p>{{laboral.company_name}}</p>
+    <hr>
+    <p class="fw-semibold">Fecha de Inicio</p>
+    <p>{{laboral.start_date}}</p>
+    <hr>
+    <p class="fw-semibold">Salario</p>
+    <p>{{laboral.salary}}</p>
+    <hr>
+    <p class="fw-semibold">Horario de Trabajo</p>
+    <p>{{laboral.working_hours}}</p>
+    <hr>
+    <p class="fw-semibold">Número de Teléfono</p>
+    <p>{{laboral.phone_number}}</p>
+    <hr>
+    <p class="fw-semibold">Fuente de Ingreso</p>
+    <p>{{laboral.source_of_income}}</p>
+    <hr>
+    <p class="fw-semibold">Estado Laboral</p>
+    <p>{{laboral.employment_status}}</p>
+    <hr>
+    <p class="fw-semibold">Detalle de Ingreso</p>
+    <p>{{laboral.income_detail}}</p>
+    <hr>
+    <p class="fw-semibold">Descripción</p>
+    <p>{{laboral.description}}</p>
+
+    {% if permisos.puede_editar_informacion_laboral_cliente %}
+    <div>
+        <hr>
+        <a href="{% url 'financial_information:update_working_information' laboral.id customer_code %}"
+            class="btn_edit">Editar informacion Personal</a>
+    </div>
+
+    {% endif %}
+
+    {% endfor %}
+    {% endif %}
+
+    {% if otra_informacion_laboral%}
+    {% for other in otra_informacion_laboral%}
+    <p class="fw-semibold">Fuentes de ingreso</p>
+    <p>{{other.source_of_income}}</p>
+    <hr>
+    <p class="fw-semibold">NIT</p>
+    <p class="fw-semibold">{{other.nit}}</p>
+    <hr>
+    <p class="fw-semibold">Numero de telefono</p>
+    <p>{{other.phone_number}}</p>
+    <hr>
+    <p class="fw-semibold">Salario</p>
+    <p>Q{{other.salary}}</p>
+    {% if permisos.puede_editar_informacion_laboral_cliente %}
+    <div>
+        <hr>
+        <a href="{% url 'financial_information:update_other_information' other.id customer_code %}"
+            class="btn_edit">Editar informacion Personal</a>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+</div>

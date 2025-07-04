@@ -1,0 +1,16 @@
+INSTALLED_APPS_MODELS = [
+    'apps.users',
+    'apps.actividades',
+    'apps.customers',
+    'apps.roles',
+    'apps.codes',
+    'apps.pictures',
+    'apps.addresses',
+    'apps.FinancialInformation',
+    'apps.InvestmentPlan',
+    'apps.documents',
+    'apps.financings',
+    'apps.accountings',
+    'apps.subsidiaries',
+    'apps.ratings',
+]

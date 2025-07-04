@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock%}
+
+{% block content %}
+<div class="row shadow p-3 mb-5 bg-body-tertiary rounded">
+    <div class="row">
+        <div class="col" style="padding: 2.5rem">
+            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark"> <a href="{% url 'users:users'%}"
+                        style="text-decoration: none; color: white;"> Usuarios</a></span> !</h3>
+            <p>
+                Bienvenido al módulo de usuarios. Este módulo te permite administrar todos
+                los aspectos relacionados con los usuarios de la plataforma.
+            </p>
+            <p>
+                Este módulo está diseñado para brindarte el control y la flexibilidad
+                necesarios para administrar eficazmente el registro de los usuarios en la
+                plataforma.
+            </p>
+        </div>
+        <div class="col-12 d-flex flex-row-reverse">
+
+            {% include 'user/snippets/search.html' with query=query %}
+
+
+        </div>
+
+        <div class="col">
+            <p>Resultados para: {{ query }} ({{ count }})</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            {% include 'user/table/table.html' %}
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

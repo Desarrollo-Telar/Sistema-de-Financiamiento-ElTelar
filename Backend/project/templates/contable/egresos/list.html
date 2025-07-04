@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock%}
+
+{% block content %}
+<div class=" row box">
+    <div class="row">
+        {% include 'contable/egresos/snippets/presentation.html' %}
+    </div>
+    <hr>
+    <div class="row" style="margin-bottom: 2rem">
+        <div class="col">
+            <p class="text-body-secondary fs-6 text-uppercase">TOTAL DE TODOS LOS EGRESOS REGISTRADOS {{message}}:
+                <span class="badge rounded-pill text-bg-dark">{{count}}</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 2rem;">
+        {% if permisos.puede_consultar_egresos %}
+        <div class="col d-flex justify-content-start" style="display: flex; align-items: center; justify-content: end;">
+            {% include 'contable/egresos/snippets/search.html' with query=query %}
+
+        </div>
+        {% endif %}
+        {% if permisos.puede_crear_egresos %}
+        <div class="col d-flex flex-row-reverse">
+            <a class="btn_guardar" href="{% url 'contable:egresos_create'%}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                </svg>
+                Añadir Egreso nuevo</a>
+        </div>
+        {% endif %}
+        
+        <div class="col-1">
+            {% include 'contable/egresos/snippets/filters.html' %}
+        </div>
+        
+    </div>
+
+
+
+    {% include 'contable/egresos/table/table.html' %}
+    <hr>
+    {% if page_obj %}
+    {% include 'snippets/pages.html' %}
+    {% endif %}
+
+</div>
+
+
+
+
+{% endblock %}

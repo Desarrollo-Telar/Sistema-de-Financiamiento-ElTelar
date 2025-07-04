@@ -1,0 +1,80 @@
+{% load static %}
+<div id="derecho_posesion" style="display: none;">
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="noEscritura1">No.Escritura</label>
+        <input type="text" class="form-control" id="noEscritura1">
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="notario1">Notario</label>
+        <input type="text" class="form-control" id="notario1">
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="area1">Area</label>
+        <div class="input-group mb-3">
+            <input type="number" min="0" step="any" class="form-control" name="area1" id="area1">
+            <span class="input-group-text fw-medium" id="basic-addon1">m2</span>
+        </div>
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="ubicacion1">Ubicacion</label>
+        <textarea name="ubicacion1" id="ubicacion1" class="form-control" rows="2"></textarea>
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="descripcion1">Descripcion</label>
+        <textarea name="descripcion1" id="descripcion1" class="form-control" rows="2"></textarea>
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="valor_comercial1">Valor Comercial</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+            <input type="number" min="0" step="any" class="form-control" name="valor_comercial1" id="valor_comercial1">
+
+        </div>
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="titular1">Titular</label>
+        <input type="text" class="form-control" id="titular1">
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="estatus1">Estatus</label>
+        <select class="form-select" id="estatus1">
+            <option value="GRAVAMEN HIPOTECARIO">GRAVAMEN HIPOTECARIO</option>
+            <option value="TRASPASO REGISTRADO">TRASPASO REGISTRADO</option>
+            <option value="TRASPASO NO REGISTRAL">TRASPASO NO REGISTRAL</option>
+        </select>
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="noContratoArrendamiento">No. Contrato de Arrendamiento</label>
+        <input type="text" class="form-control" id="noContratoArrendamiento1">
+
+    </div>
+    <!--
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="avaluoBien1">Avaluo del Bien</label>
+        <input class="form-control" type="file" id="avaluoBien1" accept=".pdf">
+
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="docDigitalSoporte1">Documento Digital de Soporte</label>
+        <input class="form-control" type="file" id="docDigitalSoporte1" accept=".pdf">
+
+
+    </div>
+     -->
+    <div class="row" style="margin-top: 1rem;">
+        <div class="col">
+
+            <button type="button" id="agregar_garantiaDH" class="btn_cancel" style="padding:0 2rem ;">Añadir</button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,1 @@
+from .notificaciones import urlpatterns_notificaciones

@@ -1,0 +1,63 @@
+{% load static %}
+<div class="row" style="margin: 0.5rem 0;">
+    <div class="col-12 ">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Fecha de Inicio</th>
+                        <th scope="col">Fecha De Vencimiento</th>
+                        <th scope="col">Fecha Limite</th>
+                        <th scope="col">Mora Acumulado</th>
+                        <th scope="col">Interes Acumulado</th>
+
+
+                        <th scope="col">Saldo Capital</th>
+                        <th scope="col">Cuota A Cancelar</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cuota in cuotas_vencidas %}
+
+                    <tr>
+                        <td class="border border-dark-subtle">
+                            {{cuota.start_date}}
+                        </td>
+                        <td class="border border-dark-subtle">
+                            {{cuota.due_date}}
+                        </td>
+                        <td class="border border-dark-subtle">
+                            {{cuota.mostrar_fecha_limite}}
+                        </td>
+                        <td class="border border-dark-subtle">
+                            Q{{cuota.formato_cuota_mora}}
+                        </td>
+                        <td class="border border-dark-subtle">
+                            Q{{cuota.formato_cuota_interes}}
+                        </td>
+
+
+                        <td class="border border-dark-subtle">
+                            Q{{cuota.formato_cuota_saldo_pendiente}}
+                        </td>
+                        <td class="border border-dark-subtle">
+                            <a href="{% url 'financings:paymente_update_cuota' cuota.id %}">Q{{cuota.formato_cuota_total}}</a>
+                            
+                        </td>
+
+
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>

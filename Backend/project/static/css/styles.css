@@ -1,0 +1,32 @@
+.box {
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border-radius: 2rem;
+}
+
+.scroll-container {
+
+  height: 25rem;
+  /* Altura del contenedor */
+  overflow-y: auto;
+  /* Scroll vertical automático */
+  overflow-x: hidden;
+  /* Oculta el scroll horizontal */
+  border: 1px solid #ccc;
+  /* Bordes para distinguir el área */
+  padding: 10px;
+}
+
+.card_hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.card_hover:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}

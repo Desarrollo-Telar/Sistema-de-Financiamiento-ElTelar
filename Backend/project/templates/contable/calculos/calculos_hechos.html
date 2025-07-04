@@ -1,0 +1,93 @@
+{% extends 'pdf/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container" style="font-size: 12px;">
+    <div class="row">
+        <div class="col-4">
+            <img src="{% static 'img/logo.png' %}" alt="imagen_de_la_empresa" style="width: 150px">
+        </div>
+        <div class="col" style="font-weight: bold;">
+            <p>Reporte sobre los pagos realizados para las cuotas del credito: </p>
+            <p>{{credito}}</p>
+            <p>Tasa de Interes Mensual: <span style="font-weight: 100;">{{credito.ftasa}}%</span> </p>
+            <p>Plazo: <span style="font-weight: 100;">{{credito.plazo}}Meses</span> </p>
+
+            <p>Monto: <span style="font-weight: 100;">Q{{credito.fmonto}}</span> </p>
+            <p>Forma de Pago: <span style="font-weight: 100;">{{credito.forma_de_pago}}</span> </p>
+            <p>Saldo Actual: <span style="font-weight: 100;">Q{{credito.formato_saldo_actual}}</span> </p>
+            <p>Estado del Credito: <span style="font-weight: 100;"
+                    class="{% if  credito.is_paid_off %} inactivo {% endif %} activo">{{credito.formato_credito_cancelado}}</span>
+            </p>
+            <p>Estado por Aportacion: <span style="font-weight: 100;"
+                    class="{% if not credito.estado_aportacion %} inactivo {% endif %} activo">{{credito.formato_estado_aportacion}}</span>
+            </p>
+            <p>Estado por Fecha: <span style="font-weight: 100;"
+                    class="{% if not credito.estados_fechas %} inactivo {% endif %} activo">{{credito.formato_estado_fecha}}</span>
+            </p>
+        </div>
+    </div>
+    <hr>
+    {% for cuota in cuotas %}
+    <div class="row">
+        <div class="d-flex">
+            <div class="col">
+                <p style="font-weight: bold; ">Cuota: {{forloop.counter}}</p>
+            </div>
+            {% if cuota.cuota_vencida %}
+            <div class="col">
+                <p>Cuota Vencida</p>
+
+            </div>
+            {% endif %}
+
+        </div>
+
+        <div class="col">
+            <p>Fecha de Inicio: <span>{{cuota.start_date.date}}</span></p>
+            <p>Fecha de Vencimiento: <span>{{cuota.due_date.date}}</span></p>
+            <p>Fecha de Limite: <span>{{cuota.mostrar_fecha_limite}}</span></p>
+            <p>Saldo Capital Pendiente: <span>Q{{cuota.formato_saldo_capital_pendiente}}</span></p>
+            {% if cuota.interes_acumulado_generado %}
+            <p>Interes Acumulado: <span>Q{{cuota.formato_cuota_interes_acumulado_generado}}</span></p>
+            {% endif %}
+            <p>Interes Generado del mes: <span>Q{{cuota.formato_cuota_interes_generado}}</span></p>
+
+            {% if cuota.mora_acumulado_generado %}
+            <p>Mora Acumulada: <span>Q{{cuota.formato_cuota_mora_acumulado_generado}}</span></p>
+            {%endif %}
+
+            {% if cuota.mora_generado %}
+            <p>Mora Generada: <span>Q{{cuota.formato_cuota_mora_generado}}</span></p>
+            {% endif %}
+            <p>Capital Generado: <span>Q{{cuota.formato_cuota_capital_generado}}</span> </p>
+        </div>
+    </div>
+    {% for recibo in recibos %}
+    {% if recibo.cuota == cuota %}
+    <div class="row"
+        style="margin-top: 0.5rem; padding: 1rem; border: 1px solid #fea3a5; background-color: #fef2f2; color: #46090a; border-radius: 1rem;">
+        <p style="font-weight:bold; font-style: italic; ">Pago: {{forloop.counter}} </p>
+        <div class="col" style="font-weight: 300; color: #811b1d;">
+            <p>Monto: Q{{recibo.Fmonto}}</p>
+            <p>Fecha de Pago: {{recibo.pago.fecha_emision.date}}</p>
+            <p>No. Referencia: {{recibo.pago.numero_referencia}}</p>
+            {% if recibo.mora_pagada %}
+            <p>Mora Pagado: Q{{recibo.Fmora_pagada}} </p>
+            {% endif %}
+            <p>Interes Pagado: Q{{recibo.Finteres_pagado}} </p>
+
+            <p>Capital Aportado: Q{{recibo.Faporte_capital}} </p>
+        </div>
+    </div>
+    {% endif%}
+    {% endfor %}
+    <hr>
+    {% endfor %}
+
+
+</div>
+
+
+{% endblock %}

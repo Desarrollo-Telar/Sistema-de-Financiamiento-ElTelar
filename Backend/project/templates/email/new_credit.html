@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENSAJE DE ALERTA - EL TELAR</title>
+</head>
+<body>
+  <div style="background-color: #f2f2f2; padding: 20px; text-align: center">
+
+    <h1 style="text-transform: uppercase">
+        Estimados Administradores,
+        
+    </h1>
+   <p>Nos complace informarles que se ha registrado un nuevo crédito en nuestra plataforma.</p>
+    
+    <h3>Detalles del Cliente:</h3>
+    <ul>
+        <li><strong>Nombre:</strong> {{object_list.customer_id}}</li>
+        <li><strong>Correo Electrónico:</strong> {{object_list.customer_id.email}}</li>
+        <li><strong>Código de Cliente:</strong> {{object_list.customer_id.customer_code}}</li>
+    </ul>
+    <h3>Detalles del Crédito:</h3>
+    <ul>
+        <li><strong>Monto:</strong> {{object_list.formato_monto}}</li>
+        <li><strong>Proposito:</strong> {{object_list.proposito}}</li>
+        <li><strong>Plazo:</strong> {{object_list.plazo}}</li>
+        <li><strong>Código de Crédito:</strong> {{object_list.codigo_credito}}</li>
+        <li><strong>Tipo de Crédito:</strong> {{object_list.tipo_credito}}</li>
+    </ul>
+     <p>Estamos entusiasmados por la oportunidad de servir a este nuevo cliente y confiamos en que su experiencia con nosotros será excepcional.</p>
+    
+    <p>Les instamos a revisar los detalles proporcionados y a tomar las acciones necesarias para garantizar que el cliente reciba una cálida bienvenida y el soporte adecuado.</p>
+    
+    <p><strong>Saludos cordiales,</strong><br>
+    <strong>EL TELAR</strong></p>
+
+
+    
+
+
+
+
+
+
+  </div>
+</body>
+</html>

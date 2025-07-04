@@ -1,0 +1,28 @@
+{% load static %}
+<div class="dropdown">
+    <button style="border: none; background-color: white;" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filter"
+            viewBox="0 0 16 16">
+            <path
+                d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+        </svg>
+    </button>
+
+
+    <ul class="dropdown-menu ">
+        <li><a class="dropdown-item fw-bold" href="{% url 'contable:acreedores' %}">Todos </a></li>
+        
+        <li><a class="dropdown-item fw-normal" href="{% url 'contable:acreedores_cancelado'%}">Acreedores Cancelados </a>
+        </li>
+        <li><a class="dropdown-item fw-normal" href="{% url 'contable:acreedores_atraso_aportacion' %}">Acreedores en Atraso
+            </a></li>
+        <li><a class="dropdown-item fw-normal" href="{% url 'contable:acreedores_atraso_fechas' %}">Acreedores con
+                falta de
+                Aportacion
+            </a></li>
+
+
+    </ul>
+
+</div>

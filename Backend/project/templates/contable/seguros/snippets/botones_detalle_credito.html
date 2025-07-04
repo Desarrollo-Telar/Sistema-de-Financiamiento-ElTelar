@@ -1,0 +1,15 @@
+{% load static %}
+<div class="d-flex table-responsive">
+
+
+
+    <button id="cuota_por_cobrar" class="btn_cancel">Cuota por cobrar</button>
+
+
+    <a href="{% url 'financings:calculos_realizados_seguro' object_list.id  %}" class="btn_cancel">
+        Informe Sobre los Calculos Realizados
+    </a>
+    <a href="{% url 'financings:plan_pagos_seguro' object_list.id  %}" class="btn_cancel">
+        Plan de Pagos
+    </a>
+</div>

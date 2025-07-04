@@ -1,0 +1,52 @@
+{% load static %}
+<div class="form-group" style=" padding: 2rem;">
+    <hr>
+    <div class="row">
+        <div class=" col-xs-12 col-sm-4">
+            <label class=" fw-medium" for="monto_desembolsado">Monto a Desembolsar</label>
+
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            <div>
+                <label class=" fw-medium" for="monto_desembolsado">Monto a Desembolsar</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                    <input type="number" min="0" step="any" class="form-control" id="monto_desembolsado"
+                        placeholder="Monto a Desembolsar">
+                </div>
+            </div>
+            <div style="margin: 1rem 0; ">
+                <label class="fw-medium" for="monto_desembolsado">Numero de Referencia</label>
+                <input type="number" min="0" class="form-control" placeholder="Numero de Referencia"
+                    id="numero_referencia_monto_desembolsado">
+
+            </div>
+            <div style="margin: 1rem 0; ">
+                <label class="fw-medium" for="monto_desembolsado">Fecha de Emision</label>
+                <input type="date" class="form-control" placeholder="Fecha de Emision"
+                    id="fecha_emision_monto_desembolsado">
+
+            </div>
+            <div style="margin: 1rem 0; ">
+                <label class="fw-medium" for="monto_desembolsado">Documento de la Boleta</label>
+                <input type="file" class="form-control" placeholder="Documento de la Boleta"
+                    id="boleta_monto_desembolsado" accept=".pdf, image/*">
+
+
+            </div>
+            <div style="margin: 1rem 0; ">
+                <label class="fw-medium" for="monto_desembolsado">Observaciones</label>
+                <textarea type="te" class="form-control"
+                    placeholder="Observaciones o Informacion extra sobre el monto a Desembolsar"
+                    id="descripcion_monto_desembolsado" rows="3"></textarea>
+
+
+            </div>
+
+        </div>
+    </div>
+    <hr>
+
+
+
+</div>

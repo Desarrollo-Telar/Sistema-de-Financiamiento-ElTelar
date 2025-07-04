@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENSAJE DE ALERTA - EL TELAR</title>
+</head>
+<body>
+  <div style="background-color: #f2f2f2; padding: 20px; text-align: center">
+
+    <h1 style="text-transform: uppercase">
+       Estimados administradores, 
+    </h1>
+    <h2 style="color: red;">¡ALERTA!</h2>
+    <p>Se les recomienda contactar a las siguientes personas correspondientes a sus respectivos créditos, ya que estos se encuentran próximos a su fecha de vencimiento.</p>
+    <p style="font-style: oblique">Las siguientes cuotas son las proximás a vencerse desde {{hoy}} hasta {{hasta}}: </p>
+    <ul>
+        {% for cuota in cuotas %}
+        <li style="margin-top: 1rem;">
+            <p>Cuota: {{cuota}}</p>
+            <p>Fecha de Vencimiento: {{cuota.due_date.date}}</p>
+            
+        </li>
+
+        {% endfor %}
+    </ul>
+   
+  
+    <h1>EL TELAR</h1>
+    
+
+
+
+
+
+
+  </div>
+</body>
+</html>

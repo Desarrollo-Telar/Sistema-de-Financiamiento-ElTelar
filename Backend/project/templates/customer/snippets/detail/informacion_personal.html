@@ -1,0 +1,125 @@
+{% load static %}
+<div class="row" style="margin: 1rem 0;">
+
+    <p class="fw-semibold">Nombre del Cliente</p>
+    <p style="margin-left: 0.5rem;">{{customer_list.first_name}} {{customer_list.last_name}}</p>
+    <hr>
+
+
+    <p class="fw-semibold">Tipo de identificación</p>
+    <p style="margin-left: 0.5rem;">{{customer_list.type_identification}} </p>
+    <hr>
+
+
+    <p class="fw-semibold">Numero de identificación</p>
+    <p style="margin-left: 0.5rem;">{{customer_list.identification_number}}</p>
+    <hr>
+
+
+    <p class="fw-semibold">Numero de telefono</p>
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.telephone}}
+    </p>
+    <hr>
+
+    <p class="fw-semibold">Correo Electronico</p>
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.email}}
+    </p>
+    <hr>
+
+    <p class="fw-semibold">Fecha de Nacimiento</p>
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.date_birth}}
+    </p>
+    <hr>
+
+
+    <p class="fw-semibold">NIT</p>
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.number_nit}}
+    </p>
+    <hr>
+
+
+    <p class="fw-semibold">Lugar de Vencidad</p>
+
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.place_birth}}
+    </p>
+    <hr>
+
+    <p class="fw-semibold">Estado Civil</p>
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.marital_status}}
+    </p>
+    <hr>
+
+    <p class="fw-semibold">Profesion u Oficio</p>
+
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.profession_trade}}
+    </p>
+
+
+    <hr>
+
+    <p class="fw-semibold">Genero</p>
+
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.gender}}
+    </p>
+
+
+    <hr>
+
+
+    <p class="fw-semibold">Nacionalidad</p>
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.nationality}}
+    </p>
+
+
+
+    <hr>
+
+    <p class="fw-semibold">Tipo de Persona</p>
+
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.person_type}}
+    </p>
+
+
+    <hr>
+
+    <p class="fw-semibold">Status del Cliente</p>
+
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.status}}
+    </p>
+    <hr>
+
+    <p class="fw-semibold">Fecha de Vencimiento del Tipo de Identificación</p>
+
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.fehca_vencimiento_de_tipo_identificacion}}
+    </p>
+    <hr>
+
+    <p class="fw-semibold">Asesor del Credito</p>
+
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.asesor}}
+    </p>
+    
+    {% if request.user.role_name == 'Administrador' or request.user.role_name == 'Programador' %}
+    <hr>
+    <p class="fw-semibold">Usuario quien registro a este Cliente</p>
+
+    <p style="margin-left: 0.5rem;">
+        {{customer_list.user_id}}
+    </p>
+    {% endif %}
+
+
+</div>

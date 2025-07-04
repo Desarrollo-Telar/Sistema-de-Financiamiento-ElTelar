@@ -1,0 +1,39 @@
+{% load static %}
+<div id="mobiliaria" style="display: none;">
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="descripcionBien">Descripcion del Bien</label>
+        <input type="text" class="form-control" id="descripcionBien">
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="documentoAcredita1">Documento que Acredita</label>
+        <input type="text" class="form-control" id="documentoAcredita1">
+    </div>
+    <!--
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="imagenDocumentoAcredita">Imagen del Documento que Acredita</label>
+        <input class="form-control" type="file" id="imagenDocumentoAcredita" accept=".pdf, image/* ">
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="fotografiaBien1">Fotografia del Bien</label>
+        <input class="form-control" type="file" id="fotografiaBien1" accept=".pdf, image/* ">
+    </div>
+-->
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="noPoliza1">No.Poliza</label>
+        <input type="text" class="form-control" id="noPoliza1">
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="montoSeguro">Monto de Seguro</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+            <input type="number" min="0" step="any" class="form-control" id="montoSeguro">
+        </div>
+
+    </div>
+    <div class="row" style="margin-top: 1rem;">
+        <div class="col">
+            <button type="button" id="agregar_garantiaM" class="btn_cancel" style="padding:0 2rem ;">Añadir</button>
+        </div>
+    </div>
+
+</div>

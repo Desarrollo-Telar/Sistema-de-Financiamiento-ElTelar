@@ -1,0 +1,38 @@
+.siguiente{
+    border: 1px solid #715866;
+    background-color: #715866;
+    text-decoration: none;
+    color: #f4f7f7;
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.anterior{
+    border: #7b2123 1px solid ;
+    background-color: #fff1f1;
+    
+    text-decoration: none;
+    color: #7b2123;
+    padding: 0.5rem;
+    border-radius: 2rem;
+
+}
+
+.confirmar{
+    border: 1px solid #888888;
+    background-color: #888888;
+    text-decoration: none;
+    color: #f7f7f7;
+    padding: 0.5rem;
+    border-radius: 2rem;
+
+}
+
+.cancelar{
+    border: 1px solid #ba181b;
+    color: #420d0e;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    background-color: #fccccd;
+}

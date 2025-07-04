@@ -1,0 +1,123 @@
+{% load static %}
+<div class="container">
+    <div class="row g-3">
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label for="source_of_income">Fuentes de Ingreso</label>
+                <select class="form-select" id="source_of_income1" name="source_of_income1">
+                    <option value="Relación de Dependencia">Relación de Dependencia</option>
+                    <option value="Negocio Propio">Negocio Propio</option>
+                    <option value="Otra">Otra</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 d-flex align-items-end justify-content-md-center">
+            <div class="form-group w-100">
+                <a type="button" onclick="mostrarFuente('source_of_income1')" class="confirmar" >Confirmar</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="informacionLaboral" style="display: none; margin-top: 1rem;">
+        <div class="row g-3">
+            <div class="col-12 col-md-4">
+                <label for="position" class="form-label">Puesto</label>
+                <input type="text" class="form-control" id="position" name="position">
+            </div>
+            <div class="col-12 col-md-4">
+                <label for="company_name" class="form-label">Nombre de la Empresa</label>
+                <input type="text" class="form-control" id="company_name" name="company_name">
+            </div>
+            <div class="col-12 col-md-4">
+                <label for="start_date" class="form-label">Fecha de Inicio</label>
+                <input type="date" class="form-control" id="start_date" name="start_date">
+            </div>
+            <div class="col-12 col-md-4">
+                <label for="salary" class="form-label">Salario</label>
+                <input type="number" min="0" class="form-control" id="salary" name="salary" step="any">
+            </div>
+            <div class="col-12 col-md-4">
+                <label for="working_hours" class="form-label">Jornada de trabajo</label>
+                <select class="form-select" name="working_hours" id="working_hours">
+                    <option value="VESPERTINA">VESPERTINA</option>
+                    <option value="NOCTURNO">NOCTURNO</option>
+                    <option value="FIN DE SEMANA">FIN DE SEMANA</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4">
+                <label for="phone_number1" class="form-label">Numero de teléfono</label>
+                <input type="number" min="0" class="form-control" id="phone_number1" name="phone_number1">
+            </div>
+            <div class="col-12">
+                <label for="income_detail" class="form-label">Detalles de ingreso</label>
+                <textarea rows="3" class="form-control" id="income_detail" name="income_detail"></textarea>
+            </div>
+            <div class="col-12">
+                <label for="employment_status" class="form-label">Estado Laboral</label>
+                <select class="form-select" id="employment_status" name="employment_status">
+                    <option value="Empleado a Tiempo Completo">Empleado a Tiempo Completo</option>
+                    <option value="Empleado a Tiempo Parcial">Empleado a Tiempo Parcial</option>
+                    <option value="Autónomo">Autónomo</option>
+                    <option value="Desempleado">Desempleado</option>
+                    <option value="Trabajador Temporal">Trabajador Temporal</option>
+                    <option value="Contratista">Contratista</option>
+                    <option value="Freelancer">Freelancer</option>
+                    <option value="Estudiante">Estudiante</option>
+                    <option value="Jubilado">Jubilado</option>
+                    <option value="Hogar">Hogar</option>
+                    <option value="Practicante o Pasante">Practicante o Pasante</option>
+                    <option value="Trabajador a Domicilio">Trabajador a Domicilio</option>
+                    <option value="Voluntario">Voluntario</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <label for="description" class="form-label">Detalles</label>
+                <textarea rows="3" class="form-control" id="description" name="description"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div id="otra" style="display: none; margin-top: 1rem;">
+        {% include 'customer/forms/WorkingInformation/forms_other.html' %}
+    </div>
+
+    <div id="direccion" style="display: none;">
+        <hr>
+        <h5>Dirección</h5>
+        <hr>
+        <div class="col-12">
+            <label for="calle2">Dirección particular o sede social completa:</label>
+            <input type="text" class="form-control" id="street2"
+                placeholder="Calle o avenida, casa, colonia, sector, lote, manzana, otros" name="street2">
+            <div class="form-text">Ejemplo: 11 AVENIDA 5 CALLE 5-09</div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+            <div class="col">
+                <label for="number2">Zona</label>
+                <input type="number" min="0" class="form-control" id="number2" name="number2">
+            </div>
+            <div class="col">
+                <label for="city2">Departamento</label>
+                <select class="form-control city2 w-100" name="city2" id="city2"></select>
+            </div>
+            <div class="col">
+                <label for="state2">Municipio</label>
+                <select class="form-control state2 w-100" name="state2" id="state2"></select>
+            </div>
+        </div>
+        <div class="col-12 mt-2">
+            <label for="country2">País</label>
+            <input type="text" class="form-control" id="country2" name="country2" value="GUATEMALA" disabled>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 col-md-6">
+                <label for="latitud2">Latitud</label>
+                <input type="text" class="form-control" id="latitud2" name="latitud2">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="longitud2">Longitud</label>
+                <input type="text" class="form-control" id="longitud2" name="longitud2">
+            </div>
+        </div>
+    </div>
+</div>

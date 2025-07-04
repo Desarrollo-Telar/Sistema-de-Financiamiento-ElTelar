@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="box">
+    <div class="row g-4  row-cols-1 row-cols-lg-3" style="margin: 0 1rem;">
+        <div class="feature col">
+
+            <h3 class="fs-2 text-body-emphasis">Acreedores</h3>
+            <hr>
+            <p>Este módulo permite gestionar de manera eficiente las obligaciones financieras con terceros. Facilita el
+                registro, control y seguimiento de las cuentas por pagar, historial de pagos, vencimientos y condiciones
+                de crédito otorgadas por proveedores.
+
+            </p>
+            <p>Este modulo incluye un total de <span class="badge text-bg-danger">{{acreedores.count}}</span> acreedores
+                vigentes </p>
+
+            <a href="{% url 'contable:acreedores' %}" class="icon-link">
+                Ir al Modulo
+                <svg class="bi" aria-hidden="true">
+                    <use xlink:href="#chevron-right"></use>
+                </svg>
+            </a>
+        </div>
+        <div class="feature col">
+
+            <h3 class="fs-2 text-body-emphasis">Seguros</h3>
+            <hr>
+            <p>Permite llevar el control de las pólizas contratadas por la empresa, incluyendo fechas de inicio y
+                vencimiento, coberturas, montos asegurados y pagos de primas.</p>
+            <p>Este modulo incluye un total de <span class="badge text-bg-danger">{{seguros.count}}</span> seguros
+                vigentes </p>
+            <a href="{% url 'contable:seguros' %}" class="icon-link">
+                Ir al Modulo
+                <svg class="bi" aria-hidden="true">
+                    <use xlink:href="#chevron-right"></use>
+                </svg>
+            </a>
+        </div>
+        <div class="feature col">
+
+            <h3 class="fs-2 text-body-emphasis">Ingresos</h3>
+            <hr>
+            <p>Registra y clasifica todas las entradas de dinero provenientes de las actividades operativas, financieras y extraordinarias de la empresa. </p>
+            <a href="{% url 'contable:ingresos' %}"class="icon-link">
+                Ir al Modulo
+                <svg class="bi" aria-hidden="true">
+                    <use xlink:href="#chevron-right"></use>
+                </svg>
+            </a>
+        </div>
+        <div class="feature col">
+
+            <h3 class="fs-2 text-body-emphasis">Egresos</h3>
+            <hr>
+            <p>Administra y documenta todas las salidas de dinero, ya sea por compras, pagos de servicios, sueldos o cualquier otro gasto. </p>
+            <a href="{% url 'contable:egresos' %}"class="icon-link">
+                Ir al Modulo
+                <svg class="bi" aria-hidden="true">
+                    <use xlink:href="#chevron-right"></use>
+                </svg>
+            </a>
+        </div>
+        <div class="feature col">
+            <div class="card text-bg-light">
+                <div class="card-body" style="padding: 5rem; display: flex; align-items: center; justify-content: center;">
+                    <a href="{% url 'contable:reportes_acreedores' %}" class="icon-link">
+                        Pagos de Acreedores
+                        <svg class="bi" aria-hidden="true">
+                            <use xlink:href="#chevron-right"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            
+          
+        </div>
+        <div class="feature col">
+            <div class="card text-bg-light">
+                <div class="card-body" style="padding: 5rem; display: flex; align-items: center; justify-content: center;">
+                    <a href="{% url 'contable:reportes_seguros' %}" class="icon-link">
+                        Pagos de Seguros
+                        <svg class="bi" aria-hidden="true">
+                            <use xlink:href="#chevron-right"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            
+          
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

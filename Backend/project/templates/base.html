@@ -1,0 +1,230 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INVERSIONES INTEGRALES EL TELAR S.A | {{title}}</title>
+  <link rel="icon" href="{% static 'img/logo.png' %}" />
+
+  <!-- Bootstrap-->
+
+  <!--<link rel="stylesheet" href="{% static 'css/style.css'%}" /> -->
+
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+  <!-- PARA AGREGAR FONTS -->
+
+
+
+
+  {% block css %}
+  {% endblock%}
+  <style type="text/css">
+    @font-face {
+      font-family: 'Quicksand';
+      src: url("{% static 'css/text/Quicksand/Quicksand-VariableFont_wght.ttf' %}") format('truetype'),
+      url("{% static 'css/text/Quicksand/static/Quicksand-Regular.ttf' %}") format('truetype');
+      font-weight: 500;
+      /* Peso normal */
+      font-style: normal;
+      /* Estilo normal */
+    }
+
+    body {
+      background-color: #ededed;
+      font-family: "Quicksand", serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-container {
+      flex: 1;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #f7f7f7;
+      color: #464646;
+      box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar a {
+      color: #464646;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+    }
+
+    .sidebar a:hover {
+      background-color: #495057;
+      color: #ffffff;
+    }
+
+    .content {
+      margin-left: 1rem;
+      padding: 1rem;
+    }
+
+    .list_sidebar a {
+      color: #464646;
+      text-decoration: none;
+
+    }
+
+    .list_sidebar a:hover {
+      background-color: #495057;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+
+  {% include 'navbar.html' %}
+
+  <div class="main-container">
+    {% include 'sidebar.html' %}
+    <main class="content ">
+      <div class="container-fluid container-sm">
+        {% block content %}
+        {% endblock %}
+      </div>
+
+    </main>
+
+
+  </div>
+
+
+
+
+
+  </main>
+
+  <!--Bootstrap-->
+
+
+  <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- Incluye Axios en tu archivo HTML desde una CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="{% static 'js/node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
+  <script src="{% static 'js/node_modules/chart.js/dist/chart.umd.js' %}"></script>
+  <script src="{% static 'js/node_modules/axios/dist/axios.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    {% if messages %}
+    {% for message in messages %}
+    Swal.fire({
+      icon: "{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% elif message.tags == 'warning' %}warning{% else %}info{% endif %}",
+      title: "{{ message }}",
+      timer: 3000,
+      showConfirmButton: false,
+    });
+    {% endfor %}
+    {% endif %}
+  </script>
+  <script>
+    let cantidadNotificaciones = 0; // ← Se inicializa aquí globalmente
+
+    function mostrarToaster(mensaje) {
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'info',
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+      });
+    }
+
+    async function cargarNotificaciones() {
+      const list = document.getElementById("notificaciones-list");
+      const badge = document.getElementById("noti-badge");
+
+      const protocolo = window.location.protocol;
+      const dominio = window.location.hostname;
+      const puerto = window.location.port;
+      const baseUrl = `${protocolo}//${dominio}${puerto ? `:${puerto}` : ''}`;
+      const url = `${baseUrl}/actividades/api/notificaciones/`;
+
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          credentials: 'include' // Para sesiones autenticadas
+        });
+
+        const data = await response.json();
+        const total = data.length;
+
+        // Actualizar badge
+        badge.textContent = total > 99 ? "99+" : total;
+        badge.style.display = total > 0 ? "inline-block" : "none";
+
+        // Mostrar toaster si hay nuevas
+        if (total > cantidadNotificaciones) {
+          mostrarToaster(`Tienes ${total - cantidadNotificaciones} nueva(s) notificación(es).`);
+        }
+        cantidadNotificaciones = total;
+
+        // Limpiar lista de notificaciones
+        list.innerHTML = "";
+
+        if (total === 0) {
+          list.innerHTML = `
+          <li><a class="dropdown-item fw-light" href="#"> No hay notificaciones nuevas. </a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item fw-italic" href="{% url 'actividades:notification' %}">Ver Todas las Notificaciones</a></li>
+        `;
+        } else {
+          data.slice(0, 5).forEach(noti => {
+            const item = document.createElement("li");
+            item.innerHTML = `
+            <a class="dropdown-item fw-semibold" href="${baseUrl}/actividades/notification/${noti.uuid}/">
+              ${noti.title}<br><small class="fw-light">${noti.message}</small>
+            </a>
+          `;
+            list.appendChild(item);
+          });
+
+          // Agrega separador y opción "Ver todas"
+          const divider = document.createElement("li");
+          divider.innerHTML = `<hr class="dropdown-divider">`;
+
+          const verMas = document.createElement("li");
+          verMas.innerHTML = `<a class="dropdown-item fw-italic" href="{% url 'actividades:notification' %}">Ver Todas las Notificaciones</a>`;
+
+          list.appendChild(divider);
+          list.appendChild(verMas);
+        }
+
+      } catch (error) {
+        console.error("Error al cargar notificaciones:", error);
+      }
+    }
+
+    // Ejecutar al cargar y luego cada 5 segundos
+    document.addEventListener('DOMContentLoaded', () => {
+      cargarNotificaciones();
+      setInterval(cargarNotificaciones, 5000);
+    });
+  </script>
+
+
+
+  {%block js%} {%endblock%}
+</body>
+
+</html>

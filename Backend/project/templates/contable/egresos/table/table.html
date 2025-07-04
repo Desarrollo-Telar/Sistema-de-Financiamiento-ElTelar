@@ -1,0 +1,125 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 " style="text-align: center;">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Codigo de Egreso</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Referencia</th>
+                        <th scope="col">Fecha de Documento</th>
+                        <th scope="col">Numero de Documento</th>
+                        <th scope="col">NIT</th>
+                        <th scope="col">Monto del Documento</th>
+                        <th scope="col">Fecha De Registro</th>
+                        <th scope="col">--- </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for acreedor in object_list %}
+                    <tr>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{ forloop.counter }}
+                            </a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.codigo_egreso}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.fecha}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                Q{{acreedor.fmonto}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.numero_referencia}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.fecha_doc_fiscal}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.numero_doc}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.nit}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                Q{{acreedor.fmontoD}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:egresos_detail' acreedor.id %}">
+                                {{acreedor.fecha_registro}}
+                            </a>
+
+                        </td>
+                        <td>
+                            {% if acreedor.status %}
+                            <div class="activo ">
+                                <a href="{% url 'financings:clasificar' acreedor.numero_referencia %}"
+                                    style="text-decoration: none; color: #00340c;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                    </svg>
+
+                                </a>
+
+
+                            </div>
+                            {% else %}
+                            <div class=" inactivo ">
+                                Pendiente de vincular
+
+
+                            </div>
+                            {% endif %}
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

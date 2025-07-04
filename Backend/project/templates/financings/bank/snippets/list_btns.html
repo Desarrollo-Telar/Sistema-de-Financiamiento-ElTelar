@@ -1,0 +1,14 @@
+{% load static %}
+
+{% if permisos.puede_crear_boleta_pago %}
+<a href="{% url 'financings:create_payment' %}" class="btn_guardar">Generar
+    Pago</a>
+{% endif %}
+{% if permisos.puede_cargar_estado_cuenta %}
+
+<a href="{% url 'document:banco' %}" class="btn_guardar">Subir
+    Documento</a>
+{% endif %}
+{% if permisos.puede_descargar_informe_bancos %}
+<a href="{% url 'reporte_banco_excel' %}" class="btn_guardar">Reporte</a>
+{% endif %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/users/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <div class="row">
+        <div class="col-12 mensaje_portada">
+            <p class="titulo">TU PERFIL</p>
+            <div class="mensaje_modulo">
+                <p >
+                    ¡Bienvenido al Apartado de Perfil!
+
+                    En este módulo, podrás acceder y gestionar toda tu información personal de manera sencilla y
+                    organizada.</p>
+
+            </div>
+
+
+            <hr>
+        </div>
+    </div>
+    <div class="row informacion_usuario">
+        <div class="row">
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <p class="fw-semibold">Información Personal</p>
+                        </div>
+                        <div class="col">
+                            <p class="fw-semibold">Nombre Completo: <span class="fw-light">{{user.first_name}} {{user.last_name}} </span></p>
+                            <p class="fw-semibold">Nombre Usuario: <span class="fw-light">{{user.username}} </span></p>
+                            <p class="fw-semibold">Correo Electronico: <span class="fw-light">{{user.email}} </span></p>
+                            <p class="fw-semibold">Tipo de identificación: <span class="fw-light">{{user.type_identification}} </span></p>
+                            <p class="fw-semibold">Numero identificación: <span class="fw-light">{{user.identification_number}} </span></p>
+                            <p class="fw-semibold">Numero de telefono: <span class="fw-light">{{user.telephone}} </span></p>
+                            <p class="fw-semibold">Genero: <span class="fw-light">{{user.gender}} </span></p>
+                            <p class="fw-semibold">Nacionalidad: <span class="fw-light">{{user.nationality}} </span></p>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

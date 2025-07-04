@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row box">
+    <div class="row">
+        {% if object_list.fecha %}
+        <p class="fw-bold">
+            FECHA:
+            <span class="fw-normal">{{object_list.fecha}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.fecha_doc_fiscal %}
+        <p class="fw-bold">
+            FECHA DEL DOCUMENTO FISCAL:
+            <span class="fw-normal">{{object_list.fecha_doc_fiscal}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.numero_doc %}
+        <p class="fw-bold">
+            NUMERO DEL DOCUMENTO FISCAL
+            <span class="fw-normal">{{object_list.numero_doc}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.nit %}
+        <p class="fw-bold">
+            NIT:
+            <span class="fw-normal">{{object_list.nit}}</span>
+        </p>
+        {%endif%}
+        {% if object_list.numero_referencia %}
+        <p class="fw-bold">
+            NUMERO DE REFERENCIA:
+            <span class="fw-normal">{{object_list.numero_referencia}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.monto %}
+        <p class="fw-bold">
+            MONTO:
+            <span class="fw-normal">{{object_list.fmonto}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.monto_doc %}
+        <p class="fw-bold">
+            MONTO DEL DOCUMENTO FISCAL:
+            <span class="fw-normal">{{object_list.fmontoD}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.codigo_egreso %}
+        <p class="fw-bold">
+            CODIGO DE GASTO:
+            <span class="fw-normal">{{object_list.codigo_egreso}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.descripcion %}
+        <p class="fw-bold">
+            DESCRIPCION:
+
+        </p>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;" disabled>
+            {{object_list.descripcion}}
+        </textarea>
+        {%endif%}
+
+        {% if object_list.observaciones %}
+        <p class="fw-bold">
+            OBSERVACIONES:
+
+        </p>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;" disabled>
+            {{object_list.observaciones}}
+        </textarea>
+        {%endif%}
+
+
+
+
+
+        {% if object_list.nombre %}
+        <p class="fw-bold">
+            Nombre del Colaborador:
+            <span class="fw-normal">{{object_list.nombre}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.pago_correspondiente %}
+        <p class="fw-bold">
+            Pago Correspondiente:
+            <span class="fw-normal">{{object_list.pago_correspondiente}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.tipo_impuesto %}
+        <p class="fw-bold">
+            Tipo de Impuesto:
+            <span class="fw-normal">{{object_list.tipo_impuesto}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.acreedor %}
+        <p class="fw-bold">
+            Acreedor:
+            <span class="fw-normal">{{object_list.acreedor}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.seguro %}
+        <p class="fw-bold">
+            Seguro:
+            <span class="fw-normal">{{object_list.seguro}}</span>
+        </p>
+        {%endif%}
+
+        {% if object_list.tipo_gasto %}
+        <p class="fw-bold">
+            Tipo de Gasto:
+            <span class="fw-normal">{{object_list.tipo_gasto}}</span>
+        </p>
+        {%endif%}
+        {% if object_list.boleta %}
+        <a href="{{object_list.get_boleta}}" class="fw-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
+                <path
+                    d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z" />
+            </svg>
+            Boleta
+        </a>
+        {%endif%}
+
+        {% if object_list.documento %}
+        <a href="{{object_list.get_documento}}" class="fw-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
+                <path
+                    d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z" />
+            </svg>
+            Documento
+        </a>
+        {%endif%}
+
+
+
+
+    </div>
+    <div class="row" style="margin-top: 1rem;">
+        {% if permisos.puede_modificar_registro_egreso %}
+        <div class="col">
+            <a href="{% url 'contable:egresos_update' object_list.id %}" class="btn_guardar">Editar</a>
+        </div>
+        {% endif %}
+        <div class="col">
+            <button onclick="window.history.back()" type="button" class="btn_cancel">Atras</button>
+
+        </div>
+        
+        
+    </div>
+
+</div>
+
+{% endblock %}

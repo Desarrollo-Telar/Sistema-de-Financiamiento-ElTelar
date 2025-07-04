@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENSAJE DE ALERTA - EL TELAR</title>
+</head>
+<body>
+  <div style="background-color: #f2f2f2; padding: 20px; text-align: center">
+
+    <h1 style="text-transform: uppercase">
+        Estimados Administradores,
+        
+    </h1>
+    <h2 style="color: red;">¡ALERTA!</h2>
+    <p style="font-style: oblique">Las siguientes cuotas han sido actualizadas automáticamente: </p>
+    <ul>
+        {% for cuota in cuotas %}
+        <li>{{cuota}}</li>
+
+        {% endfor %}
+    </ul>
+   
+  
+    <h1>EL TELAR</h1>
+    
+
+
+
+
+
+
+  </div>
+</body>
+</html>

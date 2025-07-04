@@ -1,0 +1,11 @@
+# Exported from Render on 2024-10-07T03:15:35Z
+services:
+- type: web
+  name: Sistema-de-Financiamiento-ElTelar
+  runtime: docker
+  repo: https://github.com/Desarrollo-Telar/Sistema-de-Financiamiento-ElTelar
+  plan: free
+  region: oregon
+  dockerContext: ./Backend/project/
+  dockerfilePath: ./Backend/project/Dockerfile
+version: "1"

@@ -1,0 +1,34 @@
+{% load static %}
+<div class="row" style="padding: 2rem;">
+    <div class="col-12">
+        <p class="fw-medium">Selecione el tipo de Garantia</p>
+        <select class="form-select" id="tipo_garantia">
+            <option selected value="0">------------</option>
+            <option value="HIPOTECA">HIPOTECA</option>
+            <option value="DERECHO DE POSESIÓN HIPOTECA">DERECHO DE POSESIÓN HIPOTECA</option>
+            <option value="FIADOR">FIADOR</option>
+            <option value="CHEQUE / PAGARE">CHEQUE / PAGARE</option>
+            <option value="VEHICULO">VEHICULO</option>
+            <option value="MOBILIARIA">MOBILIARIA</option>
+        </select>
+    </div>
+    <div class="col">
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="fw-medium" for="valor_cobertura">Valor De Cobertura</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                <input type="number" min="0" step="any" class="form-control" name="valor_cobertura"
+                    id="valor_cobertura">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% include 'financings/guarantee/type/hipoteca.html' %}
+{% include 'financings/guarantee/type/derecho_posesion.html' %}
+{% include 'financings/guarantee/type/cheque.html' %}
+{% include 'financings/guarantee/type/fiador.html' %}
+{% include 'financings/guarantee/type/mobiliaria.html' %}
+{% include 'financings/guarantee/type/vehiculo.html' %}

@@ -1,0 +1,47 @@
+{% load static %}
+<div id="cheque" style="display: none;">
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="noCheque">No.Cheque</label>
+        <input type="text" class="form-control" id="noCheque">
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="nombreCuenta">Nombre de la Cuenta</label>
+        <input type="text" class="form-control" id="nombreCuenta">
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="banco">Banco</label>
+        <input type="text" class="form-control" id="banco">
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="cheque_girado_a">Cheque girado a</label>
+        <input type="text" class="form-control" id="cheque_girado_a">
+
+    </div>
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="monto_cheque">Monto del Cheque</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+            <input type="number" min="0" step="any" class="form-control" id="monto_cheque">
+        </div>
+
+
+    </div>
+    <!--
+    <div class="form-group" style="margin-top: 2rem;">
+        <label class="fw-medium" for="cheque">Imagen del cheque</label>
+        <input class="form-control" type="file" id="cheque" accept=".pdf, image/* ">
+
+
+    </div>
+     -->
+    <div class="row" style="margin-top: 1rem;">
+        <div class="col">
+            <button type="button" id="agregar_garantiaC" class="btn_cancel" style="padding:0 2rem ;">Añadir</button>
+        </div>
+    </div>
+
+
+</div>

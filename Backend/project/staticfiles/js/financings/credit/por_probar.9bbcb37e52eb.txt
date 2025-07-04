@@ -1,0 +1,82 @@
+/*
+            if (data.especificaciones.avaluoBien){
+                let formData = new FormData();
+                formData.append('garantia', data.id);
+                formData.append('document_id.description', 'Avaluo del Bien');
+                formData.append('document_id.document', data.especificaciones.avaluoBien);
+                formData.append('customer_id', parseInt(document.getElementById('customer_id').value));
+                const documento_garantia = await registrar_documento_garantia(formData);
+                console.log(documento_garantia);
+
+            }
+            if (data.especificaciones.docDigitalSoporte){
+                let formData1 = new FormData();
+                formData1.append('garantia', data.id);
+                formData1.append('document_id.description', 'Avaluo del Bien');
+                formData1.append('document_id.document', data.especificaciones.docDigitalSoporte);
+                formData1.append('customer_id', parseInt(document.getElementById('customer_id').value));
+                const documento_garantia1 = await registrar_documento_garantia(formData1);
+                console.log(documento_garantia1);
+
+            }
+            if (data.especificaciones.fotografia){
+                let formData1 = new FormData();
+                formData1.append('garantia', data.id);
+                formData1.append('document_id.description', 'Fotografia');
+                formData1.append('document_id.document', data.especificaciones.fotografia);
+                formData1.append('customer_id', parseInt(document.getElementById('customer_id').value));
+                const documento_garantia1 = await registrar_documento_garantia(formData1);
+                console.log(documento_garantia1);
+
+            }
+            if (data.especificaciones.fotografia_cheque){
+                let formData1 = new FormData();
+                formData1.append('garantia', data.id);
+                formData1.append('document_id.description', 'Fotografia');
+                formData1.append('document_id.document', data.especificaciones.fotografia_cheque);
+                formData1.append('customer_id', parseInt(document.getElementById('customer_id').value));
+                const documento_garantia1 = await registrar_documento_garantia(formData1);
+                console.log(documento_garantia1);
+
+            }
+            if (data.especificaciones.tarjeta_circulacion){
+                let formData1 = new FormData();
+                formData1.append('garantia', data.id);
+                formData1.append('document_id.description', 'Fotografia de Circulacion');
+                formData1.append('document_id.document', data.especificaciones.tarjeta_circulacion);
+                formData1.append('customer_id', parseInt(document.getElementById('customer_id').value));
+                const documento_garantia1 = await registrar_documento_garantia(formData1);
+                console.log(documento_garantia1);
+
+            }
+            if (data.especificaciones.titulo){
+                let formData1 = new FormData();
+                formData1.append('garantia', data.id);
+                formData1.append('document_id.description', 'Titulo');
+                formData1.append('document_id.document', data.especificaciones.titulo);
+                formData1.append('customer_id', parseInt(document.getElementById('customer_id').value));
+                const documento_garantia1 = await registrar_documento_garantia(formData1);
+                console.log(documento_garantia1);
+
+            }
+            if (data.especificaciones.fotografia_bien){
+                let formData1 = new FormData();
+                formData1.append('garantia', data.id);
+                formData1.append('document_id.description', 'Fotografia del Bien');
+                formData1.append('document_id.document', data.especificaciones.fotografia_bien);
+                formData1.append('customer_id', parseInt(document.getElementById('customer_id').value));
+                const documento_garantia1 = await registrar_documento_garantia(formData1);
+                console.log(documento_garantia1);
+
+            }
+            if (data.especificaciones.imagen_documento_acredita){
+                let formData1 = new FormData();
+                formData1.append('garantia', data.id);
+                formData1.append('document_id.description', 'Fotografia del Bien');
+                formData1.append('document_id.document', data.especificaciones.imagen_documento_acredita);
+                formData1.append('customer_id', parseInt(document.getElementById('customer_id').value));
+                const documento_garantia1 = await registrar_documento_garantia(formData1);
+                console.log(documento_garantia1);
+
+            }
+            */

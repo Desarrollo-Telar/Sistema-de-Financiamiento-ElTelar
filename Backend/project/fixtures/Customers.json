@@ -1,0 +1,28 @@
+[
+    {
+        "model": "customers.customer",
+        "pk": 1,
+        "fields": {
+            "user_id": 3,
+            "immigration_status_id": 3,
+            "customer_code": "2024-1",
+            "first_name": "GLENDA NATALY",
+            "last_name": "DE LA CRUZ TZALAM",
+            "type_identification": "DPI",
+            "identification_number": "2618480111601",
+            "telephone": "46339008",
+            "email": "dglenda721@gmail.com",
+            "status": "Aprobado",
+            "date_birth": "1986-09-26",
+            "number_nit": "37989502",
+            "place_birth": "COBAN",
+            "marital_status": "SOLTERA",
+            "profession_trade": "PERITO CONTADOR",
+            "gender": "FEMENINO",
+            "nationality": "GUATEMALTECA",
+            "person_type": "Individual (PI)",
+            "description": "CONTRATACION FIJA",
+            "creation_date": "2024-10-28T23:50:02.569Z"
+        }
+    }
+]

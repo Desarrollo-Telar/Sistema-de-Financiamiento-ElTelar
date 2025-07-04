@@ -1,0 +1,151 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 ">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Codigo del Credito</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">No. Referencia</th>
+                        <th scope="col">Monto Pagado</th>
+                        <th scope="col">Status del Credito</th>
+                        <th scope="col">...</th>
+
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reporte in reportes %}
+
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td scope="row">
+                            {{reporte.fecha}}
+                        </td>
+                        <td scope="row">
+
+                            {% if reporte.pago.credit %}
+
+                            {{reporte.pago.credit.codigo_credito}}
+                            {% elif reporte.pago.acreedor %}
+
+                            {{reporte.pago.acreedor.codigo_acreedor}}
+
+                            {% elif reporte.pago.seguro %}
+
+                            {{reporte.pago.seguro.codigo_seguro}}
+
+                            {%endif%}
+                        </td>
+                        <td scope="row">
+
+                            {% if reporte.pago.credit %}
+                            {{reporte.cliente}}
+
+                            {% elif reporte.pago.acreedor %}
+
+                            {{reporte.pago.acreedor.nombre_acreedor}}
+
+                            {% elif reporte.pago.seguro %}
+
+                            {{reporte.pago.seguro.nombre_acreedor}}
+                            
+                            {% endif %}
+
+                        </td>
+
+                        <td scope="row">
+                            {{reporte.pago.numero_referencia}}
+                        </td>
+                        {% if filtro_seleccionado == 'mora_pagada'%}
+                        <td scope="row">
+                            Q{{reporte.Fmora_pagada}}
+                        </td>
+                        {% endif %}
+                        {% if filtro_seleccionado == "interes_pagado" %}
+                        <td scope="row">
+                            Q{{reporte.Finteres_pagado}}
+                        </td>
+                        {% endif %}
+                        {% if filtro_seleccionado == "aporte_capital" %}
+                        <td scope="row">
+                            Q{{reporte.Faporte_capital}}
+                        </td>
+                        {% endif %}
+                        <td scope="row">
+                            {% if reporte.pago.credit %}
+                            <ul>
+                                <li>Status de Aportacion: <span>{{reporte.pago.credit.formato_estado_aportacion}}</span>
+                                </li>
+                                <li>Status por Fecha: <span>{{reporte.pago.credit.formato_estado_fecha}}</span>
+                                </li>
+                            </ul>
+                            {% elif reporte.pago.acreedor %}
+                            <ul>
+                                <li>Status de Aportacion: <span>{{reporte.pago.acreedor.formato_estado_aportacion}}</span>
+                                </li>
+                                <li>Status por Fecha: <span>{{reporte.pago.acreedor.formato_estado_fecha}}</span>
+                                </li>
+                            </ul>
+                            {% elif reporte.pago.seguro %}
+                            <ul>
+                                <li>Status de Aportacion: <span>{{reporte.pago.seguro.formato_estado_aportacion}}</span>
+                                </li>
+                                <li>Status por Fecha: <span>{{reporte.pago.seguro.formato_estado_fecha}}</span>
+                                </li>
+                            </ul>
+
+                            {%endif%}
+
+                        </td>
+                        {% if reporte.pago.credit %}
+                        <td>
+                            <a href="{% url 'financings:detail_credit' reporte.pago.credit.id %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                    <path
+                                        d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                </svg>
+                            </a>
+                        </td>
+                        {% elif reporte.pago.acreedor %}
+                        <td>
+                            <a href="{% url 'contable:acreedores_detail' reporte.pago.acreedor.id %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                    <path
+                                        d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                </svg>
+                            </a>
+                        </td>
+                        {% elif reporte.pago.seguro %}
+                        <td>
+                            <a href="{% url 'contable:seguros_detail' reporte.pago.seguro.id %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                    <path
+                                        d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                </svg>
+                            </a>
+                        </td>
+                        {%endif%}
+
+
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

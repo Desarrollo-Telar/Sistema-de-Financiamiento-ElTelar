@@ -1,0 +1,87 @@
+{% load static %}
+
+<!--SELECIONAR EL TIPO DE DESEMBOLSO-->
+<div class="row" style="margin-top: 2rem;">
+    <div class="form-group">
+        <label for="forma_desembolso">Seleccione la Forma de Desembolso</label>
+        <select name="forma_desembolso" id="forma_desembolso" class="form-select">
+            <option value="0" selected>---------------</option>
+            <option value="APLICACIÓN GASTOS">APLICACIÓN GASTOS</option>
+            <option value="APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE">APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE
+            </option>
+        </select>
+    </div>
+</div>
+
+<!-- SELECCIONAR AL CREDITO VIGENTE -->
+<div class="row" id="credito_vigente" style="display: none; margin-top: 2rem;">
+    <div class="form-group">
+        <label for="credito_vigente">Seleccione al Credito Vigente</label>
+        <select class="form-control credito_vigente" id="credit_vigente" name="credit_vigente" style="width: 100%">
+        </select>
+    </div>
+
+</div>
+
+<!-- INFORMACION DEL CREDITO-->
+<div class="row" id="informacion_credito" style="margin-top: 1rem; display: none;"></div>
+
+<!-- MONTO DEL CREDITO VIGENTE -->
+<div class="row" id="monto_credito_vigente" style="display: none; margin-top: 2rem;">
+    <div class="form-group">
+        <label for="monto_credito_vigente">Monto del Credito Vigente</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+            <input type="number" min="0" step="any" class="form-control" id="credito_monto_vigente">
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SALDO CAPITAL DEL CREDITO VIGENTE -->
+<div class="row" id="saldo_capital_credito_vigente" style="display: none; margin-top: 2rem;">
+    <div class="form-group">
+        <label for="credito_saldo_capital_vigente">Saldo Capital Del Credito Vigente</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+            <input type="number" min="0" step="any" class="form-control" id="credito_saldo_capital_vigente">
+        </div>
+
+    </div>
+
+</div>
+
+<!-- HONORARIOS -->
+<div class="row" id="honorarios_desembolso" style="margin-top: 2rem; display: none;">
+    {% include 'financings/disbursement/snippets/forms/honorarios.html' %}
+</div>
+
+<!-- POLIZA DE SEGURO  -->
+<div class="row" id="poliza_seguro_desembolso" style="margin-top: 2rem; display: none;">
+    {% include 'financings/disbursement/snippets/forms/poliza.html' %}
+</div>
+
+<!-- MONTO A DESEMBOLSAR  -->
+<div class="row" id="monto_desembolsado_desembolsar" style="margin-top: 2rem; display: none;">
+    {% include 'financings/disbursement/snippets/forms/monto_desembolsado.html' %}
+</div>
+
+<!-- TOTAL A DEPOSITAR  -->
+<div class="row" id="total_a_desembolsar" style="margin-top: 2rem; display: none;">
+    {% include 'financings/disbursement/snippets/forms/total_depositar.html' %}
+</div>
+
+<!-- MOSTRAR EL TOTAL DE LOS GASTOS -->
+<div class="row" id="gastos_total" style="display: none;">
+    <input type="hidden" id="total_gastos">
+
+</div>
+
+<div class="col-12" style="margin-bottom: 2rem;">
+    <div class="form-group">
+        <label class="fw-medium" for="description">Detalle sobre el desembolso</label>
+        <textarea class="form-control" name="description" id="description" rows="2"></textarea>
+
+    </div>
+</div>

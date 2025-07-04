@@ -1,0 +1,14 @@
+{% load static %}
+
+{% for field in form %}
+
+<div class="form-group">
+    {{ field.label_tag }}
+    {{ field }}
+    {% if field.errors %}
+    {{ field.errors }}
+    {% endif %}
+</div>
+<br />
+
+{% endfor %}

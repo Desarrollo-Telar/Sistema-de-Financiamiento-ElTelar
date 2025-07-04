@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="row box">
+
+    <form method="POST"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'snippets/forms.html' %}
+        <button type="submit" class="btn_guardar">Guardar Boleta</button>
+        <button class="btn btn-link " onclick="window.history.back()" type="button">Cancelar</button>
+    </form>
+
+
+
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 ">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th scope="col">Fecha de Emision</th>
+                        <th scope="col">No. Referencia</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Tipo de pago</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">...</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for credit in payment_list %}
+
+                    {% if request.user.rol.role_name == 'Secretari@' %}
+                        {% if credit.tipo_pago == 'CLIENTE' or credit.tipo_pago == 'CREDITO' %}
+                            {% include 'financings/payment/table/tr.html' %}
+                        {% endif %}
+
+                    {% elif request.user.rol.role_name == 'Administrador'  or request.user.rol.role_name == 'Programador' %}
+                        {% include 'financings/payment/table/tr.html' %}
+                    {% endif %}
+
+                    
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

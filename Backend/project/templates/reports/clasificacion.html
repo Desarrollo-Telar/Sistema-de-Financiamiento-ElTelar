@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="box">
+    <div class="d-flex justify-content-center fs-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+
+            </ol>
+        </nav>
+    </div>
+    <div class="row g-4  row-cols-1 row-cols-lg-3" style="margin: 0 1rem;">
+        <div class="feature col">
+            <div class="card text-bg-light ">
+                <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
+                    <a href="{% url 'contable:modulos_contables' %}" class="icon-link" >
+                        CONTABLE
+                        <svg class="bi" aria-hidden="true">
+                            <use xlink:href="#chevron-right"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="feature col">
+            <div class="card text-bg-light  ">
+                <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
+                    <a href="{% url 'financings:list_clasificacion' %}" class="icon-link"  >
+                        CREDITOS
+                        <svg class="bi" aria-hidden="true">
+                            <use xlink:href="#chevron-right"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="feature col">
+            <div class="card text-bg-light ">
+                <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
+                    <a href="{% url 'reporte_banco_excel' %}" class="icon-link" >
+                        BANCOS
+                        <svg class="bi" aria-hidden="true">
+                            <use xlink:href="#chevron-right"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="feature col">
+            <div class="card text-bg-light ">
+                <div class="card-body" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
+                    <a href="{% url 'customers:list_filters' %}" class="icon-link" >
+                        CLIENTES
+                        <svg class="bi" aria-hidden="true">
+                            <use xlink:href="#chevron-right"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            
+        </div>
+        
+    </div>
+
+
+</div>
+{% endblock %}

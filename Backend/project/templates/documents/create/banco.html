@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data" class="box">
+    {% csrf_token %}
+    {% include 'documents/snippets/forms.html' %}
+    <button type="submit" class="btn_guardar">Crear Registro</button>
+    <a href="{% url 'financings:list_bank'  %}">Cancelar</a>
+
+
+</form>
+{% endblock %}

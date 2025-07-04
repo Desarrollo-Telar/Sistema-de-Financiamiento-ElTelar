@@ -1,0 +1,43 @@
+{% load static %}
+<div class="row" style="margin: 2rem;">
+    {% if permisos.puede_subir_imagenes %}
+    <div>
+        <a href="{% url 'imagen:create_image' customer_code %}" class="btn_edit">Agregar una nueva Imagen</a>
+    </div>
+    {% endif %}
+    <div class="col-12" style="margin-top: 2rem;">
+        {% for image in imagen %}
+        <div class="row" style="margin-top: 0.5rem;">
+            <div class="col-2">
+                <p class="fw-semibold">{{image.image_id.description}}</p>
+
+            </div>
+            
+            <div class="col-2">
+                <a href="{{image.image_id.get_image}}">Descargar</a>
+                
+            </div>
+            {% if permisos.puede_editar_imagenes %}
+            <div class="col-2">
+                <a href="{% url 'imagen:update_image' image.image_id.id customer_code %}" class="btn_edit">Editar
+                    Imagen</a>
+
+            </div>
+            {% endif %}
+            {% if permisos.puede_eliminar_imagenes %}
+            <div class="col-2">
+                <a href="{% url 'imagen:delete_image' image.image_id.id customer_code %}" class="btn_add">Eliminar
+                    Imagen</a>
+            </div>
+            {% endif %}
+
+        </div>
+
+
+
+        {% endfor %}
+
+    </div>
+
+
+</div>

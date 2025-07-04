@@ -1,0 +1,131 @@
+{% extends 'pdf/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-12 col-sm-4">
+        <img src="{% static 'img/logo.png' %}" alt="Logo" style="width: 150px;">
+    </div>
+
+    <div class="col-xs-12 col-sm-8 text-uppercase">
+        <div class="text-end">
+            <button onclick="window.history.back()" class="fw-bold fs-3 text-uppercase"
+                style="background: none; border: none;padding: 0;outline: none; cursor: pointer; margin-right: 1rem;">factura</button>
+
+
+        </div>
+        <div class="d-flex justify-content-start"
+            style="background-color: rgb(219, 216, 216); border-radius: 2rem; padding: 0.5rem; margin-top: 0.5rem;">
+
+            <p class="fw-semibold" style="margin-right: 1rem; margin-left: 1rem;">Numero de Factura:</p>
+            <p class="text-body-secondary text-end">{{factura.numero_factura}}</p>
+        </div>
+        <div class="d-flex justify-content-start"
+            style="background-color: rgb(219, 216, 216); border-radius: 2rem; padding: 0.5rem; margin-top: 0.5rem;">
+
+            <p class="fw-semibold" style="margin-right: 1rem; margin-left: 1rem;">Fecha Emitida:</p>
+            <p class="text-body-secondary text-end">{{factura.issue_date}}</p>
+        </div>
+        <div class="d-flex justify-content-start"
+            style="background-color: rgb(219, 216, 216); border-radius: 2rem; padding: 0.5rem; margin-top: 0.5rem;">
+
+            <p class="fw-semibold" style="margin-right: 1rem; margin-left: 1rem;">Codigo del Cliente:</p>
+            <p class="text-body-secondary text-end">{{recibo.cliente.customer_code}}</p>
+        </div>
+
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 ">
+        <div class="d-flex justify-content-start">
+            <p class="fw-semibold" style="margin-right: 1rem; ">DE</p>
+            <p>{{recibo.cliente.get_full_name}}</p>
+
+        </div>
+        <div class="d-flex justify-content-start">
+            <p class="fw-semibold" style="margin-right: 1rem; ">NIT:</p>
+            <p>{{recibo.cliente.number_nit}}</p>
+
+        </div>
+        <div class="d-flex justify-content-start">
+            <p class="fw-semibold" style="margin-right: 1rem; ">DIRECCION:</p>
+            <p>CIUDAD</p>
+
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row text-uppercase" style="margin-top: 2rem;">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Monto</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% if recibo.mora > 0 %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>
+
+
+                        <p>pago sobre mora</p>
+
+
+                    </td>
+                    <td>Q{{recibo.Fmora_pagada}}</td>
+
+                </tr>
+                {% endif %}
+
+                {% if recibo.interes > 0 %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>
+
+
+                        <p>pago sobre interes</p>
+
+
+                    </td>
+                    <td>Q {{recibo.Finteres_pagado}}</td>
+
+                </tr>
+                {% endif %}
+
+                {% if recibo.aporte_capital > 0 %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>
+
+
+                        <p>pago sobre capital</p>
+
+
+                    </td>
+                    <td>Q {{recibo.Faporte_capital}}</td>
+
+                </tr>
+                {% endif %}
+
+                <tr>
+                    <th scope="row" colspan="2" class="text-center">TOTAL</th>
+                    <td>Q {{recibo.total}}</td>
+
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock %}

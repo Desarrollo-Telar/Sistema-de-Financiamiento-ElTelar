@@ -1,0 +1,308 @@
+[
+{
+    "model": "addresses.municiopio",
+    "pk": 1,
+    "fields": {
+        "nombre": "Coban",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 2,
+    "fields": {
+        "nombre": "San Pedro Carcha",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 3,
+    "fields": {
+        "nombre": "Santa Cruz Verapaz",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 4,
+    "fields": {
+        "nombre": "San Cristobal Verapaz",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 5,
+    "fields": {
+        "nombre": "Tactic",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 6,
+    "fields": {
+        "nombre": "Guatemala",
+        "depart": 7,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 7,
+    "fields": {
+        "nombre": "Santa Catarina Pinula",
+        "depart": 7,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 8,
+    "fields": {
+        "nombre": "San Jose Pinula",
+        "depart": 7,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 9,
+    "fields": {
+        "nombre": "Mixco",
+        "depart": 7,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 10,
+    "fields": {
+        "nombre": "Villa Nueva",
+        "depart": 7,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 11,
+    "fields": {
+        "nombre": "Quetzaltenango",
+        "depart": 13,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 12,
+    "fields": {
+        "nombre": "Salcaja",
+        "depart": 13,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 13,
+    "fields": {
+        "nombre": "San Carlos Sija",
+        "depart": 13,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 14,
+    "fields": {
+        "nombre": "Olintepeque",
+        "depart": 13,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 15,
+    "fields": {
+        "nombre": "La Esperanza",
+        "depart": 13,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 16,
+    "fields": {
+        "nombre": "Zacapa",
+        "depart": 22,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 17,
+    "fields": {
+        "nombre": "Estanzuela",
+        "depart": 22,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 18,
+    "fields": {
+        "nombre": "Rio Hondo",
+        "depart": 22,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 19,
+    "fields": {
+        "nombre": "Teculutan",
+        "depart": 22,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 20,
+    "fields": {
+        "nombre": "Usumatlan",
+        "depart": 22,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 21,
+    "fields": {
+        "nombre": "FRAY BARTOLOME DE LAS CASAS",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 22,
+    "fields": {
+        "nombre": "CHAHAL",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 23,
+    "fields": {
+        "nombre": "CAHABN",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 24,
+    "fields": {
+        "nombre": "SAN JUAN CHAMELCO",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 25,
+    "fields": {
+        "nombre": "CHISEC",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 26,
+    "fields": {
+        "nombre": "El Estor",
+        "depart": 9,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 27,
+    "fields": {
+        "nombre": "Senahu",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 28,
+    "fields": {
+        "nombre": "La Tinta",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 29,
+    "fields": {
+        "nombre": "Ixcán",
+        "depart": 14,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 30,
+    "fields": {
+        "nombre": "Puerto barrios",
+        "depart": 9,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 31,
+    "fields": {
+        "nombre": "CHOL",
+        "depart": 2,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 32,
+    "fields": {
+        "nombre": "SAN MARCOS",
+        "depart": 16,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 33,
+    "fields": {
+        "nombre": "PLAYA GRANDE",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 34,
+    "fields": {
+        "nombre": "CHIMALTENANGO",
+        "depart": 3,
+        "codigo_postal": null
+    }
+}
+]

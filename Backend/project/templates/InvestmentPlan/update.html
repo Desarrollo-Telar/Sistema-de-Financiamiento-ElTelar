@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <form method="POST" action="{% url 'investment_plan:update' investment_plan_id  customer_code %}" >
+        {% csrf_token %}
+        {% include 'InvestmentPlan/snippets/forms.html' %}
+        <button type="submit" class="btn_edit">Actualizar Registro</button>
+        <a href="{% url 'customers:detail' customer_code  %}">Cancelar</a>
+
+
+    </form>
+{% endblock %}

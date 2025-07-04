@@ -1,0 +1,113 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 " style="text-align: center;">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Codigo de Acreedor</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Monto Otorgado</th>
+                        <th scope="col">Tasa</th>
+                        <th scope="col">Plazo</th>
+                        <th scope="col">Referencia</th>
+                        <th scope="col">Fecha De Registro</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for acreedor in acreedores_list %}
+
+
+                    <tr>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {{ forloop.counter }}
+                            </a>
+
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {{acreedor.codigo_acreedor}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {{acreedor.nombre_acreedor}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {{acreedor.fecha_inicio}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                Q{{acreedor.fmonto}}
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {{acreedor.ftasa}}%
+                            </a>
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {{acreedor.plazo}} meses
+                            </a>
+
+                        </td>
+                        <td>
+                            
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {% if acreedor.numero_referencia is not None %}
+                                <p>{{acreedor.numero_referencia}}</p>
+                                {% endif %}
+                                
+                                
+                                
+                            </a>
+                            
+                            
+
+
+                        </td>
+                        <td>
+                            <a style="text-decoration: none; color: black;"
+                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {{acreedor.fecha_registro}}
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+
+
+
+
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

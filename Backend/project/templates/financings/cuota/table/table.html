@@ -1,0 +1,77 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 " style="text-align: center;">
+        <div class="table-responsive">
+            <table class="table table-hover" style="font-size: 14px;">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">De</th>
+                        <th scope="col">Codigo Credito</th>
+                        
+                        <th scope="col">Mes</th>
+                        <th scope="col">Fecha de Inicio</th>
+                        <th scope="col">Fecha de Vencimiento</th>
+                        <th scope="col">Fecha Limite</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cuota in cuotas_list %}
+
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <th scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{{cuota.url_cuota}}">
+                                
+                                {{cuota.de}}
+                            </a>
+
+
+                        </th>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{{cuota.url_cuota}}">
+                                {{cuota.codigo_credito}}
+                                
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{{cuota.url_cuota}}">
+                                {{cuota.mes}}
+                                
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{{cuota.url_cuota}}">
+                                {{cuota.fecha_inicio}}
+                                
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{{cuota.url_cuota}}">
+                                {{cuota.fecha_vencimiento}}
+                                
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{{cuota.url_cuota}}">
+                                {{cuota.fecha_limite}}
+                                
+                            </a>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

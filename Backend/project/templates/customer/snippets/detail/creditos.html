@@ -1,0 +1,95 @@
+{% load static %}
+
+<div class="row" style="margin: 1rem 0; padding: 2rem;">
+    {% if credit_list %}
+    {% if permisos.puede_crear_informacion_credito %}
+    <div class="col">
+        <a href="{% url 'financings:create_credit' %}" class="btn_edit">Crear Nuevo Credito</a>
+
+    </div>
+    {% endif %}
+    <div class="table-responsive">
+        <table class="table" style="margin-top: 0.5rem;">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Proposito</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Plazo</th>
+                    <th scope="col">Tasa de Interes</th>
+                    <th scope="col">Forma de Pago</th>
+                    <th scope="col">Tipo de Credito</th>
+                    <th scope="col">Fecha de Creación</th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for credito in credit_list %}
+                <tr>
+                    <td>
+                        <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detail_credit' credito.id %}">
+                            {{credito.codigo_credito}}
+                        </a>
+                    </td>
+                    <td>
+                        <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detail_credit' credito.id %}">
+                            {{credito.proposito}}
+                        </a>
+                    </td>
+                    <td>
+                        <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detail_credit' credito.id %}">
+                            Q {{credito.monto}}
+                        </a>
+                    </td>
+                    <td>
+                        <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detail_credit' credito.id %}">
+                            {{credito.plazo}} Meses
+                        </a>
+
+                    </td>
+                    <td>
+                        <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detail_credit' credito.id %}">
+
+                            % {{credito.tasa_interes}}
+                        </a>
+                    </td>
+                    <td>
+                        <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detail_credit' credito.id %}">
+                            {{credito.forma_de_pago}}
+                        </a>
+                    </td>
+                    <td>
+                        <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detail_credit' credito.id %}">
+                            {{credito.tipo_credito}}
+                        </a>
+                    </td>
+                    <td>
+                        <a style="text-decoration: none; color: black;"
+                            href="{% url 'financings:detail_credit' credito.id %}">
+                            {{credito.creation_date}}
+                        </a>
+                    </td>
+
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    {% else %}
+    {% if permisos.puede_crear_informacion_credito %}
+    <a href="{% url 'financings:create_credit' %}" class="btn_edit">Crear Nuevo Credito</a>
+    {% endif %}
+    {% endif %}
+</div>

@@ -1,0 +1,104 @@
+{% load static %}
+
+<div class="row">
+    <div class="col-12" style="margin-bottom: 2rem;">
+        <div class="form-group">
+            <label class="fw-medium" for="customer_id">Cliente</label>
+            <select class="form-control customer_id" id="customer_id" name="customer_id" style="width: 100%" required>
+            </select>
+        </div>
+
+    </div>
+    <div class="col-12" style="margin-bottom: 2rem;">
+        <div class="form-group">
+            <label class="fw-medium" for="proposito">Proposito</label>
+            <textarea class="form-control" name="proposito" id="proposito" rows="2" required></textarea>
+
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label class="fw-medium" for="monto">Monto</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                <input type="number" min="0" step="any" class="form-control" name="monto" id="monto" required>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label class="fw-medium" for="tasa_interes">Tasa De Interes Anual</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-medium" id="basic-addon1">%</span>
+                <input type="number" min="0" class="form-control" step="any" name="tasa_interes" id="tasa_interes"
+                    required>
+
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label class="fw-medium" for="plazo">Plazo</label>
+            <div class="input-group mb-3">
+                <input type="number" min="0" class="form-control" pattern="^[0-9]+" name="plazo" id="plazo" required>
+                <span class="input-group-text fw-medium" id="basic-addon1">Meses</span>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="col-6" style="margin: 2rem 0;">
+        <div class="form-group">
+            <label class="fw-medium" for="forma_de_pago">Forma De Pago</label>
+            <select class="form-select" aria-label="Default select example" id="forma_de_pago" name="forma_de_pago">
+                <option value="NIVELADA">NIVELADA</option>
+                <option value="AMORTIZACIONES A CAPITAL">AMORTIZACIONES A CAPITAL</option>
+            </select>
+        </div>
+
+
+
+    </div>
+    <div class="col-6" style="margin: 2rem 0;">
+        <div class="form-group">
+            <label class="fw-medium" for="tipo_credito">Tipo De Credito</label>
+            <select class="form-select" id="tipo_credito" name="tipo_credito">
+                <option value="AGROPECUARIO Y/O PRODUCTIVO">AGROPECUARIO Y/O PRODUCTIVO</option>
+                <option value="COMERCIO">COMERCIO</option>
+                <option value="SERVICIOS">SERVICIOS</option>
+                <option value="CONSUMO">CONSUMO</option>
+                <option value="VIVIENDA">VIVIENDA</option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="col-6">
+        <div class="form-group">
+            <label class="fw-medium" for="fecha_inicio">Fecha de Inicio</label>
+            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" required>
+        </div>
+
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label class="fw-medium" for="fecha_vencimiento">Fecha de Vencimiento</label>
+            <input type="date" class="form-control" name="fecha_vencimiento" id="fecha_vencimiento" disabled>
+        </div>
+
+    </div>
+    <div style="margin-top: 2rem;">
+        <a type="button" onclick="generar_plan()" class="btn_cancel" id="generar_plan">Generar Plan de Pagos</a>
+    </div>
+
+
+</div>

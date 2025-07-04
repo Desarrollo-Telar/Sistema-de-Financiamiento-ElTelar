@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="row box">
+    <form method="POST" id="pago" enctype="multipart/form-data">
+        {% csrf_token %}
+        <meta name="csrf-token" content="{{ csrf_token }}">
+        <div>
+            <div class="row">
+               
+
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="customer_id">Cliente</label>
+                    <select class="form-control cliente" id="cliente" name="cliente" style="width: 100%">
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="customer_id">Monto</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text fw-medium" id="basic-addon1">Q</span>
+                        <input type="number" min="0" step="any" class="form-control" name="monto" id="monto" required>
+
+                    </div>
+
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="customer_id">Numero de Referencia</label>
+                    <input type="text"  class="form-control" name="numero_referencia" id="numero_referencia"
+                        required>
+
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="fecha_emision">Fecha de Emision</label>
+                    <input type="date" class="form-control" name="fecha_emision" id="fecha_emision" required>
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="descripcion">Descripcion</label>
+                    <textarea class="form-control" name="descripcion" id="descripcion" rows="2" required></textarea>
+
+                </div>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="fw-medium" for="boleta">Imagen de Boleta</label>
+                    <input class="form-control" type="file" id="boleta" accept=".pdf, image/*" required>
+
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <button type="submit" class="btn_guardar">Crear Registro</button>
+            <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+
+        </div>
+
+
+
+
+
+
+
+
+    </form>
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="module" src="{% static 'js/financings/credit/inicio_pago.js'%}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="module" src="{% static 'js/financings/credit/payment.js'%}"></script>
+{% endblock %}

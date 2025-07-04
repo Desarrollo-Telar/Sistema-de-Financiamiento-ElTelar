@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <form method="POST" action="{% url 'financial_information:create_reference_information'  customer_code %}" >
+        {% csrf_token %}
+        {% include 'FinancialInformation/snippets/forms.html' %}
+        <button type="submit" class="btn_edit">Crear Registro</button>
+        <a href="{% url 'customers:detail' customer_code  %}">Cancelar</a>
+
+
+    </form>
+{% endblock %}

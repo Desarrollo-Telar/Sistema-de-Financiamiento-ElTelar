@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/customers/forms.css' %}" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+
+
+{% block content %}
+<div class="box">
+
+
+    <form method="POST" enctype="multipart/form-data" autocomplete="off" id="customer">
+        {% csrf_token %}
+        <meta name="csrf-token" content="{{ csrf_token }}">
+
+
+        <input type="text" value="{{user_id}}" style="display: none;" id="user_id">
+        <div class="row">
+            <div class="col-12" style="display: flex; align-items: end; justify-content: end">
+                <a type="button" class="btn_cancel" href=" {% url 'customers:customers' %}"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-right:0.5rem"
+                        fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <path
+                            d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                    </svg>Cancelar</a>
+            </div>
+            <!-- INFORMACION PERSONAL-->
+            <div id="PersonalInformation">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        <h4>Información Personal</h4>
+                        <div id="output_name_customer"></div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        {%include 'customer/forms/PersonalInformation/forms.html' %}
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 3rem">
+                    <hr />
+                    <div class="d-flex">
+                        <a type="button" class="btn_cancel" href=" {% url 'customers:customers' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-right:0.5rem"
+                                fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path
+                                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                            </svg>Cancelar
+                        </a>
+                        <a type="button" style="cursor: pointer"
+                            onclick="mostrarOcultar('WorkingInformation','PersonalInformation')"
+                            class="btn_siguiente">Siguiente
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-left: 0.5rem"
+                                fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                            </svg>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- INFORMACION FINANCIERA-->
+            <div id="WorkingInformation" style="display: none;">
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        <h4>Información Laboral</h4>
+                        <div id="output_info_name_customer"></div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        {% include 'customer/forms/WorkingInformation/forms.html'%}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 3rem">
+                    <hr />
+
+                    <div class="d-flex">
+                        <a type="button" onclick="mostrarOcultar('WorkingInformation','PersonalInformation')"
+                            class="btn_cancel">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5rem" width="20" height="20"
+                                fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                            </svg>Anterior
+                        </a>
+                        <a type="button" onclick="mostrarOcultar('InvestmentPlan','WorkingInformation')"
+                            class="btn_siguiente">
+                            Siguiente
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-left: 0.5rem"
+                                fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <!-- DESTINO-->
+            <div id="InvestmentPlan" style="display: none">
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        <h4>Información Sobre el Plan de Inversión</h4>
+                        <div id="output_plan_name_customer"></div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        {% include 'customer/forms/InvestmentPlan/forms.html' %}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 3rem">
+                    <hr />
+
+                    <div class="d-flex">
+                        <a type="button" onclick="mostrarOcultar('InvestmentPlan','WorkingInformation', 'agregar')"
+                            class="btn_cancel"><svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5rem"
+                                width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                            </svg>Anterior</a>
+                        <a type="button" onclick="mostrarOcultar('References','InvestmentPlan','agregar')"
+                            class="btn_siguiente">Siguiente
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-left: 0.5rem;"
+                                fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                            </svg></a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="References" style="display: none">
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        <h4>Información Referencias del cliente</h4>
+                        <div id="output_refe_name_customer"></div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        {% include 'customer/forms/FinancialInformation/forms.html' %}
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 3rem">
+                    <hr />
+
+                    <div class="col">
+                        <a type="button" onclick="mostrarOcultar('References','InvestmentPlan', 'agregar')"
+                            class="btn_cancel"><svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5rem"
+                                width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                            </svg>Anterior</a>
+                    </div>
+                    <!-- 
+                    <div class="col-2">
+                        <a type="button" onclick="mostrarOcultar('agregar','References')"
+                            class="siguiente">Siguiente
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-left: 0.5rem;"
+                                fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                            </svg></a>
+                    </div>
+-->
+
+                </div>
+            </div>
+        </div>
+        <div id="images" style="display: none;">
+            <hr>
+            <div class="row">
+                <div class="col-4">
+                    <h4>SUBIR IMAGENES</h4>
+                    <div id="output_image_name_customer"></div>
+                </div>
+                <div class="col-8">
+                    {% include 'customer/forms/images/forms.html' %}
+                </div>
+            </div>
+            <div class="row" style="margin-top: 3rem">
+                <hr />
+
+                <div class="col-2">
+                    <a type="button" onclick="mostrarOcultar('images','References', 'agregar')" class="anterior"><svg
+                            xmlns="http://www.w3.org/2000/svg" style="margin-right: 0.5rem" width="20" height="20"
+                            fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg>Anterior</a>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+        <br />
+        <div id="agregar" style="display: none; margin-top: 5rem">
+            <hr />
+            <div class="d-flex">
+                <a type="button" class="btn_cancel" href=" {% url 'customers:customers' %}"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-right:0.5rem"
+                        fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <path
+                            d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                    </svg>Cancelar
+                </a>
+                <button type="submit" class="btn_guardar">
+                    {{accion}}
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+</div>
+{% endblock%}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="{% static 'js/customer/mostrar.js'%}"></script>
+<script type="module" src="{% static 'js/customer/guardar.js' %}"></script>
+<script type="module" src="{% static 'js/customer/validacion_formulario.js' %}"></script>
+{% endblock %}

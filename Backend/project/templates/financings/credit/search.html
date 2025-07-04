@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=" row box">
+    <div class="row">
+        <div class="col" style="padding: 2.5rem">
+            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Creditos</span> !</h3>
+            <div class="d-flex justify-content-center fs-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'financings:list_credit' %}">Creditos</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+
+                    </ol>
+                </nav>
+            </div>
+            <p>
+                Bienvenido al módulo de Creditos. Este módulo te permite administrar todos
+                los aspectos relacionados con los creditos de la plataforma.
+            </p>
+            <p>
+                Este módulo está diseñado para brindarte el control y la flexibilidad
+                necesarios para administrar eficazmente el registro de los creditos de los clientes en la
+                plataforma.
+            </p>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col d-flex flex-row-reverse">
+            <a class="btn_add" href="{% url 'financings:create_credit'%}">Añadir Credito Nuevo</a>
+        </div>
+
+
+    </div>
+    <div class="row" style="display: flex; align-items: center; justify-content: end; margin-top: 2rem;">
+        <div class="col-4">
+            {% include 'financings/credit/snippets/search.html' with query=query %}
+        </div>
+        <div class="col-12" style="margin-top: 0.5rem;">
+            <p>Resultados para: {{ query }} ({{ count }})</p>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 2rem;">
+        {% include 'financings/credit/table/table.html' %}
+    </div>
+
+</div>
+
+{% if page_obj %}
+{% include 'snippets/pages.html' %}
+{% endif %}
+
+{% endblock %}

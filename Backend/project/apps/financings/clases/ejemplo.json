@@ -1,0 +1,53 @@
+[{
+    "id":1,
+    "credit_id":1,
+    "description":"",
+    "suma_total":1500,
+    "Detalle Garantia":[{
+        "id":1,
+        "Tipo de Garantia":{
+            "Nombre":"Hipoteca",
+            "No.Escritura":"",
+            "Notario":"",
+            "Finca":"",
+            "Folio":"",
+            "Libro":"",
+            "Area":"",
+            "Ubicacion":"",
+            "Descripcion":"",
+            "Valor Comercial":0.00,
+            "Titural":"",
+            "Estatus":"",
+            "No.Contrato Arrendamiento":"",
+            "Avalúo del bien":"",
+            "Documento Digital de Soporte":""
+
+        },
+        "valor_cobertura":750
+
+    },
+    {
+        "id":2,
+        "Tipo de Garantia":{
+            "Nombre":"Derecho de posesión ",
+            "No.Escritura":"",
+            "Notario":"",
+            "Area":"",
+            "Ubicacion":"",
+            "Descripcion":"",
+            "Valor Comercial":0.00,
+            "Titural":"",
+            "Estatus":"",
+            "No.Contrato Arrendamiento":"",
+            "Avalúo del bien":"",
+            "Documento Digital de Soporte":""
+
+        },
+        "valor_cobertura":750
+
+    }
+
+]
+
+}
+]

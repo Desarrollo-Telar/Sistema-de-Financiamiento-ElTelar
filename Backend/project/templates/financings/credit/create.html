@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<form method="POST" id="credito" class="box" enctype="multipart/form-data">
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <div class="row">
+        {% include 'financings/credit/snippets/forms/credit.html' %}
+    </div>
+
+
+
+    <hr>
+    <div class="row">
+        {% include 'financings/credit/snippets/forms/options.html' %}
+
+    </div>
+    <hr>
+    <div style=" padding: 2rem;">
+        <a href="{% url 'financings:list_credit' %}" style="margin-right: 0.5rem;"> Cancelar</a>
+        <button type="submit" class="btn_guardar">Agregar</button>
+    </div>
+
+</form>
+
+
+
+
+{% endblock %}
+
+
+
+{% block js %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="module" src="{% static 'js/financings/credit/inicializador.js'%}"></script>
+<script type="module" src="{% static 'js/financings/credit/credito.js'%}"></script>
+<script type="module" src="{% static 'js/financings/credit/desembolso.js'%}"></script>
+<script type="module" src="{% static 'js/financings/credit/garantia.js'%}"></script>
+
+{% endblock%}

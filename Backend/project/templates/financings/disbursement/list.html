@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class=" row box">
+    <div class="row">
+        <div class="col" style="padding: 2.5rem">
+            <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">DESEMBOLSOS</span> !</h3>
+            <p>
+                Bienvenido al módulo de Desembolsos. Este módulo te permite administrar todos
+                los aspectos relacionados con los desembolsos aplicados a los creditos registrados a la plataforma.
+            </p>
+            <p>
+                Este módulo está diseñado para brindarte el control y la flexibilidad
+                necesarios para administrar eficazmente el registro de los desembolsos de los creditos de los clientes
+                en la
+                plataforma.
+            </p>
+        </div>
+    </div>
+    <hr />
+
+
+    <div class="row" style="margin-top: 2rem;">
+        {% include 'financings/disbursement/table/table.html' %}
+    </div>
+
+</div>
+{% if page_obj %}
+{% include 'snippets/pages.html' %}
+{% endif %}
+
+{% endblock%}
