@@ -27,11 +27,13 @@ def cambiar_plan():
         return
     
     
-    
+    print(f'VERIFICACION DE CUOTAS POR FECHA DE VENCIMIENTO')
     verificador_de_cuotas_vencidas(dia)
     print()
+    print(f'VERIFICACION DE CUOTAS POR FECHA LIMITE')
     verificador_de_cuotas_fecha_limite(dia)
     print()
+    print(f'VERIFICACION DE PROXIMAS CUOTAS')
     
     cuotas_por_vencerse_alerta()
 

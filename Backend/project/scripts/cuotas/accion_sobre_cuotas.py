@@ -46,7 +46,7 @@ def calcular_interes_y_mora(cuota):
         tasa_interes =  cuota.credit_id.tasa_interes
 
         if not cuota.status:
-            mora = cuota.mora + (cuota.interest * 0.10) # Por lo establecido la mora es del 10%
+            mora = Decimal(cuota.mora) + (Decimal(cuota.interest) * Decimal("0.10")) # Por lo establecido la mora es del 10%
     
     if cuota.acreedor is not None:
         tasa_interes = cuota.acreedor.tasa
@@ -209,7 +209,8 @@ def recorrido_de_cuotas(cuotas, accion):
             siguiente_cuota = obtener_la_siguiente_cuota(cuota)
             interes_acumulado = cuota.interest + interes
 
-            if cuota.credit_id is not None:
+            """if cuota.credit_id is not None:
+
                 tokken, creado = TokenCliente.objects.get_or_create(
                     cliente=cuota.credit_id.customer_id,
                     cuota=cuota
@@ -219,7 +220,7 @@ def recorrido_de_cuotas(cuotas, accion):
                     print('creación de token nuevo')
 
                 tokken.cuota = siguiente_cuota
-                tokken.save()
+                tokken.save()"""
 
 
                 
