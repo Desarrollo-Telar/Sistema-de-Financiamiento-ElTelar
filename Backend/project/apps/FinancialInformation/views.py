@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # FORMULARIO
 from .forms import WorkingInformationForms,OtherSourcesOfIncomeForms,ReferenceForms
+from apps.addresses.forms import AddressForms
 
 # MODELOS
 from apps.customers.models import Customer
@@ -24,6 +25,20 @@ from django.utils.decorators import method_decorator
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 # Create your views here.
+# Import
+import json
+from django.http import JsonResponse
+
+@login_required
+@usuario_activo
+def seleccionar(request,codigo, customer_code):
+    template_name = 'FinancialInformation/seleccionar.html'
+
+    context = {
+        'customer_code':customer_code
+    }
+
+    return render(request, template_name, context)
 
 @login_required
 @usuario_activo
@@ -45,60 +60,72 @@ def create_working_information(request, customer_code):
     template_name = 'FinancialInformation/create_working_information.html'
     customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
     
-    form = WorkingInformationForms
+    
+
+    if request.method == 'POST':
+        informacion_laboral_form = WorkingInformationForms(request.POST)
+        form_direccion = AddressForms(request.POST)
+
+        if informacion_laboral_form.is_valid() and form_direccion.is_valid():
+
+            informacion_laboral = informacion_laboral_form.save(commit=False)
+            informacion_laboral.customer_id = customer_id
+            informacion_laboral.save()
+
+            direccion = form_direccion.save(commit=False)
+            direccion.customer_id = customer_id
+            direccion.type_address = 'Dirección de Trabajo'
+            direccion.save()
+            
+            return redirect('investment_plan:create',customer_code)
+
+       
+    informacion_laboral_form = WorkingInformationForms()
+    form_direccion = AddressForms()
     context = {
-        'form':form,
+        'informacion_laboral_form':informacion_laboral_form,
+        'form_direccion':form_direccion,
         'customer_code':customer_code,
         'permisos':recorrer_los_permisos_usuario(request)
     }
-    if request.method == 'POST':
-        form = WorkingInformationForms(request.POST)
-        if form.is_valid():
-            working = WorkingInformation()
-            working.customer_id = customer_id
-            working.position = form.cleaned_data.get('position')
-            working.start_date = form.cleaned_data.get('start_date')
-            working.description = form.cleaned_data.get('description')
-            working.salary = form.cleaned_data.get('salary')
-            working.working_hours = form.cleaned_data.get('working_hours')
-            working.phone_number = form.cleaned_data.get('phone_number')
-            working.source_of_income = form.cleaned_data.get('source_of_income')
-            working.income_detail = form.cleaned_data.get('income_detail')
-            working.employment_status = form.cleaned_data.get('employment_status')
-            working.company_name = form.cleaned_data.get('company_name')
-            working.save()
-            return redirect('customer:detail',customer_code)
-
-        else:
-            return render(request, template_name, context)
 
     return render(request, template_name, context)
 
 @login_required
 @usuario_activo
 def create_other_information(request, customer_code):
-    template_name = 'FinancialInformation/create_other_information.html'
+    template_name = 'FinancialInformation/create_working_information.html'
     customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
-    form = OtherSourcesOfIncomeForms
+    
+    
+
+    if request.method == 'POST':
+        informacion_laboral_form = OtherSourcesOfIncomeForms(request.POST)
+        form_direccion = AddressForms(request.POST)
+
+        if informacion_laboral_form.is_valid() and form_direccion.is_valid():
+
+            informacion_laboral = informacion_laboral_form.save(commit=False)
+            informacion_laboral.customer_id = customer_id
+            informacion_laboral.save()
+
+            direccion = form_direccion.save(commit=False)
+            direccion.customer_id = customer_id
+            direccion.type_address = 'Dirección de Trabajo'
+            direccion.save()
+            
+            return redirect('investment_plan:create',customer_code)
+
+       
+    informacion_laboral_form = OtherSourcesOfIncomeForms()
+    form_direccion = AddressForms()
     context = {
-        'form':form,
+        'informacion_laboral_form':informacion_laboral_form,
+        'form_direccion':form_direccion,
         'customer_code':customer_code,
         'permisos':recorrer_los_permisos_usuario(request)
     }
-    if request.method == 'POST':
-        form = OtherSourcesOfIncomeForms(request.POST)
-        if form.is_valid():
-            other = OtherSourcesOfIncome()
-            other.customer_id = customer_id
-            other.nit = form.cleaned_data.get('nit')
-            other.phone_number = form.cleaned_data.get('phone_number')
-            other.salary = form.cleaned_data.get('salary')
-            other.source_of_income = form.cleaned_data.get('source_of_income')
-            other.save()
-            return redirect('customer:detail',customer_code)
-        else:
-            return render(request, template_name, context)
-        
+
     return render(request, template_name, context)
 
 
@@ -184,18 +211,52 @@ def create_references_customer(request, customer_code):
     template_name = 'FinancialInformation/create_references.html'
 
     if request.method == 'POST':
+        
         form = ReferenceForms(request.POST)
-        if form.is_valid():
-            referencia = Reference()
-            referencia.full_name = form.cleaned_data.get('full_name')
-            referencia.phone_number = form.cleaned_data.get('phone_number')
-            referencia.reference_type = form.cleaned_data.get('reference_type')
+        form_2 = ReferenceForms(request.POST)
+        form_3 = ReferenceForms(request.POST)
+        form_4 = ReferenceForms(request.POST)
+
+        validacion = form.is_valid() and form_2.is_valid() and form_3.is_valid() and form_4.is_valid()
+
+        if validacion:
+
+            referencia = form.save(commit=False)
+            referencia.customer_id = customer_id
+            referencia.reference_type = 'Personales'
             referencia.save()
 
+            referencia = form_2.save(commit=False)
+            referencia.customer_id = customer_id
+            referencia.reference_type = 'Personales'
+            referencia.save()
+
+            referencia = form_3.save(commit=False)
+            referencia.customer_id = customer_id
+            referencia.reference_type = 'Laborales'
+            referencia.save()
+
+            referencia = form_4.save(commit=False)
+            referencia.customer_id = customer_id
+            referencia.reference_type = 'Laborales'
+            referencia.save()
+
+            customer_id.completado = True
+            customer_id.save()
+
             return redirect('customers:detail',customer_code)
-    form = ReferenceForms
+        
+    form = ReferenceForms()
+    form_2 = ReferenceForms()
+    form_3 =   ReferenceForms()
+    form_4 =  ReferenceForms()
+
     context = {
         'form':form,
+        'form_2':form_2,
+        'form_3':form_3,
+        'form_4':form_4,
+        
         'customer_code':customer_code,
         'permisos':recorrer_los_permisos_usuario(request)
     }
@@ -212,9 +273,7 @@ def update_references_customer(request, id,customer_code):
         form = ReferenceForms(request.POST)
         if form.is_valid():
             
-            referencia.full_name = form.cleaned_data.get('full_name')
-            referencia.phone_number = form.cleaned_data.get('phone_number')
-            referencia.reference_type = form.cleaned_data.get('reference_type')
+            referencia = form.save(commit=False)
             referencia.save()
 
             return redirect('customers:detail',customer_code)

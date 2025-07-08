@@ -28,22 +28,20 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 @usuario_activo
 def create_plan_financiamiento(request, customer_code):
     customer_id = get_object_or_404(Customer, customer_code=customer_code)
+
     template_name = 'InvestmentPlan/create.html'
+
     if request.method == 'POST':
         form = InvestmentPlanForms(request.POST)
+
         if form.is_valid():
-            plan = InvestmentPlan()
+            plan = form.save(commit=False)
             plan.customer_id = customer_id
-            plan.type_of_product_or_service = form.cleaned_data.get('type_of_product_or_service')
-            plan.total_value_of_the_product_or_service = form.cleaned_data.get('total_value_of_the_product_or_service')
-            plan.investment_plan_description= form.cleaned_data.get('investment_plan_description')
-            plan.initial_amount = form.cleaned_data.get('initial_amount')
-            plan.monthly_amount= form.cleaned_data.get('monthly_amount')
-            plan.transfers_or_transfer_of_funds = form.cleaned_data.get('transfers_or_transfer_of_funds')
-            plan.type_of_transfers_or_transfer_of_funds = form.cleaned_data.get('type_of_transfers_or_transfer_of_funds')
             plan.save()
+
             return redirect('customers:detail',customer_code)
-    form = InvestmentPlanForms
+        
+    form = InvestmentPlanForms()
     context = {
         'form':form,
         'customer_code':customer_code,

@@ -14,20 +14,20 @@ class AddressForms(forms.ModelForm):
             'country',
             'latitud',
             'longitud',
-            'type_address',
+           
             
             ]
 
         labels = {
-            'street':'Dirección particular o sede social completa:',
-            'number':'Zona',
-            'city':'Departamento',
-            'state':'Municipio',
+            'street':'Dirección particular o sede social completa (*)',
+            'number':'Zona (*)',
+            'city':'Departamento (*)',
+            'state':'Municipio (*)',
             
-            'country':'País',
-            'type_address':'Tipo de direccion',
-            'latitud':'Latitud',
-            'longitud':'Longitud'
+            'country':'País (*)',
+            'type_address':'Tipo de direccion (*)',
+            'latitud':'Latitud (*)',
+            'longitud':'Longitud (*)'
             
             
 
@@ -37,8 +37,8 @@ class AddressForms(forms.ModelForm):
         widgets = {
             'street': forms.TextInput(attrs={'class':'form-control'}),
             'number': forms.TextInput(attrs={'class':'form-control','type':'number','min':'0'}),
-            'city': forms.TextInput(attrs={'class':'form-control'}),
-            'state': forms.TextInput(attrs={'class':'form-control'}),
+            'city': forms.Select(attrs={'class':'form-control city1'}),
+            'state': forms.Select(attrs={'class':'form-control state1'}),
             
             'country': forms.TextInput(attrs={'class':'form-control'}),
             'type_address':forms.Select(attrs={'class':'form-control'}),

@@ -92,7 +92,7 @@
   <div class="main-container">
     {% include 'sidebar.html' %}
     <main class="content ">
-      <div class="container-fluid container-sm">
+      <div class="container-fluid container-xs">
         {% block content %}
         {% endblock %}
       </div>
@@ -141,7 +141,7 @@
         icon: 'info',
         title: mensaje,
         showConfirmButton: false,
-        timer: 1000,
+        timer: 100,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener('mouseenter', Swal.stopTimer);

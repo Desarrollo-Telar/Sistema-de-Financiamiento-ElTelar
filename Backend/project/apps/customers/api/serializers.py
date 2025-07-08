@@ -32,7 +32,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         ]
     def to_representation(self, instance):
         return {
-            'id':instance.id,
+            'id': instance.id,
             "first_name": instance.first_name,
             "last_name": instance.last_name,
             "type_identification": instance.type_identification,
@@ -48,12 +48,14 @@ class CustomerSerializer(serializers.ModelSerializer):
             "gender": instance.gender,
             "nationality": instance.nationality,
             "person_type": instance.person_type,
-            "user_id": instance.user_id.id,
-            "immigration_status_id": instance.immigration_status_id.id,
-            'customer_code':instance.customer_code,
-            "description":instance.description,
-            "creation_date":instance.creation_date.date(),
+            "user_id": instance.user_id.id if instance.user_id else None,
+            "immigration_status_id": instance.immigration_status_id.id if instance.immigration_status_id else None,
+            "customer_code": instance.customer_code,
+            "description": instance.description,
+            "creation_date": instance.creation_date.date() if instance.creation_date else None,
+            "completado": instance.completado,
         }
+
 
 
 class ImmigrationStatusSerializer(serializers.ModelSerializer):

@@ -1,13 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
 {% block content %}
-    <form method="POST" action="{% url 'addresses:update' address_id customer_code %}" >
+<div class="container box">
+    <form method="POST" action="{% url 'addresses:add' customer_code %}" >
         {% csrf_token %}
-        {% include 'addresses/forms/address_forms.html' %}
-        <button type="submit" class="btn_edit">Actualizar</button>
-        <a href="{% url 'customers:detail' customer_code%}">Cancelar</a>
+        <div class="row">
+            {% include 'addresses/forms/address_forms.html' %}
+
+        </div>
+        
+        <div class="row" style="margin-top: 1rem;">
+            <div class="col">
+                <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+
+            </div>
+            <div class="col">
+                <button type="submit" class="btn_guardar">Siguiente</button>
+
+            </div>
+
+
+
+        </div>
+       
 
 
     </form>
+</div>
+    
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript" src="{% static 'js/customer/seleccionar.js'%}"></script>
+
 {% endblock %}

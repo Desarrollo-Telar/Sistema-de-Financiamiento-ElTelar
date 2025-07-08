@@ -13,8 +13,7 @@ class InvestmentPlanForms(forms.ModelForm):
             'investment_plan_description',
             'initial_amount',
             'monthly_amount',
-            'transfers_or_transfer_of_funds',
-            'type_of_transfers_or_transfer_of_funds',
+            
         ]
 
         labels = {

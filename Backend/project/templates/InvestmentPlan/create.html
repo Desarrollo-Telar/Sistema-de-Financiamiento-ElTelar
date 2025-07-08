@@ -2,12 +2,50 @@
 {% load static %}
 
 {% block content %}
-    <form method="POST" action="{% url 'investment_plan:create'  customer_code %}" >
+<div class="container box">
+    <div class="row">
+        <form method="POST" >
+
         {% csrf_token %}
-        {% include 'InvestmentPlan/snippets/forms.html' %}
-        <button type="submit" class="btn_edit">Crear Registro</button>
-        <a href="{% url 'customers:detail' customer_code  %}">Cancelar</a>
+
+        <div class="row" style="margin-top: 2rem;">
+            <h3>Plan de Inversion (Destino) </h3>
+            <hr>
+            {% for field in form %}
+
+            <div class="form-group" style="margin-top: 0.5rem;">
+                <label for="{{ field.id_for_label }}" class="form-label fw-bold">
+                    {{ field.label }}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                {{ field.errors }}
+                {% endif %}
+            </div>
+            <br />
+
+            {% endfor %}
+
+        </div>
+
+        <div class="row" style="margin-top: 1rem;">
+            <div class="col">
+                <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+
+            </div>
+            <div class="col">
+                <button type="submit" class="btn_guardar">Siguiente</button>
+
+            </div>
+            
+            
+
+        </div>
 
 
     </form>
+
+    </div>
+</div>
+    
 {% endblock %}

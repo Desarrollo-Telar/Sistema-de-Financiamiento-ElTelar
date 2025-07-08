@@ -21,6 +21,7 @@ urlpatterns = [
     path('update/other_information/<int:id>/<str:customer_code>/', views.update_other_information, name='update_other_information'),
     path('update/working_information/<int:id>/<str:customer_code>/',views.update_working_information,name='update_working_information'),
     path('update/reference/<int:id>/<str:customer_code>/',views.update_references_customer,name='update_reference'),
+    path('seleccionar/<str:codigo>/<str:customer_code>/', views.seleccionar, name='seleccionar'),
 ]
 
 urlpatterns+=routers.urlpatterns

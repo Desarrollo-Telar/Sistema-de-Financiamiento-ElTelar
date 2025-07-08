@@ -1,13 +1,80 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
 {% block content %}
-    <form method="POST" action="{% url 'financial_information:create_reference_information'  customer_code %}" >
-        {% csrf_token %}
-        {% include 'FinancialInformation/snippets/forms.html' %}
-        <button type="submit" class="btn_edit">Crear Registro</button>
-        <a href="{% url 'customers:detail' customer_code  %}">Cancelar</a>
+<div class="container box">
+    <div class="row">
+        <form method="POST"  enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+            <div class="row" style="margin-top: 1rem;">
+                <h3>Información Laboral</h3>
+                <hr>
+                {% for field in informacion_laboral_form %}
+                <div class="form-group" style="margin-top: 0.5rem;">
+                    <label for="{{ field.id_for_label }}" class="form-label fw-bold">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                    {% if field.errors %}
+                    {{ field.errors }}
+                    {% endif %}
+                </div>
+                <br />
+
+                {% endfor %}
+            </div>
+            <div class="row" style="margin-top: 2rem;">
+            <h3>Dirección Personal</h3>
+            <hr>
+            {% for field in form_direccion %}
+
+            <div class="form-group" style="margin-top: 0.5rem;">
+                <label for="{{ field.id_for_label }}" class="form-label fw-bold">
+                    {{ field.label }}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                {{ field.errors }}
+                {% endif %}
+            </div>
+            <br />
+
+            {% endfor %}
+
+        </div>
+
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col">
+                    <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn_guardar">Siguiente</button>
+
+                </div>
 
 
-    </form>
+
+            </div>
+
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript" src="{% static 'js/customer/seleccionar.js'%}"></script>
+
 {% endblock %}

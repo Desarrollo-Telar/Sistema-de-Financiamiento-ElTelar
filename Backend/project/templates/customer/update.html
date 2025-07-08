@@ -2,12 +2,31 @@
 {% load static %}
 
 {% block content %}
-<form method="POST" action="{% url 'customers:update_customer' customer_code %}" style="margin: 2rem;" class="box">
-    {% csrf_token %}
-    {% include 'customer/forms/forms.html' %}
-    <button type="submit" class="btn_edit">Actualizar</button>
-    <a href="{% url 'customers:detail' customer_code %}">Cancelar</a>
+<div class="container box">
+    <form method="POST" action="{% url 'customers:update_customer' customer_code %}" style="margin: 2rem;">
+        {% csrf_token %}
+        <div class="row">
+            {% include 'customer/forms/forms.html' %}
+
+        </div>
+
+        <div class="row" style="margin-top: 1rem;">
+            <div class="col">
+                <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+
+            </div>
+            <div class="col">
+                <button type="submit" class="btn_guardar">Siguiente</button>
+
+            </div>
 
 
-</form>
+
+        </div>
+
+
+    </form>
+
+</div>
+
 {% endblock %}

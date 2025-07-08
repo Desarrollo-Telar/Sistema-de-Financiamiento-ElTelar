@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container box">
+    <div class="row" style="margin: 2rem;">
+        <input type="hidden" value="{{customer_code}}" id="customer_code">
+        Agregar Información de:
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="working_information">
+            <label class="form-check-label" for="working_information">
+                Información Laboral
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="other_information">
+            <label class="form-check-label" for="other_information">
+                Otra Fuente de Ingreso
+            </label>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block js %}
+<script>
+    const working_information = document.getElementById('working_information');
+    const other_information = document.getElementById('other_information');
+    const customer_code = document.getElementById('customer_code').value;
+
+    working_information.addEventListener('input', function (event) {
+        let on = event.target.value;
+        if (on) {
+            window.location.href = `/financial_information/create/working_information/${customer_code}/`
+        }
+    });
+    other_information.addEventListener('input', function (event) {
+        let on = event.target.value;
+        if (on) {
+            window.location.href = `/financial_information/create/other_information/${customer_code}/`
+        }
+    });
+
+</script>
+{% endblock %}

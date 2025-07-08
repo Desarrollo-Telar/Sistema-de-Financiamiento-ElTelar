@@ -14,7 +14,7 @@ from datetime import datetime
 from datetime import timedelta
 from project.database_store import minio_client
 
-
+import uuid
 
 
 # Create your models here.
@@ -101,6 +101,9 @@ class Customer(models.Model):
     profesion = models.ForeignKey(Profession,  on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Profesion")
     new_asesor_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Asesor de este Credito")
 
+    uuid = models.UUIDField(verbose_name="Token Cliente",default=uuid.uuid4,  blank=True, null=True)
+    completado = models.BooleanField(verbose_name="Estado de Registro", default=True)
+    
     def __str__(self):
         return self.get_full_name()
 

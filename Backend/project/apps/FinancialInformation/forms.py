@@ -81,7 +81,7 @@ class ReferenceForms(forms.ModelForm):
         fields = [
             'full_name',
             'phone_number',
-            'reference_type'
+            
         ]
         labels = {
             'full_name':'Nombre Completo',

@@ -73,7 +73,7 @@ def send_email_new_customer(customer):
     email.attach_alternative(content, 'text/html')
     
     if SERVIDOR and usuarios_email:
-        #email.send()
+        email.send()
         print('Generando alerta!')
 
        
