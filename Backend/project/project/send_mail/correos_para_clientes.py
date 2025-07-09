@@ -80,7 +80,17 @@ def send_email_new_customer(customer):
         especificaciones = build_notificacion_especificaciones(
 
             view_name='customers:detail',
-            kwargs={'customer_code': customer.customer_code}
+            kwargs={'customer_code': customer.customer_code},
+            extra_data={
+                'contendio':f'''
+Detalles del Cliente:
+Nombre: { customer.get_full_name()}
+Correo Electronico: {customer.email}
+Edad: {customer.get_edad()}
+Asesor: {customer.asesor}
+Codigo del Cliente: {customer.customer_code}
+'''
+            }
             
            
         )

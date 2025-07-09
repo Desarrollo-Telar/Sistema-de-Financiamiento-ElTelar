@@ -70,7 +70,14 @@ def send_email_alert(message, status,models):
         especificaciones = build_notificacion_especificaciones(
 
             view_name='financings:detalle_boleta',
-            kwargs={'id': models.id}
+            kwargs={'id': models.id},
+            extra_data={
+                'contendio': f'''
+Numero de Referencia: { models.numero_referencia }
+Monto: Q {models.Fmonto}
+Para: {models.boleta_para}
+'''
+            }
             
            
         )
@@ -100,7 +107,7 @@ def send_email_recibo(models):
     roles = ['Administrador', 'Programador']
 
     # Si el tipo de pago está en la lista, se agregan más roles
-    if models.tipo_pago in lista_tipos:
+    if models.pago.tipo_pago in lista_tipos:
         roles.append('Secretari@')
 
     # Obtener correos de usuarios activos con los roles indicados
@@ -121,7 +128,7 @@ def send_email_recibo(models):
     
     if SERVIDOR and usuarios_email:
         
-        #email.send()
+        email.send()
         print('envio de notificacion')
         especificaciones = build_notificacion_especificaciones(
 

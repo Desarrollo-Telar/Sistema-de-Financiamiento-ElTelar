@@ -1,23 +1,29 @@
 {% load static %}
 
 
-<div class="card ">
+<div style="padding: 2rem;">
 
-    <div class="card-body" style="padding: 2.5rem 5rem;">
-        <h5 class="card-title">{{object.title}}
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                <path
-                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-            </svg>
-        </h5>
-        <p class="card-text">{{object.message}}</p>
-        <p class="card-text">{{object.created_at}}</p>
-        {% if object.especificaciones.url %}
-        <a href="{{object.especificaciones.url}}" class=" btn_add">Ir</a>
-        {% endif %}
 
-    </div>
+    <h4 class="fs-4">{{object.title}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+        </svg>
+    </h4>
+    <hr>
+    <p class="fs-5 fw-light">{{object.message}}</p>
+
+    {% if object.especificaciones.contenido %}
+
+    <p class="fs-6 fw-light">{{object.especificaciones.contenido}}</p>
+    {% endif %}
+    <p>{{object.created_at}}</p>
+    {% if object.especificaciones.url %}
+    <a href="{{object.especificaciones.url}}" class=" btn_add">Ir</a>
+    {% endif %}
+
+
 
 
 </div>

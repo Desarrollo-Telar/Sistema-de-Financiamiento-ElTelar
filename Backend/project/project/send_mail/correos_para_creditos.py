@@ -50,7 +50,6 @@ def send_email_new_credit(models):
 
             view_name='financings:detail_credit',
             kwargs={'id': models.id}
-           
         )
 
         mensaje = {
