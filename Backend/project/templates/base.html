@@ -92,7 +92,7 @@
   <div class="main-container">
     {% include 'sidebar.html' %}
     <main class="content ">
-      <div class="container-fluid container-xs">
+      <div class="container container-xs">
         {% block content %}
         {% endblock %}
       </div>
@@ -193,7 +193,7 @@
             const item = document.createElement("li");
             item.innerHTML = `
             <a class="dropdown-item fw-semibold" href="${baseUrl}/actividades/notification/${noti.uuid}/">
-              ${noti.title}<br><small class="fw-light">${noti.message}</small>
+              ${noti.title}<br><small class="fw-light">${noti.created_at}</small>
             </a>
           `;
             list.appendChild(item);
