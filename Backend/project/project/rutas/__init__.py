@@ -6,3 +6,6 @@ from .reportes import urlpatterns_reports
 
 # RUTAS DE APPS
 from .rutas_apps import urlpatterns_apps
+
+# RUTAS HTTP
+from .rutas_http import urlpatterns_http

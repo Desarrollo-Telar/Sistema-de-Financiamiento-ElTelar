@@ -82,7 +82,7 @@ def send_email_new_customer(customer):
             view_name='customers:detail',
             kwargs={'customer_code': customer.customer_code},
             extra_data={
-                'contendio':f'''
+                'contenido':f'''
 Detalles del Cliente:
 Nombre: { customer.get_full_name()}
 Correo Electronico: {customer.email}

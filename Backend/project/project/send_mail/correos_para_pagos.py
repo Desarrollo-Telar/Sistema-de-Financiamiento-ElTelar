@@ -72,10 +72,10 @@ def send_email_alert(message, status,models):
             view_name='financings:detalle_boleta',
             kwargs={'id': models.id},
             extra_data={
-                'contendio': f'''
+                'contenido': f'''
 Numero de Referencia: { models.numero_referencia }
-Monto: Q {models.Fmonto}
-Para: {models.boleta_para}
+Monto: Q {models.Fmonto()}
+Para: {models.boleta_para()}
 '''
             }
             
@@ -138,7 +138,7 @@ def send_email_recibo(models):
         especificaciones = build_notificacion_especificaciones(
 
             view_name='financings:recibo',
-            kwargs={'id': models.id}
+            kwargs={'id': models.pago.id}
             
            
         )

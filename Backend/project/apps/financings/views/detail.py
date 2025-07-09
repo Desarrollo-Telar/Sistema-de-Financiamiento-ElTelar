@@ -34,7 +34,7 @@ from scripts.generadores.formato_numero import formatear_numero
 from scripts.generadores.plan import planPagosCredito
 from scripts.generadores.actualizaciones_por_credito import total_garantia, total_desembolso, actualizacion, total_desembolsos, total_mora_pagada, total_interes_pagada, total_capital_pagada
 
-
+from django.http import Http404
 
 ### ------------ DETALLE -------------- ###
 from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito
@@ -200,17 +200,26 @@ def clasificacion_detallar(request,numero_referencia):
 @login_required
 @permiso_requerido('puede_ver_detalle_recibo_pago')
 def detallar_recibo(request,id):
-    
-    pago = get_object_or_404(Payment, id=id)
-    
-    recibo = get_object_or_404(Recibo, pago=pago)
+    try:
+        pago = get_object_or_404(Payment, id=id)
+            
+        recibo = Recibo.objects.filter(pago=pago).first()
+
+        if recibo is None:
+            recibo = Recibo.objects.filter(id=id).first()
+
+            if recibo is None:
+                return redirect('http_404')
+
+    except Payment.DoesNotExist:
+        return redirect('http_404')
 
     
 
    
     template_name = 'financings/credit/recibo/detail.html'
     context = {
-        'title':f'Recibo del pago. {recibo.pago.numero_referencia}',
+        'title':f'Recibo del pago. | {recibo.pago.numero_referencia} |' ,
         'recibo':recibo,
         'permisos':recorrer_los_permisos_usuario(request),
     }

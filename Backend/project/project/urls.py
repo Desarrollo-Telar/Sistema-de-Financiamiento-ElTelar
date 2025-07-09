@@ -29,7 +29,7 @@ from django.views.static import serve
 from django.conf import settings
 
 # RUTAS
-from .rutas import urlpatterns_apps, urlpatterns_api, urlpatterns_reports
+from .rutas import urlpatterns_apps, urlpatterns_api, urlpatterns_reports, urlpatterns_http
 
 
 urlpatterns = [    
@@ -50,7 +50,7 @@ urlpatterns = [
 if settings.DEBUG:    
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += urlpatterns_apps + urlpatterns_api + urlpatterns_reports
+urlpatterns += urlpatterns_apps + urlpatterns_api + urlpatterns_reports + urlpatterns_http
 
 #template_name='user/autentication/password-reset.html'
 #email_template_name='user/autentication/password-message.html'
