@@ -26,7 +26,13 @@
             <div class="col" style="margin-top: 1rem;">
                 <div class="card card_hover">
                     <h5 class="card-header">{{ credito.customer_id.first_name }} {{ credito.customer_id.last_name }} |
-                        {{ credito.codigo_credito }} </h5>
+                        {{ credito.codigo_credito }} 
+                        {% if credito.is_paid_off %}
+                        <span class="badge text-bg-danger">Credito Cancelado</span>
+                        {% else %}
+                        <span class="badge   text-bg-success ">Credito Vigente</span>
+                        {% endif %}
+                    </h5>
                     <div class="card-body">
 
                         <p class="card-text">Credito para: {{ credito.proposito }}.</p>
