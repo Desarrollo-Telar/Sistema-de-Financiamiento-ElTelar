@@ -43,7 +43,10 @@ from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito
 def detail_credit(request,id):
     
     template_name = 'financings/credit/detail.html' # TEMPLATE
-    credito= get_object_or_404(Credit,id=id) # DETALLE DEL CREDITO
+    credito= Credit.objects.filter(id=id).first() # DETALLE DEL CREDITO
+
+    if credito is None:
+        return redirect('http_404')
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
