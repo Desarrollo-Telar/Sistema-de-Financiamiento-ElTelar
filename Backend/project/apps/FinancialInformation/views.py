@@ -36,7 +36,8 @@ def seleccionar(request,codigo, customer_code):
     template_name = 'FinancialInformation/seleccionar.html'
 
     context = {
-        'customer_code':customer_code
+        'customer_code':customer_code,
+        'permisos':recorrer_los_permisos_usuario(request)
     }
 
     return render(request, template_name, context)
