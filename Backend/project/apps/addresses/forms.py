@@ -14,7 +14,7 @@ class AddressForms(forms.ModelForm):
             'country',
             'latitud',
             'longitud',
-           
+            'type_address'
             
             ]
 
@@ -48,4 +48,11 @@ class AddressForms(forms.ModelForm):
             
 
         }
+
+    def __init__(self, *args, **kwargs):
+        super(AddressForms, self).__init__(*args, **kwargs)
+
+        self.fields['state'].required = True
+        self.fields['city'].required = True
+       
         

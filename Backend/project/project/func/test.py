@@ -3,8 +3,15 @@ from minio.error import S3Error
 
 import uuid
 import json
+import os
+import django
 
+# Configura Django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")  # <-- Ajusta si tu settings está en otro path
+django.setup()
 
+# Modelos
+from apps.customers.models import CreditCounselor, Customer
 
 def main():
   # Create a client for your MinIO server using your access and secret keys
@@ -27,8 +34,16 @@ def main():
 
 if __name__ == "__main__":
   try:
+    query = 'Luis'
+
+    clientes = Customer.objects.filter(asesor__icontains=query)
+    asesor = CreditCounselor.objects.filter(nombre__icontains=query).first()
     
-    print('hola')
+    for cliente in clientes:
+      cliente.new_asesor_credito = asesor
+      cliente.save()
+
+    print('Completado')
 
   except S3Error as exc:
     print("An error occurred.", exc)

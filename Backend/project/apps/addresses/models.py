@@ -26,7 +26,7 @@ class Address(models.Model):
     city = models.CharField("Departamento", max_length=100, blank=False, null=False)
     state = models.CharField("Municipio", max_length=90, blank=False, null=False)    
     country = models.CharField("País", max_length=90, blank=False, null=False, default='GUATEMALA')
-    type_address = models.CharField("Tipo de Dirección", choices=tipo_direccion, max_length=90, blank=False, null=False)
+    type_address = models.CharField("Tipo de Dirección", choices=tipo_direccion, max_length=90, blank=True, null=True)
     latitud = models.CharField("Latitud", max_length=120, blank=False, null=False)
     longitud = models.CharField("Longitud",max_length=120, blank=False, null=False)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
@@ -69,19 +69,23 @@ class Municiopio(models.Model):
         verbose_name_plural = 'Municipios'
 
 
-@receiver(post_save, sender=Address) 
-def actualizar_info_direcciones(sender, instance, created, **kwargs): 
-    
-    departamento = instance.city 
-    municipio = instance.state 
+@receiver(pre_save, sender=Address)
+def actualizar_info_direcciones(sender, instance, **kwargs):
+    departamento = instance.city
+    municipio = instance.state
 
-    filtrar_d = Q(nombre__icontains=departamento) | Q(id=departamento) 
-    departamento_f = Departamento.objects.filter(filtrar_d).first() 
-        
-    filtrar_m = Q(nombre__icontains=municipio) | Q(id=municipio) 
-    municipio_f = Municiopio.objects.filter(filtrar_m).first() 
-        
-    if departamento_f and municipio_f: 
-        instance.city = departamento_f.nombre 
-        instance.state = municipio_f.nombre 
-        instance.save()
+    print(f'Departamento: {departamento}. Municipio: {municipio}')
+
+    filtrar_d = Q(nombre__icontains=departamento) | Q(id=departamento)
+    departamento_f = Departamento.objects.filter(filtrar_d).first()
+
+    print(f'Departamento encontrado: {departamento_f}')
+
+    filtrar_m = Q(nombre__icontains=municipio) | Q(id=municipio)
+    municipio_f = Municiopio.objects.filter(filtrar_m).first()
+
+    print(f'Municipio Encontrado: {municipio_f}')
+
+    if departamento_f and municipio_f:
+        instance.city = departamento_f.nombre
+        instance.state = municipio_f.nombre

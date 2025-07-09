@@ -79,9 +79,10 @@ def create_working_information(request, customer_code):
             
             return redirect('investment_plan:create',customer_code)
 
-       
+    
     informacion_laboral_form = WorkingInformationForms()
     form_direccion = AddressForms()
+    form_direccion.fields.pop('type_address')
     context = {
         'informacion_laboral_form':informacion_laboral_form,
         'form_direccion':form_direccion,
@@ -119,6 +120,7 @@ def create_other_information(request, customer_code):
        
     informacion_laboral_form = OtherSourcesOfIncomeForms()
     form_direccion = AddressForms()
+    form_direccion.fields.pop('type_address')
     context = {
         'informacion_laboral_form':informacion_laboral_form,
         'form_direccion':form_direccion,

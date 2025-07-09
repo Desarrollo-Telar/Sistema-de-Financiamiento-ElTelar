@@ -5,7 +5,7 @@ from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 
 # Modelo
-from .models import Customer
+from .models import Customer, CreditCounselor
 
 # Tiempo
 from datetime import datetime
@@ -38,6 +38,10 @@ def generate_customer_code(status, current_year, counter):
 
 @receiver(pre_save, sender=Customer)
 def set_customer_code_and_update_status(sender, instance, **kwargs):
+    buscar_asesor = CreditCounselor.objects.filter(id=instance.new_asesor_credito.id).first()
+    
+    instance.asesor = f'{buscar_asesor.nombre} {buscar_asesor.apellido}'
+
     # Si el código del cliente está vacío o es una cadena vacía, genera uno nuevo
     if not instance.customer_code or instance.customer_code == '':
         current_date = datetime.now()
@@ -86,6 +90,7 @@ def send_message(sender, instance, created, **kwargs):
     dato = f'https://www.ii-eltelarsa.com/pdf/{customer.id}'
     
     generate_qr(dato, filename)
+    
 
     if instance.completado:
         send_email_new_customer(instance)
