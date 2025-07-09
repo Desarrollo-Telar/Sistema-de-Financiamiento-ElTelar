@@ -39,7 +39,7 @@ def generar_plan_pagos(sender, instance, created, **kwargs):
 
         
 
-@receiver(post_save, sender=Payment)
+@receiver(pre_save, sender=Payment)
 def alerta(sender, instance, **kwargs):
     banco = None
     referencia_sin_d = None
