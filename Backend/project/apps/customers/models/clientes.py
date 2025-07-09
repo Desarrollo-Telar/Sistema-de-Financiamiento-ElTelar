@@ -125,6 +125,7 @@ class Customer(models.Model):
         return f'{self.first_name} {self.last_name}'
     
     def get_edad(self):
+        from datetime import datetime
         today = datetime.date.today()
         age = today.year - self.date_birth.year
         if (today.month, today.day) < (self.date_birth.month, self.date_birth.day):

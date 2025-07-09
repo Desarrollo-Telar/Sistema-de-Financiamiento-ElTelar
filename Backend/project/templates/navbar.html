@@ -12,8 +12,8 @@
 
     <!-- Buscador -->
     <div class="col-12 col-md-6 mb-2 mb-md-0">
-      <form class="d-flex justify-content-center justify-content-md-start" role="search">
-        <input type="search" class="form-control w-100 w-md-75" placeholder="Buscar..." aria-label="Buscar">
+      <form class="d-flex justify-content-center justify-content-md-start" role="search"  action="{% url 'busqueda_general' %}">
+        <input type="search"  name="q" value="{{ query }}"  class="form-control w-100 w-md-75" placeholder="Buscar..." aria-label="Buscar">
       </form>
     </div>
     <!-- Íconos y usuario -->

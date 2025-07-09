@@ -3,26 +3,80 @@
 
 {% block content %}
 
+<div class="container box">
+    {% if query %}
+    <div class="row">
+        <h3>Resultados de búsqueda para "{{ query }}":</h3>
+        <hr>
+        <div class="d-flex justify-content-center fs-5">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
 
-{% if query %}
-<h3>Resultados de búsqueda para "{{ query }}":</h3>
+                </ol>
+            </nav>
+        </div>
+        {% if cliente_object or credito_object %}
+        <div class="row row-cols-1 row-cols-md-1 g-4">
+            {% if credito_object%}
 
-{% for model_name, model_results in results.items %}
 
-<h4>{{ model_name }}</h4>
-<ul>
-    {% for result in model_results %}
-    <li>{{ result }}</li> <!-- Personaliza este campo si quieres mostrar más detalles del objeto -->
-    {% empty %}
-    <li>No se encontraron resultados.</li>
-    {% endfor %}
-</ul>
+            {% for credito in credito_object %}
+            <div class="col" style="margin-top: 1rem;">
+                <div class="card card_hover">
+                    <h5 class="card-header">{{ credito.customer_id.first_name }} {{ credito.customer_id.last_name }} |
+                        {{ credito.codigo_credito }} </h5>
+                    <div class="card-body">
 
-{% endfor %}
+                        <p class="card-text">Credito para: {{ credito.proposito }}.</p>
+                        <p class="card-text">Forma de pago: {{credito.forma_de_pago}}</p>
+                        <figcaption class="blockquote-footer">
+                            {{credito.creation_date}}
+                        </figcaption>
+                        <a href="{% url 'financings:detail_credit' credito.id %}" class="btn_add">Visualizar Credito</a>
+                    </div>
+                </div>
 
-{% endif %}
+            </div>
 
-{% if page_obj %}
-{% include 'snippets/pages.html' %}
-{% endif %}
+
+            {% endfor %}
+            {% endif %}
+
+            {% if cliente_object %}
+
+
+            {% for cliente in cliente_object %}
+            <div class="col" style="margin-top: 1rem;">
+                <div class="card card_hover">
+                    <h5 class="card-header">{{ cliente.first_name }} {{ cliente.last_name }} |  {{ cliente.customer_code }}</h5>
+                    <div class="card-body">
+                        
+                        <p class="card-text"> Numero de Identificacion: {{cliente.identification_number}}.</p>
+                        <p class="card-text"> Numero de Telefono: {{cliente.telephone}}.</p>
+                        <p class="card-text"> Correo Electronico: {{cliente.email}}.</p>
+                        
+                        <a href="{% url 'customers:detail' cliente.customer_code %}" class="btn_guardar">Visualizar Cliente</a>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor%}
+
+            {% endif %}
+
+
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if page_obj %}
+    <div class="row">
+        {% include 'snippets/pages.html' %}
+    </div>
+    {% endif %}
+
+</div>
 {% endblock %}
