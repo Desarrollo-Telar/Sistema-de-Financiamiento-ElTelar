@@ -55,4 +55,4 @@ urlpatterns += urlpatterns_apps + urlpatterns_api + urlpatterns_reports
 #template_name='user/autentication/password-reset.html'
 #email_template_name='user/autentication/password-message.html'
 
-
+handler404 = request_400.error404

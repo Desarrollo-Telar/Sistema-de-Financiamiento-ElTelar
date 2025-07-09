@@ -43,9 +43,22 @@ class WorkingInformationForms(forms.ModelForm):
             'description':forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
             'income_detail':forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
             'salary': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0', 'step':'any'}),
-            'working_hours': forms.TextInput(attrs={'class':'form-control'}),
+            'working_hours': forms.Select(choices=[],attrs={'class':'form-control'}),
             'phone_number': forms.TextInput(attrs={'class':'form-control', 'type':'number','min':'0'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        opciones_horario_trabajo = [
+            ('', '--------------'),
+            ('VESPERTINA','VESPERTINA'),
+            ('NOCTURNO','NOCTURNO'),
+            ('FIN DE SEMANA','FIN DE SEMANA'),
+        ]
+
+        self.fields['working_hours'].widget.choices = opciones_horario_trabajo
+
 
 class OtherSourcesOfIncomeForms(forms.ModelForm):
     class Meta:

@@ -6,6 +6,7 @@ from .forms import InvestmentPlanForms
 # MODELOS
 from apps.customers.models import Customer
 from .models import InvestmentPlan
+from apps.FinancialInformation.models import Reference
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
@@ -28,20 +29,33 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 @usuario_activo
 def create_plan_financiamiento(request, customer_code):
     customer_id = get_object_or_404(Customer, customer_code=customer_code)
+    cantidad = Reference.objects.filter(customer_id=customer_id)
+    plan_inversion = InvestmentPlan.objects.filter(customer_id=customer_id).first()
 
     template_name = 'InvestmentPlan/create.html'
 
     if request.method == 'POST':
         form = InvestmentPlanForms(request.POST)
 
+        if plan_inversion is not None:
+            form = InvestmentPlanForms(request.POST, instance=plan_inversion)
+
+
         if form.is_valid():
             plan = form.save(commit=False)
             plan.customer_id = customer_id
+            plan.type_of_product_or_service = 'Local'
+            plan.transfers_or_transfer_of_funds = True
             plan.save()
 
-            return redirect('customers:detail',customer_code)
+            if cantidad.count() >= 4:
+                return redirect('customers:detail',customer_id.customer_code)
+            return redirect('financial_information:create_reference_information', customer_id.customer_code)
         
     form = InvestmentPlanForms()
+    if plan_inversion is not None:
+        form = InvestmentPlanForms(instance=plan_inversion)
+
     context = {
         'form':form,
         'customer_code':customer_code,

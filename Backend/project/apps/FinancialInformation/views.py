@@ -6,6 +6,7 @@ from apps.addresses.forms import AddressForms
 
 # MODELOS
 from apps.customers.models import Customer
+from apps.addresses.models import Address
 from .models import WorkingInformation, OtherSourcesOfIncome, Reference
 
 # LIBRERIAS PARA CRUD
@@ -60,11 +61,18 @@ def create_working_information(request, customer_code):
     template_name = 'FinancialInformation/create_working_information.html'
     customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
     
-    
+    informacion__laboral = WorkingInformation.objects.filter(customer_id=customer_id).first()
+    direccion_trabajo = Address.objects.filter(customer_id=customer_id,type_address='Dirección de Trabajo').first()
 
     if request.method == 'POST':
         informacion_laboral_form = WorkingInformationForms(request.POST)
         form_direccion = AddressForms(request.POST)
+
+        if informacion__laboral is not None:
+            informacion_laboral_form = WorkingInformationForms(request.POST, instance=informacion__laboral)
+        
+        if direccion_trabajo is not None:
+            form_direccion = AddressForms(request.POST, instance=direccion_trabajo)
 
         if informacion_laboral_form.is_valid() and form_direccion.is_valid():
 
@@ -82,6 +90,14 @@ def create_working_information(request, customer_code):
     
     informacion_laboral_form = WorkingInformationForms()
     form_direccion = AddressForms()
+
+    if informacion__laboral is not None:
+            informacion_laboral_form = WorkingInformation(instance=informacion__laboral)
+        
+    if direccion_trabajo is not None:
+
+        form_direccion = AddressForms( instance=direccion_trabajo)
+
     form_direccion.fields.pop('type_address')
     context = {
         'informacion_laboral_form':informacion_laboral_form,
@@ -97,12 +113,23 @@ def create_working_information(request, customer_code):
 def create_other_information(request, customer_code):
     template_name = 'FinancialInformation/create_working_information.html'
     customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
+
+    informacion__laboral = OtherSourcesOfIncome.objects.filter(customer_id=customer_id).first()
+    direccion_trabajo = Address.objects.filter(customer_id=customer_id,type_address='Dirección de Trabajo').first()
     
     
 
     if request.method == 'POST':
         informacion_laboral_form = OtherSourcesOfIncomeForms(request.POST)
         form_direccion = AddressForms(request.POST)
+
+        if informacion__laboral is not None:
+            informacion_laboral_form = OtherSourcesOfIncomeForms(request.POST, instance=informacion__laboral)
+        
+        if direccion_trabajo is not None:
+            form_direccion = AddressForms(request.POST, instance=direccion_trabajo)
+
+
 
         if informacion_laboral_form.is_valid() and form_direccion.is_valid():
 
@@ -120,6 +147,13 @@ def create_other_information(request, customer_code):
        
     informacion_laboral_form = OtherSourcesOfIncomeForms()
     form_direccion = AddressForms()
+
+    if informacion__laboral is not None:
+            informacion_laboral_form = OtherSourcesOfIncomeForms(instance=informacion__laboral)
+        
+    if direccion_trabajo is not None:
+        form_direccion = AddressForms( instance=direccion_trabajo)
+
     form_direccion.fields.pop('type_address')
     context = {
         'informacion_laboral_form':informacion_laboral_form,
@@ -206,11 +240,21 @@ def update_other_information(request, id, customer_code):
     }
     return render(request, template_name, context)
 
+
+def delete_referencias(customer_id):
+    referencias = Reference.objects.filter(customer_id = customer_id)
+
+    if referencias is not None:
+        for referencia in referencias:
+            referencia.delete()
+
 @login_required
 @usuario_activo
 def create_references_customer(request, customer_code):
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     template_name = 'FinancialInformation/create_references.html'
+
+    delete_referencias(customer_id)
 
     if request.method == 'POST':
         
@@ -271,27 +315,26 @@ def update_references_customer(request, id,customer_code):
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
     template_name = 'FinancialInformation/update_references.html'
     referencia = get_object_or_404(Reference, id=id)
+
     if request.method == 'POST':
-        form = ReferenceForms(request.POST)
+        form = ReferenceForms(request.POST, instance=referencia)
+
         if form.is_valid():
-            
-            referencia = form.save(commit=False)
-            referencia.save()
-
+            refe = form.save(commit=False)
+            refe.customer_id = customer_id
+            refe.save()
             return redirect('customers:detail',customer_code)
-    else:
-        initial_data = {
-            'full_name':referencia.full_name,
-            'phone_number':referencia.phone_number,
-            'reference_type':referencia.reference_type
-        }
-        form = ReferenceForms(initial=initial_data)
 
-        context = {
-            'form':form,
-            'references_id':id,
-            'customer_code':customer_code,
-            'permisos':recorrer_los_permisos_usuario(request)
-        }
+    
+    form = ReferenceForms(instance=referencia)
 
-        return render(request, template_name, context)
+    context = {
+        'form':form,
+        'customer_code':customer_code,
+        'permisos':recorrer_los_permisos_usuario(request)
+
+    }
+
+    return render(request, template_name, context)
+
+    
