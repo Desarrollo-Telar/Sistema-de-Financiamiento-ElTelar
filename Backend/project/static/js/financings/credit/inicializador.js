@@ -5,6 +5,7 @@ import {ocultar, mostrar} from '../funciones_externas/ocultar_mostrar.js'
 // FILTROS 
 import { get_ultima_cuota_ampliacion } from '../../API/credito/obtener_ultima_cuota.js'
 import {get_credit} from '../../API/credito/obtener_credito.js'
+import { actualizar_credito } from '../../API/credito/actualizar.js'
 
 
 const plazo = document.getElementById('plazo');
@@ -124,6 +125,15 @@ $(document).ready(function () {
         try{
             // Obtener toda la informacion relacionada con el credito vigente seleccionado
             const credito_v = await get_credit(data.id);
+            
+            if (credito_v.id ==1){
+                const formData = new FormData();
+                formData.append('is_paid_off', false);
+
+                actualizar_credito(credito_v.id, formData);
+
+            }
+            
             // Obtener la ultima cuota vigente para el credito vigente seleccionado
             const cuotas = await get_ultima_cuota_ampliacion(credito_v.id);
             const cuota = cuotas[0];

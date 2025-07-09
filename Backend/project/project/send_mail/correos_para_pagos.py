@@ -130,6 +130,9 @@ def send_email_recibo(models):
         usuarios_email
     )
     email.attach_alternative(content, 'text/html')
+
+    if models.pago.registro_ficticio:
+        return
     
     if SERVIDOR and usuarios_email:
         

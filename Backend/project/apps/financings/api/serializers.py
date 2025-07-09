@@ -165,8 +165,19 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
         model = PaymentPlan
         fields = '__all__'
     def to_representation(self, instance):
+        credit_data = None
+        if instance.credit_id:
+            credit_data = {
+                "id": instance.credit_id.id,
+                "codigo_credito": instance.credit_id.codigo_credito,
+                "is_paid_off": instance.credit_id.is_paid_off,
+                "estado_aportacion": instance.credit_id.estado_aportacion,
+                "estados_fechas": instance.credit_id.estados_fechas,
+                "forma_de_pago": instance.credit_id.forma_de_pago
+            }
+
         return {
-            "id":instance.id,
+            "id": instance.id,
             "mes": instance.mes,
             "start_date": instance.start_date,
             "due_date": instance.due_date,
@@ -183,23 +194,17 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
             "mora_pagado": instance.mora_pagado,
             "fecha_limite": mostrar_fecha_limite(instance.fecha_limite),
             "cambios": instance.cambios,
-            "numero_referencia":instance.numero_referencia,
-            "cuota_vencida":instance.cuota_vencida,
-            'total_cancelar': total(instance.capital_generado,instance.interest,instance.mora,instance.principal),
+            "numero_referencia": instance.numero_referencia,
+            "cuota_vencida": instance.cuota_vencida,
+            "total_cancelar": total(instance.capital_generado, instance.interest, instance.mora, instance.principal),
             "capital_generado": resultado_capital(instance.principal, instance.capital_generado),
-            "interes_generado":instance.interes_generado,
-            "interes_acumulado_generado":instance.interes_acumulado_generado,
-            "mora_acumulado_generado":instance.mora_acumulado_generado,
+            "interes_generado": instance.interes_generado,
+            "interes_acumulado_generado": instance.interes_acumulado_generado,
+            "mora_acumulado_generado": instance.mora_acumulado_generado,
             "mora_generado": instance.mora_generado,
-            "credit_id":{
-                "id":instance.credit_id.id,
-                "codigo_credito":instance.credit_id.codigo_credito,
-                "is_paid_off":instance.credit_id.is_paid_off,
-                "estado_aportacion":instance.credit_id.estado_aportacion,
-                "estados_fechas":instance.credit_id.estados_fechas,
-                "forma_de_pago":instance.credit_id.forma_de_pago
-            }
+            "credit_id": credit_data
         }
+
 
 class PaymentPlanSerializerAcreedor(serializers.ModelSerializer):
     class Meta:
