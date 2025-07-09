@@ -96,7 +96,7 @@ Codigo del Cliente: {customer.customer_code}
         )
 
         mensaje = {
-            'title':f'Registro de Cliente Nuevo',
+            'title':f'Registro de Cliente Nuevo. 😏',
             'message':f'Se ha registrado un cliente nuevo',
             'especificaciones':especificaciones
         }

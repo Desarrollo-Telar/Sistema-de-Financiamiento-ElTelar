@@ -53,7 +53,7 @@ def send_email_new_credit(models):
         )
 
         mensaje = {
-            'title':'Registro de un Credito Nuevo',
+            'title':'Registro de un Credito Nuevo. 😊',
             'message':'Se ha registrado un nuevo credito dentro de la plataforma.',
             'especificaciones':especificaciones
         }
@@ -99,7 +99,7 @@ def send_email_next_update_of_quotas(cuotas):
         )
 
         mensaje = {
-            'title':'Cuotas con Fecha Vencimiento Hoy',
+            'title':'Cuotas con Fecha Vencimiento Hoy. 😶',
             'message':'Las siguientes cuotas han llegado a su fecha de vencimiento',
             'especificaciones':especificaciones
         }
@@ -145,7 +145,7 @@ def send_email_update_of_quotas(cuotas):
         )
 
         mensaje = {
-            'title':'Cuotas con Fecha Limite Hoy',
+            'title':'Cuotas con Fecha Limite Hoy. 😵',
             'message':'Las siguientes cuotas han llegado a su fecha limite',
             'especificaciones':especificaciones
         }

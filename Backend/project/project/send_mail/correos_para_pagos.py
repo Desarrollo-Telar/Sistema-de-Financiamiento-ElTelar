@@ -82,8 +82,13 @@ Para: {models.boleta_para}
            
         )
 
+        emojin = '😕'
+
+        if status == 'COMPLETADO':
+            emojin = '😎'
+
         mensaje = {
-            'title':f'ALERTA DE BOLETA',
+            'title':f'ALERTA DE BOLETA. {emojin}',
             'message':f'La siguiente boleta con {models.numero_referencia} esta en status {status}',
             'especificaciones':especificaciones
         }
@@ -139,7 +144,7 @@ def send_email_recibo(models):
         )
 
         mensaje = {
-            'title':f'Se genero un Recibo',
+            'title':f'Se genero un Recibo. 📋',
             'message':f'Recibo para {models.pago.boleta_para()}',
             'especificaciones':especificaciones
         }
