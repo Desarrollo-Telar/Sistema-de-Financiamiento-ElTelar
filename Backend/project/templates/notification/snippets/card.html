@@ -1,29 +1,21 @@
 {% load static %}
 
+<div class="container my-5">
+    <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
+        
+        <a href="{% url 'actividades:eliminar_notificacion' object.uuid %}" class="position-absolute top-0 end-0 p-3 m-3 btn-close bg-secondary bg-opacity-10 rounded-pill"
+            aria-label="Close"></a>
 
-<div style="padding: 2rem;">
-
-
-    <h4 class="fs-4">{{object.title}} 
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-            <path
-                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-        </svg>
-    </h4>
-    <hr>
-    <p class="fs-5 fw-light">{{object.message}}</p>
-
-    {% if object.especificaciones.contenido %}
-
-    <p class="fs-6 fw-light">{{object.especificaciones.contenido|linebreaksbr}}</p>
-    {% endif %}
-    <p>{{object.created_at}}</p>
-    {% if object.especificaciones.url %}
-    <a href="{{object.especificaciones.url}}" class=" btn_add">Ir</a>
-    {% endif %}
-
-
-
-
+        <h4 class="text-body-emphasis">{{object.title}}</h4>
+        <p class="col-lg-6 mx-auto mb-4">
+            {{object.message}}
+        </p>
+        {% if object.especificaciones.contenido %}
+        <p class="col-lg-6 mx-auto mb-4">{{object.especificaciones.contenido|linebreaksbr}}</p>
+        {% endif %}
+        {% if object.especificaciones.url %}
+        <a href="{{object.especificaciones.url}}" class=" btn_guardar">Ir</a>
+        {% endif %}
+    </div>
 </div>
+

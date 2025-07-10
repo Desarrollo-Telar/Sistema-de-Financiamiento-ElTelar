@@ -9,3 +9,6 @@ from .listar import listar_notificaciones
 
 # Detalle
 from .detalle import detalle_notificacion
+
+# Eliminar
+from .delete import eliminar_notificacion
