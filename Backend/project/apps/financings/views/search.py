@@ -1,4 +1,5 @@
-
+# TIEMPO
+from datetime import datetime, timedelta
 
 # Models
 from apps.financings.models import Credit,  Banco, Payment
@@ -86,6 +87,13 @@ class PaymentSearch(ListView):
 
             # Añadir filtros si la consulta no está vacía
             if query:
+                try:
+                    fecha = datetime.strptime(query, '%Y-%m-%d')
+                    fecha_inicio = datetime.combine(fecha.date(), datetime.min.time())
+                    fecha_fin = datetime.combine(fecha.date(), datetime.max.time())
+                    filters |= Q(fecha_emision__range=(fecha_inicio, fecha_fin))
+                except ValueError:
+                    pass  # No es fecha válida, continúa con los otros filtros
                 filters |= Q(fecha_emision__icontains=query)
                 filters |= Q(numero_referencia__icontains=query)
                 filters |= Q(estado_transaccion__icontains=query)
