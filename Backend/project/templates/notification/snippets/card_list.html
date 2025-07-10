@@ -19,6 +19,8 @@
                         </svg>
                         {% endif %}
                     </h4>
+                    <a href="{% url 'actividades:eliminar_notificacion' notification.uuid %}" class="position-absolute top-0 end-0 p-3 m-3 btn-close bg-secondary bg-opacity-10 rounded-pill"
+            aria-label="Close"></a>
                     <hr>
                     <p class="fs-5 fw-light">{{notification.message}}</p>
 
