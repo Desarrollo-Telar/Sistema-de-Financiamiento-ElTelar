@@ -120,12 +120,15 @@ def generar_estado_cuenta(cuota, accion):
 
     if accion == 'FECHA_LIMITE':
         if cuota.interes_pagado > 0:
-            estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida, ya que no se gestionó el pago completo dentro del plazo establecido. Se realizó un abono parcial acerca de los intereses, sin saldar el total de la cuota. Le recordamos la importancia de regularizar esta obligación a la brevedad para evitar la generación de cargos por mora.'
+            estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida.\nCapital Pendiente Por Pagar.'
         else:
-            estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida, ya que no se ha gestionado su pago en el tiempo establecido. Le recordamos la importancia de regularizar esta obligación lo antes posible para evitar cargos adicionales.'
+            estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida.\nFalta de Pago.'
 
     if accion == 'FECHA_VENCIMIENTO':
-        estado_cuenta.description = f'La cuota No. {cuota.mes} ha pasado al estado de "Fechas en atraso" debido a que no fue pagada dentro del plazo estipulado.'
+        if cuota.interes_pagado > 0:
+            estado_cuenta.description = f'La cuota No. {cuota.mes} ha pasado al estado de "Fechas en atraso".\nPor Capital Pendiente Por Pagar.'
+        else:
+            estado_cuenta.description = f'La cuota No. {cuota.mes} ha pasado al estado de "Fechas en atraso".\nPor Falta de Pago.'
 
 
     estado_cuenta.cuota = cuota

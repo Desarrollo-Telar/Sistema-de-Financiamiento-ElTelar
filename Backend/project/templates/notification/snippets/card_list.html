@@ -23,7 +23,7 @@
                     <p class="fs-5 fw-light">{{notification.message}}</p>
 
                     {% if notification.especificaciones.contenido %}
-                    <p class="fs-6 fw-light">{{notification.especificaciones.contenido}}</p>
+                    <p class="fs-6 fw-light">{{notification.especificaciones.contenido|linebreaksbr}}</p>
                     {% endif %}
 
                     <figcaption class="blockquote-footer" style="margin-bottom: 0.5rem;">

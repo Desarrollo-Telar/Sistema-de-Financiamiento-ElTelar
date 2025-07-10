@@ -16,7 +16,7 @@
 
     {% if object.especificaciones.contenido %}
 
-    <p class="fs-6 fw-light">{{object.especificaciones.contenido}}</p>
+    <p class="fs-6 fw-light">{{object.especificaciones.contenido|linebreaksbr}}</p>
     {% endif %}
     <p>{{object.created_at}}</p>
     {% if object.especificaciones.url %}
