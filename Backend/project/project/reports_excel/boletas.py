@@ -18,6 +18,9 @@ from django.views.generic import TemplateView
 from django.http import HttpResponse
 
 
+# Decoradores
+from project.decorador import permiso_requerido
+from django.utils.decorators import method_decorator
 
 
 
@@ -62,6 +65,10 @@ class ReporteBaseBoletasExcelView(TemplateView):
         
     def query(self):
         return self.request.GET.get('q')
+    
+    @method_decorator(permiso_requerido('puede_descargar_informe_boletas_pagos'))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         # Crear el archivo Excel

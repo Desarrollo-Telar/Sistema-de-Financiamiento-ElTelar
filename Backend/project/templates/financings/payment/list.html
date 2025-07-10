@@ -66,7 +66,7 @@
             {% include 'financings/payment/snippets/filters.html' %}
         </div>
 
-        {% if permisos.puede_descargar_imagen_boleta_pago %}
+        {% if permisos.puede_descargar_informe_boletas_pagos %}
         <div class="col-2 col-md-2 col-lg-1">
             <a  href="{% url 'report_base_boletas_filter' %}?q={{ query }}" title="Descargar reporte">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
