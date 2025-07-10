@@ -103,6 +103,9 @@ class Customer(models.Model):
 
     uuid = models.UUIDField(verbose_name="Token Cliente",default=uuid.uuid4,  blank=True, null=True)
     completado = models.BooleanField(verbose_name="Estado de Registro", default=True)
+
+    lugar_emision_tipo_identificacion_departamento = models.CharField(verbose_name="Lugar de Emision (Departamento)", max_length=100, blank=True, null=True, default='Alta Verapaz')
+    lugar_emision_tipo_identificacion_municipio = models.CharField(verbose_name="Lugar de Emision (Municipio)", max_length=100, blank=True, null=True, default='Cobán')
     
     def __str__(self):
         return self.get_full_name()

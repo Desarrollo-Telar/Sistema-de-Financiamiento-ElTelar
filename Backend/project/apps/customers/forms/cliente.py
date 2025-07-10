@@ -11,6 +11,8 @@ class CustomerForm(forms.ModelForm):
             'last_name',
             'type_identification',
             'identification_number',
+            'lugar_emision_tipo_identificacion_departamento',
+            'lugar_emision_tipo_identificacion_municipio',
             'email',
             'date_birth',
             'number_nit',
@@ -42,9 +44,11 @@ class CustomerForm(forms.ModelForm):
             'nationality': 'Nacionalidad',
             'telephone': 'Número de Teléfono (*)',
             'person_type': 'Tipo de Persona',
-            'new_asesor_credito': 'Asesor del Crédito',
+            'new_asesor_credito': 'Asesor del Crédito (*)',
             'status': 'Estado del Cliente',
-            'immigration_status_id':'Condicion Migratoria (*)'
+            'immigration_status_id':'Condicion Migratoria (*)',
+            'lugar_emision_tipo_identificacion_departamento': 'Departamento de Emision (*)',
+            'lugar_emision_tipo_identificacion_municipio': 'Municipio de Emision (*)',
             
             
         }
@@ -65,9 +69,11 @@ class CustomerForm(forms.ModelForm):
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'telephone': forms.TextInput(attrs={'class': 'form-control','type':'number', 'min':'0', 'maxlength':'8'}),
             'person_type': forms.Select(attrs={'class': 'form-control'}),
-            'new_asesor_credito': forms.Select(attrs={'class': 'form-control asesor'}),
+            'new_asesor_credito': forms.Select(attrs={'class': 'form-control asesor', 'required':'required'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             'immigration_status_id':forms.Select(attrs={'class': 'form-control', 'requerid':'true'}),
+            'lugar_emision_tipo_identificacion_departamento':  forms.Select(attrs={'class': 'form-control city2', 'required':'required'}),
+            'lugar_emision_tipo_identificacion_municipio':  forms.Select(attrs={'class': 'form-control state2',  'required':'required'}),
         }
 
     def __init__(self, *args, **kwargs):

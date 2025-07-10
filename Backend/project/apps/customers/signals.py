@@ -6,7 +6,8 @@ from django.dispatch import receiver
 
 # Modelo
 from .models import Customer, CreditCounselor
-
+from apps.addresses.models import Municiopio, Departamento
+from django.db.models import Q
 # Tiempo
 from datetime import datetime
 
@@ -41,6 +42,25 @@ def set_customer_code_and_update_status(sender, instance, **kwargs):
     buscar_asesor = CreditCounselor.objects.filter(id=instance.new_asesor_credito.id).first()
     
     instance.asesor = f'{buscar_asesor.nombre} {buscar_asesor.apellido}'
+
+    departamento = instance.lugar_emision_tipo_identificacion_departamento
+    municipio = instance.lugar_emision_tipo_identificacion_municipio
+
+    print(f'Departamento: {departamento}. Municipio: {municipio}')
+
+    filtrar_d = Q(nombre__icontains=departamento) | Q(id=departamento)
+    departamento_f = Departamento.objects.filter(filtrar_d).first()
+
+    print(f'Departamento encontrado: {departamento_f}')
+
+    filtrar_m = Q(nombre__icontains=municipio) | Q(id=municipio)
+    municipio_f = Municiopio.objects.filter(filtrar_m).first()
+
+    print(f'Municipio Encontrado: {municipio_f}')
+
+    if departamento_f and municipio_f:
+        instance.lugar_emision_tipo_identificacion_departamento = departamento_f.nombre
+        instance.lugar_emision_tipo_identificacion_municipio = municipio_f.nombre
 
     # Si el código del cliente está vacío o es una cadena vacía, genera uno nuevo
     if not instance.customer_code or instance.customer_code == '':

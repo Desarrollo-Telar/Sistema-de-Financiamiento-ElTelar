@@ -37,8 +37,8 @@ class AddressForms(forms.ModelForm):
         widgets = {
             'street': forms.TextInput(attrs={'class':'form-control'}),
             'number': forms.TextInput(attrs={'class':'form-control','type':'number','min':'0'}),
-            'city': forms.Select(attrs={'class':'form-control city1'}),
-            'state': forms.Select(attrs={'class':'form-control state1'}),
+            'city': forms.Select(attrs={'class':'form-control city1','required':'required'}),
+            'state': forms.Select(attrs={'class':'form-control state1','required':'required'}),
             
             'country': forms.TextInput(attrs={'class':'form-control'}),
             'type_address':forms.Select(attrs={'class':'form-control'}),
