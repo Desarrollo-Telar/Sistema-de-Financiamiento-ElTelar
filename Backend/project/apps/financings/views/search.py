@@ -27,7 +27,7 @@ from django.db.models import Q
 # ------------------ BUSCADOR ------------------------------
 class BankSearch(ListView):
     template_name = 'financings/bank/list.html'
-    paginate_by = 25
+    
 
     def get_queryset(self):
         try:
@@ -75,7 +75,7 @@ class BankSearch(ListView):
 
 class PaymentSearch(ListView):
     template_name = 'financings/payment/list.html'
-    paginate_by = 25
+    
 
     def get_queryset(self):
         try:
@@ -134,7 +134,7 @@ class PaymentSearch(ListView):
 
 class CreditSearch(ListView):
     template_name = 'financings/credit/list.html'
-    paginate_by = 25
+    
 
     def get_queryset(self):
         try:

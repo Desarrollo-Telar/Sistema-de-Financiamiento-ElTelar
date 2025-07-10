@@ -24,7 +24,7 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 # ----- BUSCAR CLIENTES ----- #
 class CustomerSearch(ListView):
     template_name = 'customer/list.html'
-    paginate_by = 25
+    
 
     def get_queryset(self):
         try:

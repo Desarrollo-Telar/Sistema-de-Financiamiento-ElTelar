@@ -6,11 +6,18 @@
         <ul class="pagination flex-wrap justify-content-center">
 
           {# Botón anterior #}
+
           {% if page_obj.has_previous %}
             <li class="page-item">
+              {% if query %}
+              <a class="page-link" href="?q={{ query }}&?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+              {% else %}
               <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
                 <span aria-hidden="true">&laquo;</span>
               </a>
+              {% endif %}
             </li>
           {% else %}
             <li class="page-item disabled">
@@ -26,7 +33,11 @@
               </li>
             {% else %}
               <li class="page-item">
+                {% if query %}
+                <a class="page-link" href="?q={{ query }}&?page={{ num }}" style="color: black;">{{ num }}</a>
+                {% else %}
                 <a class="page-link" href="?page={{ num }}" style="color: black;">{{ num }}</a>
+                {% endif %}
               </li>
             {% endif %}
           {% endfor %}
@@ -34,9 +45,17 @@
           {# Botón siguiente #}
           {% if page_obj.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Siguiente">
+              {% if query %}
+                <a class="page-link" href="?q={{ query }}&?page={{ page_obj.next_page_number }}" style="color: black;">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+                {% else %}
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Siguiente">
                 <span aria-hidden="true">&raquo;</span>
               </a>
+                {% endif %}
+
+              
             </li>
           {% else %}
             <li class="page-item disabled">
