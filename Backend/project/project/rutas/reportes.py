@@ -13,6 +13,7 @@ from django.urls import path, include
 urlpatterns_reports = [
     path('reporte/banco/',login_required(report_banco),name='reporte_banco_excel'),
     path('reporte/boletas_base/',login_required(report_base_boletas),name='report_base_boletas'),
+    path('reporte/boletas_filter/',login_required(ReporteBaseBoletasExcelView.as_view()),name='report_base_boletas_filter'),
     path('reporte/clientes/',login_required(report_clientes),name='report_clientes'),
     path('reporte/desembolso/<str:mes>/<str:anio>/',login_required(report_desmbolso),name='report_desmbolso'),
     path('reporte/pagos/creditos/<str:anio>/<str:mes>/', login_required(report_pagos_generales),name='report_pagos_generales'),

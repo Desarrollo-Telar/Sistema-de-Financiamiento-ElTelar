@@ -8,7 +8,7 @@ from .pagos_acreedores import report_pagos_acreedores, report_pagos_generales_ac
 
 from .creditos import report_creditos
 
-from .boletas import report_base_boletas
+from .boletas import report_base_boletas, ReporteBaseBoletasExcelView
 
 from .clientes import report_clientes
 
