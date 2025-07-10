@@ -252,60 +252,57 @@ def delete_referencias(customer_id):
 @login_required
 @usuario_activo
 def create_references_customer(request, customer_code):
-    customer_id = get_object_or_404(Customer, customer_code = customer_code)
+    customer_id = get_object_or_404(Customer, customer_code=customer_code)
     template_name = 'FinancialInformation/create_references.html'
 
     delete_referencias(customer_id)
 
     if request.method == 'POST':
-        
-        form = ReferenceForms(request.POST)
-        form_2 = ReferenceForms(request.POST)
-        form_3 = ReferenceForms(request.POST)
-        form_4 = ReferenceForms(request.POST)
+        form = ReferenceForms(request.POST, prefix='form1')
+        form_2 = ReferenceForms(request.POST, prefix='form2')
+        form_3 = ReferenceForms(request.POST, prefix='form3')
+        form_4 = ReferenceForms(request.POST, prefix='form4')
 
         validacion = form.is_valid() and form_2.is_valid() and form_3.is_valid() and form_4.is_valid()
 
         if validacion:
+            referencia1 = form.save(commit=False)
+            referencia1.customer_id = customer_id
+            referencia1.reference_type = 'Personales'
+            referencia1.save()
 
-            referencia = form.save(commit=False)
-            referencia.customer_id = customer_id
-            referencia.reference_type = 'Personales'
-            referencia.save()
+            referencia2 = form_2.save(commit=False)
+            referencia2.customer_id = customer_id
+            referencia2.reference_type = 'Personales'
+            referencia2.save()
 
-            referencia = form_2.save(commit=False)
-            referencia.customer_id = customer_id
-            referencia.reference_type = 'Personales'
-            referencia.save()
+            referencia3 = form_3.save(commit=False)
+            referencia3.customer_id = customer_id
+            referencia3.reference_type = 'Laborales'
+            referencia3.save()
 
-            referencia = form_3.save(commit=False)
-            referencia.customer_id = customer_id
-            referencia.reference_type = 'Laborales'
-            referencia.save()
-
-            referencia = form_4.save(commit=False)
-            referencia.customer_id = customer_id
-            referencia.reference_type = 'Laborales'
-            referencia.save()
+            referencia4 = form_4.save(commit=False)
+            referencia4.customer_id = customer_id
+            referencia4.reference_type = 'Laborales'
+            referencia4.save()
 
             customer_id.completado = True
             customer_id.save()
 
-            return redirect('customers:detail',customer_code)
-        
-    form = ReferenceForms()
-    form_2 = ReferenceForms()
-    form_3 =   ReferenceForms()
-    form_4 =  ReferenceForms()
+            return redirect('customers:detail', customer_code)
+    else:
+        form = ReferenceForms(prefix='form1')
+        form_2 = ReferenceForms(prefix='form2')
+        form_3 = ReferenceForms(prefix='form3')
+        form_4 = ReferenceForms(prefix='form4')
 
     context = {
-        'form':form,
-        'form_2':form_2,
-        'form_3':form_3,
-        'form_4':form_4,
-        
-        'customer_code':customer_code,
-        'permisos':recorrer_los_permisos_usuario(request)
+        'form': form,
+        'form_2': form_2,
+        'form_3': form_3,
+        'form_4': form_4,
+        'customer_code': customer_code,
+        'permisos': recorrer_los_permisos_usuario(request)
     }
 
     return render(request, template_name, context)

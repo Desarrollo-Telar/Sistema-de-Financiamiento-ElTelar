@@ -84,9 +84,8 @@ def send_email_new_customer(customer):
             extra_data={
                 'contenido':f'''
 Detalles del Cliente:
-Nombre: { customer.get_full_name()}
+Nombre: { customer.first_name}
 Correo Electronico: {customer.email}
-Asesor: {customer.asesor}
 Codigo del Cliente: {customer.customer_code}
 '''
             }

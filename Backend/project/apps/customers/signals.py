@@ -37,26 +37,36 @@ def generate_customer_code(status, current_year, counter):
     suffix = status_suffix.get(status, '')
     return f'{current_year}-{suffix}{counter}'
 
+def is_int(value):
+    try:
+        int(value)
+        return True
+    except (ValueError, TypeError):
+        return False
+        
 @receiver(pre_save, sender=Customer)
 def set_customer_code_and_update_status(sender, instance, **kwargs):
     buscar_asesor = CreditCounselor.objects.filter(id=instance.new_asesor_credito.id).first()
     
     instance.asesor = f'{buscar_asesor.nombre} {buscar_asesor.apellido}'
 
+    
+
     departamento = instance.lugar_emision_tipo_identificacion_departamento
     municipio = instance.lugar_emision_tipo_identificacion_municipio
 
-    print(f'Departamento: {departamento}. Municipio: {municipio}')
+    # Filtro condicionalmente por id si es un número
+    filtros_departamento = Q(nombre__icontains=departamento)
+    if is_int(departamento):
+        filtros_departamento |= Q(id=departamento)
 
-    filtrar_d = Q(nombre__icontains=departamento) | Q(id=departamento)
-    departamento_f = Departamento.objects.filter(filtrar_d).first()
+    departamento_f = Departamento.objects.filter(filtros_departamento).first()
 
-    print(f'Departamento encontrado: {departamento_f}')
+    filtros_municipio = Q(nombre__icontains=municipio)
+    if is_int(municipio):
+        filtros_municipio |= Q(id=municipio)
 
-    filtrar_m = Q(nombre__icontains=municipio) | Q(id=municipio)
-    municipio_f = Municiopio.objects.filter(filtrar_m).first()
-
-    print(f'Municipio Encontrado: {municipio_f}')
+    municipio_f = Municiopio.objects.filter(filtros_municipio).first()
 
     if departamento_f and municipio_f:
         instance.lugar_emision_tipo_identificacion_departamento = departamento_f.nombre
