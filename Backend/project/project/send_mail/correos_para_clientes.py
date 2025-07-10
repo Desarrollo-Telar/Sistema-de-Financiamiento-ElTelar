@@ -86,7 +86,6 @@ def send_email_new_customer(customer):
 Detalles del Cliente:
 Nombre: { customer.get_full_name()}
 Correo Electronico: {customer.email}
-Edad: {customer.get_edad()}
 Asesor: {customer.asesor}
 Codigo del Cliente: {customer.customer_code}
 '''
