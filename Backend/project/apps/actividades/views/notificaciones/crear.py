@@ -6,7 +6,10 @@ from apps.actividades.forms.documentoBoletaCliente import DocumentoNotificacionC
 from apps.codes.models import TokenCliente
 from apps.financings.models import PaymentPlan
 # Relacion
-from apps.actividades.models import DocumentoNotificacionCliente
+from apps.actividades.models import DocumentoNotificacionCliente, Notification
+
+# Notificaciones
+from scripts.notificaciones.creacion_notificacion import creacion_notificacion_administrador_secretaria
 
 # URL
 from django.shortcuts import render, get_object_or_404, redirect
@@ -65,6 +68,14 @@ def subida_documento(request, uuid):
             documento.cliente = token_cliente.cliente
             documento.cuota = token_cliente.cuota
             documento.save()
+            especificaciones = None
+
+            mensaje = {
+                'title':f'El Cliente {token_cliente.cliente} ha subido su boleta de pago. 😮',
+                'message':f'El Cliente {token_cliente.cliente} ha subido su boleta de pago para el credito {token_cliente.cuota.credit_id} del mes {token_cliente.cuota.mes}.',
+                'especificaciones':especificaciones
+            }
+            creacion_notificacion_administrador_secretaria(mensaje)
             messages.success(request, 'Se ha subido correctamente su documento. ')
             return redirect('actividades:cerrar_pestania')
 
