@@ -2,13 +2,16 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <form method="POST" class="box" enctype="multipart/form-data">
+<div class="container box">
+    <div class="d-flex justify-content-center">
+        <img src="{% static 'img/logo.png' %}" alt="" style="height: 3rem; width: 10rem;">
+    </div>
+    <form method="POST"  enctype="multipart/form-data">
         {% csrf_token %}
         {% include 'snippets/forms.html' %}
         <button type="submit" class="btn_guardar">Guardar Boleta</button>
         <button id="cuota_por_cobrar" class="btn_cancel" onclick="mostarcuota()" type="button">Cuota por cobrar</button>
-        <button class="btn btn-link " onclick="window.close()" type="button">Cancelar</button>
+        <a class="btn btn-link " href="{% url 'actividades:cerrar_pestania' %}" >Cancelar</a>
     </form>
 
 </div>
