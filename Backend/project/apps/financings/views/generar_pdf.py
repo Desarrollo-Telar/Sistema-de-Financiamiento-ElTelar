@@ -7,9 +7,6 @@ from django.contrib.staticfiles import finders
 
 from django.shortcuts import render, get_object_or_404, redirect
 
-# TAREA ASINCRONICO
-from apps.financings.task import cambiar_plan
-
 # MODELOS
 from apps.financings.models import Recibo, Invoice,AccountStatement,Credit,PaymentPlan, Payment, Cuota
 from apps.accountings.models import Creditor, Insurance
@@ -22,6 +19,7 @@ from django.core.exceptions import SuspiciousFileOperation
 from weasyprint import HTML
 # tiempo
 from datetime import datetime,timedelta
+from django.db.models import Q
 # Obtener la fecha y hora actual
 now = datetime.now()
 
@@ -55,7 +53,7 @@ def total_capital_pagada(estado_cuenta):
         contador+=estado.capital_paid
     return formatear_numero(contador)
 
-from django.db.models import Q
+
 
 def render_pdf_factura(request,id):    
     recibo = get_object_or_404(Recibo, id=id)

@@ -2,7 +2,7 @@
 import { urls_p } from '../../API/urls_api.js'
 
 document.getElementById('cuota_por_cobrar').addEventListener('click', () => {
-    const id_credito = document.getElementById('credit_id').value;
+    const id_credito = document.getElementById('siguiente_pago').value;
     
     let resultado = fetchLastPaymentPlan(id_credito);
     console.log(resultado);
@@ -25,7 +25,7 @@ function formato_fechas(fecha) {
 async function fetchLastPaymentPlan(searchTerm) {
     try {
         // URL del endpoint con el parámetro 'term'
-        const url = `${urls_p.api_url_cuota}?term=${encodeURIComponent(searchTerm)}`;
+        const url = `${urls_p.api_url_cuota}${encodeURIComponent(searchTerm)}/`;
 
         // Realizar la solicitud GET con Axios
         const response = await axios.get(url);

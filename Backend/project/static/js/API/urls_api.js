@@ -49,10 +49,14 @@ export const urls = {
     api_url_permiso: `${baseUrl}/roles_permisos/api/permisos/`,
     api_url_rol: `${baseUrl}/roles_permisos/api/role/`,
     api_url_permiso_usuario:  `${baseUrl}/users/api/permisos_usuarios/`,
+    // MENSAJE
+    api_url_mensaje_alerta_pago: `${baseUrl}/api/generar-mensaje/`,
     
 }
 
 export const urls_p = {
+    // MENSAJE
+    api_url_mensaje_alerta_pago: `${baseUrl}/api/generar-mensaje/`,
     // CLIENTE
     api_url_cliente: `${baseUrl}/customers/api/customers/`,
     api_url_clientes_aceptados: `${baseUrl}/customers/api/customers_accept/`,

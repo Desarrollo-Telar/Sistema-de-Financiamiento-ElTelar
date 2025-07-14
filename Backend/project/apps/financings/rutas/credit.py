@@ -29,6 +29,7 @@ urlpatterns_credit = [
     path('credit/reciente/x',login_required(filter_credito_con_aportaciones),name='filter_credito_con_aportaciones'),
     path('credit/fecha_vencimiento/',login_required(filter_credito_fecha_vencimiento_hoy),name='filter_credito_fecha_vencimiento_hoy'),
     path('credit/fecha_limite/',login_required(filter_credito_fecha_limite_hoy),name='filter_credito_fecha_limite_hoy'),
+    path('credit/proximos/fecha_vencimiento/',login_required(filter_credito_proximos_vencerse),name='filter_credito_proximos_vencerse'),
 
     
 

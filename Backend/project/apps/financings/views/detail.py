@@ -89,6 +89,7 @@ def detail_credit(request,id):
     credito.saldo_actual = saldo_actual
     credito.save()
     
+    print(siguiente_pago)
     
     
     

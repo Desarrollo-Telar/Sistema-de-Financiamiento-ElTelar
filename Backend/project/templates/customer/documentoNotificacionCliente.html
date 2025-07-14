@@ -2,14 +2,50 @@
 {% load static %}
 
 {% block content %}
+<div class="container">
+    <form method="POST" class="box" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'snippets/forms.html' %}
+        <button type="submit" class="btn_guardar">Guardar Boleta</button>
+        <button id="cuota_por_cobrar" class="btn_cancel" onclick="mostarcuota()" type="button">Cuota por cobrar</button>
+        <button class="btn btn-link " onclick="window.close()" type="button">Cancelar</button>
+    </form>
+
+</div>
 
 
-<form method="POST" class="box" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% include 'snippets/forms.html' %}
-    <button type="submit" class="btn_guardar">Guardar Boleta</button>
-    <button  class="btn btn-link " onclick="window.close()" type="button">Cancelar</button>
-</form>
 
 
+{% endblock %}
+
+{% block js %}
+<script>
+    function mostarcuota() {
+        {% if cuota %}
+            Swal.fire({
+                icon: "info",
+                title:  "{% if not cuota.credit_id.is_paid_off %} Cuota Por Cobrar {% else %} Este crédito ya ha sido cancelado por completo {% endif %}",
+                html: `
+                    <p>Fecha de Inicio: {{ cuota.start_date.date }}</p>
+                    <p>Fecha de Vencimiento: {{ cuota.due_date.date }} </p>
+                    <p>Fecha Límite: {{ cuota.mostrar_fecha_limite }} </p>
+                    <p>Mora: Q{{ cuota.formato_cuota_mora }}</p>
+                    <p>Interés: Q{{ cuota.formato_cuota_interes }}</p>
+                    <p>Capital a aportar: Q{{ cuota.formato_cuota_capital }}</p>
+                    <p>Total de la cuota a cancelar: Q{{ cuota.formato_cuota_total }}</p>
+                `,
+                timer: 4000,
+                showConfirmButton: false,
+            });
+        {% else %}
+            Swal.fire({
+                icon: "info",
+                title: "No hay cuota por cobrar",
+                text: "Actualmente no existe información de una cuota pendiente para este cliente.",
+                timer: 3000,
+                showConfirmButton: false,
+            });
+        {% endif %}
+    }
+</script>
 {% endblock %}

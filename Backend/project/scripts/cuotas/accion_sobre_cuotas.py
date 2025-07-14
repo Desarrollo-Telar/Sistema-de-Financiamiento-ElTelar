@@ -197,13 +197,9 @@ def recorrido_de_cuotas(cuotas, accion):
                 if cuota.interest != 0:
                     cuota.mora = mora
                     cuota.mora_generado = mora
-                cuota.save()
-
+                cuota.save()               
                 
-                
-                
-                
-
+    
             else:
                 credito.estados_fechas = True
                 credito.estado_aportacion = False
@@ -212,18 +208,23 @@ def recorrido_de_cuotas(cuotas, accion):
             siguiente_cuota = obtener_la_siguiente_cuota(cuota)
             interes_acumulado = cuota.interest + interes
 
-            """if cuota.credit_id is not None:
+            if cuota.credit_id is not None:
 
                 tokken, creado = TokenCliente.objects.get_or_create(
                     cliente=cuota.credit_id.customer_id,
                     cuota=cuota
                 )
 
-                if creado:
-                    print('creación de token nuevo')
+                tokken.delete()
 
-                tokken.cuota = siguiente_cuota
-                tokken.save()"""
+                tokkens, creado = TokenCliente.objects.get_or_create(
+                    cliente=cuota.credit_id.customer_id,
+                    cuota=siguiente_cuota
+                )
+
+                print(f'Token nuevo {tokkens}')
+
+                
 
 
                 

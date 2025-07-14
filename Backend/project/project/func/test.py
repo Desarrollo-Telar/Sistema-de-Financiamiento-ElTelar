@@ -12,6 +12,10 @@ django.setup()
 
 # Modelos
 from apps.customers.models import CreditCounselor, Customer
+from apps.financings.models import Credit, PaymentPlan
+
+# Scripts
+from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
 
 def main():
   # Create a client for your MinIO server using your access and secret keys
@@ -34,16 +38,15 @@ def main():
 
 if __name__ == "__main__":
   try:
-    query = 'Luis'
+    print('Manejo de mensajes de whatsaap')
 
-    clientes = Customer.objects.filter(asesor__icontains=query)
-    asesor = CreditCounselor.objects.filter(nombre__icontains=query).first()
     
-    for cliente in clientes:
-      cliente.new_asesor_credito = asesor
-      cliente.save()
+    cuota = PaymentPlan.objects.filter(id=491).first()
 
-    print('Completado')
+
+    link = mensaje_cliente_por_credito('2025-200',491)
+    print(link)
+
 
   except S3Error as exc:
     print("An error occurred.", exc)

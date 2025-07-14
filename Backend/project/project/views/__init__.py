@@ -6,3 +6,6 @@ from .buscador import Search
 
 # SISTEMA
 from .sistema import generate_qr, index, list_reportes_modulos
+
+# API FUNCIONALIDADS
+from .generacion_mensaje_whatsapp import GenerarMensajePagoAPIView

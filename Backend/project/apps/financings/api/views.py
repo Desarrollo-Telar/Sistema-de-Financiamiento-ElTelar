@@ -168,20 +168,18 @@ class PaymentPlanUltimoViewSet(viewsets.ModelViewSet):
     serializer_class = PaymentPlanSerializer
     queryset = PaymentPlan.objects.all()
 
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        search_term = self.request.query_params.get('term', '')
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
 
         if search_term:
-            queryset = queryset.filter(
+            queryset = PaymentPlan.filter(
                 Q(id__icontains=search_term) 
-            )
+            ).first()
 
-        last_item = queryset.order_by('-id').first()
-        if last_item:
-            serializer = self.get_serializer(last_item)
-            return Response(serializer.data)
-        return Response([])  # Si no hay datos que coincidan, devolver una lista vacía
+
+        
+        return queryset 
 
 class PaymentPlanAmpliacion(viewsets.ModelViewSet):
     serializer_class = PaymentPlanSerializer

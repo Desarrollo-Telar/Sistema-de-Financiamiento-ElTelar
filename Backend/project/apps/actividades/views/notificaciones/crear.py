@@ -4,7 +4,7 @@ from apps.actividades.forms.documentoBoletaCliente import DocumentoNotificacionC
 
 # Token
 from apps.codes.models import TokenCliente
-
+from apps.financings.models import PaymentPlan
 # Relacion
 from apps.actividades.models import DocumentoNotificacionCliente
 
@@ -32,6 +32,7 @@ def subida_documento(request, uuid):
 
     # Obtener el token del cliente
     token_cliente = TokenCliente.objects.filter(uuid=uuid).first()
+    cuota = None
 
     # Validar que exista registro del token
     if token_cliente is None:
@@ -39,18 +40,18 @@ def subida_documento(request, uuid):
     
     # Cargar Formulario
     form = DocumentoNotificacionClienteForms
-
+    cuota = PaymentPlan.objects.filter(id=token_cliente.cuota.id).first()
     
     # Buscar si ya hay un registro de documento
     documento_cliente = DocumentoNotificacionCliente.objects.filter(cliente = token_cliente.cliente, cuota=token_cliente.cuota ).first()
 
-    if documento_cliente.status:
-        token_cliente.delete() # Eliminar el token
-        return redirect('actividades:cerrar_pestania')
-
-
     if documento_cliente is not None:
         form = DocumentoNotificacionClienteForms(instance=documento_cliente) # Cargar con los documentos ya subidos
+        
+
+    if documento_cliente is not None and documento_cliente.status:
+        token_cliente.delete() # Eliminar el token
+        return redirect('actividades:cerrar_pestania')
      
     if request.method == 'POST':
         form = DocumentoNotificacionClienteForms(request.POST, request.FILES)
@@ -74,5 +75,6 @@ def subida_documento(request, uuid):
     template_name = 'customer/documentoNotificacionCliente.html'
     context = {
         'form':form,
+        'cuota':cuota,
     }
     return render(request, template_name, context)

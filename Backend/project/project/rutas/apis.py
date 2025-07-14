@@ -4,6 +4,7 @@ from rest_framework.authtoken import views as v_iews
 from rest_framework.documentation import include_docs_urls
 from django.contrib.auth import views as auth_views
 from project.view_api import view
+from project.views import GenerarMensajePagoAPIView
 
 # DECORADOR
 from django.contrib.auth.decorators import login_required
@@ -32,7 +33,14 @@ urlpatterns_api = [
     
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api-token-auth/', v_iews.obtain_auth_token),
+
+    # ------------ PARA MANDAR MENSAJES----- 
+    path('api/generar-mensaje/<str:customer_code>/<str:cuota_id>/', GenerarMensajePagoAPIView.as_view(), name='generar-mensaje-pago'),
+
+    # ----------- DOCUMENTACION DE API -----------
     path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),
+
+    # ---------------- SE ME OLVIDO LA CONTRASEÑa ------------------------
     path('reset_password/',auth_views.PasswordResetView.as_view(template_name='user/autentication/password-reset.html',email_template_name='user/autentication/password-message.html'),name='password_reset'),
     path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(template_name='user/autentication/password-confirmation1.html'),name='password_reset_done'),
     path('reset_password/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(template_name='user/autentication/password_reset_confirm.html'),name='password_reset_confirm'),    

@@ -134,6 +134,11 @@ class PaymentPlan(models.Model):
         limite = self.fecha_limite.replace(hour=5, minute=59, second=0, microsecond=0)
         return limite
     
+    def mostrar_fecha_limite_mensaje(self):
+        limite = self.fecha_limite - relativedelta(days=1)
+        
+        return limite
+    
     def total(self):
         total = 0
         capital = Decimal(self.calculo_capital())

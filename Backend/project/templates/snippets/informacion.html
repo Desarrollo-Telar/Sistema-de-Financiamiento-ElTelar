@@ -135,6 +135,32 @@
 
         </div>
     </div>
+    <div class="col">
+        <div class="card card_hover" style="background-color: #fff1f1;">
+            <a href="{% url 'financings:filter_credito_proximos_vencerse'%}" style="text-decoration: none;">
+                <div class="card-body">
+                    <div class="row" style="color: #480709;">
+                        <div class="col-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                                class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
+                            </svg>
+                        </div>
+                        <div class="col-6">
+                            <h4>{{creditos.creditos_proximos_vencerse.count}}</h4>
+                            <h6>Creditos Proximos A Fecha Vencimiento</h6>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </div>
+    </div>
 
 
 

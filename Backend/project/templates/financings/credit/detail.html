@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="row box">
-    <input type="hidden" id="credit_id" value="{{siguiente_pago.id}}">
+<div class="container box">
+    <input type="hidden" id="siguiente_pago" value="{{siguiente_pago.id}}">
+    <input type="hidden" id="cliente" value="{{customer_list.customer_code}}">
     <div class="row">
         {% include 'financings/credit/snippets/descripcion_credito.html' %}
 
@@ -24,6 +25,7 @@
 
 {% block js %}
 <script type="module" src="{% static 'js/financings/credit/detail.js' %}"></script>
+<script type="module" src="{% static 'js/financings/mensaje_alerta/accion_mensaje.js' %}"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 {% endblock %}
