@@ -16,12 +16,18 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 # Paginacion
 from project.pagination import paginacion
 
+def marcar_como_leidos(lista):
+    for notificacion in lista:
+        notificacion.read = True
+        notificacion.save()
+
 @login_required
 @usuario_activo
 def listar_notificaciones(request):
 
     template_name = 'notification/list.html'
     notificacion = Notification.objects.filter(user=request.user).order_by('-created_at')
+    marcar_como_leidos(notificacion)
 
     page_obj = paginacion(request, notificacion)
 
