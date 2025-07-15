@@ -120,6 +120,7 @@ export async function guardar_boleta_desembolso(credit, disbursement, monto,nume
 export async function registrarDetalle(garantia_id) {
     try {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const resultados = [];
 
         for (let element of lista_garantia) {
             let js = {
@@ -128,13 +129,14 @@ export async function registrarDetalle(garantia_id) {
                 valor_cobertura: element['valor_cobertura'],
                 especificaciones: element['especificacion'],
             };
-            console.log(`DETALLE DE GARANTIA ${JSON.stringify(js)}`)
+
+            console.log(`DETALLE DE GARANTIA ${JSON.stringify(js)}`);
 
             const response = await fetch(urls_p.api_url_detalle_garantia, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': csrfToken // Incluir el token CSRF en las cabeceras
+                    'X-CSRFToken': csrfToken
                 },
                 body: JSON.stringify(js)
             });
@@ -144,11 +146,10 @@ export async function registrarDetalle(garantia_id) {
             }
 
             const data = await response.json();
-            
-            
-            console.log('Respuesta de la API del registro de detalle de la garantia:', data);
-            return data;
+            resultados.push(data);
         }
+
+        return resultados;  // Devolver todas las respuestas al final
 
     } catch (error) {
         console.error('Error en el envío de detalles:', error);

@@ -148,21 +148,21 @@ def detallar_desembolso(request,id):
 @login_required
 @usuario_activo
 def detallar_garantia(request, id):
-    detalle = get_object_or_404(DetailsGuarantees, garantia_id__id=id)
-    #detalle_garantia = DetailsGuarantees.objects.filter(garantia_id=garantia)
+    garantia = get_object_or_404(Guarantees, id=id)
+    credit_list = Credit.objects.filter(id=garantia.credit_id.id).first()
+    customer_list = Customer.objects.get(id=credit_list.customer_id.id)
+    detalle_garantia = DetailsGuarantees.objects.filter(garantia_id=garantia)
+    documentos = DocumentGuarantee.objects.filter(garantia__in=detalle_garantia)
 
-    credit_list = Credit.objects.filter(codigo_credito=detalle.garantia_id.credit_id.codigo_credito).first()
-    customer_list = Customer.objects.filter(id=credit_list.customer_id.id).first()
-    documentos = DocumentGuarantee.objects.filter(garantia=detalle)
 
     template_name = 'financings/guarantee/detail.html'
 
     context = {
-        'title':'Detalle de la Garantia. {}'.format(detalle.garantia_id.credit_id),
-        'documentos':documentos,
-        'detalle':  detalle,     
         'credit_list':credit_list,
         'customer_list':customer_list,
+        'detalle_garantia':detalle_garantia,
+        'garantia':garantia,
+        'documentos':documentos,
         'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)

@@ -2,30 +2,33 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <div class="row box" style="margin-top: 1rem;">
-        {% include 'financings/credit/snippets/descripcion_credito.html' with credit_list=credit_list%}
-
+<div class="row box">
+    <div class="row">
+        
     </div>
-    {% for detalle in detalle_garantia %}
-    <div class="row box" style="margin-top: 2rem;">
-        <h5>{{detalle.tipo_garantia}}</h5>
-        <hr>
+
+
+    <hr>
+    <div class="row">
+        <p class="fw-bold">Tipo de Garantia: <span class="fw-normal">{{detalle.tipo_garantia}}</span></p>
         <div class="fw-bold">
             <p>Especificaciones</p>
             {% for key, value in detalle.especificaciones.items %}
             <p class="fw-normal">{{key}}: {{value}}</p>
             {% endfor %}
-            <p class="fw-bold">Valor de Cobertura: <span class="fw-normal">Q{{detalle.fvalor_cobertura}}</span></p>
-            <a href="{% url 'document:create_documente_detalle_garantia' detalle.id %}" class="btn_guardar">Cargar
-                Documento</a>
-            
+
         </div>
+
+
+        <p class="fw-bold">Valor de Cobertura: <span class="fw-normal">Q{{detalle.fvalor_cobertura}}</span></p>
+         <a href="{% url 'document:create_documente_detalle_garantia' detalle.id %}" class="btn_guardar">Cargar
+                Documento</a>
+
     </div>
-    {% endfor %}
     {% if documentos %}
-    <div class="row box" style="margin-top: 2rem;">
-        {% for documento in documentos%}
+    {% for documento in documentos%}
+    <hr>
+    <div class="row">
         <a href="{{documento.document_id.get_document}}" class="fw-bold">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                 class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
@@ -34,20 +37,22 @@
             </svg>
             Documento sobre la Garantia: {{documento.document_id.description}}
         </a>
-        {% endfor %}
-
     </div>
+    {% endfor %}
     {% endif %}
-
-    <div class="row box" style="margin-top: 2rem;">
-       
-        
+    <hr>
+    <div class="row " style="margin-top: 1rem; ">
+        <div class="col">
+           
+        </div>
         <div class="col">
             <button onclick="window.history.back()" type="button" class="btn_cancel">Atras</button>
 
         </div>
+
+
     </div>
+
+
 </div>
-
-
 {% endblock %}
