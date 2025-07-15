@@ -1,49 +1,121 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>INVERSIONES INTEGRALES EL TELAR S.A. | </title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INVERSIONES INTEGRALES EL TELAR S.A | {{title}}</title>
   <link rel="icon" href="{% static 'img/logo.png' %}" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+  <!-- Bootstrap-->
+
+  <!--<link rel="stylesheet" href="{% static 'css/style.css'%}" /> -->
+
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
-  <link href="{% static 'css/sidebar.css'%}" rel="stylesheet">
+  <!-- PARA AGREGAR FONTS -->
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+
+
   {% block css %}
   {% endblock%}
+  <style type="text/css">
+    @font-face {
+      font-family: 'Quicksand';
+      src: url("{% static 'css/text/Quicksand/Quicksand-VariableFont_wght.ttf' %}") format('truetype'),
+      url("{% static 'css/text/Quicksand/static/Quicksand-Regular.ttf' %}") format('truetype');
+      font-weight: 500;
+      /* Peso normal */
+      font-style: normal;
+      /* Estilo normal */
+    }
 
+    body {
+      background-color: #ededed;
+      font-family: "Quicksand", serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-container {
+      flex: 1;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #f7f7f7;
+      color: #464646;
+      box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar a {
+      color: #464646;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+    }
+
+    .sidebar a:hover {
+      background-color: #495057;
+      color: #ffffff;
+    }
+
+    .content {
+      margin-left: 1rem;
+      padding: 1rem;
+    }
+
+    .list_sidebar a {
+      color: #464646;
+      text-decoration: none;
+
+    }
+
+    .list_sidebar a:hover {
+      background-color: #495057;
+      color: #ffffff;
+    }
+  </style>
 </head>
 
 <body>
+
   {% include 'navbar.html' %}
-  <main class="d-flex flex-nowrap">
-    {% include 'sidebar_.html' %}
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
+
+  <div class="main-container">
+    {% include 'sidebar.html' %}
+    <main class="content">
+      
+
+    </main>
+
+
+  </div>
+
+
+
+
 
   </main>
 
+  <!--Bootstrap-->
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- Incluye Axios en tu archivo HTML desde una CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="{% static 'js/node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
   <script src="{% static 'js/node_modules/chart.js/dist/chart.umd.js' %}"></script>
   <script src="{% static 'js/node_modules/axios/dist/axios.min.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="{% static 'js/sidebar.js'%}" class="astro-vvvwv3sm"></script>
+
   <script>
     {% if messages %}
     {% for message in messages %}
