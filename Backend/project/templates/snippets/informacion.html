@@ -1,170 +1,78 @@
 {% load static %}
 
-
-<div class="row row-cols-1 row-cols-md-3 g-3">
-    <div class="col">
-        <div class="card card_hover" style="background-color: #ffc8ca;">
-            <a href="{% url 'customers:customers'%}" style="text-decoration: none;">
-                <div class="card-body">
-                    <div class="row" style="color: #480709;">
-                        <div class="col-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                                class="bi bi-people-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
-                            </svg>
-                        </div>
-                        <div class="col-6">
-                            <h4>{{clientes.count}}</h4>
-                            <h6>Clientes Registrados</h6>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
+<a href="{% url 'customers:customers'%}" class="stat-card">
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-people-fill"
+            viewBox="0 0 16 16">
+            <path
+                d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+        </svg>
     </div>
+    <div class="number">{{clientes.count}}</div>
+    <div class="label">Clientes Registrados</div>
 
-    <div class="col">
-        <div class="card card_hover" style="background-color: #fff1f1;">
-            <a href="{% url 'financings:list_credit'%}" style="text-decoration: none;">
-                <div class="card-body">
-                    <div class="row" style="color: #480709;">
-                        <div class="col-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                                class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
-                            </svg>
-                        </div>
-                        <div class="col-6">
-                            <h4>{{creditos.creditos.count}}</h4>
-                            <h6>Creditos Vigentes</h6>
 
-                        </div>
+</a>
 
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
+<a href="{% url 'financings:list_credit'%}" class="stat-card">
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
+            <path
+                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
+        </svg>
     </div>
-    <div class="col">
-        <div class="card card_hover" style="background-color: #fff1f1;">
-            <a href="{% url 'financings:creditos_en_atrasos'%}" style="text-decoration: none;">
-                <div class="card-body">
-                    <div class="row" style="color: #480709;">
-                        <div class="col-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                                class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
-                            </svg>
-                        </div>
-                        <div class="col-6">
-                            <h4>{{creditos.creditos_atrasados.count}}</h4>
-                            <h6>Creditos Con Estado de Fechas En Atraso</h6>
+    <div class="number">{{creditos.creditos.count}}</div>
+    <div class="label">Créditos Vigentes</div>
+</a>
 
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
+<a href="{% url 'financings:creditos_en_atrasos'%}" class="stat-card">
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+            <path
+                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </svg>
     </div>
+    <div class="number">{{creditos.creditos_atrasados.count}}</div>
+    <div class="label">Créditos en Atraso</div>
+</a>
 
-    
-    <div class="col">
-        <div class="card card_hover" style="background-color: #fff1f1;">
-            <a href="{% url 'financings:filter_credito_fecha_vencimiento_hoy'%}" style="text-decoration: none;">
-                <div class="card-body">
-                    <div class="row" style="color: #480709;">
-                        <div class="col-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                                class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
-                            </svg>
-                        </div>
-                        <div class="col-6">
-                            <h4>{{creditos.creditos_fecha_vencimiento.count}}</h4>
-                            <h6>Creditos Con Fecha de Vencimiento Hoy</h6>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
+<a href="{% url 'financings:filter_credito_fecha_vencimiento_hoy'%}" class="stat-card">
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-event"
+            viewBox="0 0 16 16">
+            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+            <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+        </svg>
     </div>
-    <div class="col">
-        <div class="card card_hover" style="background-color: #fff1f1;">
-            <a href="{% url 'financings:filter_credito_fecha_limite_hoy'%}" style="text-decoration: none;">
-                <div class="card-body">
-                    <div class="row" style="color: #480709;">
-                        <div class="col-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                                class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
-                            </svg>
-                        </div>
-                        <div class="col-6">
-                            <h4>{{creditos.creditos_fecha_limite.count}}</h4>
-                            <h6>Creditos Con Fecha Limite Hoy</h6>
+    <div class="number">{{creditos.creditos_fecha_vencimiento.count}}</div>
+    <div class="label">Vencen Hoy</div>
+</a>
 
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
+<a href="{% url 'financings:filter_credito_fecha_limite_hoy'%}" class="stat-card">
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clock-fill"
+            viewBox="0 0 16 16">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+        </svg>
     </div>
-    <div class="col">
-        <div class="card card_hover" style="background-color: #fff1f1;">
-            <a href="{% url 'financings:filter_credito_proximos_vencerse'%}" style="text-decoration: none;">
-                <div class="card-body">
-                    <div class="row" style="color: #480709;">
-                        <div class="col-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                                class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
-                            </svg>
-                        </div>
-                        <div class="col-6">
-                            <h4>{{creditos.creditos_proximos_vencerse.count}}</h4>
-                            <h6>Creditos Proximos A Fecha Vencimiento</h6>
+    <div class="number">{{creditos.creditos_fecha_limite.count}}</div>
+    <div class="label">Fecha Límite Hoy</div>
+</a>
 
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
+<a href="{% url 'financings:filter_credito_proximos_vencerse'%}" class="stat-card">
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-week"
+            viewBox="0 0 16 16">
+            <path
+                d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+            <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+        </svg>
     </div>
-
-
-
-
-
-
-</div>
+    <div class="number">{{creditos.creditos_proximos_vencerse.count}}</div>
+    <div class="label">Próximos a Vencer</div>
+</a>

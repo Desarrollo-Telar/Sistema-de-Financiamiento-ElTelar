@@ -1,9 +1,9 @@
 {% load static %}
-<div class="container-fluid bg-white">
-  <header class="row align-items-center py-2">
+<div class="container-fluid header-container">
+    <header class="row align-items-center">
 
     <!-- Logo -->
-    <div class="col-12 col-md-3 text-center text-md-start mb-2 mb-md-0">
+    <div class="col-12 col-md-3 text-center text-md-start mb-2 mb-md-0 logo-container">
       <a href="{% url 'index' %}" class="d-inline-flex align-items-center text-decoration-none">
 
         <img src="{% static 'img/logo.png'%}" alt="Logo" style="height: 3rem; width: 10rem;">
@@ -11,13 +11,13 @@
     </div>
 
     <!-- Buscador -->
-    <div class="col-12 col-md-6 mb-2 mb-md-0">
+    <div class="col-12 col-md-6 mb-2 mb-md-0 search-container">
       <form class="d-flex justify-content-center justify-content-md-start" role="search"  action="{% url 'busqueda_general' %}">
-        <input type="search"  name="q" value="{{ query }}"  class="form-control w-100 w-md-75" placeholder="Buscar..." aria-label="Buscar">
+        <input type="search"  name="q" value="{{ query }}"  class="form-control w-100 w-md-75" placeholder="Buscar clientes, créditos..." aria-label="Buscar">
       </form>
     </div>
     <!-- Íconos y usuario -->
-    <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center gap-2">
+    <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center gap-2 header-actions">
       <!-- Notificaciones -->
       <div class="dropdown" style="margin-right: 0.5rem;">
         <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"

@@ -1,135 +1,73 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INVERSIONES INTEGRALES EL TELAR S.A | {{title}}</title>
-  <link rel="icon" href="{% static 'img/logo.png' %}" />
-
-  <!-- Bootstrap-->
-
-  <!--<link rel="stylesheet" href="{% static 'css/style.css'%}" /> -->
-
-  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-  <link rel="stylesheet" href="{% static 'css/list.css' %}">
-  <!-- PARA AGREGAR FONTS -->
-
-
-
-
-  {% block css %}
-  {% endblock%}
-  <style type="text/css">
-    @font-face {
-      font-family: 'Quicksand';
-      src: url("{% static 'css/text/Quicksand/Quicksand-VariableFont_wght.ttf' %}") format('truetype'),
-      url("{% static 'css/text/Quicksand/static/Quicksand-Regular.ttf' %}") format('truetype');
-      font-weight: 500;
-      /* Peso normal */
-      font-style: normal;
-      /* Estilo normal */
-    }
-
-    body {
-      background-color: #ededed;
-      font-family: "Quicksand", serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .main-container {
-      flex: 1;
-      display: flex;
-    }
-
-    .sidebar {
-      width: 250px;
-      background-color: #f7f7f7;
-      color: #464646;
-      box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .sidebar a {
-      color: #464646;
-      text-decoration: none;
-      display: block;
-      padding: 10px 20px;
-    }
-
-    .sidebar a:hover {
-      background-color: #495057;
-      color: #ffffff;
-    }
-
-    .content {
-      margin-left: 1rem;
-      padding: 1rem;
-    }
-
-    .list_sidebar a {
-      color: #464646;
-      text-decoration: none;
-
-    }
-
-    .list_sidebar a:hover {
-      background-color: #495057;
-      color: #ffffff;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INVERSIONES INTEGRALES EL TELAR S.A. | Dashboard</title>
+  <link rel="icon" href="/static/img/logo.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/css/buttons.css">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/list.css">
+  <link href="/static/css/sidebar.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static/css/new_styles.css">
 </head>
 
 <body>
+  
+ 
 
-  {% include 'navbar.html' %}
+ 
 
-  <div class="main-container">
-    {% include 'sidebar.html' %}
-    <main class="content">
-      
-
-    </main>
-
-
-  </div>
-
-
-
-
-
-  </main>
-
-  <!--Bootstrap-->
-
-
-  <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <!-- Incluye Axios en tu archivo HTML desde una CDN -->
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="{% static 'js/node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
-  <script src="{% static 'js/node_modules/chart.js/dist/chart.umd.js' %}"></script>
-  <script src="{% static 'js/node_modules/axios/dist/axios.min.js' %}"></script>
+  <script src="/static/js/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="/static/js/node_modules/chart.js/dist/chart.umd.js"></script>
+  <script src="/static/js/node_modules/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/static/js/sidebar.js"></script>
+  <script src="/static/js/grafica_index.js"></script>
 
   <script>
-    {% if messages %}
-    {% for message in messages %}
-    Swal.fire({
-      icon: "{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% elif message.tags == 'warning' %}warning{% else %}info{% endif %}",
-      title: "{{ message }}",
-      timer: 3000,
-      showConfirmButton: false,
+    // Animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.stat-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'all 0.6s ease-out';
+      observer.observe(card);
     });
-    {% endfor %}
-    {% endif %}
-  </script>
-  <script>
-    let cantidadNotificaciones = 0; // ← Se inicializa aquí globalmente
+
+    // Staggered animation for cards
+    document.querySelectorAll('.stat-card').forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+    });
+
+    // Notification system
+    let cantidadNotificaciones = 0;
 
     function mostrarToaster(mensaje) {
       Swal.fire({
@@ -138,8 +76,10 @@
         icon: 'info',
         title: mensaje,
         showConfirmButton: false,
-        timer: 100,
+        timer: 3000,
         timerProgressBar: true,
+        background: 'rgba(255, 255, 255, 0.95)',
+        backdrop: false,
         didOpen: (toast) => {
           toast.addEventListener('mouseenter', Swal.stopTimer);
           toast.addEventListener('mouseleave', Swal.resumeTimer);
@@ -160,7 +100,7 @@
       try {
         const response = await fetch(url, {
           method: 'GET',
-          credentials: 'include' // Para sesiones autenticadas
+          credentials: 'include'
         });
 
         const data = await response.json();
@@ -181,27 +121,26 @@
 
         if (total === 0) {
           list.innerHTML = `
-          <li><a class="dropdown-item fw-light" href="#"> No hay notificaciones nuevas. </a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item fw-italic" href="{% url 'actividades:notification' %}">Ver Todas las Notificaciones</a></li>
-        `;
+            <li><a class="dropdown-item fw-light" href="#"> No hay notificaciones nuevas. </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item fw-italic" href="/actividades/notification/">Ver Todas las Notificaciones</a></li>
+          `;
         } else {
           data.slice(0, 5).forEach(noti => {
             const item = document.createElement("li");
             item.innerHTML = `
-            <a class="dropdown-item fw-semibold" href="${baseUrl}/actividades/notification/${noti.uuid}/">
-              ${noti.title}<br><small class="fw-light">${noti.created_at}</small>
-            </a>
-          `;
+              <a class="dropdown-item fw-semibold" href="${baseUrl}/actividades/notification/${noti.uuid}/">
+                ${noti.title}<br><small class="fw-light">${noti.created_at}</small>
+              </a>
+            `;
             list.appendChild(item);
           });
 
-          // Agrega separador y opción "Ver todas"
           const divider = document.createElement("li");
           divider.innerHTML = `<hr class="dropdown-divider">`;
 
           const verMas = document.createElement("li");
-          verMas.innerHTML = `<a class="dropdown-item fw-italic" href="{% url 'actividades:notification' %}">Ver Todas las Notificaciones</a>`;
+          verMas.innerHTML = `<a class="dropdown-item fw-italic" href="/actividades/notification/">Ver Todas las Notificaciones</a>`;
 
           list.appendChild(divider);
           list.appendChild(verMas);
@@ -212,16 +151,103 @@
       }
     }
 
-    // Ejecutar al cargar y luego cada 5 segundos
+    // Initialize tooltips
     document.addEventListener('DOMContentLoaded', () => {
+      // Enable tooltips
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+
+      // Load notifications
       cargarNotificaciones();
       setInterval(cargarNotificaciones, 10000);
+
+      // Add hover effects to interactive elements
+      document.querySelectorAll('.clickable').forEach(element => {
+        element.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.02)';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+        });
+      });
+
+      // Add smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // Add loading animation to forms
+      document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function() {
+          const submitBtn = this.querySelector('button[type="submit"]');
+          if (submitBtn) {
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Cargando...';
+            submitBtn.disabled = true;
+          }
+        });
+      });
     });
+
+    // Add particle effect on click
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.stat-card')) {
+        createParticles(e.pageX, e.pageY);
+      }
+    });
+
+    function createParticles(x, y) {
+      for (let i = 0; i < 6; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'fixed';
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        particle.style.width = '4px';
+        particle.style.height = '4px';
+        particle.style.backgroundColor = '#3b82f6';
+        particle.style.borderRadius = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '9999';
+        document.body.appendChild(particle);
+
+        const angle = (Math.PI * 2 * i) / 6;
+        const velocity = 2;
+        const dx = Math.cos(angle) * velocity;
+        const dy = Math.sin(angle) * velocity;
+
+        let opacity = 1;
+        let scale = 1;
+        let posX = x;
+        let posY = y;
+
+        const animate = () => {
+          opacity -= 0.02;
+          scale -= 0.01;
+          posX += dx;
+          posY += dy;
+
+          particle.style.opacity = opacity;
+          particle.style.transform = `scale(${scale})`;
+          particle.style.left = posX + 'px';
+          particle.style.top = posY + 'px';
+
+          if (opacity > 0) {
+            requestAnimationFrame(animate);
+          } else {
+            particle.remove();
+          }
+        };
+
+        animate();
+      }
+    }
   </script>
-
-
-
-  {%block js%} {%endblock%}
 </body>
-
 </html>

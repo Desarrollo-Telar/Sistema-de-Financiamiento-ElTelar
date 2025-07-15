@@ -1,5 +1,5 @@
 {% load static %}
-<div class="d-flex flex-column flex-shrink-0 bg-body-tertiary" style="width: 4.5rem;">
+<div class="d-flex flex-column flex-shrink-0 sidebar" style="width: 4.5rem;">
     
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
         <li class="nav-item">
@@ -42,7 +42,7 @@
         {% endif %}
 
 {% if permisos.puede_ver_registro_acreedores or permisos.puede_ver_registro_seguros or permisos.puede_ver_registro_ingresos or permisos.puede_ver_registro_egresos or permisos.puede_ver_listado_registro_bancos %}
-        <li  class="dropdown border-top">
+        <li >
         <a class="nav-link dropdown-toggle d-block py-2 px-3 text-decoration-none" href="#" role="button"
           data-bs-toggle="dropdown" aria-expanded="false" aria-label="Contabilidad" data-bs-original-title="Contabilidad">
           <img src="{% static 'img/icons/banco.png' %}" alt="icono_credito" width="20" height="20"> 
