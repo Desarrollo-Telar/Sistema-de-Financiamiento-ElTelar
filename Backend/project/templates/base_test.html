@@ -1,211 +1,156 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>INVERSIONES INTEGRALES EL TELAR</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-  <link rel="icon" href="{% static 'img/logo.png' %}" />
-  <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-  <link rel="stylesheet" href="{% static 'css/list.css' %}">
-  {% block css %}
-  {% endblock%}
-  <style type="text/css">
-    @font-face {
-      font-family: 'Quicksand';
-      src: url("{% static 'css/text/Quicksand/Quicksand-VariableFont_wght.ttf' %}") format('truetype'),
-      url("{% static 'css/text/Quicksand/static/Quicksand-Regular.ttf' %}") format('truetype');
-      font-weight: 500;
-      /* Peso normal */
-      font-style: normal;
-      /* Estilo normal */
-    }
-
-    body {
-      background-color: #ededed;
-      font-family: "Quicksand", serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .main-container {
-      flex: 1;
-      display: flex;
-    }
-
-    .sidebar {
-      width: 250px;
-      background-color: #f7f7f7;
-      color: #464646;
-      box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .sidebar a {
-      color: #464646;
-      text-decoration: none;
-      display: block;
-      padding: 10px 20px;
-    }
-
-    .sidebar a:hover {
-      background-color: #495057;
-      color: #ffffff;
-    }
-
-    .content {
-      margin-left: 1rem;
-      padding: 1rem;
-    }
-
-    .list_sidebar a {
-      color: #464646;
-      text-decoration: none;
-
-    }
-
-    .list_sidebar a:hover {
-      background-color: #495057;
-      color: #ffffff;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <title>Bitácora del Sistema</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 150px;
+        }
+        .filter-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #34495e;
+        }
+        .filter-group input, .filter-group select {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .filter-group input[type="date"] {
+            padding: 6px 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #3498db;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        thead {
+            background-color: #34495e;
+            color: #fff;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        @media(max-width: 768px) {
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .filter-group {
+                min-width: 100%;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  {% include 'navbar.html' %}
-  <div class="main-container">
-    {% include 'sidebar.html' %}
-    <main class="content ">
-      <div class="container-fluid container-xs">
-        {% block content %}
-        {% endblock %}
-      </div>
+    <h1>Bitácora del Sistema</h1>
 
-    </main>
+    <!-- Filtros avanzados -->
+    <form method="get" class="filters">
+        <div class="filter-group">
+            <label for="tipo">Tipo de Evento</label>
+            <select name="tipo" id="tipo">
+                <option value="">-- Todos --</option>
+                <option value="ERROR" {% if tipo == 'ERROR' %}selected{% endif %}>Error</option>
+                <option value="ACCESO" {% if tipo == 'ACCESO' %}selected{% endif %}>Acceso</option>
+                <option value="CONFIG" {% if tipo == 'CONFIG' %}selected{% endif %}>Configuración</option>
+                <option value="OTRO" {% if tipo == 'OTRO' %}selected{% endif %}>Otro</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="usuario">Usuario</label>
+            <input type="text" name="usuario" id="usuario" placeholder="Buscar por usuario" value="{{ usuario }}">
+        </div>
+        <div class="filter-group">
+            <label for="fecha_inicio">Fecha Inicio</label>
+            <input type="date" name="fecha_inicio" id="fecha_inicio" value="{{ fecha_inicio }}">
+        </div>
+        <div class="filter-group">
+            <label for="fecha_fin">Fecha Fin</label>
+            <input type="date" name="fecha_fin" id="fecha_fin" value="{{ fecha_fin }}">
+        </div>
+        <div class="filter-group" style="align-self: flex-end;">
+            <button type="submit" class="btn">Buscar</button>
+        </div>
+    </form>
 
-
-  </div>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="{% static 'js/node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
-  <script src="{% static 'js/node_modules/chart.js/dist/chart.umd.js' %}"></script>
-  <script src="{% static 'js/node_modules/axios/dist/axios.min.js' %}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <script>
-    {% if messages %}
-    {% for message in messages %}
-    Swal.fire({
-      icon: "{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% elif message.tags == 'warning' %}warning{% else %}info{% endif %}",
-      title: "{{ message }}",
-      timer: 3000,
-      showConfirmButton: false,
-    });
-    {% endfor %}
-    {% endif %}
-  </script>
-   <script>
-    let cantidadNotificaciones = 0; // ← Se inicializa aquí globalmente
-
-    function mostrarToaster(mensaje) {
-      Swal.fire({
-        toast: true,
-        position: 'top-end',
-        icon: 'info',
-        title: mensaje,
-        showConfirmButton: false,
-        timer: 100,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer);
-          toast.addEventListener('mouseleave', Swal.resumeTimer);
-        }
-      });
-    }
-
-    async function cargarNotificaciones() {
-      const list = document.getElementById("notificaciones-list");
-      const badge = document.getElementById("noti-badge");
-
-      const protocolo = window.location.protocol;
-      const dominio = window.location.hostname;
-      const puerto = window.location.port;
-      const baseUrl = `${protocolo}//${dominio}${puerto ? `:${puerto}` : ''}`;
-      const url = `${baseUrl}/actividades/api/notificaciones/`;
-
-      try {
-        const response = await fetch(url, {
-          method: 'GET',
-          credentials: 'include' // Para sesiones autenticadas
-        });
-
-        const data = await response.json();
-        const total = data.length;
-
-        // Actualizar badge
-        badge.textContent = total > 99 ? "99+" : total;
-        badge.style.display = total > 0 ? "inline-block" : "none";
-
-        // Mostrar toaster si hay nuevas
-        if (total > cantidadNotificaciones) {
-          mostrarToaster(`Tienes ${total - cantidadNotificaciones} nueva(s) notificación(es).`);
-        }
-        cantidadNotificaciones = total;
-
-        // Limpiar lista de notificaciones
-        list.innerHTML = "";
-
-        if (total === 0) {
-          list.innerHTML = `
-          <li><a class="dropdown-item fw-light" href="#"> No hay notificaciones nuevas. </a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item fw-italic" href="{% url 'actividades:notification' %}">Ver Todas las Notificaciones</a></li>
-        `;
-        } else {
-          data.slice(0, 5).forEach(noti => {
-            const item = document.createElement("li");
-            item.innerHTML = `
-            <a class="dropdown-item fw-semibold" href="${baseUrl}/actividades/notification/${noti.uuid}/">
-              ${noti.title}<br><small class="fw-light">${noti.message}</small>
-            </a>
-          `;
-            list.appendChild(item);
-          });
-
-          // Agrega separador y opción "Ver todas"
-          const divider = document.createElement("li");
-          divider.innerHTML = `<hr class="dropdown-divider">`;
-
-          const verMas = document.createElement("li");
-          verMas.innerHTML = `<a class="dropdown-item fw-italic" href="{% url 'actividades:notification' %}">Ver Todas las Notificaciones</a>`;
-
-          list.appendChild(divider);
-          list.appendChild(verMas);
-        }
-
-      } catch (error) {
-        console.error("Error al cargar notificaciones:", error);
-      }
-    }
-
-    // Ejecutar al cargar y luego cada 5 segundos
-    document.addEventListener('DOMContentLoaded', () => {
-      cargarNotificaciones();
-      setInterval(cargarNotificaciones, 5000);
-    });
-  </script>
-  {%block js%} 
-  {%endblock%}
+    <!-- Tabla de registros -->
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Usuario</th>
+                <th>IP</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.fecha }}</td>
+                <td>{{ log.get_tipo_evento_display }}</td>
+                <td>{{ log.usuario.username if log.usuario else "N/A" }}</td>
+                <td>{{ log.ip_address }}</td>
+                <td>{{ log.descripcion }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align:center;">No hay registros que mostrar.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
-
-
-
 </html>

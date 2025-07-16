@@ -1,175 +1,121 @@
 {% load static %}
 <div class="row">
-    <div class="col-12 " style="text-align: center;">
-        <div class="table-responsive">
-            <table class="table table-hover" style="font-size: 14px;">
+    <div class="col-12" style="text-align: center;">
+        <div class="table-responsive mb-4">
+            <table class="custom-table" style="font-size: 14px;">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Codigo Credito</th>
+                        <th scope="col">Código Crédito</th>
                         <th scope="col">Cliente</th>
-
                         <th scope="col">Monto</th>
                         <th scope="col">Plazo</th>
-                        <th scope="col">Tasa de Interes</th>
+                        <th scope="col">Tasa de Interés</th>
                         <th scope="col">Forma de Pago</th>
-                        <th scope="col">Tipo de Credito</th>
-                        <th scope="col">Fecha de Inicio</th>
-                        <th scope="col">Fecha de Vencimiento</th>
-                        <th scope="col">Credito Cancelado</th>
-                        <th scope="col">Status de Aportacion</th>
-                        <th scope="col">Status por fechas</th>
-
-
-
+                        <th scope="col">Tipo de Crédito</th>
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Fecha Vencimiento</th>
+                        <th scope="col">Crédito Cancelado</th>
+                        <th scope="col">Status Aportación</th>
+                        <th scope="col">Status por Fechas</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for credit in credit_list %}
-
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <th scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}">
-                                {{credit.codigo_credito}}
+                            <a class="row-link" href="{% url 'financings:detail_credit' credit.id %}">
+                                {{ credit.codigo_credito }}
                             </a>
-
-
                         </th>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}">
-                                {{credit.customer_id}}
+                        <td>
+                            <a class="row-link" href="{% url 'financings:detail_credit' credit.id %}">
+                                {{ credit.customer_id }}
                             </a>
                         </td>
-
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}">
-                                <span>Q{{credit.formato_monto}}</span>
+                        <td>
+                            <a class="row-link" href="{% url 'financings:detail_credit' credit.id %}">
+                                <span class="badge bg-success">Q{{ credit.formato_monto }}</span>
                             </a>
                         </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}">
-                                {{credit.plazo}}Meses
+                        <td>
+                            <a class="row-link" href="{% url 'financings:detail_credit' credit.id %}">
+                                {{ credit.plazo }} Meses
                             </a>
                         </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}">
-                                {{credit.tasa_mensual}}%
+                        <td>
+                            <a class="row-link" href="{% url 'financings:detail_credit' credit.id %}">
+                                {{ credit.tasa_mensual }}%
                             </a>
                         </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}">
-                                {{credit.forma_de_pago}}
+                        <td>
+                            <a class="row-link" href="{% url 'financings:detail_credit' credit.id %}">
+                                {{ credit.forma_de_pago }}
                             </a>
                         </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}">
-                                {{credit.tipo_credito}}
+                        <td>
+                            <a class="row-link" href="{% url 'financings:detail_credit' credit.id %}">
+                                {{ credit.tipo_credito }}
                             </a>
                         </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}">
-                                {{credit.fecha_inicio}}
+                        <td>
+                            <a class="row-link" href="{% url 'financings:detail_credit' credit.id %}">
+                                {{ credit.fecha_inicio }}
                             </a>
                         </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}">
-                                {{credit.fecha_vencimiento}}
+                        <td>
+                            <a class="row-link" href="{% url 'financings:detail_credit' credit.id %}">
+                                {{ credit.fecha_vencimiento }}
                             </a>
                         </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}"
-                                class="{% if  credit.is_paid_off %} activo {% else %} inactivo{% endif %} ">
-                                {%if credit.is_paid_off %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-check2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                        <td>
+                            <a href="{% url 'financings:detail_credit' credit.id %}" class="status-icon {% if credit.is_paid_off %}activo{% else %}inactivo{% endif %}">
+                                {% if credit.is_paid_off %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
                                 </svg>
-
                                 {% else %}
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-x-lg" viewBox="0 0 16 16">
-                                    <path
-                                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
                                 </svg>
-
-                                {%endif%}
+                                {% endif %}
                             </a>
                         </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}"
-                                class="{% if  credit.estado_aportacion %} activo {% elif credit.estado_aportacion is None %} neutro {% else %} inactivo{% endif %} ">
-                                {%if credit.estado_aportacion %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-check2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                        <td>
+                            <a href="{% url 'financings:detail_credit' credit.id %}" class="status-icon {% if credit.estado_aportacion %}activo{% elif credit.estado_aportacion is None %}neutro{% else %}inactivo{% endif %}">
+                                {% if credit.estado_aportacion %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
                                 </svg>
-                                {% elif credit.estado_aportacion is  None%}
+                                {% elif credit.estado_aportacion is none %}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
                                     <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
-                                  </svg>
-
-                                {% else %}
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-x-lg" viewBox="0 0 16 16">
-                                    <path
-                                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
                                 </svg>
-
-                                {%endif%}
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
                             </a>
                         </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'financings:detail_credit' credit.id %}"
-                                class="{% if  credit.estados_fechas %} activo {% else %} inactivo{% endif %} ">
-                                {%if credit.estados_fechas %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-check2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                        <td>
+                            <a href="{% url 'financings:detail_credit' credit.id %}" class="status-icon {% if credit.estados_fechas %}activo{% else %}inactivo{% endif %}">
+                                {% if credit.estados_fechas %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
                                 </svg>
-
                                 {% else %}
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-x-lg" viewBox="0 0 16 16">
-                                    <path
-                                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
                                 </svg>
-
-                                {%endif%}
+                                {% endif %}
                             </a>
                         </td>
-
-
-
-
-
-
-
                     </tr>
-
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
-
-
 </div>

@@ -1,0 +1,17 @@
+/* Mejoras en la tarjeta y pestañas */
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+.nav-tabs .nav-link {
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+.nav-tabs .nav-link.active {
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+.tab-pane {
+    padding: 1rem;
+}
+.btn-outline-primary, .btn-outline-success, .btn-outline-warning, .btn-outline-info, .btn-outline-secondary {
+    border-radius: 20px;
+}

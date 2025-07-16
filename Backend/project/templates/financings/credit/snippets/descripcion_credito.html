@@ -1,98 +1,93 @@
 {% load static %}
-<div class="col-12">
-    <h3>Detalles del Credito: <span class="fst-italic">{{credit_list.codigo_credito}}</span></h3>
+<!-- Encabezado y Breadcrumbs -->
+<div class="mb-4">
+    <h3 class="mb-2">Detalles del Crédito: <span class="fst-italic">{{credit_list.codigo_credito}}</span></h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-transparent p-0 m-0">
+            <li class="breadcrumb-item"><a href="{% url 'customers:customers' %}"
+                    class="text-primary text-decoration-none">Clientes</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'financings:list_credit' %}"
+                    class="text-primary text-decoration-none">Créditos</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'customers:detail' customer_list.customer_code %}"
+                    class="text-primary text-decoration-none">{{customer_list.first_name}}
+                    {{customer_list.last_name}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{credit_list.codigo_credito}}</li>
+        </ol>
+    </nav>
+</div>
+<!-- Datos principales del crédito -->
+<div class="row mb-4">
+    <!-- Propósito, Tipo y Forma -->
+    <div class="col-md-4 mb-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title mb-3"><i class="bi bi-info-circle-fill me-2"></i>Información Básica</h5>
+                <p class="mb-2"><strong>PROPOSITO:</strong> <span class="fw-light">{{credit_list.proposito}}</span></p>
+                <p class="mb-2"><strong>TIPO DE CREDITO:</strong> <span
+                        class="fw-light">{{credit_list.tipo_credito}}</span></p>
+                <p class="mb-0"><strong>FORMA DE PAGO:</strong> <span
+                        class="fw-light">{{credit_list.forma_de_pago}}</span></p>
+            </div>
+        </div>
+    </div>
 
-    <div style="margin-top: 1rem;">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+    <!-- Estado del crédito y aportación -->
+    <div class="col-md-4 mb-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title mb-3"><i class="bi bi-bar-chart-line-fill me-2"></i>Estados</h5>
+                <p class="mb-2">
+                    <strong>ESTADO DEL CRÉDITO:</strong>
+                    <span class="{% if credit_list.is_paid_off %}inactivo{% else %}activo{% endif %}">
+                        {{credit_list.formato_credito_cancelado}}
+                    </span>
+                </p>
+                <p class="mb-2">
+                    <strong>ESTADO POR APORTACIÓN:</strong>
+                    <span
+                        class="{% if credit_list.estado_aportacion %}activo{% elif credit_list.estado_aportacion is none %}neutro{% else %}inactivo{% endif %}">
+                        {{credit_list.formato_estado_aportacion}}
+                    </span>
+                </p>
+                <p class="mb-0">
+                    <strong>ESTADO POR FECHAS:</strong>
+                    <span class="{% if credit_list.estados_fechas %}activo{% else %}inactivo{% endif %}">
+                        {{credit_list.formato_estado_fecha}}
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
 
-                <li class="breadcrumb-item"><a href="{% url 'customers:customers' %}"
-                        style="text-decoration: none;">Clientes</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'financings:list_credit' %}"
-                        style="text-decoration: none;">Creditos</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'customers:detail' customer_list.customer_code %}"
-                        style="text-decoration: none;">{{customer_list.first_name}}
-                        {{customer_list.last_name}}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{credit_list.codigo_credito}}</li>
-            </ol>
-        </nav>
-
+    <!-- Montos y fechas -->
+    <div class="col-md-4 mb-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title mb-3"><i class="bi bi-calendar-range-fill me-2"></i>Fechas y Montos</h5>
+                <p class="mb-2"><strong>MONTO DEL PRÉSTAMO:</strong> <span class="fw-light">Q
+                        {{credit_list.formato_monto}}</span></p>
+                <p class="mb-2"><strong>SALDO ACTUAL:</strong> <span class="fw-light">Q
+                        {{credit_list.formato_saldo_actual}} <small>Al
+                            {{siguiente_pago.mostrar_fecha_limite}}</small></span></p>
+                <p class="mb-2"><strong>PLAZO:</strong> <span class="fw-light">{{credit_list.plazo}} MESES</span></p>
+                <p class="mb-0"><strong>TASA DE INTERÉS MENSUAL:</strong> <span
+                        class="fw-light">{{credit_list.tasa_mensual}}%</span></p>
+            </div>
+        </div>
     </div>
 </div>
-<hr>
-<div class="row" style="margin-top: 1rem;">
-    <div class="row">
-        <div class="col">
-            <p style="font-weight: bolder;">PROPOSITO: <span class="fw-light">{{credit_list.proposito}}</span></p>
-            <p style="font-weight: bolder;">TIPO DE CREDITO: <span class="fw-light">{{credit_list.tipo_credito}}</span>
-            </p>
-            <p style="font-weight: bolder;">FORMA DE PAGO: <span class="fw-light">{{credit_list.forma_de_pago}}</span>
-            </p>
 
-        </div>
-        <div class="col" style="font-weight: bolder;">
-            <p>ESTADO DEL CREDITO : <span style="font-weight: lighter;"
-                    class="{% if  credit_list.is_paid_off %} inactivo {% endif %} activo">{{credit_list.formato_credito_cancelado}}</span>
-            </p>
-            <p>ESTADO POR APORTACION: <span style="font-weight: lighter;"
-                    class="{% if credit_list.estado_aportacion %} activo {% elif credit_list.estado_aportacion is None %} neutro {% else %} inactivo{% endif %} ">{{credit_list.formato_estado_aportacion}}</span>
-            </p>
-            <p>ESTADO POR FECHAS: <span style="font-weight: lighter;"
-                    class="{% if not credit_list.estados_fechas %} inactivo {% else %} activo {% endif %} ">{{credit_list.formato_estado_fecha}}</span>
-            </p>
-        </div>
+<!-- Fechas importantes -->
+<div class="row mb-4 d-flex align-items-center">
+    <div class="col-md-4 mb-3">
+        <p class="mb-0"><strong>FECHA DE INICIO:</strong> <span class="fw-light">{{credit_list.fecha_inicio}}</span></p>
     </div>
-
-    <div class="row">
-        <hr>
-        <div class="col-6">
-            <p style="font-weight: bolder;">MONTO DEL PRESTAMO: <span class="fw-light">Q
-                    {{credit_list.formato_monto}}</span></p>
-            <p style="font-weight: bolder;">SALDO ACTUAL: <span class="fw-light">Q{{credit_list.formato_saldo_actual}}
-                    <span id="ultima_cuota">Al {{siguiente_pago.mostrar_fecha_limite}}</span></span>
-            </p>
-            <p style="font-weight: bolder;">PLAZO: <span class="fw-light">{{credit_list.plazo}} MESES</span></p>
-            <p style="font-weight: bolder;">TASA DE INTERES MENSUAL: <span class="fw-light">
-                    {{credit_list.tasa_mensual}}%</span>
-            </p>
-
-        </div>
-        <div class="col-6">
-            <p style="font-weight: bolder;">FECHA DE INICIO: <span class="fw-light">{{credit_list.fecha_inicio}}</span>
-            </p>
-            <p style="font-weight: bolder;">FECHA DE VENCIMIENTO: <span
-                    class="fw-light">{{credit_list.fecha_vencimiento}}</span>
-            </p>
-            <p style="font-weight: bolder;">FECHA DE CREACION DEL CREDITO: <span
-                    class="fw-light">{{credit_list.creation_date}}</span>
-            </p>
-
-        </div>
-
-
+    <div class="col-md-4 mb-3">
+        <p class="mb-0"><strong>FECHA VENCIMIENTO:</strong> <span
+                class="fw-light">{{credit_list.fecha_vencimiento}}</span></p>
     </div>
-    {% if not credit_list.is_paid_off %}
-    <div class="col-3" style="margin-top: 1rem;">
-        <button id="mandar_mensaje" class="inactivo" style="border: none; padding: 0.5rem 1.5rem;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                class="bi bi-chat-left-dots" viewBox="0 0 16 16">
-                <path
-                    d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                <path
-                    d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
-            </svg>
-            Enviar Recordatorio
-        </button>
-
+    <div class="col-md-4 mb-3">
+        <p class="mb-0"><strong>FECHA DE CREACIÓN:</strong> <span class="fw-light">{{credit_list.creation_date}}</span>
+        </p>
     </div>
-    {% endif %}
-
-
-
-
-
-
-
-
-
 </div>

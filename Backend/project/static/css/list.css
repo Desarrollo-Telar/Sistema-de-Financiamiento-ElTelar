@@ -56,3 +56,104 @@
     color: #161A1D;
 
 }
+
+/* Contenedor para la tabla con sombra y borde redondeado */
+.table-container {
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 95%;
+    overflow-x: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Estilo personalizado para la tabla */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Encabezados con color de fondo */
+.custom-table thead {
+    background-color: #a4161a;
+    color: #fff;
+}
+
+/* Encabezados con letras en negrita y centrados */
+.custom-table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Filas con efectos hover para mejor interacción */
+.custom-table tbody tr {
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+/* Celdas con padding para mejor lectura */
+.custom-table td {
+    padding: 12px 15px;
+    font-size: 13px;
+}
+
+/* Enlaces con estilo limpio */
+.row-link {
+    text-decoration: none;
+    color: #2c3e50;
+    display: block;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.row-link:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+.status-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.activo svg {
+    color: green;
+}
+.inactivo svg {
+    color: red;
+}
+.neutro svg {
+    color: gray;
+}
+
+
+/* Responsive para pantallas pequeñas */
+@media(max-width: 768px) {
+    .custom-table thead {
+        display: none; /* Oculta encabezados en pantallas pequeñas */
+    }
+    .custom-table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+    }
+    .custom-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        border-bottom: 1px solid #ddd;
+    }
+    .custom-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        width: 50%;
+        text-align: right;
+    }
+}

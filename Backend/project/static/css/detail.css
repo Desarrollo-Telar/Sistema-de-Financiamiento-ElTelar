@@ -1,0 +1,48 @@
+/* Estilo general de la tarjeta */
+.bg-light {
+    background-color: #ffffff !important;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #0d6efd;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-weight: 500;
+}
+
+.btn-outline-primary, .btn-outline-danger {
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+
+.nav-tabs .nav-link {
+    border-radius: 0.25rem 0.25rem 0 0;
+    margin-bottom: -1px;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.tab-pane {
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-top: none;
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+
+@media(max-width: 768px) {
+    /* Ajustes para pantallas pequeñas si necesario */
+}
