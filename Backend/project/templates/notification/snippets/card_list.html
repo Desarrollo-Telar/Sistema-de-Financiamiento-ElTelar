@@ -1,67 +1,70 @@
 {% load static %}
 
-{% for notification in object_list %}
-<div class="row row-cols-1 row-cols-md-1 g-3" style="margin-bottom: 1rem;">
 
 
-    <div class="col">
-
-        <div class="card card_hover {% if not notification.read %} card_notificacion_no_leido {% else %} card_notificacion_leido  {% endif %}"
-            style="padding: 2.5rem 5rem;">
-            <a href="{% url 'actividades:detalle_notificacion' notification.uuid %}">
-                <div class="card-body">
-                    <h4 class="fs-4">{{notification.title}}
-                        {% if notification.read %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                        </svg>
-                        {% endif %}
+<div class="notifications-container">
+    {% for notification in object_list %}
+    <div class="notification-card {% if not notification.read %}unread{% else %}read{% endif %}">
+        <a href="{% url 'actividades:detalle_notificacion' notification.uuid %}" class="notification-link">
+            <div class="notification-content">
+                <a href="{% url 'actividades:eliminar_notificacion' notification.uuid %}" 
+                   class="close-button" 
+                   onclick="event.preventDefault(); event.stopPropagation(); window.location.href='{% url 'actividades:eliminar_notificacion' notification.uuid %}';">
+                    <i class="fas fa-times"></i>
+                </a>
+                
+                <div class="notification-header">
+                    <h4 class="notification-title {% if not notification.read %}unread{% endif %}">
+                        {{ notification.title }}
                     </h4>
-                    <a href="{% url 'actividades:eliminar_notificacion' notification.uuid %}" class="position-absolute top-0 end-0 p-3 m-3 btn-close bg-secondary bg-opacity-10 rounded-pill"
-            aria-label="Close"></a>
-                    <hr>
-                    <p class="fs-5 fw-light">{{notification.message}}</p>
-
-                    {% if notification.especificaciones.contenido %}
-                    <p class="fs-6 fw-light">{{notification.especificaciones.contenido|linebreaksbr}}</p>
-                    {% endif %}
-
-                    <figcaption class="blockquote-footer" style="margin-bottom: 0.5rem;">
-                        <cite title="Source Title">{{notification.created_at}} </cite>
-                    </figcaption>
-
-                    {% if notification.especificaciones.url %}
-                    <a href="{{notification.especificaciones.url}}"
-                        class="{% if not notification.read %} btn_guardar {% else %} btn_add {% endif %}">Ir</a>
-                    {% endif %}
-
+                   
                 </div>
+                
+                <div class="notification-divider"></div>
+                
+                <div class="notification-body">
+                    <div class="notification-type-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="notification-text">
+                        <p class="notification-message">
+                            {{ notification.message }}
+                        </p>
+                        
+                        {% if notification.especificaciones.contenido %}
+                        <div class="notification-content-detail">
+                            {{ notification.especificaciones.contenido|linebreaksbr }}
+                        </div>
+                        {% endif %}
+                        
+                        <div class="notification-meta">
+                            <div class="notification-date">
+                                <i class="fas fa-clock"></i>
+                                {{ notification.created_at }}
+                            </div>
+                            {% if notification.especificaciones.url %}
+                            <a href="{{ notification.especificaciones.url }}" 
+                               class="notification-action {% if not notification.read %}unread{% else %}read{% endif %}"
+                               onclick="event.preventDefault(); event.stopPropagation(); window.location.href='{{ notification.especificaciones.url }}';">
+                                <i class="fas fa-arrow-right me-1"></i>
+                                Ir
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
 
-            </a>
+    {% if not object_list %}
+    <div class="empty-state">
+        <div class="empty-state-icon">
+            <i class="fas fa-bell-slash"></i>
         </div>
-
+        <h3>Sin Notificaciones</h3>
+        <p>{{ request.user }}, no tienes notificaciones pendientes en este momento.</p>
     </div>
+    {% endif %}
 </div>
-{% endfor %}
-{% if not object_list %}
-
-
-<div class="card ">
-
-    <div class="card-body" style="padding: 2.5rem 5rem;">
-        <h5>Sin Notificaciones</h5>
-        <p>{{request.user}}, Usted no tiene notificaciones aun.</p>
-
-
-
-    </div>
-
-
-</div>
-
-
-
-
-{% endif %}

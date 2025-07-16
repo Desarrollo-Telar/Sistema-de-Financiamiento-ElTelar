@@ -1,12 +1,85 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/detalle_notificacion.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row box">
-        {% include 'notification/snippets/card.html' %}
+
+
+<div class="notification-container">
+    <div class="notification-card">
+        <div class="notification-header">
+            <div class="floating-elements">
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+            </div>
+            
+            <div class="breadcrumb-nav">
+                <button class="breadcrumb-btn" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left me-1"></i>
+                    Volver
+                </button>
+            </div>
+            
+            <a href="{% url 'actividades:eliminar_notificacion' object.uuid %}" class="close-button">
+                <i class="fas fa-times"></i>
+            </a>
+            
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            
+            <h1 class="notification-title">
+                {{ object.title }}
+            </h1>
+        </div>
+        
+        <div class="notification-body">
+            <div class="notification-message">
+                {{ object.message }}
+            </div>
+            
+            {% if object.especificaciones.contenido %}
+            <div class="notification-content">
+                <p>{{ object.especificaciones.contenido|linebreaksbr }}</p>
+            </div>
+            {% endif %}
+            
+            <div class="notification-actions">
+                {% if object.especificaciones.url %}
+                <a href="{{ object.especificaciones.url }}" class="btn-action btn-primary-action">
+                    <i class="fas fa-external-link-alt"></i>
+                    Ir
+                </a>
+                {% endif %}
+                <button class="btn-action btn-secondary-action" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                    Regresar
+                </button>
+            </div>
+            
+            <div class="notification-meta">
+                <div class="notification-date">
+                    <i class="fas fa-clock"></i>
+                    {{ object.created_at }}
+                </div>
+                <div class="notification-status">
+                    <span class="status-badge {% if object.read %}read{% else %}unread{% endif %}">
+                        {% if object.read %}
+                            <i class="fas fa-check-circle me-1"></i>
+                            Leído
+                        {% else %}
+                            <i class="fas fa-circle me-1"></i>
+                            No Leído
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 {% endblock %}

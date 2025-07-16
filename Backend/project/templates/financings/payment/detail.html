@@ -1,65 +1,127 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/detail_boleta.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-<div class="row box" style="padding: 5rem;">
-    <div class="row">
-        <div class="d-flex justify-content-start">
-            <button onclick="window.history.back()" type="button" class="btn btn-link">Volver</button>
 
-        </div>
+<div class="card">
+    <div class="card-header">
+        <h1 class="card-title">
+            <i class="fas fa-receipt me-2"></i>
+            Detalle de Boleta de Pago
+        </h1>
+        <p class="card-subtitle">Información de la transacción</p>
     </div>
-    <div class="row">
 
-        <!-- SECCION DE INFORMACION -->
-        <p class="fw-bold">Numero de Referencia: <span class="fw-normal">{{pago.numero_referencia}}</span></p>
-        <p class="fw-bold">Monto: <span class="fw-normal">{{pago.monto}}</span></p>
-        <p class="fw-bold">Fecha de Emision: <span class="fw-normal">{{pago.fechaEmision}}</span></p>
-        <p class="fw-bold">Descripcion: </p>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
-                    disabled>
+    <div class="card-body">
+        <!-- Botón volver -->
+        <button onclick="window.history.back()" class="back-button mb-3">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </button>
+
+        <!-- Información Principal -->
+        <div class="info-section">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-item">
+                        <span class="info-label">
+                            <i class="fas fa-hashtag me-1"></i>
+                            Número de Referencia
+                        </span>
+                        <div class="info-value">{{pago.numero_referencia}}</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-item">
+                        <span class="info-label">
+                            <i class="fas fa-calendar-alt me-1"></i>
+                            Fecha de Emisión
+                        </span>
+                        <div class="info-value">{{pago.fechaEmision}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">
+                    <i class="fas fa-dollar-sign me-1"></i>
+                    Monto
+                </span>
+                <div class="info-value monto">Q {{pago.Fmonto}}</div>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">
+                    <i class="fas fa-file-alt me-1"></i>
+                    Descripción
+                </span>
+                <textarea class="textarea-custom w-100" rows="3" readonly>
                     {{pago.descripcion}}
                 </textarea>
-        <p class="fw-bold">Estado de la Transaccion: {{pago.estado_transaccion}}</p>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="margin-bottom: 2rem;"
-                    disabled>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Estado de la Transacción
+                </span>
+                <div class="info-value">
+                    <span class="status-badge {% if pago.estado_transaccion == 'COMPLETADO' %} status-completado {% elif pago.estado_transaccion == 'PENDIENTE' %} status-pendiente {% else %} status-rechazado {% endif %}">
+                       
+                        {{pago.estado_transaccion}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">
+                    <i class="fas fa-comments me-1"></i>
+                    Observaciones
+                </span>
+                <textarea class="textarea-custom w-100" rows="3" readonly>
                     {% if pago.descripcion_estado %}
                     {{pago.descripcion_estado}}
                     {%else%}
                     Sin observaciones
                     {%endif%}
-                </textarea>
-
-    </div>
-    <div class="row">
-        <!-- IMAGEN O PDF DEL ARCHIVO -->
-        <a href="{{pago.get_document}}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
-                <path
-                    d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z" />
-            </svg>
-
-            {{pago.numero_referencia}}
-        </a>
-
-    </div>
-    <div class="row" style="margin-top: 2rem;">
-        {% if pago.estado_transaccion != 'COMPLETADO' and permisos.puede_editar_boleta_pago %}
-        <div class="col">
-            <a href="{% url 'financings:actualizar_boleta' pago.id%}" class="btn_guardar">Editar Boleta</a>
-
+                        </textarea>
+            </div>
         </div>
-        {%endif%}
-        <div class="col">
-            <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+
+        <!-- Sección de Documento -->
+        <div class="document-section">
+            <h5 class="mb-3">
+                <i class="fas fa-file-download me-2"></i>
+                Documento Adjunto
+            </h5>
+            <a href="{{pago.get_document}}" class="document-link">
+                <i class="fas fa-file-pdf"></i>
+                Descargar REF-{{pago.numero_referencia}}.pdf
+            </a>
+        </div>
+
+        <!-- Acciones -->
+        <div class="actions-section">
+            <div class="d-flex justify-content-between flex-wrap gap-2">
+                {% if pago.estado_transaccion != 'COMPLETADO' and permisos.puede_editar_boleta_pago %}
+                <a  href="{% url 'financings:actualizar_boleta' pago.id%}" class="btn-custom btn-primary-custom">
+                    <i class="fas fa-edit me-2"></i>
+                    Editar Boleta
+                </a>
+                {% endif %}
+
+                <button onclick="window.history.back()" class="btn-custom btn-secondary-custom">
+                    <i class="fas fa-times me-2"></i>
+                    Cancelar
+                </button>
+            </div>
         </div>
     </div>
-
 </div>
-
-
-
-
-
 
 {% endblock %}
