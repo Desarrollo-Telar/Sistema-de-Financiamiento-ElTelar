@@ -20,6 +20,10 @@ from apps.financings.models import Credit
 # SCRIPTS
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
+# Funcionalidades
+from django.db.models import Value, F
+from django.db.models.functions import Concat
+
 class Search(TemplateView):
     template_name = 'search.html'
     paginate_by = 25
@@ -66,7 +70,10 @@ class Search(TemplateView):
                 except ValueError:
                     pass  # La query no es una fecha, se ignora esta parte
 
-                clientes = Customer.objects.filter(customer_filters)
+                clientes = Customer.objects.annotate(
+                    full_name=Concat(F('first_name'), Value(' '), F('last_name'))
+                ).filter(customer_filters)
+                
                 creditos = Credit.objects.filter(credit_filters)
 
                 context['cliente_object'] = clientes

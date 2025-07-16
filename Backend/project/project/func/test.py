@@ -16,6 +16,7 @@ from apps.financings.models import Credit, PaymentPlan
 
 # Scripts
 from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
+from scripts.cargar_fiadores.vincular import main_vincular
 
 def main():
   # Create a client for your MinIO server using your access and secret keys
@@ -38,14 +39,7 @@ def main():
 
 if __name__ == "__main__":
   try:
-    print('Manejo de mensajes de whatsaap')
-
-    
-    cuota = PaymentPlan.objects.filter(id=491).first()
-
-
-    link = mensaje_cliente_por_credito('2025-200',491)
-    print(link)
+    main_vincular()
 
 
   except S3Error as exc:

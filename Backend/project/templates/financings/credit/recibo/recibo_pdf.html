@@ -1,169 +1,167 @@
 {% extends 'pdf/base.html' %}
 {% load static %}
 
+{% block css %}
+<style>
+    @page {
+        size: A4 portrait;
+        margin: 1cm;
+    }
+
+    
+</style>
+
+{% endblock %}
+
 {% block content %}
-<div class="row box" style="font-size: 10px;">
-    <div class="row fw-normal">
-        <div class="d-flex justify-content-end">
-            <div class="col-4">
-                <p style="background-color: black; color: white; padding: 0.5rem;">INVERSIONES INTEGRALES EL TELAR, S.A.
-                </p>
-                <p>8 Avenida 1-12 Zona 1, Coban Alta Verapaz</p>
-                <p>Tel: 3716 - 0995</p>
+<div >
+    <div class="row" style="font-size: 10px;">
+        <div class="row fw-normal">
+            <div class="d-flex justify-content-end">
+                <div class="col-4">
+                    <p style="background-color: black; color: white; padding: 0.5rem;">INVERSIONES INTEGRALES EL TELAR,
+                        S.A.
+                    </p>
+                    <p>8 Avenida 1-12 Zona 1, Coban Alta Verapaz</p>
+                    <p>Tel: 3716 - 0995</p>
+                </div>
+
+
+            </div>
+            <div class="d-flex justify-content-end">
+                <div class="col-5">
+                    <table class="table" style="border: 1px solid black;">
+
+                        <tbody>
+                            <tr>
+                                <th scope="row" style="background-color: red; color: white;">RECIBO DE CAJA</th>
+                                <td style="border: 1px solid black;">No. {{recibo.recibo}}</td>
+
+
+
+                            </tr>
+                            <tr>
+                                <th scope="row" style="background-color: red; color: white;">FECHA</th>
+                                <td colspan="2" style="border: 1px solid black;">{{recibo.fecha}}</td>
+
+                            </tr>
+                            <tr>
+                                <th scope="row" style="background-color: red; color: white;">NUMERO DEL CREDITO</th>
+                                <td style="border: 1px solid black;">{{recibo.pago.credit.codigo_credito}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+            <div class="d-flex justify-content-start" style="margin-top: 0.1rem;">
+                <div class="col">
+                    <p class="fw-semibold">RECIBO DE: <span class="fw-normal">{{recibo.cliente}}</span> </p>
+                    <hr>
+
+                </div>
+            </div>
+            <div class="d-flex justify-content-start">
+                <div class="col">
+                    <p class="fw-semibold">POR CONCEPTO DE: <span class="fw-normal">PAGO DE
+                            {{recibo.pago.tipo_pago}}</span>
+                    </p>
+                    <hr>
+
+                </div>
+
+            </div>
+            <div class="d-flex justify-content-start">
+                <div class="col">
+                    <p class="fw-semibold">NO. DE DOCUMENTO DE: <span class="fw-normal">PAGO DE
+                            {{recibo.pago.numero_referencia}}</span> </p>
+                    <hr>
+
+                </div>
+
             </div>
 
 
         </div>
-        <div class="d-flex justify-content-end">
-            <div class="col-5">
-                <table class="table" style="border: 1px solid black;">
+        <div class="row fw-normal" style="background-color: white;">
+            <table class="table">
+                <thead style="border: 1px solid black; background-color: red; color: white;">
+                    <tr>
+                        <th scope="col" style="border: 1px solid black; background-color: red; color: white;">
+                            DESCRIPCION
+                        </th>
+                        <th scope="col" style="border: 1px solid black; background-color: red; color: white;">VALOR</th>
+                        <th scope="col" style="border: 1px solid black; background-color: red; color: white;">EN LETRAS
+                        </th>
+                        <th scope="col" style="border: 1px solid black; background-color: red; color: white;">
+                            OBSERVACIONES
+                        </th>
 
-                    <tbody>
-                        <tr>
-                            <th scope="row" style="background-color: red; color: white;">RECIBO DE CAJA</th>
-                            <td style="border: 1px solid black;">No. {{recibo.recibo}}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">MORA</th>
+                        <td>Q {{recibo.Fmora_pagada}}</td>
+                        <td class="text-uppercase">{{recibo.mora_pagada_letras}}</td>
+                        <td>
+                            <p>MORA GENERADA: <span>Q {{recibo.Fmora}}</span></p>
+                            <p>MORA CANCELADA: <span class="text-uppercase">Q {{recibo.Fmora_pagada}}</span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">INTERES</th>
+                        <td>Q {{recibo.Finteres_pagado}}</td>
+                        <td class="text-uppercase">{{recibo.interes_pagado_letras}}</td>
+                        <td>
+                            <p>INTERES GENERADO: <span>Q {{recibo.Finteres}}</span></p>
+                            <p>INTERES CANCELADO: <span class="text-uppercase">Q {{recibo.Finteres_pagado}}</span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CAPITAL</th>
+                        <td>Q {{recibo.Faporte_capital}}</td>
+                        <td class="text-uppercase">{{recibo.aporte_capital_letras}}</td>
+                        <td>
+                            <p>APORTE A CAPITAL: <span class="text-uppercase">Q {{recibo.Faporte_capital}}</span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="background-color: black; border: 1px solid black; color: white;">TOTAL
+                        </th>
+                        <td style="background-color: black; border: 1px solid black; color: white;">Q {{recibo.Ftotal}}
+                        </td>
+                        <td colspan="2" style="background-color: black; border: 1px solid black; color: white;"
+                            class="text-uppercase">
+                            {{recibo.total_letras}} </td>
+
+                    </tr>
 
 
-
-                        </tr>
-                        <tr>
-                            <th scope="row" style="background-color: red; color: white;">FECHA</th>
-                            <td colspan="2" style="border: 1px solid black;">{{recibo.fecha}}</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row" style="background-color: red; color: white;">NUMERO DEL CREDITO</th>
-                            <td style="border: 1px solid black;">{{recibo.pago.credit.codigo_credito}}</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-
-            </div>
+                </tbody>
+            </table>
 
         </div>
-        <div class="d-flex justify-content-start" style="margin-top: 0.5rem;">
-            <div class="col">
-                <p class="fw-semibold">RECIBO DE: <span class="fw-normal">{{recibo.cliente}}</span> </p>
+       
+        <div class="row fw-normal" style="background-color: white; margin-top: 0.3rem; text-align: center; ">
+
+            <div class="col-3">
                 <hr>
+                <p>FIRMA DEL CLIENTE</p>
+            </div>
+            <div class="col-6">
 
             </div>
-        </div>
-        <div class="d-flex justify-content-start">
-            <div class="col">
-                <p class="fw-semibold">POR CONCEPTO DE: <span class="fw-normal">PAGO DE {{recibo.pago.tipo_pago}}</span>
-                </p>
+            <div class="col-3">
                 <hr>
-
+                <p>FIRMA EL TELAR S.A.</p>
             </div>
 
-        </div>
-        <div class="d-flex justify-content-start">
-            <div class="col">
-                <p class="fw-semibold">NO. DE DOCUMENTO DE: <span class="fw-normal">PAGO DE
-                        {{recibo.pago.numero_referencia}}</span> </p>
-                <hr>
 
-            </div>
 
         </div>
-
-
-    </div>
-    <hr>
-    <div class="row fw-normal" style="background-color: white;">
-        <table class="table">
-            <thead style="border: 1px solid black; background-color: red; color: white;">
-                <tr>
-                    <th scope="col" style="border: 1px solid black; background-color: red; color: white;">DESCRIPCION
-                    </th>
-                    <th scope="col" style="border: 1px solid black; background-color: red; color: white;">VALOR</th>
-                    <th scope="col" style="border: 1px solid black; background-color: red; color: white;">EN LETRAS</th>
-                    <th scope="col" style="border: 1px solid black; background-color: red; color: white;">OBSERVACIONES
-                    </th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">MORA</th>
-                    <td>Q {{recibo.mora_pagada}}</td>
-                    <td class="text-uppercase">{{recibo.mora_pagada_letras}}</td>
-                    <td>
-                        <p>
-                            MORA GENERADA: <span>Q {{recibo.Fmora}}</span>
-
-
-                        </p>
-                        <p>
-                            MORA CANCELADA: <span class="text-uppercase">Q {{recibo.Fmora_pagada}}</span>
-
-                        </p>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">INTERES</th>
-                    <td>Q {{recibo.interes_pagado}}</td>
-                    <td class="text-uppercase">{{recibo.interes_pagado_letras}}</td>
-                    <td>
-                        <p>
-                            INTERES GENERADO: <span>Q {{recibo.Finteres}}</span>
-
-
-                        </p>
-                        <p>
-                            INTERES CANCELADO: <span class="text-uppercase">Q {{recibo.Finteres_pagado}}</span>
-
-                        </p>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">CAPITAL</th>
-                    <td>Q {{recibo.aporte_capital}}</td>
-                    <td class="text-uppercase">{{recibo.aporte_capital_letras}}</td>
-                    <td>
-                        <p>
-                            APORTE A CAPITAL: <span class="text-uppercase">Q {{recibo.Faporte_capital}}</span>
-
-
-                        </p>
-
-
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row" style="background-color: black; border: 1px solid black; color: white;">TOTAL</th>
-                    <td style="background-color: black; border: 1px solid black; color: white;">Q {{recibo.total}}</td>
-                    <td colspan="2" style="background-color: black; border: 1px solid black; color: white;"
-                        class="text-uppercase">
-                        {{recibo.total_letras}} </td>
-
-                </tr>
-
-
-            </tbody>
-        </table>
-
-    </div>
-    <hr>
-    <div class="row fw-normal" style="background-color: white; margin: 2rem 0; text-align: center; ">
-
-        <div class="col-3">
-            <hr>
-            <p>FIRMA DEL CLIENTE</p>
-        </div>
-        <div class="col-6">
-            
-        </div>
-        <div class="col-3">
-            <hr>
-            <p>FIRMA EL TELAR S.A.</p>
-        </div>
-
-
-
     </div>
 </div>
 
