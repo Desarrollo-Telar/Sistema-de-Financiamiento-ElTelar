@@ -1,14 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'pdf/base.html' %}
 {% load static %}
 
 {% block content %}
-
-<div class="row box">
+<div class="row box" style="font-size: 10px;">
     <div class="row fw-normal">
-        <div class="d-flex justify-content-start">
-            <button onclick="window.history.back()" type="button" class="btn btn-link">Volver</button>
-
-        </div>
         <div class="d-flex justify-content-end">
             <div class="col-4">
                 <p style="background-color: black; color: white; padding: 0.5rem;">INVERSIONES INTEGRALES EL TELAR, S.A.
@@ -160,14 +155,7 @@
             <p>FIRMA DEL CLIENTE</p>
         </div>
         <div class="col-6">
-            {% if recibo.factura %}
-            <p>
-                <a href="{% url 'financings:factura' recibo.id %}">ESTE RECIBO YA FUE FACTURADO</a>
-            </p>
-            {% else %}
-            <a href="{% url 'financings:generar_factura' recibo.id %}">FACTURAR</a>
-            {% endif %}
-            <a href="{% url 'financings:recibo_pdf' recibo.pago.id %}">DESCARGAR RECIBO EN PDF</a>
+            
         </div>
         <div class="col-3">
             <hr>
@@ -178,19 +166,5 @@
 
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 {% endblock %}

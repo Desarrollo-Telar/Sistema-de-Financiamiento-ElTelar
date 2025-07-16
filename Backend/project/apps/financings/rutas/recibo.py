@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 urlpatterns_recibo = [
     # --------------- RECIBO ------------------
     path('recibo/<int:id>/',login_required(detallar_recibo), name='recibo'),
+    path('recibo/pdf/<int:id>/',login_required(render_pdf_recibo), name='recibo_pdf'),
     # --------------- FACTURA ------------------
     path('factura/generar/<int:id>/',login_required(generar_factura), name='generar_factura'),
     path('factura/<int:id>/',login_required(detalle_factura), name='factura'),

@@ -16,15 +16,102 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="../static/css/new_styles.css">
 </head>
 
 <body>
-  
- 
+  <div class="animated-bg"></div>
 
- 
+
+  <main class="d-flex flex-nowrap">
+
+
+    <!-- Main Content -->
+    <div class="container main-content">
+
+
+      <!-- Statistics Cards -->
+      <div class="stats-grid animate-slide-up">
+
+
+        <a href="/financings/credit/" class="stat-card">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+              class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
+              <path
+                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
+            </svg>
+          </div>
+          <div class="number">126</div>
+          <div class="label">Créditos Vigentes</div>
+        </a>
+
+        <a href="/financings/credit/atrasados/" class="stat-card">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+              class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+              <path
+                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg>
+          </div>
+          <div class="number">32</div>
+          <div class="label">Créditos en Atraso</div>
+        </a>
+
+        <a href="/financings/credit/fecha_vencimiento/" class="stat-card">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+              class="bi bi-calendar-event" viewBox="0 0 16 16">
+              <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+              <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+            </svg>
+          </div>
+          <div class="number">7</div>
+          <div class="label">Vencen Hoy</div>
+        </a>
+
+        <a href="/financings/credit/fecha_limite/" class="stat-card">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clock-fill"
+              viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+            </svg>
+          </div>
+          <div class="number">5</div>
+          <div class="label">Fecha Límite Hoy</div>
+        </a>
+
+        <a href="/financings/credit/proximos/fecha_vencimiento/" class="stat-card">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+              class="bi bi-calendar-week" viewBox="0 0 16 16">
+              <path
+                d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+              <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+            </svg>
+          </div>
+          <div class="number">21</div>
+          <div class="label">Próximos a Vencer</div>
+        </a>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="charts-section animate-slide-up">
+        <div class="chart-container">
+          <h4>📊 Registro de Clientes</h4>
+          <canvas id="myChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h4>💳 Registro de Créditos</h4>
+          <canvas id="myChartC"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
@@ -39,12 +126,13 @@
   <script src="/static/js/grafica_index.js"></script>
 
   <script>
+
+
     // Animation on scroll
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -165,11 +253,11 @@
 
       // Add hover effects to interactive elements
       document.querySelectorAll('.clickable').forEach(element => {
-        element.addEventListener('mouseenter', function() {
+        element.addEventListener('mouseenter', function () {
           this.style.transform = 'scale(1.02)';
         });
-        
-        element.addEventListener('mouseleave', function() {
+
+        element.addEventListener('mouseleave', function () {
           this.style.transform = 'scale(1)';
         });
       });
@@ -186,7 +274,7 @@
 
       // Add loading animation to forms
       document.querySelectorAll('form').forEach(form => {
-        form.addEventListener('submit', function() {
+        form.addEventListener('submit', function () {
           const submitBtn = this.querySelector('button[type="submit"]');
           if (submitBtn) {
             submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Cargando...';
@@ -197,7 +285,7 @@
     });
 
     // Add particle effect on click
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (e.target.closest('.stat-card')) {
         createParticles(e.pageX, e.pageY);
       }
@@ -250,4 +338,5 @@
     }
   </script>
 </body>
+
 </html>

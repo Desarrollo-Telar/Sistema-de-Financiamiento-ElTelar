@@ -54,6 +54,30 @@ def total_capital_pagada(estado_cuenta):
     return formatear_numero(contador)
 
 
+def render_pdf_recibo(request,id):    
+    pago = get_object_or_404(Payment, id=id)
+            
+    recibo = Recibo.objects.filter(pago=pago).first()
+
+    if recibo is None:
+        recibo = Recibo.objects.filter(id=id).first()
+
+        if recibo is None:
+            return redirect('http_404')
+    
+   
+    template_path = 'financings/credit/recibo/recibo_pdf.html'
+    template = get_template(template_path)
+    context = {
+        'title':'ELTELAR',
+        'recibo':recibo
+    }
+    html = template.render(context)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'filename="Recibo {recibo.recibo}.pdf"'
+    HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
+
+    return response
 
 def render_pdf_factura(request,id):    
     recibo = get_object_or_404(Recibo, id=id)

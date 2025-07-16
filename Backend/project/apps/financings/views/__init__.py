@@ -16,7 +16,7 @@ from .detail import detail_credit, detallar_recibo, detalle_boleta, detallar_des
 from .detail import boleta, detallar_garantia
 # FUNCIONES PARA GENERAR PDFS
 from .generar_pdf import render_pdf_factura, render_pdf_estado_cuenta, render_pdf_calculos_credito, render_pdf_plan_pagos, render_pdf_plan_pagos_acreedor, render_pdf_plan_pagos_seguro
-from .generar_pdf import render_pdf_calculos_credito_acreedor, render_pdf_calculos_credito_seguro
+from .generar_pdf import render_pdf_calculos_credito_acreedor, render_pdf_calculos_credito_seguro, render_pdf_recibo
 # REPORTES
 from .reportes import reportes_generales
 
