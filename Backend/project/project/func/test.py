@@ -17,6 +17,7 @@ from apps.financings.models import Credit, PaymentPlan
 # Scripts
 from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
 from scripts.cargar_fiadores.vincular import main_vincular
+from scripts.asignar_nuevos_permisos.otorgar_permiso import asignar
 
 def main():
   # Create a client for your MinIO server using your access and secret keys
@@ -39,8 +40,8 @@ def main():
 
 if __name__ == "__main__":
   try:
-    main_vincular()
-
+    asignar()
+    # python -m project.func.test
 
   except S3Error as exc:
     print("An error occurred.", exc)

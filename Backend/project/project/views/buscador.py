@@ -70,9 +70,7 @@ class Search(TemplateView):
                 except ValueError:
                     pass  # La query no es una fecha, se ignora esta parte
 
-                clientes = Customer.objects.annotate(
-                    full_name=Concat(F('first_name'), Value(' '), F('last_name'))
-                ).filter(customer_filters)
+                clientes = Customer.objects.filter(customer_filters)
                 
                 creditos = Credit.objects.filter(credit_filters)
 

@@ -32,6 +32,15 @@
             </a>
         </li>
         {% endif %}
+        {% if permisos.puede_ver_registros_recibos %}
+        <li>
+            <a href="{% url 'financings:recibos' %}" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+                aria-label="Recibos" data-bs-original-title="Recibos">
+                <img src="{% static 'img/icons/recibos.png' %}" alt="icono_credito" width="20" height="20">
+            </a>
+        </li>
+
+        {% endif %}
         {% if permisos.puede_ver_registro_usuarios%}
         <li>
             <a href="{% url 'users:users' %}" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"

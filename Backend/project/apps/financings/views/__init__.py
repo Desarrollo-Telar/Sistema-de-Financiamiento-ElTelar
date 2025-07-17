@@ -35,3 +35,6 @@ from .filtros import filter_credito_fecha_vencimiento_hoy, filter_credito_fecha_
 
 # MANEJO DE VERIFICACIONES
 from .status import async_view_banco, async_view_boletas
+
+# RECIBOS
+from .recibos import RecibosListView

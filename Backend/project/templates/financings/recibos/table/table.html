@@ -1,0 +1,56 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 ">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">No. Recibo</th>
+                        <th scope="col">Fecha de Recibo</th>
+                        <th scope="col">Para</th>                        
+                        <th scope="col">Total</th>
+                        <th scope="col">Descargar Recibo</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a class="row-link" href="{% url 'financings:recibo' data.id %}">
+                                {{ data.recibo }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="{% url 'financings:recibo' data.id %}">
+                                {{ data.fecha }}
+                            </a>
+                        </td>
+                        
+                        <td>
+                            <a class="row-link" href="{% url 'financings:recibo' data.id %}">
+                                {{ data.recibo_para }} 
+                            </a>
+                        </td>
+                        
+                        <td>
+                            <a class="row-link" href="{% url 'financings:recibo' data.id %}">
+                                Q{{ data.Ftotal }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="{% url 'financings:recibo_pdf' data.id %}">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </td>
+                        
+                     
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

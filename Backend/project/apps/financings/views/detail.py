@@ -214,6 +214,10 @@ def detallar_recibo(request,id):
 
             if recibo is None:
                 return redirect('http_404')
+            
+        if request.user.rol.role_name == 'Secretari@':
+            if recibo.pago.tipo_pago != 'CREDITO':
+                return redirect('http_404')    
 
     except Payment.DoesNotExist:
         return redirect('http_404')

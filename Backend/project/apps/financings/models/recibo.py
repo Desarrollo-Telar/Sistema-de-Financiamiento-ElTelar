@@ -27,6 +27,23 @@ class Recibo(models.Model):
     factura = models.BooleanField(default=False)
     cuota = models.ForeignKey(PaymentPlan, on_delete=models.CASCADE, null=True, blank=True)
 
+    def recibo_para(self):
+        mensaje = ''
+       
+        if self.pago.acreedor:
+            mensaje = f'{self.pago.acreedor.nombre_acreedor}'
+        
+        if self.pago.seguro:
+            mensaje = f'{self.pago.seguro.nombre_acreedor}'
+        
+        if self.pago.credit:
+            mensaje = f'{self.pago.credit.customer_id.get_full_name()} - {self.pago.credit.codigo_credito}'
+        
+      
+
+        return mensaje
+
+
     def Fmora(self):
         return formatear_numero(self.mora)
     

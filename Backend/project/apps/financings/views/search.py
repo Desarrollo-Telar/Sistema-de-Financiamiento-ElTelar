@@ -19,9 +19,6 @@ from django.utils.decorators import method_decorator
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 
-# LIBRERIAS PARA CRUD
-from django.views.generic.list import ListView
-from django.db.models import Q
 
 
 # ------------------ BUSCADOR ------------------------------
