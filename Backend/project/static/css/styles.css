@@ -11,7 +11,18 @@ body {
   font-family: "Quicksand", serif;
 }
 
+.scroll-container {
 
+  height: 25rem;
+  /* Altura del contenedor */
+  overflow-y: auto;
+  /* Scroll vertical automático */
+  overflow-x: hidden;
+  /* Oculta el scroll horizontal */
+  border: 1px solid #050505;
+  /* Bordes para distinguir el área */
+  padding: 10px;
+}
 
 .card_hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -63,7 +74,7 @@ body {
   position: relative;
   z-index: 2;
   height: 2.75rem;
-  overflow-y: hidden
+  
 }
 
 .nav-scroller .nav {
@@ -74,7 +85,7 @@ body {
   overflow-x: auto;
   text-align: center;
   white-space: nowrap;
-  -webkit-overflow-scrolling: touch
+  
 }
 
 .btn-bd-primary {

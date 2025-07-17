@@ -1,93 +1,209 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock%}
 
+{% block content %}
 <div class="container box">
     {% if query %}
     <div class="row">
-        <h3>Resultados de búsqueda para "{{ query }}":</h3>
-        <hr>
-        <div class="d-flex justify-content-center fs-5">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
-
-                </ol>
-            </nav>
+        <!-- Header de búsqueda -->
+        <div class="col-12 mb-4">
+            <div class="search-header">
+                <h2 class="search-title">
+                    <i class="fas fa-search me-2"></i>
+                    Resultados de búsqueda para <span class="query-highlight">"{{ query }}"</span>
+                </h2>
+                
+                <!-- Breadcrumb mejorado -->
+                <nav aria-label="breadcrumb" class="mt-3">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/" class="text-decoration-none">
+                                <i class="fas fa-home me-1"></i>Inicio
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <i class="fas fa-search me-1"></i>{{posicion}}
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <hr class="search-divider">
         </div>
+
+        <!-- Contador de resultados -->
+        <div class="col-12 mb-3">
+            <div class="results-summary">
+                {% if credito_object %}
+                    <span class="badge bg-dark me-2">
+                        <i class="fas fa-credit-card me-1"></i>
+                        {{ credito_object|length }} crédito{{ credito_object|length|pluralize }}
+                    </span>
+                {% endif %}
+                {% if cliente_object %}
+                    <span class="badge bg-danger me-2">
+                        <i class="fas fa-users me-1"></i>
+                        {{ cliente_object|length }} cliente{{ cliente_object|length|pluralize }}
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Resultados -->
         {% if cliente_object or credito_object %}
-        <div class="row row-cols-1 row-cols-md-1 g-4">
-            {% if credito_object%}
-
-
-            {% for credito in credito_object %}
-            <div class="col" style="margin-top: 1rem;">
-                <div class="card card_hover">
-                    <h5 class="card-header">{{ credito.customer_id.first_name }} {{ credito.customer_id.last_name }} |
-                        {{ credito.codigo_credito }} 
-                        {% if credito.is_paid_off %}
-                        <span class="badge text-bg-danger">Credito Cancelado</span>
-                        {% else %}
-                        <span class="badge   text-bg-success ">Credito Vigente</span>
-                        {% endif %}
-                    </h5>
-                    <div class="card-body">
-
-                        <p class="card-text">Credito para: {{ credito.proposito }}.</p>
-                        <p class="card-text">Forma de pago: {{credito.forma_de_pago}}</p>
-                        <figcaption class="blockquote-footer">
-                            {{credito.creation_date}}
-                        </figcaption>
-                        <a href="{% url 'financings:detail_credit' credito.id %}" class="btn_add">Visualizar Credito</a>
+        <div class="col-12">
+            <div class="results-container">
+                
+                <!-- Sección de Créditos -->
+                {% if credito_object %}
+                <div class="results-section mb-4">
+                    <h4 class="section-title">
+                        <i class="fas fa-credit-card me-2"></i>
+                        Créditos encontrados
+                    </h4>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        {% for credito in credito_object %}
+                        <div class="col">
+                            <div class="card h-100 result-card credit-card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <div class="customer-info">
+                                        <h6 class="mb-0">
+                                            <i class="fas fa-user me-1"></i>
+                                            {{ credito.customer_id.first_name }} {{ credito.customer_id.last_name }}
+                                        </h6>
+                                        <small class="text-muted">{{ credito.codigo_credito }}</small>
+                                    </div>
+                                    <div class="status-badge">
+                                        {% if credito.is_paid_off %}
+                                            <span class="badge bg-danger">
+                                                <i class="fas fa-times-circle me-1"></i>Cancelado
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-check-circle me-1"></i>Vigente
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <div class="card-body">
+                                    <div class="credit-details">
+                                        <p class="card-text">
+                                            <i class="fas fa-tag me-2"></i>
+                                            <strong>Propósito:</strong> {{ credito.proposito }}
+                                        </p>
+                                        <p class="card-text">
+                                            <i class="fas fa-credit-card me-2"></i>
+                                            <strong>Forma de pago:</strong> {{ credito.forma_de_pago }}
+                                        </p>
+                                        <p class="card-text text-muted">
+                                            <i class="fas fa-calendar me-2"></i>
+                                            <small>{{ credito.creation_date|date:"d/m/Y" }}</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-footer bg-transparent">
+                                    <a href="{% url 'financings:detail_credit' credito.id %}" 
+                                       class="btn btn-outline-dark w-100">
+                                        <i class="fas fa-eye me-2"></i>Ver Detalles
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
+                {% endif %}
 
-            </div>
-
-
-            {% endfor %}
-            {% endif %}
-
-            {% if cliente_object %}
-
-
-            {% for cliente in cliente_object %}
-            <div class="col" style="margin-top: 1rem;">
-                <div class="card card_hover">
-                    <h5 class="card-header">{{ cliente.first_name }} {{ cliente.last_name }} |  {{ cliente.customer_code }}</h5>
-                    <div class="card-body">
-                        
-                        <p class="card-text"> Numero de Identificacion: {{cliente.identification_number}}.</p>
-                        <p class="card-text"> Numero de Telefono: {{cliente.telephone}}.</p>
-                        <p class="card-text"> Correo Electronico: {{cliente.email}}.</p>
-                        
-                        <a href="{% url 'customers:detail' cliente.customer_code %}" class="btn_guardar">Visualizar Cliente</a>
+                <!-- Sección de Clientes -->
+                {% if cliente_object %}
+                <div class="results-section">
+                    <h4 class="section-title">
+                        <i class="fas fa-users me-2"></i>
+                        Clientes encontrados
+                    </h4>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        {% for cliente in cliente_object %}
+                        <div class="col">
+                            <div class="card h-100 result-card client-card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">
+                                        <i class="fas fa-user me-1"></i>
+                                        {{ cliente.first_name }} {{ cliente.last_name }}
+                                    </h6>
+                                    <small class="text-muted">{{ cliente.customer_code }}</small>
+                                </div>
+                                
+                                <div class="card-body">
+                                    <div class="client-details">
+                                        <p class="card-text">
+                                            <i class="fas fa-id-card me-2"></i>
+                                            <strong>Numero de Identificación:</strong> {{ cliente.identification_number }}
+                                        </p>
+                                        <p class="card-text">
+                                            <i class="fas fa-phone me-2"></i>
+                                            <strong>Teléfono:</strong> 
+                                            <a href="tel:{{ cliente.telephone }}" class="text-decoration-none">
+                                                {{ cliente.telephone }}
+                                            </a>
+                                        </p>
+                                        <p class="card-text">
+                                            <i class="fas fa-envelope me-2"></i>
+                                            <strong>Email:</strong> 
+                                            <a href="mailto:{{ cliente.email }}" class="text-decoration-none">
+                                                {{ cliente.email }}
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-footer bg-transparent">
+                                    <a href="{% url 'customers:detail' cliente.customer_code %}" 
+                                       class="btn btn-outline-dark w-100">
+                                        <i class="fas fa-eye me-2"></i>Ver Perfil
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-
+                {% endif %}
+                
             </div>
-            {% endfor%}
-
-            {% endif %}
-
-
         </div>
         {% endif %}
     </div>
+    
     {% else %}
-    <div class="row h-100 w-75 p-5">
-        <p>Sin Registros</p>
-
+    <!-- Estado vacío mejorado -->
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="empty-state text-center py-5">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <h3 class="text-muted">No se encontraron resultados</h3>
+                <p class="text-muted">Intenta con diferentes términos de búsqueda</p>
+                <a href="/" class="btn btn-primary">
+                    <i class="fas fa-home me-2"></i>Volver al inicio
+                </a>
+            </div>
+        </div>
     </div>
     {% endif %}
 
+    <!-- Paginación -->
     {% if page_obj %}
-    <div class="row">
-        {% include 'snippets/pages.html' %}
+    <div class="row mt-4">
+        <div class="col-12">
+            {% include 'snippets/pages.html' %}
+        </div>
     </div>
     {% endif %}
-
 </div>
+
+
 {% endblock %}
