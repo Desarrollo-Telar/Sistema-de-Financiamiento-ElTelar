@@ -1,0 +1,17 @@
+{% load static %}
+
+<div class="row">
+    {% if informacion_asesor.clientes %}
+    <p class="text-body-secondary fs-6 text-uppercase">
+        TOTAL DE TODOS LOS CLIENTES REGISTRADOS:
+        <span class="badge rounded-pill text-bg-dark">{{informacion_asesor.clientes.count}}</span>
+      </p>
+
+    {% include 'customer/table/table.html' with customer_list=informacion_asesor.clientes %}
+    {% else %}
+    <p class="text-body-secondary fs-6 text-uppercase">
+       No tiene Clientes Registrados
+        
+      </p>
+    {% endif %}
+</div>

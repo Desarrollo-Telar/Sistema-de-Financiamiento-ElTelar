@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-4 p-4 bg-light rounded shadow-sm">
+    {% include 'asesores_credito/snippets/breadcrumbs.html' %}
+    {% include 'asesores_credito/snippets/encabezado_detalle.html' %}
+    {% include 'asesores_credito/snippets/botones_acciones.html' %}
+    {% include 'asesores_credito/snippets/pestania_informacion.html'  %}
+    {% include 'asesores_credito/snippets/contenido_pestania.html'  %}
+
+
+</div>
+
+{% endblock %}

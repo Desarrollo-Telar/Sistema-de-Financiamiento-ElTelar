@@ -5,6 +5,7 @@
             <table  style="font-size: 14px;">
                 <thead>
                     <tr>
+                        <th scope="col">#</th>
                         <th scope="col">Código Cliente</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Correo Electrónico</th>
@@ -19,6 +20,7 @@
                 <tbody>
                     {% for customer in customer_list %}
                     <tr>
+                        <td>{{ forloop.counter }}</td>
                         <td>
                             <a class="row-link" href="{% url 'customers:detail' customer.customer_code %}">
                                 {{ customer.customer_code }}

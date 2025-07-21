@@ -1,0 +1,17 @@
+{% load static %}
+
+<div class="row">
+    {% if informacion_asesor.creditos %}
+    <p class="text-body-secondary fs-6 text-uppercase">
+        TOTAL DE TODOS LOS CREDITOS REGISTRADOS:
+        <span class="badge rounded-pill text-bg-dark">{{informacion_asesor.creditos.count}}</span>
+      </p>
+
+    {% include 'financings/credit/table/table.html' with credit_list=informacion_asesor.creditos %}
+    {% else %}
+    <p class="text-body-secondary fs-6 text-uppercase">
+       No tiene Creditos Registrados
+        
+      </p>
+    {% endif %}
+</div>

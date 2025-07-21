@@ -22,8 +22,7 @@ class AsesoresCreditosList(ListView):
     template_name = 'asesores_credito/list.html'
     paginate_by = 50
 
-    def query(self):
-        return self.request.GET.get('q')
+    
     
     def get_queryset(self):
         try:
@@ -37,10 +36,10 @@ class AsesoresCreditosList(ListView):
             if query:
                
 
-                filters |= Q(usuario__username__icontains = query)
+               
                 filters |= Q(nombre__icontains = query)
-                filters |= Q(apellido__last_name__icontains = query)
-                filters |= Q(usuario__user_code__icontains = query)
+                filters |= Q(apellido__icontains = query)             
+                filters |= Q(codigo_asesor__icontains = query)
 
 
             return CreditCounselor.objects.filter(filters).order_by('id')
@@ -53,6 +52,8 @@ class AsesoresCreditosList(ListView):
     @method_decorator([permiso_requerido('puede_ver_registros_asesores')])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
+    def query(self):
+        return self.request.GET.get('q')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

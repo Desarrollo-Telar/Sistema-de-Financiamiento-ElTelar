@@ -18,29 +18,29 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'customers:detail_asesor' data.codigo_asesor %}">
                                 {{ data.codigo_asesor }}
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'customers:detail_asesor' data.codigo_asesor %}">
                                 {{ data.nombre }} {{ data.apellido }}
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'customers:detail_asesor' data.codigo_asesor %}">
                                 {{ data.email }}
                             </a>
                         </td>
 
                         
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'customers:detail_asesor' data.codigo_asesor %}">
                                 {{ data.identification_number }}
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'customers:detail_asesor' data.codigo_asesor %}">
                                 {{ data.telephone }}
                             </a>
                         </td>

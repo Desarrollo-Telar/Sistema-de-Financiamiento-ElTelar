@@ -1,0 +1,9 @@
+{% load static %}
+<!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb bg-transparent p-0 m-0">
+            <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-primary">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'customers:asesores_creditos' %}" class="text-decoration-none text-primary">Aserores De Creditos</a></li>
+            <li class="breadcrumb-item active text-muted" aria-current="page">{{ asesor_credito.nombre }} {{ asesor_credito.apellido }}</li>
+        </ol>
+    </nav>

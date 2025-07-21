@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 # Routes
 from apps.customers.api import routers
+from .rutas import urlpatterns_asesores_creditos
 
 app_name = 'customers'
 
@@ -33,7 +34,7 @@ urlpatterns = [
     path('clasificacion/',views.list_filters, name='list_filters'),
 
 
-    path('asesores_credito/',login_required( views.AsesoresCreditosList.as_view()), name='asesores_creditos'),
+    
 ]
 
-urlpatterns+=routers.urlpatterns
+urlpatterns+=routers.urlpatterns + urlpatterns_asesores_creditos

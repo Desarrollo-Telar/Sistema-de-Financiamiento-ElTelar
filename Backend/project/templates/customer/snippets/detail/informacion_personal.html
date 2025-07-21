@@ -112,7 +112,7 @@
         {{customer_list.asesor}}
     </p>
     
-    {% if request.user.role_name == 'Administrador' or request.user.role_name == 'Programador' %}
+    {% if request.user.rol.role_name == 'Administrador' or request.user.rol.role_name == 'Programador' %}
     <hr>
     <p class="fw-semibold">Usuario quien registro a este Cliente</p>
 

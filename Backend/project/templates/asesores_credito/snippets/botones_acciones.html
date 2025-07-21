@@ -1,0 +1,24 @@
+{% load static %}
+
+<div class="d-flex justify-content-end mb-4 gap-3">
+    {% if permisos.puede_editar_informacion_personal_cliente %}
+    <a href="#" class="btn btn-outline-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-pencil-square me-2" viewBox="0 0 16 16">
+            <path
+                d="M15.502 1.94a.5.5 0 0 1 0 .706l-1 1a.5.5 0 0 1-.708 0L13 2.207l1-1a.5.5 0 0 1 .707 0l.795.793zM13.5 3.5l-10 10V14h1v-2.5l10-10H13.5z" />
+        </svg>
+        Editar Información Personal
+    </a>
+    {% endif %}
+    {% if permisos.puede_eliminar_registro_cliente %}
+    <a href="#" class="btn btn-outline-danger">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-person-x-fill me-2" viewBox="0 0 16 16">
+            <path
+                d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708" />
+        </svg>
+        Eliminar Asesor
+    </a>
+    {% endif %}
+</div>

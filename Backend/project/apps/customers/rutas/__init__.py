@@ -1,0 +1,1 @@
+from .asesores_creditos import urlpatterns_asesores_creditos
