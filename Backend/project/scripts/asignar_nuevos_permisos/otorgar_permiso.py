@@ -6,10 +6,11 @@ from apps.users.models import PermisoUsuario, User
 
 
 def asignar():
-    roles = ['Programador', 'Administrador', 'Secretari@']
-
+    #roles = ['Programador', 'Administrador', 'Secretari@']
+    roles = ['Programador', 'Administrador']
+    
     usuarios = User.objects.filter(rol__role_name__in = roles )
-    permiso_a_otorgar = Permiso.objects.get(codigo_permiso='puede_ver_registros_recibos')
+    permiso_a_otorgar = Permiso.objects.get(codigo_permiso='puede_visualizar_detalle_asesor_credito')
 
     for usuario in usuarios:
         print(usuario)

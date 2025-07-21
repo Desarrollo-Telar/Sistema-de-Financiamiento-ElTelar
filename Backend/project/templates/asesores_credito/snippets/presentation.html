@@ -1,0 +1,16 @@
+{% load static %}
+<div style="padding: 2.5rem">
+    <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Asesores de Creditos</span> !</h3>
+    <div class="d-flex justify-content-center fs-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'customers:asesores_creditos' %}">Asesores de Creditos</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+
+            </ol>
+        </nav>
+    </div>
+    
+
+</div>

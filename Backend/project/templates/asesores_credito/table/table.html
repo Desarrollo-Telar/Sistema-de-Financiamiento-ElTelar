@@ -1,0 +1,56 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 ">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Codigo de Asesor</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo Electronico</th>    
+                        <th scope="col">Numero de Identificacion</th>              
+                        <th scope="col">Numero de Telefono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.codigo_asesor }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.nombre }} {{ data.apellido }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.email }}
+                            </a>
+                        </td>
+
+                        
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.identification_number }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.telephone }}
+                            </a>
+                        </td>
+                        
+                        
+                     
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

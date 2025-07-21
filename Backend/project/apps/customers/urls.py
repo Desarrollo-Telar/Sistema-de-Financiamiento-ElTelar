@@ -31,6 +31,9 @@ urlpatterns = [
     path('inactive/', login_required(filters.inactive_customer), name='inactive'),
     path('document_review/', login_required(filters.document_review_customer), name='document_review'),
     path('clasificacion/',views.list_filters, name='list_filters'),
+
+
+    path('asesores_credito/',login_required( views.AsesoresCreditosList.as_view()), name='asesores_creditos'),
 ]
 
 urlpatterns+=routers.urlpatterns

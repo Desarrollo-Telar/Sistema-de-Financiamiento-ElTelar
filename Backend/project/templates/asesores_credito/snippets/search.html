@@ -1,0 +1,10 @@
+<nav>
+    <div class="container-fluid">
+        <form class="d-flex" action="{% url 'customers:asesores_creditos' %}">
+            <input class="form-control me-2" name="q" value="{{ query }}" type="search" placeholder="Buscar"
+                aria-label="Search">
+            <button class="btn btn-outline-dark" type="submit">Buscar</button>
+        </form>
+
+    </div>
+</nav>
