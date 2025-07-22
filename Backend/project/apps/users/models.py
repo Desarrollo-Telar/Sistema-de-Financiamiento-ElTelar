@@ -9,10 +9,10 @@ from apps.roles.models import Role, Permiso
 from apps.subsidiaries.models import Subsidiary
 
 # TIEMPO
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Creacion de todas las tablas para este modulo
-
+from project.database_store import minio_client
 
 # Creacion de tabla de usuario
 class User(AbstractUser):
@@ -55,6 +55,18 @@ class User(AbstractUser):
 
     def get_telephone(self):
         return self.telephone if self.telephone else 'Número de teléfono no registrado'
+    
+    def get_foto_perfil(self):
+        
+        try:
+            url = minio_client.presigned_get_object(
+                bucket_name="asiatrip",
+                object_name=self.profile_pic.name,
+                expires=timedelta(hours=1)
+            )
+            return url
+        except Exception as e:
+            return f'Error: {str(e)}'
 
     class Meta:
         verbose_name = "Usuario"

@@ -6,5 +6,11 @@
         <h3 class="fs-5 text-uppercase mb-1">{{ asesor_credito.nombre }} {{ asesor_credito.apellido }}</h3>
         <p class="fs-6 text-muted text-uppercase">{{ asesor_credito.codigo_asesor }}</p>
     </div>
-   
+    {% if asesor_credito.usuario.profile_pic %}
+    <div class="mt-3 mt-md-0">
+        <img src="{{ asesor_credito.usuario.get_foto_perfil }}" alt="Código QR" class="img-thumbnail"
+            style="width: 250px; height: 200px; object-fit: cover;">
+    </div>
+    {% endif %}
+
 </div>

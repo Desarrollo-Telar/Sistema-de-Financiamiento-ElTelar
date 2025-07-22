@@ -1,5 +1,6 @@
 {% load static %}
 <div class="row" style="margin: 2rem ;">
+    {% if reference %}
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
@@ -34,5 +35,8 @@
             </tbody>
         </table>
     </div>
+    {% else %}
+    <a class="btn_guardar" href="{% url 'financial_information:create_reference_information' customer_list.customer_code %}">Registrar Las Referencias del Cliente</a>
 
+    {% endif %}
 </div>
