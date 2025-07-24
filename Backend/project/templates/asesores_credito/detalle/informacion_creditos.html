@@ -1,17 +1,72 @@
 {% load static %}
 
 <div class="row">
-    {% if informacion_asesor.creditos %}
-    <p class="text-body-secondary fs-6 text-uppercase">
+  {% if informacion_asesor.creditos %}
+
+  <p class="d-inline-flex gap-1">
+    <button class="btn_cancel" type="button" data-bs-toggle="collapse" data-bs-target="#todos_creditos"
+      aria-expanded="false" aria-controls="todos_creditos">
+      Todos los Creditos ( {{informacion_asesor.creditos.count}} )
+    </button>
+
+    <button class="btn_cancel" type="button" data-bs-toggle="collapse" data-bs-target="#todos_creditos_vigentes"
+      aria-expanded="false" aria-controls="todos_creditos_vigentes">
+      Todos los Creditos Vigentes ( {{informacion_asesor.creditos_vigentes.count}} )
+    </button>
+    <button class="btn_cancel" type="button" data-bs-toggle="collapse" data-bs-target="#todos_creditos_atrasados_fechas"
+      aria-expanded="false" aria-controls="todos_creditos_atrasados_fechas">
+      Todos los Creditos Atrasados Por Fecha ( {{informacion_asesor.creditos_atrasados_por_fecha.count}} )
+    </button>
+    <button class="btn_cancel" type="button" data-bs-toggle="collapse" data-bs-target="#todos_creditos_atrasados_aportacion"
+      aria-expanded="false" aria-controls="todos_creditos_atrasados_aportacion">
+      Todos los Creditos Atrasados Por Aportación ( {{informacion_asesor.creditos_atrasados_por_aportacion.count}} )
+    </button>
+
+  </p>
+  <!-- -->
+  <div class="collapse" id="todos_creditos">
+    <div class="card card-body">
+      <p class="text-body-secondary fs-6 text-uppercase">
         TOTAL DE TODOS LOS CREDITOS REGISTRADOS:
         <span class="badge rounded-pill text-bg-dark">{{informacion_asesor.creditos.count}}</span>
       </p>
-
-    {% include 'financings/credit/table/table.html' with credit_list=informacion_asesor.creditos %}
-    {% else %}
-    <p class="text-body-secondary fs-6 text-uppercase">
-       No tiene Creditos Registrados
-        
+      {% include 'financings/credit/table/table.html' with credit_list=informacion_asesor.creditos %}
+    </div>
+  </div>
+  <div class="collapse" id="todos_creditos_vigentes">
+    <div class="card card-body">
+      <p class="text-body-secondary fs-6 text-uppercase">
+        TOTAL DE TODOS LOS CREDITOS REGISTRADOS:
+        <span class="badge rounded-pill text-bg-dark">{{informacion_asesor.creditos_vigentes.count}}</span>
       </p>
-    {% endif %}
+      {% include 'financings/credit/table/table.html' with credit_list=informacion_asesor.creditos_vigentes %}
+    </div>
+  </div>
+  <div class="collapse" id="todos_creditos_atrasados_fechas">
+    <div class="card card-body">
+      <p class="text-body-secondary fs-6 text-uppercase">
+        TOTAL DE TODOS LOS CREDITOS REGISTRADOS:
+        <span class="badge rounded-pill text-bg-dark">{{informacion_asesor.creditos_atrasados_por_fecha.count}}</span>
+      </p>
+      {% include 'financings/credit/table/table.html' with credit_list=informacion_asesor.creditos_atrasados_por_fecha %}
+    </div>
+  </div>
+  <div class="collapse" id="todos_creditos_atrasados_aportacion">
+    <div class="card card-body">
+      <p class="text-body-secondary fs-6 text-uppercase">
+        TOTAL DE TODOS LOS CREDITOS REGISTRADOS:
+        <span class="badge rounded-pill text-bg-dark">{{informacion_asesor.creditos_atrasados_por_aportacion.count}}</span>
+      </p>
+      {% include 'financings/credit/table/table.html' with credit_list=informacion_asesor.creditos_atrasados_por_aportacion %}
+    </div>
+  </div>
+
+
+
+  {% else %}
+  <p class="text-body-secondary fs-6 text-uppercase">
+    No tiene Creditos Registrados
+
+  </p>
+  {% endif %}
 </div>

@@ -10,7 +10,7 @@ def asignar():
     roles = ['Programador', 'Administrador']
     
     usuarios = User.objects.filter(rol__role_name__in = roles )
-    permiso_a_otorgar = Permiso.objects.get(codigo_permiso='puede_visualizar_detalle_asesor_credito')
+    permiso_a_otorgar = Permiso.objects.get(codigo_permiso='puede_asignar_estado_judicial')
 
     for usuario in usuarios:
         print(usuario)

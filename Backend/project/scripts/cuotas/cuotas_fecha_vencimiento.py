@@ -1,6 +1,6 @@
 # MODELS
 from apps.financings.models import PaymentPlan
-
+from django.db.models import Q
 # TIEMPO
 from datetime import datetime, time
 from django.utils.timezone import now
@@ -13,7 +13,12 @@ from project.send_mail import send_email_next_update_of_quotas
 
 def verificador_de_cuotas_vencidas(dia):
     print('ANALISIS SOBRE FECHA_VENCIMIENTO')
-    planes = PaymentPlan.objects.filter(due_date__date=dia, paso_por_task=False)
+    planes = PaymentPlan.objects.filter(due_date__date=dia, paso_por_task=False).filter( 
+        Q(credit_id__is_paid_off = False) | 
+        Q(acreedor__is_paid_off = False ) | 
+        Q(seguro__is_paid_off = False) |
+        Q(credit_id__estado_judicial = False)
+        )
     
     if not planes.exists():
         print("No hay registro")

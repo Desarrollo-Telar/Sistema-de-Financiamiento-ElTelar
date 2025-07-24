@@ -31,6 +31,8 @@ urlpatterns_credit = [
     path('credit/fecha_limite/',login_required(filter_credito_fecha_limite_hoy),name='filter_credito_fecha_limite_hoy'),
     path('credit/proximos/fecha_vencimiento/',login_required(filter_credito_proximos_vencerse),name='filter_credito_proximos_vencerse'),
 
+    path('credit/cambio_estado/judicial/<int:id>/', login_required(cambiar_estado_judicial), name='cambiar_estado_judicial'),
+
     
 
 ]

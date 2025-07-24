@@ -58,7 +58,7 @@ class RecibosListView(ListView):
                 filters |= Q(pago__numero_referencia__icontains = query)
 
 
-            return Recibo.objects.filter(filters).order_by('-fecha')
+            return Recibo.objects.filter(filters).order_by('-recibo')
         
         except Exception as e:
             print(f'error: {e}')

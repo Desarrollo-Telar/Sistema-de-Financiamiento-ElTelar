@@ -72,3 +72,32 @@ class RestrictedAccessByTimeMiddleware:
         # Si está dentro del horario, continúa con la solicitud
         response = self.get_response(request)
         return response
+
+# middleware.py
+from django.utils.deprecation import MiddlewareMixin
+from apps.actividades.models import UserLog
+
+class UserActionLoggingMiddleware(MiddlewareMixin):
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        # Solo registrar acciones para usuarios autenticados
+        if request.user.is_authenticated and request.method in ['POST', 'PUT', 'DELETE']:
+            action_map = {
+                'POST': 'CREACIÓN',
+                'PUT': 'ACTUALIZACIÓN',
+                'DELETE': 'ELIMINACIÓN'
+            }
+            
+            action = action_map.get(request.method)
+            if action:
+                UserLog.objects.create(
+                    user=request.user,
+                    action=action,
+                    details=f"{action} en {request.path}",
+                    ip_address=request.META.get('REMOTE_ADDR'),
+                    user_agent=request.META.get('HTTP_USER_AGENT'),
+                    metadata={
+                        'view': view_func.__name__,
+                        'args': view_args,
+                        'kwargs': view_kwargs
+                    }
+                )

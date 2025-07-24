@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from apps.financings.models import Payment, PaymentPlan, AccountStatement, Recibo
-from apps.financings.models import Invoice
+from apps.financings.models import Invoice, Credit
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -131,3 +131,15 @@ def generar_factura(request,id):
 
 
 
+@login_required
+@permiso_requerido('puede_asignar_estado_judicial')
+def cambiar_estado_judicial(request, id):
+    credit = Credit.objects.filter(id=id).get()
+
+    if credit is None:
+        return redirect('http_404')
+    
+    credit.estado_judicial = True
+    credit.save()
+
+    return redirect('financings:detail_credit', credit.id)

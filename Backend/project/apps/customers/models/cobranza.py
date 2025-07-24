@@ -1,40 +1,62 @@
-# Models
 from django.db import models
 
 # Relacion
-from apps.customers.models import CreditCounselor, Customer
-from apps.financings.models import PaymentPlan, Credit
-
-# TIEMPO
-from datetime import datetime
-
-# SIGNALS
-from django.db.models.signals import pre_save, post_save
-from django.dispatch import receiver
-
-tipos_cobranzas = [
-    'Cobranza Preventiva',
-    'Cobranza Administrativa',
-    'Cobranza Extrajudicial',
-    'Cobranza Judicial',
-    'Cobranza domiciliaria',
-]
-
-tipos_gestion = [
-    'correo electronico',
-    'llama telefonica',
-
-]
+from apps.customers.models import CreditCounselor
 
 class Cobranza(models.Model):
-    credito = models.ForeignKey(Credit, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Credito Asociado")
-    asesor_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Responsable de Seguimiento")
-    cuota = models.ForeignKey(PaymentPlan, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Cuota de Seguimiento")
-    tipo_cobranza = models.CharField(verbose_name="Tipo de Cobranza", max_length=100, default="Preventiva")
-    fecha_registro = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Registro")
-    fecha_gestion = models.DateField(verbose_name="Fecha de Gestion", default=datetime.date())
-    tipo_gestion = models
+    TIPO_COBRANZA_CHOICES = [
+        ('preventiva', 'Preventiva'),
+        ('normal', 'Normal'),
+        ('castigada', 'Castigada'),
+        ('judicial', 'Judicial'),
+    ]
+
+    TIPO_GESTION_CHOICES = [
+        ('llamada', 'Llamada'),
+        ('whatsapp', 'WhatsApp'),
+        ('visita', 'Visita presencial'),
+        ('correo', 'Correo electrónico'),
+    ]
+
+    RESULTADO_CHOICES = [
+        ('promesa_pago', 'Promesa de pago'),
+        ('pago_realizado', 'Pago realizado'),
+        ('no_localizado', 'No localizable'),
+        ('negativa_pago', 'Negativa de pago'),
+    ]
+
+    ESTADO_COBRANZA_CHOICES = [
+        ('pendiente', 'Pendiente'),
+        ('gestionado', 'Gestionado'),
+        ('incumplido', 'Incumplido'),
+        ('cerrado', 'Cerrado'),
+    ]
+
+    credito = models.ForeignKey('Credito', on_delete=models.CASCADE, related_name='cobranzas')
+    asesor_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, related_name='cobranzas_gestionadas')
+    cuota = models.ForeignKey('Cuota', on_delete=models.CASCADE, related_name='gestiones_cobranza')
+
+    tipo_cobranza = models.CharField(max_length=75)
+    fecha_registro = models.DateTimeField(auto_now_add=True)
+    fecha_gestion = models.DateTimeField()
+
+    tipo_gestion = models.CharField(max_length=75)
+    resultado = models.CharField(max_length=75, )
+
+    monto_pendiente = models.DecimalField(max_digits=10, decimal_places=2)
+    fecha_promesa_pago = models.DateField(null=True, blank=True)
+
+    observaciones = models.TextField(blank=True, null=True)
+
+    estado_cobranza = models.CharField(max_length=75, default='pendiente')
+
+    medio_contacto = models.CharField(max_length=50)
+    telefono_contacto = models.CharField(max_length=75)
+
+    def __str__(self):
+        return f'Cobranza #{self.id} - {self.credito}'
 
     class Meta:
-        verbose_name = 'Cobranza'
-        verbose_name_plural = 'Cobranzas'
+        verbose_name = "Cobranza"
+        verbose_name_plural = "Cobranzas"
+        ordering = ['-fecha_gestion']

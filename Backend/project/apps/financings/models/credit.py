@@ -59,6 +59,7 @@ class Credit(models.Model):
     
 
     fecha_actualizacion = models.DateField("Fecha en que se actualizo el credito", default=datetime.now, null=True, blank=True)
+    estado_judicial = models.BooleanField(default=False, verbose_name="Estado Judicial")
 
 
     def __str__(self):

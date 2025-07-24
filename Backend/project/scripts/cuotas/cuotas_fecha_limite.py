@@ -1,5 +1,6 @@
 # MODELS
 from apps.financings.models import PaymentPlan
+from django.db.models import Q
 
 # TIEMPO
 from datetime import datetime, time
@@ -13,7 +14,12 @@ from project.send_mail import send_email_update_of_quotas
 
 def verificador_de_cuotas_fecha_limite(dia):
     print('ANALISIS SOBRE FECHA_LIMITE')
-    planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=False)
+    planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=False).filter( 
+        Q(credit_id__is_paid_off = False) | 
+        Q(acreedor__is_paid_off = False ) | 
+        Q(seguro__is_paid_off = False)|
+        Q(credit_id__estado_judicial = False)
+        )
     
     if not planes.exists():
         print("No hay registro")
