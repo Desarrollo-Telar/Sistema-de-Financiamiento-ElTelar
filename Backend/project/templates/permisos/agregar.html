@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="content">
+<div class="container my-4 p-4 bg-white rounded shadow-sm">
   <h2>Asignación de Permisos para {{ usuario.username }}</h2>
   <form method="POST" id="form-permisos">
   {% csrf_token %}
