@@ -143,3 +143,16 @@ def cambiar_estado_judicial(request, id):
     credit.save()
 
     return redirect('financings:detail_credit', credit.id)
+
+@login_required
+@permiso_requerido('puede_asignar_estado_judicial')
+def cambiar_estado_judicial_false(request, id):
+    credit = Credit.objects.filter(id=id).get()
+
+    if credit is None:
+        return redirect('http_404')
+    
+    credit.estado_judicial = False
+    credit.save()
+
+    return redirect('financings:detail_credit', credit.id)

@@ -64,9 +64,14 @@ def realizar_pago(payment):
             payment.save()
             return f'REGISTRO PARA LOS DIFERENTES TIPOS DE PAGOS: EGRESO, INGRESO, DESEMBOLSO'
 
-        if payment.credit and payment.credit.is_paid_off:
+        if payment.credit and payment.credit.is_paid_off or payment.credit.estado_judicial :
             payment.estado_transaccion = 'FALLIDO'
+            
             payment.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO AL CUAL SE ESTA ASOCIANDO YA HA SIDO CANCELADO\n\n'
+
+            if payment.credit.estado_judicial:
+                payment.descripcion_estado = f'\n\nEL REGISTRO DE ESTA BOLETA ES INVALIDA DEBIDO A QUE EL CREDITO ACTUALMENTE SE ENCUENTRA EN UN PROCESO JUDICIAL, POR EL CUAL NO ES POSIBLE REALIZAR ALGUN PAGO\n\n'
+
             payment.save()
             banco.status = False
             banco.save()

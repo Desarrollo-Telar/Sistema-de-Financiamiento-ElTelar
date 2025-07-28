@@ -103,11 +103,19 @@
         </button>
     </div>
     {% if permisos.puede_asignar_estado_judicial %}
+    
     <div class="col-md-3 mb-3">
+        {% if credit_list.estado_judicial %}
+        <a href="{% url 'financings:cambiar_estado_judicial_false' credit_list.id %}" class="btn_edit"  data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-original-title="Cambiar El Estado del Credito" aria-label="Cambiar El Estado del Credito">
+            Cambiar El Estado Del Credito a Juridico
+        </a>
+        {% else %}
         <a href="{% url 'financings:cambiar_estado_judicial' credit_list.id %}" class="btn_cancel"  data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-original-title="Cambiar El Estado del Credito" aria-label="Cambiar El Estado del Credito">
             Cambiar El Estado Del Credito a Juridico
         </a>
+        {% endif %}
     </div>
     {% endif %}
 

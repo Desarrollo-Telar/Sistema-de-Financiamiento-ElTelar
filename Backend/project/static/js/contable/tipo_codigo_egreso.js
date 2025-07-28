@@ -109,6 +109,10 @@ export function tipo_codigo(input_id_codigo_egreso, seleccionado) {
 
             mostrar(document.getElementById('id_tipo_gasto'));
             mostrar(document.querySelector('label[for="id_tipo_gasto"]'));
+
+            mostrar(document.getElementById('id_observaciones'));
+            mostrar(document.querySelector('label[for="id_observaciones"]'));
+            
             // Obtener el input
             const id_tipo_gasto = document.getElementById('id_tipo_gasto');
 

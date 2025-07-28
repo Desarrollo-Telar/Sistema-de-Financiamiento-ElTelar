@@ -22,7 +22,7 @@ class Informe(models.Model):
         verbose_name_plural = 'Informes'
 
     def calcular_fecha_vencimiento(self):
-        self.fecha_vencimiento = self.fecha_registro + relativedelta(days=6)
+        self.fecha_vencimiento = self.fecha_registro + relativedelta(months=1,days=1)
         return self.fecha_vencimiento
 
     def save(self,*args, **kwargs):
