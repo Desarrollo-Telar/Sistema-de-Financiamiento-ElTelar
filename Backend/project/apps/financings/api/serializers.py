@@ -173,7 +173,14 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
                 "is_paid_off": instance.credit_id.is_paid_off,
                 "estado_aportacion": instance.credit_id.estado_aportacion,
                 "estados_fechas": instance.credit_id.estados_fechas,
-                "forma_de_pago": instance.credit_id.forma_de_pago
+                "forma_de_pago": instance.credit_id.forma_de_pago,
+                "customer_id": {
+                    "id": instance.credit_id.customer_id.id,
+                    "first_name": instance.credit_id.customer_id.first_name,
+                    "last_name": instance.credit_id.customer_id.last_name,
+                    "email":instance.credit_id.customer_id.email,
+                    "telephone":instance.credit_id.customer_id.telephone
+                }
             }
 
         return {

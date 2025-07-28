@@ -2,6 +2,7 @@ from django.db import models
 
 # Relacion
 from apps.customers.models import CreditCounselor
+from apps.financings.models import Credit, PaymentPlan
 
 class Cobranza(models.Model):
     TIPO_COBRANZA_CHOICES = [
@@ -32,25 +33,27 @@ class Cobranza(models.Model):
         ('cerrado', 'Cerrado'),
     ]
 
-    credito = models.ForeignKey('Credito', on_delete=models.CASCADE, related_name='cobranzas')
+    credito = models.ForeignKey(Credit, on_delete=models.CASCADE, related_name='cobranzas')
     asesor_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, related_name='cobranzas_gestionadas')
-    cuota = models.ForeignKey('Cuota', on_delete=models.CASCADE, related_name='gestiones_cobranza')
+    cuota = models.ForeignKey(PaymentPlan, on_delete=models.CASCADE, related_name='gestiones_cobranza')
 
     tipo_cobranza = models.CharField(max_length=75)
     fecha_registro = models.DateTimeField(auto_now_add=True)
     fecha_gestion = models.DateTimeField()
 
     tipo_gestion = models.CharField(max_length=75)
-    resultado = models.CharField(max_length=75, )
+    resultado = models.CharField(max_length=75 )
 
-    monto_pendiente = models.DecimalField(max_digits=10, decimal_places=2)
+    monto_pendiente = models.DecimalField(max_digits=10, decimal_places=2) # SALDO ACTUAL DE LA CUOTA
+    interes_pendiente = models.DecimalField(max_digits=10, decimal_places=2)  # Interes de la cuota, ya si tiene interes acumulado
+    mora_pendiente = models.DecimalField(max_digits=10, decimal_places=2)  # Mora de la cuota, ya si tiene mora acumulado
     fecha_promesa_pago = models.DateField(null=True, blank=True)
 
     observaciones = models.TextField(blank=True, null=True)
 
     estado_cobranza = models.CharField(max_length=75, default='pendiente')
 
-    medio_contacto = models.CharField(max_length=50)
+    #medio_contacto = models.CharField(max_length=50)
     telefono_contacto = models.CharField(max_length=75)
 
     def __str__(self):

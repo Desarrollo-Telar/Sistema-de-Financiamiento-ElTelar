@@ -93,7 +93,7 @@ class Customer(models.Model):
     
     asesor  = models.CharField("Asesor del Credito", max_length=100, blank=True, null=True, default="PENDIENTE")
     fehca_vencimiento_de_tipo_identificacion = models.DateField("Fecha de Vencimiento del Tipo de Identificacion", blank=True, null=True,default=datetime.now)
-    # NUEVOS CAMPOS
+    
     other_telephone = models.CharField("Otro Numero de Teléfono", max_length=20, blank=True, null=True)
     level_of_education = models.CharField("Nivel de Escolaridad",max_length=100, choices=escolaridad, default='Ninguna', blank=True, null=True)
     level_of_education_superior = models.CharField("Nivel de Escolaridad Superior", max_length=100, choices=escolaridad_superior, default='Ninguna',blank=True, null=True)
@@ -106,6 +106,9 @@ class Customer(models.Model):
 
     lugar_emision_tipo_identificacion_departamento = models.CharField(verbose_name="Lugar de Emision (Departamento)", max_length=100, blank=True, null=True, default='Alta Verapaz')
     lugar_emision_tipo_identificacion_municipio = models.CharField(verbose_name="Lugar de Emision (Municipio)", max_length=100, blank=True, null=True, default='Cobán')
+
+    # NUEVOS CAMPOS
+    valoracion = models.DecimalField(verbose_name="Puntuacion del cliente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
     
     def __str__(self):
         return self.get_full_name()
