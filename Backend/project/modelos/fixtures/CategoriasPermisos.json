@@ -196,5 +196,23 @@
         "descripcion": "",
         "estado": true
     }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 24,
+    "fields": {
+        "nombre": "Asesores de Credito",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 25,
+    "fields": {
+        "nombre": "Boletas",
+        "descripcion": "",
+        "estado": true
+    }
 }
 ]

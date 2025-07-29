@@ -1,0 +1,4007 @@
+[
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 2,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "CONSUMO",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 5,
+        "investment_plan_code": "2024-1/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 3,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 7,
+        "investment_plan_code": "2024-2/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 4,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 8,
+        "investment_plan_code": "2024-3/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 5,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4377.82",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "4377.82",
+        "monthly_amount": "4377.82",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 9,
+        "investment_plan_code": "2024-4/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 6,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 10,
+        "investment_plan_code": "2025-1/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 7,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 11,
+        "investment_plan_code": "2025-2/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 8,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "1300.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "1300.00",
+        "monthly_amount": "1300.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 12,
+        "investment_plan_code": "2025-3/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 9,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 13,
+        "investment_plan_code": "2025-4/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 10,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 14,
+        "investment_plan_code": "2025-5/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 11,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 15,
+        "investment_plan_code": "2025-6/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 12,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 16,
+        "investment_plan_code": "2025-7/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 13,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 17,
+        "investment_plan_code": "2025-8/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 14,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "7000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "7000.00",
+        "monthly_amount": "7000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 18,
+        "investment_plan_code": "2025-9/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 15,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 19,
+        "investment_plan_code": "2025-10/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 16,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 20,
+        "investment_plan_code": "2025-11/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 17,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 21,
+        "investment_plan_code": "2025-12/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 18,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 23,
+        "investment_plan_code": "2025-13/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 19,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 24,
+        "investment_plan_code": "2025-14/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 20,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 25,
+        "investment_plan_code": "2025-15/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 22,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 28,
+        "investment_plan_code": "2025-16/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 23,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 29,
+        "investment_plan_code": "2025-17/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 24,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 30,
+        "investment_plan_code": "2025-18/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 25,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 31,
+        "investment_plan_code": "2025-19/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 26,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 32,
+        "investment_plan_code": "2025-20/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 27,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 33,
+        "investment_plan_code": "2025-21/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 28,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 34,
+        "investment_plan_code": "2025-22/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 29,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 35,
+        "investment_plan_code": "2025-23/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 30,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO/ COMERCIO",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 36,
+        "investment_plan_code": "2025-24/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 31,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 37,
+        "investment_plan_code": "2025-25/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 32,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 38,
+        "investment_plan_code": "2025-26/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 33,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 40,
+        "investment_plan_code": "2025-27/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 34,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "100000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "100000.00",
+        "monthly_amount": "100000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 41,
+        "investment_plan_code": "2025-28/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 35,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 42,
+        "investment_plan_code": "2025-29/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 36,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 43,
+        "investment_plan_code": "2025-30/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 37,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "30000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "30000.00",
+        "monthly_amount": "30000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 44,
+        "investment_plan_code": "2025-31/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 38,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 46,
+        "investment_plan_code": "2025-32/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 39,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "3500.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "3500.00",
+        "monthly_amount": "3500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 47,
+        "investment_plan_code": "2025-33/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 40,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 49,
+        "investment_plan_code": "2025-34/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 41,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "15000.00",
+        "monthly_amount": "150000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 50,
+        "investment_plan_code": "2025-35/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 42,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 51,
+        "investment_plan_code": "2025-36/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 43,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 52,
+        "investment_plan_code": "2025-37/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 44,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 53,
+        "investment_plan_code": "2025-38/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 45,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 54,
+        "investment_plan_code": "2025-39/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 46,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 55,
+        "investment_plan_code": "2025-40/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 47,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 56,
+        "investment_plan_code": "2025-41/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 48,
+    "fields": {
+        "type_of_product_or_service": "SERVICIOS",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 57,
+        "investment_plan_code": "2025-42/S1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 49,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2500.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "2500.00",
+        "monthly_amount": "2500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 58,
+        "investment_plan_code": "2025-43/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 50,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "117000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "117000.00",
+        "monthly_amount": "117000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 59,
+        "investment_plan_code": "2025-44/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 51,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "117000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "117000.00",
+        "monthly_amount": "117000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 60,
+        "investment_plan_code": "2025-45/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 52,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 61,
+        "investment_plan_code": "2025-46/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 53,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "38000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "38000.00",
+        "monthly_amount": "38000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 62,
+        "investment_plan_code": "2025-47/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 54,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 63,
+        "investment_plan_code": "2025-48/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 55,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 65,
+        "investment_plan_code": "2025-49/C2"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 56,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 66,
+        "investment_plan_code": "2025-50/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 57,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 67,
+        "investment_plan_code": "2025-51/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 58,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 68,
+        "investment_plan_code": "2025-52/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 59,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 69,
+        "investment_plan_code": "2025-53/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 60,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 70,
+        "investment_plan_code": "2025-54/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 61,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "75000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "7500.00",
+        "monthly_amount": "7500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 71,
+        "investment_plan_code": "2025-55/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 62,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 72,
+        "investment_plan_code": "2025-56/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 63,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 73,
+        "investment_plan_code": "2025-57/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 64,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 74,
+        "investment_plan_code": "2025-58/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 65,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 75,
+        "investment_plan_code": "2025-59/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 66,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 76,
+        "investment_plan_code": "2025-60/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 67,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 77,
+        "investment_plan_code": "2025-61/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 68,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 78,
+        "investment_plan_code": "2025-62/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 69,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 79,
+        "investment_plan_code": "2025-63/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 70,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 81,
+        "investment_plan_code": "2025-64/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 71,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 82,
+        "investment_plan_code": "2025-65/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 72,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 83,
+        "investment_plan_code": "2025-66/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 73,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 84,
+        "investment_plan_code": "2025-67/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 74,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5500.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5500.00",
+        "monthly_amount": "5500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 86,
+        "investment_plan_code": "2025-68/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 75,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 87,
+        "investment_plan_code": "2025-69/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 76,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 89,
+        "investment_plan_code": "2025-70/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 77,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 90,
+        "investment_plan_code": "2025-71/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 78,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 91,
+        "investment_plan_code": "2025-72/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 79,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "73000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "73000.00",
+        "monthly_amount": "73000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 92,
+        "investment_plan_code": "2025-73/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 80,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 93,
+        "investment_plan_code": "2025-74/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 81,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 94,
+        "investment_plan_code": "2025-75/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 82,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 96,
+        "investment_plan_code": "2025-76/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 83,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "100000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "100000.00",
+        "monthly_amount": "100000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 97,
+        "investment_plan_code": "2025-77/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 84,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "45000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "45000.00",
+        "monthly_amount": "45000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 98,
+        "investment_plan_code": "2025-78/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 85,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "100000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "100000.00",
+        "monthly_amount": "100000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 99,
+        "investment_plan_code": "2025-79/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 86,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 100,
+        "investment_plan_code": "2025-80/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 87,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 101,
+        "investment_plan_code": "2025-81/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 88,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 102,
+        "investment_plan_code": "2025-82/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 89,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 103,
+        "investment_plan_code": "2025-83/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 90,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 104,
+        "investment_plan_code": "2025-84/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 91,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 105,
+        "investment_plan_code": "2025-85/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 92,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 106,
+        "investment_plan_code": "2025-86/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 93,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 107,
+        "investment_plan_code": "2025-87/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 94,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 108,
+        "investment_plan_code": "2025-88/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 95,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 109,
+        "investment_plan_code": "2025-89/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 96,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 110,
+        "investment_plan_code": "2025-90/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 97,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOPS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 111,
+        "investment_plan_code": "2025-91/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 98,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "175000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "175000.00",
+        "monthly_amount": "175000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 112,
+        "investment_plan_code": "2025-92/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 99,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 113,
+        "investment_plan_code": "2025-93/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 100,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 114,
+        "investment_plan_code": "2025-94/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 101,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "30000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "30000.00",
+        "monthly_amount": "30000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 115,
+        "investment_plan_code": "2025-95/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 102,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "30000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "30000.00",
+        "monthly_amount": "30000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 116,
+        "investment_plan_code": "2025-96/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 103,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 117,
+        "investment_plan_code": "2025-97/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 104,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 118,
+        "investment_plan_code": "2025-98/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 105,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 119,
+        "investment_plan_code": "2025-99/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 106,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 120,
+        "investment_plan_code": "2025-100/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 107,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 121,
+        "investment_plan_code": "2025-101/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 108,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 123,
+        "investment_plan_code": "2025-102/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 109,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 124,
+        "investment_plan_code": "2025-103/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 110,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 125,
+        "investment_plan_code": "2025-104/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 111,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 126,
+        "investment_plan_code": "2025-105/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 112,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS MENSUALES",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 127,
+        "investment_plan_code": "2025-106/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 113,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "7000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "7000.00",
+        "monthly_amount": "7000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 128,
+        "investment_plan_code": "2025-107/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 114,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 129,
+        "investment_plan_code": "2025-108/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 115,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 130,
+        "investment_plan_code": "2025-109/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 116,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 131,
+        "investment_plan_code": "2025-110/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 117,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 132,
+        "investment_plan_code": "2025-111/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 118,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 133,
+        "investment_plan_code": "2025-112/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 119,
+    "fields": {
+        "type_of_product_or_service": "VIVIENDA",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS DE CONTRUCCION",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 134,
+        "investment_plan_code": "2025-113/V1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 120,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3227.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3227.00",
+        "monthly_amount": "3227.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 135,
+        "investment_plan_code": "2025-114/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 121,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 136,
+        "investment_plan_code": "2025-115/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 122,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "6662.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "6662.00",
+        "monthly_amount": "6662.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 137,
+        "investment_plan_code": "2025-116/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 123,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "25000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "25000.00",
+        "monthly_amount": "25000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 138,
+        "investment_plan_code": "2025-117/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 124,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "25000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "25000.00",
+        "monthly_amount": "25000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 139,
+        "investment_plan_code": "2025-118/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 125,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 140,
+        "investment_plan_code": "2025-119/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 126,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "25000.00",
+        "investment_plan_description": "GASTOS UNIVERSITARIOS",
+        "initial_amount": "25000.00",
+        "monthly_amount": "25000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 141,
+        "investment_plan_code": "2025-120/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 127,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "40000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "40000.00",
+        "monthly_amount": "40000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 142,
+        "investment_plan_code": "2025-121/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 128,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "30000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "30000.00",
+        "monthly_amount": "30000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 143,
+        "investment_plan_code": "2025-122/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 129,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "25000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "25000.00",
+        "monthly_amount": "25000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 144,
+        "investment_plan_code": "2025-123/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 130,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 145,
+        "investment_plan_code": "2025-124/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 131,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 146,
+        "investment_plan_code": "2025-125/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 132,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2500.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "2500.00",
+        "monthly_amount": "2500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 147,
+        "investment_plan_code": "2025-126/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 133,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "25000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "25000.00",
+        "monthly_amount": "25000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 149,
+        "investment_plan_code": "2025-127/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 134,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 150,
+        "investment_plan_code": "2025-128/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 135,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 151,
+        "investment_plan_code": "2025-129/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 136,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "60000.00",
+        "investment_plan_description": "",
+        "initial_amount": "60000.00",
+        "monthly_amount": "60000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 152,
+        "investment_plan_code": "2025-130/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 137,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 153,
+        "investment_plan_code": "2025-131/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 138,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 154,
+        "investment_plan_code": "2025-132/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 139,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 155,
+        "investment_plan_code": "2025-133/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 140,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "30000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "30000.00",
+        "monthly_amount": "30000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 156,
+        "investment_plan_code": "2025-134/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 141,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 157,
+        "investment_plan_code": "2025-135/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 142,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 158,
+        "investment_plan_code": "2025-136/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 143,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2500.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "2500.00",
+        "monthly_amount": "2500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 159,
+        "investment_plan_code": "2025-137/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 144,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3500.00",
+        "investment_plan_description": "",
+        "initial_amount": "3500.00",
+        "monthly_amount": "3500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 160,
+        "investment_plan_code": "2025-138/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 145,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 161,
+        "investment_plan_code": "2025-139/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 146,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2500.00",
+        "investment_plan_description": "",
+        "initial_amount": "2500.00",
+        "monthly_amount": "2500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 162,
+        "investment_plan_code": "2025-140/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 147,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 163,
+        "investment_plan_code": "2025-141/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 148,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2500.00",
+        "investment_plan_description": "",
+        "initial_amount": "2500.00",
+        "monthly_amount": "2500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 164,
+        "investment_plan_code": "2025-142/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 149,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 165,
+        "investment_plan_code": "2025-143/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 150,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 166,
+        "investment_plan_code": "2025-144/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 151,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 167,
+        "investment_plan_code": "2025-145/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 152,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "PAGOS VARIOS POR ACCIDENTE DE CARRO",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 168,
+        "investment_plan_code": "2025-146/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 153,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS ESCOLARES",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 169,
+        "investment_plan_code": "2025-147/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 154,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 170,
+        "investment_plan_code": "2025-148/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 155,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 171,
+        "investment_plan_code": "2025-149/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 156,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 172,
+        "investment_plan_code": "2025-150/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 157,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 173,
+        "investment_plan_code": "2025-151/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 158,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 174,
+        "investment_plan_code": "2025-152/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 159,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 175,
+        "investment_plan_code": "2025-153/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 160,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 176,
+        "investment_plan_code": "2025-154/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 161,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 177,
+        "investment_plan_code": "2025-155/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 162,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 178,
+        "investment_plan_code": "2025-156/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 163,
+    "fields": {
+        "type_of_product_or_service": "AGROPECUARIO Y/O PRODUCTIVO",
+        "total_value_of_the_product_or_service": "40000.00",
+        "investment_plan_description": "ENGORDE DE GANADO PORCINO",
+        "initial_amount": "40000.00",
+        "monthly_amount": "40000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 179,
+        "investment_plan_code": "2025-157/A&P1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 164,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 180,
+        "investment_plan_code": "2025-158/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 165,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "73000.00",
+        "investment_plan_description": "",
+        "initial_amount": "73000.00",
+        "monthly_amount": "73000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 181,
+        "investment_plan_code": "2025-159/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 166,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 182,
+        "investment_plan_code": "2025-160/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 167,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 183,
+        "investment_plan_code": "2025-161/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 168,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 184,
+        "investment_plan_code": "2025-162/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 169,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 185,
+        "investment_plan_code": "2025-163/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 170,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 186,
+        "investment_plan_code": "2025-164/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 171,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 187,
+        "investment_plan_code": "2025-165/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 172,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 188,
+        "investment_plan_code": "2025-166/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 173,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 190,
+        "investment_plan_code": "2025-167/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 174,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 191,
+        "investment_plan_code": "2025-168/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 175,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 192,
+        "investment_plan_code": "2025-169/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 176,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 193,
+        "investment_plan_code": "2025-170/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 177,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 194,
+        "investment_plan_code": "2025-171/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 178,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 195,
+        "investment_plan_code": "2025-172/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 179,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "1000.00",
+        "investment_plan_description": "",
+        "initial_amount": "1000.00",
+        "monthly_amount": "1000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 196,
+        "investment_plan_code": "2025-173/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 180,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "1000.00",
+        "investment_plan_description": "",
+        "initial_amount": "1000.00",
+        "monthly_amount": "1000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 197,
+        "investment_plan_code": "2025-174/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 181,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "45000.00",
+        "investment_plan_description": "",
+        "initial_amount": "45000.00",
+        "monthly_amount": "45000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 198,
+        "investment_plan_code": "2025-175/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 182,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 199,
+        "investment_plan_code": "2025-176/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 183,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 200,
+        "investment_plan_code": "2025-177/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 184,
+    "fields": {
+        "type_of_product_or_service": "VIVIENDA",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "COMPRA DE MATERIAL",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 201,
+        "investment_plan_code": "2025-178/V1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 185,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "25255.00",
+        "investment_plan_description": "",
+        "initial_amount": "25255.00",
+        "monthly_amount": "25255.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 202,
+        "investment_plan_code": "2025-179/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 186,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 203,
+        "investment_plan_code": "2025-S1/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 187,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "16000.00",
+        "investment_plan_description": "",
+        "initial_amount": "16000.00",
+        "monthly_amount": "16000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 204,
+        "investment_plan_code": "2025-180/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 188,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": false,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 207,
+        "investment_plan_code": "2025-181/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 190,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "1500.00",
+        "investment_plan_description": "REMODELACIÓN",
+        "initial_amount": "1500.00",
+        "monthly_amount": "1500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 209,
+        "investment_plan_code": "2025-183/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 191,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "COMPRA DE MERCADERIA",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 210,
+        "investment_plan_code": "2025-184/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 192,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "8150.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "8150.00",
+        "monthly_amount": "8150.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 212,
+        "investment_plan_code": "2025-185/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 193,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2500.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "25000.00",
+        "monthly_amount": "25000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 213,
+        "investment_plan_code": "2025-186/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 194,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2500.00",
+        "investment_plan_description": "",
+        "initial_amount": "2500.00",
+        "monthly_amount": "2500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 214,
+        "investment_plan_code": "2025-187/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 195,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 215,
+        "investment_plan_code": "2025-188/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 196,
+    "fields": {
+        "type_of_product_or_service": "SERVICIOS",
+        "total_value_of_the_product_or_service": "1000.00",
+        "investment_plan_description": "GASTOS MEDICOS",
+        "initial_amount": "1000.00",
+        "monthly_amount": "1000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 216,
+        "investment_plan_code": "2025-189/S1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 197,
+    "fields": {
+        "type_of_product_or_service": "VIVIENDA",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "APERTURA DE LOCAL EN COBAN",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 217,
+        "investment_plan_code": "2025-190/V1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 198,
+    "fields": {
+        "type_of_product_or_service": "VIVIENDA",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "APERTURA DE LOCAL EN COBAN",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 218,
+        "investment_plan_code": "2025-191/V1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 199,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS VARIOS/CARTERA CLIENTES FRANCISCO",
+        "initial_amount": "2000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 219,
+        "investment_plan_code": "2025-192/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 200,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 220,
+        "investment_plan_code": "2025-193/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 201,
+    "fields": {
+        "type_of_product_or_service": "SERVICIOS",
+        "total_value_of_the_product_or_service": "1500.00",
+        "investment_plan_description": "REPACION DE VEHICULO",
+        "initial_amount": "1500.00",
+        "monthly_amount": "1500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 221,
+        "investment_plan_code": "2025-194/S1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 202,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 222,
+        "investment_plan_code": "2025-195/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 203,
+    "fields": {
+        "type_of_product_or_service": "COMERCIO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 223,
+        "investment_plan_code": "2025-196/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 204,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 224,
+        "investment_plan_code": "2025-197/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 205,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 225,
+        "investment_plan_code": "2025-198/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 206,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 226,
+        "investment_plan_code": "2025-199/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 207,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS VARIOS/",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 227,
+        "investment_plan_code": "2025-200/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 208,
+    "fields": {
+        "type_of_product_or_service": "SERVICIOS",
+        "total_value_of_the_product_or_service": "1500.00",
+        "investment_plan_description": "GASTOS MEDICOS",
+        "initial_amount": "1500.00",
+        "monthly_amount": "1500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 228,
+        "investment_plan_code": "2025-201/S1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 209,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 229,
+        "investment_plan_code": "2025-202/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 210,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "GASTOS PERSONALES",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 230,
+        "investment_plan_code": "2025-203/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 211,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 231,
+        "investment_plan_code": "2025-204/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 212,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 232,
+        "investment_plan_code": "2025-205/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 213,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "1500.00",
+        "investment_plan_description": "",
+        "initial_amount": "1500.00",
+        "monthly_amount": "1500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 233,
+        "investment_plan_code": "2025-206/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 214,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 234,
+        "investment_plan_code": "2025-207/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 215,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "GASTOS ACADEMICOS",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 235,
+        "investment_plan_code": "2025-208/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 216,
+    "fields": {
+        "type_of_product_or_service": "VIVIENDA",
+        "total_value_of_the_product_or_service": "7000.00",
+        "investment_plan_description": "CONTRUCCION DE VIVIENDA",
+        "initial_amount": "7000.00",
+        "monthly_amount": "7000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 237,
+        "investment_plan_code": "2025-209/V1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 217,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 238,
+        "investment_plan_code": "2025-210/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 218,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 239,
+        "investment_plan_code": "2025-211/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 219,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 240,
+        "investment_plan_code": "2025-212/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 220,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 241,
+        "investment_plan_code": "2025-213/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 221,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 242,
+        "investment_plan_code": "2025-214/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 222,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 243,
+        "investment_plan_code": "2025-215/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 223,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 244,
+        "investment_plan_code": "2025-216/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 224,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "1500.00",
+        "investment_plan_description": "",
+        "initial_amount": "1500.00",
+        "monthly_amount": "1500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 245,
+        "investment_plan_code": "2025-217/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 225,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 246,
+        "investment_plan_code": "2025-218/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 226,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 247,
+        "investment_plan_code": "2025-219/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 227,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 248,
+        "investment_plan_code": "2025-220/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 228,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 249,
+        "investment_plan_code": "2025-221/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 229,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 250,
+        "investment_plan_code": "2025-222/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 230,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 251,
+        "investment_plan_code": "2025-223/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 231,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "1500.00",
+        "investment_plan_description": "",
+        "initial_amount": "1500.00",
+        "monthly_amount": "1500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 252,
+        "investment_plan_code": "2025-224/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 232,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "20000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 253,
+        "investment_plan_code": "2025-225/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 265,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "7000.00",
+        "investment_plan_description": "",
+        "initial_amount": "7000.00",
+        "monthly_amount": "7000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 286,
+        "investment_plan_code": "2025-226/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 266,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "7000.00",
+        "investment_plan_description": "",
+        "initial_amount": "7000.00",
+        "monthly_amount": "7000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 288,
+        "investment_plan_code": "2025-227/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 267,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "50000.00",
+        "investment_plan_description": "",
+        "initial_amount": "50000.00",
+        "monthly_amount": "50000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 289,
+        "investment_plan_code": "2025-228/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 268,
+    "fields": {
+        "type_of_product_or_service": "SERVICIOS",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 290,
+        "investment_plan_code": "2025-229/S1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 269,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 291,
+        "investment_plan_code": "2025-230/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 270,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 292,
+        "investment_plan_code": "2025-231/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 271,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 293,
+        "investment_plan_code": "2025-232/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 272,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 295,
+        "investment_plan_code": "2025-233/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 273,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 296,
+        "investment_plan_code": "2025-234/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 274,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 297,
+        "investment_plan_code": "2025-235/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 275,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "1000.00",
+        "investment_plan_description": "",
+        "initial_amount": "1000.00",
+        "monthly_amount": "1000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 298,
+        "investment_plan_code": "2025-236/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 276,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS MEDICOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 299,
+        "investment_plan_code": "2025-237/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 277,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 300,
+        "investment_plan_code": "2025-238/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 278,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "1500.00",
+        "investment_plan_description": "",
+        "initial_amount": "1500.00",
+        "monthly_amount": "1500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 301,
+        "investment_plan_code": "2025-239/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 279,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "1000.00",
+        "investment_plan_description": "",
+        "initial_amount": "1000.00",
+        "monthly_amount": "1000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 302,
+        "investment_plan_code": "2025-240/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 280,
+    "fields": {
+        "type_of_product_or_service": "AGROPECUARIO Y/O PRODUCTIVO",
+        "total_value_of_the_product_or_service": "25000.00",
+        "investment_plan_description": "",
+        "initial_amount": "25000.00",
+        "monthly_amount": "25000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 308,
+        "investment_plan_code": "2025-241/A&P1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 281,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "25000.00",
+        "investment_plan_description": "",
+        "initial_amount": "25000.00",
+        "monthly_amount": "25000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 309,
+        "investment_plan_code": "2025-242/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 283,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "Solicitud de crédito nuevo para gastos personales",
+        "initial_amount": "5000.00",
+        "monthly_amount": "1200.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 314,
+        "investment_plan_code": "2025-243/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 284,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 315,
+        "investment_plan_code": "2025-244/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 285,
+    "fields": {
+        "type_of_product_or_service": "CONSUMO",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "Local",
+        "customer_id": 316,
+        "investment_plan_code": "2025-245/C1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 286,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 317,
+        "investment_plan_code": "2025-246/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 287,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 318,
+        "investment_plan_code": "2025-S1/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 288,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 319,
+        "investment_plan_code": "2025-247/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 289,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 320,
+        "investment_plan_code": "2025-248/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 290,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 321,
+        "investment_plan_code": "2025-249/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 291,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 322,
+        "investment_plan_code": "2025-250/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 292,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 323,
+        "investment_plan_code": "2025-251/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 293,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 324,
+        "investment_plan_code": "2025-252/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 294,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "CONSUMO",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 325,
+        "investment_plan_code": "2025-253/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 295,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 326,
+        "investment_plan_code": "2025-254/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 296,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 327,
+        "investment_plan_code": "2025-255/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 297,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 328,
+        "investment_plan_code": "2025-256/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 298,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 329,
+        "investment_plan_code": "2025-257/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 299,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 330,
+        "investment_plan_code": "2025-258/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 300,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "15500.00",
+        "investment_plan_description": "",
+        "initial_amount": "15500.00",
+        "monthly_amount": "15500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 331,
+        "investment_plan_code": "2025-259/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 301,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "2500.00",
+        "investment_plan_description": "",
+        "initial_amount": "2500.00",
+        "monthly_amount": "2500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 332,
+        "investment_plan_code": "2025-260/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 302,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 333,
+        "investment_plan_code": "2025-261/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 303,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 334,
+        "investment_plan_code": "2025-262/1"
+    }
+}
+]

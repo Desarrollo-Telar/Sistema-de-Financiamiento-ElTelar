@@ -1,0 +1,16 @@
+{% load static %}
+<div style="padding: 2.5rem">
+    <h3>¡Bienvenido al Apartado de <span class="badge text-bg-dark">Mis Cobranzas</span> !</h3>
+    <div class="d-flex  fs-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'customers:cobranza_asesor' %}">Mis Cobranzas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+
+            </ol>
+        </nav>
+    </div>
+    
+
+</div>

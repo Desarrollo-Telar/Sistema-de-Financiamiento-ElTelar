@@ -1090,5 +1090,65 @@
         "estado": true,
         "fecha_registro": "2025-06-25T21:20:02.043Z"
     }
+},
+{
+    "model": "roles.permiso",
+    "pk": 93,
+    "fields": {
+        "categoria_permiso": 17,
+        "nombre": "Puede Ver Los Registros De Recibos",
+        "descripcion": "",
+        "codigo_permiso": "puede_ver_registros_recibos",
+        "estado": true,
+        "fecha_registro": "2025-07-17T16:48:04.897Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 94,
+    "fields": {
+        "categoria_permiso": 24,
+        "nombre": "Puede Ver Los Registros De Asesores",
+        "descripcion": "",
+        "codigo_permiso": "puede_ver_registros_asesores",
+        "estado": true,
+        "fecha_registro": "2025-07-21T21:47:33.518Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 95,
+    "fields": {
+        "categoria_permiso": 24,
+        "nombre": "Ver Detalle de la Informacion",
+        "descripcion": "",
+        "codigo_permiso": "puede_visualizar_detalle_asesor_credito",
+        "estado": true,
+        "fecha_registro": "2025-07-21T22:25:14.255Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 96,
+    "fields": {
+        "categoria_permiso": 10,
+        "nombre": "Puede Asignar Estado Judicial",
+        "descripcion": "",
+        "codigo_permiso": "puede_asignar_estado_judicial",
+        "estado": true,
+        "fecha_registro": "2025-07-23T17:18:01.017Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 97,
+    "fields": {
+        "categoria_permiso": 25,
+        "nombre": "Puede Ver Registro Boletas",
+        "descripcion": "Puede ver todos los registros de las boletas subidas por los clientes",
+        "codigo_permiso": "puede_ver_registro_boletas",
+        "estado": true,
+        "fecha_registro": "2025-07-28T09:39:02.603Z"
+    }
 }
 ]

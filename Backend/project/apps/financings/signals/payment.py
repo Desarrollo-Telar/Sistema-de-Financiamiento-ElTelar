@@ -26,6 +26,10 @@ import re
 @receiver(post_save, sender=Payment)
 def generar_plan_pagos(sender, instance, created, **kwargs):
     if created:
+        if instance.estado_transaccion == 'PENDIENTE':
+            logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
+            envio_mensaje_alerta('Por favor, asegúrense de revisar los detalles de la boleta de pago pendiente y tomar cualquier acción necesaria.Saludos cordiales,', 'PENDIENTE', instance.id)
+
         if instance.cliente is not None:
             Payment.objects.filter(id=instance.id).update(tipo_pago='CLIENTE')
         
@@ -60,10 +64,7 @@ def alerta(sender, instance, **kwargs):
             banco.save()
         # envio_mensaje_alerta(instance.descripcion_estado, 'FALLIDO', instance.id)
         
-    if instance.estado_transaccion == 'PENDIENTE':
-        logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE')
-        envio_mensaje_alerta('Por favor, asegúrense de revisar los detalles de la boleta de pago pendiente y tomar cualquier acción necesaria.Saludos cordiales,', 'PENDIENTE', instance.id)
-
+    
     if instance.estado_transaccion == 'COMPLETADO':
         logger.info('DESDE SIGNALS PAYMENT: ENVIANDO MENSAJE - COMPLETADO')
         

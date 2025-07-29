@@ -50,8 +50,8 @@
           {% if permisos.puede_ver_perfil_usuario %}
           <li><a class="dropdown-item" href="{% url 'users:profile' %}">Perfil</a></li>
           {% endif %}
-          {% if permisos.puede_ver_registro_boletas %}
-          <li><a class="dropdown-item" href="#">Boletas de Clientes</a></li>
+          {% if permisos.puede_ver_registros_cobranza %}
+          <li><a class="dropdown-item" href="{% url 'customers:cobranza_asesor' %}">Gestionar Cobranza</a></li>
           {% endif %}
           <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>

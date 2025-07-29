@@ -1,0 +1,101 @@
+[
+{
+    "model": "financings.invoice",
+    "pk": 2,
+    "fields": {
+        "issue_date": "2025-01-21",
+        "numero_factura": 1,
+        "recibo_id": 3
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 3,
+    "fields": {
+        "issue_date": "2025-02-17",
+        "numero_factura": 2,
+        "recibo_id": 12
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 4,
+    "fields": {
+        "issue_date": "2025-03-18",
+        "numero_factura": 3,
+        "recibo_id": 6
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 5,
+    "fields": {
+        "issue_date": "2025-03-18",
+        "numero_factura": 4,
+        "recibo_id": 7
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 6,
+    "fields": {
+        "issue_date": "2025-03-18",
+        "numero_factura": 5,
+        "recibo_id": 8
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 7,
+    "fields": {
+        "issue_date": "2025-03-18",
+        "numero_factura": 6,
+        "recibo_id": 13
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 8,
+    "fields": {
+        "issue_date": "2025-03-18",
+        "numero_factura": 7,
+        "recibo_id": 11
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 9,
+    "fields": {
+        "issue_date": "2025-03-18",
+        "numero_factura": 8,
+        "recibo_id": 83
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 10,
+    "fields": {
+        "issue_date": "2025-04-04",
+        "numero_factura": 9,
+        "recibo_id": 9
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 11,
+    "fields": {
+        "issue_date": "2025-06-16",
+        "numero_factura": 10,
+        "recibo_id": 433
+    }
+},
+{
+    "model": "financings.invoice",
+    "pk": 12,
+    "fields": {
+        "issue_date": "2025-07-15",
+        "numero_factura": 11,
+        "recibo_id": 437
+    }
+}
+]

@@ -37,6 +37,15 @@
             </a>
         </li>
         {% endif %}
+         {% if permisos.puede_ver_registro_boletas%}
+        <li>
+            <a href="#" class="nav-link py-3 border-bottom rounded-0"
+                data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Boletas de Clientes" data-bs-original-title="Boletas de Clientes" style="color: black;">
+                <i class="bi bi-file-richtext" style="width: 20; height: 20; "></i>
+            </a>
+        </li>
+       
+        {% endif %}
         {% if permisos.puede_ver_registros_boletas_pagos%}
         <li>
             <a href="{% url 'financings:list_payment' %}" class="nav-link py-3 border-bottom rounded-0"
