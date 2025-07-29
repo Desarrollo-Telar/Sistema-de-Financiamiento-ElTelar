@@ -36,7 +36,8 @@ def creacion_cobranza(request):
     if informe_usuario is None:
         informe_usuario = Informe.objects.create(
             usuario=request.user,
-            esta_activo=True
+            esta_activo=True,
+            nombre_reporte=f'INVERSIONES INTEGRALES EL TELAR'
         )
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()

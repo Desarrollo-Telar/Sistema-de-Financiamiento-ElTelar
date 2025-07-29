@@ -1,1 +1,2 @@
 from .notificaciones import NotificacionesAdmin, DocumentoNotificacionClientesAdmin, NotificationCustomerClientesAdmin
+from .informes import INFORMEADMIN

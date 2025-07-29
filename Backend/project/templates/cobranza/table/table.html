@@ -1,0 +1,60 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 ">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Informe</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Fecha De Vencimiento</th>    
+                        <th scope="col">Estado</th>              
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.nombre_reporte }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.fecha_registro }} 
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.fecha_vencimiento }}
+                            </a>
+                        </td>
+
+                        
+                        <td>
+                            <a  href="#" class="status-icon {% if data.esta_activo %}activo{% else %}inactivo{% endif %}">
+                                
+                                {% if data.esta_activo %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
+                            </a>
+                        </td>
+                        
+                        
+                        
+                     
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

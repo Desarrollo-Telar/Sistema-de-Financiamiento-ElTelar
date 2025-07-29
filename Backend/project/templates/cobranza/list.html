@@ -15,6 +15,16 @@
             {% include 'cobranza/snippets/modal.html' %}
         </div>
     </div>
+    <div class="row mb-4">
+        {% include 'cobranza/table/table.html' %}
+    </div>
+    {% if page_obj %}
+    <div class="row">
+
+        {% include 'snippets/pages.html' %}
+
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
 
