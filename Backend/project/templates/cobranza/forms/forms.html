@@ -1,0 +1,17 @@
+{% load static %}
+
+
+{% for field in form %}
+
+<div class="form-group mb-3">
+  <label for="{{ field.id_for_label }}" class="form-label fw-bold">
+    {{ field.label }}
+  </label>
+  {{ field }}
+  {% if field.errors %}
+  {{ field.errors }}
+  {% endif %}
+</div>
+<br />
+
+{% endfor %}

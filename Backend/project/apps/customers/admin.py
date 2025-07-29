@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Customer, ImmigrationStatus, CreditCounselor
+from .models import Customer, ImmigrationStatus, CreditCounselor, Cobranza
 
 # Register your models here.
 @admin.register(Customer)
@@ -38,3 +38,4 @@ class CustomerAdmin(admin.ModelAdmin):
     
 admin.site.register(ImmigrationStatus)
 admin.site.register(CreditCounselor)
+admin.site.register(Cobranza)

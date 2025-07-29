@@ -1,7 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-
-
 # Models
 from apps.customers.models import Customer, CreditCounselor
 from django.db.models import Q

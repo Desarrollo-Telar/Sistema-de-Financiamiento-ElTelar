@@ -3,3 +3,5 @@
 from .list import AsesoresCreditosList, CobranzaList
 
 from .detail import detail_asesor
+
+from .crear import creacion_cobranza

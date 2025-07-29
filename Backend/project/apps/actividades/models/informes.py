@@ -6,7 +6,7 @@ from apps.users.models import User
 from apps.customers.models import Cobranza
 
 # TIEMPO
-from datetime import datetime
+import datetime
 from dateutil.relativedelta import relativedelta
 
 class Informe(models.Model):
@@ -14,7 +14,7 @@ class Informe(models.Model):
     nombre_reporte = models.CharField(verbose_name="Nombre del Reporte", max_length=100, default="Reporte INVERSIONES INTEGRALES EL TELAR")
     descripcion = models.TextField(verbose_name="Descripcion del Informe", null=True, blank=True)
     fecha_registro = models.DateField(auto_now_add=True)
-    fecha_vencimiento = models.DateField()
+    fecha_vencimiento = models.DateField(null=True, blank=True)
     #tipo_informe = models.CharField(verbose_name="Tipo de Informe", max_length=100, default="Cobranza")
     esta_activo = models.BooleanField(verbose_name="Estado del Informe", default=True)
 
@@ -28,9 +28,9 @@ class Informe(models.Model):
             return next_month.replace(day=1)
         return datetime.date.today().replace(day=1) + relativedelta(months=1)
 
-    def save(self,*args, **kwargs):
-        self.calcular_fecha_vencimiento()
-        super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        self.fecha_vencimiento = self.calcular_fecha_vencimiento()
+        super().save(*args, **kwargs)       
 
 class DetalleInformeCobranza(models.Model):
     reporte = models.ForeignKey(Informe, on_delete=models.CASCADE, verbose_name="Informe")

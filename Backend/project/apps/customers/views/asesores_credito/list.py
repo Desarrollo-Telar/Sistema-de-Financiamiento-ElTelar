@@ -7,6 +7,9 @@ from apps.actividades.models import Informe
 from django.views.generic.list import ListView
 from django.db.models import Q
 
+# Formulario
+from apps.customers.forms import CobranzaForms
+
 # Decoradores
 from project.decorador import permiso_requerido
 from django.utils.decorators import method_decorator
@@ -26,7 +29,7 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 class CobranzaList(ListView):
     model = Informe
     template_name = 'cobranza/list.html'
-    paginate_by = 50
+    paginate_by = 12
 
     def get_queryset(self):
         try:
@@ -47,7 +50,7 @@ class CobranzaList(ListView):
                     pass  # No es fecha válida, continúa con los otros filtros
 
 
-            return Informe.objects.filter(filters).order_by('id')
+            return Informe.objects.filter(filters).order_by('-id')
         
         except Exception as e:
             print(f'error: {e}')
@@ -85,6 +88,7 @@ class CobranzaList(ListView):
         context['count'] = context['object_list'].count()
         context['posicion'] =  f"{self.request.user.first_name} {self.request.user.last_name}"
         context['permisos'] = recorrer_los_permisos_usuario(self.request)
+        context['form'] = CobranzaForms()
         return context
     
 
