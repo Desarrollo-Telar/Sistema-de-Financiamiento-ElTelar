@@ -89,6 +89,7 @@ class CobranzaList(ListView):
         context['posicion'] =  f"{self.request.user.first_name} {self.request.user.last_name}"
         context['permisos'] = recorrer_los_permisos_usuario(self.request)
         context['form'] = CobranzaForms()
+        context['usuario'] = self.request.user
         return context
     
 
@@ -146,4 +147,5 @@ class AsesoresCreditosList(ListView):
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query() if self.query() else ''
         context['permisos'] = recorrer_los_permisos_usuario(self.request)
+        context['usuario'] = self.request.user
         return context

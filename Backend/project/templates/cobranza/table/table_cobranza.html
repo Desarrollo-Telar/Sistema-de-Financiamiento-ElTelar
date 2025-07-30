@@ -1,0 +1,119 @@
+{% load static %}
+<div class="row" style="font-size: 12px;">
+    <div class="col-12 ">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tipo de Cobranza</th>  
+                        <th scope="col">Credito</th>
+                        <th scope="col">Cuota</th>
+                        <th scope="col">Monto Pendiente</th> 
+                        <th scope="col">Mora Pendiente</th>       
+                        <th scope="col">Interes Pendiente</th> 
+                        <th scope="col">Fecha Promesa de Pago</th>
+                        <th scope="col">Tipo De Gestion</th> 
+                        <th scope="col">Fecha de Gestion</th>    
+                        <th scope="col">Resultado</th> 
+                        <th scope="col">Observaciones</th> 
+                        <th scope="col">Estado de Cobranza</th> 
+                        <th scope="col">Telefono de Contacto</th>
+                        <th scope="col">...</th> 
+
+                    </tr>
+                </thead>
+                <tbody class="text-uppercase">
+                    {% for data in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.cobranza.tipo_cobranza }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.cobranza.credito }} 
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.cobranza.cuota.mes }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                Q {{ data.cobranza.f_monto_pendiente }} 
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                Q {{ data.cobranza.f_mora_pendiente }} 
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                               Q {{ data.cobranza.f_interes_pendiente }} 
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.cobranza.fecha_promesa_pago }} 
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.cobranza.tipo_gestion }} 
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.cobranza.fecha_gestion.date }} 
+                            </a>
+                        </td>
+                       <td>
+                            <a class="row-link" href="#">
+                                {{ data.cobranza.resultado }} 
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.cobranza.observaciones|linebreaksbr }} 
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.cobranza.estado_cobranza }} 
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="#">
+                                {{ data.cobranza.telefono_contacto }} 
+                            </a>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="action dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    ...
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    
+                                    <li><a class="dropdown-item" href="{% url 'customers:actualizacion_cobranza' data.cobranza.id %}">Actualizar</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'customers:eliminacion_cobranza' data.cobranza.id %}">Eliminar</a></li>
+                                    
+                                    
+                                    
+
+                                </ul>
+                            </div>
+                        </td>
+                     
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

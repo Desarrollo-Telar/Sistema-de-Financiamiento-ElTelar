@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from apps.customers.models import Customer, CreditCounselor
+from apps.actividades.models import Informe, DetalleInformeCobranza
 from django.db.models import Q
 
 # Decoradores
@@ -28,6 +29,25 @@ def detail_asesor(request, codigo_asesor):
         'title': f'{codigo_asesor}',
         'asesor_credito': asesor_credito,
         'informacion_asesor':recoleccion_informacion_detalle_asesor(asesor_credito),
+        'permisos':recorrer_los_permisos_usuario(request)
+    }
+
+    return render(request, template_name, context)
+
+@login_required
+def detail_informe(request, user_code, id):
+    template_name = 'cobranza/detail.html'
+    reporte = Informe.objects.filter(id=id ).first()
+
+    if reporte is None:
+        return redirect('http_404')
+    
+    detalles_informe = DetalleInformeCobranza.objects.filter(reporte=reporte)
+
+    context = {
+        'title': f'COBRANZA | INFORME | {user_code} | {reporte.fecha_registro} - {reporte.fecha_vencimiento} |',
+        'report':reporte,
+        'object_list':detalles_informe,
         'permisos':recorrer_los_permisos_usuario(request)
     }
 

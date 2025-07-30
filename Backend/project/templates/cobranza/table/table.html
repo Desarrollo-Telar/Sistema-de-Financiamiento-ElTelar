@@ -17,24 +17,24 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'customers:detail_informe_cobranza' usuario.user_code data.id %}">
                                 {{ data.nombre_reporte }}
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'customers:detail_informe_cobranza' usuario.user_code data.id %}">
                                 {{ data.fecha_registro }} 
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'customers:detail_informe_cobranza' usuario.user_code data.id %}">
                                 {{ data.fecha_vencimiento }}
                             </a>
                         </td>
 
                         
                         <td>
-                            <a  href="#" class="status-icon {% if data.esta_activo %}activo{% else %}inactivo{% endif %}">
+                            <a  href="{% url 'customers:detail_informe_cobranza' usuario.user_code data.id %}" class="status-icon {% if data.esta_activo %}activo{% else %}inactivo{% endif %}">
                                 
                                 {% if data.esta_activo %}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">

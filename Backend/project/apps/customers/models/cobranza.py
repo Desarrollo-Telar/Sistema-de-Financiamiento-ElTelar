@@ -4,6 +4,9 @@ from django.db import models
 from apps.customers.models import CreditCounselor
 from apps.financings.models import Credit, PaymentPlan
 
+# FORMATO
+from apps.financings.formato import formatear_numero
+
 class Cobranza(models.Model):
     TIPO_COBRANZA_CHOICES = [
         ('preventiva', 'Preventiva'),
@@ -55,6 +58,16 @@ class Cobranza(models.Model):
 
     #medio_contacto = models.CharField(max_length=50)
     telefono_contacto = models.CharField(max_length=75)
+    
+
+    def f_monto_pendiente(self):
+        return formatear_numero(self.monto_pendiente)
+    
+    def f_interes_pendiente(self):
+        return formatear_numero(self.interes_pendiente)
+    
+    def f_mora_pendiente(self):
+        return formatear_numero(self.mora_pendiente)
 
     def __str__(self):
         return f'Cobranza #{self.id} - {self.credito}'
