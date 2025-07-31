@@ -39,6 +39,7 @@ class CreditCounselor(models.Model):
     status = models.BooleanField("Estado", default=True)
     gender = models.CharField("Género", choices=genero, default='MASCULINO', max_length=50)
     nit = models.CharField(verbose_name="Numero de NIT", max_length=75, blank=True, null=True)
+    recordatorio_clientes = models.DateField("Fecha en que se recordara a los clientes", default=datetime.now, null=True, blank=True)
 
     def __str__(self):
         return f'{self.nombre} {self.apellido}'

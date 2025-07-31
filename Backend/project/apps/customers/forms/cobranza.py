@@ -8,18 +8,16 @@ class CobranzaForms(forms.ModelForm):
         model = Cobranza
         
         fields = [
-            'credito',
-            
+            'credito', 
+            'fecha_limite_cuota',           
             'mora_pendiente',            
             'interes_pendiente',
             'monto_pendiente',
             'telefono_contacto',
-
             'tipo_cobranza',
             'fecha_gestion',
             'tipo_gestion',
-            'resultado',
-            
+            'resultado',            
             'fecha_promesa_pago',
             'observaciones',
             'estado_cobranza'
@@ -39,7 +37,8 @@ class CobranzaForms(forms.ModelForm):
             'fecha_promesa_pago': 'Fecha Promesa de Pago',
             'observaciones': 'Observaciones',
             'estado_cobranza': 'Estado de la cobranza',
-            'telefono_contacto': 'Numero de Telefono del Cliente'
+            'telefono_contacto': 'Numero de Telefono del Cliente',
+            'fecha_limite_cuota': 'Fecha De Limite Para La Cuota'
 
         }
 
@@ -47,16 +46,17 @@ class CobranzaForms(forms.ModelForm):
             'credito': forms.Select(attrs={'class':'form-control credito_vigente'}),
             'cuota': forms.Select(attrs={'class':'form-control', 'disabled':'disabled'}),
             'tipo_cobranza': forms.Select(choices=[], attrs={'class': 'form-control'}),
-            'fecha_gestion':forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'fecha_gestion':forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'class': 'form-control', 'required':'required'}),
             'tipo_gestion':  forms.Select(choices=[], attrs={'class': 'form-control'}),
             'resultado': forms.Select(choices=[], attrs={'class': 'form-control'}),
-            'monto_pendiente': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any'}),
-            'interes_pendiente': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any'}),
-            'mora_pendiente': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any'}),
-            'fecha_promesa_pago': forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'monto_pendiente': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any', 'disabled':'disabled'}),
+            'interes_pendiente': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any', 'disabled':'disabled'}),
+            'mora_pendiente': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any', 'disabled':'disabled'}),
+            'fecha_promesa_pago': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'class': 'form-control', 'required':'required'}),
             'observaciones': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
             'estado_cobranza':forms.Select(choices=[], attrs={'class': 'form-control'}),
-            'telefono_contacto':forms.TextInput(attrs={'type': 'text', 'class': 'form-control'})
+            'telefono_contacto':forms.TextInput(attrs={'type': 'text', 'class': 'form-control'}),
+            'fecha_limite_cuota':forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'class': 'form-control', 'disabled':'disabled'})
 
         }
 
@@ -65,16 +65,14 @@ class CobranzaForms(forms.ModelForm):
 
         # Opciones para el campo 'codigo_ingreso' (pueden venir de la base de datos)
         opciones_tipo_cobranza = [
-            ('', 'Seleccione un Tipo de Cobranza'),  # Opción inicial
+            
             ('preventiva', 'Preventiva'),
             ('normal', 'Normal'),
-            ('castigada', 'Castigada'),
             ('judicial', 'Judicial'),
             
         ]
 
-        opciones_tipo_gestion = [
-            ('', 'Seleccione un Tipo de Gestion'),  # Opción inicial
+        opciones_tipo_gestion = [        
             ('llamada', 'Llamada'),
             ('whatsapp', 'WhatsApp'),
             ('visita', 'Visita presencial'),
@@ -82,21 +80,18 @@ class CobranzaForms(forms.ModelForm):
 
         ]
 
-        opciones_resultados = [
-            ('', 'Seleccione un Tipo de Resultado'),  # Opción inicial
-            ('promesa_pago', 'Promesa de pago'),
-            ('pago_realizado', 'Pago realizado'),
-            ('no_localizado', 'No localizable'),
-            ('negativa_pago', 'Negativa de pago'),
+        opciones_resultados = [            
+            ('Promesa de pago', 'Promesa de pago'),
+            ('Pago realizado', 'Pago realizado'),
+            ('No localizable', 'No localizable'),
+            ('Negativa de pago', 'Negativa de pago'),
             
         ]
 
-        opciones_estado_cobranza = [
-            ('', 'Seleccione un Tipo de Resultado'),  # Opción inicial
-            ('pendiente', 'Pendiente'),
-            ('gestionado', 'Gestionado'),
-            ('incumplido', 'Incumplido'),
-            ('cerrado', 'Cerrado'),
+        opciones_estado_cobranza = [            
+            ('Pendiente', 'Pendiente'),
+            ('Incumplido', 'Incumplido'),
+            ('COMPLETADO', 'COMPLETADO'),
 
         ]
 
@@ -105,3 +100,8 @@ class CobranzaForms(forms.ModelForm):
         self.fields['tipo_gestion'].widget.choices = opciones_tipo_gestion
         self.fields['resultado'].widget.choices = opciones_resultados
         self.fields['estado_cobranza'].widget.choices = opciones_estado_cobranza
+        date_fields = ['fecha_gestion', 'fecha_promesa_pago', 'fecha_limite_cuota']
+        for field in date_fields:
+            self.fields[field].input_formats = ['%Y-%m-%d']
+
+

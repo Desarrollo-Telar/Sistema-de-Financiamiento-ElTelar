@@ -66,7 +66,7 @@ def creacion_cobranza(request):
                 credit_id=credito).order_by('-id').first()
             
             info_cuota = siguiente_pago
-
+            fcobranza.fecha_limite_cuota = info_cuota.mostrar_fecha_limite().date()
             fcobranza.cuota = info_cuota
             fcobranza.asesor_credito = asesor_autenticado
             fcobranza.save()

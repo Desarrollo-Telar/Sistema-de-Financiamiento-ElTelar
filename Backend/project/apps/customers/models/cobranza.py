@@ -50,6 +50,7 @@ class Cobranza(models.Model):
     monto_pendiente = models.DecimalField(max_digits=10, decimal_places=2) # SALDO ACTUAL DE LA CUOTA
     interes_pendiente = models.DecimalField(max_digits=10, decimal_places=2)  # Interes de la cuota, ya si tiene interes acumulado
     mora_pendiente = models.DecimalField(max_digits=10, decimal_places=2)  # Mora de la cuota, ya si tiene mora acumulado
+    fecha_limite_cuota = models.DateField(null=True, blank=True) # Obtener la fecha limite de la cuota
     fecha_promesa_pago = models.DateField(null=True, blank=True)
 
     observaciones = models.TextField(blank=True, null=True)

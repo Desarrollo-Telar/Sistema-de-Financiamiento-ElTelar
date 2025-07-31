@@ -5,6 +5,9 @@
 {% block content %}
 <div class="container my-4 p-4 bg-white rounded shadow-sm">
     <div class="row mb-4">
+        {% include 'cobranza/snippets/breadcrum.html' %}
+    </div>
+    <div class="row mb-4">
         {% include 'cobranza/table/table_cobranza.html' %}
     </div>
 </div>

@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recordatorio de Cobranza</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f6f6f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            background-color: #ffffff;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: #E5383B;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888888;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #e5383b;
+            border: 1px solid #e5383b;
+            color: #fdf3f3;
+            text-decoration: none;
+            border-radius: 2rem;
+            padding: 0.5rem 2rem;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #b22325;
+            color: #fdf3f3;
+            border: 1px solid #b22325;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Recordatorio de Gestión de Cobranza</h2>
+        </div>
+        <div class="content">
+            <p>Estimado(a) <strong>{{ object.asesor_credito }}</strong>,</p>
+
+            <p>Este es un recordatorio para que realice la gestión de cobranza correspondiente a sus clientes con
+                promesa de pago <strong>{{ object.fecha_promesa_pago }}</strong>.</p>
+
+            <p>Le recomendamos verificar el sistema y comunicarse con los clientes según lo programado.</p>
+
+            {% if full_url %}
+            <a href="{{ full_url }}" class="btn">Ir al Panel de Cobranza</a>
+            {% endif %}
+
+            <p>Gracias por su compromiso y trabajo continuo.</p>
+
+            <p>Atentamente,<br>
+                <strong>Inversiones Integrales El Telar</strong>
+            </p>
+        </div>
+        <div class="footer">
+            Este es un mensaje automático. Por favor, no responda a este correo.
+        </div>
+    </div>
+</body>
+
+</html>

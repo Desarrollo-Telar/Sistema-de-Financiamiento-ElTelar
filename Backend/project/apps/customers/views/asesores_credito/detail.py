@@ -48,7 +48,8 @@ def detail_informe(request, user_code, id):
         'title': f'COBRANZA | INFORME | {user_code} | {reporte.fecha_registro} - {reporte.fecha_vencimiento} |',
         'report':reporte,
         'object_list':detalles_informe,
-        'permisos':recorrer_los_permisos_usuario(request)
+        'permisos':recorrer_los_permisos_usuario(request),
+        'posicion': f'{reporte.nombre_reporte}'
     }
 
     return render(request, template_name, context)

@@ -9,6 +9,7 @@
                         <th scope="col">Tipo de Cobranza</th>  
                         <th scope="col">Credito</th>
                         <th scope="col">Cuota</th>
+                        <th scope="col">Fecha Limite De La Cuota</th>
                         <th scope="col">Monto Pendiente</th> 
                         <th scope="col">Mora Pendiente</th>       
                         <th scope="col">Interes Pendiente</th> 
@@ -28,67 +29,72 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 {{ data.cobranza.tipo_cobranza }}
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 {{ data.cobranza.credito }} 
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 {{ data.cobranza.cuota.mes }}
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
+                                {{ data.cobranza.cuota.mostrar_fecha_limite }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 Q {{ data.cobranza.f_monto_pendiente }} 
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 Q {{ data.cobranza.f_mora_pendiente }} 
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                Q {{ data.cobranza.f_interes_pendiente }} 
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 {{ data.cobranza.fecha_promesa_pago }} 
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 {{ data.cobranza.tipo_gestion }} 
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 {{ data.cobranza.fecha_gestion.date }} 
                             </a>
                         </td>
                        <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 {{ data.cobranza.resultado }} 
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 {{ data.cobranza.observaciones|linebreaksbr }} 
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 {{ data.cobranza.estado_cobranza }} 
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="#">
+                            <a class="row-link" href="{% url 'financings:detail_credit'  data.cobranza.credito.id  %}">
                                 {{ data.cobranza.telefono_contacto }} 
                             </a>
                         </td>

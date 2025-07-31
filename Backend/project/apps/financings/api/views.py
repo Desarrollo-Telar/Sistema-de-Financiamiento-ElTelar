@@ -5,6 +5,7 @@ from .serializers import PaymentPlanSerializerSeguro,PaymentPlanSerializerAcreed
 # MODELS
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
 from apps.financings.models import PaymentPlan, AccountStatement, Banco
+from apps.customers.models import Customer, CreditCounselor, Cobranza
 
 # API
 from rest_framework import viewsets, status, generics
@@ -65,17 +66,33 @@ class CreditViewSet(viewsets.ModelViewSet):
 
 class CreditVigentesViewSet(viewsets.ModelViewSet):
     serializer_class = CreditSerializer
-    queryset = Credit.objects.filter(is_paid_off=False)
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
+        queryset = Credit.objects.filter(is_paid_off=False)
+        search_term = self.request.query_params.get('term', '').strip()
+
+        # Obtener el asesor autenticado
+        asesor_autenticado = CreditCounselor.objects.filter(usuario=self.request.user).first()
+        roles = ['Administrador', 'Programador']
+
         if search_term:
-            queryset = queryset.filter(
-                Q(customer_id__first_name__icontains =search_term)|
-                Q(customer_id__last_name__icontains =search_term)|
-                Q(codigo_credito__icontains =search_term)
-            )  # Filtrar por el término de búsqueda
+            filters = (
+                Q(customer_id__first_name__icontains=search_term) |
+                Q(customer_id__last_name__icontains=search_term) |
+                Q(codigo_credito__icontains=search_term)
+            )
+
+            if asesor_autenticado:
+                if not self.request.user.rol.role_name in roles:
+                    filters &= Q(customer_id__new_asesor_credito__id=asesor_autenticado.id)
+
+            queryset = queryset.filter(filters)
+
+        elif asesor_autenticado:
+            # Si no hay término de búsqueda, pero sí asesor autenticado, filtrar por él
+            if not self.request.user.rol.role_name in roles:
+                queryset = queryset.filter(customer_id__new_asesor_credito__id=asesor_autenticado.id)
+
         return queryset
 
 class GuaranteesViewSet(viewsets.ModelViewSet):

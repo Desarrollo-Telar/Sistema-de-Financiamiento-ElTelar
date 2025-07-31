@@ -10,3 +10,6 @@ from .correos_para_pagos import send_email_alert, send_email_recibo
 
 # CON RELACION A LOS CREDITOS, ACREEDORES Y SEGUROS
 from .correos_para_creditos import send_email_new_credit, send_email_update_of_quotas, send_email_quotas_for_change, send_email_next_update_of_quotas
+
+#  CON RELACION A LOS ASESORES DE CREDITOS
+from .correos_para_cobranza import send_email_recordatorio_cobranza

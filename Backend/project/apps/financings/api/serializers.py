@@ -200,6 +200,7 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
             "interes_pagado": instance.interes_pagado,
             "mora_pagado": instance.mora_pagado,
             "fecha_limite": mostrar_fecha_limite(instance.fecha_limite),
+            "fecha_limite_d":  mostrar_fecha_limite(instance.fecha_limite).date(),
             "cambios": instance.cambios,
             "numero_referencia": instance.numero_referencia,
             "cuota_vencida": instance.cuota_vencida,

@@ -8,7 +8,7 @@ $(document).ready(function () {
         width: 'resolve',
         dropdownParent: $('#formModal'),
         ajax: {
-            url: urls_p.api_url_credit,
+            url: urls_p.api_url_credit_vigente,
             dataType: 'json',
             delay: 250,
             data: function (params) {
@@ -85,6 +85,8 @@ $(document).ready(function () {
             document.getElementById('id_monto_pendiente').value = total_pendiente.toFixed(2);
             document.getElementById('id_mora_pendiente').value = mora.toFixed(2);
             document.getElementById('id_interes_pendiente').value = interes.toFixed(2);
+            document.getElementById('id_fecha_limite_cuota').value = cuota.fecha_limite_d;
+            console.log( cuota.fecha_limite_d)
 
             // Obtener teléfono del cliente
             const telefono = cuota.credit_id?.customer_id?.telephone || '';

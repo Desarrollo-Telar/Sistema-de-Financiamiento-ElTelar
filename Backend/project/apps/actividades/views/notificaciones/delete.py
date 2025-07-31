@@ -29,4 +29,4 @@ def eliminar_notificacion(request, uuid):
     notificacion = Notification.objects.filter(uuid=uuid).first()
     notificacion.delete()
 
-    return redirect('index')
+    return redirect(request.META.get('HTTP_REFERER', '/'))

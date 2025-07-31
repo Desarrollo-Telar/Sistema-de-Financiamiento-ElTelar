@@ -26,7 +26,7 @@ def marcar_como_leidos(lista):
 def listar_notificaciones(request):
 
     template_name = 'notification/list.html'
-    notificacion = Notification.objects.filter(user=request.user).order_by('-created_at')
+    notificacion = Notification.objects.filter(user=request.user, read = False).order_by('-created_at')
     marcar_como_leidos(notificacion)
 
     page_obj = paginacion(request, notificacion)
