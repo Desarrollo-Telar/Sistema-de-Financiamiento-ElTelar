@@ -12,7 +12,7 @@ def asignar():
     # puede_ver_registros_cobranza hay que crear el registro de este permiso
     
     usuarios = User.objects.filter(rol__role_name__in = roles )
-    permiso_a_otorgar = Permiso.objects.get(codigo_permiso='puede_crear_registro_cobranza')
+    permiso_a_otorgar = Permiso.objects.get(codigo_permiso='puede_ver_registros_cobranza')
 
     for usuario in usuarios:
         print(usuario)

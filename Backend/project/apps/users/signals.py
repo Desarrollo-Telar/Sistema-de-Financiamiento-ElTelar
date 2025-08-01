@@ -159,6 +159,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
             'puede_subir_archivos',
             'puede_crear_registro_desembolso',
             'puede_crear_registro_garantia',
+            'puede_crear_registro_cobranza',
             #'puede_crear_informacion_credito',
 
             # ------- CONSULTAS -------
@@ -177,6 +178,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
             'puede_ver_listado_de_cuotas_vencidas',
             'puede_ver_listado_de_garantias_del_credito',
             'puede_ver_listado_de_desembolsos_aplicados_del_credito',
+            'puede_ver_registros_cobranza',
             
 
             # -------- DETALLE --------
