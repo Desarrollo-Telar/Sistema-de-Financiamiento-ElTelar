@@ -34,13 +34,13 @@ def cambiar_plan():
     validacion = ejecutar_max_1_veces_al_dia()
     dia = datetime.now().date()
     
-    """if not SERVIDOR:
-        return"""
+    if not SERVIDOR:
+        return
     
     if not validacion:
         return
     
-    #ver_cuotas(dia)
+    ver_cuotas(dia)
     ver_estado_informe(dia)
     fechas_cobranzas()
 
