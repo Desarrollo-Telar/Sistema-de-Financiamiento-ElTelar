@@ -12,7 +12,7 @@ django.setup()
 
 # Modelos
 from apps.customers.models import CreditCounselor, Customer
-from apps.financings.models import Credit, PaymentPlan
+from apps.financings.models import Credit, PaymentPlan, Banco, Payment
 
 # Scripts
 from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
@@ -40,8 +40,18 @@ def main():
 
 if __name__ == "__main__":
   try:
-    asignar()
+    #asignar()
     # python -m project.func.test
+    pagos_status_true = Payment.objects.filter(estado_transaccion='COMPLETADO').order_by('-id')
+
+    for pago in pagos_status_true:
+      banco = Banco.objects.filter(referencia=pago.numero_referencia, status=False).first()
+      print(banco)
+      if banco is not None:
+        banco.status = True
+        banco.save()
+    print('finalizado')
+
 
   except S3Error as exc:
     print("An error occurred.", exc)
