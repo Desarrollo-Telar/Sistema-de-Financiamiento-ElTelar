@@ -1,1 +1,12 @@
 {% load static %}
+<div class="row">
+    {% if informacion_asesor.reportes %}
+    
+
+    {% include 'cobranza/table/table.html' with object_list=informacion_asesor.reportes usuario=informacion_asesor.usuario%}
+    {% else %}
+    <p class="text-body-secondary fs-6 text-uppercase">
+       AUN NO TIENE REGISTRO DE COBRANZAS        
+      </p>
+    {% endif %}
+</div>
