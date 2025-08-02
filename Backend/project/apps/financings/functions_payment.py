@@ -41,6 +41,7 @@ def revisar(boleta):
             ingreso.save()
             pago.estado_transaccion = 'COMPLETADO'
             pago.save()
+            boleta.status = True
                     
                 
         if egreso is not None:
@@ -48,6 +49,7 @@ def revisar(boleta):
             egreso.save()
             pago.estado_transaccion = 'COMPLETADO'
             pago.save()
+            boleta.status = True
 
         if pago.tipo_pago == "EGRESO" or pago.tipo_pago == "INGRESO": 
             print("Egreso e Ingreso")
@@ -56,7 +58,7 @@ def revisar(boleta):
             pago.save()
                 
                 #pago.estado_transaccion = 'COMPLETADO'
-                #boleta.status = True
+            boleta.status = True
         boleta.save()
                 
 
