@@ -17,6 +17,7 @@ from django.contrib import messages
 
 # Modelos
 from apps.customers.models import Customer
+from apps.financings.models import Credit
 
 @login_required
 def votar_cliente(request, customer_code):
@@ -37,5 +38,27 @@ def votar_cliente(request, customer_code):
     context = {
         'form':form,
         'customer_code':customer_code
+    }
+    return render(request, template_name, context)
+
+@login_required
+def votar_credito(request, id):
+    template_name = 'votacion/crear.html'
+    credito = Credit.objects.filter(id=id).first()
+    if request.method == 'POST':
+        form = VotacionCreditoForm(request.POST)
+        if form.is_valid():
+            votacion = form.save(commit=False)
+            votacion.credito = credito
+            votacion.usuario = request.user
+            votacion.save()
+            messages.success(request, 'Registro Completado')
+            return redirect('financings:detail_credit',credito.id)
+    else:
+        form = VotacionCreditoForm()
+
+    context = {
+        'form':form,
+        'credit_list':credito
     }
     return render(request, template_name, context)

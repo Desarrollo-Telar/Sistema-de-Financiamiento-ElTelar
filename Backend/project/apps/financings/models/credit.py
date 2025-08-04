@@ -1,5 +1,5 @@
 from django.db import models
-
+from math import floor
 # RELACIONES
 from apps.customers.models import Customer
 from apps.InvestmentPlan.models import InvestmentPlan
@@ -66,6 +66,26 @@ class Credit(models.Model):
 
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
+    
+    def get_star_rating(self):
+        estrellas = []
+        if self.valoracion is None:
+            valor = 0
+        else:
+            valor = float(self.valoracion)
+
+        enteras = floor(valor)              # Número de estrellas llenas
+        decimal = valor - enteras           # Parte decimal para media estrella
+
+        for i in range(1, 6):
+            if i <= enteras:
+                estrellas.append('full')
+            elif i == enteras + 1 and decimal >= 0.5:
+                estrellas.append('half')
+            else:
+                estrellas.append('empty')
+
+        return estrellas
     
     def formato_estado_aportacion(self):
         mensaje = None

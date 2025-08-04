@@ -1,1 +1,1 @@
-from .crear import votar_cliente
+from .crear import votar_cliente, votar_credito

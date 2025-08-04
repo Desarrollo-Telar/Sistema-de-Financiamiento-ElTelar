@@ -5,9 +5,11 @@ from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuara
 from apps.customers.models import Customer, CreditCounselor
 from apps.financings.models import Invoice
 from apps.documents.models import DocumentGuarantee
-
-
 from django.db.models import Q
+from apps.actividades.models import VotacionCredito
+
+# forms
+from apps.actividades.forms.votaciones import VotacionCreditoForm
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -122,6 +124,9 @@ def detail_credit(request,id):
         'total_capitales':total_capital_pagada(estado_cuenta),
         'saldo_actual': formatear_numero(saldo_actual),
         'permisos':recorrer_los_permisos_usuario(request),
+        'form':VotacionCreditoForm(),
+        'comentarios':VotacionCredito.objects.filter(credito=credito).order_by('-id')
+       
 
     }
     return render(request, template_name,context)

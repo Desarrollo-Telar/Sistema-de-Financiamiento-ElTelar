@@ -4,7 +4,7 @@
 
 <!-- Botón que abre el modal -->
 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#formModal">
-    <i class="bi bi-star"></i> Votar al Cliente
+    <i class="bi bi-star"></i> Votar al Credito
 </button>
 
 <!-- Modal -->
@@ -13,12 +13,12 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="formModalLabel">Votación para {{customer_code}}</h5>
+                <h5 class="modal-title" id="formModalLabel">Votación para {{credit_list.codigo_credito}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
 
             <form method="post" enctype="multipart/form-data" autocomplete="off"
-                action="{% url 'actividades:votar_cliente' customer_code %}">
+                action="{% url 'actividades:votar_credito' credit_list.id %}">
                 {% csrf_token %}
                 <div class="modal-body">
                     {% include 'votacion/forms/forms.html' %}

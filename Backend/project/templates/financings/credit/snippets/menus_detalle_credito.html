@@ -17,6 +17,8 @@
             type="button" role="tab" aria-controls="nav-historial" aria-selected="true">Historial de
             Cuotas Vencidas</button>
         {% endif %}
+        <button class="nav-link " id="nav-comentarios-tab" data-bs-toggle="tab" data-bs-target="#nav-comentarios" type="button"
+            role="tab" aria-controls="nav-comentarios" aria-selected="true">Comentarios</button>
     </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -88,6 +90,12 @@
 <div class="tab-pane fade show " id="nav-historial" role="tabpanel" aria-labelledby="nav-historial-tab" tabindex="0">
     <div class="contenido">
         {% include 'financings/credit/snippets/historial.html' %}
+
+    </div>
+</div>
+<div class="tab-pane fade show " id="nav-comentarios" role="tabpanel" aria-labelledby="nav-comentarios-tab" tabindex="0">
+    <div class="contenido">
+        {% include 'votacion/list_comentarios_creditos.html' %}
 
     </div>
 </div>
