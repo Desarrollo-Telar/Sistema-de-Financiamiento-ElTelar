@@ -30,8 +30,10 @@ class VotacionCliente(models.Model):
         self.cliente.save()
 
     def save(self,*args, **kwargs):
+        
         super().save(*args, **kwargs)
-        self.calcular_promedio_puntacion()
+        self.calcular_promedio_puntuacion()
+        
 
     class Meta:
         verbose_name = "Votacion Para Clientes"
@@ -57,7 +59,7 @@ class VotacionCredito(models.Model):
 
     def save(self,*args, **kwargs):
         super().save(*args, **kwargs)
-        self.calcular_promedio_puntacion()
+        self.calcular_promedio_puntuacion()
 
 
     class Meta:

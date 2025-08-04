@@ -1,0 +1,47 @@
+{% load static %}
+
+{% if comentarios %}
+
+{% for comentario in comentarios %}
+<div class="comment-card">
+    <div class="comment-header">
+        <div class="comment-author">
+            <div class="author-avatar">
+                {{ comentario.usuario.first_name|first|upper|default:comentario.usuario.username|first|upper }}
+            </div>
+            <div class="author-info">
+                <h4>{{ comentario.usuario.get_full_name|default:comentario.usuario.username }}</h4>
+                <div class="comment-date">
+                    <i class="fas fa-clock"></i>
+                    {{ comentario.creation_date|date:"d/m/Y H:i" }}
+                </div>
+            </div>
+        </div>
+
+        <div class="rating-container">
+            <div class="stars">
+                {% for i in "12345" %}
+                {% if forloop.counter <= comentario.puntuacion %} <i class="fas fa-star star"></i>
+                    {% else %}
+                    <i class="fas fa-star star empty"></i>
+                    {% endif %}
+                    {% endfor %}
+            </div>
+            <span class="rating-number">{{ comentario.puntuacion }}/5</span>
+        </div>
+    </div>
+
+    <div class="comment-text">
+        <i class="fas fa-quote-left" style="color: #667eea; margin-right: 10px;"></i>
+        {{ comentario.comentario|linebreaks }}
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="no-comments">
+    <i class="fas fa-comments-slash"></i>
+    <h3>No hay comentarios aún</h3>
+    <p>Sé el primero en dejar un comentario sobre este credito.</p>
+</div>
+
+{% endif %}

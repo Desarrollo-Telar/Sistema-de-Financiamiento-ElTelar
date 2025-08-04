@@ -122,8 +122,6 @@ def send_message(sender, instance, created, **kwargs):
     generate_qr(dato, filename)
     
 
-    if instance.completado:
-        send_email_new_customer(instance)
 
 @receiver(post_delete, sender=Customer)
 def delete_image_qr_customer(sender, instance, **kwargs):

@@ -24,6 +24,7 @@ from django.utils.decorators import method_decorator
 
 # Scripts
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+from project.send_mail import send_email_new_customer
 
 # Create your views here.
 # Import
@@ -288,6 +289,7 @@ def create_references_customer(request, customer_code):
 
             customer_id.completado = True
             customer_id.save()
+            send_email_new_customer(customer_id)
 
             return redirect('customers:detail', customer_code)
     else:

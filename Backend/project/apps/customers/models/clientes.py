@@ -15,7 +15,7 @@ from datetime import timedelta
 from project.database_store import minio_client
 
 import uuid
-
+from math import floor
 
 # Create your models here.
 condition = [
@@ -137,7 +137,27 @@ class Customer(models.Model):
         if (today.month, today.day) < (self.date_birth.month, self.date_birth.day):
             age -= 1
         return age
+    
+    def get_star_rating(self):
 
+        estrellas = []
+        if self.valoracion is None:
+            valor = 0
+        else:
+            valor = float(self.valoracion)
+
+        enteras = floor(valor)              # Número de estrellas llenas
+        decimal = valor - enteras           # Parte decimal para media estrella
+
+        for i in range(1, 6):
+            if i <= enteras:
+                estrellas.append('full')
+            elif i == enteras + 1 and decimal >= 0.5:
+                estrellas.append('half')
+            else:
+                estrellas.append('empty')
+
+        return estrellas
 
     
     

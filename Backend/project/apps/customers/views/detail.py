@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-
+# Formulario
+from apps.actividades.forms.votaciones import VotacionClienteForm
 
 # Models
 from apps.customers.models import Customer, CreditCounselor
@@ -11,6 +12,9 @@ from apps.pictures.models import ImagenCustomer
 from apps.documents.models import DocumentCustomer
 from apps.financings.models import Credit
 from django.db.models import Q
+from apps.actividades.models import VotacionCliente
+
+
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -51,7 +55,7 @@ def detail_customer(request,customer_code):
     imagen = ImagenCustomer.objects.filter(Q(customer_id=customer_list))
     document = DocumentCustomer.objects.filter(Q(customer_id=customer_list))
     credito = Credit.objects.filter(Q(customer_id =customer_list ))
-
+    comentarios = VotacionCliente.objects.filter(cliente=customer_list).order_by('-id')
     #print(credito)
       
     
@@ -59,7 +63,7 @@ def detail_customer(request,customer_code):
     limite_direccion = False if direccion.count() >= 2 else True
 
     context = {
-        'title': 'Detalle de la Informacion del Cliente. {} {} / {}'.format(customer_list.first_name, customer_list.last_name,str(customer_code)),
+        'title': 'Detalle de la Informacion del Cliente | {} {} | {}'.format(customer_list.first_name, customer_list.last_name,str(customer_code)),
         'customer_list':customer_list,
         'user_id':request.user.id,
         'direccion': direccion,  
@@ -75,5 +79,7 @@ def detail_customer(request,customer_code):
         'imagen':imagen,
         'document':document,
         'permisos':recorrer_los_permisos_usuario(request),
+        'form':VotacionClienteForm(),
+        'comentarios':comentarios,
     }
     return render(request, template_name, context)
