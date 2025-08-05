@@ -13,3 +13,5 @@ from .boletas import report_base_boletas, ReporteBaseBoletasExcelView
 from .clientes import report_clientes
 
 from .desembolso import report_desmbolso
+
+from .asesores import ReporteAsesoresExcelView

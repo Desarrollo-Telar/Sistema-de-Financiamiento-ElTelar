@@ -110,6 +110,13 @@ class AsesoresCreditosList(ListView):
             
 
             if query:
+                try:
+                    fecha = datetime.strptime(query, '%Y-%m-%d')
+                    fecha_inicio = datetime.combine(fecha.date(), datetime.min.time())
+                    fecha_fin = datetime.combine(fecha.date(), datetime.max.time())
+                    filters |= Q()
+                except ValueError:
+                    pass  # No es fecha válida, continúa con los otros filtros
                 filters |= Q(nombre__icontains = query)
                 filters |= Q(apellido__icontains = query)             
                 filters |= Q(codigo_asesor__icontains = query)
@@ -120,7 +127,7 @@ class AsesoresCreditosList(ListView):
         except Exception as e:
             print(f'error: {e}')
             
-            return CreditCounselor.objects.none()
+            return CreditCounselor.objects.all().order_by('id')
     
     @method_decorator([permiso_requerido('puede_ver_registros_asesores')])
     def dispatch(self, *args, **kwargs):
