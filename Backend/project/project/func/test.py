@@ -19,6 +19,9 @@ from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_p
 from scripts.cargar_fiadores.vincular import main_vincular
 from scripts.asignar_nuevos_permisos.otorgar_permiso import asignar
 
+# Tiempo
+from datetime import datetime, timedelta
+
 def main():
   # Create a client for your MinIO server using your access and secret keys
   client = Minio(
@@ -42,15 +45,36 @@ if __name__ == "__main__":
   try:
     #asignar()
     # python -m project.func.test
-    pagos_status_true = Payment.objects.filter(estado_transaccion='COMPLETADO').order_by('-id')
+    dia = datetime.now().date()
+    dia_mas_uno = dia + timedelta(days=1)
+    
 
-    for pago in pagos_status_true:
-      banco = Banco.objects.filter(referencia=pago.numero_referencia, status=False).first()
-      print(banco)
-      if banco is not None:
-        banco.status = True
-        banco.save()
-    print('finalizado')
+    # Obtener las primeras cuotas activas por crédito del asesor
+    
+    creditos = Credit.objects.filter(is_paid_off = False)
+   
+    print(f'Verificando {creditos.count()} creditos')
+    contador = 0
+
+    for credito in creditos:
+      cuota = PaymentPlan.objects.filter(
+          credit_id=credito,
+          start_date__lte=dia,
+          fecha_limite__gte=dia_mas_uno
+      ).first()
+      
+      verificacion = cuota.capital_generado - cuota.principal
+
+      if verificacion <= 0:
+        contador += 1
+        print(cuota)
+        cuota.credit_id.estado_aportacion = True
+        cuota.credit_id.save()
+
+
+    print(f'Proceso finalizado. se arreglaron {contador}')
+
+
 
 
   except S3Error as exc:

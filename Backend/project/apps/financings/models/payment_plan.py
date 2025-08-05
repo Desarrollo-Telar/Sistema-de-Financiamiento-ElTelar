@@ -236,7 +236,25 @@ class PaymentPlan(models.Model):
         return round(cuota, 2)
 
     
-    
+    def estado_aportacion(self):
+        verificacion = self.capital_generado - self.principal 
+        if self.credit_id is not None:
+
+            if verificacion <= 0:
+                self.credit_id.estado_aportacion = True
+                self.credit_id.save()
+
+        if self.acreedor is not None:
+            if verificacion <= 0:
+                self.acreedor.estado_aportacion = True
+                self.acreedor.save()
+
+        if self.seguro is not None:
+            if verificacion <= 0:
+                self.seguro.estado_aportacion = True
+                self.seguro.save()
+            
+        
    
     def save(self,*args, **kwargs):
         self.fecha_vencimiento()
@@ -245,6 +263,7 @@ class PaymentPlan(models.Model):
         self.installment = self.calculo_cuota()
         self.interes_generado = self.calculo_interes()
         super().save(*args, **kwargs)
+        self.estado_aportacion()
     
     def __str__(self):
         mensaje = None
