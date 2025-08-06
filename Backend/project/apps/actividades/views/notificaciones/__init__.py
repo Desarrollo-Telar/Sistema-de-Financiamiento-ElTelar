@@ -12,3 +12,6 @@ from .detalle import detalle_notificacion
 
 # Eliminar
 from .delete import eliminar_notificacion
+
+# BOLETAS DE CLIENTES
+from .boletas_clientes import *

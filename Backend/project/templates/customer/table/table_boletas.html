@@ -1,0 +1,63 @@
+{% load static %}
+<div class="row">
+    <div class="col-12" style="text-align: center;">
+        <div class="table-responsive mb-4">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Código Credito</th>
+                        <th scope="col">Nombre del Cliente</th>
+                        <th scope="col">Cuota del Mes</th>
+                        <th scope="col">Fecha de Registro</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for boleta in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
+                                {{ boleta.cuota.credit_id.codigo_credito }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
+                                {{ boleta.cliente }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
+                                {{ boleta.cuota.mes}}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
+                                {{ boleta.created_at }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
+                                {% if boleta.status is None %}
+                                Pendiente de Validar
+                                {% else %}
+                                
+                                    {% if boleta.status %}
+                                    Validado
+                                    {% else %}
+                                    Rechazado
+                                    {% endif %}
+
+
+                                {% endif %}
+                            </a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

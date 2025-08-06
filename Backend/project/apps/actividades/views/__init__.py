@@ -1,3 +1,4 @@
-from .notificaciones import cerrar_pestana, subida_documento, listar_notificaciones, detalle_notificacion, eliminar_notificacion
+from .notificaciones import cerrar_pestana, subida_documento, listar_notificaciones, detalle_notificacion, eliminar_notificacion, DocumentoNotificacionClientesList
+from .notificaciones import detalle_boleta_cliente, aprobar_boleta_cliente, rechazar_boleta_cliente
 
 from .votacion import votar_cliente, votar_credito

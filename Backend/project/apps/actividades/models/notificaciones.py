@@ -8,6 +8,12 @@ from apps.financings.models import PaymentPlan
 # UUID
 import uuid
 
+from project.settings import MEDIA_URL, STATIC_URL
+
+#
+from datetime import timedelta
+from project.database_store import minio_client  # asegúrate de que esté importado correctamente
+
 class Notification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notifications", verbose_name="Para")
     title = models.CharField(max_length=255, verbose_name="Titulo")
@@ -54,6 +60,17 @@ class DocumentoNotificacionCliente(models.Model):
     def __str__(self):
         return f'{self.status}'
     
+    def get_document(self):
+        try:
+            return minio_client.presigned_get_object(
+                bucket_name='asiatrip',
+                object_name=self.document.name,  # ejemplo: documents/archivo.pdf
+                expires=timedelta(minutes=30)
+
+            )
+        except Exception as e:
+            return '{}{}'.format(MEDIA_URL,self.document)
+        
     class Meta:
         ordering = ['-created_at']
         verbose_name = 'Documento de Boleta de Cliente'

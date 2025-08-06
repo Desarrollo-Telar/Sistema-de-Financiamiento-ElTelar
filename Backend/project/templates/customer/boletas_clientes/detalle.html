@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/detail_boleta.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <h1 class="card-title">
+            <i class="fas fa-receipt me-2"></i>
+            Detalle de Boleta de Subida Por El Cliente
+        </h1>
+        <p class="card-subtitle">Información de la transacción</p>
+    </div>
+
+    <div class="card-body">
+        <!-- Botón volver -->
+        <button onclick="window.history.back()" class="back-button mb-3">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </button>
+
+        <!-- Información Principal -->
+        <div class="info-section">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-item">
+                        <span class="info-label">
+                            <i class="fas fa-hashtag me-1"></i>
+                            Codigo del Credito
+                        </span>
+                        <div class="info-value">{{object.cuota.credit_id.codigo_credito}}</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-item">
+                        <span class="info-label">
+                            <i class="fas fa-calendar-alt me-1"></i>
+                            Fecha de Emisión
+                        </span>
+                        <div class="info-value">{{object.created_at}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">
+                    Cuota
+                </span>
+                <div class="info-value monto">{{object.cuota.mes}}</div>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">
+                    <i class="fas fa-file-alt me-1"></i>
+                    Descripción del Cliente {{object.cliente}}
+                </span>
+                <textarea class="textarea-custom w-100" rows="3" readonly>
+                    {{object.description|linebreaksbr}}
+                </textarea>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Estado de la Transacción
+                </span>
+                <div class="info-value">
+                    <span class="status-badge {% if object.status %} status-completado {% elif object.status == False  %} status-rechazado  {% else %} status-pendiente {% endif %}">
+                        {% if object.status is None %}
+                        Pendiente de Validar
+                        {% else  %}
+                        {% if object.status %}
+                                    Validado
+                                    {% else %}
+                                    Rechazado
+                                    {% endif %}
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+           
+        </div>
+
+        <!-- Sección de Documento -->
+        <div class="document-section">
+            <h5 class="mb-3">
+                <i class="fas fa-file-download me-2"></i>
+                Documento Adjunto
+            </h5>
+            <a href="{{object.get_document}}" class="document-link">
+                <i class="fas fa-file-pdf"></i>
+                Descargar REF-{{object.cuota}}.pdf
+            </a>
+        </div>
+
+        <!-- Acciones -->
+        <div class="actions-section">
+            <div class="d-flex justify-content-between flex-wrap gap-2">
+                
+                <a  href="{% url 'actividades:rechazar_boleta_cliente' object.id%}" class="btn-custom btn-primary-custom">
+                    <i class="fas fa-edit me-2"></i>
+                    Rechazar
+                </a>
+                <a  href="{% url 'actividades:aprobar_boleta_cliente' object.id%}" class="btn-custom btn-primary-custom">
+                    <i class="fas fa-edit me-2"></i>
+                    Validar
+                </a>
+              
+
+                <button onclick="window.history.back()" class="btn-custom btn-secondary-custom">
+                    <i class="fas fa-times me-2"></i>
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
