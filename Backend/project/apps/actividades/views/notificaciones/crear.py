@@ -67,6 +67,7 @@ def subida_documento(request, uuid):
             documento = form.save(commit=False)
             documento.cliente = token_cliente.cliente
             documento.cuota = token_cliente.cuota
+            documento.status = None
             documento.save()
             especificaciones = None
 
