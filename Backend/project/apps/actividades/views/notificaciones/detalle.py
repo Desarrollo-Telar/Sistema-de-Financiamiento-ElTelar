@@ -27,6 +27,8 @@ def detalle_notificacion(request, uuid):
 
     template_name = 'notification/detalle.html'
     notificacion = Notification.objects.filter(uuid=uuid).first()
+    if notificacion is None:
+        return redirect('index')
     notificacion.read = True
     notificacion.save()
  
