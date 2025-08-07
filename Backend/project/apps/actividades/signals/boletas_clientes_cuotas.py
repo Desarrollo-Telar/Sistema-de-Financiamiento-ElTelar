@@ -39,7 +39,7 @@ def send_message_status_boleta(sender, instance, created, **kwargs):
                 fecha_emision=fecha_emision,
                 numero_referencia=instance.numero_referencia,
                 descripcion=instance.description,
-                boleta=instance.documento  # <- aquí se asigna el archivo
+                boleta=instance.document  # <- aquí se asigna el archivo
             )
 
             print(pago)
