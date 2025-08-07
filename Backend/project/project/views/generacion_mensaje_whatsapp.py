@@ -14,10 +14,16 @@ class GenerarMensajePagoAPIView(APIView):
         cliente = Customer.objects.filter(customer_code=customer_code).first()
         cuota = PaymentPlan.objects.filter(id=cuota_id).first()
 
-        if not cliente or not cuota:
-            return Response({
-                "detail": "Cliente o cuota no encontrados."
-            }, status=status.HTTP_404_NOT_FOUND)
+        if (not cliente) or (not cuota):
+            if not cliente:
+                return Response({
+                    "detail": "Cliente no encontrados."
+                }, status=status.HTTP_404_NOT_FOUND)
+            
+            if not cuota:
+                return Response({
+                    "detail": "Cuota no encontrados."
+                }, status=status.HTTP_404_NOT_FOUND)
 
         tokken, created = TokenCliente.objects.get_or_create(cliente=cliente, cuota=cuota)
 
