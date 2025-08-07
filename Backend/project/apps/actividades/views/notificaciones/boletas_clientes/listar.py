@@ -61,9 +61,6 @@ class DocumentoNotificacionClientesList(ListView):
             return DocumentoNotificacionCliente.objects.all().order_by('-id')
     
     
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-    
     def query(self):
         return self.request.GET.get('q')
     
