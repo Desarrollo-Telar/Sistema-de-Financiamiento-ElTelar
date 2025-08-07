@@ -106,6 +106,7 @@ def detail_credit(request,id):
         'title': f'Detalle del Credito. {credito}',
         'credit_list':credito,
         'customer_list':customer_list,
+        'customer_code':customer_list.customer_code,
         'plan':plan,
         'list_guarantee':list_guarantee,
         'list_disbursement':list_disbursement,

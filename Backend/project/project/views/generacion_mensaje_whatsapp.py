@@ -25,7 +25,12 @@ class GenerarMensajePagoAPIView(APIView):
                     "detail": "Cuota no encontrados."
                 }, status=status.HTTP_404_NOT_FOUND)
 
-        tokken, created = TokenCliente.objects.get_or_create(cliente=cliente, cuota=cuota)
+        tokken = TokenCliente.objects.filter(cliente=cliente, cuota=cuota).first()
+
+        if tokken is None:
+            tokken = TokenCliente.objects.create(
+                cliente=cliente, cuota=cuota
+            )
 
         telefono = f'502{cliente.telephone}'
         mensaje = f'''

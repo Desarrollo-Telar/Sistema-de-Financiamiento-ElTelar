@@ -44,8 +44,8 @@ class Code(models.Model):
 
 class TokenCliente(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    cliente = models.OneToOneField(Customer, on_delete=models.CASCADE)
-    cuota = models.OneToOneField(PaymentPlan, on_delete=models.CASCADE, blank=True, null=True)
+    cliente = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    cuota = models.ForeignKey(PaymentPlan, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f'{self.uuid} - {self.cliente}'

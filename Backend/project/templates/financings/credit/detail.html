@@ -10,7 +10,7 @@
 {% block content %}
 <div class="container my-4 p-4 bg-white rounded shadow-sm">
     <input type="hidden" id="siguiente_pago" value="{{siguiente_pago.id}}">
-    <input type="hidden" id="cliente" value="{{customer_list.customer_code}}">
+    <input type="hidden" id="cliente" value="{{customer_code}}">
     <div class="row">
         {% include 'financings/credit/snippets/descripcion_credito.html' %}
 

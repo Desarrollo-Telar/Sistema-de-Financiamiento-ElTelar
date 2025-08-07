@@ -7,13 +7,15 @@ from apps.actividades.models import DocumentoNotificacionCliente
 class DocumentoNotificacionClienteForms(forms.ModelForm):
     class Meta:
         model = DocumentoNotificacionCliente
-        fields = ['description', 'document']
+        fields = ['numero_referencia','description', 'document' ]
         labels = {
             'description': 'Descripción',
             'document': 'Documento (*)',
+            'numero_referencia': 'Numero de Referencia del Banco (*)'
         }
         widgets = {
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
+            'numero_referencia':forms.TextInput(attrs={'class': 'form-control', 'required':'required'}),
             'document': forms.FileInput(attrs={
                 'class': 'form-control',
                 'accept': '.pdf, image/*',
