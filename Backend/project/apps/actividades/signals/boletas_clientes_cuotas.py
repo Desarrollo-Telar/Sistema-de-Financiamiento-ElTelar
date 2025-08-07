@@ -27,6 +27,11 @@ def send_message_status_boleta(sender, instance, created, **kwargs):
             monto_pago = banco.credito if banco else 0
             fecha_emision = banco.fecha if banco else timezone.now()
 
+            pago = Payment.objects.filter(numero_referencia=instance.numero_referencia).first()
+
+            if pago is not None:
+                return
+
             # Crear el pago y copiar el documento como boleta
             pago = Payment.objects.create(
                 credit=instance.cuota.credit_id,
