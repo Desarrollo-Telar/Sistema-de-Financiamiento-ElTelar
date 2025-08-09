@@ -18,6 +18,7 @@ from apps.financings.models import Credit, PaymentPlan, Banco, Payment
 from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
 from scripts.cargar_fiadores.vincular import main_vincular
 from scripts.asignar_nuevos_permisos.otorgar_permiso import asignar
+from scripts.cargar_estado_cuenta.estado_cuenta import migracion_datos
 
 # Tiempo
 from datetime import datetime, timedelta
@@ -38,12 +39,8 @@ def main():
   else:
     print("Bucket 'asiatrip' already exists")
 
-
-
-
-if __name__ == "__main__":
-  try:
-    #asignar()
+def xd():
+  #asignar()
     # python -m project.func.test
     dia = datetime.now().date()
     dia_mas_uno = dia + timedelta(days=1)
@@ -73,6 +70,13 @@ if __name__ == "__main__":
 
 
     print(f'Proceso finalizado. se arreglaron {contador}')
+
+
+
+if __name__ == "__main__":
+  try:
+    migracion_datos()
+    
 
 
 

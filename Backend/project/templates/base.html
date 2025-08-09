@@ -55,7 +55,7 @@
     Swal.fire({
       icon: "{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% elif message.tags == 'warning' %}warning{% else %}info{% endif %}",
       title: "{{ message }}",
-      timer: 3000,
+      timer: 4000,
       showConfirmButton: false,
     });
     {% endfor %}

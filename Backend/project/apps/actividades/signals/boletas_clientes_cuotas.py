@@ -22,6 +22,10 @@ def send_message_status_boleta(sender, instance, created, **kwargs):
             print('Guardando')
             if instance.numero_referencia is None:
                 return
+
+            if instance.numero_referencia == '3696008759':
+                return
+
             banco = Banco.objects.filter(referencia=instance.numero_referencia).first()
 
             monto_pago = banco.credito if banco else 0

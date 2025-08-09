@@ -13,6 +13,9 @@ from django.utils.decorators import method_decorator
 # Scripts
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
+# MENSAJES
+from django.contrib import messages
+
 @login_required
 def aprobar_boleta_cliente(request, id):
 
@@ -20,6 +23,10 @@ def aprobar_boleta_cliente(request, id):
     
     if detalle_boleta is None:
         return redirect('actividades:cerrar_pestania')
+    
+    if detalle_boleta.numero_referencia == '3696008759':
+        messages.error(request, 'Esta Boleta no se puede validar, debido a que esta boleta pertenece a otra boleta, por favor cambie el numero de referencia')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
     
     detalle_boleta.status = True
     detalle_boleta.save()
