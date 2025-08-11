@@ -21,6 +21,8 @@ from django.utils.decorators import method_decorator
 
 # Scripts
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+# URLS
+from apps.actividades.utils import build_notificacion_especificaciones
 
 # MENSAJES
 from django.contrib import messages
@@ -42,7 +44,7 @@ def subida_documento(request, uuid):
         return redirect('actividades:cerrar_pestania')
     
     # Cargar Formulario
-    form = DocumentoNotificacionClienteForms
+    form = DocumentoNotificacionClienteForms()
     cuota = PaymentPlan.objects.filter(id=token_cliente.cuota.id).first()
     
     # Buscar si ya hay un registro de documento
@@ -69,7 +71,14 @@ def subida_documento(request, uuid):
             documento.cuota = token_cliente.cuota
             documento.status = None
             documento.save()
-            especificaciones = None
+            especificaciones = build_notificacion_especificaciones(
+
+                view_name='actividades:detalle_boleta_cliente',
+                kwargs={'id': documento.id},
+               
+                
+            
+            )
 
             mensaje = {
                 'title':f'El Cliente {token_cliente.cliente} ha subido su boleta de pago. 😮',

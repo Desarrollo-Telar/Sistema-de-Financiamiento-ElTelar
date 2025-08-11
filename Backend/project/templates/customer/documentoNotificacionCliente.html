@@ -6,12 +6,17 @@
     <div class="d-flex justify-content-center">
         <img src="{% static 'img/logo.png' %}" alt="" style="height: 3rem; width: 10rem;">
     </div>
-    <form method="POST"  enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        <div class="form-check form-switch" style="margin-top: 0.5rem;">
+            <input class="form-check-input" type="checkbox" role="switch" id="chequeo_boleta_banrural">
+            <label class="form-check-label fw-bold text-uppercase" for="chequeo_boleta_banrural">¿Su boleta de pago fue emitida por banrural?</label>
+        </div>
+        <br>
         {% include 'snippets/forms.html' %}
         <button type="submit" class="btn_guardar">Guardar Boleta</button>
         <button id="cuota_por_cobrar" class="btn_cancel" onclick="mostarcuota()" type="button">Cuota por cobrar</button>
-        <a class="btn btn-link " href="{% url 'actividades:cerrar_pestania' %}" >Cancelar</a>
+        <a class="btn btn-link " href="{% url 'actividades:cerrar_pestania' %}">Cancelar</a>
     </form>
 
 </div>
@@ -25,10 +30,10 @@
 <script>
     function mostarcuota() {
         {% if cuota %}
-            Swal.fire({
-                icon: "info",
-                title:  "{% if not cuota.credit_id.is_paid_off %} Cuota Por Cobrar {% else %} Este crédito ya ha sido cancelado por completo {% endif %}",
-                html: `
+        Swal.fire({
+            icon: "info",
+            title: "{% if not cuota.credit_id.is_paid_off %} Cuota Por Cobrar {% else %} Este crédito ya ha sido cancelado por completo {% endif %}",
+            html: `
                     <p>Fecha de Inicio: {{ cuota.start_date.date }}</p>
                     <p>Fecha de Vencimiento: {{ cuota.due_date.date }} </p>
                     <p>Fecha Límite: {{ cuota.mostrar_fecha_limite }} </p>
@@ -37,18 +42,19 @@
                     <p>Capital a aportar: Q{{ cuota.formato_cuota_capital }}</p>
                     <p>Total de la cuota a cancelar: Q{{ cuota.formato_cuota_total }}</p>
                 `,
-                timer: 4000,
-                showConfirmButton: false,
-            });
+            timer: 4000,
+            showConfirmButton: false,
+        });
         {% else %}
-            Swal.fire({
-                icon: "info",
-                title: "No hay cuota por cobrar",
-                text: "Actualmente no existe información de una cuota pendiente para este cliente.",
-                timer: 3000,
-                showConfirmButton: false,
-            });
+        Swal.fire({
+            icon: "info",
+            title: "No hay cuota por cobrar",
+            text: "Actualmente no existe información de una cuota pendiente para este cliente.",
+            timer: 3000,
+            showConfirmButton: false,
+        });
         {% endif %}
     }
 </script>
+<script type="module" src="{% static 'js/boleta_cliente/ocultar_mostrar.js'%}"></script>
 {% endblock %}

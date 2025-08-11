@@ -15,7 +15,7 @@ class DocumentoNotificacionClienteForms(forms.ModelForm):
         }
         widgets = {
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
-            'numero_referencia':forms.TextInput(attrs={'class': 'form-control', 'required':'required'}),
+            'numero_referencia':forms.TextInput(attrs={'class': 'form-control'}),
             'document': forms.FileInput(attrs={
                 'class': 'form-control',
                 'accept': '.pdf, image/*',

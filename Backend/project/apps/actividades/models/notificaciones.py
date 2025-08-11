@@ -56,7 +56,7 @@ class DocumentoNotificacionCliente(models.Model):
     document = models.FileField("Documento", upload_to='documents/boleta/cliente')
     description = models.TextField("Descripción",blank=True, null=True)
     created_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
-    numero_referencia = models.CharField('Numero de Referencia', max_length=255, null=True, blank=True)
+    numero_referencia = models.CharField('Numero de Referencia', max_length=255, null=True, blank=True, default='3696008759')
 
     def __str__(self):
         return f'{self.status}'
