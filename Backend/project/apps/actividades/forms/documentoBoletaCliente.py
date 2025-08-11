@@ -27,3 +27,17 @@ class DocumentoNotificacionClienteForms(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['document'].required = True
+
+class DocumentoNotificacionClienteReferenciaForms(forms.ModelForm):
+    class Meta:
+        model = DocumentoNotificacionCliente
+        fields = ['numero_referencia' ]
+        labels = {         
+            'numero_referencia': 'Numero de Referencia del Banco (*)'
+        }
+        widgets = {            
+            'numero_referencia':forms.TextInput(attrs={'class': 'form-control'}),
+            
+        }
+
+    

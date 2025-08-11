@@ -89,3 +89,10 @@ def list_reportes_modulos(request):
         'posicion':'Reportes'
     }
     return render(request, template_name, context)
+
+def agradecimeinto(request):
+    template_name = 'notification/agradecimiento.html'
+    context = {
+
+    }
+    return render(request, template_name, context)

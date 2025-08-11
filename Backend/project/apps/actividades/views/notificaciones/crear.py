@@ -67,6 +67,10 @@ def subida_documento(request, uuid):
         
         if form.is_valid():
             documento = form.save(commit=False)
+            num_referencia = form.cleaned_data.get('numero_referencia')
+            if num_referencia is None:
+                documento.numero_referencia = '3696008759'
+                
             documento.cliente = token_cliente.cliente
             documento.cuota = token_cliente.cuota
             documento.status = None
@@ -87,7 +91,7 @@ def subida_documento(request, uuid):
             }
             creacion_notificacion_administrador_secretaria(mensaje)
             messages.success(request, 'Se ha subido correctamente su documento. ')
-            return redirect('actividades:cerrar_pestania')
+            return redirect('boleta_procesada')
 
 
 

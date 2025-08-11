@@ -17,6 +17,8 @@ urlpatterns_notificaciones = [
     path('boletas_clientes/<int:id>/',views.detalle_boleta_cliente, name='detalle_boleta_cliente'),
     path('boletas_clientes/aprobar/<int:id>/',views.aprobar_boleta_cliente, name='aprobar_boleta_cliente'),
     path('boletas_clientes/rechazar/<int:id>/',views.rechazar_boleta_cliente, name='rechazar_boleta_cliente'),
+    path('boletas_clientes/actualizar/<int:id>/',views.cambio_referencia_boleta, name='cambio_referencia_boleta'),
+    
     
     
 ]

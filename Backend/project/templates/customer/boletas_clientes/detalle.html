@@ -42,7 +42,17 @@
                             <i class="fas fa-hashtag me-1"></i>
                             Numero de Referencia
                         </span>
+                        {% if object.numero_referencia == '3696008759' or object.numero_referencia is None %}
+                        <div class="info-value">
+                            <span
+                                class="status-badge  status-pendiente ">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                ¡Boleta de otro banco!
+                            </span>
+                        </div>
+                        {% else %}
                         <div class="info-value">{{object.numero_referencia}}</div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -79,21 +89,22 @@
                     Estado de la Transacción
                 </span>
                 <div class="info-value">
-                    <span class="status-badge {% if object.status %} status-completado {% elif object.status == False  %} status-rechazado  {% else %} status-pendiente {% endif %}">
+                    <span
+                        class="status-badge {% if object.status %} status-completado {% elif object.status == False  %} status-rechazado  {% else %} status-pendiente {% endif %}">
                         {% if object.status is None %}
                         Pendiente de Validar
-                        {% else  %}
+                        {% else %}
                         {% if object.status %}
-                                    Validado
-                                    {% else %}
-                                    Rechazado
-                                    {% endif %}
+                        Validado
+                        {% else %}
+                        Rechazado
+                        {% endif %}
                         {% endif %}
                     </span>
                 </div>
             </div>
 
-           
+
         </div>
 
         <!-- Sección de Documento -->
@@ -111,16 +122,19 @@
         <!-- Acciones -->
         <div class="actions-section">
             <div class="d-flex justify-content-between flex-wrap gap-2">
-                
-                <a  href="{% url 'actividades:rechazar_boleta_cliente' object.id%}" class="btn-custom btn-primary-custom">
+                {% if object.status is None %}
+                <a href="{% url 'actividades:rechazar_boleta_cliente' object.id%}"
+                    class="btn-custom btn-primary-custom">
                     <i class="fas fa-edit me-2"></i>
                     Rechazar
                 </a>
-                <a  href="{% url 'actividades:aprobar_boleta_cliente' object.id%}" class="btn-custom btn-primary-custom">
+                
+                <a href="{% url 'actividades:aprobar_boleta_cliente' object.id%}" class="btn-custom btn-primary-custom">
                     <i class="fas fa-edit me-2"></i>
                     Validar
                 </a>
-              
+                {% endif %}
+
 
                 <button onclick="window.history.back()" class="btn-custom btn-secondary-custom">
                     <i class="fas fa-times me-2"></i>

@@ -41,6 +41,7 @@ urlpatterns = [
     path('search/', login_required(views.Search.as_view()), name='busqueda_general'),
     path('qr/<str:data>/', views.generate_qr, name='generate_qr'),
     path('pdf/<int:id>', generate_pdf.generar_pdf, name='pdf'),
+    path('boleta_procesada/', views.agradecimeinto, name='boleta_procesada'),
     path('cliente/<str:uuid>/', subida_documento, name='subida_documento_cliente'),
 
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),

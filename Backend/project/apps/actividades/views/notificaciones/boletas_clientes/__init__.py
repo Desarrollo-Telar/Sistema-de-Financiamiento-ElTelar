@@ -1,3 +1,3 @@
 from .listar import DocumentoNotificacionClientesList
 from .detalle import detalle_boleta_cliente
-from .cambiar_estado import aprobar_boleta_cliente, rechazar_boleta_cliente
+from .cambiar_estado import aprobar_boleta_cliente, rechazar_boleta_cliente, cambio_referencia_boleta
