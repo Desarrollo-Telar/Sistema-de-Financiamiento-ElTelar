@@ -1,9 +1,34 @@
 # Modelos
 from apps.financings.models import Credit, PaymentPlan
-from apps.customers.models import CreditCounselor
+from apps.customers.models import CreditCounselor, Cobranza
+from apps.actividades.models import DetalleInformeCobranza, Informe
 
 # Tiempo
 from datetime import datetime, timedelta
+
+def recolectar_informacion_cobranza(asesor_autenticado):
+    if asesor_autenticado is None:
+        return None
+    
+    informe_vigente = Informe.objects.filter(usuario= asesor_autenticado.usuario, esta_activo=True).first()
+
+    if informe_vigente is None:
+        return None
+    
+    detalle_informe_cobranza = DetalleInformeCobranza.objects.filter(reporte=informe_vigente).order_by('-id')
+    cobranza = detalle_informe_cobranza[:10]
+    pendientes = detalle_informe_cobranza.filter(cobranza__estado_cobranza = 'Pendiente')
+    completados = detalle_informe_cobranza.filter(cobranza__estado_cobranza = 'COMPLETADO')
+
+    recolecion = {
+        'ultimos_10': cobranza,
+        'pendientes': pendientes.count(),
+        'completados':completados.count(),
+        'total':detalle_informe_cobranza.count()
+
+    }
+    return recolecion
+
 
 def recolectar_informes_status_creditos(request):
     dia = datetime.now().date() # Obtener el dia 

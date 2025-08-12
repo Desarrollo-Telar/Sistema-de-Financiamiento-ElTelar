@@ -40,10 +40,14 @@ def log_user_logout(sender, request, user, **kwargs):
 
 @receiver(got_request_exception)
 def log_request_exception(sender, request, **kwargs):
-    error_level = LogLevel.objects.get_or_create(
-        name="ERROR",
-        defaults={'description': 'Errores del sistema', 'priority': 3}
-    )[0]
+    error_level = LogLevel.objects.filter(name='ERROR').first()
+
+    if error_level is None:
+        error_level = LogLevel.objects.create(
+            name='ERROR',
+            description= 'Errores que afectan funcionalidad pero no detienen la aplicación',
+            priority=40
+        )
     
     SystemLog.objects.create(
         level=error_level,

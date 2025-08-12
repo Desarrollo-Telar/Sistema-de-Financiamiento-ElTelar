@@ -15,10 +15,16 @@
         
 
     </div>
+    {% if cobranza %}
+    <div class="animate-slide-up" style="margin-bottom: 1.5rem;">
+        {% include 'snippets/cobranzas.html' %}
+    </div>
+    {% endif %}
 
     <div class="stats-grid animate-slide-up">
         {% include 'snippets/informacion.html'%}
     </div>
+    
     <div class="charts-section animate-slide-up">
         {% include 'snippets/graficas.html'%}
     </div>

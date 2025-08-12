@@ -1,342 +1,531 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>INVERSIONES INTEGRALES EL TELAR S.A. | Dashboard</title>
-  <link rel="icon" href="/static/img/logo.png" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/buttons.css">
-  <link rel="stylesheet" href="/static/css/styles.css">
-  <link rel="stylesheet" href="/static/css/list.css">
-  <link href="/static/css/sidebar.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <link rel="stylesheet" href="../static/css/new_styles.css">
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafbfc;
+            color: #172b4d;
+            line-height: 1.5;
+        }
+
+        .tasks-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tasks-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e4e6ea;
+            overflow: hidden;
+        }
+
+        .tasks-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e4e6ea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+        }
+
+        .tasks-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #42526e;
+            letter-spacing: -0.01em;
+        }
+
+        .tasks-menu {
+            background: none;
+            border: none;
+            color: #6b778c;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .tasks-menu:hover {
+            background: #f4f5f7;
+            color: #42526e;
+        }
+
+        .tasks-stats {
+            padding: 1rem 2rem;
+            text-align: center;
+            background: #f7f8f9;
+            border-bottom: 1px solid #e4e6ea;
+        }
+
+        .stats-text {
+            font-size: 0.875rem;
+            color: #6b778c;
+            margin: 0;
+        }
+
+        .stats-numbers {
+            font-weight: 600;
+            color: #42526e;
+        }
+
+        .tasks-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .task-row {
+            border-bottom: 1px solid #f4f5f7;
+            transition: background-color 0.2s ease;
+        }
+
+        .task-row:hover {
+            background: #f7f8f9;
+        }
+
+        .task-row:last-child {
+            border-bottom: none;
+        }
+
+        .task-cell {
+            padding: 1.25rem 2rem;
+            vertical-align: top;
+        }
+
+        .task-main {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .task-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #172b4d;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .task-due {
+            font-size: 0.75rem;
+            color: #6b778c;
+            margin: 0;
+        }
+
+        .task-status {
+            font-size: 0.75rem;
+            color: #6b778c;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .status-in-progress {
+            background: #fff4e6;
+            color: #b8860b;
+        }
+
+        .status-outdated {
+            background: #ffebe6;
+            color: #c5554a;
+        }
+
+        .status-completed {
+            background: #e3fcef;
+            color: #00875a;
+        }
+
+        .task-assigned {
+            font-size: 0.75rem;
+            color: #6b778c;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .assigned-name {
+            font-size: 0.875rem;
+            color: #172b4d;
+            font-weight: 400;
+        }
+
+        .task-time {
+            font-size: 0.75rem;
+            color: #6b778c;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .time-value {
+            font-size: 0.875rem;
+            color: #172b4d;
+            font-weight: 400;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .task-row:hover .task-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: #6b778c;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: #f4f5f7;
+            color: #42526e;
+        }
+
+        .action-btn.edit:hover {
+            color: #0065ff;
+        }
+
+        .action-btn.delete:hover {
+            color: #de350b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tasks-container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+
+            .tasks-header {
+                padding: 1rem;
+            }
+
+            .tasks-stats {
+                padding: 0.75rem 1rem;
+            }
+
+            .task-cell {
+                padding: 1rem;
+            }
+
+            .tasks-table {
+                font-size: 0.875rem;
+            }
+
+            /* Stack columns on mobile */
+            .task-row {
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid #f4f5f7;
+            }
+
+            .task-cell {
+                display: block;
+                padding: 0.5rem 0;
+                border-bottom: none;
+            }
+
+            .task-main {
+                margin-bottom: 1rem;
+            }
+
+            .mobile-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 0.75rem;
+            }
+
+            .mobile-col {
+                flex: 1;
+            }
+        }
+
+        /* Animation for hover states */
+        @keyframes fadeInActions {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .task-row:hover .task-actions {
+            animation: fadeInActions 0.3s ease;
+        }
+
+        /* Custom scrollbar */
+        .tasks-card::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .tasks-card::-webkit-scrollbar-track {
+            background: #f1f2f4;
+        }
+
+        .tasks-card::-webkit-scrollbar-thumb {
+            background: #c1c7d0;
+            border-radius: 3px;
+        }
+
+        .tasks-card::-webkit-scrollbar-thumb:hover {
+            background: #a5adba;
+        }
+    </style>
 </head>
-
 <body>
-  <div class="animated-bg"></div>
+    <div class="tasks-container">
+        <div class="tasks-card">
+            <!-- Header -->
+            <div class="tasks-header">
+                <h1 class="tasks-title">TASKS</h1>
+                <button class="tasks-menu" id="menuBtn">
+                    <i class="bi bi-three-dots"></i>
+                </button>
+            </div>
 
+            <!-- Stats -->
+            <div class="tasks-stats">
+                <p class="stats-text">
+                    <span class="stats-numbers">107</span> Tasks completed out of 
+                    <span class="stats-numbers">195</span>
+                </p>
+            </div>
 
-  <main class="d-flex flex-nowrap">
-
-
-    <!-- Main Content -->
-    <div class="container main-content">
-
-
-      <!-- Statistics Cards -->
-      <div class="stats-grid animate-slide-up">
-
-
-        <a href="/financings/credit/" class="stat-card">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-              class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
-              <path
-                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z" />
-            </svg>
-          </div>
-          <div class="number">126</div>
-          <div class="label">Créditos Vigentes</div>
-        </a>
-
-        <a href="/financings/credit/atrasados/" class="stat-card">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-              class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
-              <path
-                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-          </div>
-          <div class="number">32</div>
-          <div class="label">Créditos en Atraso</div>
-        </a>
-
-        <a href="/financings/credit/fecha_vencimiento/" class="stat-card">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-              class="bi bi-calendar-event" viewBox="0 0 16 16">
-              <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-              <path
-                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-            </svg>
-          </div>
-          <div class="number">7</div>
-          <div class="label">Vencen Hoy</div>
-        </a>
-
-        <a href="/financings/credit/fecha_limite/" class="stat-card">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clock-fill"
-              viewBox="0 0 16 16">
-              <path
-                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-            </svg>
-          </div>
-          <div class="number">5</div>
-          <div class="label">Fecha Límite Hoy</div>
-        </a>
-
-        <a href="/financings/credit/proximos/fecha_vencimiento/" class="stat-card">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-              class="bi bi-calendar-week" viewBox="0 0 16 16">
-              <path
-                d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-              <path
-                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-            </svg>
-          </div>
-          <div class="number">21</div>
-          <div class="label">Próximos a Vencer</div>
-        </a>
-      </div>
-
-      <!-- Charts Section -->
-      <div class="charts-section animate-slide-up">
-        <div class="chart-container">
-          <h4>📊 Registro de Clientes</h4>
-          <canvas id="myChart"></canvas>
+            <!-- Tasks Table -->
+            <table class="tasks-table">
+                <tbody id="tasksTableBody">
+                    <!-- Tasks will be populated here -->
+                </tbody>
+            </table>
         </div>
-        <div class="chart-container">
-          <h4>💳 Registro de Créditos</h4>
-          <canvas id="myChartC"></canvas>
-        </div>
-      </div>
     </div>
-  </main>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="/static/js/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-  <script src="/static/js/node_modules/chart.js/dist/chart.umd.js"></script>
-  <script src="/static/js/node_modules/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="/static/js/sidebar.js"></script>
-  <script src="/static/js/grafica_index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Sample task data
+        const tasksData = [
+            {
+                title: "Coffee detail page - Main Page",
+                due: "Due in 3 days",
+                status: "In-progress",
+                statusClass: "status-in-progress",
+                assignedTo: "Logan R. Cohn",
+                totalTime: "3h 20min"
+            },
+            {
+                title: "Drinking bottle graphics",
+                due: "Due in 27 days",
+                status: "Outdated",
+                statusClass: "status-outdated",
+                assignedTo: "Jerry F. Powell",
+                totalTime: "12h 21min"
+            },
+            {
+                title: "App design and development",
+                due: "Due in 7 days",
+                status: "Completed",
+                statusClass: "status-completed",
+                assignedTo: "Scot M. Smith",
+                totalTime: "78h 05min"
+            },
+            {
+                title: "Poster illustration design",
+                due: "Due in 5 days",
+                status: "In-progress",
+                statusClass: "status-in-progress",
+                assignedTo: "John P. Ritter",
+                totalTime: "26h 58min"
+            }
+        ];
 
-  <script>
+        function renderTasks() {
+            const tableBody = document.getElementById('tasksTableBody');
+            tableBody.innerHTML = '';
 
+            tasksData.forEach((task, index) => {
+                const row = document.createElement('tr');
+                row.className = 'task-row';
+                
+                row.innerHTML = `
+                    <td class="task-cell">
+                        <div class="task-main">
+                            <p class="task-title">${task.title}</p>
+                            <p class="task-due">${task.due}</p>
+                        </div>
+                    </td>
+                    <td class="task-cell">
+                        <div class="task-status">Status</div>
+                        <div class="status-badge ${task.statusClass}">${task.status}</div>
+                    </td>
+                    <td class="task-cell">
+                        <div class="task-assigned">Assigned to</div>
+                        <div class="assigned-name">${task.assignedTo}</div>
+                    </td>
+                    <td class="task-cell">
+                        <div class="task-time">Total time spend</div>
+                        <div class="time-value">${task.totalTime}</div>
+                    </td>
+                    <td class="task-cell">
+                        <div class="task-actions">
+                            <button class="action-btn edit" onclick="editTask(${index})" title="Edit">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteTask(${index})" title="Delete">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
 
-    // Animation on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+                tableBody.appendChild(row);
+            });
         }
-      });
-    }, observerOptions);
 
-    document.querySelectorAll('.stat-card').forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'all 0.6s ease-out';
-      observer.observe(card);
-    });
-
-    // Staggered animation for cards
-    document.querySelectorAll('.stat-card').forEach((card, index) => {
-      card.style.animationDelay = `${index * 0.1}s`;
-    });
-
-    // Notification system
-    let cantidadNotificaciones = 0;
-
-    function mostrarToaster(mensaje) {
-      Swal.fire({
-        toast: true,
-        position: 'top-end',
-        icon: 'info',
-        title: mensaje,
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        background: 'rgba(255, 255, 255, 0.95)',
-        backdrop: false,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer);
-          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        function editTask(index) {
+            console.log('Editing task:', index);
+            // Implement edit functionality
         }
-      });
-    }
 
-    async function cargarNotificaciones() {
-      const list = document.getElementById("notificaciones-list");
-      const badge = document.getElementById("noti-badge");
-
-      const protocolo = window.location.protocol;
-      const dominio = window.location.hostname;
-      const puerto = window.location.port;
-      const baseUrl = `${protocolo}//${dominio}${puerto ? `:${puerto}` : ''}`;
-      const url = `${baseUrl}/actividades/api/notificaciones/`;
-
-      try {
-        const response = await fetch(url, {
-          method: 'GET',
-          credentials: 'include'
-        });
-
-        const data = await response.json();
-        const total = data.length;
-
-        // Actualizar badge
-        badge.textContent = total > 99 ? "99+" : total;
-        badge.style.display = total > 0 ? "inline-block" : "none";
-
-        // Mostrar toaster si hay nuevas
-        if (total > cantidadNotificaciones) {
-          mostrarToaster(`Tienes ${total - cantidadNotificaciones} nueva(s) notificación(es).`);
+        function deleteTask(index) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
+                tasksData.splice(index, 1);
+                renderTasks();
+                updateStats();
+            }
         }
-        cantidadNotificaciones = total;
 
-        // Limpiar lista de notificaciones
-        list.innerHTML = "";
-
-        if (total === 0) {
-          list.innerHTML = `
-            <li><a class="dropdown-item fw-light" href="#"> No hay notificaciones nuevas. </a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item fw-italic" href="/actividades/notification/">Ver Todas las Notificaciones</a></li>
-          `;
-        } else {
-          data.slice(0, 5).forEach(noti => {
-            const item = document.createElement("li");
-            item.innerHTML = `
-              <a class="dropdown-item fw-semibold" href="${baseUrl}/actividades/notification/${noti.uuid}/">
-                ${noti.title}<br><small class="fw-light">${noti.created_at}</small>
-              </a>
+        function updateStats() {
+            const completed = tasksData.filter(task => task.status === 'Completed').length;
+            const total = tasksData.length;
+            
+            document.querySelector('.stats-text').innerHTML = `
+                <span class="stats-numbers">${completed}</span> Tasks completed out of 
+                <span class="stats-numbers">${total}</span>
             `;
-            list.appendChild(item);
-          });
-
-          const divider = document.createElement("li");
-          divider.innerHTML = `<hr class="dropdown-divider">`;
-
-          const verMas = document.createElement("li");
-          verMas.innerHTML = `<a class="dropdown-item fw-italic" href="/actividades/notification/">Ver Todas las Notificaciones</a>`;
-
-          list.appendChild(divider);
-          list.appendChild(verMas);
         }
 
-      } catch (error) {
-        console.error("Error al cargar notificaciones:", error);
-      }
-    }
-
-    // Initialize tooltips
-    document.addEventListener('DOMContentLoaded', () => {
-      // Enable tooltips
-      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-      tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-      });
-
-      // Load notifications
-      cargarNotificaciones();
-      setInterval(cargarNotificaciones, 10000);
-
-      // Add hover effects to interactive elements
-      document.querySelectorAll('.clickable').forEach(element => {
-        element.addEventListener('mouseenter', function () {
-          this.style.transform = 'scale(1.02)';
+        // Menu functionality
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            console.log('Menu clicked');
+            // Implement menu functionality
         });
 
-        element.addEventListener('mouseleave', function () {
-          this.style.transform = 'scale(1)';
+        // Mobile responsive handling
+        function handleResize() {
+            if (window.innerWidth <= 768) {
+                adjustForMobile();
+            } else {
+                adjustForDesktop();
+            }
+        }
+
+        function adjustForMobile() {
+            const rows = document.querySelectorAll('.task-row');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('.task-cell');
+                if (cells.length > 1) {
+                    // Restructure for mobile
+                    const mainCell = cells[0];
+                    const statusCell = cells[1];
+                    const assignedCell = cells[2];
+                    const timeCell = cells[3];
+                    const actionsCell = cells[4];
+
+                    row.innerHTML = `
+                        <td class="task-cell" style="display: block; padding: 1rem;">
+                            ${mainCell.innerHTML}
+                            <div class="mobile-row">
+                                <div class="mobile-col">
+                                    ${statusCell.innerHTML}
+                                </div>
+                                <div class="mobile-col">
+                                    ${assignedCell.innerHTML}
+                                </div>
+                            </div>
+                            <div class="mobile-row">
+                                <div class="mobile-col">
+                                    ${timeCell.innerHTML}
+                                </div>
+                                <div class="mobile-col">
+                                    ${actionsCell.innerHTML}
+                                </div>
+                            </div>
+                        </td>
+                    `;
+                }
+            });
+        }
+
+        function adjustForDesktop() {
+            renderTasks();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTasks();
+            handleResize();
         });
-      });
 
-      // Add smooth scrolling
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-          });
+        window.addEventListener('resize', handleResize);
+
+        // Add some interactive features
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.task-row')) {
+                const row = e.target.closest('.task-row');
+                // Add subtle click feedback
+                row.style.transform = 'scale(0.995)';
+                setTimeout(() => {
+                    row.style.transform = '';
+                }, 150);
+            }
         });
-      });
-
-      // Add loading animation to forms
-      document.querySelectorAll('form').forEach(form => {
-        form.addEventListener('submit', function () {
-          const submitBtn = this.querySelector('button[type="submit"]');
-          if (submitBtn) {
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Cargando...';
-            submitBtn.disabled = true;
-          }
-        });
-      });
-    });
-
-    // Add particle effect on click
-    document.addEventListener('click', function (e) {
-      if (e.target.closest('.stat-card')) {
-        createParticles(e.pageX, e.pageY);
-      }
-    });
-
-    function createParticles(x, y) {
-      for (let i = 0; i < 6; i++) {
-        const particle = document.createElement('div');
-        particle.style.position = 'fixed';
-        particle.style.left = x + 'px';
-        particle.style.top = y + 'px';
-        particle.style.width = '4px';
-        particle.style.height = '4px';
-        particle.style.backgroundColor = '#3b82f6';
-        particle.style.borderRadius = '50%';
-        particle.style.pointerEvents = 'none';
-        particle.style.zIndex = '9999';
-        document.body.appendChild(particle);
-
-        const angle = (Math.PI * 2 * i) / 6;
-        const velocity = 2;
-        const dx = Math.cos(angle) * velocity;
-        const dy = Math.sin(angle) * velocity;
-
-        let opacity = 1;
-        let scale = 1;
-        let posX = x;
-        let posY = y;
-
-        const animate = () => {
-          opacity -= 0.02;
-          scale -= 0.01;
-          posX += dx;
-          posY += dy;
-
-          particle.style.opacity = opacity;
-          particle.style.transform = `scale(${scale})`;
-          particle.style.left = posX + 'px';
-          particle.style.top = posY + 'px';
-
-          if (opacity > 0) {
-            requestAnimationFrame(animate);
-          } else {
-            particle.remove();
-          }
-        };
-
-        animate();
-      }
-    }
-  </script>
+    </script>
 </body>
-
 </html>

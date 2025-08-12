@@ -4,7 +4,7 @@ from project.decorador import usuario_activo
 
 # Recoleccion de datos
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
-from scripts.recoleccion_reporte_dashboard import recolectar_informes_status_creditos
+from scripts.recoleccion_reporte_dashboard import recolectar_informes_status_creditos, recolectar_informacion_cobranza
 
 # OS
 import os
@@ -16,7 +16,9 @@ import qrcode
 from django.conf import settings
 
 # Modelos
-from apps.customers.models import Customer,CreditCounselor 
+from apps.customers.models import Customer,CreditCounselor, Cobranza
+from apps.actividades.models import UserLog
+
 
 # URLS
 from django.shortcuts import render, redirect
@@ -63,7 +65,6 @@ def generate_qr(request, data):
 @usuario_activo
 def index(request):
     template_name = 'index.html'
-    
     clientes = Customer.objects.all()
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
@@ -71,11 +72,16 @@ def index(request):
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         clientes = Customer.objects.filter(new_asesor_credito=asesor_autenticado)
 
+    
+        
+
     context = {
         'title':'Inicio',
         'clientes':clientes,
         'creditos':recolectar_informes_status_creditos(request),
         'permisos':recorrer_los_permisos_usuario(request),
+        'actividad_usuario': UserLog.objects.filter(user=request.user),
+        'cobranza':recolectar_informacion_cobranza(asesor_autenticado)
     }
     return render(request, template_name, context)
 
