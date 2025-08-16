@@ -21,7 +21,12 @@ def fechas_cobranzas():
         ~Q(estado_cobranza__icontains='COMPLETADO')
     )
     print('informe de cobranza')
+    hora_actual = datetime.now().time()    
+    hora_fin = time(9, 0)      # 09:00 AM
 
     for cobrar in cobranzas:
         print('Enviando Recordatorio')
-        send_email_recordatorio_cobranza(cobrar)
+        if hora_actual <= hora_fin:
+            send_email_recordatorio_cobranza(cobrar)
+        else:
+            print("Fuera del horario permitido para enviar correos.")

@@ -1,5 +1,5 @@
 # Serializador
-from .serializers import CustomerSerializer, ImmigrationStatusSerializer, CreditCounselorSerializer
+from .serializers import CustomerSerializer, ImmigrationStatusSerializer, CreditCounselorSerializer, CobranzaSerializer
 
 # API
 from rest_framework import viewsets, status, generics
@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 # Models
-from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor
+from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor, Cobranza
 
 from django.db.models import Q
 
@@ -85,3 +85,32 @@ class CreditCounselorSerializerViewSet(viewsets.ModelViewSet):
                 Q(codigo_asesor__icontains=search_term)
                 ) # Filtrar por el término de búsqueda
         return queryset
+    
+class CobranzaViewSet(viewsets.ModelViewSet):
+    serializer_class = CobranzaSerializer
+
+    def get_queryset(self):
+        asesor_autenticado = CreditCounselor.objects.filter(usuario=self.request.user).first()
+
+        if not asesor_autenticado:
+            return Cobranza.objects.none()
+
+        queryset = Cobranza.objects.filter(asesor_credito=asesor_autenticado)
+
+        # Recoger parámetros de búsqueda
+        search_term = self.request.query_params.get('term', '').strip()
+        user_code = self.request.query_params.get('user_code', '').strip()
+
+        if search_term:
+            queryset = queryset.filter(
+                Q(credito__customer_id__first_name__icontains=search_term) |
+                Q(credito__customer_id__last_name__icontains=search_term) |
+                Q(credito__codigo_credito__icontains=search_term) 
+            )
+
+        if user_code:            
+            asesor_autenticado = CreditCounselor.objects.filter(usuario__user_code=user_code).first()
+            queryset = Cobranza.objects.filter(asesor_credito=asesor_autenticado)
+
+        return queryset
+

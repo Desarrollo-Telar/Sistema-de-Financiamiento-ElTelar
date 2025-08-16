@@ -1,36 +1,286 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MENSAJE DE ALERTA - EL TELAR</title>
+    <title>ACTUALIZACIÓN AUTOMÁTICA DE CUOTAS - EL TELAR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #9c27b0;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .alert-badge {
+            background-color: #7b1fa2;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .alert-message {
+            background-color: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .process-info {
+            background-color: #e8f5e8;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            margin: 15px 0;
+            border-left: 4px solid #4caf50;
+        }
+        .cuotas-section {
+            background-color: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .cuotas-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .cuotas-table th {
+            background-color: #9c27b0;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 12px;
+            border-bottom: 2px solid #7b1fa2;
+        }
+        .cuotas-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 12px;
+            color: #333;
+        }
+        .cuotas-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .cuotas-table tr:hover {
+            background-color: #f3e5f5;
+        }
+        .codigo-credito {
+            font-weight: bold;
+            color: #9c27b0;
+        }
+        .fecha-anterior {
+            color: #757575;
+            text-decoration: line-through;
+            font-size: 11px;
+        }
+        .fecha-nueva {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .mes-actualizado {
+            background-color: #e8f5e8;
+            color: #2e7d32;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .status-actualizado {
+            background-color: #9c27b0;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .no-cuotas {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+        }
+        .footer {
+            background-color: #424242;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        .note {
+            font-size: 12px;
+            color: #666;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        .important-note {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #e65100;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 0;
+            }
+            .content {
+                padding: 20px;
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+            .cuotas-table {
+                font-size: 10px;
+            }
+            .cuotas-table th,
+            .cuotas-table td {
+                padding: 6px 4px;
+            }
+            .cuotas-section {
+                overflow-x: auto;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div style="background-color: #f2f2f2; padding: 20px; text-align: center">
-
-    <h1 style="text-transform: uppercase">
-        Estimados Administradores,
+    <div class="container">
+        <div class="header">
+            <h1>ACTUALIZACIÓN AUTOMÁTICA</h1>
+            <div class="alert-badge">¡PROCESADO!</div>
+        </div>
         
-    </h1>
-    <h2 style="color: red;">¡ALERTA!</h2>
-    <p style="font-style: oblique">Las siguientes cuotas han sido actualizadas automáticamente: </p>
-    <ul>
-        {% for cuota in cuotas %}
-        <li>{{cuota}}</li>
-
-        {% endfor %}
-    </ul>
-   
-  
-    <h1>EL TELAR</h1>
-    
-
-
-
-
-
-
-  </div>
+        <div class="content">
+            <div class="greeting">
+                Estimados Administradores,
+            </div>
+            
+            <div class="alert-message">
+                <strong>🔄 Proceso Automático:</strong> Las siguientes cuotas han llegado a su fecha máxima de pago y han sido actualizadas automáticamente para el mes vigente.
+            </div>
+            
+            <div class="process-info">
+                ✅ <strong>Fecha de procesamiento:</strong> {{ fecha_procesamiento|default:"Hoy" }}
+                <br>
+                📊 <strong>Total de cuotas actualizadas:</strong> {{ cuotas|length }}
+            </div>
+            
+            <div class="cuotas-section">
+                <h3 style="margin-top: 0; color: #333;">Cuotas Actualizadas Automáticamente:</h3>
+                
+                {% if cuotas %}
+                <table class="cuotas-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>De</th>
+                            <th>Mes</th>
+                            <th>F. Inicio</th>
+                            <th>F. Vencimiento</th>
+                            <th>F. Máx. Pago</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cuota in cuotas %}
+                        <tr>
+                            <td class="codigo-credito">
+                              {% if cuota.credit_id %}
+                              {{ cuota.credit_id.codigo_credito }}
+                              {% elif cuota.acreedor %}
+                              {{ cuota.acreedor.codigo_acreedor }}
+                              {% elif cuota.seguro%}
+                              {{ cuota.seguro.codigo_seguro }}
+                              {% endif %}
+                            </td>
+                            <td>
+                              {% if cuota.credit_id %}
+                              {{ cuota.credit_id.customer_id.first_name }} {{ cuota.credit_id.customer_id.last_name }}
+                              {% elif cuota.acreedor %}
+                              {{ cuota.acreedor.nombre_acreedor }}
+                              {% elif cuota.seguro%}
+                              {{ cuota.seguro.nombre_acreedor }}
+                              {% endif %}
+                            </td>
+                            <td>
+                                <span class="fecha-anterior">{{ cuota.mes }}</span>
+                            </td>
+                            <td>
+                                <span class="mes-actualizado">{{ cuota.start_date.date }}</span>
+                            </td>
+                            <td>
+                                <span class="fecha-anterior">{{ cuota.due_date.date  }}</span>
+                            </td>
+                            <td class="fecha-nueva">{{ cuota.fecha_limite.date }}</td>
+                            <td>
+                                <span class="status-actualizado">Actualizado</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div class="no-cuotas">
+                    No hay cuotas que hayan sido actualizadas automáticamente
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="important-note">
+                <strong>⚠️ Importante:</strong> El sistema ha realizado esta actualización de forma automática para mantener la continuidad del flujo de pagos. Por favor, revise cada caso y tome las acciones correspondientes.
+            </div>
+            
+            
+            
+            <div class="note">
+                Este es un mensaje automático del sistema. No responder a este correo.
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="company-name">INVERSIONES INTEGRALES EL TELAR</div>
+        </div>
+    </div>
 </body>
 </html>

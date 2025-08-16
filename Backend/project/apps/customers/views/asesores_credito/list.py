@@ -90,6 +90,7 @@ class CobranzaList(ListView):
         context['permisos'] = recorrer_los_permisos_usuario(self.request)
         context['form'] = CobranzaForms()
         context['usuario'] = self.request.user
+        context['user_code'] =  self.request.user.user_code
         return context
     
 

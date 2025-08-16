@@ -25,8 +25,9 @@ def generar_noRecibo(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Recibo)
 def enviar_recibo(sender, instance, created, **kwargs):
-    envio_mensaje_alerta_recibo(instance.id)
-    logger.info('DESDE SIGNALS DE RECIBO: ENVIO DE MENSAJE DE RECIBO CARGADO')
+    if created:
+        envio_mensaje_alerta_recibo(instance.id)
+        logger.info('DESDE SIGNALS DE RECIBO: ENVIO DE MENSAJE DE RECIBO CARGADO')
 
 """ 
 @receiver(post_delete, sender=Recibo)

@@ -1,11 +1,16 @@
 {% load static %}
 <div class="d-flex  fs-6">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'customers:cobranza_asesor' %}">Mis Cobranzas</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'customers:cobranza_asesor' %}">Mis Cobranzas</a></li>
+            {% if posicion is None %}
+            <li class="breadcrumb-item active" aria-current="page"> {{report.nombre_reporte}} </li>
+            {% else %}
+            <li class="breadcrumb-item"><a
+                    href="{% url 'customers:detail_informe_cobranza' user_code report.id %}">Todos</a></li>
+            {% endif %}
 
-            </ol>
-        </nav>
-    </div>
+        </ol>
+    </nav>
+</div>

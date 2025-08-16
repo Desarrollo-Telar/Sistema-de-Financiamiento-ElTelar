@@ -62,6 +62,7 @@ export const urls_p = {
     api_url_clientes_aceptados: `${baseUrl}/customers/api/customers_accept/`,
     api_url_condicion_migratoria:  `${baseUrl}/customers/api/immigration_status/`,
     api_url_asesores_credito:`${baseUrl}/customers/api/asesores/`,
+    api_url_cobranza:`${baseUrl}/customers/api/cobranza/`,
 
     // DIRECCION
     api_url_direccion:  `${baseUrl}/addresses/api/address/`,
@@ -113,5 +114,7 @@ export const urls_p = {
     api_url_permiso: `${baseUrl}/roles_permisos/api/permisos/`,
     api_url_rol: `${baseUrl}/roles_permisos/api/role/`,
     api_url_permiso_usuario:  `${baseUrl}/users/api/permisos_usuarios/`,
+
+    // Cobranza
 
 }

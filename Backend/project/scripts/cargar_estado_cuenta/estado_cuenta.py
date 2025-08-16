@@ -96,24 +96,24 @@ def creacion_estado_cuenta(credit, payment, issue_date, interest_paid, capital_p
     )
 
 def migracion_datos():
-    credito = Credit.objects.get(id=339)
+    credito = Credit.objects.get(id=347)
     cliente = Customer.objects.get(id=credito.customer_id.id)
 
     listado_referencias = [
         {
-            'num_refe':'1448072470',
-            'fecha':'2024-11-23',
-            'monto':200,
-            'interes_pagado':200,
-            'aporte_capital':0,
+            'num_refe':'2110682117',
+            'fecha':'2024-09-29',
+            'monto':2277,
+            'interes_pagado':1875,
+            'aporte_capital':402,
             'estado_transaccion':'COMPLETADO',
             'registro_ficticio':True,
-            'saldo_pendiente':3000,
+            'saldo_pendiente':24598,
         },
         {
-            'num_refe':'2096748555',
-            'fecha':'2024-12-14',
-            'monto':2000,
+            'num_refe':'1087125150',
+            'fecha':'2024-10-28',
+            'monto':2277,
             'interes_pagado': 1300,
             'aporte_capital':700,
             'estado_transaccion':'COMPLETADO',

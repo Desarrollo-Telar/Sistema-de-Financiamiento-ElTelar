@@ -70,6 +70,12 @@ def login_view(request):
             hora = datetime.now()
             if user.username != 'choc1403':
                 send_email_user_conect_or_disconect(user,hora,'INGRESADO AL SISTEMA')
+
+            next_url = request.GET.get('next') or request.POST.get('next')
+
+            if next_url:
+                return redirect(next_url)
+            
             return redirect('index')
         else:
             messages.error(request, 'Credenciales no validos')

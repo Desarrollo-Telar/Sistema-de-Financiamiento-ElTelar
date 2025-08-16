@@ -29,6 +29,7 @@ class CreditViewSet(viewsets.ModelViewSet):
     serializer_class = CreditSerializer
     queryset = Credit.objects.all()
 
+
     def get_queryset(self):
         queryset = super().get_queryset()
         

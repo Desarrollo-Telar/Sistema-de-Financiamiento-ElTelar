@@ -145,6 +145,7 @@ function createMultiDatasetChart(ctx, labels, datasets) {
         type: 'line',
         data: chartData,
         options: {
+            responsive: true,
             animations: {
                 tension: {
                     duration: 1000,

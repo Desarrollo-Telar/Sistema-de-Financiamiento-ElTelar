@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # Models
-from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor
+from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor, Cobranza
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -54,6 +54,7 @@ class CustomerSerializer(serializers.ModelSerializer):
             "description": instance.description,
             "creation_date": instance.creation_date.date() if instance.creation_date else None,
             "completado": instance.completado,
+            'asesor':instance.asesor,
         }
 
 
@@ -66,4 +67,9 @@ class ImmigrationStatusSerializer(serializers.ModelSerializer):
 class CreditCounselorSerializer(serializers.ModelSerializer):
     class Meta:
         model = CreditCounselor
+        fields = '__all__'
+
+class CobranzaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cobranza
         fields = '__all__'

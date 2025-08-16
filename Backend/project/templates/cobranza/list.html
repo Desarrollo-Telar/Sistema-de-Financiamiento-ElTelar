@@ -3,12 +3,19 @@
 
 {% block css %}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/estado_cobranza/list.css'%}">
 {% endblock %}
 
 {% block content %}
 <div class="container my-4 p-4 bg-white rounded shadow-sm">
     <div class="row mb-4">
         {% include 'cobranza/snippets/presentation.html' %}
+    </div>
+    <div class="row mb-4">
+        <div class="charts-section animate-slide-up">
+            {% include 'cobranza/snippets/grafica.html' %}
+        </div>
+
     </div>
     <div class="row mb-4">
         <div class="col-4">
@@ -34,5 +41,6 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script type="module" src="{% static 'js/cobranza/seleccionar.js'%}"></script>
+<script type="module" src="{% static 'js/grafica_cobranza.js'%}"></script>
 
 {% endblock %}

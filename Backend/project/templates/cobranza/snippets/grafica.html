@@ -1,0 +1,207 @@
+{% load static %}
+<div class="chart-container">
+    <h4>📊 Registros de Cobranza</h4>
+    <canvas id="myChartCobranza"></canvas>
+    <input type="hidden" value="{{user_code}}" id="user_code">
+</div>
+<div class="widget-container">
+    <div class="widget-header">
+        <div class="icon">💳</div>
+        <div>
+            <div class="widget-title">Gestión de Cobranza</div>
+        </div>
+    </div>
+
+    <div class="stats-container">
+        <div class="stat-item">
+            <span class="stat-label">Gestiones Realizadas</span>
+            <span class="stat-value completed" id="completed-count">15</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Créditos Pendientes</span>
+            <span class="stat-value pending" id="pending-count">8</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Total de Créditos</span>
+            <span class="stat-value" id="total-count">23</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <button class="btn_cancel" onclick="openModal()">
+        Ver Créditos Restantes
+    </button>
+</div>
+
+<!-- Modal -->
+{% include 'cobranza/snippets/modal_cobranza.html' %}
+
+<script>
+    // Variable global de datos
+    const creditosData = {
+        completed: 0,
+        pending: 0,
+        total: 0,
+        pendingCredits: []
+    };
+
+    // Inicializar el widget al cargar la página
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtén el user_code desde tu contexto Django
+        const userCode = "{{ user_code }}";
+        const apiUrl = `/customers/asesores_credito/api/${userCode}/`;
+
+        // Mostrar estado de carga
+        showLoadingState();
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Actualizamos el widget con los datos de la API
+                actualizarDatos(
+                    data.total_realizados,
+                    data.total_faltantes,
+                    data.total_creditos,
+                    data.creditos_faltantes.map(c => ({
+                        name: `${c.customer_id.first_name} ${c.customer_id.last_name}`,
+                        amount: `${parseFloat(c.saldo_actual).toLocaleString()}`,
+                        details: `Vencimiento: ${c.fecha_vencimiento}`,
+                        id: c.codigo_credito
+                    }))
+                );
+                hideLoadingState();
+            })
+            .catch(error => {
+                console.error("Error al cargar datos de la API:", error);
+                showErrorState(error.message);
+            });
+    });
+
+    function showLoadingState() {
+        document.getElementById('completed-count').textContent = '...';
+        document.getElementById('pending-count').textContent = '...';
+        document.getElementById('total-count').textContent = '...';
+        document.getElementById('progress-fill').style.width = '0%';
+    }
+
+    function hideLoadingState() {
+        // Se ocultará automáticamente cuando se actualicen los datos
+    }
+
+    function showErrorState(errorMessage) {
+        document.getElementById('completed-count').textContent = 'Error';
+        document.getElementById('pending-count').textContent = 'Error';
+        document.getElementById('total-count').textContent = 'Error';
+
+        // Opcional: mostrar mensaje de error al usuario
+        console.warn('No se pudieron cargar los datos:', errorMessage);
+    }
+
+    function updateWidgetData() {
+        document.getElementById('completed-count').textContent = creditosData.completed;
+        document.getElementById('pending-count').textContent = creditosData.pending;
+        document.getElementById('total-count').textContent = creditosData.total;
+
+        // Actualizar barra de progreso
+        const progressPercentage = creditosData.total > 0 ? (creditosData.completed / creditosData.total) * 100 : 0;
+        document.getElementById('progress-fill').style.width = progressPercentage + '%';
+    }
+
+    function loadPendingCredits() {
+        const creditsList = document.getElementById('credits-list');
+        creditsList.innerHTML = '';
+
+        if (creditosData.pendingCredits.length === 0) {
+            creditsList.innerHTML = '<div class="credit-item" style="text-align: center; color: #6c757d;">No hay créditos pendientes</div>';
+            return;
+        }
+
+        creditosData.pendingCredits.forEach(credit => {
+            const creditItem = document.createElement('div');
+            creditItem.className = 'credit-item';
+            creditItem.innerHTML = `
+                    <div class="credit-info">
+                        <div class="credit-name">${credit.name}</div>
+                        <div class="credit-details">Codigo Del Credito: ${credit.id} • ${credit.details}</div>
+                    </div>
+                    <div class="credit-amount">Q${credit.amount}</div>
+                `;
+            creditsList.appendChild(creditItem);
+        });
+    }
+
+    function openModal() {
+        const modal = document.getElementById('m_modal');
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('m_modal');
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Cerrar modal al hacer clic fuera de él
+    window.onclick = function (event) {
+        const modal = document.getElementById('m_modal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
+
+    // Función que recibe los datos de la API y actualiza el widget
+    function actualizarDatos(completed, pending, total_creditos,pendingCredits) {
+        creditosData.completed = completed;
+        creditosData.pending = pending;
+        creditosData.total = total_creditos;
+        creditosData.pendingCredits = pendingCredits;
+
+        updateWidgetData();
+        loadPendingCredits();
+    }
+
+    // Función opcional para refrescar los datos manualmente
+    function refreshData() {
+        const userCode = "{{ user_code }}";
+        const apiUrl = `/customers/asesores_credito/api/${userCode}/`;
+
+        showLoadingState();
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                actualizarDatos(
+                    data.total_realizados,
+                    data.total_faltantes,
+                    data.total_creditos,
+                    data.creditos_faltantes.map(c => ({
+                        name: `${c.customer_id.first_name} ${c.customer_id.last_name}`,
+                        amount: `${parseFloat(c.saldo_actual).toLocaleString()}`,
+                        details: `Vencimiento: ${c.fecha_vencimiento}`,
+                        id: c.codigo_credito
+                    }))
+                );
+                hideLoadingState();
+            })
+            .catch(error => {
+                console.error("Error al refrescar datos:", error);
+                showErrorState(error.message);
+            });
+    }
+</script>

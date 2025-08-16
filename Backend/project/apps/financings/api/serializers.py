@@ -56,6 +56,7 @@ class CreditSerializer(serializers.ModelSerializer):
                 'id':instance.customer_id.id,
                 'first_name':instance.customer_id.first_name,
                 'last_name':instance.customer_id.last_name,
+                'asesor':instance.customer_id.asesor,
 
             },
             'proposito':instance.proposito,
@@ -67,8 +68,7 @@ class CreditSerializer(serializers.ModelSerializer):
             'frecuencia_pago':instance.frecuencia_pago,
             'fecha_inicio':instance.fecha_inicio,
             'fecha_vencimiento':instance.fecha_vencimiento,
-            'tipo_credito':instance.tipo_credito,
-            #'destino_id':instance.destino_id,
+            'tipo_credito':instance.tipo_credito,            
             'codigo_credito':instance.codigo_credito,
             'saldo_actual': instance.saldo_actual,
             'Fsaldo_actual': formatear_numero(instance.saldo_actual),
@@ -78,8 +78,6 @@ class CreditSerializer(serializers.ModelSerializer):
             'plazo_restante':instance.plazo_restante,
             'estado_aportacion':instance.estado_aportacion,
             'creation_date':instance.creation_date.date(),
-            
-
         }
 
 

@@ -1,0 +1,48 @@
+<nav>
+    <div class="container-fluid">
+        <form class="d-flex" action="{% url 'customers:detail_informe_cobranza' user_code report.id %}" id="searchForm">
+            
+            <!-- Input de búsqueda normal -->
+            <input 
+                class="form-control me-2" 
+                name="q" 
+                value="{{ query }}" 
+                type="search" 
+                placeholder="Buscar"
+                aria-label="Search">
+
+            <!-- Input de calendario -->
+            <input class="form-control me-2" type="date" name="fecha" value="{{ fecha }}">
+
+            <!-- Input de estado de cobranza -->
+            <select class="form-control me-2" name="estado_cobranza">
+                <option value="">-- Estado de cobranza --</option>
+                <option value="completado" {% if estado_cobranza == "completado" %}selected{% endif %}>Completado</option>
+                <option value="pendiente" {% if estado_cobranza == "pendiente" %}selected{% endif %}>Pendiente</option>
+                <option value="incumplido" {% if estado_cobranza == "incumplido" %}selected{% endif %}>Incumplido</option>
+            </select>
+            
+            <button class="btn btn-outline-dark" type="submit">Buscar</button>
+        </form>
+    </div>
+</nav>
+
+<script>
+document.getElementById("searchForm").addEventListener("submit", function(e) {
+    // Selecciona cualquier input, select o textarea
+    const qInput = this.querySelector("[name='q']");
+    const fechaInput = this.querySelector("[name='fecha']");
+    const estado_cobranzaInput = this.querySelector("[name='estado_cobranza']");
+
+    if (qInput && !qInput.value.trim()) {
+        qInput.removeAttribute("name"); // elimina si está vacío
+    }
+    if (fechaInput && !fechaInput.value.trim()) {
+        fechaInput.removeAttribute("name");
+    }
+    if (estado_cobranzaInput && !estado_cobranzaInput.value.trim()) {
+        estado_cobranzaInput.removeAttribute("name");
+    }
+});
+</script>
+
