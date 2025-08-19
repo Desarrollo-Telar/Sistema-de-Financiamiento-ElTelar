@@ -238,5 +238,133 @@
         "fecha_registro": "2025-07-02",
         "creation_date": "2025-07-02T17:15:51.510Z"
     }
+},
+{
+    "model": "accountings.income",
+    "pk": 49,
+    "fields": {
+        "fecha": "2025-07-14",
+        "monto": "75000.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "POR REINTEGRO DEL EGRESOS POR SERVICIOS TERCEROS EXTERNOS",
+        "numero_referencia": "1994626441",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-07-31_a_las_12.46.49_d6ebdf91.jpg",
+        "status": true,
+        "fecha_registro": "2025-07-31",
+        "creation_date": "2025-07-31T18:48:15.211Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 50,
+    "fields": {
+        "fecha": "2025-07-06",
+        "monto": "250.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "POR PAGO DE JOSE AYALA ACUERDO DE DEPOSITAR 3,500.00",
+        "numero_referencia": "1762116763",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-08-01_a_las_12.40.04_1e84c64a.jpg",
+        "status": true,
+        "fecha_registro": "2025-08-01",
+        "creation_date": "2025-08-01T18:40:13.642Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 51,
+    "fields": {
+        "fecha": "2025-07-13",
+        "monto": "250.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "POR EL PAGO DE JOSE AYALA ACUERDO DE DEPOSITAR 3,500.00",
+        "numero_referencia": "77139556",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-08-01_a_las_12.41.12_8bd328ad.jpg",
+        "status": true,
+        "fecha_registro": "2025-08-01",
+        "creation_date": "2025-08-01T18:41:19.849Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 52,
+    "fields": {
+        "fecha": "2025-07-20",
+        "monto": "250.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "POR DEPOSITO DE JOSE AYALA POR ACUERDO DE PAGO DE  3,500.00",
+        "numero_referencia": "44887993",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-08-01_a_las_12.41.58_f48f9114.jpg",
+        "status": true,
+        "fecha_registro": "2025-08-01",
+        "creation_date": "2025-08-01T18:42:26.690Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 53,
+    "fields": {
+        "fecha": "2025-07-27",
+        "monto": "200.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "POR PAGO DE JOSE AYALA ACUERDO DE PAGO DE 3,500.00",
+        "numero_referencia": "252186641",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-08-01_a_las_12.42.49_03345740.jpg",
+        "status": true,
+        "fecha_registro": "2025-08-01",
+        "creation_date": "2025-08-01T18:43:37.061Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 54,
+    "fields": {
+        "fecha": "2025-07-28",
+        "monto": "6050.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "POR EL CHEQUE RECHAZADO DE ANA VERALY DELGADO, QUE ENTRO Y SALIO DE BANCOS",
+        "numero_referencia": "94213936",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-08-01_a_las_13.04.51_1211afd8.jpg",
+        "status": true,
+        "fecha_registro": "2025-08-01",
+        "creation_date": "2025-08-01T19:08:14.022Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 55,
+    "fields": {
+        "fecha": "2025-07-18",
+        "monto": "500.00",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "POR EL PAGO DE COMPUTADORA VENDIDA AL CREDITO POR NEGOCIO REALIZADO",
+        "numero_referencia": "2140425754",
+        "boleta": "pagos/boletas/otros_ingresos/Imagen_de_WhatsApp_2025-08-01_a_las_14.34.36_95171cfe.jpg",
+        "status": true,
+        "fecha_registro": "2025-08-01",
+        "creation_date": "2025-08-01T20:46:41.309Z"
+    }
+},
+{
+    "model": "accountings.income",
+    "pk": 56,
+    "fields": {
+        "fecha": "2025-08-05",
+        "monto": "9512.10",
+        "codigo_ingreso": "Otros Ingresos",
+        "descripcion": "OTROS INGRESOS",
+        "observaciones": "INGRESOS POR SERVICIOS TERCEROS PENDIENTE DE REINTEGRAR",
+        "numero_referencia": "90679511",
+        "boleta": "pagos/boletas/otros_ingresos/388ea8db-742e-49fe-8940-563999fe5f6c.jpeg",
+        "status": true,
+        "fecha_registro": "2025-08-11",
+        "creation_date": "2025-08-11T16:11:53.686Z"
+    }
 }
 ]

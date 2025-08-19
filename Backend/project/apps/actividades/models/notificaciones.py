@@ -3,10 +3,13 @@ from django.db import models
 # Relacion
 from apps.users.models import User
 from apps.customers.models import Customer
-from apps.financings.models import PaymentPlan
+from apps.financings.models import PaymentPlan, Payment
 
 # UUID
 import uuid
+
+# TIEMPO
+from datetime import datetime
 
 from project.settings import MEDIA_URL, STATIC_URL
 
@@ -57,9 +60,18 @@ class DocumentoNotificacionCliente(models.Model):
     description = models.TextField("Descripción",blank=True, null=True)
     created_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     numero_referencia = models.CharField('Numero de Referencia', max_length=255, null=True, blank=True, default='3696008759')
+    fecha_actualizacion = models.DateField("Fecha en que se actualizo el credito", default=datetime.now, null=True, blank=True)
 
     def __str__(self):
         return f'{self.status}'
+    
+    def fecha_de_emision_boleta(self):
+        pago = Payment.objects.filter(numero_referencia=self.numero_referencia).first()
+        
+        if pago is not None:
+            return pago.fechaEmision()
+        
+        return self.created_at
     
     def get_document(self):
         try:

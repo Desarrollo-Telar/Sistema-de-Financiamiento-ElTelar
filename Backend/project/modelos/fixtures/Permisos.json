@@ -1150,5 +1150,29 @@
         "estado": true,
         "fecha_registro": "2025-07-28T09:39:02.603Z"
     }
+},
+{
+    "model": "roles.permiso",
+    "pk": 98,
+    "fields": {
+        "categoria_permiso": 24,
+        "nombre": "Puede Crear Registro Cobranza",
+        "descripcion": "",
+        "codigo_permiso": "puede_crear_registro_cobranza",
+        "estado": true,
+        "fecha_registro": "2025-07-28T22:05:20.487Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 99,
+    "fields": {
+        "categoria_permiso": 24,
+        "nombre": "Puede Ver Sus Registros de Cobranza",
+        "descripcion": "",
+        "codigo_permiso": "puede_ver_registros_cobranza",
+        "estado": true,
+        "fecha_registro": "2025-08-01T16:11:10.230Z"
+    }
 }
 ]

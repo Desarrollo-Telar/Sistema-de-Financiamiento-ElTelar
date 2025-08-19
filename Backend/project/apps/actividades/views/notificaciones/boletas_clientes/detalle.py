@@ -1,6 +1,7 @@
 
 # Modelos
 from apps.actividades.models import DocumentoNotificacionCliente
+from apps.financings.models import Payment
 
 # URL
 from django.shortcuts import render, get_object_or_404, redirect
@@ -18,8 +19,11 @@ def detalle_boleta_cliente(request, id):
     template_name = 'customer/boletas_clientes/detalle.html'
     detalle_boleta = DocumentoNotificacionCliente.objects.filter(id=id).first()
 
+    
+
     if detalle_boleta is None:
         return redirect('actividades:cerrar_pestania')
+
 
     context = {
         'permisos': recorrer_los_permisos_usuario(request),

@@ -97,5 +97,14 @@
         "numero_factura": 11,
         "recibo_id": 437
     }
+},
+{
+    "model": "financings.invoice",
+    "pk": 13,
+    "fields": {
+        "issue_date": "2025-08-06",
+        "numero_factura": 12,
+        "recibo_id": 648
+    }
 }
 ]

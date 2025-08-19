@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$720000$uwyxV31bqAM5toRV388iDx$Kz2oHP8ZjJGa7N8yYMP1VBFZBxng1M6rZmiNHB06GxE=",
-        "last_login": "2025-07-28T21:39:37.371Z",
+        "last_login": "2025-08-17T16:55:55.745Z",
         "is_superuser": true,
         "username": "choc1403",
         "first_name": "JUAN CARLOS",
@@ -35,7 +35,7 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$720000$EEvuqArXW8Z3mbY4KUNKzu$54gL75TfPQoCF6J5jU+VqTqKNhrhXtGmXb+S1DD8Rao=",
-        "last_login": "2025-07-28T15:07:15.822Z",
+        "last_login": "2025-08-15T22:55:45.573Z",
         "is_superuser": true,
         "username": "l_chenof1",
         "first_name": "Fernanda",
@@ -66,7 +66,7 @@
     "pk": 3,
     "fields": {
         "password": "pbkdf2_sha256$720000$Kvpb5uCInvweu6sBS4rXiW$0U4qhD2Ig2hh57Lc6eOKJFoNH+R1hUWveAUDjw977Bw=",
-        "last_login": "2025-07-18T16:27:31.988Z",
+        "last_login": "2025-08-16T00:27:06.054Z",
         "is_superuser": true,
         "username": "g_rodriguez",
         "first_name": "Grecia",
@@ -97,7 +97,7 @@
     "pk": 4,
     "fields": {
         "password": "pbkdf2_sha256$720000$BMbn9ZMSgDcI50aI19ycPk$xS/n3y0iBeFML+qMaOQMoNxvK5+k41Glv6uaZJNQW5U=",
-        "last_login": "2025-07-28T20:15:08.245Z",
+        "last_login": "2025-08-15T22:49:39.123Z",
         "is_superuser": false,
         "username": "andrea_tot",
         "first_name": "Andrea",
@@ -128,7 +128,7 @@
     "pk": 5,
     "fields": {
         "password": "pbkdf2_sha256$720000$C8NqL0YvHnuK4qBNdMFqzz$wHYf7N3pQTqaeaGqYvnTWkWyNPaOONr1LoZd7zJjATw=",
-        "last_login": "2025-07-24T20:42:06.266Z",
+        "last_login": "2025-08-15T20:49:08.461Z",
         "is_superuser": false,
         "username": "luis_macz01",
         "first_name": "LUIS ALBERTO",
@@ -190,7 +190,7 @@
     "pk": 7,
     "fields": {
         "password": "pbkdf2_sha256$720000$w18xDVDT6wARic4X5ruyOP$y37Jn85w6itnU7DFitZmATpwjUVRSHaskBeVoE5X6J8=",
-        "last_login": "2025-07-16T01:24:22.588Z",
+        "last_login": "2025-08-06T19:24:03.013Z",
         "is_superuser": false,
         "username": "t_cifuentes",
         "first_name": "JENNIFFER TATIANA",
@@ -221,14 +221,14 @@
     "pk": 8,
     "fields": {
         "password": "pbkdf2_sha256$720000$M25SVfDAKeBHqRryVn2FU5$wxiw648Q9EEGccT7mfjqzRybj0MPD5jV8/FeqCJhMSY=",
-        "last_login": "2025-07-14T22:48:25.798Z",
+        "last_login": "2025-07-14T22:48:25Z",
         "is_superuser": false,
         "username": "e_bermudez",
         "first_name": "EDGAR ARMANDO",
         "last_name": "ALVARADO BERMUDEZ",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2025-07-14T22:47:46.887Z",
+        "date_joined": "2025-07-14T22:47:46Z",
         "type_identification": "DPI",
         "identification_number": "1837118821601",
         "telephone": "40115488",

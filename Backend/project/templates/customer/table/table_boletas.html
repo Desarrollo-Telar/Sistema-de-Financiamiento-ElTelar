@@ -25,6 +25,8 @@
                         <td>
                             <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
                                 {{ boleta.cliente }}
+                                <br>
+                                NIT: {{boleta.cliente.number_nit}}
                             </a>
                         </td>
                         <td>
@@ -34,7 +36,7 @@
                         </td>
                         <td>
                             <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
-                                {{ boleta.created_at }}
+                                {{ boleta.fecha_de_emision_boleta }}
                             </a>
                         </td>
                         <td>

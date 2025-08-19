@@ -1312,14 +1312,14 @@
     "model": "addresses.address",
     "pk": 92,
     "fields": {
-        "street": "1AV 1-12",
-        "number": "1",
+        "street": "6 calle 11-74",
+        "number": "3",
         "city": "Alta Verapaz",
         "state": "Coban",
         "country": "GUATEMALA",
-        "type_address": "Direccin de Trabajo",
-        "latitud": "15.471280",
-        "longitud": "-90.378845",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.467658",
+        "longitud": "-90.364067",
         "customer_id": 50,
         "subsidiary": null,
         "codigo_postal": null
@@ -9073,6 +9073,346 @@
         "latitud": "15.328812678982331",
         "longitud": "-90.37599791533124",
         "customer_id": 334,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 595,
+    "fields": {
+        "street": "BARRIO SAN SEBASTIAN SAN CRISTOBAL VERAPAZ",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "San Cristobal Verapaz",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.36406166684755,",
+        "longitud": "-90.48144938916457",
+        "customer_id": 335,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 596,
+    "fields": {
+        "street": "8ª. Calle 1-24",
+        "number": "11",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.479102759718744",
+        "longitud": "-90.37264699101307",
+        "customer_id": 335,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 597,
+    "fields": {
+        "street": "4TA CALLE A RESIDENCIALES IMPERIAL ZONA 7 COBAN A.V",
+        "number": "7",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.463388",
+        "longitud": "-90.371880",
+        "customer_id": 336,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 598,
+    "fields": {
+        "street": "4TA CALLE A RESIDENCIALES IMPERIAL ZONA 7 COBAN A.V",
+        "number": "7",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.463388",
+        "longitud": "-90.371880",
+        "customer_id": 336,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 599,
+    "fields": {
+        "street": "COMUNIDAD SAPOX 1",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.66058375062525",
+        "longitud": "-90.53262238015037",
+        "customer_id": 337,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 600,
+    "fields": {
+        "street": "COMUNIDAD SAPOX 1 COBAN",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.66058375062525",
+        "longitud": "-90.53262238015037",
+        "customer_id": 337,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 601,
+    "fields": {
+        "street": "BARRIO SANTA ANA SAN CRISTÓBAL VERAPAZ",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "San Cristobal Verapaz",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.367217",
+        "longitud": "-90.477518",
+        "customer_id": 338,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 602,
+    "fields": {
+        "street": "BARRIO SANTA ANA SAN CRISTÓBAL VERAPAZ",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "San Cristobal Verapaz",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.367217",
+        "longitud": "-90.477518",
+        "customer_id": 338,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 603,
+    "fields": {
+        "street": "ZONA 3 FRENTE A JUZGADO DE FAMILIA",
+        "number": "3",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.467650",
+        "longitud": "-90.368647",
+        "customer_id": 339,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 604,
+    "fields": {
+        "street": "1ra calle 15-20 zona 2",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.470018918511087",
+        "longitud": "-90.38503981099895",
+        "customer_id": 339,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 605,
+    "fields": {
+        "street": "AVENIDA LA PARROQUIA 2-50 ZONA 2, SANTA CRUZ VERAPAZ",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "Santa Cruz Verapaz",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.374732",
+        "longitud": "-90.430342",
+        "customer_id": 340,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 606,
+    "fields": {
+        "street": "7a. Avenida y 3ra. Calle Zona 4 Coban, Alta Verapaz",
+        "number": "4",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.472956936596654",
+        "longitud": "-90.36765133912773",
+        "customer_id": 340,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 607,
+    "fields": {
+        "street": "ALDEA CHINIMLAJOM CALLE PRINCIPAL ZONA 0 COBAN",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.466297165283192",
+        "longitud": "-90.38447435669923",
+        "customer_id": 341,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 608,
+    "fields": {
+        "street": "16 AV COLONIA 30 DE JUNIO ZONA 1",
+        "number": "1",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.474285",
+        "longitud": "-90.386415",
+        "customer_id": 341,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 609,
+    "fields": {
+        "street": "BARRIO ESQUIPULAS ZONA  5, 02 CL, SAN CRISTOBAL VERAPAZ",
+        "number": "5",
+        "city": "Alta Verapaz",
+        "state": "San Cristobal Verapaz",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.362904",
+        "longitud": "-90.479766",
+        "customer_id": 342,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 610,
+    "fields": {
+        "street": "SAN CRISTOBAL VERAPAZ",
+        "number": "0",
+        "city": "Alta Verapaz",
+        "state": "San Cristobal Verapaz",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.365932864977271",
+        "longitud": "-90.47925098885497",
+        "customer_id": 342,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 611,
+    "fields": {
+        "street": "COLONIA NUEVA ESPERANZA",
+        "number": "12",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.464863",
+        "longitud": "-90.407856",
+        "customer_id": 343,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 612,
+    "fields": {
+        "street": "Colonia chichochoc",
+        "number": "5",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.475335059473197",
+        "longitud": "-90.39472105396983",
+        "customer_id": 343,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 613,
+    "fields": {
+        "street": "BARRIO SAN SEBASTIAN SAN CRISTOBAL VERAPAZ",
+        "number": "2",
+        "city": "Alta Verapaz",
+        "state": "San Cristobal Verapaz",
+        "country": "GUATEMALA",
+        "type_address": "Dirección Personal",
+        "latitud": "15.36406166684755",
+        "longitud": "-90.48144938916457",
+        "customer_id": 344,
+        "subsidiary": null,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.address",
+    "pk": 614,
+    "fields": {
+        "street": "8ª. Calle 1-24",
+        "number": "11",
+        "city": "Alta Verapaz",
+        "state": "Coban",
+        "country": "GUATEMALA",
+        "type_address": "Dirección de Trabajo",
+        "latitud": "15.479102759718744",
+        "longitud": "-90.37264699101307",
+        "customer_id": 344,
         "subsidiary": null,
         "codigo_postal": null
     }

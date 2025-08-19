@@ -53,12 +53,12 @@ class DocumentoNotificacionClientesList(ListView):
                 filters |= Q(cuota__credit_id__codigo_credito__icontains = query)
 
 
-            return DocumentoNotificacionCliente.objects.filter(filters).order_by('-id')
+            return DocumentoNotificacionCliente.objects.filter(filters).order_by('-fecha_actualizacion')
         
         except Exception as e:
             print(f'error: {e}')
             
-            return DocumentoNotificacionCliente.objects.all().order_by('-id')
+            return DocumentoNotificacionCliente.objects.all().order_by('-fecha_actualizacion')
     
     
     def query(self):

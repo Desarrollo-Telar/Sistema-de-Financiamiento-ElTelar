@@ -4919,5 +4919,1145 @@
         "total_t": "7000.00",
         "description": ""
     }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 330,
+    "fields": {
+        "credit_id": 310,
+        "forma_desembolso": "APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "160000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "38494.00",
+        "honorarios": "1700.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "65940.55",
+        "total_gastos": "106134.55",
+        "monto_total_desembolso": "53865.45",
+        "total_t": "106134.55",
+        "description": "SE AMPLIO DEL CREDITO: 2025-E1 / 1"
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 331,
+    "fields": {
+        "credit_id": 1,
+        "forma_desembolso": "CANCELACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "160000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "38494.00",
+        "honorarios": "1700.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "65940.55",
+        "total_gastos": "106134.55",
+        "monto_total_desembolso": "53865.45",
+        "total_t": "0.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 332,
+    "fields": {
+        "credit_id": 310,
+        "forma_desembolso": "DESEMBOLSAR",
+        "monto_credito": "0.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "53790.45",
+        "total_gastos": "53790.45",
+        "monto_total_desembolso": "0.00",
+        "total_t": "159925.00",
+        "description": null
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 333,
+    "fields": {
+        "credit_id": 310,
+        "forma_desembolso": "DESEMBOLSAR",
+        "monto_credito": "0.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "75.00",
+        "total_gastos": "75.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "160000.00",
+        "description": null
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 334,
+    "fields": {
+        "credit_id": 311,
+        "forma_desembolso": "APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "24000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "8691.00",
+        "honorarios": "375.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "14934.00",
+        "total_gastos": "24000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "24000.00",
+        "description": "SE AMPLIO DEL CREDITO: 2025-108 / 1"
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 335,
+    "fields": {
+        "credit_id": 278,
+        "forma_desembolso": "CANCELACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "24000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "8691.00",
+        "honorarios": "375.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "14934.00",
+        "total_gastos": "24000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "0.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 336,
+    "fields": {
+        "credit_id": 312,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "40000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "39625.00",
+        "total_gastos": "39625.00",
+        "monto_total_desembolso": "375.00",
+        "total_t": "39625.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 337,
+    "fields": {
+        "credit_id": 313,
+        "forma_desembolso": "APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "13477.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "8827.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "4500.00",
+        "total_gastos": "13327.00",
+        "monto_total_desembolso": "150.00",
+        "total_t": "13327.00",
+        "description": "SE AMPLIO DEL CREDITO: 2025-69 / 2"
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 338,
+    "fields": {
+        "credit_id": 84,
+        "forma_desembolso": "CANCELACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "13477.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "8827.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "4500.00",
+        "total_gastos": "13327.00",
+        "monto_total_desembolso": "150.00",
+        "total_t": "0.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 339,
+    "fields": {
+        "credit_id": 314,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "15000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "400.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "14600.00",
+        "total_gastos": "15000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "15000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 340,
+    "fields": {
+        "credit_id": 315,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "3500.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "3500.00",
+        "total_gastos": "3500.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "3500.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 341,
+    "fields": {
+        "credit_id": 313,
+        "forma_desembolso": "DESEMBOLSAR",
+        "monto_credito": "0.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "150.00",
+        "total_gastos": "150.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "13477.00",
+        "description": null
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 342,
+    "fields": {
+        "credit_id": 312,
+        "forma_desembolso": "DESEMBOLSAR",
+        "monto_credito": "0.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "375.00",
+        "total_gastos": "375.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "40000.00",
+        "description": null
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 343,
+    "fields": {
+        "credit_id": 316,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "111650.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "110500.00",
+        "total_gastos": "110500.00",
+        "monto_total_desembolso": "1150.00",
+        "total_t": "110500.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 344,
+    "fields": {
+        "credit_id": 317,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "7500.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "7500.00",
+        "total_gastos": "7500.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "7500.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 345,
+    "fields": {
+        "credit_id": 318,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "5000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "5000.00",
+        "total_gastos": "5000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "5000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 346,
+    "fields": {
+        "credit_id": 319,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "5500.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "5500.00",
+        "total_gastos": "5500.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "5500.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 347,
+    "fields": {
+        "credit_id": 320,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "1500.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "1500.00",
+        "total_gastos": "1500.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "1500.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 348,
+    "fields": {
+        "credit_id": 321,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "12000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "11575.00",
+        "total_gastos": "11575.00",
+        "monto_total_desembolso": "425.00",
+        "total_t": "11575.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 349,
+    "fields": {
+        "credit_id": 322,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "3000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "3000.00",
+        "total_gastos": "3000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "3000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 350,
+    "fields": {
+        "credit_id": 316,
+        "forma_desembolso": "DESEMBOLSAR",
+        "monto_credito": "0.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "1150.00",
+        "total_gastos": "1150.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "111650.00",
+        "description": null
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 351,
+    "fields": {
+        "credit_id": 321,
+        "forma_desembolso": "DESEMBOLSAR",
+        "monto_credito": "0.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "425.00",
+        "total_gastos": "425.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "12000.00",
+        "description": null
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 352,
+    "fields": {
+        "credit_id": 323,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "20000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "400.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "19600.00",
+        "total_gastos": "20000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "20000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 354,
+    "fields": {
+        "credit_id": 325,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "10000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "10000.00",
+        "total_gastos": "10000.00",
+        "monto_total_desembolso": "10000.00",
+        "total_t": "10000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 355,
+    "fields": {
+        "credit_id": 326,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "15000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "15000.00",
+        "total_gastos": "15000.00",
+        "monto_total_desembolso": "15000.00",
+        "total_t": "15000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 356,
+    "fields": {
+        "credit_id": 327,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "10000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "10000.00",
+        "total_gastos": "10000.00",
+        "monto_total_desembolso": "10000.00",
+        "total_t": "10000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 357,
+    "fields": {
+        "credit_id": 328,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "6000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "6000.00",
+        "total_gastos": "6000.00",
+        "monto_total_desembolso": "6000.00",
+        "total_t": "6000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 358,
+    "fields": {
+        "credit_id": 329,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "4000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "4000.00",
+        "total_gastos": "4000.00",
+        "monto_total_desembolso": "4000.00",
+        "total_t": "4000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 359,
+    "fields": {
+        "credit_id": 330,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "7000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "7000.00",
+        "total_gastos": "7000.00",
+        "monto_total_desembolso": "7000.00",
+        "total_t": "7000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 360,
+    "fields": {
+        "credit_id": 331,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "7000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "7000.00",
+        "total_gastos": "7000.00",
+        "monto_total_desembolso": "7000.00",
+        "total_t": "7000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 361,
+    "fields": {
+        "credit_id": 332,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "10000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "10000.00",
+        "total_gastos": "10000.00",
+        "monto_total_desembolso": "10000.00",
+        "total_t": "10000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 362,
+    "fields": {
+        "credit_id": 333,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "2500.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "2500.00",
+        "total_gastos": "2500.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "2500.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 363,
+    "fields": {
+        "credit_id": 334,
+        "forma_desembolso": "APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "7000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "2323.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "4677.00",
+        "total_gastos": "7000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "7000.00",
+        "description": "SE AMPLIO DEL CREDITO: 2025-51 / 1"
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 364,
+    "fields": {
+        "credit_id": 142,
+        "forma_desembolso": "CANCELACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "7000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "2323.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "4677.00",
+        "total_gastos": "7000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "0.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 365,
+    "fields": {
+        "credit_id": 335,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "3000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "3000.00",
+        "total_gastos": "3000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "3000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 366,
+    "fields": {
+        "credit_id": 336,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "3000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "3000.00",
+        "total_gastos": "3000.00",
+        "monto_total_desembolso": "3000.00",
+        "total_t": "3000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 367,
+    "fields": {
+        "credit_id": 337,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "10000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "10000.00",
+        "total_gastos": "10000.00",
+        "monto_total_desembolso": "10000.00",
+        "total_t": "10000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 368,
+    "fields": {
+        "credit_id": 338,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "3000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "3000.00",
+        "total_gastos": "3000.00",
+        "monto_total_desembolso": "3000.00",
+        "total_t": "3000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 369,
+    "fields": {
+        "credit_id": 339,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "3000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "0.00",
+        "total_gastos": "0.00",
+        "monto_total_desembolso": "3000.00",
+        "total_t": "0.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 370,
+    "fields": {
+        "credit_id": 340,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "15500.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "400.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "15100.00",
+        "total_gastos": "15500.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "15500.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 371,
+    "fields": {
+        "credit_id": 341,
+        "forma_desembolso": "APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "22680.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "2680.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "20000.00",
+        "total_gastos": "22680.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "22680.00",
+        "description": "SE AMPLIO DEL CREDITO: 2025-E1 / 1"
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 372,
+    "fields": {
+        "credit_id": 1,
+        "forma_desembolso": "CANCELACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "22680.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "2680.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "20000.00",
+        "total_gastos": "22680.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "0.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 373,
+    "fields": {
+        "credit_id": 342,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "23500.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "400.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "23100.00",
+        "total_gastos": "23500.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "23500.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 374,
+    "fields": {
+        "credit_id": 343,
+        "forma_desembolso": "APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "10000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "9600.00",
+        "honorarios": "400.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "0.00",
+        "total_gastos": "10000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "10000.00",
+        "description": "SE AMPLIO DEL CREDITO: 2025-E1 / 1"
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 375,
+    "fields": {
+        "credit_id": 1,
+        "forma_desembolso": "CANCELACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "10000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "9600.00",
+        "honorarios": "400.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "0.00",
+        "total_gastos": "10000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "0.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 376,
+    "fields": {
+        "credit_id": 344,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "17000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "17000.00",
+        "total_gastos": "17000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "17000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 377,
+    "fields": {
+        "credit_id": 345,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "1000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "1000.00",
+        "total_gastos": "1000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "1000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 378,
+    "fields": {
+        "credit_id": 346,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "10000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "150.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "9850.00",
+        "total_gastos": "10000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "10000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 379,
+    "fields": {
+        "credit_id": 347,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "25000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "25000.00",
+        "total_gastos": "25000.00",
+        "monto_total_desembolso": "25000.00",
+        "total_t": "25000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 380,
+    "fields": {
+        "credit_id": 348,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "20000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "20000.00",
+        "total_gastos": "20000.00",
+        "monto_total_desembolso": "20000.00",
+        "total_t": "20000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 381,
+    "fields": {
+        "credit_id": 349,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "10000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "10000.00",
+        "total_gastos": "10000.00",
+        "monto_total_desembolso": "10000.00",
+        "total_t": "10000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 382,
+    "fields": {
+        "credit_id": 350,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "175000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "175000.00",
+        "total_gastos": "175000.00",
+        "monto_total_desembolso": "175000.00",
+        "total_t": "175000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 383,
+    "fields": {
+        "credit_id": 351,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "30000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "30000.00",
+        "total_gastos": "30000.00",
+        "monto_total_desembolso": "30000.00",
+        "total_t": "30000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 384,
+    "fields": {
+        "credit_id": 352,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "20000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "20000.00",
+        "total_gastos": "20000.00",
+        "monto_total_desembolso": "20000.00",
+        "total_t": "20000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 385,
+    "fields": {
+        "credit_id": 353,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "5000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "5000.00",
+        "total_gastos": "5000.00",
+        "monto_total_desembolso": "5000.00",
+        "total_t": "5000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 386,
+    "fields": {
+        "credit_id": 354,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "6000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "6000.00",
+        "total_gastos": "6000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "6000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 387,
+    "fields": {
+        "credit_id": 355,
+        "forma_desembolso": "APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "20800.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "13721.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "7079.00",
+        "total_gastos": "20800.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "20800.00",
+        "description": "SE AMPLIO DEL CREDITO: 2025-207 / 1"
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 388,
+    "fields": {
+        "credit_id": 170,
+        "forma_desembolso": "CANCELACIÓN DE CRÉDITO VIGENTE",
+        "monto_credito": "20800.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "13721.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "7079.00",
+        "total_gastos": "20800.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "0.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 389,
+    "fields": {
+        "credit_id": 356,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "4000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "4000.00",
+        "total_gastos": "4000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "4000.00",
+        "description": ""
+    }
+},
+{
+    "model": "financings.disbursement",
+    "pk": 390,
+    "fields": {
+        "credit_id": 357,
+        "forma_desembolso": "APLICACIÓN GASTOS",
+        "monto_credito": "2000.00",
+        "monto_credito_agregar": "0.00",
+        "monto_credito_cancelar": "0.00",
+        "saldo_anterior": "0.00",
+        "honorarios": "0.00",
+        "poliza_seguro": "0.00",
+        "monto_desembolsado": "2000.00",
+        "total_gastos": "2000.00",
+        "monto_total_desembolso": "0.00",
+        "total_t": "2000.00",
+        "description": ""
+    }
 }
 ]

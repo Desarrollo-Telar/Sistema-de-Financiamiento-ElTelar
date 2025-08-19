@@ -12,7 +12,7 @@
     <div class="card-header">
         <h1 class="card-title">
             <i class="fas fa-receipt me-2"></i>
-            Detalle de Boleta de Subida Por El Cliente
+            Detalle de Boleta de Subida Por El Cliente: {{object.cliente}}
         </h1>
         <p class="card-subtitle">Información de la transacción</p>
     </div>
@@ -40,6 +40,15 @@
                     <div class="info-item">
                         <span class="info-label">
                             <i class="fas fa-hashtag me-1"></i>
+                            Numero de NIT
+                        </span>
+                        <div class="info-value">{{object.cliente.number_nit}}</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-item">
+                        <span class="info-label">
+                            <i class="fas fa-hashtag me-1"></i>
                             Numero de Referencia
                         </span>
                         {% if object.numero_referencia == '3696008759' or object.numero_referencia is None %}
@@ -56,13 +65,20 @@
                     </div>
                 </div>
                 <div class="col-md-4">
+                    
                     <div class="info-item">
                         <span class="info-label">
                             <i class="fas fa-calendar-alt me-1"></i>
                             Fecha de Emisión
                         </span>
-                        <div class="info-value">{{object.created_at}}</div>
+                        
+                        <div class="info-value">{{object.fecha_de_emision_boleta}}</div>
+                       
+
                     </div>
+                    
+               
+                    
                 </div>
             </div>
 

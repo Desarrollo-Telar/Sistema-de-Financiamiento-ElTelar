@@ -656,7 +656,7 @@
         "salary": "12000.00",
         "working_hours": "VESPERTINA",
         "phone_number": "40962743",
-        "source_of_income": "Relacin de Dependencia",
+        "source_of_income": "Negocio Propio",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
         "customer_id": 50
@@ -4536,6 +4536,176 @@
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
         "customer_id": 334
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 308,
+    "fields": {
+        "position": "SERVICIOS GENERALES",
+        "company_name": "HOSPITAL REGIONAL DE COBAN",
+        "start_date": "2012-06-04",
+        "description": "",
+        "salary": "3600.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "49351929",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 335
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 309,
+    "fields": {
+        "position": "INGENIERO AGRONOMO",
+        "company_name": "SERVICIOS PROFESIONALES( CONSULTORIAS, MEDICIONES)",
+        "start_date": "2025-07-31",
+        "description": "",
+        "salary": "10500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "47516708",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 336
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 310,
+    "fields": {
+        "position": "VENTA DE TEJIDO Y CARDAMOMO",
+        "company_name": "AMA DE CASA",
+        "start_date": "2000-12-01",
+        "description": "",
+        "salary": "1000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "49094894",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "VENTA DE TEJIDOS Y CARDAMOMO",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 337
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 311,
+    "fields": {
+        "position": "PROPIETARIA",
+        "company_name": "TRANSPORTES MORAN",
+        "start_date": "2023-05-08",
+        "description": "",
+        "salary": "40000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "50616210",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 338
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 312,
+    "fields": {
+        "position": "COMUNICADORA",
+        "company_name": "COURBAN PLAZA MAGDALENA",
+        "start_date": "2024-10-31",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "45525966",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 339
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 313,
+    "fields": {
+        "position": "BARTENDER Y MESERO",
+        "company_name": "CAFE BAR LA SEPTIMA",
+        "start_date": "2023-11-16",
+        "description": "",
+        "salary": "3000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "59181654",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 340
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 314,
+    "fields": {
+        "position": "PROPIETARIO",
+        "company_name": "AUTOVENTAS M&M",
+        "start_date": "2025-08-06",
+        "description": "",
+        "salary": "15000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "46079944",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 341
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 315,
+    "fields": {
+        "position": "CONCEJAL",
+        "company_name": "MUNICIPALIDAD DE SAN CRISTOBAL VERAPAZ",
+        "start_date": "2025-08-06",
+        "description": "",
+        "salary": "15000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "55104024",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 342
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 316,
+    "fields": {
+        "position": "DOCENTE",
+        "company_name": "CENTRO ESTUDIANTIL LIRIO DE OVALLES",
+        "start_date": "2024-10-02",
+        "description": "",
+        "salary": "3500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "51061632",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 343
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 317,
+    "fields": {
+        "position": "ENFERMERA",
+        "company_name": "HOSPITAL REGIONAL DE COBAN",
+        "start_date": "2002-11-16",
+        "description": "",
+        "salary": "7000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "25096100",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 344
     }
 }
 ]

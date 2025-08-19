@@ -1694,5 +1694,53 @@
         "document_id": 440,
         "customer_id": 334
     }
+},
+{
+    "model": "documents.documentcustomer",
+    "pk": 249,
+    "fields": {
+        "document_id": 449,
+        "customer_id": 336
+    }
+},
+{
+    "model": "documents.documentcustomer",
+    "pk": 250,
+    "fields": {
+        "document_id": 455,
+        "customer_id": 337
+    }
+},
+{
+    "model": "documents.documentcustomer",
+    "pk": 251,
+    "fields": {
+        "document_id": 460,
+        "customer_id": 50
+    }
+},
+{
+    "model": "documents.documentcustomer",
+    "pk": 252,
+    "fields": {
+        "document_id": 463,
+        "customer_id": 340
+    }
+},
+{
+    "model": "documents.documentcustomer",
+    "pk": 253,
+    "fields": {
+        "document_id": 464,
+        "customer_id": 342
+    }
+},
+{
+    "model": "documents.documentcustomer",
+    "pk": 254,
+    "fields": {
+        "document_id": 465,
+        "customer_id": 341
+    }
 }
 ]
