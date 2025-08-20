@@ -61,3 +61,13 @@ class SystemLog(models.Model):
 
     def __str__(self):
         return f"{self.timestamp} - {self.level}: {self.message[:100]}"
+
+class Checkpoint(models.Model):
+    date = models.DateField(auto_now_add=True, verbose_name='Fecha')
+    count = models.IntegerField(default=0, verbose_name='Contador')
+    reason = models.CharField(max_length=100, null=True, blank=True, verbose_name='Motivo')
+
+    def __str__(self):
+        return f'{self.date} {self.count}'
+    
+    

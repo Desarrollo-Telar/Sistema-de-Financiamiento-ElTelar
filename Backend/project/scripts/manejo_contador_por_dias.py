@@ -6,10 +6,11 @@ import json
 import os
 
 # TIEMPO
-from datetime import datetime, time
+from datetime import datetime, time, date
 from django.utils.timezone import now
 
-
+# Modelo
+from apps.actividades.models import Checkpoint
 
 def load_counter(DATA_FILE):
     if os.path.exists(DATA_FILE):
@@ -22,23 +23,27 @@ def save_counter(data,DATA_FILE):
     with open(DATA_FILE, 'w') as f:
         json.dump(data, f)
 
-def ejecutar_max_1_veces_al_dia():
-    DATA_FILE = 'function_counter.json'
-    data = load_counter(DATA_FILE)
-    hoy = datetime.now().strftime('%Y-%m-%d')
 
-    if data["date"] != hoy:
-        # Nuevo día: reiniciar contador
-        data["date"] = hoy
-        data["count"] = 0
 
-    if data["count"] < 1:
-        data["count"] += 1
-        save_counter(data, DATA_FILE)
+
+def ejecutar_max_1_veces_al_dia(reason=None):
+    hoy = date.today()
+    # Buscar checkpoint de hoy
+    checkpoint, created = Checkpoint.objects.get_or_create(
+        date=hoy,
+        defaults={"count": 0, "reason": reason}
+    )
+
+    if checkpoint.count < 1:
+        checkpoint.count += 1
+        if reason:  # actualizar motivo si lo mandas
+            checkpoint.reason = reason
+        checkpoint.save()
         print("✅ Ejecutando función...")
         # Aquí va tu lógica principal
         return True
     else:
-        print("⛔ Límite de 1 ejecuciones alcanzado para hoy.")
+        print("⛔ Límite de 1 ejecución alcanzado para hoy.")
         return False
+
 
