@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
-  <link href="{% static 'css/sidebar.css'%}" rel="stylesheet">
+ 
   <link rel="stylesheet" href="{% static 'css/new_styles.css' %}">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +31,7 @@
 <body>
   <div class="animated-bg"></div>
   {% include 'navbar.html' %}
+  {% include 'navbar_respo.html' %}
   <main class="d-flex flex-nowrap">
     {% include 'sidebar_.html' %}
     <div class="container main-content">
@@ -51,6 +52,9 @@
   <script src="{% static 'js/node_modules/axios/dist/axios.min.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="{% static 'js/sidebar.js'%}" class="astro-vvvwv3sm"></script>
+
+  <script src="{% static 'js/style_css.js' %}"></script>
+
   <script>
     {% if messages %}
     {% for message in messages %}

@@ -1,0 +1,221 @@
+{% load static %}
+<div class=" container-fluid  navbar_respo" id="navbar_respo">
+  <nav class="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img src="{% static 'img/logo.png'%}" alt="Logo" style="height: 3rem; width: 10rem;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+            <img src="{% static 'img/logo.png'%}" alt="Logo" style="height: 3rem; width: 10rem;">
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          
+          <!-- Buscador -->
+          <div class="col-12 col-md-6 mb-2 mb-md-0 search-container">
+            <form class="d-flex justify-content-center justify-content-md-start" role="search"
+              action="{% url 'busqueda_general' %}">
+              <input type="search" name="q" value="{{ query }}" class="form-control w-100 w-md-75"
+                placeholder="Buscar clientes, créditos..." aria-label="Buscar">
+            </form>
+          </div>
+
+          <!-- Íconos y usuario -->
+          <div
+            class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center gap-2 header-actions">
+            <!-- Notificaciones -->
+            <div class="dropdown" style="margin-right: 0.5rem;">
+              <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false" onclick="cargarNotificaciones()" id="noti-btn">
+                <img src="{% static 'img/icons/notificacion.png' %}" alt="notificaciones" width="20" height="20">
+
+                <span id="noti-badge"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  0
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+
+
+
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" id="notificaciones-list">
+
+
+              </ul>
+            </div>
+
+
+
+
+            <!-- Usuario -->
+            <div class="dropdown">
+              <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="{% static 'img/icons/cliente_01.png' %}" alt="usuario" width="20" height="20">
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                {% if permisos.puede_ver_perfil_usuario %}
+                <li><a class="dropdown-item" href="{% url 'users:profile' %}">Perfil</a></li>
+                {% endif %}
+                {% if permisos.puede_ver_registros_cobranza %}
+                <li><a class="dropdown-item" href="{% url 'customers:cobranza_asesor' %}">Gestionar Cobranza</a></li>
+                {% endif %}
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- RUTAS-->
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+  <!-- Home -->
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/">
+      <img src="{% static 'img/icons/iniio.png' %}" alt="icono_inicio" width="20" height="20">
+      Inicio
+    </a>
+  </li>
+
+  {% if permisos.puede_visualizar_el_registro_clientes %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'customers:customers' %}">
+      <img src="{% static 'img/icons/clientes.png' %}" alt="icono_clientes" width="20" height="20">
+      Clientes
+    </a>
+  </li>
+  {% endif %}
+
+  {% if permisos.puede_ver_registros_credito %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'financings:list_credit' %}">
+      <img src="{% static 'img/icons/credito.png' %}" alt="icono_credito" width="20" height="20">
+      Créditos
+    </a>
+  </li>
+  {% endif %}
+
+  {% if permisos.puede_ver_registros_asesores %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'customers:asesores_creditos' %}">
+      <i class="bi bi-person-vcard"></i>
+      Asesores
+    </a>
+  </li>
+  {% endif %}
+
+  {% if permisos.puede_ver_registro_boletas %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'actividades:listar_boletas_subidas' %}">
+      <i class="bi bi-file-richtext"></i>
+      Boletas
+    </a>
+  </li>
+  {% endif %}
+
+  {% if permisos.puede_ver_registros_boletas_pagos %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'financings:list_payment' %}">
+      <img src="{% static 'img/icons/pagos.png' %}" alt="icono_pagos" width="20" height="20">
+      Pagos
+    </a>
+  </li>
+  {% endif %}
+
+  {% if permisos.puede_ver_registros_recibos %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'financings:recibos' %}">
+      <i class="bi bi-receipt"></i>
+      Recibos
+    </a>
+  </li>
+  {% endif %}
+
+  {% if permisos.puede_ver_registro_usuarios %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'users:users' %}">
+      <img src="{% static 'img/icons/cliente_01.png' %}" alt="icono_usuarios" width="20" height="20">
+      Usuarios
+    </a>
+  </li>
+  {% endif %}
+
+  {% if permisos.puede_ver_registro_acreedores or permisos.puede_ver_registro_seguros or permisos.puede_ver_registro_ingresos or permisos.puede_ver_registro_egresos or permisos.puede_ver_listado_registro_bancos %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="{% static 'img/icons/banco.png' %}" alt="icono_banco" width="20" height="20">
+      Contabilidad
+    </a>
+    <ul class="dropdown-menu">
+      {% if permisos.puede_ver_registro_ingresos %}
+      <li><a class="dropdown-item" href="{% url 'contable:ingresos' %}">Ingresos</a></li>
+      {% endif %}
+      {% if permisos.puede_ver_registro_egresos %}
+      <li><a class="dropdown-item" href="{% url 'contable:egresos' %}">Egresos</a></li>
+      {% endif %}
+      {% if permisos.puede_ver_registro_acreedores %}
+      <li><a class="dropdown-item" href="{% url 'contable:acreedores' %}">Acreedores</a></li>
+      {% endif %}
+      {% if permisos.puede_ver_registro_seguros %}
+      <li><a class="dropdown-item" href="{% url 'contable:seguros' %}">Seguros</a></li>
+      {% endif %}
+      {% if permisos.puede_ver_listado_registro_bancos %}
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="{% url 'financings:list_bank' %}">Bancos</a></li>
+      {% endif %}
+    </ul>
+  </li>
+  {% endif %}
+
+  {% if permisos.puede_descargar_informe_bancos or permisos.puede_descargar_reporte_creditos or permisos.puede_descargar_reporte_acreedores or permisos.puede_descargar_reporte_seguros %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="{% static 'img/icons/estadisticas.png' %}" alt="icono_reportes" width="20" height="20">
+      Reportes
+    </a>
+    <ul class="dropdown-menu">
+      {% if permisos.puede_descargar_informe_bancos %}
+      <li><a class="dropdown-item" href="{% url 'reporte_banco_excel' %}">Bancos</a></li>
+      <li><hr class="dropdown-divider"></li>
+      {% endif %}
+      {% if permisos.puede_descargar_reporte_creditos %}
+      <li><a class="dropdown-item" href="{% url 'financings:reportes' %}">Pago de Créditos</a></li>
+      <li><hr class="dropdown-divider"></li>
+      {% endif %}
+      {% if permisos.puede_descargar_reporte_acreedores %}
+      <li><a class="dropdown-item" href="{% url 'contable:reportes_acreedores' %}">Pagos de Acreedores</a></li>
+      {% endif %}
+      {% if permisos.puede_descargar_reporte_seguros %}
+      <li><a class="dropdown-item" href="{% url 'contable:reportes_seguros' %}">Pagos de Seguros</a></li>
+      {% endif %}
+    </ul>
+  </li>
+  {% endif %}
+
+  <!-- Usuario -->
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="{% static 'img/icons/salida.png' %}" alt="usuario" width="20" height="20">
+      Usuario
+    </a>
+    <ul class="dropdown-menu">
+      {% if permisos.puede_cargar_estado_cuenta %}
+      <li><a class="dropdown-item" href="{% url 'document:banco' %}">Cargar Bancos</a></li>
+      <li><hr class="dropdown-divider"></li>
+      {% endif %}
+      <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
