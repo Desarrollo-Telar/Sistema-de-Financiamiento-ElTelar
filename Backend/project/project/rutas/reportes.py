@@ -26,4 +26,5 @@ urlpatterns_reports = [
     path('reporte/pagos/acreedores/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(report_pagos_acreedores),name='report_pagos_acreedores_excel'),
     path('reporte/pagos/seguros/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(report_pagos_seguros),name='report_pagos_seguros_excel'),
     path('reportes/clasificacion/', list_reportes_modulos,name='clasificacion_reportes'),
+    path('reportes/ingresos/', login_required(ReporteIngresosExcelView.as_view()), name='report_ingresos'),
 ]

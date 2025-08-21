@@ -20,10 +20,10 @@ urlpatterns = [
     path('reports/acreedores/',login_required(views.reportes_generales_acreedores),name='reportes_acreedores'),
     path('reports/seguros/',login_required(views.reportes_generales_seguros),name='reportes_seguros'),
     # LIST
-    path('acreedores', views.list_acreedores, name='acreedores'),
-    path('seguros', views.list_seguros, name='seguros'),
-    path('ingresos', views.list_ingresos, name='ingresos'),
-    path('egresos', views.list_egresos, name='egresos'),
+    path('acreedores/', views.list_acreedores, name='acreedores'),
+    path('seguros/', views.list_seguros, name='seguros'),
+    path('ingresos/', login_required( views.IngresosList.as_view()), name='ingresos'),
+    path('egresos/', views.list_egresos, name='egresos'),
 
     # CREATE
     path('acreedores/create/', views.add_acreedor, name='acreedores_create'),

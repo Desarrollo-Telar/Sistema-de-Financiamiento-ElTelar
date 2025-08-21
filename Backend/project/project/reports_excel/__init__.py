@@ -15,3 +15,5 @@ from .clientes import report_clientes
 from .desembolso import report_desmbolso
 
 from .asesores import ReporteAsesoresExcelView
+
+from .ingresos import ReporteIngresosExcelView

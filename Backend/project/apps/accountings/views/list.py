@@ -3,6 +3,10 @@ from django.shortcuts import render
 # Models
 from apps.accountings.models import Creditor, Insurance,  Egress, Income
 
+# LIBRERIAS PARA CRUD
+from django.views.generic import TemplateView, ListView, DetailView
+from django.db.models import Q
+
 # Decoradores
 from django.contrib.auth.decorators import login_required
 from project.decorador import permiso_requerido, usuario_activo
@@ -16,6 +20,12 @@ from apps.financings.tareas_ansicronicas import ver_caso_de_gastos
 
 # Scripts
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+
+# MENSAJES
+from django.contrib import messages
+
+# Tiempo
+from datetime import datetime
 
 # Create your views here.
 @login_required
@@ -71,6 +81,80 @@ def list_ingresos(request):
     }
         
     return render(request, template_name, context)
+
+class IngresosList(ListView):
+    template_name = 'contable/ingresos/list.html'
+    model = Income
+    paginate_by = 25
+
+    def get_queryset(self):
+        try:
+            query = self.query()
+            mes = self.mes_reporte()
+            anio = self.anio_reporte()
+
+            filters = Q()
+
+            # Filtro por texto
+            if query:
+                filters |= Q(fecha__icontains=query)
+                filters |= Q(codigo_ingreso__icontains=query)
+                filters |= Q(numero_referencia__icontains=query)
+
+                if query.isdigit():
+                    filters |= Q(monto__exact=query)
+
+            # Filtro por mes
+            if mes:
+                filters &= Q(fecha__month=mes)
+
+            # Filtro por año
+            if anio:
+                filters &= Q(fecha__year=anio)
+
+            return Income.objects.filter(filters)
+        except Exception as e:
+            print(f"Error al filtrar el queryset: {e}")
+            return Income.objects.none()
+
+    def query(self):
+        return self.request.GET.get('q')
+    
+    def mes_reporte(self):
+        return self.request.GET.get('mes')
+    
+    def anio_reporte(self):
+        return self.request.GET.get('anio')
+    
+    @method_decorator(permiso_requerido('puede_ver_registro_ingresos'))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if not context['object_list'] and self.query() is not None:
+
+            messages.error(self.request, 'No se encontró ningún dato')
+
+        # Mantener valores que el usuario eligió en el form
+        mes = self.mes_reporte() or datetime.now().month
+        anio = self.anio_reporte() or datetime.now().year
+        
+        consulta = self.query() or ''
+        resultado = self.get_queryset()
+        print(resultado)
+        context['query'] =  consulta
+        context['title'] = f"Registro de Ingresos con {consulta}"
+        context['count'] = context['object_list'].count()
+        context['posicion'] = consulta
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
+        context['mes'] = int(mes) if mes else datetime.now().month
+        context['anio'] = int(anio) if anio else  datetime.now().year
+
+        return context
+
+
 
 @login_required
 @permiso_requerido('puede_ver_registro_egresos')
