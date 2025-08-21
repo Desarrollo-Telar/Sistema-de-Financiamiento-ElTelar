@@ -19,29 +19,29 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a class="row-link" href="{% url 'financings:recibo' data.id %}">
+                            <a class="row-link" href="{% url 'financings:recibo' data.pago.id %}">
                                 {{ data.recibo }}
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="{% url 'financings:recibo' data.id %}">
+                            <a class="row-link" href="{% url 'financings:recibo' data.pago.id %}">
                                 {{ data.fecha }}
                             </a>
                         </td>
                         
                         <td>
-                            <a class="row-link" href="{% url 'financings:recibo' data.id %}">
+                            <a class="row-link" href="{% url 'financings:recibo' data.pago.id %}">
                                 {{ data.recibo_para }} 
                             </a>
                         </td>
                         
                         <td>
-                            <a class="row-link" href="{% url 'financings:recibo' data.id %}">
+                            <a class="row-link" href="{% url 'financings:recibo' data.pago.id %}">
                                 Q{{ data.Ftotal }}
                             </a>
                         </td>
                         <td>
-                            <a class="row-link" href="{% url 'financings:recibo_pdf' data.id %}">
+                            <a class="row-link" href="{% url 'financings:recibo_pdf' data.pago.id %}">
                                 <i class="fas fa-file-pdf"></i>
                             </a>
                         </td>
