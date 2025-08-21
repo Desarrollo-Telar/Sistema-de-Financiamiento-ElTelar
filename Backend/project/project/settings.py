@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SERVIDOR = False
+SERVIDOR = True
 ALLOWED_HOSTS = ['*']
 
 
@@ -72,9 +72,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 # Definir las horas de acceso permitido
-
 ALLOWED_ACCESS_START_HOUR = 1   # Hora de inicio permitida (01:00 AM)
-
 ALLOWED_ACCESS_END_HOUR = 23    # Hora de fin permitida (11:00 PM)
 
 EXEMPT_PATHS = [

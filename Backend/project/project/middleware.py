@@ -41,7 +41,6 @@ class AutoLogoutMiddleware:
 
 
 
-from apps.financings.task import cambiar_plan
 
 class RestrictedAccessByTimeMiddleware:
     def __init__(self, get_response):
