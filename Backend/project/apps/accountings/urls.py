@@ -23,7 +23,7 @@ urlpatterns = [
     path('acreedores/', views.list_acreedores, name='acreedores'),
     path('seguros/', views.list_seguros, name='seguros'),
     path('ingresos/', login_required( views.IngresosList.as_view()), name='ingresos'),
-    path('egresos/', views.list_egresos, name='egresos'),
+    path('egresos/', login_required(views.EgresosList.as_view()), name='egresos'),
 
     # CREATE
     path('acreedores/create/', views.add_acreedor, name='acreedores_create'),

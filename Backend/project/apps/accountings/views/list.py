@@ -112,7 +112,7 @@ class IngresosList(ListView):
             if anio:
                 filters &= Q(fecha__year=anio)
 
-            return Income.objects.filter(filters)
+            return Income.objects.filter(filters).order_by('-id')
         except Exception as e:
             print(f"Error al filtrar el queryset: {e}")
             return Income.objects.none()
@@ -142,10 +142,10 @@ class IngresosList(ListView):
         anio = self.anio_reporte() or datetime.now().year
         
         consulta = self.query() or ''
-        resultado = self.get_queryset()
-        print(resultado)
+        
+        
         context['query'] =  consulta
-        context['title'] = f"Registro de Ingresos con {consulta}"
+        context['title'] = f"Registro de Ingresos"
         context['count'] = context['object_list'].count()
         context['posicion'] = consulta
         context['permisos'] = recorrer_los_permisos_usuario(self.request)
@@ -176,6 +176,85 @@ def list_egresos(request):
     }
         
     return render(request, template_name, context)
+
+class EgresosList(ListView):
+    template_name = 'contable/egresos/list.html'
+    model = Egress
+    paginate_by = 25
+
+    def get_queryset(self):
+        try:
+            
+            query = self.query()
+            mes = self.mes_reporte()
+            anio = self.anio_reporte()
+
+            # Crear una lista para almacenar los filtros
+            filters = Q()
+
+            # Añadir filtros si la consulta no está vacía
+            if query:
+                filters |= Q(fecha__icontains=query)
+                filters |= Q(fecha_doc_fiscal__icontains=query)                
+                filters |= Q(numero_doc__icontains=query)                
+                filters |= Q(codigo_egreso__icontains=query)
+                filters |= Q(numero_referencia__icontains=query)
+                filters |= Q(nit__icontains=query)
+                filters |= Q(nombre__icontains=query)
+
+                # Si la consulta es numérica, usar filtro exacto para campos numéricos
+                if query.isdigit():
+                    filters |= Q(monto__exact=query)
+                    
+            if mes:
+                filters &= Q(fecha__month=mes)
+
+            if anio:
+                filters &= Q(fecha__year=anio)
+
+            # Filtrar los objetos Banco usando los filtros definidos
+            return Egress.objects.filter(filters).order_by('-id')
+        except Exception as e:
+            # Manejar cualquier excepción que ocurra y devolver un queryset vacío
+            print(f"Error al filtrar el queryset: {e}")
+            return Egress.objects.none()
+    
+    def query(self):
+        return self.request.GET.get('q')
+    
+    def mes_reporte(self):
+        return self.request.GET.get('mes')
+    
+    def anio_reporte(self):
+        return self.request.GET.get('anio')
+    
+    @method_decorator(permiso_requerido('puede_ver_registro_egresos'))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if not context['object_list'] and self.query() is not None:
+            messages.error(self.request,'No se encontrado ningun dato')
+
+        # Mantener valores que el usuario eligió en el form
+        mes = self.mes_reporte() or datetime.now().month
+        anio = self.anio_reporte() or datetime.now().year
+        
+        consulta = self.query() or ''
+        
+
+        context['query'] = consulta
+        context['title'] = f'Registro de Egresos'
+        context['count'] = context['object_list'].count()
+        context['posicion'] = consulta
+        context['object_list']  = context['object_list']
+        context['permisos'] = recorrer_los_permisos_usuario(self.request)
+        context['mes'] = int(mes) if mes else datetime.now().month
+        context['anio'] = int(anio) if anio else  datetime.now().year
+        return context
+
 
 @login_required
 @usuario_activo

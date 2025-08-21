@@ -17,3 +17,5 @@ from .desembolso import report_desmbolso
 from .asesores import ReporteAsesoresExcelView
 
 from .ingresos import ReporteIngresosExcelView
+
+from .egresos import ReporteEgresosExcelView
