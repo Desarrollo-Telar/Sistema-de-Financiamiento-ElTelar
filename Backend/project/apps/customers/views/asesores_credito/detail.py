@@ -79,7 +79,7 @@ class DetailInformeView(TemplateView):
             # Filtro por estado de cobranza
             estado = self.request.GET.get("estado_cobranza")
             if estado:
-                queryset = queryset.filter(cobranza__estado_cobranza=estado)
+                queryset = queryset.filter(cobranza__estado_cobranza__icontains=estado)
 
             return queryset
 
