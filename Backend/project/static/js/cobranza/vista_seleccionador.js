@@ -49,7 +49,7 @@ $(document).ready(async  function () {
     $(".credito_vigente").select2({
         width: 'resolve',
         ajax: {
-            url: urls_p.api_url_credit_vigente,
+            url: urls_p.api_url_credit_vigente_cobranza,
             dataType: 'json',
             delay: 250,
             data: function (params) {

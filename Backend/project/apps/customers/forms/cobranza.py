@@ -52,7 +52,7 @@ class CobranzaForms(forms.ModelForm):
             'monto_pendiente': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any'}),
             'interes_pendiente': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any'}),
             'mora_pendiente': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any'}),
-            'fecha_promesa_pago': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'class': 'form-control', 'required':'required'}),
+            'fecha_promesa_pago': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'class': 'form-control'}),
             'observaciones': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
             'estado_cobranza':forms.Select(choices=[], attrs={'class': 'form-control'}),
             'telefono_contacto':forms.TextInput(attrs={'type': 'text', 'class': 'form-control'}),

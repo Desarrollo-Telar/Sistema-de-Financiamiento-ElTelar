@@ -8,7 +8,7 @@ $(document).ready(function () {
         width: 'resolve',
         dropdownParent: $('#formModal'),
         ajax: {
-            url: urls_p.api_url_credit_vigente,
+            url: urls_p.api_url_credit_vigente_cobranza,
             dataType: 'json',
             delay: 250,
             data: function (params) {

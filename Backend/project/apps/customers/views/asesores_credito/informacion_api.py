@@ -40,7 +40,7 @@ class InformacionAsesorCobranzaView(APIView):
         )
 
         # Créditos faltantes = todos los del asesor - los con cobranza
-        creditos_faltantes = creditos_asesor.exclude(id__in=creditos_con_cobranza.values_list("id", flat=True))
+        creditos_faltantes = creditos_asesor.filter(estados_fechas=False).exclude(id__in=creditos_con_cobranza.values_list("id", flat=True))
 
 
         return Response({

@@ -8,4 +8,4 @@ from .condiciones_migratoria import ImmigrationStatus
 
 from .asesores_credito import CreditCounselor
 
-from .cobranza import Cobranza
+from .cobranza import Cobranza, HistorialCobranza

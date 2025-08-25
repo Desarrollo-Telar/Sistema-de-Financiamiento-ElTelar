@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <title>Dashboard de Gestión de Cobranza</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -18,513 +13,788 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #fafbfc;
-            color: #172b4d;
-            line-height: 1.5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
         }
 
-        .tasks-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
         }
 
-        .tasks-card {
+        .header {
             background: white;
             border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e4e6ea;
-            overflow: hidden;
         }
 
-        .tasks-header {
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid #e4e6ea;
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .select-box, .btn {
+            padding: 10px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.9rem;
             background: white;
-        }
-
-        .tasks-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #42526e;
-            letter-spacing: -0.01em;
-        }
-
-        .tasks-menu {
-            background: none;
-            border: none;
-            color: #6b778c;
-            font-size: 1.25rem;
             cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
         }
 
-        .tasks-menu:hover {
-            background: #f4f5f7;
-            color: #42526e;
+        .btn {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
         }
 
-        .tasks-stats {
-            padding: 1rem 2rem;
-            text-align: center;
-            background: #f7f8f9;
-            border-bottom: 1px solid #e4e6ea;
+        .btn:hover {
+            background: #2563eb;
         }
 
-        .stats-text {
-            font-size: 0.875rem;
-            color: #6b778c;
-            margin: 0;
+        .select-box:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
-        .stats-numbers {
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .metric-info h3 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .metric-info .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .metric-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .metric-icon.blue { background: #3b82f6; }
+        .metric-icon.green { background: #10b981; }
+        .metric-icon.red { background: #ef4444; }
+        .metric-icon.yellow { background: #f59e0b; }
+
+        .metric-change {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+
+        .change-positive { color: #10b981; font-weight: 500; }
+        .change-text { color: #64748b; }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .chart-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-card h3 {
+            font-size: 1.1rem;
             font-weight: 600;
-            color: #42526e;
+            margin-bottom: 20px;
+            color: #1e293b;
         }
 
-        .tasks-table {
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+
+        .table-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 24px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .table-header a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        .task-row {
-            border-bottom: 1px solid #f4f5f7;
-            transition: background-color 0.2s ease;
+        th {
+            background: #f8fafc;
+            padding: 16px;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .task-row:hover {
-            background: #f7f8f9;
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .task-row:last-child {
-            border-bottom: none;
+        tr:hover {
+            background: #f8fafc;
         }
 
-        .task-cell {
-            padding: 1.25rem 2rem;
-            vertical-align: top;
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .task-main {
+        .client-avatar {
+            width: 40px;
+            height: 40px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .client-name {
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        .risk-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .risk-bajo { background: #dcfce7; color: #166534; }
+        .risk-medio { background: #fef3c7; color: #92400e; }
+        .risk-alto { background: #fee2e2; color: #991b1b; }
+
+        .table-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .table-actions a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .action-panels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .action-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1e293b;
+        }
+
+        .action-list {
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
+            gap: 12px;
         }
 
-        .task-title {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #172b4d;
-            line-height: 1.4;
-            margin: 0;
-        }
-
-        .task-due {
-            font-size: 0.75rem;
-            color: #6b778c;
-            margin: 0;
-        }
-
-        .task-status {
-            font-size: 0.75rem;
-            color: #6b778c;
-            margin-bottom: 0.25rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-align: center;
-            min-width: 80px;
-        }
-
-        .status-in-progress {
-            background: #fff4e6;
-            color: #b8860b;
-        }
-
-        .status-outdated {
-            background: #ffebe6;
-            color: #c5554a;
-        }
-
-        .status-completed {
-            background: #e3fcef;
-            color: #00875a;
-        }
-
-        .task-assigned {
-            font-size: 0.75rem;
-            color: #6b778c;
-            margin-bottom: 0.25rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .assigned-name {
-            font-size: 0.875rem;
-            color: #172b4d;
-            font-weight: 400;
-        }
-
-        .task-time {
-            font-size: 0.75rem;
-            color: #6b778c;
-            margin-bottom: 0.25rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .time-value {
-            font-size: 0.875rem;
-            color: #172b4d;
-            font-weight: 400;
-        }
-
-        .task-actions {
+        .action-item {
+            padding: 16px;
+            border-radius: 8px;
             display: flex;
-            gap: 0.5rem;
             align-items: center;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .task-row:hover .task-actions {
-            opacity: 1;
-        }
-
-        .action-btn {
-            background: none;
-            border: none;
-            color: #6b778c;
-            font-size: 1rem;
+            gap: 12px;
             cursor: pointer;
-            padding: 0.5rem;
+            transition: background 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .action-item:hover {
+            transform: translateY(-1px);
+        }
+
+        .action-item.blue { background: #eff6ff; }
+        .action-item.blue:hover { background: #dbeafe; }
+        .action-item.green { background: #f0fdf4; }
+        .action-item.green:hover { background: #dcfce7; }
+        .action-item.yellow { background: #fffbeb; }
+        .action-item.yellow:hover { background: #fef3c7; }
+
+        .action-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .action-icon.blue { color: #3b82f6; }
+        .action-icon.green { color: #10b981; }
+        .action-icon.yellow { color: #f59e0b; }
+
+        .reminder-item {
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid;
+            margin-bottom: 12px;
+        }
+
+        .reminder-red {
+            background: #fef2f2;
+            border-color: #f87171;
+        }
+
+        .reminder-yellow {
+            background: #fffbeb;
+            border-color: #fbbf24;
+        }
+
+        .reminder-title {
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .reminder-red .reminder-title { color: #991b1b; }
+        .reminder-yellow .reminder-title { color: #92400e; }
+
+        .reminder-text {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .progress-item {
+            margin-bottom: 20px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: between;
+            margin-bottom: 8px;
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .progress-value {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1e293b;
+            margin-left: auto;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
             border-radius: 4px;
-            transition: all 0.2s ease;
+            overflow: hidden;
         }
 
-        .action-btn:hover {
-            background: #f4f5f7;
-            color: #42526e;
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s;
         }
 
-        .action-btn.edit:hover {
-            color: #0065ff;
-        }
+        .progress-green { background: #10b981; }
+        .progress-blue { background: #3b82f6; }
 
-        .action-btn.delete:hover {
-            color: #de350b;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .tasks-container {
-                margin: 1rem auto;
-                padding: 0 0.5rem;
-            }
-
-            .tasks-header {
-                padding: 1rem;
-            }
-
-            .tasks-stats {
-                padding: 0.75rem 1rem;
-            }
-
-            .task-cell {
-                padding: 1rem;
-            }
-
-            .tasks-table {
-                font-size: 0.875rem;
-            }
-
-            /* Stack columns on mobile */
-            .task-row {
-                display: block;
-                padding: 1rem;
-                border-bottom: 1px solid #f4f5f7;
-            }
-
-            .task-cell {
-                display: block;
-                padding: 0.5rem 0;
-                border-bottom: none;
-            }
-
-            .task-main {
-                margin-bottom: 1rem;
-            }
-
-            .mobile-row {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                margin-bottom: 0.75rem;
-            }
-
-            .mobile-col {
-                flex: 1;
-            }
-        }
-
-        /* Animation for hover states */
-        @keyframes fadeInActions {
-            from {
-                opacity: 0;
-                transform: translateX(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .task-row:hover .task-actions {
-            animation: fadeInActions 0.3s ease;
-        }
-
-        /* Custom scrollbar */
-        .tasks-card::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .tasks-card::-webkit-scrollbar-track {
-            background: #f1f2f4;
-        }
-
-        .tasks-card::-webkit-scrollbar-thumb {
-            background: #c1c7d0;
-            border-radius: 3px;
-        }
-
-        .tasks-card::-webkit-scrollbar-thumb:hover {
-            background: #a5adba;
+            .container { padding: 16px; }
+            .header-content { flex-direction: column; align-items: flex-start; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .charts-grid { grid-template-columns: 1fr; }
+            .action-panels { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="tasks-container">
-        <div class="tasks-card">
-            <!-- Header -->
-            <div class="tasks-header">
-                <h1 class="tasks-title">TASKS</h1>
-                <button class="tasks-menu" id="menuBtn">
-                    <i class="bi bi-three-dots"></i>
-                </button>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div>
+                    <h1>Gestión de Cobranza</h1>
+                    <p>Dashboard de seguimiento y control</p>
+                </div>
+                <div class="header-controls">
+                    <select class="select-box" id="periodSelect">
+                        <option value="semana">Esta Semana</option>
+                        <option value="mes" selected>Este Mes</option>
+                        <option value="trimestre">Este Trimestre</option>
+                        <option value="año">Este Año</option>
+                    </select>
+                    <button class="btn" onclick="openFilters()">
+                        <span>⚙️</span> Filtros
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Métricas Principales -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-info">
+                        <h3>Total por Cobrar</h3>
+                        <div class="value">$1,250,000</div>
+                    </div>
+                    <div class="metric-icon blue">💰</div>
+                </div>
+                <div class="metric-change">
+                    <span class="change-positive">+12%</span>
+                    <span class="change-text">vs mes anterior</span>
+                </div>
             </div>
 
-            <!-- Stats -->
-            <div class="tasks-stats">
-                <p class="stats-text">
-                    <span class="stats-numbers">107</span> Tasks completed out of 
-                    <span class="stats-numbers">195</span>
-                </p>
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-info">
+                        <h3>Cobrado Hoy</h3>
+                        <div class="value">$85,000</div>
+                    </div>
+                    <div class="metric-icon green">✅</div>
+                </div>
+                <div class="metric-change">
+                    <span class="change-positive">+8%</span>
+                    <span class="change-text">vs mes anterior</span>
+                </div>
             </div>
 
-            <!-- Tasks Table -->
-            <table class="tasks-table">
-                <tbody id="tasksTableBody">
-                    <!-- Tasks will be populated here -->
-                </tbody>
-            </table>
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-info">
+                        <h3>Vencido</h3>
+                        <div class="value">$320,000</div>
+                    </div>
+                    <div class="metric-icon red">⚠️</div>
+                </div>
+                <div class="metric-change">
+                    <span class="change-positive">-5%</span>
+                    <span class="change-text">vs mes anterior</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-info">
+                        <h3>Próximo a Vencer</h3>
+                        <div class="value">$180,000</div>
+                    </div>
+                    <div class="metric-icon yellow">⏰</div>
+                </div>
+                <div class="metric-change">
+                    <span class="change-positive">+15%</span>
+                    <span class="change-text">vs mes anterior</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráficos -->
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>Evolución de Cobranza</h3>
+                <div class="chart-container">
+                    <canvas id="cobranzaChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3>Estado de Cartera</h3>
+                <div class="chart-container">
+                    <canvas id="carteraChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Clientes Prioritarios -->
+        <div class="table-card">
+            <div class="table-header">
+                <h3>Clientes Prioritarios</h3>
+                <a href="#" onclick="viewAllClients()">Ver todos</a>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Monto Pendiente</th>
+                            <th>Días Vencido</th>
+                            <th>Riesgo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="client-info">
+                                    <div class="client-avatar">EA</div>
+                                    <div class="client-name">Empresa ABC</div>
+                                </div>
+                            </td>
+                            <td>$125,000</td>
+                            <td>15 días</td>
+                            <td><span class="risk-badge risk-bajo">Bajo</span></td>
+                            <td>
+                                <div class="table-actions">
+                                    <a href="#" onclick="manageClient('ABC')">Gestionar</a>
+                                    <a href="#" onclick="viewHistory('ABC')">Historial</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="client-info">
+                                    <div class="client-avatar">CX</div>
+                                    <div class="client-name">Corp XYZ</div>
+                                </div>
+                            </td>
+                            <td>$85,000</td>
+                            <td>45 días</td>
+                            <td><span class="risk-badge risk-medio">Medio</span></td>
+                            <td>
+                                <div class="table-actions">
+                                    <a href="#" onclick="manageClient('XYZ')">Gestionar</a>
+                                    <a href="#" onclick="viewHistory('XYZ')">Historial</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="client-info">
+                                    <div class="client-avatar">C1</div>
+                                    <div class="client-name">Comercial 123</div>
+                                </div>
+                            </td>
+                            <td>$65,000</td>
+                            <td>8 días</td>
+                            <td><span class="risk-badge risk-bajo">Bajo</span></td>
+                            <td>
+                                <div class="table-actions">
+                                    <a href="#" onclick="manageClient('123')">Gestionar</a>
+                                    <a href="#" onclick="viewHistory('123')">Historial</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="client-info">
+                                    <div class="client-avatar">IL</div>
+                                    <div class="client-name">Industrias LMN</div>
+                                </div>
+                            </td>
+                            <td>$95,000</td>
+                            <td>62 días</td>
+                            <td><span class="risk-badge risk-alto">Alto</span></td>
+                            <td>
+                                <div class="table-actions">
+                                    <a href="#" onclick="manageClient('LMN')">Gestionar</a>
+                                    <a href="#" onclick="viewHistory('LMN')">Historial</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="client-info">
+                                    <div class="client-avatar">SP</div>
+                                    <div class="client-name">Servicios PQR</div>
+                                </div>
+                            </td>
+                            <td>$45,000</td>
+                            <td>25 días</td>
+                            <td><span class="risk-badge risk-bajo">Bajo</span></td>
+                            <td>
+                                <div class="table-actions">
+                                    <a href="#" onclick="manageClient('PQR')">Gestionar</a>
+                                    <a href="#" onclick="viewHistory('PQR')">Historial</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Paneles de Acción -->
+        <div class="action-panels">
+            <div class="action-card">
+                <h4>Acciones Rápidas</h4>
+                <div class="action-list">
+                    <a href="#" class="action-item blue" onclick="registerPayment()">
+                        <span class="action-icon blue">💰</span>
+                        <span>Registrar Pago</span>
+                    </a>
+                    <a href="#" class="action-item green" onclick="scheduleFollowup()">
+                        <span class="action-icon green">📅</span>
+                        <span>Programar Seguimiento</span>
+                    </a>
+                    <a href="#" class="action-item yellow" onclick="generateReport()">
+                        <span class="action-icon yellow">📊</span>
+                        <span>Generar Reporte</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="action-card">
+                <h4>Recordatorios</h4>
+                <div class="reminder-item reminder-red">
+                    <div class="reminder-title">5 facturas vencen hoy</div>
+                    <div class="reminder-text">Total: $125,000</div>
+                </div>
+                <div class="reminder-item reminder-yellow">
+                    <div class="reminder-title">Seguimiento programado</div>
+                    <div class="reminder-text">3 clientes para contactar</div>
+                </div>
+            </div>
+
+            <div class="action-card">
+                <h4>Eficiencia</h4>
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Tasa de Cobro</span>
+                        <span class="progress-value">78%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-green" style="width: 78%"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Días Promedio Cobro</span>
+                        <span class="progress-value">32 días</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-blue" style="width: 65%"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
-        // Sample task data
-        const tasksData = [
-            {
-                title: "Coffee detail page - Main Page",
-                due: "Due in 3 days",
-                status: "In-progress",
-                statusClass: "status-in-progress",
-                assignedTo: "Logan R. Cohn",
-                totalTime: "3h 20min"
-            },
-            {
-                title: "Drinking bottle graphics",
-                due: "Due in 27 days",
-                status: "Outdated",
-                statusClass: "status-outdated",
-                assignedTo: "Jerry F. Powell",
-                totalTime: "12h 21min"
-            },
-            {
-                title: "App design and development",
-                due: "Due in 7 days",
-                status: "Completed",
-                statusClass: "status-completed",
-                assignedTo: "Scot M. Smith",
-                totalTime: "78h 05min"
-            },
-            {
-                title: "Poster illustration design",
-                due: "Due in 5 days",
-                status: "In-progress",
-                statusClass: "status-in-progress",
-                assignedTo: "John P. Ritter",
-                totalTime: "26h 58min"
-            }
-        ];
+        // Datos para los gráficos
+        const cobranzaData = {
+            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Cobrado',
+                data: [450000, 520000, 480000, 620000, 580000, 650000],
+                backgroundColor: '#10b981',
+                borderColor: '#10b981',
+                borderWidth: 1
+            }, {
+                label: 'Pendiente',
+                data: [320000, 280000, 350000, 250000, 290000, 180000],
+                backgroundColor: '#ef4444',
+                borderColor: '#ef4444',
+                borderWidth: 1
+            }]
+        };
 
-        function renderTasks() {
-            const tableBody = document.getElementById('tasksTableBody');
-            tableBody.innerHTML = '';
+        const carteraData = {
+            labels: ['Al día', '1-30 días', '31-60 días', '60+ días'],
+            datasets: [{
+                data: [65, 20, 10, 5],
+                backgroundColor: ['#10b981', '#f59e0b', '#ef4444', '#7c2d12'],
+                borderWidth: 0
+            }]
+        };
 
-            tasksData.forEach((task, index) => {
-                const row = document.createElement('tr');
-                row.className = 'task-row';
-                
-                row.innerHTML = `
-                    <td class="task-cell">
-                        <div class="task-main">
-                            <p class="task-title">${task.title}</p>
-                            <p class="task-due">${task.due}</p>
-                        </div>
-                    </td>
-                    <td class="task-cell">
-                        <div class="task-status">Status</div>
-                        <div class="status-badge ${task.statusClass}">${task.status}</div>
-                    </td>
-                    <td class="task-cell">
-                        <div class="task-assigned">Assigned to</div>
-                        <div class="assigned-name">${task.assignedTo}</div>
-                    </td>
-                    <td class="task-cell">
-                        <div class="task-time">Total time spend</div>
-                        <div class="time-value">${task.totalTime}</div>
-                    </td>
-                    <td class="task-cell">
-                        <div class="task-actions">
-                            <button class="action-btn edit" onclick="editTask(${index})" title="Edit">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                            <button class="action-btn delete" onclick="deleteTask(${index})" title="Delete">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                `;
-
-                tableBody.appendChild(row);
+        // Inicializar gráficos
+        function initCharts() {
+            // Gráfico de barras - Evolución de cobranza
+            const cobranzaCtx = document.getElementById('cobranzaChart').getContext('2d');
+            new Chart(cobranzaCtx, {
+                type: 'bar',
+                data: cobranzaData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
             });
-        }
 
-        function editTask(index) {
-            console.log('Editing task:', index);
-            // Implement edit functionality
-        }
-
-        function deleteTask(index) {
-            if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
-                tasksData.splice(index, 1);
-                renderTasks();
-                updateStats();
-            }
-        }
-
-        function updateStats() {
-            const completed = tasksData.filter(task => task.status === 'Completed').length;
-            const total = tasksData.length;
-            
-            document.querySelector('.stats-text').innerHTML = `
-                <span class="stats-numbers">${completed}</span> Tasks completed out of 
-                <span class="stats-numbers">${total}</span>
-            `;
-        }
-
-        // Menu functionality
-        document.getElementById('menuBtn').addEventListener('click', function() {
-            console.log('Menu clicked');
-            // Implement menu functionality
-        });
-
-        // Mobile responsive handling
-        function handleResize() {
-            if (window.innerWidth <= 768) {
-                adjustForMobile();
-            } else {
-                adjustForDesktop();
-            }
-        }
-
-        function adjustForMobile() {
-            const rows = document.querySelectorAll('.task-row');
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('.task-cell');
-                if (cells.length > 1) {
-                    // Restructure for mobile
-                    const mainCell = cells[0];
-                    const statusCell = cells[1];
-                    const assignedCell = cells[2];
-                    const timeCell = cells[3];
-                    const actionsCell = cells[4];
-
-                    row.innerHTML = `
-                        <td class="task-cell" style="display: block; padding: 1rem;">
-                            ${mainCell.innerHTML}
-                            <div class="mobile-row">
-                                <div class="mobile-col">
-                                    ${statusCell.innerHTML}
-                                </div>
-                                <div class="mobile-col">
-                                    ${assignedCell.innerHTML}
-                                </div>
-                            </div>
-                            <div class="mobile-row">
-                                <div class="mobile-col">
-                                    ${timeCell.innerHTML}
-                                </div>
-                                <div class="mobile-col">
-                                    ${actionsCell.innerHTML}
-                                </div>
-                            </div>
-                        </td>
-                    `;
+            // Gráfico de dona - Estado de cartera
+            const carteraCtx = document.getElementById('carteraChart').getContext('2d');
+            new Chart(carteraCtx, {
+                type: 'doughnut',
+                data: carteraData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
                 }
             });
         }
 
-        function adjustForDesktop() {
-            renderTasks();
+        // Funciones de interacción
+        function openFilters() {
+            alert('Función de filtros - Aquí implementarías el modal de filtros');
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            renderTasks();
-            handleResize();
+        function viewAllClients() {
+            alert('Redirigiendo a la vista completa de clientes...');
+        }
+
+        function manageClient(clientId) {
+            alert('Gestionando cliente: ' + clientId);
+        }
+
+        function viewHistory(clientId) {
+            alert('Mostrando historial del cliente: ' + clientId);
+        }
+
+        function registerPayment() {
+            alert('Abriendo formulario de registro de pago...');
+        }
+
+        function scheduleFollowup() {
+            alert('Programando seguimiento...');
+        }
+
+        function generateReport() {
+            alert('Generando reporte...');
+        }
+
+        // Cambio de período
+        document.getElementById('periodSelect').addEventListener('change', function(e) {
+            console.log('Período seleccionado:', e.target.value);
+            // Aquí actualizarías los datos según el período seleccionado
         });
 
-        window.addEventListener('resize', handleResize);
-
-        // Add some interactive features
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.task-row')) {
-                const row = e.target.closest('.task-row');
-                // Add subtle click feedback
-                row.style.transform = 'scale(0.995)';
-                setTimeout(() => {
-                    row.style.transform = '';
-                }, 150);
-            }
+        // Inicializar dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initCharts();
         });
     </script>
 </body>

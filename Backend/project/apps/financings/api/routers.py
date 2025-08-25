@@ -10,6 +10,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'credit',views.CreditViewSet,'credit')
 router.register(r'credit-vigente',views.CreditVigentesViewSet,'credit-vigente')
+router.register(r'credit-vigente-cobranza',views.CreditVigentesCobranzaViewSet,'credit-vigente-cobranza')
 router.register(r'garantia',views.GuaranteesViewSet,'guarantee')
 router.register(r'detalle_garantia',views.DetailsGuaranteesViewSet,'detail_guarantee')
 router.register(r'desembolso',views.DisbursementViewSet,'disbursement')
