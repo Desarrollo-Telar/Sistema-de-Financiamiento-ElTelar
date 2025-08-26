@@ -60,6 +60,15 @@ class VotacionCredito(models.Model):
     def save(self,*args, **kwargs):
         super().save(*args, **kwargs)
         self.calcular_promedio_puntuacion()
+        self._vincular_comentario_cliente()
+    
+    def _vincular_comentario_cliente(self):
+        VotacionCliente.objects.create(
+            usuario = self.usuario,
+            cliente = self.credito.customer_id,
+            puntacion = self.puntuacion,
+            comentario = self.comentario
+        )
 
 
     class Meta:

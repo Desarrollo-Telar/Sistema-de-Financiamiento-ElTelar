@@ -3,799 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Gestión de Cobranza</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <title>Historial - Plantilla Moderna</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --hover-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 24px;
+        .header-section {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .header {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
         }
 
         .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
+            position: relative;
+            z-index: 2;
         }
 
-        .header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 4px;
-        }
-
-        .header p {
-            color: #64748b;
-            font-size: 0.95rem;
-        }
-
-        .header-controls {
-            display: flex;
-            gap: 12px;
-        }
-
-        .select-box, .btn {
-            padding: 10px 16px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 0.9rem;
+        .history-card {
             background: white;
-            cursor: pointer;
-            transition: all 0.2s;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            border: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
         }
 
-        .btn {
-            background: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
+        .history-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
         }
 
-        .btn:hover {
-            background: #2563eb;
-        }
-
-        .select-box:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-
-        .metric-card {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .metric-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 16px;
-        }
-
-        .metric-info h3 {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #64748b;
-            margin-bottom: 8px;
-        }
-
-        .metric-info .value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #1e293b;
-        }
-
-        .metric-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: white;
-        }
-
-        .metric-icon.blue { background: #3b82f6; }
-        .metric-icon.green { background: #10b981; }
-        .metric-icon.red { background: #ef4444; }
-        .metric-icon.yellow { background: #f59e0b; }
-
-        .metric-change {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-        }
-
-        .change-positive { color: #10b981; font-weight: 500; }
-        .change-text { color: #64748b; }
-
-        .charts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-
-        .chart-card {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .chart-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #1e293b;
-        }
-
-        .chart-container {
-            height: 300px;
+        .history-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
             position: relative;
         }
 
-        .table-card {
-            background: white;
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-icon {
+            width: 50px;
+            height: 50px;
             border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            margin-bottom: 24px;
-            overflow: hidden;
-        }
-
-        .table-header {
-            padding: 24px;
-            border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .table-header h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1e293b;
-        }
-
-        .table-header a {
-            color: #3b82f6;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .table-container {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #f8fafc;
-            padding: 16px;
-            text-align: left;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        td {
-            padding: 16px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        tr:hover {
-            background: #f8fafc;
-        }
-
-        .client-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .client-avatar {
-            width: 40px;
-            height: 40px;
-            background: #3b82f6;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
         }
 
-        .client-name {
-            font-weight: 500;
-            color: #1e293b;
-        }
+        .icon-success { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; }
+        .icon-warning { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; }
+        .icon-info { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #666; }
+        .icon-danger { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: white; }
 
-        .risk-badge {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .risk-bajo { background: #dcfce7; color: #166534; }
-        .risk-medio { background: #fef3c7; color: #92400e; }
-        .risk-alto { background: #fee2e2; color: #991b1b; }
-
-        .table-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .table-actions a {
-            color: #3b82f6;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .action-panels {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .action-card {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .action-card h4 {
-            font-size: 1.1rem;
+        .history-content h6 {
+            color: #2c3e50;
             font-weight: 600;
-            margin-bottom: 16px;
-            color: #1e293b;
+            margin-bottom: 0.5rem;
         }
 
-        .action-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .action-item {
-            padding: 16px;
-            border-radius: 8px;
+        .history-meta {
+            color: #7f8c8d;
+            font-size: 0.875rem;
             display: flex;
             align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: background 0.2s;
-            text-decoration: none;
-            color: inherit;
+            gap: 1rem;
         }
 
-        .action-item:hover {
-            transform: translateY(-1px);
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
         }
 
-        .action-item.blue { background: #eff6ff; }
-        .action-item.blue:hover { background: #dbeafe; }
-        .action-item.green { background: #f0fdf4; }
-        .action-item.green:hover { background: #dcfce7; }
-        .action-item.yellow { background: #fffbeb; }
-        .action-item.yellow:hover { background: #fef3c7; }
-
-        .action-icon {
-            width: 20px;
-            height: 20px;
+        .filter-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
         }
 
-        .action-icon.blue { color: #3b82f6; }
-        .action-icon.green { color: #10b981; }
-        .action-icon.yellow { color: #f59e0b; }
+        .search-box {
+            border-radius: 25px;
+            border: 2px solid #e9ecef;
+            padding: 0.75rem 1.25rem;
+            transition: all 0.3s ease;
+        }
 
-        .reminder-item {
-            padding: 16px;
+        .search-box:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        .btn-filter {
+            border-radius: 20px;
+            padding: 0.5rem 1.25rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-modern .page-link {
+            border: none;
             border-radius: 8px;
-            border-left: 4px solid;
-            margin-bottom: 12px;
-        }
-
-        .reminder-red {
-            background: #fef2f2;
-            border-color: #f87171;
-        }
-
-        .reminder-yellow {
-            background: #fffbeb;
-            border-color: #fbbf24;
-        }
-
-        .reminder-title {
+            margin: 0 0.25rem;
+            color: #667eea;
             font-weight: 500;
-            font-size: 0.9rem;
-            margin-bottom: 4px;
         }
 
-        .reminder-red .reminder-title { color: #991b1b; }
-        .reminder-yellow .reminder-title { color: #92400e; }
-
-        .reminder-text {
-            font-size: 0.8rem;
-            opacity: 0.8;
+        .pagination-modern .page-link:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-2px);
         }
 
-        .progress-item {
-            margin-bottom: 20px;
+        .pagination-modern .page-item.active .page-link {
+            background: var(--primary-gradient);
+            border: none;
         }
 
-        .progress-header {
-            display: flex;
-            justify-content: between;
-            margin-bottom: 8px;
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-
-        .progress-label {
-            font-size: 0.85rem;
-            color: #64748b;
-        }
-
-        .progress-value {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #1e293b;
-            margin-left: auto;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.3s;
-        }
-
-        .progress-green { background: #10b981; }
-        .progress-blue { background: #3b82f6; }
 
         @media (max-width: 768px) {
-            .container { padding: 16px; }
-            .header-content { flex-direction: column; align-items: flex-start; }
-            .metrics-grid { grid-template-columns: 1fr; }
-            .charts-grid { grid-template-columns: 1fr; }
-            .action-panels { grid-template-columns: 1fr; }
+            .history-item {
+                padding: 1rem;
+            }
+            
+            .history-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+            
+            .filter-section {
+                padding: 1rem;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
+    <!-- Header Section -->
+    <div class="header-section">
+        <div class="container">
             <div class="header-content">
-                <div>
-                    <h1>Gestión de Cobranza</h1>
-                    <p>Dashboard de seguimiento y control</p>
-                </div>
-                <div class="header-controls">
-                    <select class="select-box" id="periodSelect">
-                        <option value="semana">Esta Semana</option>
-                        <option value="mes" selected>Este Mes</option>
-                        <option value="trimestre">Este Trimestre</option>
-                        <option value="año">Este Año</option>
-                    </select>
-                    <button class="btn" onclick="openFilters()">
-                        <span>⚙️</span> Filtros
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Métricas Principales -->
-        <div class="metrics-grid">
-            <div class="metric-card">
-                <div class="metric-header">
-                    <div class="metric-info">
-                        <h3>Total por Cobrar</h3>
-                        <div class="value">$1,250,000</div>
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1 class="display-5 fw-bold mb-2">Historial de Actividades</h1>
+                        <p class="lead mb-0">Seguimiento completo de todas las acciones realizadas</p>
                     </div>
-                    <div class="metric-icon blue">💰</div>
-                </div>
-                <div class="metric-change">
-                    <span class="change-positive">+12%</span>
-                    <span class="change-text">vs mes anterior</span>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-header">
-                    <div class="metric-info">
-                        <h3>Cobrado Hoy</h3>
-                        <div class="value">$85,000</div>
-                    </div>
-                    <div class="metric-icon green">✅</div>
-                </div>
-                <div class="metric-change">
-                    <span class="change-positive">+8%</span>
-                    <span class="change-text">vs mes anterior</span>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-header">
-                    <div class="metric-info">
-                        <h3>Vencido</h3>
-                        <div class="value">$320,000</div>
-                    </div>
-                    <div class="metric-icon red">⚠️</div>
-                </div>
-                <div class="metric-change">
-                    <span class="change-positive">-5%</span>
-                    <span class="change-text">vs mes anterior</span>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-header">
-                    <div class="metric-info">
-                        <h3>Próximo a Vencer</h3>
-                        <div class="value">$180,000</div>
-                    </div>
-                    <div class="metric-icon yellow">⏰</div>
-                </div>
-                <div class="metric-change">
-                    <span class="change-positive">+15%</span>
-                    <span class="change-text">vs mes anterior</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gráficos -->
-        <div class="charts-grid">
-            <div class="chart-card">
-                <h3>Evolución de Cobranza</h3>
-                <div class="chart-container">
-                    <canvas id="cobranzaChart"></canvas>
-                </div>
-            </div>
-
-            <div class="chart-card">
-                <h3>Estado de Cartera</h3>
-                <div class="chart-container">
-                    <canvas id="carteraChart"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tabla de Clientes Prioritarios -->
-        <div class="table-card">
-            <div class="table-header">
-                <h3>Clientes Prioritarios</h3>
-                <a href="#" onclick="viewAllClients()">Ver todos</a>
-            </div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Monto Pendiente</th>
-                            <th>Días Vencido</th>
-                            <th>Riesgo</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="client-info">
-                                    <div class="client-avatar">EA</div>
-                                    <div class="client-name">Empresa ABC</div>
-                                </div>
-                            </td>
-                            <td>$125,000</td>
-                            <td>15 días</td>
-                            <td><span class="risk-badge risk-bajo">Bajo</span></td>
-                            <td>
-                                <div class="table-actions">
-                                    <a href="#" onclick="manageClient('ABC')">Gestionar</a>
-                                    <a href="#" onclick="viewHistory('ABC')">Historial</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="client-info">
-                                    <div class="client-avatar">CX</div>
-                                    <div class="client-name">Corp XYZ</div>
-                                </div>
-                            </td>
-                            <td>$85,000</td>
-                            <td>45 días</td>
-                            <td><span class="risk-badge risk-medio">Medio</span></td>
-                            <td>
-                                <div class="table-actions">
-                                    <a href="#" onclick="manageClient('XYZ')">Gestionar</a>
-                                    <a href="#" onclick="viewHistory('XYZ')">Historial</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="client-info">
-                                    <div class="client-avatar">C1</div>
-                                    <div class="client-name">Comercial 123</div>
-                                </div>
-                            </td>
-                            <td>$65,000</td>
-                            <td>8 días</td>
-                            <td><span class="risk-badge risk-bajo">Bajo</span></td>
-                            <td>
-                                <div class="table-actions">
-                                    <a href="#" onclick="manageClient('123')">Gestionar</a>
-                                    <a href="#" onclick="viewHistory('123')">Historial</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="client-info">
-                                    <div class="client-avatar">IL</div>
-                                    <div class="client-name">Industrias LMN</div>
-                                </div>
-                            </td>
-                            <td>$95,000</td>
-                            <td>62 días</td>
-                            <td><span class="risk-badge risk-alto">Alto</span></td>
-                            <td>
-                                <div class="table-actions">
-                                    <a href="#" onclick="manageClient('LMN')">Gestionar</a>
-                                    <a href="#" onclick="viewHistory('LMN')">Historial</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="client-info">
-                                    <div class="client-avatar">SP</div>
-                                    <div class="client-name">Servicios PQR</div>
-                                </div>
-                            </td>
-                            <td>$45,000</td>
-                            <td>25 días</td>
-                            <td><span class="risk-badge risk-bajo">Bajo</span></td>
-                            <td>
-                                <div class="table-actions">
-                                    <a href="#" onclick="manageClient('PQR')">Gestionar</a>
-                                    <a href="#" onclick="viewHistory('PQR')">Historial</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Paneles de Acción -->
-        <div class="action-panels">
-            <div class="action-card">
-                <h4>Acciones Rápidas</h4>
-                <div class="action-list">
-                    <a href="#" class="action-item blue" onclick="registerPayment()">
-                        <span class="action-icon blue">💰</span>
-                        <span>Registrar Pago</span>
-                    </a>
-                    <a href="#" class="action-item green" onclick="scheduleFollowup()">
-                        <span class="action-icon green">📅</span>
-                        <span>Programar Seguimiento</span>
-                    </a>
-                    <a href="#" class="action-item yellow" onclick="generateReport()">
-                        <span class="action-icon yellow">📊</span>
-                        <span>Generar Reporte</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="action-card">
-                <h4>Recordatorios</h4>
-                <div class="reminder-item reminder-red">
-                    <div class="reminder-title">5 facturas vencen hoy</div>
-                    <div class="reminder-text">Total: $125,000</div>
-                </div>
-                <div class="reminder-item reminder-yellow">
-                    <div class="reminder-title">Seguimiento programado</div>
-                    <div class="reminder-text">3 clientes para contactar</div>
-                </div>
-            </div>
-
-            <div class="action-card">
-                <h4>Eficiencia</h4>
-                <div class="progress-item">
-                    <div class="progress-header">
-                        <span class="progress-label">Tasa de Cobro</span>
-                        <span class="progress-value">78%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill progress-green" style="width: 78%"></div>
-                    </div>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-header">
-                        <span class="progress-label">Días Promedio Cobro</span>
-                        <span class="progress-value">32 días</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill progress-blue" style="width: 65%"></div>
+                    <div class="col-md-4 text-md-end">
+                        <div class="d-flex justify-content-md-end gap-2 mt-3 mt-md-0">
+                            <button class="btn btn-light btn-sm rounded-pill">
+                                <i class="bi bi-download me-1"></i>Exportar
+                            </button>
+                            <button class="btn btn-outline-light btn-sm rounded-pill">
+                                <i class="bi bi-funnel me-1"></i>Filtros
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="container">
+        <!-- Filtros y Búsqueda -->
+        <div class="filter-section fade-in">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent border-end-0">
+                            <i class="bi bi-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control search-box border-start-0 ps-0" 
+                               placeholder="Buscar en el historial..." id="searchInput">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex gap-2 justify-content-md-end flex-wrap">
+                        <button class="btn btn-outline-primary btn-filter active" data-filter="all">
+                            Todos
+                        </button>
+                        <button class="btn btn-outline-success btn-filter" data-filter="success">
+                            Completados
+                        </button>
+                        <button class="btn btn-outline-warning btn-filter" data-filter="warning">
+                            Pendientes
+                        </button>
+                        <button class="btn btn-outline-danger btn-filter" data-filter="error">
+                            Errores
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        // Datos para los gráficos
-        const cobranzaData = {
-            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
-            datasets: [{
-                label: 'Cobrado',
-                data: [450000, 520000, 480000, 620000, 580000, 650000],
-                backgroundColor: '#10b981',
-                borderColor: '#10b981',
-                borderWidth: 1
-            }, {
-                label: 'Pendiente',
-                data: [320000, 280000, 350000, 250000, 290000, 180000],
-                backgroundColor: '#ef4444',
-                borderColor: '#ef4444',
-                borderWidth: 1
-            }]
-        };
-
-        const carteraData = {
-            labels: ['Al día', '1-30 días', '31-60 días', '60+ días'],
-            datasets: [{
-                data: [65, 20, 10, 5],
-                backgroundColor: ['#10b981', '#f59e0b', '#ef4444', '#7c2d12'],
-                borderWidth: 0
-            }]
-        };
-
-        // Inicializar gráficos
-        function initCharts() {
-            // Gráfico de barras - Evolución de cobranza
-            const cobranzaCtx = document.getElementById('cobranzaChart').getContext('2d');
-            new Chart(cobranzaCtx, {
-                type: 'bar',
-                data: cobranzaData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return '$' + value.toLocaleString();
-                                }
-                            }
-                        }
-                    }
+        // Funcionalidad de búsqueda
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const historyItems = document.querySelectorAll('.history-item');
+            
+            historyItems.forEach(item => {
+                const content = item.textContent.toLowerCase();
+                if (content.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
                 }
             });
+        });
 
-            // Gráfico de dona - Estado de cartera
-            const carteraCtx = document.getElementById('carteraChart').getContext('2d');
-            new Chart(carteraCtx, {
-                type: 'doughnut',
-                data: carteraData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
+        // Funcionalidad de filtros
+        document.querySelectorAll('.btn-filter').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remover clase active de todos los botones
+                document.querySelectorAll('.btn-filter').forEach(b => {
+                    b.classList.remove('active');
+                    b.classList.add('btn-outline-primary');
+                    b.classList.remove('btn-primary');
+                });
+                
+                // Activar el botón clickeado
+                this.classList.add('active');
+                this.classList.remove('btn-outline-primary');
+                this.classList.add('btn-primary');
+                
+                const filter = this.getAttribute('data-filter');
+                const historyItems = document.querySelectorAll('.history-item');
+                
+                historyItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-type') === filter) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
                     }
-                }
+                });
             });
-        }
-
-        // Funciones de interacción
-        function openFilters() {
-            alert('Función de filtros - Aquí implementarías el modal de filtros');
-        }
-
-        function viewAllClients() {
-            alert('Redirigiendo a la vista completa de clientes...');
-        }
-
-        function manageClient(clientId) {
-            alert('Gestionando cliente: ' + clientId);
-        }
-
-        function viewHistory(clientId) {
-            alert('Mostrando historial del cliente: ' + clientId);
-        }
-
-        function registerPayment() {
-            alert('Abriendo formulario de registro de pago...');
-        }
-
-        function scheduleFollowup() {
-            alert('Programando seguimiento...');
-        }
-
-        function generateReport() {
-            alert('Generando reporte...');
-        }
-
-        // Cambio de período
-        document.getElementById('periodSelect').addEventListener('change', function(e) {
-            console.log('Período seleccionado:', e.target.value);
-            // Aquí actualizarías los datos según el período seleccionado
         });
 
-        // Inicializar dashboard
-        document.addEventListener('DOMContentLoaded', function() {
-            initCharts();
+        // Animación suave al cargar
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.fade-in').forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
         });
+
+        // Actualización de tiempo en tiempo real
+        setInterval(function() {
+            const timeElement = document.querySelector('.card-header small');
+            const now = new Date();
+            const minutes = Math.floor(Math.random() * 5) + 1;
+            timeElement.textContent = `Última actualización: hace ${minutes} minutos`;
+        }, 60000);
     </script>
 </body>
 </html>

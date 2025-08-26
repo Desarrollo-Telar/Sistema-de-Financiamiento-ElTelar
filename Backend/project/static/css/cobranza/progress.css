@@ -1,0 +1,277 @@
+/* ESTRUCTURA BASE */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    transition: width 0.3s ease;
+}
+
+/* ESTILOS POR ESTADO - SUCCESS */
+.progress-fill-success {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    transition: width 0.3s ease;
+}
+
+/* ESTILOS POR ESTADO - WARNING */
+.progress-fill-warning {
+    height: 100%;
+    background: linear-gradient(90deg, #FF9800, #F57C00);
+    transition: width 0.3s ease;
+}
+
+/* ESTILOS POR ESTADO - DANGER */
+.progress-fill-danger {
+    height: 100%;
+    background: linear-gradient(90deg, #F44336, #D32F2F);
+    transition: width 0.3s ease;
+}
+
+/* ESTILOS POR ESTADO - INFO */
+.progress-fill-info {
+    height: 100%;
+    background: linear-gradient(90deg, #2196F3, #1976D2);
+    transition: width 0.3s ease;
+}
+
+/* ESTILOS POR ESTADO - PRIMARY */
+.progress-fill-primary {
+    height: 100%;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    transition: width 0.3s ease;
+}
+
+/* ESTILOS POR ESTADO - SECONDARY */
+.progress-fill-secondary {
+    height: 100%;
+    background: linear-gradient(90deg, #6c757d, #495057);
+    transition: width 0.3s ease;
+}
+
+/* ESTILOS POR ESTADO - DARK */
+.progress-fill-dark {
+    height: 100%;
+    background: linear-gradient(90deg, #343a40, #212529);
+    transition: width 0.3s ease;
+}
+
+/* ESTILOS POR ESTADO - LIGHT */
+.progress-fill-light {
+    height: 100%;
+    background: linear-gradient(90deg, #f8f9fa, #dee2e6);
+    transition: width 0.3s ease;
+    border: 1px solid #dee2e6;
+}
+
+/* ESTILOS ESPECIALES - GRADIENT COLORS */
+.progress-fill-purple {
+    height: 100%;
+    background: linear-gradient(90deg, #9C27B0, #7B1FA2);
+    transition: width 0.3s ease;
+}
+
+.progress-fill-pink {
+    height: 100%;
+    background: linear-gradient(90deg, #E91E63, #AD1457);
+    transition: width 0.3s ease;
+}
+
+.progress-fill-indigo {
+    height: 100%;
+    background: linear-gradient(90deg, #3F51B5, #303F9F);
+    transition: width 0.3s ease;
+}
+
+.progress-fill-teal {
+    height: 100%;
+    background: linear-gradient(90deg, #009688, #00695C);
+    transition: width 0.3s ease;
+}
+
+.progress-fill-cyan {
+    height: 100%;
+    background: linear-gradient(90deg, #00BCD4, #0097A7);
+    transition: width 0.3s ease;
+}
+
+.progress-fill-lime {
+    height: 100%;
+    background: linear-gradient(90deg, #CDDC39, #AFB42B);
+    transition: width 0.3s ease;
+}
+
+.progress-fill-amber {
+    height: 100%;
+    background: linear-gradient(90deg, #FFC107, #FF8F00);
+    transition: width 0.3s ease;
+}
+
+.progress-fill-deep-orange {
+    height: 100%;
+    background: linear-gradient(90deg, #FF5722, #D84315);
+    transition: width 0.3s ease;
+}
+
+/* ESTILOS CON EFECTOS ESPECIALES */
+.progress-fill-rainbow {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        #ff0000, #ff8000, #ffff00, #80ff00, 
+        #00ff00, #00ff80, #00ffff, #0080ff, 
+        #0000ff, #8000ff, #ff00ff
+    );
+    transition: width 0.3s ease;
+}
+
+.progress-fill-neon {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff88, #00ccff);
+    transition: width 0.3s ease;
+    box-shadow: 
+        0 0 5px rgba(0, 255, 136, 0.5),
+        0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.progress-fill-metallic {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        #c0c0c0, #e6e6e6, #c0c0c0, #a0a0a0
+    );
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-fill-glass {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0.2)
+    );
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: width 0.3s ease;
+}
+
+/* ESTILOS ANIMADOS */
+.progress-fill-striped {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 16px 16px;
+    animation: progress-bar-stripes 1s linear infinite;
+    transition: width 0.3s ease;
+}
+
+@keyframes progress-bar-stripes {
+    0% { background-position: 16px 0; }
+    100% { background-position: 0 0; }
+}
+
+.progress-fill-pulse {
+    height: 100%;
+    background: linear-gradient(90deg, #e91e63, #ad1457);
+    transition: width 0.3s ease;
+    animation: pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.progress-fill-wave {
+    height: 100%;
+    background: linear-gradient(90deg, #00bcd4, #0097a7);
+    transition: width 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill-wave::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent
+    );
+    animation: wave 2s infinite;
+}
+
+@keyframes wave {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* VARIANTES DE ALTURA */
+.progress-bar-thin {
+    height: 4px;
+}
+
+.progress-bar-thick {
+    height: 12px;
+}
+
+.progress-bar-extra-thick {
+    height: 16px;
+    border-radius: 8px;
+}
+
+/* VARIANTES DE BORDER RADIUS */
+.progress-bar-square {
+    border-radius: 0;
+}
+
+.progress-bar-rounded {
+    border-radius: 8px;
+}
+
+.progress-bar-pill {
+    border-radius: 50px;
+}
+
+/* HOVER EFFECTS */
+.progress-fill-success:hover,
+.progress-fill-warning:hover,
+.progress-fill-danger:hover,
+.progress-fill-info:hover,
+.progress-fill-primary:hover,
+.progress-fill-secondary:hover {
+    filter: brightness(1.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .progress-bar {
+        height: 6px;
+    }
+    
+    .progress-bar-thick {
+        height: 10px;
+    }
+    
+    .progress-bar-extra-thick {
+        height: 14px;
+    }
+}

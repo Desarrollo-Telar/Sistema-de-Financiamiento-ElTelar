@@ -19,8 +19,10 @@ class CobranzaForms(forms.ModelForm):
             'tipo_gestion',
             'resultado',            
             'fecha_promesa_pago',
+            'fecha_seguimiento',
             'observaciones',
-            'estado_cobranza'
+            'estado_cobranza',
+            
             
         ]
 
@@ -38,7 +40,8 @@ class CobranzaForms(forms.ModelForm):
             'observaciones': 'Observaciones',
             'estado_cobranza': 'Estado de la cobranza',
             'telefono_contacto': 'Numero de Telefono del Cliente',
-            'fecha_limite_cuota': 'Fecha De Limite Para La Cuota'
+            'fecha_limite_cuota': 'Fecha De Limite Para La Cuota',
+            'fecha_seguimiento': 'Fecha De Seguimiento'
 
         }
 
@@ -56,8 +59,8 @@ class CobranzaForms(forms.ModelForm):
             'observaciones': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
             'estado_cobranza':forms.Select(choices=[], attrs={'class': 'form-control'}),
             'telefono_contacto':forms.TextInput(attrs={'type': 'text', 'class': 'form-control'}),
-            'fecha_limite_cuota':forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'class': 'form-control', 'disabled':'disabled'})
-
+            'fecha_limite_cuota':forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'class': 'form-control', 'disabled':'disabled'}),
+            'fecha_seguimiento': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -89,8 +92,9 @@ class CobranzaForms(forms.ModelForm):
         ]
 
         opciones_estado_cobranza = [            
-            ('Pendiente', 'Pendiente'),
-            ('Incumplido', 'Incumplido'),
+            ('PENDIENTE', 'PENDIENTE'),
+            ('INCUMPLIDO', 'INCUMPLIDO'),
+            ('PROCESO', 'PROCESO'),
             ('COMPLETADO', 'COMPLETADO'),
 
         ]

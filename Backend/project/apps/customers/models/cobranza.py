@@ -5,6 +5,7 @@ from apps.customers.models import CreditCounselor
 from apps.financings.models import Credit, PaymentPlan
 from apps.users.models import User
 
+
 # FORMATO
 from apps.financings.formato import formatear_numero
 # TIEMPO
@@ -99,6 +100,10 @@ class Cobranza(models.Model):
             self._crear_registro_historial(datos_anteriores, datos_nuevos, 'modificacion')
         else:
             self._crear_registro_historial({}, datos_nuevos, 'creacion')
+        
+        # Vincula la descripcion al comentario
+        self._crear_comentario()
+        
     
     def delete(self, *args, **kwargs):
         datos_anteriores = self._obtener_datos_serializados(self)
@@ -123,6 +128,31 @@ class Cobranza(models.Model):
             'telefono_contacto': instancia.telefono_contacto,
             'count': instancia.count
         }
+    
+    def _crear_comentario(self):
+        from apps.actividades.models import VotacionCredito
+        # Obtener el usuario actual si existe
+        usuario_actual = None
+        try:
+            from django.contrib.auth import get_user
+            usuario_actual = get_user(None)
+            if not usuario_actual or usuario_actual.is_anonymous:
+                usuario_actual = None
+        except:
+            pass
+
+        VotacionCredito.objects.create(
+            usuario = usuario_actual,
+            credito = self.credito,
+            puntuacion = 1,
+            comentario = self.observaciones
+
+
+        )
+
+        
+
+
     
     def _crear_registro_historial(self, datos_anteriores, datos_nuevos, accion):
         """Crea un registro en el historial"""

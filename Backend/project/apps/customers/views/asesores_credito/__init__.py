@@ -1,6 +1,6 @@
 # Listar a los asesores
 
-from .list import AsesoresCreditosList, CobranzaList
+from .list import AsesoresCreditosList, CobranzaList, view_gestion
 
 from .detail import detail_asesor,  DetailInformeView
 

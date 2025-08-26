@@ -22,7 +22,8 @@ from scripts.recoleccion_informacion.detalle_asesor_credito import recoleccion_i
 from django.views.generic import TemplateView, ListView, DetailView
 from django.db.models import Q
 
-
+# Formulario
+from apps.customers.forms import CobranzaForms
 from datetime import datetime
 
 @login_required
@@ -129,7 +130,8 @@ class DetailInformeView(TemplateView):
             'fecha': self.request.GET.get("fecha", ""),
             'estado_cobranza': self.request.GET.get("estado_cobranza", ""),
             'user_code':usuario.user_code,
-            'usuario':usuario
+            'usuario':usuario,
+            'form': CobranzaForms()
             
         })
 
