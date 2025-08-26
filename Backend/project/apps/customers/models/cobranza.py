@@ -11,6 +11,8 @@ from apps.financings.formato import formatear_numero
 # TIEMPO
 from datetime import datetime
 
+import uuid
+
 class Cobranza(models.Model):
     TIPO_COBRANZA_CHOICES = [
         ('preventiva', 'Preventiva'),
@@ -66,6 +68,7 @@ class Cobranza(models.Model):
     telefono_contacto = models.CharField(max_length=75)
     fecha_actualizacion = models.DateField("Fecha en que se actualizo la cobranza", default=datetime.now, null=True, blank=True)
     count = models.IntegerField(default=0, verbose_name='Contador')
+    codigo_gestion = models.CharField(max_length=75, null=True, blank=True)
 
     def f_monto_pendiente(self):
         return formatear_numero(self.monto_pendiente)
@@ -79,6 +82,13 @@ class Cobranza(models.Model):
     def __str__(self):
         return f'Cobranza #{self.id} - {self.credito}'
     
+    def _generar_codigo_gestion(self):
+        if not self.codigo_gestion:
+            codigo_ui = str(uuid.uuid4())[:8]  # Genera un UUID y toma solo 8 caracteres
+            codigo_asesor = self.asesor_credito.codigo_asesor
+            codigo = f'{codigo_asesor}-{codigo_ui}'
+            self.codigo_gestion = codigo
+    
     def save(self, *args, **kwargs):
         es_nuevo = self.pk is None
         datos_anteriores = {}
@@ -90,6 +100,10 @@ class Cobranza(models.Model):
         
         # Incrementar el contador
         self.count += 1
+        # creacion de codigo
+        self._generar_codigo_gestion()
+
+        # guardado
         super().save(*args, **kwargs)
         
         # Obtener los datos nuevos después de guardar
@@ -102,7 +116,10 @@ class Cobranza(models.Model):
             self._crear_registro_historial({}, datos_nuevos, 'creacion')
         
         # Vincula la descripcion al comentario
-        self._crear_comentario()
+        if self.observaciones is not None:
+            self._crear_comentario()
+        
+        
         
     
     def delete(self, *args, **kwargs):
@@ -131,20 +148,20 @@ class Cobranza(models.Model):
     
     def _crear_comentario(self):
         from apps.actividades.models import VotacionCredito
-        # Obtener el usuario actual si existe
-        usuario_actual = None
-        try:
-            from django.contrib.auth import get_user
-            usuario_actual = get_user(None)
-            if not usuario_actual or usuario_actual.is_anonymous:
-                usuario_actual = None
-        except:
-            pass
+        puntuacion = 1
+
+        if self.estado_cobranza == 'COMPLETADO':
+            puntuacion = 3
+        elif self.estado_cobranza == 'PENDIENTE':
+            puntuacion = 2
+        else:
+            puntuacion = 1
+
 
         VotacionCredito.objects.create(
-            usuario = usuario_actual,
+            usuario = self.asesor_credito.usuario,
             credito = self.credito,
-            puntuacion = 1,
+            puntuacion = puntuacion,
             comentario = self.observaciones
 
 
@@ -156,22 +173,10 @@ class Cobranza(models.Model):
     
     def _crear_registro_historial(self, datos_anteriores, datos_nuevos, accion):
         """Crea un registro en el historial"""
-        from django.contrib.auth import get_user_model
-        User = get_user_model()
-        
-        # Obtener el usuario actual si existe
-        usuario_actual = None
-        try:
-            from django.contrib.auth import get_user
-            usuario_actual = get_user(None)
-            if not usuario_actual or usuario_actual.is_anonymous:
-                usuario_actual = None
-        except:
-            pass
         
         HistorialCobranza.objects.create(
             cobranza=self,
-            usuario=usuario_actual,
+            usuario=self.asesor_credito.usuario,
             accion=accion,
             datos_anteriores=datos_anteriores,
             datos_nuevos=datos_nuevos
@@ -200,7 +205,7 @@ class Cobranza(models.Model):
 
 
 class HistorialCobranza(models.Model):
-    cobranza = models.ForeignKey(Cobranza, on_delete=models.SET_NULL, null=True, blank=True, related_name='historial')
+    cobranza = models.ForeignKey(Cobranza, on_delete=models.CASCADE, null=True, blank=True, related_name='historial')
     usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     fecha_cambio = models.DateTimeField(auto_now_add=True)
     accion = models.CharField(max_length=20, choices=[

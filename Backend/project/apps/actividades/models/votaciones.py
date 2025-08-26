@@ -66,7 +66,7 @@ class VotacionCredito(models.Model):
         VotacionCliente.objects.create(
             usuario = self.usuario,
             cliente = self.credito.customer_id,
-            puntacion = self.puntuacion,
+            puntuacion = self.puntuacion,
             comentario = self.comentario
         )
 

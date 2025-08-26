@@ -104,11 +104,10 @@ class DetailInformeView(TemplateView):
         detalles_informe = self.get_queryset(reporte_id)
         
         
-
+        
         if not (detalles_informe):        
             messages.error(self.request,'No se encontrado ningun dato')
         
-
         posicion = None
 
         if self.query():
@@ -117,6 +116,8 @@ class DetailInformeView(TemplateView):
             posicion = self.request.GET.get("fecha")
         elif self.request.GET.get("estado_cobranza"):
             posicion = self.request.GET.get("estado_cobranza")
+
+     
 
         
 
@@ -131,7 +132,8 @@ class DetailInformeView(TemplateView):
             'estado_cobranza': self.request.GET.get("estado_cobranza", ""),
             'user_code':usuario.user_code,
             'usuario':usuario,
-            'form': CobranzaForms()
+            'form': CobranzaForms(),
+           
             
         })
 

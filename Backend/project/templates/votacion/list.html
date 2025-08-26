@@ -7,10 +7,20 @@
     <div class="comment-header">
         <div class="comment-author">
             <div class="author-avatar">
+                {% if comentario.usuario %}
                 {{ comentario.usuario.first_name|first|upper|default:comentario.usuario.username|first|upper }}
+                {% else %}
+                SW
+                {% endif%}
             </div>
             <div class="author-info">
-                <h4>{{ comentario.usuario.get_full_name|default:comentario.usuario.username }}</h4>
+                <h4>
+                    {% if comentario.usuario %}
+                    {{ comentario.usuario.get_full_name|default:comentario.usuario.username }}
+                    {% else %}
+                SW - INVERSIONES INTEGRALES EL TELAR
+                {% endif%}
+                </h4>
                 <div class="comment-date">
                     <i class="fas fa-clock"></i>
                     {{ comentario.creation_date|date:"d/m/Y H:i" }}

@@ -30,11 +30,53 @@ class Informe(models.Model):
 
     def save(self, *args, **kwargs):
         self.fecha_vencimiento = self.calcular_fecha_vencimiento()
-        super().save(*args, **kwargs)       
+        super().save(*args, **kwargs)    
+
+    def __str__(self):
+        return f'#{self.id} - {self.usuario}'   
 
 class DetalleInformeCobranza(models.Model):
     reporte = models.ForeignKey(Informe, on_delete=models.CASCADE, verbose_name="Informe")
     cobranza = models.ForeignKey(Cobranza, on_delete=models.CASCADE, verbose_name="Cobranza")
+
+    def __str__(self):
+        return f'#{self.id} - {self.reporte} {self.cobranza}'
+
+    def _total_registros(self):
+        return DetalleInformeCobranza.objects.filter(reporte=self.reporte).count()
+
+    def _total_pendientes_cobranza(self):
+        return DetalleInformeCobranza.objects.filter(
+            reporte=self.reporte, 
+            cobranza__estado_cobranza__icontains="PENDIENTE"
+        ).count()
+
+    def _total_vencidos_cobranza(self):
+        return DetalleInformeCobranza.objects.filter(
+            reporte=self.reporte, 
+            cobranza__estado_cobranza__icontains="INCUMPLIDO"
+        ).count()
+
+    def _total_completados_cobranza(self):
+        return DetalleInformeCobranza.objects.filter(
+            reporte=self.reporte, 
+            cobranza__estado_cobranza__icontains="COMPLETADO"
+        ).count()
+
+    def porcentajes_cobranza(self):
+        total = self._total_registros()
+        if total == 0:
+            return {"pendientes": 0, "vencidos": 0, "completados": 0}
+
+        pendientes = (self._total_pendientes_cobranza() / total) * 100
+        vencidos = (self._total_vencidos_cobranza() / total) * 100
+        completados = (self._total_completados_cobranza() / total) * 100
+
+        return {
+            "pendientes": round(pendientes, 2),
+            "vencidos": round(vencidos, 2),
+            "completados": round(completados, 2),
+        }
 
     class Meta:
         verbose_name = 'Detalle de Informe'

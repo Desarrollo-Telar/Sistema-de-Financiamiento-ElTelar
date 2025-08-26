@@ -39,33 +39,26 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-4 mb-4">
                             <div class="text-muted small fw-semibold mb-1">PENDIENTE</div>
                             <div class="progress-bar">
-                                <div class="progress-fill-warning" style="width: 75%"></div>
+                                <div class="progress-fill-warning" id="progress-fill-warning-pendiente"></div>
                             </div>
-                            <div class="small fw-semibold">65% - $35,930</div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <div class="text-muted small fw-semibold mb-1">EN PROCESO</div>
-                            <div class="progress-bar">
-                                <div class="progress-fill-info" style="width: 50%"></div>
-                            </div>
-                            <div class="small fw-semibold">25% - $15,650</div>
-                        </div>
-                        <div class="col-md-3 mb-3">
+                            
+                        </div>                       
+                        <div class="col-md-4 mb-4">
                             <div class="text-muted small fw-semibold mb-1">COBRADO</div>
                             <div class="progress-bar">
-                                <div class="progress-fill-success" style="width: 75%"></div>
+                                <div class="progress-fill-success" id="progress-fill-success-cobrado"></div>
                             </div>
-                            <div class="small fw-semibold">80% - $89,420</div>
+                            
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-4 mb-4">
                             <div class="text-muted small fw-semibold mb-1">VENCIDO</div>
                             <div class="progress-bar">
-                                <div class="progress-fill-danger" style="width: 25%"></div>
+                                <div class="progress-fill-danger" id="progress-fill-danger-vencido"></div>
                             </div>
-                            <div class="small fw-semibold">15% - $18,750</div>
+                            
                         </div>
                     </div>
                 </div>
@@ -292,5 +285,5 @@
 
 <script type="module" src="{% static 'js/cobranza/seleccionar.js'%}"></script>
 <script type="module" src="{% static 'js/grafica_cobranza.js'%}"></script>
-
+<script type="module" src="{% static 'js/cobranza/detalle.js'%}"></script>
 {% endblock %}

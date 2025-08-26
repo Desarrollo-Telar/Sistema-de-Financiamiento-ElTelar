@@ -9,6 +9,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'notificaciones', views.NotificationViewSet,'notificaciones')
+router.register(r'detalle_informe_cobranza', views.DetalleInformeCobranzaViewSet, 'detalle_informe_cobranza')
 
 urlpatterns = [
     path('api/', include(router.urls)),

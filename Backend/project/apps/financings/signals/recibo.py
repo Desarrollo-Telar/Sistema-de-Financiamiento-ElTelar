@@ -3,6 +3,7 @@ from django.dispatch import receiver
 
 # MODELOS
 from apps.financings.models import  Recibo, PaymentPlan, Credit
+from apps.customers.models import Cobranza
 
 # LOOGER
 from apps.financings.clases.personality_logs import logger
@@ -28,6 +29,13 @@ def enviar_recibo(sender, instance, created, **kwargs):
     if created:
         envio_mensaje_alerta_recibo(instance.id)
         logger.info('DESDE SIGNALS DE RECIBO: ENVIO DE MENSAJE DE RECIBO CARGADO')
+        cobranza_completado = Cobranza.objects.filter(cuota=instance.cuota).first()
+
+        if cobranza_completado is not None:
+            cobranza_completado.estado_cobranza = 'COMPLETADO'
+            cobranza_completado.resultado = 'Pago realizado'
+            cobranza_completado.observaciones = f'EL CLIENTE {instance.cliente} realizo un abono de: Q{instance.Ftotal()}'
+            cobranza_completado.save()
 
 """ 
 @receiver(post_delete, sender=Recibo)

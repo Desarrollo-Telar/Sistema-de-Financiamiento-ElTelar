@@ -74,7 +74,8 @@
                         name: `${c.customer_id.first_name} ${c.customer_id.last_name}`,
                         amount: `${parseFloat(c.saldo_actual).toLocaleString()}`,
                         details: `Vencimiento: ${c.fecha_vencimiento}`,
-                        id: c.codigo_credito
+                        id: c.codigo_credito,
+                        _id: c.id
                     }))
                 );
                 hideLoadingState();
@@ -125,14 +126,17 @@
         }
 
         creditosData.pendingCredits.forEach(credit => {
+            console.log(credit)
             const creditItem = document.createElement('div');
             creditItem.className = 'credit-item';
             creditItem.innerHTML = `
+            <a href='/financings/credit/${credit._id}/' style='text-decoration:none;'> 
                     <div class="credit-info">
                         <div class="credit-name">${credit.name}</div>
                         <div class="credit-details">Codigo Del Credito: ${credit.id} • ${credit.details}</div>
                     </div>
                     <div class="credit-amount">Q${credit.amount}</div>
+            </a>
                 `;
             creditsList.appendChild(creditItem);
         });

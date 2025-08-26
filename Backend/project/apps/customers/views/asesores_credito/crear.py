@@ -17,7 +17,7 @@ from project.decorador import permiso_requerido
 from django.contrib import messages
 
 # Tiempo
-from datetime import datetime,timedelta
+from datetime import datetime,timedelta, date
 
 # SCRIPTS
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
@@ -53,6 +53,12 @@ def creacion_cobranza(request):
             dia = datetime.now().date()
             dia_mas_uno = dia + timedelta(days=1)
 
+            
+
+            
+
+            
+
             credito = Credit.objects.filter(id=fcobranza.credito.id).first()
             
             siguiente_pago = PaymentPlan.objects.filter(
@@ -66,6 +72,23 @@ def creacion_cobranza(request):
                 credit_id=credito).order_by('-id').first()
             
             info_cuota = siguiente_pago
+
+            fecha = form.cleaned_data.get('fecha_promesa_pago')
+
+            if fecha is None:
+                fecha = date.today()
+
+            resultado = form.cleaned_data.get('resultado')
+
+            if resultado != 'Promesa de pago':
+                fcobranza.fecha_seguimiento = fecha
+                fcobranza.fecha_promesa_pago = None
+            else:
+                fcobranza.fecha_seguimiento = None
+                fcobranza.fecha_promesa_pago = fecha
+
+
+
             fcobranza.fecha_limite_cuota = info_cuota.mostrar_fecha_limite().date()
             fcobranza.cuota = info_cuota
             fcobranza.asesor_credito = asesor_autenticado
