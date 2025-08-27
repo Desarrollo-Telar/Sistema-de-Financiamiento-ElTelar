@@ -11,7 +11,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")  # <-- Ajust
 django.setup()
 
 # Modelos
-from apps.customers.models import CreditCounselor, Customer
+from apps.customers.models import CreditCounselor, Customer, Cobranza
 from apps.financings.models import Credit, PaymentPlan, Banco, Payment
 
 # Scripts
@@ -75,8 +75,11 @@ def xd():
 
 if __name__ == "__main__":
   try:
-    migracion_datos()
-    
+    #migracion_datos()
+    for c in Cobranza.objects.all():
+      if c.estado_cobranza:
+          c.estado_cobranza = c.estado_cobranza.upper()
+          c.save()
 
 
 

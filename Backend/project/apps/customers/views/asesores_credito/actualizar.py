@@ -31,7 +31,7 @@ def actualizacion_cobranza(request, id):
     if asesor_autenticado is None:
         return redirect('index')
     
-    cobranza = Cobranza.objects.filter(asesor_credito=asesor_autenticado, id=id).first()
+    cobranza = Cobranza.objects.filter(id=id).first()
 
     if cobranza is None:
         return redirect('index')
