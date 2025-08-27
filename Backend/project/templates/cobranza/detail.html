@@ -233,6 +233,11 @@
                     document.getElementById("pendientes").textContent = porcentajes.pendientes + "%";
                     document.getElementById("vencidos").textContent = porcentajes.vencidos + "%";
                     document.getElementById("completados").textContent = porcentajes.completados + "%";
+                }else{
+                    document.getElementById("progress-fill-warning-pendiente").style.width = 0 + "%";
+                    document.getElementById("progress-fill-danger-vencido").style.width = 0+ "%";
+                    document.getElementById("progress-fill-success-cobrado").style.width = 0 + "%";
+
                 }
             })
             .catch(error => console.error(error));

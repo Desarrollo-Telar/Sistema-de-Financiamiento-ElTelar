@@ -108,8 +108,9 @@ class DetailInformeView(TemplateView):
         
         
         
-        if not (detalles_informe):        
-            messages.error(self.request,'No se encontrado ningun dato')
+        if not (detalles_informe):  
+            if (not self.query()) or (not self.request.GET.get("fecha")) or (not self.request.GET.get("estado_cobranza")):      
+                messages.error(self.request,'No se encontrado ningun dato')
         
         posicion = None
 
