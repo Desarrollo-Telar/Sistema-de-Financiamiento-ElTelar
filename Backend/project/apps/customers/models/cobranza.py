@@ -132,7 +132,7 @@ class Cobranza(models.Model):
             self._crear_registro_historial({}, datos_nuevos, 'creacion')
         
         # Vincula la descripcion al comentario
-        if self.observaciones is not None:
+        if self.observaciones is not None or self.observaciones != '':
             self._crear_comentario()
         
         

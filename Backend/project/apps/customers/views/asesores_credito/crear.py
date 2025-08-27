@@ -41,9 +41,12 @@ def creacion_cobranza(request):
         )
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
-
+   
+    
     if asesor_autenticado is None:
         return redirect('index')
+    
+   
 
     if request.method == 'POST':
         form = CobranzaForms(request.POST)
@@ -52,12 +55,6 @@ def creacion_cobranza(request):
             fcobranza = form.save(commit=False)
             dia = datetime.now().date()
             dia_mas_uno = dia + timedelta(days=1)
-
-            
-
-            
-
-            
 
             credito = Credit.objects.filter(id=fcobranza.credito.id).first()
             
@@ -74,9 +71,13 @@ def creacion_cobranza(request):
             info_cuota = siguiente_pago
 
             fecha = form.cleaned_data.get('fecha_promesa_pago')
+            fecha_gestion = form.cleaned_data.get('fecha_gestion')
 
             if fecha is None:
                 fecha = date.today()
+            
+            if fecha_gestion is None:
+                fcobranza.fecha_gestion = date.today()
 
             resultado = form.cleaned_data.get('resultado')
 
@@ -94,10 +95,40 @@ def creacion_cobranza(request):
             fcobranza.asesor_credito = asesor_autenticado
             fcobranza.save()
 
+
+            
+            
+            # VERIFICAR SI EL CREDITO ES MIO O DE ALGUN OTRO ASESOR
+            if credito.customer_id.new_asesor_credito != asesor_autenticado:
+                informe_asesor = Informe.objects.filter(
+                    usuario=credito.customer_id.new_asesor_credito.usuario,
+                    esta_activo=True
+                ).first()
+
+                if informe_asesor is None:
+                    informe_asesor = Informe.objects.create(
+                        usuario=credito.customer_id.new_asesor_credito.usuario,
+                        esta_activo=True,
+                        nombre_reporte=f'INVERSIONES INTEGRALES EL TELAR'
+                    )
+
+                DetalleInformeCobranza.objects.create(
+                    reporte = informe_asesor,
+                    cobranza = fcobranza
+                )
+
+            
+                
+            # PARA LA PERSONA QUE ESTA AUTENTICADA
             DetalleInformeCobranza.objects.create(
                 reporte = informe_usuario,
                 cobranza = fcobranza
             )
+            
+                
+
+
+
             messages.success(request, "Registro Completado Con Exito.")
             return redirect('customers:cobranza_asesor')
     else:

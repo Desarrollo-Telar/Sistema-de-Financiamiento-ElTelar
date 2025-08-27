@@ -33,7 +33,7 @@ class DetalleInformeCobranzaViewSet(viewsets.ModelViewSet):
         # Si viene parámetro 'reporte'
         reporte_id = self.request.query_params.get('reporte', '').strip()
         if reporte_id:
-            informe = informes.filter(id=reporte_id).first()
+            informe = Informe.objects.filter(id=reporte_id).first()
             if not informe:
                 return DetalleInformeCobranza.objects.none()
             return DetalleInformeCobranza.objects.filter(reporte=informe)

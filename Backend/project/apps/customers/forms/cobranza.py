@@ -48,7 +48,7 @@ class CobranzaForms(forms.ModelForm):
             'credito': forms.Select(attrs={'class':'form-control credito_vigente'}),
             'cuota': forms.Select(attrs={'class':'form-control', 'disabled':'disabled'}),
             'tipo_cobranza': forms.Select(choices=[], attrs={'class': 'form-control'}),
-            'fecha_gestion':forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'class': 'form-control', 'required':'required'}),
+            'fecha_gestion':forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'class': 'form-control'}),
             'tipo_gestion':  forms.Select(choices=[], attrs={'class': 'form-control'}),
             'resultado': forms.Select(choices=[], attrs={'class': 'form-control'}),
             'monto_pendiente': forms.TextInput(attrs={'class': 'form-control', 'type': 'number', 'min': '0', 'step': 'any'}),

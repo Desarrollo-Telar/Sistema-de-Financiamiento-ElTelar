@@ -217,6 +217,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const reporte = document.getElementById("reporte").value;
+        console.log(reporte);
 
         fetch(`/actividades/api/detalle_informe_cobranza/?reporte=${reporte}`)
             .then(response => response.json())
