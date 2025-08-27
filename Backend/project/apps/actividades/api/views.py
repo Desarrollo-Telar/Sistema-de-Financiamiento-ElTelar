@@ -41,4 +41,22 @@ class DetalleInformeCobranzaViewSet(viewsets.ModelViewSet):
         # Si no hay reporte específico, devolver todos los detalles de los informes del usuario
         return DetalleInformeCobranza.objects.filter(reporte__in=informes)
 
+class DetalleInformeCobranzaPorcentajesViewSet(viewsets.ModelViewSet):
+    serializer_class = DetalleInformeCobranzaSerializer
 
+    def get_queryset(self):
+        # Filtrar informes del usuario actual
+        informes = Informe.objects.filter(usuario=self.request.user)
+        if not informes.exists():
+            return DetalleInformeCobranza.objects.none()
+
+        # Si viene parámetro 'reporte'
+        reporte_id = self.request.query_params.get('reporte', '').strip()
+        if reporte_id:
+            informe = informes.filter(id=reporte_id).first()
+            if not informe:
+                return DetalleInformeCobranza.objects.none()
+            return DetalleInformeCobranza.objects.filter(reporte=informe).order_by('-id').first()
+
+        # Si no hay reporte específico, devolver todos los detalles de los informes del usuario
+        return DetalleInformeCobranza.objects.filter(reporte__in=informes).order_by('-id').first()

@@ -71,6 +71,7 @@ class DetalleInformeCobranzaSerializer(serializers.ModelSerializer):
         return {
             'id':instance.id,
             'reporte': reporte,
-            'cobranza':cobranza
+            'cobranza':cobranza,
+            'porcentajes':instance.porcentajes_cobranza(),
             
         }

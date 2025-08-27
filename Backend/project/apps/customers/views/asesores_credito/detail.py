@@ -26,6 +26,9 @@ from django.db.models import Q
 from apps.customers.forms import CobranzaForms
 from datetime import datetime
 
+# utils
+from .utils import porcentajes_cobranza
+
 @login_required
 @permiso_requerido('puede_visualizar_detalle_asesor_credito')
 def detail_asesor(request, codigo_asesor):
@@ -133,6 +136,7 @@ class DetailInformeView(TemplateView):
             'user_code':usuario.user_code,
             'usuario':usuario,
             'form': CobranzaForms(),
+            
            
             
         })

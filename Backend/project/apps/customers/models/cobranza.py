@@ -2,46 +2,19 @@ from django.db import models
 
 # Relacion
 from apps.customers.models import CreditCounselor
-from apps.financings.models import Credit, PaymentPlan
+from apps.financings.models import Credit, PaymentPlan, Recibo
 from apps.users.models import User
 
 
 # FORMATO
 from apps.financings.formato import formatear_numero
 # TIEMPO
-from datetime import datetime
+from datetime import datetime, date
+from django.utils import timezone
 
 import uuid
 
 class Cobranza(models.Model):
-    TIPO_COBRANZA_CHOICES = [
-        ('preventiva', 'Preventiva'),
-        ('normal', 'Normal'),
-        ('castigada', 'Castigada'),
-        ('judicial', 'Judicial'),
-    ]
-
-    TIPO_GESTION_CHOICES = [
-        ('llamada', 'Llamada'),
-        ('whatsapp', 'WhatsApp'),
-        ('visita', 'Visita presencial'),
-        ('correo', 'Correo electrónico'),
-    ]
-
-    RESULTADO_CHOICES = [
-        ('promesa_pago', 'Promesa de pago'),
-        ('pago_realizado', 'Pago realizado'),
-        ('no_localizado', 'No localizable'),
-        ('negativa_pago', 'Negativa de pago'),
-    ]
-
-    ESTADO_COBRANZA_CHOICES = [
-        ('pendiente', 'Pendiente'),
-        ('gestionado', 'Gestionado'),
-        ('incumplido', 'Incumplido'),
-        ('cerrado', 'Cerrado'),
-    ]
-
     credito = models.ForeignKey(Credit, on_delete=models.CASCADE, related_name='cobranzas')
     asesor_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, related_name='cobranzas_gestionadas')
     cuota = models.ForeignKey(PaymentPlan, on_delete=models.CASCADE, related_name='gestiones_cobranza')
@@ -69,6 +42,42 @@ class Cobranza(models.Model):
     fecha_actualizacion = models.DateField("Fecha en que se actualizo la cobranza", default=datetime.now, null=True, blank=True)
     count = models.IntegerField(default=0, verbose_name='Contador')
     codigo_gestion = models.CharField(max_length=75, null=True, blank=True)
+
+
+    def ver_recibo(self):
+        obtener_recibo = Recibo.objects.filter(cuota=self.cuota).first()
+
+        if obtener_recibo is None:
+            return None
+
+        return obtener_recibo.pago.id
+
+    def calcular_dias(self):
+        hoy = timezone.now().date()
+        dias = None
+
+        if self.estado_cobranza == 'COMPLETADO':
+            return dias
+
+        if self.fecha_seguimiento:
+            # Días transcurridos desde seguimiento hasta hoy
+            dias = (hoy - self.fecha_seguimiento.date()).days
+            # ejemplo: 0 si es hoy, positivo si ya pasaron días, negativo no aplica aquí
+        
+        if self.fecha_promesa_pago:
+            # Días restantes para promesa de pago
+            dias = (self.fecha_promesa_pago - hoy).days
+            # positivo si faltan días, negativo si ya pasó
+        
+        if dias < 0:
+            self.resultado = 'Negativa de pago'            
+            self.observaciones = 'El cliente no se ha presentado segun lo gestionado.'
+
+            if self.estado_cobranza != 'INCUMPLIDO':
+                self.estado_cobranza = 'INCUMPLIDO'
+                self.save()
+
+        return dias
 
     def f_monto_pendiente(self):
         return formatear_numero(self.monto_pendiente)
@@ -102,6 +111,13 @@ class Cobranza(models.Model):
         self.count += 1
         # creacion de codigo
         self._generar_codigo_gestion()
+
+        if self.estado_cobranza == 'COMPLETADO' or self.resultado == 'Pago realizado':
+            self.resultado = 'Pago realizado'
+            self.estado_cobranza = 'COMPLETADO'
+        
+        
+    
 
         # guardado
         super().save(*args, **kwargs)

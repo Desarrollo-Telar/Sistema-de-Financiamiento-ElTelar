@@ -11,3 +11,5 @@ from .actualizar import actualizacion_cobranza
 from .eliminar import eliminacion_cobranza
 
 from .informacion_api import InformacionAsesorCobranzaView
+
+from .historial import view_historial_cobranza

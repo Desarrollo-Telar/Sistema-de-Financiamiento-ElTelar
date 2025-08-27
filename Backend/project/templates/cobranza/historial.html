@@ -9,177 +9,71 @@
 {% block content %}
 <div class="container my-4 p-4 bg-white rounded shadow-sm">
     <!-- Lista del Historial -->
-        <div class="history-card fade-in">
-            <div class="card-header bg-transparent border-0 pt-4 pb-2">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0 text-primary fw-bold">
-                        <i class="bi bi-clock-history me-2"></i>Actividades Recientes
-                    </h5>
-                    <small class="text-muted">Última actualización: hace 2 minutos</small>
-                </div>
-            </div>
+    <div class="">
+        <div class="card-header bg-transparent border-0 pt-4 pb-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0 text-primary fw-bold">
+                    <i class="bi bi-clock-history me-2"></i>Actividades Recientes
+                </h5>
+                <a href="{% url 'customers:detail_informe_cobranza' get_cobrazana.asesor_credito.usuario.user_code get_detalle.reporte.id%}"
+                    style="text-decoration: none;">
+                    <small class="text-muted"> <i class="bi bi-arrow-left"></i> Regresar</small>
+                </a>
 
-            <div id="historyList">
-                <!-- Item 1 -->
-                <div class="history-item d-flex align-items-center" data-type="success">
-                    <div class="timeline-dot"></div>
-                    <div class="history-icon icon-success">
-                        <i class="bi bi-check-circle"></i>
-                    </div>
-                    <div class="history-content flex-grow-1">
-                        <h6 class="mb-1">Pago procesado correctamente</h6>
-                        <p class="text-muted mb-2">Se ha procesado el pago de $1,250.00 USD para la factura #FAC-2024-0158</p>
-                        <div class="history-meta">
-                            <span><i class="bi bi-person me-1"></i>Juan Pérez</span>
-                            <span><i class="bi bi-calendar me-1"></i>26 Ago 2025, 14:32</span>
-                            <span class="status-badge bg-success-subtle text-success">Completado</span>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-eye me-2"></i>Ver detalles</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>Descargar</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="history-item d-flex align-items-center" data-type="warning">
-                    <div class="timeline-dot"></div>
-                    <div class="history-icon icon-warning">
-                        <i class="bi bi-exclamation-triangle"></i>
-                    </div>
-                    <div class="history-content flex-grow-1">
-                        <h6 class="mb-1">Documento pendiente de revisión</h6>
-                        <p class="text-muted mb-2">El contrato CON-2024-0089 requiere aprobación del departamento legal</p>
-                        <div class="history-meta">
-                            <span><i class="bi bi-person me-1"></i>María García</span>
-                            <span><i class="bi bi-calendar me-1"></i>26 Ago 2025, 12:15</span>
-                            <span class="status-badge bg-warning-subtle text-warning">Pendiente</span>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-eye me-2"></i>Ver detalles</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil me-2"></i>Editar</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="history-item d-flex align-items-center" data-type="info">
-                    <div class="timeline-dot"></div>
-                    <div class="history-icon icon-info">
-                        <i class="bi bi-info-circle"></i>
-                    </div>
-                    <div class="history-content flex-grow-1">
-                        <h6 class="mb-1">Nuevo usuario registrado</h6>
-                        <p class="text-muted mb-2">Carlos Rodríguez se ha registrado en el sistema con el rol de "Usuario estándar"</p>
-                        <div class="history-meta">
-                            <span><i class="bi bi-person me-1"></i>Sistema</span>
-                            <span><i class="bi bi-calendar me-1"></i>26 Ago 2025, 10:45</span>
-                            <span class="status-badge bg-info-subtle text-info">Información</span>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-eye me-2"></i>Ver perfil</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Configurar</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="history-item d-flex align-items-center" data-type="error">
-                    <div class="timeline-dot"></div>
-                    <div class="history-icon icon-danger">
-                        <i class="bi bi-x-circle"></i>
-                    </div>
-                    <div class="history-content flex-grow-1">
-                        <h6 class="mb-1">Error en la sincronización</h6>
-                        <p class="text-muted mb-2">Falló la sincronización con el servidor externo. Código de error: SYNC_ERR_404</p>
-                        <div class="history-meta">
-                            <span><i class="bi bi-person me-1"></i>Sistema</span>
-                            <span><i class="bi bi-calendar me-1"></i>26 Ago 2025, 09:22</span>
-                            <span class="status-badge bg-danger-subtle text-danger">Error</span>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-clockwise me-2"></i>Reintentar</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-bug me-2"></i>Reportar error</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Item 5 -->
-                <div class="history-item d-flex align-items-center" data-type="success">
-                    <div class="timeline-dot"></div>
-                    <div class="history-icon icon-success">
-                        <i class="bi bi-upload"></i>
-                    </div>
-                    <div class="history-content flex-grow-1">
-                        <h6 class="mb-1">Backup completado</h6>
-                        <p class="text-muted mb-2">Respaldo automático de la base de datos completado exitosamente (2.3 GB)</p>
-                        <div class="history-meta">
-                            <span><i class="bi bi-person me-1"></i>Sistema</span>
-                            <span><i class="bi bi-calendar me-1"></i>26 Ago 2025, 02:00</span>
-                            <span class="status-badge bg-success-subtle text-success">Completado</span>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>Descargar</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check me-2"></i>Verificar</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Paginación -->
-            <div class="card-footer bg-transparent border-0">
-                <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted">Mostrando 1-5 de 48 registros</small>
-                    <nav>
-                        <ul class="pagination pagination-modern mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#">
-                                    <i class="bi bi-chevron-left"></i>
-                                </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="bi bi-chevron-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
             </div>
         </div>
+
+        <div id="historyList">
+
+
+            {% for historial in list_historial %}
+            <div class="history-item d-flex align-items-center" data-type="info">
+                <div class="timeline-dot"></div>
+                <div class="history-icon icon-info">
+                    <i class="bi bi-info-circle"></i>
+                </div>
+                <div class="history-content flex-grow-1">
+                    <h6 class="mb-1 text-uppercase">{{historial.accion}}</h6>
+                    <p class="text-muted mb-2">
+
+                        {{historial.datos_nuevos.observaciones}}
+
+                    </p>
+                    <div class="history-meta">
+                        <span><i class="bi bi-person me-1"></i>{{historial.usuario}}</span>
+                        <span><i class="bi bi-calendar me-1"></i>{{historial.fecha_cambio}}</span>
+                        <span class="status-badge bg-info-subtle text-info">Información</span>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item ver-detalles" href="#" data-historial_id="{{ historial.id }}">
+                                <i class="bi bi-eye me-2"></i> Ver Detalles
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>Descargar</a></li>
+
+                    </ul>
+                </div>
+
+            </div>
+            {% endfor%}
+
+
+        </div>
+
+
+    </div>
 </div>
+
+{% include 'cobranza/snippets/modal_historial.html'%}
+
 {% endblock%}
+
+{% block js%}
+<script type="module" src="{% static 'js/cobranza/historial.js'%}"></script>
+{% endblock %}

@@ -13,6 +13,7 @@ router.register(r'customers_accept', views.CustomerAcceptViewSet, 'clientes_acep
 router.register(r'immigration_status', views.ImmigrationStatusViewSet, 'codicion_migratoria')
 router.register(r'asesores',views.CreditCounselorSerializerViewSet,'asesores_creditos')
 router.register(r'cobranza',views.CobranzaViewSet,'cobranza')
+router.register(r'historial-cobranza', views.HistorialCobranzaViewSet, 'historial-cobranza' )
 urlpatterns = [
     path('api/', include(router.urls)),
 ]

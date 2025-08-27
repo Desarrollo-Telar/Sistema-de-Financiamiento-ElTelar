@@ -63,6 +63,7 @@ export const urls_p = {
     api_url_condicion_migratoria:  `${baseUrl}/customers/api/immigration_status/`,
     api_url_asesores_credito:`${baseUrl}/customers/api/asesores/`,
     api_url_cobranza:`${baseUrl}/customers/api/cobranza/`,
+    api_url_detalle_cobranza:`${baseUrl}/actividades/api/detalle_informe_cobranza/`,
 
     // DIRECCION
     api_url_direccion:  `${baseUrl}/addresses/api/address/`,

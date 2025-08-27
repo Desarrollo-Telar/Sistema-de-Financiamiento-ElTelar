@@ -9,6 +9,7 @@
 
 {% block content %}
 <div class="container my-4 p-4 bg-white rounded shadow-sm">
+    <input type="hidden" value="{{report.id}}" id="reporte">
     <!-- Header -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4">
         <h1 class="h2 text-dark fw-bold">Dashboard de Cobranza</h1>
@@ -40,25 +41,26 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4 mb-4">
-                            <div class="text-muted small fw-semibold mb-1">PENDIENTE</div>
+                            <div class="text-muted small fw-semibold mb-1">PENDIENTE <span id="pendientes"></span>
+                            </div>
                             <div class="progress-bar">
                                 <div class="progress-fill-warning" id="progress-fill-warning-pendiente"></div>
                             </div>
-                            
-                        </div>                       
+
+                        </div>
                         <div class="col-md-4 mb-4">
-                            <div class="text-muted small fw-semibold mb-1">COBRADO</div>
+                            <div class="text-muted small fw-semibold mb-1">COBRADO <span id="completados"></span> </div>
                             <div class="progress-bar">
                                 <div class="progress-fill-success" id="progress-fill-success-cobrado"></div>
                             </div>
-                            
+
                         </div>
                         <div class="col-md-4 mb-4">
-                            <div class="text-muted small fw-semibold mb-1">VENCIDO</div>
+                            <div class="text-muted small fw-semibold mb-1">VENCIDO <span id="vencidos"></span></div>
                             <div class="progress-bar">
                                 <div class="progress-fill-danger" id="progress-fill-danger-vencido"></div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -69,210 +71,136 @@
     <!-- Facturas Table -->
     <div class="table-card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold">Facturas Recientes</h5>
             <div class="d-flex gap-3">
                 <div class="search-container">
-                    <input type="text" class="form-control" placeholder="Buscar facturas..." id="searchInput">
-                    <i class="bi bi-search"></i>
+                    {% include 'cobranza/snippets/search.html' %}
                 </div>
                 <div class="dropdown">
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         <i class="bi bi-funnel me-1"></i> Filtrar
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" data-filter="all">Todas</a></li>
-                        <li><a class="dropdown-item" href="#" data-filter="pending">Pendientes</a></li>
-                        <li><a class="dropdown-item" href="#" data-filter="overdue">Vencidas</a></li>
-                        <li><a class="dropdown-item" href="#" data-filter="paid">Pagadas</a></li>
+                        <li><a class="dropdown-item"
+                                href="{% url 'customers:detail_informe_cobranza' user_code report.id %}"
+                                data-filter="all">Todas</a></li>
+                        <li><a class="dropdown-item"
+                                href="{% url 'customers:detail_informe_cobranza' user_code report.id %}?estado_cobranza=PENDIENTE"
+                                data-filter="pending">Pendientes</a></li>
+                        <li><a class="dropdown-item"
+                                href="{% url 'customers:detail_informe_cobranza' user_code report.id %}?estado_cobranza=INCUMPLIDO"
+                                data-filter="overdue">Vencidas</a></li>
+                        <li><a class="dropdown-item"
+                                href="{% url 'customers:detail_informe_cobranza' user_code report.id %}?estado_cobranza=COMPLETADO"
+                                data-filter="paid">Pagadas</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-
-        <!-- Filter Tabs -->
-        <ul class="nav nav-tabs filter-tabs px-3">
-            <li class="nav-item">
-                <a class="nav-link active" href="#" data-filter="all">Todas (59)</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-filter="pending">Pendientes (35)</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-filter="overdue">Vencidas (12)</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-filter="paid">Pagadas (12)</a>
-            </li>
-        </ul>
 
         <div class="table-responsive">
             <table class="table table-hover mb-0" id="invoiceTable">
                 <thead>
                     <tr>
-                        <th>Factura</th>
+                        <th>Codigo de Cobranza</th>
                         <th>Cliente</th>
                         <th>Monto</th>
-                        <th>Fecha Emisión</th>
-                        <th>Vencimiento</th>
+                        <th>Fecha De Gestion</th>
+                        <th>Fecha De Promesa de Pago o De Seguimiento</th>
                         <th>Estado</th>
-                        <th>Días Vencido</th>
+                        <th>Días Por Vencer</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-status="overdue">
-                        <td><span class="fw-semibold text-primary">#FAC-2024-001</span></td>
+                    {% for data in object_list %}
+                    <tr data-status="
+    {% if data.cobranza.estado_cobranza == 'INCUMPLIDO' %}overdue
+    {% elif data.cobranza.estado_cobranza == 'COMPLETADO' %}paid
+    {% elif data.cobranza.estado_cobranza == 'PENDIENTE' %}pending
+    {% endif %}
+">
+                        <td><span class="fw-semibold text-primary text-uppercase">
+                            <a href="{% url 'financings:detail_credit' data.cobranza.credito.id  %}" style="text-decoration: none;">
+                                #{{ data.cobranza.codigo_gestion }}
+                            </a>
+                            
+                        </span></td>
                         <td>
-                            <div class="fw-semibold">Empresa ABC S.A.</div>
-                            <div class="small text-muted">contacto@abc.com</div>
+                            <div class="fw-semibold">{{data.cobranza.credito.customer_id}}</div>
+                            <div class="small text-muted">{{data.cobranza.credito.codigo_credito}}</div>
+                            <div class="small text-muted">{{data.cobranza.credito.customer_id.telephone}}</div>
                         </td>
-                        <td><span class="fw-bold">$15,750.00</span></td>
-                        <td>15/07/2024</td>
-                        <td>15/08/2024</td>
-                        <td><span class="badge badge-status bg-danger">Vencida</span></td>
-                        <td><span class="text-danger fw-semibold">10 días</span></td>
+                        <td><span class="fw-bold">Q{{ data.cobranza.f_monto_pendiente }}</span></td>
+                        <td>{{ data.cobranza.fecha_gestion.date }} </td>
+                        <td>
+                            {% if data.cobranza.fecha_promesa_pago %}
+                            {{ data.cobranza.fecha_promesa_pago }}
+                            {% endif %}
+                            {% if data.cobranza.fecha_seguimiento %}
+                            {{data.cobranza.fecha_seguimiento}}
+                            {% endif %}
+                        </td>
+                        <td><span class="badge badge-status {% if data.cobranza.estado_cobranza == 'INCUMPLIDO' %} bg-danger
+    {% elif data.cobranza.estado_cobranza == 'COMPLETADO' %} bg-success
+    {% elif data.cobranza.estado_cobranza == 'PENDIENTE' %} text-bg-warning
+    {% endif %}">
+                                {% if data.cobranza.estado_cobranza == 'INCUMPLIDO' %} Vencida
+                                {% elif data.cobranza.estado_cobranza == 'COMPLETADO' %} Pagada
+                                {% elif data.cobranza.estado_cobranza == 'PENDIENTE' %} Pendiente
+                                {% endif %}
+
+
+                            </span></td>
+                        <td><span class="{% if data.cobranza.estado_cobranza == 'INCUMPLIDO' %} text-danger
+    {% elif data.cobranza.estado_cobranza == 'COMPLETADO' %} text-muted
+    {% elif data.cobranza.estado_cobranza == 'PENDIENTE' %}text-muted
+    {% endif %} fw-semibold">
+                                {% if data.cobranza.calcular_dias %}
+                                {{data.cobranza.calcular_dias}}
+                                {% else %}
+                                --
+                                {% endif %}
+                            </span></td>
                         <td>
                             <div class="btn-group" role="group">
-                                <button class="btn btn-outline-primary btn-action" title="Ver">
+                                <button class="btn btn-outline-primary btn-action ver_historial" id="ver_historial" title="Ver" data-id="{{ data.cobranza.id }}">
                                     <i class="bi bi-eye"></i>
                                 </button>
-                                <button class="btn btn-outline-success btn-action" title="Llamar">
-                                    <i class="bi bi-telephone"></i>
-                                </button>
-                                <button class="btn btn-outline-info btn-action" title="Email">
-                                    <i class="bi bi-envelope"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr data-status="pending">
-                        <td><span class="fw-semibold text-primary">#FAC-2024-002</span></td>
-                        <td>
-                            <div class="fw-semibold">Constructora XYZ</div>
-                            <div class="small text-muted">admin@xyz.com</div>
-                        </td>
-                        <td><span class="fw-bold">$8,950.00</span></td>
-                        <td>20/07/2024</td>
-                        <td>20/08/2024</td>
-                        <td><span class="badge badge-status bg-warning">Pendiente</span></td>
-                        <td><span class="text-muted">-5 días</span></td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <button class="btn btn-outline-primary btn-action" title="Ver">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-                                <button class="btn btn-outline-success btn-action" title="Llamar">
-                                    <i class="bi bi-telephone"></i>
-                                </button>
-                                <button class="btn btn-outline-info btn-action" title="Email">
-                                    <i class="bi bi-envelope"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr data-status="paid">
-                        <td><span class="fw-semibold text-primary">#FAC-2024-003</span></td>
-                        <td>
-                            <div class="fw-semibold">Comercial DEF</div>
-                            <div class="small text-muted">ventas@def.com</div>
-                        </td>
-                        <td><span class="fw-bold">$12,300.00</span></td>
-                        <td>10/07/2024</td>
-                        <td>10/08/2024</td>
-                        <td><span class="badge badge-status bg-success">Pagada</span></td>
-                        <td><span class="text-muted">-</span></td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <button class="btn btn-outline-primary btn-action" title="Ver">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-                                <button class="btn btn-outline-secondary btn-action" title="Recibo">
+                                {% if data.cobranza.estado_cobranza == 'COMPLETADO' %}
+                                {% if  data.cobranza.ver_recibo %}
+                                <button class="btn btn-outline-dark btn-action ver_recibo" title="Recibo" id="ver_recibo"  data-id="{{ data.cobranza.ver_recibo }}">
                                     <i class="bi bi-receipt"></i>
                                 </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr data-status="overdue">
-                        <td><span class="fw-semibold text-primary">#FAC-2024-004</span></td>
-                        <td>
-                            <div class="fw-semibold">Servicios GHI</div>
-                            <div class="small text-muted">info@ghi.com</div>
-                        </td>
-                        <td><span class="fw-bold">$6,780.00</span></td>
-                        <td>05/07/2024</td>
-                        <td>05/08/2024</td>
-                        <td><span class="badge badge-status bg-danger">Vencida</span></td>
-                        <td><span class="text-danger fw-semibold">20 días</span></td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <button class="btn btn-outline-primary btn-action" title="Ver">
-                                    <i class="bi bi-eye"></i>
+                                {% endif %}
+
+                                {% else%}
+                                <button class="btn btn-outline-dark btn-action editar_cobranza" title="Editar" id="editar_cobranza"  data-id="{{ data.cobranza.id }}">
+                                    <i class="bi bi-pencil-square"></i>
                                 </button>
-                                <button class="btn btn-outline-success btn-action" title="Llamar">
-                                    <i class="bi bi-telephone"></i>
-                                </button>
-                                <button class="btn btn-outline-info btn-action" title="Email">
+
+                                
+                                
+                                <button class="btn btn-outline-dark btn-action mandar_mensaje" title="Email" id="mandar_mensaje" data-cuota="{{ data.cobranza.cuota.id }}" 
+    data-cliente="{{ data.cobranza.credito.customer_id.customer_code }}">
                                     <i class="bi bi-envelope"></i>
                                 </button>
+                                {% endif %}
+
+
+
                             </div>
                         </td>
+
+
                     </tr>
-                    <tr data-status="pending">
-                        <td><span class="fw-semibold text-primary">#FAC-2024-005</span></td>
-                        <td>
-                            <div class="fw-semibold">Industrias JKL</div>
-                            <div class="small text-muted">cobranza@jkl.com</div>
-                        </td>
-                        <td><span class="fw-bold">$25,890.00</span></td>
-                        <td>25/07/2024</td>
-                        <td>25/08/2024</td>
-                        <td><span class="badge badge-status bg-warning">Pendiente</span></td>
-                        <td><span class="text-muted">0 días</span></td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <button class="btn btn-outline-primary btn-action" title="Ver">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-                                <button class="btn btn-outline-success btn-action" title="Llamar">
-                                    <i class="bi bi-telephone"></i>
-                                </button>
-                                <button class="btn btn-outline-info btn-action" title="Email">
-                                    <i class="bi bi-envelope"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    {% endfor %}
+
+
                 </tbody>
             </table>
         </div>
 
-        <!-- Pagination -->
-        <div class="card-footer bg-white border-0">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="text-muted small">
-                    Mostrando 5 de 59 resultados
-                </div>
-                <nav>
-                    <ul class="pagination pagination-sm mb-0">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Siguiente</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        
     </div>
 </div>
 
@@ -286,4 +214,27 @@
 <script type="module" src="{% static 'js/cobranza/seleccionar.js'%}"></script>
 <script type="module" src="{% static 'js/grafica_cobranza.js'%}"></script>
 <script type="module" src="{% static 'js/cobranza/detalle.js'%}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const reporte = document.getElementById("reporte").value;
+
+        fetch(`/actividades/api/detalle_informe_cobranza/?reporte=${reporte}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    const porcentajes = data[0].porcentajes;
+                    console.log(porcentajes);
+                    // Ejemplo: mostrarlos en pantalla
+                    document.getElementById("progress-fill-warning-pendiente").style.width = porcentajes.pendientes + "%";
+                    document.getElementById("progress-fill-danger-vencido").style.width = porcentajes.vencidos + "%";
+                    document.getElementById("progress-fill-success-cobrado").style.width = porcentajes.completados + "%";
+
+                    document.getElementById("pendientes").textContent = porcentajes.pendientes + "%";
+                    document.getElementById("vencidos").textContent = porcentajes.vencidos + "%";
+                    document.getElementById("completados").textContent = porcentajes.completados + "%";
+                }
+            })
+            .catch(error => console.error(error));
+    });
+</script>
 {% endblock %}

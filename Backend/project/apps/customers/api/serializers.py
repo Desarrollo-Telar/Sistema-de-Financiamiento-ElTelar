@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # Models
-from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor, Cobranza
+from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor, Cobranza, HistorialCobranza
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -73,3 +73,35 @@ class CobranzaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cobranza
         fields = '__all__'
+
+class HistorialCobranzaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HistorialCobranza
+        fields = '__all__'
+        
+    def to_representation(self, instance):
+        usuario = None
+        cobranza = None
+        if instance.usuario:
+            usuario = f'{instance.usuario.first_name} {instance.usuario.last_name}'
+
+        observaciones_cambio = None
+
+        if instance.datos_nuevos['observaciones']:
+            observaciones_cambio = instance.datos_nuevos['observaciones']
+        
+        if instance.cobranza:
+            cobranza = CobranzaSerializer(instance.cobranza).data
+
+        return {
+            'id':instance.id,
+            'fecha_cambio': instance.fecha_cambio,
+            'accion':instance.accion,
+            'datos_anteriores': instance.datos_anteriores,
+            'usuario':usuario,
+            'datos_nuevos':instance.datos_nuevos,
+            'cobranza':cobranza,
+            'observaciones_cambio': observaciones_cambio,
+
+
+        }

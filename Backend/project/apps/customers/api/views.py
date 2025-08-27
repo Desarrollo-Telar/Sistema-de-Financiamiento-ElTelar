@@ -1,5 +1,5 @@
 # Serializador
-from .serializers import CustomerSerializer, ImmigrationStatusSerializer, CreditCounselorSerializer, CobranzaSerializer
+from .serializers import CustomerSerializer, ImmigrationStatusSerializer, CreditCounselorSerializer, CobranzaSerializer, HistorialCobranzaSerializer
 
 # API
 from rest_framework import viewsets, status, generics
@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 # Models
-from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor, Cobranza
+from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor, Cobranza, HistorialCobranza
 
 from django.db.models import Q
 
@@ -69,6 +69,10 @@ class CustomerAcceptViewSet(viewsets.ModelViewSet):
 class ImmigrationStatusViewSet(viewsets.ModelViewSet):
     serializer_class = ImmigrationStatusSerializer
     queryset = ImmigrationStatus.objects.all()
+
+class HistorialCobranzaViewSet(viewsets.ModelViewSet):
+    serializer_class = HistorialCobranzaSerializer
+    queryset = HistorialCobranza.objects.all()
 
 class CreditCounselorSerializerViewSet(viewsets.ModelViewSet):
     serializer_class = CreditCounselorSerializer

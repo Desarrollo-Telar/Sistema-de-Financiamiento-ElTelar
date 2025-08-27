@@ -198,3 +198,62 @@
         transform: translateY(0);
     }
 }
+
+
+.history-item {
+    position: relative;
+    padding: 15px 0;
+    border-left: 2px solid #e9ecef;
+    margin-left: 20px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: #6c757d;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.history-icon {
+    background: #e3f2fd;
+    color: #1976d2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    margin-left: 20px;
+}
+
+.icon-info {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.history-meta span {
+    font-size: 0.875rem;
+    margin-right: 15px;
+    color: #6c757d;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.modal-body .row {
+    margin-bottom: 15px;
+}
+
+.modal-body .fw-bold {
+    color: #495057;
+}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial con Modal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        .history-item {
+            position: relative;
+            padding: 15px 0;
+            border-left: 2px solid #e9ecef;
+            margin-left: 20px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: #6c757d;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        
+        .history-icon {
+            background: #e3f2fd;
+            color: #1976d2;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            margin-left: 20px;
+        }
+        
+        .icon-info {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .history-meta span {
+            font-size: 0.875rem;
+            margin-right: 15px;
+            color: #6c757d;
+        }
+        
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .modal-body .row {
+            margin-bottom: 15px;
+        }
+        
+        .modal-body .fw-bold {
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h3 class="mb-4">Historial de Cambios</h3>
+        
+        <!-- Ejemplo de historial con datos de muestra -->
+        <div class="history-item d-flex align-items-center" data-type="info">
+            <div class="timeline-dot"></div>
+            <div class="history-icon icon-info">
+                <i class="bi bi-info-circle"></i>
+            </div>
+            <div class="history-content flex-grow-1">
+                <h6 class="mb-1 text-uppercase">ACTUALIZACIÓN DE DATOS</h6>
+                <p class="text-muted mb-2">
+                    Se actualizaron los datos del cliente con nueva información de contacto y dirección.
+                </p>
+                <div class="history-meta">
+                    <span><i class="bi bi-person me-1"></i>Juan Pérez</span>
+                    <span><i class="bi bi-calendar me-1"></i>27/08/2025 14:30</span>
+                    <span class="status-badge bg-info-subtle text-info">Información</span>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="bi bi-three-dots"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item ver-detalles" href="#" 
+                           data-accion="ACTUALIZACIÓN DE DATOS"
+                           data-usuario="Juan Pérez"
+                           data-fecha="27/08/2025 14:30"
+                           data-observaciones="Se actualizaron los datos del cliente con nueva información de contacto y dirección."
+                           data-datos-anteriores='{"nombre": "María García", "telefono": "555-1234", "direccion": "Calle Antigua 123"}'
+                           data-datos-nuevos='{"nombre": "María García López", "telefono": "555-9876", "direccion": "Avenida Nueva 456"}'
+                           data-ip="192.168.1.100"
+                           data-dispositivo="Chrome 118.0">
+                            <i class="bi bi-eye me-2"></i>Ver Detalles
+                        </a>
+                    </li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>Descargar</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="history-item d-flex align-items-center" data-type="info">
+            <div class="timeline-dot"></div>
+            <div class="history-icon icon-info">
+                <i class="bi bi-info-circle"></i>
+            </div>
+            <div class="history-content flex-grow-1">
+                <h6 class="mb-1 text-uppercase">CREACIÓN DE REGISTRO</h6>
+                <p class="text-muted mb-2">
+                    Se creó un nuevo registro en el sistema con todos los datos iniciales.
+                </p>
+                <div class="history-meta">
+                    <span><i class="bi bi-person me-1"></i>Ana Martínez</span>
+                    <span><i class="bi bi-calendar me-1"></i>26/08/2025 09:15</span>
+                    <span class="status-badge bg-info-subtle text-info">Información</span>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="bi bi-three-dots"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item ver-detalles" href="#" 
+                           data-accion="CREACIÓN DE REGISTRO"
+                           data-usuario="Ana Martínez"
+                           data-fecha="26/08/2025 09:15"
+                           data-observaciones="Se creó un nuevo registro en el sistema con todos los datos iniciales."
+                           data-datos-anteriores='{}'
+                           data-datos-nuevos='{"nombre": "Pedro López", "email": "pedro@email.com", "telefono": "555-0000"}'
+                           data-ip="10.0.0.50"
+                           data-dispositivo="Firefox 117.0">
+                            <i class="bi bi-eye me-2"></i>Ver Detalles
+                        </a>
+                    </li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>Descargar</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalles -->
+    <div class="modal fade" id="modalDetalles" tabindex="-1" aria-labelledby="modalDetallesLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDetallesLabel">
+                        <i class="bi bi-info-circle me-2"></i>Detalles del Cambio
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-1"><span class="fw-bold">Acción:</span></p>
+                            <p class="text-muted" id="modal-accion">-</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-1"><span class="fw-bold">Usuario:</span></p>
+                            <p class="text-muted" id="modal-usuario">-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-1"><span class="fw-bold">Fecha y Hora:</span></p>
+                            <p class="text-muted" id="modal-fecha">-</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-1"><span class="fw-bold">Dirección IP:</span></p>
+                            <p class="text-muted" id="modal-ip">-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-1"><span class="fw-bold">Dispositivo/Navegador:</span></p>
+                            <p class="text-muted" id="modal-dispositivo">-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-1"><span class="fw-bold">Observaciones:</span></p>
+                            <p class="text-muted" id="modal-observaciones">-</p>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row" id="datos-anteriores-section">
+                        <div class="col-12">
+                            <h6 class="text-danger"><i class="bi bi-dash-circle me-2"></i>Datos Anteriores</h6>
+                            <div class="bg-light p-3 rounded" id="modal-datos-anteriores">
+                                <p class="text-muted mb-0">Sin datos anteriores</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h6 class="text-success"><i class="bi bi-plus-circle me-2"></i>Datos Nuevos</h6>
+                            <div class="bg-light p-3 rounded" id="modal-datos-nuevos">
+                                <p class="text-muted mb-0">Sin datos nuevos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg me-2"></i>Cerrar
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="bi bi-download me-2"></i>Descargar Detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Agregar event listener a todos los botones "Ver Detalles"
+            document.querySelectorAll('.ver-detalles').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Obtener los datos del elemento clickeado
+                    const accion = this.dataset.accion;
+                    const usuario = this.dataset.usuario;
+                    const fecha = this.dataset.fecha;
+                    const observaciones = this.dataset.observaciones;
+                    const datosAnteriores = this.dataset.datosAnteriores;
+                    const datosNuevos = this.dataset.datosNuevos;
+                    const ip = this.dataset.ip || 'No disponible';
+                    const dispositivo = this.dataset.dispositivo || 'No disponible';
+                    
+                    // Llenar los campos del modal
+                    document.getElementById('modal-accion').textContent = accion;
+                    document.getElementById('modal-usuario').textContent = usuario;
+                    document.getElementById('modal-fecha').textContent = fecha;
+                    document.getElementById('modal-observaciones').textContent = observaciones;
+                    document.getElementById('modal-ip').textContent = ip;
+                    document.getElementById('modal-dispositivo').textContent = dispositivo;
+                    
+                    // Procesar datos anteriores
+                    const datosAnterioresContainer = document.getElementById('modal-datos-anteriores');
+                    const datosAnterioresSection = document.getElementById('datos-anteriores-section');
+                    
+                    try {
+                        const datosAnt = JSON.parse(datosAnteriores);
+                        if (Object.keys(datosAnt).length === 0) {
+                            datosAnterioresContainer.innerHTML = '<p class="text-muted mb-0">Sin datos anteriores (registro nuevo)</p>';
+                        } else {
+                            let htmlAnteriores = '';
+                            for (const [key, value] of Object.entries(datosAnt)) {
+                                htmlAnteriores += `<p class="mb-1"><strong>${key}:</strong> ${value}</p>`;
+                            }
+                            datosAnterioresContainer.innerHTML = htmlAnteriores;
+                        }
+                    } catch (e) {
+                        datosAnterioresContainer.innerHTML = '<p class="text-muted mb-0">Error al procesar datos anteriores</p>';
+                    }
+                    
+                    // Procesar datos nuevos
+                    const datosNuevosContainer = document.getElementById('modal-datos-nuevos');
+                    try {
+                        const datosNv = JSON.parse(datosNuevos);
+                        if (Object.keys(datosNv).length === 0) {
+                            datosNuevosContainer.innerHTML = '<p class="text-muted mb-0">Sin datos nuevos</p>';
+                        } else {
+                            let htmlNuevos = '';
+                            for (const [key, value] of Object.entries(datosNv)) {
+                                htmlNuevos += `<p class="mb-1"><strong>${key}:</strong> ${value}</p>`;
+                            }
+                            datosNuevosContainer.innerHTML = htmlNuevos;
+                        }
+                    } catch (e) {
+                        datosNuevosContainer.innerHTML = '<p class="text-muted mb-0">Error al procesar datos nuevos</p>';
+                    }
+                    
+                    // Mostrar el modal
+                    const modal = new bootstrap.Modal(document.getElementById('modalDetalles'));
+                    modal.show();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{% load static %}
+<div class="modal fade" id="modalDetalles" tabindex="-1" aria-labelledby="modalDetallesLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDetallesLabel">
+                        <i class="bi bi-info-circle me-2"></i>Detalles del Cambio
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-1"><span class="fw-bold">Acción:</span></p>
+                            <p class="text-muted" id="modal-accion">-</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-1"><span class="fw-bold">Usuario:</span></p>
+                            <p class="text-muted" id="modal-usuario">-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-1"><span class="fw-bold">Fecha y Hora:</span></p>
+                            <p class="text-muted" id="modal-fecha">-</p>
+                        </div>
+                        
+                    </div>
+                    
+                                       
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-1"><span class="fw-bold">Observaciones:</span></p>
+                            <p class="text-muted" id="modal-observaciones">-</p>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row" id="datos-anteriores-section">
+                        <div class="col-12">
+                            <h6 class="text-danger"><i class="bi bi-dash-circle me-2"></i>Datos Anteriores</h6>
+                            <div class="bg-light p-3 rounded" id="modal-datos-anteriores">
+                                <p class="text-muted mb-0">Sin datos anteriores</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h6 class="text-success"><i class="bi bi-plus-circle me-2"></i>Datos Nuevos</h6>
+                            <div class="bg-light p-3 rounded" id="modal-datos-nuevos">
+                                <p class="text-muted mb-0">Sin datos nuevos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn_cancel" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg me-2"></i>Cerrar
+                    </button>
+                    <button type="button" class="btn_guardar">
+                        <i class="bi bi-download me-2"></i>Descargar Detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
