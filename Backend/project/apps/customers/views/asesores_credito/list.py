@@ -37,6 +37,7 @@ def view_historial_cobranza(request, id):
 
     return render(request, template_name, context )
 
+@login_required
 @permiso_requerido('puede_ver_registros_cobranza')
 def view_gestion(request):
     # Verificar si existe un informe vigente para el usuario
