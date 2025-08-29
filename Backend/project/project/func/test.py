@@ -12,7 +12,7 @@ django.setup()
 
 # Modelos
 from apps.customers.models import CreditCounselor, Customer, Cobranza
-from apps.financings.models import Credit, PaymentPlan, Banco, Payment
+from apps.financings.models import Credit, PaymentPlan, Banco, Payment, Recibo
 
 # Scripts
 from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
@@ -77,9 +77,16 @@ if __name__ == "__main__":
   try:
     #migracion_datos()
     for c in Cobranza.objects.all():
-      if c.estado_cobranza:
-          c.estado_cobranza = c.estado_cobranza.upper()
-          c.save()
+      cambio = Recibo.objects.filter(cuota=c.cuota).first()
+
+      if cambio is not None:
+        c.estado_cobranza = 'COMPLETADO'
+        c.resultado = 'Pago realizado'
+        c.observaciones = f'EL CLIENTE {cambio.cliente} realizo un abono de: Q{cambio.Ftotal()}'
+        c.save()
+
+      
+          
 
 
 

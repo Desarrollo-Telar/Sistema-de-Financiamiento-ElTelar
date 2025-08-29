@@ -49,8 +49,7 @@ def view_gestion(request):
         # Si no existe, crear uno nuevo
         informe_vigente = Informe.objects.create(
             usuario=request.user,
-            esta_activo=True,
-            fecha_registro=timezone.now()
+            esta_activo=True
         )
     return redirect('customers:detail_informe_cobranza',request.user.user_code, informe_vigente.id) 
 
