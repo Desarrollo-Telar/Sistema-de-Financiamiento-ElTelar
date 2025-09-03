@@ -30,3 +30,15 @@ def fechas_cobranzas():
             send_email_recordatorio_cobranza(cobrar)
         else:
             print("Fuera del horario permitido para enviar correos.")
+    
+    fecha_promesa_pago = Cobranza.objects.filter(fecha_promesa_pago=hoy)
+
+    for cambio in fecha_promesa_pago:
+
+        if cambio.estado_cobranza == 'COMPLETADO':
+            continue
+
+        cambio.resultado = 'Negativa de pago'  
+        cambio.observaciones = 'El cliente no se ha presentado segun lo gestionado.'
+        cambio.estado_cobranza = 'INCUMPLIDO'
+        cambio.save()

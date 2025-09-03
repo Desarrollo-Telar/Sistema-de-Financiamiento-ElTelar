@@ -91,7 +91,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         if pago.credit_id:
             cuota.credit_id = pago.credit_id
             cuota.interes_generado =interes
-            cuota.interest = interes+interes_acumulado
+            cuota.interest = interes_acumulado
             cuota.mora = mora 
 
         if pago.seguro:

@@ -75,7 +75,7 @@ class Cobranza(models.Model):
 
             if self.estado_cobranza != 'INCUMPLIDO':
                 self.estado_cobranza = 'INCUMPLIDO'
-                self.save()
+                #self.save()
 
         return dias
 

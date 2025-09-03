@@ -36,7 +36,7 @@ def detail_asesor(request, codigo_asesor):
     asesor_credito = CreditCounselor.objects.filter(codigo_asesor=codigo_asesor).first()
 
     if asesor_credito is None:
-        return redirect('http_404')
+        return redirect('index')
     
     context = {
         'title': f'{codigo_asesor}',

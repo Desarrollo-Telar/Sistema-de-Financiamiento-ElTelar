@@ -12,7 +12,7 @@ django.setup()
 
 # Modelos
 from apps.customers.models import CreditCounselor, Customer, Cobranza
-from apps.financings.models import Credit, PaymentPlan, Banco, Payment, Recibo
+from apps.financings.models import Credit, PaymentPlan, Banco, Payment, Recibo, AccountStatement, Disbursement
 
 # Scripts
 from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
@@ -21,7 +21,8 @@ from scripts.asignar_nuevos_permisos.otorgar_permiso import asignar
 from scripts.cargar_estado_cuenta.estado_cuenta import migracion_datos
 
 # Tiempo
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+from django.utils import timezone
 
 def main():
   # Create a client for your MinIO server using your access and secret keys
@@ -76,14 +77,36 @@ def xd():
 if __name__ == "__main__":
   try:
     #migracion_datos()
-    for c in Cobranza.objects.all():
-      cambio = Recibo.objects.filter(cuota=c.cuota).first()
+    cobranzas = Cobranza.objects.filter()
 
-      if cambio is not None:
-        c.estado_cobranza = 'COMPLETADO'
-        c.resultado = 'Pago realizado'
-        c.observaciones = f'EL CLIENTE {cambio.cliente} realizo un abono de: Q{cambio.Ftotal()}'
-        c.save()
+    hoy = timezone.now().date()
+    dias = None
+
+    for cobro in cobranzas:
+      if cobro.estado_cobranza == 'COMPLETADO':
+        continue
+
+      if cobro.fecha_seguimiento:
+        # Días transcurridos desde seguimiento hasta hoy
+        dias = (hoy - cobro.fecha_seguimiento.date()).days
+        # ejemplo: 0 si es hoy, positivo si ya pasaron días, negativo no aplica aquí
+        
+      if cobro.fecha_promesa_pago:
+        # Días restantes para promesa de pago
+        dias = (cobro.fecha_promesa_pago - hoy).days
+        # positivo si faltan días, negativo si ya pasó
+        
+      if dias < 0:
+        cobro.resultado = 'Negativa de pago'            
+        cobro.observaciones = 'El cliente no se ha presentado segun lo gestionado.'
+
+        if cobro.estado_cobranza != 'INCUMPLIDO':
+          cobro.estado_cobranza = 'INCUMPLIDO'
+          cobro.save()
+
+    
+
+
 
       
           
