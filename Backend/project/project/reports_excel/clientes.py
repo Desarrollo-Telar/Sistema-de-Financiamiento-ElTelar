@@ -127,7 +127,7 @@ def report_clientes(request):
         sheet[f'C{idx}'] = str(cliente.type_identification)
         sheet[f'D{idx}'] = str(cliente.identification_number)
         sheet[f'E{idx}'] = cliente.telephone
-        sheet[f'F{idx}'] = str(cliente.get_age())
+        sheet[f'F{idx}'] = str(cliente.get_edad())
         sheet[f'G{idx}'] = cliente.gender
         sheet[f'H{idx}'] = cliente.customer_code
         sheet[f'I{idx}'] = cliente.profession_trade
