@@ -10,6 +10,22 @@ from openpyxl import Workbook
 from django.db.models import Q, Sum
 from datetime import datetime, timedelta
 
+def cuota(credito):
+    dia = datetime.now().date()
+    dia_mas_uno = dia + timedelta(days=1)
+    
+    siguiente_pago = PaymentPlan.objects.filter(
+        credit_id=credito,
+        start_date__lte=dia,
+        fecha_limite__gte=dia_mas_uno
+    ).first()
+
+    if siguiente_pago is None:
+        siguiente_pago = PaymentPlan.objects.filter(
+        credit_id=credito).order_by('-id').first()
+    
+    return siguiente_pago
+
 def report_creditos(request, filtro_seleccionado):
     hoy = datetime.now()
     inicio = hoy - timedelta(days=5)
@@ -44,7 +60,7 @@ def report_creditos(request, filtro_seleccionado):
 
     # Agregar los datos
     for idx, reporte in enumerate(reportes, start=1):
-        cuota_limite = PaymentPlan.objects.filter(credit_id__id=reporte.id).order_by('-id').first()
+        cuota_limite = cuota(reporte.id)
         desembolso = Disbursement.objects.filter(credit_id__id=reporte.id).first()
         fecha_limite_pago = cuota_limite.mostrar_fecha_limite().date() if cuota_limite else "---"
         desembolso_forma = desembolso.forma_desembolso if desembolso else "---"
