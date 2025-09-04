@@ -72,9 +72,7 @@ def create_customer(request):
         form_direccion = AddressForms()
         form_direccion.fields.pop('type_address')
 
-        # Remover el campo si es asesor
-        if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-            form_cliente.fields.pop('new_asesor_credito')
+        
 
     
 

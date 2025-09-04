@@ -184,6 +184,10 @@ def recorrido_de_cuotas(cuotas, accion):
             print(f"El credito {credito} ya ha sido cancelado por completo")
             continue
 
+        if credito.estado_judicial:
+            print(f'En estado judicial')
+            continue
+
         
 
         if accion == 'FECHA_LIMITE':

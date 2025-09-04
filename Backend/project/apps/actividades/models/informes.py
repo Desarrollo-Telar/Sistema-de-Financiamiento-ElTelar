@@ -4,7 +4,7 @@ from django.db import models
 # Relacion
 from apps.users.models import User
 from apps.customers.models import Cobranza
-
+from apps.financings.models import Recibo
 # TIEMPO
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -81,3 +81,10 @@ class DetalleInformeCobranza(models.Model):
     class Meta:
         verbose_name = 'Detalle de Informe'
         
+
+class DetalleInformePagosClientesAsesor(models.Model):
+    reporte = models.ForeignKey(Informe, on_delete=models.CASCADE, verbose_name="Informe")
+    pago_realizado = models.ForeignKey(Recibo, on_delete=models.CASCADE, verbose_name="Pago Realizado")
+
+    def __str__(self):
+        return f'#{self.id} - {self.reporte} {self.pago_realizado}'

@@ -1,9 +1,11 @@
 {% load static %}
 <div class="d-flex table-responsive">
+    {% if not credit_list.estado_judicial %}
     <a href="{% url 'financings:create_payment_credit'  credit_list.id %}" class="btn_cancel">Generar Pago</a>
 
 
     <button id="cuota_por_cobrar" class="btn_cancel">Cuota por cobrar</button>
+    {% endif %}
 
     <a href="{% url 'financings:estado_cuenta_pdf' credit_list.id  %}" class="btn_cancel">Descargar Estado de
         Cuenta</a>
