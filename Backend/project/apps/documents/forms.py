@@ -28,5 +28,5 @@ class DocumentBankForms(forms.ModelForm):
         fields = ['document']
         labels = {'document':'Documento'}
         widgets = {            
-            'document':forms.FileInput(attrs={'type':'file','class':'form-control','name':'document','accept':'.csv'}),  
+            'document':forms.FileInput(attrs={'type':'file','class':'form-control','name':'document','accept':'.csv, .txt'}),  
         }

@@ -150,9 +150,10 @@ def download_from_minio(bucket_name, file_path, local_path):
 @receiver(post_save, sender=DocumentBank)
 def subir(sender, instance, created, **kwargs):
     if created:  # Solo ejecutamos si el documento es nuevo
-        local_path = "/tmp/temp_file.csv"
+        
         bucket_name = "asiatrip"  # Cambia al bucket correcto
         file_path = str(instance.document)  # Esto suele ser la clave del objeto en MinIO.
+        local_path = f"/tmp/{file_path}"
 
         try:
             download_from_minio(bucket_name, file_path, local_path)
