@@ -43,6 +43,8 @@ class User(AbstractUser):
     fecha_actualizacion = models.DateField("Fecha en que se actualizo el usuario", default=datetime.now, null=True, blank=True)
     nit = models.CharField(verbose_name="Numero de NIT", max_length=75, blank=True, null=True)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
+    #descripcion = models.TextField(verbose_name="Descripcion de usuario", null=True, blank=True)
+    #fecha_nacimiento = models.DateField("Fecha de Nacimiento", blank=True, null=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}' if self.first_name else self.username

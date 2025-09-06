@@ -5,56 +5,220 @@
 <link rel="stylesheet" href="{% static 'css/users/profile.css' %}">
 {% endblock %}
 
+
+
 {% block content %}
-<div class="row shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+<div class="container-fluid contenido_perfil_usuario">
+    <!-- Header Section -->
     <div class="row">
-        <div class="col-12 mensaje_portada">
-            <p class="titulo">TU PERFIL</p>
-            <div class="mensaje_modulo">
-                <p >
-                    ¡Bienvenido al Apartado de Perfil!
+        <div class="col-12 p-0">
+            <div class="bg-custom-gradient text-white p-4 profile-header">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 text-center mb-3 mb-md-0">
+                            <div class="profile-image mx-auto">
+                                <i class="bi bi-person-circle"></i>
 
-                    En este módulo, podrás acceder y gestionar toda tu información personal de manera sencilla y
-                    organizada.</p>
+                            </div>
+                        </div>
 
+                        <div class="col-md-7">
+                            <h1 class="display-5 fw-bold mb-2" id="fullName">{{ user.first_name }} {{ user.last_name }}</h1>
+                          
+                            <div class="user-code d-inline-block mb-3">
+                                <i class="bi bi-person-badge me-2"></i>
+                                ID: <span id="userCode">{{ user.user_code }}</span>
+                             
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 text-end">
+                            <div
+                                class="status-badge {% if user.status %}status-active{% else %}status-inactive{% endif %}">
+                                <i class="bi bi-circle-fill me-2"></i>
+                                {% if user.status %}Activo{% else %}Inactivo{% endif %}
+                            </div>
+                            <div class="badge bg-light text-dark fs-6" id="roleBadge">
+                                <i class="bi bi-shield-check me-2"></i>{{ user.rol }} 
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-            <hr>
         </div>
     </div>
-    <div class="row informacion_usuario">
+
+    <!-- Main Content -->
+    <div class="container mt-4">
         <div class="row">
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <p class="fw-semibold">Información Personal</p>
-                        </div>
-                        <div class="col">
-                            <p class="fw-semibold">Nombre Completo: <span class="fw-light">{{user.first_name}} {{user.last_name}} </span></p>
-                            <p class="fw-semibold">Nombre Usuario: <span class="fw-light">{{user.username}} </span></p>
-                            <p class="fw-semibold">Correo Electronico: <span class="fw-light">{{user.email}} </span></p>
-                            <p class="fw-semibold">Tipo de identificación: <span class="fw-light">{{user.type_identification}} </span></p>
-                            <p class="fw-semibold">Numero identificación: <span class="fw-light">{{user.identification_number}} </span></p>
-                            <p class="fw-semibold">Numero de telefono: <span class="fw-light">{{user.telephone}} </span></p>
-                            <p class="fw-semibold">Genero: <span class="fw-light">{{user.gender}} </span></p>
-                            <p class="fw-semibold">Nacionalidad: <span class="fw-light">{{user.nationality}} </span></p>
-                        </div>
-
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Información de Contacto -->
+                <div class="sidebar-section mb-4 slide-in">
+                    <div class="card-header card-header-custom">
+                        <h5 class="mb-0">
+                            <i class="bi bi-telephone me-2"></i>
+                            Información de Contacto
+                        </h5>
                     </div>
-                    
+                    <div class="card-body p-3">
+                        <div class="info-item mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-envelope me-3 text-custom-red"></i>
+                                <div class="flex-grow-1">
+                                    <div class="info-label">Email</div>
+                                    <div class="info-value" id="userEmail">{{ user.email }}</div>
+                                    
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="info-item mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-phone me-3 text-custom-red"></i>
+                                <div class="flex-grow-1">
+                                    <div class="info-label">Teléfono</div>
+                                    <div class="info-value" id="userPhone"> {{ user.telephone|default:"No registrado" }}</div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-building me-3 text-custom-red"></i>
+                                <div class="flex-grow-1">
+                                    <div class="info-label">Sucursal</div>
+                                    <div class="info-value" id="userBranch"> {{ user.sucursal.name|default:"Sin asignar" }}</div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información Personal -->
+                <div class="sidebar-section mb-4 slide-in" style="animation-delay: 0.2s;">
+                    <div class="card-header card-header-custom">
+                        <h5 class="mb-0">
+                            <i class="bi bi-person me-2"></i>
+                            Información Personal
+                        </h5>
+                    </div>
+                    <div class="card-body p-3">
+                        <div class="info-item mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-card-text me-3 text-custom-red"></i>
+                                <div class="flex-grow-1">
+                                    <div class="info-label">Tipo ID</div>
+                                    <div class="info-value" id="idType">{{ user.type_identification }}</div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-item mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-hash me-3 text-custom-red"></i>
+                                <div class="flex-grow-1">
+                                    <div class="info-label">No. Identificación</div>
+                                    <div class="info-value" id="idNumber">{{ user.identification_number }}</div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-item mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-flag me-3 text-custom-red"></i>
+                                <div class="flex-grow-1">
+                                    <div class="info-label">Nacionalidad</div>
+                                    <div class="info-value" id="nationality"> {{ user.nationality }}</div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-gender-ambiguous me-3 text-custom-red"></i>
+                                <div class="flex-grow-1">
+                                    <div class="info-label">Género</div>
+                                    <div class="info-value" id="userGender">{{ user.gender }}</div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- Main Content Area -->
+            <div class="col-lg-8">
+                <!-- Detalles del Usuario -->
+                <div class="card detail-card mb-4 fade-in">
+                    <div class="card-header card-header-custom">
+                        <h5 class="mb-0">
+                            <i class="bi bi-clipboard-data me-2"></i>
+                            Detalles del Usuario
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-custom-red fw-bold mb-3">Información Fiscal</h6>
+                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                                    <span class="fw-medium">NIT:</span>
+                                    <span id="nitNumber">{{ user.nit|default:"No registrado" }} </span>
+                                   
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center py-2">
+                                    <span class="fw-medium">Estado:</span>
+                                    <span class="badge  {% if user.status %}bg-success{% else %}bg-danger{% endif %}" id="statusText">{% if user.status %}Activo{% else %}Inactivo{% endif %}</span>
+                                </div>
+                            </div>
 
+                            <div class="col-md-6">
+                                <h6 class="text-custom-red fw-bold mb-3">Información del Sistema</h6>
+                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                                    <span class="fw-medium">Fecha de Creación:</span>
+                                    <span id="creationDate">{{ user.creation_date|date:"d/m/Y" }} </span>
+                                    
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center py-2">
+                                    <span class="fw-medium">Última Actualización:</span>
+                                    <span id="updateDate"> {{ user.fecha_actualizacion|date:"d/m/Y"|default:"Sin actualizar" }}</span>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                
+
+                <!-- Botones de Acción -->
+                <div class="row fade-in" style="animation-delay: 0.5s;">
+                    <div class="col-12">
+                        <div class="d-flex flex-wrap gap-3 justify-content-center">
+                            <button class="btn btn-custom-primary" onclick="editUser()">
+                                <i class="bi bi-pencil me-2"></i>Editar Usuario
+                            </button>
+                            <button class="btn btn-outline-custom" onclick="changePassword()">
+                                <i class="bi bi-lock me-2"></i>Cambiar Contraseña
+                            </button>
+                            <button class="btn btn-outline-custom" onclick="viewHistory()">
+                                <i class="bi bi-clock-history me-2"></i>Ver Historial
+                            </button>
+                            <button class="btn btn-outline-danger" onclick="toggleStatus()">
+                                <i class="bi bi-arrow-repeat me-2"></i>Cambiar Estado
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-
 </div>
-
 {% endblock %}
