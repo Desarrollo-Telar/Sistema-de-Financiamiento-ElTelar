@@ -113,6 +113,12 @@ class Customer(models.Model):
     def __str__(self):
         return self.get_full_name()
 
+    def get_email_customer():
+        pass
+        
+
+    def get_nit_customer():
+        pass
     
 
     def get_qr(self):
@@ -130,12 +136,24 @@ class Customer(models.Model):
     def get_full_name(self):
         return f'{self.first_name} {self.last_name}'
     
+        
+
     def get_edad(self):
-        from datetime import datetime
-        today = datetime.date.today()
+        from datetime import date
+        """
+        Calcula la edad de la persona en base a su fecha de nacimiento.
+        Devuelve None si la fecha de nacimiento no está definida.
+        """
+        if not self.date_birth:
+            return None  # O 0, según cómo quieras manejarlo
+
+        today = date.today()
         age = today.year - self.date_birth.year
+
+        # Si aún no ha llegado su cumpleaños este año, restamos 1
         if (today.month, today.day) < (self.date_birth.month, self.date_birth.day):
             age -= 1
+
         return age
     
     def get_star_rating(self):

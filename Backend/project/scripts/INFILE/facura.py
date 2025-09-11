@@ -13,7 +13,7 @@ ET.register_namespace("dte", ns["dte"])
 ET.register_namespace("ds", ns["ds"])
 ET.register_namespace("xsi", ns["xsi"])
 
-def generar_factura_xml(receptor_data,nombre_archivo="FACTURA_GENERADA.xml"):
+def generar_factura_xml(instance,nombre_archivo="FACTURA_GENERADA.xml"):
     fecha_actual = datetime.now().strftime("%Y-%m-%dT%H:%M:%S-06:00")
 
     # Nodo raíz

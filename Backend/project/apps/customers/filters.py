@@ -31,7 +31,7 @@ def recent_customer(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         customer_list = Customer.objects.all().filter(Q(creation_date__range=[inicio,hoy]), new_asesor_credito=asesor_autenticado).order_by('-id')
 
     page_obj = paginacion(request, customer_list)
@@ -55,7 +55,7 @@ def solicitude_customer(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         customer_list = Customer.objects.all().filter(Q(status='Posible Cliente'), new_asesor_credito=asesor_autenticado).order_by('-id')
          
     page_obj = paginacion(request, customer_list)
@@ -79,7 +79,7 @@ def not_accepted_customer(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         customer_list = Customer.objects.all().filter(Q(status='No Aprobado'), new_asesor_credito=asesor_autenticado).order_by('-id')
 
     page_obj = paginacion(request, customer_list)
@@ -103,7 +103,7 @@ def accepted_customer(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         customer_list = Customer.objects.all().filter(Q(status='Aprobado'), new_asesor_credito=asesor_autenticado).order_by('-id')
 
     page_obj = paginacion(request, customer_list)
@@ -126,7 +126,7 @@ def inactive_customer(request):
     customer_list = Customer.objects.all().filter(Q(status='Dar de Baja')).order_by('-id')
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         customer_list = Customer.objects.all().filter(Q(status='Dar de Baja'), new_asesor_credito=asesor_autenticado).order_by('-id')
 
     page_obj = paginacion(request, customer_list)
@@ -150,7 +150,7 @@ def document_review_customer(request):
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None:
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         customer_list = Customer.objects.all().filter(Q(status='Revisión de documentos'), new_asesor_credito=asesor_autenticado).order_by('-id')
 
     page_obj = paginacion(request, customer_list)

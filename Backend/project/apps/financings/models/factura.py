@@ -18,6 +18,7 @@ class Invoice(models.Model):
     numero_autorizacion = models.CharField(verbose_name="Número de Autorizacion", max_length=150, blank=True, null=True)
     nit_receptor = models.CharField(verbose_name='NIT RECEPTOR', max_length=150, blank=True, null=True)
     nombre_receptor = models.CharField(verbose_name="Nombre Receptor", max_length=150, blank=True, null=True)
+    correo_receptor = models.CharField(verbose_name='Correo Receptor', max_length=150, blank=True, null=True)
 
 
     def __str__(self):
@@ -34,11 +35,19 @@ class Invoice(models.Model):
         else:
             self.nombre_receptor = None
         return self.nombre_receptor
+    
+    def _set_correo_receptor(self):
+        customer = self._get_customer()
+        if customer:
+            self.correo_receptor = customer.get_email_customer()
+        else:
+            self.correo_receptor = None
+        return self.correo_receptor
 
     def _set_nit_receptor(self):
         customer = self._get_customer()
         if customer:
-            self.nit_receptor = customer.number_nit
+            self.nit_receptor = customer.get_nit_customer()
         else:
             self.nit_receptor = None
         return self.nit_receptor
@@ -46,6 +55,7 @@ class Invoice(models.Model):
     def save(self, *args, **kwargs):        
         self._set_nombre_receptor()
         self._set_nit_receptor()
+        self.__set_correo_receptor()
         super().save(*args, **kwargs)
 
     
