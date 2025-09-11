@@ -37,17 +37,17 @@ def generar_factura_xml(receptor_data,nombre_archivo="FACTURA_GENERADA.xml"):
     emisor = ET.SubElement(datos_emision, "{http://www.sat.gob.gt/dte/fel/0.2.0}Emisor", {
         "AfiliacionIVA": "GEN",
         "CodigoEstablecimiento": "1",
-        "CorreoEmisor": "demo@demo.com.gt",
-        "NITEmisor": "1000000000K",
-        "NombreComercial": "DEMO",
-        "NombreEmisor": "DEMO, SOCIEDAD ANONIMA"
+        "CorreoEmisor": "",
+        "NITEmisor": "108241297",
+        "NombreComercial": "EL TELAR",
+        "NombreEmisor": "INVERSIONES INTEGRALES EL TELAR, SOCIEDAD ANÓNIMA"
     })
 
     direccion_emisor = ET.SubElement(emisor, "{http://www.sat.gob.gt/dte/fel/0.2.0}DireccionEmisor")
-    ET.SubElement(direccion_emisor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Direccion").text = "CUIDAD"
-    ET.SubElement(direccion_emisor, "{http://www.sat.gob.gt/dte/fel/0.2.0}CodigoPostal").text = "01001"
-    ET.SubElement(direccion_emisor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Municipio").text = "GUATEMALA"
-    ET.SubElement(direccion_emisor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Departamento").text = "GUATEMALA"
+    ET.SubElement(direccion_emisor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Direccion").text = "MERCADO CANTONAL, zona 2, COBÁN, ALTA VERAPAZ"
+    ET.SubElement(direccion_emisor, "{http://www.sat.gob.gt/dte/fel/0.2.0}CodigoPostal").text = "1"
+    ET.SubElement(direccion_emisor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Municipio").text = "COBÁN"
+    ET.SubElement(direccion_emisor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Departamento").text = "ALTA VERAPAZ"
     ET.SubElement(direccion_emisor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Pais").text = "GT"
 
     # Receptor
@@ -57,22 +57,17 @@ def generar_factura_xml(receptor_data,nombre_archivo="FACTURA_GENERADA.xml"):
         "NombreReceptor": receptor_data.get("nombre", "")
     })
 
-    direccion_receptor = ET.SubElement(receptor, "{http://www.sat.gob.gt/dte/fel/0.2.0}DireccionReceptor")
-    ET.SubElement(direccion_receptor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Direccion").text = "CUIDAD"
-    ET.SubElement(direccion_receptor, "{http://www.sat.gob.gt/dte/fel/0.2.0}CodigoPostal").text = "01001"
-    ET.SubElement(direccion_receptor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Municipio").text = "GUATEMALA"
-    ET.SubElement(direccion_receptor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Departamento").text = "GUATEMALA"
-    ET.SubElement(direccion_receptor, "{http://www.sat.gob.gt/dte/fel/0.2.0}Pais").text = "GT"
+   
 
     # Frases
     frases = ET.SubElement(datos_emision, "{http://www.sat.gob.gt/dte/fel/0.2.0}Frases")
     ET.SubElement(frases, "{http://www.sat.gob.gt/dte/fel/0.2.0}Frase", {"CodigoEscenario": "1", "TipoFrase": "1"})
-    ET.SubElement(frases, "{http://www.sat.gob.gt/dte/fel/0.2.0}Frase", {"CodigoEscenario": "1", "TipoFrase": "2"})
+  
 
     # Items
     items = ET.SubElement(datos_emision, "{http://www.sat.gob.gt/dte/fel/0.2.0}Items")
     item = ET.SubElement(items, "{http://www.sat.gob.gt/dte/fel/0.2.0}Item", {
-        "BienOServicio": "B",
+        "BienOServicio": "S",
         "NumeroLinea": "1"
     })
     ET.SubElement(item, "{http://www.sat.gob.gt/dte/fel/0.2.0}Cantidad").text = "1.00"
@@ -82,6 +77,7 @@ def generar_factura_xml(receptor_data,nombre_archivo="FACTURA_GENERADA.xml"):
     ET.SubElement(item, "{http://www.sat.gob.gt/dte/fel/0.2.0}Precio").text = "120.00"
     ET.SubElement(item, "{http://www.sat.gob.gt/dte/fel/0.2.0}Descuento").text = "0.00"
 
+    """
     impuestos = ET.SubElement(item, "{http://www.sat.gob.gt/dte/fel/0.2.0}Impuestos")
     impuesto = ET.SubElement(impuestos, "{http://www.sat.gob.gt/dte/fel/0.2.0}Impuesto")
     ET.SubElement(impuesto, "{http://www.sat.gob.gt/dte/fel/0.2.0}NombreCorto").text = "IVA"
@@ -90,6 +86,7 @@ def generar_factura_xml(receptor_data,nombre_archivo="FACTURA_GENERADA.xml"):
     ET.SubElement(impuesto, "{http://www.sat.gob.gt/dte/fel/0.2.0}MontoImpuesto").text = "12.86"
 
     ET.SubElement(item, "{http://www.sat.gob.gt/dte/fel/0.2.0}Total").text = "120.00"
+    """
 
     # Totales
     totales = ET.SubElement(datos_emision, "{http://www.sat.gob.gt/dte/fel/0.2.0}Totales")

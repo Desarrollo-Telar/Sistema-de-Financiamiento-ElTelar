@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SERVIDOR = True
+SERVIDOR = False
 ALLOWED_HOSTS = ['*']
 
 
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # MIDDLEWARE 
     'project.middleware.AutoLogoutMiddleware',
-    #'project.middleware.RestrictedAccessByTimeMiddleware',
+    'project.middleware.RestrictedAccessByTimeMiddleware',
     'project.middleware.UserActionLoggingMiddleware',
     
 ]
