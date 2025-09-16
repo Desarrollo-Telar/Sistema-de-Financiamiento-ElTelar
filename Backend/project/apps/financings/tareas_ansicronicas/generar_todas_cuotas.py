@@ -82,6 +82,10 @@ def generar_todas_las_cuotas_credito(codigo_credito: str) -> None:
         print("CREDITO CANCELADO")
         return
     
+    if credito.estado_judicial:
+        print('NO SE PUEDE GENERAR MÁS CUOTAS, SE ENCUENTRA EN ESTADO JUDICIAL')
+        return
+    
     
     lista = []
 

@@ -7,6 +7,9 @@ from django.contrib import messages
 from apps.accountings.models import Creditor, Insurance
 from apps.financings.models import Payment
 
+# HISTORIAL
+from apps.actividades.models import ModelHistory
+from scripts.conversion_datos import model_to_dict, cambios_realizados
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -53,6 +56,12 @@ def add_acreedor(request):
             acreedor.estados_fechas = True
             
             acreedor.save() 
+
+
+        
+
+            acreedor_dict = model_to_dict(acreedor)
+            pago_dict = None
             
             if numero_referencia is not None:
                 boleta = Payment(
@@ -65,6 +74,21 @@ def add_acreedor(request):
                     descripcion=descripcion
                     )  
                 boleta.save()
+
+                pago_dict = model_to_dict(boleta)
+            
+            dato_dict = {
+                'acreedor_data':acreedor_dict,
+                'pago_data':pago_dict
+            }
+            
+            ModelHistory.objects.create(
+                content_type = 'Creditor',
+                object_id = acreedor.id,
+                action = 'create',
+                data = dato_dict,
+                user = request.user
+            )
                 
             messages.success(request, 'Acreedor Creado con Exito')
             return redirect('contable:acreedores')
@@ -110,6 +134,16 @@ def add_seguro(request):
             acreedor.estados_fechas = True
             
             acreedor.save() 
+
+            dato_dict = model_to_dict(acreedor)
+
+            ModelHistory.objects.create(
+                content_type = 'Insurance',
+                object_id = acreedor.id,
+                action = 'create',
+                data = dato_dict,
+                user = request.user
+            )
             
                 
             messages.success(request, 'Seguro Creado con Exito')
@@ -153,6 +187,17 @@ def add_ingreso(request):
                 descripcion=descripcion
                 )  
             boleta.save()
+
+            dato_dict = model_to_dict(form.instance)
+            
+            ModelHistory.objects.create(
+                content_type = 'Income',
+                object_id = form.id,
+                action = 'create',
+                data = dato_dict,
+                user = request.user
+            )
+
                
             messages.success(request, 'Ingreso Creado con Exito')
             return redirect('contable:ingresos')
@@ -198,6 +243,16 @@ def add_egresos(request):
                     descripcion=descripcion
                     )  
                 boletas.save()
+
+            dato_dict = model_to_dict(form.instance)
+            
+            ModelHistory.objects.create(
+                content_type = 'Egress',
+                object_id = form.id,
+                action = 'create',
+                data = dato_dict,
+                user = request.user
+            )
              
             messages.success(request, 'Egreso Creado con Exito')
             return redirect('contable:egresos')

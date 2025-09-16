@@ -77,32 +77,40 @@ def xd():
 if __name__ == "__main__":
   try:
     #migracion_datos()
-    cobranzas = Cobranza.objects.filter()
+    
 
-    hoy = timezone.now().date()
-    dias = None
+    dia = datetime.now().date()
+    dia_mas_uno = dia + timedelta(days=1)
+    creditos = Credit.objects.filter(is_paid_off = False, estado_judicial=False)
+    listado_saldo_actual = []
+    count = 0
 
-    for cobro in cobranzas:
-      if cobro.estado_cobranza == 'COMPLETADO':
-        continue
 
-      if cobro.fecha_seguimiento:
-        # Días transcurridos desde seguimiento hasta hoy
-        dias = (hoy - cobro.fecha_seguimiento.date()).days
-        # ejemplo: 0 si es hoy, positivo si ya pasaron días, negativo no aplica aquí
-        
-      if cobro.fecha_promesa_pago:
-        # Días restantes para promesa de pago
-        dias = (cobro.fecha_promesa_pago - hoy).days
-        # positivo si faltan días, negativo si ya pasó
-        
-      if dias < 0:
-        cobro.resultado = 'Negativa de pago'            
-        cobro.observaciones = 'El cliente no se ha presentado segun lo gestionado.'
 
-        if cobro.estado_cobranza != 'INCUMPLIDO':
-          cobro.estado_cobranza = 'INCUMPLIDO'
-          cobro.save()
+    for credito in creditos:
+      print(credito)
+      siguiente_pago = PaymentPlan.objects.filter(
+          credit_id=credito,
+          start_date__lte=dia,
+          fecha_limite__gte=dia_mas_uno
+      ).first()
+      cuotas_vencidas = PaymentPlan.objects.filter(credit_id=credito, cuota_vencida=True).order_by('mes')
+      estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
+      #actualizacion(credito)
+      if siguiente_pago is None:
+          siguiente_pago = PaymentPlan.objects.filter(
+          credit_id=credito).order_by('-id').first()
+      
+      saldo_actual =  siguiente_pago.saldo_pendiente + siguiente_pago.principal
+      listado_saldo_actual.append(saldo_actual)
+
+      
+    
+    for saldos in listado_saldo_actual:
+      print(saldos)
+      count += saldos
+    
+    print(count)
 
     
 

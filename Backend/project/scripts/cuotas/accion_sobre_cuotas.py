@@ -15,6 +15,9 @@ from decimal import Decimal
 # MENSAJES DE ALERTA
 from project.send_mail import send_email_update_of_quotas
 
+# HISTORIAL
+from apps.actividades.models import ModelHistory
+from scripts.conversion_datos import model_to_dict, cambios_realizados
 # lOGS
 import logging
 logger = logging.getLogger(__name__)
@@ -25,6 +28,9 @@ def get_credito(cuota):
 
     if cuota.credit_id is not None:
         credito =  Credit.objects.get(id=cuota.credit_id.id)
+
+        if credito.estado_judicial:
+            return None
     
     if cuota.acreedor is not None:
         credito =  Creditor.objects.get(id=cuota.acreedor.id)
@@ -33,6 +39,7 @@ def get_credito(cuota):
         credito =  Insurance.objects.get(id=cuota.seguro.id)
 
     return credito
+
 
 
 def calcular_interes_y_mora(cuota):
@@ -59,10 +66,16 @@ def calcular_interes_y_mora(cuota):
     return interes, mora
 
 def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, mora):
-    if siguiente_cuota is not None:
-        siguiente_cuota.outstanding_balance = pago.saldo_pendiente
+    datos_viejos = {}
+    datos_nuevos = {}
+    
 
+    if siguiente_cuota is not None:
+        datos_viejos = model_to_dict(siguiente_cuota)
+
+        siguiente_cuota.outstanding_balance = pago.saldo_pendiente
         siguiente_cuota.saldo_pendiente = pago.saldo_pendiente
+
         if pago.credit_id:
             siguiente_cuota.credit_id = pago.credit_id
             siguiente_cuota.mora = mora 
@@ -82,6 +95,19 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         siguiente_cuota.start_date = pago.due_date
         siguiente_cuota.cambios = True
         siguiente_cuota.save()
+
+        datos_nuevos = model_to_dict(siguiente_cuota)
+        
+
+        ModelHistory.objects.create(
+            content_type = 'PaymentPlan',
+            object_id = siguiente_cuota.id,
+            action = 'update',
+            data =datos_nuevos,
+            changes = cambios_realizados(datos_viejos, datos_nuevos)
+        )
+
+        
 
     else:
         cuota = PaymentPlan()
@@ -103,8 +129,16 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
             cuota.interest = interes
 
         cuota.start_date = pago.due_date
-        
         cuota.save()
+
+        ModelHistory.objects.create(
+            content_type = 'PaymentPlan',
+            object_id = cuota.id,
+            action = 'create',
+            data = model_to_dict(cuota)
+        )
+        
+        
 
 
 
@@ -182,6 +216,9 @@ def recorrido_de_cuotas(cuotas, accion):
 
         if credito.is_paid_off:
             print(f"El credito {credito} ya ha sido cancelado por completo")
+            continue
+
+        if credito is None:
             continue
 
         

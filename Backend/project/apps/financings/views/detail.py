@@ -60,7 +60,7 @@ def detail_credit(request,id):
             return redirect('financings:list_credit')
         
     generar_todas_las_cuotas_credito(credito.codigo_credito)
-    #cambiar_plan() # CAMBIAR AUTOMATICAMENTE PARA PRUEBAS
+    
     
     customer_list = get_object_or_404(Customer,id= credito.customer_id.id) # LISTAR LA INFORMACION DEL CLIENTE
 
@@ -79,23 +79,16 @@ def detail_credit(request,id):
     ).first()
     cuotas_vencidas = PaymentPlan.objects.filter(credit_id=credito, cuota_vencida=True).order_by('mes')
     estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
-    #actualizacion(credito)
+  
     if siguiente_pago is None:
         siguiente_pago = PaymentPlan.objects.filter(
         credit_id=credito).order_by('-id').first()
     
-    print(siguiente_pago.mes)
-
+   
     saldo_actual = siguiente_pago.saldo_pendiente + siguiente_pago.mora + siguiente_pago.interest
 
     credito.saldo_actual = saldo_actual
     credito.save()
-    
-    print(siguiente_pago)
-    
-    
-    
-    
 
     # PLAN DE PAGOS
     plan = planPagosCredito(credito).generar_plan()

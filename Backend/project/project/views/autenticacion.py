@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 
 
+
 # Envio de correos
 from project.send_mail import send_email_code_verification, send_email_user_conect_or_disconect
 
