@@ -202,17 +202,25 @@
                 <div class="row fade-in" style="animation-delay: 0.5s;">
                     <div class="col-12">
                         <div class="d-flex flex-wrap gap-3 justify-content-center">
+                            {% if request.user.rol.role_name == 'Programador' or request.user.rol.role_name == 'Administrador' %}
                             <button class="btn btn-custom-primary" onclick="editUser()">
                                 <i class="bi bi-pencil me-2"></i>Editar Usuario
                             </button>
+                            {% endif %}
+                            {% if request.user.rol.role_name == 'Programador' or request.user.rol.role_name == 'Administrador' %}
+                            <button class="btn btn-outline-custom" onclick="changePasswordAdminOrProgrammer()">
+                                <i class="bi bi-lock me-2"></i>Cambiar Contraseña
+                            </button>
+                            {% else%}
                             <button class="btn btn-outline-custom" onclick="changePassword()">
                                 <i class="bi bi-lock me-2"></i>Cambiar Contraseña
                             </button>
+                            {% endif%}
                             <button class="btn btn-outline-custom" onclick="viewHistory()">
                                 <i class="bi bi-clock-history me-2"></i>Ver Historial
                             </button>
-                            <button class="btn btn-outline-danger" onclick="toggleStatus()">
-                                <i class="bi bi-arrow-repeat me-2"></i>Cambiar Estado
+                            <button class="btn btn-outline-danger" onclick="viewInforme()">
+                                <i class="bi bi-archive me-2"></i>Ver Informes
                             </button>
                         </div>
                     </div>
@@ -221,4 +229,37 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+ <script>
+        // Funciones para los botones de acción
+        function editUser() {
+            window.location.href = `{% url 'users:update' user.pk %}`;
+            
+           
+        }
+
+        function changePassword() {    
+                   
+            window.location.href = `/users/change_password/`;
+           
+        }
+        function changePasswordAdminOrProgrammer() {    
+                   
+            window.location.href = `{% url 'users:update_password_user' user.id %}`;
+           
+        }
+
+        function viewHistory() {
+            alert('Mostrando historial de actividad...');
+           
+        }
+
+        function viewInforme(){
+            alert('Redireccionando a los informes de este usuario');
+        }
+
+</script>
+
 {% endblock %}

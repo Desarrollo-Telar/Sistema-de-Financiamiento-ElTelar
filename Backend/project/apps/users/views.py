@@ -112,7 +112,7 @@ class userCreateView(CreateView):
 
 # ----- MODIFICAR INFORMACION DE USUARIOS ----- #
 class userUpdateView(UpdateView):
-    template_name = 'user/add_user.html'
+    template_name = 'user/update_user.html'
     form_class = UpdateUserForm
     model = User
 
@@ -135,9 +135,6 @@ class ChangePassword(View):
     form_class = ChangePasswordForm
     success_url = reverse_lazy('index')
     
-    @method_decorator([permiso_requerido("puede_editar_usuario")])
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {
@@ -242,10 +239,10 @@ class UserSearch(ListView):
 @permiso_requerido('puede_ver_detalle_usuario')
 def detail_user(request,username):
     user_id = get_object_or_404(User, username=username)
-    template_name = 'user/detail.html'
+    template_name = 'user/user_profile.html'
     context = {
         'title':'{}'.format(user_id),
-        'user_list':user_id,
+        'user':user_id,
         'permisos':recorrer_los_permisos_usuario(request)
     }
     return render(request, template_name, context)
