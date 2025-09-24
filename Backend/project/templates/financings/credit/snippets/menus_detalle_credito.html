@@ -10,18 +10,23 @@
 
         <button class="nav-link" id="nav-desembolsos-tab" data-bs-toggle="tab" data-bs-target="#nav-desembolsos"
             type="button" role="tab" aria-controls="nav-desembolsos" aria-selected="true">Desembolso</button>
-        <button class="nav-link active" id="nav-creditos-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos" type="button"
-            role="tab" aria-controls="nav-creditos" aria-selected="true">Estado de Cuenta</button>
+        <button class="nav-link active" id="nav-creditos-tab" data-bs-toggle="tab" data-bs-target="#nav-creditos"
+            type="button" role="tab" aria-controls="nav-creditos" aria-selected="true">Estado de Cuenta</button>
         {% if cuotas_vencidas %}
         <button class="nav-link" id="nav-historial-tab" data-bs-toggle="tab" data-bs-target="#nav-historial"
             type="button" role="tab" aria-controls="nav-historial" aria-selected="true">Historial de
             Cuotas Vencidas</button>
         {% endif %}
-        <button class="nav-link " id="nav-comentarios-tab" data-bs-toggle="tab" data-bs-target="#nav-comentarios" type="button"
-            role="tab" aria-controls="nav-comentarios" aria-selected="true">Comentarios</button>
+        <button class="nav-link " id="nav-comentarios-tab" data-bs-toggle="tab" data-bs-target="#nav-comentarios"
+            type="button" role="tab" aria-controls="nav-comentarios" aria-selected="true">Comentarios</button>
+
+        <button class="nav-link " id="nav-gestion_cobranza-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-gestion_cobranza" type="button" role="tab" aria-controls="nav-gestion_cobranza"
+            aria-selected="true">Gestiones Realizadas</button>
     </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
+    <!-- PLAN DE PAGOS -->
     <div class="tab-pane fade show " id="nav-plan_pagos" role="tabpanel" aria-labelledby="nav-plan_pagos-tab"
         tabindex="0">
         <div class="contenido">
@@ -29,36 +34,27 @@
                 {%include 'financings/credit/paymentplan.html' %}
 
             </div>
-
-
         </div>
-
-
     </div>
 
+    <!-- GARANTIAS -->
     <div class="tab-pane fade show " id="nav-garantia" role="tabpanel" aria-labelledby="nav-garantia-tab" tabindex="0">
         <div class="contenido">
-
             <div class="row" style="margin-top: 1rem;">
                 {% include 'financings/guarantee/table/table.html' %}
-
             </div>
             <div class="row" style="margin-top: 1rem;">
                 <p>TOTAL: <span>Q {{total_garantia}}</span></p>
             </div>
-
-
         </div>
-
-
     </div>
 
-
+    <!-- DESEMBOLSOS-->
     <div class="tab-pane fade show " id="nav-desembolsos" role="tabpanel" aria-labelledby="nav-desembolsos-tab"
         tabindex="0">
         <div class="contenido">
-            {% if total_desembolso < credit_list.formato_monto and not credit_list.is_paid_off %} 
-            <div class="row" style="margin-top: 1rem;">
+            {% if total_desembolso < credit_list.formato_monto and not credit_list.is_paid_off %} <div class="row"
+                style="margin-top: 1rem;">
                 <div class="col d-flex flex-row-reverse">
                     <a class="btn_cancel" href="{% url 'financings:create_disbursement' credit_list.id %}">Añadir
                         Desembolso
@@ -79,27 +75,42 @@
 
 
     </div>
-</div>
 
-<div class="tab-pane fade show active" id="nav-creditos" role="tabpanel" aria-labelledby="nav-creditos-tab" tabindex="0">
+
+
+
+</div>
+<!-- ESTADO DE CUENTA -->
+<div class="tab-pane fade show active" id="nav-creditos" role="tabpanel" aria-labelledby="nav-creditos-tab"
+    tabindex="0">
     <div class="contenido">
         {% include 'financings/credit/snippets/estado_cuenta.html' %}
 
     </div>
 </div>
+
+<!-- HISTORIAL DE CUOTAS VENCIDAS -->
 <div class="tab-pane fade show " id="nav-historial" role="tabpanel" aria-labelledby="nav-historial-tab" tabindex="0">
     <div class="contenido">
         {% include 'financings/credit/snippets/historial.html' %}
 
     </div>
 </div>
-<div class="tab-pane fade show " id="nav-comentarios" role="tabpanel" aria-labelledby="nav-comentarios-tab" tabindex="0">
+
+<!-- COMENTARIOS REALIZADOS -->
+<div class="tab-pane fade show " id="nav-comentarios" role="tabpanel" aria-labelledby="nav-comentarios-tab"
+    tabindex="0">
     <div class="contenido">
         {% include 'votacion/list_comentarios_creditos.html' %}
 
     </div>
 </div>
 
+<!-- GESTIONES REALIZADOS -->
+<div class="tab-pane fade show " id="nav-comentarios" role="tabpanel" aria-labelledby="nav-comentarios-tab"
+    tabindex="0">
+    <div class="contenido">
+        {% include 'cobranza/gestiones_realizadas.html' %}
 
-
+    </div>
 </div>

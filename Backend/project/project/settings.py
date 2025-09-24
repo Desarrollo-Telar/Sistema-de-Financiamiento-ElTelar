@@ -53,7 +53,7 @@ MIDDLEWARE = [
     # MIDDLEWARE 
     'project.middleware.AutoLogoutMiddleware',
     'project.middleware.RestrictedAccessByTimeMiddleware',
-    'project.middleware.UserActionLoggingMiddleware',
+    #'project.middleware.UserActionLoggingMiddleware',
     
 ]
 
