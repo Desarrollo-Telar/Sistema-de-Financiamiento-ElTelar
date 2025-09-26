@@ -101,7 +101,7 @@ def report_pagos(request, filtro_seleccionado, anio, mes, total):
             return redirect('report_pagos_generales',str(anio), str(mes))
         
         filtro_dinamico = {filtros_validos[filtro_seleccionado]: 0}
-        reportes = Recibo.objects.filter(filters).filter(**filtro_dinamico)
+        reportes = Recibo.objects.filter(filters).filter(**filtro_dinamico).order_by('fecha')
         
 
     # Crear el archivo Excel
