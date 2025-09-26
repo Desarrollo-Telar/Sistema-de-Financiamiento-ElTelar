@@ -19,7 +19,7 @@ def report_pagos_generales(request, anio, mes):
     filters &= Q(fecha__month=mes)
     filters &= Q(pago__credit__isnull=False)
     #filters &= Q(pago__registro_ficticio=False)
-    reportes = Recibo.objects.filter(filters)
+    reportes = Recibo.objects.filter(filters).order_by('fecha')
 
      # Crear el archivo Excel
     workbook = Workbook()
