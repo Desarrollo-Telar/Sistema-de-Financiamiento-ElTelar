@@ -16,16 +16,7 @@ def log_user_login(sender, request, user, **kwargs):
         category=LogCategory.objects.get_or_create(name="Autenticación", defaults={'description': 'Eventos de login/logout'})[0]
     )
 
-@receiver(user_login_failed)
-def log_user_login_failed(sender, credentials, request, **kwargs):
-    UserLog.objects.create(
-        user=None,
-        action="LOGIN_FAILED",
-        details=f"Intento de inicio de sesión fallido para usuario: {credentials.get('username', '')}",
-        ip_address=request.META.get('REMOTE_ADDR'),
-        user_agent=request.META.get('HTTP_USER_AGENT'),
-        category=LogCategory.objects.get_or_create(name="Autenticación", defaults={'description': 'Eventos de login/logout'})[0]
-    )
+
 
 @receiver(user_logged_out)
 def log_user_logout(sender, request, user, **kwargs):
