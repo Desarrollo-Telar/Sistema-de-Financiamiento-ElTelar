@@ -173,11 +173,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'America/Guatemala'
+
 
 USE_I18N = True
 
+# En tu settings.py (Verifica que esto esté así)
 USE_TZ = True
+TIME_ZONE = 'America/Guatemala' # La zona horaria correcta para Guatemala
 
 # Configuracion para enviar correos electronicos
 # nifs xjvc fbvo jxav

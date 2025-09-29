@@ -19,6 +19,7 @@ from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_p
 from scripts.cargar_fiadores.vincular import main_vincular
 from scripts.asignar_nuevos_permisos.otorgar_permiso import asignar
 from scripts.cargar_estado_cuenta.estado_cuenta import migracion_datos
+from scripts.INFILE.fact import guardar_xml_recibo
 
 # Tiempo
 from datetime import datetime, timedelta, timezone
@@ -77,50 +78,22 @@ def xd():
 if __name__ == "__main__":
   try:
     #migracion_datos()
+    recibo = Recibo.objects.filter(pago__numero_referencia='1248488656').first()
+    ruta_guardado = guardar_xml_recibo(
+        recibo, 
+        nombre_archivo=f"recibo_{recibo.id}_{recibo.fecha.strftime('%Y%m%d')}.xml"
+    )
+
+    print(f"Archivo XML guardado en: {ruta_guardado}")
+
     
-
-    dia = datetime.now().date()
-    dia_mas_uno = dia + timedelta(days=1)
-    creditos = Credit.objects.filter(is_paid_off = False, estado_judicial=False)
-    listado_saldo_actual = []
-    count = 0
-
-
-
-    for credito in creditos:
-      print(credito)
-      siguiente_pago = PaymentPlan.objects.filter(
-          credit_id=credito,
-          start_date__lte=dia,
-          fecha_limite__gte=dia_mas_uno
-      ).first()
-      cuotas_vencidas = PaymentPlan.objects.filter(credit_id=credito, cuota_vencida=True).order_by('mes')
-      estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
-      #actualizacion(credito)
-      if siguiente_pago is None:
-          siguiente_pago = PaymentPlan.objects.filter(
-          credit_id=credito).order_by('-id').first()
-      
-      saldo_actual =  siguiente_pago.saldo_pendiente + siguiente_pago.principal
-      listado_saldo_actual.append(saldo_actual)
-
-      
-    
-    for saldos in listado_saldo_actual:
-      print(saldos)
-      count += saldos
-    
-    print(count)
 
     
 
 
 
       
-          
-
-
-
+        
 
   except S3Error as exc:
     print("An error occurred.", exc)

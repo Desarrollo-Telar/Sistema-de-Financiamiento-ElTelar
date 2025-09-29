@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dte:GTDocumento xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:dte="http://www.sat.gob.gt/dte/fel/0.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="0.1" xsi:schemaLocation="http://www.sat.gob.gt/dte/fel/0.2.0">
+  <dte:SAT ClaseDocumento="dte">
+    <dte:DTE ID="DatosCertificados">
+      <dte:DatosEmision ID="DatosEmision">
+        <dte:DatosGenerales CodigoMoneda="GTQ" FechaHoraEmision="2024-01-15T14:30:00-06:00" Tipo="FACT"/>
+        <dte:Emisor AfiliacionIVA="GEN" CodigoEstablecimiento="1" CorreoEmisor="" NITEmisor="108241297" NombreComercial="EL TELAR" NombreEmisor="INVERSIONES INTEGRALES EL TELAR, SOCIEDAD ANÓNIMA">
+          <dte:DireccionEmisor>
+            <dte:Direccion>MERCADO CANTONAL, zona 2, COBÁN, ALTA VERAPAZ</dte:Direccion>
+            <dte:CodigoPostal>1</dte:CodigoPostal>
+            <dte:Municipio>COBÁN</dte:Municipio>
+            <dte:Departamento>ALTA VERAPAZ</dte:Departamento>
+            <dte:Pais>GT</dte:Pais>
+          </dte:DireccionEmisor>
+        </dte:Emisor>
+        <dte:Receptor CorreoReceptor="" IDReceptor="21117969" NombreReceptor="BILLY ROMAN , PONCE PINELO">
+        </dte:Receptor>
+        <dte:Frases>
+          <dte:Frase CodigoEscenario="1" TipoFrase="1"/>
+        </dte:Frases>
+        <dte:Items>
+          <dte:Item BienOServicio="S" NumeroLinea="1">
+            <dte:Cantidad>1</dte:Cantidad>
+            <dte:Descripcion>Pago de Interés</dte:Descripcion>
+            <dte:PrecioUnitario>250.00</dte:PrecioUnitario>
+            <dte:Precio>250.00</dte:Precio>
+            <dte:Descuento>0.00</dte:Descuento>
+            <dte:Impuestos>
+              <dte:Impuesto>
+                <dte:NombreCorto>IVA</dte:NombreCorto>
+                <dte:CodigoUnidadGravable>1</dte:CodigoUnidadGravable>
+                <dte:MontoGravable>223.21</dte:MontoGravable>
+                <dte:MontoImpuesto>26.79</dte:MontoImpuesto>
+              </dte:Impuesto>
+            </dte:Impuestos>
+            <dte:Total>250.00</dte:Total>
+          </dte:Item>
+          <dte:Item BienOServicio="S" NumeroLinea="2">
+            <dte:Cantidad>1</dte:Cantidad>
+            <dte:Descripcion>OTROS GASTOS ADMINISTRATIVOS</dte:Descripcion>
+            <dte:PrecioUnitario>150.00</dte:PrecioUnitario>
+            <dte:Precio>150.00</dte:Precio>
+            <dte:Descuento>0.00</dte:Descuento>
+            <dte:Impuestos>
+              <dte:Impuesto>
+                <dte:NombreCorto>IVA</dte:NombreCorto>
+                <dte:CodigoUnidadGravable>1</dte:CodigoUnidadGravable>
+                <dte:MontoGravable>133.93</dte:MontoGravable>
+                <dte:MontoImpuesto>16.07</dte:MontoImpuesto>
+              </dte:Impuesto>
+            </dte:Impuestos>
+            <dte:Total>150.00</dte:Total>
+          </dte:Item>
+          
+        </dte:Items>
+        <dte:Totales>
+          <dte:TotalImpuestos>
+            <dte:TotalImpuesto NombreCorto="IVA" TotalMontoImpuesto="42.86"/>
+          </dte:TotalImpuestos>
+          <dte:GranTotal>400.00</dte:GranTotal>
+        </dte:Totales>
+      </dte:DatosEmision>
+    </dte:DTE>
+  </dte:SAT>
+</dte:GTDocumento>

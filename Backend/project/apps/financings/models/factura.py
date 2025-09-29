@@ -19,7 +19,8 @@ class Invoice(models.Model):
     nit_receptor = models.CharField(verbose_name='NIT RECEPTOR', max_length=150, blank=True, null=True)
     nombre_receptor = models.CharField(verbose_name="Nombre Receptor", max_length=150, blank=True, null=True)
     correo_receptor = models.CharField(verbose_name='Correo Receptor', max_length=150, blank=True, null=True)
-
+    serie_autorizacion = models.CharField(verbose_name="Serie de Autorizacion", max_length=150, blank=True, null=True)
+    xml_certificado  = models.TextField(verbose_name="Serie de Autorizacion", blank=True, null=True)
 
     def __str__(self):
         return f'{self.numero_factura}'
