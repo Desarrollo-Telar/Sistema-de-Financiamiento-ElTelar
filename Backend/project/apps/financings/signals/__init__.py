@@ -2,7 +2,7 @@
 from .payment import generar_plan_pagos,alerta
 
 # CUOTAS
-from .payment_plan import generar_planes, eliminar_siguientes_cuotas, cambios
+from .payment_plan import generar_planes, eliminar_siguientes_cuotas
 
 # CREDITOS
 from .credit import  generar_plan_pagos_nuevo
