@@ -253,7 +253,7 @@ class Payment(models.Model):
                 aporte_capital=aporte_capital,
                 interes_pagado=pagado_interes,
                 mora_pagada=pagado_mora,
-                
+                fecha = pago.fecha_emision.date(),
                 cliente=informacion['cliente'],
                 cuota=cuota
             )
