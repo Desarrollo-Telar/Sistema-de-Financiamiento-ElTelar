@@ -37,7 +37,7 @@ def enviar_recibo(sender, instance, created, **kwargs):
             cobranza_completado.observaciones = f'EL CLIENTE {instance.cliente} realizo un abono de: Q{instance.Ftotal()}'
             cobranza_completado.save()
 
-""" 
+
 @receiver(post_delete, sender=Recibo)
 def volver_a_colocar(sender, instance, **kwargs):
     if not instance.cuota:
@@ -48,8 +48,7 @@ def volver_a_colocar(sender, instance, **kwargs):
     cuota.mora = max(0, cuota.mora + instance.mora_pagada)  # Evitamos valores negativos
     cuota.interest = max(0, cuota.interest + instance.interes_pagado)
     cuota.saldo_pendiente = max(0, cuota.saldo_pendiente + instance.aporte_capital)
-    cuota.cambios = True
     cuota.save()
-"""
+
 
 
