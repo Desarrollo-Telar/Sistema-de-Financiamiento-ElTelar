@@ -9,7 +9,7 @@ from .read import list_bank, list_credit, list_disbursement, list_guarantee, lis
 from .search import CreditSearch, PaymentSearch, BankSearch
 
 # FUNCIONES PARA ACTUALIZAR
-from .update import update_pago, update_cuota, generar_factura, cambiar_estado_judicial, cambiar_estado_judicial_false
+from .update import update_pago, update_cuota, cambiar_estado_judicial, cambiar_estado_judicial_false
 
 # FUNCIONES PARA DETALLAR
 from .detail import detail_credit, detallar_recibo, detalle_boleta, detallar_desembolso,detalle_factura, detalle_estado_cuenta, clasificacion_detallar
@@ -38,3 +38,6 @@ from .status import async_view_banco, async_view_boletas
 
 # RECIBOS
 from .recibos import RecibosListView
+
+# FACTURA
+from .factura import generar_factura

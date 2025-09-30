@@ -55,8 +55,8 @@ class Invoice(models.Model):
 
     def save(self, *args, **kwargs):        
         self._set_nombre_receptor()
-        self._set_nit_receptor()
-        self.__set_correo_receptor()
+        #self._set_nit_receptor()
+        #self.__set_correo_receptor()
         super().save(*args, **kwargs)
 
     

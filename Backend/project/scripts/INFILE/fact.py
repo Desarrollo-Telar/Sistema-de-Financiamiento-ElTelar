@@ -5,6 +5,8 @@ from xml.dom import minidom
 from typing import Union
 from pathlib import Path
 
+# MODELS
+from apps.financings.models import Invoice
 
 # ==========================
 # CONFIGURACIÓN GLOBAL
@@ -53,7 +55,7 @@ def generar_xml_recibo(recibo) -> str:
         recibo.save()
     except:
         pass # Ignoramos el error de la DB para enfocarnos en el XML
-
+    
     now_local = timezone.localtime(timezone.now()) 
 
     now_formatted = now_local.strftime("%Y-%m-%dT%H:%M:%S%z")
@@ -213,8 +215,10 @@ def guardar_xml_recibo(recibo, nombre_archivo: str = "recibo.xml") -> str:
     xml_content = generar_xml_recibo(recibo)
     fel_client = FELApiClient()
 
+    
+
     # Enviar XML a la API FEL
-    respuesta_api = fel_client.enviar_xml(xml_content)
+    respuesta_api = fel_client.enviar_xml(xml_content, recibo)
     print("Respuesta de la API FEL:", respuesta_api)
    
 

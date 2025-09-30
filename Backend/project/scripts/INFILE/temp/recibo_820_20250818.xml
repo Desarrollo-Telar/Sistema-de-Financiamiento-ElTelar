@@ -3,7 +3,7 @@
     <dte:SAT ClaseDocumento="dte">
         <dte:DTE ID="DatosCertificados">
             <dte:DatosEmision ID="DatosEmision">
-                <dte:DatosGenerales CodigoMoneda="GTQ" FechaHoraEmision="2025-09-29T14:06:16-06:00" Tipo="FACT"/>
+                <dte:DatosGenerales CodigoMoneda="GTQ" FechaHoraEmision="2025-09-29T14:18:42-06:00" Tipo="FACT"/>
                 <dte:Emisor AfiliacionIVA="GEN" CodigoEstablecimiento="1" CorreoEmisor="" NITEmisor="108241297" NombreComercial="EL TELAR" NombreEmisor="INVERSIONES INTEGRALES EL TELAR, SOCIEDAD ANÓNIMA">
                     <dte:DireccionEmisor>
                         <dte:Direccion>MERCADO CANTONAL, ZONA 2, COBÁN, ALTA VERAPAZ</dte:Direccion>
@@ -13,7 +13,7 @@
                         <dte:Pais>GT</dte:Pais>
                     </dte:DireccionEmisor>
                 </dte:Emisor>
-                <dte:Receptor CorreoReceptor="" IDReceptor="21117969" NombreReceptor="BILLY ROMAN PONCE PINELO"/>
+                <dte:Receptor CorreoReceptor="" IDReceptor="110241630" NombreReceptor="JUAN CARLOS ELOÍ CHOC XOL"/>
                 <dte:Frases>
                     <dte:Frase CodigoEscenario="1" TipoFrase="1"/>
                 </dte:Frases>
@@ -21,41 +21,25 @@
                     <dte:Item BienOServicio="S" NumeroLinea="1">
                         <dte:Cantidad>1.00</dte:Cantidad>
                         <dte:Descripcion>Pago de Interés</dte:Descripcion>
-                        <dte:PrecioUnitario>1644.97</dte:PrecioUnitario>
-                        <dte:Precio>1644.97</dte:Precio>
+                        <dte:PrecioUnitario>80.00</dte:PrecioUnitario>
+                        <dte:Precio>80.00</dte:Precio>
                         <dte:Descuento>0.00</dte:Descuento>
                         <dte:Impuestos>
                             <dte:Impuesto>
                                 <dte:NombreCorto>IVA</dte:NombreCorto>
                                 <dte:CodigoUnidadGravable>1</dte:CodigoUnidadGravable>
-                                <dte:MontoGravable>1468.72</dte:MontoGravable>
-                                <dte:MontoImpuesto>176.25</dte:MontoImpuesto>
+                                <dte:MontoGravable>71.43</dte:MontoGravable>
+                                <dte:MontoImpuesto>8.57</dte:MontoImpuesto>
                             </dte:Impuesto>
                         </dte:Impuestos>
-                        <dte:Total>1644.97</dte:Total>
-                    </dte:Item>
-                    <dte:Item BienOServicio="S" NumeroLinea="2">
-                        <dte:Cantidad>1.00</dte:Cantidad>
-                        <dte:Descripcion>Otros Gastos Administrativos</dte:Descripcion>
-                        <dte:PrecioUnitario>537.03</dte:PrecioUnitario>
-                        <dte:Precio>537.03</dte:Precio>
-                        <dte:Descuento>0.00</dte:Descuento>
-                        <dte:Impuestos>
-                            <dte:Impuesto>
-                                <dte:NombreCorto>IVA</dte:NombreCorto>
-                                <dte:CodigoUnidadGravable>1</dte:CodigoUnidadGravable>
-                                <dte:MontoGravable>479.49</dte:MontoGravable>
-                                <dte:MontoImpuesto>57.54</dte:MontoImpuesto>
-                            </dte:Impuesto>
-                        </dte:Impuestos>
-                        <dte:Total>537.03</dte:Total>
+                        <dte:Total>80.00</dte:Total>
                     </dte:Item>
                 </dte:Items>
                 <dte:Totales>
                     <dte:TotalImpuestos>
-                        <dte:TotalImpuesto NombreCorto="IVA" TotalMontoImpuesto="233.79"/>
+                        <dte:TotalImpuesto NombreCorto="IVA" TotalMontoImpuesto="8.57"/>
                     </dte:TotalImpuestos>
-                    <dte:GranTotal>2182.00</dte:GranTotal>
+                    <dte:GranTotal>80.00</dte:GranTotal>
                 </dte:Totales>
             </dte:DatosEmision>
         </dte:DTE>

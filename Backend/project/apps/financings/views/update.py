@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 
 # Scripts
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+from scripts.INFILE.fact import guardar_xml_recibo
 
 # FORMULARIO
 from apps.financings.forms import PaymentPlanForms, BoletaForm
@@ -108,26 +109,6 @@ def update_cuota(request, id):
 
     return render(request, template_name, context)
 
-
-@login_required
-@usuario_activo
-def generar_factura(request,id):
-   
-    
-    recibo = get_object_or_404(Recibo, id=id)
-    print(recibo.factura)
-    if not recibo.factura:
-        recibo.factura = True
-        recibo.save()
-    
-        factura = Invoice()
-        factura.recibo_id = recibo
-        factura.save()
-
-        messages.success(request, 'Factura Creada')
-    
-
-    return redirect('financings:detail_credit',recibo.pago.credit.id)
 
 
 

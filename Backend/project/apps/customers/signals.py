@@ -119,7 +119,8 @@ def send_message(sender, instance, created, **kwargs):
     filename = f'codigoQr_{customer.customer_code}.png'
     dato = f'https://www.ii-eltelarsa.com/pdf/{customer.id}'
     
-    generate_qr(dato, filename)
+    if created:
+        generate_qr(dato, filename)
     
 
 

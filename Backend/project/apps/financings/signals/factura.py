@@ -23,7 +23,3 @@ def generar_noFactura(sender, instance, **kwargs):
     #envio_mensaje_alerta_recibo(instance.id)
     logger.info('DESDE SIGNALS DE FACUTRA: ENVIO DE MENSAJE DE RECIBO CARGADO')
 
-
-
-
-

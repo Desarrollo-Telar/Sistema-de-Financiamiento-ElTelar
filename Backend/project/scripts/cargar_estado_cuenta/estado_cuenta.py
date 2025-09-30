@@ -96,49 +96,19 @@ def creacion_estado_cuenta(credit, payment, issue_date, interest_paid, capital_p
     )
 
 def migracion_datos():
-    credito = Credit.objects.get(id=353)
+    credito = Credit.objects.get(id=347)
     cliente = Customer.objects.get(id=credito.customer_id.id)
 
     listado_referencias = [
         {
-            'num_refe':'1369413328',
-            'fecha':'2024-09-04',
-            'monto':500,
-            'interes_pagado':500,
-            'aporte_capital':0,
+            'num_refe':'65815006',
+            'fecha':'2025-03-1',
+            'monto':2777,
+            'interes_pagado':902.42,
+            'aporte_capital':1374.58,
             'estado_transaccion':'COMPLETADO',
             'registro_ficticio':True,
-            'saldo_pendiente':5000,
-        },
-        {
-            'num_refe':'805439318',
-            'fecha':'2024-10-31',
-            'monto':1000,
-            'interes_pagado':1000,
-            'aporte_capital':0,
-            'estado_transaccion':'COMPLETADO',
-            'registro_ficticio':True,
-            'saldo_pendiente':5000,
-        },
-        {
-            'num_refe':'1528055976',
-            'fecha':'2025-04-16',
-            'monto':3000,
-            'interes_pagado':(2500+500),
-            'aporte_capital':0,
-            'estado_transaccion':'COMPLETADO',
-            'registro_ficticio':True,
-            'saldo_pendiente':5000,
-        },
-        {
-            'num_refe':'1528084162',
-            'fecha':'2025-04-16',
-            'monto':3000,
-            'interes_pagado':0,
-            'aporte_capital':3000,
-            'estado_transaccion':'COMPLETADO',
-            'registro_ficticio':True,
-            'saldo_pendiente':2000,
+            'saldo_pendiente':10657.69,
         }
 
         
