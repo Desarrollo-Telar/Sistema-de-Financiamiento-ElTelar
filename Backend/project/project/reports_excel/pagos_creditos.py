@@ -19,7 +19,7 @@ def report_pagos_generales(request, anio, mes):
     filters &= Q(fecha__month=mes)
     filters &= Q(pago__credit__isnull=False)
     #filters &= Q(pago__registro_ficticio=False)
-    reportes = Recibo.objects.filter(filters).order_by('fecha')
+    reportes = Recibo.objects.filter(filters)
 
      # Crear el archivo Excel
     workbook = Workbook()
@@ -101,7 +101,7 @@ def report_pagos(request, filtro_seleccionado, anio, mes, total):
             return redirect('report_pagos_generales',str(anio), str(mes))
         
         filtro_dinamico = {filtros_validos[filtro_seleccionado]: 0}
-        reportes = Recibo.objects.filter(filters).filter(**filtro_dinamico).order_by('fecha')
+        reportes = Recibo.objects.filter(filters).filter(**filtro_dinamico)
         
 
     # Crear el archivo Excel
