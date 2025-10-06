@@ -205,9 +205,10 @@ def limpiar_y_formatear_nit_estandarizado():
 if __name__ == "__main__":
   try:
     #migracion_datos()
-    for cliente in Customer.objects.all():
-        print(f'\nCLIENTE:  {cliente}, numero de nit: {cliente.number_nit}')
-        ejemplo_uso_consulta_receptor(cliente.number_nit)
+    recibo = Recibo.objects.filter(pago__id = 2362).first()
+    resultado = guardar_xml_recibo(recibo)
+    print(resultado)
+    
     
 
     

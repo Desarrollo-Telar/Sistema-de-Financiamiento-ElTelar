@@ -27,7 +27,11 @@ class FELApiClient:
 
     def _generar_identificador(self):
         """Genera un identificador único para la transacción."""
-        return str(uuid.uuid4())
+        while True:
+            identificador = str(uuid.uuid4())
+            if not Invoice.objects.filter(identificador=identificador).exists():
+                return identificador
+ 
 
     def _crear_headers(self):
         """Crea los headers requeridos por la API FEL."""
@@ -87,6 +91,7 @@ class FELApiClient:
                 factura.serie_autorizacion = serie
                 factura.xml_certificado = xml_certificado
                 factura.nit_receptor = recibo_instance.cliente.number_nit
+                factura.identificador = self._generar_identificador()
                 factura.save()
 
                 # Retornar la respuesta exitosa

@@ -98,7 +98,7 @@ def generar_xml_recibo(recibo) -> str:
     })
 
     DireccionEmisor = ET.SubElement(Emisor, f"{{{DTE_NS}}}DireccionEmisor")
-    ET.SubElement(DireccionEmisor, f"{{{DTE_NS}}}Direccion").text = "MERCADO CANTONAL, ZONA 2, COBÁN, ALTA VERAPAZ"
+    ET.SubElement(DireccionEmisor, f"{{{DTE_NS}}}Direccion").text = "MERCADO CANTONAL, ZONA 2"
     ET.SubElement(DireccionEmisor, f"{{{DTE_NS}}}CodigoPostal").text = "16001"
     ET.SubElement(DireccionEmisor, f"{{{DTE_NS}}}Municipio").text = "COBÁN"
     ET.SubElement(DireccionEmisor, f"{{{DTE_NS}}}Departamento").text = "ALTA VERAPAZ"
@@ -108,11 +108,19 @@ def generar_xml_recibo(recibo) -> str:
     # Receptor
     # --------------------------
     
-    ET.SubElement(DatosEmision, f"{{{DTE_NS}}}Receptor", {
+    receptor = ET.SubElement(DatosEmision, f"{{{DTE_NS}}}Receptor", {
         "CorreoReceptor": "",
         "IDReceptor": str(recibo.cliente.number_nit),
         "NombreReceptor": str(recibo.cliente)
     })
+
+    direccion_receptor = ET.SubElement(receptor, "dte:DireccionReceptor")
+
+    ET.SubElement(direccion_receptor, "dte:Direccion").text =  "CIUDAD"
+    ET.SubElement(direccion_receptor, "dte:CodigoPostal").text =  "01001"
+    ET.SubElement(direccion_receptor, "dte:Municipio").text =  "GUATEMALA"
+    ET.SubElement(direccion_receptor, "dte:Departamento").text =  "GUATEMALA"
+    ET.SubElement(direccion_receptor, "dte:Pais").text = "GT"
 
     # --------------------------
     # Frases

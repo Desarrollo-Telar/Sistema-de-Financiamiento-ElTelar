@@ -21,6 +21,7 @@ class Invoice(models.Model):
     correo_receptor = models.CharField(verbose_name='Correo Receptor', max_length=150, blank=True, null=True)
     serie_autorizacion = models.CharField(verbose_name="Serie de Autorizacion", max_length=150, blank=True, null=True)
     xml_certificado  = models.TextField(verbose_name="Serie de Autorizacion", blank=True, null=True)
+    identificador = models.CharField(verbose_name="identificador", max_length=150, blank=True, null=True)
 
     def __str__(self):
         return f'{self.numero_factura}'
