@@ -53,7 +53,7 @@
     <div class="tab-pane fade show " id="nav-desembolsos" role="tabpanel" aria-labelledby="nav-desembolsos-tab"
         tabindex="0">
         <div class="contenido">
-            {% if total_desembolso < credit_list.formato_monto and not credit_list.is_paid_off %} <div class="row"
+            {% if not credit_list.is_paid_off %} <div class="row"
                 style="margin-top: 1rem;">
                 <div class="col d-flex flex-row-reverse">
                     <a class="btn_cancel" href="{% url 'financings:create_disbursement' credit_list.id %}">Añadir
