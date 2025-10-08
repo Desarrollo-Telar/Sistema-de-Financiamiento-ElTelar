@@ -281,13 +281,13 @@ def filter_credito_con_excedente(request):
     template_name = 'financings/credit/list.html'
     
 
-    credito =  Credit.objects.filter(saldo_actual__lt=0).order_by('-id')
+    credito =  Credit.objects.filter(Q(saldo_actual__lt=0) | Q(excedente__gt=0)).order_by('-id')
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         credito =  Credit.objects.filter(
-            saldo_actual__lt=0,
+            Q(saldo_actual__lt=0) | Q(excedente__gt=0)).filter(
             customer_id__new_asesor_credito=asesor_autenticado
             ).order_by('-fecha_actualizacion')
 

@@ -84,9 +84,17 @@
                 <h5 class="card-title mb-3"><i class="bi bi-calendar-range-fill me-2"></i>Fechas y Montos</h5>
                 <p class="mb-2"><strong>MONTO DEL PRÉSTAMO:</strong> <span class="fw-light">Q
                         {{credit_list.formato_monto}}</span></p>
+                
+                        {% if credit_list.excedente > 0 %}
+                        <p class="mb-2"><strong>SALDO EXCEDENTE:</strong> <span class="fw-light">Q
+                        {{credit_list.formato_saldo_excedente}} </span></p>
+                            {% else %}
                 <p class="mb-2"><strong>SALDO ACTUAL:</strong> <span class="fw-light">Q
                         {{credit_list.formato_saldo_actual}} <small>Al
                             {{siguiente_pago.mostrar_fecha_limite}}</small></span></p>
+                            {% endif %}
+
+
                 <p class="mb-2"><strong>PLAZO:</strong> <span class="fw-light">{{credit_list.plazo}} MESES</span></p>
                 <p class="mb-0"><strong>TASA DE INTERÉS MENSUAL:</strong> <span
                         class="fw-light">{{credit_list.tasa_mensual}}%</span></p>

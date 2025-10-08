@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from django.shortcuts import render, redirect, get_object_or_404
 
-
+from apps.financings.formato import formatear_numero
 
 import json
 from django.http import HttpResponse
@@ -30,11 +30,12 @@ def report_pagos_generales(request, anio, mes):
     sheet['A1'] = f'REPORTE SOBRE {filtro_seleccionado}'
     
     sheet.append(["#", "FECHA", "FECHA DE PAGO","CODIGO DEL CREDITO", "CLIENTE", "NIT","No. RECIBO","NO. REFERENCIA", "MONTO PAGADO", "MORA PAGADA"
-                  ,"INTERES PAGADO", "CAPITAL APORTADO","BOLETA FICTICIA","STATUS DEL CREDITO", "ASESOR DE CREDITO"])
+                  ,"INTERES PAGADO", "CAPITAL APORTADO","DIFERENCIA","BOLETA FICTICIA","STATUS DEL CREDITO", "ASESOR DE CREDITO"])
 
     # Agregar los datos al archivo Excel
     for idx, reporte in enumerate(reportes, start=1):
         monto = reporte.total
+        diferencia = 0
 
         # Agregar los datos a la fila correspondiente
         mensaje = None
@@ -49,6 +50,8 @@ def report_pagos_generales(request, anio, mes):
         s_fecha = 'VIGENTE' if reporte.pago.credit.estados_fechas else 'EN ATRASO'
         estados_credito = f'Status de Aportación: {aportacion},\nStatus por Fecha: {s_fecha}'
 
+        diferencia = reporte.total - (reporte.mora_pagada + reporte.interes_pagado + reporte.aporte_capital)
+
         sheet.append([
             idx, 
             str(reporte.fecha),
@@ -62,6 +65,7 @@ def report_pagos_generales(request, anio, mes):
             str(reporte.Fmora_pagada()),
             str(reporte.Finteres_pagado()),
             str(reporte.Faporte_capital()),
+            str(formatear_numero(diferencia)),
             str(reporte.pago.get_registro_ficticio()),
             estados_credito,
             str(reporte.cliente.new_asesor_credito)

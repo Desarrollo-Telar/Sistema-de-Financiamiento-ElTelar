@@ -220,7 +220,7 @@ class Payment(models.Model):
             print(f"Ocurrió un error inesperado: {e}")
     
 
-    def _registrar_pago(self, pagado_mora, pagado_interes,aporte_capital, saldo_pendiente):
+    def _registrar_pago(self, pagado_mora, pagado_interes,aporte_capital, saldo_pendiente, excedente):
         # ------------------------------------ #
         informacion = sobre_que_es_pago(self)
 
@@ -233,11 +233,17 @@ class Payment(models.Model):
         cuota_a_actualizar = False
         descripcion_para_estado_cuenta = None
 
+        
+
+        
+
 
         if self.registro_ficticio:
             descripcion_para_estado_cuenta = 'PAGO PARA CANCELAR EL CREDITO'
         else:
             descripcion_para_estado_cuenta = 'PAGO DE CREDITO'
+        
+       
         
 
         # VERIFICAR SI YA EXISTE UN RECIBO ASOCIADO CON EL PAGO O GENERAR UNO NUEVO
@@ -302,6 +308,12 @@ class Payment(models.Model):
         # REFLEJAR EN EL ESTADO DE CUENTA
         estados_cuenta = self.get_estado_cuenta().objects.filter(payment=pago)
         # Definimos los datos que se asignarán a los estados de cuenta
+        excedente_estado_cuenta = 0
+        # --------------------------- #
+        if excedente is not None:
+           excedente_estado_cuenta = abs(excedente)
+           informacion['credito'].excedente =  abs(excedente)
+           
  
         datos_estado_cuenta = {
             'abono': self.monto,            
@@ -314,7 +326,8 @@ class Payment(models.Model):
             'saldo_pendiente':saldo_pendiente,
             'description':  descripcion_para_estado_cuenta,
             'acreedor': informacion['acreedor'],
-            'seguro':informacion['seguro']
+            'seguro':informacion['seguro'],
+            'excedente':excedente_estado_cuenta
         }
 
         
@@ -329,6 +342,11 @@ class Payment(models.Model):
             # Creamos un nuevo estado de cuenta si no hay existentes
             estado_cuenta = self.get_estado_cuenta()(**datos_estado_cuenta)
             estado_cuenta.save()
+        
+        
+           
+            
+
 
         # VERIFICAR SI EL CREDITO YA FUE PAGADO POR COMPLETO
         if saldo_pendiente <= 0:

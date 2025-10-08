@@ -49,6 +49,17 @@ def procesos_de_pago(self, saldo_pendiente, interes, mora):
         return f"Pago realizado parcialmente. Quedan Q{interes} de intereses pendientes. "
     
     aporte_capital = monto_depositado
+    excedente = None
+    saldo_pendiente_antes = saldo_pendiente
+
     saldo_pendiente -= aporte_capital
-    self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente)
+    
+
+    if saldo_pendiente < 0:
+        excedente = saldo_pendiente
+        saldo_pendiente = 0
+        aporte_capital = saldo_pendiente_antes
+        
+
+    self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente, excedente=excedente)
     return f"Pago realizado con éxito. Q{self.monto} restante. Saldo pendiente total: Q{saldo_pendiente}"

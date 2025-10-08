@@ -31,6 +31,7 @@ class Creditor(models.Model):
     estados_fechas =  models.BooleanField(blank=True, null=True)
     forma_de_pago = models.CharField("Forma de Pago", max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
+    excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
 
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
@@ -100,6 +101,7 @@ class Insurance(models.Model):
     forma_de_pago = models.CharField("Forma de Pago",  max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
     credito = models.ForeignKey(Credit, on_delete=models.CASCADE, blank=True, null=True)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
+    excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
 
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)

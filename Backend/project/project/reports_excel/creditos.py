@@ -37,7 +37,7 @@ def report_creditos(request, filtro_seleccionado):
         'Creditos Cancelados': lambda: Credit.objects.filter(is_paid_off=True),
         'Creditos en Atraso': lambda: Credit.objects.filter(estados_fechas=False),
         'Creditos con falta de Aportacion': lambda: Credit.objects.filter(estado_aportacion=False),
-        'Creditos con excedente': lambda: Credit.objects.filter(saldo_actual__lt=0),
+        'Creditos con excedente': lambda: Credit.objects.filter(Q(saldo_actual__lt=0) | Q(excedente__gt=0)),
     }
 
     # Obtener los créditos según el filtro seleccionado
@@ -55,7 +55,7 @@ def report_creditos(request, filtro_seleccionado):
         "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
         "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
         "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", 
-        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE", "STATUS DEL CREDITO", "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
+        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS DEL CREDITO", "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
     ])
 
     # Agregar los datos
@@ -96,6 +96,7 @@ def report_creditos(request, filtro_seleccionado):
             fecha_limite_pago,
             reporte.formato_saldo_actual(),
             reporte.formato_saldo_pendiente(),
+            reporte.formato_saldo_excedente(),
             stat,
             numero_referencia,
             str(reporte.customer_id.asesor)

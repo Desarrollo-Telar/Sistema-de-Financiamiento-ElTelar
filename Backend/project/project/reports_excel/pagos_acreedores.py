@@ -28,7 +28,7 @@ def report_pagos_generales_acreedores(request, anio, mes):
     sheet['A1'] = f'REPORTE SOBRE {filtro_seleccionado}'
     
     sheet.append(["#", "FECHA", "CODIGO DEL ACREEDOR", "NOMBRE", "NO. REFERENCIA", "MONTO PAGADO", "MORA PAGADA"
-                  ,"INTERES PAGADO", "CAPITAL APORTADO","STATUS DEL ACREEDOR"])
+                  ,"INTERES PAGADO", "CAPITAL APORTADO","SALDO CAPITAL PENDIENTE","SALDO ACTUAL","STATUS DEL ACREEDOR"])
 
     # Agregar los datos al archivo Excel
     for idx, reporte in enumerate(reportes, start=1):
@@ -55,6 +55,8 @@ def report_pagos_generales_acreedores(request, anio, mes):
             str(reporte.Fmora_pagada()),
             str(reporte.Finteres_pagado()),
             str(reporte.Faporte_capital()),
+            str(reporte.cuota.acreedor.formato_saldo_pendiente()),
+            str(reporte.cuota.acreedor.formato_saldo_actual()),
             f"Status de Aportación: {aportacion}, "
             f"Status por Fecha: {s_fecha}"
         ])

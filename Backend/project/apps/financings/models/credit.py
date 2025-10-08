@@ -62,7 +62,7 @@ class Credit(models.Model):
     estado_judicial = models.BooleanField(default=False, verbose_name="Estado Judicial")
 
     valoracion = models.DecimalField(verbose_name="Puntuacion del Credito", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
-
+    excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
 
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
@@ -125,6 +125,9 @@ class Credit(models.Model):
     
     def formato_saldo_actual(self):
         return formatear_numero(self.saldo_actual)
+    
+    def formato_saldo_excedente(self):
+        return formatear_numero(self.excedente)
 
     class Meta:
         verbose_name = "Credito"

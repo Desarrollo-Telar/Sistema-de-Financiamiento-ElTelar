@@ -33,12 +33,16 @@ class AccountStatement(models.Model):
     abono = models.DecimalField('Abono', max_digits=12, decimal_places=2, default=0)    
     numero_referencia = models.CharField('Numero de Referencia', max_length=255, unique=True)
     description = models.TextField('Descripcion',blank=True, null=True )
+    excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
 
     def Fabono(self):
         return formatear_numero(self.abono)
     
     def Fsaldo_pendiente(self):
         return formatear_numero(self.saldo_pendiente)
+    
+    def Fsaldo_excedente(self):
+        return formatear_numero(self.excedente)
     
     def Flate_fee_paid(self):
         return formatear_numero(self.late_fee_paid)
