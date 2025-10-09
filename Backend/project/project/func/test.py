@@ -9,7 +9,7 @@ import django
 # Configura Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")  # <-- Ajusta si tu settings está en otro path
 django.setup()
-
+from django.contrib.auth import logout
 # Modelos
 from apps.customers.models import CreditCounselor, Customer, Cobranza
 from apps.financings.models import Credit, PaymentPlan, Banco, Payment, Recibo, AccountStatement, Disbursement
@@ -208,15 +208,13 @@ if __name__ == "__main__":
   try:
     #migracion_datos()
     sucursal = Subsidiary.objects.all().first()
-    usuarios_no = ['choc1403','e_bermudez']
+    usuarios_no = ['choc1403']
     
     for usuario in User.objects.all():
        
        if usuario.username in usuarios_no:
-          continue
-       
-       usuario.sucursal = sucursal
-       usuario.save()
+          usuario.sucursal = sucursal
+          usuario.save()
     
     
 

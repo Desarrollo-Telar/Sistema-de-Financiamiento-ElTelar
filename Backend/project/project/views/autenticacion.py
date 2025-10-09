@@ -27,6 +27,7 @@ from apps.financings.task import cambiar_plan
 # MODELOS
 from django.contrib.auth.models import AnonymousUser
 from apps.users.models import User
+from apps.subsidiaries.models import Subsidiary
 # Formularios
 from apps.codes.forms import CodeForm
 
@@ -71,8 +72,9 @@ def login_view(request):
 
             sucursal = None
 
-            if user.sucursal:
-                sucursal = user.sucursal
+            if user.sucursal is not None:
+                sucursal = user.sucursal.id
+                
 
             request.session['sucursal_id'] = sucursal
             

@@ -12,7 +12,7 @@ def usuario_activo(funcion):
             return redirect('login')
         
         if user.sucursal is not None:
-            request.session['sucursal_id'] = user.sucursal
+            request.session['sucursal_id'] = user.sucursal.id
 
         
         if  request.session['sucursal_id'] is None:
