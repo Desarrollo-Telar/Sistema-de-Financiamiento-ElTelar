@@ -4,7 +4,7 @@ from django.db import models
 from django.utils import timezone
 
 # MODELOS
-
+from apps.subsidiaries.models import Subsidiary
 from .recibo import Recibo
 
 # DECIMAL
@@ -22,7 +22,8 @@ class Invoice(models.Model):
     serie_autorizacion = models.CharField(verbose_name="Serie de Autorizacion", max_length=150, blank=True, null=True)
     xml_certificado  = models.TextField(verbose_name="Serie de Autorizacion", blank=True, null=True)
     identificador = models.CharField(verbose_name="identificador", max_length=150, blank=True, null=True)
-
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
+    
     def __str__(self):
         return f'{self.numero_factura}'
     

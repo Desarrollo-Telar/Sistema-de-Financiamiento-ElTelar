@@ -6,6 +6,7 @@ from apps.financings.formato import formatear_numero
 
 # RELACIONES
 from apps.financings.models import Credit
+from apps.subsidiaries.models import Subsidiary
 
 from project.settings import MEDIA_URL, STATIC_URL
 from project.database_store import minio_client  # asegúrate de que esté importado correctamente
@@ -32,6 +33,7 @@ class Creditor(models.Model):
     forma_de_pago = models.CharField("Forma de Pago", max_length=75, blank=False, null=False, default='AMORTIZACIONES A CAPITAL')
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
     excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
@@ -62,6 +64,9 @@ class Creditor(models.Model):
     
     def formato_saldo_actual(self):
         return formatear_numero(self.saldo_actual)
+    
+    def formato_saldo_pendiente(self):
+        return formatear_numero(self.saldo_pendiente)
         
 
     def calcular_fecha_vencimiento(self):
@@ -102,6 +107,7 @@ class Insurance(models.Model):
     credito = models.ForeignKey(Credit, on_delete=models.CASCADE, blank=True, null=True)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
     excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
@@ -164,6 +170,7 @@ class Income(models.Model):
     status = models.BooleanField("Status",default=False)
     fecha_registro = models.DateField("Fecha de registro",auto_now_add=True)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
@@ -202,6 +209,7 @@ class Egress(models.Model):
     seguro = models.ForeignKey(Insurance, on_delete=models.CASCADE, related_name='egress', blank=True, null=True)
     tipo_gasto = models.CharField("Tipo de Gasto", blank=True, null=True, max_length=150)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
     def get_boleta(self):
         try:

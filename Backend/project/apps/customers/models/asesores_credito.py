@@ -2,7 +2,7 @@ from django.db import models
 
 # Relacion
 from apps.users.models import User
-
+from apps.subsidiaries.models import Subsidiary
 # TIEMPO
 from datetime import datetime
 
@@ -40,7 +40,8 @@ class CreditCounselor(models.Model):
     gender = models.CharField("Género", choices=genero, default='MASCULINO', max_length=50)
     nit = models.CharField(verbose_name="Numero de NIT", max_length=75, blank=True, null=True)
     recordatorio_clientes = models.DateField("Fecha en que se recordara a los clientes", default=datetime.now, null=True, blank=True)
-
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
+    
     def __str__(self):
         return f'{self.nombre} {self.apellido}'
 

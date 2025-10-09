@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>INVERSIONES INTEGRALES EL TELAR S.A. | Selecciona tu Sucursal</title>
+    <link rel="icon" href="{% static 'img/logo_icon.jpeg' %}" />
+    <link rel="stylesheet" href="{% static 'css/sucursal/clasificacion.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>🏢 Nuestras Sucursales</h1>
+        <p class="subtitle">Selecciona la sucursal más cercana a ti</p>
+
+        <div class="sucursales-grid" id="sucursalesGrid">
+            {% for sucursal in sucursales %}
+            <div class="sucursal-card" onclick="seleccionarSucursal('{{ sucursal.id }}')">
+                <div class="sucursal-content">
+                    <h2>{{ sucursal.nombre }}</h2>
+                    
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        
+    </div>
+
+    <script>
+        let sucursalSeleccionada = null;
+
+        // Seleccionar sucursal
+        function seleccionarSucursal(id) {
+            const cards = document.querySelectorAll('.sucursal-card');
+            cards.forEach(card => card.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            irASucursal(id);
+        }
+
+        
+
+        // Redirigir a la sucursal
+        function irASucursal(id) {
+            window.location.href = `/sucursal/seleccionado/${id}/`;
+            
+        }
+    </script>
+</body>
+</html>

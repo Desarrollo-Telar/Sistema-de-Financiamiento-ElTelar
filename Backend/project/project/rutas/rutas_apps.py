@@ -16,4 +16,5 @@ urlpatterns_apps = [
     path('contable/', include('apps.accountings.urls')),
     path('financings/',include('apps.financings.urls')),
     path('actividades/',include('apps.actividades.urls')),
+    path('sucursal/',include('apps.subsidiaries.urls')),
 ]

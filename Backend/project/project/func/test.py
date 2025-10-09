@@ -13,6 +13,8 @@ django.setup()
 # Modelos
 from apps.customers.models import CreditCounselor, Customer, Cobranza
 from apps.financings.models import Credit, PaymentPlan, Banco, Payment, Recibo, AccountStatement, Disbursement
+from apps.users.models import User
+from apps.subsidiaries.models import Subsidiary
 
 # Scripts
 from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
@@ -205,9 +207,16 @@ def limpiar_y_formatear_nit_estandarizado():
 if __name__ == "__main__":
   try:
     #migracion_datos()
-    recibo = Recibo.objects.filter(pago__id = 2362).first()
-    resultado = guardar_xml_recibo(recibo)
-    print(resultado)
+    sucursal = Subsidiary.objects.all().first()
+    usuarios_no = ['choc1403','e_bermudez']
+    
+    for usuario in User.objects.all():
+       
+       if usuario.username in usuarios_no:
+          continue
+       
+       usuario.sucursal = sucursal
+       usuario.save()
     
     
 

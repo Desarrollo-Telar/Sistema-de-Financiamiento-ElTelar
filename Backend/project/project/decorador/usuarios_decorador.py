@@ -6,9 +6,22 @@ from django.http import HttpResponseNotFound
 def usuario_activo(funcion):
     def wrapper(request, *args, **kwargs):
         user = request.user
+    
         if not user.status:
             logout(request)
             return redirect('login')
+        
+        if user.sucursal is not None:
+            request.session['sucursal_id'] = user.sucursal
+
+        
+        if  request.session['sucursal_id'] is None:
+            return redirect('sucursal:clasificacion')
+        
+         
+
+        
+
         return funcion(request, *args, **kwargs)
     return wrapper
 

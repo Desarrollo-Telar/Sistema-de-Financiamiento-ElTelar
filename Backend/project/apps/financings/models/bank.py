@@ -1,5 +1,9 @@
 # BANCOS
 from django.db import models
+
+# RELACION
+from apps.subsidiaries.models import Subsidiary
+# TIEMPO
 from datetime import datetime
 
 # FORMATO
@@ -20,6 +24,7 @@ class Banco(models.Model):
     saldo_disponible = models.DecimalField('Saldo Disponible', decimal_places=2, max_digits=12, default=0)
     # Nuevos Atributos
     registro_ficticio = models.BooleanField("Registro Ficticio", default=False)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
     def f_credito(self):
         return formatear_numero(self.credito)

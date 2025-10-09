@@ -1,7 +1,7 @@
 # MODELOS
 from django.db import models
 from apps.customers.models import Customer
-
+from apps.subsidiaries.models import Subsidiary
 from apps.financings.models import Payment, PaymentPlan
 
 # TIEMPO
@@ -26,6 +26,7 @@ class Recibo(models.Model):
     total  = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     factura = models.BooleanField(default=False)
     cuota = models.ForeignKey(PaymentPlan, on_delete=models.CASCADE, null=True, blank=True)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
     def recibo_para(self):
         mensaje = ''

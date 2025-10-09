@@ -37,6 +37,7 @@ import logging
 @login_required
 def logout_view(request):
     user = request.user
+    request.session.flush()
     logout(request)
     messages.success(request, 'Sesión cerrada exitosamente')
     hora = datetime.now()
@@ -67,6 +68,14 @@ def login_view(request):
             
             request.session['pk'] = user.pk
             login(request, user)
+
+            sucursal = None
+
+            if user.sucursal:
+                sucursal = user.sucursal
+
+            request.session['sucursal_id'] = sucursal
+            
             messages.success(request,'Bienvenido')
             hora = datetime.now()
             if user.username != 'choc1403':
@@ -76,6 +85,8 @@ def login_view(request):
 
             if next_url:
                 return redirect(next_url)
+            
+
             
             return redirect('index')
         else:

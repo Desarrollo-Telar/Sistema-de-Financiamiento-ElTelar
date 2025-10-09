@@ -30,7 +30,7 @@ from .credit import Credit
 from .bank import Banco
 from apps.customers.models import Customer
 from apps.accountings.models import Creditor, Insurance
-
+from apps.subsidiaries.models import Subsidiary
 from django.db.models import Q
 
 from project.settings import MEDIA_URL, STATIC_URL
@@ -82,6 +82,7 @@ class Payment(models.Model):
 
     # Nuevos Atributos
     registro_ficticio = models.BooleanField("Registro Ficticio", default=False)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
     def get_registro_ficticio(self):
         return f'SI ES UNA BOLETA FICTICIA' if self.registro_ficticio else f'NO ES UNA BOLETA FICTICIA'

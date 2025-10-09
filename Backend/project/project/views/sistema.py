@@ -62,6 +62,7 @@ def generate_qr(request, data):
 
 
 ### --- APARTADO INICIAL DEL PROYECTO --- ###
+@login_required
 @usuario_activo
 def index(request):
     template_name = 'index.html'
@@ -72,7 +73,7 @@ def index(request):
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         clientes = Customer.objects.filter(new_asesor_credito=asesor_autenticado)
 
-    
+    sucursal = request.session['sucursal_id']
         
 
     context = {
