@@ -26,7 +26,7 @@ class InformacionAsesorCobranzaView(APIView):
 
         # Créditos del asesor que no están pagados ni judiciales
         creditos_asesor = Credit.objects.filter(
-            customer_id__new_asesor_credito__id=asesor_credito.id,
+            asesor_de_credito__id=asesor_credito.id,
             is_paid_off=False,
             estado_judicial=False
         )

@@ -99,7 +99,7 @@ def creacion_cobranza(request):
             
             
             # VERIFICAR SI EL CREDITO ES MIO O DE ALGUN OTRO ASESOR
-            if credito.customer_id.new_asesor_credito != asesor_autenticado:
+            if credito.asesor_de_credito != asesor_autenticado:
                 informe_asesor = Informe.objects.filter(
                     usuario=credito.customer_id.new_asesor_credito.usuario,
                     esta_activo=True
@@ -107,7 +107,7 @@ def creacion_cobranza(request):
 
                 if informe_asesor is None:
                     informe_asesor = Informe.objects.create(
-                        usuario=credito.customer_id.new_asesor_credito.usuario,
+                        usuario=credito.asesor_de_credito.usuario,
                         esta_activo=True,
                         nombre_reporte=f'INVERSIONES INTEGRALES EL TELAR'
                     )

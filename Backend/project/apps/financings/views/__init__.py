@@ -12,7 +12,7 @@ from .search import CreditSearch, PaymentSearch, BankSearch
 from .update import update_pago, update_cuota, cambiar_estado_judicial, cambiar_estado_judicial_false
 
 # FUNCIONES PARA DETALLAR
-from .detail import detail_credit, detallar_recibo, detalle_boleta, detallar_desembolso,detalle_factura, detalle_estado_cuenta, clasificacion_detallar
+from .detail import  detallar_recibo, detalle_boleta, detallar_desembolso,detalle_factura, detalle_estado_cuenta, clasificacion_detallar
 from .detail import boleta, detallar_garantia
 # FUNCIONES PARA GENERAR PDFS
 from .generar_pdf import render_pdf_factura, render_pdf_estado_cuenta, render_pdf_calculos_credito, render_pdf_plan_pagos, render_pdf_plan_pagos_acreedor, render_pdf_plan_pagos_seguro
@@ -29,9 +29,8 @@ from .delete import delete_credit
 from .payment import create_payment, create_payment_credit
 
 # Filtros
-from .filtros import filter_credito_cancelado, filter_credito_en_atraso, filter_credito_en_falta_aportacion, filter_credito_reciente, filter_list_payment_pendiente, filter_list_payment_completados
-from .filtros import filter_list_bank_no_vinculado, filter_list_bank_vinculado, filter_credito_con_excedente,filter_credito_por_mes_anio, filter_credito_con_aportaciones
-from .filtros import filter_credito_fecha_vencimiento_hoy, filter_credito_fecha_limite_hoy, filter_credito_proximos_vencerse
+from .filtros import filter_list_payment_pendiente, filter_list_payment_completados
+from .filtros import filter_list_bank_no_vinculado, filter_list_bank_vinculado
 
 # MANEJO DE VERIFICACIONES
 from .status import async_view_banco, async_view_boletas
@@ -41,3 +40,6 @@ from .recibos import RecibosListView
 
 # FACTURA
 from .factura import generar_factura
+
+# CREDITO
+from .creditos import *

@@ -32,6 +32,13 @@ def permiso_requerido(nombre_permiso):
             if not usuario.status:
                 logout(request)
                 return redirect('login')
+            
+            if usuario.sucursal is not None:
+                request.session['sucursal_id'] = usuario.sucursal.id
+
+            
+            if request.session['sucursal_id'] is None:
+                return redirect('sucursal:clasificacion')
 
             # Verifica si tiene el permiso
             tiene_permiso = PermisoUsuario.objects.filter(

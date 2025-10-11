@@ -22,6 +22,9 @@ class Subsidiary(models.Model):
     codigo_postal = models.CharField("Codigo Postal", blank=True, null=True, max_length=100)
     descripcion = models.TextField("Descripcion", blank=True, null=True)
 
+    def __str__(self):
+        return f'{self.nombre}'
+
     @property
     def esta_abierta_ahora(self):
         import datetime

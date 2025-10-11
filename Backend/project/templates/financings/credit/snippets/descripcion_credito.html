@@ -28,7 +28,9 @@
                 <p class="mb-0"><strong>FORMA DE PAGO:</strong> <span
                         class="fw-light">{{credit_list.forma_de_pago}}</span></p>
                 <p class="mb-0"><strong>ASESOR DE CREDITO:</strong> <span
-                        class="fw-light">{{credit_list.customer_id.asesor}}</span></p>
+                        class="fw-light">{{credit_list.asesor_de_credito}}</span></p>
+                <p class="mb-0"><strong>SUCURSAL DEL CREDITO:</strong> <span
+                        class="fw-light">{{credit_list.sucursal}}</span></p>
                 <div class="rating">
                     {% for star in credit_list.get_star_rating %}
                     {% if star == 'full' %}

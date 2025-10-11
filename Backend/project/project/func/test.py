@@ -9,7 +9,7 @@ import django
 # Configura Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")  # <-- Ajusta si tu settings está en otro path
 django.setup()
-from django.contrib.auth import logout
+
 # Modelos
 from apps.customers.models import CreditCounselor, Customer, Cobranza
 from apps.financings.models import Credit, PaymentPlan, Banco, Payment, Recibo, AccountStatement, Disbursement
@@ -206,26 +206,15 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-    #migracion_datos()
-    sucursal = Subsidiary.objects.all().first()
-    usuarios_no = ['choc1403']
-    
-    for usuario in User.objects.all():
+    clientes = Customer.objects.all()
+
+    for cliente in clientes:
        
-       if usuario.username in usuarios_no:
-          usuario.sucursal = sucursal
-          usuario.save()
-    
-    
+       cliente.sucursal = Subsidiary.objects.get(id=1)
+       cliente.save()
 
-    
-
-    
-
-
-
-      
-        
+    print(f'FINALIZADO')
+   
 
   except S3Error as exc:
     print("An error occurred.", exc)

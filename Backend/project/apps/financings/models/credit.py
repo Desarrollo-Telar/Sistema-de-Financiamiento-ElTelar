@@ -2,7 +2,7 @@
 from django.db import models
 from math import floor
 # RELACIONES
-from apps.customers.models import Customer
+from apps.customers.models import Customer, CreditCounselor
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.subsidiaries.models import Subsidiary
 # FORMATO
@@ -66,6 +66,7 @@ class Credit(models.Model):
     excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
 
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
+    asesor_de_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Asesor de este Credito")
 
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'

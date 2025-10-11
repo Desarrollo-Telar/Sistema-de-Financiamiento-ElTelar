@@ -79,14 +79,14 @@ class CreditVigentesViewSet(viewsets.ModelViewSet):
 
             if asesor_autenticado:
                 if not self.request.user.rol.role_name in roles:
-                    filters &= Q(customer_id__new_asesor_credito__id=asesor_autenticado.id)
+                    filters &= Q(asesor_de_credito__id=asesor_autenticado.id)
 
             queryset = queryset.filter(filters)
 
         elif asesor_autenticado:
             # Si no hay término de búsqueda, pero sí asesor autenticado, filtrar por él
             if not self.request.user.rol.role_name in roles:
-                queryset = queryset.filter(customer_id__new_asesor_credito__id=asesor_autenticado.id)
+                queryset = queryset.filter(asesor_de_credito__id=asesor_autenticado.id)
 
         return queryset
 
@@ -120,9 +120,9 @@ class CreditVigentesCobranzaViewSet(viewsets.ModelViewSet):
                 Q(codigo_credito__icontains=search_term)
             )
             if role_name not in roles:
-                filters &= Q(customer_id__new_asesor_credito__id=asesor_autenticado.id)
+                filters &= Q(asesor_de_credito__id=asesor_autenticado.id)
             queryset = queryset.filter(filters)
         elif role_name not in roles:
-            queryset = queryset.filter(customer_id__new_asesor_credito__id=asesor_autenticado.id)
+            queryset = queryset.filter(asesor_de_credito__id=asesor_autenticado.id)
 
         return queryset

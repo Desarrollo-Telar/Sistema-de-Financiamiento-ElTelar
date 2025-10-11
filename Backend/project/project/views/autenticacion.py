@@ -1,4 +1,3 @@
-
 # Decoradores
 from django.contrib.auth.decorators import login_required
 
@@ -14,7 +13,6 @@ from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 
 
-
 # Envio de correos
 from project.send_mail import send_email_code_verification, send_email_user_conect_or_disconect
 
@@ -27,6 +25,7 @@ from apps.financings.task import cambiar_plan
 # MODELOS
 from django.contrib.auth.models import AnonymousUser
 from apps.users.models import User
+from apps.actividades.models import UserLog
 from apps.subsidiaries.models import Subsidiary
 # Formularios
 from apps.codes.forms import CodeForm
@@ -93,6 +92,7 @@ def login_view(request):
             return redirect('index')
         else:
             messages.error(request, 'Credenciales no validos')
+            
     
 
     context = {
