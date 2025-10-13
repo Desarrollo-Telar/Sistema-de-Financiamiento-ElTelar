@@ -20,6 +20,15 @@ const total_a_desembolsar = document.getElementById('total_a_desembolsar');
 seleccion_garantia();
 seleccion_desembolso();
 
+// Obtener el protocolo (HTTP/HTTPS)
+const protocolo = window.location.protocol; // Ejemplo: "https:"
+
+// Obtener el dominio (hostname)
+const dominio = window.location.hostname; // Ejemplo: "example.com"
+
+// Obtener el puerto
+const puerto = window.location.port; // Ejemplo: "8080" o "" si no está explícito
+const baseUrl = `${protocolo}//${dominio}${puerto ? `:${puerto}` : ''}`;
 
 fecha_inicio.addEventListener('input', function (event) {
     const plazoValue = parseInt(plazo.value, 10); // Obtén el valor del plazo
@@ -43,6 +52,42 @@ plazo.addEventListener('input', function (event) {
 
 
 $(document).ready(function () {
+    $('.asesor').select2({
+        ajax: {
+            url:  `${baseUrl}/customers/api/asesores/`,
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    term: params.term // Parámetro que el backend debe esperar
+                };
+            },
+            processResults: function (data) {
+                console.log(data);
+                // Verificar si 'data' es un array de objetos
+                if (Array.isArray(data)) {
+                    return {
+                        results: data.map(function (item) {
+                            console.log(item);
+                            return {
+                                id: item.id,
+                                text: item.nombre + ' '+item.apellido
+                            };
+                        })
+                    };
+                } else {
+                    console.error('Estructura de datos inesperada:', data);
+                    return {
+                        results: []
+                    };
+                }
+            },
+            cache: true
+        },
+        placeholder: 'Seleccione un Asesor',
+        minimumInputLength: 1
+
+    });
     $(".customer_id").select2({
         width: 'resolve',
         ajax: {

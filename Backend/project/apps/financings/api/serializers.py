@@ -46,8 +46,8 @@ class CreditSerializer(serializers.ModelSerializer):
             'is_paid_off',
             'estado_aportacion',
             'saldo_actual',
-            
-            
+            'sucursal',
+            'asesor_de_credito',
         ]
     def to_representation(self, instance):
         return {
@@ -132,7 +132,8 @@ class PaymentSerializer(serializers.ModelSerializer):
             'boleta',
             'tipo_pago',
             'disbursement',
-            'cliente'
+            'cliente',
+            'sucursal'
         ]
 
 class FacturaSerializer(serializers.ModelSerializer):

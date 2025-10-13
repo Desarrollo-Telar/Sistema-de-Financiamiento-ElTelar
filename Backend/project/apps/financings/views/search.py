@@ -28,6 +28,7 @@ class BankSearch(ListView):
 
     def get_queryset(self):
         try:
+            sucursal = self.request.session['sucursal_id']
             # Asignar la consulta a una variable local
             query = self.query()
 
@@ -45,7 +46,7 @@ class BankSearch(ListView):
                     filters |= Q(debito__exact=query)
 
             # Filtrar los objetos Banco usando los filtros definidos
-            return Banco.objects.filter(filters)
+            return Banco.objects.filter(filters, sucursal=sucursal)
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")
@@ -76,6 +77,7 @@ class PaymentSearch(ListView):
 
     def get_queryset(self):
         try:
+            sucursal = self.request.session['sucursal_id']
             # Asignar la consulta a una variable local
             query = self.query()
 
@@ -103,7 +105,7 @@ class PaymentSearch(ListView):
                     #filters |= Q(numero_referencia__exact=query)
 
             # Filtrar los objetos Banco usando los filtros definidos
-            return Payment.objects.filter(filters)
+            return Payment.objects.filter(filters, sucursal=sucursal)
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")
@@ -135,6 +137,7 @@ class CreditSearch(ListView):
 
     def get_queryset(self):
         try:
+            sucursal = self.request.session['sucursal_id']
             # Asignar la consulta a una variable local
             query = self.query()
 
@@ -165,7 +168,7 @@ class CreditSearch(ListView):
                     
 
             # Filtrar los objetos Banco usando los filtros definidos
-            return Credit.objects.filter(filters)
+            return Credit.objects.filter(filters, sucursal=sucursal)
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")

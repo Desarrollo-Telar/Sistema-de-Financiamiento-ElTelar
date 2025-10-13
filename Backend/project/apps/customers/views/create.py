@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 # Models
 from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor
-
+from apps.subsidiaries.models import Subsidiary
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -43,6 +43,7 @@ def add_customer(request):
 @permiso_requerido('puede_crear_informacion_personal_cliente')
 def create_customer(request):
     template_name = 'customer/created.html'
+    sucursal = request.session['sucursal_id']
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
@@ -57,6 +58,7 @@ def create_customer(request):
                 cliente.new_asesor_credito = asesor_autenticado
 
             cliente.user_id = request.user
+            cliente.sucursal = Subsidiary.objects.get(id=sucursal)
             cliente.completado = False
             cliente.save()
 

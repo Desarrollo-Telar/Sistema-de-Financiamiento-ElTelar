@@ -26,8 +26,9 @@ from datetime import datetime, timedelta
 @login_required
 @permiso_requerido('puede_ver_registros_boletas_pagos')
 def filter_list_payment_pendiente(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'financings/payment/list.html'
-    page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='PENDIENTE', registro_ficticio=False).order_by('-id'))
+    page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='PENDIENTE', registro_ficticio=False, sucursal=sucursal).order_by('-id'))
     
 
 
@@ -45,8 +46,9 @@ def filter_list_payment_pendiente(request):
 @login_required
 @permiso_requerido('puede_ver_registros_boletas_pagos')
 def filter_list_payment_completados(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'financings/payment/list.html'
-    page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='COMPLETADO', registro_ficticio=False).order_by('-id'))
+    page_obj = paginacion(request, Payment.objects.filter(estado_transaccion='COMPLETADO', registro_ficticio=False, sucursal=sucursal).order_by('-id'))
     
 
 
@@ -65,7 +67,8 @@ def filter_list_payment_completados(request):
 @permiso_requerido('puede_ver_listado_registro_bancos')
 def filter_list_bank_vinculado(request):
     template_name = 'financings/bank/list.html'
-    page_obj = paginacion(request, Banco.objects.filter(status=True, registro_ficticio=False).order_by('-fecha'))
+    sucursal = request.session['sucursal_id']
+    page_obj = paginacion(request, Banco.objects.filter(status=True, registro_ficticio=False, sucursal=sucursal).order_by('-fecha'))
     
 
     context = {
@@ -81,7 +84,8 @@ def filter_list_bank_vinculado(request):
 @permiso_requerido('puede_ver_listado_registro_bancos')
 def filter_list_bank_no_vinculado(request):
     template_name = 'financings/bank/list.html'
-    page_obj = paginacion(request, Banco.objects.filter(status=False, registro_ficticio=False).order_by('-fecha'))
+    sucursal = request.session['sucursal_id']
+    page_obj = paginacion(request, Banco.objects.filter(status=False, registro_ficticio=False, sucursal=sucursal).order_by('-fecha'))
     
 
     context = {

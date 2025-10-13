@@ -32,6 +32,8 @@ export async function guardar_credito(monto){
     formData.append('estados_fechas',true);
     //formData.append('plazo_restante',document.getElementById('plazo_restante_c').value);
     formData.append('is_paid_off',false);
+    formData.append('sucursal',document.getElementById('sucursal_id').value);
+    formData.append('asesor_de_credito', document.getElementById('asesor_id').value);
     //formData.append('estado_aportacion',NaN);
     return await registrar_credito(formData);
 }

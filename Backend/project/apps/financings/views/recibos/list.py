@@ -30,9 +30,12 @@ class RecibosListView(ListView):
     model=Recibo
     paginate_by = 75
     
+    
 
     def get_queryset(self):
         try:
+            sucursal = self.request.session['sucursal_id']
+
             # Asignar la consulta a una variable local
             query = self.query()
 
@@ -58,7 +61,7 @@ class RecibosListView(ListView):
                 filters |= Q(pago__numero_referencia__icontains = query)
 
 
-            return Recibo.objects.filter(filters).order_by('-recibo')
+            return Recibo.objects.filter(filters, sucursal=sucursal).order_by('-recibo')
         
         except Exception as e:
             print(f'error: {e}')

@@ -12,6 +12,7 @@ from apps.financings.forms import BoletaForm
 
 # Modelos
 from apps.financings.models import Credit
+from apps.subsidiaries.models import Subsidiary
 
 # MENSAJES
 from django.contrib import messages
@@ -20,8 +21,10 @@ from django.contrib import messages
 @permiso_requerido('puede_crear_boleta_pago')
 def create_payment(request):
     template_name = 'financings/payment/create.html'
+    sucursal = request.session['sucursal_id']
     context = {
         'title':'Creacion de Boleta Nueva',
+        'sucursal_id':sucursal,
         'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
@@ -29,7 +32,7 @@ def create_payment(request):
 @login_required
 @permiso_requerido('puede_crear_boleta_pago')
 def create_payment_credit(request, id):
-
+    sucursal = request.session['sucursal_id']
     # Obtener al credito
     credito = Credit.objects.filter(id=id).first()
 
@@ -49,6 +52,7 @@ def create_payment_credit(request, id):
         if form.is_valid():
             documento = form.save(commit=False)
             documento.credit = credito
+            documento.sucursal = Subsidiary.objects.get(id=sucursal)
             documento.tipo_pago = 'CREDITO'
             documento.save()
             messages.success(request, 'Se ha guardado la boleta. ')

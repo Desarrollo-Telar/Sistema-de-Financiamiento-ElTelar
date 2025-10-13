@@ -40,29 +40,32 @@ def generar_codigo(sender, instance, **kwargs):
 # LA CREACION DE LA PRIMERA CUOTA DE UN CREDITO
 @receiver(post_save, sender=Credit)
 def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
-    print('desde signals post save de credit, de la funcion generar plan de pagos nuevos')
-    
-    if created:
-        # CALCULO DE INTERES
-        interes = calculo_interes(instance.monto, instance.tasa_interes)
-        # GENERACION DE FECHA LIMITE DE PAGO 15 DIAS
-        fecha_limite = calcular_fecha_maxima(instance.fecha_inicio)
-       
-        # FECHA DE VENCIMIENTO
-        fecha_vencimiento = calcular_fecha_vencimiento(instance.fecha_inicio)
-        
-    
-        # GENERAR LA PRIMERA CUOTA
-        plan_pago = PaymentPlan(
-            credit_id=instance,
-            start_date=instance.fecha_inicio, 
-            outstanding_balance=instance.monto, 
-            saldo_pendiente=instance.monto,
-            interest=interes,
-            interes_generado=interes,
-            fecha_limite = fecha_limite,
-            due_date=fecha_vencimiento
-            )
-        plan_pago.save()
-        send_email_new_credit(instance)
+    if not created:
+        return  # solo se ejecuta al crear un crédito nuevo
+
+    # Calcular valores base
+    interes = calculo_interes(instance.monto, instance.tasa_interes)
+    fecha_limite = calcular_fecha_maxima(instance.fecha_inicio)
+    fecha_vencimiento = calcular_fecha_vencimiento(instance.fecha_inicio)
+
+    # Asignar asesor si no tiene
+    if instance.asesor_de_credito is None and hasattr(instance.customer_id, "new_asesor_credito"):
+        instance.asesor_de_credito = instance.customer_id.new_asesor_credito
+        instance.save(update_fields=["asesor_de_credito"])  # actualiza solo ese campo
+
+    # Crear el plan de pago inicial
+    PaymentPlan.objects.create(
+        credit_id=instance,
+        start_date=instance.fecha_inicio,
+        outstanding_balance=instance.monto,
+        saldo_pendiente=instance.monto,
+        interest=interes,
+        interes_generado=interes,
+        fecha_limite=fecha_limite,
+        due_date=fecha_vencimiento,
+        sucursal=instance.sucursal
+    )
+
+    # Enviar notificación por correo
+    send_email_new_credit(instance)
     

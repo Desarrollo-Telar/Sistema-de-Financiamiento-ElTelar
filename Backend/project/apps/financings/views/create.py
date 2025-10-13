@@ -15,16 +15,7 @@ from apps.financings.models import Credit
 ### ------------------- CREAR ---------------------- ###
 
 
-@login_required
-@permiso_requerido('puede_crear_informacion_credito')
-def create_credit(request):
-    template_name = 'financings/credit/create.html'
-    context = {
-        'title':'Creacion de un Credito Nuevo.',
-        'permisos':recorrer_los_permisos_usuario(request),
-    }
 
-    return render(request,template_name,context)
 
 @login_required
 @usuario_activo

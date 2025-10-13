@@ -26,6 +26,7 @@ def reportes_generales(request):
     anio = datetime.now().year
     filtro_seleccionado = 'mora_pagada'  # Valor predeterminado
     total = 0
+    sucursal = request.session['sucursal_id']
 
     if request.method == 'POST':
         mes = request.POST.get('mes')
@@ -64,7 +65,7 @@ def reportes_generales(request):
             return redirect('report_pagos_generales',str(anio), str(mes))
         filtro_dinamico = {filtros_validos[filtro_seleccionado]: 0}
         
-        reportes = Recibo.objects.filter(filters).filter(**filtro_dinamico)
+        reportes = Recibo.objects.filter(filters, sucursal=sucursal).filter(**filtro_dinamico)
         for reporte in reportes:
             if filtro_seleccionado == 'mora_pagada':
                 total += reporte.mora_pagada

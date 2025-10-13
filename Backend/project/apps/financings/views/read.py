@@ -20,15 +20,16 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 @login_required
 @permiso_requerido('puede_ver_registros_boletas_pagos')
 def list_payment(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'financings/payment/list.html'
-    page_obj = paginacion(request, Payment.objects.filter(registro_ficticio=False).order_by('-id'))
+    page_obj = paginacion(request, Payment.objects.filter(registro_ficticio=False, sucursal=sucursal).order_by('-id'))
     
     context = {
         'title':'Registro de Pagos',
         'page_obj':page_obj,
         'payment_list':page_obj,
         'permisos':recorrer_los_permisos_usuario(request),
-        'count':Payment.objects.filter(registro_ficticio=False).count()
+        'count':Payment.objects.filter(registro_ficticio=False, sucursal=sucursal).count()
 
         
     }
@@ -37,8 +38,9 @@ def list_payment(request):
 @login_required
 @permiso_requerido('puede_ver_listado_registro_bancos')
 def list_bank(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'financings/bank/list.html'
-    page_obj = paginacion(request, Banco.objects.filter(registro_ficticio=False).order_by('-fecha'))
+    page_obj = paginacion(request, Banco.objects.filter(registro_ficticio=False, sucursal=sucursal).order_by('-fecha'))
     
 
     context = {
@@ -46,7 +48,7 @@ def list_bank(request):
         'page_obj':page_obj,
         'banco_list':page_obj,
         'permisos':recorrer_los_permisos_usuario(request),
-        'count':Banco.objects.filter(registro_ficticio=False).count()
+        'count':Banco.objects.filter(registro_ficticio=False, sucursal=sucursal).count()
     }
     return render(request,template_name, context)
 
@@ -54,13 +56,14 @@ def list_bank(request):
 @login_required
 @permiso_requerido('puede_ver_registros_credito')
 def list_credit(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'financings/credit/list.html'
-    creditos =  Credit.objects.all().order_by('-id')
+    creditos =  Credit.objects.all().order_by('-id').filter(sucursal=sucursal)
     
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        creditos =  Credit.objects.filter(customer_id__new_asesor_credito=asesor_autenticado)
+        creditos =  Credit.objects.filter(customer_id__new_asesor_credito=asesor_autenticado, sucursal=sucursal)
 
     page_obj = paginacion(request,creditos)
     

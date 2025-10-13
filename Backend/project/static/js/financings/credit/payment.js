@@ -43,6 +43,7 @@ document.getElementById('pago').addEventListener('submit', async function (event
     formData.append('numero_referencia', document.getElementById('numero_referencia').value);
     formData.append('fecha_emision', document.getElementById('fecha_emision').value);
     formData.append('descripcion', document.getElementById('descripcion').value);
+    formData.append('sucursal',document.getElementById('sucursal_id').value);
 
     // Validar si se seleccionó un archivo
     const archivo = document.getElementById('boleta').files[0];

@@ -7,6 +7,7 @@
 <form method="POST" id="credito" class="box" enctype="multipart/form-data">
     {% csrf_token %}
     <meta name="csrf-token" content="{{ csrf_token }}">
+    <input type="hidden" id="sucursal_id" value="{{sucursal_id}}">
     <div class="row">
         {% include 'financings/credit/snippets/forms/credit.html' %}
     </div>
