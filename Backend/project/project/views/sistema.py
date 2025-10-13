@@ -69,12 +69,12 @@ def index(request):
     clientes = Customer.objects.all()
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+    sucursal = request.session['sucursal_id']
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        clientes = Customer.objects.filter(new_asesor_credito=asesor_autenticado)
+        clientes = Customer.objects.filter(new_asesor_credito=asesor_autenticado, sucursal=sucursal)
 
-    sucursal = request.session['sucursal_id']
-        
+            
 
     context = {
         'title':'Inicio',

@@ -31,35 +31,40 @@ def recolectar_informacion_cobranza(asesor_autenticado):
 
 
 def recolectar_informes_status_creditos(request):
-    dia = datetime.now().date() # Obtener el dia 
-
-    creditos = Credit.objects.filter(is_paid_off=False)
-    creditos_atrasados = Credit.objects.filter(estados_fechas=False)
-    creditos_fecha_limite = PaymentPlan.objects.filter(fecha_limite__date=dia)
-
-    creditos_fecha_vencimiento = PaymentPlan.objects.filter(due_date__date=dia)
-
-    hoy = datetime.now() 
+    sucursal = request.session['sucursal_id']
+    dia = datetime.now().date()
+    hoy = datetime.now()
     hasta = hoy + timedelta(days=7)
 
-    creditos_proximos_vencerse= PaymentPlan.objects.filter(due_date__range=[hoy, hasta], status=False).order_by('due_date')
+    # Base filters comunes
+    base_credit_filter = {"sucursal": sucursal, "is_paid_off": False}
+    base_plan_filter = {"sucursal": sucursal}
 
-    
-
+    # Si el usuario es asesor, filtramos además por su registro
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+    if asesor_autenticado and request.user.rol.role_name == 'Asesor de Crédito':
+        base_credit_filter["asesor_de_credito"] = asesor_autenticado
+        base_plan_filter["asesor_de_credito"] = asesor_autenticado
 
-    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        creditos = Credit.objects.filter(is_paid_off=False, asesor_de_credito =asesor_autenticado)
-        creditos_atrasados = Credit.objects.filter(estados_fechas=False, asesor_de_credito=asesor_autenticado)
-
-        creditos_fecha_vencimiento = PaymentPlan.objects.filter(due_date__date=dia, asesor_de_credito=asesor_autenticado)
-        creditos_fecha_limite = PaymentPlan.objects.filter(fecha_limite__date=dia,  asesor_de_credito=asesor_autenticado)
-        creditos_proximos_vencerse= PaymentPlan.objects.filter(due_date__range=[hoy, hasta], status=False, asesor_de_credito=asesor_autenticado).order_by('due_date')
-    
+    # Si el usuario es secretari@, filtramos por créditos válidos
     if request.user.rol.role_name == 'Secretari@':
-        creditos_fecha_limite = PaymentPlan.objects.filter(fecha_limite__date=dia, credit_id__isnull=False)
-        creditos_fecha_vencimiento = PaymentPlan.objects.filter(due_date__date=dia, credit_id__isnull=False)
-        creditos_proximos_vencerse= PaymentPlan.objects.filter(due_date__range=[hoy, hasta], status=False, credit_id__isnull=False).order_by('due_date')
+        base_plan_filter["credit_id__isnull"] = False
+
+    # Consultas principales
+    creditos = Credit.objects.filter(**base_credit_filter)
+    creditos_atrasados = Credit.objects.filter(estados_fechas=False, **base_credit_filter)
+
+    creditos_fecha_limite = PaymentPlan.objects.filter(
+        fecha_limite__date=dia, **base_plan_filter
+    )
+    creditos_fecha_vencimiento = PaymentPlan.objects.filter(
+        due_date__date=dia, **base_plan_filter
+    )
+    creditos_proximos_vencerse = PaymentPlan.objects.filter(
+        due_date__range=[hoy, hasta],
+        status=False,
+        **base_plan_filter
+    ).order_by("due_date")
 
 
     recoleccion = {

@@ -12,6 +12,7 @@ from decimal import Decimal
 # MODELOS
 from .credit import Credit
 from apps.accountings.models import Creditor, Insurance
+from apps.subsidiaries.models import Subsidiary
 
 # FORMATO
 from apps.financings.formato import formatear_numero
@@ -47,6 +48,7 @@ class PaymentPlan(models.Model):
     mora_generado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     # NUEVOS CAMPOS
     paso_por_task = models.BooleanField(default=False)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
     def formato_cuota_mora(self):
         return formatear_numero(self.mora)
