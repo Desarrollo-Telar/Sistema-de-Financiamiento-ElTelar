@@ -28,6 +28,7 @@ class ReporteBaseBoletasExcelView(TemplateView):
 
     def get_queryset(self):
         try:
+            sucursal = self.request.session['sucursal_id']
             # Asignar la consulta a una variable local
             query = self.query()
 
@@ -54,7 +55,7 @@ class ReporteBaseBoletasExcelView(TemplateView):
 
  
             # Filtrar los objetos Customer usando los filtros definidos
-            return Payment.objects.filter(filters)
+            return Payment.objects.filter(filters, sucursal=sucursal)
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")
@@ -177,6 +178,7 @@ def report_base_boletas(request):
     workbook = Workbook()
     sheet = workbook.active
     sheet.title = "Reporte de base de Boletas"
+    sucursal = request.session['sucursal_id']
 
     # Agregar encabezados
     sheet['A1'] = "#"
@@ -196,7 +198,7 @@ def report_base_boletas(request):
     
 
     # Obtener datos de la base de datos, ordenando por status (True primero)
-    boletas = Payment.objects.filter(registro_ficticio = False, estado_transaccion='COMPLETADO').order_by('-id')  # True primero, luego False
+    boletas = Payment.objects.filter(registro_ficticio = False, estado_transaccion='COMPLETADO', sucursal=sucursal).order_by('-id')  # True primero, luego False
     contador = 0
 
     # Agregar datos al archivo

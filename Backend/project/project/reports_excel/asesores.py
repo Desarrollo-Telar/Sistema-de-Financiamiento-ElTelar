@@ -116,6 +116,7 @@ class ReporteAsesoresExcelView(TemplateView):
 
     def get_queryset(self):
         try:
+            sucursal = self.request.session['sucursal_id']
             # Asignar la consulta a una variable local
             query = self.query()
 
@@ -135,7 +136,7 @@ class ReporteAsesoresExcelView(TemplateView):
                     filters |= Q(tipo_pago__icontains=query)
 
             # Filtrar asesores
-            asesor_consulta = CreditCounselor.objects.filter(filters).order_by('-id')
+            asesor_consulta = CreditCounselor.objects.filter(filters, sucursal=sucursal).order_by('-id')
             return fecha_consulta, asesor_consulta
 
         except Exception as e:

@@ -13,13 +13,13 @@ from django.db.models import Q, Sum
 
 def report_pagos_generales(request, anio, mes):
     filtro_seleccionado = f'BOLETAS GENERALES {mes} {anio}'
-
+    sucursal = request.session['sucursal_id']
     filters = Q()
     filters &= Q(fecha__year=anio)
     filters &= Q(fecha__month=mes)
     filters &= Q(pago__credit__isnull=False)
     #filters &= Q(pago__registro_ficticio=False)
-    reportes = Recibo.objects.filter(filters)
+    reportes = Recibo.objects.filter(filters,sucursal=sucursal)
 
      # Crear el archivo Excel
     workbook = Workbook()

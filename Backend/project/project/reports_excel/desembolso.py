@@ -15,11 +15,11 @@ def report_desmbolso(request,  mes, anio):
     filters &= Q(credit_id__creation_date__year=anio)
     filters &= Q(credit_id__creation_date__month=mes)
     
-
+    sucursal = request.session['sucursal_id']
     
 
     # Obtener los créditos según el filtro seleccionado
-    reportes = Disbursement.objects.filter(filters).order_by('id')
+    reportes = Disbursement.objects.filter(filters, sucursal=sucursal).order_by('id')
     
     # Crear el archivo Excel
     workbook = Workbook()

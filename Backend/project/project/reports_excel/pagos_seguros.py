@@ -10,13 +10,13 @@ from openpyxl import Workbook
 from django.db.models import Q, Sum
 def report_pagos_generales_seguros(request, anio, mes):
     filtro_seleccionado = f'BOLETAS GENERALES {mes} {anio}'
-
+    sucursal = request.session['sucursal_id']
     filters = Q()
     filters &= Q(fecha__year=anio)
     filters &= Q(fecha__month=mes)
     filters &= Q(pago__seguro__isnull=False)
 
-    reportes = Recibo.objects.filter(filters)
+    reportes = Recibo.objects.filter(filters,sucursal=sucursal)
 
      # Crear el archivo Excel
     workbook = Workbook()

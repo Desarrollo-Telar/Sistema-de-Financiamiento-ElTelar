@@ -29,15 +29,16 @@ def cuota(credito):
 def report_creditos(request, filtro_seleccionado):
     hoy = datetime.now()
     inicio = hoy - timedelta(days=5)
+    sucursal = request.session['sucursal_id']
 
     # Diccionario de filtros
     filtros = {
-        'Todos': lambda: Credit.objects.all(),
-        'Recientes': lambda: Credit.objects.filter(creation_date__range=[inicio, hoy]),
-        'Creditos Cancelados': lambda: Credit.objects.filter(is_paid_off=True),
-        'Creditos en Atraso': lambda: Credit.objects.filter(estados_fechas=False),
-        'Creditos con falta de Aportacion': lambda: Credit.objects.filter(estado_aportacion=False),
-        'Creditos con excedente': lambda: Credit.objects.filter(Q(saldo_actual__lt=0) | Q(excedente__gt=0)),
+        'Todos': lambda: Credit.objects.filter(sucursal=sucursal),
+        'Recientes': lambda: Credit.objects.filter(creation_date__range=[inicio, hoy], sucursal=sucursal),
+        'Creditos Cancelados': lambda: Credit.objects.filter(is_paid_off=True, sucursal=sucursal),
+        'Creditos en Atraso': lambda: Credit.objects.filter(estados_fechas=False, sucursal=sucursal),
+        'Creditos con falta de Aportacion': lambda: Credit.objects.filter(estado_aportacion=False, sucursal=sucursal),
+        'Creditos con excedente': lambda: Credit.objects.filter(Q(saldo_actual__lt=0) | Q(excedente__gt=0), sucursal=sucursal),
     }
 
     # Obtener los créditos según el filtro seleccionado

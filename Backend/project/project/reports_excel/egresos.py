@@ -28,7 +28,7 @@ class ReporteEgresosExcelView(TemplateView):
     
     def get_queryset(self):
         try:
-            
+            sucursal = self.request.session['sucursal_id']
             query = self.query()
             mes = self.mes_reporte()
             anio = self.anio_reporte()
@@ -57,7 +57,7 @@ class ReporteEgresosExcelView(TemplateView):
                 filters &= Q(fecha__year=anio)
 
             # Filtrar los objetos Banco usando los filtros definidos
-            return Egress.objects.filter(filters).order_by('-id')
+            return Egress.objects.filter(filters, sucursal=sucursal).order_by('-id')
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")

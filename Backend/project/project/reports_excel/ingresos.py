@@ -27,6 +27,7 @@ class ReporteIngresosExcelView(TemplateView):
 
     def get_queryset(self):
         try:
+            sucursal = self.request.session['sucursal_id']
             query = self.query()
             mes = self.mes_reporte()
             anio = self.anio_reporte()
@@ -50,7 +51,7 @@ class ReporteIngresosExcelView(TemplateView):
             if anio:
                 filters &= Q(fecha__year=anio)
 
-            return Income.objects.filter(filters)
+            return Income.objects.filter(filters, sucursal=sucursal)
         except Exception as e:
             print(f"Error al filtrar el queryset: {e}")
             return Income.objects.none()

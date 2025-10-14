@@ -84,6 +84,7 @@ def report_filtro_banco(filters):
 
 def report_banco(request):
     # Crear el archivo Excel
+    sucursal = request.session['sucursal_id']
     workbook = Workbook()
     sheet = workbook.active
     sheet.title = "Reporte de Bancos"
@@ -106,7 +107,7 @@ def report_banco(request):
     sheet['P1'] = "PARA"
 
     # Obtener datos de la base de datos, ordenando por status (True primero)
-    bancos = Banco.objects.filter(registro_ficticio = False).order_by('-status')  # True primero, luego False
+    bancos = Banco.objects.filter(registro_ficticio = False, sucursal=sucursal).order_by('-status')  # True primero, luego False
 
     # Agregar datos al archivo
     for idx, banco in enumerate(bancos, start=2):  # Comenzar en la fila 2

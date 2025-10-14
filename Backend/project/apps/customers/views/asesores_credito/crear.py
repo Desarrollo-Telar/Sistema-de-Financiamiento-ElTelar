@@ -23,6 +23,79 @@ from datetime import datetime,timedelta, date
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 from scripts.recoleccion_informacion.detalle_asesor_credito import recoleccion_informacion_detalle_asesor
 
+
+def obtener_cuota(credito):
+    dia = datetime.now().date()
+    dia_mas_uno = dia + timedelta(days=1)
+
+    siguiente_pago = PaymentPlan.objects.filter(
+        credit_id=credito,
+        start_date__lte=dia,
+        fecha_limite__gte=dia_mas_uno
+    ).first()
+
+    if siguiente_pago is None:
+        siguiente_pago = PaymentPlan.objects.filter(credit_id=credito).order_by('-id').first()
+    
+    return siguiente_pago
+
+def obtener_informe_asesor(credito, asesor_autenticado):
+    if credito.asesor_de_credito != asesor_autenticado:
+        informe_reporte = Informe.objects.filter(
+            usuario=credito.customer_id.new_asesor_credito.usuario,
+            esta_activo=True
+        ).first()
+
+        if informe_reporte is None:
+            informe_reporte = Informe.objects.create(
+                usuario=credito.asesor_de_credito.usuario,
+                esta_activo=True,
+                nombre_reporte=f'INVERSIONES INTEGRALES EL TELAR'
+            )
+        
+        return informe_reporte
+
+def registrar_cobranza_detalle_existente(detalle_existente, fcobranza, asesor_autenticado, info_cuota, form):
+    # Ya existe -> actualizamos la cobranza existente
+    cobranza_existente = detalle_existente.cobranza
+    fecha = form.cleaned_data.get('fecha_promesa_pago')
+    fecha_gestion = form.cleaned_data.get('fecha_gestion')
+
+    if fecha is None:
+        fecha = date.today()
+            
+    if fecha_gestion is None:
+        fcobranza.fecha_gestion = date.today()
+
+    resultado = form.cleaned_data.get('resultado')
+
+    if resultado != 'Promesa de pago':
+        fcobranza.fecha_seguimiento = fecha
+        fcobranza.fecha_promesa_pago = None
+    else:
+        fcobranza.fecha_seguimiento = None
+        fcobranza.fecha_promesa_pago = fecha
+    
+    # Actualizamos los campos que vienen del formulario
+    cobranza_existente.tipo_cobranza = fcobranza.tipo_cobranza
+    cobranza_existente.fecha_gestion = fcobranza.fecha_gestion
+    cobranza_existente.tipo_gestion = fcobranza.tipo_gestion
+    cobranza_existente.resultado = fcobranza.resultado
+    cobranza_existente.fecha_promesa_pago = fcobranza.fecha_promesa_pago
+    cobranza_existente.observaciones = fcobranza.observaciones
+    cobranza_existente.estado_cobranza = fcobranza.estado_cobranza
+    cobranza_existente.mora_pendiente = fcobranza.mora_pendiente
+    cobranza_existente.interes_pendiente = fcobranza.interes_pendiente
+    cobranza_existente.monto_pendiente = fcobranza.monto_pendiente
+    cobranza_existente.telefono_contacto = fcobranza.telefono_contacto
+    cobranza_existente.fecha_seguimiento = fcobranza.fecha_seguimiento
+    cobranza_existente.fecha_limite_cuota = info_cuota.mostrar_fecha_limite().date()
+    cobranza_existente.cuota = info_cuota
+    cobranza_existente.asesor_credito = asesor_autenticado
+    cobranza_existente.save()
+    return cobranza_existente
+
+
 @login_required
 @permiso_requerido('puede_crear_registro_cobranza')
 def creacion_cobranza(request):
@@ -30,10 +103,11 @@ def creacion_cobranza(request):
 
     credito_q = Credit.objects.filter(id=request.GET.get('q')).first()
 
+    
     informe_usuario = Informe.objects.filter(
         usuario=request.user,
         esta_activo=True
-    ).first()
+    ).first() # ESTE INFORME ES PARA LA PERSONA QUE VA A REALIZAR DICHO REGISTRO
 
     if informe_usuario is None:
         informe_usuario = Informe.objects.create(
@@ -43,6 +117,9 @@ def creacion_cobranza(request):
         )
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+
+    
+    
    
     
     if asesor_autenticado is None:
@@ -54,85 +131,73 @@ def creacion_cobranza(request):
         form = CobranzaForms(request.POST)
 
         if form.is_valid():
-            fcobranza = form.save(commit=False)
-            dia = datetime.now().date()
-            dia_mas_uno = dia + timedelta(days=1)
+            fcobranza = form.save(commit=False) # SE PAUSA EL REGISTRO
 
             
+            
+            # OBTENER INFORMACION DEL CREDITO DE ESTA COBRANZA
             if credito_q is not None:
                 credito = credito_q
             else:
                 credito = Credit.objects.filter(id=fcobranza.credito.id).first()
+
+            # PARA OBTENER LA CUOTA ACTUAL
+            info_cuota = obtener_cuota(credito)
             
-            siguiente_pago = PaymentPlan.objects.filter(
-                credit_id=credito,
-                start_date__lte=dia,
-                fecha_limite__gte=dia_mas_uno
-            ).first()
+            informe_reporte = obtener_informe_asesor(credito, asesor_autenticado)
 
-            if siguiente_pago is None:
-                siguiente_pago = PaymentPlan.objects.filter(
-                credit_id=credito).order_by('-id').first()
-            
-            info_cuota = siguiente_pago
+            detalle_existente = DetalleInformeCobranza.objects.filter(reporte=informe_reporte,cobranza__credito=credito).first() # POR SI VIENEN DE LA VISTA DETALLE DEL CREDITO
 
-            fecha = form.cleaned_data.get('fecha_promesa_pago')
-            fecha_gestion = form.cleaned_data.get('fecha_gestion')
+            detalle_info_e =  DetalleInformeCobranza.objects.filter(reporte=informe_usuario,cobranza__credito=credito).first()
+            cobranza = None
 
-            if fecha is None:
-                fecha = date.today()
-            
-            if fecha_gestion is None:
-                fcobranza.fecha_gestion = date.today()
-
-            resultado = form.cleaned_data.get('resultado')
-
-            if resultado != 'Promesa de pago':
-                fcobranza.fecha_seguimiento = fecha
-                fcobranza.fecha_promesa_pago = None
+            if detalle_existente:
+                cobranza = registrar_cobranza_detalle_existente(detalle_existente, fcobranza, asesor_autenticado, info_cuota, form)
             else:
-                fcobranza.fecha_seguimiento = None
-                fcobranza.fecha_promesa_pago = fecha
+                fecha = form.cleaned_data.get('fecha_promesa_pago')
+                fecha_gestion = form.cleaned_data.get('fecha_gestion')
+
+                if fecha is None:
+                    fecha = date.today()
+                
+                if fecha_gestion is None:
+                    fcobranza.fecha_gestion = date.today()
+
+                resultado = form.cleaned_data.get('resultado')
+
+                if resultado != 'Promesa de pago':
+                    fcobranza.fecha_seguimiento = fecha
+                    fcobranza.fecha_promesa_pago = None
+                else:
+                    fcobranza.fecha_seguimiento = None
+                    fcobranza.fecha_promesa_pago = fecha
 
 
-
-            fcobranza.fecha_limite_cuota = info_cuota.mostrar_fecha_limite().date()
-            fcobranza.cuota = info_cuota
-            fcobranza.asesor_credito = asesor_autenticado
-            fcobranza.save()
-
-
-            
-            
-            # VERIFICAR SI EL CREDITO ES MIO O DE ALGUN OTRO ASESOR
-            if credito.asesor_de_credito != asesor_autenticado:
-                informe_asesor = Informe.objects.filter(
-                    usuario=credito.customer_id.new_asesor_credito.usuario,
-                    esta_activo=True
-                ).first()
-
-                if informe_asesor is None:
-                    informe_asesor = Informe.objects.create(
-                        usuario=credito.asesor_de_credito.usuario,
-                        esta_activo=True,
-                        nombre_reporte=f'INVERSIONES INTEGRALES EL TELAR'
-                    )
+                fcobranza.fecha_limite_cuota = info_cuota.mostrar_fecha_limite().date()
+                fcobranza.cuota = info_cuota
+                fcobranza.asesor_credito = asesor_autenticado
+                fcobranza.save()
+                cobranza = fcobranza
 
                 DetalleInformeCobranza.objects.create(
-                    reporte = informe_asesor,
-                    cobranza = fcobranza
+                    reporte = informe_reporte,
+                    cobranza = cobranza
                 )
 
-            
-                
-            # PARA LA PERSONA QUE ESTA AUTENTICADA
-            DetalleInformeCobranza.objects.create(
-                reporte = informe_usuario,
-                cobranza = fcobranza
-            )
-            
-                
+            if detalle_info_e:
+                detalle_info_e.cobranza = cobranza
+                detalle_info_e.save()
 
+            else:
+                DetalleInformeCobranza.objects.create(
+                    reporte = informe_usuario,
+                    cobranza = cobranza
+                )
+
+
+
+            
+            
 
 
             messages.success(request, "Registro Completado Con Exito.")
@@ -152,3 +217,4 @@ def creacion_cobranza(request):
         'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
+
