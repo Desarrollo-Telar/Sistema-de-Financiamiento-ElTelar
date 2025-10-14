@@ -19,8 +19,9 @@ from project.pagination import paginacion
 @login_required
 @permiso_requerido('puede_ver_registro_ingresos')
 def pendiente_ingresos_vincular(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'contable/ingresos/list.html'
-    object_list = Income.objects.filter(status=False).order_by('-id')
+    object_list = Income.objects.filter(status=False, sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, object_list)
     
     context = {
@@ -37,8 +38,9 @@ def pendiente_ingresos_vincular(request):
 @login_required
 @permiso_requerido('puede_ver_registro_ingresos')
 def ingresos_vinculados(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'contable/ingresos/list.html'
-    object_list = Income.objects.filter(status=False).order_by('-id')
+    object_list = Income.objects.filter(status=False, sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, object_list)
     
     context = {

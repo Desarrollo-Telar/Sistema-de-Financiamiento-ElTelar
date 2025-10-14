@@ -78,7 +78,8 @@ class RegistroForm(UserCreationForm):
             'nationality',
             'profile_pic',
             'rol',
-            'status'
+            'status',
+            'sucursal'
 
         ]
 
@@ -91,7 +92,8 @@ class RegistroForm(UserCreationForm):
             'gender':'Genero',
             'nationality':'Nacionalidad',
             'profile_pic':'Imagen de Usuario',
-            'rol':'Rol de Usuario'
+            'rol':'Rol de Usuario',
+            'sucursal':'Sucursal'
         }
 
         widgets = {
@@ -104,6 +106,7 @@ class RegistroForm(UserCreationForm):
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'profile_pic': forms.FileInput(attrs={'name':'image', 'type':'file', 'accept':'image/*', 'class':'form-control'}),
             'rol':forms.Select(attrs={'class':'form-control', 'name':'rol', 'id':'rol'}),
+            'sucursal':forms.Select(attrs={'class':'form-control', 'name':'sucursal', 'id':'sucursal'}),
         }
 
 class CustomUserChangeForm(UserChangeForm):

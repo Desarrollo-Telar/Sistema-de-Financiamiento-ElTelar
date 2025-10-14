@@ -262,7 +262,8 @@ class Payment(models.Model):
                 mora_pagada=pagado_mora,
                 fecha = pago.fecha_emision.date(),
                 cliente=informacion['cliente'],
-                cuota=cuota
+                cuota=cuota,
+                sucursal=self.sucursal
             )
             
             recibo.save()

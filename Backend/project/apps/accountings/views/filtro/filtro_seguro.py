@@ -20,8 +20,9 @@ from project.pagination import paginacion
 @login_required
 @permiso_requerido('puede_ver_registro_seguros')
 def seguro_cancelado(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'contable/seguros/list.html'
-    object_list = Insurance.objects.filter(is_paid_off=True).order_by('-id')
+    object_list = Insurance.objects.filter(is_paid_off=True, sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, object_list)
 
     context = {
@@ -39,8 +40,9 @@ def seguro_cancelado(request):
 @login_required
 @permiso_requerido('puede_ver_registro_seguros')
 def seguros_atraso_aportacion(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'contable/seguros/list.html'
-    object_list = Insurance.objects.filter(estado_aportacion=False).order_by('-id')
+    object_list = Insurance.objects.filter(estado_aportacion=False, sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, object_list)
 
     context = {
@@ -58,8 +60,9 @@ def seguros_atraso_aportacion(request):
 @login_required
 @permiso_requerido('puede_ver_registro_seguros')
 def seguros_atraso_fechas(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'contable/seguros/list.html'
-    object_list = Insurance.objects.filter(estados_fechas=False).order_by('-id')
+    object_list = Insurance.objects.filter(estados_fechas=False, sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, object_list)
 
     context = {

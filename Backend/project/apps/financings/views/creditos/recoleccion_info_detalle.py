@@ -16,6 +16,7 @@ from apps.actividades.models import VotacionCredito
 from apps.actividades.forms.votaciones import VotacionCreditoForm
 
 def informacion_detalle(request, credito, saldo_actual, siguiente_pago):
+    
 
     # LISTAR LA INFORMACION DEL CLIENTE
     customer_list = Customer.objects.filter(id=credito.customer_id.id).first()

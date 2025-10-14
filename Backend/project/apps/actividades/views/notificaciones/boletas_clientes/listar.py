@@ -30,7 +30,9 @@ class DocumentoNotificacionClientesList(ListView):
     paginate_by = 50
  
     def get_queryset(self):
+        sucursal = self.request.session['sucursal_id']
         try:
+            
             # Asignar la consulta a una variable local
             query = self.query()
 
@@ -53,12 +55,12 @@ class DocumentoNotificacionClientesList(ListView):
                 filters |= Q(cuota__credit_id__codigo_credito__icontains = query)
 
 
-            return DocumentoNotificacionCliente.objects.filter(filters).order_by('-fecha_actualizacion')
+            return DocumentoNotificacionCliente.objects.filter(filters, sucursal=sucursal).order_by('-fecha_actualizacion')
         
         except Exception as e:
             print(f'error: {e}')
             
-            return DocumentoNotificacionCliente.objects.all().order_by('-fecha_actualizacion')
+            return DocumentoNotificacionCliente.objects.all().order_by('-fecha_actualizacion').filter(sucursal=sucursal)
     
     
     def query(self):

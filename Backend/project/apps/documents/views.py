@@ -8,6 +8,7 @@ from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.financings.models import DetailsGuarantees
+from apps.subsidiaries.models import Subsidiary
 
 
 # LIBRERIAS PARA CRUD
@@ -33,12 +34,14 @@ from django.contrib import messages
 @usuario_activo
 def subir_banco(request):
     template_name = 'documents/create/banco.html'
+    sucursal = request.session['sucursal_id']
     if request.method == 'POST':
         form = DocumentBankForms(request.POST, request.FILES)
 
         if form.is_valid():
             documento = DocumentBank()
             documento.document = form.cleaned_data.get('document')
+            documento.sucursal = Subsidiary.objects.get(id=sucursal)
             documento.save()       
             messages.success(request, 'Documento Subido')
             return redirect('financings:list_bank')

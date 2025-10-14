@@ -4,6 +4,7 @@ from django.db import models
 from apps.users.models import User
 from apps.customers.models import Customer
 from apps.financings.models import PaymentPlan, Payment
+from apps.subsidiaries.models import Subsidiary
 
 # UUID
 import uuid
@@ -61,6 +62,7 @@ class DocumentoNotificacionCliente(models.Model):
     created_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     numero_referencia = models.CharField('Numero de Referencia', max_length=255, null=True, blank=True, default='3696008759')
     fecha_actualizacion = models.DateField("Fecha en que se actualizo el credito", default=datetime.now, null=True, blank=True)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return f'{self.status}'

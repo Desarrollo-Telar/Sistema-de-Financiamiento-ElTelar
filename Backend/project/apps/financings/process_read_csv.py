@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import csv
 import os
 import pandas as pd
-def process(nuevo):
+def process(nuevo, sucursal):
     # Leer el archivo CSV
     #nuevo = f'/code/{nuevo}'
     df = pd.read_csv(nuevo, encoding='utf-8', on_bad_lines='skip')  # Usa 'latin1' si es necesario
@@ -46,7 +46,7 @@ def process(nuevo):
             print(f"La referencia {referencia} ya existe. Ignorando...")
             continue  # Si ya existe, saltar este registro
         
-        banco = Banco(fecha=fecha,referencia=referencia,credito=credito, debito=debito, descripcion=descripcion, secuencial=secuencial, cheque=cheque, saldo_contable=saldo_contable, saldo_disponible=saldo_disponible)
+        banco = Banco(fecha=fecha,referencia=referencia,credito=credito, debito=debito, descripcion=descripcion, secuencial=secuencial, cheque=cheque, saldo_contable=saldo_contable, saldo_disponible=saldo_disponible, sucursal=sucursal)
         banco.save()
         
         # Realizar alguna acción con los datos

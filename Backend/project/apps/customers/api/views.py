@@ -81,13 +81,27 @@ class CreditCounselorSerializerViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        user = self.request.user
+        request = self.request
         search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
+
+        # obteniendo la sucursal del usuario
+        sucursal = getattr(request,'sucursal_actual',None)
+
+        
+
+        if sucursal:
+            queryset = queryset.filter(Q(sucursal=sucursal)| Q(sucursal__isnull=True))
+
+
         if search_term:
             queryset = queryset.filter(
                 Q(nombre__icontains=search_term) |
                 Q(apellido__icontains=search_term) |
-                Q(codigo_asesor__icontains=search_term)
-                ) # Filtrar por el término de búsqueda
+                Q(codigo_asesor__icontains=search_term) |
+                Q(sucursal__isnull=True)
+                )# Filtrar por el término de búsqueda
+            
         return queryset
     
 class CobranzaViewSet(viewsets.ModelViewSet):

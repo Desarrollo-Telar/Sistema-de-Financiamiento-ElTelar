@@ -133,6 +133,8 @@ class AsesoresCreditosList(ListView):
     
     def get_queryset(self):
         try:
+            # 
+            sucursal = self.request.session['sucursal_id']
             # Asignar la consulta a una variable local
             query = self.query()
 
@@ -153,7 +155,7 @@ class AsesoresCreditosList(ListView):
                 filters |= Q(codigo_asesor__icontains = query)
 
 
-            return CreditCounselor.objects.filter(filters).order_by('id')
+            return CreditCounselor.objects.filter(filters, Q(sucursal=sucursal)| Q(sucursal__isnull=True)).order_by('id')
         
         except Exception as e:
             print(f'error: {e}')

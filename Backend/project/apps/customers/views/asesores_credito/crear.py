@@ -28,6 +28,8 @@ from scripts.recoleccion_informacion.detalle_asesor_credito import recoleccion_i
 def creacion_cobranza(request):
     template_name = 'cobranza/create.html'
 
+    credito_q = Credit.objects.filter(id=request.GET.get('q')).first()
+
     informe_usuario = Informe.objects.filter(
         usuario=request.user,
         esta_activo=True
@@ -56,7 +58,11 @@ def creacion_cobranza(request):
             dia = datetime.now().date()
             dia_mas_uno = dia + timedelta(days=1)
 
-            credito = Credit.objects.filter(id=fcobranza.credito.id).first()
+            
+            if credito_q is not None:
+                credito = credito_q
+            else:
+                credito = Credit.objects.filter(id=fcobranza.credito.id).first()
             
             siguiente_pago = PaymentPlan.objects.filter(
                 credit_id=credito,
@@ -133,6 +139,10 @@ def creacion_cobranza(request):
             return redirect('customers:cobranza_asesor')
     else:
         form = CobranzaForms()
+        if credito_q is not None:
+            form = CobranzaForms(initial={'credito': credito_q})
+        
+        
 
             
 

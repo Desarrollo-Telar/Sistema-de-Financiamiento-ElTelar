@@ -100,3 +100,37 @@ class UserActionLoggingMiddleware(MiddlewareMixin):
                         'kwargs': view_kwargs
                     }
                 )
+
+
+from apps.subsidiaries.models import Subsidiary
+
+class SucursalMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+    
+    def __call__(self, request):
+        sucursal = None
+
+        user = getattr(request, 'user',None)
+
+        if user and user.is_authenticated:
+            sucursal = getattr(user, 'sucursal',None)
+
+        if not sucursal:
+            sucursal_id = request.session.get('sucursal_id')
+            if sucursal_id:
+                sucursal = Subsidiary.objects.get(id=sucursal_id)
+
+        if not sucursal:
+            sucursal_id = request.COOKIES.get('sucursal_id')
+
+            if sucursal_id:
+                sucursal = Subsidiary.objects.get(id=sucursal_id)
+        
+        
+
+        request.sucursal_actual = sucursal
+
+        response = self.get_response(request)
+
+        return response

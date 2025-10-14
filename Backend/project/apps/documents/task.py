@@ -11,18 +11,19 @@ def tarea_larga_duracion():
     return 'La tarea ha terminado'
 
 @shared_task
-def leer_documento(file, id):
+def leer_documento(file, id, sucursal):
     try:
         # Obtener la extensión del archivo
         extension = os.path.splitext(file)[1].lower()
+        
         print(extension)
 
         # Dependiendo del tipo de archivo, llamar a la función correspondiente
         if extension == '.csv':
-            read(file)  # Llama a tu función original para archivos CSV
+            read(file, sucursal)  # Llama a tu función original para archivos CSV
         elif extension == '.txt':
             print('FORMATO .TXT')
-            read_txt_movements(file)  # Llama a la nueva función para archivos TXT
+            read_txt_movements(file, sucursal)  # Llama a la nueva función para archivos TXT
         else:
             return f"Error: Tipo de archivo '{extension}' no soportado."
 

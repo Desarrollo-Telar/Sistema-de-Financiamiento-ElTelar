@@ -92,6 +92,7 @@ class FELApiClient:
                 factura.xml_certificado = xml_certificado
                 factura.nit_receptor = recibo_instance.cliente.number_nit
                 factura.identificador = self._generar_identificador()
+                factura.sucursal = recibo_instance.sucursal
                 factura.save()
 
                 # Retornar la respuesta exitosa

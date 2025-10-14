@@ -32,7 +32,8 @@ from datetime import datetime
 @permiso_requerido('puede_ver_registro_acreedores')
 def list_acreedores(request):
     template_name = 'contable/acreedores/list.html'
-    acreedores_list = Creditor.objects.all().order_by('-id')
+    sucursal = request.session['sucursal_id']
+    acreedores_list = Creditor.objects.filter(sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, acreedores_list)
     context = {
         'title':'Registro de Acreedores',
@@ -50,7 +51,8 @@ def list_acreedores(request):
 @permiso_requerido('puede_ver_registro_seguros')
 def list_seguros(request):
     template_name = 'contable/seguros/list.html'
-    object_list = Insurance.objects.all().order_by('-id')
+    sucursal = request.session['sucursal_id']
+    object_list = Insurance.objects.filter(sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, object_list)
     context = {
         'title':'Registro de Seguros',
@@ -68,7 +70,8 @@ def list_seguros(request):
 @permiso_requerido('puede_ver_registro_ingresos')
 def list_ingresos(request):
     template_name = 'contable/ingresos/list.html'
-    object_list = Income.objects.all().order_by('-id')
+    sucursal = request.session['sucursal_id']
+    object_list = Income.objects.filter(sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, object_list)
     context = {
         'title':'Registro de Ingresos',
@@ -89,6 +92,7 @@ class IngresosList(ListView):
 
     def get_queryset(self):
         try:
+            sucursal = self.request.session['sucursal_id']
             query = self.query()
             mes = self.mes_reporte()
             anio = self.anio_reporte()
@@ -112,7 +116,7 @@ class IngresosList(ListView):
             if anio:
                 filters &= Q(fecha__year=anio)
 
-            return Income.objects.filter(filters).order_by('-id')
+            return Income.objects.filter(filters, sucursal=sucursal).order_by('-id')
         except Exception as e:
             print(f"Error al filtrar el queryset: {e}")
             return Income.objects.none()
@@ -159,8 +163,9 @@ class IngresosList(ListView):
 @login_required
 @permiso_requerido('puede_ver_registro_egresos')
 def list_egresos(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'contable/egresos/list.html'
-    object_list = Egress.objects.all().order_by('-id')
+    object_list = Egress.objects.filter(sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, object_list)
     
     ver_caso_de_gastos()
@@ -184,7 +189,7 @@ class EgresosList(ListView):
 
     def get_queryset(self):
         try:
-            
+            sucursal = self.request.session['sucursal_id']
             query = self.query()
             mes = self.mes_reporte()
             anio = self.anio_reporte()
@@ -213,7 +218,7 @@ class EgresosList(ListView):
                 filters &= Q(fecha__year=anio)
 
             # Filtrar los objetos Banco usando los filtros definidos
-            return Egress.objects.filter(filters).order_by('-id')
+            return Egress.objects.filter(filters, sucursal=sucursal).order_by('-id')
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")

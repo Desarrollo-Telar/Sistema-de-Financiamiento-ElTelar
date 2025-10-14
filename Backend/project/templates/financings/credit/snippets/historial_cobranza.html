@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{% static 'css/cobranza/historial.css'%}">
 
 
-<a href="{%url 'customers:creacion_cobranza'%}" class="btn_guardar">Registrar Cobranza</a>
+<a href="{%url 'customers:creacion_cobranza'%}?q={{credit_list.id}}" class="btn_guardar">Registrar Cobranza</a>
 
 <div id="historyList">
 

@@ -256,7 +256,19 @@ class PaymentPlan(models.Model):
                 self.seguro.estado_aportacion = True
                 self.seguro.save()
             
+    def _definir_sucursal(self):
         
+        if self.credit_id is not None:
+            self.sucursal = self.credit_id.sucursal
+            return self.sucursal
+
+        if self.acreedor is not None:
+            self.sucursal = self.acreedor.sucursal
+            return self.sucursal   
+        
+        if self.seguro is not None:
+            self.sucursal = self.seguro.sucursal
+            return self.sucursal 
    
     def save(self,*args, **kwargs):
         self.fecha_vencimiento()
@@ -264,6 +276,7 @@ class PaymentPlan(models.Model):
         self.capital_generado = self.calculo_capital()
         self.installment = self.calculo_cuota()
         self.interes_generado = self.calculo_interes()
+        self._definir_sucursal()
         super().save(*args, **kwargs)
         self.estado_aportacion()
     

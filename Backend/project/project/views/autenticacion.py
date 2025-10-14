@@ -76,6 +76,7 @@ def login_view(request):
                 
 
             request.session['sucursal_id'] = sucursal
+           
             
             messages.success(request,'Bienvenido')
             hora = datetime.now()

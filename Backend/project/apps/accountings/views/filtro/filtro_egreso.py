@@ -23,8 +23,9 @@ from apps.financings.tareas_ansicronicas import ver_caso_de_gastos
 @login_required
 @permiso_requerido('puede_ver_registro_egresos')
 def pendiente_egresos_vincular(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'contable/egresos/list.html'
-    object_list = Egress.objects.filter(status=False).order_by('-id')
+    object_list = Egress.objects.filter(status=False, sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, object_list)
     ver_caso_de_gastos()
     
@@ -42,8 +43,9 @@ def pendiente_egresos_vincular(request):
 @login_required
 @permiso_requerido('puede_ver_registro_egresos')
 def egresos_vinculados(request):
+    sucursal = request.session['sucursal_id']
     template_name = 'contable/egresos/list.html'
-    object_list = Egress.objects.filter(status=True).order_by('-id')
+    object_list = Egress.objects.filter(status=True, sucursal=sucursal).order_by('-id')
     page_obj = paginacion(request, object_list)
 
     context = {

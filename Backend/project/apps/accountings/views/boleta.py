@@ -6,6 +6,7 @@ from django.contrib import messages
 
 # Models
 from apps.accountings.models import Egress
+from apps.subsidiaries.models import Subsidiary
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -21,7 +22,8 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 @login_required
 @permiso_requerido('puede_crear_boleta_pago')
-def add_boleta_seguro(request):     
+def add_boleta_seguro(request):  
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
     template_name = 'contable/create.html'
     if request.method == 'POST':
         form = BoletaSeguroForm(request.POST, request.FILES)
@@ -30,6 +32,7 @@ def add_boleta_seguro(request):
             monto = form.cleaned_data.get('monto')
             instance = form.save(commit=False)  
             instance.tipo_pago = 'SEGURO'
+            instance.sucursal = sucursal
             instance.save()
 
             gasto = Egress(
@@ -39,7 +42,8 @@ def add_boleta_seguro(request):
                 seguro = form.cleaned_data.get('seguro'),
                 observaciones=form.cleaned_data.get('descripcion'),
                 numero_referencia = form.cleaned_data.get('numero_referencia'),
-                boleta = form.cleaned_data.get('boleta')
+                boleta = form.cleaned_data.get('boleta'),
+                sucursal=sucursal
             )
             gasto.save()
 
@@ -59,12 +63,14 @@ def add_boleta_seguro(request):
 @permiso_requerido('puede_crear_boleta_pago')
 def add_boleta_acreedor(request):     
     template_name = 'contable/create.html'
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
     if request.method == 'POST':
         form = BoletaAcreedorForm(request.POST, request.FILES)
 
         if form.is_valid():
             instance = form.save(commit=False)  
             instance.tipo_pago = 'ACREEDOR'
+            instance.sucursal = sucursal
             instance.save()
             gasto = Egress(
                 monto=form.cleaned_data.get('monto'),
@@ -73,7 +79,8 @@ def add_boleta_acreedor(request):
                 acreedor = form.cleaned_data.get('acreedor'),
                 observaciones=form.cleaned_data.get('descripcion'),
                 numero_referencia = form.cleaned_data.get('numero_referencia'),
-                boleta = form.cleaned_data.get('boleta')
+                boleta = form.cleaned_data.get('boleta'),
+                sucursal=sucursal
             )
             gasto.save()
             

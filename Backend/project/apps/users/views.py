@@ -65,7 +65,8 @@ def habilitar_usuario(request,id):
 @permiso_requerido('puede_ver_registro_usuarios')
 def list_user(request):
     template_name = 'user/list_user.html'
-    users = User.objects.all().order_by('user_code')
+    sucursal = request.session['sucursal_id']
+    users = User.objects.filter(sucursal=sucursal).order_by('user_code')
     # PAGINACION
     page_obj = paginacion(request,users)
 

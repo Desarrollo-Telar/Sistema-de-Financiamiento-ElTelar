@@ -9,7 +9,7 @@ from .process_read_csv import process
 
 
 
-def read(file_path):
+def read(file_path, sucursal):
     
     nuevo = 'apps/financings/clases/buenoo.csv'
     # Elimina el archivo si ya existe antes de empezar a escribir
@@ -47,7 +47,7 @@ def read(file_path):
                         crear_archivo_nuevo(row)
                         #print(row)
                     
-        process(nuevo)
+        process(nuevo, sucursal)
 
 
 import re
@@ -55,7 +55,7 @@ from datetime import datetime
 
 
 
-def read_txt_movements(file_path):
+def read_txt_movements(file_path, sucursal):
     nuevo = 'apps/financings/clases/buenoo.csv'
 
     # Elimina el archivo si ya existe
@@ -104,7 +104,7 @@ def read_txt_movements(file_path):
                         crear_archivo_nuevo(row)
 
         # Procesar el archivo limpio
-        process(nuevo)
+        process(nuevo,sucursal)
 
 
     

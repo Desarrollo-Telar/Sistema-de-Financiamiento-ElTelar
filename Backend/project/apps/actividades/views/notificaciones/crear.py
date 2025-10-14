@@ -73,6 +73,7 @@ def subida_documento(request, uuid):
                 
             documento.cliente = token_cliente.cliente
             documento.cuota = token_cliente.cuota
+            documento.sucursal = token_cliente.cuota.sucursal
             documento.status = None
             documento.save()
             especificaciones = build_notificacion_especificaciones(

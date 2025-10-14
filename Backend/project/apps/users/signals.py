@@ -223,7 +223,8 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
             telephone = instance.telephone,
             email = instance.email,
             gender = instance.gender,
-            nit = instance.nit
+            nit = instance.nit,
+            sucursal=instance.sucursal
         )
 
     else:

@@ -6,6 +6,7 @@ from django.contrib import messages
 # Models
 from apps.accountings.models import Creditor, Insurance
 from apps.financings.models import Payment
+from apps.subsidiaries.models import Subsidiary
 
 # HISTORIAL
 from apps.actividades.models import ModelHistory
@@ -28,7 +29,8 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 @login_required
 @permiso_requerido('puede_crear_acreedor')
-def add_acreedor(request):     
+def add_acreedor(request):   
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'] ) 
     template_name = 'contable/create.html'
     if request.method == 'POST':
         form = AcreedorForm(request.POST, request.FILES)
@@ -54,6 +56,7 @@ def add_acreedor(request):
             acreedor.observaciones = descripcion
             acreedor.boleta = boleta
             acreedor.estados_fechas = True
+            acreedor.sucursal = sucursal
             
             acreedor.save() 
 
@@ -71,7 +74,8 @@ def add_acreedor(request):
                     tipo_pago='ACREEDOR',
                     boleta = boleta,
                     monto=monto,
-                    descripcion=descripcion
+                    descripcion=descripcion,
+                    sucursal=sucursal
                     )  
                 boleta.save()
 
@@ -107,6 +111,7 @@ def add_acreedor(request):
 @permiso_requerido('puede_crear_seguro')
 def add_seguro(request):     
     template_name = 'contable/create.html'
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'] )
     if request.method == 'POST':
         form = SeguroForm(request.POST, request.FILES)
 
@@ -132,7 +137,7 @@ def add_seguro(request):
             acreedor.observaciones = descripcion
             acreedor.boleta = boleta
             acreedor.estados_fechas = True
-            
+            acreedor.sucursal = sucursal
             acreedor.save() 
 
             dato_dict = model_to_dict(acreedor)
@@ -161,20 +166,22 @@ def add_seguro(request):
 
 @login_required
 @permiso_requerido('puede_crear_ingresos')
-def add_ingreso(request):     
+def add_ingreso(request):   
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'] )  
     template_name = 'contable/create.html'
     if request.method == 'POST':
         form = IngresoForm(request.POST, request.FILES)
 
         if form.is_valid():
-            
+            ingres = form.save(commit=False)
 
             inicio = form.cleaned_data.get('fecha')
             numero_referencia = form.cleaned_data.get('numero_referencia')
             boleta = form.cleaned_data.get('boleta')
             monto = form.cleaned_data.get('monto')
             descripcion = form.cleaned_data.get('descripcion')
-            form.save()
+            ingres.sucursal = sucursal
+            ingres.save()
             
             
             boleta = Payment(
@@ -184,7 +191,8 @@ def add_ingreso(request):
                 tipo_pago='INGRESO',
                 boleta = boleta,
                 monto=monto,
-                descripcion=descripcion
+                descripcion=descripcion,
+                sucursal= sucursal
                 )  
             boleta.save()
 
@@ -216,12 +224,13 @@ def add_ingreso(request):
 @permiso_requerido('puede_crear_egresos')
 def add_egresos(request):     
     template_name = 'contable/create.html'
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'] ) 
     if request.method == 'POST':
         form = EgresoForm(request.POST, request.FILES)
-        print(form)
+        
         if form.is_valid():
-            
-
+            egre = form.save(commit=False)
+            egre.sucursal = sucursal
             inicio = form.cleaned_data.get('fecha')
             numero_referencia = form.cleaned_data.get('numero_referencia')
             boleta = form.cleaned_data.get('boleta')
@@ -230,7 +239,7 @@ def add_egresos(request):
             codigo_egreso = form.cleaned_data.get('codigo_egreso')
             
 
-            form.save()
+            egre.save()
             
             if codigo_egreso != 'ACREEDORES' or codigo_egreso !='PAGO DE SEGUROS':
             
@@ -240,7 +249,8 @@ def add_egresos(request):
                     tipo_pago='EGRESO', 
                     boleta = boleta,
                     monto=monto,
-                    descripcion=descripcion
+                    descripcion=descripcion,
+                    sucursal = sucursal
                     )  
                 boletas.save()
 

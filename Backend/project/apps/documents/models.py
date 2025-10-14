@@ -21,7 +21,7 @@ from project.database_store import minio_client  # asegúrate de que esté impor
 class DocumentBank(models.Model):
     document = models.FileField("Documento",blank=True, null=True,upload_to='documents/banco')
     uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
-    
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
     def __str__(self):
         return f'{self.uploaded_at}'
 
@@ -158,7 +158,7 @@ def subir(sender, instance, created, **kwargs):
         try:
             download_from_minio(bucket_name, file_path, local_path)
             file_path = local_path  # Usar la ruta local descargada
-            leer_documento(file_path, instance.id)
+            leer_documento(file_path, instance.id, instance.sucursal)
         except Exception as e:
             print(f"Error descargando el archivo de MinIO: {e}")
             return
