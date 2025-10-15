@@ -44,7 +44,7 @@ def recolectar_informes_status_creditos(request):
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
     if asesor_autenticado and request.user.rol.role_name == 'Asesor de Crédito':
         base_credit_filter["asesor_de_credito"] = asesor_autenticado
-        base_plan_filter["asesor_de_credito"] = asesor_autenticado
+        #base_plan_filter["asesor_de_credito"] = asesor_autenticado
 
     # Si el usuario es secretari@, filtramos por créditos válidos
     if request.user.rol.role_name == 'Secretari@':
