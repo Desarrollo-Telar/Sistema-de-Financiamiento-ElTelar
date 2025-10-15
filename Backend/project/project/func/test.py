@@ -206,14 +206,7 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-    clientes = Customer.objects.all()
-
-    for cliente in clientes:
-       
-       cliente.sucursal = Subsidiary.objects.get(id=1)
-       cliente.save()
-
-    print(f'FINALIZADO')
+    asignar()
    
 
   except S3Error as exc:

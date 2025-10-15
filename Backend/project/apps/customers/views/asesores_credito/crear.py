@@ -40,6 +40,7 @@ def obtener_cuota(credito):
     return siguiente_pago
 
 def obtener_informe_asesor(credito, asesor_autenticado):
+    informe_reporte = None
     if credito.asesor_de_credito != asesor_autenticado:
         informe_reporte = Informe.objects.filter(
             usuario=credito.customer_id.new_asesor_credito.usuario,
@@ -53,7 +54,7 @@ def obtener_informe_asesor(credito, asesor_autenticado):
                 nombre_reporte=f'INVERSIONES INTEGRALES EL TELAR'
             )
         
-        return informe_reporte
+    return informe_reporte
 
 def registrar_cobranza_detalle_existente(detalle_existente, fcobranza, asesor_autenticado, info_cuota, form):
     # Ya existe -> actualizamos la cobranza existente
@@ -179,10 +180,11 @@ def creacion_cobranza(request):
                 fcobranza.save()
                 cobranza = fcobranza
 
-                DetalleInformeCobranza.objects.create(
-                    reporte = informe_reporte,
-                    cobranza = cobranza
-                )
+                if informe_reporte is not None:
+                    DetalleInformeCobranza.objects.create(
+                        reporte = informe_reporte,
+                        cobranza = cobranza
+                    )
 
             if detalle_info_e:
                 detalle_info_e.cobranza = cobranza

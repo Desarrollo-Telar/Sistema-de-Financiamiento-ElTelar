@@ -23,6 +23,7 @@ from django.shortcuts import redirect
 # SCRIPTS
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
+# 
 
 class DocumentoNotificacionClientesList(ListView):
     model = DocumentoNotificacionCliente
@@ -65,6 +66,10 @@ class DocumentoNotificacionClientesList(ListView):
     
     def query(self):
         return self.request.GET.get('q')
+    
+    @method_decorator([permiso_requerido('puede_ver_registro_boletas')])
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
