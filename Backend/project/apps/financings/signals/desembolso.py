@@ -108,7 +108,8 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
                 monto=monto_saldo_actual,
                 numero_referencia=referencia_ficticia,
                 fecha_emision=timezone.now(),
-                registro_ficticio=True
+                registro_ficticio=True,
+                sucursal=instance.credit_id.sucursal
             )
             boleta_ficticia.save()
 
@@ -116,7 +117,8 @@ def reflejar_estado_cuenta(sender, instance, created, **kwargs):
                 fecha=timezone.now().date(),
                 referencia=referencia_ficticia,
                 credito=monto_saldo_actual,
-                registro_ficticio=True
+                registro_ficticio=True,
+                sucursal=instance.credit_id.sucursal
             )
             banco_registro_ficticio.save()
 

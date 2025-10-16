@@ -31,7 +31,7 @@ def generar_pagare_pdf(request, id):
     }
     html = template.render(context)
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = f'filename="Recibo {recibo.recibo}.pdf"'
+    response['Content-Disposition'] = f'filename="pagare.pdf"'
     HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
 
     return response
