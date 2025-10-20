@@ -23,6 +23,7 @@ def permiso_requerido(nombre_permiso):
         @wraps(vista_funcion)
         def envoltura(request, *args, **kwargs):
             usuario = request.user
+            sucursal = getattr(request,'sucursal_actual',None)
 
             # Asegura que sea un usuario autenticado
             if not usuario.is_authenticated:
@@ -33,12 +34,18 @@ def permiso_requerido(nombre_permiso):
                 logout(request)
                 return redirect('login')
             
+            if sucursal is None:
+                return redirect('sucursal:clasificacion')
+            
             if usuario.sucursal is not None:
-                request.session['sucursal_id'] = usuario.sucursal.id
+                sucursal = getattr(request,'sucursal_id',None)
+                if sucursal is None:
+                    return redirect('sucursal:clasificacion')
+
+                request.session['sucursal_id'] = sucursal
 
             
-            if request.session['sucursal_id'] is None:
-                return redirect('sucursal:clasificacion')
+            
 
             # Verifica si tiene el permiso
             tiene_permiso = PermisoUsuario.objects.filter(

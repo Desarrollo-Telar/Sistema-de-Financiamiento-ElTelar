@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/factura/listado.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>📄 Listado de Facturas</h1>
+        <div class="d-flex justify-content-start fs-6">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'financings:recibos' %}">Recibos</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'financings:factura_list' %}">Facturas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{posicion}}</li>
+
+            </ol>
+        </nav>
+    </div>
+        <p>Gestión y consulta de facturas electrónicas</p>
+
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-value">{{object_list.count}}</div>
+            <div class="stat-label">Total Facturas</div>
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="table-controls">
+        <form class="search-box" action="{% url 'financings:factura_list' %}">
+            <input class="form-control me-2" name="q" value="{{ query }}" type="search"
+                placeholder="Buscar por NIT, nombre, número de factura..." aria-label="Search">
+
+        </form>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>No. Factura</th>
+                    <th>Fecha Emisión</th>
+                    <th>NIT Receptor</th>
+                    <th>Nombre Receptor</th>
+                    <th>Correo</th>
+                    <th>Serie Autorización</th>
+                    <th>No. Autorización</th>
+                    <th>Recibo</th>
+                    <th>Sucursal</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for factura in object_list %}
+                <tr>
+                    <td><strong>{{ factura.numero_factura }}</strong></td>
+                    <td>{{factura.issue_date}}</td>
+                    <td>{{factura.nit_receptor}}</td>
+                    <td>{{factura.nombre_receptor}}</td>
+                    <td class="text-truncate"> {% if factura.correo_receptor %}{{factura.correo_receptor}} {% else %}
+                        --- {% endif %}</td>
+                    <td>{{factura.serie_autorizacion}}</td>
+                    <td class="text-truncate">{{factura.numero_autorizacion}}</td>
+                    <td>{{factura.recibo_id.recibo}}</td>
+                    <td>{{factura.sucursal}}</td>
+                    <td><span class="badge badge-certified">Certificada</span></td>
+                    <td>
+                        <div class="actions">
+                            <a class="btn_f-small btn_f-view" style="text-decoration: None;"
+                                href="https://report.feel.com.gt/ingfacereport/ingfacereport_documento?uuid={{factura.numero_autorizacion}}">Ver</a>
+
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    {% if page_obj %}
+    <div class="row">
+        {% include 'snippets/pages.html' %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

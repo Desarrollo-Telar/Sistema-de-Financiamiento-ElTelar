@@ -30,8 +30,10 @@ from django.contrib import messages
 def view_clasificacion(request):
     template_name = 'sucursal/clasificacion.html'
     sucursales = Subsidiary.objects.filter(activa=True)
+
+    sucursal = getattr(request,'sucursal_actual',None)
     
-    if request.session['sucursal_id']:
+    if sucursal is not None:
         return redirect('index')
 
 

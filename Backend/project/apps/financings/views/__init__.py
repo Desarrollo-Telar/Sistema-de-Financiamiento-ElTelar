@@ -39,7 +39,7 @@ from .status import async_view_banco, async_view_boletas
 from .recibos import RecibosListView
 
 # FACTURA
-from .factura import generar_factura
+from .factura import *
 
 # CREDITO
 from .creditos import *

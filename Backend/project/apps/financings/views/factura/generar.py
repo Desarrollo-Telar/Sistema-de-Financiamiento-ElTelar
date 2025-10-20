@@ -32,7 +32,7 @@ def generar_factura(request, id):
     # Si ya tiene factura, no volver a certificar
     if recibo.factura:
         messages.info(request, "Este recibo ya fue facturado.")
-        return redirect('financings:detail_credit', recibo.pago.credit.id)
+        return redirect('financings:factura_list', recibo.pago.credit.id)
 
     try:
         # Generar y enviar XML a FEL
@@ -66,4 +66,4 @@ def generar_factura(request, id):
         log_system_event('Error al generar factura para el recibo', "ERROR",'Sistema','Facturación',f'{e}',factura_data)
         messages.error(request, f"Ocurrió un error al generar la factura: {e}")
 
-    return redirect('financings:detail_credit', recibo.pago.credit.id)
+    return redirect('financings:factura_list', recibo.pago.credit.id)

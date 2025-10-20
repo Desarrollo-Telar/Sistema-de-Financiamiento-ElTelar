@@ -15,5 +15,6 @@ urlpatterns_recibo = [
     # --------------- FACTURA ------------------
     path('factura/generar/<int:id>/',login_required(generar_factura), name='generar_factura'),
     path('factura/<int:id>/',login_required(detalle_factura), name='factura'),
+    path('factura/',login_required(ListadoFacturas.as_view()), name='factura_list'),
     path('factura/pdf/<int:id>/',login_required(render_pdf_factura),name='pdf_factura'),
 ]
