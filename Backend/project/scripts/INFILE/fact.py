@@ -60,6 +60,7 @@ def generar_xml_recibo(recibo) -> str:
 
     now_formatted = now_local.strftime("%Y-%m-%dT%H:%M:%S%z")
     fecha_emision_sat = now_formatted[:-2] + ":" + now_formatted[-2:]
+    codigo_establecimiento = recibo.sucursal.codigo_establecimiento
 
    
 
@@ -90,7 +91,7 @@ def generar_xml_recibo(recibo) -> str:
     # --------------------------
     Emisor = ET.SubElement(DatosEmision, f"{{{DTE_NS}}}Emisor", {
         "AfiliacionIVA": "GEN",
-        "CodigoEstablecimiento": "1",
+        "CodigoEstablecimiento": f"{codigo_establecimiento}",
         "CorreoEmisor": "",
         "NITEmisor": "108241297",
         "NombreComercial": "EL TELAR",
@@ -98,7 +99,7 @@ def generar_xml_recibo(recibo) -> str:
     })
 
     DireccionEmisor = ET.SubElement(Emisor, f"{{{DTE_NS}}}DireccionEmisor")
-    ET.SubElement(DireccionEmisor, f"{{{DTE_NS}}}Direccion").text = "MERCADO CANTONAL, ZONA 2"
+    ET.SubElement(DireccionEmisor, f"{{{DTE_NS}}}Direccion").text = "8 AVENIDA COLONIA FRENTE A CONDADO MINERVA 1-12, ZONA 1"
     ET.SubElement(DireccionEmisor, f"{{{DTE_NS}}}CodigoPostal").text = "16001"
     ET.SubElement(DireccionEmisor, f"{{{DTE_NS}}}Municipio").text = "COBÁN"
     ET.SubElement(DireccionEmisor, f"{{{DTE_NS}}}Departamento").text = "ALTA VERAPAZ"

@@ -21,6 +21,7 @@ class Subsidiary(models.Model):
     activa = models.BooleanField("Status de la Actividad de la Sucursal", default=True)
     codigo_postal = models.CharField("Codigo Postal", blank=True, null=True, max_length=100)
     descripcion = models.TextField("Descripcion", blank=True, null=True)
+    codigo_establecimiento = models.CharField("CODIGO DE ESTABLECIMIENTO", blank=True, null=True, default="1")
 
     def __str__(self):
         return f'{self.nombre}'
