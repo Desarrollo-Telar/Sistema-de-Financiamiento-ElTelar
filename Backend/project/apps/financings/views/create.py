@@ -21,11 +21,12 @@ from apps.financings.models import Credit
 @usuario_activo
 def create_disbursement(request,id):
     credit_id = get_object_or_404(Credit, id=id)
-
+    sucursal = request.session['sucursal_id']
     template_name = 'financings/disbursement/create.html'
     context = {
         'title':'Creacion de una Aplicacion de Desembolso.',
         'credit_id':credit_id,
+        'sucursal_id':sucursal,
         'permisos':recorrer_los_permisos_usuario(request),
     }
 
