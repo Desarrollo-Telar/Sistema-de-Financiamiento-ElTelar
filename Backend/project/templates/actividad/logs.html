@@ -90,20 +90,20 @@
                 <div class="log-main">
                     <div class="log-icon user-log">👤</div>
                     <div class="log-content">
-                        <div class="log-title">{{user_log.category}} ||</div>
-                        <div class="log-details">Usuario "admin" inició sesión desde la dirección IP 192.168.1.100</div>
+                        <div class="log-title"> {{user_log.action}}</div>
+                        <div class="log-details">{{user_log.details}}</div>
                         <div class="log-meta">
                             <div class="meta-item">
-                                <strong>Usuario:</strong> admin
+                                <strong>Usuario:</strong> {{user_log.user}}
                             </div>
                             <div class="meta-item">
-                                <strong>IP:</strong> 192.168.1.100
+                                <strong>IP:</strong> {{user_log.ip_address}}
                             </div>
                             <div class="meta-item">
-                                <strong>Navegador:</strong> Chrome 118.0
+                                <strong>Navegador:</strong> {{user_log.user_agent}}
                             </div>
                             <div class="meta-item">
-                                <strong>Categoría:</strong> Autenticación
+                                <strong>Categoría:</strong> {{user_log.category}}
                             </div>
                         </div>
                     </div>
@@ -111,9 +111,10 @@
                 <div class="log-badges">
                     <span class="badge badge-user">User Log</span>
                     <span class="badge badge-info">Info</span>
-                    <div class="timestamp">2025-10-20 14:32:15</div>
+                    <div class="timestamp">{{user_log.timestamp}}</div>
                 </div>
             </div>
+            {% if user_log.metadata %}
             <div class="expandable-content">
                 <strong style="color: #9ca3af; font-size: 12px;">METADATA:</strong>
                 <div class="metadata-grid">
@@ -131,6 +132,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
         {% elif system_log %}
         <div class="log-entry" onclick="this.querySelector('.expandable-content').classList.toggle('active')">
