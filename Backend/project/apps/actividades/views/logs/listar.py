@@ -1,3 +1,6 @@
+# URLS
+from django.shortcuts import render, redirect
+
 # TIEMPO
 from datetime import datetime, timedelta
 
@@ -20,6 +23,19 @@ from django.utils.decorators import method_decorator
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 
+
+def listando_logs(request):
+    template_name = 'actividad/logs.html'
+
+    user_log = list(UserLog.objects.all().order_by('-id'))
+    system_log = list(SystemLog.objects.all().order_by('-id'))
+
+    logs_zip = zip(user_log, system_log)
+
+    context = {
+        'logs_zip': logs_zip
+    }
+    return render(request, template_name, context)
 
 
 class ListandoLogs(ListView):
