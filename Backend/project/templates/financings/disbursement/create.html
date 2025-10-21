@@ -10,6 +10,7 @@
     <form method="POST" id="pago" enctype="multipart/form-data">
         {% csrf_token %}
         <meta name="csrf-token" content="{{ csrf_token }}">
+        <input type="hidden" id="sucursal_id" value="{{sucursal_id}}">
         <div>
             <div class="row">
                 <div class="form-group" style="margin-top: 1rem;">

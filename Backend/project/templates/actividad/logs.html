@@ -134,28 +134,40 @@
             </div>
             {% endif %}
         </div>
-        {% elif system_log %}
+        {% endif%}
+        {% if system_log %}
         <div class="log-entry" onclick="this.querySelector('.expandable-content').classList.toggle('active')">
             <div class="log-header">
                 <div class="log-main">
                     <div class="log-icon system-log">⚙️</div>
                     <div class="log-content">
-                        <div class="log-title">Error en conexión a base de datos</div>
-                        <div class="log-details">Timeout al intentar conectar con el servidor PostgreSQL en el puerto
-                            5432</div>
+                        <div class="log-title">{{system_log.source}}</div>
+                        <div class="log-details">
+                            {{system_log.message}}
+                        </div>
                         <div class="log-meta">
                             <div class="meta-item">
-                                <strong>Fuente:</strong> database.connection
+                                <strong>Fuente:</strong> {{system_log.traceback}}
                             </div>
                             <div class="meta-item">
-                                <strong>Categoría:</strong> Base de Datos
+                                <strong>Categoría:</strong> {{system_log.category}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="log-badges">
                     <span class="badge badge-system">System Log</span>
-                    <span class="badge badge-error">Error</span>
+                    <span class="badge {%if system_log.level.name == 'INFO' %} badge-info {% elif system_log.level.name == 'DEBUG' %} badge-info {% elif system_log.level.name == 'WARNING' %}  badge-warning {% elif system_log.level.name == 'ERROR' %} badge-error {% endif%}">
+                        {%if system_log.level.name == 'INFO' %} 
+                        INFO 
+                        {% elif system_log.level.name == 'DEBUG' %} 
+                        DEBUG 
+                        {% elif system_log.level.name == 'WARNING' %} 
+                        WARNING 
+                        {% elif system_log.level.name == 'ERROR' %} 
+                        ERROR 
+                        {% endif%}
+                    </span>
                     <div class="timestamp">2025-10-20 14:30:42</div>
                 </div>
             </div>

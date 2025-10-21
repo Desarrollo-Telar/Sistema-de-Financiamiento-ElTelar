@@ -33,7 +33,8 @@ def listando_logs(request):
     logs_zip = zip(user_log, system_log)
 
     context = {
-        'logs_zip': logs_zip
+        'logs_zip': logs_zip,
+        'permisos':recorrer_los_permisos_usuario(request)
     }
     return render(request, template_name, context)
 

@@ -21,6 +21,7 @@ async function agregar_desembolso_pago(disbursement) {
     formData.append('descripcion', document.getElementById('descripcion').value);
     formData.append('boleta', document.getElementById('boleta').files[0]);
     formData.append('tipo_pago', 'DESEMBOLSO');
+    formData.append('sucursal',document.getElementById('sucursal_id').value);
     return await registrar_pago(formData);
 }
 

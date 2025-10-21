@@ -230,7 +230,7 @@ document.getElementById('credito').addEventListener('submit', async function (ev
                 showConfirmButton: false,
             });
         }
-        setTimeout(() => { window.location.href = `/financings/credit/delete/${credit.id}`; }, 10000);
+        //setTimeout(() => { window.location.href = `/financings/credit/delete/${credit.id}`; }, 10000);
         mostrar(document.getElementById('credito'));
     }
 });

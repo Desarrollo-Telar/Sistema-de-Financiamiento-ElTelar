@@ -116,6 +116,8 @@ export async function guardar_boleta_desembolso(credit, disbursement, monto,nume
     formData.append('tipo_pago', 'DESEMBOLSO');
     formData.append('sucursal',document.getElementById('sucursal_id').value);
     //formData.append('cliente',document.getElementById('cliente').value);
+    console.log(Object.fromEntries(formData));
+
     return await registrar_pago(formData);
     
 }
