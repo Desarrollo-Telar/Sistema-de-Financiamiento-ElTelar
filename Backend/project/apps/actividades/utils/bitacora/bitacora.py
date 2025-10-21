@@ -10,11 +10,11 @@ def log_system_event(message, level_name="INFO", source="Sistema", category_name
         defaults={
             'description': f'Nivel {level_name}',
             'priority': {
-                'DEBUG': 1,
-                'INFO': 2,
-                'WARNING': 3,
-                'ERROR': 4,
-                'CRITICAL': 5
+                'DEBUG': 10,
+                'INFO': 20,
+                'WARNING': 30,
+                'ERROR': 40,
+                'CRITICAL': 50
             }.get(level_name.upper(), 2)
         }
     )

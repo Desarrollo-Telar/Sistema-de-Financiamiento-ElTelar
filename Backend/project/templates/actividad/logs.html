@@ -1,0 +1,403 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/actividad/logs.css'%}">
+{% endblock %}
+{% block content %}
+<div class="container box">
+    <!-- Header -->
+    <div class="welcome-section animate-fade-in">
+        <h4>
+            <span>🔍</span> Sistema de Logs Unificado
+        </h4>
+        <p class="fs-6">Monitoreo en tiempo real de actividades de usuarios y eventos del sistema</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid animate-slide-up">
+        <div class="stat-card user">
+            <div class="stat-value">1,243</div>
+            <div class="stat-label">User Logs</div>
+        </div>
+        <div class="stat-card system">
+            <div class="stat-value">856</div>
+            <div class="stat-label">System Logs</div>
+        </div>
+        <div class="stat-card error">
+            <div class="stat-value">23</div>
+            <div class="stat-label">Errores</div>
+        </div>
+        <div class="stat-card warning">
+            <div class="stat-value">67</div>
+            <div class="stat-label">Advertencias</div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <div class="controls-row">
+            <input type="text" class="search-box" placeholder="🔍 Buscar en logs (usuario, acción, mensaje, IP...)">
+
+            <div class="filter-group">
+                <label>Tipo:</label>
+                <select>
+                    <option value="">Todos</option>
+                    <option value="user">User Logs</option>
+                    <option value="system">System Logs</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Nivel:</label>
+                <select>
+                    <option value="">Todos</option>
+                    <option value="debug">Debug</option>
+                    <option value="info">Info</option>
+                    <option value="warning">Warning</option>
+                    <option value="error">Error</option>
+                    <option value="critical">Critical</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Categoría:</label>
+                <select>
+                    <option value="">Todas</option>
+                    <option value="auth">Autenticación</option>
+                    <option value="database">Base de Datos</option>
+                    <option value="api">API</option>
+                    <option value="security">Seguridad</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Desde:</label>
+                <input type="datetime-local" value="2025-10-20T00:00">
+            </div>
+
+            <button class="btn btn-primary">Filtrar</button>
+            <button class="btn btn-secondary">Limpiar</button>
+        </div>
+    </div>
+
+    <!-- Logs Container -->
+    <div class="logs-container">
+        <!-- User Log Entry -->
+        {% for log in objec_list %}
+        <div class="log-entry" onclick="this.querySelector('.expandable-content').classList.toggle('active')">
+            <div class="log-header">
+                <div class="log-main">
+                    {% if log.__class__.__name__ == 'UserLog' %}
+                    <div class="log-icon user-log">👤</div>
+                    {% else %}
+                    <div class="log-icon system-log">⚙️</div>
+                    {% endif %}
+                    <div class="log-content">
+                        <div class="log-title">Inicio de sesión exitoso</div>
+                        <div class="log-details">Usuario "admin" inició sesión desde la dirección IP 192.168.1.100</div>
+                        <div class="log-meta">
+                            <div class="meta-item">
+                                <strong>Usuario:</strong> admin
+                            </div>
+                            <div class="meta-item">
+                                <strong>IP:</strong> 192.168.1.100
+                            </div>
+                            <div class="meta-item">
+                                <strong>Navegador:</strong> Chrome 118.0
+                            </div>
+                            <div class="meta-item">
+                                <strong>Categoría:</strong> Autenticación
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="log-badges">
+                    <span class="badge badge-user">User Log</span>
+                    <span class="badge badge-info">Info</span>
+                    <div class="timestamp">2025-10-20 14:32:15</div>
+                </div>
+            </div>
+            <div class="expandable-content">
+                <strong style="color: #9ca3af; font-size: 12px;">METADATA:</strong>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <div class="metadata-key">Session ID</div>
+                        <div class="metadata-value">abc123xyz789</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Location</div>
+                        <div class="metadata-value">Cobán, Guatemala</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Device</div>
+                        <div class="metadata-value">Desktop</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        <div class="log-entry" onclick="this.querySelector('.expandable-content').classList.toggle('active')">
+            <div class="log-header">
+                <div class="log-main">
+                    <div class="log-icon user-log">👤</div>
+                    <div class="log-content">
+                        <div class="log-title">Inicio de sesión exitoso</div>
+                        <div class="log-details">Usuario "admin" inició sesión desde la dirección IP 192.168.1.100</div>
+                        <div class="log-meta">
+                            <div class="meta-item">
+                                <strong>Usuario:</strong> admin
+                            </div>
+                            <div class="meta-item">
+                                <strong>IP:</strong> 192.168.1.100
+                            </div>
+                            <div class="meta-item">
+                                <strong>Navegador:</strong> Chrome 118.0
+                            </div>
+                            <div class="meta-item">
+                                <strong>Categoría:</strong> Autenticación
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="log-badges">
+                    <span class="badge badge-user">User Log</span>
+                    <span class="badge badge-info">Info</span>
+                    <div class="timestamp">2025-10-20 14:32:15</div>
+                </div>
+            </div>
+            <div class="expandable-content">
+                <strong style="color: #9ca3af; font-size: 12px;">METADATA:</strong>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <div class="metadata-key">Session ID</div>
+                        <div class="metadata-value">abc123xyz789</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Location</div>
+                        <div class="metadata-value">Cobán, Guatemala</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Device</div>
+                        <div class="metadata-value">Desktop</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Log Entry - Error -->
+        <div class="log-entry" onclick="this.querySelector('.expandable-content').classList.toggle('active')">
+            <div class="log-header">
+                <div class="log-main">
+                    <div class="log-icon system-log">⚙️</div>
+                    <div class="log-content">
+                        <div class="log-title">Error en conexión a base de datos</div>
+                        <div class="log-details">Timeout al intentar conectar con el servidor PostgreSQL en el puerto
+                            5432</div>
+                        <div class="log-meta">
+                            <div class="meta-item">
+                                <strong>Fuente:</strong> database.connection
+                            </div>
+                            <div class="meta-item">
+                                <strong>Categoría:</strong> Base de Datos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="log-badges">
+                    <span class="badge badge-system">System Log</span>
+                    <span class="badge badge-error">Error</span>
+                    <div class="timestamp">2025-10-20 14:30:42</div>
+                </div>
+            </div>
+            <div class="expandable-content">
+                <strong style="color: #9ca3af; font-size: 12px;">TRACEBACK:</strong>
+                <div class="code-block">Traceback (most recent call last):
+                    File "database.py", line 45, in connect
+                    conn = psycopg2.connect(dsn)
+                    File "psycopg2/__init__.py", line 122, in connect
+                    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+                    psycopg2.OperationalError: timeout expired</div>
+                <strong style="color: #9ca3af; font-size: 12px; display: block; margin-top: 15px;">METADATA:</strong>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <div class="metadata-key">Host</div>
+                        <div class="metadata-value">db.example.com</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Port</div>
+                        <div class="metadata-value">5432</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Retry Attempt</div>
+                        <div class="metadata-value">3/5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Log Entry - Action -->
+        <div class="log-entry" onclick="this.querySelector('.expandable-content').classList.toggle('active')">
+            <div class="log-header">
+                <div class="log-main">
+                    <div class="log-icon user-log">👤</div>
+                    <div class="log-content">
+                        <div class="log-title">Factura creada</div>
+                        <div class="log-details">Usuario "mgarcia" creó la factura #00125 por un monto de Q 1,500.00
+                        </div>
+                        <div class="log-meta">
+                            <div class="meta-item">
+                                <strong>Usuario:</strong> mgarcia
+                            </div>
+                            <div class="meta-item">
+                                <strong>IP:</strong> 192.168.1.105
+                            </div>
+                            <div class="meta-item">
+                                <strong>Acción:</strong> invoice_created
+                            </div>
+                            <div class="meta-item">
+                                <strong>Categoría:</strong> Operaciones
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="log-badges">
+                    <span class="badge badge-user">User Log</span>
+                    <span class="badge badge-info">Info</span>
+                    <div class="timestamp">2025-10-20 14:28:33</div>
+                </div>
+            </div>
+            <div class="expandable-content">
+                <strong style="color: #9ca3af; font-size: 12px;">METADATA:</strong>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <div class="metadata-key">Invoice ID</div>
+                        <div class="metadata-value">125</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Amount</div>
+                        <div class="metadata-value">Q 1,500.00</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Cliente</div>
+                        <div class="metadata-value">Juan Pérez</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">NIT</div>
+                        <div class="metadata-value">1234567-8</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Log Entry - Warning -->
+        <div class="log-entry" onclick="this.querySelector('.expandable-content').classList.toggle('active')">
+            <div class="log-header">
+                <div class="log-main">
+                    <div class="log-icon system-log">⚙️</div>
+                    <div class="log-content">
+                        <div class="log-title">Alto uso de memoria detectado</div>
+                        <div class="log-details">El sistema está utilizando el 85% de la memoria RAM disponible</div>
+                        <div class="log-meta">
+                            <div class="meta-item">
+                                <strong>Fuente:</strong> system.monitor
+                            </div>
+                            <div class="meta-item">
+                                <strong>Categoría:</strong> Performance
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="log-badges">
+                    <span class="badge badge-system">System Log</span>
+                    <span class="badge badge-warning">Warning</span>
+                    <div class="timestamp">2025-10-20 14:25:10</div>
+                </div>
+            </div>
+            <div class="expandable-content">
+                <strong style="color: #9ca3af; font-size: 12px;">METADATA:</strong>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <div class="metadata-key">RAM Usage</div>
+                        <div class="metadata-value">85%</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Total RAM</div>
+                        <div class="metadata-value">16 GB</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Available</div>
+                        <div class="metadata-value">2.4 GB</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Top Process</div>
+                        <div class="metadata-value">python3 (3.2GB)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Log Entry - Security -->
+        <div class="log-entry" onclick="this.querySelector('.expandable-content').classList.toggle('active')">
+            <div class="log-header">
+                <div class="log-main">
+                    <div class="log-icon user-log">👤</div>
+                    <div class="log-content">
+                        <div class="log-title">Intento de acceso fallido</div>
+                        <div class="log-details">Múltiples intentos fallidos de inicio de sesión para el usuario "admin"
+                            desde IP sospechosa</div>
+                        <div class="log-meta">
+                            <div class="meta-item">
+                                <strong>Usuario:</strong> admin
+                            </div>
+                            <div class="meta-item">
+                                <strong>IP:</strong> 203.45.12.88
+                            </div>
+                            <div class="meta-item">
+                                <strong>Intentos:</strong> 5
+                            </div>
+                            <div class="meta-item">
+                                <strong>Categoría:</strong> Seguridad
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="log-badges">
+                    <span class="badge badge-user">User Log</span>
+                    <span class="badge badge-error">Error</span>
+                    <div class="timestamp">2025-10-20 14:20:05</div>
+                </div>
+            </div>
+            <div class="expandable-content">
+                <strong style="color: #9ca3af; font-size: 12px;">METADATA:</strong>
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <div class="metadata-key">Failed Attempts</div>
+                        <div class="metadata-value">5</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Country</div>
+                        <div class="metadata-value">Unknown</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Blocked</div>
+                        <div class="metadata-value">Yes</div>
+                    </div>
+                    <div class="metadata-item">
+                        <div class="metadata-key">Block Duration</div>
+                        <div class="metadata-value">30 minutes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    {% if page_obj %}
+    <div class="row" style="margin-top: 5rem; ">
+        {% include 'snippets/pages.html' %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

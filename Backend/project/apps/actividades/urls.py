@@ -11,10 +11,10 @@ from django.contrib.auth.decorators import login_required
 from . import views
 
 # RUTAS
-from .rutas import urlpatterns_notificaciones, urlpatterns_votaciones
+from .rutas import urlpatterns_notificaciones, urlpatterns_votaciones, urlpatterns_logs
 
 app_name = 'actividades'
 
 urlpatterns = []
 
-urlpatterns+=routers.urlpatterns + urlpatterns_notificaciones + urlpatterns_votaciones
+urlpatterns+=routers.urlpatterns + urlpatterns_notificaciones + urlpatterns_votaciones + urlpatterns_logs
