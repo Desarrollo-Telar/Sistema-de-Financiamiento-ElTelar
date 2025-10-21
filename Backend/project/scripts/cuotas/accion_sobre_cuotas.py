@@ -1,3 +1,6 @@
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+
 
 # UUID
 import uuid

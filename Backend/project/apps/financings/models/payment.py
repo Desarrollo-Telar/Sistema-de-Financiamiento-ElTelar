@@ -123,6 +123,9 @@ class Payment(models.Model):
         else:
             referencia = self.numero_referencia
         
+        if self.sucursal:
+            return Banco.objects.get(referencia=referencia, sucursal=self.sucursal)
+        
         return Banco.objects.get(referencia=referencia)
 
     def get_recibo(self):

@@ -46,9 +46,10 @@ def is_int(value):
         
 @receiver(pre_save, sender=Customer)
 def set_customer_code_and_update_status(sender, instance, **kwargs):
-    buscar_asesor = CreditCounselor.objects.filter(id=instance.new_asesor_credito.id).first()
-    
-    instance.asesor = f'{buscar_asesor.nombre} {buscar_asesor.apellido}'
+    buscar_asesor = None
+    if instance.new_asesor_credito:
+        buscar_asesor = CreditCounselor.objects.filter(id=instance.new_asesor_credito.id).first()
+        instance.asesor = f'{buscar_asesor.nombre} {buscar_asesor.apellido}'
 
     
 
@@ -106,6 +107,13 @@ def set_customer_code_and_update_status(sender, instance, **kwargs):
 
             instance.customer_code = customer_code
 
+def generar_numero_identificacion_sucursal(instance):
+    codigo_sucursal = instance.sucursal.codigo_sucursal if instance.sucursal else 0
+    cui = instance.identification_number
+    codigo_cliente = instance.customer_code
+    numero_identificacion_sucursal = f'{codigo_sucursal}-{cui}-{codigo_cliente}'
+    return numero_identificacion_sucursal
+
 @receiver(post_save, sender=Customer)
 def send_message(sender, instance, created, **kwargs):
     customer = instance
@@ -122,6 +130,8 @@ def send_message(sender, instance, created, **kwargs):
     if created:
         generate_qr(dato, filename)
     
+    if instance.numero_identificacion_sucursal is None:
+        instance.numero_identificacion_sucursal = generar_numero_identificacion_sucursal(instance)
 
 
 @receiver(post_delete, sender=Customer)

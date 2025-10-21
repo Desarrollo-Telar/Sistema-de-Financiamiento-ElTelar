@@ -28,6 +28,13 @@ from scripts.INFILE.consulta_nit import ejemplo_uso_consulta_receptor
 from datetime import datetime, timedelta, timezone
 from django.utils import timezone
 
+def generar_numero_identificacion_sucursal(instance):
+    codigo_sucursal = instance.sucursal.codigo_sucursal if instance.sucursal else 0
+    cui = instance.identification_number
+    codigo_cliente = instance.customer_code
+    numero_identificacion_sucursal = f'{codigo_sucursal}-{cui}-{codigo_cliente}'
+    return numero_identificacion_sucursal
+
 def main():
   # Create a client for your MinIO server using your access and secret keys
   client = Minio(
@@ -206,7 +213,13 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-    asignar()
+    clientes = Customer.objects.all()
+    print(f'CAMBIANDO: {clientes.count()}')
+    for cliente in clientes:
+       cliente.numero_identificacion_sucursal = generar_numero_identificacion_sucursal(cliente)
+       cliente.save()
+
+    print('FINALIZADO')
    
 
   except S3Error as exc:

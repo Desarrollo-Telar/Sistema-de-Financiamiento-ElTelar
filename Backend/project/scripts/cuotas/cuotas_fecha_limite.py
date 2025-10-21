@@ -12,6 +12,10 @@ from scripts.cuotas.accion_sobre_cuotas import recorrido_de_cuotas
 # MENSAJE EMAIL
 from project.send_mail import send_email_update_of_quotas
 
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+from scripts.conversion_datos import model_to_dict, cambios_realizados
+
 def verificador_de_cuotas_fecha_limite(dia):
     print('ANALISIS SOBRE FECHA_LIMITE')
     planes = PaymentPlan.objects.filter(fecha_limite__date=dia, cuota_vencida=False).filter( 
@@ -36,6 +40,12 @@ def verificador_de_cuotas_fecha_limite(dia):
     if hora_actual <= hora_fin:
         # AQUI SE DEBE DE ENVIAR MENSAJES PARA DECIR QUE LOS CREDITOS YA VENCIERON
         send_email_update_of_quotas(planes)
+        cuota = {
+            'cuotas': planes
+        }
+        log_system_event(f'''
+                         Las siguientes cuotas han pasado su fecha limite de pago, por el cual se han hecho el recalculo automaticamente.
+                         ''',"INFO","Sistema", "Cuotas", None, cuota)
     else:
         print("Fuera del horario permitido para enviar correos.")
     

@@ -110,6 +110,7 @@ class Customer(models.Model):
     # NUEVOS CAMPOS
     valoracion = models.DecimalField(verbose_name="Puntuacion del cliente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
+    numero_identificacion_sucursal = models.CharField(verbose_name="Numero de Identificacion Sucursal por Cliente", max_length=150, blank=True, null=True)
     
     def __str__(self):
         return self.get_full_name()

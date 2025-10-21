@@ -26,6 +26,8 @@
             <h2 class="fw-bold mb-2">INFORMACIÓN DEL CLIENTE</h2>
             <h3 class="fs-5 text-uppercase mb-1">{{ customer_list.first_name }} {{ customer_list.last_name }}</h3>
             <p class="fs-6 text-muted text-uppercase">{{ customer_list.customer_code }}</p>
+            <p class="fs-6 text-muted text-uppercase">{{ customer_list.sucursal }}</p>
+            <p class="fs-6 text-muted text-uppercase">{{ customer_list.numero_identificacion_sucursal }}</p>
             <div class="rating">
                 {% for star in customer_list.get_star_rating %}
                 {% if star == 'full' %}
