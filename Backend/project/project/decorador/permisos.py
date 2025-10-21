@@ -35,7 +35,7 @@ def permiso_requerido(nombre_permiso):
                 return redirect('login')
             
             
-            sucursal = getattr(request,'sucursal_actual',None)
+            sucursal = request.session['sucursal_id']
 
             if sucursal is None:
                 return redirect('sucursal:clasificacion')
