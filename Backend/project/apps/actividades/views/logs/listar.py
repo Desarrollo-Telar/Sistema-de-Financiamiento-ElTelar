@@ -16,6 +16,7 @@ from django.db.models import Q
 from itertools import chain
 from operator import attrgetter
 # Decoradores
+from django.contrib.auth.decorators import login_required
 from project.decorador import permiso_requerido
 from django.utils.decorators import method_decorator
 
@@ -26,7 +27,7 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 from django.core.paginator import Paginator
 
-
+@login_required
 def listando_logs(request):
     template_name = 'actividad/logs.html'
 

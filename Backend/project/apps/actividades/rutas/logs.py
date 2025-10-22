@@ -9,7 +9,7 @@ from apps.actividades import views
 from django.contrib.auth.decorators import login_required
 
 urlpatterns_logs = [
-    path('logs/',views.listando_logs, name='list_logs'),
+    path('logs/', login_required(views.listando_logs), name='list_logs'),
     
     
     

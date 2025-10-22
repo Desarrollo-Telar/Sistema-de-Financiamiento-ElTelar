@@ -1,5 +1,6 @@
 from apps.financings.models import Credit, PaymentPlan, Disbursement, Payment, Guarantees
 from apps.FinancialInformation.models import WorkingInformation
+from apps.subsidiaries.models import Subsidiary
 from openpyxl import Workbook
 from django.http import HttpResponse
 
@@ -15,11 +16,11 @@ def report_desmbolso(request,  mes, anio):
     filters &= Q(credit_id__creation_date__year=anio)
     filters &= Q(credit_id__creation_date__month=mes)
     
-    sucursal = request.session['sucursal_id']
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
     
 
     # Obtener los créditos según el filtro seleccionado
-    reportes = Disbursement.objects.filter(filters, sucursal=sucursal).order_by('id')
+    reportes = Disbursement.objects.filter(filters, credit_id__sucursal=sucursal).order_by('id')
     
     # Crear el archivo Excel
     workbook = Workbook()
@@ -34,7 +35,7 @@ def report_desmbolso(request,  mes, anio):
         "FORMA DE PAGO", "PLAZO", "TIPO DE GARANTIA","TELEFONO 1", 
         "TELEFONO 2", "LUGAR DE TRABAJO / NEGOCIO", 
         "ASESOR DE CREDITO", "TIPO DE CREDITO", "PROPOSITO","FECHA DE REGISTRO", "MONTO OTORGADO","MONTO DESEMBOLSADO","SALDO ANTERIOR DEL CREDITO", 
-        "GASTOS ADMINISTRATIVOS", "MONTO DEL SEGURO", "SALDO PENDIENTE DE DESEMBOLSO", "TIPO DE DESEMBOLSO"
+        "GASTOS ADMINISTRATIVOS", "MONTO DEL SEGURO", "SALDO PENDIENTE DE DESEMBOLSO", "TIPO DE DESEMBOLSO", "SUCURSAL"
     ])
 
     # Agregar los datos
@@ -72,7 +73,8 @@ def report_desmbolso(request,  mes, anio):
             str(reporte.f_honorarios()),
             str(reporte.f_poliza_seguro()),
             str(reporte.f_monto_total_desembolso()),
-            str(reporte.forma_desembolso)
+            str(reporte.forma_desembolso),
+            str(reporte.credit_id.sucursal)
 
 
         ])
