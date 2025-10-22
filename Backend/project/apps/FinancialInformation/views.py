@@ -9,13 +9,9 @@ from apps.customers.models import Customer
 from apps.addresses.models import Address
 from .models import WorkingInformation, OtherSourcesOfIncome, Reference
 
-# LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
-from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
-from django.db.models import Q
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+from scripts.conversion_datos import model_to_dict, cambios_realizados
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -47,6 +43,9 @@ def seleccionar(request,codigo, customer_code):
 @usuario_activo
 def delete_other_information(request,id, customer_code):
     other = get_object_or_404(OtherSourcesOfIncome, id = id)
+    log_user_action(
+        request.user
+    )
     other.delete()
     return redirect('customers:detail', customer_code)
 

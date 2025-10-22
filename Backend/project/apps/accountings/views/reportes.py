@@ -19,6 +19,10 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 # Decoradores
 from project.decorador import permiso_requerido
 
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+from scripts.conversion_datos import model_to_dict, cambios_realizados
+
 @permiso_requerido('puede_descargar_reporte_acreedores')
 def reportes_generales_acreedores(request):
     template_name = 'reports/base.html'

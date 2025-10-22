@@ -15,6 +15,7 @@ from apps.customers.models import CreditCounselor, Customer, Cobranza
 from apps.financings.models import Credit, PaymentPlan, Banco, Payment, Recibo, AccountStatement, Disbursement
 from apps.users.models import User
 from apps.subsidiaries.models import Subsidiary
+from apps.accountings.models import Income, Egress
 
 # Scripts
 from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
@@ -213,13 +214,39 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-    clientes = Customer.objects.all()
-    print(f'CAMBIANDO: {clientes.count()}')
-    for cliente in clientes:
-       cliente.numero_identificacion_sucursal = generar_numero_identificacion_sucursal(cliente)
-       cliente.save()
+    ingresos = Income.objects.filter(status=False)
+    egresos = Egress.objects.filter(status=False)
+    
+    for ingreso in ingresos:
+       referencia = ingreso.numero_referencia
 
-    print('FINALIZADO')
+       banco = Banco.objects.filter(referencia=referencia)
+       pago = Payment.objects.filter(numero_referencia=referencia, estado_transaccion='COMPLETADO')
+
+       if banco is None:
+          continue
+       
+       if pago is None:
+          continue
+       
+       ingreso.status = True
+       ingreso.save()
+    
+    for ingreso in egresos:
+       referencia = ingreso.numero_referencia
+
+       banco = Banco.objects.filter(referencia=referencia)
+
+       pago = Payment.objects.filter(numero_referencia=referencia, estado_transaccion='COMPLETADO')
+
+       if banco is None:
+          continue
+       
+       if pago is None:
+          continue
+       
+       ingreso.status = True
+       ingreso.save()
    
 
   except S3Error as exc:

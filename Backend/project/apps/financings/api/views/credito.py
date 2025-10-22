@@ -249,6 +249,10 @@ class CreditVigentesViewSet(viewsets.ModelViewSet):
             raise  # re-lanza el error para que DRF devuelva la respuesta HTTP 500
 
 
+from rest_framework import viewsets
+from rest_framework.exceptions import NotFound
+from django.db.models import Q
+
 class CreditVigentesCobranzaViewSet(viewsets.ModelViewSet):
     serializer_class = CreditSerializer
 
@@ -261,14 +265,17 @@ class CreditVigentesCobranzaViewSet(viewsets.ModelViewSet):
         roles = ['Administrador', 'Programador']
         role_name = getattr(getattr(self.request.user, 'rol', None), 'role_name', None)
 
-        sucursal = getattr(self.request,'sucursal_actual',None)
+        sucursal = getattr(self.request, 'sucursal_actual', None)
 
-        if sucursal:
-            queryset = queryset.filter(Q(sucursal=sucursal))
-
+        # Validar usuario e informe activo
         if not asesor_autenticado or not reporte_id:
             raise NotFound("No se encontró información para este usuario.")
 
+        # Si hay sucursal, filtra el queryset base
+        if sucursal:
+            base_qs = base_qs.filter(sucursal=sucursal)
+
+        # Excluir los créditos que ya están en el informe vigente
         informe_vigente = DetalleInformeCobranza.objects.filter(reporte_id=reporte_id)
         creditos_con_cobranza = Credit.objects.filter(
             id__in=informe_vigente.values_list("cobranza__credito_id", flat=True)
@@ -276,6 +283,7 @@ class CreditVigentesCobranzaViewSet(viewsets.ModelViewSet):
 
         queryset = base_qs.filter(estados_fechas=False).exclude(id__in=creditos_con_cobranza)
 
+        # Aplicar filtros de búsqueda
         if search_term:
             filters = (
                 Q(customer_id__first_name__icontains=search_term) |
@@ -289,7 +297,7 @@ class CreditVigentesCobranzaViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(asesor_de_credito__id=asesor_autenticado.id)
 
         return queryset
-    
+
     def perform_create(self, serializer):
         credit = serializer.save()
         user = self.request.user
