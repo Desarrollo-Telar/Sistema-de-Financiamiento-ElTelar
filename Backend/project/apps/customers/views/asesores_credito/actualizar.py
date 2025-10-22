@@ -23,6 +23,10 @@ from datetime import datetime,timedelta
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 from scripts.recoleccion_informacion.detalle_asesor_credito import recoleccion_informacion_detalle_asesor
 
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+from scripts.conversion_datos import model_to_dict, cambios_realizados
+
 @login_required
 def actualizacion_cobranza(request, id):
     template_name = 'cobranza/actualizar.html'

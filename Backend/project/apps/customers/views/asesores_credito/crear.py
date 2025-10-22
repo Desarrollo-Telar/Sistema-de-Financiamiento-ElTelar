@@ -23,6 +23,10 @@ from datetime import datetime,timedelta, date
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 from scripts.recoleccion_informacion.detalle_asesor_credito import recoleccion_informacion_detalle_asesor
 
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+from scripts.conversion_datos import model_to_dict, cambios_realizados
+
 
 def obtener_cuota(credito):
     dia = datetime.now().date()
@@ -199,7 +203,14 @@ def creacion_cobranza(request):
 
 
             
-            
+            log_user_action(
+                request.user,
+                'Registro de Cobranza',
+                f'El usuario {request.user} ha realizado el registro de una cobranza para el credito {credito}',
+                request,
+                'GESTION DE COBRANZA',
+                model_to_dict(cobranza)
+            )
 
 
             messages.success(request, "Registro Completado Con Exito.")

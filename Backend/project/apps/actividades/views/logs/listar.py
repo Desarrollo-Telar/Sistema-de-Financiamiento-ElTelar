@@ -24,19 +24,33 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 
 
+from django.core.paginator import Paginator
+
+
 def listando_logs(request):
     template_name = 'actividad/logs.html'
 
+    # Obtén los registros
     user_log = list(UserLog.objects.all().order_by('-id'))
     system_log = list(SystemLog.objects.all().order_by('-id'))
 
-    logs_zip = zip(user_log, system_log)
+    # Combina ambos — zip devuelve pares
+    logs_zip = list(zip(user_log, system_log))
+
+    # --- PAGINACIÓN ---
+    page_number = request.GET.get('page', 1)  # página actual
+    paginator = Paginator(logs_zip, 150)  # 20 pares por página
+
+    # Obtén los registros de la página actual
+    page_obj = paginator.get_page(page_number)
 
     context = {
-        'logs_zip': logs_zip,
-        'permisos':recorrer_los_permisos_usuario(request)
+        'page_obj': page_obj,
+        'logs_zip': page_obj.object_list,  # opcional, si quieres usar este nombre en el template
+        'permisos': recorrer_los_permisos_usuario(request)
     }
     return render(request, template_name, context)
+
 
 
 class ListandoLogs(ListView):

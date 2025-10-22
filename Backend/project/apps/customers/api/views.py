@@ -13,6 +13,11 @@ from django.db.models import Q
 
 from django.utils.timezone import datetime
 
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+from scripts.conversion_datos import model_to_dict, cambios_realizados
+
+
 class CustomerViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()

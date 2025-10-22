@@ -8,8 +8,9 @@ from apps.accountings.models import Creditor, Insurance
 from apps.financings.models import Payment
 from apps.subsidiaries.models import Subsidiary
 
-# HISTORIAL
-from apps.actividades.models import ModelHistory
+
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
 from scripts.conversion_datos import model_to_dict, cambios_realizados
 
 # Decoradores
@@ -81,18 +82,15 @@ def add_acreedor(request):
 
                 pago_dict = model_to_dict(boleta)
             
-            dato_dict = {
-                'acreedor_data':acreedor_dict,
-                'pago_data':pago_dict
-            }
-            
-            ModelHistory.objects.create(
-                content_type = 'Creditor',
-                object_id = acreedor.id,
-                action = 'create',
-                data = dato_dict,
-                user = request.user
+            log_user_action(
+                request.user,
+                'Registro de Acreedor',
+                f'El usuario {request.user} ha registrado un acreedor por un monto de Q{monto}',
+                request,
+                'CONTABILIDAD',
+                model_to_dict(acreedor)
             )
+            
                 
             messages.success(request, 'Acreedor Creado con Exito')
             return redirect('contable:acreedores')
@@ -142,14 +140,14 @@ def add_seguro(request):
 
             dato_dict = model_to_dict(acreedor)
 
-            ModelHistory.objects.create(
-                content_type = 'Insurance',
-                object_id = acreedor.id,
-                action = 'create',
-                data = dato_dict,
-                user = request.user
+            log_user_action(
+                request.user,
+                'Registro de Seguro',
+                f'El usuario {request.user} ha registrado un seguro por un monto de Q{monto}',
+                request,
+                'CONTABILIDAD',
+                model_to_dict(acreedor)
             )
-            
                 
             messages.success(request, 'Seguro Creado con Exito')
             return redirect('contable:seguros')
@@ -198,14 +196,14 @@ def add_ingreso(request):
 
             dato_dict = model_to_dict(form.instance)
             
-            ModelHistory.objects.create(
-                content_type = 'Income',
-                object_id = form.id,
-                action = 'create',
-                data = dato_dict,
-                user = request.user
+            log_user_action(
+                request.user,
+                'Registro de Ingreso',
+                f'El usuario {request.user} ha registrado un ingreso por un monto de Q{monto}',
+                request,
+                'CONTABILIDAD',
+                model_to_dict(ingres)
             )
-
                
             messages.success(request, 'Ingreso Creado con Exito')
             return redirect('contable:ingresos')
@@ -254,16 +252,15 @@ def add_egresos(request):
                     )  
                 boletas.save()
 
-            dato_dict = model_to_dict(form.instance)
             
-            ModelHistory.objects.create(
-                content_type = 'Egress',
-                object_id = form.id,
-                action = 'create',
-                data = dato_dict,
-                user = request.user
+            log_user_action(
+                request.user,
+                'Registro de Egresos',
+                f'El usuario {request.user} ha registrado un egreso por un monto de Q{monto}',
+                request,
+                'CONTABILIDAD',
+                model_to_dict(egre)
             )
-             
             messages.success(request, 'Egreso Creado con Exito')
             return redirect('contable:egresos')
 

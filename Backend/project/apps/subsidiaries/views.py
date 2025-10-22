@@ -23,6 +23,9 @@ from project.pagination import paginacion
 # MENSAJES
 from django.contrib import messages
 
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+from scripts.conversion_datos import model_to_dict, cambios_realizados
 
 # Create your views here.
 
@@ -50,4 +53,10 @@ def view_seleccionado(request, id):
         return redirect('sucursal:clasificacion')
 
     request.session['sucursal_id'] = sucursal.id
+
+    log_user_action(request.user,
+                    'ELECCION DE OFICINA', 
+                    f'El usuario {request.user} escogio la oficina: {request.session['sucursal_id']}',
+                    request, 'SUCURSAL')
+
     return redirect('index')

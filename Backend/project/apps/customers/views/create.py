@@ -24,6 +24,12 @@ import json
 from django.http import JsonResponse
 import uuid
 
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+from scripts.conversion_datos import model_to_dict, cambios_realizados
+
+
+
 # ----- CREANDO USUARIOS NUEVOS ----- #
 @login_required
 @permiso_requerido('puede_crear_informacion_personal_cliente')
@@ -66,6 +72,12 @@ def create_customer(request):
             direccion.customer_id = cliente
             direccion.type_address = 'Dirección Personal'
             direccion.save()
+
+            log_user_action(
+                request.user, 'Registro de Cliente',
+                f'El usuario {request.user} ha registro al cliente {cliente.first_name} {cliente.last_name}',
+                request,'CLIENTES',model_to_dict(cliente)
+            )
             return redirect('financial_information:seleccionar', uuid.uuid4, cliente.customer_code)
             
 
