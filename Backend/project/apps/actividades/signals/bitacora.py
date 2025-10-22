@@ -69,25 +69,31 @@ def log_user_logout(sender, request, user, **kwargs):
         category=LogCategory.objects.get_or_create(name="Autenticación", defaults={'description': 'Eventos de login/logout'})[0]
     )
 
+import sys, traceback
+
 @receiver(got_request_exception)
 def log_request_exception(sender, request, **kwargs):
     error_level = LogLevel.objects.filter(name='ERROR').first()
-
     if error_level is None:
         error_level = LogLevel.objects.create(
             name='ERROR',
-            description= 'Errores que afectan funcionalidad pero no detienen la aplicación',
+            description='Errores que afectan funcionalidad pero no detienen la aplicación',
             priority=40
         )
-    
+
+    # Capturar información real del error
+    exc_type, exc_value, exc_traceback = sys.exc_info()
+    trace = ''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
+
     SystemLog.objects.create(
         level=error_level,
         source="HTTP Request",
-        message=f"Excepción en la solicitud: {request.path}",
+        message=f"Excepción en la solicitud: {request.path} por el usuario {request.user}",
         category=LogCategory.objects.get_or_create(
             name="Sistema",
             defaults={'description': 'Eventos del sistema web'}
         )[0],
-        traceback=kwargs.get('traceback', 'No disponible')
+        traceback=trace
     )
+
 
