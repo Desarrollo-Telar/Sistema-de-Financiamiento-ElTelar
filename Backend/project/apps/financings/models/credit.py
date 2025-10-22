@@ -67,7 +67,8 @@ class Credit(models.Model):
 
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
     asesor_de_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Asesor de este Credito")
-
+    numero_identificacion_sucursal = models.CharField(verbose_name="Numero de Identificacion Sucursal por Cliente", max_length=150, blank=True, null=True)
+    
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
     

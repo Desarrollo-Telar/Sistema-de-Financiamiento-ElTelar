@@ -63,7 +63,7 @@ def report_desmbolso(request,  mes, anio):
             str(reporte.credit_id.customer_id.telephone),
             str(reporte.credit_id.customer_id.other_telephone if reporte.credit_id.customer_id.other_telephone else '---'),
             str(informacion_laboral.get_empresa_laburo() if informacion_laboral else '---'),
-            str(reporte.credit_id.customer_id.asesor),
+            str(reporte.credit_id.asesor_de_credito),
             str(reporte.credit_id.tipo_credito),
             str(reporte.credit_id.proposito),
             str(reporte.credit_id.creation_date.date()),
