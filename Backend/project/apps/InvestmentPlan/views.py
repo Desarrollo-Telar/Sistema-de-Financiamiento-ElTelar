@@ -6,7 +6,7 @@ from .forms import InvestmentPlanForms
 # MODELOS
 from apps.customers.models import Customer
 from .models import InvestmentPlan
-from apps.FinancialInformation.models import Reference
+from apps.FinancialInformation.models import Reference, WorkingInformation, OtherSourcesOfIncome
 
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
@@ -22,7 +22,7 @@ from project.decorador import usuario_activo
 
 #SCRIPTS
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
-
+from project.send_mail import send_email_new_customer
 # Create your views here.
 
 @login_required
@@ -48,8 +48,19 @@ def create_plan_financiamiento(request, customer_code):
             plan.transfers_or_transfer_of_funds = True
             plan.save()
 
+            informacion_laboral = WorkingInformation.objects.filter(customer_id=customer_id).exists()
+            if not informacion_laboral:
+                informacion_laboral = OtherSourcesOfIncome.objects.filter(customer_id=customer_id).exists()
+
+            if cantidad.exists() and informacion_laboral and  not customer_id.completado:
+                customer_id.completado = True
+                customer_id.save()
+                send_email_new_customer(customer_id)
+
             if cantidad.count() >= 4:
                 return redirect('customers:detail',customer_id.customer_code)
+            
+            
             return redirect('financial_information:create_reference_information', customer_id.customer_code)
         
     form = InvestmentPlanForms()

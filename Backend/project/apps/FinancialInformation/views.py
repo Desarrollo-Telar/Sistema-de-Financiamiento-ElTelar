@@ -6,6 +6,7 @@ from apps.addresses.forms import AddressForms
 
 # MODELOS
 from apps.customers.models import Customer
+from apps.InvestmentPlan.models import InvestmentPlan
 from apps.addresses.models import Address
 from .models import WorkingInformation, OtherSourcesOfIncome, Reference
 
@@ -85,6 +86,18 @@ def create_working_information(request, customer_code):
             direccion.customer_id = customer_id
             direccion.type_address = 'Dirección de Trabajo'
             direccion.save()
+
+            
+            plan_inversion = InvestmentPlan.objects.filter(customer_id=customer_id).exists()
+            referencias = Reference.objects.filter(customer_id=customer_id).exists()
+
+            if plan_inversion and referencias and not customer_id.completado:
+                customer_id.completado = True
+                customer_id.save()
+                send_email_new_customer(customer_id)
+            
+            if plan_inversion:                
+                return redirect('customers:detail',customer_code)
             
             return redirect('investment_plan:create',customer_code)
 
@@ -142,6 +155,17 @@ def create_other_information(request, customer_code):
             direccion.customer_id = customer_id
             direccion.type_address = 'Dirección de Trabajo'
             direccion.save()
+
+            plan_inversion = InvestmentPlan.objects.filter(customer_id=customer_id).exists()
+            referencias = Reference.objects.filter(customer_id=customer_id).exists()
+
+            if plan_inversion and referencias and not customer_id.completado:
+                customer_id.completado = True
+                customer_id.save()
+                send_email_new_customer(customer_id)
+            
+            if plan_inversion:                
+                return redirect('customers:detail',customer_code)
             
             return redirect('investment_plan:create',customer_code)
 
@@ -286,9 +310,16 @@ def create_references_customer(request, customer_code):
             referencia4.reference_type = 'Laborales'
             referencia4.save()
 
-            customer_id.completado = True
-            customer_id.save()
-            send_email_new_customer(customer_id)
+            informacion_laboral = WorkingInformation.objects.filter(customer_id=customer_id).exists()
+            plan_inversion = InvestmentPlan.objects.filter(customer_id=customer_id).exists()
+
+            if not informacion_laboral:
+                informacion_laboral = OtherSourcesOfIncome.objects.filter(customer_id=customer_id).exists()
+            
+            if informacion_laboral and plan_inversion and not customer_id.completado:
+                customer_id.completado = True
+                customer_id.save()
+                send_email_new_customer(customer_id)
 
             return redirect('customers:detail', customer_code)
     else:

@@ -66,6 +66,7 @@ def create_customer(request):
             cliente.user_id = request.user
             cliente.sucursal = Subsidiary.objects.get(id=sucursal)
             cliente.completado = False
+            cliente.uuid = uuid.uuid4()
             cliente.save()
 
             direccion = form_direccion.save(commit=False)
@@ -73,11 +74,7 @@ def create_customer(request):
             direccion.type_address = 'Dirección Personal'
             direccion.save()
 
-            log_user_action(
-                request.user, 'Registro de Cliente',
-                f'El usuario {request.user} ha registro al cliente {cliente.first_name} {cliente.last_name}',
-                request,'CLIENTES',model_to_dict(cliente)
-            )
+            
             return redirect('financial_information:seleccionar',  cliente.customer_code)
             
 
