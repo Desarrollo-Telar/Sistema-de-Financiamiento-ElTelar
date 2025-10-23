@@ -132,6 +132,7 @@ def send_message(sender, instance, created, **kwargs):
     
     if instance.numero_identificacion_sucursal is None:
         instance.numero_identificacion_sucursal = generar_numero_identificacion_sucursal(instance)
+        instance.save()
 
 
 @receiver(post_delete, sender=Customer)
