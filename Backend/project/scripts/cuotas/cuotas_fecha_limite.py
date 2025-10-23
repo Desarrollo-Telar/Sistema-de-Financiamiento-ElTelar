@@ -43,9 +43,7 @@ def verificador_de_cuotas_fecha_limite(dia):
         cuota = {
             'cuotas': planes
         }
-        log_system_event(f'''
-                         Las siguientes cuotas han pasado su fecha limite de pago, por el cual se han hecho el recalculo automaticamente.
-                         ''',"INFO","Sistema", "Cuotas", None, cuota)
+        
     else:
         print("Fuera del horario permitido para enviar correos.")
     
