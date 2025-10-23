@@ -42,8 +42,8 @@
                 <label>Tipo:</label>
                 <select>
                     <option value="">Todos</option>
-                    <option value="user">User Logs</option>
-                    <option value="system">System Logs</option>
+                    <option value="user" class="text-uppercase">User Logs</option>
+                    <option value="system" class="text-uppercase">System Logs</option>
                 </select>
             </div>
 
@@ -51,11 +51,10 @@
                 <label>Nivel:</label>
                 <select>
                     <option value="">Todos</option>
-                    <option value="debug">Debug</option>
-                    <option value="info">Info</option>
-                    <option value="warning">Warning</option>
-                    <option value="error">Error</option>
-                    <option value="critical">Critical</option>
+                    {% for categoria in categorias %}
+                    <option value="{{categoria}}" class="text-uppercase">{{categoria.name}}</option>
+                    {% endfor %}
+                    
                 </select>
             </div>
 
@@ -63,10 +62,10 @@
                 <label>Categoría:</label>
                 <select>
                     <option value="">Todas</option>
-                    <option value="auth">Autenticación</option>
-                    <option value="database">Base de Datos</option>
-                    <option value="api">API</option>
-                    <option value="security">Seguridad</option>
+                    {% for nivel in niveles %}
+                    <option value="{{nivel}}" class="text-uppercase">{{nivel.name}}</option>
+                    {% endfor %}
+                    
                 </select>
             </div>
 
@@ -114,7 +113,7 @@
                     <div class="timestamp">{{user_log.timestamp}}</div>
                 </div>
             </div>
-            
+
         </div>
         {% endif%}
         {% if system_log %}
@@ -129,8 +128,9 @@
                         </div>
                         <div class="log-meta">
                             <div class="meta-item">
-                                <strong>Fuente:</strong> {{system_log.traceback}}
+                                <strong>Fuente:</strong> {{ system_log.traceback|truncatechars:100 }}
                             </div>
+
                             <div class="meta-item">
                                 <strong>Categoría:</strong> {{system_log.category}}
                             </div>
@@ -139,16 +139,17 @@
                 </div>
                 <div class="log-badges">
                     <span class="badge badge-system">System Log</span>
-                    <span class="badge {%if system_log.level.name == 'INFO' %} badge-info {% elif system_log.level.name == 'DEBUG' %} badge-info {% elif system_log.level.name == 'WARNING' %}  badge-warning {% else %} badge-error {% endif%}">
-                        {%if system_log.level.name == 'INFO' %} 
-                        INFO 
-                        {% elif system_log.level.name == 'DEBUG' %} 
-                        DEBUG 
-                        {% elif system_log.level.name == 'WARNING' %} 
-                        WARNING 
-                        {% elif system_log.level.name == 'ERROR' %} 
-                        ERROR 
-                        {% elif system_log.level.name == 'CRITICAL' %} 
+                    <span
+                        class="badge {%if system_log.level.name == 'INFO' %} badge-info {% elif system_log.level.name == 'DEBUG' %} badge-info {% elif system_log.level.name == 'WARNING' %}  badge-warning {% else %} badge-error {% endif%}">
+                        {%if system_log.level.name == 'INFO' %}
+                        INFO
+                        {% elif system_log.level.name == 'DEBUG' %}
+                        DEBUG
+                        {% elif system_log.level.name == 'WARNING' %}
+                        WARNING
+                        {% elif system_log.level.name == 'ERROR' %}
+                        ERROR
+                        {% elif system_log.level.name == 'CRITICAL' %}
                         CRITICAL
                         {% endif%}
                     </span>
@@ -159,7 +160,7 @@
             <div class="expandable-content">
                 <strong style="color: #9ca3af; font-size: 12px;">TRACEBACK:</strong>
                 <div class="code-block">{{system_log.traceback}}</div>
-                
+
             </div>
             {% endif %}
         </div>
@@ -168,11 +169,11 @@
 
         {% endfor %}
 
-        
 
-      
 
-        
+
+
+
     </div>
 
     <!-- Pagination -->

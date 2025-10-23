@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from datetime import datetime, timedelta
 
 # Models
-from apps.actividades.models import UserLog, SystemLog
+from apps.actividades.models import UserLog, SystemLog, LogCategory, LogLevel
 
 # Manejo de mensajes
 from django.contrib import messages
@@ -48,7 +48,9 @@ def listando_logs(request):
     context = {
         'page_obj': page_obj,
         'logs_zip': page_obj.object_list,  # opcional, si quieres usar este nombre en el template
-        'permisos': recorrer_los_permisos_usuario(request)
+        'permisos': recorrer_los_permisos_usuario(request),
+        'niveles': LogLevel.objects.all(),
+        'categorias': LogCategory.objects.all(),
     }
     return render(request, template_name, context)
 

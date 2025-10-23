@@ -16,7 +16,13 @@
             <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-primary">Inicio</a></li>
             <li class="breadcrumb-item"><a href="{% url 'customers:customers' %}"
                     class="text-decoration-none text-primary">Clientes</a></li>
-            <li class="breadcrumb-item active text-muted" aria-current="page">{{ customer_list.first_name }} {{customer_list.last_name }}</li>
+            <li class="breadcrumb-item active text-muted" aria-current="page">{{ customer_list.first_name }} {{customer_list.last_name }} 
+                {% if customer_list.completado %}
+                ✅
+                {% else %}
+                ⚠️
+                {% endif %}
+            </li>
         </ol>
     </nav>
 

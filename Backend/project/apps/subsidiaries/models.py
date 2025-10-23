@@ -25,7 +25,8 @@ class Subsidiary(models.Model):
 
     def __str__(self):
         return f'{self.nombre}'
-
+    
+    
     @property
     def esta_abierta_ahora(self):
         import datetime

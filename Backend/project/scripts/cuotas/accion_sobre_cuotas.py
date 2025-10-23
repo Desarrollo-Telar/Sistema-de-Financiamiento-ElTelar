@@ -102,14 +102,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         datos_nuevos = model_to_dict(siguiente_cuota)
         
 
-        ModelHistory.objects.create(
-            content_type = 'PaymentPlan',
-            object_id = siguiente_cuota.id,
-            action = 'update',
-            data =datos_nuevos,
-            changes = cambios_realizados(datos_viejos, datos_nuevos)
-        )
-
+       
         
 
     else:
@@ -134,12 +127,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         cuota.start_date = pago.due_date
         cuota.save()
 
-        ModelHistory.objects.create(
-            content_type = 'PaymentPlan',
-            object_id = cuota.id,
-            action = 'create',
-            data = model_to_dict(cuota)
-        )
+        
         
         
 

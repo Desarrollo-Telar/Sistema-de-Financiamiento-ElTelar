@@ -29,6 +29,11 @@
                         <td>
                             <a class="row-link" href="{% url 'customers:detail' customer.customer_code %}">
                                 {{ customer.first_name }} {{ customer.last_name }}
+                                {% if customer.completado %}
+                                ✅
+                                {% else %}
+                                ⚠️
+                                {% endif %}
                             </a>
                         </td>
                         <td>

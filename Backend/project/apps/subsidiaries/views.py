@@ -5,11 +5,9 @@ from django.contrib import messages
 
 # Models
 from .models import Subsidiary
+from apps.addresses.models import Address
 
 
-# LIBRERIAS PARA CRUD
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
-from django.db.models import Q
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -33,6 +31,7 @@ from scripts.conversion_datos import model_to_dict, cambios_realizados
 def view_clasificacion(request):
     template_name = 'sucursal/clasificacion.html'
     sucursales = Subsidiary.objects.filter(activa=True)
+    direccion_sucursal = Address.objects.filter(type_address='Dirección de Sucursal')
 
     sucursal = getattr(request,'sucursal_actual',None)
     
@@ -41,7 +40,8 @@ def view_clasificacion(request):
 
 
     context = {
-        'sucursales':sucursales
+        'sucursales':sucursales,
+        'direccion_sucursal':direccion_sucursal,
 
     }
     return render(request, template_name, context)
