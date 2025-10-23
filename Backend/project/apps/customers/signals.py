@@ -108,10 +108,19 @@ def set_customer_code_and_update_status(sender, instance, **kwargs):
             instance.customer_code = customer_code
 
 def generar_numero_identificacion_sucursal(instance):
+
+    if instance.sucursal is None:
+        return None
+    
     codigo_sucursal = instance.sucursal.codigo_sucursal if instance.sucursal else 0
     cui = instance.identification_number
-    codigo_cliente = instance.customer_code
-    numero_identificacion_sucursal = f'{codigo_sucursal}-{cui}-{codigo_cliente}'
+    codigo_postal = instance.sucursal.codigo_postal if instance.sucursal.codigo_postal else 0
+    contador = 0
+
+    contador = Customer.objects.filter(sucursal = instance.sucursal).count() + 1
+
+    correlativo = str(contador).zfill(4)
+    numero_identificacion_sucursal = f'{codigo_sucursal}-{cui}-{correlativo}-{codigo_postal}'
     return numero_identificacion_sucursal
 
 @receiver(post_save, sender=Customer)

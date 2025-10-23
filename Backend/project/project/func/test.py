@@ -29,12 +29,18 @@ from scripts.INFILE.consulta_nit import ejemplo_uso_consulta_receptor
 from datetime import datetime, timedelta, timezone
 from django.utils import timezone
 
-def generar_numero_identificacion_sucursal(instance):
+def generar_numero_identificacion_sucursal(instance, count):
+    if instance.sucursal is None:
+        return None
+    
     codigo_sucursal = instance.sucursal.codigo_sucursal if instance.sucursal else 0
     cui = instance.identification_number
-    codigo_cliente = instance.customer_code
-    numero_identificacion_sucursal = f'{codigo_sucursal}-{cui}-{codigo_cliente}'
+    codigo_postal = instance.sucursal.codigo_postal if instance.sucursal.codigo_postal else 0
+   
+    correlativo = str(count).zfill(4)
+    numero_identificacion_sucursal = f'{codigo_sucursal}-{cui}-{correlativo}-{codigo_postal}'
     return numero_identificacion_sucursal
+
 
 def main():
   # Create a client for your MinIO server using your access and secret keys
@@ -214,39 +220,13 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-    ingresos = Income.objects.filter(status=False)
-    egresos = Egress.objects.filter(status=False)
+      count = 1
+      sucursal = Subsidiary.objects.get(id=1)
+      for cliente in Customer.objects.filter(sucursal=sucursal).order_by('id'):
+        cliente.numero_identificacion_sucursal =  generar_numero_identificacion_sucursal(cliente, count)
+        cliente.save()
+        count +=1
     
-    for ingreso in ingresos:
-       referencia = ingreso.numero_referencia
-
-       banco = Banco.objects.filter(referencia=referencia)
-       pago = Payment.objects.filter(numero_referencia=referencia, estado_transaccion='COMPLETADO')
-
-       if banco is None:
-          continue
-       
-       if pago is None:
-          continue
-       
-       ingreso.status = True
-       ingreso.save()
-    
-    for ingreso in egresos:
-       referencia = ingreso.numero_referencia
-
-       banco = Banco.objects.filter(referencia=referencia)
-
-       pago = Payment.objects.filter(numero_referencia=referencia, estado_transaccion='COMPLETADO')
-
-       if banco is None:
-          continue
-       
-       if pago is None:
-          continue
-       
-       ingreso.status = True
-       ingreso.save()
    
 
   except S3Error as exc:
