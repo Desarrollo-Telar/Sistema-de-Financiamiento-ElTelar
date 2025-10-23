@@ -18,9 +18,7 @@ from decimal import Decimal
 # MENSAJES DE ALERTA
 from project.send_mail import send_email_update_of_quotas
 
-# HISTORIAL
-from apps.actividades.models import ModelHistory
-from scripts.conversion_datos import model_to_dict, cambios_realizados
+
 # lOGS
 import logging
 logger = logging.getLogger(__name__)
@@ -74,7 +72,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
     
 
     if siguiente_cuota is not None:
-        datos_viejos = model_to_dict(siguiente_cuota)
+        
 
         siguiente_cuota.outstanding_balance = pago.saldo_pendiente
         siguiente_cuota.saldo_pendiente = pago.saldo_pendiente
@@ -99,7 +97,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         siguiente_cuota.cambios = True
         siguiente_cuota.save()
 
-        datos_nuevos = model_to_dict(siguiente_cuota)
+        
         
 
        
