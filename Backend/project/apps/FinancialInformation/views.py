@@ -29,7 +29,7 @@ from django.http import JsonResponse
 
 @login_required
 @usuario_activo
-def seleccionar(request,codigo, customer_code):
+def seleccionar(request, customer_code):
     template_name = 'FinancialInformation/seleccionar.html'
 
     context = {

@@ -78,7 +78,7 @@ def create_customer(request):
                 f'El usuario {request.user} ha registro al cliente {cliente.first_name} {cliente.last_name}',
                 request,'CLIENTES',model_to_dict(cliente)
             )
-            return redirect('financial_information:seleccionar', uuid.uuid4, cliente.customer_code)
+            return redirect('financial_information:seleccionar',  cliente.customer_code)
             
 
     else:
