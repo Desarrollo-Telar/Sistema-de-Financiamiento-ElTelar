@@ -202,13 +202,15 @@ def recorrido_de_cuotas(cuotas, accion):
         credito = get_credito(cuota)
 
         print(f'CUOTA: {cuota}')
+        
+        if credito is None:
+            continue
 
         if credito.is_paid_off:
             print(f"El credito {credito} ya ha sido cancelado por completo")
             continue
 
-        if credito is None:
-            continue
+        
 
         
         

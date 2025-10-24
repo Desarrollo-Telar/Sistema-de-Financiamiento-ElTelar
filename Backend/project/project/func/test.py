@@ -24,6 +24,7 @@ from scripts.asignar_nuevos_permisos.otorgar_permiso import asignar
 from scripts.cargar_estado_cuenta.estado_cuenta import migracion_datos
 from scripts.INFILE.fact import guardar_xml_recibo
 from scripts.INFILE.consulta_nit import ejemplo_uso_consulta_receptor
+from scripts.cuotas.cuotas_fecha_limite import verificador_de_cuotas_fecha_limite
 
 # Tiempo
 from datetime import datetime, timedelta, timezone
@@ -220,12 +221,8 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-      count = 1
-      sucursal = Subsidiary.objects.get(id=1)
-      for cliente in Customer.objects.filter(sucursal=sucursal).order_by('id'):
-        cliente.numero_identificacion_sucursal =  generar_numero_identificacion_sucursal(cliente, count)
-        cliente.save()
-        count +=1
+      dia = datetime.now().date()
+      verificador_de_cuotas_fecha_limite(dia)
     
    
 
