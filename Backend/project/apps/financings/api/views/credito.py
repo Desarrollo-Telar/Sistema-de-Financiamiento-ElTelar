@@ -146,7 +146,7 @@ class CreditVigentesViewSet(viewsets.ModelViewSet):
     serializer_class = CreditSerializer
 
     def get_queryset(self):
-        queryset = Credit.objects.filter(is_paid_off=False)
+        queryset = Credit.objects.filter(Q(is_paid_off=False) | Q(estado_judicial=False))
         search_term = self.request.query_params.get('term', '').strip()
 
         # Obtener el asesor autenticado

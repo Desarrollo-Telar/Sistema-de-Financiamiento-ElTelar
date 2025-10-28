@@ -9,6 +9,43 @@ from apps.financings.models import Recibo
 import datetime
 from dateutil.relativedelta import relativedelta
 
+class InformeDiarioSistema(models.Model):
+    nombre_reporte = models.CharField(verbose_name="Nombre del Reporte", max_length=100, default="Reporte INVERSIONES INTEGRALES EL TELAR DIARIO")
+    descripcion = models.TextField(verbose_name="Descripcion del Informe", null=True, blank=True)
+    fecha_registro = models.DateField(auto_now_add=True)
+    fecha_vencimiento = models.DateField(null=True, blank=True)
+    esta_activo = models.BooleanField(verbose_name="Estado del Informe", default=True)
+
+    class Meta:
+        verbose_name = 'Informe Diario'
+        verbose_name_plural = 'Informes Diario'
+
+    def calcular_fecha_vencimiento(self):
+        if self.fecha_registro:
+            next_month = self.fecha_registro + relativedelta(months=1)
+            return next_month.replace(day=1)
+        return datetime.date.today().replace(day=1) + relativedelta(months=1)
+
+    def save(self, *args, **kwargs):
+        self.fecha_vencimiento = self.calcular_fecha_vencimiento()
+        super().save(*args, **kwargs)    
+
+    def __str__(self):
+        return f'#{self.id} - {self.nombre_reporte}' 
+
+class DetalleInformeDiario(models.Model):
+    reporte = models.ForeignKey(InformeDiarioSistema, on_delete=models.CASCADE, verbose_name="Informe")
+    data = models.JSONField(null=True, blank=True)
+    fecha_registro = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'#{self.id} - {self.reporte} {self.data}'
+    
+    class Meta:
+        verbose_name = 'Detalle de Informe Diario'
+        verbose_name_plural = 'Detalles de Informes Diarios'
+
+
 class Informe(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Creador de Informe")
     nombre_reporte = models.CharField(verbose_name="Nombre del Reporte", max_length=100, default="Reporte INVERSIONES INTEGRALES EL TELAR")

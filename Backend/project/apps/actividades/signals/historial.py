@@ -5,6 +5,9 @@ from django.db import models
 from apps.actividades.models import ModelHistory
 # DECIMAL
 from decimal import Decimal, InvalidOperation
+
+from scripts.conversion_datos import model_to_dict, cambios_realizados
+
 def get_audit_user():
     """Obtiene el usuario actual para auditoría de manera segura"""
     try:
@@ -17,21 +20,7 @@ def get_audit_user():
     
     return None
 
-def model_to_dict(instance):
-    """Convierte una instancia de modelo a diccionario, excluyendo campos no deseados"""
-    exclude_fields = ['_state', 'password']  # Excluir campos internos y sensibles
-    data = {}
-    for field in instance._meta.fields:
-        if field.name in exclude_fields:
-            continue
-        value = getattr(instance, field.name)
-        # Convertir tipos que no son JSON-serializables
-        if hasattr(value, 'pk'):
-            value = value.pk  # Para ForeignKeys
-        elif isinstance(value, models.Model):
-            value = value.pk
-        data[field.name] = value
-    return data
+
 
 # signals.py
 def register_history(sender, instance, created, **kwargs):

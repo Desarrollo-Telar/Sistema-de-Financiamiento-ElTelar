@@ -91,7 +91,7 @@ $(document).ready(function () {
     $(".customer_id").select2({
         width: 'resolve',
         ajax: {
-            url: urls_p.api_url_cliente,
+            url: urls_p.api_url_clientes_aceptados,
             dataType: 'json',
             delay: 250,
             data: function (params) {
@@ -127,7 +127,7 @@ $(document).ready(function () {
     $(".credito_vigente").select2({
         width: 'resolve',
         ajax: {
-            url: urls_p.api_url_credit,
+            url: urls_p.api_url_credit_vigente,
             dataType: 'json',
             delay: 250,
             data: function (params) {

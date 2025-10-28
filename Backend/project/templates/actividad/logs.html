@@ -163,6 +163,13 @@
 
             </div>
             {% endif %}
+            {% if system_log.metadata %}
+            <div class="expandable-content">
+                <strong style="color: #9ca3af; font-size: 12px;">METADATA:</strong>
+                <div class="code-block">{{system_log.metadata}}</div>
+
+            </div>
+            {% endif %}
         </div>
 
         {% endif %}

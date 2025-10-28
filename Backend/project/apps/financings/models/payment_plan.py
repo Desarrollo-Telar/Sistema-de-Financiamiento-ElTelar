@@ -271,11 +271,16 @@ class PaymentPlan(models.Model):
             return self.sucursal 
    
     def save(self,*args, **kwargs):
+        es_nuevo = self.pk is None
+
         self.fecha_vencimiento()
         self.calculo_fecha_limite()
-        self.capital_generado = self.calculo_capital()
-        self.installment = self.calculo_cuota()
-        self.interes_generado = self.calculo_interes()
+
+        if es_nuevo:
+            self.capital_generado = self.calculo_capital()
+            self.installment = self.calculo_cuota()
+            self.interes_generado = self.calculo_interes()
+            
         self._definir_sucursal()
         super().save(*args, **kwargs)
         self.estado_aportacion()
