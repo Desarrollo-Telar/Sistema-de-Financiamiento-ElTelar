@@ -25,8 +25,8 @@ from apps.actividades.utils import build_notificacion_especificaciones
 def send_email_recordatorio_cobranza(models):
     template = get_template('email/recordatorio_cobranza.html')
     detalle_informe = DetalleInformeCobranza.objects.filter(cobranza__id = models.id).first()
-
-    full_url = f'https://www.ii-eltelarsa.com/customers/asesores_credito/cobranza/informe/{models.asesor_credito.usuario.user_code}/{detalle_informe.reporte.id}/'
+    full_url = 'https://www.ii-eltelarsa.com'
+    
     context = {
         'full_url':full_url,
         'object':models,       

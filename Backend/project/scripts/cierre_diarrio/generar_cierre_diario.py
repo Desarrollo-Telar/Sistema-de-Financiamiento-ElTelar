@@ -13,8 +13,17 @@ from django.utils.timezone import now
 
 # FUNCIONES
 from .informacion_relacionado_cliente import generando_informacion_cliente
+from .informacion_relacionada_bancos import generar_informacion_bancos, generar_informacion_recibos, generar_informacion_pagos, generar_informacion_facturas
+from .informacion_relacionado_contable import generar_informacion_acreedores, generar_informacion_seguros, generar_informacion_ingresos, generar_informacion_egresos
 
-def generando_informe_cierre_diario(dia =  datetime.now().date()):
+from datetime import datetime
+from django.db import transaction
+
+
+def generando_informe_cierre_diario(dia=None):
+    if dia is None:
+        dia = datetime.now().date()
+
     log_system_event(
         'Generando el cierre diario',
         'INFO',
@@ -22,13 +31,43 @@ def generando_informe_cierre_diario(dia =  datetime.now().date()):
         'General'
     )
 
-    informe = InformeDiarioSistema.objects.get_or_create(
-        fecha_registro=dia
+    informes_generados = 0
+
+    with transaction.atomic():
+        for sucursal in Subsidiary.objects.all().order_by('id'):
+            informe, creado = InformeDiarioSistema.objects.get_or_create(
+                fecha_registro=dia,
+                sucursal=sucursal
+            )
+
+            data_map = {
+                'clientes': generando_informacion_cliente(sucursal),
+                'bancos': generar_informacion_bancos(sucursal),
+                'recibos': generar_informacion_recibos(sucursal),
+                'pagos': generar_informacion_pagos(sucursal),
+                'facturas': generar_informacion_facturas(sucursal),
+                'acreedores': generar_informacion_acreedores(sucursal),
+                'seguros': generar_informacion_seguros(sucursal),
+                'ingresos': generar_informacion_ingresos(sucursal),
+                'egresos': generar_informacion_egresos(sucursal),
+            }
+
+            # Crear los detalles del informe
+            for key, value in data_map.items():
+                DetalleInformeDiario.objects.create(
+                    reporte=informe,
+                    data={key: value}
+                )
+
+            informes_generados += 1
+
+    log_system_event(
+        f'Cierre diario generado correctamente ({informes_generados} sucursales procesadas)',
+        'SUCCESS',
+        'Sistema',
+        'General'
     )
 
-    for sucursal in Subsidiary.objects.all().order_by('id'):
-        DetalleInformeDiario.objects.create(
-            reporte=informe,
-            data=generando_informacion_cliente(sucursal)
-        ) 
-    
+    return f'Cierre diario completado para {informes_generados} sucursales ({dia})'
+
+

@@ -18,7 +18,7 @@ def mensaje_cliente_por_credito(customer_code, cuota):
     mensaje = f'''
 Estimado *{cliente.first_name} {cliente.last_name}*.
 Le recordamos la importancia de realizar su pago correspondiente, el total del monto a cancelar es de *Q{cuota.formato_cuota_total()}* para su cuota No. _{cuota.mes}_.
-Tiene como fecha límite el *{cuota.mostrar_fecha_limite().date()}*. Agradecemos su boleta de manera urgente para evitar recargos adicionales.
+Tiene como fecha de pago el *{cuota.due_date.date()}*. Agradecemos su boleta de manera urgente para evitar recargos adicionales.
 
 Si tiene alguna duda o necesita asistencia, no dude en comunicarse con nosotros.
 

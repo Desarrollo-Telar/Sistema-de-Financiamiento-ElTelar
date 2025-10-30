@@ -28,22 +28,29 @@
                             <span class="icon">📍</span>
                             <span class="text-uppercase">{{direccion.street}}, ZONA {{direccion.number}},
                                 {{direccion.state}}, {{direccion.city}}</span>
-                            <span>{{direccion.codigo_postal}}</span>
-                            <span>{{direccion.latitud}}, {{direccion.longitud}}</span>
+
                         </div>
                         {% endif %}
                         {% endfor %}
+                        {% if sucursal.numero_telefono is not None or sucursal.otro_numero_telefono is not None %}  
+                        <div class="info-item">
+                            <span class="icon">📞</span>
+                            {% if sucursal.numero_telefono is not None %}
+                            <span>{{sucursal.numero_telefono}} </span>
+                            {% endif%}
+                            {% if sucursal.otro_numero_telefono is not None %}
+                            <span>{{sucursal.otro_numero_telefono}} </span>
+                            {% endif%}
+                        </div>
+                        {% endif %}
+                        <div class="info-item">
+                            <span class="icon">📜</span>
+                            <span>{{sucursal.codigo_establecimiento}}</span>
+                        </div>
 
                     </div>
-                    <div class="info-item">
-                        <span class="icon">📞</span>
-                        <span>{{sucursal.numero_telefono}}</span>
-                        <span>{{sucursal.otro_numero_telefono}}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="icon">📜</span>
-                        <span>{{sucursal.codigo_establecimiento}}</span>
-                    </div>
+
+
 
 
 

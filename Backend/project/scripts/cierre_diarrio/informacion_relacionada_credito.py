@@ -22,7 +22,10 @@ def obtener_cuota_vigente(credito):
         siguiente_pago = PaymentPlan.objects.filter(
         credit_id=credito).order_by('-id').first()
     
-    return model_to_dict(siguiente_pago)
+    if siguiente_pago is not None:
+        return model_to_dict(siguiente_pago)
+    
+    return None
 
 def obtener_desembolsos_credito(credito):
     desembolsos = Disbursement.objects.filter(credit_id=credito).order_by('id')

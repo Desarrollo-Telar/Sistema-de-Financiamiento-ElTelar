@@ -30,7 +30,7 @@ class CustomerAdmin(admin.ModelAdmin):
     )
     list_display = ('customer_code', 'first_name', 'last_name', 'telephone', 'identification_number', 'email', 'status')
     search_fields = ('customer_code', 'identification_number', 'first_name', 'last_name', 'email', 'status')
-    list_filter = ('customer_code', 'status', 'type_identification')
+    list_filter = ('customer_code', 'status', 'type_identification','sucursal')
     date_hierarchy = 'creation_date'
     ordering = ['-customer_code']
     list_per_page = 25

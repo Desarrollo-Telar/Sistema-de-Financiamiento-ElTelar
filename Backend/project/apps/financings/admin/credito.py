@@ -26,5 +26,6 @@ class CreditAdmin(admin.ModelAdmin):
     )
     list_display = ('id','customer_id','codigo_credito' ,'tipo_credito', 'monto','plazo','tasa_interes','fecha_inicio','estados_fechas','creation_date','fecha_actualizacion')
     search_fields = ('codigo_credito',)
-    list_filter = ('codigo_credito',)
+    list_filter = ('codigo_credito','sucursal')
     autocomplete_fields = ('customer_id', )
+    date_hierarchy = 'creation_date'

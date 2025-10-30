@@ -30,7 +30,7 @@ from scripts.conversion_datos import model_to_dict, cambios_realizados
 @login_required
 def view_clasificacion(request):
     template_name = 'sucursal/clasificacion.html'
-    sucursales = Subsidiary.objects.filter(activa=True)
+    sucursales = Subsidiary.objects.filter(activa=True).order_by('id')
     direccion_sucursal = Address.objects.filter(type_address='Dirección de Sucursal')
 
     sucursal = getattr(request,'sucursal_actual',None)

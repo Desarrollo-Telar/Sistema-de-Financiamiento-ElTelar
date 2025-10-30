@@ -70,7 +70,7 @@ def obtener_direcciones(cliente):
 
 
 def obtener_informacion_creditos(cliente, sucursal):  
-    creditos = Credit.objects.filter(customer_id=cliente, sucursal=sucursal)
+    creditos = Credit.objects.filter(customer_id=cliente, sucursal=sucursal).order_by('id')
 
     context = {
         'cantidad':creditos.count()
@@ -81,6 +81,7 @@ def obtener_informacion_creditos(cliente, sucursal):
         
 
         for credito in creditos:
+            print(f'{credito}')
             context_credito = {}
             context_credito['credito'] = model_to_dict(credito)
             context_credito['cuota_vigente'] = obtener_cuota_vigente(credito)
@@ -98,17 +99,19 @@ def obtener_informacion_creditos(cliente, sucursal):
 
 
 def generando_informacion_cliente(sucursal):
-    context = {}
     
-    for cliente in Customer.objects.filter(sucursal=sucursal).order_by('id'):
+    list_informacion_relacionada_cliente = []
 
+    for cliente in Customer.objects.filter(sucursal=sucursal).order_by('id'):
+        context = {}
+        print(f'{cliente}')
         context['informacion_personal'] = model_to_dict(cliente)
         context['informacion_laboral'] = obtener_informacion_laboral(cliente) 
         context['informacion_plan_inversion'] =  obtener_plan_de_inversion(cliente) 
         context['informacion_referencias'] = obtener_referencias(cliente) 
         context['direcciones'] = obtener_direcciones(cliente) 
         context['informacion_credito'] = obtener_informacion_creditos(cliente, sucursal)
-
-    print(context)
-    return context
+        list_informacion_relacionada_cliente.append(context)
+    
+    return list_informacion_relacionada_cliente
 

@@ -5,6 +5,8 @@ from django.db import models
 from apps.users.models import User
 from apps.customers.models import Cobranza
 from apps.financings.models import Recibo
+from apps.subsidiaries.models import Subsidiary
+
 # TIEMPO
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -15,6 +17,7 @@ class InformeDiarioSistema(models.Model):
     fecha_registro = models.DateField(auto_now_add=True)
     fecha_vencimiento = models.DateField(null=True, blank=True)
     esta_activo = models.BooleanField(verbose_name="Estado del Informe", default=True)
+    sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Informe Diario'

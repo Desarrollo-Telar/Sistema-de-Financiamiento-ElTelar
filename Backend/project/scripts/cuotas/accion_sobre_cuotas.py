@@ -235,7 +235,7 @@ def recorrido_de_cuotas(cuotas, accion):
     
             else:
                 credito.estados_fechas = True
-                credito.estado_aportacion = False
+                
 
             credito.save()
             siguiente_cuota = obtener_la_siguiente_cuota(cuota)
@@ -268,13 +268,11 @@ def recorrido_de_cuotas(cuotas, accion):
             
         if accion == 'FECHA_VENCIMIENTO':
             
-            cuota.paso_por_task = True
-
-            if credito.estado_aportacion == True:
-                credito.estado_aportacion = False
+            cuota.paso_por_task = True           
 
             if not cuota.status:
                 credito.estados_fechas = False
+                credito.estado_aportacion = False
                 generar_estado_cuenta(cuota, accion)
 
             else:
