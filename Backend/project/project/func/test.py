@@ -221,8 +221,7 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-      dia = datetime.now().date()
-      verificador_de_cuotas_fecha_limite(dia)
+      asignar()
     
    
 

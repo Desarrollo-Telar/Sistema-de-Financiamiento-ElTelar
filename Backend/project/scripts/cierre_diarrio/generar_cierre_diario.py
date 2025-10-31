@@ -41,16 +41,16 @@ def generando_informe_cierre_diario(dia=None):
             )
 
             data_map = {
-                #'clientes': generando_informacion_cliente(sucursal, dia),
+                'clientes': generando_informacion_cliente(sucursal, dia),
                 'creditos':obtener_informacion_creditos_sucursal(sucursal, dia),
-                #'bancos': generar_informacion_bancos(sucursal),
-                #'recibos': generar_informacion_recibos(sucursal),
-                #'pagos': generar_informacion_pagos(sucursal),
-                #'facturas': generar_informacion_facturas(sucursal),
-                #'acreedores': generar_informacion_acreedores(sucursal),
-                #'seguros': generar_informacion_seguros(sucursal),
-                #'ingresos': generar_informacion_ingresos(sucursal),
-                #'egresos': generar_informacion_egresos(sucursal),
+                'bancos': generar_informacion_bancos(sucursal),
+                'recibos': generar_informacion_recibos(sucursal),
+                'pagos': generar_informacion_pagos(sucursal),
+                'facturas': generar_informacion_facturas(sucursal),
+                'acreedores': generar_informacion_acreedores(sucursal),
+                'seguros': generar_informacion_seguros(sucursal),
+                'ingresos': generar_informacion_ingresos(sucursal),
+                'egresos': generar_informacion_egresos(sucursal),
             }
 
             # Crear los detalles del informe

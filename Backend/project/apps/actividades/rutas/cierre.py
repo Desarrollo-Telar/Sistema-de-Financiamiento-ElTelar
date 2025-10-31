@@ -9,6 +9,6 @@ from apps.actividades import views
 from django.contrib.auth.decorators import login_required
 
 urlpatterns_cierre = [
-    path('cierre_diario/', login_required(views.listar_cierre_diario), name='listar_cierres'),
+    path('cierre_diario/', login_required(views.ListarCierreDiario.as_view()), name='listar_cierres'),
     
 ]

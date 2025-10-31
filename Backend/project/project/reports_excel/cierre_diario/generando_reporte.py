@@ -29,7 +29,7 @@ class CierreDiario(TemplateView):
     
     def get_queryset(self):
         try:
-            sucursal = self.request.session['sucursal_id']
+            sucursal = getattr(self.request,'sucursal_actual',None)
             # Asignar la consulta a una variable local
             query = self.query()
 
@@ -37,7 +37,7 @@ class CierreDiario(TemplateView):
             filters = Q()
 
             # Añadir filtros si la consulta no está vacía
-            if query != '':
+            if query:
                 try:
                     fecha = datetime.strptime(query, '%Y-%m-%d')
                     fecha_inicio = datetime.combine(fecha.date(), datetime.min.time())
@@ -46,14 +46,12 @@ class CierreDiario(TemplateView):
                 except ValueError:
                     pass  # No es fecha válida, continúa con los otros filtros
 
-
-            
-            # Filtrar los objetos Customer usando los filtros definidos
-            return InformeDiarioSistema.objects.filter(filters, sucursal=sucursal).first()
+                # Filtrar los objetos Customer usando los filtros definidos
+                return InformeDiarioSistema.objects.filter(filters, sucursal=sucursal).first()
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")
-            return InformeDiarioSistema.objects.none()
+            return InformeDiarioSistema.objects.filter(sucursal=sucursal).order_by('-id').first()
         
     def query(self):
         return self.request.GET.get('q')
@@ -126,6 +124,6 @@ class CierreDiario(TemplateView):
 
         response = HttpResponse(zip_buffer.getvalue(), content_type='application/zip')
         timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        response['Content-Disposition'] = f'attachment; filename="reporte_de_cierre_diario_{timestamp}.zip"'
+        response['Content-Disposition'] = f'attachment; filename="reporte_de_cierre_diario_{dia}.zip"'
         return response
 

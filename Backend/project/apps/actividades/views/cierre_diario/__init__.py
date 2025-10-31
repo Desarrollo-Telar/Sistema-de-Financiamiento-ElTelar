@@ -1,1 +1,1 @@
-from .listar import listar_cierre_diario
+from .listar import listar_cierre_diario, ListarCierreDiario

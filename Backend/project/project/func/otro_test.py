@@ -20,19 +20,7 @@ from project.reports_excel.cierre_diario.cierre_creditos import crear_excel_cred
 
 if __name__ == '__main__':
     
-    #generando_informe_cierre_diario()
-    detalle = DetalleInformeDiario.objects.filter(tipo_datos='creditos').order_by('id').first()
-    list_nuevos = []
-    dia = datetime.now().date()
+    generando_informe_cierre_diario()
     
-
-    for dato in detalle.data['creditos']:
-        fecha_completa = dato['credito']['creation_date']
-        fecha_dt = datetime.fromisoformat(fecha_completa.replace("Z", "+00:00"))
-        fecha_formateada = fecha_dt.date().isoformat()
-        print(fecha_formateada)
-    
-    woork = crear_excel_creditos(detalle.data['creditos'])
-    woork.save("reporte_creditos.xlsx")
 
     
