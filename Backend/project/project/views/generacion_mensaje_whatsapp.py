@@ -64,7 +64,7 @@ class GenerandoMensajeSaldoApi(APIView):
         mensaje = f'''
 Estimado *{obtener_credito.customer_id.first_name} {obtener_credito.customer_id.last_name}*.
 Le queremos informar que su saldo actual es de *Q {formatear_numero(obtener_credito.saldo_actual)}*
-Si tiene alguna duda o necesita asistencia, no dude en comunicarse con nosotros.
+Si requiere verificar detalles, aclarar dudas o necesita asistencia, nuestro equipo está a su disposición. No dude en escribirnos.
 
         '''
         mensaje_codificado = urllib.parse.quote(mensaje)

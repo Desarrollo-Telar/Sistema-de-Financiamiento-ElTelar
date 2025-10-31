@@ -8,34 +8,44 @@ import zipfile
 # Tiempo
 from datetime import datetime, timedelta
 from .filtros.creditos import formater_fecha
+from .funcion import safe_list_get
 
 def get_puesto(source_of_income, cliente):
         puesto_cliente = ''
+        informacion_labora = safe_list_get(cliente.get('informacion_laboral'))
 
-        if source_of_income != 'Otra':
-            puesto_cliente = cliente['informacion_laboral']['position']
-        else:
-            puesto_cliente = 'Otra Fuente de Ingreso'
+        if informacion_labora is not None:
 
-        return puesto_cliente
+            if source_of_income != 'Otra':
+                puesto_cliente = informacion_labora.get('position','')
+            else:
+                puesto_cliente = 'Otra Fuente de Ingreso'
+
+            return puesto_cliente
 
 def get_empresa_laburo(source_of_income, cliente):
         empresa_laburo_cliente = ''
-        if source_of_income != 'Otra':
-            empresa_laburo_cliente = cliente['informacion_laboral']['company_name']
-        else:
-            
-            empresa_laburo_cliente = source_of_income
+        informacion_labora = safe_list_get(cliente.get('informacion_laboral'))
+
+        if informacion_labora is not None:
+            if source_of_income != 'Otra':
+                empresa_laburo_cliente = informacion_labora.get('company_name','')
+            else:
+                
+                empresa_laburo_cliente = source_of_income
 
         return empresa_laburo_cliente
 
 def get_estado_laboral(source_of_income, cliente):
         estado_laboral_cliente = ''
+        informacion_labora = safe_list_get(cliente.get('informacion_laboral'))
 
-        if source_of_income != 'Otra':
-            estado_laboral_cliente = cliente['informacion_laboral']['employment_status']
-        else:
-            estado_laboral_cliente = 'COMPLETO'
+        if informacion_labora is not None:
+
+            if source_of_income != 'Otra':
+                estado_laboral_cliente = informacion_labora.get('employment_status','')
+            else:
+                estado_laboral_cliente = 'COMPLETO'
 
         return estado_laboral_cliente
 
@@ -103,38 +113,57 @@ def crear_excel_clientes(data, dia = None):
     for idx, cliente in enumerate(data, start=2):
         tiene_creditos = f'SI' if cliente['informacion_credito']['cantidad'] > 0 else f'NO'
         contador+=1
+        # Direcciones (manejo seguro de listas)
+        direccion_0 = safe_list_get(cliente.get('direcciones'), 0, {})
+        direccion_1 = safe_list_get(cliente.get('direcciones'), 1, {})
+        
+        informacion_labora = safe_list_get(cliente.get('informacion_laboral'), 0, {})
 
+        informacion_referencias_0 = safe_list_get(cliente.get('informacion_referencias'), 0, {})
+        informacion_referencias_1 = safe_list_get(cliente.get('informacion_referencias'), 1, {})
+        informacion_referencias_2 = safe_list_get(cliente.get('informacion_referencias'), 2, {})
+        informacion_referencias_3 = safe_list_get(cliente.get('informacion_referencias'), 3, {})
+       
 
         fila = [
             contador, 
-            f'{cliente['informacion_personal']['first_name']} {cliente['informacion_personal']['last_name']}',
-            f'{cliente['informacion_personal']['type_identification']}',
-            f'{cliente['informacion_personal']['identification_number']}',
-            f'{cliente['informacion_personal']['telephone']}',
-            f'{str(get_edad(cliente['informacion_personal']['date_birth']))}',
-            f'{cliente['informacion_personal']['gender']}',
-            f'{cliente['informacion_personal']['customer_code']}',
-            f'{cliente['informacion_personal']['profession_trade']}',
-            f'{cliente['informacion_personal']['asesor']}',
-            f'{ tiene_creditos }',
-            f'{cliente['informacion_credito']['cantidad']}',
-            f'{cliente['direcciones'][0]['street']}',
-            f'{cliente['direcciones'][0]['state']}',
-            f'{cliente['direcciones'][0]['city']}',
-            f'{cliente['direcciones'][1]['street']}',
-            f'{cliente['direcciones'][1]['state']}',
-            f'{cliente['direcciones'][1]['city']}',
+            # Información personal
+            f"{cliente.get('informacion_personal', {}).get('first_name', '')} {cliente.get('informacion_personal', {}).get('last_name', '')}",
+            f"{cliente.get('informacion_personal', {}).get('type_identification', '')}",
+            f"{cliente.get('informacion_personal', {}).get('identification_number', '')}",
+            f"{cliente.get('informacion_personal', {}).get('telephone', '')}",
+            f"{str(get_edad(cliente.get('informacion_personal', {}).get('date_birth', '')))}",
+            f"{cliente.get('informacion_personal', {}).get('gender', '')}",
+            f"{cliente.get('informacion_personal', {}).get('customer_code', '')}",
+            f"{cliente.get('informacion_personal', {}).get('profession_trade', '')}",
+            f"{cliente.get('informacion_personal', {}).get('asesor', '')}",
+            f"{tiene_creditos}",
 
+            # Información de crédito
+            f"{cliente.get('informacion_credito', {}).get('cantidad', 0)}",
 
-            f'{cliente['informacion_laboral']['source_of_income']}',           
-            f'{ get_estado_laboral(cliente['informacion_laboral']['source_of_income'], cliente)}',
-            f'{ get_empresa_laburo(cliente['informacion_laboral']['source_of_income'], cliente)}',
-            f'{ get_puesto(cliente['informacion_laboral']['source_of_income'], cliente)}',
             
-            f'{cliente['informacion_referencias'][0]['full_name']}', 
-            f'{cliente['informacion_referencias'][1]['full_name']}',
-            f'{cliente['informacion_referencias'][2]['full_name']}',
-            f'{cliente['informacion_referencias'][3]['full_name']}',
+
+            f"{direccion_0.get('street', '')}",
+            f"{direccion_0.get('state', '')}",
+            f"{direccion_0.get('city', '')}",
+            f"{direccion_1.get('street', '')}",
+            f"{direccion_1.get('state', '')}",
+            f"{direccion_1.get('city', '')}",
+            # Información laboral
+            
+            f"{informacion_labora.get('source_of_income', '')}",
+            f"{get_estado_laboral(informacion_labora.get('source_of_income', ''), cliente)}",
+            f"{get_empresa_laburo(informacion_labora.get('source_of_income', ''), cliente)}",
+            f"{get_puesto(informacion_labora.get('source_of_income', ''), cliente)}",
+            
+            
+            
+            # Referencias (manejo seguro de listas)
+            f"{informacion_referencias_0.get('full_name', '')}",
+            f"{informacion_referencias_1.get('full_name', '')}",
+            f"{informacion_referencias_2.get('full_name', '')}",
+            f"{informacion_referencias_3.get('full_name', '')}",
             ]
 
         for col_idx, value in enumerate(fila, start=1):

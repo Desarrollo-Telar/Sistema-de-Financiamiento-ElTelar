@@ -23,6 +23,8 @@ def obtener_informacion_laboral(cliente):
         informacion_laboral = OtherSourcesOfIncome.objects.filter(customer_id=cliente)
     
     if not informacion_laboral.exists():
+        cliente.completado = False
+        cliente.save()
         return None
     
     
@@ -37,6 +39,8 @@ def obtener_referencias(cliente):
     list_referencias = []
 
     if not referencias.exists():
+        cliente.completado = False
+        cliente.save()
         return None
     
     for referencia in referencias:
@@ -61,6 +65,8 @@ def obtener_direcciones(cliente):
     list_direcciones = []
 
     if not direcciones.exists():
+        cliente.completado = False
+        cliente.save()
         return None
     
     for direccion in direcciones:

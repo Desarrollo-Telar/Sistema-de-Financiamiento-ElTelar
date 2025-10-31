@@ -14,6 +14,7 @@ from apps.financings.formato import formatear_numero
 
 # Filtros
 from .filtros.creditos import *
+from .funcion import safe_list_get
 
 def get_cliente(id):
     cliente =  Customer.objects.filter(id=id).first()
@@ -78,30 +79,31 @@ def crear_excel_creditos(datos, dia = None):
 
             fila = [
                 str(contador),
-                f'{credito['credito']['creation_date']}',
-                f'{credito['credito']['codigo_credito']}',
-                f'{get_cliente(credito['credito']['customer_id'])}',
-                f'{formatear_numero(credito['credito']['monto'])}',
-                f'{credito['credito']['plazo']}',
-                f'{credito['credito']['tasa_interes']*100}%',
-                f'{credito['credito']['forma_de_pago']}',
-                f'{credito['credito']['tipo_credito']}',
-                                
-                f'{credito['desembolsos'][0]['forma_desembolso']}',
-                f'{credito['credito']['fecha_inicio']}',
-                f'{credito['credito']['fecha_vencimiento']}',
+                f"{credito.get('credito', {}).get('creation_date', '')}",
+                f"{credito.get('credito', {}).get('codigo_credito', '')}",
+                f"{get_cliente(credito.get('credito', {}).get('customer_id', ''))}",
+                f"{formatear_numero(credito.get('credito', {}).get('monto', 0))}",
+                f"{credito.get('credito', {}).get('plazo', '')}",
+                f"{credito.get('credito', {}).get('tasa_interes', 0) * 100}%",
+                f"{credito.get('credito', {}).get('forma_de_pago', '')}",
+                f"{credito.get('credito', {}).get('tipo_credito', '')}",
 
-                f'{formater_fecha(credito['cuota_vigente']['fecha_limite'])}',
+                # Desembolsos - manejo seguro de lista
+                f"{credito.get('desembolsos', [{}])[0].get('forma_desembolso', '')}",
+                f"{credito.get('credito', {}).get('fecha_inicio', '')}",
+                f"{credito.get('credito', {}).get('fecha_vencimiento', '')}",
 
-                f'{formatear_numero(credito['credito']['saldo_actual'])}',
-                f'{formatear_numero(credito['credito']['saldo_pendiente'])}',
-                f'{formatear_numero(credito['credito']['excedente'])}',
-                f'{credito['credito']['fecha_vencimiento']}',
+                f"{formater_fecha(credito.get('cuota_vigente', {}).get('fecha_limite', ''))}",
 
-                f'{stat}',
+                f"{formatear_numero(credito.get('credito', {}).get('saldo_actual', 0))}",
+                f"{formatear_numero(credito.get('credito', {}).get('saldo_pendiente', 0))}",
+                f"{formatear_numero(credito.get('credito', {}).get('excedente', 0))}",
+                f"{credito.get('credito', {}).get('fecha_vencimiento', '')}",
 
-                f'{credito['cuota_vigente']['numero_referencia']}',
-                f'{get_asesor_credito(credito['credito']['asesor_de_credito'])}',
+                f"{stat}",
+
+                f"{credito.get('cuota_vigente', {}).get('numero_referencia', '')}",
+                f"{get_asesor_credito(credito.get('credito', {}).get('asesor_de_credito', ''))}",
 
             ]
 
