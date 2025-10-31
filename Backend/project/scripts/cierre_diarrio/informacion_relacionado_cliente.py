@@ -69,7 +69,9 @@ def obtener_direcciones(cliente):
     return list_direcciones
 
 
-def obtener_informacion_creditos(cliente, sucursal):  
+def obtener_informacion_creditos(cliente, sucursal,dia= None):  
+    if dia is None:
+        dia = datetime.now().date()
     creditos = Credit.objects.filter(customer_id=cliente, sucursal=sucursal).order_by('id')
 
     context = {
@@ -84,7 +86,7 @@ def obtener_informacion_creditos(cliente, sucursal):
             print(f'{credito}')
             context_credito = {}
             context_credito['credito'] = model_to_dict(credito)
-            context_credito['cuota_vigente'] = obtener_cuota_vigente(credito)
+            context_credito['cuota_vigente'] = obtener_cuota_vigente(credito, dia)
             context_credito['desembolsos']=obtener_desembolsos_credito(credito)
             context_credito['garantia'] = obtener_garantias(credito)
             context_credito['estados_cuentas'] = obtener_estados_cuentas(credito)
@@ -96,21 +98,41 @@ def obtener_informacion_creditos(cliente, sucursal):
 
     return context
 
+def obtener_informacion_creditos_sucursal( sucursal,dia= None):  
+    creditos = Credit.objects.filter(sucursal=sucursal).order_by('id')
+
+    list_creditos = []
+
+    if creditos.exists():
+
+        for credito in creditos[:5]:
+            print(f'{credito}')
+            context_credito = {}
+            context_credito['credito'] = model_to_dict(credito)
+            context_credito['cuota_vigente'] = obtener_cuota_vigente(credito,dia)
+            context_credito['desembolsos']=obtener_desembolsos_credito(credito)
+            context_credito['garantia'] = obtener_garantias(credito)
+            context_credito['estados_cuentas'] = obtener_estados_cuentas(credito)
+
+            list_creditos.append(context_credito)
+        
+    return list_creditos
 
 
-def generando_informacion_cliente(sucursal):
-    
+def generando_informacion_cliente(sucursal,dia= None):
+    if dia is None:
+        dia = datetime.now().date()
     list_informacion_relacionada_cliente = []
 
     for cliente in Customer.objects.filter(sucursal=sucursal).order_by('id'):
         context = {}
         print(f'{cliente}')
-        context['informacion_personal'] = model_to_dict(cliente)
+        context['informacion_personal'] = model_to_dict(cliente,'uuid')
         context['informacion_laboral'] = obtener_informacion_laboral(cliente) 
         context['informacion_plan_inversion'] =  obtener_plan_de_inversion(cliente) 
         context['informacion_referencias'] = obtener_referencias(cliente) 
         context['direcciones'] = obtener_direcciones(cliente) 
-        context['informacion_credito'] = obtener_informacion_creditos(cliente, sucursal)
+        context['informacion_credito'] = obtener_informacion_creditos(cliente, sucursal, dia)
         list_informacion_relacionada_cliente.append(context)
     
     return list_informacion_relacionada_cliente

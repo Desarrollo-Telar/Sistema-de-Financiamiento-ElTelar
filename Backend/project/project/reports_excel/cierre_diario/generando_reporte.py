@@ -5,10 +5,14 @@ from apps.actividades.models import InformeDiarioSistema, DetalleInformeDiario
 from openpyxl import Workbook
 from django.http import HttpResponse
 import json
+import io
+import zipfile
 
 
 from django.db.models import Q, Sum
-
+# Funciones
+from .cierre_clientes import crear_excel_clientes
+from .cierre_creditos import crear_excel_creditos
 # Tiempo
 from datetime import datetime
 
@@ -56,10 +60,22 @@ class CierreDiario(TemplateView):
     
     def get(self, request, *args, **kwargs):
         # Crear el archivo Excel
-        dia =  datetime.now().date()
-        workbook = Workbook()
-        sheet = workbook.active
-        sheet.title = f"Reporte de Cierre Diario: {dia}"
+        
+
+
+        zip_buffer = io.BytesIO()
+        zip_file = zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED)
+
+        # Obtener datos
+        informe = self.get_queryset()
+        dia =  informe.fecha_registro
+
+        if informe is None:
+            return HttpResponse("No se encontró información del informe", status=404)
+
+        workbook_main = Workbook()
+        sheet = workbook_main.active
+        sheet.title = f"Reporte de Cierre Diario: {informe.fecha_registro}"
 
         # Encabezados
         encabezados = [
@@ -68,11 +84,7 @@ class CierreDiario(TemplateView):
         for col_idx, header in enumerate(encabezados, start=1):
             sheet.cell(row=1, column=col_idx, value=header)
 
-        # Obtener datos
-        informe = self.get_queryset()
-
-        if informe is None:
-            return
+        
 
         registros = DetalleInformeDiario.objects.filter(reporte=informe)
 
@@ -82,21 +94,39 @@ class CierreDiario(TemplateView):
             contador += 1
             
 
-            fila = [
-                contador,
-                str(registro.data)
-                
-            ]
+            fila = [contador,str( registro.tipo_datos),str(registro.cantidad)]
 
             for col_idx, value in enumerate(fila, start=1):
                 sheet.cell(row=idx, column=col_idx, value=value)
 
+            # Creacion individual del reporte
+            cierre_diario_buffer = io.BytesIO()
+
+            if registro.tipo_datos == 'clientes':
+                wb_cliente = crear_excel_clientes(registro.data['clientes'], dia)
+                wb_cliente.save(cierre_diario_buffer)
+                cierre_diario_buffer.seek(0)
+                zip_file.writestr(f"reporte_clientes.xlsx", cierre_diario_buffer.read())
+            
+            if registro.tipo_datos == 'creditos':
+                wb_cliente = crear_excel_creditos(registro.data['creditos'], dia)
+                wb_cliente.save(cierre_diario_buffer)
+                cierre_diario_buffer.seek(0)
+                zip_file.writestr(f"reporte_clientes.xlsx", cierre_diario_buffer.read())
+                
+
         # Crear respuesta de descarga
-        response = HttpResponse(
-            content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
+
+        # 3. Guardar el Excel general en el zip
+        main_excel_buffer = io.BytesIO()
+        workbook_main.save(main_excel_buffer)
+        main_excel_buffer.seek(0)
+        zip_file.writestr("reporte_cierre_diario.xlsx", main_excel_buffer.read())
+
+        zip_file.close()
+
+        response = HttpResponse(zip_buffer.getvalue(), content_type='application/zip')
         timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        response['Content-Disposition'] = f'attachment; filename="reporte_cierre_diario_{timestamp}.xlsx"'
-        workbook.save(response)
+        response['Content-Disposition'] = f'attachment; filename="reporte_de_cierre_diario_{timestamp}.zip"'
         return response
 

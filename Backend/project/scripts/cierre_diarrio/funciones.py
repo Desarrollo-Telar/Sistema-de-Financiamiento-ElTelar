@@ -75,8 +75,9 @@ def verificacion_de_status(instance):
         )
         return f'Validando para {instance}.'
 
-def obtener_cuota_vigente(credito,tipo):
-    dia = datetime.now().date()
+def obtener_cuota_vigente(credito,tipo, dia=None):
+    if dia is None:
+        dia = datetime.now().date()
     dia_mas_uno = dia + timedelta(days=1)
     filters = Q()
 

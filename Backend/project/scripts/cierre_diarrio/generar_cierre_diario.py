@@ -12,7 +12,7 @@ from datetime import datetime, time, timedelta
 from django.utils.timezone import now
 
 # FUNCIONES
-from .informacion_relacionado_cliente import generando_informacion_cliente
+from .informacion_relacionado_cliente import generando_informacion_cliente, obtener_informacion_creditos_sucursal
 from .informacion_relacionada_bancos import generar_informacion_bancos, generar_informacion_recibos, generar_informacion_pagos, generar_informacion_facturas
 from .informacion_relacionado_contable import generar_informacion_acreedores, generar_informacion_seguros, generar_informacion_ingresos, generar_informacion_egresos
 
@@ -41,22 +41,25 @@ def generando_informe_cierre_diario(dia=None):
             )
 
             data_map = {
-                'clientes': generando_informacion_cliente(sucursal),
-                'bancos': generar_informacion_bancos(sucursal),
-                'recibos': generar_informacion_recibos(sucursal),
-                'pagos': generar_informacion_pagos(sucursal),
-                'facturas': generar_informacion_facturas(sucursal),
-                'acreedores': generar_informacion_acreedores(sucursal),
-                'seguros': generar_informacion_seguros(sucursal),
-                'ingresos': generar_informacion_ingresos(sucursal),
-                'egresos': generar_informacion_egresos(sucursal),
+                #'clientes': generando_informacion_cliente(sucursal, dia),
+                'creditos':obtener_informacion_creditos_sucursal(sucursal, dia),
+                #'bancos': generar_informacion_bancos(sucursal),
+                #'recibos': generar_informacion_recibos(sucursal),
+                #'pagos': generar_informacion_pagos(sucursal),
+                #'facturas': generar_informacion_facturas(sucursal),
+                #'acreedores': generar_informacion_acreedores(sucursal),
+                #'seguros': generar_informacion_seguros(sucursal),
+                #'ingresos': generar_informacion_ingresos(sucursal),
+                #'egresos': generar_informacion_egresos(sucursal),
             }
 
             # Crear los detalles del informe
             for key, value in data_map.items():
                 DetalleInformeDiario.objects.create(
                     reporte=informe,
-                    data={key: value}
+                    data={key: value},
+                    tipo_datos = key,
+                    cantidad = len(value)
                 )
 
             informes_generados += 1

@@ -10,7 +10,7 @@ def model_to_dict(instance, exclude_fields=None):
     Incluye manejo seguro para campos FileField/ImageField.
     """
     if exclude_fields is None:
-        exclude_fields = ['_state', 'password']
+        exclude_fields = ['_state', 'password','uuid']
     
     data = {}
 

@@ -8,8 +8,10 @@ from scripts.conversion_datos import model_to_dict, cambios_realizados
 from datetime import datetime,timedelta
 
 
-def obtener_cuota_vigente(credito):
-    dia = datetime.now().date()
+def obtener_cuota_vigente(credito, dia = None):
+    if dia is None:
+        dia = datetime.now().date()
+        
     dia_mas_uno = dia + timedelta(days=1)
     
     siguiente_pago = PaymentPlan.objects.filter(

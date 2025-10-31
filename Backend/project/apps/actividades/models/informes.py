@@ -40,6 +40,8 @@ class DetalleInformeDiario(models.Model):
     reporte = models.ForeignKey(InformeDiarioSistema, on_delete=models.CASCADE, verbose_name="Informe")
     data = models.JSONField(null=True, blank=True)
     fecha_registro = models.DateField(auto_now_add=True)
+    tipo_datos = models.CharField(max_length=150, null=True, blank=True)
+    cantidad = models.IntegerField(blank=True, null=True, default=0)
 
     def __str__(self):
         return f'#{self.id} - {self.reporte} {self.data}'

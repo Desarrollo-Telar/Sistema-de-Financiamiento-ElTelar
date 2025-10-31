@@ -49,6 +49,7 @@ def generar_informacion_facturas(sucursal):
     facturas = Invoice.objects.filter(sucursal=sucursal).order_by('id')
 
     #facturas = Invoice.objects.all().order_by('id')
+    print(f'Recolentando el total de: {facturas.count()}')
 
     for factura in facturas:
         context = {}
