@@ -4,3 +4,5 @@ from .notificaciones import detalle_boleta_cliente, aprobar_boleta_cliente, rech
 from .votacion import votar_cliente, votar_credito
 
 from .logs import *
+
+from .cierre_diario import *

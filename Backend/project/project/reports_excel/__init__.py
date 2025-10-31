@@ -19,3 +19,5 @@ from .asesores import ReporteAsesoresExcelView
 from .ingresos import ReporteIngresosExcelView
 
 from .egresos import ReporteEgresosExcelView
+
+from .cierre_diario.generando_reporte import CierreDiario

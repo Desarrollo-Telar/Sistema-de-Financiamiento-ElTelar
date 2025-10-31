@@ -37,7 +37,7 @@ class CierreDiario(TemplateView):
             filters = Q()
 
             # Añadir filtros si la consulta no está vacía
-            if query:
+            if query != '':
                 try:
                     fecha = datetime.strptime(query, '%Y-%m-%d')
                     fecha_inicio = datetime.combine(fecha.date(), datetime.min.time())
@@ -53,29 +53,28 @@ class CierreDiario(TemplateView):
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")
-            return InformeDiarioSistema.objects.all().order_by('-id').first()
+            return InformeDiarioSistema.objects.none()
         
     def query(self):
         return self.request.GET.get('q')
     
     def get(self, request, *args, **kwargs):
         # Crear el archivo Excel
-        
-
-
         zip_buffer = io.BytesIO()
         zip_file = zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED)
 
         # Obtener datos
         informe = self.get_queryset()
-        dia =  informe.fecha_registro
+        
 
         if informe is None:
             return HttpResponse("No se encontró información del informe", status=404)
+        
+        dia =  informe.fecha_registro
 
         workbook_main = Workbook()
         sheet = workbook_main.active
-        sheet.title = f"Reporte de Cierre Diario: {informe.fecha_registro}"
+        sheet.title = "Reporte de Cierre Diario"
 
         # Encabezados
         encabezados = [
@@ -86,7 +85,7 @@ class CierreDiario(TemplateView):
 
         
 
-        registros = DetalleInformeDiario.objects.filter(reporte=informe)
+        registros = DetalleInformeDiario.objects.filter(reporte__id=informe.id)
 
         contador = 0
 
@@ -112,7 +111,7 @@ class CierreDiario(TemplateView):
                 wb_cliente = crear_excel_creditos(registro.data['creditos'], dia)
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
-                zip_file.writestr(f"reporte_clientes.xlsx", cierre_diario_buffer.read())
+                zip_file.writestr(f"reporte_creditos.xlsx", cierre_diario_buffer.read())
                 
 
         # Crear respuesta de descarga

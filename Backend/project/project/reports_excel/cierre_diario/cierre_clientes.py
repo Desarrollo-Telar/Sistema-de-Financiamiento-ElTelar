@@ -7,6 +7,7 @@ import zipfile
 
 # Tiempo
 from datetime import datetime, timedelta
+from .filtros.creditos import formater_fecha
 
 def get_puesto(source_of_income, cliente):
         puesto_cliente = ''
@@ -48,6 +49,7 @@ def get_edad(date_birth):
             return None  # O 0, según cómo quieras manejarlo
 
         today = date.today()
+        date_birth = formater_fecha(date_birth)
         age = today.year - date_birth.year
 
         # Si aún no ha llegado su cumpleaños este año, restamos 1
@@ -109,7 +111,7 @@ def crear_excel_clientes(data, dia = None):
             f'{cliente['informacion_personal']['type_identification']}',
             f'{cliente['informacion_personal']['identification_number']}',
             f'{cliente['informacion_personal']['telephone']}',
-            f'{get_edad(cliente['informacion_personal']['date_birth'])}',
+            f'{str(get_edad(cliente['informacion_personal']['date_birth']))}',
             f'{cliente['informacion_personal']['gender']}',
             f'{cliente['informacion_personal']['customer_code']}',
             f'{cliente['informacion_personal']['profession_trade']}',

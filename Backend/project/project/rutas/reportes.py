@@ -28,4 +28,6 @@ urlpatterns_reports = [
     path('reportes/clasificacion/', list_reportes_modulos,name='clasificacion_reportes'),
     path('reportes/ingresos/', login_required(ReporteIngresosExcelView.as_view()), name='report_ingresos'),
     path('reportes/egresos/', login_required(ReporteEgresosExcelView.as_view()), name='report_egresos'),
+
+    path('reporte/cierre_diario/', login_required(CierreDiario.as_view()), name='reporte_cierre_datos'),
 ]
