@@ -133,12 +133,13 @@ def generando_informacion_cliente(sucursal,dia= None):
     for cliente in Customer.objects.filter(sucursal=sucursal).order_by('id'):
         context = {}
         print(f'{cliente}')
-        context['informacion_personal'] = model_to_dict(cliente,'uuid')
+        
         context['informacion_laboral'] = obtener_informacion_laboral(cliente) 
         context['informacion_plan_inversion'] =  obtener_plan_de_inversion(cliente) 
         context['informacion_referencias'] = obtener_referencias(cliente) 
         context['direcciones'] = obtener_direcciones(cliente) 
         context['informacion_credito'] = obtener_informacion_creditos(cliente, sucursal, dia)
+        context['informacion_personal'] = model_to_dict(cliente,'uuid')
         list_informacion_relacionada_cliente.append(context)
     
     return list_informacion_relacionada_cliente
