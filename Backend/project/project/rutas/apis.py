@@ -4,7 +4,7 @@ from rest_framework.authtoken import views as v_iews
 from rest_framework.documentation import include_docs_urls
 from django.contrib.auth import views as auth_views
 from project.view_api import view
-from project.views import GenerarMensajePagoAPIView
+from project.views import GenerarMensajePagoAPIView, GenerandoMensajeSaldoApi
 
 # DECORADOR
 from django.contrib.auth.decorators import login_required
@@ -36,7 +36,7 @@ urlpatterns_api = [
 
     # ------------ PARA MANDAR MENSAJES----- 
     path('api/generar-mensaje/<str:customer_code>/<str:cuota_id>/', GenerarMensajePagoAPIView.as_view(), name='generar-mensaje-pago'),
-
+    path('api/generar-mensaje-saldo_actual/<str:credito>/', GenerandoMensajeSaldoApi.as_view(), name='mensaje_saldo_actual'),
     # ----------- DOCUMENTACION DE API -----------
     path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),
 

@@ -123,12 +123,28 @@
 <!-- Botonoes de mensaje de recordatorio, cambio de estado juridico -->
 <div class="row mb-4 d-flex align-items-center">
     <div class="col-md-3 mb-3">
-        <button class="btn_cancel" id="mandar_mensaje">
+        <button class="btn_cancel" id="mandar_mensaje" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Mensaje de Recordatorio"
+                data-bs-original-title="Mensaje de Recordatorio">
             <i class="bi bi-whatsapp"></i>
             Mandar Recordatorio
         </button>
     </div>
-    {% if permisos.puede_asignar_estado_judicial %}
+    <div class="col-md-3 mb-3">
+        <button class="btn_cancel" id="mandar_mensaje_saldo_actual" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Mensaje de Saldo Actual"
+                data-bs-original-title="Mensaje de Saldo Actual">
+            <i class="bi bi-whatsapp"></i>
+            Mandar Saldo Actual
+        </button>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        {% include 'votacion/snippets/modal_credito.html' with form=form%}
+    </div>
+    
+
+</div>
+<div class="row mb-4 d-flex align-items-center"> 
+{% if permisos.puede_asignar_estado_judicial %}
 
     <div class="col-md-3 mb-3">
         {% if credit_list.estado_judicial %}
@@ -146,9 +162,4 @@
         {% endif %}
     </div>
     {% endif %}
-    <div class="col-md-3 mb-3">
-        {% include 'votacion/snippets/modal_credito.html' with form=form%}
-    </div>
-    
-
 </div>

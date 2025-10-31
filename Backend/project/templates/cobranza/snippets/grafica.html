@@ -31,9 +31,17 @@
         </div>
     </div>
 
-    <button class="btn_cancel" onclick="openModal()">
-        Ver Créditos Restantes
-    </button>
+    <div class="d-flex">
+        <button class="btn_cancel" onclick="openModal()" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Creditos Restantes"
+                data-bs-original-title="Creditos Restantes">
+            Ver Créditos Restantes
+        </button>
+        <button class="btn_cancel" onclick="openModalVigentes()" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Creditos Restantes"
+                data-bs-original-title="Creditos Vigentes">
+            Ver Créditos Vigentes
+        </button>
+    </div>
+
 </div>
 
 <!-- Modal -->
@@ -45,7 +53,8 @@
         completed: 0,
         pending: 0,
         total: 0,
-        pendingCredits: []
+        pendingCredits: [],
+        currentLoans: [],
     };
 
     // Inicializar el widget al cargar la página
@@ -71,6 +80,13 @@
                     data.total_faltantes,
                     data.total_creditos,
                     data.creditos_faltantes.map(c => ({
+                        name: `${c.customer_id.first_name} ${c.customer_id.last_name}`,
+                        amount: `${parseFloat(c.saldo_actual).toLocaleString()}`,
+                        details: `Vencimiento: ${c.fecha_vencimiento}`,
+                        id: c.codigo_credito,
+                        _id: c.id
+                    })),
+                    data.creditos_vigentes.map(c => ({
                         name: `${c.customer_id.first_name} ${c.customer_id.last_name}`,
                         amount: `${parseFloat(c.saldo_actual).toLocaleString()}`,
                         details: `Vencimiento: ${c.fecha_vencimiento}`,
@@ -117,33 +133,57 @@
     }
 
     function loadPendingCredits() {
-        const creditsList = document.getElementById('credits-list');
-        creditsList.innerHTML = '';
+        const pendingList = document.getElementById('credits-list-pendientes');
+        const vigenteList = document.getElementById('credits-list-vigentes');
+        pendingList.innerHTML = '';
+        vigenteList.innerHTML = '';
 
+        // Créditos pendientes
         if (creditosData.pendingCredits.length === 0) {
-            creditsList.innerHTML = '<div class="credit-item" style="text-align: center; color: #6c757d;">No hay créditos pendientes</div>';
-            return;
-        }
-
-        creditosData.pendingCredits.forEach(credit => {
-            console.log(credit)
-            const creditItem = document.createElement('div');
-            creditItem.className = 'credit-item';
-            creditItem.innerHTML = `
+            pendingList.innerHTML = '<div class="credit-item" style="text-align: center; color: #6c757d;">No hay créditos pendientes</div>';
+        } else {
+            creditosData.pendingCredits.forEach(credit => {
+                const creditItem = document.createElement('div');
+                creditItem.className = 'credit-item';
+                creditItem.innerHTML = `
             <a href='/financings/credit/${credit._id}/' style='text-decoration:none;'> 
                     <div class="credit-info">
                         <div class="credit-name">${credit.name}</div>
-                        <div class="credit-details">Codigo Del Credito: ${credit.id} • ${credit.details}</div>
+                        <div class="credit-details">Código: ${credit.id} • ${credit.details}</div>
                     </div>
                     <div class="credit-amount">Q${credit.amount}</div>
-            </a>
-                `;
-            creditsList.appendChild(creditItem);
-        });
+            </a>`;
+                pendingList.appendChild(creditItem);
+            });
+        }
+
+        // Créditos vigentes
+        if (creditosData.currentLoans.length === 0) {
+            vigenteList.innerHTML = '<div class="credit-item" style="text-align: center; color: #6c757d;">No hay créditos vigentes</div>';
+        } else {
+            creditosData.currentLoans.forEach(credit => {
+                const creditItem = document.createElement('div');
+                creditItem.className = 'credit-item';
+                creditItem.innerHTML = `
+            <a href='/financings/credit/${credit._id}/' style='text-decoration:none;'> 
+                    <div class="credit-info">
+                        <div class="credit-name">${credit.name}</div>
+                        <div class="credit-details">Código: ${credit.id} • ${credit.details}</div>
+                    </div>
+                    <div class="credit-amount">Q${credit.amount}</div>
+            </a>`;
+                vigenteList.appendChild(creditItem);
+            });
+        }
     }
 
     function openModal() {
         const modal = document.getElementById('m_modal');
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    function openModalVigentes() {
+        const modal = document.getElementById('m_modal_vigente');
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
     }
@@ -154,11 +194,21 @@
         document.body.style.overflow = 'auto';
     }
 
+    function closeModalVigente() {
+        const modal = document.getElementById('m_modal_vigente');
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+
     // Cerrar modal al hacer clic fuera de él
     window.onclick = function (event) {
         const modal = document.getElementById('m_modal');
+        const modal_vigente = document.getElementById('m_modal_vigente');
         if (event.target === modal) {
             closeModal();
+        }
+        if (event.target === modal_vigente) {
+            closeModalVigente();
         }
     }
 
@@ -166,15 +216,17 @@
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
             closeModal();
+            closeModalVigente();
         }
     });
 
     // Función que recibe los datos de la API y actualiza el widget
-    function actualizarDatos(completed, pending, total_creditos,pendingCredits) {
+    function actualizarDatos(completed, pending, total_creditos, pendingCredits, currentLoans) {
         creditosData.completed = completed;
         creditosData.pending = pending;
         creditosData.total = total_creditos;
         creditosData.pendingCredits = pendingCredits;
+        creditosData.currentLoans = currentLoans;
 
         updateWidgetData();
         loadPendingCredits();
@@ -199,7 +251,8 @@
                         amount: `${parseFloat(c.saldo_actual).toLocaleString()}`,
                         details: `Vencimiento: ${c.fecha_vencimiento}`,
                         id: c.codigo_credito
-                    }))
+                    })),
+
                 );
                 hideLoadingState();
             })

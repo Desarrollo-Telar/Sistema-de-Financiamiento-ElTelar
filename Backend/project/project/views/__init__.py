@@ -8,4 +8,4 @@ from .buscador import Search
 from .sistema import generate_qr, index, list_reportes_modulos, agradecimeinto
 
 # API FUNCIONALIDADS
-from .generacion_mensaje_whatsapp import GenerarMensajePagoAPIView
+from .generacion_mensaje_whatsapp import GenerarMensajePagoAPIView, GenerandoMensajeSaldoApi

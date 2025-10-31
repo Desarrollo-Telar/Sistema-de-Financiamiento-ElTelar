@@ -57,6 +57,7 @@ export const urls = {
 export const urls_p = {
     // MENSAJE
     api_url_mensaje_alerta_pago: `${baseUrl}/api/generar-mensaje/`,
+    api_url_mensaje_saldo_actual: `${baseUrl}/api/generar-mensaje-saldo_actual/`,
     // CLIENTE
     api_url_cliente: `${baseUrl}/customers/api/customers/`,
     api_url_clientes_aceptados: `${baseUrl}/customers/api/customers_accept/`,

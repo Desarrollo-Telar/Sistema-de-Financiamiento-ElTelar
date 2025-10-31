@@ -49,5 +49,5 @@ class InformacionAsesorCobranzaView(APIView):
             "total_faltantes": creditos_faltantes.count(),
             "creditos_realizados": CreditSerializer(creditos_con_cobranza, many=True).data,
             "creditos_faltantes": CreditSerializer(creditos_faltantes, many=True).data,
-            "creditos_vigentes":creditos_asesor.data,
+            "creditos_vigentes": CreditSerializer(creditos_asesor,many=True).data,
         })
