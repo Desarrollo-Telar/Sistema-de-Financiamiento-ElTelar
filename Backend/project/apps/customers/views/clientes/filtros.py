@@ -41,11 +41,6 @@ class CustomerFiltro(ListView):
 
             asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-            if status == 'Falta de Informacion':
-                status = None
-                incompleto = 'incompleto'
-
-
             if query:                
                 filters |= Q(first_name__icontains=query) 
                 filters |= Q(customer_code__icontains=query)
@@ -59,13 +54,17 @@ class CustomerFiltro(ListView):
                 filters |= Q(completado=False)
             
             if status:
+                match status:
+                    case 'Falta de Informacion':
+                        filters &= Q(completado=False)
+                    case 'Clientes Dados de Baja':
+                        filters &= Q(status__icontains='Dar de Baja')
+                    case _:
+                        filters &= Q(status__icontains=status)
 
-                if status == 'Clientes Dados de Baja':
-                    status = 'Dar de Baja'
-                filters |= Q(status__icontains=status)
             
             if sucursal:
-                filters |= Q(sucursal__nombre__icontains=sucursal)
+                filters &= Q(sucursal__nombre__icontains=sucursal)
             
             if asesor_autenticado and request.user.rol.role_name == 'Asesor de Crédito':
                 filters &= Q(new_asesor_credito=asesor_autenticado) 
@@ -107,8 +106,9 @@ class CustomerFiltro(ListView):
         context['query'] = self.query() if self.query() else ''
         context['gender'] = self.genero() if self.genero() else ''
         context['incompleto'] = self.falta_informacion() if self.falta_informacion() else ''
-        context['status'] = self.status() if self.status() else ''
-        context['sucursal'] = self.sucursal() if self.sucursal() else ''
+        context['selected_status'] = self.status() if self.status() else ''
+
+        context['selected_sucursal'] = self.sucursal() if self.sucursal() else ''
 
         context['title'] = f'Consulta de Clientes.'
         context['count'] = context['customer_list'].count()

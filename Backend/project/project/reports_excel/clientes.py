@@ -205,11 +205,6 @@ class ReporteClientesExcelView(TemplateView):
 
             asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-            if status == 'Falta de Informacion':
-                status = None
-                incompleto = 'incompleto'
-
-
             if query:                
                 filters |= Q(first_name__icontains=query) 
                 filters |= Q(customer_code__icontains=query)
@@ -223,13 +218,17 @@ class ReporteClientesExcelView(TemplateView):
                 filters |= Q(completado=False)
             
             if status:
+                match status:
+                    case 'Falta de Informacion':
+                        filters &= Q(completado=False)
+                    case 'Clientes Dados de Baja':
+                        filters &= Q(status__icontains='Dar de Baja')
+                    case _:
+                        filters &= Q(status__icontains=status)
 
-                if status == 'Clientes Dados de Baja':
-                    status = 'Dar de Baja'
-                filters |= Q(status__icontains=status)
             
             if sucursal:
-                filters |= Q(sucursal__nombre__icontains=sucursal)
+                filters &= Q(sucursal__nombre__icontains=sucursal)
             
             if asesor_autenticado and request.user.rol.role_name == 'Asesor de Crédito':
                 filters &= Q(new_asesor_credito=asesor_autenticado) 
@@ -244,6 +243,7 @@ class ReporteClientesExcelView(TemplateView):
             
             return Customer.objects.none()
     
+
 
     def query(self):
         return self.request.GET.get('q')
