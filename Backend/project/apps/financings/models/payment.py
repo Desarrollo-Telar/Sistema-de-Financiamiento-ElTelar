@@ -361,8 +361,9 @@ class Payment(models.Model):
             informacion['credito'].saldo_pendiente  = 0
             informacion['credito'].estado_aportacion = True
             informacion['credito'].estados_fechas = True
-            informacion['credito'].save()
             informacion['credito'].fecha_cancelacion = self.fecha_emision.date()
+            informacion['credito'].save()
+            
 
             if siguiente is not None:
                 siguiente.delete()
