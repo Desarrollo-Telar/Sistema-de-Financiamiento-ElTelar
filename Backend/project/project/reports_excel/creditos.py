@@ -221,9 +221,12 @@ class ReporteCreditos(TemplateView):
     def get(self, request, *args, **kwargs):
         mes = request.GET.get('mes')
         anio = request.GET.get('anio')
+        query = request.GET.get('q')
+        status = request.GET.get('status')
 
-        if mes and anio:
-            return redirect('report_desmbolso', mes,anio)
+        if not query and not status:
+            if mes and anio:
+                return redirect('report_desmbolso', mes,anio)
         
         workbook = Workbook()
         sheet = workbook.active
