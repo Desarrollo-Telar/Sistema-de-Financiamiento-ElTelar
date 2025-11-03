@@ -26,6 +26,20 @@ class Subsidiary(models.Model):
     def __str__(self):
         return f'{self.nombre}'
     
+    def get_telefono(self):
+        return f'{self.numero_telefono}'
+    
+    def get_direccion(self):
+        from apps.addresses.models import Address
+
+        direccion = Address.objects.filter(subsidiary__id = self.id).first()
+
+        if direccion is None:
+            return ''
+        
+        return f'{direccion.street} Zona {direccion.number}, {direccion.state} {direccion.city}'
+
+    
     
     @property
     def esta_abierta_ahora(self):

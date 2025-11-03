@@ -25,7 +25,7 @@
 
   <div class="row align-items-center mb-4 gx-3 gy-2">
     {% if permisos.puede_realizar_consultar_de_clientes %}
-    <div class="col-12 col-md-6 col-lg-5">
+    <div class="col-12 col-md-12 col-lg-12">
       {% include 'customer/snippets/search.html' with query=query %}
     </div>
     {% endif %}
@@ -41,13 +41,11 @@
     </div>
     {% endif %}
 
-    <div class="col-2 col-md-2 col-lg-1">
-      {% include 'customer/snippets/filters.html' %}
-    </div>
+   
 
     {% if permisos.puede_descargar_reporte_clientes %}
     <div class="col-2 col-md-2 col-lg-1">
-      <a href="{% url 'report_clientes' %}">
+      <a href="{% url 'report_clientes' %}?{{ request.GET.urlencode }}">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
              class="bi bi-cloud-download" viewBox="0 0 16 16">
           <path d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773
@@ -75,4 +73,8 @@
   {% endif %}
 
 </div>
+{% endblock %}
+
+{% block js %}
+
 {% endblock %}

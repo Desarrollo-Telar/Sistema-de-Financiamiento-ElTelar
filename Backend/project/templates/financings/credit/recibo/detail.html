@@ -13,8 +13,8 @@
             <div class="col-4">
                 <p style="background-color: black; color: white; padding: 0.5rem;">INVERSIONES INTEGRALES EL TELAR, S.A.
                 </p>
-                <p>8 Avenida 1-12 Zona 1, Coban Alta Verapaz</p>
-                <p>Tel: 3716 - 0995</p>
+                <p>{{recibo.sucursal.get_direccion}}</p>
+                <p>Tel: {{recibo.sucursal.get_telefono}}</p>
             </div>
 
 
@@ -160,14 +160,7 @@
             <p>FIRMA DEL CLIENTE</p>
         </div>
         <div class="col-6">
-            {% if recibo.factura %}
-            <p>
-                <a href="{% url 'financings:factura' recibo.id %}">ESTE RECIBO YA FUE FACTURADO</a>
-            </p>
-            {% else %}
-            <a href="{% url 'financings:generar_factura' recibo.id %}">FACTURAR</a>
-            {% endif %}
-            <a href="{% url 'financings:recibo_pdf' recibo.pago.id %}">DESCARGAR RECIBO EN PDF</a>
+
         </div>
         <div class="col-3">
             <hr>
@@ -177,6 +170,28 @@
 
 
     </div>
+    <hr>
+    <div class="container fw-normal welcome-section animate-fade-in">
+        <div class="row" style="margin: 2rem; ">
+
+            {% if recibo.factura %}
+            <p>
+                <a href="{% url 'financings:factura' recibo.id %}">ESTE RECIBO YA FUE FACTURADO</a>
+            </p>
+            {% else %}
+            <a href="{% url 'financings:generar_factura' recibo.id %}">FACTURAR</a>
+            {% endif %}
+
+
+
+        </div>
+        <div class="row" style="margin: 2rem; ">
+            <a href="{% url 'financings:recibo_pdf' recibo.pago.id %}">DESCARGAR RECIBO EN PDF</a>
+        </div>
+
+    </div>
+
+
 </div>
 
 

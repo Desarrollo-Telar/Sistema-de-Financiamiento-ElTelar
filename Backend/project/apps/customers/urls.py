@@ -16,7 +16,7 @@ from .rutas import urlpatterns_asesores_creditos
 app_name = 'customers'
 
 urlpatterns = [
-    path('', views.list_customer, name='customers'),
+    path('', login_required(views.CustomerFiltro.as_view()), name='customers'),
     path('create/', views.add_customer, name='create_customer'),
     path('created/', views.create_customer, name='create'), 
     path('update/<str:customer_code>/', views.update_customer, name='update_customer'),

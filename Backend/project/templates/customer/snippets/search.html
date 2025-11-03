@@ -1,20 +1,78 @@
-<nav>
+<nav class="navbar  shadow-sm rounded  mb-3">
     <div class="container-fluid">
-        <form class="d-flex" action="{% url 'customers:search' %}">
-            <div class="input-group">
-                <input class="form-control me-2" name="q" value="{{ query }}" type="search" placeholder="Buscar"
-                    aria-label="Search">
-                <button class="btn btn-outline-dark" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-search" viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                    </svg>
-                </button>
+        <form class="row g-2 align-items-center w-100" action="{% url 'customers:customers' %}" id="searchForm">
 
+            <!-- Campo de búsqueda -->
+            <div class="col-md-3">
+                <label class="form-label mb-0 small fw-semibold text-secondary"></label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input 
+                        class="form-control" 
+                        name="q" 
+                        value="{{ query }}" 
+                        type="search" 
+                        placeholder="Buscar cliente..."
+                        aria-label="Search"
+                    >
+                </div>
+            </div>
+
+            <!-- Filtro: Género -->
+            <div class="col-md-2">
+                <label class="form-label mb-0 small fw-semibold text-secondary">Género</label>
+                <select name="gender" id="gender" class="form-select text-uppercase">
+                    <option value="">Todos</option>
+                    <option value="MASCULINO" {% if gender == "MASCULINO" %}selected{% endif %}>Masculino</option>
+                    <option value="FEMENINO" {% if gender == "FEMENINO" %}selected{% endif %}>Femenino</option>
+                </select>
+            </div>
+
+            <!-- Filtro: Sucursal -->
+            <div class="col-md-2">
+                <label class="form-label mb-0 small fw-semibold text-secondary">Sucursal</label>
+                <select name="sucursal" id="sucursal" class="form-select text-uppercase">
+                    <option value="">Todas</option>
+                    {% for sucursal in sucursales %}
+                        <option value="{{ sucursal.nombre }}" {% if sucursal.nombre == selected_sucursal %}selected{% endif %}>
+                            {{ sucursal.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Filtro: Estado -->
+            <div class="col-md-2">
+                <label class="form-label mb-0 small fw-semibold text-secondary">Estado</label>
+                <select name="status" id="status" class="form-select text-uppercase">
+                    <option value="">Todos</option>
+                    {% for statu in status %}
+                        <option value="{{ statu }}" {% if statu == selected_status %}selected{% endif %}>
+                            {{ statu }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Botón de búsqueda -->
+            <div class="col-md-2 d-flex align-items-end">
+                <label class="form-label mb-0 small fw-semibold text-secondary"></label>
+                <button class="btn btn-dark w-100" type="submit">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
             </div>
 
         </form>
-
     </div>
 </nav>
+
+<!-- Script de limpieza de filtros vacíos -->
+<script>
+document.getElementById("searchForm").addEventListener("submit", function (e) {
+    this.querySelectorAll("input[name], select[name], textarea[name]").forEach(el => {
+        if (!el.value.trim()) el.removeAttribute("name");
+    });
+});
+</script>

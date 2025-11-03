@@ -10,7 +10,7 @@ from .creditos import report_creditos
 
 from .boletas import report_base_boletas, ReporteBaseBoletasExcelView
 
-from .clientes import report_clientes
+from .clientes import report_clientes, ReporteClientesExcelView
 
 from .desembolso import report_desmbolso
 

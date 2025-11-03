@@ -181,26 +181,19 @@ def detalle_boleta(request,id):
 def detalle_factura(request,id):
     
     recibo = get_object_or_404(Recibo, id=id)
+    
     if not recibo.factura:
-        messages.error(request, 'Este pago no tiene factura')
-        recibo.factura = True
-        recibo.save()
+        return redirect('financings:generar_factura',recibo.id)
     
-        factura = Invoice()
-        factura.recibo_id = recibo
-        factura.save()
-        messages.success(request, 'Factura creada')
+    else:
     
-    factura = Invoice.objects.filter(Q(recibo_id=recibo)).first()
-    print(factura)
- 
-    template_name = 'financings/credit/factura/detail.html'
-    context = {
-        'factura':factura,
-        'recibo':recibo,
-        'permisos':recorrer_los_permisos_usuario(request),
-    }
-    return render(request,template_name,context)
+        factura = Invoice.objects.filter(Q(recibo_id=recibo)).first()
+
+        if factura is not None:
+            messages.error(request, 'Este recibo esta facturado dentro del portal de la SAT')
+            return redirect('financings:recibo',recibo.pago.id)
+        
+        return redirect(f"https://report.feel.com.gt/ingfacereport/ingfacereport_documento?uuid={factura.numero_autorizacion}")
 
 
 

@@ -15,3 +15,5 @@ from .search import CustomerSearch
 from .update import update_customer
 
 from .asesores_credito import *
+
+from .clientes import *

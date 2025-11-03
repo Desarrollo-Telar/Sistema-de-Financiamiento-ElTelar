@@ -69,6 +69,7 @@ class Credit(models.Model):
     asesor_de_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Asesor de este Credito")
     numero_identificacion_sucursal = models.CharField(verbose_name="Numero de Identificacion Sucursal por Cliente", max_length=150, blank=True, null=True)
     
+    fecha_cancelacion = models.DateField(verbose_name="Fecha de cancelacion", blank=True, null=True)
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
     
@@ -116,6 +117,12 @@ class Credit(models.Model):
     def tasa_mensual(self):
         convertir =  round(self.tasa_interes * Decimal(100),2)
         return formatear_numero(convertir)
+    
+    def _fecha_cancelacion(self):
+        if self.fecha_cancelacion is not None:
+            self.fecha_cancelacion = datetime.now
+        return self.fecha_cancelacion
+
     
     def save(self, *args, **kwargs):
         self.calcular_fecha_vencimiento()

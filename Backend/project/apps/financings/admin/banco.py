@@ -7,5 +7,5 @@ from apps.financings.models import Banco
 @admin.register(Banco)
 class BancoAdmin(admin.ModelAdmin):
     list_display = ('id', 'fecha', 'referencia','status','sucursal')
-    search_fields = ('referencia', 'status','sucursal')
+    search_fields = ('referencia', 'status')
     list_filter = ('referencia', 'status','sucursal')
