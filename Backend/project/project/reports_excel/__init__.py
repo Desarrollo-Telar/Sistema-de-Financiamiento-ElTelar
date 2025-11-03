@@ -6,7 +6,7 @@ from .pagos_seguros import report_pagos_seguros, report_pagos_generales_seguros
 
 from .pagos_acreedores import report_pagos_acreedores, report_pagos_generales_acreedores
 
-from .creditos import report_creditos
+from .creditos import report_creditos, ReporteCreditos
 
 from .boletas import report_base_boletas, ReporteBaseBoletasExcelView
 

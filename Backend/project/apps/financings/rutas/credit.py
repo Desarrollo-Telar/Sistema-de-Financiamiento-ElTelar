@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns_credit = [
     # -------------- CREDITO -----------
-    path('credit/',login_required(list_credit), name='list_credit'),
+    path('credit/',login_required(CreditoList.as_view()), name='list_credit'),
     path('credit/<int:id>/',login_required(detail_credit), name='detail_credit'),
     path('credit/create/',login_required(create_credit),name='create_credit'),
     path('credit/delete/<int:id>',login_required(delete_credit),name="delete_credit"),

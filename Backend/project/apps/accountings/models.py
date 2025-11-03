@@ -34,7 +34,7 @@ class Creditor(models.Model):
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
     excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
-
+    fecha_cancelacion = models.DateField(verbose_name="Fecha de cancelacion", blank=True, null=True)
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
 
@@ -108,7 +108,7 @@ class Insurance(models.Model):
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True,blank=True, null=True)
     excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
-
+    fecha_cancelacion = models.DateField(verbose_name="Fecha de cancelacion", blank=True, null=True)
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
 

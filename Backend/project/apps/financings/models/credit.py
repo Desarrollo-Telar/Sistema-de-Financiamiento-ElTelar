@@ -118,10 +118,7 @@ class Credit(models.Model):
         convertir =  round(self.tasa_interes * Decimal(100),2)
         return formatear_numero(convertir)
     
-    def _fecha_cancelacion(self):
-        if self.fecha_cancelacion is not None:
-            self.fecha_cancelacion = datetime.now
-        return self.fecha_cancelacion
+    
 
     
     def save(self, *args, **kwargs):

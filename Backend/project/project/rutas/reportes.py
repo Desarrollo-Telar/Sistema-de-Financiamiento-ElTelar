@@ -21,7 +21,7 @@ urlpatterns_reports = [
     path('reporte/pagos/acreedores/<str:anio>/<str:mes>/', login_required(report_pagos_generales_acreedores),name='report_pagos_generales_acreedores'),
     path('reporte/pagos/seguros/<str:anio>/<str:mes>/', login_required(report_pagos_generales_seguros),name='report_pagos_generales_seguros'),
 
-    path('reporte/creditos/<str:filtro_seleccionado>/',login_required(report_creditos),name='report_creditos_excel'),
+    path('reporte/creditos/',login_required(ReporteCreditos.as_view()),name='report_creditos_excel'),
     path('reporte/pagos/creditos/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(report_pagos),name='reporte_pagos_excel'),
     path('reporte/pagos/acreedores/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(report_pagos_acreedores),name='report_pagos_acreedores_excel'),
     path('reporte/pagos/seguros/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(report_pagos_seguros),name='report_pagos_seguros_excel'),

@@ -362,7 +362,7 @@ class Payment(models.Model):
             informacion['credito'].estado_aportacion = True
             informacion['credito'].estados_fechas = True
             informacion['credito'].save()
-            
+            informacion['credito'].fecha_cancelacion = self.fecha_emision.date()
 
             if siguiente is not None:
                 siguiente.delete()
