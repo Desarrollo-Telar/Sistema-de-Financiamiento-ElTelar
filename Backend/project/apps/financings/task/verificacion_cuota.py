@@ -29,7 +29,7 @@ def ver_cuotas(dia):
     print(f'VERIFICACION DE PROXIMAS CUOTAS')
     cuotas_por_vencerse_alerta()
     print()
-    generando_informe_cierre_diario()
+    generando_informe_cierre_diario(dia)
     print()
 
 

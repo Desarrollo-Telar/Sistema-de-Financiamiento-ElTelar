@@ -25,7 +25,7 @@ from django.shortcuts import render, redirect
 
 # DJANGO HTTP
 from django.http import HttpResponse
-
+from scripts.cierre_diarrio.generar_cierre_diario import generando_informe_cierre_diario
 
 ### --- GENERACION DE CODIGOS QR --- ###
 @login_required
@@ -75,7 +75,7 @@ def index(request):
         clientes = Customer.objects.filter(new_asesor_credito=asesor_autenticado, sucursal=sucursal)
 
             
-
+    generando_informe_cierre_diario()
     context = {
         'title':'Inicio',
         'clientes':clientes,
