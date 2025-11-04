@@ -111,7 +111,7 @@ def obtener_informacion_creditos_sucursal( sucursal,dia= None):
 
     if creditos.exists():
 
-        for credito in creditos[:5]:
+        for credito in creditos.iterator(chunk_size=100):
             print(f'{credito}')
             context_credito = {}
             context_credito['credito'] = model_to_dict(credito)
@@ -125,22 +125,27 @@ def obtener_informacion_creditos_sucursal( sucursal,dia= None):
     return list_creditos
 
 
-def generando_informacion_cliente(sucursal,dia= None):
+
+def generando_informacion_cliente(sucursal, dia=None, chunk_size=100):
     if dia is None:
         dia = datetime.now().date()
     list_informacion_relacionada_cliente = []
 
-    for cliente in Customer.objects.filter(sucursal=sucursal).order_by('id'):
+    queryset = Customer.objects.filter(sucursal=sucursal).order_by('id')
+
+    for clientes_chunk in queryset.iterator(chunk_size=chunk_size):
         context = {}
-        print(f'{cliente}')
-        
-        context['informacion_laboral'] = obtener_informacion_laboral(cliente) 
-        context['informacion_plan_inversion'] =  obtener_plan_de_inversion(cliente) 
-        context['informacion_referencias'] = obtener_referencias(cliente) 
-        context['direcciones'] = obtener_direcciones(cliente) 
+        cliente = clientes_chunk
+
+        context['informacion_laboral'] = obtener_informacion_laboral(cliente)
+        context['informacion_plan_inversion'] = obtener_plan_de_inversion(cliente)
+        context['informacion_referencias'] = obtener_referencias(cliente)
+        context['direcciones'] = obtener_direcciones(cliente)
         context['informacion_credito'] = obtener_informacion_creditos(cliente, sucursal, dia)
-        context['informacion_personal'] = model_to_dict(cliente,'uuid')
+        context['informacion_personal'] = model_to_dict(cliente, 'uuid')
+
         list_informacion_relacionada_cliente.append(context)
-    
+
     return list_informacion_relacionada_cliente
+
 

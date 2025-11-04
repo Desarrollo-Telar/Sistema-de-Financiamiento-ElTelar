@@ -19,6 +19,10 @@ from apps.actividades.models import Informe
 # SETTINGS
 from project.settings import SERVIDOR
 
+@shared_task(name="apps.financings.task.generar_cierre_diario_task")
+def generar_cierre_diario_task(dia=None):    
+    return generando_informe_cierre_diario(dia)
+
 def ver_cuotas(dia):
     print(f'VERIFICACION DE CUOTAS POR FECHA DE VENCIMIENTO')
     verificador_de_cuotas_vencidas(dia)
@@ -29,7 +33,7 @@ def ver_cuotas(dia):
     print(f'VERIFICACION DE PROXIMAS CUOTAS')
     cuotas_por_vencerse_alerta()
     print()
-    generando_informe_cierre_diario(dia)
+    generar_cierre_diario_task.delay()
     print()
 
 

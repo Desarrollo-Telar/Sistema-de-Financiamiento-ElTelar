@@ -36,7 +36,7 @@ def obtener_desembolsos_credito(credito):
     if not desembolsos.exists():
         return None
     
-    for desembolso in desembolsos:
+    for desembolso in desembolsos.iterator(chunk_size=100):
         list_desembolsos.append(model_to_dict(desembolso))
     
     return list_desembolsos
@@ -48,7 +48,7 @@ def obtener_garantias(credito):
     if not garantias.exists():
         return None
     
-    for garantia in garantias:
+    for garantia in garantias.iterator(chunk_size=100):
         list_garantias.append(model_to_dict(garantia))
     
     return list_garantias
@@ -60,7 +60,7 @@ def obtener_estados_cuentas(credito):
     if not estados_cuenta.exists():
         return None
     
-    for estado_cuenta in estados_cuenta:
+    for estado_cuenta in estados_cuenta.iterator(chunk_size=100):
         list_estados_cuenta.append(model_to_dict(estado_cuenta))
     
     return list_estados_cuenta

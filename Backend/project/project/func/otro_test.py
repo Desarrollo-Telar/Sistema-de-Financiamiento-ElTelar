@@ -21,28 +21,11 @@ from project.reports_excel.cierre_diario.cierre_creditos import crear_excel_cred
 # Modelos
 from apps.financings.models import Credit, AccountStatement, Payment
 from django.db.models import Q
-
+from apps.financings.task import generar_cierre_diario_task
 if __name__ == '__main__':
 
-    creditos_en_excedentes = Credit.objects.filter(is_paid_off=True).order_by('-id')
+    generar_cierre_diario_task.delay()
 
-    for credito in creditos_en_excedentes:
-        ultimo_estado_cuenta = AccountStatement.objects.filter(credit=credito, description='CANCELACIÓN DE CRÉDITO VIGENTE').order_by('-id').first()
-
-        if ultimo_estado_cuenta is None:
-            print(f'Revisar este credito: {credito}')
-            continue
-
-        
-
-        if ultimo_estado_cuenta.payment is not None:
-            fecha = ultimo_estado_cuenta.payment.fecha_emision.date()
-        else:
-            fecha = ultimo_estado_cuenta.issue_date
-            
-        print(f'El credito: {credito} se cancelo el: {fecha}')
-        credito.fecha_cancelacion = fecha
-        credito.save()
         
 
     

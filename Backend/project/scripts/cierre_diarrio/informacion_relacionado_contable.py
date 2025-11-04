@@ -16,7 +16,7 @@ def generar_informacion_acreedores(sucursal):
 
     list_acreedores = []
 
-    for acreedor in acreedores:
+    for acreedor in acreedores.iterator(chunk_size=100):
         context = {
             'informacion_acreedor': model_to_dict(acreedor),
             'cuota_vigente':obtener_cuota_vigente(acreedor, 'ACREEDOR'),
@@ -31,7 +31,7 @@ def generar_informacion_seguros(sucursal):
 
     list_seguros = []
 
-    for seguro in seguros:
+    for seguro in seguros.iterator(chunk_size=100):
         context = {
             'informacion_seguro': model_to_dict(seguro),
             'cuota_vigente':obtener_cuota_vigente(seguro, 'SEGURO'),
@@ -46,7 +46,7 @@ def generar_informacion_ingresos(sucursal):
 
     list_ingresos = []
 
-    for ingreso in ingresos:
+    for ingreso in ingresos.iterator(chunk_size=100):
         verificacion_de_status(ingreso)
         context = {
             'informacion_ingreso': model_to_dict(ingreso)            
@@ -60,7 +60,7 @@ def generar_informacion_egresos(sucursal):
 
     list_egresos = []
 
-    for egreso in egresos:
+    for egreso in egresos.iterator(chunk_size=100):
         verificacion_de_status(egreso)
         context = {
             'informacion_egreso': model_to_dict(egreso)            

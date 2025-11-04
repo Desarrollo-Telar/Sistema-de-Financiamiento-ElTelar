@@ -11,7 +11,7 @@ def generar_informacion_bancos(sucursal):
     
     #bancos = Banco.objects.all().order_by('id')
 
-    for banco in bancos:
+    for banco in bancos.iterator(chunk_size=100):
         context = {}
         context['informacion_banco'] = model_to_dict(banco)
         list_informacion_bancos.append(context)
@@ -24,7 +24,7 @@ def generar_informacion_recibos(sucursal):
 
     #recibos = Recibo.objects.all().order_by('id')
 
-    for recibo in recibos:
+    for recibo in recibos.iterator(chunk_size=100):
         context = {}
         context['informacion_recibo'] = model_to_dict(recibo)
         list_informacion_recibos.append(context)
@@ -37,7 +37,7 @@ def generar_informacion_pagos(sucursal):
 
     #pagos = Payment.objects.all().order_by('id')
 
-    for pago in pagos:
+    for pago in pagos.iterator(chunk_size=100):
         context = {}
         context['informacion_pagos'] = model_to_dict(pago)
         list_informacion_pagos.append(context)
@@ -51,7 +51,7 @@ def generar_informacion_facturas(sucursal):
     #facturas = Invoice.objects.all().order_by('id')
     print(f'Recolentando el total de: {facturas.count()}')
 
-    for factura in facturas:
+    for factura in facturas.iterator(chunk_size=100):
         context = {}
         context['informacion_factura'] = model_to_dict(factura)
         list_informacion_facturas.append(context)

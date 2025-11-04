@@ -120,7 +120,7 @@ def obtener_estados_cuentas(credito, tipo):
     if not estados_cuenta.exists():
         return None
     
-    for estado_cuenta in estados_cuenta:
+    for estado_cuenta in estados_cuenta.iterator(chunk_size=100):
         list_estados_cuenta.append(model_to_dict(estado_cuenta))
     
     return list_estados_cuenta
