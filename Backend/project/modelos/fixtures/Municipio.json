@@ -313,5 +313,32 @@
         "depart": 2,
         "codigo_postal": null
     }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 36,
+    "fields": {
+        "nombre": "LANQUIN",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 37,
+    "fields": {
+        "nombre": "Panzós",
+        "depart": 1,
+        "codigo_postal": null
+    }
+},
+{
+    "model": "addresses.municiopio",
+    "pk": 38,
+    "fields": {
+        "nombre": "Chiquimulilla",
+        "depart": 18,
+        "codigo_postal": "06008"
+    }
 }
 ]

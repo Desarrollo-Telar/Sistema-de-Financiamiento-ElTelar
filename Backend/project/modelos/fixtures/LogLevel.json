@@ -1,0 +1,56 @@
+[
+{
+    "model": "actividades.loglevel",
+    "pk": 2,
+    "fields": {
+        "name": "CRITICAL",
+        "description": "Errores graves que pueden detener la aplicación",
+        "priority": 50
+    }
+},
+{
+    "model": "actividades.loglevel",
+    "pk": 3,
+    "fields": {
+        "name": "DEBUG",
+        "description": "Mensajes detallados para depuración",
+        "priority": 10
+    }
+},
+{
+    "model": "actividades.loglevel",
+    "pk": 4,
+    "fields": {
+        "name": "INFO",
+        "description": "Mensajes informativos sobre el funcionamiento",
+        "priority": 20
+    }
+},
+{
+    "model": "actividades.loglevel",
+    "pk": 5,
+    "fields": {
+        "name": "WARNING",
+        "description": "Situaciones anómalas que no impiden el funcionamiento",
+        "priority": 30
+    }
+},
+{
+    "model": "actividades.loglevel",
+    "pk": 6,
+    "fields": {
+        "name": "ERROR",
+        "description": "Errores que afectan funcionalidad pero no detienen la aplicación",
+        "priority": 40
+    }
+},
+{
+    "model": "actividades.loglevel",
+    "pk": 7,
+    "fields": {
+        "name": "SUCCESS",
+        "description": "Nivel SUCCESS",
+        "priority": 2
+    }
+}
+]

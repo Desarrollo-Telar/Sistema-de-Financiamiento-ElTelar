@@ -24,6 +24,7 @@ def permiso_requerido(nombre_permiso):
         def envoltura(request, *args, **kwargs):
             usuario = request.user
             
+            sucursal = getattr(request,'sucursal_actual',None)
 
             # Asegura que sea un usuario autenticado
             if not usuario.is_authenticated:
@@ -34,11 +35,13 @@ def permiso_requerido(nombre_permiso):
                 logout(request)
                 return redirect('login')
             
-            
+            if sucursal is None:
+                return redirect('sucursal:clasificacion')
         
             
             if usuario.sucursal is not None:             
                 request.session['sucursal_id'] = usuario.sucursal.id
+            
 
             
             

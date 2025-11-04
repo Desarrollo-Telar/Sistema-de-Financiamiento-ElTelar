@@ -3,8 +3,8 @@
     "model": "users.user",
     "pk": 1,
     "fields": {
-        "password": "pbkdf2_sha256$720000$uwyxV31bqAM5toRV388iDx$Kz2oHP8ZjJGa7N8yYMP1VBFZBxng1M6rZmiNHB06GxE=",
-        "last_login": "2025-08-17T16:55:55.745Z",
+        "password": "pbkdf2_sha256$720000$9u9pd4U05K3C1fSZbSw9Ci$HU5Pt4NBZwNi047/EGefKiBv1596S7p+yQgMpCah+3s=",
+        "last_login": "2025-11-04T18:51:36.147Z",
         "is_superuser": true,
         "username": "choc1403",
         "first_name": "JUAN CARLOS",
@@ -35,7 +35,7 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$720000$EEvuqArXW8Z3mbY4KUNKzu$54gL75TfPQoCF6J5jU+VqTqKNhrhXtGmXb+S1DD8Rao=",
-        "last_login": "2025-08-15T22:55:45.573Z",
+        "last_login": "2025-11-04T20:58:12.935Z",
         "is_superuser": true,
         "username": "l_chenof1",
         "first_name": "Fernanda",
@@ -66,7 +66,7 @@
     "pk": 3,
     "fields": {
         "password": "pbkdf2_sha256$720000$Kvpb5uCInvweu6sBS4rXiW$0U4qhD2Ig2hh57Lc6eOKJFoNH+R1hUWveAUDjw977Bw=",
-        "last_login": "2025-08-16T00:27:06.054Z",
+        "last_login": "2025-11-04T20:07:55.411Z",
         "is_superuser": true,
         "username": "g_rodriguez",
         "first_name": "Grecia",
@@ -97,7 +97,7 @@
     "pk": 4,
     "fields": {
         "password": "pbkdf2_sha256$720000$BMbn9ZMSgDcI50aI19ycPk$xS/n3y0iBeFML+qMaOQMoNxvK5+k41Glv6uaZJNQW5U=",
-        "last_login": "2025-08-15T22:49:39.123Z",
+        "last_login": "2025-11-04T20:19:23.189Z",
         "is_superuser": false,
         "username": "andrea_tot",
         "first_name": "Andrea",
@@ -118,7 +118,7 @@
         "creation_date": "2024-12-23T22:39:11.788Z",
         "fecha_actualizacion": "2025-06-25",
         "nit": null,
-        "sucursal": null,
+        "sucursal": 1,
         "groups": [],
         "user_permissions": []
     }
@@ -128,7 +128,7 @@
     "pk": 5,
     "fields": {
         "password": "pbkdf2_sha256$720000$C8NqL0YvHnuK4qBNdMFqzz$wHYf7N3pQTqaeaGqYvnTWkWyNPaOONr1LoZd7zJjATw=",
-        "last_login": "2025-08-15T20:49:08.461Z",
+        "last_login": "2025-11-03T14:19:42.131Z",
         "is_superuser": false,
         "username": "luis_macz01",
         "first_name": "LUIS ALBERTO",
@@ -149,7 +149,7 @@
         "creation_date": "2025-04-23T21:28:01.143Z",
         "fecha_actualizacion": "2025-06-25",
         "nit": null,
-        "sucursal": null,
+        "sucursal": 1,
         "groups": [],
         "user_permissions": []
     }
@@ -158,8 +158,8 @@
     "model": "users.user",
     "pk": 6,
     "fields": {
-        "password": "pbkdf2_sha256$720000$f4mK3MCgPRPJKOBZLK7jI5$wcDqqQOTbWUZds6WAXL4hkKi7si68TASKK8XSCM41Vc=",
-        "last_login": "2025-07-08T20:09:09.047Z",
+        "password": "pbkdf2_sha256$720000$TjYwq1rnGv2Vp6Zqu7mJP5$7q0WGCrHFwBm1jg05q+WJmQjVEI5iU9CVseA6ppm5qw=",
+        "last_login": "2025-11-01T00:40:08.403Z",
         "is_superuser": false,
         "username": "o_gonzalez",
         "first_name": "JOSUÉ FRANCISCO",
@@ -180,7 +180,7 @@
         "creation_date": "2025-06-30T22:33:26.187Z",
         "fecha_actualizacion": "2025-06-30",
         "nit": null,
-        "sucursal": null,
+        "sucursal": 1,
         "groups": [],
         "user_permissions": []
     }
@@ -190,7 +190,7 @@
     "pk": 7,
     "fields": {
         "password": "pbkdf2_sha256$720000$w18xDVDT6wARic4X5ruyOP$y37Jn85w6itnU7DFitZmATpwjUVRSHaskBeVoE5X6J8=",
-        "last_login": "2025-08-06T19:24:03.013Z",
+        "last_login": "2025-11-04T16:29:16.411Z",
         "is_superuser": false,
         "username": "t_cifuentes",
         "first_name": "JENNIFFER TATIANA",
@@ -211,7 +211,7 @@
         "creation_date": "2025-06-30T22:38:14.978Z",
         "fecha_actualizacion": "2025-06-30",
         "nit": null,
-        "sucursal": null,
+        "sucursal": 1,
         "groups": [],
         "user_permissions": []
     }
@@ -243,6 +243,37 @@
         "fecha_actualizacion": "2025-07-14",
         "nit": null,
         "sucursal": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$btYQ9pEuCFMLP6oB8pUzTr$dbB5OX+SZpc5HF/yneGtNJF/4NWxA/rNZUVoR4UktAk=",
+        "last_login": "2025-11-04T20:25:54.051Z",
+        "is_superuser": false,
+        "username": "Jalinne_b",
+        "first_name": "JALINNE ANAGALY",
+        "last_name": "BERRÍOS DE LA CRUZ",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-10-15T18:58:54.203Z",
+        "type_identification": "DPI",
+        "identification_number": "3242776521601",
+        "telephone": "31894814",
+        "email": "jalinneberriosdelacruz@gmail.com",
+        "status": true,
+        "gender": "FEMENINO",
+        "user_code": "2025-5",
+        "nationality": "Guatemala",
+        "profile_pic": "users/profile_pics/Captura_de_pantalla_2025-10-15_125640.png",
+        "rol": 1,
+        "creation_date": "2025-10-15T18:58:54.685Z",
+        "fecha_actualizacion": "2025-10-15",
+        "nit": null,
+        "sucursal": 2,
         "groups": [],
         "user_permissions": []
     }

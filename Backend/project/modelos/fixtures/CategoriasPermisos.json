@@ -214,5 +214,23 @@
         "descripcion": "",
         "estado": true
     }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 26,
+    "fields": {
+        "nombre": "FACTURAS",
+        "descripcion": "",
+        "estado": true
+    }
+},
+{
+    "model": "roles.categoriapermiso",
+    "pk": 27,
+    "fields": {
+        "nombre": "Sistema",
+        "descripcion": "",
+        "estado": true
+    }
 }
 ]

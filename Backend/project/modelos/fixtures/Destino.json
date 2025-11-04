@@ -4153,5 +4153,920 @@
         "customer_id": 344,
         "investment_plan_code": "2025-270/1"
     }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 314,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "17839.00",
+        "investment_plan_description": "",
+        "initial_amount": "17839.00",
+        "monthly_amount": "17839.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 345,
+        "investment_plan_code": "2025-271/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 315,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "CAPITAL DE TRABAJO",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 346,
+        "investment_plan_code": "2025-272/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 316,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 347,
+        "investment_plan_code": "2025-273/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 317,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 348,
+        "investment_plan_code": "2025-274/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 318,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 349,
+        "investment_plan_code": "2025-275/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 319,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "GASTOS VARIOS/CONSUMO",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 350,
+        "investment_plan_code": "2025-276/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 352,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 383,
+        "investment_plan_code": "2025-277/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 353,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 384,
+        "investment_plan_code": "2025-278/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 354,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 385,
+        "investment_plan_code": "2025-279/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 355,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 386,
+        "investment_plan_code": "2025-280/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 356,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 387,
+        "investment_plan_code": "2025-281/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 357,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 388,
+        "investment_plan_code": "2025-282/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 358,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "1500.00",
+        "investment_plan_description": "",
+        "initial_amount": "1500.00",
+        "monthly_amount": "1500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 389,
+        "investment_plan_code": "2025-283/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 359,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 390,
+        "investment_plan_code": "2025-284/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 360,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 391,
+        "investment_plan_code": "2025-285/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 361,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 392,
+        "investment_plan_code": "2025-286/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 362,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 393,
+        "investment_plan_code": "2025-287/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 363,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 394,
+        "investment_plan_code": "2025-288/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 364,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 395,
+        "investment_plan_code": "2025-289/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 365,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 396,
+        "investment_plan_code": "2025-290/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 366,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "12000.00",
+        "investment_plan_description": "",
+        "initial_amount": "12000.00",
+        "monthly_amount": "12000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 397,
+        "investment_plan_code": "2025-291/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 367,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 398,
+        "investment_plan_code": "2025-292/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 368,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 399,
+        "investment_plan_code": "2025-293/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 369,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "11000.00",
+        "investment_plan_description": "",
+        "initial_amount": "11000.00",
+        "monthly_amount": "11000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 400,
+        "investment_plan_code": "2025-294/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 370,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 401,
+        "investment_plan_code": "2025-295/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 371,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 402,
+        "investment_plan_code": "2025-296/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 372,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "0.00",
+        "investment_plan_description": "0",
+        "initial_amount": "0.00",
+        "monthly_amount": "0.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 403,
+        "investment_plan_code": "2025-D1/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 373,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "2500.00",
+        "investment_plan_description": "",
+        "initial_amount": "2500.00",
+        "monthly_amount": "2500.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 404,
+        "investment_plan_code": "2025-297/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 374,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "COMPRA DE INSUMOS ALIMENTICIOS PARA CUBRIR EVENTO Y PREPARAR PLATILLOS",
+        "initial_amount": "2000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 405,
+        "investment_plan_code": "2025-D2/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 375,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "8000.00",
+        "investment_plan_description": "REPARACION DE VEHICULO EN ESPECIFICO REPARACION Y SERVICIO MECANICO PARA LA UNIDAD MOVIL QUE UTILIZA EN BANRURAL, VEHICULO ES PROPIEDAD DEL DEUDOR.",
+        "initial_amount": "8000.00",
+        "monthly_amount": "8000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 406,
+        "investment_plan_code": "2025-D2/2"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 376,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "FIADOR",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 407,
+        "investment_plan_code": "2025-302/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 377,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 408,
+        "investment_plan_code": "2025-S1/2"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 378,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "REPARACION DE VEHICULO DE TRANSPORTE, YA QUE EL CLIENTE CUENTA CON 2 VEHICULOS UTILES PARA SU TRABAJO SIN EMBARGO ACTUALMENTE SOLO CUENTA CON 1 VEHICULO EN FUNCION.",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 409,
+        "investment_plan_code": "2025-D2/3"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 379,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "100000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 411,
+        "investment_plan_code": "2025-304/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 380,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 412,
+        "investment_plan_code": "2025-S1/3"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 381,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 413,
+        "investment_plan_code": "2025-306/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 382,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "GASTOS VARIOS",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 415,
+        "investment_plan_code": "2025-307/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 383,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 416,
+        "investment_plan_code": "2025-308/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 384,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "Inversión en Materia Prima de Pastelería.",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 417,
+        "investment_plan_code": "2025-309/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 385,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "50000.00",
+        "investment_plan_description": "",
+        "initial_amount": "50000.00",
+        "monthly_amount": "50000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 418,
+        "investment_plan_code": "2025-310/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 386,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 419,
+        "investment_plan_code": "2025-311/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 387,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "INVERSION PARA CAPITAL DE TRABAJO ESPECIFICAMENTE COMPRA Y VENTA DE ZAPATOS Y TENIS",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 437,
+        "investment_plan_code": "2025-D3/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 388,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "25000.00",
+        "investment_plan_description": "FIADORA DEL CREDITO DE JOAN JHOSMAN XOC FLORES",
+        "initial_amount": "25000.00",
+        "monthly_amount": "25000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 438,
+        "investment_plan_code": "2025-D3/2"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 389,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 428,
+        "investment_plan_code": "2025-320/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 390,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 426,
+        "investment_plan_code": "2025-318/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 391,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 424,
+        "investment_plan_code": "2025-316/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 392,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 433,
+        "investment_plan_code": "2025-325/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 393,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "20000.00",
+        "investment_plan_description": "",
+        "initial_amount": "20000.00",
+        "monthly_amount": "20000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 435,
+        "investment_plan_code": "2025-327/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 394,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "10000.00",
+        "investment_plan_description": "",
+        "initial_amount": "10000.00",
+        "monthly_amount": "10000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 430,
+        "investment_plan_code": "2025-322/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 395,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "3000.00",
+        "investment_plan_description": "",
+        "initial_amount": "3000.00",
+        "monthly_amount": "3000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 434,
+        "investment_plan_code": "2025-326/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 396,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 429,
+        "investment_plan_code": "2025-321/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 397,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "30000.00",
+        "investment_plan_description": "",
+        "initial_amount": "30000.00",
+        "monthly_amount": "30000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 439,
+        "investment_plan_code": "2025-329/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 398,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 440,
+        "investment_plan_code": "2025-330/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 399,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 441,
+        "investment_plan_code": "2025-331/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 400,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "15000.00",
+        "investment_plan_description": "",
+        "initial_amount": "15000.00",
+        "monthly_amount": "15000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 431,
+        "investment_plan_code": "2025-323/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 401,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 422,
+        "investment_plan_code": "2025-314/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 402,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "4000.00",
+        "investment_plan_description": "",
+        "initial_amount": "4000.00",
+        "monthly_amount": "4000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 423,
+        "investment_plan_code": "2025-315/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 403,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "5000.00",
+        "investment_plan_description": "",
+        "initial_amount": "5000.00",
+        "monthly_amount": "5000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 421,
+        "investment_plan_code": "2025-313/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 404,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "2000.00",
+        "investment_plan_description": "",
+        "initial_amount": "2000.00",
+        "monthly_amount": "2000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 442,
+        "investment_plan_code": "2025-332/1"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 405,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "7000.00",
+        "investment_plan_description": "GASTOS VARIOS POR VIAJE PERSONAL",
+        "initial_amount": "7000.00",
+        "monthly_amount": "7000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 443,
+        "investment_plan_code": "2025-S1/4"
+    }
+},
+{
+    "model": "InvestmentPlan.investmentplan",
+    "pk": 406,
+    "fields": {
+        "type_of_product_or_service": "Local",
+        "total_value_of_the_product_or_service": "6000.00",
+        "investment_plan_description": "",
+        "initial_amount": "6000.00",
+        "monthly_amount": "6000.00",
+        "transfers_or_transfer_of_funds": true,
+        "type_of_transfers_or_transfer_of_funds": "",
+        "customer_id": 432,
+        "investment_plan_code": "2025-324/1"
+    }
 }
 ]

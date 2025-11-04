@@ -1,0 +1,98 @@
+[
+{
+    "model": "actividades.logcategory",
+    "pk": 1,
+    "fields": {
+        "name": "Autenticación",
+        "description": "Eventos de login/logout"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 2,
+    "fields": {
+        "name": "Sistema",
+        "description": "Eventos del sistema web"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 3,
+    "fields": {
+        "name": "Facturación",
+        "description": "Eventos de Facturación"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 4,
+    "fields": {
+        "name": "Créditos",
+        "description": "Acciones de usuario en Créditos"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 5,
+    "fields": {
+        "name": "Pagos",
+        "description": "Acciones de usuario en Pagos"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 6,
+    "fields": {
+        "name": "Cuotas",
+        "description": "Eventos de Cuotas"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 7,
+    "fields": {
+        "name": "CONTABILIDAD",
+        "description": "Acciones de usuario en CONTABILIDAD"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 8,
+    "fields": {
+        "name": "SUCURSAL",
+        "description": "Acciones de usuario en SUCURSAL"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 9,
+    "fields": {
+        "name": "GESTION DE COBRANZA",
+        "description": "Acciones de usuario en GESTION DE COBRANZA"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 10,
+    "fields": {
+        "name": "CLIENTES",
+        "description": "Acciones de usuario en CLIENTES"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 11,
+    "fields": {
+        "name": "General",
+        "description": "Eventos de General"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 12,
+    "fields": {
+        "name": "Contable",
+        "description": "Eventos de Contable"
+    }
+}
+]

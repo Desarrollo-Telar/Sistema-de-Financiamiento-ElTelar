@@ -1,0 +1,317 @@
+[
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 1,
+    "fields": {
+        "status": true,
+        "cliente": 227,
+        "cuota": 492,
+        "document": "documents/boleta/cliente/BOLETA_DE_PAGO_-_BANRURAL.jpg",
+        "description": "PAGO POR CREDITO",
+        "created_at": "2025-08-06T20:41:03.401Z",
+        "numero_referencia": "879176605",
+        "fecha_actualizacion": "2025-08-19",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 2,
+    "fields": {
+        "status": true,
+        "cliente": 41,
+        "cuota": 1681,
+        "document": "documents/boleta/cliente/IMG-20250807-WA0005.jpg",
+        "description": "Abono",
+        "created_at": "2025-08-07T16:37:48.835Z",
+        "numero_referencia": "621497797",
+        "fecha_actualizacion": "2025-08-19",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 3,
+    "fields": {
+        "status": true,
+        "cliente": 331,
+        "cuota": 1649,
+        "document": "documents/boleta/cliente/WhatsApp_Image_2025-08-29_at_10.37.10_AM.jpeg",
+        "description": "pago de credito",
+        "created_at": "2025-08-29T16:41:08.689Z",
+        "numero_referencia": "1278651585",
+        "fecha_actualizacion": "2025-08-29",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 4,
+    "fields": {
+        "status": true,
+        "cliente": 212,
+        "cuota": 1556,
+        "document": "documents/boleta/cliente/WhatsApp_Image_2025-08-29_at_4.07.54_PM.jpeg",
+        "description": "miriam soria",
+        "created_at": "2025-08-29T22:20:46.315Z",
+        "numero_referencia": "1298020852",
+        "fecha_actualizacion": "2025-08-29",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 5,
+    "fields": {
+        "status": true,
+        "cliente": 52,
+        "cuota": 1780,
+        "document": "documents/boleta/cliente/IMG_3696.jpeg",
+        "description": "Primer pago",
+        "created_at": "2025-09-02T18:57:34.647Z",
+        "numero_referencia": "90925320",
+        "fecha_actualizacion": "2025-09-02",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 6,
+    "fields": {
+        "status": true,
+        "cliente": 156,
+        "cuota": 603,
+        "document": "documents/boleta/cliente/Transferencia_1756913578093.png",
+        "description": "",
+        "created_at": "2025-09-03T15:35:10.959Z",
+        "numero_referencia": "1438117222",
+        "fecha_actualizacion": "2025-09-03",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 7,
+    "fields": {
+        "status": true,
+        "cliente": 333,
+        "cuota": 1689,
+        "document": "documents/boleta/cliente/Imagen_de_WhatsApp_2025-09-25_a_las_15.45.43_f41519ad.jpg",
+        "description": "pago",
+        "created_at": "2025-09-26T14:26:33.448Z",
+        "numero_referencia": "2088863576",
+        "fecha_actualizacion": "2025-09-26",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 8,
+    "fields": {
+        "status": true,
+        "cliente": 128,
+        "cuota": 1676,
+        "document": "documents/boleta/cliente/1759158215390.png",
+        "description": "",
+        "created_at": "2025-09-29T15:04:17.880Z",
+        "numero_referencia": "3696008759",
+        "fecha_actualizacion": "2025-09-29",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 9,
+    "fields": {
+        "status": true,
+        "cliente": 228,
+        "cuota": 1448,
+        "document": "documents/boleta/cliente/17592502968988050766966495683822.jpg",
+        "description": "Cuota cancelada por la cantidad de  Q 1,105.00",
+        "created_at": "2025-09-30T16:38:42.397Z",
+        "numero_referencia": "90942876",
+        "fecha_actualizacion": "2025-09-30",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 10,
+    "fields": {
+        "status": true,
+        "cliente": 385,
+        "cuota": 2501,
+        "document": "documents/boleta/cliente/Transferencia_1759284072414.png",
+        "description": "Pago de primera cuota",
+        "created_at": "2025-10-01T02:06:42.782Z",
+        "numero_referencia": "112542863",
+        "fecha_actualizacion": "2025-09-30",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 11,
+    "fields": {
+        "status": true,
+        "cliente": 340,
+        "cuota": 1909,
+        "document": "documents/boleta/cliente/IMG-20251005-WA0002.jpg",
+        "description": "Si",
+        "created_at": "2025-10-06T15:28:42.978Z",
+        "numero_referencia": "3696008759",
+        "fecha_actualizacion": "2025-10-06",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 13,
+    "fields": {
+        "status": true,
+        "cliente": 246,
+        "cuota": 2190,
+        "document": "documents/boleta/cliente/IMG_0638.jpeg",
+        "description": "",
+        "created_at": "2025-10-15T00:46:15.905Z",
+        "numero_referencia": "3696008759",
+        "fecha_actualizacion": "2025-10-14",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 14,
+    "fields": {
+        "status": true,
+        "cliente": 221,
+        "cuota": 2218,
+        "document": "documents/boleta/cliente/IMG_20251015_162115.jpg",
+        "description": "Pago de 2 cuota ,  Héctor estrada",
+        "created_at": "2025-10-15T22:25:48.855Z",
+        "numero_referencia": "584833510",
+        "fecha_actualizacion": "2025-10-15",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 15,
+    "fields": {
+        "status": true,
+        "cliente": 136,
+        "cuota": 2696,
+        "document": "documents/boleta/cliente/IMG-20251024-WA0001.jpeg",
+        "description": "Pago",
+        "created_at": "2025-10-24T15:44:18.647Z",
+        "numero_referencia": "821413952",
+        "fecha_actualizacion": "2025-10-24",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 16,
+    "fields": {
+        "status": true,
+        "cliente": 141,
+        "cuota": 1724,
+        "document": "documents/boleta/cliente/Transferencia_Comprobante_1761772172092.jpg",
+        "description": "#3 transferencia",
+        "created_at": "2025-10-29T21:12:48.506Z",
+        "numero_referencia": "992019627",
+        "fecha_actualizacion": "2025-10-29",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 17,
+    "fields": {
+        "status": true,
+        "cliente": 433,
+        "cuota": 3249,
+        "document": "documents/boleta/cliente/Screenshot_20251030_101744_BANRURAL.jpg",
+        "description": "Pago",
+        "created_at": "2025-10-30T16:19:28.056Z",
+        "numero_referencia": "1011855323",
+        "fecha_actualizacion": "2025-10-30",
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 18,
+    "fields": {
+        "status": true,
+        "cliente": 302,
+        "cuota": 2849,
+        "document": "documents/boleta/cliente/Screenshot_20251027-200147_Bi_en_Lnea.jpg",
+        "description": "Pago octubre",
+        "created_at": "2025-10-30T19:12:35.359Z",
+        "numero_referencia": "922538060",
+        "fecha_actualizacion": "2025-10-30",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 19,
+    "fields": {
+        "status": true,
+        "cliente": 383,
+        "cuota": 2437,
+        "document": "documents/boleta/cliente/IMG_20251030_153808.jpg",
+        "description": "Si pague en banrural",
+        "created_at": "2025-10-30T23:28:44.442Z",
+        "numero_referencia": "1039645881",
+        "fecha_actualizacion": "2025-10-30",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 20,
+    "fields": {
+        "status": true,
+        "cliente": 245,
+        "cuota": 2852,
+        "document": "documents/boleta/cliente/IMG_1054.png",
+        "description": "Pago de primera cuota",
+        "created_at": "2025-10-31T15:49:39.296Z",
+        "numero_referencia": "1051811803",
+        "fecha_actualizacion": "2025-10-31",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 21,
+    "fields": {
+        "status": true,
+        "cliente": 386,
+        "cuota": 2536,
+        "document": "documents/boleta/cliente/WhatsApp_Image_2025-11-03_at_8.48.01_AM.jpeg",
+        "description": "Q.300.00 para su cuota No. 2.\r\nRAFAEL ESTUARDO MOLINA",
+        "created_at": "2025-11-03T14:48:45.597Z",
+        "numero_referencia": "1138407529",
+        "fecha_actualizacion": "2025-11-03",
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.documentonotificacioncliente",
+    "pk": 22,
+    "fields": {
+        "status": true,
+        "cliente": 432,
+        "cuota": 3190,
+        "document": "documents/boleta/cliente/IMG_6133.png",
+        "description": "Pago de prestamo",
+        "created_at": "2025-11-03T22:53:36.361Z",
+        "numero_referencia": "1139392764",
+        "fecha_actualizacion": "2025-11-03",
+        "sucursal": 2
+    }
+}
+]

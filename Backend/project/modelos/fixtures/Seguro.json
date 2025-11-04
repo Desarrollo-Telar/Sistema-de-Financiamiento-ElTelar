@@ -22,7 +22,10 @@
         "estados_fechas": true,
         "forma_de_pago": "AMORTIZACIONES A CAPITAL",
         "credito": null,
-        "creation_date": "2025-04-10T07:16:30.504Z"
+        "creation_date": "2025-04-10T07:16:30.504Z",
+        "excedente": "0.00",
+        "sucursal": 1,
+        "fecha_cancelacion": null
     }
 },
 {
@@ -48,7 +51,10 @@
         "estados_fechas": true,
         "forma_de_pago": "AMORTIZACIONES A CAPITAL",
         "credito": null,
-        "creation_date": "2025-04-10T07:16:30.504Z"
+        "creation_date": "2025-04-10T07:16:30.504Z",
+        "excedente": "0.00",
+        "sucursal": 1,
+        "fecha_cancelacion": null
     }
 },
 {
@@ -67,14 +73,17 @@
         "observaciones": "MOTOCICLETA HAOJUE MODELO 2026 COLOR CORINTO CON  FRANJAS MULTICOLOR  LINEA: HJ125-8  SERIE:  LC6PCJK27T0000362 VIN: LC6PCJK27T0000362 CHASIS: LC6PCJK27T0000362 MOTOR: 156FMI 5A*D4F31313*/LIGADO AL CREDITO DE RACHELL LINDA EUNICE CHOC YAT FICHA  DE EXCEL 63-2025",
         "boleta": "pagos/boletas/acreedor/Captura_de_pantalla_2025-03-11_170517.png",
         "status": false,
-        "saldo_pendiente": "2000.11",
-        "saldo_actual": "2000.11",
-        "is_paid_off": false,
+        "saldo_pendiente": "0.00",
+        "saldo_actual": "815.00",
+        "is_paid_off": true,
         "estado_aportacion": true,
         "estados_fechas": true,
         "forma_de_pago": "AMORTIZACIONES A CAPITAL",
         "credito": null,
-        "creation_date": "2025-04-10T07:16:30.504Z"
+        "creation_date": "2025-04-10T07:16:30.504Z",
+        "excedente": "116.67",
+        "sucursal": 1,
+        "fecha_cancelacion": null
     }
 },
 {
@@ -93,14 +102,17 @@
         "observaciones": "POLIZA VEHICULO TOYOTA COROLLA MODELO 2018 COLOR NEGRO PLACA P-794HSJ/ LIGADO CREDITO ANGEL LEAL",
         "boleta": "",
         "status": false,
-        "saldo_pendiente": "3816.00",
-        "saldo_actual": "3816.00",
+        "saldo_pendiente": "12000.00",
+        "saldo_actual": "12000.00",
         "is_paid_off": false,
         "estado_aportacion": true,
         "estados_fechas": false,
         "forma_de_pago": "AMORTIZACIONES A CAPITAL",
         "credito": null,
-        "creation_date": "2025-05-15T16:56:33.802Z"
+        "creation_date": "2025-05-15T16:56:33.802Z",
+        "excedente": "0.00",
+        "sucursal": 1,
+        "fecha_cancelacion": null
     }
 },
 {
@@ -119,14 +131,17 @@
         "observaciones": "POLIZA VEHICULO JEEP SUZUKI MODELO 2002 ROJO - PLACA P-188DNS/ CREDITO DE ERICK CHUN",
         "boleta": "",
         "status": false,
-        "saldo_pendiente": "3025.00",
-        "saldo_actual": "3025.00",
+        "saldo_pendiente": "2519.00",
+        "saldo_actual": "2519.00",
         "is_paid_off": false,
-        "estado_aportacion": true,
+        "estado_aportacion": false,
         "estados_fechas": false,
         "forma_de_pago": "AMORTIZACIONES A CAPITAL",
         "credito": null,
-        "creation_date": "2025-08-01T17:13:26.143Z"
+        "creation_date": "2025-08-01T17:13:26.143Z",
+        "excedente": "0.00",
+        "sucursal": 1,
+        "fecha_cancelacion": null
     }
 }
 ]

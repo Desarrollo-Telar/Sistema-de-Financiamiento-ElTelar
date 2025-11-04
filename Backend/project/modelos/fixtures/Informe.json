@@ -1,0 +1,218 @@
+[
+{
+    "model": "actividades.informe",
+    "pk": 1,
+    "fields": {
+        "usuario": 1,
+        "nombre_reporte": "INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-08-06",
+        "fecha_vencimiento": "2025-09-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 2,
+    "fields": {
+        "usuario": 3,
+        "nombre_reporte": "INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-08-07",
+        "fecha_vencimiento": "2025-09-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 3,
+    "fields": {
+        "usuario": 5,
+        "nombre_reporte": "INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-08-08",
+        "fecha_vencimiento": "2025-09-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 4,
+    "fields": {
+        "usuario": 2,
+        "nombre_reporte": "INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-08-11",
+        "fecha_vencimiento": "2025-09-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 5,
+    "fields": {
+        "usuario": 6,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-08-29",
+        "fecha_vencimiento": "2025-09-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 6,
+    "fields": {
+        "usuario": 2,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-09-01",
+        "fecha_vencimiento": "2025-10-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 7,
+    "fields": {
+        "usuario": 3,
+        "nombre_reporte": "INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-09-01",
+        "fecha_vencimiento": "2025-10-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 8,
+    "fields": {
+        "usuario": 6,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-09-01",
+        "fecha_vencimiento": "2025-10-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 9,
+    "fields": {
+        "usuario": 5,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-09-03",
+        "fecha_vencimiento": "2025-10-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 10,
+    "fields": {
+        "usuario": 1,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-09-04",
+        "fecha_vencimiento": "2025-10-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 11,
+    "fields": {
+        "usuario": 7,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-09-16",
+        "fecha_vencimiento": "2025-10-01",
+        "esta_activo": false
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 12,
+    "fields": {
+        "usuario": 7,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-10-01",
+        "fecha_vencimiento": "2025-11-01",
+        "esta_activo": true
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 13,
+    "fields": {
+        "usuario": 5,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-10-03",
+        "fecha_vencimiento": "2025-11-01",
+        "esta_activo": true
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 14,
+    "fields": {
+        "usuario": 6,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-10-03",
+        "fecha_vencimiento": "2025-11-01",
+        "esta_activo": true
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 15,
+    "fields": {
+        "usuario": 3,
+        "nombre_reporte": "INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-10-07",
+        "fecha_vencimiento": "2025-11-01",
+        "esta_activo": true
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 16,
+    "fields": {
+        "usuario": 2,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-10-08",
+        "fecha_vencimiento": "2025-11-01",
+        "esta_activo": true
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 17,
+    "fields": {
+        "usuario": 8,
+        "nombre_reporte": "INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-10-08",
+        "fecha_vencimiento": "2025-11-01",
+        "esta_activo": true
+    }
+},
+{
+    "model": "actividades.informe",
+    "pk": 18,
+    "fields": {
+        "usuario": 1,
+        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-10-11",
+        "fecha_vencimiento": "2025-11-01",
+        "esta_activo": true
+    }
+}
+]

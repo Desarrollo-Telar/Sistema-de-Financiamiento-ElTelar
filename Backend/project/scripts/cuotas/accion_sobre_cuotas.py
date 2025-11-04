@@ -271,7 +271,10 @@ def recorrido_de_cuotas(cuotas, accion):
             cuota.paso_por_task = True           
 
             if not cuota.status:
-                credito.estados_fechas = False
+
+                if cuota.interest > 0:
+                    credito.estados_fechas = False
+                    
                 credito.estado_aportacion = False
                 generar_estado_cuenta(cuota, accion)
 

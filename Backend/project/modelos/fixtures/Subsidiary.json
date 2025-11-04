@@ -1,0 +1,32 @@
+[
+{
+    "model": "subsidiaries.subsidiary",
+    "pk": 1,
+    "fields": {
+        "codigo_sucursal": "1081",
+        "nombre": "OFICINA 1",
+        "fecha_apertura": "2025-10-08",
+        "numero_telefono": "+502 7911 9408",
+        "otro_numero_telefono": "+502 3363 0675",
+        "activa": true,
+        "codigo_postal": "16001",
+        "descripcion": "",
+        "codigo_establecimiento": "1"
+    }
+},
+{
+    "model": "subsidiaries.subsidiary",
+    "pk": 2,
+    "fields": {
+        "codigo_sucursal": "1082",
+        "nombre": "OFICINA 2",
+        "fecha_apertura": "2025-10-14",
+        "numero_telefono": "+502 3830 7904",
+        "otro_numero_telefono": null,
+        "activa": true,
+        "codigo_postal": "16001",
+        "descripcion": "",
+        "codigo_establecimiento": "2"
+    }
+}
+]

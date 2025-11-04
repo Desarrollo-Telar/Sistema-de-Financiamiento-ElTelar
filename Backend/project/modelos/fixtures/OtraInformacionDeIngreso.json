@@ -1,2 +1,35 @@
 [
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 2,
+    "fields": {
+        "source_of_income": "COMEDOR",
+        "nit": "103947477",
+        "phone_number": "42629859",
+        "salary": "10000.00",
+        "customer_id": 403
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 3,
+    "fields": {
+        "source_of_income": "VENTA DE REFACCIONES",
+        "nit": "51522659",
+        "phone_number": "39367299",
+        "salary": "4000.00",
+        "customer_id": 405
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 4,
+    "fields": {
+        "source_of_income": "TRANSPORTES HJ",
+        "nit": "98339788",
+        "phone_number": "33253860",
+        "salary": "10000.00",
+        "customer_id": 409
+    }
+}
 ]

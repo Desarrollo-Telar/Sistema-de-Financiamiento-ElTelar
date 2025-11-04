@@ -1,0 +1,1290 @@
+[
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 1,
+    "fields": {
+        "reporte": 1,
+        "cobranza": 1
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 2,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 2
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 3,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 3
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 4,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 4
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 5,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 5
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 6,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 6
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 7,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 7
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 8,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 8
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 9,
+    "fields": {
+        "reporte": 4,
+        "cobranza": 9
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 10,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 10
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 11,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 11
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 12,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 12
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 13,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 13
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 14,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 14
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 15,
+    "fields": {
+        "reporte": 4,
+        "cobranza": 15
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 16,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 16
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 17,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 17
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 18,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 18
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 19,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 19
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 20,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 20
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 21,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 21
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 22,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 22
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 23,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 23
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 24,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 24
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 25,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 25
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 26,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 26
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 27,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 27
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 28,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 28
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 29,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 29
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 30,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 30
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 31,
+    "fields": {
+        "reporte": 4,
+        "cobranza": 31
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 32,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 32
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 33,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 33
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 34,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 34
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 35,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 35
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 36,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 36
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 37,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 37
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 39,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 39
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 40,
+    "fields": {
+        "reporte": 4,
+        "cobranza": 40
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 41,
+    "fields": {
+        "reporte": 4,
+        "cobranza": 41
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 74,
+    "fields": {
+        "reporte": 4,
+        "cobranza": 74
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 75,
+    "fields": {
+        "reporte": 4,
+        "cobranza": 75
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 76,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 76
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 77,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 77
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 78,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 78
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 79,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 79
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 80,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 80
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 81,
+    "fields": {
+        "reporte": 5,
+        "cobranza": 81
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 82,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 81
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 83,
+    "fields": {
+        "reporte": 2,
+        "cobranza": 82
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 84,
+    "fields": {
+        "reporte": 4,
+        "cobranza": 82
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 85,
+    "fields": {
+        "reporte": 3,
+        "cobranza": 83
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 86,
+    "fields": {
+        "reporte": 8,
+        "cobranza": 84
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 87,
+    "fields": {
+        "reporte": 8,
+        "cobranza": 85
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 88,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 86
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 89,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 87
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 90,
+    "fields": {
+        "reporte": 6,
+        "cobranza": 87
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 91,
+    "fields": {
+        "reporte": 7,
+        "cobranza": 88
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 92,
+    "fields": {
+        "reporte": 6,
+        "cobranza": 88
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 93,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 89
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 94,
+    "fields": {
+        "reporte": 7,
+        "cobranza": 90
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 95,
+    "fields": {
+        "reporte": 6,
+        "cobranza": 90
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 96,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 91
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 97,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 92
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 98,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 93
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 99,
+    "fields": {
+        "reporte": 7,
+        "cobranza": 94
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 100,
+    "fields": {
+        "reporte": 7,
+        "cobranza": 95
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 101,
+    "fields": {
+        "reporte": 7,
+        "cobranza": 96
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 102,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 97
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 103,
+    "fields": {
+        "reporte": 7,
+        "cobranza": 97
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 104,
+    "fields": {
+        "reporte": 7,
+        "cobranza": 98
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 105,
+    "fields": {
+        "reporte": 6,
+        "cobranza": 98
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 106,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 99
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 107,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 100
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 108,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 101
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 109,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 102
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 110,
+    "fields": {
+        "reporte": 8,
+        "cobranza": 103
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 111,
+    "fields": {
+        "reporte": 6,
+        "cobranza": 103
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 112,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 104
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 113,
+    "fields": {
+        "reporte": 6,
+        "cobranza": 104
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 114,
+    "fields": {
+        "reporte": 11,
+        "cobranza": 105
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 115,
+    "fields": {
+        "reporte": 11,
+        "cobranza": 106
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 116,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 107
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 117,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 108
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 118,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 109
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 119,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 110
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 120,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 111
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 121,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 112
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 122,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 113
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 123,
+    "fields": {
+        "reporte": 7,
+        "cobranza": 114
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 124,
+    "fields": {
+        "reporte": 6,
+        "cobranza": 114
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 125,
+    "fields": {
+        "reporte": 7,
+        "cobranza": 115
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 126,
+    "fields": {
+        "reporte": 6,
+        "cobranza": 115
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 127,
+    "fields": {
+        "reporte": 8,
+        "cobranza": 116
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 128,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 117
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 129,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 118
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 130,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 119
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 131,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 120
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 132,
+    "fields": {
+        "reporte": 9,
+        "cobranza": 121
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 133,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 122
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 134,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 123
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 135,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 124
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 136,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 125
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 137,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 126
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 138,
+    "fields": {
+        "reporte": 17,
+        "cobranza": 127
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 139,
+    "fields": {
+        "reporte": 16,
+        "cobranza": 127
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 140,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 160
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 141,
+    "fields": {
+        "reporte": 16,
+        "cobranza": 128
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 142,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 129
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 143,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 130
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 144,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 131
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 145,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 132
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 146,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 133
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 147,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 134
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 148,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 135
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 149,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 165
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 150,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 137
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 151,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 138
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 154,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 140
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 155,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 141
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 156,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 142
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 157,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 143
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 158,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 144
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 159,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 145
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 160,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 146
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 161,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 147
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 162,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 148
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 163,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 149
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 164,
+    "fields": {
+        "reporte": 17,
+        "cobranza": 150
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 165,
+    "fields": {
+        "reporte": 16,
+        "cobranza": 150
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 177,
+    "fields": {
+        "reporte": 14,
+        "cobranza": 159
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 178,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 161
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 179,
+    "fields": {
+        "reporte": 16,
+        "cobranza": 161
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 180,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 162
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 181,
+    "fields": {
+        "reporte": 16,
+        "cobranza": 162
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 182,
+    "fields": {
+        "reporte": 12,
+        "cobranza": 163
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 183,
+    "fields": {
+        "reporte": 16,
+        "cobranza": 163
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 184,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 164
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 185,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 166
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 186,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 167
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 187,
+    "fields": {
+        "reporte": 16,
+        "cobranza": 167
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 188,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 168
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 189,
+    "fields": {
+        "reporte": 16,
+        "cobranza": 168
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 193,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 171
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 194,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 172
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 195,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 173
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 196,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 174
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 197,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 175
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 198,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 176
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 199,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 177
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 200,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 178
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 201,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 179
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 202,
+    "fields": {
+        "reporte": 14,
+        "cobranza": 180
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 203,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 181
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 204,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 182
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 205,
+    "fields": {
+        "reporte": 15,
+        "cobranza": 183
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 206,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 184
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 207,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 186
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 208,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 187
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 209,
+    "fields": {
+        "reporte": 13,
+        "cobranza": 191
+    }
+},
+{
+    "model": "actividades.detalleinformecobranza",
+    "pk": 210,
+    "fields": {
+        "reporte": 12,
+        "cobranza": 192
+    }
+}
+]

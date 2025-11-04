@@ -1174,5 +1174,41 @@
         "estado": true,
         "fecha_registro": "2025-08-01T16:11:10.230Z"
     }
+},
+{
+    "model": "roles.permiso",
+    "pk": 100,
+    "fields": {
+        "categoria_permiso": 26,
+        "nombre": "Puede ver registro de facturas",
+        "descripcion": "",
+        "codigo_permiso": "puede_ver_facturas",
+        "estado": true,
+        "fecha_registro": "2025-10-15T15:41:29.843Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 101,
+    "fields": {
+        "categoria_permiso": 26,
+        "nombre": "Puede emitir facturas",
+        "descripcion": "",
+        "codigo_permiso": "puede_emitir_facturas",
+        "estado": true,
+        "fecha_registro": "2025-10-15T15:46:28.673Z"
+    }
+},
+{
+    "model": "roles.permiso",
+    "pk": 102,
+    "fields": {
+        "categoria_permiso": 27,
+        "nombre": "Puede Ver Informes Cierre de Sistema",
+        "descripcion": "",
+        "codigo_permiso": "puede_ver_cierre_sistema",
+        "estado": true,
+        "fecha_registro": "2025-10-31T02:42:01.215Z"
+    }
 }
 ]

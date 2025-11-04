@@ -1,0 +1,4710 @@
+[
+{
+    "model": "actividades.votacioncredito",
+    "pk": 2,
+    "fields": {
+        "usuario": 1,
+        "credito": 245,
+        "puntuacion": 3,
+        "comentario": "Realizo correctamente su pago, pero no completo la cuota total",
+        "creation_date": "2025-08-06T23:46:30.928Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 3,
+    "fields": {
+        "usuario": 2,
+        "credito": 62,
+        "puntuacion": 1,
+        "comentario": "CANCELACION DEL CREDITO MEDIANTE ACUERDO, UNICO PAGO DE Q.8,000.00 SE DESCUENTAN Q.2550.63 DE INTERESES Y 1260.82 DE CAPITAL",
+        "creation_date": "2025-08-18T16:56:51.894Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 5,
+    "fields": {
+        "usuario": 1,
+        "credito": 341,
+        "puntuacion": null,
+        "comentario": "AJUSTE DEL PAGO CON NUMERO DE REFERENCIA: 783590333, MONTO ORIGINAL DE: Q24,000.00",
+        "creation_date": "2025-08-21T21:19:02.637Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 37,
+    "fields": {
+        "usuario": 1,
+        "credito": 159,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:35:40.959Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 38,
+    "fields": {
+        "usuario": 3,
+        "credito": 229,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:40:40.852Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 39,
+    "fields": {
+        "usuario": 3,
+        "credito": 144,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:40:43.587Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 40,
+    "fields": {
+        "usuario": 3,
+        "credito": 352,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:40:47.108Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 41,
+    "fields": {
+        "usuario": 3,
+        "credito": 118,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:40:49.245Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 42,
+    "fields": {
+        "usuario": 3,
+        "credito": 190,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:40:52.077Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 43,
+    "fields": {
+        "usuario": 3,
+        "credito": 263,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:40:54.161Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 44,
+    "fields": {
+        "usuario": 2,
+        "credito": 118,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:06.707Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 45,
+    "fields": {
+        "usuario": 2,
+        "credito": 194,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:06.929Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 46,
+    "fields": {
+        "usuario": 5,
+        "credito": 122,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:58.416Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 47,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:58.545Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 48,
+    "fields": {
+        "usuario": 5,
+        "credito": 337,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:58.607Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 49,
+    "fields": {
+        "usuario": 5,
+        "credito": 24,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:58.667Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 50,
+    "fields": {
+        "usuario": 5,
+        "credito": 172,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:58.727Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 51,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:58.790Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 52,
+    "fields": {
+        "usuario": 5,
+        "credito": 241,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:58.851Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 53,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:58.912Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 54,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:58.974Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 55,
+    "fields": {
+        "usuario": 5,
+        "credito": 122,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:59.035Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 56,
+    "fields": {
+        "usuario": 5,
+        "credito": 86,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:59.095Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 57,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:59.156Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 58,
+    "fields": {
+        "usuario": 5,
+        "credito": 241,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:59.229Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 59,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:59.290Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 60,
+    "fields": {
+        "usuario": 5,
+        "credito": 79,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:59.351Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 61,
+    "fields": {
+        "usuario": 5,
+        "credito": 150,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:49:59.412Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 62,
+    "fields": {
+        "usuario": 2,
+        "credito": 303,
+        "puntuacion": 2,
+        "comentario": "ACUERDO DE PAGO PARA TODAS SUS CUOTAS REALIZA EL PAGO EL 30 DE CADA MES",
+        "creation_date": "2025-08-27T22:51:03.024Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 63,
+    "fields": {
+        "usuario": 2,
+        "credito": 103,
+        "puntuacion": 2,
+        "comentario": "SE COMPROMETE A PAGAR EL JUEVES 28 CUOTA COMPLETA",
+        "creation_date": "2025-08-27T22:51:06.418Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 64,
+    "fields": {
+        "usuario": 5,
+        "credito": 60,
+        "puntuacion": 2,
+        "comentario": "siempre ha cancelado 28 de cada mes.",
+        "creation_date": "2025-08-27T22:51:08.787Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 65,
+    "fields": {
+        "usuario": 2,
+        "credito": 309,
+        "puntuacion": 2,
+        "comentario": "PAGO DE INTERESES PARA EL JUEVES 28, ABONA RESTANTE DE SU CUOTA EL 10 DE SEPTIEMBRE, POR ATRASO EN SU PAGO YA QUE SE ENCUENTRA DE VACACIONES",
+        "creation_date": "2025-08-27T22:51:10.972Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 66,
+    "fields": {
+        "usuario": 2,
+        "credito": 299,
+        "puntuacion": 3,
+        "comentario": "COMENTA QUE SE ATRASA POR IMPREVISTOS EN SU VEHICULO EN LOS QUE TUVO QUE INVERTIR UNA POCO MAS, PROMESA DE PAGO PARA EL 27/08 CUOTA COMPLETA",
+        "creation_date": "2025-08-27T22:51:13.215Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 67,
+    "fields": {
+        "usuario": 5,
+        "credito": 86,
+        "puntuacion": 2,
+        "comentario": "se comunico el dia de hoy y nos indico que tentativamente el 26 del presente mes, abonara 500 para realizar una restructuracion de su credito, ya que actualmente le esta afectando la capacidad de pago por ser fiador de un credito de 250,000.00\r\n-26/08/2025 el dia de hoy nos pidio 2 dias mas para poder cancelar y gestionar restructura.",
+        "creation_date": "2025-08-27T22:51:15.773Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 68,
+    "fields": {
+        "usuario": 5,
+        "credito": 299,
+        "puntuacion": 2,
+        "comentario": "la señora nos comenta que cancelara el dia de mañana 22/08/2025. se le dara seguimiento.\r\n-se comunico indicando que cancelara el dia de mañana 27/08/2025",
+        "creation_date": "2025-08-27T22:51:18.332Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 69,
+    "fields": {
+        "usuario": 5,
+        "credito": 339,
+        "puntuacion": 2,
+        "comentario": "-se tiene promesa de pago para este mes con el señor Marco tulio Coy. se le dara seguimiento, ya que le estan debitando del salario un credito en donde es fiador.\r\n-26/08/2025 se comprometio a pagar el domingo 31 de presente mes.",
+        "creation_date": "2025-08-27T22:51:20.898Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 70,
+    "fields": {
+        "usuario": 5,
+        "credito": 122,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:51:23.157Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 71,
+    "fields": {
+        "usuario": 3,
+        "credito": 144,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:51:25.418Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 72,
+    "fields": {
+        "usuario": 3,
+        "credito": 229,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:51:27.783Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 73,
+    "fields": {
+        "usuario": 5,
+        "credito": 332,
+        "puntuacion": 2,
+        "comentario": "el señor Abner solicita la restructuracion de los dos creditos, se compromete a llegar a la oficina el dia lunes 25/08/2025\r\n-incumplio con el dia que indico, sin embargo se comprometio a firmar restructura el dia viernes",
+        "creation_date": "2025-08-27T22:51:30.050Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 74,
+    "fields": {
+        "usuario": 5,
+        "credito": 121,
+        "puntuacion": 2,
+        "comentario": "la solicitante nos comenta que se compromete a cancelar antes de fin de mes el ultimo saldo que le queda, se le dara seguimiento.",
+        "creation_date": "2025-08-27T22:51:32.621Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 75,
+    "fields": {
+        "usuario": 5,
+        "credito": 326,
+        "puntuacion": 2,
+        "comentario": "la señora Mildred nos indicar que no tiene fecha de cuando podra cancelar la deuda ya que segun me comenta le ha ido muy mal en el trabajo, sin embargo gestiona un credito en un banco pero no le han dado respuesta debido a que es hipotacario. se le estara dando seguimiento.",
+        "creation_date": "2025-08-27T22:51:35.200Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 76,
+    "fields": {
+        "usuario": 3,
+        "credito": 118,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:51:37.460Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 77,
+    "fields": {
+        "usuario": 3,
+        "credito": 352,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:51:39.722Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 78,
+    "fields": {
+        "usuario": 3,
+        "credito": 236,
+        "puntuacion": 3,
+        "comentario": "pide tiempo para abonar capital, deposita solo intereses del mes",
+        "creation_date": "2025-08-27T22:51:42.291Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 79,
+    "fields": {
+        "usuario": 3,
+        "credito": 96,
+        "puntuacion": 3,
+        "comentario": "realiza pago de interes y pide tiempo para capital",
+        "creation_date": "2025-08-27T22:51:44.838Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 80,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:51:47.086Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 81,
+    "fields": {
+        "usuario": 5,
+        "credito": 241,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:51:49.543Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 82,
+    "fields": {
+        "usuario": 5,
+        "credito": 24,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:51:52.517Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 83,
+    "fields": {
+        "usuario": 5,
+        "credito": 172,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:51:54.879Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 84,
+    "fields": {
+        "usuario": 5,
+        "credito": 178,
+        "puntuacion": 2,
+        "comentario": "21/08/2025 el señor Luis solicita una restructuraciòn ya que se encuentra suspendido por parte del igss, razòn por la cual no ha podido cancelar, asi mismo se le pidio un abono antes de la restructura, se le dara seguimiento.\r\n-nos indico el dia de hoy que tratara la manera de abonar el dia viernes, ya que se encuentra internado.",
+        "creation_date": "2025-08-27T22:51:57.551Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 85,
+    "fields": {
+        "usuario": 5,
+        "credito": 50,
+        "puntuacion": 2,
+        "comentario": "el señor Jonathan nos comenta que estara cancelando a fin de mes por cuestiones de salario. se le estara dando seguimiento.\r\n- 21/08/2028: se le hizo un nuevo recordatorio al señor Jonathan y nos indica que antes de fin de mes estara cancelando. se le seguira dando seguimiento",
+        "creation_date": "2025-08-27T22:51:59.918Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 86,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:03.106Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 87,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:05.667Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 88,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:08.048Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 89,
+    "fields": {
+        "usuario": 5,
+        "credito": 337,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:10.570Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 90,
+    "fields": {
+        "usuario": 2,
+        "credito": 348,
+        "puntuacion": 3,
+        "comentario": "DEPOSITA DE 1000.00 A 1500.00 EL DIA VIERNES 22\r\n25/08 NO CONTESTA LOS MENSAJES",
+        "creation_date": "2025-08-27T22:52:12.901Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 91,
+    "fields": {
+        "usuario": 5,
+        "credito": 122,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:15.142Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 92,
+    "fields": {
+        "usuario": 3,
+        "credito": 250,
+        "puntuacion": 3,
+        "comentario": "completó pago viernes 15",
+        "creation_date": "2025-08-27T22:52:17.694Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 93,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:20.047Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 94,
+    "fields": {
+        "usuario": 5,
+        "credito": 86,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:23.256Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 95,
+    "fields": {
+        "usuario": 2,
+        "credito": 194,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:26.615Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 96,
+    "fields": {
+        "usuario": 5,
+        "credito": 50,
+        "puntuacion": 2,
+        "comentario": "nos indica que a fin de mes, por temas de salario, sin embargo se le indico que cancelara antes del 20 del presente mes.",
+        "creation_date": "2025-08-27T22:52:29.391Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 97,
+    "fields": {
+        "usuario": 5,
+        "credito": 241,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:31.962Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 98,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:34.946Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 99,
+    "fields": {
+        "usuario": 5,
+        "credito": 79,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:37.429Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 100,
+    "fields": {
+        "usuario": 5,
+        "credito": 150,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:39.783Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 101,
+    "fields": {
+        "usuario": 3,
+        "credito": 190,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:42.153Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 102,
+    "fields": {
+        "usuario": 1,
+        "credito": 159,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:44.153Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 103,
+    "fields": {
+        "usuario": 3,
+        "credito": 263,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:46.083Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 104,
+    "fields": {
+        "usuario": 3,
+        "credito": 168,
+        "puntuacion": 3,
+        "comentario": "PAGO EL DÍA 8",
+        "creation_date": "2025-08-27T22:52:48.019Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 105,
+    "fields": {
+        "usuario": 2,
+        "credito": 118,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-27T22:52:49.975Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 106,
+    "fields": {
+        "usuario": 5,
+        "credito": 122,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ADRIÁN ALÁN ELÍAS YAXCAL CUCUL realizo un abono de: Q919.00",
+        "creation_date": "2025-08-27T23:09:56.010Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 107,
+    "fields": {
+        "usuario": 3,
+        "credito": 236,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE JORGE MARIO CHUN realizo un abono de: Q1,313.00",
+        "creation_date": "2025-08-27T23:10:01.360Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 108,
+    "fields": {
+        "usuario": 3,
+        "credito": 96,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MAYRA LUCRECIA SIERRA realizo un abono de: Q1,199.00",
+        "creation_date": "2025-08-27T23:10:04.552Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 109,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE LUIS DAVID CHEN CHAJ realizo un abono de: Q4,593.00",
+        "creation_date": "2025-08-27T23:10:09.979Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 110,
+    "fields": {
+        "usuario": 2,
+        "credito": 348,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ILEANA IZABEL CAAL CHOMO realizo un abono de: Q1,000.00",
+        "creation_date": "2025-08-27T23:10:13.044Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 111,
+    "fields": {
+        "usuario": 5,
+        "credito": 122,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ADRIÁN ALÁN ELÍAS YAXCAL CUCUL realizo un abono de: Q919.00",
+        "creation_date": "2025-08-27T23:10:15.711Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 112,
+    "fields": {
+        "usuario": 3,
+        "credito": 250,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE SONIA MARLENE DELGADO LÓPEZ DE PONCE realizo un abono de: Q4,754.31",
+        "creation_date": "2025-08-27T23:10:18.226Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 113,
+    "fields": {
+        "usuario": 5,
+        "credito": 79,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE LUIS FERNANDO CAAL realizo un abono de: Q550.00",
+        "creation_date": "2025-08-27T23:10:22.070Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 114,
+    "fields": {
+        "usuario": 5,
+        "credito": 150,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE JOSE DAVID NAVARRO QUIROA realizo un abono de: Q4,600.00",
+        "creation_date": "2025-08-27T23:10:24.950Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 115,
+    "fields": {
+        "usuario": 3,
+        "credito": 168,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE JOSE ESTUARDO CAN realizo un abono de: Q800.00",
+        "creation_date": "2025-08-27T23:10:28.548Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 116,
+    "fields": {
+        "usuario": 3,
+        "credito": 190,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ANA KELLE VERALY DELGADO VAIDES realizo un abono de: Q1,550.00",
+        "creation_date": "2025-08-27T23:10:31.532Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 117,
+    "fields": {
+        "usuario": 1,
+        "credito": 159,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE JUAN CARLOS ELOÍ CHOC XOL realizo un abono de: Q500.00",
+        "creation_date": "2025-08-27T23:10:34.209Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 118,
+    "fields": {
+        "usuario": 5,
+        "credito": 299,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-28T02:10:39.398Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 119,
+    "fields": {
+        "usuario": 2,
+        "credito": 299,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE IRMA YOLANDA CHIQUIN BAC DE HERRERA realizo un abono de: Q1,407.40",
+        "creation_date": "2025-08-28T14:17:01.053Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 120,
+    "fields": {
+        "usuario": 5,
+        "credito": 176,
+        "puntuacion": 2,
+        "comentario": "posiblemente hoy o a mas tardar cancela el dia de mañana segun me comenta",
+        "creation_date": "2025-08-28T16:34:35.996Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 121,
+    "fields": {
+        "usuario": 5,
+        "credito": 171,
+        "puntuacion": 2,
+        "comentario": "MAÑANA LE ACREDITAN, NORMALMENTE ABONA A FIN DE MES POR TEMAS DE SALARIO",
+        "creation_date": "2025-08-28T16:36:27.766Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 122,
+    "fields": {
+        "usuario": 5,
+        "credito": 177,
+        "puntuacion": 2,
+        "comentario": "por temas de salario, cancela entre hoy y mañana",
+        "creation_date": "2025-08-28T16:37:51.092Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 123,
+    "fields": {
+        "usuario": 5,
+        "credito": 60,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE AUGUSTIN GARCIA SIS realizo un abono de: Q2,666.50",
+        "creation_date": "2025-08-28T23:10:32.454Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 124,
+    "fields": {
+        "usuario": 5,
+        "credito": 176,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ALEX GEOVANNY POP BAC realizo un abono de: Q3,000.00",
+        "creation_date": "2025-08-29T15:11:49.335Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 125,
+    "fields": {
+        "usuario": 5,
+        "credito": 176,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ALEX GEOVANNY POP BAC realizo un abono de: Q670.00",
+        "creation_date": "2025-08-29T15:13:11.613Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 126,
+    "fields": {
+        "usuario": 5,
+        "credito": 50,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE JONATHAN RONALDO ASIG MAAS realizo un abono de: Q1,464.00",
+        "creation_date": "2025-08-29T15:19:16.941Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 127,
+    "fields": {
+        "usuario": 3,
+        "credito": 284,
+        "puntuacion": 2,
+        "comentario": "SE SOLICITO INTERESES DE UN MES Y MORA",
+        "creation_date": "2025-08-29T16:08:21.958Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 128,
+    "fields": {
+        "usuario": 3,
+        "credito": 229,
+        "puntuacion": 3,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-29T16:10:56.865Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 129,
+    "fields": {
+        "usuario": 3,
+        "credito": 308,
+        "puntuacion": 2,
+        "comentario": "USUARIO SE COMPROMETIO A PAGAR SU CUOTA COMPLETA",
+        "creation_date": "2025-08-29T16:21:33.058Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 130,
+    "fields": {
+        "usuario": 2,
+        "credito": 303,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE CANDY CLARAMARÍA CANTORAL CAAL realizo un abono de: Q2,532.00",
+        "creation_date": "2025-08-29T19:06:14.555Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 131,
+    "fields": {
+        "usuario": 3,
+        "credito": 284,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MIRIAM ANTONIETA SORIA LÓPEZ DE ARÉVALO realizo un abono de: Q1,240.00",
+        "creation_date": "2025-08-29T22:32:40.905Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 132,
+    "fields": {
+        "usuario": 5,
+        "credito": 86,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-29T22:35:24.036Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 133,
+    "fields": {
+        "usuario": 2,
+        "credito": 103,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-29T23:04:25.693Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 134,
+    "fields": {
+        "usuario": 2,
+        "credito": 309,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-29T23:04:25.883Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 135,
+    "fields": {
+        "usuario": 2,
+        "credito": 119,
+        "puntuacion": 2,
+        "comentario": "SE LE LLAMO A LA SEÑORA DORA MALDONADO, NOS COMENTA QUE INTENTARA REALIZAR EL DEPOSITO EL DIA SABADO O DOMINGO A MAS TARDAR EL DIA LUNES",
+        "creation_date": "2025-08-29T23:05:54.491Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 136,
+    "fields": {
+        "usuario": 5,
+        "credito": 332,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ABNER BENJAMIN OJOM CASTRO realizo un abono de: Q6,483.33",
+        "creation_date": "2025-08-29T23:20:04.729Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 137,
+    "fields": {
+        "usuario": 5,
+        "credito": 171,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE Hugo Keyner Quib Caal realizo un abono de: Q1,000.00",
+        "creation_date": "2025-08-29T23:28:28.343Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 138,
+    "fields": {
+        "usuario": 5,
+        "credito": 171,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE Hugo Keyner Quib Caal realizo un abono de: Q468.00",
+        "creation_date": "2025-08-29T23:28:31.438Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 139,
+    "fields": {
+        "usuario": 5,
+        "credito": 177,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-30T17:18:08.308Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 140,
+    "fields": {
+        "usuario": 5,
+        "credito": 326,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-30T17:21:50.177Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 141,
+    "fields": {
+        "usuario": 5,
+        "credito": 121,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-30T17:24:02.808Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 142,
+    "fields": {
+        "usuario": 5,
+        "credito": 178,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-30T17:32:01.617Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 143,
+    "fields": {
+        "usuario": 5,
+        "credito": 50,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-08-31T19:42:38.659Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 144,
+    "fields": {
+        "usuario": 5,
+        "credito": 317,
+        "puntuacion": 2,
+        "comentario": "se compromete a enviar boleta el dia de hoy o a mas tardar, el dia de mañana",
+        "creation_date": "2025-08-31T19:43:45.092Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 145,
+    "fields": {
+        "usuario": 5,
+        "credito": 177,
+        "puntuacion": 3,
+        "comentario": "el señor el dia de ayer cancelo",
+        "creation_date": "2025-08-31T19:49:46.633Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 146,
+    "fields": {
+        "usuario": 5,
+        "credito": 177,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MARIO RODOLFO ICAL BOTZOC realizo un abono de: Q1,125.00",
+        "creation_date": "2025-09-01T15:31:20.995Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 147,
+    "fields": {
+        "usuario": 2,
+        "credito": 103,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE RIGOBERTO ANIBAL CHUB YAT realizo un abono de: Q795.00",
+        "creation_date": "2025-09-01T16:41:52.671Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 148,
+    "fields": {
+        "usuario": 2,
+        "credito": 119,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-01T18:06:32.135Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 149,
+    "fields": {
+        "usuario": 3,
+        "credito": 308,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-01T18:06:32.337Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 150,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "",
+        "creation_date": "2025-09-02T00:52:07.752Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 151,
+    "fields": {
+        "usuario": 6,
+        "credito": 180,
+        "puntuacion": 2,
+        "comentario": "",
+        "creation_date": "2025-09-02T01:25:05.823Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 152,
+    "fields": {
+        "usuario": 6,
+        "credito": 180,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-02T01:25:06.905Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 153,
+    "fields": {
+        "usuario": 6,
+        "credito": 180,
+        "puntuacion": 2,
+        "comentario": "El cliente da promesa de pago para el 03/09/25 reportando así mismo su boleta, antes de medio dia.",
+        "creation_date": "2025-09-02T01:27:11.463Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 154,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE CÉSAR JOSUE CAAL MORALES realizo un abono de: Q900.00",
+        "creation_date": "2025-09-02T15:07:45.373Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 155,
+    "fields": {
+        "usuario": 5,
+        "credito": 172,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ANGELA RUFINA MACZ ARTOLA realizo un abono de: Q400.00",
+        "creation_date": "2025-09-02T15:17:42.605Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 156,
+    "fields": {
+        "usuario": 5,
+        "credito": 317,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ROSA ELIZABETH CORTEZ PÉREZ DE CHALIB realizo un abono de: Q1,723.00",
+        "creation_date": "2025-09-02T15:27:38.665Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 157,
+    "fields": {
+        "usuario": 2,
+        "credito": 119,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE GABRIELA JOHANA CHOC MALDONADO realizo un abono de: Q1,498.00",
+        "creation_date": "2025-09-02T15:30:30.042Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 158,
+    "fields": {
+        "usuario": 5,
+        "credito": 266,
+        "puntuacion": 2,
+        "comentario": "Solicita un tiempo aproximado de 10 dias. promesa de pago para el dia 11 del presente mes.",
+        "creation_date": "2025-09-03T16:25:21.883Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 159,
+    "fields": {
+        "usuario": 6,
+        "credito": 180,
+        "puntuacion": 2,
+        "comentario": "El cliente da promesa de pago para el 04/09/25 reportando así mismo su boleta, antes de medio dia.",
+        "creation_date": "2025-09-04T15:42:45.992Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 160,
+    "fields": {
+        "usuario": 1,
+        "credito": 316,
+        "puntuacion": null,
+        "comentario": "SE REALIZO UN CAMBIO EN LA VISTA DEL ESTADO DE CUENTA, CON EL NUMERO DE REFERENCIA: 9d3e7279, INDICANDO QUE EL SALDO CAPITAL PENDIENTE ES DE: Q106,339.40  ",
+        "creation_date": "2025-09-04T17:05:21.149Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 161,
+    "fields": {
+        "usuario": 2,
+        "credito": 309,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE CHRISTIAN CÉSAR AUGUSTO SOLÍS MORALES realizo un abono de: Q700.00",
+        "creation_date": "2025-09-04T17:35:51.290Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 162,
+    "fields": {
+        "usuario": 3,
+        "credito": 144,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ORALIA MARIZABETH DE LA CRUZ HENGSTENBERG realizo un abono de: Q1,000.00",
+        "creation_date": "2025-09-05T15:53:48.459Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 163,
+    "fields": {
+        "usuario": 1,
+        "credito": 167,
+        "puntuacion": 1,
+        "comentario": "Al revisar el estado de cuenta, hemos identificado que este cliente tiene tres cuotas sin abonar.",
+        "creation_date": "2025-09-06T22:30:27.828Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 164,
+    "fields": {
+        "usuario": 6,
+        "credito": 180,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE GERSON MOISES ORELLANA GONZÁLEZ realizo un abono de: Q1,628.00",
+        "creation_date": "2025-09-08T15:40:06.193Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 165,
+    "fields": {
+        "usuario": 5,
+        "credito": 172,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ANGELA RUFINA MACZ ARTOLA realizo un abono de: Q2,978.32",
+        "creation_date": "2025-09-08T16:16:27.336Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 166,
+    "fields": {
+        "usuario": 2,
+        "credito": 282,
+        "puntuacion": 2,
+        "comentario": "ELLA COMENTA QUE SE ATRASO POR QUE SE ENFERMO DE Y TUBO QUE SER INTERNADA, CANCELACION DE LA CUOTA MAS LA MORA EL 12 DE SEPTIEMPRE",
+        "creation_date": "2025-09-09T14:23:25.796Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 167,
+    "fields": {
+        "usuario": 2,
+        "credito": 286,
+        "puntuacion": 2,
+        "comentario": "EL SEÑOR SE ACERCO A LA OFICINA PARA INDICAR QUE REALIZARA SU PAGO EL DIA SABADO 13 DE SEPTIEMBRE",
+        "creation_date": "2025-09-10T15:03:04.607Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 168,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 2,
+        "comentario": "- se le esta dando seguimiento, cuenta con negativa de pago. se ira a buscar al trabajo.",
+        "creation_date": "2025-09-10T16:01:35.026Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 169,
+    "fields": {
+        "usuario": 5,
+        "credito": 271,
+        "puntuacion": 3,
+        "comentario": "cancelo el dia de ayer.",
+        "creation_date": "2025-09-10T16:02:59.163Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 170,
+    "fields": {
+        "usuario": 5,
+        "credito": 271,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE AMANDA LISSETTE BARRIOS MOLINA realizo un abono de: Q1,207.00",
+        "creation_date": "2025-09-10T20:58:03.393Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 171,
+    "fields": {
+        "usuario": 5,
+        "credito": 266,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-11T06:17:15.789Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 172,
+    "fields": {
+        "usuario": 2,
+        "credito": 168,
+        "puntuacion": 2,
+        "comentario": "PROMESA DE PAGO PARA EL SABADO 13 DE SEPTIEMBRE",
+        "creation_date": "2025-09-11T14:40:11.573Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 173,
+    "fields": {
+        "usuario": 2,
+        "credito": 286,
+        "puntuacion": 2,
+        "comentario": "EL SEÑOR SE ACERCO A LA OFICINA PARA INDICAR QUE REALIZARA SU PAGO EL DIA SABADO 13 DE SEPTIEMBRE",
+        "creation_date": "2025-09-11T14:41:01.085Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 174,
+    "fields": {
+        "usuario": 2,
+        "credito": 286,
+        "puntuacion": 2,
+        "comentario": "EL SEÑOR SE ACERCO A LA OFICINA PARA INDICAR QUE REALIZARA SU PAGO EL DIA SABADO 13 DE SEPTIEMBRE",
+        "creation_date": "2025-09-11T14:41:02.464Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 175,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "Comenta la señorita que debido por quebrantos de salud estuvo hospitalizada y por lo mismo no tenía con ella su teléfono para contestar; además generó gastos que por consecuencia no tiene para la cuota total, sin embargo se acordó que abonará intereses y mora para este lunes 15, posterior a ello poniéndose al día el 30 de este mes con ambas cuotas.",
+        "creation_date": "2025-09-11T15:04:30.942Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 176,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-12T07:01:24.533Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 177,
+    "fields": {
+        "usuario": 5,
+        "credito": 264,
+        "puntuacion": 2,
+        "comentario": "tuvo un inconveniente con su vehiculo de reparto, el cual se encuentra en un taller sin embargo se comprometio a cancelar antes del 15",
+        "creation_date": "2025-09-12T20:50:07.901Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 178,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 2,
+        "comentario": "se compromete a cancelar cada 20",
+        "creation_date": "2025-09-12T20:55:46.529Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 179,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 2,
+        "comentario": "nos comunicamos al numero de telefono de la empresa y nos indico que este 15 estara cancelando, por lo que le daremos seguimiento.",
+        "creation_date": "2025-09-12T21:09:12.509Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 180,
+    "fields": {
+        "usuario": 3,
+        "credito": 340,
+        "puntuacion": 2,
+        "comentario": "USUARIO PR CUOTA Q 4134.00",
+        "creation_date": "2025-09-12T22:05:04.697Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 181,
+    "fields": {
+        "usuario": 3,
+        "credito": 284,
+        "puntuacion": 2,
+        "comentario": "INDICA QUE NO TIENE SEGURIDAD DEL DIA QUE RECIBIRA UN PAGO Y QUE ESPERA QUE SEA A LA BREVEDAD POSIBLE",
+        "creation_date": "2025-09-12T22:19:54.474Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 182,
+    "fields": {
+        "usuario": 3,
+        "credito": 240,
+        "puntuacion": 2,
+        "comentario": "INFORMA QUE CANCELA CUOTA DE Q3000.00  A PRIMERA HORA",
+        "creation_date": "2025-09-12T22:32:10.282Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 183,
+    "fields": {
+        "usuario": 3,
+        "credito": 282,
+        "puntuacion": 2,
+        "comentario": "SE INTENTO CONFIRMAR PROMESA DE PAGO PARA HOY 12092025",
+        "creation_date": "2025-09-12T22:45:50.267Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 184,
+    "fields": {
+        "usuario": 5,
+        "credito": 266,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE WILLIAM WILFREDO ALONZO CAAL realizo un abono de: Q375.00",
+        "creation_date": "2025-09-12T22:59:24.500Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 185,
+    "fields": {
+        "usuario": 3,
+        "credito": 240,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-13T07:32:33.771Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 186,
+    "fields": {
+        "usuario": 2,
+        "credito": 168,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-13T07:32:33.949Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 187,
+    "fields": {
+        "usuario": 2,
+        "credito": 286,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-13T07:32:33.994Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 188,
+    "fields": {
+        "usuario": 5,
+        "credito": 264,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-15T09:46:46.123Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 189,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-15T09:46:46.379Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 190,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-16T07:41:28.625Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 191,
+    "fields": {
+        "usuario": 3,
+        "credito": 240,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ALIDA REGINA GÓMEZ VALIENTE DE QUEJ realizo un abono de: Q2,750.00",
+        "creation_date": "2025-09-16T15:14:16.435Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 192,
+    "fields": {
+        "usuario": 5,
+        "credito": 264,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE EDIN RAÚL CASASOLA SALAZAR realizo un abono de: Q4,022.00",
+        "creation_date": "2025-09-16T15:21:31.265Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 193,
+    "fields": {
+        "usuario": 2,
+        "credito": 286,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE HÉCTOR ROLANDO LÉMUS LÓPEZ realizo un abono de: Q1,500.00",
+        "creation_date": "2025-09-16T15:42:54.319Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 194,
+    "fields": {
+        "usuario": 2,
+        "credito": 155,
+        "puntuacion": 2,
+        "comentario": "LA SEÑORA SE COMPROMETE A CANCELAR INTERESES DE Q500.00 EL 16/09/2025, Y A CANCELAR LA TOTALIDAD DE SU CREDITO EL 20/09/2025, MONTO DE Q.4719.00",
+        "creation_date": "2025-09-16T17:06:22.033Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 196,
+    "fields": {
+        "usuario": 1,
+        "credito": 65,
+        "puntuacion": 1,
+        "comentario": "ESTE CREDITO NO TIENE NINGUNA GESTION REALIZADA, Y TIENE 5 CUOTAS SIN CANCELAR",
+        "creation_date": "2025-09-16T18:04:56.650Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 197,
+    "fields": {
+        "usuario": 2,
+        "credito": 168,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE JOSE ESTUARDO CAN realizo un abono de: Q2,200.00",
+        "creation_date": "2025-09-16T18:31:38.558Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 198,
+    "fields": {
+        "usuario": 2,
+        "credito": 155,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE KARLA ROCIO HERNANDEZ RAMIREZ realizo un abono de: Q500.00",
+        "creation_date": "2025-09-16T18:35:20.190Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 199,
+    "fields": {
+        "usuario": 1,
+        "credito": 66,
+        "puntuacion": 1,
+        "comentario": "ESTE CREDITO NO TIENE NINGUNA GESTION REALIZADA Y TIENE 5 CUOTAS SIN PAGAR",
+        "creation_date": "2025-09-16T18:39:38.190Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 200,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 2,
+        "comentario": "SE INTENTO CONFIRMAR PROMESA DE PAGO PARA HOY 12092025\r\n- NO RESPONDE LOS MENSAJES NI LLAMADAS, SE PROCEDIO A ESCRIBIRLE AL FIADOR QUEDANDO A LA ESPERA DE RESPUESTA",
+        "creation_date": "2025-09-16T22:45:25.682Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 201,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\n- segun nos comentaron no cuenta con telefono se le busco en taqueria jalisco y nos indicaron que los turnos son en la tarde y noche, se le dara seguimiento",
+        "creation_date": "2025-09-16T22:49:20.038Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 202,
+    "fields": {
+        "usuario": 5,
+        "credito": 339,
+        "puntuacion": 2,
+        "comentario": "Nuevamente el señor se comprometio a abonar para el sabado 20 del presente mes.",
+        "creation_date": "2025-09-16T22:52:37.722Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 203,
+    "fields": {
+        "usuario": 5,
+        "credito": 79,
+        "puntuacion": 2,
+        "comentario": "- quedo a cancelar el dia de mañana, ya que donde labora ahora, no cuentan con energia.",
+        "creation_date": "2025-09-16T22:53:27.622Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 204,
+    "fields": {
+        "usuario": 5,
+        "credito": 327,
+        "puntuacion": 2,
+        "comentario": "cuenta con negativa de pago.\r\nya que no responde llamadas ni mensajes.",
+        "creation_date": "2025-09-16T22:54:18.167Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 205,
+    "fields": {
+        "usuario": 5,
+        "credito": 336,
+        "puntuacion": 2,
+        "comentario": "el señor Misael, se compromete a cancelar para el dia sabado el total del credito",
+        "creation_date": "2025-09-16T22:55:16.253Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 206,
+    "fields": {
+        "usuario": 2,
+        "credito": 308,
+        "puntuacion": 2,
+        "comentario": "SE LOGRO LOCALIZAR A LA ESPOSA INGRID MARISON BIN, NOS COMENTA QUE NO SE ENCUENTRA EN TACTIC Y NO HA PODIDO COMUNICARSE CON, QUE ESTARA DE REGRESO A TACTIC EL DIA DOMINGO",
+        "creation_date": "2025-09-17T00:26:01.014Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 207,
+    "fields": {
+        "usuario": 3,
+        "credito": 284,
+        "puntuacion": 2,
+        "comentario": "INDICA QUE ESTA ESPERANDO UN DEPOSITO Y QUE ESPERA  PUEDA CANCELAR EL DÍA DE MAÑANA 1609",
+        "creation_date": "2025-09-17T00:34:29.513Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 208,
+    "fields": {
+        "usuario": 2,
+        "credito": 147,
+        "puntuacion": 2,
+        "comentario": "EL SEÑOR DEPOSITA Q.405.00, EL DIA DE HOY 16/09/2025 Y TENEMOS PROMESA DE PAGO PARA EL 1 DE OCTUBRE POR LA CANCELACION DE CREDITO",
+        "creation_date": "2025-09-17T00:39:55.447Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 209,
+    "fields": {
+        "usuario": 7,
+        "credito": 293,
+        "puntuacion": 2,
+        "comentario": "Cliente informa que el dia de mañana estará realizando el pago de la cuota",
+        "creation_date": "2025-09-17T01:33:51.776Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 210,
+    "fields": {
+        "usuario": 7,
+        "credito": 354,
+        "puntuacion": 2,
+        "comentario": "cliente informa que tuvo un inconveniente con el pago de planilla al parecer tuvieron inconvenientes con su plataforma de ingreso de facturas y estarán acreditando a finales de mes.",
+        "creation_date": "2025-09-17T01:43:53.979Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 211,
+    "fields": {
+        "usuario": 5,
+        "credito": 337,
+        "puntuacion": 2,
+        "comentario": "el señor nos comenta que estara abonando el dia sabado. se le dara seguimiento",
+        "creation_date": "2025-09-17T04:12:04.810Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 212,
+    "fields": {
+        "usuario": 5,
+        "credito": 330,
+        "puntuacion": 2,
+        "comentario": "cuenta con negativa de pago, no responde mensajes ni llamadas.",
+        "creation_date": "2025-09-17T04:13:13.677Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 213,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 2,
+        "comentario": "se compromete a abonar la cantidad d e1,000.00 para fin de mes, posteriormente una restructuracion. no se encuentra en el dpto.",
+        "creation_date": "2025-09-17T04:14:50.172Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 214,
+    "fields": {
+        "usuario": 5,
+        "credito": 178,
+        "puntuacion": 2,
+        "comentario": "el señor se comprometa cancelar para el dia sabado posteriormente se le restructura ya que el igss le tiene retenido el salario",
+        "creation_date": "2025-09-17T04:18:47.058Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 215,
+    "fields": {
+        "usuario": 5,
+        "credito": 245,
+        "puntuacion": 2,
+        "comentario": "no contesta llamadas ni mensajes, se le dara seguimiento a traves de visitas el dia de mañana 17/09/2025",
+        "creation_date": "2025-09-17T04:19:35.197Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 216,
+    "fields": {
+        "usuario": 5,
+        "credito": 69,
+        "puntuacion": 2,
+        "comentario": "se compromete a cancelar antes del 22 de septiembre",
+        "creation_date": "2025-09-17T04:20:18.899Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 217,
+    "fields": {
+        "usuario": 5,
+        "credito": 346,
+        "puntuacion": 2,
+        "comentario": "el dia de hoy estara cancelando.",
+        "creation_date": "2025-09-17T14:56:42.229Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 218,
+    "fields": {
+        "usuario": 5,
+        "credito": 147,
+        "puntuacion": 3,
+        "comentario": "EL SEÑOR DEPOSITA Q.405.00, EL DIA DE HOY 16/09/2025 Y TENEMOS PROMESA DE PAGO PARA EL 1 DE OCTUBRE POR LA CANCELACION DE CREDITO",
+        "creation_date": "2025-09-17T15:01:28.250Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 219,
+    "fields": {
+        "usuario": 5,
+        "credito": 69,
+        "puntuacion": 2,
+        "comentario": "se compromete a cancelar antes del 22 de septiembre\r\n- el dia de hoy se comunico que estara abonando intereses 300 en la tarde.",
+        "creation_date": "2025-09-17T15:04:49.823Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 220,
+    "fields": {
+        "usuario": 5,
+        "credito": 147,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE SERGIO ALEXANDER CAAL CAL realizo un abono de: Q405.00",
+        "creation_date": "2025-09-17T15:20:16.512Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 221,
+    "fields": {
+        "usuario": 2,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "RESPONDIO LOS MENSAJES EL DIA DE HOY 17/09, SE COMPROMETE A PAGAR EL DIA DE HOY 17/09 ANTES DE LAS 5 DE LA TARDE EL MONTO DE 300.00",
+        "creation_date": "2025-09-17T15:56:14.344Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 222,
+    "fields": {
+        "usuario": 2,
+        "credito": 308,
+        "puntuacion": 2,
+        "comentario": "SE LOGRO LOCALIZAR A LA ESPOSA INGRID MARISON BIN, NOS COMENTA QUE NO SE ENCUENTRA EN TACTIC Y NO HA PODIDO COMUNICARSE CON, QUE ESTARA DE REGRESO A TACTIC EL DIA DOMINGO",
+        "creation_date": "2025-09-18T15:29:44.075Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 223,
+    "fields": {
+        "usuario": 2,
+        "credito": 281,
+        "puntuacion": 2,
+        "comentario": "SE PLATICO CON LA FIADORA QUE ES LA HERMANA, SHEYLA LEAL, ELLA SE COMPROMETIO A REALIZAR EL PAGO DE INTERESES Y MORA PARA EL DIA LUNES  22/09, UN MONTO DE Q.650.00",
+        "creation_date": "2025-09-18T15:33:35.480Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 224,
+    "fields": {
+        "usuario": 5,
+        "credito": 69,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE HEYDY VIRGINIA MOLINA OLIVA realizo un abono de: Q300.00",
+        "creation_date": "2025-09-18T15:40:43.225Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 225,
+    "fields": {
+        "usuario": 5,
+        "credito": 346,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ANA BEATRIZ CAL QUEJ realizo un abono de: Q2,638.00",
+        "creation_date": "2025-09-18T16:16:43.999Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 226,
+    "fields": {
+        "usuario": 7,
+        "credito": 293,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE BRYAN RUBÉN DARÍO CASTILLO FERNÁNDEZ realizo un abono de: Q4,133.00",
+        "creation_date": "2025-09-18T16:35:59.456Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 227,
+    "fields": {
+        "usuario": 2,
+        "credito": 296,
+        "puntuacion": 2,
+        "comentario": "PROMESA DE PAGO CUOTA 1318.00 PARA EL VIERNES 19/09",
+        "creation_date": "2025-09-18T18:50:39.144Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 228,
+    "fields": {
+        "usuario": 3,
+        "credito": 340,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MELVIN SANTOS MÓ CUC realizo un abono de: Q17,050.00",
+        "creation_date": "2025-09-18T20:19:01.526Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 229,
+    "fields": {
+        "usuario": 2,
+        "credito": 296,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-19T07:35:08.902Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 230,
+    "fields": {
+        "usuario": 3,
+        "credito": 284,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MIRIAM ANTONIETA SORIA LÓPEZ DE ARÉVALO realizo un abono de: Q1,300.00",
+        "creation_date": "2025-09-19T15:09:26.509Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 231,
+    "fields": {
+        "usuario": 5,
+        "credito": 337,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-20T08:53:02.139Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 232,
+    "fields": {
+        "usuario": 5,
+        "credito": 339,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-20T08:53:02.315Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 233,
+    "fields": {
+        "usuario": 5,
+        "credito": 336,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-20T08:53:02.379Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 234,
+    "fields": {
+        "usuario": 5,
+        "credito": 178,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-20T08:53:02.448Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 235,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-20T08:53:02.500Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 236,
+    "fields": {
+        "usuario": 2,
+        "credito": 281,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-22T07:59:28.571Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 237,
+    "fields": {
+        "usuario": 2,
+        "credito": 308,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-22T07:59:28.938Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 238,
+    "fields": {
+        "usuario": 2,
+        "credito": 296,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE AURELIO QUEJ realizo un abono de: Q1,320.00",
+        "creation_date": "2025-09-22T16:17:27.333Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 239,
+    "fields": {
+        "usuario": 5,
+        "credito": 79,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE LUIS FERNANDO CAAL realizo un abono de: Q250.00",
+        "creation_date": "2025-09-23T14:22:16.075Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 240,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "LA SEÑORITA INDICA QUE SU PAGO DE PLANILLLA ES EN FECHA 30 QUE POR ESA RAZON DA PROMESA DE PAGO PARA DICHA FECHA; Y EL MOTIVO DEL ATRASO SE DEBIO POR QUEBRANTOS DE  SALUD.",
+        "creation_date": "2025-09-23T16:45:45.857Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 241,
+    "fields": {
+        "usuario": 6,
+        "credito": 303,
+        "puntuacion": 2,
+        "comentario": "ACUERDO DE PAGO PARA TODAS SUS CUOTAS REALIZA EL PAGO EL 30 DE CADA MES",
+        "creation_date": "2025-09-23T16:50:12.799Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 242,
+    "fields": {
+        "usuario": 2,
+        "credito": 281,
+        "puntuacion": 1,
+        "comentario": "SE LE LLAMO, CONTESTO UNA DE LAS HERMANAS, NOS COMENTA QUE LA SEÑORA SHERLY DEJO DICHO QUE ESTARIA REALIZANDO SU PAGO POR UN MONTO DE Q650.00 EL DIA VIERNES, SE LE INFORMO QUE SE LE ESTARA LLAMANDO NUEVAMENTE SI NO HA REALIZADO SU PAGO PARA LAS 5 DE LA TARDE",
+        "creation_date": "2025-09-24T14:45:39.967Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 243,
+    "fields": {
+        "usuario": 2,
+        "credito": 308,
+        "puntuacion": 1,
+        "comentario": "NOS COMUNICAMOS EL DIA DE HOY 24/09 CON SU ESPOSA, ELLA LOGRO QUE DON DIEGO NOS CONTESTARA LOS MENSAJES, SE COMPROMETIO A ABONAR ALGO EL DIA DE HOY NO DIO UN MONTO ESPECIFICO, Y HA LLEGAR A OFICINA EL DIA DE MAÑANA 25/09 PARA VER COMO PUEDE SOLVENTAR LA SITUACION DE SU CREDITO",
+        "creation_date": "2025-09-24T15:04:54.897Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 244,
+    "fields": {
+        "usuario": 2,
+        "credito": 155,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE KARLA ROCIO HERNANDEZ RAMIREZ realizo un abono de: Q4,691.00",
+        "creation_date": "2025-09-24T21:35:19.573Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 245,
+    "fields": {
+        "usuario": 5,
+        "credito": 171,
+        "puntuacion": 2,
+        "comentario": "cancela el ultimo dia de mes, ya que para esas fechas le acreditan salario. normalmente ha cumplido sus promesas.",
+        "creation_date": "2025-09-25T14:20:57.226Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 246,
+    "fields": {
+        "usuario": 5,
+        "credito": 358,
+        "puntuacion": 2,
+        "comentario": "se promete a cancelar el 29 de septiembre del 2025.00",
+        "creation_date": "2025-09-25T14:22:25.403Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 247,
+    "fields": {
+        "usuario": 5,
+        "credito": 299,
+        "puntuacion": 2,
+        "comentario": "se compromete a cancelar el dia de hoy, caso contrario seria el dia de mañana.",
+        "creation_date": "2025-09-25T14:32:17.059Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 248,
+    "fields": {
+        "usuario": 5,
+        "credito": 327,
+        "puntuacion": 2,
+        "comentario": "cuenta con negativa de pago.\r\nya que no responde llamadas ni mensajes.\r\n- el dia de mañana se compromete a llegar a oficina a restructurar el prestamo.",
+        "creation_date": "2025-09-25T14:58:35.768Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 249,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 2,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\n- estara cancelando entre hoy y mañana segun me comenta, normalmente cancela para estas fechas.",
+        "creation_date": "2025-09-25T15:26:01.726Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 250,
+    "fields": {
+        "usuario": 5,
+        "credito": 242,
+        "puntuacion": 2,
+        "comentario": "promesa para el dia de mañana.",
+        "creation_date": "2025-09-25T15:39:39.116Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 251,
+    "fields": {
+        "usuario": 5,
+        "credito": 245,
+        "puntuacion": 2,
+        "comentario": "no contesta llamadas ni mensajes, se le dara seguimiento a traves de visitas el dia de mañana 17/09/2025\r\n- se le llamo al señor y nos indico que a fin de mes estara cancelando",
+        "creation_date": "2025-09-25T17:31:23.322Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 252,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 2,
+        "comentario": "se compromete a abonar la cantidad d e1,000.00 para fin de mes, posteriormente una restructuracion. no se encuentra en el dpto.\r\n- se le dio seguimiento, y nos confirma que a fin de mes abonara",
+        "creation_date": "2025-09-25T17:43:44.205Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 253,
+    "fields": {
+        "usuario": 5,
+        "credito": 337,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\n- el dia de mañana viernes se restructurara.",
+        "creation_date": "2025-09-25T22:12:32.272Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 254,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 2,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\n* segun nos comentaron no cuenta con telefono se le busco en taqueria jalisco y nos indicaron que los turnos son en la tarde y noche, se le dara seguimiento\r\n* Se visito a la señora Gladys en su vivienda el dia de hoy, nos atendio su hermana quien nos brindo el nuevo numero.  3161 8043, con promesa de pago el dia 30 de septiembre 2025",
+        "creation_date": "2025-09-25T22:15:12.731Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 255,
+    "fields": {
+        "usuario": 5,
+        "credito": 299,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-26T08:13:36.208Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 256,
+    "fields": {
+        "usuario": 5,
+        "credito": 327,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-26T08:13:36.439Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 257,
+    "fields": {
+        "usuario": 5,
+        "credito": 242,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-26T08:13:36.484Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 258,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-26T08:13:36.530Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 259,
+    "fields": {
+        "usuario": 2,
+        "credito": 281,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-26T08:13:36.576Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 260,
+    "fields": {
+        "usuario": 2,
+        "credito": 308,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE DIEGO ARMANDO QUEJ AC realizo un abono de: Q500.00",
+        "creation_date": "2025-09-26T14:27:01.989Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 261,
+    "fields": {
+        "usuario": 5,
+        "credito": 299,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE IRMA YOLANDA CHIQUIN BAC DE HERRERA realizo un abono de: Q1,407.40",
+        "creation_date": "2025-09-26T14:56:18.880Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 262,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE LUIS DAVID CHEN CHAJ realizo un abono de: Q2,000.00",
+        "creation_date": "2025-09-26T14:58:26.972Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 263,
+    "fields": {
+        "usuario": 5,
+        "credito": 339,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MARCO TULIO COY CAAL realizo un abono de: Q200.00",
+        "creation_date": "2025-09-26T21:47:43.131Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 264,
+    "fields": {
+        "usuario": 5,
+        "credito": 358,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-29T08:04:31.256Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 265,
+    "fields": {
+        "usuario": 5,
+        "credito": 245,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-29T08:04:31.498Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 266,
+    "fields": {
+        "usuario": 7,
+        "credito": 354,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-29T08:04:31.542Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 267,
+    "fields": {
+        "usuario": 5,
+        "credito": 337,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE DURWIN OVIDIO PAZ CASASOLA realizo un abono de: Q5,499.41",
+        "creation_date": "2025-09-29T18:27:09.954Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 268,
+    "fields": {
+        "usuario": 5,
+        "credito": 171,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-30T09:08:16.691Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 269,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-30T09:08:16.894Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 270,
+    "fields": {
+        "usuario": 6,
+        "credito": 303,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-30T09:08:16.943Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 271,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-30T09:08:16.990Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 272,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-09-30T09:08:17.037Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 273,
+    "fields": {
+        "usuario": 7,
+        "credito": 354,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE EVELYN PAOLA SIERRA GARCIA realizo un abono de: Q360.00",
+        "creation_date": "2025-09-30T15:23:02.955Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 274,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE CÉSAR JOSUE CAAL MORALES realizo un abono de: Q905.00",
+        "creation_date": "2025-09-30T17:09:15.277Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 275,
+    "fields": {
+        "usuario": 5,
+        "credito": 242,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\n- se le ha estado presionando a la señora para que pague, sin embargo nos comento que sera el dia de mañana. se le dara seguimiento por la tarde.",
+        "creation_date": "2025-09-30T20:24:39.736Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 276,
+    "fields": {
+        "usuario": 5,
+        "credito": 417,
+        "puntuacion": 2,
+        "comentario": "promesa para hoy 5:30 pm",
+        "creation_date": "2025-09-30T20:25:50.131Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 277,
+    "fields": {
+        "usuario": 5,
+        "credito": 327,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\nhabia quedado en restructrutar sin embargo ya no se presento.\r\n- no tiene una fecha especifica para poder realizar abonos o restructura",
+        "creation_date": "2025-09-30T20:28:51.195Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 278,
+    "fields": {
+        "usuario": 5,
+        "credito": 171,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\nhoy cancela en la tarde.",
+        "creation_date": "2025-09-30T20:29:57.218Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 279,
+    "fields": {
+        "usuario": 5,
+        "credito": 358,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\nquedo en cancelar el dia de hoy.",
+        "creation_date": "2025-09-30T20:31:00.155Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 280,
+    "fields": {
+        "usuario": 5,
+        "credito": 245,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\nno se ha podido localizar al señor joel, se le dara seguimiento",
+        "creation_date": "2025-09-30T20:31:55.075Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 281,
+    "fields": {
+        "usuario": 5,
+        "credito": 245,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\nno se ha podido localizar al señor joel, se le dara seguimiento",
+        "creation_date": "2025-09-30T20:32:02.463Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 282,
+    "fields": {
+        "usuario": 5,
+        "credito": 178,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\n* sigue suspendido por el igss y no ha podido cancelar, se le dara seguimiento para restructura.",
+        "creation_date": "2025-09-30T20:33:23.174Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 283,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\n* nos comento el dia de hoy que para el jueves abonara la cantidad de Q 2,000.00",
+        "creation_date": "2025-09-30T20:34:43.579Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 284,
+    "fields": {
+        "usuario": 5,
+        "credito": 242,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-01T08:03:19.164Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 285,
+    "fields": {
+        "usuario": 6,
+        "credito": 303,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE CANDY CLARAMARÍA CANTORAL CAAL realizo un abono de: Q2,429.00",
+        "creation_date": "2025-10-01T15:34:48.193Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 286,
+    "fields": {
+        "usuario": 5,
+        "credito": 358,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE AMANDA LISSETTE BARRIOS MOLINA realizo un abono de: Q604.00",
+        "creation_date": "2025-10-01T15:51:36.829Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 287,
+    "fields": {
+        "usuario": 5,
+        "credito": 171,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE Hugo Keyner Quib Caal realizo un abono de: Q1,468.00",
+        "creation_date": "2025-10-01T16:48:06.294Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 288,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-02T07:08:29.785Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 289,
+    "fields": {
+        "usuario": 5,
+        "credito": 417,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MARVIN JOSE COY CÚ realizo un abono de: Q2,011.00",
+        "creation_date": "2025-10-02T16:48:35.948Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 290,
+    "fields": {
+        "usuario": 5,
+        "credito": 417,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MARVIN JOSE COY CÚ realizo un abono de: Q2,011.00",
+        "creation_date": "2025-10-02T16:50:21.570Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 291,
+    "fields": {
+        "usuario": 5,
+        "credito": 417,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MARVIN JOSE COY CÚ realizo un abono de: Q1,478.00",
+        "creation_date": "2025-10-02T17:23:30.605Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 292,
+    "fields": {
+        "usuario": 5,
+        "credito": 266,
+        "puntuacion": 2,
+        "comentario": "* nos indico que estara cancelando el 15 del presente mes. sin falta.",
+        "creation_date": "2025-10-03T17:49:38.845Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 293,
+    "fields": {
+        "usuario": 5,
+        "credito": 418,
+        "puntuacion": 2,
+        "comentario": "* se comunico indicandonos que terminara de cancelar el 15 del presente mes.",
+        "creation_date": "2025-10-03T17:53:28.138Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 294,
+    "fields": {
+        "usuario": 5,
+        "credito": 192,
+        "puntuacion": 2,
+        "comentario": "hasta hoy le cancelan el salario, hara el pago el dia de mañana",
+        "creation_date": "2025-10-06T14:52:31.868Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 295,
+    "fields": {
+        "usuario": 5,
+        "credito": 192,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-07T07:06:12.610Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 296,
+    "fields": {
+        "usuario": 5,
+        "credito": 192,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE PEDRO EFRAIN CAN PAAU realizo un abono de: Q689.00",
+        "creation_date": "2025-10-07T15:05:16.916Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 297,
+    "fields": {
+        "usuario": 5,
+        "credito": 264,
+        "puntuacion": 2,
+        "comentario": "*se compromete a cancelar antes del 10 del presente mes.",
+        "creation_date": "2025-10-08T14:19:02.775Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 298,
+    "fields": {
+        "usuario": 5,
+        "credito": 423,
+        "puntuacion": 2,
+        "comentario": "cancelara el dia viernes 10 del presente mes.",
+        "creation_date": "2025-10-08T14:55:48.843Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 299,
+    "fields": {
+        "usuario": 2,
+        "credito": 231,
+        "puntuacion": 2,
+        "comentario": "PAGO DE CUOTA PARA EL DIA DE 10/10",
+        "creation_date": "2025-10-08T14:57:07.968Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 300,
+    "fields": {
+        "usuario": 2,
+        "credito": 96,
+        "puntuacion": 2,
+        "comentario": "PROMESA DE PAGO PARA EL DIA SABADO 11/10/2025, PAGO DE UN MONTO DE Q.1,319.00 CORRESPONDIENTE A UN MES DE INTERESES Y MORA",
+        "creation_date": "2025-10-08T15:00:17.654Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 301,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 2,
+        "comentario": "* nos indico que mañana juntara las cuota de prestamo.",
+        "creation_date": "2025-10-08T15:12:47.424Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 302,
+    "fields": {
+        "usuario": 5,
+        "credito": 147,
+        "puntuacion": 2,
+        "comentario": "* se compromete a cancelar el 15 con el salario.",
+        "creation_date": "2025-10-08T15:23:46.624Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 303,
+    "fields": {
+        "usuario": 5,
+        "credito": 423,
+        "puntuacion": 3,
+        "comentario": "cancelado",
+        "creation_date": "2025-10-08T16:23:19.711Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 304,
+    "fields": {
+        "usuario": 5,
+        "credito": 271,
+        "puntuacion": 2,
+        "comentario": "se compromete a cancelar el dia viernes",
+        "creation_date": "2025-10-08T16:27:19.957Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 305,
+    "fields": {
+        "usuario": 5,
+        "credito": 423,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE JOSÉ ALEJANDRO ACABAL DAZ realizo un abono de: Q3,119.60",
+        "creation_date": "2025-10-08T20:50:26.274Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 306,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-09T07:04:34.935Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 307,
+    "fields": {
+        "usuario": 5,
+        "credito": 264,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-10T09:40:37.573Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 308,
+    "fields": {
+        "usuario": 2,
+        "credito": 231,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-10T09:40:37.610Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 309,
+    "fields": {
+        "usuario": 5,
+        "credito": 271,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-10T09:40:37.644Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 310,
+    "fields": {
+        "usuario": 2,
+        "credito": 271,
+        "puntuacion": 2,
+        "comentario": "LA SEÑORA COMENTA QUE TUVO UN ATRASO Y QUE ESTA A LA ESPERA DE UN DEPOSITO PARA PAGAR SU CUOTA, SE COMPROMETE A REALIZAR SU PAGO EL DIA LUNES 13 DE OCTUBRE",
+        "creation_date": "2025-10-10T22:18:30.652Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 311,
+    "fields": {
+        "usuario": 2,
+        "credito": 271,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-13T07:34:26.264Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 312,
+    "fields": {
+        "usuario": 2,
+        "credito": 96,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-13T07:34:26.296Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 313,
+    "fields": {
+        "usuario": 5,
+        "credito": 264,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE EDIN RAÚL CASASOLA SALAZAR realizo un abono de: Q2,022.00",
+        "creation_date": "2025-10-13T15:14:06.459Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 314,
+    "fields": {
+        "usuario": 5,
+        "credito": 264,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE EDIN RAÚL CASASOLA SALAZAR realizo un abono de: Q2,000.00",
+        "creation_date": "2025-10-13T15:23:08.308Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 315,
+    "fields": {
+        "usuario": 2,
+        "credito": 271,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE AMANDA LISSETTE BARRIOS MOLINA realizo un abono de: Q507.00",
+        "creation_date": "2025-10-14T15:24:41.604Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 316,
+    "fields": {
+        "usuario": 5,
+        "credito": 429,
+        "puntuacion": 2,
+        "comentario": "promesa de pago para el dia de mañana 15/10/2025",
+        "creation_date": "2025-10-14T20:21:20.423Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 317,
+    "fields": {
+        "usuario": 3,
+        "credito": 96,
+        "puntuacion": 1,
+        "comentario": "USUARIA INDICA QUE ESTA BUSCANDO RENEGOCIAR SUS DEUDAS PEDIRÁ A FIADORA QUE SE PRESENTEN PARA FIRMAR UN CONTRATO DE AMPLIACIÓN DE PLAZO. ACTUALMENTE TRABAJA EN BANCO AZTECA",
+        "creation_date": "2025-10-14T20:48:50.109Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 318,
+    "fields": {
+        "usuario": 3,
+        "credito": 284,
+        "puntuacion": 2,
+        "comentario": "INFORMA QUE REALIZARA UN ABONO Q1500.00 17/10, DESEA SE LE GESTIONE UNA AMPLIACIÓN DE PLAZO PARA PAGAR A CAPITAL. CONFIRMARA SI A 12 O 18 MESES",
+        "creation_date": "2025-10-14T21:05:43.996Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 319,
+    "fields": {
+        "usuario": 3,
+        "credito": 168,
+        "puntuacion": 2,
+        "comentario": "PAGO DE CUOTA Q2235.00 16/10/2025. RAZON DE MORA // INDICA QUE HA TENIDO PROBLEMAS DE SALUD Y QUE ESTA SEMANA SE PONE AL DIA",
+        "creation_date": "2025-10-14T21:10:54.616Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 320,
+    "fields": {
+        "usuario": 3,
+        "credito": 352,
+        "puntuacion": 2,
+        "comentario": "INDICA QUE ESTA ESPERANDO UNA CONSOLIDACION DE DEUDAS QUE LE OFRECIO BANCO INDUSTRIAL POR PARTE DE SU TRABAJO. ESTA DANDO INFORMACION ESTA SEMANA",
+        "creation_date": "2025-10-14T21:16:50.096Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 321,
+    "fields": {
+        "usuario": 5,
+        "credito": 242,
+        "puntuacion": 2,
+        "comentario": "se compromete a pagar el dia de mañana",
+        "creation_date": "2025-10-14T21:40:01.583Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 322,
+    "fields": {
+        "usuario": 3,
+        "credito": 409,
+        "puntuacion": 2,
+        "comentario": "CLIENTE INFORMA QUE TUVO UN ACCIDENTE Y QUE ESTA EN ESPERA DE UN PAGO POR VACACIONES PARA PONERSE AL DÍA. NO HA DADO FECHAS CONCRETAS  /// FIADOR TAMBIEN ESTA EN ATRASO",
+        "creation_date": "2025-10-14T21:45:55.866Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 323,
+    "fields": {
+        "usuario": 3,
+        "credito": 409,
+        "puntuacion": 2,
+        "comentario": "CLIENTE INFORMA QUE TUVO UN ACCIDENTE Y QUE ESTA EN ESPERA DE UN PAGO POR VACACIONES PARA PONERSE AL DÍA. NO HA DADO FECHAS CONCRETAS  /// FIADOR TAMBIEN ESTA EN ATRASO",
+        "creation_date": "2025-10-14T21:45:57.011Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 324,
+    "fields": {
+        "usuario": 1,
+        "credito": 159,
+        "puntuacion": 2,
+        "comentario": "CANCELARA EL TOTAL DEL CREDITO",
+        "creation_date": "2025-10-14T22:39:03.503Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 325,
+    "fields": {
+        "usuario": 1,
+        "credito": 159,
+        "puntuacion": 3,
+        "comentario": "PRUEBAA",
+        "creation_date": "2025-10-14T22:42:38.516Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 326,
+    "fields": {
+        "usuario": 3,
+        "credito": 118,
+        "puntuacion": 2,
+        "comentario": "INDICA QUE HA TENIDO CAMBIOS EN LOS INGRESOS Y QUE ESTA  MANEJANDO UN VEHICULO CON LO CUAL PODRÍA EMPEZAR A PAGAR 500.00 MENSUALES. SE DARA SEGUIMIENTO YA QUE OFRECE PAGO PARA MAÑANA 15 PERO NO SE TIENE CERTEZA",
+        "creation_date": "2025-10-14T22:44:56.597Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 327,
+    "fields": {
+        "usuario": 5,
+        "credito": 24,
+        "puntuacion": 2,
+        "comentario": "se le dara seguimiento ya que nos indica que tiene en venta un moto para la cancelacion total del credito.",
+        "creation_date": "2025-10-15T00:31:02.097Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 328,
+    "fields": {
+        "usuario": 5,
+        "credito": 245,
+        "puntuacion": 2,
+        "comentario": "se le dara seguimiento el dia de mañana. no contesta mensajes ni llamadas.",
+        "creation_date": "2025-10-15T00:40:06.571Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 329,
+    "fields": {
+        "usuario": 5,
+        "credito": 346,
+        "puntuacion": 2,
+        "comentario": "se compromete a cancelar antes del 18",
+        "creation_date": "2025-10-15T00:53:34.914Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 330,
+    "fields": {
+        "usuario": 5,
+        "credito": 427,
+        "puntuacion": 2,
+        "comentario": "se compromete a cancelar el dia de mañana por pago de quincena",
+        "creation_date": "2025-10-15T00:54:50.756Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 331,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 2,
+        "comentario": "se le dara seguimiento el dia de mañana ya que con contesta los msj",
+        "creation_date": "2025-10-15T00:56:02.759Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 332,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\n* se le visitara nuevamente ya que cuenta con negativa de pago.",
+        "creation_date": "2025-10-15T00:58:46.920Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 333,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\n* se le visitara nuevamente ya que cuenta con negativa de pago.",
+        "creation_date": "2025-10-15T00:59:16.821Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 334,
+    "fields": {
+        "usuario": 5,
+        "credito": 241,
+        "puntuacion": 2,
+        "comentario": "se procedera a llamar nuevamente a las referencias ya que no contesta y presenta negativa de pago",
+        "creation_date": "2025-10-15T01:02:23.495Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 335,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 2,
+        "comentario": "el dia 20 normalmente cancela.",
+        "creation_date": "2025-10-15T01:05:36.039Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 336,
+    "fields": {
+        "usuario": 5,
+        "credito": 416,
+        "puntuacion": 2,
+        "comentario": "no contesta llamadas ni mensajes, se procedera a llamar a referencias.",
+        "creation_date": "2025-10-15T01:08:59.477Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 337,
+    "fields": {
+        "usuario": 5,
+        "credito": 326,
+        "puntuacion": 2,
+        "comentario": "se compromete a realizar la restructura antes del 18 del presente mes, ya que por tiempo de los fiadores no ha podido.",
+        "creation_date": "2025-10-15T01:10:02.685Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 338,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 2,
+        "comentario": "el dia 20 normalmente cancela.",
+        "creation_date": "2025-10-15T01:51:09.114Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 339,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-15T08:28:25.238Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 340,
+    "fields": {
+        "usuario": 5,
+        "credito": 429,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-15T08:28:25.267Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 341,
+    "fields": {
+        "usuario": 5,
+        "credito": 427,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-15T08:28:25.296Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 342,
+    "fields": {
+        "usuario": 5,
+        "credito": 164,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-15T08:28:25.323Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 343,
+    "fields": {
+        "usuario": 5,
+        "credito": 242,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-15T08:28:25.355Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 344,
+    "fields": {
+        "usuario": 5,
+        "credito": 147,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-15T08:28:25.392Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 345,
+    "fields": {
+        "usuario": 5,
+        "credito": 418,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-15T08:28:25.425Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 346,
+    "fields": {
+        "usuario": 5,
+        "credito": 266,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-15T08:28:25.457Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 347,
+    "fields": {
+        "usuario": 2,
+        "credito": 263,
+        "puntuacion": 2,
+        "comentario": "SE ACORDO PROMESA DE PAGO DE UN ABONO DE 2800.00 QUETZALES PARA EL DIA LUNES",
+        "creation_date": "2025-10-15T15:12:33.268Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 348,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "A TRAVES DE UNA LLAMADA LA SEÑORITA HACE DE NUEVO UNA PROMESA DE PAGO PARA ESTE VIERNES 17/10 EFECTUANDO UN PAGO DE Q.1,617.00 CASO CONTRARIO SE PROCEDE A EMBARGO.",
+        "creation_date": "2025-10-15T19:30:00.258Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 349,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "A TRAVES DE UNA LLAMADA LA SEÑORITA HACE DE NUEVO UNA PROMESA DE PAGO PARA ESTE VIERNES 17/10 EFECTUANDO UN PAGO DE Q.1,617.00 CASO CONTRARIO SE PROCEDE A EMBARGO.",
+        "creation_date": "2025-10-15T19:30:05.717Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 350,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "A TRAVES DE UNA LLAMADA LA SEÑORITA HACE DE NUEVO UNA PROMESA DE PAGO PARA ESTE VIERNES 17/10 EFECTUANDO UN PAGO DE Q.1,617.00 CASO CONTRARIO SE PROCEDE A EMBARGO.",
+        "creation_date": "2025-10-15T19:30:20.475Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 351,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "La señorita hace una promesa de pago para este viernes 17/10 con una cuota de Q.1,617.00 caso contrario se empieza con el proceso de embargo.",
+        "creation_date": "2025-10-15T19:34:50.792Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 352,
+    "fields": {
+        "usuario": 1,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "caso de prueba",
+        "creation_date": "2025-10-15T19:44:54.983Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 353,
+    "fields": {
+        "usuario": 1,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "caso de prueba",
+        "creation_date": "2025-10-15T19:48:11.700Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 354,
+    "fields": {
+        "usuario": 1,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "",
+        "creation_date": "2025-10-15T19:51:47.257Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 355,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "La señorita hace una promesa de pago para este viernes 17/10 con una cuota de Q.1,617.00 caso contrario se empieza con el proceso de embargo.",
+        "creation_date": "2025-10-15T19:56:34.209Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 356,
+    "fields": {
+        "usuario": 6,
+        "credito": 304,
+        "puntuacion": 2,
+        "comentario": "La señorita hace una promesa de pago para este viernes 17/10 con una cuota de Q.1,617.00 caso contrario se empieza con el proceso de embargo.",
+        "creation_date": "2025-10-15T20:07:50.687Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 357,
+    "fields": {
+        "usuario": 5,
+        "credito": 429,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE JOSUÉ FRANCISCO ORELLANA GONZÁLEZ realizo un abono de: Q2,416.00",
+        "creation_date": "2025-10-16T15:03:51.084Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 358,
+    "fields": {
+        "usuario": 5,
+        "credito": 427,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE HARY DARÍO HUN CAAL realizo un abono de: Q1,141.00",
+        "creation_date": "2025-10-16T15:46:49.909Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 359,
+    "fields": {
+        "usuario": 2,
+        "credito": 271,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE AMANDA LISSETTE BARRIOS MOLINA realizo un abono de: Q697.83",
+        "creation_date": "2025-10-16T16:19:48.603Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 360,
+    "fields": {
+        "usuario": 2,
+        "credito": 231,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ALBERTO TOT CHOC realizo un abono de: Q2,000.00",
+        "creation_date": "2025-10-16T18:54:53.371Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 361,
+    "fields": {
+        "usuario": 5,
+        "credito": 418,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ERICK ESTUARDO QUEJ REYES realizo un abono de: Q750.00",
+        "creation_date": "2025-10-16T19:08:20.802Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 362,
+    "fields": {
+        "usuario": 3,
+        "credito": 352,
+        "puntuacion": 2,
+        "comentario": "INDICA QUE  PRESENTÓ UN FIADOR YA QUE LE RECHAZARON EL CRÉDITO, OFRECE UN VEHICULO EN PAGO SI NO RESUELVE. INDICA QUE ESTARÁ NOTIFICANDO LOS PRÓXIMOS DIAS",
+        "creation_date": "2025-10-16T19:48:54.406Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 363,
+    "fields": {
+        "usuario": 3,
+        "credito": 96,
+        "puntuacion": 2,
+        "comentario": "MAYRA SIERRA  PAGA Q 2610.00 INTERES/MORA  17/10/2025. RAZON DE MORA /// REDUCCION DE INGRESOS POR BAJAS EN EL NEGOCIO, ACTUALMENTE ESTA TRABAJANDO EN BANCO AZTECA",
+        "creation_date": "2025-10-16T21:21:40.491Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 364,
+    "fields": {
+        "usuario": 2,
+        "credito": 150,
+        "puntuacion": 2,
+        "comentario": "SE LE LLAMO AL SEÑOR NOS COMENTA QUE ESTA A LA ESPERA DE UN PAGO PARA CANCELAR LA TOTALIDAD DE SU CREDITO ESTA SEMANA, SI PARA MAÑANA NO CONSEGUI EL MONTO SE COMPROMETE A ABONAR 1500.00 EL VIERNES 17/10/, Y LA OTRA SEMANA CANCELAR EL CREDITO",
+        "creation_date": "2025-10-16T21:25:50.221Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 365,
+    "fields": {
+        "usuario": 2,
+        "credito": 348,
+        "puntuacion": 2,
+        "comentario": "SE LE LLAMO A LA SEÑORA NOS COMENTA QUE SU VENTA HA ESTADO BAJA Y POR ESO NO HA PODIDO CANCELAR SU CUOTA, SE COMPROMETE A CANCELAR EL MARTES 21/10 UN MONTO DE Q.800.00",
+        "creation_date": "2025-10-16T21:32:14.513Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 366,
+    "fields": {
+        "usuario": 2,
+        "credito": 293,
+        "puntuacion": 2,
+        "comentario": "SE LE ESCRIBIO POR WHATSAPP CON RELACION A SU PAGO, EL NOS COMENTA QUE ESTARA REALIZANDOLO EL DIA LUNES 20/10 A MEDIO DIA, EL PAGO TOTAL DE SU CUOTA Q.4133.00",
+        "creation_date": "2025-10-16T21:43:15.244Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 367,
+    "fields": {
+        "usuario": 3,
+        "credito": 168,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE JOSE ESTUARDO CAN realizo un abono de: Q2,250.00",
+        "creation_date": "2025-10-16T21:50:39.388Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 368,
+    "fields": {
+        "usuario": 5,
+        "credito": 266,
+        "puntuacion": 1,
+        "comentario": "El señor William nos comento que realizara el pago de su credito el dia 28 de octubre del presente año",
+        "creation_date": "2025-10-17T01:51:43.426Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 369,
+    "fields": {
+        "usuario": 5,
+        "credito": 330,
+        "puntuacion": 2,
+        "comentario": "se tuvo comunicacion con el señor Cesar Asig, y nos comenta que estara abonando a la cuenta a fin de mes, asi mismo se le explico sobre una restructura",
+        "creation_date": "2025-10-17T02:22:24.709Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 370,
+    "fields": {
+        "usuario": 5,
+        "credito": 242,
+        "puntuacion": 2,
+        "comentario": "nos comenta que mañana estara realizando un abono al credito se le dara seguimiento",
+        "creation_date": "2025-10-17T02:34:13.168Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 371,
+    "fields": {
+        "usuario": 5,
+        "credito": 147,
+        "puntuacion": 1,
+        "comentario": "se compromete a cancelar el dia de mañana.",
+        "creation_date": "2025-10-17T02:37:01.111Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 372,
+    "fields": {
+        "usuario": 5,
+        "credito": 266,
+        "puntuacion": 1,
+        "comentario": "El señor William nos comento que realizara el pago de su credito el dia 28 de octubre del presente año",
+        "creation_date": "2025-10-17T02:37:18.592Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 373,
+    "fields": {
+        "usuario": 5,
+        "credito": 346,
+        "puntuacion": 2,
+        "comentario": "se compromete a cancelar antes del 18",
+        "creation_date": "2025-10-17T02:40:35.644Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 374,
+    "fields": {
+        "usuario": 5,
+        "credito": 50,
+        "puntuacion": 2,
+        "comentario": "se compromete a cancelar a fin de mes, por temas de salario, se le dara seguimiento",
+        "creation_date": "2025-10-17T02:47:10.035Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 375,
+    "fields": {
+        "usuario": 2,
+        "credito": 146,
+        "puntuacion": 2,
+        "comentario": "NOS COMUNICAMOS CON ELLA, NOS INDICA QUE TUVO INCONVENIENTES QUE YA HABIA MENCIONADO Y QUE POR TAL MOTIVO NO SE HA PODIDO RECUPERAR ESTE MES NUEVAMENTE, SE COMPROMETE A PAGAR Q.400.00 EN CONCEPTO DE INTERESES PARA EL DIA DE HOY 17/10 A MAS TARDAR LAS 6 DE LA TARDE",
+        "creation_date": "2025-10-17T16:46:14.538Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 376,
+    "fields": {
+        "usuario": 5,
+        "credito": 266,
+        "puntuacion": 2,
+        "comentario": "El señor William nos comento que realizara el pago de su credito el dia 29 de octubre del presente año",
+        "creation_date": "2025-10-17T16:48:53.579Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 377,
+    "fields": {
+        "usuario": 2,
+        "credito": 288,
+        "puntuacion": 2,
+        "comentario": "EL SEÑOR NOS COMENTA QUE TUVO UN ACCIDENTE DE TRANSITO EL DIA LUNES Y QUE POR ESA RAZON SE ATRASO, SE COMPROMETE A REALIZAR EL PAGO DE SU CUOTA Q.1300.00 EL DIA LUNES A MEDIO DIA",
+        "creation_date": "2025-10-17T17:43:11.034Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 378,
+    "fields": {
+        "usuario": 5,
+        "credito": 237,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE LUIS DAVID CHEN CHAJ realizo un abono de: Q5,600.00",
+        "creation_date": "2025-10-17T21:02:57.556Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 379,
+    "fields": {
+        "usuario": 7,
+        "credito": 293,
+        "puntuacion": 2,
+        "comentario": "SE LE ESCRIBIO POR WHATSAPP CON RELACION A SU PAGO, EL NOS COMENTA QUE ESTARA REALIZANDOLO EL DIA LUNES 20/10 A MEDIO DIA, EL PAGO TOTAL DE SU CUOTA Q.4133.00",
+        "creation_date": "2025-10-17T23:12:43.952Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 380,
+    "fields": {
+        "usuario": 2,
+        "credito": 150,
+        "puntuacion": 2,
+        "comentario": "SE LE LLAMO AL SEÑOR NOS COMENTA QUE ESTA A LA ESPERA DE UN PAGO PARA CANCELAR LA TOTALIDAD DE SU CREDITO ESTA SEMANA, SI PARA MAÑANA NO CONSEGUI EL MONTO SE COMPROMETE A ABONAR 1500.00 EL VIERNES 17/10/, Y LA OTRA SEMANA CANCELAR EL CREDITO",
+        "creation_date": "2025-10-17T23:34:58.899Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 381,
+    "fields": {
+        "usuario": 5,
+        "credito": 346,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-18T07:29:30.661Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 382,
+    "fields": {
+        "usuario": 5,
+        "credito": 326,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-18T07:29:30.693Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 383,
+    "fields": {
+        "usuario": 2,
+        "credito": 288,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-20T09:18:38.452Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 384,
+    "fields": {
+        "usuario": 7,
+        "credito": 293,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-20T09:18:38.483Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 385,
+    "fields": {
+        "usuario": 3,
+        "credito": 352,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-20T09:18:38.509Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 386,
+    "fields": {
+        "usuario": 2,
+        "credito": 263,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-20T09:18:38.534Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 387,
+    "fields": {
+        "usuario": 2,
+        "credito": 348,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-21T07:30:14.628Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 388,
+    "fields": {
+        "usuario": 2,
+        "credito": 150,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-21T07:30:14.661Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 389,
+    "fields": {
+        "usuario": 5,
+        "credito": 346,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ANA BEATRIZ CAL QUEJ realizo un abono de: Q2,638.00",
+        "creation_date": "2025-10-21T15:20:23.143Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 390,
+    "fields": {
+        "usuario": 2,
+        "credito": 263,
+        "puntuacion": 2,
+        "comentario": "LA SEÑORA MANDO UN AUDIO, DICIENDO QUE REALIZARA SU PAGO EL DIA DE MAÑANA SIN DAR MAS EXPLICACIONES",
+        "creation_date": "2025-10-21T15:26:35.567Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 391,
+    "fields": {
+        "usuario": 2,
+        "credito": 146,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE BRITANY NAYELI CIFUENTES CHOCOOJ realizo un abono de: Q400.00",
+        "creation_date": "2025-10-21T15:35:45.939Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 392,
+    "fields": {
+        "usuario": 2,
+        "credito": 146,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE BRITANY NAYELI CIFUENTES CHOCOOJ realizo un abono de: Q400.00",
+        "creation_date": "2025-10-21T15:39:23.926Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 393,
+    "fields": {
+        "usuario": 2,
+        "credito": 293,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-21T16:28:33.572Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 394,
+    "fields": {
+        "usuario": 5,
+        "credito": 147,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE SERGIO ALEXANDER CAAL CAL realizo un abono de: Q400.00",
+        "creation_date": "2025-10-21T16:37:22.182Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 395,
+    "fields": {
+        "usuario": 3,
+        "credito": 96,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MAYRA LUCRECIA SIERRA realizo un abono de: Q2,610.00",
+        "creation_date": "2025-10-21T17:11:56.394Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 396,
+    "fields": {
+        "usuario": 3,
+        "credito": 284,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MIRIAM ANTONIETA SORIA LÓPEZ DE ARÉVALO realizo un abono de: Q1,500.00",
+        "creation_date": "2025-10-22T14:16:28.524Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 397,
+    "fields": {
+        "usuario": 3,
+        "credito": 296,
+        "puntuacion": 2,
+        "comentario": "CUOTA Q1320.00 29/10/2025 // RAZON DE MORA// INDICA QUE TUVO GASTOS POR ENFERMEDAD DE SU MAMÁ Y NO LOGRÓ CUBRIR SU CUOTA. PIDE EL PLAZO DE UNA SEMANA",
+        "creation_date": "2025-10-22T18:24:55.508Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 398,
+    "fields": {
+        "usuario": 2,
+        "credito": 348,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ILEANA IZABEL CAAL CHOMO realizo un abono de: Q800.00",
+        "creation_date": "2025-10-23T15:13:52.362Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 399,
+    "fields": {
+        "usuario": 2,
+        "credito": 293,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-23T20:35:31.945Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 400,
+    "fields": {
+        "usuario": 1,
+        "credito": 180,
+        "puntuacion": 2,
+        "comentario": "caso ejemplo",
+        "creation_date": "2025-10-23T20:41:57.865Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 401,
+    "fields": {
+        "usuario": 5,
+        "credito": 330,
+        "puntuacion": 2,
+        "comentario": "se tuvo comunicacion con el señor Cesar Asig, y nos comenta que estara abonando a la cuenta a fin de mes, asi mismo se le explico sobre una restructura",
+        "creation_date": "2025-10-24T14:26:54.710Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 402,
+    "fields": {
+        "usuario": 5,
+        "credito": 245,
+        "puntuacion": 2,
+        "comentario": "se le dara seguimiento el dia de mañana. no contesta mensajes ni llamadas.\r\nno contesta las llamadas ni mensajes.",
+        "creation_date": "2025-10-24T14:27:47.219Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 403,
+    "fields": {
+        "usuario": 5,
+        "credito": 282,
+        "puntuacion": 2,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.\r\nno contestas msj ni llamada",
+        "creation_date": "2025-10-24T14:29:39.270Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 404,
+    "fields": {
+        "usuario": 5,
+        "credito": 171,
+        "puntuacion": 2,
+        "comentario": "cancela  a fin de mes normalmente.",
+        "creation_date": "2025-10-24T14:32:12.619Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 405,
+    "fields": {
+        "usuario": 5,
+        "credito": 437,
+        "puntuacion": 2,
+        "comentario": "CANCELA EL 28 CON EL SALARIO",
+        "creation_date": "2025-10-24T14:50:30.484Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 406,
+    "fields": {
+        "usuario": 2,
+        "credito": 288,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE RENSSO GUSTAVO LIGORRIA MEZA realizo un abono de: Q1,000.00",
+        "creation_date": "2025-10-24T14:58:28.670Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 407,
+    "fields": {
+        "usuario": 2,
+        "credito": 293,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-27T07:52:51.110Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 408,
+    "fields": {
+        "usuario": 5,
+        "credito": 437,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-28T08:37:24.284Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 409,
+    "fields": {
+        "usuario": 5,
+        "credito": 437,
+        "puntuacion": 1,
+        "comentario": "el señor Alberto, nos comenta que entre hoy y mañana le estaran acreditando el salario.",
+        "creation_date": "2025-10-28T14:08:08.045Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 410,
+    "fields": {
+        "usuario": 5,
+        "credito": 437,
+        "puntuacion": 2,
+        "comentario": "el señor Alberto, nos comenta que entre hoy y mañana le estaran acreditando el salario.",
+        "creation_date": "2025-10-28T14:10:03.788Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 411,
+    "fields": {
+        "usuario": 5,
+        "credito": 60,
+        "puntuacion": 2,
+        "comentario": "el señor nos comenta que estara cancelando intereses el dia viernes y el capital dentro de 13 dias aproximadamente.",
+        "creation_date": "2025-10-28T14:11:32.311Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 412,
+    "fields": {
+        "usuario": 5,
+        "credito": 176,
+        "puntuacion": 2,
+        "comentario": "el señor Alex nos comenta que cancelara entre el dia de hoy y mañana por temas de salario.",
+        "creation_date": "2025-10-28T14:13:45.588Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 413,
+    "fields": {
+        "usuario": 5,
+        "credito": 339,
+        "puntuacion": 2,
+        "comentario": "credito en proceso de restructura",
+        "creation_date": "2025-10-28T14:16:08.402Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 414,
+    "fields": {
+        "usuario": 5,
+        "credito": 412,
+        "puntuacion": 2,
+        "comentario": "se compromete a cnacelar el jueves por temas de salario",
+        "creation_date": "2025-10-28T14:55:42.349Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 415,
+    "fields": {
+        "usuario": 5,
+        "credito": 443,
+        "puntuacion": 3,
+        "comentario": "cancelado",
+        "creation_date": "2025-10-28T14:57:08.791Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 416,
+    "fields": {
+        "usuario": 5,
+        "credito": 177,
+        "puntuacion": 2,
+        "comentario": "cancela el dia jueves por temas de salario",
+        "creation_date": "2025-10-28T14:59:23.028Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 417,
+    "fields": {
+        "usuario": 5,
+        "credito": 404,
+        "puntuacion": 2,
+        "comentario": "cancela el jueves con el salario",
+        "creation_date": "2025-10-28T15:01:50.946Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 418,
+    "fields": {
+        "usuario": 5,
+        "credito": 443,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ERWIN ALESSANDRO TUJT CHUB realizo un abono de: Q2,202.00",
+        "creation_date": "2025-10-28T15:06:28.728Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 419,
+    "fields": {
+        "usuario": 6,
+        "credito": 180,
+        "puntuacion": 2,
+        "comentario": "Se realizo una visita presencial, el cual comenta el deudor que por asuntos personales se limitó con el pago, sin embargo esta consiente del compromiso, por lo tanto este 31/10/25 realizará el pago poniendo al día dicho crédito.",
+        "creation_date": "2025-10-28T15:15:45.507Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 420,
+    "fields": {
+        "usuario": 5,
+        "credito": 150,
+        "puntuacion": 2,
+        "comentario": "se compromteta a abonar al credito el dia viernes",
+        "creation_date": "2025-10-28T15:24:44.348Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 421,
+    "fields": {
+        "usuario": 5,
+        "credito": 50,
+        "puntuacion": 2,
+        "comentario": "se compromete a cancelar a fin de mes, por temas de salario, se le dara seguimiento",
+        "creation_date": "2025-10-28T15:40:59.272Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 422,
+    "fields": {
+        "usuario": 5,
+        "credito": 307,
+        "puntuacion": 2,
+        "comentario": "cancela el 31 del preseten mes",
+        "creation_date": "2025-10-28T15:48:44.792Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 423,
+    "fields": {
+        "usuario": 3,
+        "credito": 166,
+        "puntuacion": 2,
+        "comentario": "SE VERIFICA QUE LA MUNICIPALIDAD ESTA PAGANDO CON UN MES DE ATRASO. INDICA QUE RECIBIÓ PAGO EL 24 DE OCTUBRE Y ESTE CORRESPONDIA AL DEL 30 DE SEPTIEMBRE, CON EL PAGO QUE RECIBIÓ DEVOLBIO A UN FAMILIAR LO QUE PRESTO PARA LA CUOTA DEL MES PASADO. ESTA VIENDO SI SU HERMANO, EL FIADOR LE PUEDE APOYAR. SE VERIFICA QUE LA MUNICIPALIDAD ESTARÁ EN LA MISMA CIRCUNSTANCIA HASTA EL MES DE DICIEMBRE",
+        "creation_date": "2025-10-28T15:59:12.616Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 424,
+    "fields": {
+        "usuario": 3,
+        "credito": 236,
+        "puntuacion": 2,
+        "comentario": "INDICA QUE FALLECIO SU PAPA EL DIA DOMINGO Y QUE POR GASTOS VARIOS NO HA LOGRADO CUBRIR SU COMPROMISO. ESTARA INFORMANDO QUE PUEDE HACER AL SALIR DEL CEPELIO",
+        "creation_date": "2025-10-28T16:04:27.302Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 425,
+    "fields": {
+        "usuario": 5,
+        "credito": 366,
+        "puntuacion": 2,
+        "comentario": "cnacela a fin de mes por temas de salario",
+        "creation_date": "2025-10-28T16:20:03.104Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 426,
+    "fields": {
+        "usuario": 4,
+        "credito": 339,
+        "puntuacion": 1,
+        "comentario": "SE LE REALIZO UN DESCUENTO DE  300 POR UNA RESTRUCTURACION",
+        "creation_date": "2025-10-28T17:17:57.117Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 427,
+    "fields": {
+        "usuario": 5,
+        "credito": 339,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MARCO TULIO COY CAAL realizo un abono de: Q1,864.00",
+        "creation_date": "2025-10-28T17:26:56.610Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 428,
+    "fields": {
+        "usuario": 5,
+        "credito": 447,
+        "puntuacion": 2,
+        "comentario": "cancelara cada 29 de cada mes.",
+        "creation_date": "2025-10-28T20:40:15.472Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 429,
+    "fields": {
+        "usuario": 5,
+        "credito": 447,
+        "puntuacion": 2,
+        "comentario": "cancelara cada 29 de cada mes.",
+        "creation_date": "2025-10-28T20:40:16.652Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 430,
+    "fields": {
+        "usuario": 5,
+        "credito": 178,
+        "puntuacion": 2,
+        "comentario": "el señor se encuentra desempleado, y nos comenta que se comprometa a cancelar antes del 15 de noviembre, ya que para esas fecha recibira su liquidacion",
+        "creation_date": "2025-10-28T20:43:18.127Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 431,
+    "fields": {
+        "usuario": 5,
+        "credito": 178,
+        "puntuacion": 2,
+        "comentario": "el señor se encuentra desempleado, y nos comenta que se comprometa a cancelar antes del 15 de noviembre, ya que para esas fecha recibira su liquidacion",
+        "creation_date": "2025-10-28T20:43:41.857Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 432,
+    "fields": {
+        "usuario": 9,
+        "credito": 497,
+        "puntuacion": 1,
+        "comentario": "CREDITO PAGARA INTERES, MORA GENERADA Y CAPITAL TOTAL AL VENCIMIENTO.",
+        "creation_date": "2025-10-28T21:17:44.346Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 433,
+    "fields": {
+        "usuario": 9,
+        "credito": 509,
+        "puntuacion": 1,
+        "comentario": "CREDITO PAGARA INTERES, MORA GENERADA Y CAPITAL TOTAL AL VENCIMIENTO.",
+        "creation_date": "2025-10-28T21:26:01.520Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 434,
+    "fields": {
+        "usuario": 9,
+        "credito": 517,
+        "puntuacion": 1,
+        "comentario": "CREDITO PAGARA INTERES, MORA GENERADA Y CAPITAL TOTAL AL VENCIMIENTO.",
+        "creation_date": "2025-10-28T21:31:47.505Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 435,
+    "fields": {
+        "usuario": 2,
+        "credito": 96,
+        "puntuacion": 3,
+        "comentario": "USUARIA INDICA QUE ESTA BUSCANDO RENEGOCIAR SUS DEUDAS PEDIRÁ A FIADORA QUE SE PRESENTEN PARA FIRMAR UN CONTRATO DE AMPLIACIÓN DE PLAZO. ACTUALMENTE TRABAJA EN BANCO AZTECA",
+        "creation_date": "2025-10-29T21:48:19.672Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 436,
+    "fields": {
+        "usuario": 5,
+        "credito": 437,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-30T07:26:28.336Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 437,
+    "fields": {
+        "usuario": 5,
+        "credito": 176,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-30T07:26:28.373Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 438,
+    "fields": {
+        "usuario": 5,
+        "credito": 412,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-30T07:26:28.407Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 439,
+    "fields": {
+        "usuario": 5,
+        "credito": 177,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-30T07:26:28.441Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 440,
+    "fields": {
+        "usuario": 5,
+        "credito": 404,
+        "puntuacion": 1,
+        "comentario": "El cliente no se ha presentado segun lo gestionado.",
+        "creation_date": "2025-10-30T07:26:28.475Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 441,
+    "fields": {
+        "usuario": 5,
+        "credito": 177,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MARIO RODOLFO ICAL BOTZOC realizo un abono de: Q1,125.00",
+        "creation_date": "2025-10-30T15:18:08.068Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 442,
+    "fields": {
+        "usuario": 5,
+        "credito": 447,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE DURWIN OVIDIO PAZ CASASOLA realizo un abono de: Q2,212.00",
+        "creation_date": "2025-10-30T15:18:16.917Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 443,
+    "fields": {
+        "usuario": 2,
+        "credito": 293,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE BRYAN RUBÉN DARÍO CASTILLO FERNÁNDEZ realizo un abono de: Q2,000.00",
+        "creation_date": "2025-10-31T15:28:24.093Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 444,
+    "fields": {
+        "usuario": 5,
+        "credito": 366,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE MARTHA OLIVIA TZUB POOÚ DE TENI realizo un abono de: Q604.00",
+        "creation_date": "2025-10-31T20:35:47.246Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 445,
+    "fields": {
+        "usuario": 5,
+        "credito": 307,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE LILI MAGALI COY MACZ realizo un abono de: Q2,200.00",
+        "creation_date": "2025-10-31T20:38:35.966Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 446,
+    "fields": {
+        "usuario": 5,
+        "credito": 437,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE ALBERTO DE JESUS MACZ realizo un abono de: Q1,723.00",
+        "creation_date": "2025-10-31T21:47:29.892Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 447,
+    "fields": {
+        "usuario": 5,
+        "credito": 412,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE KEVIN ALEJANDRO YALIBAT CASASOLA realizo un abono de: Q1,578.00",
+        "creation_date": "2025-10-31T22:47:53.107Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 448,
+    "fields": {
+        "usuario": 5,
+        "credito": 171,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE Hugo Keyner Quib Caal realizo un abono de: Q1,468.00",
+        "creation_date": "2025-10-31T22:47:56.874Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 449,
+    "fields": {
+        "usuario": 5,
+        "credito": 176,
+        "puntuacion": 2,
+        "comentario": "El señor Alex, se compromete a cancelar el 12 del mes de noviembre ya que tuvo inconvenientes con el salario este mes. se le dara seguimiento",
+        "creation_date": "2025-10-31T23:04:46.436Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 450,
+    "fields": {
+        "usuario": 5,
+        "credito": 404,
+        "puntuacion": 2,
+        "comentario": "Abonò la cantidad de Q. 1,000.00 y se compromete a cancelar el restante de la cuota el dia 09 de noviembre del presente año.",
+        "creation_date": "2025-11-03T15:03:07.066Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 451,
+    "fields": {
+        "usuario": 6,
+        "credito": 180,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE GERSON MOISES ORELLANA GONZÁLEZ realizo un abono de: Q2,300.00",
+        "creation_date": "2025-11-03T15:27:05.861Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 452,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 3,
+        "comentario": "se compromete a cancelar el dia de hoy por la tarde, o mañana por la mañana.",
+        "creation_date": "2025-11-03T16:14:15.661Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 453,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 3,
+        "comentario": "se compromete a cancelar el dia de hoy por la tarde, o mañana por la mañana.",
+        "creation_date": "2025-11-03T16:14:16.245Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 454,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 3,
+        "comentario": "se compromete a cancelar el dia de hoy por la tarde, o mañana por la mañana.",
+        "creation_date": "2025-11-03T16:14:16.566Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 455,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 3,
+        "comentario": "se compromete a cancelar el dia de hoy por la tarde, o mañana por la mañana.",
+        "creation_date": "2025-11-03T16:14:16.858Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 456,
+    "fields": {
+        "usuario": 3,
+        "credito": 236,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE JORGE MARIO CHUN realizo un abono de: Q3,188.00",
+        "creation_date": "2025-11-03T17:38:49.307Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 457,
+    "fields": {
+        "usuario": 7,
+        "credito": 419,
+        "puntuacion": 2,
+        "comentario": "ESTARA ENVIANDO LA BOLETA",
+        "creation_date": "2025-11-04T01:54:37.815Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 458,
+    "fields": {
+        "usuario": 7,
+        "credito": 419,
+        "puntuacion": 3,
+        "comentario": "ESTARA ENVIANDO LA BOLETA",
+        "creation_date": "2025-11-04T02:14:48.055Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 459,
+    "fields": {
+        "usuario": 5,
+        "credito": 404,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE WENDY EUGENIA GONZALEZ QUEJ DE LINARES realizo un abono de: Q1,000.00",
+        "creation_date": "2025-11-04T17:12:22.254Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 460,
+    "fields": {
+        "usuario": 5,
+        "credito": 331,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE CÉSAR JOSUE CAAL MORALES realizo un abono de: Q500.00",
+        "creation_date": "2025-11-04T17:40:27.135Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 461,
+    "fields": {
+        "usuario": 3,
+        "credito": 166,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE YENIFER CELESTE AMARILIS CUCUL CAAL realizo un abono de: Q2,061.00",
+        "creation_date": "2025-11-04T17:40:59.851Z"
+    }
+},
+{
+    "model": "actividades.votacioncredito",
+    "pk": 462,
+    "fields": {
+        "usuario": 7,
+        "credito": 419,
+        "puntuacion": 3,
+        "comentario": "EL CLIENTE RAFAEL ESTUARDO MOLINA MOLINA realizo un abono de: Q300.00",
+        "creation_date": "2025-11-04T17:56:17.888Z"
+    }
+}
+]

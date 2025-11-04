@@ -18,6 +18,31 @@ from project.database_store import minio_client  # asegúrate de que esté impor
 
 # Create your models here.
 
+class DocumentSistema(models.Model):
+    description = models.TextField("Descripción",blank=True, null=True)
+    document = models.FileField("Documento",blank=True, null=True,upload_to='documents/sistema/')
+    uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+
+    def __str__(self):
+        return self.description or "Sin Titulo"
+    
+    def get_document(self):
+        try:
+            return minio_client.presigned_get_object(
+                bucket_name='asiatrip',
+                object_name=self.document.name,  # ejemplo: documents/archivo.pdf
+                expires=timedelta(minutes=30)
+            )
+        except Exception as e:
+            return '{}{}'.format(MEDIA_URL,self.document)
+    
+    def titulo(self):
+        return self.description
+
+    class Meta:
+        verbose_name = "Documento Sistema"
+        verbose_name_plural ="Documentos Sistemas"
+
 class DocumentBank(models.Model):
     document = models.FileField("Documento",blank=True, null=True,upload_to='documents/banco')
     uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)

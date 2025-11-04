@@ -56,12 +56,14 @@ def create_customer(request):
     if request.method == 'POST':
         form_cliente = CustomerForm(request.POST)
         form_direccion = AddressForms(request.POST)
+        form_direccion.fields.pop('type_address')
 
         if form_cliente.is_valid() and form_direccion.is_valid():
             cliente = form_cliente.save(commit=False)
 
             if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
                 cliente.new_asesor_credito = asesor_autenticado
+                cliente.status = 'Posible Cliente'
 
             cliente.user_id = request.user
             cliente.sucursal = Subsidiary.objects.get(id=sucursal)
@@ -76,6 +78,8 @@ def create_customer(request):
 
             
             return redirect('financial_information:seleccionar',  cliente.customer_code)
+        else:
+            print(f'{form_cliente.errors}  {form_direccion.errors}')
             
 
     else:
@@ -89,11 +93,12 @@ def create_customer(request):
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         form_cliente.fields.pop('new_asesor_credito')
+        form_cliente.fields.pop('status')
 
     context = {
         'title': 'Creación de Clientes |',
         'permisos':recorrer_los_permisos_usuario(request),
-        'form_cliente':form_cliente,
+        'form_cliente':form_cliente,        
         'form_direccion':form_direccion,
     }
     return render (request, template_name, context)

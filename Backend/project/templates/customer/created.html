@@ -6,70 +6,316 @@
 {% endblock %}
 
 {% block content %}
-<div class="container box">
-    <form method="post" enctype="multipart/form-data" autocomplete="off">
-        {% csrf_token %}
-        <div class="row" style="margin-top: 1rem;">
-            <h3>Información Personal</h3>
-            <hr>
-            {% for field in form_cliente %}
-            <div class="form-group" style="margin-top: 0.5rem;">
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-user-plus"></i>
+                        {% if form_cliente.instance.pk %}
+                            Editar Cliente
+                        {% else %}
+                            Registrar Nuevo Cliente
+                        {% endif %}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" autocomplete="off">
+                        {% csrf_token %}
+                        
+                        <!-- Mensajes de error generales -->
+                        {% if form_cliente.non_field_errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form_cliente.non_field_errors }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endif %}
 
-                <label for="{{ field.id_for_label }}" class="form-label fw-bold">
-                    {{ field.label }}
-                </label>
-                {{ field }}
+                        <!-- Sección: Información Personal -->
+                        <div class="section-divider mb-4">
+                            <h5 class="text-dark border-bottom pb-2">
+                                <i class="fas fa-user"></i> Información Personal
+                            </h5>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form_cliente.first_name.id_for_label }}" class="form-label">
+                                    {{ form_cliente.first_name.label }}
+                                </label>
+                                {{ form_cliente.first_name }}
+                                {% if form_cliente.first_name.errors %}
+                                    <div class="text-danger small">{{ form_cliente.first_name.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form_cliente.last_name.id_for_label }}" class="form-label">
+                                    {{ form_cliente.last_name.label }}
+                                </label>
+                                {{ form_cliente.last_name }}
+                                {% if form_cliente.last_name.errors %}
+                                    <div class="text-danger small">{{ form_cliente.last_name.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form_cliente.gender.id_for_label }}" class="form-label">
+                                    {{ form_cliente.gender.label }}
+                                </label>
+                                {{ form_cliente.gender }}
+                                {% if form_cliente.gender.errors %}
+                                    <div class="text-danger small">{{ form_cliente.gender.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form_cliente.date_birth.id_for_label }}" class="form-label">
+                                    {{ form_cliente.date_birth.label }}
+                                </label>
+                                {{ form_cliente.date_birth }}
+                                {% if form_cliente.date_birth.errors %}
+                                    <div class="text-danger small">{{ form_cliente.date_birth.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form_cliente.place_birth.id_for_label }}" class="form-label">
+                                    {{ form_cliente.place_birth.label }}
+                                </label>
+                                {{ form_cliente.place_birth }}
+                                {% if form_cliente.place_birth.errors %}
+                                    <div class="text-danger small">{{ form_cliente.place_birth.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form_cliente.marital_status.id_for_label }}" class="form-label">
+                                    {{ form_cliente.marital_status.label }}
+                                </label>
+                                {{ form_cliente.marital_status }}
+                                {% if form_cliente.marital_status.errors %}
+                                    <div class="text-danger small">{{ form_cliente.marital_status.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form_cliente.profession_trade.id_for_label }}" class="form-label">
+                                    {{ form_cliente.profession_trade.label }}
+                                </label>
+                                {{ form_cliente.profession_trade }}
+                                {% if form_cliente.profession_trade.errors %}
+                                    <div class="text-danger small">{{ form_cliente.profession_trade.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Sección: Identificación -->
+                        <div class="section-divider mb-4 mt-4">
+                            <h5 class="text-dark border-bottom pb-2">
+                                <i class="fas fa-id-card"></i> Identificación
+                            </h5>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form_cliente.type_identification.id_for_label }}" class="form-label">
+                                    {{ form_cliente.type_identification.label }}
+                                </label>
+                                {{ form_cliente.type_identification }}
+                                {% if form_cliente.type_identification.errors %}
+                                    <div class="text-danger small">{{ form_cliente.type_identification.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form_cliente.identification_number.id_for_label }}" class="form-label">
+                                    {{ form_cliente.identification_number.label }}
+                                </label>
+                                {{ form_cliente.identification_number }}
+                                {% if form_cliente.identification_number.errors %}
+                                    <div class="text-danger small">{{ form_cliente.identification_number.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form_cliente.number_nit.id_for_label }}" class="form-label">
+                                    {{ form_cliente.number_nit.label }}
+                                </label>
+                                {{ form_cliente.number_nit }}
+                                {% if form_cliente.number_nit.errors %}
+                                    <div class="text-danger small">{{ form_cliente.number_nit.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form_cliente.lugar_emision_tipo_identificacion_departamento.id_for_label }}" class="form-label">
+                                    {{ form_cliente.lugar_emision_tipo_identificacion_departamento.label }}
+                                </label>
+                                {{ form_cliente.lugar_emision_tipo_identificacion_departamento }}
+                                {% if form_cliente.lugar_emision_tipo_identificacion_departamento.errors %}
+                                    <div class="text-danger small">{{ form_cliente.lugar_emision_tipo_identificacion_departamento.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form_cliente.lugar_emision_tipo_identificacion_municipio.id_for_label }}" class="form-label">
+                                    {{ form_cliente.lugar_emision_tipo_identificacion_municipio.label }}
+                                </label>
+                                {{ form_cliente.lugar_emision_tipo_identificacion_municipio }}
+                                {% if form_cliente.lugar_emision_tipo_identificacion_municipio.errors %}
+                                    <div class="text-danger small">{{ form_cliente.lugar_emision_tipo_identificacion_municipio.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Sección: Información de Contacto y Adicional -->
+                        <div class="section-divider mb-4 mt-4">
+                            <h5 class="text-dark border-bottom pb-2">
+                                <i class="fas fa-phone"></i> Información de Contacto
+                            </h5>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form_cliente.email.id_for_label }}" class="form-label">
+                                    {{ form_cliente.email.label }}
+                                </label>
+                                {{ form_cliente.email }}
+                                {% if form_cliente.email.errors %}
+                                    <div class="text-danger small">{{ form_cliente.email.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form_cliente.telephone.id_for_label }}" class="form-label">
+                                    {{ form_cliente.telephone.label }}
+                                </label>
+                                {{ form_cliente.telephone }}
+                                {% if form_cliente.telephone.errors %}
+                                    <div class="text-danger small">{{ form_cliente.telephone.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form_cliente.nationality.id_for_label }}" class="form-label">
+                                    {{ form_cliente.nationality.label }}
+                                </label>
+                                {{ form_cliente.nationality }}
+                                {% if form_cliente.nationality.errors %}
+                                    <div class="text-danger small">{{ form_cliente.nationality.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form_cliente.immigration_status_id.id_for_label }}" class="form-label">
+                                    {{ form_cliente.immigration_status_id.label }}
+                                </label>
+                                {{ form_cliente.immigration_status_id }}
+                                {% if form_cliente.immigration_status_id.errors %}
+                                    <div class="text-danger small">{{ form_cliente.immigration_status_id.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form_cliente.person_type.id_for_label }}" class="form-label">
+                                    {{ form_cliente.person_type.label }}
+                                </label>
+                                {{ form_cliente.person_type }}
+                                {% if form_cliente.person_type.errors %}
+                                    <div class="text-danger small">{{ form_cliente.person_type.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Sección: Información Administrativa -->
+                         {% if request.user.rol.role_name != 'Asesor de Crédito'%}
+                        <div class="section-divider mb-4 mt-4">
+                            <h5 class="text-dark border-bottom pb-2">
+                                <i class="fas fa-briefcase"></i> Información Administrativa
+                            </h5>
+                        </div>
+                        {% endif %}
 
 
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form_cliente.new_asesor_credito.id_for_label }}" class="form-label">
+                                    {{ form_cliente.new_asesor_credito.label }}
+                                </label>
+                                {{ form_cliente.new_asesor_credito }}
+                                {% if form_cliente.new_asesor_credito.errors %}
+                                    <div class="text-danger small">{{ form_cliente.new_asesor_credito.errors }}</div>
+                                {% endif %}
+                            </div>
 
-                {% if field.errors %}
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form_cliente.status.id_for_label }}" class="form-label">
+                                    {{ form_cliente.status.label }}
+                                </label>
+                                {{ form_cliente.status }}
+                                {% if form_cliente.status.errors %}
+                                    <div class="text-danger small">{{ form_cliente.status.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="section-divider mb-4 mt-4">
+                            <h5 class="text-dark border-bottom pb-2">
+                                <i class="fas fa-briefcase"></i> Dirección Personal
+                            </h5>
+                        </div>
+                        <div class="row">
+                            {% for field in form_direccion %}
 
-                {{ field.errors }}
+                            <div class="form-group" style="margin-top: 0.5rem;">
+                                <label for="{{ field.id_for_label }}" class="form-label fw-bold">
+                                    {{ field.label }}
+                                </label>
+                                {{ field }}
+                                {% if field.errors %}
+                                {{ field.errors }}
+                                {% endif %}
+                            </div>
+                            <br />
 
-                {% endif %}
+                            {% endfor %}
 
+                        </div>
+
+                        <!-- Botones de acción -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <button onclick="window.history.back()" type="button" class="btn_cancel"><i class="fas fa-arrow-left"></i> Cancelar</button>
+                                    
+                                    <button type="submit" class="btn btn-dark">
+                                        <i class="fas fa-save"></i>
+                                        {% if form_cliente.instance.pk %}
+                                            Actualizar Cliente
+                                        {% else %}
+                                            Guardar Cliente
+                                        {% endif %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <br />
-
-            {% endfor %}
-
         </div>
-        <div class="row" style="margin-top: 2rem;">
-            <h3>Dirección Personal</h3>
-            <hr>
-            {% for field in form_direccion %}
 
-            <div class="form-group" style="margin-top: 0.5rem;">
-                <label for="{{ field.id_for_label }}" class="form-label fw-bold">
-                    {{ field.label }}
-                </label>
-                {{ field }}
-                {% if field.errors %}
-                {{ field.errors }}
-                {% endif %}
-            </div>
-            <br />
-
-            {% endfor %}
-
-        </div>
-        <div class="row" style="margin-top: 1rem;">
-            <div class="col">
-                <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
-
-            </div>
-            <div class="col">
-                <button type="submit" class="btn_guardar">Siguiente</button>
-
-            </div>
-            
-            
-
-        </div>
-
-
-
-    </form>
+    </div>
+    
 
 </div>
 {% endblock %}

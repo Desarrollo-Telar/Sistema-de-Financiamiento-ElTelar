@@ -2401,5 +2401,1139 @@
         "suma_total": "2000.00",
         "credit_id": 357
     }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 319,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1500.00",
+        "credit_id": 358
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 320,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1000.00",
+        "credit_id": 359
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 321,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "50000.00",
+        "credit_id": 360
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 322,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "45000.00",
+        "credit_id": 361
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 323,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 362
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 324,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "163800.00",
+        "credit_id": 364
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 325,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 365
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 326,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3000.00",
+        "credit_id": 366
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 327,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 367
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 328,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 368
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 329,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 369
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 362,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 402
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 363,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "6000.00",
+        "credit_id": 404
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 364,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "6000.00",
+        "credit_id": 406
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 365,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "8000.00",
+        "credit_id": 407
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 366,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "24000.00",
+        "credit_id": 408
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 367,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "53700.00",
+        "credit_id": 409
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 368,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "17225.00",
+        "credit_id": 411
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 369,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 412
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 370,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 414
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 371,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1000.00",
+        "credit_id": 415
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 372,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20554.00",
+        "credit_id": 416
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 373,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 417
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 374,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 418
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 375,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 419
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 376,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1500.00",
+        "credit_id": 420
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 377,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 421
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 378,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2979.00",
+        "credit_id": 422
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 379,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2836.00",
+        "credit_id": 423
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 380,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5900.00",
+        "credit_id": 424
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 381,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 425
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 382,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 427
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 383,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 428
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 384,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 429
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 385,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1500.00",
+        "credit_id": 430
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 386,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 431
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 387,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "4000.00",
+        "credit_id": 432
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 388,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3000.00",
+        "credit_id": 433
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 389,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 434
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 390,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3438.00",
+        "credit_id": 435
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 391,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "6700.00",
+        "credit_id": 436
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 392,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 437
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 393,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "30000.00",
+        "credit_id": 438
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 394,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 439
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 395,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "30000.00",
+        "credit_id": 440
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 396,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "4000.00",
+        "credit_id": 441
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 397,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 442
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 398,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "45000.00",
+        "credit_id": 443
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 399,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "12000.00",
+        "credit_id": 444
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 400,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "13000.00",
+        "credit_id": 445
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 401,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2500.00",
+        "credit_id": 446
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 402,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "11000.00",
+        "credit_id": 447
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 403,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "8000.00",
+        "credit_id": 448
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 404,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "44902.00",
+        "credit_id": 449
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 405,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "18000.00",
+        "credit_id": 450
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 406,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "22000.00",
+        "credit_id": 451
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 407,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3000.00",
+        "credit_id": 452
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 408,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 453
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 409,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 454
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 410,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 455
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 411,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "4000.00",
+        "credit_id": 456
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 412,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 457
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 413,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 458
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 414,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "14000.00",
+        "credit_id": 459
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 415,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 460
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 416,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2500.00",
+        "credit_id": 461
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 417,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 462
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 418,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 463
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 419,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3000.00",
+        "credit_id": 464
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 420,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2600.00",
+        "credit_id": 465
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 421,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "60000.00",
+        "credit_id": 466
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 422,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "8000.00",
+        "credit_id": 467
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 425,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 470
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 426,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "7000.00",
+        "credit_id": 471
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 427,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 472
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 428,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "7500.00",
+        "credit_id": 473
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 429,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "70000.00",
+        "credit_id": 474
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 430,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "50000.00",
+        "credit_id": 475
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 432,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 477
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 433,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 478
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 434,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "7700.00",
+        "credit_id": 479
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 435,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2500.00",
+        "credit_id": 480
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 436,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 481
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 437,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "12210.00",
+        "credit_id": 488
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 438,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 489
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 440,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "30000.00",
+        "credit_id": 491
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 442,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 493
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 443,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 494
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 444,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 495
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 445,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "54000.00",
+        "credit_id": 496
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 446,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 497
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 447,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 498
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 448,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 499
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 449,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "4000.00",
+        "credit_id": 500
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 450,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1000.00",
+        "credit_id": 501
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 452,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 503
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 453,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 504
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 454,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 505
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 455,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 506
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 456,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "4000.00",
+        "credit_id": 507
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 457,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 508
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 458,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 509
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 459,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 510
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 460,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 511
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 461,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 512
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 462,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 513
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 463,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 514
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 464,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 515
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 465,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 516
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 466,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "30000.00",
+        "credit_id": 517
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 467,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "0.00",
+        "credit_id": 518
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 468,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2014.00",
+        "credit_id": 519
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 469,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "6000.00",
+        "credit_id": 520
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 470,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "40000.00",
+        "credit_id": 523
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 471,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 524
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 472,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "50000.00",
+        "credit_id": 525
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 473,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "75000.00",
+        "credit_id": 526
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 474,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "8000.00",
+        "credit_id": 527
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 475,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1547.00",
+        "credit_id": 528
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 476,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "25000.00",
+        "credit_id": 529
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 477,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3500.00",
+        "credit_id": 530
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 478,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1500.00",
+        "credit_id": 531
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 479,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "8000.00",
+        "credit_id": 532
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 480,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "85000.00",
+        "credit_id": 533
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 482,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "320000.00",
+        "credit_id": 535
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 483,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1000.00",
+        "credit_id": 536
+    }
 }
 ]

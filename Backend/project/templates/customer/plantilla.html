@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Formulario de Cliente{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-user-plus"></i>
+                        {% if form.instance.pk %}
+                            Editar Cliente
+                        {% else %}
+                            Registrar Nuevo Cliente
+                        {% endif %}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" id="customerForm">
+                        {% csrf_token %}
+                        
+                        <!-- Mensajes de error generales -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form.non_field_errors }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endif %}
+
+                        <!-- Sección: Información Personal -->
+                        <div class="section-divider mb-4">
+                            <h5 class="text-primary border-bottom pb-2">
+                                <i class="fas fa-user"></i> Información Personal
+                            </h5>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.first_name.id_for_label }}" class="form-label">
+                                    {{ form.first_name.label }}
+                                </label>
+                                {{ form.first_name }}
+                                {% if form.first_name.errors %}
+                                    <div class="text-danger small">{{ form.first_name.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.last_name.id_for_label }}" class="form-label">
+                                    {{ form.last_name.label }}
+                                </label>
+                                {{ form.last_name }}
+                                {% if form.last_name.errors %}
+                                    <div class="text-danger small">{{ form.last_name.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.gender.id_for_label }}" class="form-label">
+                                    {{ form.gender.label }}
+                                </label>
+                                {{ form.gender }}
+                                {% if form.gender.errors %}
+                                    <div class="text-danger small">{{ form.gender.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.date_birth.id_for_label }}" class="form-label">
+                                    {{ form.date_birth.label }}
+                                </label>
+                                {{ form.date_birth }}
+                                {% if form.date_birth.errors %}
+                                    <div class="text-danger small">{{ form.date_birth.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.place_birth.id_for_label }}" class="form-label">
+                                    {{ form.place_birth.label }}
+                                </label>
+                                {{ form.place_birth }}
+                                {% if form.place_birth.errors %}
+                                    <div class="text-danger small">{{ form.place_birth.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.marital_status.id_for_label }}" class="form-label">
+                                    {{ form.marital_status.label }}
+                                </label>
+                                {{ form.marital_status }}
+                                {% if form.marital_status.errors %}
+                                    <div class="text-danger small">{{ form.marital_status.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.profession_trade.id_for_label }}" class="form-label">
+                                    {{ form.profession_trade.label }}
+                                </label>
+                                {{ form.profession_trade }}
+                                {% if form.profession_trade.errors %}
+                                    <div class="text-danger small">{{ form.profession_trade.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Sección: Identificación -->
+                        <div class="section-divider mb-4 mt-4">
+                            <h5 class="text-primary border-bottom pb-2">
+                                <i class="fas fa-id-card"></i> Identificación
+                            </h5>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.type_identification.id_for_label }}" class="form-label">
+                                    {{ form.type_identification.label }}
+                                </label>
+                                {{ form.type_identification }}
+                                {% if form.type_identification.errors %}
+                                    <div class="text-danger small">{{ form.type_identification.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.identification_number.id_for_label }}" class="form-label">
+                                    {{ form.identification_number.label }}
+                                </label>
+                                {{ form.identification_number }}
+                                {% if form.identification_number.errors %}
+                                    <div class="text-danger small">{{ form.identification_number.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.number_nit.id_for_label }}" class="form-label">
+                                    {{ form.number_nit.label }}
+                                </label>
+                                {{ form.number_nit }}
+                                {% if form.number_nit.errors %}
+                                    <div class="text-danger small">{{ form.number_nit.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.lugar_emision_tipo_identificacion_departamento.id_for_label }}" class="form-label">
+                                    {{ form.lugar_emision_tipo_identificacion_departamento.label }}
+                                </label>
+                                {{ form.lugar_emision_tipo_identificacion_departamento }}
+                                {% if form.lugar_emision_tipo_identificacion_departamento.errors %}
+                                    <div class="text-danger small">{{ form.lugar_emision_tipo_identificacion_departamento.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.lugar_emision_tipo_identificacion_municipio.id_for_label }}" class="form-label">
+                                    {{ form.lugar_emision_tipo_identificacion_municipio.label }}
+                                </label>
+                                {{ form.lugar_emision_tipo_identificacion_municipio }}
+                                {% if form.lugar_emision_tipo_identificacion_municipio.errors %}
+                                    <div class="text-danger small">{{ form.lugar_emision_tipo_identificacion_municipio.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Sección: Información de Contacto y Adicional -->
+                        <div class="section-divider mb-4 mt-4">
+                            <h5 class="text-primary border-bottom pb-2">
+                                <i class="fas fa-phone"></i> Información de Contacto
+                            </h5>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.email.id_for_label }}" class="form-label">
+                                    {{ form.email.label }}
+                                </label>
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                    <div class="text-danger small">{{ form.email.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.telephone.id_for_label }}" class="form-label">
+                                    {{ form.telephone.label }}
+                                </label>
+                                {{ form.telephone }}
+                                {% if form.telephone.errors %}
+                                    <div class="text-danger small">{{ form.telephone.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.nationality.id_for_label }}" class="form-label">
+                                    {{ form.nationality.label }}
+                                </label>
+                                {{ form.nationality }}
+                                {% if form.nationality.errors %}
+                                    <div class="text-danger small">{{ form.nationality.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.immigration_status_id.id_for_label }}" class="form-label">
+                                    {{ form.immigration_status_id.label }}
+                                </label>
+                                {{ form.immigration_status_id }}
+                                {% if form.immigration_status_id.errors %}
+                                    <div class="text-danger small">{{ form.immigration_status_id.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.person_type.id_for_label }}" class="form-label">
+                                    {{ form.person_type.label }}
+                                </label>
+                                {{ form.person_type }}
+                                {% if form.person_type.errors %}
+                                    <div class="text-danger small">{{ form.person_type.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Sección: Información Administrativa -->
+                        <div class="section-divider mb-4 mt-4">
+                            <h5 class="text-primary border-bottom pb-2">
+                                <i class="fas fa-briefcase"></i> Información Administrativa
+                            </h5>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.new_asesor_credito.id_for_label }}" class="form-label">
+                                    {{ form.new_asesor_credito.label }}
+                                </label>
+                                {{ form.new_asesor_credito }}
+                                {% if form.new_asesor_credito.errors %}
+                                    <div class="text-danger small">{{ form.new_asesor_credito.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.status.id_for_label }}" class="form-label">
+                                    {{ form.status.label }}
+                                </label>
+                                {{ form.status }}
+                                {% if form.status.errors %}
+                                    <div class="text-danger small">{{ form.status.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Botones de acción -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <a href="#" class="btn btn-secondary">
+                                        <i class="fas fa-arrow-left"></i> Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i>
+                                        {% if form.instance.pk %}
+                                            Actualizar Cliente
+                                        {% else %}
+                                            Guardar Cliente
+                                        {% endif %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .section-divider {
+        margin-top: 2rem;
+    }
+    
+    .form-label {
+        font-weight: 500;
+        color: #495057;
+    }
+    
+    .card {
+        border-radius: 10px;
+    }
+    
+    .card-header {
+        border-radius: 10px 10px 0 0 !important;
+    }
+    
+    .text-danger.small {
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 1.5rem;
+    }
+</style>
+
+<script>
+    // Validación adicional del formulario si es necesario
+    document.getElementById('customerForm').addEventListener('submit', function(e) {
+        // Aquí puedes agregar validaciones JavaScript adicionales
+    });
+</script>
+{% endblock %}

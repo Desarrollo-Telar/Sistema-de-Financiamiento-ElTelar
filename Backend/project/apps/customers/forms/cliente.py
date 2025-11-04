@@ -70,7 +70,16 @@ class CustomerForm(forms.ModelForm):
             'telephone': forms.TextInput(attrs={'class': 'form-control','type':'number', 'min':'0', 'maxlength':'8'}),
             'person_type': forms.Select(attrs={'class': 'form-control'}),
             'new_asesor_credito': forms.Select(attrs={'class': 'form-control asesor', 'required':'required'}),
-            'status': forms.Select(attrs={'class': 'form-control'}),
+            'status': forms.Select(
+                choices=[
+                    ('Revisión de documentos', 'Revisión de documentos'),
+                    ('Aprobado', 'Aprobado'),
+                    ('No Aprobado', 'No Aprobado'),
+                    ('Posible Cliente', 'Posible Cliente'),
+                    ('Dar de Baja', 'Dar de Baja'),
+                ],
+                attrs={'class': 'form-control'}
+            ),
             'immigration_status_id':forms.Select(attrs={'class': 'form-control', 'requerid':'true'}),
             'lugar_emision_tipo_identificacion_departamento':  forms.Select(attrs={'class': 'form-control city2', 'required':'required'}),
             'lugar_emision_tipo_identificacion_municipio':  forms.Select(attrs={'class': 'form-control state2',  'required':'required'}),
@@ -88,3 +97,7 @@ class CustomerForm(forms.ModelForm):
 
         ]
         self.fields['marital_status'].widget.choices = opciones_estado_civil
+        self.fields['status'].required = False
+        # Asignar valor por defecto del modelo
+        if not self.initial.get('status'):
+            self.initial['status'] = 'Posible Cliente'

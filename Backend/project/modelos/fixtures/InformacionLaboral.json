@@ -2655,7 +2655,7 @@
     "model": "FinancialInformation.workinginformation",
     "pk": 163,
     "fields": {
-        "position": "TECNICO EN INFORMATIC",
+        "position": "TRABAJADOR OPERATIVO JEFE I",
         "company_name": "HOSPITAL AREA DE VECTORES",
         "start_date": "2023-10-10",
         "description": "",
@@ -4219,13 +4219,13 @@
     "model": "FinancialInformation.workinginformation",
     "pk": 289,
     "fields": {
-        "position": "GERENTE",
-        "company_name": "POLLO CAMPERO S.A",
-        "start_date": "2023-03-01",
+        "position": "ADMINISTRADOR",
+        "company_name": "TEXACO S.A",
+        "start_date": "2025-10-05",
         "description": "",
-        "salary": "7000.00",
+        "salary": "5000.00",
         "working_hours": "VESPERTINA",
-        "phone_number": "22699550",
+        "phone_number": "54732303",
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
@@ -4706,6 +4706,992 @@
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
         "customer_id": 344
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 318,
+    "fields": {
+        "position": "comerciante",
+        "company_name": "comerciante",
+        "start_date": "2025-08-15",
+        "description": "",
+        "salary": "2000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "000022",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 345
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 319,
+    "fields": {
+        "position": "AUXILIAR DE GERENCIA DE PROGRAMAS Y COOPERACION EXTERNA",
+        "company_name": "MUNICIPALIDAD DE COBAN",
+        "start_date": "2015-10-01",
+        "description": "",
+        "salary": "3550.60",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79553232",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "INGRESOS EXTRA 2,500.00 EMPRENDIMIENTO DE LACTEOS",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 346
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 320,
+    "fields": {
+        "position": "PROPIETARIA",
+        "company_name": "COMEDOR JUDY",
+        "start_date": "2015-08-01",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "32072648",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 347
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 321,
+    "fields": {
+        "position": "COPROPIETARIA",
+        "company_name": "COMEDOR JUDY",
+        "start_date": "2015-08-01",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "59591838",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 348
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 322,
+    "fields": {
+        "position": "ATENCION AL CLIENTE",
+        "company_name": "GÜIRITOS CONFITERÍA PRODUCTOS ARTESANALES",
+        "start_date": "2024-10-05",
+        "description": "",
+        "salary": "3500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "42911416",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 349
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 323,
+    "fields": {
+        "position": "AUXILIAR CONTABLE",
+        "company_name": "ENODA",
+        "start_date": "2025-02-26",
+        "description": "",
+        "salary": "2800.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "46047439",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 350
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 356,
+    "fields": {
+        "position": "DIRECTORA PROFESORA TITULADA",
+        "company_name": "MINISTERIO DE EDUCACIÓN",
+        "start_date": "2025-07-01",
+        "description": "",
+        "salary": "4558.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "40353181",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 383
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 357,
+    "fields": {
+        "position": "PROPIETARIA",
+        "company_name": "COMEDOR NINA",
+        "start_date": "2013-01-17",
+        "description": "",
+        "salary": "6000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "49088316",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 384
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 358,
+    "fields": {
+        "position": "AUXILIAR DE CONTABILIDAD",
+        "company_name": "HOSPITAL REGIONAL DE COBÁN.",
+        "start_date": "2024-09-01",
+        "description": "",
+        "salary": "3600.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "25096100",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 385
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 359,
+    "fields": {
+        "position": "PROPIETARIO",
+        "company_name": "STUDIO CREATIVO",
+        "start_date": "2020-02-01",
+        "description": "",
+        "salary": "8000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "47928460",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 386
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 360,
+    "fields": {
+        "position": "MAESTRO",
+        "company_name": "EORM ALDEA CHACALTE CHICHEN",
+        "start_date": "2001-01-02",
+        "description": "",
+        "salary": "8000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "46537222",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 387
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 361,
+    "fields": {
+        "position": "PROPIETARIA",
+        "company_name": "SABINIES BOUTIQUE",
+        "start_date": "2025-09-10",
+        "description": "",
+        "salary": "6000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "40319954",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 388
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 362,
+    "fields": {
+        "position": "MAESTRA DE EDUCACIÓN PRIMARIA URBANA",
+        "company_name": "ALDEA CHAIMAL",
+        "start_date": "2006-04-06",
+        "description": "",
+        "salary": "6900.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "39633432",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 389
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 363,
+    "fields": {
+        "position": "SOLDADO DE SEGUNDA",
+        "company_name": "CREOMPAZ",
+        "start_date": "2025-09-19",
+        "description": "",
+        "salary": "2800.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "44974073",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 390
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 364,
+    "fields": {
+        "position": "OPERATIVO DE GERENCIA DE SERVICIOS",
+        "company_name": "MUNICIPALIDAD DE COBAN",
+        "start_date": "2109-07-05",
+        "description": "",
+        "salary": "3380.57",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79553232",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 391
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 365,
+    "fields": {
+        "position": "MOTORISTA",
+        "company_name": "FARMACIA FAYCO",
+        "start_date": "2022-04-01",
+        "description": "",
+        "salary": "7000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "23838800",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 392
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 366,
+    "fields": {
+        "position": "PROPIETARIO",
+        "company_name": "TIENDA ELENITA",
+        "start_date": "2020-11-11",
+        "description": "",
+        "salary": "9000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "30457842",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 393
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 367,
+    "fields": {
+        "position": "acesora especializada 4",
+        "company_name": "MINISTERIO DE EDUCACION",
+        "start_date": "2009-01-01",
+        "description": "",
+        "salary": "15600.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79710080",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 394
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 368,
+    "fields": {
+        "position": "OPERADOR DE MAQUINARIA INDUSTRIAL",
+        "company_name": "FRABRICA DE MUNICIONES",
+        "start_date": "2025-06-01",
+        "description": "",
+        "salary": "4450.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "33096744",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 395
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 369,
+    "fields": {
+        "position": "ASESOR DE CRÉDITOS",
+        "company_name": "ACCESO FINANCIERO",
+        "start_date": "2025-01-01",
+        "description": "",
+        "salary": "5500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "54113809",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 396
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 370,
+    "fields": {
+        "position": "CULTORA DE BELLEZA",
+        "company_name": "CULTORA DE BELLEZA",
+        "start_date": "2024-09-24",
+        "description": "",
+        "salary": "3600.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "51923239",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 397
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 371,
+    "fields": {
+        "position": "ASESOR INMOBILIARIO",
+        "company_name": "PLAZA MAGDALENA RUTA CAMPO DE AVIACIÓN",
+        "start_date": "2024-11-11",
+        "description": "",
+        "salary": "10000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "33288062",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 398
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 372,
+    "fields": {
+        "position": "PROFESOR DE PREPRIMARIA",
+        "company_name": "ALDEA CHAJCHE",
+        "start_date": "2005-02-14",
+        "description": "",
+        "salary": "7500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "3226929",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 399
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 373,
+    "fields": {
+        "position": "DOCENTE",
+        "company_name": "MINEDUC Y REPOSTERIA",
+        "start_date": "2025-09-30",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "55804972",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 400
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 374,
+    "fields": {
+        "position": "MEDICO GENERAL",
+        "company_name": "HOSPITAL REGIONAL DE COBAN",
+        "start_date": "2012-04-01",
+        "description": "",
+        "salary": "15000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79316333",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 401
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 375,
+    "fields": {
+        "position": "ASESOR DE BIENES RAICES",
+        "company_name": "PORTAL DEL BOSQUE",
+        "start_date": "2023-07-17",
+        "description": "",
+        "salary": "15000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "53922255",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 402
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 376,
+    "fields": {
+        "position": "PROPIETARIA",
+        "company_name": "VENTA DE VAARIEDADES MARGARETH",
+        "start_date": "2023-03-02",
+        "description": "",
+        "salary": "3800.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "41015601",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 404
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 377,
+    "fields": {
+        "position": "PROMOTOR DE EVENTOS ESPECIALES",
+        "company_name": "BANRURAL",
+        "start_date": "2010-01-01",
+        "description": "",
+        "salary": "12000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "23083000",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 406
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 378,
+    "fields": {
+        "position": "PILOTO DE TRANSPORTE LIVIANO",
+        "company_name": "SALVAJE, S.A.",
+        "start_date": "2021-02-18",
+        "description": "",
+        "salary": "6758.05",
+        "working_hours": "VESPERTINA",
+        "phone_number": "22312525",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 407
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 379,
+    "fields": {
+        "position": "JUBILADO",
+        "company_name": "IGSS",
+        "start_date": "2020-09-30",
+        "description": "",
+        "salary": "3857.70",
+        "working_hours": "VESPERTINA",
+        "phone_number": "40996518",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Jubilado",
+        "customer_id": 408
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 380,
+    "fields": {
+        "position": "PILOTO",
+        "company_name": "TRANPORTES CARCHA",
+        "start_date": "2018-03-16",
+        "description": "",
+        "salary": "4500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79515743",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 411
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 381,
+    "fields": {
+        "position": "PROPIETARIO",
+        "company_name": "COINSE",
+        "start_date": "2005-08-22",
+        "description": "",
+        "salary": "10000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "50685415",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 412
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 382,
+    "fields": {
+        "position": "UTILERO",
+        "company_name": "CLUB SOCIAL Y DEPORTIVO COBÁN IMPERIAL",
+        "start_date": "2023-01-02",
+        "description": "",
+        "salary": "4200.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "53417345",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 413
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 383,
+    "fields": {
+        "position": "GUARDIA DE SEGURIDAD",
+        "company_name": "FEDECOVERA",
+        "start_date": "2020-01-02",
+        "description": "",
+        "salary": "3500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79521035",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 415
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 384,
+    "fields": {
+        "position": "PROPIETARIA",
+        "company_name": "PASTELERIA EL ARTE DEL SABOR",
+        "start_date": "2017-10-10",
+        "description": "",
+        "salary": "10000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "50463839",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 416
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 385,
+    "fields": {
+        "position": "AUXILIAR DE UNIDAD MOVIL",
+        "company_name": "ASOCIACIÓN ALAS DE GUATEMALA",
+        "start_date": "2023-09-18",
+        "description": "",
+        "salary": "4800.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79513430",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 417
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 386,
+    "fields": {
+        "position": "SUBJEFE DE AGENCIA",
+        "company_name": "BANCO INDUSTRIAL",
+        "start_date": "2003-09-01",
+        "description": "",
+        "salary": "11200.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "33599637",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 418
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 387,
+    "fields": {
+        "position": "ASESOR CREDITOS MIPYME",
+        "company_name": "FEDECOVERA RL",
+        "start_date": "2022-08-01",
+        "description": "",
+        "salary": "4000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79500741",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 419
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 388,
+    "fields": {
+        "position": "SARGENTO 2do",
+        "company_name": "EJERCITO DE GUATEMALA SEXTA BRIGADA DE INFANTERIA C.A.J.D.I.",
+        "start_date": "2024-01-01",
+        "description": "",
+        "salary": "2742.75",
+        "working_hours": "VESPERTINA",
+        "phone_number": "30749671",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "GOCE DE SALARIO",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 437
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 389,
+    "fields": {
+        "position": "DIRECTOR PROFESOR TITULADO",
+        "company_name": "MINISTERIO DE EDUCACION",
+        "start_date": "2005-01-03",
+        "description": "",
+        "salary": "10955.50",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79510080",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "SE DESEMPEÑA COMO DOCENTE DE PARTE DEL MINISTERIO DE EDUCACION",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 438
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 390,
+    "fields": {
+        "position": "JEFE DE ARCHIVO",
+        "company_name": "HOSPITAL REGIONAL DE COBAN",
+        "start_date": "2008-01-02",
+        "description": "",
+        "salary": "6775.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79316333",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 428
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 391,
+    "fields": {
+        "position": "MAESTRA",
+        "company_name": "ESCUELA OFICIAL DE PÁRVULOS GUSTAVO ADOLFO LEAL KLUG",
+        "start_date": "2009-01-02",
+        "description": "",
+        "salary": "8500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "0",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 426
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 392,
+    "fields": {
+        "position": "PROMOTORA",
+        "company_name": "RH CORP",
+        "start_date": "2023-01-02",
+        "description": "",
+        "salary": "3000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "41894178",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "TRABAJA A BASE DE VISITAS VARIAN DE ALREDOR DE 3 POR MES/ GANA Q1000 POR VISITA",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 424
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 393,
+    "fields": {
+        "position": "ASISTENTE CONTABLE",
+        "company_name": "FEDECOVERA R.L.",
+        "start_date": "2018-01-01",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "48524594",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 433
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 394,
+    "fields": {
+        "position": "MEDICO GENERAL",
+        "company_name": "INSTITUTO GUATEMALTECO DE SEGURIDAD SOCIAL",
+        "start_date": "2010-03-01",
+        "description": "",
+        "salary": "12239.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "44886961",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 435
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 395,
+    "fields": {
+        "position": "DOCENTE",
+        "company_name": "MINISTERIO DE EDUCACIÓN",
+        "start_date": "2019-01-02",
+        "description": "",
+        "salary": "6280.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79510080",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 430
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 396,
+    "fields": {
+        "position": "GESTORA DE RECURSOS HUMANOS",
+        "company_name": "MINISTERIO DE SALUD",
+        "start_date": "2012-01-02",
+        "description": "",
+        "salary": "4500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "30131284",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 434
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 397,
+    "fields": {
+        "position": "DUEÑA",
+        "company_name": "-",
+        "start_date": "2022-01-01",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "0",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Voluntario",
+        "customer_id": 429
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 398,
+    "fields": {
+        "position": "MAESTRA DE EDUCACIÓN PRIMARIA",
+        "company_name": "MINISTERIO DE EDUCACIÓN",
+        "start_date": "2004-01-02",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "0",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 439
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 399,
+    "fields": {
+        "position": "PROPIETARIA",
+        "company_name": "LA CASITA MAGICA",
+        "start_date": "2025-10-01",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "31571361",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 440
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 400,
+    "fields": {
+        "position": "PROPIETARIO",
+        "company_name": "VENTA DE JOYERIA",
+        "start_date": "2018-01-01",
+        "description": "",
+        "salary": "3500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "31571361",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 441
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 401,
+    "fields": {
+        "position": "ESPECIALISTA ACCESO A MERCADOS",
+        "company_name": "FEDECOVERA R.L.",
+        "start_date": "2024-08-01",
+        "description": "",
+        "salary": "20000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79500741",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 431
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 402,
+    "fields": {
+        "position": "DUEÑA",
+        "company_name": "SALON DE BELLEZA",
+        "start_date": "2025-06-01",
+        "description": "",
+        "salary": "3000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "0",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Voluntario",
+        "customer_id": 422
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 403,
+    "fields": {
+        "position": "DUEÑA",
+        "company_name": "STEFFI BEUTY SALON",
+        "start_date": "2020-01-01",
+        "description": "",
+        "salary": "15000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "0",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Voluntario",
+        "customer_id": 423
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 404,
+    "fields": {
+        "position": "PARAMEDICO",
+        "company_name": "HOSPITAL REGIONAL DE COBÁN",
+        "start_date": "2014-03-01",
+        "description": "",
+        "salary": "8000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "25096100",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 421
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 405,
+    "fields": {
+        "position": "SECRETARIA",
+        "company_name": "TALLER DE MECANICA MK",
+        "start_date": "2019-05-02",
+        "description": "",
+        "salary": "3500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "59491287",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 442
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 406,
+    "fields": {
+        "position": "OFICINISTA",
+        "company_name": "ORGANISMO JUDICIAL",
+        "start_date": "2015-06-01",
+        "description": "HORARIO DE 8 A 16 HRS. CENTRO DE MEDIACION",
+        "salary": "7397.50",
+        "working_hours": "VESPERTINA",
+        "phone_number": "46085902",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "RENGLON 011 DE ORGANISMO JUDICIAL, CENTRO DE MEDIACIÓN. SAN PEDRO CARCHÁ",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 443
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 407,
+    "fields": {
+        "position": "TÉCNICO DE CAMPO",
+        "company_name": "FEDECOVERA, R.L.",
+        "start_date": "2017-09-01",
+        "description": "",
+        "salary": "8000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79500741",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 432
     }
 }
 ]
