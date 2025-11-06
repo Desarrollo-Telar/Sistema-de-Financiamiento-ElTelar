@@ -11,6 +11,7 @@ from dateutil.relativedelta import relativedelta
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
 from apps.financings.models import PaymentPlan, AccountStatement, Banco
 
+from apps.customers.api.serializers import CustomerSerializer
 # ------------ FUNCIONES ----------------------
 def mostrar_fecha_limite(fecha_limite):
         limite = fecha_limite - relativedelta(days=1)
@@ -26,6 +27,7 @@ def total(capital, interes,mora, aporte_capital):
     return formatear_numero(total)
 
 class CreditSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Credit
         fields = [
@@ -49,37 +51,34 @@ class CreditSerializer(serializers.ModelSerializer):
             'sucursal',
             'asesor_de_credito',
         ]
-    def to_representation(self, instance):
-        return {
-            'id':instance.id,
-            'customer_id':{
-                'id':instance.customer_id.id,
-                'first_name':instance.customer_id.first_name,
-                'last_name':instance.customer_id.last_name,
-                'asesor':instance.customer_id.asesor,
 
-            },
-            'proposito':instance.proposito,
+    def to_representation(self, instance):
+       
+        cliente_serializado = CustomerSerializer(instance.customer_id).data if instance.customer_id else None
+
+        return {
+            'id': instance.id,
+            'customer': cliente_serializado,  
+            'proposito': instance.proposito,
             'monto': instance.monto,
             'Fmonto': formatear_numero(instance.monto),
-            'plazo':instance.plazo,
-            'tasa_interes':instance.tasa_interes,
-            'forma_de_pago':instance.forma_de_pago,
-            'frecuencia_pago':instance.frecuencia_pago,
-            'fecha_inicio':instance.fecha_inicio,
-            'fecha_vencimiento':instance.fecha_vencimiento,
-            'tipo_credito':instance.tipo_credito,            
-            'codigo_credito':instance.codigo_credito,
+            'plazo': instance.plazo,
+            'tasa_interes': instance.tasa_interes,
+            'forma_de_pago': instance.forma_de_pago,
+            'frecuencia_pago': instance.frecuencia_pago,
+            'fecha_inicio': instance.fecha_inicio,
+            'fecha_vencimiento': instance.fecha_vencimiento,
+            'tipo_credito': instance.tipo_credito,
+            'codigo_credito': instance.codigo_credito,
             'saldo_actual': instance.saldo_actual,
             'Fsaldo_actual': formatear_numero(instance.saldo_actual),
-            'saldo_pendiente':instance.saldo_pendiente,
-            'is_paid_off':instance.is_paid_off,
-            'estados_fechas':instance.estados_fechas,
-            'plazo_restante':instance.plazo_restante,
-            'estado_aportacion':instance.estado_aportacion,
-            'creation_date':instance.creation_date.date(),
+            'saldo_pendiente': instance.saldo_pendiente,
+            'is_paid_off': instance.is_paid_off,
+            'estados_fechas': instance.estados_fechas,
+            'plazo_restante': instance.plazo_restante,
+            'estado_aportacion': instance.estado_aportacion,
+            'creation_date': instance.creation_date.date() if instance.creation_date else None,
         }
-
 
 class GuaranteesSerializer(serializers.ModelSerializer):
     class Meta:

@@ -11,6 +11,7 @@ class CustomerForm(forms.ModelForm):
             'last_name',
             'type_identification',
             'identification_number',
+            'fehca_vencimiento_de_tipo_identificacion',
             'lugar_emision_tipo_identificacion_departamento',
             'lugar_emision_tipo_identificacion_municipio',
             'email',
@@ -49,6 +50,7 @@ class CustomerForm(forms.ModelForm):
             'immigration_status_id':'Condicion Migratoria (*)',
             'lugar_emision_tipo_identificacion_departamento': 'Departamento de Emision (*)',
             'lugar_emision_tipo_identificacion_municipio': 'Municipio de Emision (*)',
+            'fehca_vencimiento_de_tipo_identificacion': 'Fecha de Vencimiento del Tipo de Identificacion'
             
             
         }
@@ -61,6 +63,7 @@ class CustomerForm(forms.ModelForm):
             'identification_number': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'date_birth': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'fehca_vencimiento_de_tipo_identificacion': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'number_nit': forms.TextInput(attrs={'class': 'form-control'}),
             'place_birth': forms.TextInput(attrs={'class': 'form-control'}),
             'marital_status': forms.Select(choices=[], attrs={'class': 'form-control'}),

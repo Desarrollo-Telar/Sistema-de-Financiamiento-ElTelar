@@ -8,7 +8,7 @@ from scripts.cuotas.cuotas_fecha_limite import verificador_de_cuotas_fecha_limit
 from scripts.cuotas.cuotas_por_vencerse import cuotas_por_vencerse_alerta
 from scripts.recordatorios.informes import ver_estado_informe
 from scripts.recordatorios.cobranzas import fechas_cobranzas
-from scripts.cierre_diarrio.generar_cierre_diario import generando_copias_de_seguridad
+
 # TIEMPO
 from datetime import datetime, time, timedelta
 from django.utils.timezone import now
@@ -31,7 +31,7 @@ def ver_cuotas(dia):
     print(f'VERIFICACION DE PROXIMAS CUOTAS')
     cuotas_por_vencerse_alerta()
     print()
-    generando_copias_de_seguridad(dia)
+    
     print()
 
 

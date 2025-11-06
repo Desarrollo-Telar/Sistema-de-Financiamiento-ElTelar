@@ -215,19 +215,7 @@ from celery.schedules import crontab
 from urllib.parse import urlparse
 #REDISCLOUD_URL = 'redis://default:PTSGV1jP5KdITaOQxjLZotZZyG623CGf@redis-12001.c52.us-east-1-4.ec2.redns.redis-cloud.com:12001'
 
-"""
-redis_url = urlparse(os.environ.get('REDISCLOUD_URL'))
-CACHES = {
-        'default': {
-            'BACKEND': 'redis_cache.RedisCache',
-            'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
-            'OPTIONS': {
-                'PASSWORD': redis_url.password,
-                'DB': 0,
-        }
-    }
-}
-""" 
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",

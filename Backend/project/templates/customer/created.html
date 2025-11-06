@@ -123,7 +123,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="{{ form_cliente.type_identification.id_for_label }}" class="form-label">
                                     {{ form_cliente.type_identification.label }}
                                 </label>
@@ -133,7 +133,7 @@
                                 {% endif %}
                             </div>
 
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="{{ form_cliente.identification_number.id_for_label }}" class="form-label">
                                     {{ form_cliente.identification_number.label }}
                                 </label>
@@ -142,8 +142,17 @@
                                     <div class="text-danger small">{{ form_cliente.identification_number.errors }}</div>
                                 {% endif %}
                             </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="{{ form_cliente.identification_number.id_for_label }}" class="form-label">
+                                    {{ form_cliente.fehca_vencimiento_de_tipo_identificacion.label }}
+                                </label>
+                                {{ form_cliente.fehca_vencimiento_de_tipo_identificacion }}
+                                {% if form_cliente.fehca_vencimiento_de_tipo_identificacion.errors %}
+                                    <div class="text-danger small">{{ form_cliente.fehca_vencimiento_de_tipo_identificacion.errors }}</div>
+                                {% endif %}
+                            </div>
 
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="{{ form_cliente.number_nit.id_for_label }}" class="form-label">
                                     {{ form_cliente.number_nit.label }}
                                 </label>
