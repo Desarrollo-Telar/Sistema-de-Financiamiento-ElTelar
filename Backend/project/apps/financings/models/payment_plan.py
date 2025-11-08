@@ -3,7 +3,7 @@ from django.db import models
 # DIAS
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-
+import calendar
 
 # DECIMAL
 from decimal import Decimal
@@ -49,6 +49,8 @@ class PaymentPlan(models.Model):
     # NUEVOS CAMPOS
     paso_por_task = models.BooleanField(default=False)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
+    original_day = models.IntegerField(null=True, blank=True)
+
 
     def formato_cuota_mora(self):
         return formatear_numero(self.mora)
@@ -116,7 +118,19 @@ class PaymentPlan(models.Model):
         interes = 12
 
     def fecha_vencimiento(self):
-        self.due_date =  self.start_date + relativedelta(months=1)
+        # día objetivo (30 o 31 o el que sea)
+        target_day = self.original_day or self.start_date.day  
+
+        # mes siguiente
+        next_month = self.start_date + relativedelta(months=1)
+
+        # último día del mes siguiente
+        last_day = calendar.monthrange(next_month.year, next_month.month)[1]
+
+        # si el mes no tiene el día original, usa el último día
+        valid_day = min(target_day, last_day)
+
+        self.due_date = next_month.replace(day=valid_day)
         return self.due_date
     
     def calculo_fecha_limite(self):

@@ -97,6 +97,8 @@ def generar_planes(sender, instance,created, **kwargs):
             instance.cuota_vencida = True
             instance.save()
 
+            original_day= instance.start_date.day if instance.original_day is not None else None
+
             # Crear nueva cuota
             cuota_nueva = PaymentPlan(
                 saldo_pendiente=instance.saldo_pendiente,
@@ -109,7 +111,8 @@ def generar_planes(sender, instance,created, **kwargs):
                 interes_generado=interes,
                 interes_acumulado_generado=instance.interest,
                 acreedor=instance.acreedor,
-                seguro=instance.seguro
+                seguro=instance.seguro,
+                original_day= original_day
                 
             )
             cuota_nueva.save()

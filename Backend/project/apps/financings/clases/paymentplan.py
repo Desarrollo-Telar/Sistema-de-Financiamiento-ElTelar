@@ -7,11 +7,13 @@ from apps.customers.clases.customer import Customer
 from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
 # FORMATO
 from apps.financings.formato import formatear_numero
-import re
+import re, calendar
+
+
 class PaymentPlan:
     contador = 0
 
-    def __init__(self, credit):
+    def __init__(self, credit, fecha_inicio_credito=0):
         PaymentPlan.contador += 1
         self.__no = PaymentPlan.contador
         self.__credit = credit
@@ -19,6 +21,7 @@ class PaymentPlan:
         self.__plan = []
         self.__plazo = int(self.__credit.plazo)
         self._agregar = 0
+        self.original_day = fecha_inicio_credito
     
     
 
@@ -48,6 +51,15 @@ class PaymentPlan:
     @property
     def monto_inicial(self):
         return round(self.__credit.monto, 2)
+    
+    def next_month_preserving_day(self, current_date):
+        target_day = self.original_day
+        next_month = current_date + relativedelta(months=1)
+        last_day = calendar.monthrange(next_month.year, next_month.month)[1]
+
+        valid_day = min(target_day, last_day)
+
+        return next_month.replace(day=valid_day)
 
     def calculo_intereses(self, dia=None,monto=None):
         if monto is None:
@@ -82,7 +94,12 @@ class PaymentPlan:
         if isinstance(mes_inicial, str):  # Si mes_inicial es un string, lo conviertes
             mes_inicial = datetime.strptime(mes_inicial, '%Y-%m-%d')
         
-        mes_final = mes_inicial + relativedelta(months=1)
+        if self.original_day != 0:
+            mes_final = self.next_month_preserving_day(mes_inicial)
+        else:
+            mes_final = mes_inicial + relativedelta(months=1)
+
+
         dias_diferencia = (mes_final - mes_inicial).days
         Fmes_inicio = mes_inicial.strftime('%d-%m-%Y')  # Convierte a cadena con formato "YYYY-MM-DD"
         Fmes_fin = mes_final.strftime('%d-%m-%Y')      # Convierte a cadena con formato "YYYY-MM-DD"
@@ -131,7 +148,11 @@ class PaymentPlan:
             monto_prestado = round(anterior['monto_prestado'] - anterior['capital'], 2)
             
             mes_inicial = anterior['fecha_final']
-            mes_final = mes_inicial + relativedelta(months=1)
+            if self.original_day != 0:
+                mes_final = self.next_month_preserving_day(mes_inicial)
+            else:
+                mes_final = mes_inicial + relativedelta(months=1)
+            
             dias_diferencia = (mes_final - mes_inicial).days
 
             intereses = self.calculo_intereses(dias_diferencia,monto_prestado)

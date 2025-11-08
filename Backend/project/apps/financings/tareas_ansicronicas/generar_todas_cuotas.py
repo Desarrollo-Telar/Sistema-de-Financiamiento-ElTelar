@@ -73,6 +73,7 @@ def generar_todas_las_cuotas_acreedores(codigo_acreedor: str) -> None:
 
 def generar_todas_las_cuotas_credito(codigo_credito: str) -> None:
     credito = Credit.objects.filter(codigo_credito=codigo_credito).first()
+    original_day = credito.fecha_inicio.day
     plazo = credito.plazo
 
     if not credito:
@@ -111,7 +112,8 @@ def generar_todas_las_cuotas_credito(codigo_credito: str) -> None:
                 interest = calculo_interes(primera_cuota.saldo_pendiente,  credito.tasa_interes),
                 credit_id = credito,
                 interes_generado = calculo_interes(primera_cuota.saldo_pendiente,  credito.tasa_interes),
-                saldo_pendiente=primera_cuota.saldo_pendiente
+                saldo_pendiente=primera_cuota.saldo_pendiente,
+                original_day=original_day
             )
             cuota_n.save()
         return
@@ -124,7 +126,8 @@ def generar_todas_las_cuotas_credito(codigo_credito: str) -> None:
             interest = calculo_interes(primera_cuota.saldo_pendiente, credito.tasa_interes),
             credit_id = credito,
             interes_generado = calculo_interes(primera_cuota.saldo_pendiente, credito.tasa_interes),
-            saldo_pendiente=primera_cuota.saldo_pendiente
+            saldo_pendiente=primera_cuota.saldo_pendiente,
+            original_day=original_day
         )
         cuota_n.save()
         lista.append(cuota_n.due_date)
