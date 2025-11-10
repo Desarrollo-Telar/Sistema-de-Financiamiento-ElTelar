@@ -12,6 +12,7 @@ from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbur
 from apps.financings.models import PaymentPlan, AccountStatement, Banco
 
 from apps.customers.api.serializers import CustomerSerializer
+from apps.subsidiaries.api.seriealizer import SubsidiarySerializer
 # ------------ FUNCIONES ----------------------
 def mostrar_fecha_limite(fecha_limite):
         limite = fecha_limite - relativedelta(days=1)
@@ -55,10 +56,11 @@ class CreditSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
        
         cliente_serializado = CustomerSerializer(instance.customer_id).data if instance.customer_id else None
+        sucursal_serializado = SubsidiarySerializer(instance.sucursal).data if instance.sucursal else None
 
         return {
             'id': instance.id,
-            'customer': cliente_serializado,  
+            'customer_id': cliente_serializado,  
             'proposito': instance.proposito,
             'monto': instance.monto,
             'Fmonto': formatear_numero(instance.monto),
@@ -78,6 +80,7 @@ class CreditSerializer(serializers.ModelSerializer):
             'plazo_restante': instance.plazo_restante,
             'estado_aportacion': instance.estado_aportacion,
             'creation_date': instance.creation_date.date() if instance.creation_date else None,
+            'sucursal': sucursal_serializado
         }
 
 class GuaranteesSerializer(serializers.ModelSerializer):
