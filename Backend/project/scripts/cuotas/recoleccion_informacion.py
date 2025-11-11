@@ -19,6 +19,9 @@ def credito_fecha_vencimiento_hoy(creditos_fecha_vencimiento):
         if cuota.credit_id is not None:
             contexto['de'] = cuota.credit_id.customer_id
             contexto['codigo_credito'] = cuota.credit_id.codigo_credito
+            contexto['status_cancelado'] = cuota.credit_id.is_paid_off
+            contexto['status_fechas'] = cuota.credit_id.estados_fechas
+            contexto['status_aportacion'] = cuota.credit_id.estado_aportacion
             contexto['url_cuota'] = reverse('financings:detail_credit', args=[cuota.credit_id.id])
 
         
@@ -26,12 +29,18 @@ def credito_fecha_vencimiento_hoy(creditos_fecha_vencimiento):
         if cuota.acreedor is not None:
             contexto['de'] = cuota.acreedor.nombre_acreedor
             contexto['codigo_credito'] = cuota.acreedor.codigo_acreedor
+            contexto['status_cancelado'] = cuota.acreedor.is_paid_off
+            contexto['status_fechas'] = cuota.acreedor.estados_fechas
+            contexto['status_aportacion'] = cuota.acreedor.estado_aportacion
             contexto['url_cuota'] = reverse('contable:acreedores_detail', args=[cuota.acreedor.id])
             
 
         if cuota.seguro is not None:
             contexto['de'] = cuota.seguro.nombre_acreedor
             contexto['codigo_credito'] = cuota.seguro.codigo_seguro
+            contexto['status_cancelado'] = cuota.seguro.is_paid_off
+            contexto['status_fechas'] = cuota.seguro.estados_fechas
+            contexto['status_aportacion'] = cuota.seguro.estado_aportacion
             contexto['url_cuota'] = reverse('contable:seguros_detail', args=[cuota.seguro.id])
             
         

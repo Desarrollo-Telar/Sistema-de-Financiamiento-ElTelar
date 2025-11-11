@@ -14,6 +14,10 @@
                         <th scope="col">Fecha de Vencimiento</th>
                         <th scope="col">Fecha Limite</th>
 
+                        <th scope="col">Crédito Cancelado</th>
+                        <th scope="col">Status Aportación</th>
+                        <th scope="col">Status por Fechas</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +66,61 @@
                             <a style="text-decoration: none; color: black;"
                                 href="{{cuota.url_cuota}}">
                                 {{cuota.fecha_limite}}
+                                
+                            </a>
+                        </td>
+
+                       
+
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{{cuota.url_cuota}}" class="status-icon {% if cuota.status_cancelado %}activo{% else %}inactivo{% endif %}">
+                                
+                                {% if cuota.status_cancelado %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
+                              
+                                
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{{cuota.url_cuota}}" class="status-icon {% if cuota.status_aportacion %}activo{% elif cuota.status_aportacion is None %}neutro{% else %}inactivo{% endif %}">
+                                
+                                {% if cuota.status_aportacion %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                {% elif cuota.status_aportacion is none %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                                </svg>
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
+                                
+                            </a>
+                        </td>
+                        <td scope="row">
+                            <a style="text-decoration: none; color: black;"
+                                href="{{cuota.url_cuota}}"  class="status-icon {% if cuota.status_fechas %}activo{% else %}inactivo{% endif %}">
+                                {% if cuota.status_fechas %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
                                 
                             </a>
                         </td>
