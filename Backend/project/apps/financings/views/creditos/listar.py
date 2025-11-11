@@ -28,7 +28,7 @@ class CreditoList(ListView):
 
     template_name = 'financings/credit/list.html'
     
-
+    paginate_by = 75
     def get_queryset(self):
         try:
             request = self.request
@@ -107,7 +107,7 @@ class CreditoList(ListView):
             
 
             # Filtrar los objetos Banco usando los filtros definidos
-            return Credit.objects.filter(filters)
+            return Credit.objects.filter(filters).order_by('-id')
         
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío

@@ -1,113 +1,118 @@
 {% load static %}
 <div class="row">
-    <div class="col-12 " style="text-align: center;">
-        <div class="table-responsive">
-            <table class="table table-hover table-sm">
+    <div class="col-12" style="text-align: center;">
+        <div class="table-responsive mb-4">
+            <table style="font-size: 14px;">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Codigo de Acreedor</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Fecha</th>
+                        <th scope="col">Código de Acreedor</th>
+                        <th scope="col">Nombre</th>                        
                         <th scope="col">Monto Otorgado</th>
-                        <th scope="col">Tasa</th>
+                        <th scope="col">Tasa de Interés</th>
                         <th scope="col">Plazo</th>
                         <th scope="col">Referencia</th>
-                        <th scope="col">Fecha De Registro</th>
-
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Fecha Vencimiento</th>
+                        <th scope="col">Crédito Cancelado</th>
+                        <th scope="col">Status Aportación</th>
+                        <th scope="col">Status por Fechas</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for acreedor in acreedores_list %}
-
-
+                    {% for acreedor in object_list %}
                     <tr>
-                        <td>
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
-                                {{ forloop.counter }}
+                        <td>{{ forloop.counter }}</td>
+                        <th scope="row">
+                            <a class="row-link"  href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {{ acreedor.codigo_acreedor }}
                             </a>
-
-
-                        </td>
+                        </th>
                         <td>
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
-                                {{acreedor.codigo_acreedor}}
-                            </a>
-
-                        </td>
-                        <td>
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                            <a class="row-link"  href="{% url 'contable:acreedores_detail' acreedor.id %}">
                                 {{acreedor.nombre_acreedor}}
                             </a>
-
                         </td>
+                        
                         <td>
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
-                                {{acreedor.fecha_inicio}}
+                            <a class="row-link"  href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                <span class="badge bg-success"> Q{{acreedor.fmonto}}</span>
                             </a>
-
                         </td>
                         <td>
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
-                                Q{{acreedor.fmonto}}
+                            <a class="row-link"  href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                               {{acreedor.ftasa}}%
                             </a>
-
                         </td>
                         <td>
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
-                                {{acreedor.ftasa}}%
+                            <a class="row-link"  href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                               {{acreedor.plazo}} meses
                             </a>
-
                         </td>
                         <td>
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
-                                {{acreedor.plazo}} meses
-                            </a>
-
-                        </td>
-                        <td>
-                            
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
-                                {% if acreedor.numero_referencia is not None %}
+                            <a class="row-link"  href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                 {% if acreedor.numero_referencia is not None %}
                                 <p>{{acreedor.numero_referencia}}</p>
                                 {% endif %}
-                                
-                                
-                                
                             </a>
-                            
-                            
-
-
+                        </td>                        
+                        <td>
+                            <a class="row-link"  href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {{ acreedor.fecha_inicio }}
+                            </a>
                         </td>
                         <td>
-                            <a style="text-decoration: none; color: black;"
-                                href="{% url 'contable:acreedores_detail' acreedor.id %}">
-                                {{acreedor.fecha_registro}}
+                            <a class="row-link"  href="{% url 'contable:acreedores_detail' acreedor.id %}">
+                                {{ acreedor.fecha_vencimiento }}
                             </a>
-
                         </td>
-
+                        <td>
+                            <a  href="{% url 'contable:acreedores_detail' acreedor.id %}" class="status-icon {% if acreedor.is_paid_off %}activo{% else %}inactivo{% endif %}">
+                                {% if acreedor.is_paid_off %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td>
+                            <a  href="{% url 'contable:acreedores_detail' acreedor.id %}" class="status-icon {% if acreedor.estado_aportacion %}activo{% elif acreedor.estado_aportacion is None %}neutro{% else %}inactivo{% endif %}">
+                                {% if acreedor.estado_aportacion %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                {% elif acreedor.estado_aportacion is none %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                                </svg>
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td>
+                            <a  href="{% url 'contable:acreedores_detail' acreedor.id %}" class="status-icon {% if acreedor.estados_fechas %}activo{% else %}inactivo{% endif %}">
+                                {% if acreedor.estados_fechas %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
+                            </a>
+                        </td>
                     </tr>
-
-
-
-
-
-
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
-
-
 </div>

@@ -6,29 +6,21 @@
 {% endblock%}
 
 {% block content %}
-<div class=" row box">
+<div class="container my-4 p-4 bg-white rounded shadow-sm">
     <div class="row">
         {% include 'contable/acreedores/snippets/presentation.html' %}
-    </div>
-    <hr>
-    <div class="row" style="margin-bottom: 2rem">
-        <div class="col">
+        <div class="col mb-4">
             <p class="text-body-secondary fs-6 text-uppercase">TOTAL DE TODOS LOS ACREEDORES REGISTRADOS {{message}}:
                 <span class="badge rounded-pill text-bg-dark">{{count}}</span>
             </p>
         </div>
     </div>
-
-    <div class="row" style="margin-bottom: 2rem;">
-        {% if permisos.puede_consultar_acreedores %}
-        <div class="col d-flex justify-content-start" style="display: flex; align-items: center; justify-content: end;">
-            {% include 'contable/acreedores/snippets/search.html' with query=query %}
-
-        </div>
-        {% endif %}
-        {% if permisos.puede_crear_acreedor or permisos.puede_crear_boleta_pago %}
+    <hr>
+    {% if permisos.puede_crear_acreedor or permisos.puede_crear_boleta_pago %}
+    <div class="row mb-4">
+        
         <div class="col d-flex flex-row-reverse">
-            {% if permisos.puede_crear_acreedor  %}
+            {% if permisos.puede_crear_acreedor %}
             <a class="btn_guardar" href="{% url 'contable:acreedores_create'%}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus"
                     viewBox="0 0 16 16">
@@ -36,7 +28,7 @@
                         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
                 </svg>
                 Añadir Acreedor nuevo</a>
-                {% endif %}
+            {% endif %}
             {% if permisos.puede_crear_boleta_pago %}
             <a class="btn_guardar" href="{% url 'contable:acreedores_boleta'%}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus"
@@ -45,13 +37,23 @@
                         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
                 </svg>
                 Registrar Boleta</a>
-                {% endif %}
-        </div>
-        {% endif %}
-        <div class="col-1">
-            {% include 'contable/acreedores/snippets/filters.html' %}
+            {% endif %}
         </div>
         
+
+    </div>
+    {% endif %}
+
+    <div class="row align-items-center mb-4 gx-3 gy-2">
+        {% if permisos.puede_consultar_acreedores %}
+        <div class="col-12 col-md-12 col-lg-12">
+            {% include 'contable/acreedores/snippets/search.html' with query=query %}
+
+        </div>
+        {% endif %}
+        
+        
+
     </div>
 
 

@@ -6,27 +6,18 @@
 {% endblock%}
 
 {% block content %}
-<div class=" row box">
+<div class="container my-4 p-4 bg-white rounded shadow-sm">
     <div class="row">
         {% include 'contable/seguros/snippets/presentation.html' %}
-    </div>
-    <hr>
-    <div class="row" style="margin-bottom: 2rem">
-        <div class="col">
+        <div class="col mb-4">
             <p class="text-body-secondary fs-6 text-uppercase">TOTAL DE TODOS LOS SEGUROS REGISTRADOS {{message}}:
                 <span class="badge rounded-pill text-bg-dark">{{count}}</span>
             </p>
         </div>
     </div>
-
-    <div class="row" style="margin-bottom: 2rem;">
-        {% if permisos.puede_consultar_seguros %}
-        <div class="col d-flex justify-content-start" style="display: flex; align-items: center; justify-content: end;">
-            {% include 'contable/seguros/snippets/search.html' with query=query %}
-
-        </div>
-        {% endif %}
-        {% if permisos.puede_crear_seguro or permisos.puede_crear_boleta_pago %}
+    <hr>
+    {% if permisos.puede_crear_seguro or permisos.puede_crear_boleta_pago %}
+    <div class="row mb-4">
         <div class="col d-flex flex-row-reverse">
             {% if permisos.puede_crear_seguro %}
             <a class="btn_guardar" href="{% url 'contable:seguros_create'%}">
@@ -47,11 +38,22 @@
                     Registrar Boleta</a>
                     {% endif %}
         </div>
+
+    </div>
+        
+        {% endif %}
+   
+
+    <div class="row align-items-center mb-4 gx-3 gy-2">
+        {% if permisos.puede_consultar_seguros %}
+        <div class="col-12 col-md-12 col-lg-12">
+            {% include 'contable/seguros/snippets/search.html' with query=query %}
+
+        </div>
         {% endif %}
         
-        <div class="col-1">
-            {% include 'contable/seguros/snippets/filters.html' %}
-        </div>
+        
+      
         
     </div>
 

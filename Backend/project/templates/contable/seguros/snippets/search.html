@@ -1,20 +1,82 @@
-<nav>
+<nav class="navbar  shadow-sm rounded  mb-3">
     <div class="container-fluid">
-        <form class="d-flex" action="{% url 'contable:seguros_search' %}">
-            <div class="input-group">
-                <input class="form-control me-2" name="q" value="{{ query }}" type="search" placeholder="Buscar"
-                    aria-label="Search">
-                <button class="btn btn-outline-dark" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-search" viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                    </svg>
-                </button>
+        <form class="row g-2 align-items-center w-100" action="{% url 'contable:seguros' %}" id="searchForm">
 
+            <!-- Campo de búsqueda -->
+            <div class="col-md-3">
+                <label class="form-label mb-0 small fw-semibold text-secondary"></label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input 
+                        class="form-control" 
+                        name="q" 
+                        value="{{ query }}" 
+                        type="search" 
+                        placeholder="Buscar Seguro..."
+                        aria-label="Search"
+                    >
+                </div>
+            </div>
+
+           
+
+            <!-- Filtro: Estado -->
+            <div class="col-md-2">
+                <label class="form-label mb-0 small fw-semibold text-secondary">Estado</label>
+                <select name="status" id="status" class="form-select text-uppercase">
+                    <option value="">Todos</option>
+                    {% for statu in status %}
+                        <option value="{{ statu }}" {% if statu == selected_status %}selected{% endif %}>
+                            {{ statu }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Filtro: Mes -->
+            <div class="col-md-3">
+                <label class="form-label mb-0 small fw-semibold text-secondary">Mes de Registro</label>
+                <select name="mes" id="mes" class="form-select text-uppercase">
+                    <option value="">---</option>
+                    <option value="1" {% if mes == 1 %}selected{% endif %}>Enero</option>
+                    <option value="2" {% if mes == 2 %}selected{% endif %}>Febrero</option>
+                    <option value="3" {% if mes == 3 %}selected{% endif %}>Marzo</option>
+                    <option value="4" {% if mes == 4 %}selected{% endif %}>Abril</option>
+                    <option value="5" {% if mes == 5 %}selected{% endif %}>Mayo</option>
+                    <option value="6" {% if mes == 6 %}selected{% endif %}>Junio</option>
+                    <option value="7" {% if mes == 7 %}selected{% endif %}>Julio</option>
+                    <option value="8" {% if mes == 8 %}selected{% endif %}>Agosto</option>
+                    <option value="9" {% if mes == 9 %}selected{% endif %}>Septiembre</option>
+                    <option value="10" {% if mes == 10 %}selected{% endif %}>Octubre</option>
+                    <option value="11" {% if mes == 11 %}selected{% endif %}>Noviembre</option>
+                    <option value="12" {% if mes == 12 %}selected{% endif %}>Diciembre</option>
+                </select>
+            </div>
+            <!-- Filtro: Estado -->
+            <div class="col-md-2">
+                <label class="form-label mb-0 small fw-semibold text-secondary">Año de Registro</label>
+                <input type="number" name="anio" id="anio" value="{{ anio }}" class="form-control" >
+            </div>
+
+            <!-- Botón de búsqueda -->
+            <div class="col-md-2 d-flex align-items-end">
+                <label class="form-label mb-0 small fw-semibold text-secondary"></label>
+                <button class="btn btn-dark w-100" type="submit">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
             </div>
 
         </form>
-
     </div>
 </nav>
+
+<!-- Script de limpieza de filtros vacíos -->
+<script>
+document.getElementById("searchForm").addEventListener("submit", function (e) {
+    this.querySelectorAll("input[name], select[name], textarea[name]").forEach(el => {
+        if (!el.value.trim()) el.removeAttribute("name");
+    });
+});
+</script>

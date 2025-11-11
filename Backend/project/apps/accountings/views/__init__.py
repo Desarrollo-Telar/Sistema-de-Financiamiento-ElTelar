@@ -1,4 +1,4 @@
-from .list import list_acreedores, list_seguros, list_egresos, IngresosList, list_modulos, EgresosList
+from .list import list_acreedores, list_seguros, list_egresos, IngresosList, list_modulos, EgresosList, AcreedoresListView, SeguroListView
 
 from .create import add_acreedor, add_seguro, add_ingreso, add_egresos
 
