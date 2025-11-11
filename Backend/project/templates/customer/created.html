@@ -182,6 +182,7 @@
                                 {% if form_cliente.lugar_emision_tipo_identificacion_municipio.errors %}
                                     <div class="text-danger small">{{ form_cliente.lugar_emision_tipo_identificacion_municipio.errors }}</div>
                                 {% endif %}
+                                <a href="{% url 'addresses:crear_municipio'%}">Agregar Nuevo Municipio</a>
                             </div>
                         </div>
 
@@ -279,8 +280,9 @@
                         </div>
                         <div class="section-divider mb-4 mt-4">
                             <h5 class="text-dark border-bottom pb-2">
-                                <i class="fas fa-briefcase"></i> Dirección Personal
+                                <i class="fas fa-briefcase"></i> Dirección Personal                                
                             </h5>
+                            <a href="{% url 'addresses:crear_municipio'%}">Agregar Nuevo Municipio</a>
                         </div>
                         <div class="row">
                             {% for field in form_direccion %}
