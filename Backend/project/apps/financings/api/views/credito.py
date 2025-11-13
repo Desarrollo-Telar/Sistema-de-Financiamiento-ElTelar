@@ -262,7 +262,7 @@ class CreditVigentesCobranzaViewSet(viewsets.ModelViewSet):
 
         asesor_autenticado = CreditCounselor.objects.filter(usuario=self.request.user).first()
         reporte_id = Informe.objects.filter(usuario=self.request.user, esta_activo=True).first()
-        roles = ['Administrador', 'Programador']
+        roles = ['Administrador', 'Programador','Secretari@']
         role_name = getattr(getattr(self.request.user, 'rol', None), 'role_name', None)
 
         sucursal = getattr(self.request, 'sucursal_actual', None)
