@@ -126,7 +126,7 @@ class CreditoList(ListView):
     def query_anio(self):
         return self.request.GET.get('anio')
     
-    @method_decorator(permiso_requerido('puede_realizar_consultas_informacion_credito'))
+    @method_decorator(permiso_requerido('puede_ver_registros_credito'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     
