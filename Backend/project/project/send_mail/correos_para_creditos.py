@@ -45,7 +45,7 @@ def send_email_new_credit(models):
 
     if SERVIDOR and usuarios_email:
         email.send()
-
+        sucursal = models.sucursal
         especificaciones = build_notificacion_especificaciones(
 
             view_name='financings:detail_credit',
@@ -57,7 +57,7 @@ def send_email_new_credit(models):
             'message':'Se ha registrado un nuevo credito dentro de la plataforma.',
             'especificaciones':especificaciones
         }
-        creacion_notificacion_administradores(mensaje)
+        creacion_notificacion_administradores(mensaje, sucursal)
 
 # MENSAJES DE ALERTAS PARA LOS PARA LOS ADMINISTRADORES, Y NOTIFICACION PARA SECRETARI@
 # ESTE MENSAJE ES PARA NOTIFICAR QUE CUOTAS HAN LLEGADO A SU FECHA DE VENCIMIENTO

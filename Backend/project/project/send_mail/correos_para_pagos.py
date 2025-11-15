@@ -66,6 +66,7 @@ def send_email_alert(message, status,models):
         
         #email.send()
         print('envio de notificacion')
+        sucursal = models.sucursal
 
         especificaciones = build_notificacion_especificaciones(
 
@@ -92,7 +93,7 @@ Para: {models.boleta_para()}
             'message':f'La siguiente boleta con {models.numero_referencia} esta en status {status}',
             'especificaciones':especificaciones
         }
-        creacion_notificacion(roles,mensaje)
+        creacion_notificacion(roles,mensaje, sucursal)
 
 
 
@@ -135,7 +136,7 @@ def send_email_recibo(models):
         return
     
     if SERVIDOR and usuarios_email:
-        
+        sucursal = models.sucursal
         email.send()
         print('envio de notificacion')
         especificaciones = build_notificacion_especificaciones(
@@ -151,4 +152,4 @@ def send_email_recibo(models):
             'message':f'Recibo para {models.pago.boleta_para()}',
             'especificaciones':especificaciones
         }
-        creacion_notificacion(roles,mensaje)
+        creacion_notificacion(roles,mensaje, sucursal)

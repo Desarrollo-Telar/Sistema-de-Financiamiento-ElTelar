@@ -49,7 +49,7 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
     }
     # Recolectar correos electrónicos de todos los superusuarios
     
-    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Administrador') | Q(rol__role_name='Programador'), status=True)]
+    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Programador'), status=True)]
 
 
     # Renderizar el contenido del correo electrónico

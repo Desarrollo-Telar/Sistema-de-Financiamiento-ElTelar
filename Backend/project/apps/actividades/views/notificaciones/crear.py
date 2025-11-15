@@ -70,7 +70,8 @@ def subida_documento(request, uuid):
             num_referencia = form.cleaned_data.get('numero_referencia')
             if num_referencia is None:
                 documento.numero_referencia = '3696008759'
-                
+            
+            sucursal = token_cliente.cuota.sucursal
             documento.cliente = token_cliente.cliente
             documento.cuota = token_cliente.cuota
             documento.sucursal = token_cliente.cuota.sucursal
@@ -90,7 +91,7 @@ def subida_documento(request, uuid):
                 'message':f'El Cliente {token_cliente.cliente} ha subido su boleta de pago para el credito {token_cliente.cuota.credit_id} del mes {token_cliente.cuota.mes}.',
                 'especificaciones':especificaciones
             }
-            creacion_notificacion_administrador_secretaria(mensaje)
+            creacion_notificacion_administrador_secretaria(mensaje, sucursal)
             messages.success(request, 'Se ha subido correctamente su documento. ')
             return redirect('boleta_procesada')
 

@@ -14,6 +14,10 @@ from django.utils import timezone
 
 import uuid
 
+# Notificaciones
+from scripts.notificaciones.creacion_notificacion import creacion_notificacion_administrador_secretaria
+from apps.actividades.utils import build_notificacion_especificaciones
+
 class Cobranza(models.Model):
     credito = models.ForeignKey(Credit, on_delete=models.CASCADE, related_name='cobranzas')
     asesor_credito = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, related_name='cobranzas_gestionadas')
@@ -134,7 +138,21 @@ class Cobranza(models.Model):
         # Vincula la descripcion al comentario
         if self.observaciones is not None or self.observaciones != '':
             self._crear_comentario()
-        
+        sucursal = self.asesor_credito.sucursal
+        # Notificacion 
+        especificaciones = build_notificacion_especificaciones(
+
+            view_name='financings:detail_credit',
+            kwargs={'id': self.id}
+            
+           
+        )
+        mensaje = {
+            'title':f'Se ha registrado la gestion de una cobranza',
+            'message':f'El asesor {self.asesor_credito} ha hecho una gestion de cobranza para el credito {self.credito}, como resultado en {self.resultado}',
+            'especificaciones':especificaciones
+        }
+        creacion_notificacion_administrador_secretaria(mensaje,sucursal)
         
         
     
