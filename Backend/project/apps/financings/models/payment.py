@@ -283,6 +283,9 @@ class Payment(models.Model):
 
         if cuota.interest == 0:
             informacion['credito'].estados_fechas = True
+            if informacion['credito'].fecha_entrar_en_mora is not None:
+                informacion['credito'].fecha_entrar_en_mora = None
+        
             
 
         interes = calculo_interes(saldo_pendiente, informacion['tasa_interes'])

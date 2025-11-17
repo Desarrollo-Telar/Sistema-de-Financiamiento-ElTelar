@@ -241,8 +241,8 @@ class ReporteCreditos(TemplateView):
             "#", "FECHA DE REGISTRO", "CODIGO DEL CREDITO", 
             "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
             "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
-            "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", "FECHA DE CANCELACION DEL CREDITO",
-            "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS DEL CREDITO", "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
+            "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", "FECHA DE CANCELACION DEL CREDITO", "FECHA EN ENTRAR A MORA",
+            "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS",'STATUS POR APORTACION','STATUS JUDICIAL','STATUS DEL CREDITO', "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
         ]
 
         for col_idx, header in enumerate(encabezados, start=1):
@@ -271,7 +271,8 @@ class ReporteCreditos(TemplateView):
 
             aportacion = mensaje
             s_fecha = 'VIGENTE' if reporte.estados_fechas else 'EN ATRASO'
-            stat = f'''Status de Aportación: {aportacion}, Status por Fecha: {s_fecha}'''
+            s_judicial = 'EN PROCESO JUDICIAL' if reporte.estado_judicial else 'NO'
+            s_credito = 'CANCELADO' if reporte.is_paid_off else 'VIGENTE'
 
             fila = [
                 contador,
@@ -289,10 +290,11 @@ class ReporteCreditos(TemplateView):
                 reporte.fecha_vencimiento,
                 fecha_limite_pago,
                 reporte.fecha_cancelacion,
+                reporte.fecha_entrar_en_mora,
                 reporte.formato_saldo_actual(),
                 reporte.formato_saldo_pendiente(),
                 reporte.formato_saldo_excedente(),
-                stat,
+                s_fecha,aportacion,s_judicial,s_credito,
                 numero_referencia,
                 str(reporte.asesor_de_credito),
             ]
