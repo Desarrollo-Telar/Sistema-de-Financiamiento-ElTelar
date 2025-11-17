@@ -24,7 +24,7 @@ export function tipo_codigo(input_id_codigo_egreso, seleccionado) {
             selectNombre.style = inputNombre.style; // Mantiene los estilos en línea
 
             // Opciones del select
-            const opciones = ['EDGAR ARMANDO ALVARADO ', 'LUISA FERNANDA CHEN PACAY', 'ELIZABETH ANDREA ESPERANZA TOT CANAHUI', 'GRECIA MAYARI RODRIGUEZ ROQUEL']; // Modifica según sea necesario
+            const opciones = ['EDGAR ARMANDO ALVARADO ', 'LUISA FERNANDA CHEN PACAY', 'ELIZABETH ANDREA ESPERANZA TOT CANAHUI', 'GRECIA MAYARI RODRIGUEZ ROQUEL', 'JALINNE ANAGALY BERRÍOS DE LA CRUZ']; // Modifica según sea necesario
             opciones.forEach(opcion => {
                 const optionElement = document.createElement('option');
                 optionElement.value = opcion;

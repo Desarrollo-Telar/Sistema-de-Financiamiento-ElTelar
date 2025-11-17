@@ -53,14 +53,14 @@ def report_creditos(request, filtro_seleccionado):
     sheet = workbook.active
     sheet.title = f"Reporte de CREDITOS"
 
-    # Agregar encabezado
+    # Agregar encabezado fecha_entrar_en_mora
     sheet['A1'] = f'REPORTE SOBRE CREDITOS'
     sheet.append([
         "#", "FECHA DE REGISTRO", "CODIGO DEL CREDITO", 
         "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
         "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
-        "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", 
-        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS DEL CREDITO", "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
+        "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", "FECHA EN QUE ENTRO A MORA", 
+        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS","STATUS POR APORTACION","STATUS JUDICIAL","STATUS CANCELADO", "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
     ])
 
     # Agregar los datos
@@ -84,6 +84,8 @@ def report_creditos(request, filtro_seleccionado):
         s_fecha = 'VIGENTE' if reporte.estados_fechas else 'EN ATRASO'
         stat = f'''Status de Aportación: {aportacion}, Status por Fecha: {s_fecha}'''
 
+        s_judicial = 'Si' if reporte.estado_judicial else 'No' 
+        s_cancelado = 'Si' if reporte.is_paid_off else 'No'
         sheet.append([
             idx,
             reporte.creation_date.date(),
@@ -99,10 +101,14 @@ def report_creditos(request, filtro_seleccionado):
             reporte.fecha_inicio,
             reporte.fecha_vencimiento,
             fecha_limite_pago,
+            str('---'),
             reporte.formato_saldo_actual(),
             reporte.formato_saldo_pendiente(),
             reporte.formato_saldo_excedente(),
-            stat,
+            s_fecha,
+            aportacion,
+            s_judicial,
+            s_cancelado,
             numero_referencia,
             str(reporte.customer_id.asesor)
 

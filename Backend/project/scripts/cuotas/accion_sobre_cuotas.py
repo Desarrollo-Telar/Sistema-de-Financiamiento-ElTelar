@@ -17,7 +17,7 @@ from decimal import Decimal
 
 # MENSAJES DE ALERTA
 from project.send_mail import send_email_update_of_quotas
-
+from datetime import datetime
 
 # lOGS
 import logging
@@ -274,6 +274,8 @@ def recorrido_de_cuotas(cuotas, accion):
 
                 if cuota.interest > 0:
                     credito.estados_fechas = False
+                    if credito.fecha_entrar_en_mora is None:
+                        credito.fecha_entrar_en_mora = datetime.now().date()
                     
                 credito.estado_aportacion = False
                 generar_estado_cuenta(cuota, accion)

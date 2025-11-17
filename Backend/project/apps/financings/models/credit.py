@@ -70,6 +70,8 @@ class Credit(models.Model):
     numero_identificacion_sucursal = models.CharField(verbose_name="Numero de Identificacion Sucursal por Cliente", max_length=150, blank=True, null=True)
     
     fecha_cancelacion = models.DateField(verbose_name="Fecha de cancelacion", blank=True, null=True)
+
+    fecha_entrar_en_mora = models.DateField(verbose_name="Fecha en entrar en Mora", blank=True, null=True)
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
     

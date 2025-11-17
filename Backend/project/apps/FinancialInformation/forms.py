@@ -23,12 +23,12 @@ class WorkingInformationForms(forms.ModelForm):
             'position':'Puesto',
             'company_name': 'Nombre de la Empresa',
             'start_date': 'Fecha de Inicio',
-            'description': 'Detalles',
+            'description': 'Información de la Empresa',
             'salary': 'Salario',            
             'working_hours': 'Horario de Trabajo',
             'phone_number': 'Numeor de telefono',
             'source_of_income': 'Fuentes de Ingreso',
-            'income_detail': 'Detalles de ingreso',
+            'income_detail': 'Detalles de ingresos a sus Funciones',
             'employment_status':'Estado laboral',
         }
 
