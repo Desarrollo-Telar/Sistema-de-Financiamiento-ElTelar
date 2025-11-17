@@ -5,7 +5,7 @@ from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 
 # Modelo
-from .models import Customer, CreditCounselor
+from .models import Customer, CreditCounselor, Cobranza
 from apps.addresses.models import Municiopio, Departamento
 from django.db.models import Q
 # Tiempo
@@ -154,4 +154,30 @@ def delete_image_qr_customer(sender, instance, **kwargs):
         print('QR eliminado de MinIO')
     except Exception as e:
         print(f'Error al eliminar QR de MinIO: {str(e)}')
-    
+
+# Notificaciones
+from scripts.notificaciones.creacion_notificacion import creacion_notificacion_administrador_secretaria
+from apps.actividades.utils import build_notificacion_especificaciones
+
+@receiver(post_save, sender=Cobranza)
+def send_notificacion(sender, instance, created, **kwargs):
+    es_nuevo = instance.pk is None
+    registro = 'registrado'
+    if es_nuevo:
+        registro = 'actualizado'
+        
+
+    sucursal = instance.credito.sucursal
+    # Notificacion 
+    especificaciones = build_notificacion_especificaciones(
+        view_name='financings:detail_credit',
+        kwargs={'id': instance.id}    
+    )
+
+    mensaje = {
+        'title':f'Se ha {registro} la gestion de una cobranza',
+        'message':f'El asesor {instance.asesor_credito} ha hecho una gestion de cobranza para el credito {instance.credito}, como resultado en {instance.resultado}',
+        'especificaciones':especificaciones
+    }
+
+    creacion_notificacion_administrador_secretaria(mensaje,sucursal)

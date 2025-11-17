@@ -2,7 +2,7 @@
 from apps.actividades.models import Notification
 from apps.users.models import User
 
-
+from django.db.models import Q
 
 def creando_notificacion(lista, mensaje, sucursal=None):
     # Funcion que se encarga de generar el registro de la notificacion
@@ -18,33 +18,32 @@ def creacion_notificacion_administradores(mensaje, sucursal = None):
     # Funcion para quien va las notificaciones
     roles = ['Administrador', 'Programador']
 
+    filtro = Q()
+    filtro &= Q(status=True)
+    filtro &= Q(rol__role_name__in=roles)
+
     if sucursal is not None:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name__in=roles,
-            sucursal = sucursal
-        )
-    else:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name__in=roles
-        )
+        filtro |= Q(sucursal = sucursal)
+        
+    filtro |= Q(sucursal__isnull=False)
+
+   
+    usuarios = User.objects.filter(filtro)
 
     creando_notificacion(usuarios, mensaje, sucursal)
 
 def creacion_notificacion(roles, mensaje, sucursal = None): 
-    if sucursal is not None:
+    filtro = Q()
+    filtro &= Q(status=True)
+    filtro &= Q(rol__role_name__in=roles)
 
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name__in=roles,
-            sucursal = sucursal
-        )
-    else:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name__in=roles
-        )
+    if sucursal is not None:
+        filtro |= Q(sucursal = sucursal)
+        
+    filtro |= Q(sucursal__isnull=False)
+
+   
+    usuarios = User.objects.filter(filtro)
 
 
     creando_notificacion(usuarios, mensaje)
@@ -60,17 +59,17 @@ def creacion_notificacion_administrador_secretaria(mensaje, sucursal = None):
     # Funcion para quien va las notificaciones
     roles = ['Administrador', 'Programador', 'Secretari@']
 
+    filtro = Q()
+    filtro &= Q(status=True)
+    filtro &= Q(rol__role_name__in=roles)
+
     if sucursal is not None:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name__in=roles,
-            sucursal = sucursal
-        )
-    else:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name__in=roles
-        )
+        filtro |= Q(sucursal = sucursal)
+
+    filtro |= Q(sucursal__isnull=False)
+
+   
+    usuarios = User.objects.filter(filtro)
 
     creando_notificacion(usuarios, mensaje, sucursal)
 
@@ -78,17 +77,17 @@ def creacion_notificacion_administrador_asesor_credito(mensaje, sucursal=None):
     # Funcion para quien va las notificaciones
     roles = ['Administrador', 'Programador', 'Asesor de Crédito']
 
+    filtro = Q()
+    filtro &= Q(status=True)
+    filtro &= Q(rol__role_name__in=roles)
+
     if sucursal is not None:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name__in=roles,
-            sucursal = sucursal
-        )
-    else:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name__in=roles
-        )
+        filtro |= Q(sucursal = sucursal)
+        
+    filtro |= Q(sucursal__isnull=False)
+
+   
+    usuarios = User.objects.filter(filtro)
 
     creando_notificacion(usuarios, mensaje)
 
@@ -96,52 +95,53 @@ def creacion_notificacion_administrador_asesor_credito_secretaria(mensaje, sucur
     # Funcion para quien va las notificaciones
     roles = ['Administrador', 'Programador', 'Asesor de Crédito','Secretari@']
 
+    filtro = Q()
+    filtro &= Q(status=True)
+    filtro &= Q(rol__role_name__in=roles)
+
     if sucursal is not None:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name__in=roles,
-            sucursal = sucursal
-        )
-    else:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name__in=roles
-        )
+        filtro |= Q(sucursal = sucursal)
+        
+    filtro |= Q(sucursal__isnull=False)
+
+   
+    usuarios = User.objects.filter(filtro)
 
     creando_notificacion(usuarios, mensaje)
 
 
 def creacion_notificacion_secre(mensaje, sucursal = None):
     # Funcion para que se envie a los secres
-    
+
+    filtro = Q()
+    filtro &= Q(status=True)
+    filtro &= Q(rol__role_name="Secretari@")
+
     if sucursal is not None:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name="Secretari@",
-            sucursal = sucursal
-        )
-    else:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name="Secretari@"
-        )
+        filtro |= Q(sucursal = sucursal)
+        
+    filtro |= Q(sucursal__isnull=False)
+
+   
+    usuarios = User.objects.filter(filtro)
 
     creando_notificacion(usuarios, mensaje)
 
 def creacion_notificacion_asesores(mensaje, sucursal = None):
     # Funcion para que se envie a los Asesor de Crédito
-    if sucursal is not None:
 
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name="Asesor de Crédito",
-            sucursal = sucursal
-        )
-    else:
-        usuarios = User.objects.filter(
-            status=True,
-            rol__role_name="Asesor de Crédito"
-        )
+
+    filtro = Q()
+    filtro &= Q(status=True)
+    filtro &= Q(rol__role_name="Asesor de Crédito")
+
+    if sucursal is not None:
+        filtro |= Q(sucursal = sucursal)
+        
+    filtro |= Q(sucursal__isnull=False)
+
+   
+    usuarios = User.objects.filter(filtro)
 
 
     creando_notificacion(usuarios, mensaje)
