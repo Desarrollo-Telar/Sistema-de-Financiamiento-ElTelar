@@ -102,7 +102,7 @@ def render_pdf_factura(request,id):
 
 def render_pdf_estado_cuenta(request,id):
     credito = get_object_or_404(Credit,id=id)
-    estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
+    estado_cuenta = AccountStatement.objects.filter(credit=credito, es_visible=True).order_by('issue_date')
     dia = datetime.now().date()
     dia_mas_uno = dia + timedelta(days=1)
     

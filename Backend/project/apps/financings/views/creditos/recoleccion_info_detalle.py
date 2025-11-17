@@ -34,7 +34,7 @@ def informacion_detalle(request, credito, saldo_actual, siguiente_pago):
     cuotas_vencidas = PaymentPlan.objects.filter(credit_id=credito, cuota_vencida=True).order_by('mes')
 
     # LISTAR EL ESTADO DE CUENTA
-    estado_cuenta = AccountStatement.objects.filter(credit=credito).order_by('issue_date')
+    estado_cuenta = AccountStatement.objects.filter(credit=credito, es_visible=True).order_by('issue_date')
 
     # HISTORIAL DE COBRANZAS
     cobranzas = Cobranza.objects.filter(credito=credito)

@@ -34,6 +34,7 @@ class AccountStatement(models.Model):
     numero_referencia = models.CharField('Numero de Referencia', max_length=255, unique=True)
     description = models.TextField('Descripcion',blank=True, null=True )
     excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
+    es_visible = models.BooleanField("Puede ser visible", default=True, blank=True, null=True)
 
     def Fabono(self):
         return formatear_numero(self.abono)
