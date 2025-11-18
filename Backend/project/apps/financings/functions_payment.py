@@ -8,10 +8,7 @@ from datetime import datetime
 def revisar(boleta):
     pago = Payment.objects.filter(numero_referencia=boleta.referencia, estado_transaccion="PENDIENTE").first()
     
-    if boleta.sucursal:
-        pago = Payment.objects.filter(numero_referencia=boleta.referencia, estado_transaccion="PENDIENTE", sucursal = boleta.sucursal).first()
-    
-
+   
     if pago is None:
         return
                 
