@@ -17,7 +17,7 @@ urlpatterns = [
     path('create/<str:customer_code>/',views.create_plan_financiamiento, name='create' ),
     path('delete/<int:id>/<str:customer_code>/',views.delete_plan_financiamiento,name='delete'),
     path('update/<int:id>/<str:customer_code>/',views.update_plan_financiamiento, name='update'),
-    path('pagare/<int:id>/<str:customer_code>/',generate_pdf.render_pagare, name='pagare'),
+    path('pagare/<int:id>/<str:customer_code>/',generate_pdf.render_pagare_docx, name='pagare'),
 
 ]
 

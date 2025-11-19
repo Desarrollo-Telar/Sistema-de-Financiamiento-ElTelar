@@ -16,6 +16,7 @@ from project.database_store import minio_client
 
 import uuid
 from math import floor
+from num2words import num2words
 
 # Create your models here.
 condition = [
@@ -158,6 +159,27 @@ class Customer(models.Model):
 
         return age
     
+    
+    def get_edad_en_letras(self):
+        # CONVERTIR LOS NUMEROS A LETRAS
+        
+        edad = num2words(self.get_edad(),lang='es')
+        return edad
+    
+    def formato_identificicaion(self):
+        num = str(self.identification_number).replace(" ", "").strip()
+        if len(num) == 13:
+            return f"{num[0:4]} {num[4:9]} {num[9:13]}"
+        return num  # Si no tiene 13 dígitos, lo devuelve igual
+    
+    def get_numero_identificacion_en_letras(self):
+        num = str(self.identification_number).replace(" ", "").strip()
+        if len(num) == 13:
+            
+            return f"{num2words(num[0:4],lang='es')}, {num2words(num[4:9],lang='es')}, {num2words(num[9:13],lang='es')}"
+        
+        return num2words(num,lang='es')  # Si no tiene 13 dígitos, lo devuelve igual
+    
     def get_star_rating(self):
 
         estrellas = []
@@ -178,6 +200,18 @@ class Customer(models.Model):
                 estrellas.append('empty')
 
         return estrellas
+    
+    def get_direccion(self):
+        from apps.addresses.models import Address
+        from django.db.models import Q
+        tipo_direccion = ['Dirección Personal','Dirección de Casa']
+
+        direccion = Address.objects.filter(Q(customer_id__id=self.id) & Q(type_address__in = tipo_direccion)).first()
+
+        if direccion is None:
+            return ''
+        
+        return direccion
 
     
     

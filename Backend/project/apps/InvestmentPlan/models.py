@@ -9,7 +9,7 @@ from django.db.models.signals import pre_save, post_save
 
 # Django
 from django.dispatch import receiver
-
+from num2words import num2words
 from apps.financings.formato import formatear_numero
 
 class InvestmentPlan(models.Model):
@@ -52,6 +52,9 @@ class InvestmentPlan(models.Model):
     
     def f_total_value_of_the_product_or_service(self):
         return formatear_numero(self.total_value_of_the_product_or_service)
+    
+    def en_letras_el_valor(self):
+        return num2words(self.total_value_of_the_product_or_service, lang='es')
 
     def tipo_transferencia(self):
         return 'Local' if self.transfers_or_transfer_of_funds else 'Internacional'

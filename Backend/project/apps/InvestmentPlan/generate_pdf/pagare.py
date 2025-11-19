@@ -46,3 +46,150 @@ def render_pagare(request,id,customer_code):
     HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
 
     return response
+
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from docx import Document
+from docx.shared import Inches, Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.oxml.ns import qn
+from django.contrib.staticfiles import finders
+from datetime import datetime
+from docx.shared import Cm, Pt
+def set_paragraph_format(p):
+    fmt = p.paragraph_format
+    fmt.left_indent = Cm(0)
+    fmt.right_indent = Cm(0)
+    fmt.first_line_indent = Cm(1)
+    fmt.space_before = Pt(0)
+    fmt.space_after = Pt(0)
+    fmt.line_spacing = 1.0
+from datetime import datetime
+
+def fecha_formateada(fecha):
+    meses = {
+        1: "enero",
+        2: "febrero",
+        3: "marzo",
+        4: "abril",
+        5: "mayo",
+        6: "junio",
+        7: "julio",
+        8: "agosto",
+        9: "septiembre",
+        10: "octubre",
+        11: "noviembre",
+        12: "diciembre",
+    }
+    
+    return f"{fecha.day} de {meses[fecha.month]} del {fecha.year}"
+
+
+def render_pagare_docx(request, id, customer_code):
+
+    destino = get_object_or_404(InvestmentPlan, id=id)
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
+    dia = datetime.now().date()
+
+    cliente = destino.customer_id  # Ajusta esto si tu relación es distinta
+
+    # ============================
+    #   CREAR DOCUMENTO
+    # ============================
+    doc = Document()
+
+    # Fuente general
+    style = doc.styles["Normal"]
+    style.font.name = "Calibri"
+    style._element.rPr.rFonts.set(qn('w:eastAsia'), 'Calibri')
+    style.font.size = Pt(11)
+
+    # ============================
+    #   ENCABEZADO CON LOGO
+    # ============================
+    logo_path = finders.find('img/el_telar.jpeg')
+
+    table = doc.add_table(rows=1, cols=2)
+    row = table.rows[0].cells
+
+    # Columna izquierda → Logo
+    if logo_path:
+        row[0].paragraphs[0].add_run().add_picture(logo_path, width=Inches(1.8))
+
+    # Columna derecha → Encabezado centrado
+    p = row[1].paragraphs[0]
+    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    r = p.add_run("INVERSIONES INTEGRALES EL TELAR S.A.\n")
+    r.bold = True
+    r = p.add_run(f"PAGARÉ {destino.investment_plan_code}")
+    r.bold = True
+
+   
+    
+
+    # ============================
+    #   TEXTO PRINCIPAL
+    # ============================
+    texto = (
+        f"En la ciudad de {sucursal.get_direc().state}, departamento de {sucursal.get_direc().city} "
+        f"el día {fecha_formateada(dia)}, YO, {cliente.get_full_name().upper()} de {cliente.get_edad_en_letras()} "
+        f"({cliente.get_edad()}) años de edad, estado civil {cliente.marital_status.upper()}, "
+        f"de profesión {cliente.profession_trade.upper()}, guatemalteca, de este domicilio me identifico "
+        f"con el Documento de Identificación con Código Único de Identificación {cliente.get_numero_identificacion_en_letras()} "
+        f"{cliente.formato_identificicaion()} extendido por el Registro Nacional de las Personas. Por medio del presente "
+        f"título de crédito consistente en un PAGARÉ, me comprometo de forma incondicional y sin necesidad "
+        f"de ningún tipo de protesto, a pagar a Inversiones Integrales El Telar S.A. Únicamente mediante el depósito "
+        f"correspondiente a la cuenta {sucursal.numero_de_cuenta_banco} del Banco de Desarrollo Rural, la cantidad "
+        f"de {destino.en_letras_el_valor()} (Q {destino.f_total_value_of_the_product_or_service()}), mediante  pagos "
+        f"mensuales según la tabla que me es entregada adjunta a este documento."
+    )
+    
+
+    doc.add_paragraph(texto)
+    
+
+    # ============================
+    #   LISTA NUMERADA
+    # ============================
+    lista = [
+        "Pagar 7.5% de interés mensual, contabilizados a partir de la entrega de los fondos.",
+        "En caso de incumplimiento al pago establecido, deberá pagar el equivalente al 7.5% mensual "
+        "a la tasa de interés pactada a partir del primer día de morosidad.",
+        "Renuncio al fuero de mi domicilio y me someto expresamente al del lugar que el tenedor del pagaré elija.",
+        "Todos los gastos que durante el procedimiento ocasionare esta negociación son por mi cuenta incluyendo lo "
+        "relacionado a judicial y extrajudicial.",
+        "El incumplimiento de este contrato dará derecho al acreedor a exigir el pago del saldo adeudado "
+        "de forma inmediata, para lo cual podrá utilizar el presente documento como título ejecutivo "
+        "a su elección Certificación Contable del saldo adecuado.",
+        "ESTE PAGARÉ SE EMITE LIBRE DE PROTESTO, LIBRE DE FORMALIDADES DE PRESTACIÓN Y COBRO O REQUERIMIENTO.",
+        "En caso de juicio, ni el tenedor de este pagaré ni los auxiliares que promuevan la acción serán "
+        "obligados a prestar garantía.",
+        "Acepto como buenas, líquidas y exigibles las cuentas que el tenedor del pagaré presente."
+    ]
+
+    for item in lista:
+        p = doc.add_paragraph(style="List Number")
+        p.add_run(item)
+
+    
+    doc.add_paragraph("ACEPTO LIBRE DE PROTESTO:")
+    
+    # ============================
+    #   DATOS FINALES DEL DEUDOR
+    # ============================
+    doc.add_paragraph(f"{cliente.get_full_name().upper()}")
+    doc.add_paragraph(f"DPI {cliente.identification_number}")
+    doc.add_paragraph(f"{cliente.get_direccion().street.upper()}")
+    doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
+    
+    doc.add_paragraph("__________________________   ÚLTIMA LINEA")
+    
+    # ============================
+    #   RESPUESTA HTTP
+    # ============================
+    response = HttpResponse(
+        content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    )
+    response["Content-Disposition"] = f'attachment; filename="Pagare_{destino.investment_plan_code}.docx"'
+    doc.save(response)
+    return response

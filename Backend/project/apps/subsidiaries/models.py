@@ -23,6 +23,8 @@ class Subsidiary(models.Model):
     descripcion = models.TextField("Descripcion", blank=True, null=True)
     codigo_establecimiento = models.CharField("CODIGO DE ESTABLECIMIENTO", blank=True, null=True, default="1")
 
+    numero_de_cuenta_banco = models.CharField('Numero de Cuenta de Banco', max_length=150, blank=False, null=False)
+
     def __str__(self):
         return f'{self.nombre}'
     
