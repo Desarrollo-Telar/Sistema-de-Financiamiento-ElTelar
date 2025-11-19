@@ -38,6 +38,16 @@ class Subsidiary(models.Model):
             return ''
         
         return f'{direccion.street} Zona {direccion.number}, {direccion.state} {direccion.city}'
+    
+    def get_direc(self):
+        from apps.addresses.models import Address
+
+        direccion = Address.objects.filter(subsidiary__id = self.id).first()
+
+        if direccion is None:
+            return ''
+        
+        return direccion
 
     
     

@@ -1,0 +1,23 @@
+{% extends 'pdf/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <!-- ENCABEZADO-->
+    <div class="row" style="margin-bottom: 75px;">
+        <div class="col">
+            <img src="{% static 'img/el_telar.jpeg'%}" alt="Logo de la Empresa" style="width: 250px;">
+        </div>
+        <div class="col">
+            <h3>INVERSIONES INTEGRALES EL TELAR S.A.</h3>
+            <h6>PAGARÉ {{destino.investment_plan_code}}</h6>
+        </div>
+    </div>
+    <!-- INFORMACIÓN -->
+     <div class="row">
+        <p>En la ciudad de {{sucursal.get_direc.state}}, departamento de {{sucursal.get_direc.city}} el día {{}}</p>
+     </div>
+
+</div>
+
+{% endblock %}

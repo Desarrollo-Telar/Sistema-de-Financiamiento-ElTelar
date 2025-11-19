@@ -30,21 +30,15 @@ from project.send_mail import send_email_new_customer
 def create_plan_financiamiento(request, customer_code):
     customer_id = get_object_or_404(Customer, customer_code=customer_code)
     cantidad = Reference.objects.filter(customer_id=customer_id)
-    plan_inversion = InvestmentPlan.objects.filter(customer_id=customer_id).first()
-
     template_name = 'InvestmentPlan/create.html'
 
     if request.method == 'POST':
         form = InvestmentPlanForms(request.POST)
 
-        if plan_inversion is not None:
-            form = InvestmentPlanForms(request.POST, instance=plan_inversion)
-
-
         if form.is_valid():
             plan = form.save(commit=False)
             plan.customer_id = customer_id
-            plan.type_of_product_or_service = 'Local'
+            plan.type_of_transfers_or_transfer_of_funds = 'Local'
             plan.transfers_or_transfer_of_funds = True
             plan.save()
 
@@ -64,9 +58,7 @@ def create_plan_financiamiento(request, customer_code):
             return redirect('financial_information:create_reference_information', customer_id.customer_code)
         
     form = InvestmentPlanForms()
-    if plan_inversion is not None:
-        form = InvestmentPlanForms(instance=plan_inversion)
-
+    
     context = {
         'form':form,
         'customer_code':customer_code,
