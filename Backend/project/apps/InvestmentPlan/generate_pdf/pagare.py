@@ -30,12 +30,14 @@ def render_pagare(request,id,customer_code):
     sucursal = Subsidiary.objects.get(id=sucursal_id)
     template_path = 'InvestmentPlan/pagare.html'
     template = get_template(template_path)
+    dia = datetime.now().date()
    
     #
     #actualizacion(credito)
     context = {
         'destino':destino,
-        'sucursal':sucursal
+        'sucursal':sucursal,
+        'dia':dia,
     }
 
     html = template.render(context)

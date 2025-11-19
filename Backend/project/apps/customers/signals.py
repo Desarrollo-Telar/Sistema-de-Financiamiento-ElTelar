@@ -171,7 +171,7 @@ def send_notificacion(sender, instance, created, **kwargs):
     # Notificacion 
     especificaciones = build_notificacion_especificaciones(
         view_name='financings:detail_credit',
-        kwargs={'id': instance.id}    
+        kwargs={'id': instance.credito.id}    
     )
 
     mensaje = {
