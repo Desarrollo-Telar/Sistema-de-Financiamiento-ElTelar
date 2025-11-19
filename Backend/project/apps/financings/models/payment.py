@@ -223,7 +223,7 @@ class Payment(models.Model):
             print(f"Ocurrió un error inesperado: {e}")
     
 
-    def _registrar_pago(self, pagado_mora, pagado_interes,aporte_capital, saldo_pendiente, excedente=0):
+    def _registrar_pago(self, pagado_mora, pagado_interes,aporte_capital, saldo_pendiente, excedente=None):
         # ------------------------------------ #
         informacion = sobre_que_es_pago(self)
 
@@ -361,6 +361,7 @@ class Payment(models.Model):
 
             informacion['credito'].is_paid_off = True
             informacion['credito'].saldo_pendiente  = 0
+            informacion['credito'].saldo_actual  = 0
             informacion['credito'].estado_aportacion = True
             informacion['credito'].estados_fechas = True
             informacion['credito'].fecha_cancelacion = self.fecha_emision.date()
