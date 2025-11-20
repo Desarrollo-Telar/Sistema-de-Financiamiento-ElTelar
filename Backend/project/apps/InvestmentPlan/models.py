@@ -7,7 +7,8 @@ from apps.subsidiaries.models import Subsidiary
 # Create your models here.
 # Signals
 from django.db.models.signals import pre_save, post_save
-
+# DECIMAL
+from decimal import Decimal
 # Django
 from django.dispatch import receiver
 from num2words import num2words
@@ -47,6 +48,16 @@ class InvestmentPlan(models.Model):
     fecha_inicio = models.DateField("Fecha de Inicio", blank=True, null=True)
     fecha_vencimiento = models.DateField("Fecha de Vencimiento", blank=True, null=True)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
+
+    def get_tasa(self):
+        tasa_interes = self.tasa_interes if self.tasa_interes else 0
+
+        if tasa_interes == 0:
+            return 0
+        
+        calculo = Decimal(tasa_interes) / Decimal(12)
+
+        return round(calculo,  3)
 
     def calcular_fecha_vencimiento(self):
         self.fecha_vencimiento = self.fecha_inicio + relativedelta(months=self.plazo)

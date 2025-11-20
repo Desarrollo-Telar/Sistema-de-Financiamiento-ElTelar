@@ -88,7 +88,15 @@ def fecha_formateada(fecha):
 def render_pagare_docx(request, id, customer_code):
 
     destino = get_object_or_404(InvestmentPlan, id=id)
-    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
+
+    sucursal = destino.sucursal
+    tasa_interes = destino.get_tasa() 
+    plazo = destino.plazo if destino.plazo else 0
+    cuota = destino.initial_amount
+
+    if sucursal is None:
+        sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
+
     dia = datetime.now().date()
 
     cliente = destino.customer_id  # Ajusta esto si tu relación es distinta
@@ -140,7 +148,7 @@ def render_pagare_docx(request, id, customer_code):
         f"título de crédito consistente en un PAGARÉ, me comprometo de forma incondicional y sin necesidad "
         f"de ningún tipo de protesto, a pagar a Inversiones Integrales El Telar S.A. Únicamente mediante el depósito "
         f"correspondiente a la cuenta {sucursal.numero_de_cuenta_banco} del Banco de Desarrollo Rural, la cantidad "
-        f"de {destino.en_letras_el_valor()} (Q {destino.f_total_value_of_the_product_or_service()}), mediante  pagos "
+        f"de {destino.en_letras_el_valor()} (Q {destino.f_total_value_of_the_product_or_service()}), mediante {plazo} pagos "
         f"mensuales según la tabla que me es entregada adjunta a este documento."
     )
     
@@ -152,8 +160,8 @@ def render_pagare_docx(request, id, customer_code):
     #   LISTA NUMERADA
     # ============================
     lista = [
-        "Pagar 7.5% de interés mensual, contabilizados a partir de la entrega de los fondos.",
-        "En caso de incumplimiento al pago establecido, deberá pagar el equivalente al 7.5% mensual "
+        f"Pagar {tasa_interes}% de interés mensual, contabilizados a partir de la entrega de los fondos.",
+        f"En caso de incumplimiento al pago establecido, deberá pagar el equivalente al {tasa_interes}% mensual "
         "a la tasa de interés pactada a partir del primer día de morosidad.",
         "Renuncio al fuero de mi domicilio y me someto expresamente al del lugar que el tenedor del pagaré elija.",
         "Todos los gastos que durante el procedimiento ocasionare esta negociación son por mi cuenta incluyendo lo "
