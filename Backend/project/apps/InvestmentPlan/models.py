@@ -57,7 +57,7 @@ class InvestmentPlan(models.Model):
         
         calculo = Decimal(tasa_interes) / Decimal(12)
 
-        return round(calculo,  3)
+        return round(calculo,  2)
 
     def calcular_fecha_vencimiento(self):
         self.fecha_vencimiento = self.fecha_inicio + relativedelta(months=self.plazo)
