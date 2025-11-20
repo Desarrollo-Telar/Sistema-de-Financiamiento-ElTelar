@@ -115,8 +115,9 @@ class Cobranza(models.Model):
         self._generar_codigo_gestion()
 
         if self.estado_cobranza == 'COMPLETADO' or self.resultado == 'Pago realizado':
-            self.resultado = 'Pago realizado'
-            self.estado_cobranza = 'COMPLETADO'
+            if self.cuota.status:
+                self.resultado = 'Pago realizado'
+                self.estado_cobranza = 'COMPLETADO'
         
         
     

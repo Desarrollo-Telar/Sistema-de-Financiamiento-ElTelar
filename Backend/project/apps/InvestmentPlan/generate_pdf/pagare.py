@@ -23,39 +23,15 @@ from weasyprint import HTML
 from datetime import datetime,timedelta
 from django.db.models import Q
 
-def render_pagare(request,id,customer_code):
-    
-    destino = get_object_or_404(InvestmentPlan, id=id)
-    sucursal_id = request.session['sucursal_id']
-    sucursal = Subsidiary.objects.get(id=sucursal_id)
-    template_path = 'InvestmentPlan/pagare.html'
-    template = get_template(template_path)
-    dia = datetime.now().date()
-   
-    #
-    #actualizacion(credito)
-    context = {
-        'destino':destino,
-        'sucursal':sucursal,
-        'dia':dia,
-    }
 
-    html = template.render(context)
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = ' filename="Pagare.pdf"'
-    HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
-
-    return response
-
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
 from docx import Document
-from docx.shared import Inches, Pt
+from docx.shared import Inches, Pt, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
-from django.contrib.staticfiles import finders
-from datetime import datetime
-from docx.shared import Cm, Pt
+
+from .plan_pagos  import generar_estado_cuenta_word
+
+
 def set_paragraph_format(p):
     fmt = p.paragraph_format
     fmt.left_indent = Cm(0)
@@ -64,7 +40,7 @@ def set_paragraph_format(p):
     fmt.space_before = Pt(0)
     fmt.space_after = Pt(0)
     fmt.line_spacing = 1.0
-from datetime import datetime
+
 
 def fecha_formateada(fecha):
     meses = {
@@ -147,7 +123,7 @@ def render_pagare_docx(request, id, customer_code):
         f"{cliente.formato_identificicaion()} extendido por el Registro Nacional de las Personas. Por medio del presente "
         f"título de crédito consistente en un PAGARÉ, me comprometo de forma incondicional y sin necesidad "
         f"de ningún tipo de protesto, a pagar a Inversiones Integrales El Telar S.A. Únicamente mediante el depósito "
-        f"correspondiente a la cuenta {sucursal.numero_de_cuenta_banco} del Banco de Desarrollo Rural, la cantidad "
+        f"correspondiente a la cuenta {sucursal.numero_de_cuenta_banco} del {sucursal.nombre_banco}, la cantidad "
         f"de {destino.en_letras_el_valor()} (Q {destino.f_total_value_of_the_product_or_service()}), mediante {plazo} pagos "
         f"mensuales según la tabla que me es entregada adjunta a este documento."
     )
@@ -195,9 +171,12 @@ def render_pagare_docx(request, id, customer_code):
     # ============================
     #   RESPUESTA HTTP
     # ============================
+    generar_estado_cuenta_word(doc, id)
     response = HttpResponse(
         content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
     response["Content-Disposition"] = f'attachment; filename="Pagare_{destino.investment_plan_code}.docx"'
     doc.save(response)
+
+    
     return response

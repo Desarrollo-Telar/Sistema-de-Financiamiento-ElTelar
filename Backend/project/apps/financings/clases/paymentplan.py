@@ -8,7 +8,7 @@ from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
 # FORMATO
 from apps.financings.formato import formatear_numero
 import re, calendar
-
+import math
 
 class PaymentPlan:
     contador = 0
@@ -52,6 +52,11 @@ class PaymentPlan:
     def monto_inicial(self):
         return round(self.__credit.monto, 2)
     
+
+    def redondear(self, valor):
+        return math.ceil(valor)
+
+    
     def next_month_preserving_day(self, current_date):
         target_day = self.original_day
         next_month = current_date + relativedelta(months=1)
@@ -67,7 +72,8 @@ class PaymentPlan:
         #intereses = ((monto * self.interes) / 365)*dia
         
         intereses = ((monto * self.interes) )
-        return round(intereses, 2)
+        calculo = round(intereses, 2)
+        return self.redondear(calculo)
 
     def calculo_cuota(self, interes=None, capital=None):
         if self.forma_pago == 'NIVELADA':
@@ -78,13 +84,16 @@ class PaymentPlan:
             cuota = ((parte1 / parte2) * self.monto_inicial) 
         else:
             cuota = interes + capital
-        return round(cuota + self._agregar, 2)
+        calculo = round(cuota + self._agregar, 2)
+        return self.redondear(calculo)
 
     def calculo_capital(self, cuota=None, intereses=None):
         if self.forma_pago == 'NIVELADA':
-            return round(cuota - intereses, 2)
+            calculo = round(cuota - intereses, 2)
+            return self.redondear(calculo)
         else:
-            return round(self.monto_inicial / self.plazo, 2)
+            calculo =  round(self.monto_inicial / self.plazo, 2)
+            return self.redondear(calculo)
 
     def mes_inicial(self):
         return self.__credit.fecha_inicio
@@ -125,9 +134,9 @@ class PaymentPlan:
             cuota = self.calculo_cuota(intereses, capital)
 
         dicio.update({
-            'intereses': intereses,
+            'intereses': self.redondear(intereses) ,
             'fintereses':formatear_numero(intereses),
-            'capital': capital,
+            'capital': self.redondear( capital),
             'fcapital':formatear_numero(capital),
             'cuota': cuota,
             'fcuota': formatear_numero(cuota),

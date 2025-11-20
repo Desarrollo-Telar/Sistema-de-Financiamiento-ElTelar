@@ -1,3 +1,8 @@
+function redondearArriba(valor) {
+    return Math.ceil(valor);
+}
+
+
 export class PaymentPlan {
     static contador = 0;
 
@@ -36,7 +41,8 @@ export class PaymentPlan {
             monto = this.montoInicial;
         }
         const intereses = ((monto * this.interes) );
-        return parseFloat(intereses).toFixed(2);
+        const calculo = parseFloat(intereses).toFixed(2);
+        return redondearArriba(calculo);
     }
 
     calculoCuota(interes = null, capital = null) {
@@ -54,14 +60,17 @@ export class PaymentPlan {
         }
        
         
-        return parseFloat(cuota+this._agregar).toFixed(2);
+        const calculo = parseFloat(cuota+this._agregar).toFixed(2);
+        return redondearArriba(calculo);
     }
 
     calculoCapital(cuota = null, intereses = null) {
         if (this.formaPago === 'NIVELADA') {
-            return parseFloat(cuota - intereses).toFixed(2);
+            const calculo = parseFloat(cuota - intereses).toFixed(2);
+            return redondearArriba(calculo);
         } else {
-            return parseFloat(this.montoInicial / this.plazo).toFixed(2);
+            const calculo = parseFloat(this.montoInicial / this.plazo).toFixed(2);
+            return redondearArriba(calculo);
         }
     }
 
