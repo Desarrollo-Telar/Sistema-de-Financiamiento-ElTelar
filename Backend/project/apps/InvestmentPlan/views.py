@@ -7,7 +7,7 @@ from .forms import InvestmentPlanForms
 from apps.customers.models import Customer
 from .models import InvestmentPlan
 from apps.FinancialInformation.models import Reference, WorkingInformation, OtherSourcesOfIncome
-
+from apps.subsidiaries.models import Subsidiary
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
 from django.views.generic.list import ListView
@@ -31,6 +31,7 @@ def create_plan_financiamiento(request, customer_code):
     customer_id = get_object_or_404(Customer, customer_code=customer_code)
     cantidad = Reference.objects.filter(customer_id=customer_id)
     template_name = 'InvestmentPlan/create.html'
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
 
     if request.method == 'POST':
         form = InvestmentPlanForms(request.POST)
@@ -40,6 +41,7 @@ def create_plan_financiamiento(request, customer_code):
             plan.customer_id = customer_id
             plan.type_of_transfers_or_transfer_of_funds = 'Local'
             plan.transfers_or_transfer_of_funds = True
+            plan.sucursal = sucursal
             plan.save()
 
             informacion_laboral = WorkingInformation.objects.filter(customer_id=customer_id).exists()
