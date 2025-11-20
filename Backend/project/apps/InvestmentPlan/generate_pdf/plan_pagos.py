@@ -54,7 +54,7 @@ def generar_estado_cuenta_word(doc, id):
     sucursal = plan.sucursal
     dia = datetime.now().date()
 
-    plazo = plan.plazo if plan.plazo else 0
+    plazo = plan.plazo if plan.plazo else 1
     tasa_interes = plan.get_tasa()
     forma_pago = plan.forma_de_pago if plan.forma_de_pago else 'NIVELADA'
     fecha_inicio = plan.fecha_inicio if plan.fecha_inicio else dia
