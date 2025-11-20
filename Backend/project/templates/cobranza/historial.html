@@ -15,10 +15,10 @@
                 <h5 class="card-title mb-0 text-primary fw-bold">
                     <i class="bi bi-clock-history me-2"></i>Actividades Recientes
                 </h5>
-                <a href="{% url 'customers:detail_informe_cobranza' get_cobrazana.asesor_credito.usuario.user_code get_detalle.reporte.id%}"
-                    style="text-decoration: none;">
-                    <small class="text-muted"> <i class="bi bi-arrow-left"></i> Regresar</small>
-                </a>
+                
+                <button onclick="window.history.back()" type="button" class="btn_cancel" style="text-decoration: none; border: none;">
+                    <small class="text-muted"> <i class="bi bi-arrow-left"></i>
+                        Regresar</button>
 
             </div>
         </div>
