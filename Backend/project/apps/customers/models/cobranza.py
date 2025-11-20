@@ -50,7 +50,19 @@ class Cobranza(models.Model):
         obtener_recibo = Recibo.objects.filter(cuota=self.cuota).first()
 
         if obtener_recibo is None:
+            estados_cobranza = ['COMPLETADO', 'INCUMPLIDO']
+            
+            if self.estado_cobranza in estados_cobranza or self.resultado == 'Pago realizado':
+                self.estado_cobranza = 'PENDIENTE'
+                self.resultado = 'Promesa de pago'
+                self.save()
             return None
+        else:
+            estados_cobranza = ['PENDIENTE', 'INCUMPLIDO']
+            if self.estado_cobranza in estados_cobranza:
+                self.resultado = 'Pago realizado'
+                self.estado_cobranza = 'COMPLETADO'
+                self.save()
 
         return obtener_recibo.pago.id
 
@@ -77,7 +89,7 @@ class Cobranza(models.Model):
 
             if self.estado_cobranza != 'INCUMPLIDO':
                 self.estado_cobranza = 'INCUMPLIDO'
-                #self.save()
+                self.save()
 
         return dias
 
