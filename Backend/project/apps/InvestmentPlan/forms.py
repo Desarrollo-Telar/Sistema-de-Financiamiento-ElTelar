@@ -32,17 +32,17 @@ class InvestmentPlanForms(forms.ModelForm):
         }
 
         widgets = {
-            'type_of_product_or_service':forms.Select(attrs={'class':'form-control'}),
-            'total_value_of_the_product_or_service':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0'}),
-            'investment_plan_description':forms.Textarea(attrs={'class':'form-control','rows':'3'}),
+            'type_of_product_or_service':forms.Select(attrs={'class':'form-control','required':'required'}),
+            'total_value_of_the_product_or_service':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0','required':'required'}),
+            'investment_plan_description':forms.Textarea(attrs={'class':'form-control','rows':'3','required':'required'}),
             'initial_amount':forms.TextInput(attrs={'class':'form-control'}),
             'monthly_amount':forms.TextInput(attrs={'class':'form-control'}),
             'transfers_or_transfer_of_funds':forms.CheckboxInput(),
             'type_of_transfers_or_transfer_of_funds':forms.Select(attrs={'class':'form-control'}),
-            'plazo':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0','step':'1'}),
-            'tasa_interes':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0','step':'1'}),
-            'forma_de_pago':forms.Select(attrs={'class':'form-control'}),
-            'fecha_inicio':forms.TextInput(attrs={'class':'form-control','type':'date'}),
+            'plazo':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0','step':'1','required':'required'}),
+            'tasa_interes':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0','step':'1','required':'required'}),
+            'forma_de_pago':forms.Select(attrs={'class':'form-control','required':'required'}),
+            'fecha_inicio':forms.TextInput(attrs={'class':'form-control','type':'date','required':'required'}),
             
 
         }
