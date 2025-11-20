@@ -37,8 +37,8 @@ class InvestmentPlan(models.Model):
     investment_plan_description = models.TextField("Descripción del Plan de Inversión", blank=True, null=True)
     initial_amount = models.DecimalField("Monto Inicial", max_digits=15, decimal_places=2, blank=True, null=True)
     monthly_amount = models.DecimalField("Monto Mensual", max_digits=15, decimal_places=2, blank=True, null=True)
-    transfers_or_transfer_of_funds = models.BooleanField("Transferencias o Traslado de Fondos", blank=False, null=False)
-    type_of_transfers_or_transfer_of_funds = models.CharField("Tipo de Transferencia", max_length=75, choices=tipo_transferencia)
+    transfers_or_transfer_of_funds = models.BooleanField("Transferencias o Traslado de Fondos", blank=True, null=True)
+    type_of_transfers_or_transfer_of_funds = models.CharField("Tipo de Transferencia", max_length=75, choices=tipo_transferencia,blank=True, null=True)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     investment_plan_code = models.CharField("Código de Plan de Inversion", max_length=25, blank=False, null=False, unique=True)
     
@@ -87,9 +87,8 @@ class InvestmentPlan(models.Model):
     def tipo_transferencia(self):
         return 'Local' if self.transfers_or_transfer_of_funds else 'Internacional'
     
-    def save(self, *args, **kwargs):
-        self.calcular_fecha_vencimiento()
-        super().save(*args, **kwargs)
+    
+
 
     class Meta:
         verbose_name = "Plan de Inversión"

@@ -19,7 +19,7 @@ from django.db.models import Q
 # Decoradores
 from django.contrib.auth.decorators import login_required
 from project.decorador import usuario_activo
-
+from dateutil.relativedelta import relativedelta
 #SCRIPTS
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 from project.send_mail import send_email_new_customer
@@ -42,9 +42,13 @@ def create_plan_financiamiento(request, customer_code):
             plan.type_of_transfers_or_transfer_of_funds = 'Local'
             plan.transfers_or_transfer_of_funds = True
             plan.sucursal = sucursal
+            fecha_inicio = form.cleaned_data.get('fecha_inicio')
+            plazo = form.cleaned_data.get('plazo')
+            plan.fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
             plan.save()
 
             informacion_laboral = WorkingInformation.objects.filter(customer_id=customer_id).exists()
+
             if not informacion_laboral:
                 informacion_laboral = OtherSourcesOfIncome.objects.filter(customer_id=customer_id).exists()
 
@@ -53,11 +57,10 @@ def create_plan_financiamiento(request, customer_code):
                 customer_id.save()
                 send_email_new_customer(customer_id)
 
-            if cantidad.count() >= 4:
-                return redirect('customers:detail',customer_id.customer_code)
+            if cantidad.count() < 4:               
+                return redirect('financial_information:create_reference_information', customer_id.customer_code)
             
-            
-            return redirect('financial_information:create_reference_information', customer_id.customer_code)
+            return redirect('customers:detail',customer_id.customer_code)
         
     form = InvestmentPlanForms()
     
@@ -79,34 +82,28 @@ def delete_plan_financiamiento(request, id,customer_code):
 @login_required
 @usuario_activo
 def update_plan_financiamiento(request,id,customer_code):
-    template_name = 'InvestmentPlan/update.html'
-    plan = get_object_or_404(InvestmentPlan, id=id)
+    template_name = 'InvestmentPlan/create.html'
+
+    get_plan = get_object_or_404(InvestmentPlan, id=id)
+
     customer_id = get_object_or_404(Customer, customer_code = customer_code)
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
+
     if request.method == 'POST':
-        form = InvestmentPlanForms(request.POST)
+        form = InvestmentPlanForms(request.POST, instance=get_plan)
+
         if form.is_valid():
+            plan = form.save(commit=False)
             plan.customer_id = customer_id
-            plan.type_of_product_or_service = form.cleaned_data.get('type_of_product_or_service')
-            plan.total_value_of_the_product_or_service = form.cleaned_data.get('total_value_of_the_product_or_service')
-            plan.investment_plan_description= form.cleaned_data.get('investment_plan_description')
-            plan.initial_amount = form.cleaned_data.get('initial_amount')
-            plan.monthly_amount= form.cleaned_data.get('monthly_amount')
-            plan.transfers_or_transfer_of_funds = form.cleaned_data.get('transfers_or_transfer_of_funds')
-            plan.type_of_transfers_or_transfer_of_funds = form.cleaned_data.get('type_of_transfers_or_transfer_of_funds')
+            plan.type_of_transfers_or_transfer_of_funds = 'Local'
+            plan.transfers_or_transfer_of_funds = True
+            plan.sucursal = sucursal
             plan.save()
+            
             return redirect('customers:detail',customer_code)
     else:
-        initial_data = {
-            'type_of_product_or_service':plan.type_of_product_or_service ,
-            'total_value_of_the_product_or_service':plan.type_of_product_or_service,
-            'investment_plan_description': plan.investment_plan_description,
-            'initial_amount':plan.initial_amount,
-            'monthly_amount':plan.monthly_amount,
-            'transfers_or_transfer_of_funds':plan.transfers_or_transfer_of_funds,
-            'type_of_transfers_or_transfer_of_funds':plan.type_of_transfers_or_transfer_of_funds,
-
-        }
-        form = InvestmentPlanForms(instance=plan)
+        
+        form = InvestmentPlanForms(instance=get_plan)
         context = {
             'form':form,
             'customer_code':customer_code,
