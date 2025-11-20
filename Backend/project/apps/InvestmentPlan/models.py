@@ -43,7 +43,7 @@ class InvestmentPlan(models.Model):
     investment_plan_code = models.CharField("Código de Plan de Inversion", max_length=25, blank=False, null=False, unique=True)
     
     plazo = models.IntegerField("Plazo", blank=True, null=True)
-    tasa_interes = models.DecimalField("Tasa de Interes", max_digits=5, decimal_places=3, null=True, blank=True)
+    tasa_interes = models.DecimalField("Tasa de Interes", max_digits=8, decimal_places=3, null=True, blank=True)
     forma_de_pago = models.CharField("Forma de Pago", choices=formaPago, max_length=75, blank=False, null=False, default='NIVELADA')
     fecha_inicio = models.DateField("Fecha de Inicio", blank=True, null=True)
     fecha_vencimiento = models.DateField("Fecha de Vencimiento", blank=True, null=True)

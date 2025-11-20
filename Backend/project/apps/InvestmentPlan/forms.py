@@ -39,8 +39,8 @@ class InvestmentPlanForms(forms.ModelForm):
             'monthly_amount':forms.TextInput(attrs={'class':'form-control'}),
             'transfers_or_transfer_of_funds':forms.CheckboxInput(),
             'type_of_transfers_or_transfer_of_funds':forms.Select(attrs={'class':'form-control'}),
-            'plazo':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0','step':'1'}),
-            'tasa_interes':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0','step':'1'}),
+            'plazo':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0'}),
+            'tasa_interes':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0'}),
             'forma_de_pago':forms.Select(attrs={'class':'form-control'}),
             'fecha_inicio':forms.TextInput(attrs={'class':'form-control','type':'date'}),
             

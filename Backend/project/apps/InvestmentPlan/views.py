@@ -61,7 +61,14 @@ def create_plan_financiamiento(request, customer_code):
                 return redirect('financial_information:create_reference_information', customer_id.customer_code)
             
             return redirect('customers:detail',customer_id.customer_code)
-        
+        else:
+            print("ERRORES DEL FORMULARIO:", form.errors)
+            return render(request, template_name, {
+                'form': form,
+                'errors': form.errors,
+                'customer_code':customer_code
+            })
+            
     form = InvestmentPlanForms()
     
     context = {
