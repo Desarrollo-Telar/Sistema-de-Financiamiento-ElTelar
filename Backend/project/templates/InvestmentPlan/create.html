@@ -4,48 +4,63 @@
 {% block content %}
 <div class="container box">
     <div class="row">
-        <form method="POST" >
+        <form method="POST">
 
-        {% csrf_token %}
+            {% csrf_token %}
 
-        <div class="row" style="margin-top: 2rem;">
-            <h3>Plan de Inversion (Destino) </h3>
-            <hr>
-            {% for field in form %}
+            <div class="row" style="margin-top: 2rem;">
+                <h3>Plan de Inversion (Destino) </h3>
+                <hr>
+                {% for field in form %}
 
-            <div class="form-group" style="margin-top: 0.5rem;">
-                <label for="{{ field.id_for_label }}" class="form-label fw-bold">
-                    {{ field.label }}
-                </label>
-                {{ field }}
-                {% if field.errors %}
-                {{ field.errors }}
-                {% endif %}
-            </div>
-            <br />
+                <div class="form-group" style="margin-top: 0.5rem;">
+                    <label for="{{ field.id_for_label }}" class="form-label fw-bold">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                    {% if field.errors %}
+                    {{ field.errors }}
+                    {% endif %}
+                </div>
+                <br />
 
-            {% endfor %}
-
-        </div>
-
-        <div class="row" style="margin-top: 1rem;">
-            <div class="col">
-                <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+                {% endfor %}
 
             </div>
-            <div class="col">
-                <button type="submit" class="btn_guardar">Siguiente</button>
+            <div style="margin-top: 2rem;" class="row">
+                <a type="button" onclick="generar_plan()" class="btn_cancel" id="generar_plan">Generar Plan de Pagos</a>
+            </div>
+            <div class="row">
+
+                <div class="table-responsive">
+                    {% include 'financings/credit/snippets/forms/plan.html' %}
+                </div>
+
 
             </div>
-            
-            
 
-        </div>
+            <div class="row" style="margin-top: 1rem;">
+                <div class="col">
+                    <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn_guardar">Siguiente</button>
+
+                </div>
 
 
-    </form>
+
+            </div>
+
+
+        </form>
 
     </div>
 </div>
-    
+
+{% endblock %}
+
+{% block js %}
+<script type="module" src="{% static 'js/plan_inversion/destino.js'%}"></script>
 {% endblock %}
