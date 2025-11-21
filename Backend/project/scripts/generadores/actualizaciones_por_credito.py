@@ -30,23 +30,27 @@ def actualizacion(credito):
 def total_desembolsos(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
-        contador+=estado.disbursement_paid
+        if estado.disbursement_paid > 0:
+            contador+=estado.disbursement_paid
     return formatear_numero(contador)
 
 def total_mora_pagada(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
-        contador+=estado.late_fee_paid
+        if estado.late_fee_paid > 0:
+            contador+=estado.late_fee_paid
     return formatear_numero(contador)
 
 def total_interes_pagada(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
-        contador+=estado.interest_paid
+        if estado.interest_paid > 0:
+            contador+=estado.interest_paid
     return formatear_numero(contador)
 
 def total_capital_pagada(estado_cuenta):
     contador = 0
     for estado in estado_cuenta:
-        contador+=estado.capital_paid
+        if estado.capital_paid > 0:
+            contador+=estado.capital_paid
     return formatear_numero(contador)
