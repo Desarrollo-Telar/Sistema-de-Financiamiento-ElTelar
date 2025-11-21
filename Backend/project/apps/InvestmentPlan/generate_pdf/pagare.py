@@ -36,7 +36,7 @@ def set_paragraph_format(p):
     fmt = p.paragraph_format
     fmt.left_indent = Cm(0)
     fmt.right_indent = Cm(0)
-    fmt.first_line_indent = Cm(1)
+    fmt.first_line_indent = Cm(0)
     fmt.space_before = Pt(0)
     fmt.space_after = Pt(0)
     fmt.line_spacing = 1.0
@@ -117,19 +117,21 @@ def render_pagare_docx(request, id, customer_code):
     texto = (
         f"En la ciudad de {sucursal.get_direc().state}, departamento de {sucursal.get_direc().city} "
         f"el día {fecha_formateada(dia)}, YO, {cliente.get_full_name().upper()} de {cliente.get_edad_en_letras()} "
-        f"({cliente.get_edad()}) años de edad, estado civil {cliente.marital_status.upper()}, "
-        f"de profesión {cliente.profession_trade.upper()}, guatemalteca, de este domicilio me identifico "
+        f"({cliente.get_edad()}) años de edad, estado civil {cliente.get_estado_civil().upper()}, "
+        f"de profesión {cliente.profession_trade.upper()}, {cliente.get_nacionalidad()}, de este domicilio me identifico "
         f"con el Documento de Identificación con Código Único de Identificación {cliente.get_numero_identificacion_en_letras()} "
-        f"{cliente.formato_identificicaion()} extendido por el Registro Nacional de las Personas. Por medio del presente "
+        f"({cliente.formato_identificicaion()}) extendido por el Registro Nacional de las Personas. Por medio del presente "
         f"título de crédito consistente en un PAGARÉ, me comprometo de forma incondicional y sin necesidad "
         f"de ningún tipo de protesto, a pagar a Inversiones Integrales El Telar S.A. Únicamente mediante el depósito "
         f"correspondiente a la cuenta {sucursal.numero_de_cuenta_banco} del {sucursal.nombre_banco}, la cantidad "
-        f"de {destino.en_letras_el_valor()} (Q {destino.f_total_value_of_the_product_or_service()}), mediante {plazo} pagos "
+        f"de {destino.en_letras_el_valor()} exactos (Q {destino.f_total_value_of_the_product_or_service()}), mediante {plazo} pagos "
         f"mensuales según la tabla que me es entregada adjunta a este documento."
     )
     
 
-    doc.add_paragraph(texto)
+    p_texto = doc.add_paragraph(texto)
+    set_paragraph_format(p_texto)
+    doc.add_paragraph("")
     
 
     # ============================
@@ -137,41 +139,57 @@ def render_pagare_docx(request, id, customer_code):
     # ============================
     lista = [
         f"Pagar {tasa_interes}% de interés mensual, contabilizados a partir de la entrega de los fondos.",
+
         f"En caso de incumplimiento al pago establecido, deberá pagar el equivalente al {tasa_interes}% mensual "
         "a la tasa de interés pactada a partir del primer día de morosidad.",
-        "Renuncio al fuero de mi domicilio y me someto expresamente al del lugar que el tenedor del pagaré elija.",
-        "Todos los gastos que durante el procedimiento ocasionare esta negociación son por mi cuenta incluyendo lo "
-        "relacionado a judicial y extrajudicial.",
-        "El incumplimiento de este contrato dará derecho al acreedor a exigir el pago del saldo adeudado "
-        "de forma inmediata, para lo cual podrá utilizar el presente documento como título ejecutivo "
-        "a su elección Certificación Contable del saldo adecuado.",
+
+        "Renuncio al fuero de mi domicilio y me someto a los tribunales que el tenedor del pagaré elija.",
+
+        "Todos los gastos que directa o inderectamente ocasione esta negociación son por mi cuenta, "
+        "incluyendo la cobranza judicial o extrajudicial. "
+        "El incumplimiento de este contrato dará derecho al tenedor a exigir el pago del saldo adeudado, "
+        "para lo cual puede utilizar el presente documento como título ejecutivo o a su elección "
+        "Certificación Contable del saldo adecuado.",
+
         "ESTE PAGARÉ SE EMITE LIBRE DE PROTESTO, LIBRE DE FORMALIDADES DE PRESTACIÓN Y COBRO O REQUERIMIENTO.",
-        "En caso de juicio, ni el tenedor de este pagaré ni los auxiliares que promuevan la acción serán "
-        "obligados a prestar garantía.",
-        "Acepto como buenas, líquidas y exigibles las cuentas que el tenedor del pagaré presente."
+
+        "En caso de juicio, ni el tenedor de este pagaré ni los auxiliares que proponga estarán obligados a prestar garantía.",
+
+        "Acepto como buenas, líquidas y exigibles las cuentas que el tenedor del pagaré presente.",
+
+        "Declaro que la presente obligación es válida y exigible desde el momento de la firma."
     ]
+
 
     for item in lista:
         p = doc.add_paragraph(style="List Number")
         p.add_run(item)
+        
 
-    
+    doc.add_paragraph("")
     doc.add_paragraph("ACEPTO LIBRE DE PROTESTO:")
     
     # ============================
     #   DATOS FINALES DEL DEUDOR
     # ============================
-    doc.add_paragraph(f"{cliente.get_full_name().upper()}")
-    doc.add_paragraph(f"DPI {cliente.identification_number}")
-    doc.add_paragraph(f"{cliente.get_direccion().street.upper()}")
-    doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
-    
+    pf_1 = doc.add_paragraph(f"{cliente.get_full_name().upper()}")
+    pf_1.bold = True
+    set_paragraph_format(pf_1)
+    pf_2 = doc.add_paragraph(f"DPI {cliente.identification_number}")
+    set_paragraph_format(pf_2)
+    pf_2 = doc.add_paragraph(f"{cliente.get_direccion().street.upper()}")
+    set_paragraph_format(pf_2)
+    pf_4 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
+    set_paragraph_format(pf_4)
+    doc.add_paragraph("")
     doc.add_paragraph("__________________________   ÚLTIMA LINEA")
+    doc.add_paragraph("")
     
     # ============================
     #   RESPUESTA HTTP
     # ============================
     generar_estado_cuenta_word(doc, id)
+    
     response = HttpResponse(
         content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )

@@ -139,7 +139,27 @@ class Customer(models.Model):
     def get_full_name(self):
         return f'{self.first_name} {self.last_name}'
     
-        
+    def get_estado_civil(self):
+        estado = self.marital_status
+        genero = self.gender  # 'M' o 'F'
+
+        if not estado:
+            return estado
+
+        if '@' in estado:
+            if genero == 'MASCULINO':
+                return estado.replace('@', 'O')
+            elif genero == 'FEMENINO':
+                return estado.replace('@', 'A')
+
+        return estado
+    
+    def get_nacionalidad(self):
+        genero = self.gender
+        if genero == 'MASCULINO':
+            return 'guatemalteco'
+        elif genero == 'FEMENINO':
+            return 'guatemalteca'
 
     def get_edad(self):
         from datetime import date

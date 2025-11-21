@@ -29,11 +29,25 @@ from datetime import datetime
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 
+def set_paragraph_format(p):
+    fmt = p.paragraph_format
+    fmt.left_indent = Cm(0)
+    fmt.right_indent = Cm(0)
+    fmt.first_line_indent = Cm(0)
+    fmt.space_before = Pt(0)
+    fmt.space_after = Pt(0)
+    fmt.line_spacing = 1.0
+
 def set_table_border(table):
     tbl = table._element
 
+    # Obtener o crear tblPr
+    tblPr = tbl.tblPr
+    if tblPr is None:
+        tblPr = OxmlElement('w:tblPr')
+        tbl.append(tblPr)
+
     # Crear elemento de bordes
-    tblPr = tbl.get_or_add_tblPr()
     tblBorders = OxmlElement('w:tblBorders')
 
     # Configurar tipos de bordes
@@ -46,6 +60,7 @@ def set_table_border(table):
         tblBorders.append(border)
 
     tblPr.append(tblBorders)
+
 
 
 def generar_estado_cuenta_word(doc, id):
@@ -106,7 +121,7 @@ def generar_estado_cuenta_word(doc, id):
 
     datos = [
         ("Deudor", f'{cliente.get_full_name().upper()}'),
-        ("Monto Otorgado", f"Q{plan.total_value_of_the_product_or_service}"),
+        ("Monto Otorgado", f"Q{plan.total_value_of_the_product_or_service:,.2f}"),
         ("Fecha de Recibido", plan.fecha_inicio.strftime('%Y-%m-%d')),
         ("Forma de pago", f"{forma_pago}"),
     ]
@@ -126,14 +141,16 @@ def generar_estado_cuenta_word(doc, id):
     # ---------------------------
     # TABLA DE CUOTAS
     # ---------------------------
-    tabla = doc.add_table(rows=1, cols=4)
+    tabla = doc.add_table(rows=1, cols=6)
     tabla.alignment = WD_TABLE_ALIGNMENT.CENTER
 
     hdr = tabla.rows[0].cells
     hdr[0].text = "No"
     hdr[1].text = "Fecha de Pago"
     hdr[2].text = "Saldo"
-    hdr[3].text = "Cuota"
+    hdr[3].text = "Intereses"
+    hdr[4].text = "Capital"
+    hdr[5].text = "Cuota"
 
     # Rellenar tabla
     for i, cuota in enumerate(cuotas, start=1):
@@ -141,10 +158,12 @@ def generar_estado_cuenta_word(doc, id):
         row[0].text = str(i)
         row[1].text = cuota['fecha_final'].strftime("%d/%m/%Y")
         row[2].text = f"Q {cuota['fmonto_prestado']}"
-        row[3].text = f"Q {cuota['fcuota']}"
+        row[3].text = f"Q {cuota['fintereses']}"
+        row[4].text = f"Q {cuota['fcapital']}"
+        row[5].text = f"Q {cuota['fcuota']}"
     
     
-
+    set_table_border(tabla)
     # ---------------------------
     # TOTALES
     # ---------------------------
@@ -164,6 +183,8 @@ def generar_estado_cuenta_word(doc, id):
         tot_rows[i].cells[0].text = campo
         tot_rows[i].cells[1].text = valor
 
+    set_table_border(tabla_totales)
+
     # ---------------------------
     # DATOS DE DEPÓSITO
     # ---------------------------
@@ -180,6 +201,7 @@ def generar_estado_cuenta_word(doc, id):
 
     dep[2].cells[0].text = "Nombre"
     dep[2].cells[1].text = "Inversiones Integrales el Telar S.A."
+    set_table_border(tabla_dep)
 
     # Números de reporte:
     
@@ -187,7 +209,8 @@ def generar_estado_cuenta_word(doc, id):
     r = table_rep.rows[0].cells
     r[0].text = "Reportar pagos a los números:"
     r[1].text = f"{sucursal.numero_telefono}\n{sucursal.otro_numero_telefono}"
-
+    set_table_border(table_rep)
+    doc.add_paragraph("")
     
     doc.add_paragraph("FIRMA\n\n_____________________________")
 
