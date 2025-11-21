@@ -75,7 +75,7 @@ class Cobranza(models.Model):
 
         if self.fecha_seguimiento:
             # Días transcurridos desde seguimiento hasta hoy
-            dias = (hoy - self.fecha_seguimiento.date()).days
+            dias = (self.fecha_seguimiento.date() - hoy ).days
             # ejemplo: 0 si es hoy, positivo si ya pasaron días, negativo no aplica aquí
         
         if self.fecha_promesa_pago:
