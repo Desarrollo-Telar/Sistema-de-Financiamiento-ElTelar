@@ -17,6 +17,12 @@ from apps.subsidiaries.models import Subsidiary
 # FORMATO
 from apps.financings.formato import formatear_numero
 
+
+import math
+
+def redondear( valor):
+    return math.ceil(valor)
+
 class PaymentPlan(models.Model):
     mes = models.IntegerField('No.Mes',blank=True, null=True,default=0)  
     start_date = models.DateTimeField('Fecha de Inicio') # obligatorio
@@ -80,7 +86,8 @@ class PaymentPlan(models.Model):
         return formatear_numero(self.outstanding_balance)
 
     def formato_cuota_total(self):
-        return formatear_numero(self.total())
+        calculo = redondear(self.total())
+        return formatear_numero(calculo)
     
     def formato_cuota_saldo_pendiente(self):
         return formatear_numero(self.saldo_pendiente)
