@@ -90,6 +90,11 @@ class Cobranza(models.Model):
             if self.estado_cobranza != 'INCUMPLIDO':
                 self.estado_cobranza = 'INCUMPLIDO'
                 self.save()
+        else:
+            if self.estado_cobranza != 'PENDIENTE':
+                self.estado_cobranza = 'PENDIENTE'
+                self.resultado = 'Promesa de pago'                
+                self.save()
 
         return dias
 
