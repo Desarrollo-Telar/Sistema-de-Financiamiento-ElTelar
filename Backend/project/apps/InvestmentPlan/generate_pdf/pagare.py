@@ -122,7 +122,7 @@ def render_pagare_docx(request, id, customer_code):
         f"con el Documento de Identificación con Código Único de Identificación {cliente.get_numero_identificacion_en_letras()} "
         f"({cliente.formato_identificicaion()}) extendido por el Registro Nacional de las Personas. Por medio del presente "
         f"título de crédito consistente en un PAGARÉ, me comprometo de forma incondicional y sin necesidad "
-        f"de ningún tipo de protesto, a pagar a Inversiones Integrales El Telar S.A. Únicamente mediante el depósito "
+        f"de cobro o requerimiento alguno pagar a Inversiones Integrales El Telar S.A. Únicamente mediante el depósito "
         f"correspondiente a la cuenta {sucursal.numero_de_cuenta_banco} del {sucursal.nombre_banco}, la cantidad "
         f"de {destino.en_letras_el_valor()} exactos (Q {destino.f_total_value_of_the_product_or_service()}), mediante {plazo} pagos "
         f"mensuales según la tabla que me es entregada adjunta a este documento."
