@@ -151,7 +151,7 @@ class CreditVigentesViewSet(viewsets.ModelViewSet):
 
         # Obtener el asesor autenticado
         asesor_autenticado = CreditCounselor.objects.filter(usuario=self.request.user).first()
-        roles = ['Administrador', 'Programador']
+        roles = ['Administrador', 'Programador', 'Secretari@']
 
         sucursal = getattr(self.request,'sucursal_actual',None)
 

@@ -140,21 +140,18 @@ def render_pagare_docx(request, id, customer_code):
     lista = [
         f"Pagar {tasa_interes}% de interés mensual, contabilizados a partir de la entrega de los fondos. ",
 
-        f"En caso de incumplimiento al pago establecido, deberá pagar el equivalente al {tasa_interes}% mensual "
-        "a la tasa de interés pactada a partir del primer día de morosidad. ",
+        f"En caso de incumplimiento al pago establecido, deberá pagar el equivalente al {tasa_interes}% mensual a la tasa de interés pactada a partir del primer día de morosidad. ",
 
-        "Renuncio al fuero de mi domicilio y me someto a los tribunales que el tenedor del pagaré elija.",
+        "Renuncio al fuero de mi domicilio y me someto a los tribunales que el tenedor del pagaré elija. ",
 
-        "Todos los gastos que directa o inderectamente ocasione esta negociación son por mi cuenta, incluyendo la cobranza judicial o extrajudicial."
-        "El incumplimiento de este contrato dará derecho al tenedor a exigir el pago del saldo adeudado, "
-        "para lo cual puede utilizar el presente documento como título ejecutivo o a su elección "
-        "Certificación Contable del saldo adecuado. ",
+        "Todos los gastos que directa o inderectamente ocasione esta negociación son por mi cuenta, incluyendo la cobranza judicial o extrajudicial. "
+        "El incumplimiento de este contrato dará derecho al tenedor a exigir el pago del saldo adeudado, para lo cual puede utilizar el presente documento como título ejecutivo o a su elección Certificación Contable del saldo adecuado. ",
 
-        "ESTE PAGARÉ SE EMITE LIBRE DE PROTESTO, LIBRE DE FORMALIDADES DE PRESTACIÓN Y COBRO O REQUERIMIENTO.",
+        "ESTE PAGARÉ SE EMITE LIBRE DE PROTESTO, LIBRE DE FORMALIDADES DE PRESTACIÓN Y COBRO O REQUERIMIENTO. ",
 
-        "En caso de juicio, ni el tenedor de este pagaré ni los auxiliares que proponga, estarán obligados a prestar garantía.",
+        "En caso de juicio, ni el tenedor de este pagaré ni los auxiliares que proponga, estarán obligados a prestar garantía. ",
 
-        "Acepto como buenas, líquidas y exigibles las cuentas que el tenedor del pagaré presente.",
+        "Acepto como buenas, líquidas y exigibles las cuentas que el tenedor del pagaré presente. ",
 
         
     ]
