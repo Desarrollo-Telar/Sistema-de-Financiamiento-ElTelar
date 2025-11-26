@@ -22,6 +22,7 @@
                 </thead>
                 <tbody>
                     {% for cuota in cuotas_list %}
+                    {% if not credito_cancelado %}
 
                     <tr>
                         <td>{{ forloop.counter }}</td>
@@ -125,6 +126,7 @@
                             </a>
                         </td>
                     </tr>
+                    {% endif %}
 
                     {% endfor %}
                 </tbody>
