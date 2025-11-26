@@ -1,5 +1,6 @@
 from django import forms
 from apps.customers.models import Customer
+from datetime import datetime, date
 
 class CustomerForm(forms.ModelForm):
     class Meta:
@@ -104,3 +105,28 @@ class CustomerForm(forms.ModelForm):
         # Asignar valor por defecto del modelo
         if not self.initial.get('status'):
             self.initial['status'] = 'Posible Cliente'
+        
+        # --- FECHA DE NACIMIENTO ---
+        fecha = self.initial.get("date_birth")
+        if fecha:
+            # Si es datetime.date
+            if isinstance(fecha, date):
+                self.initial["date_birth"] = fecha.strftime("%Y-%m-%d")
+            # Si es string tipo "20/07/2035"
+            elif isinstance(fecha, str):
+                try:
+                    self.initial["date_birth"] = datetime.strptime(fecha, "%d/%m/%Y").strftime("%Y-%m-%d")
+                except:
+                    pass
+
+        # --- FECHA DE VENCIMIENTO DEL DOCUMENTO ---
+        fecha_v = self.initial.get("fehca_vencimiento_de_tipo_identificacion")
+        if fecha_v:
+            if isinstance(fecha_v, date):
+                self.initial["fehca_vencimiento_de_tipo_identificacion"] = fecha_v.strftime("%Y-%m-%d")
+            elif isinstance(fecha_v, str):
+                try:
+                    self.initial["fehca_vencimiento_de_tipo_identificacion"] = datetime.strptime(fecha_v, "%d/%m/%Y").strftime("%Y-%m-%d")
+                except:
+                    pass
+        

@@ -8,6 +8,11 @@
 <div class="container box">
     <form method="POST" action="{% url 'customers:update_customer' customer_code %}" style="margin: 2rem;">
         {% csrf_token %}
+        <input type="hidden" id="municipio_actual"
+            value="{{ form.initial.lugar_emision_tipo_identificacion_municipio }}">
+        <input type="hidden" id="departamento_actual"
+            value="{{ form.initial.lugar_emision_tipo_identificacion_departamento }}">
+
         <div class="row">
             {% include 'customer/forms/forms.html' %}
 

@@ -8,7 +8,34 @@ const dominio = window.location.hostname; // Ejemplo: "example.com"
 const puerto = window.location.port; // Ejemplo: "8080" o "" si no está explícito
 const baseUrl = `${protocolo}//${dominio}${puerto ? `:${puerto}` : ''}`;
 
+
+
+
 $(document).ready(function() {
+    // Cargar valor preseleccionado para Departamento (city2)
+const depId = $("#departamento_actual").val();
+if (depId) {
+    $.ajax({
+        url: `${baseUrl}/addresses/api/departamento/${depId}/`,
+        dataType: 'json'
+    }).then(function(data) {
+        const option = new Option(data.nombre, data.id, true, true);
+        $('.city2').append(option).trigger('change');
+    });
+}
+
+
+// Cargar valor preseleccionado para Municipio (state2)
+const munId = $("#municipio_actual").val();
+if (munId) {
+    $.ajax({
+        url: `${baseUrl}/addresses/api/municipio/${munId}/`,
+        dataType: 'json'
+    }).then(function(data) {
+        const option = new Option(data.nombre, data.id, true, true);
+        $('.state2').append(option).trigger('change');
+    });
+}
     $('.asesor').select2({
         ajax: {
             url:  `${baseUrl}/customers/api/asesores/`,
