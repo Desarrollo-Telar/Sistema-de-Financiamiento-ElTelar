@@ -416,7 +416,7 @@ export function tipo_codigo(input_id_codigo_egreso, seleccionado) {
 
             // Opciones del select
             const opciones_id_tipo_impuesto = [
-                'IVA', 'ISR', 'ISO', 'OTROS IMPUETOS TASAS Y ABITRIOS'
+                'IVA', 'ISR', 'ISO', 'OTROS IMPUETOS TASAS Y ABITRIOS', 'PLANILLA DE IGSS'
                 
             ]; // Modifica según sea necesario
             opciones_id_tipo_impuesto.forEach(opcion => {
