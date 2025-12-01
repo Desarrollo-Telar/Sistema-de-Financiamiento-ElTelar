@@ -8,7 +8,7 @@ document.getElementById('cuota_por_cobrar').addEventListener('click', () => {
     console.log(resultado);
 });
 
-function formato_fechas(fecha) {
+export function formato_fechas(fecha) {
     const date = new Date(fecha);
     const meses = [
         "enero", "febrero", "marzo", "abril", "mayo", "junio",

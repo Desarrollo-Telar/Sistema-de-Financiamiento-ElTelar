@@ -6,12 +6,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="container box" >
-    <form method="post" enctype="multipart/form-data" autocomplete="off" action="{% url 'customers:creacion_cobranza' %}">
+<div class="container box">
+    <form method="post" enctype="multipart/form-data" autocomplete="off"
+        action="{% url 'customers:creacion_cobranza' %}">
         {% csrf_token %}
         <div class="row" style="margin-top: 1rem;">
             {% include 'cobranza/forms/forms.html' %}
         </div>
+       
         <div class="row" style="margin-top: 1rem;">
             <div class="col">
                 <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>

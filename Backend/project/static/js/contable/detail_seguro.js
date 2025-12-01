@@ -24,7 +24,7 @@ function formato_fechas(fecha) {
 async function fetchLastPaymentPlan(searchTerm) {
     try {
         // URL del endpoint con el parámetro 'term'
-        const url = `${urls_p.api_url_cuota_seguro}?term=${encodeURIComponent(searchTerm)}`;
+        const url = `${urls_p.api_url_cuota}?term=${encodeURIComponent(searchTerm)}`;
 
         // Realizar la solicitud GET con Axios
         const response = await axios.get(url);

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Modelos
-from .models import Document, DocumentCustomer, DocumentAddress, DocumentGuarantee, DocumentOther, DocumentBank
+from .models import Document, DocumentCustomer, DocumentAddress, DocumentGuarantee, DocumentOther, DocumentBank, DocumentoCobranza
 
 # Formularios
 from .forms import DocumentForms
@@ -9,6 +9,7 @@ from .forms import DocumentForms
 # Register your models here.
 admin.site.register(DocumentBank)
 
+admin.site.register(DocumentoCobranza)
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):

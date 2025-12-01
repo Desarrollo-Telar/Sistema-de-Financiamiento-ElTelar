@@ -22,7 +22,9 @@ class CreditAdmin(admin.ModelAdmin):
         'estados_fechas',
         'is_paid_off',
         'saldo_actual',
-        'saldo_pendiente'
+        'saldo_pendiente',
+        'sucursal',
+        'asesor_de_credito'
     )
     list_display = ('id','customer_id','codigo_credito' ,'tipo_credito', 'monto','plazo','tasa_interes','fecha_inicio','estados_fechas','creation_date','fecha_actualizacion')
     search_fields = ('codigo_credito',)

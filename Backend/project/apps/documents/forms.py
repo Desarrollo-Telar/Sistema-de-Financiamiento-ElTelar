@@ -2,8 +2,8 @@
 from django import forms
 
 # Models
-from .models import Document, DocumentAddress, DocumentCustomer, DocumentGuarantee, DocumentOther, DocumentBank
-
+from .models import Document, DocumentAddress, DocumentCustomer, DocumentGuarantee, DocumentoCobranza, DocumentBank
+from django.forms.widgets import ClearableFileInput
 
 
 class DocumentForms(forms.ModelForm):
@@ -60,3 +60,7 @@ class DocumentBankForms(forms.ModelForm):
             self.add_error('document', 'Debe adjuntar un archivo.')
 
         return cleaned_data
+
+
+
+

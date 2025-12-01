@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Modelos
 from apps.customers.models import HistorialCobranza, Cobranza
 from apps.actividades.models import Informe, DetalleInformeCobranza
+from apps.documents.models import DocumentoCobranza
 from django.db.models import Q
 
 # Decoradores
@@ -28,6 +29,7 @@ def view_historial_cobranza(request,id):
     template_name = 'cobranza/historial.html'
     get_cobrazana = Cobranza.objects.filter(id=id).first()
     get_detalle = DetalleInformeCobranza.objects.filter(cobranza=get_cobrazana).first()
+    documentos = DocumentoCobranza.objects.filter(cobranza=get_cobrazana).order_by('id')
 
     if get_cobrazana is None:
         return redirect('index')
@@ -37,7 +39,9 @@ def view_historial_cobranza(request,id):
         'permisos': recorrer_los_permisos_usuario(request),
         'list_historial':list_historial,
         'get_cobrazana':get_cobrazana,
-        'get_detalle':get_detalle
+        'get_detalle':get_detalle,
+        'documentos':documentos
+
     }
 
     return render(request, template_name, context)

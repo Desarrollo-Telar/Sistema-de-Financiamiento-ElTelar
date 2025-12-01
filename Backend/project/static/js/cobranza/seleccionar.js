@@ -1,5 +1,5 @@
 import { urls_p } from '../API/urls_api.js'
-import { get_credit } from '../API/credito/obtener_credito.js'
+import { get_credit, get_mensaje } from '../API/credito/obtener_credito.js'
 import { get_ultima_cuota_ampliacion } from '../API/credito/obtener_ultima_cuota.js'
 
 
@@ -52,6 +52,8 @@ $(document).ready(function () {
         try {
             // Obtener información del crédito seleccionado
             const credito_v = await get_credit(data.id);
+            
+            
 
             if (!credito_v || !credito_v.customer_id) {
                 console.warn("Información de crédito incompleta:", credito_v);
@@ -64,12 +66,17 @@ $(document).ready(function () {
             const cuotas = await get_ultima_cuota_ampliacion(credito_v.id);
             const cuota = cuotas?.[0];
 
+            
+
             if (!cuota) {
                 console.warn("No se encontró una cuota válida para el crédito.");
                 return;
             }
 
+            
             console.log("Cuota obtenida:", cuota);
+            const cliente = data.id;
+            const mensaje = await get_mensaje(cliente, cuota)
 
             // Calcular el total pendiente (saldo + interés + mora)
             const saldo = parseFloat((cuota.saldo_pendiente || "0").replace(/,/g, '')) || 0;
@@ -86,6 +93,7 @@ $(document).ready(function () {
             document.getElementById('id_mora_pendiente').value = mora.toFixed(2);
             document.getElementById('id_interes_pendiente').value = interes.toFixed(2);
             document.getElementById('id_fecha_limite_cuota').value = cuota.fecha_limite_d;
+            document.getElementById('id_observaciones').value = mensaje;
             console.log( cuota.fecha_limite_d)
 
             // Obtener teléfono del cliente

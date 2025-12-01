@@ -54,7 +54,7 @@ class CustomerSerializer(serializers.ModelSerializer):
             "description": instance.description,
             "creation_date": instance.creation_date.date() if instance.creation_date else None,
             "completado": instance.completado,
-            'asesor':instance.asesor,
+            'asesor':instance.asesor
         }
 
 

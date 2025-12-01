@@ -5,6 +5,7 @@ from apps.customers.models import Customer, CreditCounselor, Cobranza
 from apps.actividades.models import Informe, DetalleInformeCobranza
 from apps.financings.models import PaymentPlan, Credit
 from django.db.models import Q
+from apps.documents.models import DocumentoCobranza
 
 # Formulario
 from apps.customers.forms import CobranzaForms
@@ -28,8 +29,8 @@ from apps.actividades.utils import log_user_action, log_system_event
 from scripts.conversion_datos import model_to_dict, cambios_realizados
 
 
-def obtener_cuota(credito):
-    dia = datetime.now().date()
+def obtener_cuota(dia, credito):
+    
     dia_mas_uno = dia + timedelta(days=1)
 
     siguiente_pago = PaymentPlan.objects.filter(
@@ -105,8 +106,10 @@ def registrar_cobranza_detalle_existente(detalle_existente, fcobranza, asesor_au
 @permiso_requerido('puede_crear_registro_cobranza')
 def creacion_cobranza(request):
     template_name = 'cobranza/create.html'
+    dia = datetime.now().date()
 
     credito_q = Credit.objects.filter(id=request.GET.get('q')).first()
+    rol = request.user.rol.role_name
 
     
     informe_usuario = Informe.objects.filter(
@@ -124,9 +127,6 @@ def creacion_cobranza(request):
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
     
-    
-   
-    
     if asesor_autenticado is None:
         return redirect('index')
     
@@ -137,8 +137,9 @@ def creacion_cobranza(request):
 
         if form.is_valid():
             fcobranza = form.save(commit=False) # SE PAUSA EL REGISTRO
+             # 👉 aquí procesas los archivos manualmente
+            archivos = request.FILES.getlist('archivos[]')
 
-            
             
             # OBTENER INFORMACION DEL CREDITO DE ESTA COBRANZA
             if credito_q is not None:
@@ -146,8 +147,26 @@ def creacion_cobranza(request):
             else:
                 credito = Credit.objects.filter(id=fcobranza.credito.id).first()
 
+           
+
             # PARA OBTENER LA CUOTA ACTUAL
-            info_cuota = obtener_cuota(credito)
+            info_cuota = obtener_cuota(dia, credito)
+
+            fecha_cobranza = info_cuota.limite_cobranza_oficina()
+            asesor_de_credito = credito.asesor_de_credito
+            
+            
+            if dia >= fecha_cobranza and asesor_de_credito != asesor_autenticado:
+                messages.error(request, 'Lo siento, oficina no puede realizar esta gestión de cobranza. Se ha execedido el plazo estimado')
+                return redirect('financings:detail_credit', credito.id)
+            
+            if credito.is_paid_off:
+                messages.error(request, 'El Credito se encuentra Cancelado, no se puede realizar ninguna gestión de cobranza.')
+                return redirect('financings:detail_credit', credito.id)
+
+
+
+            
             
             informe_reporte = obtener_informe_asesor(credito, asesor_autenticado)
 
@@ -181,6 +200,7 @@ def creacion_cobranza(request):
                 fcobranza.fecha_limite_cuota = info_cuota.mostrar_fecha_limite().date()
                 fcobranza.cuota = info_cuota
                 fcobranza.asesor_credito = asesor_autenticado
+            """
                 fcobranza.save()
                 cobranza = fcobranza
 
@@ -199,6 +219,12 @@ def creacion_cobranza(request):
                     reporte = informe_usuario,
                     cobranza = cobranza
                 )
+            
+            for f in archivos:
+                DocumentoCobranza.objects.create(
+                    cobranza=cobranza,
+                    archivo=f
+                )
 
 
 
@@ -211,6 +237,7 @@ def creacion_cobranza(request):
                 'GESTION DE COBRANZA',
                 model_to_dict(cobranza)
             )
+            """
 
 
             messages.success(request, "Registro Completado Con Exito.")

@@ -57,6 +57,11 @@ class PaymentPlan(models.Model):
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
     original_day = models.IntegerField(null=True, blank=True)
 
+    def limite_cobranza_oficina(self):
+        calculo = self.due_date + relativedelta(days=6)
+        return calculo.date()
+    
+
 
     def formato_cuota_mora(self):
         return formatear_numero(self.mora)

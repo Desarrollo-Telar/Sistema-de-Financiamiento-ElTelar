@@ -1,7 +1,7 @@
 from django.db import models
 
 # MODELOS
-from apps.customers.models import Customer
+from apps.customers.models import Customer, Cobranza
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.users.models import User
@@ -17,6 +17,29 @@ from datetime import timedelta
 from project.database_store import minio_client  # asegúrate de que esté importado correctamente
 
 # Create your models here.
+class DocumentoCobranza(models.Model):
+    cobranza = models.ForeignKey(Cobranza, on_delete=models.CASCADE, related_name='documentos')
+    archivo = models.FileField(upload_to='gestion/cobranza/')
+    fecha_subida = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.cobranza.codigo_gestion} {self.cobranza.resultado}'
+    
+    def get_document(self):
+        try:
+            return minio_client.presigned_get_object(
+                bucket_name='asiatrip',
+                object_name=self.archivo.name,  # ejemplo: documents/archivo.pdf
+                expires=timedelta(minutes=30)
+            )
+        except Exception as e:
+            return '{}{}'.format(MEDIA_URL,self.archivo)
+    
+    
+    class Meta:
+        verbose_name = "Documento Cobranza"
+        verbose_name_plural ="Documentos Cobranzas"
+
 
 class DocumentSistema(models.Model):
     description = models.TextField("Descripción",blank=True, null=True)
