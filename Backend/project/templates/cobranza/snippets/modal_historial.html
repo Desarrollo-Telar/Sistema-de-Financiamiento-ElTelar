@@ -55,6 +55,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h6 class="text-success"><i class="bi bi-plus-circle me-2"></i>Documentos Subidos</h6>
+                            <div class="bg-light p-3 rounded" >
+                                {% if documentos %}
+                                {% for documento in documentos %}
+                                <div class="row">
+                                    <a href="{{documento.get_document}}"> <i class="bi bi-download"></i> {{documento.cobranza}}</a>
+                                </div>
+                                
+
+                                {% endfor %}
+                                {% else %}
+                                <p class="text-muted mb-0">Sin documentos</p>
+                                {% endif%}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn_cancel" data-bs-dismiss="modal">
