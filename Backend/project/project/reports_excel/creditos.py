@@ -123,6 +123,18 @@ def report_creditos(request, filtro_seleccionado):
     workbook.save(response)
     return response
 
+def obtener_fiadores(reporte):
+
+    if not reporte.mi_fiador_es():
+        return 'No Tiene'
+    
+    resultado = ''
+
+    for fiador in reporte.mi_fiador_es():
+        resultado +=f'{fiador.especificaciones['Nombre']} '
+
+    return resultado
+
 
 class ReporteCreditos(TemplateView):
     def get_queryset(self):
@@ -242,7 +254,7 @@ class ReporteCreditos(TemplateView):
             "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
             "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
             "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", "FECHA DE CANCELACION DEL CREDITO", "FECHA EN ENTRAR A MORA",
-            "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS",'STATUS POR APORTACION','STATUS JUDICIAL','STATUS DEL CREDITO', "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
+            "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS",'STATUS POR APORTACION','STATUS JUDICIAL','STATUS DEL CREDITO', "NUMERO DE REFERENCIA", "ASESOR DE CREDITO", "FIADORES DEL CREDITO"
         ]
 
         for col_idx, header in enumerate(encabezados, start=1):
@@ -297,6 +309,7 @@ class ReporteCreditos(TemplateView):
                 s_fecha,aportacion,s_judicial,s_credito,
                 numero_referencia,
                 str(reporte.asesor_de_credito),
+                str(obtener_fiadores(reporte))
             ]
 
             for col_idx, value in enumerate(fila, start=1):

@@ -75,6 +75,25 @@ class Credit(models.Model):
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
     
+    def mi_fiador_es(self):
+        from apps.financings.models import DetailsGuarantees
+        from django.db.models import Q
+
+             
+        
+
+        filtros = Q()
+        filtros &= Q(tipo_garantia='FIADOR')
+        filtros &= Q(garantia_id__credit_id__id = self.id)
+        
+
+        filtrado = DetailsGuarantees.objects.filter(filtros)
+
+        if filtrado is None:
+            return None
+        
+        return filtrado
+    
     def get_star_rating(self):
         estrellas = []
         if self.valoracion is None:

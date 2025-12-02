@@ -17,6 +17,18 @@ def informacion_credito(creditos):
     return creditos.first() if creditos.exists() else None
 
 
+def obtener_fiadores(reporte):
+
+    if not reporte.es_fiador():
+        return 'No Tiene'
+    
+    resultado = ''
+
+    for fiador in reporte.es_fiador():
+        resultado +=f'{fiador.garantia_id.credit_id} '
+
+    return resultado
+ 
 def report_clientes(request):
     # Crear el archivo Excel
     workbook = Workbook()
@@ -266,7 +278,7 @@ class ReporteClientesExcelView(TemplateView):
         sheet.title = "Reporte de cartera de Clientes"
         encabezados = [
             "#", "NOMBRE", "TIPO DE IDENTIFICACION", "NUMERO DE IDENTIFICACION", "NUMERO DE TELEFONO", "EDAD", "GENERO",
-            "CODIGO DE CLIENTE", "PROFESION U OFICIO", "ASESOR DEL CREDITO", "TIENE CREDITO", "CANTIDAD DE CREDITOS",
+            "CODIGO DE CLIENTE", "PROFESION U OFICIO", "ASESOR DEL CREDITO", 'FIADOR DE', "TIENE CREDITO", "CANTIDAD DE CREDITOS",
             "CODIGO DE CREDITO", "EL CREDITO ESTA VIGENTE", "PROPOSITO", "MONTO", "PLAZO", "TASA DE INTERES",
             "SALDO CAPITAL PENDIENTE", "SALDO ACTUAL", "FECHA DE INICIO DEL CREDITO", "FECHA DE VENCIMIENTO DEL CREDITO",
             "FECHA DE INICIO DE LA CUOTA", "FECHA DE VENCIMIENTO DE LA CUOTA", "FECHA LIMITE DE LA CUOTA", "TIPO DE CREDITO",
@@ -274,7 +286,7 @@ class ReporteClientesExcelView(TemplateView):
             "DIRECCION DEL CLIENTE", "MUNICIPIO DEL CLIENTE", "DEPARTAMENTO DEL CLIENTE",
             "DIRECCION DE TRABAJO", "MUNICIPIO DE LABORAL", "DEPARTAMENTO DE LABORAL",
             "FUENTE DE INGRESO", "ESTADO LABORAL", "EMPRESA DE LABORAL", "PUESTO",
-            "REFERENCIA 1", "REFERENCIA 2", "REFERENCIA 3", "REFERENCIA 4"
+            "REFERENCIA 1", "REFERENCIA 2", "REFERENCIA 3", "REFERENCIA 4", 
         ]
 
 
@@ -332,6 +344,7 @@ class ReporteClientesExcelView(TemplateView):
                 cliente.customer_code,
                 cliente.profession_trade,
                 cliente.asesor,
+                str(obtener_fiadores(cliente)), 
                 'SI' if creditos else 'NO CUENTA CON CREDITOS REGISTRADOS',
                 str(creditos.count()) if creditos else '0',
                 str(primer_credito.codigo_credito) if primer_credito else '',
@@ -363,6 +376,7 @@ class ReporteClientesExcelView(TemplateView):
                 informacion_laboral.get_estado_laboral() if informacion_laboral else '',
                 informacion_laboral.get_empresa_laburo() if informacion_laboral else '',
                 informacion_laboral.get_puesto() if informacion_laboral else '',
+                               
             ]
 
             # Agregar las referencias (hasta 4)

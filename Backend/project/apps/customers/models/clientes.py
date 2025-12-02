@@ -237,8 +237,7 @@ class Customer(models.Model):
         from apps.financings.models import DetailsGuarantees
         from django.db.models import Q
 
-        nombre_buscado = f'{self.first_name} {self.last_name}'
-        codigo_cliente = self.customer_code
+        nombre_buscado = f'{self.first_name} {self.last_name}'      
         
 
         filtros = Q()

@@ -15,6 +15,7 @@ from scripts.cierre_diarrio.generar_cierre_diario import  generar_cierre_diario_
 
 
 from apps.customers.models import CreditCounselor, Cobranza, Customer
+from apps.financings.models import Credit
 from apps.actividades.models import Informe, DetalleInformeCobranza, ModelHistory
 from datetime import date
 from scripts.conversion_datos import model_to_dict, cambios_realizados
@@ -24,9 +25,9 @@ from django.apps import apps
 
 
 if __name__ == '__main__':
-   cliente = Customer.objects.get(customer_code = '2025-253')
-   for fiador in cliente.es_fiador():
-      print(fiador.garantia_id.credit_id.monto)
+   cliente = Credit.objects.get(id = 310)
+   for fiador in cliente.mi_fiador_es():
+      print(fiador.especificaciones['Nombre'])
    
    
          
