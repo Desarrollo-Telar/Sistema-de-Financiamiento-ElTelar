@@ -137,7 +137,7 @@ def creacion_cobranza(request):
 
         if form.is_valid():
             fcobranza = form.save(commit=False) # SE PAUSA EL REGISTRO
-             # 👉 aquí procesas los archivos manualmente
+            
             archivos = request.FILES.getlist('archivos[]')
 
             
@@ -219,12 +219,13 @@ def creacion_cobranza(request):
                     reporte = informe_usuario,
                     cobranza = cobranza
                 )
-            
-            for f in archivos:
-                DocumentoCobranza.objects.create(
-                    cobranza=cobranza,
-                    archivo=f
-                )
+
+            if  archivos:
+                for f in archivos:
+                    DocumentoCobranza.objects.create(
+                        cobranza=cobranza,
+                        archivo=f
+                    )
 
 
 
