@@ -7,8 +7,10 @@ from scripts.conversion_datos import model_to_dict, cambios_realizados
 # Tiempo
 from datetime import datetime,timedelta
 
+import time, gc, os, json
 
 def obtener_cuota_vigente(credito, dia = None):
+    gc.collect() 
     if dia is None:
         dia = datetime.now().date()
         
@@ -30,6 +32,7 @@ def obtener_cuota_vigente(credito, dia = None):
     return None
 
 def obtener_desembolsos_credito(credito):
+    gc.collect() 
     desembolsos = Disbursement.objects.filter(credit_id=credito).order_by('id')
     list_desembolsos = []
 
@@ -42,6 +45,7 @@ def obtener_desembolsos_credito(credito):
     return list_desembolsos
 
 def obtener_garantias(credito):
+    gc.collect() 
     garantias = DetailsGuarantees.objects.filter(garantia_id__credit_id=credito).order_by('id')
     list_garantias = []
 
@@ -54,6 +58,7 @@ def obtener_garantias(credito):
     return list_garantias
 
 def obtener_estados_cuentas(credito):
+    gc.collect() 
     estados_cuenta = AccountStatement.objects.filter(credit=credito).order_by('id')
     list_estados_cuenta = []
 
@@ -64,3 +69,24 @@ def obtener_estados_cuentas(credito):
         list_estados_cuenta.append(model_to_dict(estado_cuenta))
     
     return list_estados_cuenta
+
+def obtener_informacion_creditos(sucursal): 
+    gc.collect() 
+    creditos = Credit.objects.filter(sucursal=sucursal).order_by('id')
+
+    list_creditos = []
+
+    if creditos.exists():
+
+        for credito in creditos.iterator(chunk_size=100):            
+            context_credito = {}
+            context_credito['credito'] = model_to_dict(credito)
+            context_credito['cuota_vigente'] = obtener_cuota_vigente(credito)
+            context_credito['desembolsos']=obtener_desembolsos_credito(credito)
+            context_credito['garantia'] = obtener_garantias(credito)
+            context_credito['estados_cuentas'] = obtener_estados_cuentas(credito)
+
+            list_creditos.append(context_credito)
+        
+    return list_creditos
+            

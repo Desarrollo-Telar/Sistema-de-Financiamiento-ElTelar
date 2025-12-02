@@ -6,7 +6,7 @@ from apps.financings.models import Credit
 from apps.actividades.models import Informe, DetalleInformeCobranza
 from apps.users.models import User
 from django.db.models import Q
-
+from django.utils.decorators import method_decorator
 # Decoradores
 from django.contrib.auth.decorators import login_required
 from project.decorador import permiso_requerido
@@ -90,6 +90,10 @@ class DetailInformeView(TemplateView):
         except Exception as e:
             print(f'Error en get_queryset: {e}')
             return DetalleInformeCobranza.objects.none()
+    
+    @method_decorator([permiso_requerido('puede_crear_registro_cobranza')])
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
     def get_context_data(self, **kwargs):

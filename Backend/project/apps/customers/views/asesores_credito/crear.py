@@ -200,7 +200,7 @@ def creacion_cobranza(request):
                 fcobranza.fecha_limite_cuota = info_cuota.mostrar_fecha_limite().date()
                 fcobranza.cuota = info_cuota
                 fcobranza.asesor_credito = asesor_autenticado
-            """
+            
                 fcobranza.save()
                 cobranza = fcobranza
 
@@ -237,7 +237,7 @@ def creacion_cobranza(request):
                 'GESTION DE COBRANZA',
                 model_to_dict(cobranza)
             )
-            """
+            
 
 
             messages.success(request, "Registro Completado Con Exito.")
