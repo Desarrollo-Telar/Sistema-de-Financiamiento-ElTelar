@@ -1,0 +1,36 @@
+{% load static %}
+<div class="row" style="margin: 2rem ;">   
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Credito</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Monto</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody >
+                {% for fiador in customer_list.es_fiador %}
+                <tr >
+                    <th > <a href="{% url 'financings:detail_credit' fiador.garantia_id.credit_id.id%}" style="text-decoration: none; color: black;">{{fiador.garantia_id.credit_id.codigo_credito}}</a> 
+
+                    </th>
+                    <td >
+                        <a href="{% url 'financings:detail_credit' fiador.garantia_id.credit_id.id%}" style="text-decoration: none; color: black;">{{fiador.garantia_id.credit_id.customer_id}}</a>
+                        </td>
+                    <td><a href="{% url 'financings:detail_credit' fiador.garantia_id.credit_id.id%}" style="text-decoration: none; color: black;">Q {{fiador.garantia_id.credit_id.formato_monto}}</a></td>
+
+                    
+
+                </tr>
+
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+   
+</div>

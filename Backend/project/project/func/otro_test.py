@@ -14,7 +14,7 @@ from scripts.manejo_excedentes.recalcular import cuotas_con_excedente
 from scripts.cierre_diarrio.generar_cierre_diario import  generar_cierre_diario_seguro
 
 
-from apps.customers.models import CreditCounselor, Cobranza
+from apps.customers.models import CreditCounselor, Cobranza, Customer
 from apps.actividades.models import Informe, DetalleInformeCobranza, ModelHistory
 from datetime import date
 from scripts.conversion_datos import model_to_dict, cambios_realizados
@@ -24,7 +24,9 @@ from django.apps import apps
 
 
 if __name__ == '__main__':
-   generar_cierre_diario_seguro()
+   cliente = Customer.objects.get(customer_code = '2025-253')
+   for fiador in cliente.es_fiador():
+      print(fiador.garantia_id.credit_id.monto)
    
    
          

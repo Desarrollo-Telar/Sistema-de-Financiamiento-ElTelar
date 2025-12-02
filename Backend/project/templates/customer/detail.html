@@ -118,6 +118,12 @@
             <button class="nav-link" id="comentarios-tab" data-bs-toggle="tab" data-bs-target="#comentarios" type="button"
                 role="tab" aria-controls="comentarios" aria-selected="false">Comentarios</button>
         </li>
+        {% if customer_list.es_fiador %}
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="fiador-tab" data-bs-toggle="tab" data-bs-target="#fiador" type="button"
+                role="tab" aria-controls="fiador" aria-selected="false">Es Fiador De:</button>
+        </li>
+        {% endif %}
     </ul>
 
     <!-- Contenido de pestañas -->
@@ -178,6 +184,14 @@
         <div class="tab-pane fade" id="comentarios" role="tabpanel" aria-labelledby="comentarios-tab">
             {% include 'votacion/list.html' with comentarios=comentarios %}
         </div>
+
+        <!-- FIADOR -->
+         {% if customer_list.es_fiador %}
+         <div class="tab-pane fade" id="fiador" role="tabpanel" aria-labelledby="fiador-tab">
+            {% include 'customer/snippets/detail/fiador.html' %}
+
+         </div>
+         {% endif %}
     </div>
 </div>
 

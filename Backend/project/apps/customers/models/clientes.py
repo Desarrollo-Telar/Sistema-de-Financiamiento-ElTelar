@@ -232,6 +232,26 @@ class Customer(models.Model):
             return ''
         
         return direccion
+    
+    def es_fiador(self):
+        from apps.financings.models import DetailsGuarantees
+        from django.db.models import Q
+
+        nombre_buscado = f'{self.first_name} {self.last_name}'
+        codigo_cliente = self.customer_code
+        
+
+        filtros = Q()
+        filtros &= Q(tipo_garantia='FIADOR')
+        filtros &= Q(especificaciones__Nombre__icontains=nombre_buscado)
+        
+
+        filtrado = DetailsGuarantees.objects.filter(filtros)
+
+        if filtrado is None:
+            return None
+        
+        return filtrado
 
     
     
