@@ -21,8 +21,30 @@ from apps.financings.models import Credit
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 # Funcionalidades
-from django.db.models import Value, F
-from django.db.models.functions import Concat
+
+from django.db.models import Q, F, Value
+from django.db.models.functions import Concat, Lower
+
+def filtro_cliente(nombre_completo):
+    palabras = nombre_completo.lower().split()
+
+    qs = Customer.objects.annotate(
+        full_name=Lower(
+            Concat(
+                F('first_name'),
+                Value(' '),
+                F('last_name'),
+            )
+        )
+    )
+
+    q_obj = Q()
+    for palabra in palabras:
+        q_obj &= Q(full_name__icontains=palabra)
+
+    return qs.filter(q_obj).distinct()
+
+
 
 class Search(TemplateView):
     template_name = 'search.html'
@@ -45,7 +67,7 @@ class Search(TemplateView):
         context['permisos'] = recorrer_los_permisos_usuario(self.request)
         sucursal = self.request.session['sucursal_id']
         request= self.request
-        asesor_autenticado = CreditCounselor.objects.filter(usuario=self.request.user).first()
+        asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
         if query:
             query_lower = query.lower()
