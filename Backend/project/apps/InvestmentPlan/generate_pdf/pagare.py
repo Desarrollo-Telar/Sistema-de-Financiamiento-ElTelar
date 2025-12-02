@@ -173,7 +173,7 @@ def render_pagare_docx(request, id, customer_code):
     set_paragraph_format(pf_1)
     pf_2 = doc.add_paragraph(f"DPI {cliente.identification_number}")
     set_paragraph_format(pf_2)
-    pf_2 = doc.add_paragraph(f"{cliente.get_direccion().street.upper()}")
+    pf_2 = doc.add_paragraph(f"{cliente.get_direccion().street.upper() if cliente.get_direccion() != '' else '' }")
     set_paragraph_format(pf_2)
     pf_4 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
     set_paragraph_format(pf_4)

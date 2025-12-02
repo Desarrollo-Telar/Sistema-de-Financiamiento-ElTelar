@@ -224,7 +224,7 @@ class Customer(models.Model):
     def get_direccion(self):
         from apps.addresses.models import Address
         from django.db.models import Q
-        tipo_direccion = ['Dirección Personal','Dirección de Casa']
+        tipo_direccion = ['Dirección Personal','Dirección de Casa', 'Direccin Personal']
 
         direccion = Address.objects.filter(Q(customer_id__id=self.id) & Q(type_address__in = tipo_direccion)).first()
 
