@@ -22,3 +22,21 @@
 
   </div>
 </div>
+
+<script>
+  const input = document.getElementById('formFileMultiple');
+
+input.addEventListener('paste', (e) => {
+    const items = e.clipboardData.items;
+
+    for (let item of items) {
+        if (item.type.indexOf("image") === 0) {
+            const blob = item.getAsFile();
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(blob);
+            input.files = dataTransfer.files;
+        }
+    }
+});
+
+</script>
