@@ -7,7 +7,9 @@
                     <th scope="col">Credito</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Monto</th>
-                    
+                    <th scope="col">Status del Credito</th>
+                    <th scope="col">Status de Aportación</th>
+                    <th scope="col">Status por Fechas</th>
 
                 </tr>
             </thead>
@@ -22,7 +24,49 @@
                         </td>
                     <td><a href="{% url 'financings:detail_credit' fiador.garantia_id.credit_id.id%}" style="text-decoration: none; color: black;">Q {{fiador.garantia_id.credit_id.formato_monto}}</a></td>
 
-                    
+                    <td>
+                            <a href="{% url 'financings:detail_credit' fiador.garantia_id.credit_id.id %}" class="status-icon {% if fiador.garantia_id.credit_id.is_paid_off %}activo{% else %}inactivo{% endif %}">
+                                {% if fiador.garantia_id.credit_id.is_paid_off %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'financings:detail_credit' fiador.garantia_id.credit_id.id %}" class="status-icon {% if fiador.garantia_id.credit_id.estado_aportacion %}activo{% elif fiador.garantia_id.credit_id.estado_aportacion is None %}neutro{% else %}inactivo{% endif %}">
+                                {% if fiador.garantia_id.credit_id.estado_aportacion %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                {% elif fiador.garantia_id.credit_id.estado_aportacion is none %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                                </svg>
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'financings:detail_credit' fiador.garantia_id.credit_id.id %}" class="status-icon {% if fiador.garantia_id.credit_id.estados_fechas %}activo{% else %}inactivo{% endif %}">
+                                {% if fiador.garantia_id.credit_id.estados_fechas %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                                {% endif %}
+                            </a>
+                        </td>
 
                 </tr>
 
