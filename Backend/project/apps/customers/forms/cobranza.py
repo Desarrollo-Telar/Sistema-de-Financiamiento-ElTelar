@@ -88,7 +88,8 @@ class CobranzaForms(forms.ModelForm):
             ('No localizable', 'No localizable'),
             ('Negativa de pago', 'Negativa de pago'),
             ('Reprogramación de fecha', 'Reprogramación de fecha'),
-            ('Traslado a Cobro Jurídico', 'Traslado a Cobro Jurídico')
+            ('Traslado a Cobro Jurídico', 'Traslado a Cobro Jurídico'),
+            ('Mensaje 1 Enviado', 'Mensaje 1 Enviado'),
             
         ]
 

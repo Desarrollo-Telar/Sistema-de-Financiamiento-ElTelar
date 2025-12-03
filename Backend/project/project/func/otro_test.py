@@ -20,14 +20,21 @@ from apps.actividades.models import Informe, DetalleInformeCobranza, ModelHistor
 from datetime import date
 from scripts.conversion_datos import model_to_dict, cambios_realizados
 from django.apps import apps
+from apps.subsidiaries.models import Subsidiary
 
+def pruebas(dia, sucursal):
+   from django.db import connection
 
+   with connection.cursor() as cursor:
+      cursor.execute("CALL generar_informe_diario(%s, %s)", [dia, sucursal.id])
 
 
 if __name__ == '__main__':
    cliente = Credit.objects.get(id = 310)
-   for fiador in cliente.mi_fiador_es():
-      print(fiador.especificaciones['Nombre'])
+   dia = '2025-12-03'
+   sucursal = Subsidiary.objects.get(id=1)
+
+   print(pruebas(dia,sucursal))
    
    
          
