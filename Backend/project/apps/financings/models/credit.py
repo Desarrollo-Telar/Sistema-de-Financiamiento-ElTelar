@@ -10,7 +10,7 @@ from apps.financings.formato import formatear_numero
 from decimal import Decimal
 
 # TIEMPO
-from datetime import datetime
+from datetime import datetime, date
 from django.utils import timezone
 from dateutil.relativedelta import relativedelta
 
@@ -93,6 +93,14 @@ class Credit(models.Model):
             return None
         
         return filtrado
+    
+    
+
+    def dias_de_mora(self):
+        hoy = date.today()
+        if hoy <= self.fecha_entrar_en_mora:
+            return 0
+        return (hoy - self.fecha_entrar_en_mora).days
     
     def get_star_rating(self):
         estrellas = []

@@ -253,7 +253,7 @@ class ReporteCreditos(TemplateView):
             "#", "FECHA DE REGISTRO", "CODIGO DEL CREDITO", 
             "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
             "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
-            "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", "FECHA DE CANCELACION DEL CREDITO", "FECHA EN ENTRAR A MORA",
+            "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", "FECHA DE CANCELACION DEL CREDITO", "FECHA EN ENTRAR A MORA", "DIAS DE MORA",
             "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS",'STATUS POR APORTACION','STATUS JUDICIAL','STATUS DEL CREDITO', "NUMERO DE REFERENCIA", "ASESOR DE CREDITO", "FIADORES DEL CREDITO"
         ]
 
@@ -303,6 +303,7 @@ class ReporteCreditos(TemplateView):
                 fecha_limite_pago,
                 reporte.fecha_cancelacion,
                 reporte.fecha_entrar_en_mora,
+                reporte.dias_de_mora(),
                 reporte.formato_saldo_actual(),
                 reporte.formato_saldo_pendiente(),
                 reporte.formato_saldo_excedente(),
