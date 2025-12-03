@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from apps.customers.models import Customer, CreditCounselor, Cobranza
 from apps.actividades.models import Informe, DetalleInformeCobranza
 from apps.financings.models import PaymentPlan, Credit
+from apps.subsidiaries.models import Subsidiary
 from django.db.models import Q
 from apps.documents.models import DocumentoCobranza
 
@@ -125,6 +126,8 @@ def creacion_cobranza(request):
         )
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
+    sucursal = request.session['sucursal_id']
+    sucursal = Subsidiary.objects.get(id=sucursal)
 
     
     if asesor_autenticado is None:
@@ -157,8 +160,9 @@ def creacion_cobranza(request):
             
             
             if dia >= fecha_cobranza and asesor_de_credito != asesor_autenticado:
-                messages.error(request, 'Lo siento, oficina no puede realizar esta gestión de cobranza. Se ha execedido el plazo estimado')
-                return redirect('financings:detail_credit', credito.id)
+                if sucursal.nombre != 'OFICINA 2':
+                    messages.error(request, 'Lo siento, oficina no puede realizar esta gestión de cobranza. Se ha execedido el plazo estimado')
+                    return redirect('financings:detail_credit', credito.id)
             
             if credito.is_paid_off:
                 messages.error(request, 'El Credito se encuentra Cancelado, no se puede realizar ninguna gestión de cobranza.')
