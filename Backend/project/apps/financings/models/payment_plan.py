@@ -58,7 +58,7 @@ class PaymentPlan(models.Model):
     original_day = models.IntegerField(null=True, blank=True)
 
     def limite_cobranza_oficina(self):
-        calculo = self.due_date + relativedelta(days=13)
+        calculo = self.due_date + relativedelta(days=11)
         return calculo.date()
     
 
