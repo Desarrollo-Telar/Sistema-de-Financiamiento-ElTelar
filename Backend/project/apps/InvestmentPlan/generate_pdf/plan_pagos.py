@@ -115,15 +115,16 @@ def generar_estado_cuenta_word(doc, id):
     # ---------------------------
     
 
-    table_info = doc.add_table(rows=4, cols=2)
+    table_info = doc.add_table(rows=5, cols=2)
     table_info.alignment = WD_TABLE_ALIGNMENT.CENTER
     
 
     datos = [
         ("Deudor", f'{cliente.get_full_name().upper()}'),
         ("Monto Otorgado", f"Q{plan.total_value_of_the_product_or_service:,.2f}"),
-        ("Fecha de Recibido", plan.fecha_inicio.strftime('%Y-%m-%d')),
+        ("Fecha de Recibido", plan.fecha_inicio.strftime('%d-%m-%Y')),
         ("Forma de pago", f"{forma_pago}"),
+        ("Monto Total A Pagar", f'{plan_pago.calcular_total_cuotas()}')
     ]
 
     for i, (campo, valor) in enumerate(datos):

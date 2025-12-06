@@ -49,7 +49,7 @@ def obtener_informe_asesor(credito, asesor_autenticado):
     informe_reporte = None
     if credito.asesor_de_credito != asesor_autenticado:
         informe_reporte = Informe.objects.filter(
-            usuario=credito.customer_id.new_asesor_credito.usuario,
+            usuario=credito.asesor_de_credito.usuario,
             esta_activo=True
         ).first()
 

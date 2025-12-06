@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 
 # Models
 from apps.customers.models import Customer, CreditCounselor, Cobranza
+from apps.users.models import User
 from apps.financings.models import Credit
 from apps.actividades.models import Informe, DetalleInformeCobranza
 from apps.subsidiaries.models import Subsidiary
@@ -20,8 +21,12 @@ class InformacionAsesorCobranzaView(APIView):
         # Buscar asesor y reporte vigente
         asesor_credito = CreditCounselor.objects.filter(usuario__user_code=user_code).first()
         reporte_id = Informe.objects.filter(usuario__user_code=user_code, esta_activo=True).first()
+
         roles = ['Administrador', 'Programador','Secretari@']
         role_name = getattr(getattr(request.user, 'rol', None), 'role_name', None)
+        #usuario = User.objects.get(user_code=user_code)
+        #role_name = usuario.rol
+
         sucursal = request.session['sucursal_id']
         
 

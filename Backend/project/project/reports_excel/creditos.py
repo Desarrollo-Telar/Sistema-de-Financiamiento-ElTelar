@@ -286,7 +286,7 @@ class ReporteCreditos(TemplateView):
             s_fecha = 'VIGENTE' if reporte.estados_fechas else 'EN ATRASO'
             s_judicial = 'EN PROCESO JUDICIAL' if reporte.estado_judicial else 'NO'
             s_credito = 'CANCELADO' if reporte.is_paid_off else 'VIGENTE'
-            tiene_cobranza = 'SI TIENE' if reporte.tiene_gestion_cobranza() else 'NO TIENE'
+            tiene_cobranza = reporte.tiene_gestion_cobranza() if reporte.tiene_gestion_cobranza() else 'NO TIENE'
 
             fila = [
                 contador,

@@ -108,7 +108,7 @@ class Cobranza(models.Model):
         return formatear_numero(self.mora_pendiente)
 
     def __str__(self):
-        return f'Cobranza #{self.id} - {self.credito}'
+        return f'Cobranza #{self.id} - {self.credito} - {self.estado_cobranza}'
     
     def _generar_codigo_gestion(self):
         if not self.codigo_gestion:
