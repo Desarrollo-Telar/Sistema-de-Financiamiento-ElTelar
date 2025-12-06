@@ -23,9 +23,9 @@ class InformacionAsesorCobranzaView(APIView):
         reporte_id = Informe.objects.filter(usuario__user_code=user_code, esta_activo=True).first()
 
         roles = ['Administrador', 'Programador','Secretari@']
-        role_name = getattr(getattr(request.user, 'rol', None), 'role_name', None)
-        #usuario = User.objects.get(user_code=user_code)
-        #role_name = usuario.rol
+        #role_name = getattr(getattr(request.user, 'rol', None), 'role_name', None)
+        usuario = User.objects.get(user_code=user_code)
+        role_name = usuario.rol.role_name
 
         sucursal = request.session['sucursal_id']
         
@@ -44,6 +44,7 @@ class InformacionAsesorCobranzaView(APIView):
             filtros &= Q(sucursal__id=sucursal)
 
         if role_name in roles:
+            
             asesores = CreditCounselor.objects.filter(id__in=[7, 4])
 
             if sucursal != 2:

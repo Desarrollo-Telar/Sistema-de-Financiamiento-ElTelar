@@ -111,6 +111,7 @@ def creacion_cobranza(request):
 
     credito_q = Credit.objects.filter(id=request.GET.get('q')).first()
     rol = request.user.rol.role_name
+    user_code = request.user.user_code
 
     
     informe_usuario = Informe.objects.filter(
@@ -246,7 +247,7 @@ def creacion_cobranza(request):
 
 
             messages.success(request, "Registro Completado Con Exito.")
-            return redirect('customers:cobranza_asesor')
+            return redirect('customers:detail_informe_cobranza', user_code, informe_usuario.id)
     else:
         form = CobranzaForms()
         if credito_q is not None:
