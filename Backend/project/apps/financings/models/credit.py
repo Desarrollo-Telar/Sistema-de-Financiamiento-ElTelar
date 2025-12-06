@@ -13,6 +13,7 @@ from decimal import Decimal
 from datetime import datetime, date
 from django.utils import timezone
 from dateutil.relativedelta import relativedelta
+from django.db.models import Q
 
 class Credit(models.Model):
     formaPago = [
@@ -75,11 +76,25 @@ class Credit(models.Model):
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
     
+    def tiene_gestion_cobranza(self):
+        from apps.customers.models import Cobranza
+        mes = datetime.now().month
+
+        filtros = Q()
+        filtros &= Q(credito__id=self.id)        
+        filtros &= Q(fecha_registro__month=mes)
+        filtros &= ~Q(estado_cobranza = 'COMPLETADO')
+
+        tiene_cobranza = Cobranza.objects.filter(filtros).order_by('-id').first()
+
+        if tiene_cobranza is None:
+            return None
+        
+        return tiene_cobranza
+        
+    
     def mi_fiador_es(self):
         from apps.financings.models import DetailsGuarantees
-        from django.db.models import Q
-
-             
         
 
         filtros = Q()

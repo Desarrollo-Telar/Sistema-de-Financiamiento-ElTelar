@@ -31,7 +31,9 @@
                         </th>
                         <td>
                             <a class="row-link" href="{% url 'financings:detail_credit' credit.id %}">
-                                {{ credit.customer_id }}
+                                {{ credit.customer_id }} 
+                                
+                                
                             </a>
                         </td>
                         <td>
@@ -70,8 +72,14 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{% url 'financings:detail_credit' credit.id %}" class="status-icon {% if credit.is_paid_off %}activo{% else %}inactivo{% endif %}">
-                                {% if credit.is_paid_off %}
+                            <a href="{% url 'financings:detail_credit' credit.id %}" class="status-icon 
+                            {% if credit.tiene_gestion_cobranza and credito_en_atraso %}cobranza
+                            {% elif credit.is_paid_off %}activo
+                            {% else %}inactivo
+                            {% endif %}">
+                                {% if credit.tiene_gestion_cobranza and credito_en_atraso %}
+                                <i class="bi bi-c-circle"></i>
+                                {% elif credit.is_paid_off %}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
                                     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
                                 </svg>
@@ -83,8 +91,11 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{% url 'financings:detail_credit' credit.id %}" class="status-icon {% if credit.estado_aportacion %}activo{% elif credit.estado_aportacion is None %}neutro{% else %}inactivo{% endif %}">
-                                {% if credit.estado_aportacion %}
+                            <a href="{% url 'financings:detail_credit' credit.id %}" class="status-icon {% if credit.tiene_gestion_cobranza and credito_en_atraso %} cobranza 
+                            {% elif credit.estado_aportacion %}activo{% elif credit.estado_aportacion is None %}neutro{% else %}inactivo{% endif %}">
+                                {% if credit.tiene_gestion_cobranza and credito_en_atraso %}
+                                <i class="bi bi-c-circle"></i>
+                                {% elif credit.estado_aportacion %}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
                                     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
                                 </svg>
@@ -100,8 +111,11 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{% url 'financings:detail_credit' credit.id %}" class="status-icon {% if credit.estados_fechas %}activo{% else %}inactivo{% endif %}">
-                                {% if credit.estados_fechas %}
+                            <a href="{% url 'financings:detail_credit' credit.id %}" class="status-icon {% if credit.tiene_gestion_cobranza and credito_en_atraso %} cobranza
+                            {% elif credit.estados_fechas %}activo{% else %}inactivo{% endif %}">
+                                {% if credit.tiene_gestion_cobranza and credito_en_atraso %}
+                                <i class="bi bi-c-circle" ></i>
+                                {% elif credit.estados_fechas %}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
                                     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
                                 </svg>

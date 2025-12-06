@@ -254,7 +254,8 @@ class ReporteCreditos(TemplateView):
             "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
             "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
             "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", "FECHA DE CANCELACION DEL CREDITO", "FECHA EN ENTRAR A MORA", "DIAS DE MORA",
-            "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS",'STATUS POR APORTACION','STATUS JUDICIAL','STATUS DEL CREDITO', "NUMERO DE REFERENCIA", "ASESOR DE CREDITO", "FIADORES DEL CREDITO"
+            "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS",'STATUS POR APORTACION','STATUS JUDICIAL','STATUS DEL CREDITO', "NUMERO DE REFERENCIA", "ASESOR DE CREDITO", "FIADORES DEL CREDITO",
+            "GESTION DE COBRANZA"
         ]
 
         for col_idx, header in enumerate(encabezados, start=1):
@@ -285,6 +286,7 @@ class ReporteCreditos(TemplateView):
             s_fecha = 'VIGENTE' if reporte.estados_fechas else 'EN ATRASO'
             s_judicial = 'EN PROCESO JUDICIAL' if reporte.estado_judicial else 'NO'
             s_credito = 'CANCELADO' if reporte.is_paid_off else 'VIGENTE'
+            tiene_cobranza = 'SI TIENE' if reporte.tiene_gestion_cobranza() else 'NO TIENE'
 
             fila = [
                 contador,
@@ -310,7 +312,8 @@ class ReporteCreditos(TemplateView):
                 s_fecha,aportacion,s_judicial,s_credito,
                 numero_referencia,
                 str(reporte.asesor_de_credito),
-                str(obtener_fiadores(reporte))
+                str(obtener_fiadores(reporte)),
+                str(tiene_cobranza)
             ]
 
             for col_idx, value in enumerate(fila, start=1):

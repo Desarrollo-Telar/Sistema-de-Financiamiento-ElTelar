@@ -15,6 +15,15 @@
 
 }
 
+.cobranza{
+    background-color: #cefdea;
+    padding: 0 0.5rem; 
+    border-radius:2rem; 
+    text-align: center;
+    color: #016454;
+
+}
+
 .neutro{
     background-color: #e2e9eb; 
     color: #161a1d;

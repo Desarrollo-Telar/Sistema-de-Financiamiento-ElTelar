@@ -140,10 +140,11 @@ class CreditoList(ListView):
                   'Creditos con Excedente']
         
         
-        
+        credito_en_atraso = True if self.status() == 'Creditos en Atraso' else False
         context['title'] = f'Consulta de Registro de Creditos.'
         context['count'] = context['object_list'].count()
         context['permisos'] = recorrer_los_permisos_usuario(self.request)
+        context['credito_en_atraso'] = credito_en_atraso
         
         context['posicion'] = self.query() if self.query() else ''        
         context['query'] = self.query() if self.query() else ''
