@@ -46,6 +46,16 @@ class Cobranza(models.Model):
     codigo_gestion = models.CharField(max_length=75, null=True, blank=True)
 
 
+    def get_fecha_seg_o_promesa(self):
+        if self.fecha_seguimiento:
+            return self.fecha_seguimiento.date()
+        
+        if self.fecha_promesa_pago:
+            return self.fecha_promesa_pago
+        
+        return None
+
+
     def ver_recibo(self):
         obtener_recibo = Recibo.objects.filter(cuota=self.cuota).first()
 
@@ -72,16 +82,15 @@ class Cobranza(models.Model):
 
         if self.estado_cobranza == 'COMPLETADO':
             return dias
-
-        if self.fecha_seguimiento:
-            # Días transcurridos desde seguimiento hasta hoy
-            dias = (self.fecha_seguimiento.date() - hoy ).days
-            # ejemplo: 0 si es hoy, positivo si ya pasaron días, negativo no aplica aquí
         
-        if self.fecha_promesa_pago:
-            # Días restantes para promesa de pago
-            dias = (self.fecha_promesa_pago - hoy).days
-            # positivo si faltan días, negativo si ya pasó
+        fecha = self.get_fecha_seg_o_promesa()
+
+        if not fecha:
+            return dias
+        
+
+        dias = (fecha - hoy ).days
+           
         
         if dias < 0:
             self.resultado = 'Negativa de pago'            

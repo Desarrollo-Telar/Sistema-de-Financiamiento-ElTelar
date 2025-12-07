@@ -49,6 +49,11 @@ class InvestmentPlan(models.Model):
     fecha_vencimiento = models.DateField("Fecha de Vencimiento", blank=True, null=True)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
 
+    fiador = models.JSONField(null=True, blank=True, verbose_name="Fiador")
+    credito_anterior_vigente = models.JSONField(null=True, blank=True, verbose_name="Credito Anterior Vigente")
+    tipo_pagare = models.CharField(verbose_name="Tipo de pagare", max_length=150, blank=True, null=True)
+    
+
     def get_tasa(self):
         tasa_interes = self.tasa_interes if self.tasa_interes else 0
 
