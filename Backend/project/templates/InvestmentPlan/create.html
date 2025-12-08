@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container box">
     <div class="row">
-        <form method="POST">
+        <form method="POST" id="plan_destino">
 
             {% csrf_token %}
 
@@ -68,4 +68,49 @@
 {% block js %}
 <script type="module" src="{% static 'js/plan_inversion/destino.js'%}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const form = document.getElementById("plan_destino");
+    const tipoPagare = document.getElementById("id_tipo_pagare");
+    const fiadorField = document.getElementById("id_fiador");
+    const creditoAnteriorField = document.getElementById("id_credito_anterior_vigente");
+
+    form.addEventListener("submit", function (event) {
+
+        const tipo = tipoPagare.value;
+        let errores = [];
+
+        if (tipo === "Fiador") {
+            if (!fiadorField.value || fiadorField.value.trim() === "") {
+                errores.push("Debe ingresar información del FIADOR.");
+                
+                fiadorField.focus();
+            }
+        }
+
+        if (tipo === "Restructuracion") {
+            if (!creditoAnteriorField.value || creditoAnteriorField.value.trim() === "") {
+                errores.push("Debe ingresar el CRÉDITO ANTERIOR VIGENTE.");
+                creditoAnteriorField.focus();
+            }
+        }
+
+        if (errores.length > 0) {
+            event.preventDefault(); // ❌ Cancela el envío            
+            Swal.fire({
+                icon: "error",
+                title: `${errores.join("\n")}`,
+                timer: 4000,
+                showConfirmButton: false,
+            });
+        }
+
+    });
+
+});
+</script>
+
+
+
 {% endblock %}

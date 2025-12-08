@@ -12,7 +12,7 @@ from apps.financings.models import Recibo, Invoice,AccountStatement,Credit,Payme
 from apps.accountings.models import Creditor, Insurance
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.subsidiaries.models import Subsidiary
-
+from apps.customers.models import Customer
 
 from django.conf import settings
 
@@ -64,6 +64,7 @@ def fecha_formateada(fecha):
 def render_pagare_docx(request, id, customer_code):
 
     destino = get_object_or_404(InvestmentPlan, id=id)
+    
 
     sucursal = destino.sucursal
     tasa_interes = destino.get_tasa() 
@@ -76,6 +77,13 @@ def render_pagare_docx(request, id, customer_code):
     dia = datetime.now().date()
 
     cliente = destino.customer_id  # Ajusta esto si tu relación es distinta
+    fiador = Customer.objects.filter(id= destino.fiador['id']).first() if destino.fiador else None
+
+    destino_anterior = (
+        InvestmentPlan.objects.filter(customer_id=cliente).exclude(id=destino.id).order_by('-id').first()
+    )
+    fecha_destinino_anterior = destino_anterior.fecha_inicio if destino_anterior else ''
+    codigo_pagare = destino_anterior.investment_plan_code if destino_anterior else ''
 
     # ============================
     #   CREAR DOCUMENTO
@@ -86,7 +94,7 @@ def render_pagare_docx(request, id, customer_code):
     style = doc.styles["Normal"]
     style.font.name = "Calibri"
     style._element.rPr.rFonts.set(qn('w:eastAsia'), 'Calibri')
-    style.font.size = Pt(11)
+    style.font.size = Pt(10)
 
     # ============================
     #   ENCABEZADO CON LOGO
@@ -125,8 +133,19 @@ def render_pagare_docx(request, id, customer_code):
         f"de cobro o requerimiento alguno pagar a Inversiones Integrales El Telar S.A. Únicamente mediante el depósito "
         f"correspondiente a la cuenta {sucursal.numero_de_cuenta_banco} del {sucursal.nombre_banco}, la cantidad "
         f"de {destino.en_letras_el_valor()} exactos (Q {destino.f_total_value_of_the_product_or_service()}), mediante {plazo} pagos "
-        f"mensuales según la tabla que me es entregada adjunta a este documento."
+
+        
     )
+
+    if destino.tipo_pagare == 'Restructuracion' or destino.credito_anterior_vigente:
+        texto += (
+            f"mensuales, empezando a pagar el {destino.fecha_primer_pago().strftime('%d-%m-%Y')}, sin necesidad de cobro requerimiento alguno, que se prorrogan de lo convenido en el pagare "
+            f"{codigo_pagare} de la fecha {fecha_destinino_anterior.strftime('%d-%m-%Y')}, según la tabla que me es entregada adjunta a este documento."
+        )
+    else:        
+        texto += (
+            f"mensuales según la tabla que me es entregada adjunta a este documento."
+        )
     
 
     p_texto = doc.add_paragraph(texto)
@@ -162,7 +181,7 @@ def render_pagare_docx(request, id, customer_code):
         p.add_run(item)
         
 
-    doc.add_paragraph("")
+    
     doc.add_paragraph("ACEPTO LIBRE DE PROTESTO:")
     
     # ============================
@@ -177,6 +196,34 @@ def render_pagare_docx(request, id, customer_code):
     set_paragraph_format(pf_2)
     pf_4 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
     set_paragraph_format(pf_4)
+
+    if fiador:
+        doc.add_paragraph("")
+        aval_text = (
+            f"AVAL: Por este medio el abajo firmante, titular del Documento Personal de Identificación respectivamente indicado, " 
+            f"me constituyo expresamente en avalista voluntario del presente pagaré en todas y cada una de las obligaciones que asume "
+            f"el librador del mismo."
+        )
+        aval_text_p = doc.add_paragraph(aval_text)
+        run = aval_text_p.runs[0]
+        run.font.size = Pt(9)
+
+        set_paragraph_format(aval_text_p)
+
+        
+        doc.add_paragraph("")
+
+        pf_5 = doc.add_paragraph(f"{fiador.get_full_name().upper()}")
+        pf_5.bold = True
+        set_paragraph_format(pf_5)
+
+        pf_6 = doc.add_paragraph(f"DPI {fiador.identification_number}")
+        set_paragraph_format(pf_6)
+        pf_7 = doc.add_paragraph(f"{fiador.get_direccion().street.upper() if fiador.get_direccion() != '' else '' }")
+        set_paragraph_format(pf_7)
+        pf_8 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
+        set_paragraph_format(pf_8)
+
     doc.add_paragraph("")
     doc.add_paragraph("__________________________   ÚLTIMA LINEA")
     doc.add_paragraph("")

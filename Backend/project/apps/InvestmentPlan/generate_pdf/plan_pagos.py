@@ -11,10 +11,11 @@ from django.contrib.staticfiles import finders
 # Modelos
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.subsidiaries.models import Subsidiary
-
+from apps.financings.models import Credit as Credito, PaymentPlan as PlanPagos
 # Generando Plan de pagos
 from apps.financings.clases.paymentplan import PaymentPlan
 from apps.financings.clases.credit import Credit
+
 
 from docx import Document
 from docx.shared import Inches, Pt, Cm
@@ -28,6 +29,25 @@ from django.shortcuts import get_object_or_404
 from datetime import datetime
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+
+# Tiempo
+from datetime import datetime,timedelta, date
+
+def obtener_cuota(credito):
+    dia = datetime.now().date()
+
+    dia_mas_uno = dia + timedelta(days=1)
+
+    siguiente_pago = PlanPagos.objects.filter(
+        credit_id=credito,
+        start_date__lte=dia,
+        fecha_limite__gte=dia_mas_uno
+    ).first()
+
+    if siguiente_pago is None:
+        siguiente_pago = PlanPagos.objects.filter(credit_id=credito).order_by('-id').first()
+    
+    return siguiente_pago
 
 def set_paragraph_format(p):
     fmt = p.paragraph_format
@@ -65,6 +85,13 @@ def set_table_border(table):
 
 def generar_estado_cuenta_word(doc, id):
     plan = get_object_or_404(InvestmentPlan, id=id)
+
+    credito_anterior = Credito.objects.filter(id=plan.credito_anterior_vigente['id']).first() if plan.credito_anterior_vigente else None
+    
+
+    saldo_actual = credito_anterior.saldo_actual if credito_anterior else 0
+
+
     cliente = plan.customer_id
     sucursal = plan.sucursal
     dia = datetime.now().date()
@@ -124,7 +151,7 @@ def generar_estado_cuenta_word(doc, id):
         ("Monto Otorgado", f"Q{plan.total_value_of_the_product_or_service:,.2f}"),
         ("Fecha de Recibido", plan.fecha_inicio.strftime('%d-%m-%Y')),
         ("Forma de pago", f"{forma_pago}"),
-        ("Monto Total A Pagar", f'{plan_pago.calcular_total_cuotas()}')
+        ("Monto Total A Pagar", f'Q{plan_pago.calcular_total_cuotas():,.2f}')
     ]
 
     for i, (campo, valor) in enumerate(datos):
@@ -174,7 +201,7 @@ def generar_estado_cuenta_word(doc, id):
     tot_rows = tabla_totales.rows
 
     tot = [
-        ("Saldo Anterior", "Q0.00"),
+        ("Saldo Anterior", f"Q{saldo_actual:,.2f}"),
         ("Gastos jurídicos", "Q0.00"),
         ("Otros Gastos", "Q0.00"),
         ("Líquido a Recibir", f"Q{plan.total_value_of_the_product_or_service:,.2f}"),

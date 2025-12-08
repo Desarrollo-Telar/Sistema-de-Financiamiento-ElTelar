@@ -68,3 +68,26 @@ class InvestmentPlanForms(forms.ModelForm):
             
         ]
         self.fields['tipo_pagare'].widget.choices = opciones_tipo_pagare
+        
+    def clean(self):
+        cleaned_data = super().clean()
+
+        tipo_pagare = cleaned_data.get("tipo_pagare")
+        fiador = cleaned_data.get("fiador")
+        credito_anterior_vigente = cleaned_data.get("credito_anterior_vigente")
+
+        # Validación cuando selecciona Fiador
+        if tipo_pagare == "Fiador" and not fiador:
+            self.add_error(
+                "fiador",
+                "Debe ingresar la información del fiador porque seleccionó un pagaré con Fiador."
+            )
+
+        # Validación cuando selecciona Reestructuración
+        if tipo_pagare == "Restructuracion" and not credito_anterior_vigente:
+            self.add_error(
+                "credito_anterior_vigente",
+                "Debe ingresar el crédito anterior vigente porque seleccionó Reestructuración."
+            )
+
+        return cleaned_data
