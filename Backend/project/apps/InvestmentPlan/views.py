@@ -8,6 +8,7 @@ from apps.customers.models import Customer
 from .models import InvestmentPlan
 from apps.FinancialInformation.models import Reference, WorkingInformation, OtherSourcesOfIncome
 from apps.subsidiaries.models import Subsidiary
+from apps.financings.models import Credit
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
 from django.views.generic.list import ListView
@@ -23,6 +24,7 @@ from dateutil.relativedelta import relativedelta
 #SCRIPTS
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 from project.send_mail import send_email_new_customer
+from scripts.conversion_datos import model_to_dict
 # Create your views here.
 
 @login_required
@@ -45,9 +47,22 @@ def create_plan_financiamiento(request, customer_code):
             fecha_inicio = form.cleaned_data.get('fecha_inicio')
             plazo = form.cleaned_data.get('plazo')
             plan.fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
+            credito_seleccionado = form.cleaned_data.get('credito_anterior_vigente')
+            fiador_seleccionado = form.cleaned_data.get('fiador')
+
+            if credito_seleccionado:
+                credito = Credit.objects.get(id=credito_seleccionado)
+                plan.credito_anterior_vigente = model_to_dict(credito)
+            
+            if fiador_seleccionado:
+                fiador = Customer.objects.get(id=fiador_seleccionado)
+                plan.fiador = model_to_dict(fiador)
+
+
             plan.save()
 
             informacion_laboral = WorkingInformation.objects.filter(customer_id=customer_id).exists()
+            
 
             if not informacion_laboral:
                 informacion_laboral = OtherSourcesOfIncome.objects.filter(customer_id=customer_id).exists()
