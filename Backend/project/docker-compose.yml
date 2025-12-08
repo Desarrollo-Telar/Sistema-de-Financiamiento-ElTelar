@@ -106,14 +106,7 @@ services:
     networks:
       - app_fin
 
-    deploy:
-      resources:
-        limits:
-          cpus: '3.00'
-          memory: 6G
-        reservations:
-          cpus: '2.00'
-          memory: 3G
+    
 
   celery:
     build: .

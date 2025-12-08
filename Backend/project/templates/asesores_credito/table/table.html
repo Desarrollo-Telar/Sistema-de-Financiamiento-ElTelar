@@ -11,6 +11,7 @@
                         <th scope="col">Correo Electronico</th>    
                         <th scope="col">Numero de Identificacion</th>              
                         <th scope="col">Numero de Telefono</th>
+                        <th scope="col">Reporte Cobranza</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,11 @@
                         <td>
                             <a class="row-link" href="{% url 'customers:detail_asesor' data.codigo_asesor %}">
                                 {{ data.telephone }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="row-link" href="{% url 'reporte_cobranza' %}?usuario={{data.usuario.id}}">
+                                <i class="bi bi-file-earmark-arrow-down"></i>
                             </a>
                         </td>
                         
