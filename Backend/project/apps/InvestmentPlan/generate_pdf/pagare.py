@@ -77,6 +77,7 @@ def render_pagare_docx(request, id, customer_code):
     dia = datetime.now().date()
 
     cliente = destino.customer_id  # Ajusta esto si tu relación es distinta
+    
     fiador = Customer.objects.filter(id= destino.fiador['id']).first() if destino.fiador else None
 
     destino_anterior = (

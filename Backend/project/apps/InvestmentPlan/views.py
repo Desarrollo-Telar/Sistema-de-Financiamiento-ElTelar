@@ -120,6 +120,17 @@ def update_plan_financiamiento(request,id,customer_code):
             plan.type_of_transfers_or_transfer_of_funds = 'Local'
             plan.transfers_or_transfer_of_funds = True
             plan.sucursal = sucursal
+            credito_seleccionado = form.cleaned_data.get('credito_anterior_vigente')
+            fiador_seleccionado = form.cleaned_data.get('fiador')
+
+            if credito_seleccionado:
+                credito = Credit.objects.get(id=credito_seleccionado)
+                plan.credito_anterior_vigente = model_to_dict(credito)
+            
+            if fiador_seleccionado:
+                fiador = Customer.objects.get(id=fiador_seleccionado)
+                plan.fiador = model_to_dict(fiador)
+                
             plan.save()
             
             return redirect('customers:detail',customer_code)

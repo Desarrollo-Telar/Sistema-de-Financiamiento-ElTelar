@@ -30,11 +30,11 @@ def pruebas(dia, sucursal):
 
 
 if __name__ == '__main__':
-   cliente = Credit.objects.get(id = 310)
+   cliente = Credit.objects.get(id = 513)
    dia = '2025-12-03'
    sucursal = Subsidiary.objects.get(id=1)
 
-   print(pruebas(dia,sucursal))
+   print(model_to_dict(cliente))
    
    
          
