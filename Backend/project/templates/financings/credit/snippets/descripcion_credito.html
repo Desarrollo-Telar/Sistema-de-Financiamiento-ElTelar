@@ -144,6 +144,12 @@
         <p class="mb-0"><strong>DIAS DE MORA:</strong> <span
                 class="fw-light">{{credit_list.dias_de_mora}} DIAS</span></p>
     </div>
+    {% if request.user.rol.role_name != 'Asesor de Crédito'%}
+    <div class="col-md-4 mb-3">
+        <p class="mb-0"><strong>FECHA MAXIMA PARA GESTION DE COBRANZA:</strong> <span
+                class="fw-light">{{siguiente_pago.limite_cobranza_oficina}} </span></p>
+    </div>
+    {% endif%}
     <div class="col-md-4 mb-3">
         <p class="mb-0"><strong>FECHA DE CREACIÓN:</strong> <span class="fw-light">{{credit_list.creation_date}}</span>
         </p>
