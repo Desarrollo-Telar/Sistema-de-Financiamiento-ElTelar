@@ -35,7 +35,7 @@ class Credit(models.Model):
     proposito = models.TextField("Proposito", blank=False, null=False)
     monto = models.DecimalField("Monto", decimal_places=2, max_digits=15, blank=False, null=False)
     plazo = models.IntegerField("Plazo", blank=False, null=False)
-    tasa_interes = models.DecimalField("Tasa de Interes", max_digits=5, decimal_places=3, null=False, blank=False)
+    tasa_interes = models.DecimalField("Tasa de Interes", max_digits=5, decimal_places=5, null=False, blank=False)
     forma_de_pago = models.CharField("Forma de Pago", choices=formaPago, max_length=75, blank=False, null=False, default='NIVELADA')
     frecuencia_pago = models.CharField("Frecuencia de Pago", choices=frecuenciaPago, max_length=75, blank=False, null=False, default='MENSUAL')
     fecha_inicio = models.DateField("Fecha de Inicio", blank=False, null=False)
