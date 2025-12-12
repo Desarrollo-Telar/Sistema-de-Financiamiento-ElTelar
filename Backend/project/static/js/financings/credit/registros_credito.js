@@ -14,8 +14,19 @@ import {get_credit} from '../../API/credito/obtener_credito.js'
 function get_tasaInteres() {
     const tasa = document.getElementById('tasa_interes').value;
 
-    return tasa > 1 ? (tasa / 12)/100 : tasa/12;
+    let resultado;
+
+    // Se calcula el resultado original
+    if (tasa > 1) {
+        resultado = (tasa / 12) / 100;
+    } else {
+        resultado = tasa / 12;
+    }
+
+    // Se convierte el número a una cadena con 3 decimales
+    return resultado.toFixed(3);
 }
+
 export async function guardar_credito(monto){
     let formData = new FormData();
     formData.append('proposito',document.getElementById('proposito').value);
