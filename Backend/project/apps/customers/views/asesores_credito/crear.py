@@ -194,7 +194,9 @@ def creacion_cobranza(request):
 
                 resultado = form.cleaned_data.get('resultado')
 
-                if resultado != 'Promesa de pago':
+                result = ['Pago realizado', 'No localizable', 'Negativa de pago', 'Reprogramación de fecha', 'Traslado a Cobro Jurídico']
+
+                if resultado in result:
                     fcobranza.fecha_seguimiento = fecha
                     fcobranza.fecha_promesa_pago = None
                 else:
