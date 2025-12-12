@@ -1,3 +1,55 @@
+/* Base común para todos los badges */
+.badge {
+    padding: 0 0.5rem;
+    border-radius: 2rem;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Promesa de pago - Azul (neutral/informativo) */
+.badge-promesa-pago {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+/* Pago realizado - Verde (éxito) */
+.badge-pago-realizado {
+    background-color: #b2ffc0;
+    color: #00340c;
+}
+
+/* No localizable - Gris (inactivo/pendiente) */
+.badge-no-localizable {
+    background-color: #e0e0e0;
+    color: #424242;
+}
+
+/* Negativa de pago - Rojo (alerta/rechazo) */
+.badge-negativa-pago {
+    background-color: #ffcccc;
+    color: #8b0000;
+}
+
+/* Reprogramación de fecha - Amarillo (advertencia) */
+.badge-reprogramacion {
+    background-color: #fff4cc;
+    color: #8b6914;
+}
+
+/* Traslado a Cobro Jurídico - Naranja oscuro (urgente) */
+.badge-cobro-juridico {
+    background-color: #ffe0cc;
+    color: #8b3a00;
+}
+
+/* Mensaje 1 Enviado - Morado claro (proceso) */
+.badge-mensaje-enviado {
+    background-color: #e6ccff;
+    color: #4b0082;
+}
+
 .activo{
     background-color: #b2ffc0; 
     padding: 0 0.5rem; 

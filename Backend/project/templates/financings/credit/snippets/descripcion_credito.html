@@ -75,12 +75,32 @@
                         {{credit_list.formato_estado_fecha}}
                     </span>
                 </p>
-                
+                {% if credit_list.tiene_gestion_cobranza %}
                 <p class="mb-0">
                     <strong>ESTADO POR COBRANZA:</strong>
-                    {{credit_list.tiene_gestion_cobranza}}
+                    <span class="badge
+                    {% if credit_list.tiene_gestion_cobranza.resultado == 'Promesa de pago'%}
+                     badge-promesa-pago
+                    {% elif  credit_list.tiene_gestion_cobranza.resultado == 'Pago realizado'%}
+                    badge-pago-realizado
+                    {% elif  credit_list.tiene_gestion_cobranza.resultado == 'No localizable'%}
+                    badge-no-localizable
+                    {% elif  credit_list.tiene_gestion_cobranza.resultado == 'Negativa de pago'%}
+                    badge-negativa-pago
+                    {% elif  credit_list.tiene_gestion_cobranza.resultado == 'Reprogramación de fecha'%}
+                    badge-reprogramacion
+                    {% elif  credit_list.tiene_gestion_cobranza.resultado == 'Traslado a Cobro Jurídico'%}
+                    badge-cobro-juridico
+                    {% elif  credit_list.tiene_gestion_cobranza.resultado == 'Mensaje 1 Enviado'%}
+                    badge-mensaje-enviado
+                    {% endif %}">
+                        {{credit_list.tiene_gestion_cobranza.resultado}}
+
+                    </span>
+                    
                     
                 </p>
+                {% endif %}
             </div>
         </div>
     </div>
