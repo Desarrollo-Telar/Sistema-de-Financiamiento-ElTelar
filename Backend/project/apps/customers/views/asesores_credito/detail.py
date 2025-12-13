@@ -29,6 +29,14 @@ from datetime import datetime
 # utils
 from .utils import porcentajes_cobranza
 
+def get_informe_usuario(request):
+    usuario = request.user
+
+    informe, created =  Informe.objects.get_or_create(usuario=usuario, esta_activo=True)
+
+    return informe
+
+
 @login_required
 @permiso_requerido('puede_visualizar_detalle_asesor_credito')
 def detail_asesor(request, codigo_asesor):
@@ -100,12 +108,14 @@ class DetailInformeView(TemplateView):
         context = super().get_context_data(**kwargs)
         
 
-        user_code = kwargs.get("user_code")
+        user_code = self.request.user.user_code
         usuario = User.objects.filter(user_code=user_code).first()
         reporte_id = kwargs.get("id")
 
+        reporte_id = get_informe_usuario(self.request)
+
         # Buscar el reporte
-        reporte = get_object_or_404(Informe, id=reporte_id)
+        reporte = get_object_or_404(Informe, id=reporte_id.id)
 
         # Obtener los detalles del informe usando get_queryset
         detalles_informe = self.get_queryset(reporte_id).order_by('-id')

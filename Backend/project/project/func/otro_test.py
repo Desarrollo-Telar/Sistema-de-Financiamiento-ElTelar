@@ -55,6 +55,6 @@ if __name__ == '__main__':
             print(f'Cobranza: {cobranza}: Asesor:{cobranza.asesor_credito}\nFecha Seguimiento: {fecha_seguimiento}, Fecha Promesa de Pago: {fecha_promesa_pago}. Comprobar: {fecha_promesa_pago < dia if fecha_promesa_pago else None}')
             cobranza.estado_cobranza = 'PENDIENTE'
             cobranza.resultado = 'Promesa de pago'
-            cobranza.save()
+            #cobranza.save()
    
   

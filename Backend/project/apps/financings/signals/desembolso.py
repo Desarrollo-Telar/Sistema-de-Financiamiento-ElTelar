@@ -67,16 +67,27 @@ def credito_desembolsado(instance):
 def verificar_montos_desembolsados(sender, instance, **kwargs):
     # Verificar que los montos desembolsados no excedan el monto del crédito
     total_credito = instance.credit_id.monto
-    total_desembolso = Disbursement.objects.filter(credit_id=instance.credit_id.id).aggregate(
-        total_gastos_sum=Sum('total_gastos')
-    )['total_gastos_sum'] or 0  # Sumar todos los gastos previos, manejando None como 0
+
+    filtros = Q()
+    filtros &= ~Q(id=instance.id)
+    filtros &= Q(credit_id=instance.credit_id.id)
+
+    total_desembolso = Disbursement.objects.filter(filtros).order_by('-id')  # Sumar todos los gastos previos, manejando None como 0
 
     if instance.forma_desembolso == "CANCELACIÓN DE CRÉDITO VIGENTE":
         return f'No hacer suma'
+    
+    if not total_desembolso:
+        return f'No hacer suma'
+    
+
+    monto_pendiente_desembolsar = total_desembolso.monto_total_desembolso
+    gastos =  instance.total_gastos
 
     # Incluir el monto del desembolso actual
-    total_desembolso += instance.total_gastos
+    total_desembolso = monto_pendiente_desembolsar - gastos
     instance.total_t = total_desembolso
+    instance.monto_total_desembolso = total_desembolso
 
     if total_desembolso > total_credito:
         credito_desembolsado(instance)
