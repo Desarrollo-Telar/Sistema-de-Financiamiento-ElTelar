@@ -102,6 +102,7 @@
                 <thead>
                     <tr>
                         <th>Codigo de Cobranza</th>
+                        <th>Resultado Obtenido</th>
                         <th>Cliente</th>
                         <th>Monto</th>
                         <th>Fecha De Gestion</th>
@@ -125,6 +126,7 @@
                             </a>
                             
                         </span></td>
+                        <td><span class="fw-bold">{{ data.cobranza.resultado }}</span></td>
                         <td>
                             <div class="fw-semibold">{{data.cobranza.credito.customer_id}}</div>
                             <div class="small text-muted">{{data.cobranza.credito.codigo_credito}}</div>
@@ -133,12 +135,10 @@
                         <td><span class="fw-bold">Q{{ data.cobranza.f_monto_pendiente }}</span></td>
                         <td>{{ data.cobranza.fecha_gestion.date }} </td>
                         <td>
-                            {% if data.cobranza.fecha_promesa_pago %}
-                            {{ data.cobranza.fecha_promesa_pago }}
+                            {% if data.cobranza.get_fecha_seg_o_promesa %}
+                            {{ data.cobranza.get_fecha_seg_o_promesa }}
                             {% endif %}
-                            {% if data.cobranza.fecha_seguimiento %}
-                            {{data.cobranza.fecha_seguimiento}}
-                            {% endif %}
+                            
                         </td>
                         <td><span class="badge badge-status {% if data.cobranza.estado_cobranza == 'INCUMPLIDO' %} bg-danger
     {% elif data.cobranza.estado_cobranza == 'COMPLETADO' %} bg-success

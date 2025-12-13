@@ -29,7 +29,7 @@ class ReporteCobranza(TemplateView):
             # Crear una lista para almacenar los filtros
             filters = Q()
 
-            filters &= ~Q(observaciones='El cliente no se ha presentado segun lo gestionado.')
+            filters &= ~Q(cobranza__observaciones__icontains='El cliente no se ha presentado segun lo gestionado.')
             
             if usuario:
                 usuario = User.objects.get(id=usuario)

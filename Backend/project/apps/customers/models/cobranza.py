@@ -47,15 +47,19 @@ class Cobranza(models.Model):
 
 
     def get_fecha_seg_o_promesa(self):
-        resultado = ['Pago realizado', 'No localizable',  'Reprogramación de fecha', 'Traslado a Cobro Jurídico']
+        fechas = []
 
-        if self.fecha_seguimiento and self.resultado  in resultado :
-            return self.fecha_seguimiento.date()
-        
+        if self.fecha_seguimiento:
+            fechas.append(self.fecha_seguimiento.date())
+
         if self.fecha_promesa_pago:
-            return self.fecha_promesa_pago
-        
+            fechas.append(self.fecha_promesa_pago)
+
+        if fechas:
+            return max(fechas)
+
         return None
+
 
 
     def ver_recibo(self):
