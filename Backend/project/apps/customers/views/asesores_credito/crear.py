@@ -160,10 +160,7 @@ def creacion_cobranza(request):
             asesor_de_credito = credito.asesor_de_credito
             
             
-            if dia >= fecha_cobranza and asesor_de_credito != asesor_autenticado:
-                if sucursal.nombre != 'OFICINA 2':
-                    messages.error(request, 'Lo siento, oficina no puede realizar esta gestión de cobranza. Se ha execedido el plazo estimado')
-                    return redirect('financings:detail_credit', credito.id)
+            
             
             if credito.is_paid_off:
                 messages.error(request, 'El Credito se encuentra Cancelado, no se puede realizar ninguna gestión de cobranza.')
