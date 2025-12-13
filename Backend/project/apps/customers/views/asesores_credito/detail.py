@@ -116,7 +116,7 @@ class DetailInformeView(TemplateView):
         usuario = User.objects.filter(user_code=user_code).first()
         reporte_id = kwargs.get("id")
 
-        #reporte_id = get_informe_usuario(self.request)
+        reporte_id = get_informe_usuario(self.request)
 
         # Buscar el reporte
         reporte = get_object_or_404(Informe, id=reporte_id)
