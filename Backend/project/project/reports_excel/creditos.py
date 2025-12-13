@@ -251,7 +251,7 @@ class ReporteCreditos(TemplateView):
         sheet.title = "Reporte de Cartera de Creditos"
         encabezados = [
             "#", "FECHA DE REGISTRO", "CODIGO DEL CREDITO", 
-            "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
+            "CLIENTE", "NUMERO DE TELEFONO","MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
             "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
             "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", "FECHA DE CANCELACION DEL CREDITO", "FECHA EN ENTRAR A MORA", "DIAS DE MORA",
             "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS",'STATUS POR APORTACION','STATUS JUDICIAL','STATUS DEL CREDITO', "NUMERO DE REFERENCIA", "ASESOR DE CREDITO", "FIADORES DEL CREDITO",
@@ -296,6 +296,7 @@ class ReporteCreditos(TemplateView):
                 reporte.creation_date.date(),
                 reporte.codigo_credito,
                 reporte.customer_id.get_full_name() if reporte.customer_id else "Sin cliente",
+                str(reporte.customer_id.get_telefono()) if reporte.customer_id else "" ,
                 reporte.formato_monto(),
                 reporte.proposito,
                 reporte.plazo,

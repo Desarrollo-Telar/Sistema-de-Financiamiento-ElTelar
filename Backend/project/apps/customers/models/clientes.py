@@ -122,6 +122,9 @@ class Customer(models.Model):
 
     def get_nit_customer():
         pass
+
+    def get_telefono(self):
+        return self.telephone if self.telephone else ''
     
 
     def get_qr(self):
