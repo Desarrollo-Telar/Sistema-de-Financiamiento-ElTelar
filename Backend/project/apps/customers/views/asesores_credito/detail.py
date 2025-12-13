@@ -85,7 +85,7 @@ class DetailInformeView(TemplateView):
                 try:
                     fecha_dt = datetime.strptime(fecha, "%Y-%m-%d").date()
                     queryset = queryset.filter(
-                        Q(cobranza__fecha_gestion=fecha_dt) |
+                        
                         Q(cobranza__fecha_promesa_pago=fecha_dt) |
                         Q(cobranza__fecha_seguimiento = fecha_dt)
                     )
