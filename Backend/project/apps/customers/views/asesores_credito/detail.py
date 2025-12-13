@@ -26,6 +26,9 @@ from django.db.models import Q
 from apps.customers.forms import CobranzaForms
 from datetime import datetime
 
+from django.db.models import DateField
+from django.db.models.functions import Greatest, TruncDate
+
 # utils
 from .utils import porcentajes_cobranza
 
@@ -34,7 +37,7 @@ def get_informe_usuario(request):
 
     informe, created =  Informe.objects.get_or_create(usuario=usuario, esta_activo=True)
 
-    return informe
+    return informe.id
 
 
 @login_required
@@ -83,7 +86,8 @@ class DetailInformeView(TemplateView):
                     fecha_dt = datetime.strptime(fecha, "%Y-%m-%d").date()
                     queryset = queryset.filter(
                         Q(cobranza__fecha_gestion=fecha_dt) |
-                        Q(cobranza__fecha_promesa_pago=fecha_dt)
+                        Q(cobranza__fecha_promesa_pago=fecha_dt) |
+                        Q(cobranza__fecha_seguimiento = fecha_dt)
                     )
                 except ValueError:
                     pass
@@ -112,10 +116,10 @@ class DetailInformeView(TemplateView):
         usuario = User.objects.filter(user_code=user_code).first()
         reporte_id = kwargs.get("id")
 
-        reporte_id = get_informe_usuario(self.request)
+        #reporte_id = get_informe_usuario(self.request)
 
         # Buscar el reporte
-        reporte = get_object_or_404(Informe, id=reporte_id.id)
+        reporte = get_object_or_404(Informe, id=reporte_id)
 
         # Obtener los detalles del informe usando get_queryset
         detalles_informe = self.get_queryset(reporte_id).order_by('-id')
