@@ -42,7 +42,7 @@ def filter_credito_proximos_vencerse(request):
         creditos_proximos_vencerse = PaymentPlan.objects.filter(
             due_date__range=[hoy, hasta],
             status=False,
-            credit_id__isnull=False
+            credit_id__isnull=False, sucursal=sucursal
         )
         credito = credito_fecha_vencimiento_hoy(creditos_proximos_vencerse)
 
@@ -80,7 +80,7 @@ def filter_credito_fecha_limite_hoy(request):
     if request.user.rol.role_name == 'Secretari@':
         creditos_fecha_limite = PaymentPlan.objects.filter(
             fecha_limite__date=dia,
-            credit_id__isnull=False
+            credit_id__isnull=False, sucursal=sucursal
         )
         credito = credito_fecha_vencimiento_hoy(creditos_fecha_limite)
 
@@ -117,7 +117,7 @@ def filter_credito_fecha_vencimiento_hoy(request):
     if request.user.rol.role_name == 'Secretari@':
         creditos_fecha_vencimiento = PaymentPlan.objects.filter(
             due_date__date=dia,
-            credit_id__isnull=False
+            credit_id__isnull=False, sucursal=sucursal
         )
         credito = credito_fecha_vencimiento_hoy(creditos_fecha_vencimiento)
 
