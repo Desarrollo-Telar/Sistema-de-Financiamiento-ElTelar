@@ -172,7 +172,7 @@ class PaymentPlan(models.Model):
         capital = Decimal(self.calculo_capital())
         interes = Decimal(self.interest)
         mora = Decimal(self.mora)
-        total = interes + mora + capital
+        total = interes + mora + (capital-self.principal)
         return round(total,2)
     
     

@@ -68,7 +68,7 @@ class ReporteCobranza(TemplateView):
         sheet = workbook.active
         sheet.title = "Reporte de Cartera de Cobranza"
         encabezados = [
-            "#", "RESPONSABLE DE LA GESTION", "ACCION", "FECHA DE REGISTRO", "CODIGO DEL CREDITO", "CLIENTE", "TIPO DE COBRANZA", 
+            "#", "RESPONSABLE DE LA GESTION","ASESOR DEL CREDITO", "ACCION", "FECHA DE REGISTRO", "CODIGO DEL CREDITO", "CLIENTE", "TIPO DE COBRANZA", 
             "TIPO DE GESTION", "RESULTADO","ESTADO DE COBRANZA","FECHA DE SEGUIMIENTO O PROMESA DE PAGO","OBSERVACIONES"
         ]
 
@@ -87,6 +87,7 @@ class ReporteCobranza(TemplateView):
             fila = [
                 contador,
                 str(reporte.usuario),
+                str(reporte.cobranza.credito.asesor_de_credito),
                 reporte.accion,
                 str(reporte.fecha_cambio.date()),
                 str(cobranza.credito.codigo_credito),

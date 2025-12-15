@@ -126,7 +126,24 @@
                             </a>
                             
                         </span></td>
-                        <td><span class="fw-bold">{{ data.cobranza.resultado }}</span></td>
+                        <td><span class="badge
+                    {% if data.cobranza.resultado == 'Promesa de pago'%}
+                     badge-promesa-pago
+                    {% elif  data.cobranza.resultado == 'Pago realizado'%}
+                    badge-pago-realizado
+                    {% elif  data.cobranza.resultado == 'No localizable'%}
+                    badge-no-localizable
+                    {% elif  data.cobranza.resultado == 'Negativa de pago'%}
+                    badge-negativa-pago
+                    {% elif  data.cobranza.resultado == 'Reprogramación de fecha'%}
+                    badge-reprogramacion
+                    {% elif  data.cobranza.resultado == 'Traslado a Cobro Jurídico'%}
+                    badge-cobro-juridico
+                    {% elif  data.cobranza.resultado == 'Mensaje 1 Enviado'%}
+                    badge-mensaje-enviado
+                    {% endif %}">
+                            {{ data.cobranza.resultado }}
+                        </span></td>
                         <td>
                             <div class="fw-semibold">{{data.cobranza.credito.customer_id}}</div>
                             <div class="small text-muted">{{data.cobranza.credito.codigo_credito}}</div>
