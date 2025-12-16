@@ -29,7 +29,7 @@ def report_pagos_generales(request, anio, mes):
     # Agregar encabezados
     sheet['A1'] = f'REPORTE SOBRE {filtro_seleccionado}'
     
-    sheet.append(["#", "FECHA", "FECHA DE PAGO","CODIGO DEL CREDITO", "CLIENTE", "NIT","No. RECIBO","NO. REFERENCIA", "MONTO PAGADO", "MORA PAGADA"
+    sheet.append(["#", "FECHA", "FECHA DE PAGO","CODIGO DEL CREDITO", "CLIENTE", "NIT","No. RECIBO","NO. REFERENCIA", "MONTO PAGADO", "MORA PAGADA", "INTERES VENCIDO"
                   ,"INTERES PAGADO", "CAPITAL APORTADO","DIFERENCIA","BOLETA FICTICIA","STATUS DEL CREDITO", "ASESOR DE CREDITO"])
 
     # Agregar los datos al archivo Excel
@@ -63,6 +63,7 @@ def report_pagos_generales(request, anio, mes):
             str(reporte.pago.numero_referencia),
             str(reporte.Ftotal()),
             str(reporte.Fmora_pagada()),
+            str(formatear_numero(reporte.cuota.calculo_interes_acumulado())),
             str(reporte.Finteres_pagado()),
             str(reporte.Faporte_capital()),
             str(formatear_numero(diferencia)),

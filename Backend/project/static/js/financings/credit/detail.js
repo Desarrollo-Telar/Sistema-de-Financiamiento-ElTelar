@@ -51,6 +51,7 @@ async function fetchLastPaymentPlan(searchTerm) {
                 <p>Fecha de Vencimiento:  ${formato_fechas(response.data['due_date'])} </p>
                 <p>Fecha Limite:  ${formato_fechas(response.data['fecha_limite'])} </p>
                 <p>Mora: Q${response.data['mora']}</p>
+                <p>Interese Vencido: Q${response.data['interes_vencido']}</p>
                 <p>Interes: Q${response.data['interest']}</p>
                 <p>Capital aportar: Q${response.data['capital_generado']}</p>
                 <p>Total de la Cuota a Cancelar: Q${response.data['total_cancelar']}</p>

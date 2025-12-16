@@ -207,6 +207,7 @@ class Payment(models.Model):
                 cuota = self._siguiente_cuota()
 
             saldo_pendiente = cuota.saldo_pendiente
+            print(saldo_pendiente)
 
             if saldo_pendiente is None:
                 raise MiExcepcionPersonalizada('No se puede continuar debido a que no se ha encontra una cuota asociada al pago', saldo_pendiente)

@@ -175,7 +175,15 @@ class PaymentPlan(models.Model):
         total = interes + mora + (capital-self.principal)
         return round(total,2)
     
-    
+    def calculo_interes_acumulado(self):
+        interes_generado = Decimal(self.calculo_interes())
+        interes_vencido = Decimal(self.interest) - interes_generado
+
+        if interes_vencido <= 0:
+            interes_vencido = 0
+
+        return Decimal(interes_vencido)
+
     
     def calculo_capital(self):
         forma_pago = 'NIVELADA'
