@@ -189,13 +189,24 @@ class PaymentPlan(models.Model):
         interes_generado = Decimal(self.interest)
 
         interes_actual_cuota = abs(interes_generado - interes_vencido)
-        
-
-        
 
         
         return Decimal(interes_actual_cuota)
 
+    def calculo_inte(self):
+        tasa_interes = 0
+        if self.credit_id is not None:
+            tasa_interes = self.credit_id.tasa_interes
+        
+        if  self.acreedor is not None:
+            tasa_interes = self.acreedor.tasa
+        
+        if  self.seguro is not None:
+            tasa_interes = self.seguro.tasa
+
+        interes = (self.outstanding_balance * tasa_interes)
+        si = round(interes,2)
+        return si
 
 
 
