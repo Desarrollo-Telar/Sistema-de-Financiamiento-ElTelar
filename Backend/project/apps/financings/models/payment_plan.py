@@ -188,14 +188,13 @@ class PaymentPlan(models.Model):
         interes_vencido = self.calculo_interes_acumulado()
         interes_generado = Decimal(self.interest)
 
-        interes_actual_cuota = abs(interes_vencido - interes_generado)
+        interes_actual_cuota = abs(interes_generado - interes_vencido)
         
 
-        if interes_vencido <= 0:
-            interes_actual_cuota = 0
+        
 
         
-        return Decimal(self.interest)
+        return Decimal(interes_actual_cuota)
 
 
 
