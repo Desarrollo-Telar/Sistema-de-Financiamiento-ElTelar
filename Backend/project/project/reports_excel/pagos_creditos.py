@@ -63,7 +63,7 @@ def report_pagos_generales(request, anio, mes):
             str(reporte.pago.numero_referencia),
             str(reporte.Ftotal()),
             str(reporte.Fmora_pagada()),
-            str(formatear_numero(reporte.cuota.calculo_interes_acumulado())),
+            str(formatear_numero(reporte.interes_vencido())),
             str(reporte.Finteres_pagado()),
             str(reporte.Faporte_capital()),
             str(formatear_numero(diferencia)),

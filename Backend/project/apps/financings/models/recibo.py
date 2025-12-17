@@ -13,6 +13,9 @@ from num2words import num2words
 # FORMATO
 from apps.financings.formato import formatear_numero
 
+# DECIMAL
+from decimal import Decimal
+
 class Recibo(models.Model):
     fecha = models.DateField('Fecha De Recibo',default=timezone.now)
     recibo = models.IntegerField("No. Recibo", default=0)
@@ -43,6 +46,20 @@ class Recibo(models.Model):
       
 
         return mensaje
+    
+    # 2380.25 - 1342.5
+    def interes_vencido(self):
+        interes_generado = Decimal(self.cuota.interes_generado)
+        interes_vencido = Decimal(self.interes) - Decimal(self.interes_pagado)
+
+        if interes_vencido <= 0:
+            return 0
+
+        resultado = abs(interes_vencido)
+
+        return resultado
+
+
 
 
     def Fmora(self):

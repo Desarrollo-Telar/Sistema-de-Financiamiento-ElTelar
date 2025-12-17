@@ -212,7 +212,8 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
             "mora_acumulado_generado": instance.mora_acumulado_generado,
             "mora_generado": instance.mora_generado,
             "credit_id": credit_data,
-            "interes_vencido": instance.calculo_interes_acumulado(),
+            "interes_vencido": formatear_numero(instance.calculo_interes_acumulado()),
+            'interes_actual': formatear_numero(instance.calculo_interes_actual())
         }
 
 

@@ -63,7 +63,7 @@ def credito_desembolsado(instance):
     credito.save()
 
 
-@receiver(pre_save, sender=Disbursement)
+@receiver(post_save, sender=Disbursement)
 def verificar_montos_desembolsados(sender, instance, **kwargs):
     # Verificar que los montos desembolsados no excedan el monto del crédito
     total_credito = instance.credit_id.monto
