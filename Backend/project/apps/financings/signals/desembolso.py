@@ -80,8 +80,10 @@ def verificar_montos_desembolsados(sender, instance, **kwargs):
     if not total_desembolso:
         return f'No hacer suma'
     
+    print(total_desembolso)
+    
 
-    monto_pendiente_desembolsar = total_desembolso.monto_total_desembolso
+    """monto_pendiente_desembolsar = total_desembolso.monto_total_desembolso if total_desembolso.monto_total_desembolso else 0
     gastos =  instance.total_gastos
 
     # Incluir el monto del desembolso actual
@@ -98,7 +100,7 @@ def verificar_montos_desembolsados(sender, instance, **kwargs):
         credito_desembolsado(instance)
 
     # Registrar información adicional
-    logger.info(f'Total desembolsado: {total_desembolso}, Total crédito: {total_credito}')
+    logger.info(f'Total desembolsado: {total_desembolso}, Total crédito: {total_credito}')"""
 
 # EL DESEMBOLSO REALIZADO SE REFLEJA EN EL ESTADO DE CUENTAS DEL CLIENTE
 @receiver(post_save, sender=Disbursement)
