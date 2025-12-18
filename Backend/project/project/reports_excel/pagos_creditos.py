@@ -10,6 +10,8 @@ import json
 from django.http import HttpResponse
 from openpyxl import Workbook
 from django.db.models import Q, Sum
+# DECIMAL
+from decimal import Decimal
 
 def report_pagos_generales(request, anio, mes):
     filtro_seleccionado = f'BOLETAS GENERALES {mes} {anio}'
@@ -52,6 +54,8 @@ def report_pagos_generales(request, anio, mes):
 
         diferencia = reporte.total - (reporte.mora_pagada + reporte.interes_pagado + reporte.aporte_capital)
 
+        interes_mes = Decimal(reporte.interes) - Decimal(reporte.interes_vencido())
+
         sheet.append([
             idx, 
             str(reporte.fecha),
@@ -64,7 +68,7 @@ def report_pagos_generales(request, anio, mes):
             str(reporte.Ftotal()),
             str(reporte.Fmora_pagada()),
             str(formatear_numero(reporte.interes_vencido())),
-            str(formatear_numero(reporte.interes_mes())),
+            str(formatear_numero(interes_mes)),
             str(formatear_numero(reporte.interes)),
             str(reporte.Finteres_pagado()),
             str(formatear_numero(reporte.calculo_interes_vencido_pagado())),
