@@ -49,7 +49,8 @@ class Recibo(models.Model):
     
     # 2380.25 - 1342.5
     def interes_vencido(self):
-        interes_generado = Decimal(self.cuota.calculo_inte())
+        interes_generado = Decimal(self.cuota.calculo_inte()) # Cuota Actual del mes
+        # resultado =    interes_acumulado  - interes generado
         interes_vencido =  Decimal(self.interes)  - interes_generado
 
         if interes_vencido <= 0:
