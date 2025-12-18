@@ -64,7 +64,7 @@ def report_pagos_generales(request, anio, mes):
             str(reporte.Ftotal()),
             str(reporte.Fmora_pagada()),
             str(formatear_numero(reporte.interes_vencido())),
-            str(reporte.Finteres_pagado()),
+            str(formatear_numero(reporte.calculo_interes_pagado())),
             str(reporte.Faporte_capital()),
             str(formatear_numero(diferencia)),
             str(reporte.pago.get_registro_ficticio()),

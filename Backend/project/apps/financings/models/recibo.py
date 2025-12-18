@@ -58,6 +58,14 @@ class Recibo(models.Model):
         resultado = abs(interes_vencido)
 
         return resultado
+    
+    def calculo_interes_pagado(self):
+        interes_pagado = Decimal(self.interes_pagado)
+        interes_vencido = Decimal(self.interes_vencido())
+
+        resultante = abs(interes_pagado - interes_vencido)
+
+        return resultante
 
 
 
