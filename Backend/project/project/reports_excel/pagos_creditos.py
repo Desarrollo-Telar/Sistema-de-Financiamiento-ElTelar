@@ -29,8 +29,8 @@ def report_pagos_generales(request, anio, mes):
     # Agregar encabezados
     sheet['A1'] = f'REPORTE SOBRE {filtro_seleccionado}'
     
-    sheet.append(["#", "FECHA", "FECHA DE PAGO","CODIGO DEL CREDITO", "CLIENTE", "NIT","No. RECIBO","NO. REFERENCIA", "MONTO PAGADO", "MORA PAGADA", "INTERES VENCIDO"
-                  ,"INTERES PAGADO", "CAPITAL APORTADO","DIFERENCIA","BOLETA FICTICIA","STATUS DEL CREDITO", "ASESOR DE CREDITO"])
+    sheet.append(["#", "FECHA", "FECHA DE PAGO","CODIGO DEL CREDITO", "CLIENTE", "NIT","No. RECIBO","NO. REFERENCIA", "MONTO PAGADO", "MORA PAGADA", "INTERES VENCIDO", "INTERES DEL MES",
+                  "INTERES TOTAL","INTERES PAGADO", "PAGO DEL INTERES VENCIDO","PAGO DEL INTERES DEL MES","CAPITAL APORTADO","DIFERENCIA","BOLETA FICTICIA","STATUS DEL CREDITO", "ASESOR DE CREDITO"])
 
     # Agregar los datos al archivo Excel
     for idx, reporte in enumerate(reportes, start=1):
@@ -64,7 +64,11 @@ def report_pagos_generales(request, anio, mes):
             str(reporte.Ftotal()),
             str(reporte.Fmora_pagada()),
             str(formatear_numero(reporte.interes_vencido())),
-            str(formatear_numero(reporte.calculo_interes_pagado())),
+            str(formatear_numero(reporte.interes_mes())),
+            str(formatear_numero(reporte.interes)),
+            str(reporte.Finteres_pagado()),
+            str(formatear_numero(reporte.calculo_interes_vencido_pagado())),
+            str(formatear_numero(reporte.calculo_interes_mes_pagado())),
             str(reporte.Faporte_capital()),
             str(formatear_numero(diferencia)),
             str(reporte.pago.get_registro_ficticio()),

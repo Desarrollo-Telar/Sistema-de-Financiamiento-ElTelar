@@ -21,7 +21,7 @@ class Recibo(models.Model):
     recibo = models.IntegerField("No. Recibo", default=0)
     cliente = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name="Customer", blank=True, null=True)
     pago = models.ForeignKey(Payment, on_delete=models.CASCADE, verbose_name="Pago")
-    interes = models.DecimalField("Interes",max_digits=12, decimal_places=2, default=0)
+    interes = models.DecimalField("Interes",max_digits=12, decimal_places=2, default=0) # INTERES TOTAL
     interes_pagado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     mora = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     mora_pagada = models.DecimalField(max_digits=12, decimal_places=2, default=0)
@@ -47,7 +47,7 @@ class Recibo(models.Model):
 
         return mensaje
     
-    # 2380.25 - 1342.5
+    # INTERES VENCIDO
     def interes_vencido(self):
         interes_generado = Decimal(self.cuota.calculo_inte()) # Cuota Actual del mes
         # resultado =    interes_acumulado  - interes generado
@@ -60,13 +60,43 @@ class Recibo(models.Model):
 
         return resultado
     
-    def calculo_interes_pagado(self):
+    # INTERES DEL MES
+    def interes_mes(self):
+        return Decimal(self.cuota.calculo_inte())
+    
+    def calculo_interes_vencido_pagado(self):
         interes_pagado = Decimal(self.interes_pagado)
         interes_vencido = Decimal(self.interes_vencido())
 
-        resultante = abs(interes_pagado - interes_vencido)
+        resultante =  interes_vencido - interes_pagado
+
+        if resultante >= 0:
+            resultante = interes_pagado
+        else:
+            resultante = interes_vencido
+
 
         return resultante
+    
+    def calculo_interes_mes_pagado(self):
+        interes_v_pagado = self.calculo_interes_vencido_pagado()
+        interes_pagado = Decimal(self.interes_pagado)
+        interes_mes = self.interes_mes()
+
+        result_1 = interes_pagado - interes_v_pagado
+
+        if result_1 == 0:
+            return 0
+        
+        result_2 = interes_mes - result_1
+
+        if result_2 == 0:
+            return Decimal(interes_mes)
+        else:
+            return Decimal(result_1)
+        
+        
+        
 
 
 
