@@ -100,7 +100,7 @@ class CierreDiario(TemplateView):
             cierre_diario_buffer = io.BytesIO()
 
             if registro.tipo_datos == 'clientes':
-                wb_cliente = crear_excel_clientes(registro.data, dia)
+                wb_cliente = crear_excel_clientes(registro.data['clientes'], dia)
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
                 zip_file.writestr(f"reporte_clientes.xlsx", cierre_diario_buffer.read())

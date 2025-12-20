@@ -34,14 +34,15 @@ def pruebas(dia, sucursal):
 
 
 if __name__ == '__main__':
-   detalles = DetalleInformeDiario.objects.all()
+   detalles = DetalleInformeDiario.objects.filter(tipo_datos='creditos').first()
 
-   clientes_personal = []
+   
 
-   for detalle in detalles:
-      for cliente in detalle.data:   # data es una lista
-         clientes_personal.append(cliente.get('informacion_personal'))
-         print(cliente.get('informacion_personal'))
+   for detalle in detalles.data['creditos']:
+      cuota = detalle.get('cuota_vigente')
+
+      fecha_limite = cuota.get('fecha_limite') if cuota else ''
+      print(fecha_limite)
 
    
    

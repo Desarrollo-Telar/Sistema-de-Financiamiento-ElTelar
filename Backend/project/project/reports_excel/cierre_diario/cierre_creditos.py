@@ -76,12 +76,15 @@ def crear_excel_creditos(datos, dia = None):
             aportacion = mensaje
             s_fecha = 'VIGENTE' if credito['credito']['estados_fechas'] else 'EN ATRASO'
             stat = f'''Status de Aportación: {aportacion}, Status por Fecha: {s_fecha}'''
+            cuota = credito.get('cuota_vigente')
+            fecha_limite = formater_fecha(cuota.get('fecha_limite')) if cuota else ''
+            numero_referencia = cuota.get('numero_referencia') if cuota else ''
 
             fila = [
                 str(contador),
                 f"{credito.get('credito', {}).get('creation_date', '')}",
                 f"{credito.get('credito', {}).get('codigo_credito', '')}",
-                f"{get_cliente(credito.get('credito', {}).get('customer_id', ''))}",
+                f"{get_cliente(credito.get('credito', {}).get('customer_id_id', ''))}",
                 f"{formatear_numero(credito.get('credito', {}).get('monto', 0))}",
                 f"{credito.get('credito', {}).get('plazo', '')}",
                 f"{credito.get('credito', {}).get('tasa_interes', 0) * 100}%",
@@ -93,7 +96,7 @@ def crear_excel_creditos(datos, dia = None):
                 f"{credito.get('credito', {}).get('fecha_inicio', '')}",
                 f"{credito.get('credito', {}).get('fecha_vencimiento', '')}",
 
-                f"{formater_fecha(credito.get('cuota_vigente', {}).get('fecha_limite', ''))}",
+                f"{fecha_limite}",
 
                 f"{formatear_numero(credito.get('credito', {}).get('saldo_actual', 0))}",
                 f"{formatear_numero(credito.get('credito', {}).get('saldo_pendiente', 0))}",
@@ -102,8 +105,8 @@ def crear_excel_creditos(datos, dia = None):
 
                 f"{stat}",
 
-                f"{credito.get('cuota_vigente', {}).get('numero_referencia', '')}",
-                f"{get_asesor_credito(credito.get('credito', {}).get('asesor_de_credito', ''))}",
+                f"{numero_referencia}",
+                f"{get_asesor_credito(credito.get('credito', {}).get('asesor_de_credito_id', ''))}",
 
             ]
 
