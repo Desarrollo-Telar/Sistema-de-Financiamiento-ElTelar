@@ -31,7 +31,7 @@ def ver_cuotas(dia):
     print(f'VERIFICACION DE PROXIMAS CUOTAS')
     cuotas_por_vencerse_alerta()
     print()
-    generar_cierre_diario_seguro()
+    
     print()
 
 
@@ -50,6 +50,7 @@ def cambiar_plan():
     ver_cuotas(dia)
     ver_estado_informe(dia)
     fechas_cobranzas()
+    generar_cierre_diario_seguro()
 
     
 
