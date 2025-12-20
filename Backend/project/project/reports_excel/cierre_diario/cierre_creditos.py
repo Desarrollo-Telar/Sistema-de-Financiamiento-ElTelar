@@ -86,6 +86,8 @@ def crear_excel_creditos(datos, dia = None):
                 f"{credito.get('credito', {}).get('codigo_credito', '')}",
                 f"{get_cliente(credito.get('credito', {}).get('customer_id_id', ''))}",
                 f"{formatear_numero(credito.get('credito', {}).get('monto', 0))}",
+                f"{credito.get('credito', {}).get('proposito', '')}",
+
                 f"{credito.get('credito', {}).get('plazo', '')}",
                 f"{credito.get('credito', {}).get('tasa_interes', 0) * 100}%",
                 f"{credito.get('credito', {}).get('forma_de_pago', '')}",
@@ -101,7 +103,7 @@ def crear_excel_creditos(datos, dia = None):
                 f"{formatear_numero(credito.get('credito', {}).get('saldo_actual', 0))}",
                 f"{formatear_numero(credito.get('credito', {}).get('saldo_pendiente', 0))}",
                 f"{formatear_numero(credito.get('credito', {}).get('excedente', 0))}",
-                f"{credito.get('credito', {}).get('fecha_vencimiento', '')}",
+                
 
                 f"{stat}",
 
