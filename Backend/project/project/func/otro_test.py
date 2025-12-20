@@ -16,7 +16,9 @@ from scripts.cierre_diarrio.generar_cierre_diario import  generar_cierre_diario_
 
 from apps.customers.models import CreditCounselor, Cobranza, Customer
 from apps.financings.models import Credit
-from apps.actividades.models import Informe, DetalleInformeCobranza, ModelHistory
+from apps.actividades.models import Informe, DetalleInformeCobranza, ModelHistory, DetalleInformeDiario
+
+
 from datetime import date
 from scripts.conversion_datos import model_to_dict, cambios_realizados
 from django.apps import apps
@@ -32,10 +34,15 @@ def pruebas(dia, sucursal):
 
 
 if __name__ == '__main__':
-   dia = datetime.now().date()
-   sucursales = Subsidiary.objects.all()
+   detalles = DetalleInformeDiario.objects.all()
+
+   clientes_personal = []
+
+   for detalle in detalles:
+      for cliente in detalle.data:   # data es una lista
+         clientes_personal.append(cliente.get('informacion_personal'))
+         print(cliente.get('informacion_personal'))
 
    
-   generar_cierre_diario_seguro()
    
   

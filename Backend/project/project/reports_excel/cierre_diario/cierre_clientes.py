@@ -84,8 +84,6 @@ def crear_excel_clientes(data, dia = None):
         "CODIGO DE CLIENTE",
         "PROFESION U OFICIO",
         "ASESOR DEL CREDITO",
-        "TIENE CREDITO",
-        "CANTIDAD DE CREDITOS",
         "DIRECCION DEL CLIENTE",
         "MUNICIPIO DEL CLIENTE",
         "DEPARTAMENTO DEL CLIENTE",
@@ -111,7 +109,7 @@ def crear_excel_clientes(data, dia = None):
     contador = 0  # Para la numeración real del archivo
 
     for idx, cliente in enumerate(data, start=2):
-        tiene_creditos = f'SI' if cliente['informacion_credito']['cantidad'] > 0 else f'NO'
+        
         contador+=1
         # Direcciones (manejo seguro de listas)
         direccion_0 = safe_list_get(cliente.get('direcciones'), 0, {})
@@ -137,10 +135,8 @@ def crear_excel_clientes(data, dia = None):
             f"{cliente.get('informacion_personal', {}).get('customer_code', '')}",
             f"{cliente.get('informacion_personal', {}).get('profession_trade', '')}",
             f"{cliente.get('informacion_personal', {}).get('asesor', '')}",
-            f"{tiene_creditos}",
+            
 
-            # Información de crédito
-            f"{cliente.get('informacion_credito', {}).get('cantidad', 0)}",
 
             
 
