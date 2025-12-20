@@ -31,67 +31,11 @@ def generar_cierre_diario(dia=None):
 
     log_system_event('Generando el cierre diario', 'INFO', 'Sistema', 'General')
 
-    informes_generados = 0
-    sucursal = Subsidiary.objects.get(id=1)
+    sucursales = Subsidiary.objects.all()
+    informes_generados = sucursales.count()
 
-    
-    with transaction.atomic():
-        informe, creado = InformeDiarioSistema.objects.get_or_create(
-            fecha_registro=dia,
-            sucursal=sucursal
-        )
-
-        cliente = generando_informacion_cliente(sucursal)
-
-        DetalleInformeDiario.objects.create(
-            reporte=informe,
-            data=cliente,
-            tipo_datos='clientes'
-        )
-        gc.collect() 
-        
-        credito = obtener_informacion_creditos(sucursal)
-        DetalleInformeDiario.objects.create(
-            reporte=informe,
-            data=credito,
-            tipo_datos='creditos'
-        )
-        gc.collect() 
-
-        bancos = generar_informacion_bancos(sucursal)
-        DetalleInformeDiario.objects.create(
-            reporte=informe,
-            data=bancos,
-            tipo_datos='bancos'
-        )
-        gc.collect()
-
-        recibos = generar_informacion_recibos(sucursal)
-        DetalleInformeDiario.objects.create(
-            reporte=informe,
-            data=recibos,
-            tipo_datos='recibos'
-        )
-        gc.collect()
-
-        pagos = generar_informacion_pagos(sucursal)
-        DetalleInformeDiario.objects.create(
-            reporte=informe,
-            data=pagos,
-            tipo_datos='pagos'
-        )
-        gc.collect()
-
-        facturas = generar_informacion_facturas(sucursal)
-        DetalleInformeDiario.objects.create(
-            reporte=informe,
-            data=facturas,
-            tipo_datos='facturas'
-        )
-        gc.collect()
-
-
-
+    for sucursal in sucursales:
+      ejecutar_cierre_diario(dia, sucursal.id)
 
 
     log_system_event(
@@ -120,3 +64,16 @@ def generar_cierre_diario_seguro():
     print(gc.get_stats())  
     gc.collect()  
 
+from django.db import connection, transaction
+
+def ejecutar_cierre_diario(dia=None, sucursal_id=1):
+
+    if dia is None:
+        dia = datetime.now().date()
+
+    with transaction.atomic():
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "CALL generar_informe_diario(%s, %s)",
+                [dia, sucursal_id]
+            )

@@ -4,6 +4,7 @@ from rest_framework.authtoken import views as v_iews
 from rest_framework.documentation import include_docs_urls
 from django.contrib.auth import views as auth_views
 from project.view_api import view
+from project.view_api import reportes_dashboard
 from project.views import GenerarMensajePagoAPIView, GenerandoMensajeSaldoApi
 
 # DECORADOR
@@ -39,6 +40,12 @@ urlpatterns_api = [
     path('api/generar-mensaje-saldo_actual/<str:credito>/', GenerandoMensajeSaldoApi.as_view(), name='mensaje_saldo_actual'),
     # ----------- DOCUMENTACION DE API -----------
     path('docs/', include_docs_urls(title='Documentacion de la API - EL TELAR', public=False)),
+
+
+    # ------------- REPORTES -----------------
+    path('tipos_creditos/', reportes_dashboard.CreditosPorTipoAPIView.as_view(),name='tipos_creditos'),
+    path('gastos/', reportes_dashboard.GatosAPIView.as_view(),name='gastos'),
+    path('bancos/', reportes_dashboard.BancosAPIView.as_view(),name='bancos'),
 
     # ---------------- SE ME OLVIDO LA CONTRASEÑa ------------------------
     path('reset_password/',auth_views.PasswordResetView.as_view(template_name='user/autentication/password-reset.html',email_template_name='user/autentication/password-message.html'),name='password_reset'),
