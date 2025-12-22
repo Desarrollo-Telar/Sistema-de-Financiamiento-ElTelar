@@ -66,13 +66,13 @@ def render_pagare_docx(request, id, customer_code):
     destino = get_object_or_404(InvestmentPlan, id=id)
     
 
-    sucursal = destino.sucursal
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
     tasa_interes = destino.get_tasa() 
     plazo = destino.plazo if destino.plazo else 0
     cuota = destino.initial_amount
 
-    if sucursal is None:
-        sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
+    
+        
 
     dia = datetime.now().date()
 
