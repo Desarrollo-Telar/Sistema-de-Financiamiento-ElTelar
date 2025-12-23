@@ -83,8 +83,13 @@ def render_pagare_docx(request, id, customer_code):
     destino_anterior = (
         InvestmentPlan.objects.filter(customer_id=cliente).exclude(id=destino.id).order_by('-id').first()
     )
-    fecha_destinino_anterior = destino_anterior.fecha_inicio if destino_anterior else ''
-    codigo_pagare = destino_anterior.investment_plan_code if destino_anterior else ''
+    #fecha_destinino_anterior = destino_anterior.fecha_inicio if destino_anterior else ''
+    fecha_destinino_anterior = dia
+    codigo_pagare = ''
+
+    if destino_anterior:
+        fecha_destinino_anterior = destino_anterior.fecha_inicio if destino_anterior.fecha_inicio else dia
+        codigo_pagare = destino_anterior.investment_plan_code if destino_anterior.investment_plan_code else ''
 
     # ============================
     #   CREAR DOCUMENTO
