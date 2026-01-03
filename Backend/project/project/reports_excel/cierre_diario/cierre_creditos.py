@@ -32,9 +32,6 @@ def crear_excel_creditos(datos, dia = None):
     workbook = Workbook()
     workbook.remove(workbook.active)
 
-    
-    
-
     filtros = {
         'Creditos Nuevos': creditos_creado_ese_dia(datos,dia),
         'Todos Los Creditos': datos,
@@ -117,3 +114,4 @@ def crear_excel_creditos(datos, dia = None):
 
 
     return workbook
+

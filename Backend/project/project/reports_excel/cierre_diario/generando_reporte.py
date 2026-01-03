@@ -13,6 +13,7 @@ from django.db.models import Q, Sum
 # Funciones
 from .cierre_clientes import crear_excel_clientes
 from .cierre_creditos import crear_excel_creditos
+from .cierre_acreedores import crear_excel_creditos_asesores
 # Tiempo
 from datetime import datetime
 
@@ -110,6 +111,12 @@ class CierreDiario(TemplateView):
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
                 zip_file.writestr(f"reporte_creditos.xlsx", cierre_diario_buffer.read())
+            
+            if registro.tipo_datos == 'acreedores':
+                wb_cliente = crear_excel_creditos_asesores(registro.data['acreedores'], dia)
+                wb_cliente.save(cierre_diario_buffer)
+                cierre_diario_buffer.seek(0)
+                zip_file.writestr(f"reporte_acreedores.xlsx", cierre_diario_buffer.read())
                 
 
         # Crear respuesta de descarga

@@ -34,15 +34,13 @@ def pruebas(dia, sucursal):
 
 
 if __name__ == '__main__':
-   detalles = DetalleInformeDiario.objects.filter(tipo_datos='creditos').first()
+   detalles = DetalleInformeDiario.objects.filter(tipo_datos='acreedores').order_by('-id').first()
 
    
-
-   for detalle in detalles.data['creditos']:
-      cuota = detalle.get('cuota_vigente')
-
-      fecha_limite = cuota.get('fecha_limite') if cuota else ''
-      print(fecha_limite)
+   for detalle in detalles.data['acreedores']:
+      print(detalle.get('informacion_acreedor',{}).get('observaciones',''))
+      
+  
 
    
    
