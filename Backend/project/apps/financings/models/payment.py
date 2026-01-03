@@ -237,6 +237,13 @@ class Payment(models.Model):
         cuota_a_actualizar = False
         descripcion_para_estado_cuenta = None
 
+        saldo_pendiente_antes = saldo_pendiente
+        
+        if saldo_pendiente < 0:
+            excedente = saldo_pendiente
+            saldo_pendiente = 0
+            aporte_capital = saldo_pendiente_antes
+
         
 
         
