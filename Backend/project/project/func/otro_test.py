@@ -34,11 +34,11 @@ def pruebas(dia, sucursal):
 
 
 if __name__ == '__main__':
-   detalles = DetalleInformeDiario.objects.filter(tipo_datos='acreedores').order_by('-id').first()
+   detalles = DetalleInformeDiario.objects.filter(tipo_datos='seguros').order_by('-id').first()
+   print(detalles and detalles.data['seguros'] is not None)
 
    
-   for detalle in detalles.data['acreedores']:
-      print(detalle.get('informacion_acreedor',{}).get('observaciones',''))
+   
       
   
 

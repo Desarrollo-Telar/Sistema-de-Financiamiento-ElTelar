@@ -14,6 +14,8 @@ from django.db.models import Q, Sum
 from .cierre_clientes import crear_excel_clientes
 from .cierre_creditos import crear_excel_creditos
 from .cierre_acreedores import crear_excel_creditos_asesores
+from .cierre_seguros import crear_excel_creditos_seguros
+
 # Tiempo
 from datetime import datetime
 
@@ -100,23 +102,29 @@ class CierreDiario(TemplateView):
             # Creacion individual del reporte
             cierre_diario_buffer = io.BytesIO()
 
-            if registro.tipo_datos == 'clientes':
+            if registro.tipo_datos == 'clientes' and registro.data['clientes'] is not None:
                 wb_cliente = crear_excel_clientes(registro.data['clientes'], dia)
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
                 zip_file.writestr(f"reporte_clientes.xlsx", cierre_diario_buffer.read())
             
-            if registro.tipo_datos == 'creditos':
+            if registro.tipo_datos == 'creditos' and registro.data['creditos'] is not None:
                 wb_cliente = crear_excel_creditos(registro.data['creditos'], dia)
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
                 zip_file.writestr(f"reporte_creditos.xlsx", cierre_diario_buffer.read())
             
-            if registro.tipo_datos == 'acreedores':
+            if registro.tipo_datos == 'acreedores' and registro.data['acreedores'] is not None:
                 wb_cliente = crear_excel_creditos_asesores(registro.data['acreedores'], dia)
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
                 zip_file.writestr(f"reporte_acreedores.xlsx", cierre_diario_buffer.read())
+
+            if registro.tipo_datos == 'seguros' and registro.data['seguros'] is not None:
+                wb_cliente = crear_excel_creditos_seguros(registro.data['seguros'], dia)
+                wb_cliente.save(cierre_diario_buffer)
+                cierre_diario_buffer.seek(0)
+                zip_file.writestr(f"reporte_seguros.xlsx", cierre_diario_buffer.read())
                 
 
         # Crear respuesta de descarga
