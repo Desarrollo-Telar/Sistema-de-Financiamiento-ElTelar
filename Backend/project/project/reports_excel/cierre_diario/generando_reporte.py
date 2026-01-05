@@ -16,6 +16,7 @@ from .cierre_creditos import crear_excel_creditos
 from .cierre_acreedores import crear_excel_creditos_asesores
 from .cierre_seguros import crear_excel_creditos_seguros
 from .cierre_ingresos import crear_excel_ingresos
+from .cierre_egresos import crear_excel_egresos
 # Tiempo
 from datetime import datetime
 
@@ -131,6 +132,12 @@ class CierreDiario(TemplateView):
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
                 zip_file.writestr(f"reporte_ingresos.xlsx", cierre_diario_buffer.read())
+            
+            if registro.tipo_datos == 'egresos' and registro.data['egresos'] is not None:
+                wb_cliente = crear_excel_egresos(registro.data['egresos'], dia)
+                wb_cliente.save(cierre_diario_buffer)
+                cierre_diario_buffer.seek(0)
+                zip_file.writestr(f"reporte_egresos.xlsx", cierre_diario_buffer.read())
                 
 
         # Crear respuesta de descarga

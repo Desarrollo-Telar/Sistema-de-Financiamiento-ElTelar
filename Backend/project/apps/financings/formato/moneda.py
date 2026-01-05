@@ -1,3 +1,5 @@
 def formatear_numero(numero):
+    if numero == '' or numero is None:
+        return ''
     # Convertir el número a un formato con coma para miles y punto para decimales
     return f"{numero:,.2f}".replace(".", "X").replace(".", ",").replace("X", ".")
