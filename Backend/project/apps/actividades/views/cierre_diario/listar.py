@@ -58,12 +58,12 @@ class ListarCierreDiario(ListView):
                     pass  # No es fecha válida, continúa con los otros filtros
 
                 # Filtrar los objetos Customer usando los filtros definidos
-            return InformeDiarioSistema.objects.filter(filters, sucursal=sucursal)
+            return InformeDiarioSistema.objects.filter(filters, sucursal=sucursal).order_by('-id')
             
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")
-            return InformeDiarioSistema.objects.filter( sucursal=sucursal)
+            return InformeDiarioSistema.objects.filter( sucursal=sucursal).order_by('-id')
         
     def query(self):
         return self.request.GET.get('q')
