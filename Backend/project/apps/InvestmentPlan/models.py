@@ -9,6 +9,7 @@ from apps.subsidiaries.models import Subsidiary
 from django.db.models.signals import pre_save, post_save
 # DECIMAL
 from decimal import Decimal
+from datetime import datetime
 # Django
 from django.dispatch import receiver
 from num2words import num2words
@@ -106,29 +107,25 @@ class InvestmentPlan(models.Model):
 
 
 # Función para generar el código de plan de inversion basado en el Tipo de Producto o Servicio junto a la referencia del codigo de cliente
-def generate_investment_plan_code(type_of_product_or_service,customer_code, counter):
-    status_suffix = {
-        'AGROPECUARIO Y/O PRODUCTIVO': 'A&P',
-        'COMERCIO': 'C',
-        'SERVICIOS': 'S',
-        'CONSUMO': 'C',        
-        'VIVIENDA': 'V',
-    }
-    suffix = status_suffix.get(type_of_product_or_service, '')
+def generate_investment_plan_code(sucursal, counter):
+    current_date = datetime.now()
+    current_year = current_date.year 
+
+    codigo_establecimiento = sucursal.codigo_establecimiento
     
-    return f'{customer_code}/{suffix}{counter}'
+    return f'0{codigo_establecimiento}-IIT0{counter}-{current_year}'
 
 @receiver(pre_save, sender=InvestmentPlan)
 def set_investment_plan_code(sender, instance, **kwargs):
-    customer_code = instance.customer_id.customer_code
+    
     if not instance.investment_plan_code or instance.investment_plan_code == '':
         counter = 1
-        investment_plan_code = generate_investment_plan_code(instance.type_of_product_or_service,customer_code, counter)
+        investment_plan_code = generate_investment_plan_code(instance.sucursal, counter)
 
         # Verificar si no existe un código igual, si no, generar uno nuevo
         while InvestmentPlan.objects.filter(investment_plan_code=investment_plan_code).exists():
             counter += 1
-            investment_plan_code = generate_investment_plan_code(instance.type_of_product_or_service,customer_code, counter)
+            investment_plan_code = generate_investment_plan_code(instance.sucursal, counter)
 
         instance.investment_plan_code = investment_plan_code
 
@@ -137,11 +134,11 @@ def set_investment_plan_code(sender, instance, **kwargs):
 
         if current_investment_plan.type_of_product_or_service != instance.type_of_product_or_service:
             counter = 1
-            investment_plan_code = generate_investment_plan_code( instance.type_of_product_or_service,customer_code, counter)
+            investment_plan_code = generate_investment_plan_code(instance.sucursal, counter)
 
             # Verificar si no existe un código igual, si no, generar uno nuevo
             while InvestmentPlan.objects.filter(investment_plan_code=investment_plan_code).exists():
                 counter += 1
-                investment_plan_code = generate_investment_plan_code(instance.type_of_product_or_service,customer_code, counter)
+                investment_plan_code = generate_investment_plan_code(instance.sucursal, counter)
 
             instance.investment_plan_code = investment_plan_code
