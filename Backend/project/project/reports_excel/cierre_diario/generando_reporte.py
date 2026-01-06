@@ -20,6 +20,7 @@ from .cierre_egresos import crear_excel_egresos
 from .cierre_bancos import crear_excel_bancos
 from .cierre_pagos import crear_excel_pagos
 from .cierre_recibos import crear_excel_recibos
+from .cierre_facturas import crear_excel_facturas
 # Tiempo
 from datetime import datetime
 
@@ -159,6 +160,12 @@ class CierreDiario(TemplateView):
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
                 zip_file.writestr(f"reporte_recibos.xlsx", cierre_diario_buffer.read())
+
+            if registro.tipo_datos == 'facturas' and registro.data['facturas'] is not None:
+                wb_cliente = crear_excel_facturas(registro.data['facturas'], dia)
+                wb_cliente.save(cierre_diario_buffer)
+                cierre_diario_buffer.seek(0)
+                zip_file.writestr(f"reporte_facturas.xlsx", cierre_diario_buffer.read())
 
         # Crear respuesta de descarga
 

@@ -34,10 +34,10 @@ def pruebas(dia, sucursal):
 
 
 if __name__ == '__main__':
-   detalles = DetalleInformeDiario.objects.filter(tipo_datos='recibos').order_by('id').first()
+   detalles = DetalleInformeDiario.objects.filter(tipo_datos='facturas').order_by('id').first()
    #informacion_recibo
-   for detalle in detalles.data['recibos']:
-      print(detalle.get('informacion_recibo',{}).get('pago',''))
+   for detalle in detalles.data['facturas']:
+      print(detalle.get('informacion_factura',{}).get('recibo_id_id',''))
    
    
       
