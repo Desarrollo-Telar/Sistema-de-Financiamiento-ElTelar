@@ -170,7 +170,7 @@ def render_pagare_docx(request, id, customer_code):
         "Renuncio al fuero de mi domicilio y me someto a los tribunales que el tenedor del pagaré elija. ",
 
         "Todos los gastos que directa o indirectamente ocasione esta negociación son por mi cuenta, incluyendo la cobranza judicial o extrajudicial. ",
-        "El incumplimiento de este contrato dará derecho al tenedor a exigir el pago del saldo adeudado, para lo cual puede utilizar el presente documento como título ejecutivo o a su elección Certificación Contable del saldo adecuado. ",
+        "El incumplimiento de este contrato dará derecho al tenedor a exigir el pago del saldo adeudado, para lo cual puede utilizar el presente documento como título ejecutivo y según considere una certificación contable que ampare los intereses y otros gastos acumulados. ",
 
         "ESTE PAGARÉ SE EMITE LIBRE DE PROTESTO, LIBRE DE FORMALIDADES DE PRESTACIÓN Y COBRO O REQUERIMIENTO. ",
 
