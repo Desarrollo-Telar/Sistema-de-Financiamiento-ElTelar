@@ -6,7 +6,7 @@ import io
 import zipfile
 
 # Tiempo
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 # Modelo
 from apps.customers.models import Customer, CreditCounselor
@@ -24,6 +24,35 @@ def get_cliente(id):
 def get_asesor_credito(id):
     asesor = CreditCounselor.objects.filter(id=id).first()
     return asesor if asesor else None
+
+def dias_de_mora(instance):
+    hoy = date.today()
+
+    fecha = instance.get('fecha_entrar_en_mora')
+
+    if instance.get('is_paid_off',''):
+        return 0
+
+    if not fecha:
+        return 0
+    
+
+    
+    if isinstance(fecha, str):
+        try:
+            fecha = datetime.strptime(fecha, '%Y-%m-%d').date()
+        except ValueError:
+            return 0  # fecha inválida
+
+    
+    if isinstance(fecha, datetime):
+        fecha = fecha.date()
+
+    
+    if hoy <= fecha:
+        return 0
+
+    return (hoy - fecha).days
 
 def crear_excel_creditos(datos, dia = None):
     if dia is None:
@@ -48,7 +77,8 @@ def crear_excel_creditos(datos, dia = None):
         "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
         "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
         "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", 
-        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS DEL CREDITO", "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
+        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"DIAS DE MORA","STATUS POR FECHAS","STATUS POR APORTACION","STATUS JUDICIAL","STATUS CANCELADO", 
+        "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
     ]
 
     for filtro,data in filtros.items():
@@ -61,6 +91,10 @@ def crear_excel_creditos(datos, dia = None):
         contador = 0
         for idx, credito in enumerate(data, start=2):
             contador+=1
+            informacion_credito = credito.get('credito', {})
+            cuota = credito.get('cuota_vigente')
+            fecha_limite = formater_fecha(cuota.get('fecha_limite')) if cuota else ''
+            numero_referencia = cuota.get('numero_referencia') if cuota else ''
 
             # Mensajes de estado
             if credito['credito']['estado_aportacion']:
@@ -71,41 +105,77 @@ def crear_excel_creditos(datos, dia = None):
                 mensaje = 'EN ATRASO'
 
             aportacion = mensaje
-            s_fecha = 'VIGENTE' if credito['credito']['estados_fechas'] else 'EN ATRASO'
-            stat = f'''Status de Aportación: {aportacion}, Status por Fecha: {s_fecha}'''
-            cuota = credito.get('cuota_vigente')
-            fecha_limite = formater_fecha(cuota.get('fecha_limite')) if cuota else ''
-            numero_referencia = cuota.get('numero_referencia') if cuota else ''
+            estado_fechas = 'VIGENTE' if informacion_credito.get('estados_fechas','') else 'EN ATRASO'
+
+            saldo_actual = informacion_credito.get('saldo_actual','')
+            saldo_capital_pendiente = informacion_credito.get('saldo_pendiente','')
+            saldo_excedente = informacion_credito.get('excedente','')
+
+            es_credito_judicial = 'NO'
+            es_credito_cancelado = 'NO'
+
+            if informacion_credito.get('is_paid_off',''):
+                es_credito_cancelado = 'SI'
+                es_credito_judicial = 'NO'
+                aportacion = 'VIGENTE'
+                estado_fechas = 'VIGENTE'
+                
+            
+            if informacion_credito.get('estado_judicial',''):
+                es_credito_cancelado = 'NO'
+                es_credito_judicial = 'SI'
+
+            
+            if  saldo_actual < 0:
+                saldo_excedente = abs(informacion_credito.get('saldo_actual',''))
+                saldo_actual = 0
+                saldo_capital_pendiente = 0
+            
+            if  saldo_capital_pendiente < 0:
+                saldo_excedente = abs(informacion_credito.get('saldo_pendiente',''))
+                saldo_actual = 0
+                saldo_capital_pendiente = 0
+            
+            if  saldo_excedente < 0:
+                saldo_excedente = abs(informacion_credito.get('excedente',''))
+                saldo_actual = 0
+                saldo_capital_pendiente = 0
+
+
 
             fila = [
                 str(contador),
-                f"{credito.get('credito', {}).get('creation_date', '')}",
-                f"{credito.get('credito', {}).get('codigo_credito', '')}",
-                f"{get_cliente(credito.get('credito', {}).get('customer_id_id', ''))}",
-                f"{formatear_numero(credito.get('credito', {}).get('monto', 0))}",
-                f"{credito.get('credito', {}).get('proposito', '')}",
+                f"{informacion_credito.get('creation_date', '')}",
+                f"{informacion_credito.get('codigo_credito', '')}",
+                f"{get_cliente(informacion_credito.get('customer_id_id', ''))}",
+                f"{formatear_numero(informacion_credito.get('monto', 0))}",
+                f"{informacion_credito.get('proposito', '')}",
 
-                f"{credito.get('credito', {}).get('plazo', '')}",
-                f"{credito.get('credito', {}).get('tasa_interes', 0) * 100}%",
-                f"{credito.get('credito', {}).get('forma_de_pago', '')}",
-                f"{credito.get('credito', {}).get('tipo_credito', '')}",
+                f"{informacion_credito.get('plazo', '')}",
+                f"{informacion_credito.get('tasa_interes', 0) * 100}%",
+                f"{informacion_credito.get('forma_de_pago', '')}",
+                f"{informacion_credito.get('tipo_credito', '')}",
 
                 # Desembolsos - manejo seguro de lista
                 f"{credito.get('desembolsos', [{}])[0].get('forma_desembolso', '')}",
-                f"{credito.get('credito', {}).get('fecha_inicio', '')}",
-                f"{credito.get('credito', {}).get('fecha_vencimiento', '')}",
+                f"{informacion_credito.get('fecha_inicio', '')}",
+                f"{informacion_credito.get('fecha_vencimiento', '')}",
 
                 f"{fecha_limite}",
 
-                f"{formatear_numero(credito.get('credito', {}).get('saldo_actual', 0))}",
-                f"{formatear_numero(credito.get('credito', {}).get('saldo_pendiente', 0))}",
-                f"{formatear_numero(credito.get('credito', {}).get('excedente', 0))}",
+                f"{formatear_numero(saldo_actual)}",
+                f"{formatear_numero(saldo_capital_pendiente)}",
+                f"{formatear_numero(saldo_excedente)}",
+                str(dias_de_mora(informacion_credito)),
                 
 
-                f"{stat}",
+                f"{estado_fechas}",
+                str(aportacion),
+                str(es_credito_judicial),
+                str(es_credito_cancelado),
 
                 f"{numero_referencia}",
-                f"{get_asesor_credito(credito.get('credito', {}).get('asesor_de_credito_id', ''))}",
+                f"{get_asesor_credito(informacion_credito.get('asesor_de_credito_id', ''))}",
 
             ]
 

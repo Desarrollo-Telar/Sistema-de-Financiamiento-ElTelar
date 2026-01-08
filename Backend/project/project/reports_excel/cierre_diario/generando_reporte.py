@@ -44,25 +44,40 @@ class CierreDiario(TemplateView):
             # Crear una lista para almacenar los filtros
             filters = Q()
 
-            # Añadir filtros si la consulta no está vacía
-            if query:
-                try:
-                    fecha = datetime.strptime(query, '%Y-%m-%d')
-                    fecha_inicio = datetime.combine(fecha.date(), datetime.min.time())
-                    fecha_fin = datetime.combine(fecha.date(), datetime.max.time())
-                    filters |= Q(fecha_registro__range=(fecha_inicio, fecha_fin))
-                except ValueError:
-                    pass  # No es fecha válida, continúa con los otros filtros
+            
+         
 
-                # Filtrar los objetos Customer usando los filtros definidos
-                return InformeDiarioSistema.objects.filter(filters, sucursal=sucursal).first()
+            qs = InformeDiarioSistema.objects.filter(sucursal=sucursal)
+
+            if query:
+                filters = Q()
+
+                # 🔹 Opción 1: buscar por ID
+                if query.isdigit():
+                    filters = Q(id=int(query))
+
+                else:
+                    # 🔹 Opción 2: buscar por fecha (YYYY-MM-DD)
+                    try:
+                        fecha = datetime.strptime(query, '%Y-%m-%d')
+                        fecha_inicio = fecha.replace(hour=0, minute=0, second=0)
+                        fecha_fin = fecha.replace(hour=23, minute=59, second=59)
+                        filters = Q(fecha_registro__range=(fecha_inicio, fecha_fin))
+                    except ValueError:
+                        pass
+
+                qs = qs.filter(filters)
+
+            return qs.order_by('-id').first()
+        
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
             print(f"Error al filtrar el queryset: {e}")
             return InformeDiarioSistema.objects.filter(sucursal=sucursal).order_by('-id').first()
         
     def query(self):
-        return self.request.GET.get('q')
+        return self.request.GET.get('q', '').strip()
+
     
     def get(self, request, *args, **kwargs):
         # Crear el archivo Excel

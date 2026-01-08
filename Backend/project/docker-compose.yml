@@ -1,7 +1,7 @@
 services:
   # Servicio de la base de datos PostgreSQL
   db_p:
-    image: postgres:latest
+    image: postgres:17
     restart: always
     environment:
       - POSTGRES_DB=db
