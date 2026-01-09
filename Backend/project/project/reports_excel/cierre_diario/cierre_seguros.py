@@ -38,7 +38,7 @@ def crear_excel_creditos_seguros(datos, dia = None):
     encabezados = [
         "#", "FECHA DE REGISTRO","CODIGO DE SEGURO", "NOMBRE DEL SEGURO",
         "MONTO OTORGADO","PROPOSITO","PLAZO","TASA","FECHA DE INICIO","FECHA DE VENCIMIENTO","FECHA LIMITE",
-        "SALDO ACTUAL","SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE","ESTADOS","NUMERO DE REFERENCIA"
+        "SALDO ACTUAL","SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE","STATUS POR FECHAS","STATUS POR APORTACION","STATUS CANCELADO","NUMERO DE REFERENCIA"
     ]
 
     for filtro,data in filtros.items():
@@ -51,6 +51,7 @@ def crear_excel_creditos_seguros(datos, dia = None):
         contador = 0
         for idx, credito in enumerate(data, start=2):
             contador+=1
+            informacion_credito = credito.get('informacion_seguro',{})
 
             # Mensajes de estado
             if credito['informacion_seguro']['estado_aportacion']:
@@ -61,9 +62,36 @@ def crear_excel_creditos_seguros(datos, dia = None):
                 mensaje = 'EN ATRASO'
 
             aportacion = mensaje
-            s_fecha = 'VIGENTE' if credito['informacion_seguro']['estados_fechas'] else 'EN ATRASO'
+            aportacion = mensaje
+            estado_fechas = 'VIGENTE' if informacion_credito.get('estados_fechas','') else 'EN ATRASO'
 
-            stat = f'''Status de Aportación: {aportacion}, Status por Fecha: {s_fecha}'''
+            saldo_actual = informacion_credito.get('saldo_actual','')
+            saldo_capital_pendiente = informacion_credito.get('saldo_pendiente','')
+            saldo_excedente = informacion_credito.get('excedente','')
+
+            
+            es_credito_cancelado = 'NO'
+
+            if informacion_credito.get('is_paid_off',''):
+                es_credito_cancelado = 'SI'                
+                aportacion = 'VIGENTE'
+                estado_fechas = 'VIGENTE'
+
+            if  saldo_actual < 0:
+                saldo_excedente = abs(informacion_credito.get('saldo_actual',''))
+                saldo_actual = 0
+                saldo_capital_pendiente = 0
+            
+            if  saldo_capital_pendiente < 0:
+                saldo_excedente = abs(informacion_credito.get('saldo_pendiente',''))
+                saldo_actual = 0
+                saldo_capital_pendiente = 0
+            
+            if  saldo_excedente < 0:
+                saldo_excedente = abs(informacion_credito.get('excedente',''))
+                saldo_actual = 0
+                saldo_capital_pendiente = 0
+
             cuota = credito.get('cuota_vigente')
             fecha_limite = formater_fecha(cuota.get('fecha_limite')) if cuota else ''
             numero_referencia = credito.get('informacion_seguro', {}).get('numero_referencia', '')
@@ -86,12 +114,14 @@ def crear_excel_creditos_seguros(datos, dia = None):
                 f"{credito.get('informacion_seguro', {}).get('fecha_vencimiento', '')}",
                 f"{fecha_limite}",
 
-                f"{formatear_numero(credito.get('informacion_seguro', {}).get('saldo_actual', 0))}",
-                f"{formatear_numero(credito.get('informacion_seguro', {}).get('saldo_pendiente', 0))}",
-                f"{formatear_numero(credito.get('informacion_seguro', {}).get('excedente', 0))}",
+                f"{formatear_numero(saldo_actual)}",
+                f"{formatear_numero(saldo_capital_pendiente)}",
+                f"{formatear_numero(saldo_excedente)}",
                 
                 # Estados
-                f"{stat}",
+                str(estado_fechas),
+                str(aportacion),
+                str(es_credito_cancelado),
 
                 f"{numero_referencia}",
                
