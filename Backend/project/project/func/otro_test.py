@@ -34,10 +34,7 @@ def pruebas(dia, sucursal):
 
 
 if __name__ == '__main__':
-   detalles = DetalleInformeDiario.objects.filter(tipo_datos='creditos', reporte = 114).first()
-   #informacion_recibo
-   for detalle in detalles.data['creditos']:
-      print(type(detalle.get('credito',{}).get('estado_judicial','')))
+   generar_cierre_diario_seguro()
    
    
       

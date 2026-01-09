@@ -49,8 +49,9 @@ def cambiar_plan():
     
     ver_cuotas(dia)
     ver_estado_informe(dia)
-    fechas_cobranzas()
     generar_cierre_diario_seguro()
+    fechas_cobranzas()
+    
 
     
 
