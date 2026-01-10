@@ -11,8 +11,7 @@ from dateutil.relativedelta import relativedelta
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
 from apps.financings.models import PaymentPlan, AccountStatement, Banco
 
-from apps.customers.api.serializers import CustomerSerializer
-from apps.subsidiaries.api.seriealizer import SubsidiarySerializer
+
 # ------------ FUNCIONES ----------------------
 def mostrar_fecha_limite(fecha_limite):
         limite = fecha_limite - relativedelta(days=1)
@@ -54,6 +53,8 @@ class CreditSerializer(serializers.ModelSerializer):
         ]
 
     def to_representation(self, instance):
+        from apps.customers.api.serializers import CustomerSerializer
+        from apps.subsidiaries.api.seriealizer import SubsidiarySerializer
        
         cliente_serializado = CustomerSerializer(instance.customer_id).data if instance.customer_id else None
         sucursal_serializado = SubsidiarySerializer(instance.sucursal).data if instance.sucursal else None
