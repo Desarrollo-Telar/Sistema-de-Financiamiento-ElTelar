@@ -63,8 +63,8 @@ def credito_desembolsado(instance):
     credito.save()
 
 
-@receiver(post_save, sender=Disbursement)
-def verificar_montos_desembolsados(sender, instance,created, **kwargs):
+@receiver(pre_save, sender=Disbursement)
+def verificar_montos_desembolsados(sender, instance, **kwargs):
     # Verificar que los montos desembolsados no excedan el monto del crédito
     total_credito = instance.credit_id.monto
 
@@ -72,7 +72,7 @@ def verificar_montos_desembolsados(sender, instance,created, **kwargs):
     filtros &= ~Q(id=instance.id)
     filtros &= Q(credit_id=instance.credit_id.id)
 
-    total_desembolso = Disbursement.objects.filter(filtros).order_by('-id')  # Sumar todos los gastos previos, manejando None como 0
+    total_desembolso = Disbursement.objects.filter(filtros).order_by('-id').first()  # Sumar todos los gastos previos, manejando None como 0
 
     if instance.forma_desembolso == "CANCELACIÓN DE CRÉDITO VIGENTE":
         return f'No hacer suma'
@@ -80,10 +80,11 @@ def verificar_montos_desembolsados(sender, instance,created, **kwargs):
     if not total_desembolso:
         return f'No hacer suma'
     
-    print(total_desembolso)
+    
+    
     
 
-    """monto_pendiente_desembolsar = total_desembolso.monto_total_desembolso if total_desembolso.monto_total_desembolso else 0
+    monto_pendiente_desembolsar = total_desembolso.monto_total_desembolso if total_desembolso.monto_total_desembolso else 0
     gastos =  instance.total_gastos
 
     # Incluir el monto del desembolso actual
@@ -97,7 +98,9 @@ def verificar_montos_desembolsados(sender, instance,created, **kwargs):
     
     if total_desembolso == total_credito:
         # Indicar que ya se desembolsó completamente
-        credito_desembolsado(instance)"""
+        credito_desembolsado(instance)
+
+    
 
     # Registrar información adicional
     logger.info(f'Total desembolsado: {total_desembolso}, Total crédito: {total_credito}')

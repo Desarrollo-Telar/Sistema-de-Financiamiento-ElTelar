@@ -54,6 +54,27 @@ def dias_de_mora(instance):
 
     return (hoy - fecha).days
 
+def get_creation_date(credito):
+    fecha = credito.get('credito', {}).get('creation_date')
+
+    if not fecha:
+        return datetime.min  # Para que quede al inicio
+
+    if isinstance(fecha, str):
+        try:
+            return datetime.strptime(fecha, '%Y-%m-%d')
+        except ValueError:
+            return datetime.min
+
+    if isinstance(fecha, date):
+        return datetime.combine(fecha, datetime.min.time())
+
+    if isinstance(fecha, datetime):
+        return fecha
+
+    return datetime.min
+
+
 def crear_excel_creditos(datos, dia = None):
     if dia is None:
         dia = datetime.now().date()
@@ -83,6 +104,8 @@ def crear_excel_creditos(datos, dia = None):
 
     for filtro,data in filtros.items():
         sheet = workbook.create_sheet(title=filtro[:31])
+
+        data = sorted(data, key=get_creation_date)
 
         for col_idx, header in enumerate(encabezados, start=1):
             sheet.cell(row=1, column=col_idx, value=header)

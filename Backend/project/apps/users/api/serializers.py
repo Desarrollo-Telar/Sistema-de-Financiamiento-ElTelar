@@ -29,8 +29,30 @@ class UserSerializer(serializers.ModelSerializer):
             'rol',
             'nit',
             'sucursal'
-
         ]
+
+    def to_representation(self, instance):
+        sucursal_serializado = SubsidiarySerializer(instance.sucursal).data if instance.sucursal else None
+        rol_serializado = RoleSerializer(instance.rol).data if instance.rol else None
+
+        return{
+            "id":instance.id,
+            "first_name":instance.first_name,
+            "last_name":instance.last_name,
+            "username":instance.username,
+            "email":instance.email,
+            "type_identification":instance.type_identification,
+            'identification_number':instance.identification_number,
+            'telephone':instance.telephone,
+            'gender':instance.gender,
+            'nationality':instance.nationality,            
+            'status':instance.status,
+            'rol': rol_serializado,
+            'nit': instance.nit,
+            'sucursal': sucursal_serializado
+        }
+
+
 
     
 

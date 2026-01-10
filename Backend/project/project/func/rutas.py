@@ -88,7 +88,9 @@ load_commands = [
     "python manage.py loaddata modelos/fixtures/Departamento.json",
     "python manage.py loaddata modelos/fixtures/Municipio.json",
 
+    "python manage.py loaddata modelos/fixtures/Subsidiary.json",
     "python manage.py loaddata modelos/fixtures/User.json",
+    "python manage.py loaddata modelos/fixtures/CreditCounselor.json",
     "python manage.py loaddata modelos/fixtures/Cliente.json",
     "python manage.py loaddata modelos/fixtures/PermisosUsuarios.json",
     "python manage.py loaddata modelos/fixtures/Direccion.json",
@@ -139,6 +141,6 @@ load_commands = [
 
 if __name__ == '__main__':
     print("PROCESANDO...")
-    for back in commands:
+    for back in load_commands:
         os.system(back)
     print("FINALIZADO")
