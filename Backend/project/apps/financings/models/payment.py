@@ -244,10 +244,6 @@ class Payment(models.Model):
             saldo_pendiente = 0
             aporte_capital = saldo_pendiente_antes
 
-        
-
-        
-
 
         if self.registro_ficticio:
             descripcion_para_estado_cuenta = 'PAGO PARA CANCELAR EL CREDITO'

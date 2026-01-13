@@ -105,6 +105,12 @@ class InvestmentPlan(models.Model):
         verbose_name = "Plan de Inversión"
         verbose_name_plural = "Planes de Inversión"
 
+import re
+
+def validar_codigo(codigo: str) -> bool:
+    patron = r"^0\d{1,2}-IIT0[1-9]\d*-\d{4}$"
+    return bool(re.match(patron, codigo))
+
 
 # Función para generar el código de plan de inversion basado en el Tipo de Producto o Servicio junto a la referencia del codigo de cliente
 def generate_investment_plan_code(sucursal, counter):
@@ -115,30 +121,30 @@ def generate_investment_plan_code(sucursal, counter):
     
     return f'0{codigo_establecimiento}-IIT0{counter}-{current_year}'
 
+def generar_codigo(instance):
+    counter = 1
+    investment_plan_code = generate_investment_plan_code(instance.sucursal, counter)
+
+        # Verificar si no existe un código igual, si no, generar uno nuevo
+    while InvestmentPlan.objects.filter(investment_plan_code=investment_plan_code).exists():
+        counter += 1
+        investment_plan_code = generate_investment_plan_code(instance.sucursal, counter)
+
+    instance.investment_plan_code = investment_plan_code
+
+
 @receiver(pre_save, sender=InvestmentPlan)
 def set_investment_plan_code(sender, instance, **kwargs):
     
     if not instance.investment_plan_code or instance.investment_plan_code == '':
-        counter = 1
-        investment_plan_code = generate_investment_plan_code(instance.sucursal, counter)
-
-        # Verificar si no existe un código igual, si no, generar uno nuevo
-        while InvestmentPlan.objects.filter(investment_plan_code=investment_plan_code).exists():
-            counter += 1
-            investment_plan_code = generate_investment_plan_code(instance.sucursal, counter)
-
-        instance.investment_plan_code = investment_plan_code
+        generar_codigo(instance)
+        
 
     elif instance.pk and InvestmentPlan.objects.filter(pk=instance.pk).exists():
         current_investment_plan = InvestmentPlan.objects.get(pk=instance.pk)
 
         if current_investment_plan.type_of_product_or_service != instance.type_of_product_or_service:
-            counter = 1
-            investment_plan_code = generate_investment_plan_code(instance.sucursal, counter)
-
-            # Verificar si no existe un código igual, si no, generar uno nuevo
-            while InvestmentPlan.objects.filter(investment_plan_code=investment_plan_code).exists():
-                counter += 1
-                investment_plan_code = generate_investment_plan_code(instance.sucursal, counter)
-
-            instance.investment_plan_code = investment_plan_code
+            generar_codigo(instance)
+        
+        if not validar_codigo(instance.investment_plan_code):
+            generar_codigo(instance)

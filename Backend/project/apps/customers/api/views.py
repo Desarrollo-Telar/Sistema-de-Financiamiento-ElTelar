@@ -60,10 +60,128 @@ class CustomerViewSet(viewsets.ModelViewSet):
 
         return queryset
 
+    def perform_create(self, serializer):
+        try:
+            
+            cliente = serializer.save()
+            user = self.request.user
+
+            # 2. Intentamos registrar la acción exitosa
+            log_user_action(
+                user=user,
+                action="Creación de Cliente",
+                details=f"Se creó el cliente con nombre {cliente.first_name} {cliente.last_name}.",
+                request=self.request,
+                category_name="Clientes",
+                metadata=model_to_dict(cliente)
+            )
+
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear cliente o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CustomerViewSet.perform_create",
+                category_name="Clientes",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+    
+    def perform_update(self, serializer):
+        try:
+            instance = self.get_object()
+            previous_data = model_to_dict(instance)
+            data = serializer.save()
+            new_data = model_to_dict(data)
+
+            changes = {
+                "antes": previous_data,
+                "despues": new_data
+            }
+
+            log_user_action(
+                user=self.request.user,
+                action="Actualización de Cliente",
+                details=f"Se actualizó el cliente con codigo cliente {data.customer_code}.",
+                request=self.request,
+                category_name="Clientes",
+                metadata=changes
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al actualizar cliente o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CustomerViewSet.perform_update",
+                category_name="Clientes",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+
+    
+    def perform_destroy(self, instance):
+        data = model_to_dict(instance)
+        nombre = f'{instance.first_name} {instance.last_name}'
+        
+
+        log_user_action(
+            user=self.request.user,
+            action="Eliminación de Cliente",
+            details=f"Se eliminó el cliente {nombre}.",
+            request=self.request,
+            category_name="Clientes",
+            metadata=data
+        )
+
+        try:
+            instance.delete()
+            log_user_action(
+                user=self.request.user,
+                action="Eliminación de Cliente",
+                details=f"Se eliminó el cliente {nombre}.",
+                request=self.request,
+                category_name="Clientes",
+                metadata=data
+            )
+
+        except Exception as e:
+            import traceback
+            log_system_event(
+                message=f"Error al eliminar el cliente {nombre}: {str(e)}",
+                level_name="ERROR",
+                source="CustomerViewSet.perform_destroy",
+                category_name="Clientes",
+                traceback=traceback.format_exc(),
+                metadata=data
+            )
+            raise  # re-lanza el error para que DRF devuelva la respuesta HTTP 500
+
+
 
 class CustomerAcceptViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
     queryset = Customer.objects.filter(status='Aprobado')
+
     def get_queryset(self):
         queryset = super().get_queryset()
         search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
@@ -74,10 +192,246 @@ class CustomerAcceptViewSet(viewsets.ModelViewSet):
                 Q(customer_code__icontains=search_term)
                 ) # Filtrar por el término de búsqueda
         return queryset
+    
+    def perform_create(self, serializer):
+        try:
+            
+            cliente = serializer.save()
+            user = self.request.user
+
+            # 2. Intentamos registrar la acción exitosa
+            log_user_action(
+                user=user,
+                action="Creación de Cliente",
+                details=f"Se creó el cliente con nombre {cliente.first_name} {cliente.last_name}.",
+                request=self.request,
+                category_name="Clientes",
+                metadata=model_to_dict(cliente)
+            )
+
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear cliente o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CustomerViewSet.perform_create",
+                category_name="Clientes",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+    
+    def perform_update(self, serializer):
+        try:
+            instance = self.get_object()
+            previous_data = model_to_dict(instance)
+            data = serializer.save()
+            new_data = model_to_dict(data)
+
+            changes = {
+                "antes": previous_data,
+                "despues": new_data
+            }
+
+            log_user_action(
+                user=self.request.user,
+                action="Actualización de Cliente",
+                details=f"Se actualizó el cliente con codigo cliente {data.customer_code}.",
+                request=self.request,
+                category_name="Clientes",
+                metadata=changes
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al actualizar cliente o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CustomerViewSet.perform_update",
+                category_name="Clientes",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+
+    
+    def perform_destroy(self, instance):
+        data = model_to_dict(instance)
+        nombre = f'{instance.first_name} {instance.last_name}'
+        
+
+        log_user_action(
+            user=self.request.user,
+            action="Eliminación de Cliente",
+            details=f"Se eliminó el cliente {nombre}.",
+            request=self.request,
+            category_name="Clientes",
+            metadata=data
+        )
+
+        try:
+            instance.delete()
+            log_user_action(
+                user=self.request.user,
+                action="Eliminación de Cliente",
+                details=f"Se eliminó el cliente {nombre}.",
+                request=self.request,
+                category_name="Clientes",
+                metadata=data
+            )
+
+        except Exception as e:
+            import traceback
+            log_system_event(
+                message=f"Error al eliminar el cliente {nombre}: {str(e)}",
+                level_name="ERROR",
+                source="CustomerViewSet.perform_destroy",
+                category_name="Clientes",
+                traceback=traceback.format_exc(),
+                metadata=data
+            )
+            raise  # re-lanza el error para que DRF devuelva la respuesta HTTP 500
+
+
 
 class ImmigrationStatusViewSet(viewsets.ModelViewSet):
     serializer_class = ImmigrationStatusSerializer
     queryset = ImmigrationStatus.objects.all()
+
+    def perform_create(self, serializer):
+        try:
+            
+            data = serializer.save()
+            user = self.request.user
+
+            # 2. Intentamos registrar la acción exitosa
+            log_user_action(
+                user=user,
+                action="Creación de Condicion Migratoria",
+                details=f"Se creó la condicion migratoria {data.condition_name} .",
+                request=self.request,
+                category_name="Condicion Migratoria",
+                metadata=model_to_dict(data)
+            )
+
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear la condicion migratoria o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="ImmigrationStatusViewSet.perform_create",
+                category_name="Condicion Migratoria",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+    
+    def perform_update(self, serializer):
+        try:
+            instance = self.get_object()
+            previous_data = model_to_dict(instance)
+            data = serializer.save()
+            new_data = model_to_dict(data)
+
+            changes = {
+                "antes": previous_data,
+                "despues": new_data
+            }
+
+            log_user_action(
+                user=self.request.user,
+                action="Actualización de Condicion Migratoria",
+                details=f"Se actualizó la condicion migratoria {data.condition_name}.",
+                request=self.request,
+                category_name="Condicion Migratoria",
+                metadata=changes
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al actualizar la condicion migratoria o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="ImmigrationStatusViewSet.perform_update",
+                category_name="Condicion Migratoria",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+
+    
+    def perform_destroy(self, instance):
+        data = model_to_dict(instance)
+        nombre = f'{instance.first_name} {instance.last_name}'
+        
+
+        log_user_action(
+            user=self.request.user,
+            action="Eliminación de Cliente",
+            details=f"Se eliminó el cliente {nombre}.",
+            request=self.request,
+            category_name="Clientes",
+            metadata=data
+        )
+
+        try:
+            instance.delete()
+            log_user_action(
+                user=self.request.user,
+                action="Eliminación de Cliente",
+                details=f"Se eliminó el cliente {nombre}.",
+                request=self.request,
+                category_name="Clientes",
+                metadata=data
+            )
+
+        except Exception as e:
+            import traceback
+            log_system_event(
+                message=f"Error al eliminar el cliente {nombre}: {str(e)}",
+                level_name="ERROR",
+                source="ImmigrationStatusViewSet.perform_destroy",
+                category_name="Clientes",
+                traceback=traceback.format_exc(),
+                metadata=data
+            )
+            raise  # re-lanza el error para que DRF devuelva la respuesta HTTP 500
+
+
 
 class HistorialCobranzaViewSet(viewsets.ModelViewSet):
     serializer_class = HistorialCobranzaSerializer
