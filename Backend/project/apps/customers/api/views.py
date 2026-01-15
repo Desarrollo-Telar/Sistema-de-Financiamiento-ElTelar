@@ -393,18 +393,17 @@ class ImmigrationStatusViewSet(viewsets.ModelViewSet):
                 "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
             })
 
-    
     def perform_destroy(self, instance):
         data = model_to_dict(instance)
-        nombre = f'{instance.first_name} {instance.last_name}'
+        nombre = f'{instance.condition_name}'
         
 
         log_user_action(
             user=self.request.user,
-            action="Eliminación de Cliente",
-            details=f"Se eliminó el cliente {nombre}.",
+            action="Eliminación de Condicion Migratoria",
+            details=f"Se eliminó la condicion migratoria: {nombre}.",
             request=self.request,
-            category_name="Clientes",
+            category_name="Condicion Migratoria",
             metadata=data
         )
 
@@ -412,20 +411,20 @@ class ImmigrationStatusViewSet(viewsets.ModelViewSet):
             instance.delete()
             log_user_action(
                 user=self.request.user,
-                action="Eliminación de Cliente",
-                details=f"Se eliminó el cliente {nombre}.",
+                action="Eliminación de Condicion Migratoria",
+                details=f"Se eliminó la condicion migratoria: {nombre}.",
                 request=self.request,
-                category_name="Clientes",
+                category_name="Condicion Migratoria",
                 metadata=data
             )
 
         except Exception as e:
             import traceback
             log_system_event(
-                message=f"Error al eliminar el cliente {nombre}: {str(e)}",
+                message=f"Error al eliminar la condicion migratoria. {nombre}: {str(e)}",
                 level_name="ERROR",
                 source="ImmigrationStatusViewSet.perform_destroy",
-                category_name="Clientes",
+                category_name="Condicion Migratoria",
                 traceback=traceback.format_exc(),
                 metadata=data
             )
@@ -436,6 +435,124 @@ class ImmigrationStatusViewSet(viewsets.ModelViewSet):
 class HistorialCobranzaViewSet(viewsets.ModelViewSet):
     serializer_class = HistorialCobranzaSerializer
     queryset = HistorialCobranza.objects.all()
+
+    def perform_create(self, serializer):
+        try:
+            
+            data = serializer.save()
+            user = self.request.user
+
+            # 2. Intentamos registrar la acción exitosa
+            log_user_action(
+                user=user,
+                action="Creación de Historial de  Cobranza",
+                details=f"Se creó el registro de un historial de Cobranza {data.cobranza} .",
+                request=self.request,
+                category_name="Historial de Cobranza",
+                metadata=model_to_dict(data)
+            )
+
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear el historial de cobranza o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="HistorialCobranzaViewSet.perform_create",
+                category_name="Historial de Cobranza",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+    
+    def perform_update(self, serializer):
+        try:
+            instance = self.get_object()
+            previous_data = model_to_dict(instance)
+            data = serializer.save()
+            new_data = model_to_dict(data)
+
+            changes = {
+                "antes": previous_data,
+                "despues": new_data
+            }
+
+            log_user_action(
+                user=self.request.user,
+                action="Actualización de Historial de Cobranza",
+                details=f"Se actualizó el historial de cobranza. {data.cobranza}.",
+                request=self.request,
+                category_name="Historial de Cobranza",
+                metadata=changes
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al actualizar el historial de cobranza o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="HistorialCobranzaViewSet.perform_update",
+                category_name="Historial de Cobranza",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+
+    def perform_destroy(self, instance):
+        data = model_to_dict(instance)
+        nombre = f'{instance.cobranza}'
+        
+
+        log_user_action(
+            user=self.request.user,
+            action="Eliminación de Historial de Cobranza",
+            details=f"Se eliminó el historial de cobranza: {nombre}.",
+            request=self.request,
+            category_name="Historial de Cobranza",
+            metadata=data
+        )
+
+        try:
+            instance.delete()
+            log_user_action(
+                user=self.request.user,
+                action="Eliminación de Historial de Cobranza",
+                details=f"Se eliminó el historial de cobranza: {nombre}.",
+                request=self.request,
+                category_name="Historial de Cobranza",
+                metadata=data
+            )
+
+
+        except Exception as e:
+            import traceback
+            log_system_event(
+                message=f"Error al eliminar el historial de cobranza. {nombre}: {str(e)}",
+                level_name="ERROR",
+                source="HistorialCobranzaViewSet.perform_destroy",
+                category_name="Historial de Cobranza",
+                traceback=traceback.format_exc(),
+                metadata=data
+            )
+            raise  # re-lanza el error para que DRF devuelva la respuesta HTTP 500
+
+
 
 class CreditCounselorSerializerViewSet(viewsets.ModelViewSet):
     serializer_class = CreditCounselorSerializer
@@ -467,6 +584,122 @@ class CreditCounselorSerializerViewSet(viewsets.ModelViewSet):
             
         return queryset
     
+    def perform_create(self, serializer):
+        try:
+            
+            data = serializer.save()
+            user = self.request.user
+
+            # 2. Intentamos registrar la acción exitosa
+            log_user_action(
+                user=user,
+                action="Creación de Asesor de Credito",
+                details=f"Se creó un Asesor de Credito {data.usuario} .",
+                request=self.request,
+                category_name="Asesor de Credito",
+                metadata=model_to_dict(data)
+            )
+
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear un asesor de Credito o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CreditCounselorSerializerViewSet.perform_create",
+                category_name="Asesor de Credito",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+    
+    def perform_update(self, serializer):
+        try:
+            instance = self.get_object()
+            previous_data = model_to_dict(instance)
+            data = serializer.save()
+            new_data = model_to_dict(data)
+
+            changes = {
+                "antes": previous_data,
+                "despues": new_data
+            }
+
+            log_user_action(
+                user=self.request.user,
+                action="Actualización de Asesor de Credito",
+                details=f"Se actualizó el Asesor de Credito {data.usuario}.",
+                request=self.request,
+                category_name="Asesor de Credito",
+                metadata=changes
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al actualizar al asesor de credito o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CreditCounselorSerializerViewSet.perform_update",
+                category_name="Asesor de Credito",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+
+    def perform_destroy(self, instance):
+        data = model_to_dict(instance)
+        nombre = f'{instance.usuario}'
+        
+
+        log_user_action(
+            user=self.request.user,
+            action="Eliminación de Asesor de Credito",
+            details=f"Se eliminó el asesor de Credito: {nombre}.",
+            request=self.request,
+            category_name="Asesor de Credito",
+            metadata=data
+        )
+
+        try:
+            instance.delete()
+            log_user_action(
+                user=self.request.user,
+                action="Eliminación de Asesor de Credito",
+                details=f"Se eliminó el asesor de Credito: {nombre}.",
+                request=self.request,
+                category_name="Asesor de Credito",
+                metadata=data
+            )
+
+        except Exception as e:
+            import traceback
+            log_system_event(
+                message=f"Error al eliminar al asesor de credito. {nombre}: {str(e)}",
+                level_name="ERROR",
+                source="CreditCounselorSerializerViewSet.perform_destroy",
+                category_name="Asesor de Credito",
+                traceback=traceback.format_exc(),
+                metadata=data
+            )
+            raise  # re-lanza el error para que DRF devuelva la respuesta HTTP 500
+
+
 class CobranzaViewSet(viewsets.ModelViewSet):
     serializer_class = CobranzaSerializer
 
@@ -494,4 +727,119 @@ class CobranzaViewSet(viewsets.ModelViewSet):
             queryset = Cobranza.objects.filter(asesor_credito=asesor_autenticado)
 
         return queryset
+
+    def perform_create(self, serializer):
+        try:
+            
+            data = serializer.save()
+            user = self.request.user
+
+            # 2. Intentamos registrar la acción exitosa
+            log_user_action(
+                user=user,
+                action="Creación de Cobranza",
+                details=f"Se creó una cobranza {data.credito} .",
+                request=self.request,
+                category_name="Cobranza",
+                metadata=model_to_dict(data)
+            )
+
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear la cobranza o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CobranzaViewSet.perform_create",
+                category_name="Cobranza",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+    
+    def perform_update(self, serializer):
+        try:
+            instance = self.get_object()
+            previous_data = model_to_dict(instance)
+            data = serializer.save()
+            new_data = model_to_dict(data)
+
+            changes = {
+                "antes": previous_data,
+                "despues": new_data
+            }
+
+            log_user_action(
+                user=self.request.user,
+                action="Actualización de Cobranza",
+                details=f"Se actualizó la cobranza {data.credito}.",
+                request=self.request,
+                category_name="Cobranza",
+                metadata=changes
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al actualizar la cobranza o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CobranzaViewSet.perform_update",
+                category_name="Cobranza",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
+
+    def perform_destroy(self, instance):
+        data = model_to_dict(instance)
+        nombre = f'{instance.credito}'
+        
+
+        log_user_action(
+            user=self.request.user,
+            action="Eliminación de Cobranza",
+            details=f"Se eliminó la cobranza: {nombre}.",
+            request=self.request,
+            category_name="Cobranza",
+            metadata=data
+        )
+
+        try:
+            instance.delete()
+            log_user_action(
+                user=self.request.user,
+                action="Eliminación de Cobranza",
+                details=f"Se eliminó la cobranza: {nombre}.",
+                request=self.request,
+                category_name="Cobranza",
+                metadata=data
+            )
+
+        except Exception as e:
+            import traceback
+            log_system_event(
+                message=f"Error al eliminar la cobranza. {nombre}: {str(e)}",
+                level_name="ERROR",
+                source="CobranzaViewSet.perform_destroy",
+                category_name="Cobranza",
+                traceback=traceback.format_exc(),
+                metadata=data
+            )
+            raise  # re-lanza el error para que DRF devuelva la respuesta HTTP 500
 
