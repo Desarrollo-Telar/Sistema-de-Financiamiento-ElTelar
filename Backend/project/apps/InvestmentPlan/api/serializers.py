@@ -18,6 +18,8 @@ class InvestmentPlanSerializer(serializers.ModelSerializer):
             'customer_id'
         ]
     def to_representation(self, instance):
+        from apps.customers.api.serializers import CustomerSerializer
+        cliente = CustomerSerializer(instance.customer_id).data if instance.customer_id else None
         return {
             'id':instance.id,
             'type_of_product_or_service':instance.type_of_product_or_service,
@@ -27,6 +29,6 @@ class InvestmentPlanSerializer(serializers.ModelSerializer):
             'monthly_amount':instance.monthly_amount,
             'transfers_or_transfer_of_funds':instance.transfers_or_transfer_of_funds,
             'type_of_transfers_or_transfer_of_funds':instance.type_of_transfers_or_transfer_of_funds,
-            'customer_id':instance.customer_id.id,
+            'customer_id': cliente,
             'investment_plan_code':instance.investment_plan_code
         }
