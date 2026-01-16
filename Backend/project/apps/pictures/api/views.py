@@ -9,6 +9,15 @@ from rest_framework import viewsets, status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+from scripts.conversion_datos import model_to_dict, cambios_realizados
+
+import traceback
+from rest_framework import status
+from rest_framework.exceptions import ValidationError
+
+
 class ImagenViewSet(viewsets.ModelViewSet):
     serializer_class = ImagenSerializer
     queryset = Imagen.objects.all()
