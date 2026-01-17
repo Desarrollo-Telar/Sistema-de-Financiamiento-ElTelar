@@ -26,6 +26,15 @@
             </a>
         </li>
         {% endif %}
+        {% if permisos.puede_ver_listado_de_desembolsos_aplicados_del_credito %}
+        <li>
+            <a href="{% url 'financings:list_disbursement' %}" class="nav-link py-3 border-bottom rounded-0"
+                data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Desembolsos"
+                data-bs-original-title="Desembolsos" style="color: black;">
+            <i class="bi bi-newspaper" style="width: 20; height: 20; "></i>
+            </a>
+        </li>
+        {% endif%}
         {% if permisos.puede_ver_registros_asesores %}
         <li>
             <a href="{% url 'customers:asesores_creditos' %}" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"

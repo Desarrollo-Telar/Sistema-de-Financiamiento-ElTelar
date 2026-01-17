@@ -43,3 +43,6 @@ from .factura import *
 
 # CREDITO
 from .creditos import *
+
+# DESEMBOLSOS
+from .desembolso import *
