@@ -12,7 +12,7 @@ from django.utils.timezone import now
 from scripts.cierre_diarrio.informacion_relacionado_cliente import generando_informacion_cliente
 from scripts.manejo_excedentes.recalcular import cuotas_con_excedente
 from scripts.cierre_diarrio.generar_cierre_diario import  generar_cierre_diario_seguro, ejecutar_cierre_diario, generar_cierre_diario
-
+from scripts.INFILE.consulta_nit import consulta_receptor
 
 from apps.customers.models import CreditCounselor, Cobranza, Customer
 from apps.financings.models import Credit
@@ -34,8 +34,8 @@ def pruebas(dia, sucursal):
 
 
 if __name__ == '__main__':
-   generar_cierre_diario_seguro()
-   
+   consulta_receptor('11024163-0')
+   # {'nit': '11024163-0', 'nombre': '', 'mensaje': 'NIT no válido'}
    
       
   

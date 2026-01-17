@@ -50,11 +50,7 @@ def calculo_monto_impuesto(monto: Union[str, float, int, Decimal]) -> Decimal:
 # ==========================
 def generar_xml_recibo(recibo) -> str:
     # Simulación de las operaciones de la DB que no causan error de XML
-    try:
-        recibo.factura = True
-        recibo.save()
-    except:
-        pass # Ignoramos el error de la DB para enfocarnos en el XML
+    
     
     now_local = timezone.localtime(timezone.now()) 
 

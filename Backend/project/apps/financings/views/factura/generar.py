@@ -16,6 +16,7 @@ from django.utils.decorators import method_decorator
 # Scripts
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 from scripts.INFILE.fact import guardar_xml_recibo
+from scripts.INFILE.consulta_nit import consulta_receptor
 
 # FORMULARIO
 from apps.financings.forms import PaymentPlanForms, BoletaForm
@@ -33,8 +34,16 @@ def generar_factura(request, id):
     if recibo.factura:
         messages.info(request, "Este recibo ya fue facturado.")
         return redirect('financings:factura_list', recibo.pago.credit.id)
+    
+    if recibo.cliente is None:
+        messages.error(request, f"NO SE PUEDE FACTURAR, EL RECIBO NO PERTENECE A UN CLIENTE")
+        return redirect('index')
 
     try:
+        if not consulta_receptor(recibo.cliente.number_nit):
+            messages.error(request, f"NIT NO VALIDO")
+            return redirect('index')
+
         # Generar y enviar XML a FEL
         ruta_guardado = guardar_xml_recibo(
             recibo, 

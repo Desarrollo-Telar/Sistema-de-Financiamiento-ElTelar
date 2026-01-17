@@ -95,6 +95,9 @@ class FELApiClient:
                 factura.sucursal = recibo_instance.sucursal
                 factura.save()
 
+                recibo_instance.factura = True
+                recibo_instance.save()
+
                 # Retornar la respuesta exitosa
                 return result_data
                 

@@ -2,6 +2,10 @@ import os
 import requests
 from dotenv import load_dotenv
 
+# HISTORIAL Y BITACORA
+from apps.actividades.utils import log_user_action, log_system_event
+from scripts.conversion_datos import model_to_dict, cambios_realizados
+
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
 
@@ -111,5 +115,63 @@ def ejemplo_uso_consulta_receptor(nit_consulta):
     except Exception as e:
         print(f"Ocurrió un error inesperado: {e}")
 
+def consulta_receptor(nit_consulta):
+    try:
+        log_system_event(
+            f'EVALUACION DE NIT DEL RECEPTOR: {nit_consulta}',
+            'INFO',
+            'scripts.INFILE.consulta_nit.consulta_receptor',
+            'Facturas'
+        )
+        # Inicializar el cliente (tomará credenciales del .env)
+        cliente = ReceptorApiClient()
+
+        # NIT a consultar (ejemplo)
+        
+        nit_a_consultar = nit_consulta  # O "CF"
+        
+        print(f"Consultando NIT: {nit_a_consultar}...")
+        
+        # Realizar la consulta
+        resultado = cliente.consultar_nit(nit_a_consultar)
+        
+        # Imprimir resultado
+        print("Resultado de la Consulta:")
+        print(resultado)
+        
+        mensaje_resultado = resultado.get('mensaje','')
+
+        if mensaje_resultado == 'NIT no válido':
+            log_system_event(
+                f'EVALUACION DE NIT NO VALIDO DEL RECEPTOR: {nit_consulta}',
+                'WARNING',
+                'scripts.INFILE.consulta_nit.consulta_receptor',
+                'Facturas'
+            )
+            return False
+        
+        return True
+
+    except ValueError as e:
+        print(f"Error de Configuración: {e}")
+        log_system_event(
+            f'EVALUACION DE NIT NO VALIDO DEL RECEPTOR: {nit_consulta}',
+            'ERROR',
+            'scripts.INFILE.consulta_nit.consulta_receptor',
+            'Facturas',
+            e
+        )
+
+        return False
+    except Exception as e:
+        print(f"Ocurrió un error inesperado: {e}")
+        log_system_event(
+            f'EVALUACION DE NIT NO VALIDO DEL RECEPTOR: {nit_consulta}',
+            'ERROR',
+            'scripts.INFILE.consulta_nit.consulta_receptor',
+            'Facturas',
+            e
+        )
+        return False
 # Ejecutar el ejemplo
 # ejemplo_uso_consulta_receptor()
