@@ -32,6 +32,7 @@ class Address(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
     subsidiary = models.ForeignKey(Subsidiary, on_delete=models.CASCADE, blank=True, null=True)
     codigo_postal = models.CharField("Codigo Postal", blank=True, null=True, max_length=100)
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
     def __str__(self):
         return f'{self.street}, {self.city} '
@@ -48,7 +49,7 @@ class Address(models.Model):
 class Departamento(models.Model):
     nombre = models.CharField("Nombre del Departamento", max_length=120, blank=False, null=False)
     codigo_postal = models.CharField("Codigo Postal", blank=True, null=True, max_length=100)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return f'{self.nombre}'
         
@@ -60,7 +61,7 @@ class Municiopio(models.Model):
     nombre = models.CharField("Nombre del Municipio", max_length=120, blank=False, null=False, unique=True)
     depart = models.ForeignKey(Departamento, on_delete=models.CASCADE, blank=False, null=False)
     codigo_postal = models.CharField("Codigo Postal", blank=True, null=True, max_length=100)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return f'{self.nombre}'
 

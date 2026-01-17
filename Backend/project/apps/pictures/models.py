@@ -20,7 +20,7 @@ class Imagen(models.Model):
     image = models.ImageField("Imagen", blank=True, null=True, upload_to='documents/')
     description = models.TextField("Descripción", blank=True, null=True)
     uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return self.description or "Sin descripción"
     
@@ -48,7 +48,7 @@ class Imagen(models.Model):
 class ImagenCustomer(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     image_id = models.ForeignKey(Imagen, on_delete=models.CASCADE)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return f"Imagen del Cliente {self.customer_id}"
 
@@ -61,7 +61,7 @@ class ImagenSubsidiary(models.Model):
     image = models.ImageField("Imagen", blank=True, null=True, upload_to='documents/sucursal/')
     description = models.TextField("Descripción", blank=True, null=True)
     uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return f"Imagen de la sucursal {self.subsidiary}"
 
@@ -73,7 +73,7 @@ class ImagenAddress(models.Model):
     address_id = models.ForeignKey(Address, on_delete=models.CASCADE)
     image_id = models.ForeignKey(Imagen, on_delete=models.CASCADE)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return f"Imagen de la Dirección {self.address_id}"
 
@@ -85,7 +85,7 @@ class ImagenGuarantee(models.Model):
     investment_plan_id = models.ForeignKey(InvestmentPlan, on_delete=models.CASCADE)
     image_id = models.ForeignKey(Imagen, on_delete=models.CASCADE)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return self.image_id
 
@@ -97,7 +97,7 @@ class ImagenOther(models.Model):
     description = models.CharField("Descripción",max_length=150,blank=True, null=True)
     image_id = models.ForeignKey(Imagen, on_delete=models.CASCADE)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return self.description or 'NO TIENE DESCRIPCION'
 

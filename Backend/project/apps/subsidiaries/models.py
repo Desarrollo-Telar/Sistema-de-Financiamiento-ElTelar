@@ -25,7 +25,7 @@ class Subsidiary(models.Model):
 
     numero_de_cuenta_banco = models.CharField('Numero de Cuenta de Banco', max_length=150, blank=False, null=False)
     nombre_banco = models.CharField('Nombre de la Cuenta de Banco', max_length=150, blank=False, null=False, default='Banco de Desarrollo Rural')
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return f'{self.nombre}'
     

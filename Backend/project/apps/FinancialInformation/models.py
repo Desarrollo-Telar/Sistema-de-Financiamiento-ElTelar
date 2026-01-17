@@ -45,7 +45,7 @@ class WorkingInformation(models.Model):
     income_detail = models.TextField("Detalle de Ingreso", blank=True, null=True)
     employment_status = models.CharField("Estado Laboral", max_length=150, choices=estado_laboral)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return f"{self.position} - {self.company_name}"
     
@@ -105,7 +105,7 @@ class OtherSourcesOfIncome(models.Model):
     phone_number = models.CharField("Número de Teléfono", max_length=20, blank=False, null=False)
     salary = models.DecimalField("Salario", max_digits=10, decimal_places=2, blank=False, null=False)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return self.source_of_income
     
@@ -127,7 +127,7 @@ class Reference(models.Model):
     phone_number = models.CharField("Número de Teléfono", max_length=20, blank=False, null=False)
     reference_type = models.CharField("Tipo de Referencia", max_length=100, choices=tipo_referencia)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return self.full_name
     

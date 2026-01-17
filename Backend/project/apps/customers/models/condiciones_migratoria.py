@@ -14,7 +14,7 @@ condition = [
 class ImmigrationStatus(models.Model):
     condition_name = models.CharField(max_length=50, blank=False, null=False, unique=True)
     description = models.TextField(blank=True, null=True)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return self.condition_name
 

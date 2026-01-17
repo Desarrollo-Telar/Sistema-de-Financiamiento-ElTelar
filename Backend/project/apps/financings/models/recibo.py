@@ -30,7 +30,7 @@ class Recibo(models.Model):
     factura = models.BooleanField(default=False)
     cuota = models.ForeignKey(PaymentPlan, on_delete=models.CASCADE, null=True, blank=True)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def recibo_para(self):
         mensaje = ''
        

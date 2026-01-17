@@ -45,7 +45,7 @@ class DocumentSistema(models.Model):
     description = models.TextField("Descripción",blank=True, null=True)
     document = models.FileField("Documento",blank=True, null=True,upload_to='documents/sistema/')
     uploaded_at = models.DateTimeField("Fecha de Creación", auto_now_add=True)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return self.description or "Sin Titulo"
     

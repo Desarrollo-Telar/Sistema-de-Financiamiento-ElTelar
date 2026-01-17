@@ -25,7 +25,8 @@ class Banco(models.Model):
     # Nuevos Atributos
     registro_ficticio = models.BooleanField("Registro Ficticio", default=False)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
-
+    
+    nombre_del_banco = models.CharField('Nombre del Banco',max_length=100, blank=True, null=True)
     def f_credito(self):
         return formatear_numero(self.credito)
     

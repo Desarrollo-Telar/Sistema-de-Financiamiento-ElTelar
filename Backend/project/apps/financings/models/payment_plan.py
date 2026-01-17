@@ -56,7 +56,7 @@ class PaymentPlan(models.Model):
     paso_por_task = models.BooleanField(default=False)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
     original_day = models.IntegerField(null=True, blank=True)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def limite_cobranza_oficina(self):
         calculo = self.due_date + relativedelta(days=11)
         return calculo.date()

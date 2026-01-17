@@ -53,7 +53,7 @@ class InvestmentPlan(models.Model):
     fiador = models.JSONField(null=True, blank=True, verbose_name="Fiador")
     credito_anterior_vigente = models.JSONField(null=True, blank=True, verbose_name="Credito Anterior Vigente")
     tipo_pagare = models.CharField(verbose_name="Tipo de pagare", max_length=150, blank=True, null=True)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def fecha_primer_pago(self):
         
         return self.fecha_inicio + relativedelta(months=1)

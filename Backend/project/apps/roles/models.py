@@ -7,7 +7,7 @@ class Role(models.Model):
     role_name = models.CharField("Nombre del Rol", max_length=100, unique=True)
     description = models.TextField("Descripción", blank=True, null=True)
     estado = models.BooleanField(verbose_name="Estado del Rol", default=True)
-    
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return self.role_name
 
@@ -20,7 +20,7 @@ class CategoriaPermiso(models.Model):
     nombre = models.CharField(verbose_name="Nombre del Permiso", max_length=100, blank=False, null=False)
     descripcion = models.TextField(verbose_name="Descripcion acerca de la Categoria (Modulo)", blank=True, null=True)
     estado = models.BooleanField(verbose_name="Estado de la Categoria del Permiso", default=True)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return f'{self.nombre}'
 
@@ -37,7 +37,7 @@ class Permiso(models.Model):
     codigo_permiso = models.CharField(verbose_name="Codigo del Permiso", max_length=75, unique=True)
     estado = models.BooleanField(verbose_name="Estado del Permiso", default=True)
     fecha_registro = models.DateTimeField("Fecha de Creación", auto_now_add=True)
-
+    
     def __str__(self):
         return f'{self.codigo_permiso}'
 

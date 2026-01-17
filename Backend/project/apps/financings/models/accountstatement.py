@@ -35,7 +35,7 @@ class AccountStatement(models.Model):
     description = models.TextField('Descripcion',blank=True, null=True )
     excedente = models.DecimalField("Monto de excedente", decimal_places=2, max_digits=15, blank=True, null=True, default=0)
     es_visible = models.BooleanField("Puede ser visible", default=True, blank=True, null=True)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def Fabono(self):
         return formatear_numero(self.abono)
     

@@ -23,7 +23,7 @@ class Invoice(models.Model):
     xml_certificado  = models.TextField(verbose_name="Serie de Autorizacion", blank=True, null=True)
     identificador = models.CharField(verbose_name="identificador", max_length=150, blank=True, null=True)
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
-    
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def __str__(self):
         return f'{self.numero_factura}'
     

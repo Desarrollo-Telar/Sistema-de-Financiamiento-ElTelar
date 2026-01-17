@@ -34,7 +34,7 @@ class Cuota(models.Model):
     cambios = models.BooleanField(default=False)
     numero_referencia = models.CharField('Numero de Referencia', max_length=255, null=True, blank=True, default="NAN")
     cuota_vencida = models.BooleanField(default=False)
-
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
     def formato_cuota_mora(self):
         return formatear_numero(self.mora)
 
