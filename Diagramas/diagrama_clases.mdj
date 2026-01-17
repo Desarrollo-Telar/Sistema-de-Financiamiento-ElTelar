@@ -21,24 +21,6 @@
 					"defaultDiagram": true
 				}
 			]
-		},
-		{
-			"_type": "DFDDataFlowModel",
-			"_id": "AAAAAAGbcTob1jrhG0s=",
-			"_parent": {
-				"$ref": "AAAAAAFF+h6SjaM2Hec="
-			},
-			"name": "DataFlowModel1",
-			"ownedElements": [
-				{
-					"_type": "DFDDiagram",
-					"_id": "AAAAAAGbcTob1jriGcQ=",
-					"_parent": {
-						"$ref": "AAAAAAGbcTob1jrhG0s="
-					},
-					"name": "DFDDiagram1"
-				}
-			]
 		}
 	]
 }
