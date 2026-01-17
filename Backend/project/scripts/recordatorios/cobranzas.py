@@ -2,6 +2,7 @@
 # TIEMPO
 from datetime import datetime, time, timedelta, date
 from django.utils.timezone import now
+from dateutil.relativedelta import relativedelta
 
 # Modelos
 from apps.customers.models import CreditCounselor, Cobranza
@@ -12,6 +13,7 @@ from project.send_mail import send_email_recordatorio_cobranza
 
 def fechas_cobranzas():
     hoy = date.today()
+    hoy = hoy - relativedelta(1)
     hasta = hoy + timedelta(days=7)
 
     cobranzas = Cobranza.objects.filter(

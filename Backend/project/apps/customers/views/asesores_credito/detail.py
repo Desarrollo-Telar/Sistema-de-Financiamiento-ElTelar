@@ -32,8 +32,7 @@ from django.db.models.functions import Greatest, TruncDate
 # utils
 from .utils import porcentajes_cobranza
 
-def get_informe_usuario(request):
-    usuario = request.user
+def get_informe_usuario(usuario):
 
     informe, created =  Informe.objects.get_or_create(usuario=usuario, esta_activo=True)
 
@@ -112,11 +111,11 @@ class DetailInformeView(TemplateView):
         context = super().get_context_data(**kwargs)
         
 
-        user_code = self.request.user.user_code
+        user_code = kwargs.get("user_code")
         usuario = User.objects.filter(user_code=user_code).first()
         reporte_id = kwargs.get("id")
 
-        reporte_id = get_informe_usuario(self.request)
+        #reporte_id = get_informe_usuario(usuario)
 
         # Buscar el reporte
         reporte = get_object_or_404(Informe, id=reporte_id)

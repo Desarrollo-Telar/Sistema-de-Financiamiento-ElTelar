@@ -133,8 +133,8 @@ class CobranzaSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         from apps.financings.api.serializers import CreditSerializer, PaymentPlanSerializer
         credito_serializado = CreditSerializer(instance.credito).data if instance.credito else None
-        asesor_credito_serializado = CreditCounselorSerializer(instance.asesor_credito)  if instance.asesor_credito else None
-        cuota_serializado = PaymentPlanSerializer(instance.cuota) if instance.cuota else None
+        asesor_credito_serializado = CreditCounselorSerializer(instance.asesor_credito).data  if instance.asesor_credito else None
+        cuota_serializado = PaymentPlanSerializer(instance.cuota).data if instance.cuota else None
 
         return {
             "id":instance.id,
