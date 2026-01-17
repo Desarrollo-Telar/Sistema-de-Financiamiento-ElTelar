@@ -21,6 +21,10 @@ from datetime import datetime, timedelta
 from apps.actividades.utils import log_user_action, log_system_event
 from scripts.conversion_datos import model_to_dict, cambios_realizados
 
+import traceback
+from rest_framework import status
+from rest_framework.exceptions import ValidationError
+
 class PaymentViewSet(viewsets.ModelViewSet):
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
@@ -41,37 +45,80 @@ class PaymentViewSet(viewsets.ModelViewSet):
         return queryset
     
     def perform_create(self, serializer):
-        pago = serializer.save()
-        user = self.request.user
-        
-        log_user_action(
-            user=user,
-            action="Creación de pago",
-            details=f"Se creó el pago por un monto de {pago.monto}.",
-            request=self.request,
-            category_name="Pagos",
-            metadata=model_to_dict(pago)
-        )
+        try:
+            pago = serializer.save()
+            user = self.request.user
+            
+            log_user_action(
+                user=user,
+                action="Creación de pago",
+                details=f"Se creó el pago por un monto de {pago.monto}.",
+                request=self.request,
+                category_name="Pagos",
+                metadata=model_to_dict(pago)
+            )
+
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear el pago o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="PaymentViewSet.perform_create",
+                category_name="Pagos",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
     
     def perform_update(self, serializer):
-        instance = self.get_object()
-        previous_data = model_to_dict(instance)
-        pago = serializer.save()
-        new_data = model_to_dict(pago)
+        try:
+            instance = self.get_object()
+            previous_data = model_to_dict(instance)
+            pago = serializer.save()
+            new_data = model_to_dict(pago)
 
-        changes = {
-            "antes": previous_data,
-            "despues": new_data
-        }
+            changes = {
+                "antes": previous_data,
+                "despues": new_data
+            }
 
-        log_user_action(
-            user=self.request.user,
-            action="Actualización de pago",
-            details=f"Se actualizó el pago de tipo {pago.tipo_pago}.",
-            request=self.request,
-            category_name="Pagos",
-            metadata=changes
-        )
+            log_user_action(
+                user=self.request.user,
+                action="Actualización de pago",
+                details=f"Se actualizó el pago de tipo {pago.tipo_pago}.",
+                request=self.request,
+                category_name="Pagos",
+                metadata=changes
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear el pago o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="PaymentViewSet.perform_create",
+                category_name="Pagos",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
     
     def perform_destroy(self, instance):
         pago_data = model_to_dict(instance)

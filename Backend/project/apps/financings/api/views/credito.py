@@ -22,6 +22,10 @@ from datetime import datetime, timedelta
 from apps.actividades.utils import log_user_action, log_system_event
 from scripts.conversion_datos import model_to_dict, cambios_realizados
 
+import traceback
+from rest_framework import status
+from rest_framework.exceptions import ValidationError
+
 
 class CreditViewSet(viewsets.ModelViewSet):
     serializer_class = CreditSerializer
@@ -71,36 +75,78 @@ class CreditViewSet(viewsets.ModelViewSet):
         return queryset
     
     def perform_create(self, serializer):
-        credit = serializer.save()
-        user = self.request.user
-        log_user_action(
-            user=user,
-            action="Creación de crédito",
-            details=f"Se creó el crédito con código {credit.codigo_credito} por un monto de {credit.monto}.",
-            request=self.request,
-            category_name="Créditos",
-            metadata=model_to_dict(credit)
-        )
+        try:
+            credit = serializer.save()
+            user = self.request.user
+            log_user_action(
+                user=user,
+                action="Creación de crédito",
+                details=f"Se creó el crédito con código {credit.codigo_credito} por un monto de {credit.monto}.",
+                request=self.request,
+                category_name="Créditos",
+                metadata=model_to_dict(credit)
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear el credito o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CreditViewSet.perform_create",
+                category_name="Créditos",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
     
     def perform_update(self, serializer):
-        instance = self.get_object()
-        previous_data = model_to_dict(instance)
-        credit = serializer.save()
-        new_data = model_to_dict(credit)
+        try:
+            instance = self.get_object()
+            previous_data = model_to_dict(instance)
+            credit = serializer.save()
+            new_data = model_to_dict(credit)
 
-        changes = {
-            "antes": previous_data,
-            "despues": new_data
-        }
+            changes = {
+                "antes": previous_data,
+                "despues": new_data
+            }
 
-        log_user_action(
-            user=self.request.user,
-            action="Actualización de crédito",
-            details=f"Se actualizó el crédito con código {credit.codigo_credito}.",
-            request=self.request,
-            category_name="Créditos",
-            metadata=changes
-        )
+            log_user_action(
+                user=self.request.user,
+                action="Actualización de crédito",
+                details=f"Se actualizó el crédito con código {credit.codigo_credito}.",
+                request=self.request,
+                category_name="Créditos",
+                metadata=changes
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al actualizar el credito o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CreditViewSet.perform_create",
+                category_name="Créditos",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
 
     
     def perform_destroy(self, instance):
@@ -179,36 +225,78 @@ class CreditVigentesViewSet(viewsets.ModelViewSet):
         return queryset
     
     def perform_create(self, serializer):
-        credit = serializer.save()
-        user = self.request.user
-        log_user_action(
-            user=user,
-            action="Creación de crédito",
-            details=f"Se creó el crédito con código {credit.codigo_credito} por un monto de {credit.monto}.",
-            request=self.request,
-            category_name="Créditos",
-            metadata=model_to_dict(credit)
-        )
+        try:
+            credit = serializer.save()
+            user = self.request.user
+            log_user_action(
+                user=user,
+                action="Creación de crédito",
+                details=f"Se creó el crédito con código {credit.codigo_credito} por un monto de {credit.monto}.",
+                request=self.request,
+                category_name="Créditos",
+                metadata=model_to_dict(credit)
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear el credito o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CreditVigentesViewSet.perform_create",
+                category_name="Créditos",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
     
     def perform_update(self, serializer):
-        instance = self.get_object()
-        previous_data = model_to_dict(instance)
-        credit = serializer.save()
-        new_data = model_to_dict(credit)
+        try:
+            instance = self.get_object()
+            previous_data = model_to_dict(instance)
+            credit = serializer.save()
+            new_data = model_to_dict(credit)
 
-        changes = {
-            "before": previous_data,
-            "after": new_data
-        }
+            changes = {
+                "before": previous_data,
+                "after": new_data
+            }
 
-        log_user_action(
-            user=self.request.user,
-            action="Actualización de crédito",
-            details=f"Se actualizó el crédito con código {credit.codigo_credito}.",
-            request=self.request,
-            category_name="Créditos",
-            metadata=changes
-        )
+            log_user_action(
+                user=self.request.user,
+                action="Actualización de crédito",
+                details=f"Se actualizó el crédito con código {credit.codigo_credito}.",
+                request=self.request,
+                category_name="Créditos",
+                metadata=changes
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al actualizar el credito o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CreditVigentesViewSet.perform_create",
+                category_name="Créditos",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
 
     
     def perform_destroy(self, instance):
@@ -241,17 +329,13 @@ class CreditVigentesViewSet(viewsets.ModelViewSet):
             log_system_event(
                 message=f"Error al eliminar el crédito con código {codigo}: {str(e)}",
                 level_name="ERROR",
-                source="CreditViewSet.perform_destroy",
+                source="CreditVigentesViewSet.perform_destroy",
                 category_name="Créditos",
                 traceback=traceback.format_exc(),
                 metadata=credit_data
             )
             raise  # re-lanza el error para que DRF devuelva la respuesta HTTP 500
 
-
-from rest_framework import viewsets
-from rest_framework.exceptions import NotFound
-from django.db.models import Q
 
 class CreditVigentesCobranzaViewSet(viewsets.ModelViewSet):
     serializer_class = CreditSerializer
@@ -299,36 +383,78 @@ class CreditVigentesCobranzaViewSet(viewsets.ModelViewSet):
         return queryset
 
     def perform_create(self, serializer):
-        credit = serializer.save()
-        user = self.request.user
-        log_user_action(
-            user=user,
-            action="Creación de crédito",
-            details=f"Se creó el crédito con código {credit.codigo_credito} por un monto de {credit.monto}.",
-            request=self.request,
-            category_name="Créditos",
-            metadata=model_to_dict(credit)
-        )
+        try:
+            credit = serializer.save()
+            user = self.request.user
+            log_user_action(
+                user=user,
+                action="Creación de crédito",
+                details=f"Se creó el crédito con código {credit.codigo_credito} por un monto de {credit.monto}.",
+                request=self.request,
+                category_name="Créditos",
+                metadata=model_to_dict(credit)
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al crear el credito o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CreditVigentesCobranzaViewSet.perform_create",
+                category_name="Créditos",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
     
     def perform_update(self, serializer):
-        instance = self.get_object()
-        previous_data = model_to_dict(instance)
-        credit = serializer.save()
-        new_data = model_to_dict(credit)
+        try:
+            instance = self.get_object()
+            previous_data = model_to_dict(instance)
+            credit = serializer.save()
+            new_data = model_to_dict(credit)
 
-        changes = {
-            "before": previous_data,
-            "after": new_data
-        }
+            changes = {
+                "before": previous_data,
+                "after": new_data
+            }
 
-        log_user_action(
-            user=self.request.user,
-            action="Actualización de crédito",
-            details=f"Se actualizó el crédito con código {credit.codigo_credito}.",
-            request=self.request,
-            category_name="Créditos",
-            metadata=changes
-        )
+            log_user_action(
+                user=self.request.user,
+                action="Actualización de crédito",
+                details=f"Se actualizó el crédito con código {credit.codigo_credito}.",
+                request=self.request,
+                category_name="Créditos",
+                metadata=changes
+            )
+        except Exception as e:
+            # 3. Si algo falla, capturamos el error y el traceback
+            error_stack = traceback.format_exc()
+            
+            log_system_event(
+                message=f"Error al actualizar el credito o registrar log: {str(e)}",
+                level_name="ERROR",
+                source="CreditVigentesCobranzaViewSet.perform_create",
+                category_name="Créditos",
+                traceback=error_stack,
+                metadata={
+                    "request_data": self.request.data,
+                    "user_attempting": str(self.request.user)
+                }
+            )
+            
+            # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
+            raise ValidationError({
+                "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
+            })
 
     
     def perform_destroy(self, instance):
@@ -361,7 +487,7 @@ class CreditVigentesCobranzaViewSet(viewsets.ModelViewSet):
             log_system_event(
                 message=f"Error al eliminar el crédito con código {codigo}: {str(e)}",
                 level_name="ERROR",
-                source="CreditViewSet.perform_destroy",
+                source="CreditVigentesCobranzaViewSet.perform_destroy",
                 category_name="Créditos",
                 traceback=traceback.format_exc(),
                 metadata=credit_data
