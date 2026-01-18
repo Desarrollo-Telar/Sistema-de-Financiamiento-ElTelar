@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 # MODELS
 from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
-
+from django.db.models import Q
 # HISTORIAL Y BITACORA
 from apps.actividades.utils import log_user_action, log_system_event
 from scripts.conversion_datos import model_to_dict, cambios_realizados
@@ -20,6 +20,39 @@ from rest_framework.exceptions import ValidationError
 class WorkingInformationViewSet(viewsets.ModelViewSet):
     serializer_class = WorkingInformationSerializer
     queryset = WorkingInformation.objects.all()
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Obtener el término de búsqueda opcional
+        search_term = self.request.query_params.get('term', '')
+
+        # Obtener el mes de creación opcional
+        month = self.request.query_params.get('month', None)
+        year = self.request.query_params.get('year', None)
+
+        # Filtrar por término de búsqueda si existe
+        if search_term:
+            queryset = queryset.filter(
+                
+                Q(customer_id__id__icontains=search_term)
+            )
+
+        # Filtrar por mes y año si se proporcionan
+        if month and year:
+            try:
+                # Validar que el mes y el año son valores válidos
+                month = int(month)
+                year = int(year)
+                queryset = queryset.filter(
+                    created_at__year=year,
+                    created_at__month=month
+                )
+            except ValueError:
+                # Si los valores no son válidos, se ignora el filtro de mes/año
+                pass
+
+        return queryset
 
     def perform_create(self, serializer):
         try:
@@ -142,6 +175,40 @@ class OtherSourcesOfIncomeViewSet(viewsets.ModelViewSet):
     serializer_class = OtherSourcesOfIncomeSerializer
     queryset = OtherSourcesOfIncome.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Obtener el término de búsqueda opcional
+        search_term = self.request.query_params.get('term', '')
+
+        # Obtener el mes de creación opcional
+        month = self.request.query_params.get('month', None)
+        year = self.request.query_params.get('year', None)
+
+        # Filtrar por término de búsqueda si existe
+        if search_term:
+            queryset = queryset.filter(
+                
+                Q(customer_id__id__icontains=search_term)
+            )
+
+        # Filtrar por mes y año si se proporcionan
+        if month and year:
+            try:
+                # Validar que el mes y el año son valores válidos
+                month = int(month)
+                year = int(year)
+                queryset = queryset.filter(
+                    created_at__year=year,
+                    created_at__month=month
+                )
+            except ValueError:
+                # Si los valores no son válidos, se ignora el filtro de mes/año
+                pass
+
+        return queryset
+
+
     def perform_create(self, serializer):
         try:
             
@@ -262,6 +329,40 @@ class OtherSourcesOfIncomeViewSet(viewsets.ModelViewSet):
 class ReferenceViewSet(viewsets.ModelViewSet):
     serializer_class = ReferenceSerializer
     queryset = Reference.objects.all()
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Obtener el término de búsqueda opcional
+        search_term = self.request.query_params.get('term', '')
+
+        # Obtener el mes de creación opcional
+        month = self.request.query_params.get('month', None)
+        year = self.request.query_params.get('year', None)
+
+        # Filtrar por término de búsqueda si existe
+        if search_term:
+            queryset = queryset.filter(
+                
+                Q(customer_id__id__icontains=search_term)
+            )
+
+        # Filtrar por mes y año si se proporcionan
+        if month and year:
+            try:
+                # Validar que el mes y el año son valores válidos
+                month = int(month)
+                year = int(year)
+                queryset = queryset.filter(
+                    created_at__year=year,
+                    created_at__month=month
+                )
+            except ValueError:
+                # Si los valores no son válidos, se ignora el filtro de mes/año
+                pass
+
+        return queryset
+
 
     def perform_create(self, serializer):
         try:

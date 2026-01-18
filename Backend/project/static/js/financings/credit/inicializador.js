@@ -245,9 +245,9 @@ $(document).ready(function () {
         placeholder: 'Seleccione un Cliente',
         minimumInputLength: 1
     });
-    async function fetchInformacion_laboral() {
+    async function fetchInformacion_laboral(valor) {
 
-        return fetch(urls_p.api_url_informacion_laboral)
+        return fetch(`${urls_p.api_url_informacion_laboral}?term=${valor}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error al momento de obtener informacion laboral ' + response.statusText);
@@ -264,9 +264,9 @@ $(document).ready(function () {
             });
 
     }
-    async function fetchOtraInformacion_laboral() {
+    async function fetchOtraInformacion_laboral(valor) {
 
-        return fetch(urls_p.api_url_otra_informacion_laboral)
+        return fetch(`${urls_p.api_url_otra_informacion_laboral}?term=${valor}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error al momento de obtener informacion laboral ' + response.statusText);
@@ -285,28 +285,42 @@ $(document).ready(function () {
     }
 
     async function filtro(valor) {
-        try {
-            const laboral = await fetchInformacion_laboral();
-            const otra = await fetchOtraInformacion_laboral();
+    try {
+        console.log('Filtrando...'+valor)
+        const laboral = await fetchInformacion_laboral(valor);
+        const otra = await fetchOtraInformacion_laboral(valor);
 
-            let filterList = [];
+        let filterList = [];
 
-            if (laboral && laboral.length > 0) {
-                filterList = laboral.filter(item => item['customer_id'] === valor);
-            }
-
-            if (filterList.length === 0 && otra && otra.length > 0) {
-                filterList = otra.filter(item => item['customer_id'] === valor);
-            }
-
-            console.log(filterList);
-            return filterList;
-
-        } catch (error) {
-            console.error('Error en el filtro', error);
-            throw error;
+        // Cambiamos la lógica del filtro para acceder al .id del objeto cliente
+        if (laboral && laboral.length > 0) {
+            filterList = laboral.filter(item => {
+                console.log(item)
+                // Si customer_id es un objeto, comparamos su ID interno
+                const customerId = item['customer_id'] && typeof item['customer_id'] === 'object' 
+                                   ? item['customer_id'].id 
+                                   : item['customer_id'];
+                return customerId === valor;
+            });
         }
+
+        if (filterList.length === 0 && otra && otra.length > 0) {
+            filterList = otra.filter(item => {
+                const customerId = item['customer_id'] && typeof item['customer_id'] === 'object' 
+                                   ? item['customer_id'].id 
+                                   : item['customer_id'];
+                return customerId === valor;
+            });
+        }
+
+        console.log("Resultado del filtro:", filterList);
+        return filterList;
+
+    } catch (error) {
+        console.error('Error en el filtro', error);
+        throw error;
     }
+}
 
 
     $(".customer_id_fiador").on('select2:select', async function (e) {

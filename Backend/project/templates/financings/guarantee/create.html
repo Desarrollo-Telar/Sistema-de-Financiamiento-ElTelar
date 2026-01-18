@@ -23,11 +23,11 @@
         <div class="form-group" style="margin-top: 2rem;">
             <label class="fw-medium" for="tipo_garantia">Tipo de Garantia</label>
             <select class="form-select" id="tipo_garantia">
-                <option selected>------------</option>
+                <option selected value="0">------------</option>
                 <option value="HIPOTECA">HIPOTECA</option>
                 <option value="DERECHO DE POSESIÓN HIPOTECA">DERECHO DE POSESIÓN HIPOTECA</option>
                 <option value="FIADOR">FIADOR</option>
-                <option value="CHEQUE">CHEQUE</option>
+                <option value="CHEQUE / PAGARE">CHEQUE / PAGARE</option>
                 <option value="VEHICULO">VEHICULO</option>
                 <option value="MOBILIARIA">MOBILIARIA</option>
             </select>
@@ -83,7 +83,16 @@
     const fiador = document.getElementById('fiador');
     const mobiliaria = document.getElementById('mobiliaria');
     const vehiculo = document.getElementById('vehiculo');
+    const protocolo = window.location.protocol;
+      const dominio = window.location.hostname;
+      const puerto = window.location.port;
+      const baseUrl = `${protocolo}//${dominio}${puerto ? `:${puerto}` : ''}`;
 
+    const api_url_cliente = `${baseUrl}/customers/api/customers/`
+    const api_url_credit = `${baseUrl}/financings/api/credit/`
+    const api_url_informacion_laboral = `${baseUrl}/financial_information/api/working_information/`
+    const api_url_otra_informacion_laboral = `${baseUrl}/financial_information/api/other_sources/`
+    
     tipo_garantia.addEventListener('change', function (event) {
         const valor = event.target.value;
         if (valor === 'HIPOTECA') {
@@ -111,7 +120,7 @@
             ocultar(mobiliaria);
             ocultar(vehiculo);
 
-        } else if (valor === 'CHEQUE') {
+        } else if (valor === 'CHEQUE / PAGARE') {
             ocultar(hipoteca);
             ocultar(derecho_posesion);
             mostrar(cheque);
@@ -159,7 +168,7 @@
         $(".credit").select2({
             width: 'resolve',
             ajax: {
-                url: 'https://www.ii-eltelarsa.com/financings/api/credit/',
+                url: api_url_credit,
                 dataType: 'json',
                 delay: 250,
                 processResults: function (data) {
@@ -187,6 +196,150 @@
             placeholder: 'Seleccione un Credito',
             minimumInputLength: 1
         });
+        $(".customer_id_fiador").select2({
+        width: 'resolve',
+        ajax: {
+            url:  api_url_cliente,
+
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                console.log(data);
+                // Verificar si 'data' es un array de objetos
+                if (Array.isArray(data)) {
+                    return {
+                        results: data.map(function (item) {
+                            return {
+                                id: item.id,
+                                text: item.customer_code + ' ' + item.first_name + ' ' + item.last_name
+                            };
+                        })
+                    };
+                } else {
+                    console.error('Estructura de datos inesperada:', data);
+                    return {
+                        results: []
+                    };
+                }
+            },
+            cache: true
+        },
+        placeholder: 'Seleccione un Cliente',
+        minimumInputLength: 1
+    });
+    async function fetchInformacion_laboral(valor) {
+
+        return fetch(`${api_url_informacion_laboral}?term=${valor}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al momento de obtener informacion laboral ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Lista de clientes de informacion laboral obtenida:', data);
+                return data; // Puedes devolver los datos si necesitas hacer algo con ellos
+            })
+            .catch(error => {
+                console.error('Error al obtener la lista de clientes:', error);
+                throw error; // Puedes relanzar el error para manejarlo en otra parte de tu aplicación si es necesario
+            });
+
+    }
+    async function fetchOtraInformacion_laboral(valor) {
+
+        return fetch(`${api_url_otra_informacion_laboral}?term=${valor}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al momento de obtener informacion laboral ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Lista de clientes obtenida:', data);
+                return data; // Puedes devolver los datos si necesitas hacer algo con ellos
+            })
+            .catch(error => {
+                console.error('Error al obtener la lista de clientes:', error);
+                throw error; // Puedes relanzar el error para manejarlo en otra parte de tu aplicación si es necesario
+            });
+
+    }
+
+    async function filtro(valor) {
+    try {
+        console.log('Filtrando...'+valor)
+        const laboral = await fetchInformacion_laboral(valor);
+        const otra = await fetchOtraInformacion_laboral(valor);
+
+        let filterList = [];
+
+        // Cambiamos la lógica del filtro para acceder al .id del objeto cliente
+        if (laboral && laboral.length > 0) {
+            filterList = laboral.filter(item => {
+                console.log(item)
+                // Si customer_id es un objeto, comparamos su ID interno
+                const customerId = item['customer_id'] && typeof item['customer_id'] === 'object' 
+                                   ? item['customer_id'].id 
+                                   : item['customer_id'];
+                return customerId === valor;
+            });
+        }
+
+        if (filterList.length === 0 && otra && otra.length > 0) {
+            filterList = otra.filter(item => {
+                const customerId = item['customer_id'] && typeof item['customer_id'] === 'object' 
+                                   ? item['customer_id'].id 
+                                   : item['customer_id'];
+                return customerId === valor;
+            });
+        }
+
+        console.log("Resultado del filtro:", filterList);
+        return filterList;
+
+    } catch (error) {
+        console.error('Error en el filtro', error);
+        throw error;
+    }
+}
+
+
+    $(".customer_id_fiador").on('select2:select', async function (e) {
+        var data = e.params.data;
+        var clienteId = data.id;
+        var codigo_cliente = document.getElementById('fiador_codigo_cliente');
+        var telefono = document.getElementById('telefono2');
+        var lugar_trabajo = document.getElementById('lugar_trabajo');
+        var ingreso = document.getElementById('ingreso');
+
+        try {
+            const laboral = await filtro(clienteId);
+            laboral.forEach(element => {
+                if (element.company_name) {
+                    lugar_trabajo.value = element.company_name;
+
+                } else {
+                    lugar_trabajo.value = element.source_of_income;
+                }
+
+                ingreso.value = element.salary;
+                console.log(element);
+            });
+
+            // Realizar una solicitud para obtener detalles adicionales del cliente
+            const response = await fetch(`${api_url_cliente}${clienteId}/`);
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud: ${response.statusText}`);
+            }
+            const clienteDetalles = await response.json();
+            codigo_cliente.value = clienteDetalles.customer_code;
+            telefono.value = clienteDetalles.telephone;
+            // Aquí puedes usar los detalles de cliente para llenar otros campos, como lugar_trabajo e ingreso
+        } catch (error) {
+            console.error('Error obteniendo detalles del cliente:', error);
+        }
+    });
     });
 
 
