@@ -4,7 +4,7 @@ from django.dispatch import receiver
 
 # MODELOS
 from apps.financings.models import  Credit, PaymentPlan
-
+from apps.customers.models import Cobranza
 # CLASES
 from apps.financings.calculos import calcular_fecha_maxima, calcular_fecha_vencimiento, calculo_mora, calculo_interes
 
@@ -36,6 +36,15 @@ def codigo(instance):
 def generar_codigo(sender, instance, **kwargs):
     codigo(instance)
     instance.fecha_actualizacion = datetime.now().date()
+
+    if instance.is_paid_off:
+        cobranza = Cobranza.objects.filter(credito__id = instance.id).order_by('-id').first()
+        
+        if cobranza is not None:
+            cobranza.resultado = 'Pago realizado'
+            cobranza.estado_cobranza = 'COMPLETADO'
+            cobranza.save()
+
 
 # LA CREACION DE LA PRIMERA CUOTA DE UN CREDITO
 @receiver(post_save, sender=Credit)

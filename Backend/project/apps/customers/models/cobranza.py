@@ -99,17 +99,22 @@ class Cobranza(models.Model):
            
         
         if dias < 0:
+            if self.credito.is_paid_off:
+                self.resultado = 'Pago realizado'
+                self.estado_cobranza = 'COMPLETADO'
+                self.save()
+                
             self.resultado = 'Negativa de pago'            
             self.observaciones = 'El cliente no se ha presentado segun lo gestionado.'
 
             if self.estado_cobranza != 'INCUMPLIDO':
                 self.estado_cobranza = 'INCUMPLIDO'
-                #self.save()
+                self.save()
         else:
             if self.estado_cobranza != 'PENDIENTE':
                 self.estado_cobranza = 'PENDIENTE'
                 self.resultado = 'Promesa de pago'                
-                #self.save()
+                self.save()
 
         return dias
 
