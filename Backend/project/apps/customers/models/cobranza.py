@@ -85,6 +85,10 @@ class Cobranza(models.Model):
     def calcular_dias(self):
         hoy = timezone.now().date()
         dias = None
+        recibo = self.ver_recibo()
+
+        if recibo is not None:
+            return dias
 
         if self.estado_cobranza == 'COMPLETADO':
             return dias
