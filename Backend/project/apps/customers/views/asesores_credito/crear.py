@@ -102,18 +102,7 @@ def registrar_cobranza_detalle_existente(detalle_existente, fcobranza, asesor_au
     cobranza_existente.save()
     return cobranza_existente
 
-
-@login_required
-@permiso_requerido('puede_crear_registro_cobranza')
-def creacion_cobranza(request):
-    template_name = 'cobranza/create.html'
-    dia = datetime.now().date()
-
-    credito_q = Credit.objects.filter(id=request.GET.get('q')).first()
-    rol = request.user.rol.role_name
-    user_code = request.user.user_code
-
-    
+def obtener_informe(request):
     informe_usuario = Informe.objects.filter(
         usuario=request.user,
         esta_activo=True
@@ -125,54 +114,58 @@ def creacion_cobranza(request):
             esta_activo=True,
             nombre_reporte=f'INVERSIONES INTEGRALES EL TELAR'
         )
+    
+    return informe_usuario
+
+
+
+@login_required
+@permiso_requerido('puede_crear_registro_cobranza')
+def creacion_cobranza(request):
+    template_name = 'cobranza/create.html'
+    dia = datetime.now().date()
+    credito_q = Credit.objects.filter(id=request.GET.get('q')).first()
+    rol = request.user.rol.role_name
+    
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
-    sucursal = request.session['sucursal_id']
-    sucursal = Subsidiary.objects.get(id=sucursal)
-
     
+    sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
+
     if asesor_autenticado is None:
         return redirect('index')
     
-   
-
     if request.method == 'POST':
         form = CobranzaForms(request.POST)
 
         if form.is_valid():
-            fcobranza = form.save(commit=False) # SE PAUSA EL REGISTRO
             
+            user_code = request.user.user_code
+            informe_usuario = obtener_informe(request)
+            fcobranza = form.save(commit=False) # SE PAUSA EL REGISTRO            
             archivos = request.FILES.getlist('archivos[]')
 
-            
             # OBTENER INFORMACION DEL CREDITO DE ESTA COBRANZA
             if credito_q is not None:
                 credito = credito_q
             else:
                 credito = Credit.objects.filter(id=fcobranza.credito.id).first()
-
-           
-
+            
             # PARA OBTENER LA CUOTA ACTUAL
             info_cuota = obtener_cuota(dia, credito)
 
             fecha_cobranza = info_cuota.limite_cobranza_oficina()
             asesor_de_credito = credito.asesor_de_credito
-            
-            
-            
-            
+
+            # Mensaje de error si el credito esta cancelado
             if credito.is_paid_off:
                 messages.error(request, 'El Credito se encuentra Cancelado, no se puede realizar ninguna gestión de cobranza.')
                 return redirect('financings:detail_credit', credito.id)
 
-
-
-            
-            
             informe_reporte = obtener_informe_asesor(credito, asesor_autenticado)
 
-            detalle_existente = DetalleInformeCobranza.objects.filter(reporte=informe_reporte,cobranza__credito=credito).first() # POR SI VIENEN DE LA VISTA DETALLE DEL CREDITO
+            # POR SI VIENEN DE LA VISTA DETALLE DEL CREDITO
+            detalle_existente = DetalleInformeCobranza.objects.filter(reporte=informe_reporte,cobranza__credito=credito).first() 
 
             detalle_info_e =  DetalleInformeCobranza.objects.filter(reporte=informe_usuario,cobranza__credito=credito).first()
             cobranza = None
@@ -199,8 +192,7 @@ def creacion_cobranza(request):
                 else:
                     fcobranza.fecha_seguimiento = None
                     fcobranza.fecha_promesa_pago = fecha
-
-
+                
                 fcobranza.fecha_limite_cuota = info_cuota.mostrar_fecha_limite().date()
                 fcobranza.cuota = info_cuota
                 fcobranza.asesor_credito = asesor_autenticado
@@ -214,7 +206,7 @@ def creacion_cobranza(request):
                         cobranza = cobranza
                     )
 
-            if detalle_info_e:
+            if detalle_info_e is not None:
                 detalle_info_e.cobranza = cobranza
                 detalle_info_e.save()
 
@@ -224,16 +216,12 @@ def creacion_cobranza(request):
                     cobranza = cobranza
                 )
 
-            if  archivos:
+            if archivos:
                 for f in archivos:
                     DocumentoCobranza.objects.create(
                         cobranza=cobranza,
                         archivo=f
                     )
-
-
-
-            
             log_user_action(
                 request.user,
                 'Registro de Cobranza',
@@ -251,15 +239,10 @@ def creacion_cobranza(request):
         form = CobranzaForms()
         if credito_q is not None:
             form = CobranzaForms(initial={'credito': credito_q})
-        
-        
-
-            
 
     context = {
-        'title': f'Registro de Cobranza | {asesor_autenticado} |',
+        'title': f'Registro de Cobranza',
         'form': form,
         'permisos':recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
-
