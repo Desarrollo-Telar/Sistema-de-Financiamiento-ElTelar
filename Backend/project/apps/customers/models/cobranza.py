@@ -114,12 +114,12 @@ class Cobranza(models.Model):
                 self.estado_cobranza = 'INCUMPLIDO'
                 self.resultado = 'Negativa de pago'            
                 self.observaciones = 'El cliente no se ha presentado segun lo gestionado.'
-                self.save()
+                #self.save()
         else:
             if self.estado_cobranza != 'PENDIENTE':
                 self.estado_cobranza = 'PENDIENTE'
                 self.resultado = 'Promesa de pago'                
-                self.save()
+                #self.save()
 
         return dias
 
@@ -213,7 +213,7 @@ class Cobranza(models.Model):
         puntuacion = 1
 
         if self.estado_cobranza == 'COMPLETADO':
-            puntuacion = 3
+            puntuacion = 5
         elif self.estado_cobranza == 'PENDIENTE':
             puntuacion = 2
         else:
