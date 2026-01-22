@@ -40,11 +40,11 @@ def generar_codigo(sender, instance, **kwargs):
     if instance.is_paid_off:
         cobranza = Cobranza.objects.filter(credito__id = instance.id).order_by('-id').first()
         
-        """if cobranza is not None:
+        if cobranza is not None:
             if cobranza.estado_cobranza != 'COMPLETADO':
                 cobranza.resultado = 'Pago realizado'
                 cobranza.estado_cobranza = 'COMPLETADO'
-                cobranza.save()"""
+                cobranza.save()
 
 
 # LA CREACION DE LA PRIMERA CUOTA DE UN CREDITO
