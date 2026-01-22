@@ -148,8 +148,7 @@ class DetailInformeView(TemplateView):
             'estado_cobranza': self.request.GET.get("estado_cobranza", ""),
             'user_code':usuario.user_code,
             'usuario':usuario,
-            'form': CobranzaForms(),
-            'ver_completados':ver_completados
+            'form': CobranzaForms()
             
            
             

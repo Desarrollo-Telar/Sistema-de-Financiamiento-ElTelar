@@ -4,7 +4,8 @@
     "pk": 1,
     "fields": {
         "nombre": "Alta Verapaz",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -12,7 +13,8 @@
     "pk": 2,
     "fields": {
         "nombre": "Baja Verapaz",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -20,7 +22,8 @@
     "pk": 3,
     "fields": {
         "nombre": "Chimaltenango",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -28,7 +31,8 @@
     "pk": 4,
     "fields": {
         "nombre": "Chiquimula",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -36,7 +40,8 @@
     "pk": 5,
     "fields": {
         "nombre": "El Progreso",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -44,7 +49,8 @@
     "pk": 6,
     "fields": {
         "nombre": "Escuintla",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -52,7 +58,8 @@
     "pk": 7,
     "fields": {
         "nombre": "Guatemala",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -60,7 +67,8 @@
     "pk": 8,
     "fields": {
         "nombre": "Huehuetenango",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -68,7 +76,8 @@
     "pk": 9,
     "fields": {
         "nombre": "Izabal",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -76,7 +85,8 @@
     "pk": 10,
     "fields": {
         "nombre": "Jalapa",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -84,7 +94,8 @@
     "pk": 11,
     "fields": {
         "nombre": "Jutiapa",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -92,7 +103,8 @@
     "pk": 12,
     "fields": {
         "nombre": "Peten",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -100,7 +112,8 @@
     "pk": 13,
     "fields": {
         "nombre": "Quetzaltenango",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -108,7 +121,8 @@
     "pk": 14,
     "fields": {
         "nombre": "Quiche",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -116,7 +130,8 @@
     "pk": 15,
     "fields": {
         "nombre": "Retalhuleu",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -124,7 +139,8 @@
     "pk": 16,
     "fields": {
         "nombre": "Sacatepequez",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -132,7 +148,8 @@
     "pk": 17,
     "fields": {
         "nombre": "San Marcos",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -140,7 +157,8 @@
     "pk": 18,
     "fields": {
         "nombre": "Santa Rosa",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -148,7 +166,8 @@
     "pk": 19,
     "fields": {
         "nombre": "Solola",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -156,7 +175,8 @@
     "pk": 20,
     "fields": {
         "nombre": "Suchitepquez",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -164,7 +184,8 @@
     "pk": 21,
     "fields": {
         "nombre": "Totonicapan",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 },
 {
@@ -172,7 +193,8 @@
     "pk": 22,
     "fields": {
         "nombre": "Zacapa",
-        "codigo_postal": null
+        "codigo_postal": null,
+        "creation_date": "2026-01-17T23:23:23.681Z"
     }
 }
 ]

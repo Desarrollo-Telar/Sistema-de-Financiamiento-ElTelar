@@ -13,7 +13,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "SALARIO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 5
+        "customer_id": 5,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -30,7 +31,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 7
+        "customer_id": 7,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -47,7 +49,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 8
+        "customer_id": 8,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -64,7 +67,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 9
+        "customer_id": 9,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -81,7 +85,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 10
+        "customer_id": 10,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -98,7 +103,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 11
+        "customer_id": 11,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -115,7 +121,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 12
+        "customer_id": 12,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -132,7 +139,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 13
+        "customer_id": 13,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -149,7 +157,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 14
+        "customer_id": 14,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -166,7 +175,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 15
+        "customer_id": 15,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -183,7 +193,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "JUBILADA",
         "employment_status": "Jubilado",
-        "customer_id": 16
+        "customer_id": 16,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -200,7 +211,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 17
+        "customer_id": 17,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -217,7 +229,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 18
+        "customer_id": 18,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -234,7 +247,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 19
+        "customer_id": 19,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -251,7 +265,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 20
+        "customer_id": 20,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -268,7 +283,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTO MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 21
+        "customer_id": 21,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -285,7 +301,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 23
+        "customer_id": 23,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -302,7 +319,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "3 MIL DE COMISIONES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 24
+        "customer_id": 24,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -319,7 +337,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 25
+        "customer_id": 25,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -336,7 +355,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 28
+        "customer_id": 28,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -353,7 +373,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 29
+        "customer_id": 29,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -370,7 +391,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS  MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 30
+        "customer_id": 30,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -387,7 +409,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 31
+        "customer_id": 31,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -404,7 +427,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 32
+        "customer_id": 32,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -421,7 +445,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 33
+        "customer_id": 33,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -438,7 +463,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 34
+        "customer_id": 34,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -455,7 +481,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 35
+        "customer_id": 35,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -472,7 +499,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "VENTA AMBULANTE",
         "employment_status": "Autnomo",
-        "customer_id": 36
+        "customer_id": 36,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -489,24 +517,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 37
-    }
-},
-{
-    "model": "FinancialInformation.workinginformation",
-    "pk": 35,
-    "fields": {
-        "position": "ASESOR DE VENTAS",
-        "company_name": "CELASA",
-        "start_date": "2024-07-18",
-        "description": "",
-        "salary": "5500.00",
-        "working_hours": "VESPERTINA",
-        "phone_number": "77747777",
-        "source_of_income": "Relacin de Dependencia",
-        "income_detail": "PAGOS MENSUALES",
-        "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 38
+        "customer_id": 37,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -523,7 +535,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 40
+        "customer_id": 40,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -540,7 +553,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 41
+        "customer_id": 41,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -557,7 +571,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "NEGOCIO PROPIO",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 42
+        "customer_id": 42,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -574,7 +589,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 43
+        "customer_id": 43,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -591,7 +607,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGOS MENSUALES, SEDE CENTRAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 44
+        "customer_id": 44,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -608,7 +625,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 46
+        "customer_id": 46,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -625,7 +643,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Autnomo",
-        "customer_id": 47
+        "customer_id": 47,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -642,7 +661,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 49
+        "customer_id": 49,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -659,7 +679,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 50
+        "customer_id": 50,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -676,7 +697,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "CAPITAL DE TRABAJ0",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 51
+        "customer_id": 51,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -693,7 +715,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 52
+        "customer_id": 52,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -710,7 +733,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 53
+        "customer_id": 53,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -727,7 +751,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 54
+        "customer_id": 54,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -744,7 +769,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 55
+        "customer_id": 55,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -761,7 +787,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 56
+        "customer_id": 56,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -778,7 +805,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 57
+        "customer_id": 57,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -795,7 +823,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 58
+        "customer_id": 58,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -812,7 +841,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 59
+        "customer_id": 59,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -829,7 +859,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASSTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 60
+        "customer_id": 60,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -846,7 +877,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 61
+        "customer_id": 61,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -863,7 +895,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "Consultoras  Q 20,000 anual",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 62
+        "customer_id": 62,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -880,7 +913,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "Gastos mensuales",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 63
+        "customer_id": 63,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -897,7 +931,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 65
+        "customer_id": 65,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -914,7 +949,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 66
+        "customer_id": 66,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -931,7 +967,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 67
+        "customer_id": 67,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -948,7 +985,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 68
+        "customer_id": 68,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -965,7 +1003,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 69
+        "customer_id": 69,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -982,7 +1021,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 70
+        "customer_id": 70,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -999,7 +1039,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 71
+        "customer_id": 71,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1016,7 +1057,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 72
+        "customer_id": 72,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1033,7 +1075,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 73
+        "customer_id": 73,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1050,7 +1093,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 74
+        "customer_id": 74,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1067,7 +1111,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 75
+        "customer_id": 75,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1084,7 +1129,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 76
+        "customer_id": 76,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1101,7 +1147,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 77
+        "customer_id": 77,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1118,7 +1165,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 78
+        "customer_id": 78,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1135,7 +1183,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 79
+        "customer_id": 79,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1152,7 +1201,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 81
+        "customer_id": 81,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1169,7 +1219,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS PERSONALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 82
+        "customer_id": 82,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1186,7 +1237,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 83
+        "customer_id": 83,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1203,7 +1255,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 84
+        "customer_id": 84,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1220,7 +1273,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 86
+        "customer_id": 86,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1237,7 +1291,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 87
+        "customer_id": 87,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1254,7 +1309,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 89
+        "customer_id": 89,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1271,7 +1327,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 90
+        "customer_id": 90,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1288,7 +1345,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 91
+        "customer_id": 91,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1305,7 +1363,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 92
+        "customer_id": 92,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1322,7 +1381,8 @@
         "source_of_income": "Relacin de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 93
+        "customer_id": 93,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1339,7 +1399,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 94
+        "customer_id": 94,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1356,7 +1417,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 96
+        "customer_id": 96,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1373,7 +1435,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 97
+        "customer_id": 97,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1390,7 +1453,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 98
+        "customer_id": 98,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1407,7 +1471,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 99
+        "customer_id": 99,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1424,7 +1489,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 100
+        "customer_id": 100,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1441,7 +1507,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 101
+        "customer_id": 101,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1458,7 +1525,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 102
+        "customer_id": 102,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1475,7 +1543,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 103
+        "customer_id": 103,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1492,7 +1561,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 104
+        "customer_id": 104,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1509,7 +1579,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 105
+        "customer_id": 105,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1526,24 +1597,26 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 106
+        "customer_id": 106,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
     "model": "FinancialInformation.workinginformation",
     "pk": 97,
     "fields": {
-        "position": "SUPERVISORA",
-        "company_name": "LECLEIRE",
-        "start_date": "2023-08-18",
+        "position": "NEGOCIO PROPIO",
+        "company_name": "BEAUTY ALEJOS",
+        "start_date": "2022-09-08",
         "description": "",
-        "salary": "60000.00",
+        "salary": "18000.00",
         "working_hours": "VESPERTINA",
-        "phone_number": "30087246",
-        "source_of_income": "Relación de Dependencia",
-        "income_detail": "PAGO MENSUAL",
-        "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 107
+        "phone_number": "0",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Desempleado",
+        "customer_id": 107,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1560,7 +1633,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Autónomo",
-        "customer_id": 108
+        "customer_id": 108,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1577,7 +1651,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 109
+        "customer_id": 109,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1594,7 +1669,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 110
+        "customer_id": 110,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1611,7 +1687,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 111
+        "customer_id": 111,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1628,7 +1705,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 112
+        "customer_id": 112,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1645,7 +1723,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 113
+        "customer_id": 113,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1662,7 +1741,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 114
+        "customer_id": 114,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1679,7 +1759,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "OTROS INGRESOS Q.5686.00\r\nPAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 115
+        "customer_id": 115,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1696,7 +1777,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Autónomo",
-        "customer_id": 116
+        "customer_id": 116,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1713,7 +1795,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 117
+        "customer_id": 117,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1730,7 +1813,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 118
+        "customer_id": 118,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1747,7 +1831,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 119
+        "customer_id": 119,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1764,7 +1849,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 120
+        "customer_id": 120,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1781,7 +1867,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 121
+        "customer_id": 121,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1798,7 +1885,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 123
+        "customer_id": 123,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1815,7 +1903,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 124
+        "customer_id": 124,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1832,7 +1921,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "OTROS INGRESOS, REMESAS POR UN MONTO DE Q.7000.00",
         "employment_status": "Autónomo",
-        "customer_id": 125
+        "customer_id": 125,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1849,7 +1939,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 126
+        "customer_id": 126,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1866,7 +1957,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO  MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 127
+        "customer_id": 127,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1883,7 +1975,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 128
+        "customer_id": 128,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1900,7 +1993,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 129
+        "customer_id": 129,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1917,7 +2011,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 130
+        "customer_id": 130,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1934,7 +2029,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 131
+        "customer_id": 131,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1951,7 +2047,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 132
+        "customer_id": 132,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1968,7 +2065,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 133
+        "customer_id": 133,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -1985,7 +2083,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 134
+        "customer_id": 134,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2002,7 +2101,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 135
+        "customer_id": 135,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2019,7 +2119,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 136
+        "customer_id": 136,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2036,7 +2137,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 137
+        "customer_id": 137,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2053,7 +2155,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 138
+        "customer_id": 138,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2070,7 +2173,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 139
+        "customer_id": 139,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2087,7 +2191,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 140
+        "customer_id": 140,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2104,7 +2209,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 141
+        "customer_id": 141,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2121,7 +2227,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "OTROS INGRESOS DE 12.000.00\r\nINGRESOS POR ASESORIA UNIVERSITARIA 6000.00",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 142
+        "customer_id": 142,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2138,7 +2245,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Autónomo",
-        "customer_id": 143
+        "customer_id": 143,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2155,7 +2263,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 144
+        "customer_id": 144,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2172,7 +2281,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 145
+        "customer_id": 145,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2189,7 +2299,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 146
+        "customer_id": 146,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2206,7 +2317,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 147
+        "customer_id": 147,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2223,7 +2335,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 149
+        "customer_id": 149,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2240,7 +2353,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 150
+        "customer_id": 150,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2257,7 +2371,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GASTOS VARIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 151
+        "customer_id": 151,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2274,7 +2389,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 152
+        "customer_id": 152,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2291,7 +2407,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 153
+        "customer_id": 153,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2308,7 +2425,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 154
+        "customer_id": 154,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2325,7 +2443,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 155
+        "customer_id": 155,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2342,7 +2461,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 156
+        "customer_id": 156,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2359,7 +2479,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 157
+        "customer_id": 157,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2376,7 +2497,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 158
+        "customer_id": 158,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2393,7 +2515,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 159
+        "customer_id": 159,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2410,7 +2533,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 160
+        "customer_id": 160,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2427,7 +2551,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO DE INTERES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 161
+        "customer_id": 161,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2444,7 +2569,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 162
+        "customer_id": 162,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2461,7 +2587,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 163
+        "customer_id": 163,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2478,7 +2605,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 164
+        "customer_id": 164,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2495,7 +2623,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 165
+        "customer_id": 165,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2512,7 +2641,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 166
+        "customer_id": 166,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2529,7 +2659,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 167
+        "customer_id": 167,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2546,7 +2677,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "SALARIO MENSUAL PAGO 25 DE CADA MES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 168
+        "customer_id": 168,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2563,7 +2695,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "ENCARGADA DE TIENDA",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 169
+        "customer_id": 169,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2580,7 +2713,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "RECEPTORA MINI MUNI PLAZA DEL PARQUE",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 170
+        "customer_id": 170,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2597,7 +2731,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 171
+        "customer_id": 171,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2614,7 +2749,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 172
+        "customer_id": 172,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2631,7 +2767,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 173
+        "customer_id": 173,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2648,7 +2785,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GASTOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 174
+        "customer_id": 174,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2665,7 +2803,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 175
+        "customer_id": 175,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2682,7 +2821,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 176
+        "customer_id": 176,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2699,7 +2839,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 177
+        "customer_id": 177,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2716,7 +2857,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 178
+        "customer_id": 178,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2733,7 +2875,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 179
+        "customer_id": 179,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2750,7 +2893,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 180
+        "customer_id": 180,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2767,7 +2911,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 181
+        "customer_id": 181,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2784,7 +2929,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGO MENSUAL",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 182
+        "customer_id": 182,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2801,7 +2947,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 183
+        "customer_id": 183,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2818,7 +2965,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 184
+        "customer_id": 184,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2835,7 +2983,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 185
+        "customer_id": 185,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2852,7 +3001,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 186
+        "customer_id": 186,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2869,7 +3019,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 187
+        "customer_id": 187,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2886,7 +3037,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 188
+        "customer_id": 188,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2903,7 +3055,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 190
+        "customer_id": 190,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2920,7 +3073,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 191
+        "customer_id": 191,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2937,7 +3091,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 192
+        "customer_id": 192,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2954,7 +3109,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 193
+        "customer_id": 193,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2971,7 +3127,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 194
+        "customer_id": 194,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -2988,7 +3145,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 195
+        "customer_id": 195,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3005,7 +3163,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 196
+        "customer_id": 196,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3022,7 +3181,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 197
+        "customer_id": 197,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3039,24 +3199,26 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 198
+        "customer_id": 198,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
     "model": "FinancialInformation.workinginformation",
     "pk": 186,
     "fields": {
-        "position": "COLOCADORA DE UNILIVER",
-        "company_name": "LA TORRE COBAN Y CARCHA",
-        "start_date": "2021-09-01",
+        "position": "SOCIA EMPRESARIA DE BELCORP",
+        "company_name": "BELCORP",
+        "start_date": "2025-06-01",
         "description": "",
-        "salary": "3850.00",
+        "salary": "4000.00",
         "working_hours": "VESPERTINA",
-        "phone_number": "33397682",
+        "phone_number": "30140360",
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 199
+        "customer_id": 199,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3073,7 +3235,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "MONTO DE INGRESOS EXTRAS 8500",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 200
+        "customer_id": 200,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3090,7 +3253,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 201
+        "customer_id": 201,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3107,7 +3271,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 202
+        "customer_id": 202,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3124,7 +3289,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 203
+        "customer_id": 203,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3141,7 +3307,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 204
+        "customer_id": 204,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3158,7 +3325,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "OTROS INGRESOS 2500",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 207
+        "customer_id": 207,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3175,7 +3343,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 209
+        "customer_id": 209,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3192,7 +3361,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 210
+        "customer_id": 210,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3209,7 +3379,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 212
+        "customer_id": 212,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3226,7 +3397,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 213
+        "customer_id": 213,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3243,7 +3415,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 214
+        "customer_id": 214,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3260,7 +3433,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 215
+        "customer_id": 215,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3277,7 +3451,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 216
+        "customer_id": 216,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3294,7 +3469,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 217
+        "customer_id": 217,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3311,7 +3487,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 218
+        "customer_id": 218,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3328,7 +3505,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "MONTO DE INGRESOS EXTRA Q.1500.00",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 219
+        "customer_id": 219,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3345,7 +3523,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 220
+        "customer_id": 220,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3362,7 +3541,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 221
+        "customer_id": 221,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3379,7 +3559,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 222
+        "customer_id": 222,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3396,7 +3577,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 223
+        "customer_id": 223,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3413,7 +3595,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 224
+        "customer_id": 224,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3430,7 +3613,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 225
+        "customer_id": 225,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3447,7 +3631,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 226
+        "customer_id": 226,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3464,7 +3649,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "INGRESOS POR SERVICIOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 227
+        "customer_id": 227,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3481,7 +3667,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 228
+        "customer_id": 228,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3498,7 +3685,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 229
+        "customer_id": 229,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3515,7 +3703,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 230
+        "customer_id": 230,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3532,7 +3721,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 231
+        "customer_id": 231,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3549,7 +3739,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 232
+        "customer_id": 232,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3566,7 +3757,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 233
+        "customer_id": 233,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3583,7 +3775,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 234
+        "customer_id": 234,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3600,7 +3793,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 235
+        "customer_id": 235,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3617,7 +3811,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 237
+        "customer_id": 237,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3634,7 +3829,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 238
+        "customer_id": 238,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3651,7 +3847,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 239
+        "customer_id": 239,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3668,7 +3865,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 240
+        "customer_id": 240,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3685,7 +3883,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 241
+        "customer_id": 241,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3702,7 +3901,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 242
+        "customer_id": 242,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3719,7 +3919,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 243
+        "customer_id": 243,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3736,7 +3937,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 244
+        "customer_id": 244,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3753,7 +3955,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 245
+        "customer_id": 245,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3770,7 +3973,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 246
+        "customer_id": 246,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3787,7 +3991,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 247
+        "customer_id": 247,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3804,7 +4009,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 248
+        "customer_id": 248,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3821,7 +4027,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 249
+        "customer_id": 249,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3838,7 +4045,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 250
+        "customer_id": 250,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3855,7 +4063,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 251
+        "customer_id": 251,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3872,7 +4081,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 252
+        "customer_id": 252,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3889,7 +4099,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "OUT SOURCING",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 253
+        "customer_id": 253,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3906,7 +4117,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 286
+        "customer_id": 286,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3923,7 +4135,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 288
+        "customer_id": 288,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3940,7 +4153,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 289
+        "customer_id": 289,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3957,7 +4171,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 290
+        "customer_id": 290,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3974,7 +4189,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 291
+        "customer_id": 291,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -3991,7 +4207,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 292
+        "customer_id": 292,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4008,7 +4225,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 293
+        "customer_id": 293,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4025,7 +4243,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 295
+        "customer_id": 295,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4042,7 +4261,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 296
+        "customer_id": 296,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4059,7 +4279,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 297
+        "customer_id": 297,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4076,7 +4297,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 298
+        "customer_id": 298,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4093,7 +4315,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 299
+        "customer_id": 299,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4110,7 +4333,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 300
+        "customer_id": 300,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4127,7 +4351,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 301
+        "customer_id": 301,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4144,7 +4369,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 302
+        "customer_id": 302,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4161,7 +4387,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 308
+        "customer_id": 308,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4178,7 +4405,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 309
+        "customer_id": 309,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4195,7 +4423,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 314
+        "customer_id": 314,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4212,7 +4441,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 315
+        "customer_id": 315,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4229,7 +4459,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 316
+        "customer_id": 316,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4246,7 +4477,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 317
+        "customer_id": 317,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4263,7 +4495,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 318
+        "customer_id": 318,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4280,7 +4513,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 319
+        "customer_id": 319,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4297,7 +4531,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 320
+        "customer_id": 320,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4314,7 +4549,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 321
+        "customer_id": 321,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4331,7 +4567,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 322
+        "customer_id": 322,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4348,7 +4585,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 323
+        "customer_id": 323,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4365,7 +4603,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 324
+        "customer_id": 324,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4382,7 +4621,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "PAGOS MENSUALES",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 325
+        "customer_id": 325,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4399,7 +4639,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 326
+        "customer_id": 326,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4416,7 +4657,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 327
+        "customer_id": 327,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4433,7 +4675,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 328
+        "customer_id": 328,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4450,7 +4693,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 329
+        "customer_id": 329,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4467,7 +4711,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 330
+        "customer_id": 330,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4484,7 +4729,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 331
+        "customer_id": 331,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4501,7 +4747,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 332
+        "customer_id": 332,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4518,7 +4765,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 333
+        "customer_id": 333,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4535,7 +4783,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 334
+        "customer_id": 334,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4552,7 +4801,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 335
+        "customer_id": 335,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4569,7 +4819,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 336
+        "customer_id": 336,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4586,7 +4837,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "VENTA DE TEJIDOS Y CARDAMOMO",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 337
+        "customer_id": 337,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4603,7 +4855,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 338
+        "customer_id": 338,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4620,7 +4873,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 339
+        "customer_id": 339,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4637,7 +4891,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 340
+        "customer_id": 340,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4654,7 +4909,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 341
+        "customer_id": 341,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4671,7 +4927,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 342
+        "customer_id": 342,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4688,7 +4945,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 343
+        "customer_id": 343,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4705,7 +4963,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 344
+        "customer_id": 344,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4722,7 +4981,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 345
+        "customer_id": 345,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4739,7 +4999,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "INGRESOS EXTRA 2,500.00 EMPRENDIMIENTO DE LACTEOS",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 346
+        "customer_id": 346,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4756,7 +5017,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 347
+        "customer_id": 347,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4773,7 +5035,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 348
+        "customer_id": 348,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4790,7 +5053,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 349
+        "customer_id": 349,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4807,7 +5071,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 350
+        "customer_id": 350,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4824,7 +5089,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 383
+        "customer_id": 383,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4841,7 +5107,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 384
+        "customer_id": 384,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4858,7 +5125,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 385
+        "customer_id": 385,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4875,7 +5143,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 386
+        "customer_id": 386,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4892,7 +5161,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 387
+        "customer_id": 387,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4909,7 +5179,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 388
+        "customer_id": 388,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4926,7 +5197,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 389
+        "customer_id": 389,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4943,7 +5215,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 390
+        "customer_id": 390,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4960,7 +5233,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 391
+        "customer_id": 391,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4977,7 +5251,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 392
+        "customer_id": 392,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -4994,7 +5269,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 393
+        "customer_id": 393,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5011,7 +5287,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 394
+        "customer_id": 394,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5028,7 +5305,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 395
+        "customer_id": 395,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5045,7 +5323,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 396
+        "customer_id": 396,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5053,16 +5332,17 @@
     "pk": 370,
     "fields": {
         "position": "CULTORA DE BELLEZA",
-        "company_name": "CULTORA DE BELLEZA",
+        "company_name": "ADHARA INTERNATIONAL SALÓN",
         "start_date": "2024-09-24",
         "description": "",
-        "salary": "3600.00",
+        "salary": "3404.00",
         "working_hours": "VESPERTINA",
         "phone_number": "51923239",
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 397
+        "customer_id": 397,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5079,7 +5359,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 398
+        "customer_id": 398,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5096,7 +5377,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 399
+        "customer_id": 399,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5113,7 +5395,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 400
+        "customer_id": 400,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5130,7 +5413,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 401
+        "customer_id": 401,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5147,7 +5431,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 402
+        "customer_id": 402,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5164,7 +5449,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 404
+        "customer_id": 404,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5181,7 +5467,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 406
+        "customer_id": 406,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5198,7 +5485,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 407
+        "customer_id": 407,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5215,7 +5503,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Jubilado",
-        "customer_id": 408
+        "customer_id": 408,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5232,7 +5521,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 411
+        "customer_id": 411,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5249,7 +5539,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 412
+        "customer_id": 412,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5266,7 +5557,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 413
+        "customer_id": 413,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5283,7 +5575,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 415
+        "customer_id": 415,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5300,7 +5593,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 416
+        "customer_id": 416,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5317,7 +5611,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 417
+        "customer_id": 417,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5334,7 +5629,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 418
+        "customer_id": 418,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5351,7 +5647,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 419
+        "customer_id": 419,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5368,7 +5665,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "GOCE DE SALARIO",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 437
+        "customer_id": 437,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5385,7 +5683,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "SE DESEMPEÑA COMO DOCENTE DE PARTE DEL MINISTERIO DE EDUCACION",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 438
+        "customer_id": 438,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5402,7 +5701,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 428
+        "customer_id": 428,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5419,7 +5719,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 426
+        "customer_id": 426,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5436,7 +5737,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "TRABAJA A BASE DE VISITAS VARIAN DE ALREDOR DE 3 POR MES/ GANA Q1000 POR VISITA",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 424
+        "customer_id": 424,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5453,7 +5755,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 433
+        "customer_id": 433,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5470,7 +5773,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 435
+        "customer_id": 435,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5487,7 +5791,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 430
+        "customer_id": 430,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5504,7 +5809,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 434
+        "customer_id": 434,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5521,7 +5827,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Voluntario",
-        "customer_id": 429
+        "customer_id": 429,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5538,7 +5845,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 439
+        "customer_id": 439,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5555,7 +5863,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 440
+        "customer_id": 440,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5572,7 +5881,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 441
+        "customer_id": 441,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5589,7 +5899,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 431
+        "customer_id": 431,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5606,7 +5917,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Voluntario",
-        "customer_id": 422
+        "customer_id": 422,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5623,7 +5935,8 @@
         "source_of_income": "Negocio Propio",
         "income_detail": "",
         "employment_status": "Voluntario",
-        "customer_id": 423
+        "customer_id": 423,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5640,7 +5953,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 421
+        "customer_id": 421,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5657,7 +5971,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Parcial",
-        "customer_id": 442
+        "customer_id": 442,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5674,7 +5989,8 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "RENGLON 011 DE ORGANISMO JUDICIAL, CENTRO DE MEDIACIÓN. SAN PEDRO CARCHÁ",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 443
+        "customer_id": 443,
+        "creation_date": "2026-01-17T23:23:22.750Z"
     }
 },
 {
@@ -5691,7 +6007,962 @@
         "source_of_income": "Relación de Dependencia",
         "income_detail": "",
         "employment_status": "Empleado a Tiempo Completo",
-        "customer_id": 432
+        "customer_id": 432,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 408,
+    "fields": {
+        "position": "SUPERVISOR MICRO CREDITOS",
+        "company_name": "BANCO DE ANTIGUA",
+        "start_date": "2025-01-20",
+        "description": "",
+        "salary": "5500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79511030",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 425,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 409,
+    "fields": {
+        "position": "DOCENTE",
+        "company_name": "MINEDUC",
+        "start_date": "2009-01-02",
+        "description": "",
+        "salary": "7490.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79510080",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 445,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 410,
+    "fields": {
+        "position": "DOCENTE",
+        "company_name": "ESCUELA RURAL MIXTA BARRIO CHAJSAQUIL",
+        "start_date": "1993-02-14",
+        "description": "",
+        "salary": "9000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "40118145",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 446,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 411,
+    "fields": {
+        "position": "DOCENTE",
+        "company_name": "MINEDUC",
+        "start_date": "2010-01-01",
+        "description": "",
+        "salary": "8000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79510080",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 447,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 412,
+    "fields": {
+        "position": "MOTOTAXISTA",
+        "company_name": "MOTOTAXI",
+        "start_date": "2020-01-01",
+        "description": "",
+        "salary": "4500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "47056205",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 448,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 413,
+    "fields": {
+        "position": "LABORATORISTA",
+        "company_name": "CONSTRUNOR",
+        "start_date": "2023-01-01",
+        "description": "",
+        "salary": "4000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "52092009",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 449,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 414,
+    "fields": {
+        "position": "PROPIETARIO",
+        "company_name": "SERVICIOS DE UBER",
+        "start_date": "2024-12-03",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "45387205",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 450,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 447,
+    "fields": {
+        "position": "CAJERA",
+        "company_name": "SAN MARTIN",
+        "start_date": "2024-03-01",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "22151515",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 483,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 448,
+    "fields": {
+        "position": "PROPIETARIA",
+        "company_name": "PACA VENTURA",
+        "start_date": "2020-08-25",
+        "description": "",
+        "salary": "4500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "32492081",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 484,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 449,
+    "fields": {
+        "position": "AUXILIAR DE MOSTRADOR",
+        "company_name": "FERRETERIA COPAFE",
+        "start_date": "2023-03-03",
+        "description": "",
+        "salary": "3500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79522200",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 485,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 450,
+    "fields": {
+        "position": "DOCENTE",
+        "company_name": "MINEDUC",
+        "start_date": "1993-09-01",
+        "description": "",
+        "salary": "3627.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79510080",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Parcial",
+        "customer_id": 486,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 451,
+    "fields": {
+        "position": "DELEGADO MUNICIPAL",
+        "company_name": "LICEO SAN BENITO",
+        "start_date": "2024-10-05",
+        "description": "",
+        "salary": "2600.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "30265540",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 487,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 452,
+    "fields": {
+        "position": "ASESOR DE CREDITOS",
+        "company_name": "FERROMAX",
+        "start_date": "2023-02-02",
+        "description": "TRABAJA COMO ASESOR DE CREDITOS EN MATERIALES DE CONSTRUCCIÓN PARA VIVIENDAS",
+        "salary": "3400.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "76004200",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 488,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 453,
+    "fields": {
+        "position": "ASESOR DE CRÉDITOS",
+        "company_name": "BANCO DE LOS TRABAJADORES",
+        "start_date": "2025-04-07",
+        "description": "",
+        "salary": "4200.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "24264883",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 489,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 454,
+    "fields": {
+        "position": "PROPIETARIA",
+        "company_name": "BUFETE JURIDICO ROSALINDA",
+        "start_date": "2015-11-02",
+        "description": "",
+        "salary": "15000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "55533788",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 490,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 455,
+    "fields": {
+        "position": "PARAMEDICO UNO",
+        "company_name": "HOSPITAL REGIONAL DE COBÁN",
+        "start_date": "2005-02-02",
+        "description": "",
+        "salary": "7500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "25096100",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 491,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 456,
+    "fields": {
+        "position": "Team Leader",
+        "company_name": "INFOTREE (CLARO)",
+        "start_date": "2025-11-17",
+        "description": "",
+        "salary": "6000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "43554436",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 492,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 457,
+    "fields": {
+        "position": "PROPIETARIO Y GERENTE",
+        "company_name": "SERVIREFRI COBAN",
+        "start_date": "2018-02-26",
+        "description": "",
+        "salary": "18000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "55025559",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 493,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 458,
+    "fields": {
+        "position": "ASESOR DE VENTAS",
+        "company_name": "INFOTREE, GLOBAL SOLUTIONS, CLARO",
+        "start_date": "2025-08-22",
+        "description": "",
+        "salary": "3725.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "22786775",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 494,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 459,
+    "fields": {
+        "position": "TÉCNICO DTH",
+        "company_name": "NO SE SABE",
+        "start_date": "2025-11-21",
+        "description": "",
+        "salary": "6000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "00000000",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 495,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 460,
+    "fields": {
+        "position": "OFICIAL III",
+        "company_name": "JUZGADO DE NIÑEZ Y ADOLESCENCIA Y ADOLESCENTES EN CONFLICTO CON LA LEY PENAL",
+        "start_date": "2020-03-09",
+        "description": "",
+        "salary": "12312.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "22904444",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 496,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 461,
+    "fields": {
+        "position": "COLOCADORA",
+        "company_name": "FIFCO OPERATIVO",
+        "start_date": "2022-07-15",
+        "description": "",
+        "salary": "3700.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "23237000",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 497,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 462,
+    "fields": {
+        "position": "AUXILIAR DE CONTABILIDAD",
+        "company_name": "FEDECOVERA",
+        "start_date": "2017-01-01",
+        "description": "",
+        "salary": "9750.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79521035",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 498,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 463,
+    "fields": {
+        "position": "TECNICO DE CAMPO",
+        "company_name": "Ministerio de Salud Pública y Asistencia Social de Guatemala",
+        "start_date": "2017-06-01",
+        "description": "",
+        "salary": "6800.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79516786",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 499,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 464,
+    "fields": {
+        "position": "PROFESIONAL I  19750",
+        "company_name": "MINISTERIO DE SALUD PUBLICA Y ASISTENCIA SOCIAL",
+        "start_date": "2017-06-03",
+        "description": "",
+        "salary": "20000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "25096100",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 500,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 465,
+    "fields": {
+        "position": "DOCENTE",
+        "company_name": "LICEO PREUNIVERSITARIO DEL NORTE",
+        "start_date": "2011-07-20",
+        "description": "",
+        "salary": "3800.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79417346",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 501,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 466,
+    "fields": {
+        "position": "DOCENTE 011",
+        "company_name": "EORM CASERÍO TUCANJA",
+        "start_date": "2005-01-03",
+        "description": "",
+        "salary": "10955.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "46462234",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 502,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 467,
+    "fields": {
+        "position": "TAXISTA ESTACIONARIO",
+        "company_name": "TAXISTA",
+        "start_date": "2024-12-31",
+        "description": "",
+        "salary": "6000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79504522",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 503,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 468,
+    "fields": {
+        "position": "PROPIETARIO",
+        "company_name": "TAXISTA",
+        "start_date": "2024-01-03",
+        "description": "",
+        "salary": "6000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "51728984",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 504,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 469,
+    "fields": {
+        "position": "PROPIETARIO",
+        "company_name": "TRANSPORTES BARRIENTOS",
+        "start_date": "2021-02-05",
+        "description": "",
+        "salary": "18000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "53622425",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 506,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 470,
+    "fields": {
+        "position": "DIRECTOR PROFESOR TITULADO",
+        "company_name": "MINEDUC",
+        "start_date": "2004-01-05",
+        "description": "",
+        "salary": "8500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "25096100",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 507,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 471,
+    "fields": {
+        "position": "CONDUCTOR",
+        "company_name": "ORGANISMO JUDICIAL",
+        "start_date": "2025-07-02",
+        "description": "",
+        "salary": "9000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "22903835",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 508,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 472,
+    "fields": {
+        "position": "AULIXIAR  ADMINISTRATIVO",
+        "company_name": "IMPORCONS-SINCORP",
+        "start_date": "2024-11-01",
+        "description": "",
+        "salary": "4200.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "54619327",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 514,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 473,
+    "fields": {
+        "position": "OPERATIVO 1",
+        "company_name": "HOSPITAL REGIONAL DE COBAN",
+        "start_date": "2024-12-17",
+        "description": "",
+        "salary": "3800.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79316333",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "HORARIOS DE 8 DE LA MAÑANA A 6 PM",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 515,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 474,
+    "fields": {
+        "position": "ENCARGADO DE BODEGA",
+        "company_name": "HOSPITAL REGIONAL DE COBAN",
+        "start_date": "2024-01-01",
+        "description": "",
+        "salary": "3400.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "25096100",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 516,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 475,
+    "fields": {
+        "position": "ASESOR JURÍDICO",
+        "company_name": "HOSPITAL DE LA TINTA",
+        "start_date": "2023-08-02",
+        "description": "",
+        "salary": "14000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "31286991",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 517,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 476,
+    "fields": {
+        "position": "IMPULSADORA",
+        "company_name": "SOLUCIONES INTEGRADAS EN BTL",
+        "start_date": "2018-06-23",
+        "description": "",
+        "salary": "4000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "0",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 518,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 477,
+    "fields": {
+        "position": "AREA DE RECEPCIÓN",
+        "company_name": "HOSPITAL BETANIA",
+        "start_date": "2024-09-21",
+        "description": "",
+        "salary": "3700.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79510086",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 519,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 478,
+    "fields": {
+        "position": "JEFE DE AGENCIA",
+        "company_name": "BANCO INDUSTRIAL",
+        "start_date": "2010-05-10",
+        "description": "",
+        "salary": "15000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "76000250",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 520,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 479,
+    "fields": {
+        "position": "SUBADMINISTRADOR",
+        "company_name": "AEROGRONOMO DE COBAN",
+        "start_date": "2021-04-19",
+        "description": "",
+        "salary": "10000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "53297416",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 521,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 480,
+    "fields": {
+        "position": "ENCARGADO DE INFRAESTRUCTURA",
+        "company_name": "AEROGRONOMO DE COBAN",
+        "start_date": "2024-05-16",
+        "description": "",
+        "salary": "6000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "53297416",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 522,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 481,
+    "fields": {
+        "position": "COMERCIANTE",
+        "company_name": "VENTA DE TRAJES TIPICOS",
+        "start_date": "2012-12-01",
+        "description": "",
+        "salary": "15000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "37715969",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 523,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 482,
+    "fields": {
+        "position": "COBRADOR JURIDICO",
+        "company_name": "CUAN TUMIN",
+        "start_date": "2025-03-27",
+        "description": "",
+        "salary": "4000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "40874240",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 524,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 483,
+    "fields": {
+        "position": "TRABAJO DE CAMPO",
+        "company_name": "NINGUNA",
+        "start_date": "2020-01-01",
+        "description": "",
+        "salary": "3000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "0",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "TRABAJA EN CAMPO EN DISTINTOS LUGARES Y POR CUENTA PROPIA",
+        "employment_status": "Trabajador Temporal",
+        "customer_id": 528,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 484,
+    "fields": {
+        "position": "ASESORA DE NEGOCIOS",
+        "company_name": "BANCO INDUSTRIAL",
+        "start_date": "2021-05-10",
+        "description": "",
+        "salary": "6000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79570150",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 530,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 485,
+    "fields": {
+        "position": "GUARDIA DE SEGURIDAD",
+        "company_name": "SIGSESA",
+        "start_date": "2016-06-01",
+        "description": "",
+        "salary": "3500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "23112523",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 531,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 486,
+    "fields": {
+        "position": "OPERADOR REGISTRAL",
+        "company_name": "RENAP",
+        "start_date": "2023-07-18",
+        "description": "",
+        "salary": "5000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "31178888",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 532,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 487,
+    "fields": {
+        "position": "ENCARGADO DE TORNO",
+        "company_name": "ACUARONI",
+        "start_date": "2021-03-01",
+        "description": "",
+        "salary": "4500.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "44801576",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 534,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 488,
+    "fields": {
+        "position": "COCINERO",
+        "company_name": "POLLO CAMPERO",
+        "start_date": "2022-07-05",
+        "description": "",
+        "salary": "3734.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79513174",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 535,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 489,
+    "fields": {
+        "position": "EJECUTIVO DE VENTAS",
+        "company_name": "GRUPO BIEN PRENDIDO",
+        "start_date": "2025-04-01",
+        "description": "",
+        "salary": "7000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "22444800",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 536,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 490,
+    "fields": {
+        "position": "MONITOR DE SALUD",
+        "company_name": "FEDECOVERA R.L.",
+        "start_date": "2021-09-01",
+        "description": "",
+        "salary": "3621.92",
+        "working_hours": "VESPERTINA",
+        "phone_number": "79521035",
+        "source_of_income": "Relación de Dependencia",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 539,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 491,
+    "fields": {
+        "position": "PROPIETARIO",
+        "company_name": "TALLER CHIU",
+        "start_date": "2026-01-15",
+        "description": "",
+        "salary": "3000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "49288874",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 540,
+        "creation_date": "2026-01-17T23:23:22.750Z"
+    }
+},
+{
+    "model": "FinancialInformation.workinginformation",
+    "pk": 492,
+    "fields": {
+        "position": "PROPIETARIO",
+        "company_name": "CAR WASH",
+        "start_date": "2024-12-01",
+        "description": "",
+        "salary": "6000.00",
+        "working_hours": "VESPERTINA",
+        "phone_number": "31648931",
+        "source_of_income": "Negocio Propio",
+        "income_detail": "",
+        "employment_status": "Empleado a Tiempo Completo",
+        "customer_id": 543,
+        "creation_date": "2026-01-21T19:09:16.433Z"
     }
 }
 ]

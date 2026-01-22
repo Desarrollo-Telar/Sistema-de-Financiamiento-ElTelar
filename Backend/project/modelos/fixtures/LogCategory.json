@@ -94,5 +94,37 @@
         "name": "Contable",
         "description": "Eventos de Contable"
     }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 45,
+    "fields": {
+        "name": "Direccion",
+        "description": "Acciones de usuario en Direccion"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 46,
+    "fields": {
+        "name": "Facturas",
+        "description": "Eventos de Facturas"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 47,
+    "fields": {
+        "name": "Desembolsos",
+        "description": "Acciones de usuario en Desembolsos"
+    }
+},
+{
+    "model": "actividades.logcategory",
+    "pk": 48,
+    "fields": {
+        "name": "Garantias",
+        "description": "Acciones de usuario en Garantias"
+    }
 }
 ]

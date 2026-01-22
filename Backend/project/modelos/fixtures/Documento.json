@@ -5848,5 +5848,1904 @@
         "document": "documents/Imagen_de_WhatsApp_2025-11-04_a_las_12.38.22_01e793ea.jpg",
         "uploaded_at": "2025-11-04T18:46:38.218Z"
     }
+},
+{
+    "model": "documents.document",
+    "pk": 718,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-05_a_las_09.56.47_afa44a57.jpg",
+        "uploaded_at": "2025-11-05T15:56:51.995Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 719,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_4_j5KQ5fC.pdf",
+        "uploaded_at": "2025-11-06T14:44:08.726Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 720,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/ethel_fac.pdf",
+        "uploaded_at": "2025-11-06T17:59:57.668Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 721,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-07_a_las_09.16.30_9ed2f4fd.jpg",
+        "uploaded_at": "2025-11-07T15:16:38.848Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 722,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_5_pOgaRoH.pdf",
+        "uploaded_at": "2025-11-07T21:53:48.607Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 723,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/FAC_MIRSA_HERRERA.pdf",
+        "uploaded_at": "2025-11-07T22:18:52.176Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 724,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-07T173332.308.pdf",
+        "uploaded_at": "2025-11-07T23:33:43.996Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 725,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-10_a_las_08.31.46_28a231f4.jpg",
+        "uploaded_at": "2025-11-10T14:31:52.532Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 726,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-10_a_las_09.14.11_4723333a.jpg",
+        "uploaded_at": "2025-11-10T15:14:41.246Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 727,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-10_a_las_09.47.08_1d38449a.jpg",
+        "uploaded_at": "2025-11-10T15:47:17.179Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 728,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-10T100918.101.pdf",
+        "uploaded_at": "2025-11-10T16:09:28.027Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 729,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-10_a_las_10.43.33_7dbb9094.jpg",
+        "uploaded_at": "2025-11-10T16:43:37.210Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 730,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-10_a_las_10.57.36_bf549a8c.jpg",
+        "uploaded_at": "2025-11-10T16:57:40.631Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 731,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-10_a_las_11.12.42_6e2ddff0.jpg",
+        "uploaded_at": "2025-11-10T17:12:46.812Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 732,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-10_a_las_11.17.49_a4fe4616.jpg",
+        "uploaded_at": "2025-11-10T17:18:07.176Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 764,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-11_a_las_08.27.28_11be3d05.jpg",
+        "uploaded_at": "2025-11-11T14:27:44.731Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 765,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-10_a_las_14.11.51_6bd80106.jpg",
+        "uploaded_at": "2025-11-11T14:28:51.766Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 766,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-11_a_las_15.15.48_01ac4b4c.jpg",
+        "uploaded_at": "2025-11-11T21:20:34.996Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 767,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-12T100417.824.pdf",
+        "uploaded_at": "2025-11-12T16:04:33.698Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 768,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-12T124259.044.pdf",
+        "uploaded_at": "2025-11-12T18:43:16.693Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 769,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-12T124259.044_poF6WYY.pdf",
+        "uploaded_at": "2025-11-12T19:07:12.162Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 770,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_4_7LfJGtg.pdf",
+        "uploaded_at": "2025-11-13T14:54:40.005Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 771,
+    "fields": {
+        "description": "VAUCHER DE PAGO",
+        "document": "documents/Vaucher_Olga_Amarilis.pdf",
+        "uploaded_at": "2025-11-13T14:58:01.066Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 772,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-13_a_las_10.08.03_933d12c0.jpg",
+        "uploaded_at": "2025-11-13T16:11:28.435Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 773,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/pagare.jpeg",
+        "uploaded_at": "2025-11-13T17:02:00.405Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 774,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-13_at_12.30.17_PM.jpeg",
+        "uploaded_at": "2025-11-13T18:30:55.305Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 775,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-13_at_12.31.28_PM.jpeg",
+        "uploaded_at": "2025-11-13T18:31:44.509Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 776,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-13_at_3.22.17_PM.jpeg",
+        "uploaded_at": "2025-11-13T21:22:47.899Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 777,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_5_wPjkiSD.pdf",
+        "uploaded_at": "2025-11-14T20:22:28.388Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 778,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_5_1.pdf",
+        "uploaded_at": "2025-11-14T20:37:21.662Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 779,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-17_at_12.37.15_PM.jpeg",
+        "uploaded_at": "2025-11-17T18:37:48.178Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 780,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-11-17_at_12.44.34_PM.jpeg",
+        "uploaded_at": "2025-11-17T18:45:03.657Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 781,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-17T175352.087.pdf",
+        "uploaded_at": "2025-11-17T23:54:10.272Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 782,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_6_DdcF2rD.pdf",
+        "uploaded_at": "2025-11-18T17:07:57.430Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 783,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-18_at_11.35.47_AM.jpeg",
+        "uploaded_at": "2025-11-18T17:49:02.267Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 784,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-18_at_11.37.34_AM.jpeg",
+        "uploaded_at": "2025-11-18T17:49:33.046Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 785,
+    "fields": {
+        "description": "PATENTE DE COMERCIO",
+        "document": "documents/Patente_de_Comercio.pdf",
+        "uploaded_at": "2025-11-19T15:42:53.651Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 786,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-19T094833.672.pdf",
+        "uploaded_at": "2025-11-19T15:48:54.379Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 787,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-11-19_at_10.54.37_AM.jpeg",
+        "uploaded_at": "2025-11-19T16:54:56.745Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 788,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-11-19_at_11.01.42_AM.jpeg",
+        "uploaded_at": "2025-11-19T17:02:00.344Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 789,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-19_at_11.02.42_AM.jpeg",
+        "uploaded_at": "2025-11-19T17:03:03.853Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 790,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-20T114215.226.pdf",
+        "uploaded_at": "2025-11-20T17:42:31.658Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 791,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-20_a_las_14.12.26_2dcdb783.jpg",
+        "uploaded_at": "2025-11-20T20:14:44.975Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 792,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-20_a_las_14.32.09_b113f21a.jpg",
+        "uploaded_at": "2025-11-20T20:32:21.134Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 793,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-20_a_las_14.44.24_67543e9d.jpg",
+        "uploaded_at": "2025-11-20T20:44:40.153Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 794,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-20_a_las_14.45.59_cb6a5ad5.jpg",
+        "uploaded_at": "2025-11-20T20:46:13.936Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 795,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-11-20_at_3.26.03_PM.jpeg",
+        "uploaded_at": "2025-11-20T21:26:24.095Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 796,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-20_a_las_15.09.40_8554c64f.jpg",
+        "uploaded_at": "2025-11-20T21:37:02.063Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 797,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-20_a_las_16.21.06_820fd9a1.jpg",
+        "uploaded_at": "2025-11-20T22:21:41.406Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 798,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-20_a_las_16.24.13_a52964d4.jpg",
+        "uploaded_at": "2025-11-20T22:24:27.347Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 799,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-21T094711.501.pdf",
+        "uploaded_at": "2025-11-21T15:47:23.694Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 800,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-21T094711.501_vmAmma9.pdf",
+        "uploaded_at": "2025-11-21T16:18:49.300Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 801,
+    "fields": {
+        "description": "VAUCHER DE PAGO",
+        "document": "documents/NANCY_CAROLINA_VALDIZON_ICAL.PDF-1.pdf",
+        "uploaded_at": "2025-11-21T16:19:17.214Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 802,
+    "fields": {
+        "description": "FACTURA DE LUZ ORIGINAL",
+        "document": "documents/factura_-_2025-11-21T110004.152.pdf",
+        "uploaded_at": "2025-11-21T17:00:53.421Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 803,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-21_at_2.57.18_PM.jpeg",
+        "uploaded_at": "2025-11-21T20:57:35.086Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 804,
+    "fields": {
+        "description": "GARANTIA ESCRITURA",
+        "document": "documents/WhatsApp_Image_2025-11-21_at_2.58.28_PM.jpeg",
+        "uploaded_at": "2025-11-21T20:59:03.514Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 805,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-20_a_las_16.26.48_6546d0fb.jpg",
+        "uploaded_at": "2025-11-24T15:29:59.070Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 806,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-24_at_11.31.40_AM.jpeg",
+        "uploaded_at": "2025-11-24T17:32:12.523Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 807,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-11-24_at_11.41.26_AM.jpeg",
+        "uploaded_at": "2025-11-24T17:41:42.172Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 808,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-24_at_11.52.14_AM.jpeg",
+        "uploaded_at": "2025-11-24T17:52:55.480Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 809,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-11-24_at_11.53.11_AM.jpeg",
+        "uploaded_at": "2025-11-24T17:53:22.007Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 810,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-11-24_at_11.59.18_AM.jpeg",
+        "uploaded_at": "2025-11-24T17:59:50.702Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 811,
+    "fields": {
+        "description": "VAUCHER DE PAGO",
+        "document": "documents/WhatsApp_Image_2025-11-24_at_3.48.06_PM.jpeg",
+        "uploaded_at": "2025-11-24T22:22:27.822Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 812,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-11-24T162445.183.pdf",
+        "uploaded_at": "2025-11-24T22:24:59.314Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 813,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-25_at_11.29.48_AM.jpeg",
+        "uploaded_at": "2025-11-25T17:30:23.793Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 814,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_30_m6Selw1.pdf",
+        "uploaded_at": "2025-11-25T22:14:38.878Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 815,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-25_at_4.30.01_PM.jpeg",
+        "uploaded_at": "2025-11-25T22:30:36.323Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 816,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-26_at_9.23.15_AM.jpeg",
+        "uploaded_at": "2025-11-26T15:23:36.907Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 817,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-26_at_9.46.16_AM.jpeg",
+        "uploaded_at": "2025-11-26T15:47:00.875Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 818,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-26_at_9.47.26_AM.jpeg",
+        "uploaded_at": "2025-11-26T15:47:49.013Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 819,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-11-26_a_las_11.14.13_6ac3d686.jpg",
+        "uploaded_at": "2025-11-26T17:33:23.947Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 820,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-11-27_at_4.06.52_PM.jpeg",
+        "uploaded_at": "2025-11-27T22:07:17.926Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 821,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-01_at_12.32.11_PM.jpeg",
+        "uploaded_at": "2025-12-01T18:32:43.511Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 822,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_Jt2e6IS.pdf",
+        "uploaded_at": "2025-12-01T18:44:21.604Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 823,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_2_S8gkAES.pdf",
+        "uploaded_at": "2025-12-01T20:45:19.828Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 824,
+    "fields": {
+        "description": "VAUCHER DE PAGO",
+        "document": "documents/vaucher_de_pago.pdf",
+        "uploaded_at": "2025-12-01T20:48:54.432Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 825,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-02_at_9.52.08_AM.jpeg",
+        "uploaded_at": "2025-12-02T15:52:32.382Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 826,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-02_at_10.10.12_AM.jpeg",
+        "uploaded_at": "2025-12-02T16:10:36.941Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 827,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-12-02_at_4.28.53_PM.jpeg",
+        "uploaded_at": "2025-12-02T22:29:19.818Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 828,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-12-03_at_11.20.47_AM_1.jpeg",
+        "uploaded_at": "2025-12-03T17:28:00.860Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 829,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_GboSTxP.pdf",
+        "uploaded_at": "2025-12-04T16:34:33.628Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 830,
+    "fields": {
+        "description": "CONSTANCIA LABORAL",
+        "document": "documents/Constancia_Lili.pdf",
+        "uploaded_at": "2025-12-04T16:39:56.224Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 831,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_1_rLnIk30.pdf",
+        "uploaded_at": "2025-12-04T17:27:31.234Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 832,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-04_at_2.49.09_PM_1.jpeg",
+        "uploaded_at": "2025-12-04T20:49:43.022Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 833,
+    "fields": {
+        "description": "CONCESIÓN MUNICIPAL DE LINEA DE TRÁNSITO",
+        "document": "documents/CONSECIÓN_DE_LINEA_DE_TRANSITO.pdf",
+        "uploaded_at": "2025-12-05T22:28:08.058Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 834,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_OOPoK2d.pdf",
+        "uploaded_at": "2025-12-05T22:30:39.334Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 835,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_OOPoK2d_DBkM5uf.pdf",
+        "uploaded_at": "2025-12-05T22:57:00.887Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 836,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-08_at_10.42.46_AM.jpeg",
+        "uploaded_at": "2025-12-08T16:43:36.235Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 837,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-08_at_11.14.46_AM.jpeg",
+        "uploaded_at": "2025-12-08T17:15:00.636Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 838,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-08_at_11.14.13_AM.jpeg",
+        "uploaded_at": "2025-12-08T17:15:45.496Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 839,
+    "fields": {
+        "description": "PATENTE DE COMERCIO",
+        "document": "documents/patente_2.pdf",
+        "uploaded_at": "2025-12-08T21:31:10.629Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 840,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-12-08T153344.705.pdf",
+        "uploaded_at": "2025-12-08T21:34:05.747Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 841,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_1_DJDOvYu.pdf",
+        "uploaded_at": "2025-12-09T18:59:42.929Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 842,
+    "fields": {
+        "description": "VOUCHER DE PAGO",
+        "document": "documents/Imagen_de_WhatsApp_2025-12-09_a_las_13.01.17_af5e7193.jpg",
+        "uploaded_at": "2025-12-09T19:01:28.944Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 843,
+    "fields": {
+        "description": "GARANTIA/RECONOCIMIENTO DE DEUDA",
+        "document": "documents/WhatsApp_Image_2025-12-09_at_1.12.44_PM.jpeg",
+        "uploaded_at": "2025-12-09T19:13:02.685Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 844,
+    "fields": {
+        "description": "CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-12-09_a_las_13.16.48_411ec214.jpg",
+        "uploaded_at": "2025-12-09T19:31:35.730Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 845,
+    "fields": {
+        "description": "PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-12-09_a_las_13.17.58_d12b2dea.jpg",
+        "uploaded_at": "2025-12-09T19:31:49.666Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 846,
+    "fields": {
+        "description": "PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-12-09_a_las_13.10.51_6f56ae1c.jpg",
+        "uploaded_at": "2025-12-09T19:32:28.164Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 847,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_2_pkTCPI3.pdf",
+        "uploaded_at": "2025-12-10T14:48:52.043Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 848,
+    "fields": {
+        "description": "TARJETA DE CIRCULACION",
+        "document": "documents/tarjeta_circulacion_electronica_45.pdf",
+        "uploaded_at": "2025-12-10T15:18:58.698Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 849,
+    "fields": {
+        "description": "CERTIFICADO DE PROPIEDAD",
+        "document": "documents/certificado_propiedad_electronica_23_1.pdf",
+        "uploaded_at": "2025-12-10T15:19:21.100Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 850,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-10_at_10.29.23_AM.jpeg",
+        "uploaded_at": "2025-12-10T16:29:40.499Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 851,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-10_at_10.36.01_AM.jpeg",
+        "uploaded_at": "2025-12-10T16:36:17.137Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 852,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-10_at_11.00.29_AM.jpeg",
+        "uploaded_at": "2025-12-10T17:00:40.710Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 853,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-10_at_11.09.05_AM.jpeg",
+        "uploaded_at": "2025-12-10T17:09:22.091Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 854,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_3_wahUc4b.pdf",
+        "uploaded_at": "2025-12-10T17:39:51.326Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 855,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-12-10_a_las_14.08.17_02941b64.jpg",
+        "uploaded_at": "2025-12-10T20:22:22.064Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 856,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_4_gXnsNyG.pdf",
+        "uploaded_at": "2025-12-10T21:11:09.438Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 857,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/Imagen_de_WhatsApp_2025-12-10_a_las_09.12.51_3faed1b4.jpg",
+        "uploaded_at": "2025-12-10T22:06:15.233Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 858,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-12-10_a_las_16.05.43_2866669e.jpg",
+        "uploaded_at": "2025-12-10T22:06:49.064Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 859,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-10_at_12.37.14_PM.jpeg",
+        "uploaded_at": "2025-12-10T22:27:56.886Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 860,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-10_at_4.28.38_PM.jpeg",
+        "uploaded_at": "2025-12-10T22:28:53.875Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 861,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-10_at_4.59.28_PM.jpeg",
+        "uploaded_at": "2025-12-10T22:59:55.141Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 862,
+    "fields": {
+        "description": "CONSTANCIA DE TRASPASO",
+        "document": "documents/P0395GVC_constancia_SONIA_MORÁN.pdf",
+        "uploaded_at": "2025-12-11T15:00:14.295Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 863,
+    "fields": {
+        "description": "TARJETA DE CIRCULACIÓN",
+        "document": "documents/tarjeta_circulacion_electronica_SONIA_MORÁN.pdf",
+        "uploaded_at": "2025-12-11T15:01:08.207Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 864,
+    "fields": {
+        "description": "CERTIFICADO DE PROPIEDAD",
+        "document": "documents/certificado_propiedad_electronica_SONIA_MORÁN.pdf",
+        "uploaded_at": "2025-12-11T15:01:49.219Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 865,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-12-11_at_9.19.08_AM.jpeg",
+        "uploaded_at": "2025-12-11T15:19:28.331Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 866,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-11_at_9.37.51_AM.jpeg",
+        "uploaded_at": "2025-12-11T15:38:06.126Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 867,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-12-11_a_las_10.37.23_5f3fff38.jpg",
+        "uploaded_at": "2025-12-11T16:38:07.795Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 868,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/Imagen_de_WhatsApp_2025-12-11_a_las_15.42.06_214d6fc2.jpg",
+        "uploaded_at": "2025-12-11T21:46:28.532Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 869,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-12-12_at_2.22.24_PM.jpeg",
+        "uploaded_at": "2025-12-12T20:22:39.528Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 870,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-12_at_2.55.35_PM.jpeg",
+        "uploaded_at": "2025-12-12T20:56:53.072Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 871,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-12_at_2.57.32_PM.jpeg",
+        "uploaded_at": "2025-12-12T20:58:13.080Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 872,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2025-12-15_at_9.36.47_AM.jpeg",
+        "uploaded_at": "2025-12-15T15:37:03.661Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 873,
+    "fields": {
+        "description": "GARANTIA/RECONOCIMIENTO DE DEUDA",
+        "document": "documents/WhatsApp_Image_2025-12-15_at_9.45.42_AM.jpeg",
+        "uploaded_at": "2025-12-15T15:46:10.312Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 874,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2025-12-17T145133.185.pdf",
+        "uploaded_at": "2025-12-17T20:51:46.219Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 875,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_5_y9COcVR.pdf",
+        "uploaded_at": "2025-12-17T22:38:44.203Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 876,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_38_kPgeCsk.pdf",
+        "uploaded_at": "2025-12-17T22:43:56.167Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 877,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-18_at_9.25.36_AM.jpeg",
+        "uploaded_at": "2025-12-18T15:26:05.665Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 878,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-18_at_2.31.27_PM_1.jpeg",
+        "uploaded_at": "2025-12-18T20:33:36.518Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 879,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/FACTURA_MILIÁN_GUZMÁN.pdf",
+        "uploaded_at": "2025-12-22T17:45:19.384Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 880,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/FACTURA_YALIBAT.pdf",
+        "uploaded_at": "2025-12-22T19:07:31.570Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 881,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARE_GARANTIA_HEIDI.jpeg",
+        "uploaded_at": "2025-12-29T15:01:20.216Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 882,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/CHEQUE_430.jpeg",
+        "uploaded_at": "2025-12-29T17:19:31.896Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 883,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/CHEQUE_122.jpeg",
+        "uploaded_at": "2025-12-29T17:19:47.962Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 884,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARE_GERSON.jpeg",
+        "uploaded_at": "2025-12-29T17:21:08.622Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 885,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/modesta_6.jpeg",
+        "uploaded_at": "2025-12-29T17:44:08.018Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 886,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/pagare_modesta.jpeg",
+        "uploaded_at": "2025-12-29T17:44:59.976Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 887,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_6_nTKtyUA.pdf",
+        "uploaded_at": "2025-12-30T14:44:31.914Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 888,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_4_2.pdf",
+        "uploaded_at": "2025-12-30T21:03:41.853Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 889,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_7_ZYKdSnW.pdf",
+        "uploaded_at": "2025-12-31T16:28:48.808Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 890,
+    "fields": {
+        "description": "PAGARE",
+        "document": "documents/PG.pdf",
+        "uploaded_at": "2025-12-31T16:56:40.662Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 891,
+    "fields": {
+        "description": "PAGARE",
+        "document": "documents/PG_0et4eL0.pdf",
+        "uploaded_at": "2025-12-31T17:02:15.861Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 892,
+    "fields": {
+        "description": "CHEQUE",
+        "document": "documents/WhatsApp_Image_2025-12-22_at_8.43.21_AM.jpeg",
+        "uploaded_at": "2025-12-31T17:04:47.404Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 893,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2026-01-05_at_1.19.25_PM_1.jpeg",
+        "uploaded_at": "2026-01-05T19:24:47.834Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 894,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2026-01-06T082735.285.pdf",
+        "uploaded_at": "2026-01-06T14:28:20.005Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 895,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_4_3.pdf",
+        "uploaded_at": "2026-01-06T15:01:00.940Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 896,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_8_qj15rUo.pdf",
+        "uploaded_at": "2026-01-06T15:08:24.834Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 897,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WALESKA_PAGARE.jpeg",
+        "uploaded_at": "2026-01-06T15:37:17.713Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 898,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/heidi_pagare_10.jpeg",
+        "uploaded_at": "2026-01-06T15:45:43.345Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 899,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/pagare_luis.jpeg",
+        "uploaded_at": "2026-01-06T15:49:12.516Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 900,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/pagare_ismael.jpeg",
+        "uploaded_at": "2026-01-06T15:51:45.259Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 901,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/darwin_cheque.jpeg",
+        "uploaded_at": "2026-01-06T16:01:07.858Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 902,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/darwin_pagare.jpeg",
+        "uploaded_at": "2026-01-06T16:01:46.801Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 903,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARE_OLGA.jpeg",
+        "uploaded_at": "2026-01-06T17:08:02.436Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 904,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-06_at_11.12.28_AM.jpeg",
+        "uploaded_at": "2026-01-06T17:12:41.240Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 905,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2026-01-06_at_11.32.27_AM.jpeg",
+        "uploaded_at": "2026-01-06T17:32:51.279Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 906,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/pagre_gloria.jpeg",
+        "uploaded_at": "2026-01-06T18:06:06.677Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 907,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/CHEQUE_SIMAJ.jpeg",
+        "uploaded_at": "2026-01-06T19:08:38.117Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 908,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/CHEQUE_BRENDA.jpeg",
+        "uploaded_at": "2026-01-06T19:09:26.845Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 909,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARÉ_SIMAJ.jpeg",
+        "uploaded_at": "2026-01-06T19:10:09.615Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 910,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-06_at_3.44.50_PM.jpeg",
+        "uploaded_at": "2026-01-06T21:45:19.411Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 911,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/Fac_maria_mercedes.pdf",
+        "uploaded_at": "2026-01-06T21:47:41.633Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 912,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2026-01-06_at_5.01.12_PM.jpeg",
+        "uploaded_at": "2026-01-07T14:03:15.737Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 913,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_8_nVbTiPZ.pdf",
+        "uploaded_at": "2026-01-07T16:54:06.090Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 914,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_9_f91dFMe.pdf",
+        "uploaded_at": "2026-01-07T16:55:09.239Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 915,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-07_at_12.05.42_PM.jpeg",
+        "uploaded_at": "2026-01-07T18:06:03.560Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 916,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-07_at_12.36.23_PM.jpeg",
+        "uploaded_at": "2026-01-07T18:39:28.585Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 917,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-07_at_1.03.31_PM.jpeg",
+        "uploaded_at": "2026-01-07T19:03:54.078Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 918,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-07_at_1.18.48_PM.jpeg",
+        "uploaded_at": "2026-01-07T19:19:15.630Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 919,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-07_at_4.03.49_PM.jpeg",
+        "uploaded_at": "2026-01-07T22:04:17.798Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 920,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2026-01-05_at_1.19.25_PM_1_cnOGeVQ.jpeg",
+        "uploaded_at": "2026-01-07T22:10:32.260Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 921,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2026-01-07_at_4.16.43_PM.jpeg",
+        "uploaded_at": "2026-01-07T22:16:58.175Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 922,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/CHEQUE_LIGIA.jpeg",
+        "uploaded_at": "2026-01-08T14:35:20.699Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 923,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARÉ_LIGIA.jpeg",
+        "uploaded_at": "2026-01-08T14:35:47.678Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 924,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARE_ALEJANDRA.jpeg",
+        "uploaded_at": "2026-01-08T15:19:29.722Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 925,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/DENIS_PAGARE.jpeg",
+        "uploaded_at": "2026-01-08T16:06:51.707Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 926,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/CHEQUE_URRUELA.jpeg",
+        "uploaded_at": "2026-01-08T16:16:29.703Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 927,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARE_URRUELA.jpeg",
+        "uploaded_at": "2026-01-08T16:16:47.560Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 928,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-08_at_10.39.50_AM_1.jpeg",
+        "uploaded_at": "2026-01-08T16:41:25.970Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 929,
+    "fields": {
+        "description": "FACTURA LUZ NEGOCIO",
+        "document": "documents/factura_8_TuMYuIl.pdf",
+        "uploaded_at": "2026-01-08T17:26:11.784Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 930,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_9_eYH0LKb.pdf",
+        "uploaded_at": "2026-01-08T18:29:02.439Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 931,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-08_at_4.17.27_PM.jpeg",
+        "uploaded_at": "2026-01-08T22:17:48.440Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 932,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-08_at_4.47.59_PM.jpeg",
+        "uploaded_at": "2026-01-08T22:48:32.477Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 933,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-12_at_10.04.08_AM.jpeg",
+        "uploaded_at": "2026-01-12T16:04:33.188Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 934,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-12_at_10.11.08_AM.jpeg",
+        "uploaded_at": "2026-01-12T16:11:37.238Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 935,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2026-01-12T120343.323.pdf",
+        "uploaded_at": "2026-01-12T18:03:59.339Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 936,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2026-01-12_at_3.26.44_PM.jpeg",
+        "uploaded_at": "2026-01-12T21:26:59.206Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 937,
+    "fields": {
+        "description": "FACTURA DE LUZ",
+        "document": "documents/factura_-_2026-01-12T171958.903.pdf",
+        "uploaded_at": "2026-01-12T23:20:21.144Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 938,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-13_at_9.54.34_AM.jpeg",
+        "uploaded_at": "2026-01-13T15:54:51.763Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 939,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-13_at_10.33.24_AM.jpeg",
+        "uploaded_at": "2026-01-13T16:33:35.969Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 940,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-13_at_9.57.34_AM.jpeg",
+        "uploaded_at": "2026-01-13T21:39:53.293Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 941,
+    "fields": {
+        "description": "FACTURA LUZ",
+        "document": "documents/factura_1_PRcfTSo.pdf",
+        "uploaded_at": "2026-01-14T15:55:00.555Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 942,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/GARANTIA_PAGARE_MAX_Y_DIDIANA.jpeg",
+        "uploaded_at": "2026-01-14T18:06:57.073Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 943,
+    "fields": {
+        "description": "GARANTIA/ESCRITURA",
+        "document": "documents/GARANTIA_ESCRITURA_MAX_Y_DIDIANA.jpeg",
+        "uploaded_at": "2026-01-14T18:07:31.251Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 944,
+    "fields": {
+        "description": "GARANTIA/ESCRITURA",
+        "document": "documents/GARANTIA_ESCRITURA_MAX_Y_DIDIANA_2.jpeg",
+        "uploaded_at": "2026-01-14T18:07:52.183Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 945,
+    "fields": {
+        "description": "RECONOCIMIENTO DE DEUDA LIC ADAN",
+        "document": "documents/Reconocimiento_de_deuda_erick_sosa_.pdf",
+        "uploaded_at": "2026-01-15T18:19:34.147Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 946,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2026-01-16_at_3.11.36_PM_2.jpeg",
+        "uploaded_at": "2026-01-16T21:12:36.889Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 947,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2026-01-16_at_3.22.27_PM.jpeg",
+        "uploaded_at": "2026-01-16T21:23:25.846Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 948,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-16_at_3.56.54_PM.jpeg",
+        "uploaded_at": "2026-01-16T22:01:32.183Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 949,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARE_GARANTIA_CLAUDIA_PINTO.jpeg",
+        "uploaded_at": "2026-01-16T22:56:54.315Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 950,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/CHEQUE_GARANTIA_CLAUDIA_PINTO.jpeg",
+        "uploaded_at": "2026-01-16T22:57:29.598Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 951,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARE_GARANTIA_ANA_.jpeg",
+        "uploaded_at": "2026-01-19T17:25:00.041Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 952,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARE_MARTÍN_RAX.jpeg",
+        "uploaded_at": "2026-01-19T22:33:23.096Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 953,
+    "fields": {
+        "description": "GARANTIA/ESCRITURA",
+        "document": "documents/ESCRITURA_MARTÍN_RAX.jpeg",
+        "uploaded_at": "2026-01-19T22:34:16.826Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 954,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/GARANTIA_PAGARE_KARYN_CAMPOS.jpeg",
+        "uploaded_at": "2026-01-19T22:39:28.840Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 955,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/GARANTIA_CHEQUE_KARYN_CAMPOS.jpeg",
+        "uploaded_at": "2026-01-19T22:39:43.190Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 956,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARE_GARANTIA_DOMINGA.png",
+        "uploaded_at": "2026-01-20T17:39:19.919Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 957,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/PAGARE_GARANTIA_FRANCISCO_PANA_YAT.png",
+        "uploaded_at": "2026-01-20T17:39:53.275Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 958,
+    "fields": {
+        "description": "GARANTIA/CHEQUE",
+        "document": "documents/WhatsApp_Image_2026-01-21_at_3.19.44_PM.jpeg",
+        "uploaded_at": "2026-01-21T21:20:21.490Z"
+    }
+},
+{
+    "model": "documents.document",
+    "pk": 959,
+    "fields": {
+        "description": "GARANTIA/PAGARE",
+        "document": "documents/WhatsApp_Image_2026-01-21_at_4.27.28_PM.jpeg",
+        "uploaded_at": "2026-01-21T22:27:44.573Z"
+    }
 }
 ]

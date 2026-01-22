@@ -1,48 +1,720 @@
 [
 {
     "model": "actividades.informediariosistema",
-    "pk": 10,
+    "pk": 82,
     "fields": {
-        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR DIARIO",
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
         "descripcion": null,
-        "fecha_registro": "2025-10-30",
-        "fecha_vencimiento": "2025-11-01",
+        "fecha_registro": "2025-12-21",
+        "fecha_vencimiento": null,
         "esta_activo": true,
         "sucursal": 1
     }
 },
 {
     "model": "actividades.informediariosistema",
-    "pk": 11,
+    "pk": 83,
     "fields": {
-        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR DIARIO",
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
         "descripcion": null,
-        "fecha_registro": "2025-10-30",
-        "fecha_vencimiento": "2025-11-01",
+        "fecha_registro": "2025-12-21",
+        "fecha_vencimiento": null,
         "esta_activo": true,
         "sucursal": 2
     }
 },
 {
     "model": "actividades.informediariosistema",
-    "pk": 19,
+    "pk": 84,
     "fields": {
-        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR DIARIO",
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
         "descripcion": null,
-        "fecha_registro": "2025-11-03",
-        "fecha_vencimiento": "2025-12-01",
+        "fecha_registro": "2025-12-22",
+        "fecha_vencimiento": null,
         "esta_activo": true,
         "sucursal": 1
     }
 },
 {
     "model": "actividades.informediariosistema",
-    "pk": 20,
+    "pk": 85,
     "fields": {
-        "nombre_reporte": "Reporte INVERSIONES INTEGRALES EL TELAR DIARIO",
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
         "descripcion": null,
-        "fecha_registro": "2025-11-03",
-        "fecha_vencimiento": "2025-12-01",
+        "fecha_registro": "2025-12-22",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 86,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-23",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 87,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-23",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 88,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-25",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 89,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-25",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 90,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-26",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 91,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-26",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 92,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-27",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 93,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-27",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 94,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-28",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 95,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-28",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 96,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-29",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 97,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-29",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 98,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-31",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 99,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2025-12-31",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 100,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-01",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 101,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-01",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 102,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-02",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 103,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-02",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 104,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-03",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 105,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-03",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 106,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-04",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 107,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-04",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 108,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-05",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 109,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-05",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 110,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-06",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 111,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-06",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 112,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-07",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 113,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-07",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 114,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-08",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 115,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-08",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 116,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-09",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 117,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-09",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 118,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-10",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 119,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-10",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 120,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-11",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 121,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-11",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 122,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-12",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 123,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-12",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 124,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-13",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 125,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-13",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 126,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-14",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 127,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-14",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 128,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-15",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 129,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-15",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 130,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-16",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 131,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-16",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 132,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-17",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 133,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-17",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 134,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-18",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 135,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-18",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 136,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-19",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 137,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-19",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 138,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-20",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 139,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-20",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 2
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 140,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-21",
+        "fecha_vencimiento": null,
+        "esta_activo": true,
+        "sucursal": 1
+    }
+},
+{
+    "model": "actividades.informediariosistema",
+    "pk": 141,
+    "fields": {
+        "nombre_reporte": "REPORTE DIARIO INVERSIONES INTEGRALES EL TELAR",
+        "descripcion": null,
+        "fecha_registro": "2026-01-21",
+        "fecha_vencimiento": null,
         "esta_activo": true,
         "sucursal": 2
     }

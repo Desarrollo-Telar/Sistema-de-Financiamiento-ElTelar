@@ -141,6 +141,6 @@ load_commands = [
 
 if __name__ == '__main__':
     print("PROCESANDO...")
-    for back in load_commands:
+    for back in commands:
         os.system(back)
     print("FINALIZADO")

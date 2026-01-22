@@ -9560,5 +9560,556 @@
         "timestamp": "2025-11-03T15:31:42.845Z",
         "notes": null
     }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 244,
+    "fields": {
+        "content_type": "Egress",
+        "object_id": 663,
+        "action": "update",
+        "data": {
+            "id": 663,
+            "nit": "40969851",
+            "fecha": "2025-11-07",
+            "monto": 4000.0,
+            "boleta": "https://https://pcxl65.stackhero-network.com/asiatrip/pagos/boletas/gasto/Captura_de_pantalla_2025-11-17_121432.png",
+            "nombre": "EDGAR ARMANDO ALVARADO",
+            "seguro": null,
+            "status": true,
+            "acreedor": null,
+            "sucursal": 1,
+            "documento": null,
+            "monto_doc": 4000.0,
+            "numero_doc": "3853929279/0E17A37F",
+            "tipo_gasto": null,
+            "descripcion": "",
+            "codigo_egreso": "SALARIOS",
+            "creation_date": "2025-11-17T18:14:43.946225+00:00",
+            "observaciones": "",
+            "tipo_impuesto": null,
+            "fecha_registro": "2025-11-17",
+            "fecha_doc_fiscal": "2025-11-07",
+            "numero_referencia": "1305951670",
+            "pago_correspondiente": "PRIMERA QUINCENA"
+        },
+        "changes": {
+            "boleta": {
+                "antes": null,
+                "despues": "https://https://pcxl65.stackhero-network.com/asiatrip/pagos/boletas/gasto/Captura_de_pantalla_2025-11-17_121432.png"
+            },
+            "nombre": {
+                "antes": "GRECIA MAYARI RODRIGUEZ ROQUEL",
+                "despues": "EDGAR ARMANDO ALVARADO"
+            }
+        },
+        "user": 2,
+        "timestamp": "2025-11-17T18:15:05.829Z",
+        "notes": null
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 245,
+    "fields": {
+        "content_type": "Egress",
+        "object_id": 663,
+        "action": "update",
+        "data": {
+            "id": 663,
+            "nit": "40969851",
+            "fecha": "2025-11-07",
+            "monto": 4000.0,
+            "boleta": "https://https://pcxl65.stackhero-network.com/asiatrip/pagos/boletas/gasto/Captura_de_pantalla_2025-11-17_121432.png",
+            "nombre": "GRECIA MAYARI RODRIGUEZ ROQUEL",
+            "seguro": null,
+            "status": true,
+            "acreedor": null,
+            "sucursal": 1,
+            "documento": null,
+            "monto_doc": 4000.0,
+            "numero_doc": "3853929279/0E17A37F",
+            "tipo_gasto": null,
+            "descripcion": "",
+            "codigo_egreso": "SALARIOS",
+            "creation_date": "2025-11-17T18:14:43.946225+00:00",
+            "observaciones": "",
+            "tipo_impuesto": null,
+            "fecha_registro": "2025-11-17",
+            "fecha_doc_fiscal": "2025-11-07",
+            "numero_referencia": "1305951670",
+            "pago_correspondiente": "PRIMERA QUINCENA"
+        },
+        "changes": {
+            "nombre": {
+                "antes": "EDGAR ARMANDO ALVARADO",
+                "despues": "GRECIA MAYARI RODRIGUEZ ROQUEL"
+            }
+        },
+        "user": 2,
+        "timestamp": "2025-11-17T18:15:31.868Z",
+        "notes": null
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 247,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 265,
+        "action": "delete",
+        "data": {
+            "id": 265,
+            "reporte": 13,
+            "cobranza": 248
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:48.806Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 248,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 260,
+        "action": "delete",
+        "data": {
+            "id": 260,
+            "reporte": 13,
+            "cobranza": 240
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:49.151Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 249,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 261,
+        "action": "delete",
+        "data": {
+            "id": 261,
+            "reporte": 13,
+            "cobranza": 242
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:49.556Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 250,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 262,
+        "action": "delete",
+        "data": {
+            "id": 262,
+            "reporte": 13,
+            "cobranza": 244
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:49.963Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 251,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 263,
+        "action": "delete",
+        "data": {
+            "id": 263,
+            "reporte": 13,
+            "cobranza": 245
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:50.302Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 252,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 157,
+        "action": "delete",
+        "data": {
+            "id": 157,
+            "reporte": 13,
+            "cobranza": 247
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:50.163Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 253,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 158,
+        "action": "delete",
+        "data": {
+            "id": 158,
+            "reporte": 13,
+            "cobranza": 249
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:49.983Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 254,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 264,
+        "action": "delete",
+        "data": {
+            "id": 264,
+            "reporte": 13,
+            "cobranza": 246
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:50.324Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 255,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 253,
+        "action": "delete",
+        "data": {
+            "id": 253,
+            "reporte": 13,
+            "cobranza": 233
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:50.661Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 256,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 257,
+        "action": "delete",
+        "data": {
+            "id": 257,
+            "reporte": 13,
+            "cobranza": 237
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:51.000Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 257,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 259,
+        "action": "delete",
+        "data": {
+            "id": 259,
+            "reporte": 13,
+            "cobranza": 239
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:51.349Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 258,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 248,
+        "action": "delete",
+        "data": {
+            "id": 248,
+            "reporte": 13,
+            "cobranza": 229
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:51.687Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 259,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 249,
+        "action": "delete",
+        "data": {
+            "id": 249,
+            "reporte": 13,
+            "cobranza": 230
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:52.028Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 260,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 254,
+        "action": "delete",
+        "data": {
+            "id": 254,
+            "reporte": 13,
+            "cobranza": 234
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:52.369Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 261,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 244,
+        "action": "delete",
+        "data": {
+            "id": 244,
+            "reporte": 13,
+            "cobranza": 226
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:52.705Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 262,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 245,
+        "action": "delete",
+        "data": {
+            "id": 245,
+            "reporte": 13,
+            "cobranza": 227
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:53.043Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 263,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 209,
+        "action": "delete",
+        "data": {
+            "id": 209,
+            "reporte": 13,
+            "cobranza": 191
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:52:53.450Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 264,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 256,
+        "action": "delete",
+        "data": {
+            "id": 256,
+            "reporte": 16,
+            "cobranza": 236
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:55:01.952Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 265,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 258,
+        "action": "delete",
+        "data": {
+            "id": 258,
+            "reporte": 14,
+            "cobranza": 238
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:55:15.300Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 266,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 211,
+        "action": "delete",
+        "data": {
+            "id": 211,
+            "reporte": 14,
+            "cobranza": 193
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:55:15.634Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 267,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 250,
+        "action": "delete",
+        "data": {
+            "id": 250,
+            "reporte": 12,
+            "cobranza": 231
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:55:44.151Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 268,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 182,
+        "action": "delete",
+        "data": {
+            "id": 182,
+            "reporte": 12,
+            "cobranza": 235
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:55:44.490Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 269,
+    "fields": {
+        "content_type": "actividades.DetalleInformeCobranza",
+        "object_id": 210,
+        "action": "delete",
+        "data": {
+            "id": 210,
+            "reporte": 12,
+            "cobranza": 192
+        },
+        "changes": null,
+        "user": null,
+        "timestamp": "2025-11-17T19:55:43.846Z",
+        "notes": "Por fallas de sistema, no se hizo el cambio para el reporte del informe mensual, por el cual se estan traslando al informe del mes de noviembre todas las operaciones que fueron mezcladas con el mes de octubre"
+    }
+},
+{
+    "model": "actividades.modelhistory",
+    "pk": 270,
+    "fields": {
+        "content_type": "Egress",
+        "object_id": 802,
+        "action": "update",
+        "data": {
+            "id": 802,
+            "nit": null,
+            "fecha": "2025-12-23",
+            "monto": 650.0,
+            "boleta": "https://https://pcxl65.stackhero-network.com/asiatrip/pagos/boletas/gasto/Captura_de_pantalla_2026-01-05_105812_3EidoBU.png",
+            "nombre": "ELIZABETH ANDREA ESPERANZA TOT CANAHUI",
+            "seguro": null,
+            "status": true,
+            "acreedor": null,
+            "sucursal": 1,
+            "documento": null,
+            "monto_doc": null,
+            "numero_doc": null,
+            "tipo_gasto": null,
+            "descripcion": "",
+            "codigo_egreso": "SALARIOS",
+            "creation_date": "2026-01-05T16:58:54.211261+00:00",
+            "observaciones": "",
+            "tipo_impuesto": null,
+            "fecha_registro": "2026-01-05",
+            "fecha_doc_fiscal": null,
+            "numero_referencia": "669213200",
+            "pago_correspondiente": "OTRAS BONIFICACIONES"
+        },
+        "changes": {
+            "boleta": {
+                "antes": "https://https://pcxl65.stackhero-network.com/asiatrip/pagos/boletas/gasto/Captura_de_pantalla_2026-01-05_105812.png",
+                "despues": "https://https://pcxl65.stackhero-network.com/asiatrip/pagos/boletas/gasto/Captura_de_pantalla_2026-01-05_105812_3EidoBU.png"
+            },
+            "nombre": {
+                "antes": "LUISA FERNANDA CHEN PACAY",
+                "despues": "ELIZABETH ANDREA ESPERANZA TOT CANAHUI"
+            }
+        },
+        "user": 2,
+        "timestamp": "2026-01-05T16:59:36.110Z",
+        "notes": null
+    }
 }
 ]

@@ -152,5 +152,49 @@
         "recordatorio_clientes": "2025-08-04",
         "sucursal": null
     }
+},
+{
+    "model": "customers.creditcounselor",
+    "pk": 10,
+    "fields": {
+        "usuario": 9,
+        "nombre": "JALINNE ANAGALY",
+        "apellido": "BERRÍOS DE LA CRUZ",
+        "codigo_asesor": "2025-A8",
+        "type_identification": "DPI",
+        "identification_number": "3242776521601",
+        "telephone": "31894814",
+        "email": "eltelarjalinne@gmail.com",
+        "profile_pic": "",
+        "creation_date": "2025-11-13T19:29:12.190Z",
+        "fecha_actualizacion": "2025-11-13",
+        "status": true,
+        "gender": "FEMENINO",
+        "nit": null,
+        "recordatorio_clientes": "2025-11-13",
+        "sucursal": 2
+    }
+},
+{
+    "model": "customers.creditcounselor",
+    "pk": 11,
+    "fields": {
+        "usuario": 4,
+        "nombre": "Andrea",
+        "apellido": "Tot",
+        "codigo_asesor": "2025-A9",
+        "type_identification": "DPI",
+        "identification_number": "3253514141601",
+        "telephone": "38616418",
+        "email": "andreatot.iieltelarsa@gmail.com",
+        "profile_pic": "",
+        "creation_date": "2025-11-20T15:44:08.784Z",
+        "fecha_actualizacion": "2025-11-20",
+        "status": true,
+        "gender": "FEMENINO",
+        "nit": null,
+        "recordatorio_clientes": "2025-11-20",
+        "sucursal": 1
+    }
 }
 ]

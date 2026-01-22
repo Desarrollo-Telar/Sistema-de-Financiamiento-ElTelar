@@ -7,7 +7,8 @@
         "nit": "103947477",
         "phone_number": "42629859",
         "salary": "10000.00",
-        "customer_id": 403
+        "customer_id": 403,
+        "creation_date": "2026-01-17T23:23:22.293Z"
     }
 },
 {
@@ -18,7 +19,8 @@
         "nit": "51522659",
         "phone_number": "39367299",
         "salary": "4000.00",
-        "customer_id": 405
+        "customer_id": 405,
+        "creation_date": "2026-01-17T23:23:22.293Z"
     }
 },
 {
@@ -29,7 +31,140 @@
         "nit": "98339788",
         "phone_number": "33253860",
         "salary": "10000.00",
-        "customer_id": 409
+        "customer_id": 409,
+        "creation_date": "2026-01-17T23:23:22.293Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 5,
+    "fields": {
+        "source_of_income": "NEGOCIO PROPIO",
+        "nit": "CF",
+        "phone_number": "30284637",
+        "salary": "15000.00",
+        "customer_id": 513,
+        "creation_date": "2026-01-17T23:23:22.293Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 6,
+    "fields": {
+        "source_of_income": "NEGOCIO PROPIO",
+        "nit": "CF",
+        "phone_number": "31016725",
+        "salary": "5000.00",
+        "customer_id": 509,
+        "creation_date": "2026-01-17T23:23:22.293Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 7,
+    "fields": {
+        "source_of_income": "COMERCIANTE DE ALIMENTOS",
+        "nit": "CF",
+        "phone_number": "53422213",
+        "salary": "4000.00",
+        "customer_id": 525,
+        "creation_date": "2026-01-17T23:23:22.293Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 8,
+    "fields": {
+        "source_of_income": "AGRICULTURA",
+        "nit": "CF",
+        "phone_number": "0",
+        "salary": "5000.00",
+        "customer_id": 526,
+        "creation_date": "2026-01-17T23:23:22.293Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 9,
+    "fields": {
+        "source_of_income": "NEGOCIO PROPIO",
+        "nit": "CF",
+        "phone_number": "30087246",
+        "salary": "8000.00",
+        "customer_id": 527,
+        "creation_date": "2026-01-17T23:23:22.293Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 10,
+    "fields": {
+        "source_of_income": "NEGOCIO PROPIO",
+        "nit": "4070398-3",
+        "phone_number": "0",
+        "salary": "50000.00",
+        "customer_id": 529,
+        "creation_date": "2026-01-17T23:23:22.293Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 11,
+    "fields": {
+        "source_of_income": "NEGOCIO PROPIO",
+        "nit": "CF",
+        "phone_number": "37474456",
+        "salary": "7000.00",
+        "customer_id": 533,
+        "creation_date": "2026-01-17T23:23:22.293Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 12,
+    "fields": {
+        "source_of_income": "NEGOCIO PROPIO",
+        "nit": "CF",
+        "phone_number": "0",
+        "salary": "3500.00",
+        "customer_id": 537,
+        "creation_date": "2026-01-17T23:23:22.293Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 13,
+    "fields": {
+        "source_of_income": "NEGOCIO PROPIO",
+        "nit": "CF",
+        "phone_number": "0",
+        "salary": "3500.00",
+        "customer_id": 538,
+        "creation_date": "2026-01-17T23:23:22.293Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 14,
+    "fields": {
+        "source_of_income": "TRABAJADOR DE CAMPO",
+        "nit": "CF",
+        "phone_number": "0",
+        "salary": "1000.00",
+        "customer_id": 541,
+        "creation_date": "2026-01-19T20:04:37.103Z"
+    }
+},
+{
+    "model": "FinancialInformation.othersourcesofincome",
+    "pk": 15,
+    "fields": {
+        "source_of_income": "PEQUEÑA COMERCIANTE DE ALIMENTOS",
+        "nit": "CF",
+        "phone_number": "0",
+        "salary": "300.00",
+        "customer_id": 542,
+        "creation_date": "2026-01-19T20:13:22.152Z"
     }
 }
 ]

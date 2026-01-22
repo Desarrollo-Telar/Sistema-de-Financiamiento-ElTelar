@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$720000$9u9pd4U05K3C1fSZbSw9Ci$HU5Pt4NBZwNi047/EGefKiBv1596S7p+yQgMpCah+3s=",
-        "last_login": "2025-11-04T18:51:36.147Z",
+        "last_login": "2026-01-21T23:05:13.714Z",
         "is_superuser": true,
         "username": "choc1403",
         "first_name": "JUAN CARLOS",
@@ -35,7 +35,7 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$720000$EEvuqArXW8Z3mbY4KUNKzu$54gL75TfPQoCF6J5jU+VqTqKNhrhXtGmXb+S1DD8Rao=",
-        "last_login": "2025-11-04T20:58:12.935Z",
+        "last_login": "2026-01-21T21:33:58.485Z",
         "is_superuser": true,
         "username": "l_chenof1",
         "first_name": "Fernanda",
@@ -66,11 +66,11 @@
     "pk": 3,
     "fields": {
         "password": "pbkdf2_sha256$720000$Kvpb5uCInvweu6sBS4rXiW$0U4qhD2Ig2hh57Lc6eOKJFoNH+R1hUWveAUDjw977Bw=",
-        "last_login": "2025-11-04T20:07:55.411Z",
+        "last_login": "2026-01-21T18:02:49.511Z",
         "is_superuser": true,
         "username": "g_rodriguez",
         "first_name": "Grecia",
-        "last_name": "Rodrguez",
+        "last_name": "Rodriguez",
         "is_staff": true,
         "is_active": true,
         "date_joined": "2024-10-28T23:41:45Z",
@@ -96,8 +96,8 @@
     "model": "users.user",
     "pk": 4,
     "fields": {
-        "password": "pbkdf2_sha256$720000$BMbn9ZMSgDcI50aI19ycPk$xS/n3y0iBeFML+qMaOQMoNxvK5+k41Glv6uaZJNQW5U=",
-        "last_login": "2025-11-04T20:19:23.189Z",
+        "password": "pbkdf2_sha256$720000$CPk72sPjiOLSMsDMmFddSC$xv2AF6WDBGg1ecVvIVK5psJIbKcuOJpoKbsMDBlGnCw=",
+        "last_login": "2026-01-21T21:05:34.467Z",
         "is_superuser": false,
         "username": "andrea_tot",
         "first_name": "Andrea",
@@ -128,7 +128,7 @@
     "pk": 5,
     "fields": {
         "password": "pbkdf2_sha256$720000$C8NqL0YvHnuK4qBNdMFqzz$wHYf7N3pQTqaeaGqYvnTWkWyNPaOONr1LoZd7zJjATw=",
-        "last_login": "2025-11-03T14:19:42.131Z",
+        "last_login": "2026-01-20T15:05:24.884Z",
         "is_superuser": false,
         "username": "luis_macz01",
         "first_name": "LUIS ALBERTO",
@@ -159,7 +159,7 @@
     "pk": 6,
     "fields": {
         "password": "pbkdf2_sha256$720000$TjYwq1rnGv2Vp6Zqu7mJP5$7q0WGCrHFwBm1jg05q+WJmQjVEI5iU9CVseA6ppm5qw=",
-        "last_login": "2025-11-01T00:40:08.403Z",
+        "last_login": "2026-01-21T04:15:38.663Z",
         "is_superuser": false,
         "username": "o_gonzalez",
         "first_name": "JOSUÉ FRANCISCO",
@@ -190,7 +190,7 @@
     "pk": 7,
     "fields": {
         "password": "pbkdf2_sha256$720000$w18xDVDT6wARic4X5ruyOP$y37Jn85w6itnU7DFitZmATpwjUVRSHaskBeVoE5X6J8=",
-        "last_login": "2025-11-04T16:29:16.411Z",
+        "last_login": "2026-01-20T17:55:39.460Z",
         "is_superuser": false,
         "username": "t_cifuentes",
         "first_name": "JENNIFFER TATIANA",
@@ -220,8 +220,8 @@
     "model": "users.user",
     "pk": 8,
     "fields": {
-        "password": "pbkdf2_sha256$720000$M25SVfDAKeBHqRryVn2FU5$wxiw648Q9EEGccT7mfjqzRybj0MPD5jV8/FeqCJhMSY=",
-        "last_login": "2025-07-14T22:48:25Z",
+        "password": "pbkdf2_sha256$720000$wKDdSZQU9jDUX04n4GWbbS$Zapc8WwaB8gUPpI5Qh7vLIF9jUshKmyupNiPgqHdfyA=",
+        "last_login": "2026-01-12T23:42:43.521Z",
         "is_superuser": false,
         "username": "e_bermudez",
         "first_name": "EDGAR ARMANDO",
@@ -252,7 +252,7 @@
     "pk": 9,
     "fields": {
         "password": "pbkdf2_sha256$720000$btYQ9pEuCFMLP6oB8pUzTr$dbB5OX+SZpc5HF/yneGtNJF/4NWxA/rNZUVoR4UktAk=",
-        "last_login": "2025-11-04T20:25:54.051Z",
+        "last_login": "2026-01-21T21:17:55.515Z",
         "is_superuser": false,
         "username": "Jalinne_b",
         "first_name": "JALINNE ANAGALY",
@@ -263,7 +263,7 @@
         "type_identification": "DPI",
         "identification_number": "3242776521601",
         "telephone": "31894814",
-        "email": "jalinneberriosdelacruz@gmail.com",
+        "email": "eltelarjalinne@gmail.com",
         "status": true,
         "gender": "FEMENINO",
         "user_code": "2025-5",

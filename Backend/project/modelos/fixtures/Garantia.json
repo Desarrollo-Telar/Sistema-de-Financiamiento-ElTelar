@@ -5,7 +5,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 13
+        "credit_id": 13,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -14,7 +15,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "23958.00",
-        "credit_id": 14
+        "credit_id": 14,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -23,7 +25,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5500.00",
-        "credit_id": 15
+        "credit_id": 15,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -32,7 +35,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1300.00",
-        "credit_id": 16
+        "credit_id": 16,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -41,7 +45,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5500.00",
-        "credit_id": 17
+        "credit_id": 17,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -50,7 +55,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 18
+        "credit_id": 18,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -59,7 +65,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 19
+        "credit_id": 19,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -68,7 +75,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 20
+        "credit_id": 20,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -77,7 +85,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 21
+        "credit_id": 21,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -86,7 +95,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 22
+        "credit_id": 22,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -95,7 +105,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 24
+        "credit_id": 24,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -104,7 +115,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 25
+        "credit_id": 25,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -113,7 +125,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 26
+        "credit_id": 26,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -122,7 +135,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 27
+        "credit_id": 27,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -131,7 +145,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 28
+        "credit_id": 28,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -140,7 +155,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 29
+        "credit_id": 29,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -149,7 +165,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 30
+        "credit_id": 30,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -158,7 +175,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 31
+        "credit_id": 31,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -167,7 +185,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 32
+        "credit_id": 32,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -176,7 +195,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 33
+        "credit_id": 33,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -185,7 +205,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 34
+        "credit_id": 34,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -194,7 +215,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 35
+        "credit_id": 35,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -203,7 +225,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 36
+        "credit_id": 36,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -212,7 +235,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 37
+        "credit_id": 37,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -221,7 +245,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 39
+        "credit_id": 39,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -230,7 +255,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 40
+        "credit_id": 40,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -239,7 +265,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 41
+        "credit_id": 41,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -248,7 +275,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 42
+        "credit_id": 42,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -257,7 +285,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 43
+        "credit_id": 43,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -266,7 +295,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 44
+        "credit_id": 44,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -275,7 +305,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 45
+        "credit_id": 45,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -284,7 +315,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 46
+        "credit_id": 46,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -293,7 +325,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 47
+        "credit_id": 47,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -302,7 +335,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 48
+        "credit_id": 48,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -311,7 +345,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 49
+        "credit_id": 49,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -320,7 +355,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 50
+        "credit_id": 50,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -329,7 +365,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 51
+        "credit_id": 51,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -338,7 +375,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 52
+        "credit_id": 52,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -347,7 +385,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 53
+        "credit_id": 53,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -356,7 +395,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 54
+        "credit_id": 54,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -365,7 +405,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 55
+        "credit_id": 55,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -374,7 +415,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 59
+        "credit_id": 59,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -383,7 +425,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 60
+        "credit_id": 60,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -392,7 +435,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10091.00",
-        "credit_id": 62
+        "credit_id": 62,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -401,7 +445,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 63
+        "credit_id": 63,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -410,7 +455,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 64
+        "credit_id": 64,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -419,7 +465,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 65
+        "credit_id": 65,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -428,7 +475,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 66
+        "credit_id": 66,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -437,7 +485,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 67
+        "credit_id": 67,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -446,7 +495,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 68
+        "credit_id": 68,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -455,7 +505,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 69
+        "credit_id": 69,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -464,7 +515,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 70
+        "credit_id": 70,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -473,7 +525,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 72
+        "credit_id": 72,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -482,7 +535,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "19880.00",
-        "credit_id": 73
+        "credit_id": 73,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -491,7 +545,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 74
+        "credit_id": 74,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -500,7 +555,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 75
+        "credit_id": 75,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -509,7 +565,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 77
+        "credit_id": 77,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -518,7 +575,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 78
+        "credit_id": 78,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -527,7 +585,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 79
+        "credit_id": 79,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -536,7 +595,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 82
+        "credit_id": 82,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -545,7 +605,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 83
+        "credit_id": 83,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -554,7 +615,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 84
+        "credit_id": 84,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -563,7 +625,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 85
+        "credit_id": 85,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -572,7 +635,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 86
+        "credit_id": 86,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -581,7 +645,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 87
+        "credit_id": 87,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -590,7 +655,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 88
+        "credit_id": 88,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -599,7 +665,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 91
+        "credit_id": 91,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -608,7 +675,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 93
+        "credit_id": 93,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -617,7 +685,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 94
+        "credit_id": 94,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -626,7 +695,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 95
+        "credit_id": 95,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -635,7 +705,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 96
+        "credit_id": 96,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -644,7 +715,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 97
+        "credit_id": 97,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -653,7 +725,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 98
+        "credit_id": 98,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -662,7 +735,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 99
+        "credit_id": 99,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -671,7 +745,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 100
+        "credit_id": 100,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -680,7 +755,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 101
+        "credit_id": 101,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -689,7 +765,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 102
+        "credit_id": 102,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -698,7 +775,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 103
+        "credit_id": 103,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -707,7 +785,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 104
+        "credit_id": 104,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -716,7 +795,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 105
+        "credit_id": 105,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -725,7 +805,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 106
+        "credit_id": 106,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -734,7 +815,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 107
+        "credit_id": 107,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -743,7 +825,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 108
+        "credit_id": 108,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -752,7 +835,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 109
+        "credit_id": 109,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -761,7 +845,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 115
+        "credit_id": 115,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -770,7 +855,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 117
+        "credit_id": 117,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -779,7 +865,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 118
+        "credit_id": 118,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -788,7 +875,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10705.00",
-        "credit_id": 119
+        "credit_id": 119,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -797,7 +885,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6832.50",
-        "credit_id": 120
+        "credit_id": 120,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -806,7 +895,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 121
+        "credit_id": 121,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -815,7 +905,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 122
+        "credit_id": 122,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -824,7 +915,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 123
+        "credit_id": 123,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -833,7 +925,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "11832.50",
-        "credit_id": 124
+        "credit_id": 124,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -842,7 +935,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 125
+        "credit_id": 125,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -851,7 +945,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 126
+        "credit_id": 126,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -860,7 +955,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 139
+        "credit_id": 139,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -869,7 +965,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 140
+        "credit_id": 140,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -878,7 +975,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8150.00",
-        "credit_id": 141
+        "credit_id": 141,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -887,7 +985,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 142
+        "credit_id": 142,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -896,7 +995,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 143
+        "credit_id": 143,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -905,7 +1005,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 144
+        "credit_id": 144,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -914,7 +1015,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3500.00",
-        "credit_id": 145
+        "credit_id": 145,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -923,7 +1025,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6500.00",
-        "credit_id": 146
+        "credit_id": 146,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -932,7 +1035,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 147
+        "credit_id": 147,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -941,7 +1045,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 148
+        "credit_id": 148,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -950,7 +1055,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1000.00",
-        "credit_id": 149
+        "credit_id": 149,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -959,7 +1065,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 150
+        "credit_id": 150,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -968,7 +1075,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2500.00",
-        "credit_id": 151
+        "credit_id": 151,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -977,7 +1085,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 152
+        "credit_id": 152,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -986,7 +1095,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 153
+        "credit_id": 153,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -995,7 +1105,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 154
+        "credit_id": 154,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1004,7 +1115,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7150.00",
-        "credit_id": 155
+        "credit_id": 155,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1013,7 +1125,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 156
+        "credit_id": 156,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1022,7 +1135,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "45000.00",
-        "credit_id": 157
+        "credit_id": 157,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1031,7 +1145,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 158
+        "credit_id": 158,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1040,7 +1155,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 159
+        "credit_id": 159,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1049,7 +1165,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 160
+        "credit_id": 160,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1058,7 +1175,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 162
+        "credit_id": 162,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1067,7 +1185,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 163
+        "credit_id": 163,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1076,7 +1195,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 164
+        "credit_id": 164,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1085,7 +1205,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 165
+        "credit_id": 165,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1094,7 +1215,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "60000.00",
-        "credit_id": 166
+        "credit_id": 166,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1103,7 +1225,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6600.00",
-        "credit_id": 167
+        "credit_id": 167,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1112,7 +1235,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10544.00",
-        "credit_id": 168
+        "credit_id": 168,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1121,7 +1245,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 169
+        "credit_id": 169,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1130,7 +1255,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "15000.00",
-        "credit_id": 170
+        "credit_id": 170,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1139,7 +1265,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 171
+        "credit_id": 171,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1148,7 +1275,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 172
+        "credit_id": 172,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1157,7 +1285,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 173
+        "credit_id": 173,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1166,7 +1295,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 174
+        "credit_id": 174,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1175,7 +1305,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "75000.00",
-        "credit_id": 176
+        "credit_id": 176,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1184,7 +1315,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 177
+        "credit_id": 177,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1193,7 +1325,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 178
+        "credit_id": 178,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1202,7 +1335,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7000.00",
-        "credit_id": 179
+        "credit_id": 179,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1211,7 +1345,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 180
+        "credit_id": 180,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1220,7 +1355,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 181
+        "credit_id": 181,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1229,7 +1365,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6500.00",
-        "credit_id": 182
+        "credit_id": 182,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1238,7 +1375,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 183
+        "credit_id": 183,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1247,7 +1385,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 184
+        "credit_id": 184,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1256,7 +1395,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 185
+        "credit_id": 185,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1265,7 +1405,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 186
+        "credit_id": 186,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1274,7 +1415,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 187
+        "credit_id": 187,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1283,7 +1425,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "15000.00",
-        "credit_id": 188
+        "credit_id": 188,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1292,7 +1435,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 189
+        "credit_id": 189,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1301,7 +1445,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 190
+        "credit_id": 190,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1310,7 +1455,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 191
+        "credit_id": 191,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1319,7 +1465,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 192
+        "credit_id": 192,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1328,7 +1475,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 194
+        "credit_id": 194,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1337,7 +1485,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1000.00",
-        "credit_id": 195
+        "credit_id": 195,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1346,7 +1495,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 228
+        "credit_id": 228,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1355,7 +1505,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 229
+        "credit_id": 229,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1364,7 +1515,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 230
+        "credit_id": 230,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1373,7 +1525,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 231
+        "credit_id": 231,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1382,7 +1535,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 232
+        "credit_id": 232,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1391,7 +1545,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "14000.00",
-        "credit_id": 233
+        "credit_id": 233,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1400,7 +1555,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 234
+        "credit_id": 234,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1409,7 +1565,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "50000.00",
-        "credit_id": 235
+        "credit_id": 235,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1418,7 +1575,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "30000.00",
-        "credit_id": 236
+        "credit_id": 236,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1427,7 +1585,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "35000.00",
-        "credit_id": 237
+        "credit_id": 237,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1436,7 +1595,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 238
+        "credit_id": 238,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1445,7 +1605,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 239
+        "credit_id": 239,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1454,7 +1615,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "13000.00",
-        "credit_id": 240
+        "credit_id": 240,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1463,7 +1625,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 241
+        "credit_id": 241,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1472,7 +1635,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 242
+        "credit_id": 242,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1481,7 +1645,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 243
+        "credit_id": 243,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1490,7 +1655,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 244
+        "credit_id": 244,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1499,7 +1665,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 245
+        "credit_id": 245,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1508,7 +1675,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1000.00",
-        "credit_id": 248
+        "credit_id": 248,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1517,7 +1685,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "19767.09",
-        "credit_id": 250
+        "credit_id": 250,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1526,7 +1695,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 251
+        "credit_id": 251,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1535,7 +1705,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1000.00",
-        "credit_id": 252
+        "credit_id": 252,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1544,7 +1715,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 253
+        "credit_id": 253,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1553,7 +1725,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 254
+        "credit_id": 254,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1562,7 +1735,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 255
+        "credit_id": 255,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1571,7 +1745,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "500.00",
-        "credit_id": 256
+        "credit_id": 256,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1580,7 +1755,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "50000.00",
-        "credit_id": 257
+        "credit_id": 257,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1589,7 +1765,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3500.00",
-        "credit_id": 258
+        "credit_id": 258,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1598,7 +1775,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 259
+        "credit_id": 259,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1607,7 +1785,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 260
+        "credit_id": 260,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1616,7 +1795,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 262
+        "credit_id": 262,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1625,7 +1805,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 263
+        "credit_id": 263,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1634,7 +1815,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 264
+        "credit_id": 264,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1643,7 +1825,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 265
+        "credit_id": 265,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1652,7 +1835,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1200.00",
-        "credit_id": 266
+        "credit_id": 266,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1661,7 +1845,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 267
+        "credit_id": 267,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1670,7 +1855,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 268
+        "credit_id": 268,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1679,7 +1865,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "12000.00",
-        "credit_id": 269
+        "credit_id": 269,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1688,7 +1875,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 270
+        "credit_id": 270,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1697,7 +1885,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 271
+        "credit_id": 271,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1706,7 +1895,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7900.64",
-        "credit_id": 278
+        "credit_id": 278,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1715,7 +1905,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 279
+        "credit_id": 279,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1724,7 +1915,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "17000.00",
-        "credit_id": 280
+        "credit_id": 280,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1733,7 +1925,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 281
+        "credit_id": 281,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1742,7 +1935,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 282
+        "credit_id": 282,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1751,7 +1945,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 283
+        "credit_id": 283,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1760,7 +1955,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "15000.00",
-        "credit_id": 284
+        "credit_id": 284,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1769,7 +1965,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 285
+        "credit_id": 285,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1778,7 +1975,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 286
+        "credit_id": 286,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1787,7 +1985,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1000.00",
-        "credit_id": 287
+        "credit_id": 287,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1796,7 +1995,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 288
+        "credit_id": 288,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1805,7 +2005,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 289
+        "credit_id": 289,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1814,7 +2015,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 291
+        "credit_id": 291,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1823,7 +2025,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "14501.00",
-        "credit_id": 292
+        "credit_id": 292,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1832,7 +2035,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "54000.00",
-        "credit_id": 293
+        "credit_id": 293,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1841,7 +2045,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 294
+        "credit_id": 294,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1850,7 +2055,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 295
+        "credit_id": 295,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1859,7 +2065,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5550.00",
-        "credit_id": 296
+        "credit_id": 296,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1868,7 +2075,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 297
+        "credit_id": 297,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1877,7 +2085,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 298
+        "credit_id": 298,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1886,7 +2095,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3500.00",
-        "credit_id": 299
+        "credit_id": 299,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1895,7 +2105,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 300
+        "credit_id": 300,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1904,7 +2115,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 301
+        "credit_id": 301,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1913,7 +2125,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 302
+        "credit_id": 302,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1922,7 +2135,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "31000.00",
-        "credit_id": 303
+        "credit_id": 303,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1931,7 +2145,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2500.00",
-        "credit_id": 304
+        "credit_id": 304,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1940,7 +2155,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 305
+        "credit_id": 305,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1949,7 +2165,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 306
+        "credit_id": 306,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1958,7 +2175,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7500.00",
-        "credit_id": 307
+        "credit_id": 307,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1967,7 +2185,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 308
+        "credit_id": 308,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1976,7 +2195,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7000.00",
-        "credit_id": 309
+        "credit_id": 309,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1985,7 +2205,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "320000.00",
-        "credit_id": 310
+        "credit_id": 310,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -1994,7 +2215,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "48000.00",
-        "credit_id": 311
+        "credit_id": 311,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2003,7 +2225,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "80000.00",
-        "credit_id": 312
+        "credit_id": 312,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2012,7 +2235,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "13477.00",
-        "credit_id": 313
+        "credit_id": 313,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2021,7 +2245,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "15000.00",
-        "credit_id": 314
+        "credit_id": 314,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2030,7 +2255,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3500.00",
-        "credit_id": 315
+        "credit_id": 315,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2039,7 +2265,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "111650.00",
-        "credit_id": 316
+        "credit_id": 316,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2048,7 +2275,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7500.00",
-        "credit_id": 317
+        "credit_id": 317,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2057,7 +2285,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 318
+        "credit_id": 318,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2066,7 +2295,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5500.00",
-        "credit_id": 319
+        "credit_id": 319,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2075,7 +2305,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 320
+        "credit_id": 320,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2084,7 +2315,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "12000.00",
-        "credit_id": 321
+        "credit_id": 321,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2093,7 +2325,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 322
+        "credit_id": 322,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2102,7 +2335,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "40000.00",
-        "credit_id": 323
+        "credit_id": 323,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2111,7 +2345,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 325
+        "credit_id": 325,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2120,7 +2355,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "75000.00",
-        "credit_id": 326
+        "credit_id": 326,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2129,7 +2365,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 327
+        "credit_id": 327,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2138,7 +2375,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 328
+        "credit_id": 328,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2147,7 +2385,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 329
+        "credit_id": 329,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2156,7 +2395,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7000.00",
-        "credit_id": 330
+        "credit_id": 330,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2165,7 +2405,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7000.00",
-        "credit_id": 331
+        "credit_id": 331,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2174,7 +2415,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 332
+        "credit_id": 332,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2183,7 +2425,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2500.00",
-        "credit_id": 333
+        "credit_id": 333,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2192,7 +2435,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7000.00",
-        "credit_id": 334
+        "credit_id": 334,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2201,7 +2445,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 335
+        "credit_id": 335,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2210,7 +2455,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 336
+        "credit_id": 336,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2219,7 +2465,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 337
+        "credit_id": 337,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2228,7 +2475,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 338
+        "credit_id": 338,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2237,7 +2485,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 339
+        "credit_id": 339,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2246,7 +2495,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "46500.00",
-        "credit_id": 340
+        "credit_id": 340,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2255,7 +2505,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "22680.00",
-        "credit_id": 341
+        "credit_id": 341,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2264,7 +2515,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "47000.00",
-        "credit_id": 342
+        "credit_id": 342,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2273,7 +2525,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "40000.00",
-        "credit_id": 343
+        "credit_id": 343,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2282,7 +2535,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "34000.00",
-        "credit_id": 344
+        "credit_id": 344,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2291,7 +2545,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1000.00",
-        "credit_id": 345
+        "credit_id": 345,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2300,7 +2555,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 346
+        "credit_id": 346,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2309,7 +2565,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "50000.00",
-        "credit_id": 347
+        "credit_id": 347,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2318,7 +2575,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 348
+        "credit_id": 348,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2327,7 +2585,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 349
+        "credit_id": 349,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2336,7 +2595,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "350000.00",
-        "credit_id": 350
+        "credit_id": 350,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2345,7 +2605,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "60000.00",
-        "credit_id": 351
+        "credit_id": 351,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2354,7 +2615,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 352
+        "credit_id": 352,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2363,7 +2625,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 353
+        "credit_id": 353,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2372,7 +2635,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 354
+        "credit_id": 354,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2381,7 +2645,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20800.00",
-        "credit_id": 355
+        "credit_id": 355,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2390,7 +2655,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 356
+        "credit_id": 356,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2399,7 +2665,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 357
+        "credit_id": 357,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2408,7 +2675,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 358
+        "credit_id": 358,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2417,7 +2685,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1000.00",
-        "credit_id": 359
+        "credit_id": 359,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2426,7 +2695,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "50000.00",
-        "credit_id": 360
+        "credit_id": 360,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2435,7 +2705,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "45000.00",
-        "credit_id": 361
+        "credit_id": 361,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2444,7 +2715,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 362
+        "credit_id": 362,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2453,7 +2725,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "163800.00",
-        "credit_id": 364
+        "credit_id": 364,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2462,7 +2735,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 365
+        "credit_id": 365,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2471,7 +2745,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 366
+        "credit_id": 366,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2480,7 +2755,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 367
+        "credit_id": 367,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2489,7 +2765,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 368
+        "credit_id": 368,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2498,7 +2775,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 369
+        "credit_id": 369,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2507,7 +2785,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 402
+        "credit_id": 402,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2516,7 +2795,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 404
+        "credit_id": 404,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2525,7 +2805,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 406
+        "credit_id": 406,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2534,7 +2815,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 407
+        "credit_id": 407,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2543,7 +2825,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "24000.00",
-        "credit_id": 408
+        "credit_id": 408,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2552,7 +2835,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "53700.00",
-        "credit_id": 409
+        "credit_id": 409,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2561,7 +2845,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "17225.00",
-        "credit_id": 411
+        "credit_id": 411,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2570,7 +2855,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 412
+        "credit_id": 412,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2579,7 +2865,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 414
+        "credit_id": 414,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2588,7 +2875,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1000.00",
-        "credit_id": 415
+        "credit_id": 415,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2597,7 +2885,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20554.00",
-        "credit_id": 416
+        "credit_id": 416,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2606,7 +2895,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 417
+        "credit_id": 417,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2615,7 +2905,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 418
+        "credit_id": 418,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2624,7 +2915,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 419
+        "credit_id": 419,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2633,7 +2925,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 420
+        "credit_id": 420,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2642,7 +2935,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 421
+        "credit_id": 421,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2651,7 +2945,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2979.00",
-        "credit_id": 422
+        "credit_id": 422,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2660,7 +2955,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2836.00",
-        "credit_id": 423
+        "credit_id": 423,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2669,7 +2965,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5900.00",
-        "credit_id": 424
+        "credit_id": 424,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2678,7 +2975,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2000.00",
-        "credit_id": 425
+        "credit_id": 425,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2687,7 +2985,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 427
+        "credit_id": 427,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2696,7 +2995,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 428
+        "credit_id": 428,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2705,7 +3005,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "15000.00",
-        "credit_id": 429
+        "credit_id": 429,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2714,7 +3015,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 430
+        "credit_id": 430,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2723,7 +3025,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 431
+        "credit_id": 431,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2732,7 +3035,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 432
+        "credit_id": 432,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2741,7 +3045,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 433
+        "credit_id": 433,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2750,7 +3055,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 434
+        "credit_id": 434,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2759,7 +3065,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3438.00",
-        "credit_id": 435
+        "credit_id": 435,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2768,7 +3075,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6700.00",
-        "credit_id": 436
+        "credit_id": 436,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2777,7 +3085,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "15000.00",
-        "credit_id": 437
+        "credit_id": 437,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2786,7 +3095,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "30000.00",
-        "credit_id": 438
+        "credit_id": 438,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2795,7 +3105,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 439
+        "credit_id": 439,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2804,7 +3115,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "30000.00",
-        "credit_id": 440
+        "credit_id": 440,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2813,7 +3125,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 441
+        "credit_id": 441,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2822,7 +3135,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 442
+        "credit_id": 442,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2831,7 +3145,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "45000.00",
-        "credit_id": 443
+        "credit_id": 443,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2840,7 +3155,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "12000.00",
-        "credit_id": 444
+        "credit_id": 444,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2849,7 +3165,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "13000.00",
-        "credit_id": 445
+        "credit_id": 445,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2858,7 +3175,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2500.00",
-        "credit_id": 446
+        "credit_id": 446,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2867,7 +3185,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "11000.00",
-        "credit_id": 447
+        "credit_id": 447,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2876,7 +3195,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 448
+        "credit_id": 448,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2885,7 +3205,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "44902.00",
-        "credit_id": 449
+        "credit_id": 449,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2894,7 +3215,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "18000.00",
-        "credit_id": 450
+        "credit_id": 450,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2903,7 +3225,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "22000.00",
-        "credit_id": 451
+        "credit_id": 451,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2912,7 +3235,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 452
+        "credit_id": 452,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2921,7 +3245,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 453
+        "credit_id": 453,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2930,7 +3255,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 454
+        "credit_id": 454,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2939,7 +3265,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 455
+        "credit_id": 455,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2948,7 +3275,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 456
+        "credit_id": 456,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2957,7 +3285,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 457
+        "credit_id": 457,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2966,7 +3295,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 458
+        "credit_id": 458,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2975,7 +3305,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "14000.00",
-        "credit_id": 459
+        "credit_id": 459,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2984,7 +3315,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 460
+        "credit_id": 460,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -2993,7 +3325,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2500.00",
-        "credit_id": 461
+        "credit_id": 461,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3002,7 +3335,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 462
+        "credit_id": 462,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3011,7 +3345,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 463
+        "credit_id": 463,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3020,7 +3355,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3000.00",
-        "credit_id": 464
+        "credit_id": 464,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3029,7 +3365,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2600.00",
-        "credit_id": 465
+        "credit_id": 465,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3038,7 +3375,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "60000.00",
-        "credit_id": 466
+        "credit_id": 466,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3047,7 +3385,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 467
+        "credit_id": 467,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3056,7 +3395,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 470
+        "credit_id": 470,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3065,7 +3405,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7000.00",
-        "credit_id": 471
+        "credit_id": 471,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3074,7 +3415,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "15000.00",
-        "credit_id": 472
+        "credit_id": 472,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3083,7 +3425,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7500.00",
-        "credit_id": 473
+        "credit_id": 473,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3092,7 +3435,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "70000.00",
-        "credit_id": 474
+        "credit_id": 474,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3101,7 +3445,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "50000.00",
-        "credit_id": 475
+        "credit_id": 475,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3110,7 +3455,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "20000.00",
-        "credit_id": 477
+        "credit_id": 477,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3119,7 +3465,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 478
+        "credit_id": 478,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3128,7 +3475,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "7700.00",
-        "credit_id": 479
+        "credit_id": 479,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3137,7 +3485,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2500.00",
-        "credit_id": 480
+        "credit_id": 480,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3146,7 +3495,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 481
+        "credit_id": 481,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3155,7 +3505,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "12210.00",
-        "credit_id": 488
+        "credit_id": 488,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3164,7 +3515,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 489
+        "credit_id": 489,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3173,7 +3525,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "30000.00",
-        "credit_id": 491
+        "credit_id": 491,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3182,7 +3535,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "15000.00",
-        "credit_id": 493
+        "credit_id": 493,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3191,7 +3545,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "10000.00",
-        "credit_id": 494
+        "credit_id": 494,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3200,7 +3555,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "5000.00",
-        "credit_id": 495
+        "credit_id": 495,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3209,7 +3565,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "54000.00",
-        "credit_id": 496
+        "credit_id": 496,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3218,7 +3575,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 497
+        "credit_id": 497,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3227,7 +3585,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 498
+        "credit_id": 498,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3236,7 +3595,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 499
+        "credit_id": 499,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3245,7 +3605,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 500
+        "credit_id": 500,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3254,7 +3615,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1000.00",
-        "credit_id": 501
+        "credit_id": 501,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3263,7 +3625,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 503
+        "credit_id": 503,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3272,7 +3635,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 504
+        "credit_id": 504,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3281,7 +3645,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 505
+        "credit_id": 505,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3290,7 +3655,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 506
+        "credit_id": 506,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3299,7 +3665,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "4000.00",
-        "credit_id": 507
+        "credit_id": 507,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3308,7 +3675,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 508
+        "credit_id": 508,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3317,7 +3685,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 509
+        "credit_id": 509,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3326,7 +3695,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 510
+        "credit_id": 510,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3335,7 +3705,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 511
+        "credit_id": 511,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3344,7 +3715,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 512
+        "credit_id": 512,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3353,7 +3725,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 513
+        "credit_id": 513,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3362,7 +3735,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 514
+        "credit_id": 514,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3371,7 +3745,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 515
+        "credit_id": 515,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3380,7 +3755,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 516
+        "credit_id": 516,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3389,7 +3765,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "30000.00",
-        "credit_id": 517
+        "credit_id": 517,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3398,7 +3775,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "0.00",
-        "credit_id": 518
+        "credit_id": 518,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3407,7 +3785,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "2014.00",
-        "credit_id": 519
+        "credit_id": 519,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3416,7 +3795,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "6000.00",
-        "credit_id": 520
+        "credit_id": 520,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3425,7 +3805,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "40000.00",
-        "credit_id": 523
+        "credit_id": 523,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3434,7 +3815,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "15000.00",
-        "credit_id": 524
+        "credit_id": 524,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3443,7 +3825,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "50000.00",
-        "credit_id": 525
+        "credit_id": 525,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3452,7 +3835,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "75000.00",
-        "credit_id": 526
+        "credit_id": 526,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3461,7 +3845,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 527
+        "credit_id": 527,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3470,7 +3855,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1547.00",
-        "credit_id": 528
+        "credit_id": 528,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3479,7 +3865,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "25000.00",
-        "credit_id": 529
+        "credit_id": 529,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3488,7 +3875,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "3500.00",
-        "credit_id": 530
+        "credit_id": 530,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3497,7 +3885,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1500.00",
-        "credit_id": 531
+        "credit_id": 531,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3506,7 +3895,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "8000.00",
-        "credit_id": 532
+        "credit_id": 532,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3515,7 +3905,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "85000.00",
-        "credit_id": 533
+        "credit_id": 533,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3524,7 +3915,8 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "320000.00",
-        "credit_id": 535
+        "credit_id": 535,
+        "creation_date": "2026-01-17T23:23:25.923Z"
     }
 },
 {
@@ -3533,7 +3925,1308 @@
     "fields": {
         "descripcion": "REGISTRO DE GARANTIA",
         "suma_total": "1000.00",
-        "credit_id": 536
+        "credit_id": 536,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 484,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "7000.00",
+        "credit_id": 537,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 485,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 538,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 486,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "4000.00",
+        "credit_id": 540,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 487,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 541,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 488,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "19468.00",
+        "credit_id": 542,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 489,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "7000.00",
+        "credit_id": 543,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 490,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 544,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 491,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "36300.00",
+        "credit_id": 545,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 492,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "18000.00",
+        "credit_id": 546,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 493,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 547,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 525,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "25000.00",
+        "credit_id": 579,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 526,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "30000.00",
+        "credit_id": 580,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 527,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "7600.00",
+        "credit_id": 581,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 528,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1800.00",
+        "credit_id": 582,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 529,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 583,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 530,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "30000.00",
+        "credit_id": 584,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 531,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 585,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 532,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 586,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 533,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "50000.00",
+        "credit_id": 587,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 534,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "8000.00",
+        "credit_id": 588,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 535,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "25000.00",
+        "credit_id": 589,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 536,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "60000.00",
+        "credit_id": 590,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 537,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "899.00",
+        "credit_id": 591,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 538,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2500.00",
+        "credit_id": 592,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 539,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1500.00",
+        "credit_id": 593,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 540,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "14554.00",
+        "credit_id": 594,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 541,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 595,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 542,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "600.00",
+        "credit_id": 596,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 543,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "80000.00",
+        "credit_id": 597,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 544,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "718.00",
+        "credit_id": 598,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 545,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "16000.00",
+        "credit_id": 599,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 546,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "6000.00",
+        "credit_id": 600,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 547,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "9000.00",
+        "credit_id": 601,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 548,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1000.00",
+        "credit_id": 602,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 549,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 603,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 550,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2500.00",
+        "credit_id": 604,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 551,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "30000.00",
+        "credit_id": 605,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 552,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2300.00",
+        "credit_id": 606,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 553,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "40000.00",
+        "credit_id": 607,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 554,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 608,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 555,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 609,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 556,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "32600.00",
+        "credit_id": 610,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 557,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "6000.00",
+        "credit_id": 611,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 558,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "7500.00",
+        "credit_id": 612,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 559,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "35000.00",
+        "credit_id": 613,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 560,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "8000.00",
+        "credit_id": 614,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 561,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "6500.00",
+        "credit_id": 615,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 562,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "6000.00",
+        "credit_id": 616,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 563,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 617,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 564,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "60000.00",
+        "credit_id": 618,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 565,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 619,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 566,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "400.00",
+        "credit_id": 620,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 567,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 621,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 568,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 622,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 569,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "60000.00",
+        "credit_id": 623,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 570,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 624,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 571,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "12000.00",
+        "credit_id": 625,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 572,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3000.00",
+        "credit_id": 626,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 573,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2500.00",
+        "credit_id": 627,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 574,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 628,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 575,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 629,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 576,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "9000.00",
+        "credit_id": 630,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 577,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "250000.00",
+        "credit_id": 631,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 578,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "4714.00",
+        "credit_id": 632,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 579,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "60000.00",
+        "credit_id": 633,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 580,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3000.00",
+        "credit_id": 634,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 581,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1000.00",
+        "credit_id": 635,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 582,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5853.00",
+        "credit_id": 636,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 583,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "150000.00",
+        "credit_id": 637,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 584,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3517.00",
+        "credit_id": 638,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 585,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "12800.00",
+        "credit_id": 639,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 586,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 643,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 587,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 644,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 588,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 645,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 589,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "12000.00",
+        "credit_id": 646,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 590,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 647,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 591,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5810.00",
+        "credit_id": 648,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 592,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "25500.00",
+        "credit_id": 649,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 593,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "4000.00",
+        "credit_id": 650,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 594,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "42279.00",
+        "credit_id": 651,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 595,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3500.00",
+        "credit_id": 652,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 596,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "7000.00",
+        "credit_id": 653,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 597,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "8000.00",
+        "credit_id": 654,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 598,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1500.00",
+        "credit_id": 655,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 599,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 656,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 600,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 657,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 601,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 658,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 603,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "800.00",
+        "credit_id": 660,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 604,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1000.00",
+        "credit_id": 661,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 605,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15600.00",
+        "credit_id": 662,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 606,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "35000.00",
+        "credit_id": 663,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 607,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "13632.00",
+        "credit_id": 664,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 608,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "30000.00",
+        "credit_id": 665,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 609,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "140000.00",
+        "credit_id": 666,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 610,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "6000.00",
+        "credit_id": 667,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 611,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "7490.00",
+        "credit_id": 668,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 612,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "12000.00",
+        "credit_id": 669,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 613,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 670,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 614,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "4650.00",
+        "credit_id": 673,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 615,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 674,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 616,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3000.00",
+        "credit_id": 675,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 617,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "14000.00",
+        "credit_id": 676,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 618,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1500.00",
+        "credit_id": 677,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 619,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1000.00",
+        "credit_id": 678,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 620,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "11980.00",
+        "credit_id": 679,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 621,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "30000.00",
+        "credit_id": 680,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 622,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "25000.00",
+        "credit_id": 681,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 623,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 682,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 624,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 683,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 625,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "6000.00",
+        "credit_id": 684,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 626,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "13760.00",
+        "credit_id": 685,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 627,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3500.00",
+        "credit_id": 686,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 628,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "1500.00",
+        "credit_id": 687,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 629,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "25000.00",
+        "credit_id": 688,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 630,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 689,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 631,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 690,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 632,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "4000.00",
+        "credit_id": 691,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 633,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "10000.00",
+        "credit_id": 692,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 634,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "12000.00",
+        "credit_id": 693,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 635,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "19468.00",
+        "credit_id": 694,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 636,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "56000.00",
+        "credit_id": 695,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 637,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3000.00",
+        "credit_id": 696,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 638,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "5000.00",
+        "credit_id": 697,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 639,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "8000.00",
+        "credit_id": 698,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 640,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "200000.00",
+        "credit_id": 699,
+        "creation_date": "2026-01-17T23:23:25.923Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 641,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "2000.00",
+        "credit_id": 700,
+        "creation_date": "2026-01-19T17:20:40.778Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 642,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "15000.00",
+        "credit_id": 701,
+        "creation_date": "2026-01-19T22:31:32.656Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 643,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "65000.00",
+        "credit_id": 702,
+        "creation_date": "2026-01-19T22:38:16.839Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 644,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "20000.00",
+        "credit_id": 703,
+        "creation_date": "2026-01-21T21:19:05.924Z"
+    }
+},
+{
+    "model": "financings.guarantees",
+    "pk": 645,
+    "fields": {
+        "descripcion": "REGISTRO DE GARANTIA",
+        "suma_total": "3000.00",
+        "credit_id": 704,
+        "creation_date": "2026-01-21T22:26:48.919Z"
     }
 }
 ]

@@ -969,246 +969,6 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 477,
-    "fields": {
-        "user": 5,
-        "permiso": 6
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 478,
-    "fields": {
-        "user": 5,
-        "permiso": 8
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 479,
-    "fields": {
-        "user": 5,
-        "permiso": 12
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 480,
-    "fields": {
-        "user": 5,
-        "permiso": 13
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 481,
-    "fields": {
-        "user": 5,
-        "permiso": 16
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 482,
-    "fields": {
-        "user": 5,
-        "permiso": 18
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 483,
-    "fields": {
-        "user": 5,
-        "permiso": 49
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 484,
-    "fields": {
-        "user": 5,
-        "permiso": 51
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 485,
-    "fields": {
-        "user": 5,
-        "permiso": 52
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 486,
-    "fields": {
-        "user": 5,
-        "permiso": 53
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 487,
-    "fields": {
-        "user": 5,
-        "permiso": 54
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 488,
-    "fields": {
-        "user": 5,
-        "permiso": 55
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 489,
-    "fields": {
-        "user": 5,
-        "permiso": 56
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 490,
-    "fields": {
-        "user": 5,
-        "permiso": 57
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 491,
-    "fields": {
-        "user": 5,
-        "permiso": 58
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 492,
-    "fields": {
-        "user": 5,
-        "permiso": 59
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 493,
-    "fields": {
-        "user": 5,
-        "permiso": 60
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 494,
-    "fields": {
-        "user": 5,
-        "permiso": 61
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 495,
-    "fields": {
-        "user": 5,
-        "permiso": 64
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 496,
-    "fields": {
-        "user": 5,
-        "permiso": 66
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 497,
-    "fields": {
-        "user": 5,
-        "permiso": 67
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 498,
-    "fields": {
-        "user": 5,
-        "permiso": 68
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 499,
-    "fields": {
-        "user": 5,
-        "permiso": 70
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 500,
-    "fields": {
-        "user": 5,
-        "permiso": 72
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 501,
-    "fields": {
-        "user": 5,
-        "permiso": 74
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 502,
-    "fields": {
-        "user": 5,
-        "permiso": 76
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 503,
-    "fields": {
-        "user": 5,
-        "permiso": 77
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 504,
-    "fields": {
-        "user": 5,
-        "permiso": 79
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 505,
-    "fields": {
-        "user": 5,
-        "permiso": 82
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 506,
-    "fields": {
-        "user": 5,
-        "permiso": 90
-    }
-},
-{
-    "model": "users.permisousuario",
     "pk": 507,
     "fields": {
         "user": 2,
@@ -1693,486 +1453,6 @@
     "fields": {
         "user": 2,
         "permiso": 92
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 608,
-    "fields": {
-        "user": 6,
-        "permiso": 6
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 609,
-    "fields": {
-        "user": 6,
-        "permiso": 8
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 610,
-    "fields": {
-        "user": 6,
-        "permiso": 12
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 611,
-    "fields": {
-        "user": 6,
-        "permiso": 13
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 612,
-    "fields": {
-        "user": 6,
-        "permiso": 16
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 613,
-    "fields": {
-        "user": 6,
-        "permiso": 18
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 614,
-    "fields": {
-        "user": 6,
-        "permiso": 49
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 615,
-    "fields": {
-        "user": 6,
-        "permiso": 51
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 616,
-    "fields": {
-        "user": 6,
-        "permiso": 52
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 617,
-    "fields": {
-        "user": 6,
-        "permiso": 53
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 618,
-    "fields": {
-        "user": 6,
-        "permiso": 54
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 619,
-    "fields": {
-        "user": 6,
-        "permiso": 55
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 620,
-    "fields": {
-        "user": 6,
-        "permiso": 56
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 621,
-    "fields": {
-        "user": 6,
-        "permiso": 57
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 622,
-    "fields": {
-        "user": 6,
-        "permiso": 58
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 623,
-    "fields": {
-        "user": 6,
-        "permiso": 59
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 624,
-    "fields": {
-        "user": 6,
-        "permiso": 60
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 625,
-    "fields": {
-        "user": 6,
-        "permiso": 61
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 626,
-    "fields": {
-        "user": 6,
-        "permiso": 64
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 627,
-    "fields": {
-        "user": 6,
-        "permiso": 66
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 628,
-    "fields": {
-        "user": 6,
-        "permiso": 67
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 629,
-    "fields": {
-        "user": 6,
-        "permiso": 68
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 630,
-    "fields": {
-        "user": 6,
-        "permiso": 70
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 631,
-    "fields": {
-        "user": 6,
-        "permiso": 72
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 632,
-    "fields": {
-        "user": 6,
-        "permiso": 74
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 633,
-    "fields": {
-        "user": 6,
-        "permiso": 76
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 634,
-    "fields": {
-        "user": 6,
-        "permiso": 77
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 635,
-    "fields": {
-        "user": 6,
-        "permiso": 79
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 636,
-    "fields": {
-        "user": 6,
-        "permiso": 82
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 637,
-    "fields": {
-        "user": 6,
-        "permiso": 90
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 638,
-    "fields": {
-        "user": 7,
-        "permiso": 6
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 639,
-    "fields": {
-        "user": 7,
-        "permiso": 8
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 640,
-    "fields": {
-        "user": 7,
-        "permiso": 12
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 641,
-    "fields": {
-        "user": 7,
-        "permiso": 13
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 642,
-    "fields": {
-        "user": 7,
-        "permiso": 16
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 643,
-    "fields": {
-        "user": 7,
-        "permiso": 18
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 644,
-    "fields": {
-        "user": 7,
-        "permiso": 49
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 645,
-    "fields": {
-        "user": 7,
-        "permiso": 51
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 646,
-    "fields": {
-        "user": 7,
-        "permiso": 52
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 647,
-    "fields": {
-        "user": 7,
-        "permiso": 53
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 648,
-    "fields": {
-        "user": 7,
-        "permiso": 54
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 649,
-    "fields": {
-        "user": 7,
-        "permiso": 55
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 650,
-    "fields": {
-        "user": 7,
-        "permiso": 56
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 651,
-    "fields": {
-        "user": 7,
-        "permiso": 57
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 652,
-    "fields": {
-        "user": 7,
-        "permiso": 58
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 653,
-    "fields": {
-        "user": 7,
-        "permiso": 59
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 654,
-    "fields": {
-        "user": 7,
-        "permiso": 60
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 655,
-    "fields": {
-        "user": 7,
-        "permiso": 61
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 656,
-    "fields": {
-        "user": 7,
-        "permiso": 64
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 657,
-    "fields": {
-        "user": 7,
-        "permiso": 66
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 658,
-    "fields": {
-        "user": 7,
-        "permiso": 67
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 659,
-    "fields": {
-        "user": 7,
-        "permiso": 68
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 660,
-    "fields": {
-        "user": 7,
-        "permiso": 70
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 661,
-    "fields": {
-        "user": 7,
-        "permiso": 72
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 662,
-    "fields": {
-        "user": 7,
-        "permiso": 74
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 663,
-    "fields": {
-        "user": 7,
-        "permiso": 76
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 664,
-    "fields": {
-        "user": 7,
-        "permiso": 77
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 665,
-    "fields": {
-        "user": 7,
-        "permiso": 79
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 666,
-    "fields": {
-        "user": 7,
-        "permiso": 82
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 667,
-    "fields": {
-        "user": 7,
-        "permiso": 90
     }
 },
 {
@@ -3041,30 +2321,6 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 786,
-    "fields": {
-        "user": 7,
-        "permiso": 98
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 788,
-    "fields": {
-        "user": 6,
-        "permiso": 98
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 789,
-    "fields": {
-        "user": 5,
-        "permiso": 98
-    }
-},
-{
-    "model": "users.permisousuario",
     "pk": 790,
     "fields": {
         "user": 3,
@@ -3084,30 +2340,6 @@
     "pk": 792,
     "fields": {
         "user": 2,
-        "permiso": 99
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 793,
-    "fields": {
-        "user": 7,
-        "permiso": 99
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 795,
-    "fields": {
-        "user": 6,
-        "permiso": 99
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 796,
-    "fields": {
-        "user": 5,
         "permiso": 99
     }
 },
@@ -3969,382 +3201,6 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1346,
-    "fields": {
-        "user": 4,
-        "permiso": 6
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1347,
-    "fields": {
-        "user": 4,
-        "permiso": 8
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1348,
-    "fields": {
-        "user": 4,
-        "permiso": 9
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1349,
-    "fields": {
-        "user": 4,
-        "permiso": 12
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1350,
-    "fields": {
-        "user": 4,
-        "permiso": 13
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1351,
-    "fields": {
-        "user": 4,
-        "permiso": 90
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1352,
-    "fields": {
-        "user": 4,
-        "permiso": 16
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1353,
-    "fields": {
-        "user": 4,
-        "permiso": 17
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1354,
-    "fields": {
-        "user": 4,
-        "permiso": 18
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1355,
-    "fields": {
-        "user": 4,
-        "permiso": 82
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1356,
-    "fields": {
-        "user": 4,
-        "permiso": 77
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1357,
-    "fields": {
-        "user": 4,
-        "permiso": 78
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1358,
-    "fields": {
-        "user": 4,
-        "permiso": 79
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1359,
-    "fields": {
-        "user": 4,
-        "permiso": 74
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1360,
-    "fields": {
-        "user": 4,
-        "permiso": 76
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1361,
-    "fields": {
-        "user": 4,
-        "permiso": 70
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1362,
-    "fields": {
-        "user": 4,
-        "permiso": 72
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1363,
-    "fields": {
-        "user": 4,
-        "permiso": 67
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1364,
-    "fields": {
-        "user": 4,
-        "permiso": 68
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1365,
-    "fields": {
-        "user": 4,
-        "permiso": 62
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1366,
-    "fields": {
-        "user": 4,
-        "permiso": 63
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1367,
-    "fields": {
-        "user": 4,
-        "permiso": 64
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1368,
-    "fields": {
-        "user": 4,
-        "permiso": 65
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1369,
-    "fields": {
-        "user": 4,
-        "permiso": 66
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1370,
-    "fields": {
-        "user": 4,
-        "permiso": 59
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1371,
-    "fields": {
-        "user": 4,
-        "permiso": 60
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1372,
-    "fields": {
-        "user": 4,
-        "permiso": 61
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1373,
-    "fields": {
-        "user": 4,
-        "permiso": 56
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1374,
-    "fields": {
-        "user": 4,
-        "permiso": 57
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1375,
-    "fields": {
-        "user": 4,
-        "permiso": 58
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1376,
-    "fields": {
-        "user": 4,
-        "permiso": 53
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1377,
-    "fields": {
-        "user": 4,
-        "permiso": 54
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1378,
-    "fields": {
-        "user": 4,
-        "permiso": 55
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1379,
-    "fields": {
-        "user": 4,
-        "permiso": 51
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1380,
-    "fields": {
-        "user": 4,
-        "permiso": 52
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1381,
-    "fields": {
-        "user": 4,
-        "permiso": 48
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1382,
-    "fields": {
-        "user": 4,
-        "permiso": 49
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1383,
-    "fields": {
-        "user": 4,
-        "permiso": 41
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1384,
-    "fields": {
-        "user": 4,
-        "permiso": 42
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1385,
-    "fields": {
-        "user": 4,
-        "permiso": 43
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1386,
-    "fields": {
-        "user": 4,
-        "permiso": 45
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1387,
-    "fields": {
-        "user": 4,
-        "permiso": 46
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1388,
-    "fields": {
-        "user": 4,
-        "permiso": 39
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1389,
-    "fields": {
-        "user": 4,
-        "permiso": 93
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1390,
-    "fields": {
-        "user": 4,
-        "permiso": 97
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1391,
-    "fields": {
-        "user": 4,
-        "permiso": 100
-    }
-},
-{
-    "model": "users.permisousuario",
-    "pk": 1392,
-    "fields": {
-        "user": 4,
-        "permiso": 101
-    }
-},
-{
-    "model": "users.permisousuario",
     "pk": 1617,
     "fields": {
         "user": 3,
@@ -4377,7 +3233,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1621,
+    "pk": 1733,
     "fields": {
         "user": 9,
         "permiso": 6
@@ -4385,7 +3241,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1622,
+    "pk": 1734,
     "fields": {
         "user": 9,
         "permiso": 8
@@ -4393,7 +3249,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1623,
+    "pk": 1735,
     "fields": {
         "user": 9,
         "permiso": 9
@@ -4401,7 +3257,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1624,
+    "pk": 1736,
     "fields": {
         "user": 9,
         "permiso": 12
@@ -4409,7 +3265,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1625,
+    "pk": 1737,
     "fields": {
         "user": 9,
         "permiso": 13
@@ -4417,7 +3273,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1626,
+    "pk": 1738,
     "fields": {
         "user": 9,
         "permiso": 90
@@ -4425,7 +3281,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1627,
+    "pk": 1739,
     "fields": {
         "user": 9,
         "permiso": 16
@@ -4433,7 +3289,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1628,
+    "pk": 1740,
     "fields": {
         "user": 9,
         "permiso": 17
@@ -4441,7 +3297,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1629,
+    "pk": 1741,
     "fields": {
         "user": 9,
         "permiso": 18
@@ -4449,7 +3305,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1630,
+    "pk": 1742,
     "fields": {
         "user": 9,
         "permiso": 82
@@ -4457,7 +3313,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1631,
+    "pk": 1743,
     "fields": {
         "user": 9,
         "permiso": 77
@@ -4465,7 +3321,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1632,
+    "pk": 1744,
     "fields": {
         "user": 9,
         "permiso": 78
@@ -4473,7 +3329,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1633,
+    "pk": 1745,
     "fields": {
         "user": 9,
         "permiso": 79
@@ -4481,7 +3337,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1634,
+    "pk": 1746,
     "fields": {
         "user": 9,
         "permiso": 74
@@ -4489,7 +3345,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1635,
+    "pk": 1747,
     "fields": {
         "user": 9,
         "permiso": 76
@@ -4497,7 +3353,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1636,
+    "pk": 1748,
     "fields": {
         "user": 9,
         "permiso": 70
@@ -4505,7 +3361,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1637,
+    "pk": 1749,
     "fields": {
         "user": 9,
         "permiso": 72
@@ -4513,7 +3369,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1638,
+    "pk": 1750,
     "fields": {
         "user": 9,
         "permiso": 67
@@ -4521,7 +3377,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1639,
+    "pk": 1751,
     "fields": {
         "user": 9,
         "permiso": 68
@@ -4529,7 +3385,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1640,
+    "pk": 1752,
     "fields": {
         "user": 9,
         "permiso": 62
@@ -4537,7 +3393,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1641,
+    "pk": 1753,
     "fields": {
         "user": 9,
         "permiso": 63
@@ -4545,7 +3401,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1642,
+    "pk": 1754,
     "fields": {
         "user": 9,
         "permiso": 64
@@ -4553,7 +3409,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1643,
+    "pk": 1755,
     "fields": {
         "user": 9,
         "permiso": 65
@@ -4561,7 +3417,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1644,
+    "pk": 1756,
     "fields": {
         "user": 9,
         "permiso": 66
@@ -4569,7 +3425,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1645,
+    "pk": 1757,
     "fields": {
         "user": 9,
         "permiso": 59
@@ -4577,7 +3433,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1646,
+    "pk": 1758,
     "fields": {
         "user": 9,
         "permiso": 60
@@ -4585,7 +3441,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1647,
+    "pk": 1759,
     "fields": {
         "user": 9,
         "permiso": 61
@@ -4593,7 +3449,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1648,
+    "pk": 1760,
     "fields": {
         "user": 9,
         "permiso": 56
@@ -4601,7 +3457,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1649,
+    "pk": 1761,
     "fields": {
         "user": 9,
         "permiso": 57
@@ -4609,7 +3465,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1650,
+    "pk": 1762,
     "fields": {
         "user": 9,
         "permiso": 58
@@ -4617,7 +3473,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1651,
+    "pk": 1763,
     "fields": {
         "user": 9,
         "permiso": 53
@@ -4625,7 +3481,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1652,
+    "pk": 1764,
     "fields": {
         "user": 9,
         "permiso": 54
@@ -4633,7 +3489,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1653,
+    "pk": 1765,
     "fields": {
         "user": 9,
         "permiso": 55
@@ -4641,7 +3497,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1654,
+    "pk": 1766,
     "fields": {
         "user": 9,
         "permiso": 51
@@ -4649,7 +3505,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1655,
+    "pk": 1767,
     "fields": {
         "user": 9,
         "permiso": 52
@@ -4657,7 +3513,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1656,
+    "pk": 1768,
     "fields": {
         "user": 9,
         "permiso": 48
@@ -4665,7 +3521,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1657,
+    "pk": 1769,
     "fields": {
         "user": 9,
         "permiso": 49
@@ -4673,7 +3529,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1658,
+    "pk": 1770,
     "fields": {
         "user": 9,
         "permiso": 41
@@ -4681,7 +3537,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1659,
+    "pk": 1771,
     "fields": {
         "user": 9,
         "permiso": 42
@@ -4689,7 +3545,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1660,
+    "pk": 1772,
     "fields": {
         "user": 9,
         "permiso": 43
@@ -4697,7 +3553,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1661,
+    "pk": 1773,
     "fields": {
         "user": 9,
         "permiso": 45
@@ -4705,7 +3561,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1662,
+    "pk": 1774,
     "fields": {
         "user": 9,
         "permiso": 46
@@ -4713,7 +3569,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1663,
+    "pk": 1775,
     "fields": {
         "user": 9,
         "permiso": 39
@@ -4721,7 +3577,7 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1664,
+    "pk": 1776,
     "fields": {
         "user": 9,
         "permiso": 93
@@ -4729,7 +3585,23 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1665,
+    "pk": 1777,
+    "fields": {
+        "user": 9,
+        "permiso": 98
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1778,
+    "fields": {
+        "user": 9,
+        "permiso": 99
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1779,
     "fields": {
         "user": 9,
         "permiso": 97
@@ -4737,10 +3609,1210 @@
 },
 {
     "model": "users.permisousuario",
-    "pk": 1666,
+    "pk": 1780,
     "fields": {
         "user": 9,
         "permiso": 100
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1781,
+    "fields": {
+        "user": 7,
+        "permiso": 6
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1782,
+    "fields": {
+        "user": 7,
+        "permiso": 8
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1783,
+    "fields": {
+        "user": 7,
+        "permiso": 12
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1784,
+    "fields": {
+        "user": 7,
+        "permiso": 13
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1785,
+    "fields": {
+        "user": 7,
+        "permiso": 90
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1786,
+    "fields": {
+        "user": 7,
+        "permiso": 16
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1787,
+    "fields": {
+        "user": 7,
+        "permiso": 18
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1788,
+    "fields": {
+        "user": 7,
+        "permiso": 82
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1789,
+    "fields": {
+        "user": 7,
+        "permiso": 77
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1790,
+    "fields": {
+        "user": 7,
+        "permiso": 79
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1791,
+    "fields": {
+        "user": 7,
+        "permiso": 74
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1792,
+    "fields": {
+        "user": 7,
+        "permiso": 76
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1793,
+    "fields": {
+        "user": 7,
+        "permiso": 70
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1794,
+    "fields": {
+        "user": 7,
+        "permiso": 72
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1795,
+    "fields": {
+        "user": 7,
+        "permiso": 67
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1796,
+    "fields": {
+        "user": 7,
+        "permiso": 68
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1797,
+    "fields": {
+        "user": 7,
+        "permiso": 64
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1798,
+    "fields": {
+        "user": 7,
+        "permiso": 65
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1799,
+    "fields": {
+        "user": 7,
+        "permiso": 66
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1800,
+    "fields": {
+        "user": 7,
+        "permiso": 59
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1801,
+    "fields": {
+        "user": 7,
+        "permiso": 60
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1802,
+    "fields": {
+        "user": 7,
+        "permiso": 61
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1803,
+    "fields": {
+        "user": 7,
+        "permiso": 56
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1804,
+    "fields": {
+        "user": 7,
+        "permiso": 57
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1805,
+    "fields": {
+        "user": 7,
+        "permiso": 58
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1806,
+    "fields": {
+        "user": 7,
+        "permiso": 53
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1807,
+    "fields": {
+        "user": 7,
+        "permiso": 54
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1808,
+    "fields": {
+        "user": 7,
+        "permiso": 55
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1809,
+    "fields": {
+        "user": 7,
+        "permiso": 51
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1810,
+    "fields": {
+        "user": 7,
+        "permiso": 52
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1811,
+    "fields": {
+        "user": 7,
+        "permiso": 49
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1812,
+    "fields": {
+        "user": 7,
+        "permiso": 98
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1813,
+    "fields": {
+        "user": 7,
+        "permiso": 99
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1913,
+    "fields": {
+        "user": 4,
+        "permiso": 6
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1914,
+    "fields": {
+        "user": 4,
+        "permiso": 8
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1915,
+    "fields": {
+        "user": 4,
+        "permiso": 9
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1916,
+    "fields": {
+        "user": 4,
+        "permiso": 12
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1917,
+    "fields": {
+        "user": 4,
+        "permiso": 13
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1918,
+    "fields": {
+        "user": 4,
+        "permiso": 90
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1919,
+    "fields": {
+        "user": 4,
+        "permiso": 16
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1920,
+    "fields": {
+        "user": 4,
+        "permiso": 17
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1921,
+    "fields": {
+        "user": 4,
+        "permiso": 18
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1922,
+    "fields": {
+        "user": 4,
+        "permiso": 81
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1923,
+    "fields": {
+        "user": 4,
+        "permiso": 82
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1924,
+    "fields": {
+        "user": 4,
+        "permiso": 77
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1925,
+    "fields": {
+        "user": 4,
+        "permiso": 78
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1926,
+    "fields": {
+        "user": 4,
+        "permiso": 79
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1927,
+    "fields": {
+        "user": 4,
+        "permiso": 74
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1928,
+    "fields": {
+        "user": 4,
+        "permiso": 75
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1929,
+    "fields": {
+        "user": 4,
+        "permiso": 76
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1930,
+    "fields": {
+        "user": 4,
+        "permiso": 70
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1931,
+    "fields": {
+        "user": 4,
+        "permiso": 72
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1932,
+    "fields": {
+        "user": 4,
+        "permiso": 67
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1933,
+    "fields": {
+        "user": 4,
+        "permiso": 68
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1934,
+    "fields": {
+        "user": 4,
+        "permiso": 62
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1935,
+    "fields": {
+        "user": 4,
+        "permiso": 63
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1936,
+    "fields": {
+        "user": 4,
+        "permiso": 64
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1937,
+    "fields": {
+        "user": 4,
+        "permiso": 65
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1938,
+    "fields": {
+        "user": 4,
+        "permiso": 66
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1939,
+    "fields": {
+        "user": 4,
+        "permiso": 59
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1940,
+    "fields": {
+        "user": 4,
+        "permiso": 60
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1941,
+    "fields": {
+        "user": 4,
+        "permiso": 61
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1942,
+    "fields": {
+        "user": 4,
+        "permiso": 56
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1943,
+    "fields": {
+        "user": 4,
+        "permiso": 57
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1944,
+    "fields": {
+        "user": 4,
+        "permiso": 58
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1945,
+    "fields": {
+        "user": 4,
+        "permiso": 53
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1946,
+    "fields": {
+        "user": 4,
+        "permiso": 54
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1947,
+    "fields": {
+        "user": 4,
+        "permiso": 55
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1948,
+    "fields": {
+        "user": 4,
+        "permiso": 51
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1949,
+    "fields": {
+        "user": 4,
+        "permiso": 52
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1950,
+    "fields": {
+        "user": 4,
+        "permiso": 48
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1951,
+    "fields": {
+        "user": 4,
+        "permiso": 49
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1952,
+    "fields": {
+        "user": 4,
+        "permiso": 41
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1953,
+    "fields": {
+        "user": 4,
+        "permiso": 42
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1954,
+    "fields": {
+        "user": 4,
+        "permiso": 43
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1955,
+    "fields": {
+        "user": 4,
+        "permiso": 45
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1956,
+    "fields": {
+        "user": 4,
+        "permiso": 46
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1957,
+    "fields": {
+        "user": 4,
+        "permiso": 39
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1958,
+    "fields": {
+        "user": 4,
+        "permiso": 93
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1959,
+    "fields": {
+        "user": 4,
+        "permiso": 98
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1960,
+    "fields": {
+        "user": 4,
+        "permiso": 99
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1961,
+    "fields": {
+        "user": 4,
+        "permiso": 97
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1962,
+    "fields": {
+        "user": 4,
+        "permiso": 100
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1963,
+    "fields": {
+        "user": 4,
+        "permiso": 101
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1964,
+    "fields": {
+        "user": 5,
+        "permiso": 6
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1965,
+    "fields": {
+        "user": 5,
+        "permiso": 8
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1966,
+    "fields": {
+        "user": 5,
+        "permiso": 12
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1967,
+    "fields": {
+        "user": 5,
+        "permiso": 13
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1968,
+    "fields": {
+        "user": 5,
+        "permiso": 90
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1969,
+    "fields": {
+        "user": 5,
+        "permiso": 16
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1970,
+    "fields": {
+        "user": 5,
+        "permiso": 18
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1971,
+    "fields": {
+        "user": 5,
+        "permiso": 82
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1972,
+    "fields": {
+        "user": 5,
+        "permiso": 77
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1973,
+    "fields": {
+        "user": 5,
+        "permiso": 79
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1974,
+    "fields": {
+        "user": 5,
+        "permiso": 74
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1975,
+    "fields": {
+        "user": 5,
+        "permiso": 76
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1976,
+    "fields": {
+        "user": 5,
+        "permiso": 70
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1977,
+    "fields": {
+        "user": 5,
+        "permiso": 72
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1978,
+    "fields": {
+        "user": 5,
+        "permiso": 67
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1979,
+    "fields": {
+        "user": 5,
+        "permiso": 68
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1980,
+    "fields": {
+        "user": 5,
+        "permiso": 64
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1981,
+    "fields": {
+        "user": 5,
+        "permiso": 65
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1982,
+    "fields": {
+        "user": 5,
+        "permiso": 66
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1983,
+    "fields": {
+        "user": 5,
+        "permiso": 59
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1984,
+    "fields": {
+        "user": 5,
+        "permiso": 60
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1985,
+    "fields": {
+        "user": 5,
+        "permiso": 61
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1986,
+    "fields": {
+        "user": 5,
+        "permiso": 56
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1987,
+    "fields": {
+        "user": 5,
+        "permiso": 57
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1988,
+    "fields": {
+        "user": 5,
+        "permiso": 58
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1989,
+    "fields": {
+        "user": 5,
+        "permiso": 53
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1990,
+    "fields": {
+        "user": 5,
+        "permiso": 54
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1991,
+    "fields": {
+        "user": 5,
+        "permiso": 55
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1992,
+    "fields": {
+        "user": 5,
+        "permiso": 51
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1993,
+    "fields": {
+        "user": 5,
+        "permiso": 52
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1994,
+    "fields": {
+        "user": 5,
+        "permiso": 49
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1995,
+    "fields": {
+        "user": 5,
+        "permiso": 98
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1996,
+    "fields": {
+        "user": 5,
+        "permiso": 99
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1997,
+    "fields": {
+        "user": 6,
+        "permiso": 6
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1998,
+    "fields": {
+        "user": 6,
+        "permiso": 8
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 1999,
+    "fields": {
+        "user": 6,
+        "permiso": 12
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2000,
+    "fields": {
+        "user": 6,
+        "permiso": 13
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2001,
+    "fields": {
+        "user": 6,
+        "permiso": 90
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2002,
+    "fields": {
+        "user": 6,
+        "permiso": 16
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2003,
+    "fields": {
+        "user": 6,
+        "permiso": 18
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2004,
+    "fields": {
+        "user": 6,
+        "permiso": 82
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2005,
+    "fields": {
+        "user": 6,
+        "permiso": 77
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2006,
+    "fields": {
+        "user": 6,
+        "permiso": 79
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2007,
+    "fields": {
+        "user": 6,
+        "permiso": 74
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2008,
+    "fields": {
+        "user": 6,
+        "permiso": 76
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2009,
+    "fields": {
+        "user": 6,
+        "permiso": 70
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2010,
+    "fields": {
+        "user": 6,
+        "permiso": 72
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2011,
+    "fields": {
+        "user": 6,
+        "permiso": 67
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2012,
+    "fields": {
+        "user": 6,
+        "permiso": 68
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2013,
+    "fields": {
+        "user": 6,
+        "permiso": 64
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2014,
+    "fields": {
+        "user": 6,
+        "permiso": 65
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2015,
+    "fields": {
+        "user": 6,
+        "permiso": 66
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2016,
+    "fields": {
+        "user": 6,
+        "permiso": 59
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2017,
+    "fields": {
+        "user": 6,
+        "permiso": 60
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2018,
+    "fields": {
+        "user": 6,
+        "permiso": 61
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2019,
+    "fields": {
+        "user": 6,
+        "permiso": 56
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2020,
+    "fields": {
+        "user": 6,
+        "permiso": 57
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2021,
+    "fields": {
+        "user": 6,
+        "permiso": 58
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2022,
+    "fields": {
+        "user": 6,
+        "permiso": 53
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2023,
+    "fields": {
+        "user": 6,
+        "permiso": 54
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2024,
+    "fields": {
+        "user": 6,
+        "permiso": 55
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2025,
+    "fields": {
+        "user": 6,
+        "permiso": 51
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2026,
+    "fields": {
+        "user": 6,
+        "permiso": 52
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2027,
+    "fields": {
+        "user": 6,
+        "permiso": 49
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2028,
+    "fields": {
+        "user": 6,
+        "permiso": 98
+    }
+},
+{
+    "model": "users.permisousuario",
+    "pk": 2029,
+    "fields": {
+        "user": 6,
+        "permiso": 99
     }
 }
 ]

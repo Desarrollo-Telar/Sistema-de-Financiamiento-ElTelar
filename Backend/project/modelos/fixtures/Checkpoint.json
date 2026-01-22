@@ -682,5 +682,707 @@
         "count": 1,
         "reason": null
     }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 109,
+    "fields": {
+        "date": "2025-11-05",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 110,
+    "fields": {
+        "date": "2025-11-06",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 111,
+    "fields": {
+        "date": "2025-11-07",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 112,
+    "fields": {
+        "date": "2025-11-08",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 113,
+    "fields": {
+        "date": "2025-11-09",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 114,
+    "fields": {
+        "date": "2025-11-10",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 147,
+    "fields": {
+        "date": "2025-11-11",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 148,
+    "fields": {
+        "date": "2025-11-12",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 149,
+    "fields": {
+        "date": "2025-11-13",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 150,
+    "fields": {
+        "date": "2025-11-14",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 151,
+    "fields": {
+        "date": "2025-11-15",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 152,
+    "fields": {
+        "date": "2025-11-16",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 153,
+    "fields": {
+        "date": "2025-11-17",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 154,
+    "fields": {
+        "date": "2025-11-18",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 155,
+    "fields": {
+        "date": "2025-11-19",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 156,
+    "fields": {
+        "date": "2025-11-20",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 157,
+    "fields": {
+        "date": "2025-11-21",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 158,
+    "fields": {
+        "date": "2025-11-22",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 159,
+    "fields": {
+        "date": "2025-11-23",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 160,
+    "fields": {
+        "date": "2025-11-24",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 161,
+    "fields": {
+        "date": "2025-11-25",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 162,
+    "fields": {
+        "date": "2025-11-26",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 163,
+    "fields": {
+        "date": "2025-11-27",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 164,
+    "fields": {
+        "date": "2025-11-28",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 165,
+    "fields": {
+        "date": "2025-11-29",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 166,
+    "fields": {
+        "date": "2025-11-30",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 167,
+    "fields": {
+        "date": "2025-12-01",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 168,
+    "fields": {
+        "date": "2025-12-02",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 169,
+    "fields": {
+        "date": "2025-12-03",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 170,
+    "fields": {
+        "date": "2025-12-04",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 171,
+    "fields": {
+        "date": "2025-12-05",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 172,
+    "fields": {
+        "date": "2025-12-06",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 173,
+    "fields": {
+        "date": "2025-12-07",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 174,
+    "fields": {
+        "date": "2025-12-08",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 175,
+    "fields": {
+        "date": "2025-12-09",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 176,
+    "fields": {
+        "date": "2025-12-10",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 177,
+    "fields": {
+        "date": "2025-12-11",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 178,
+    "fields": {
+        "date": "2025-12-12",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 179,
+    "fields": {
+        "date": "2025-12-13",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 180,
+    "fields": {
+        "date": "2025-12-14",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 181,
+    "fields": {
+        "date": "2025-12-15",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 182,
+    "fields": {
+        "date": "2025-12-16",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 183,
+    "fields": {
+        "date": "2025-12-17",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 184,
+    "fields": {
+        "date": "2025-12-18",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 185,
+    "fields": {
+        "date": "2025-12-19",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 186,
+    "fields": {
+        "date": "2025-12-20",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 187,
+    "fields": {
+        "date": "2025-12-21",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 188,
+    "fields": {
+        "date": "2025-12-22",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 189,
+    "fields": {
+        "date": "2025-12-23",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 190,
+    "fields": {
+        "date": "2025-12-24",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 191,
+    "fields": {
+        "date": "2025-12-25",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 192,
+    "fields": {
+        "date": "2025-12-26",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 193,
+    "fields": {
+        "date": "2025-12-27",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 194,
+    "fields": {
+        "date": "2025-12-28",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 195,
+    "fields": {
+        "date": "2025-12-29",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 196,
+    "fields": {
+        "date": "2025-12-30",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 197,
+    "fields": {
+        "date": "2025-12-31",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 198,
+    "fields": {
+        "date": "2026-01-01",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 199,
+    "fields": {
+        "date": "2026-01-02",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 200,
+    "fields": {
+        "date": "2026-01-03",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 201,
+    "fields": {
+        "date": "2026-01-04",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 202,
+    "fields": {
+        "date": "2026-01-05",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 203,
+    "fields": {
+        "date": "2026-01-06",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 204,
+    "fields": {
+        "date": "2026-01-07",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 205,
+    "fields": {
+        "date": "2026-01-08",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 206,
+    "fields": {
+        "date": "2026-01-09",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 207,
+    "fields": {
+        "date": "2026-01-10",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 208,
+    "fields": {
+        "date": "2026-01-11",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 209,
+    "fields": {
+        "date": "2026-01-12",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 210,
+    "fields": {
+        "date": "2026-01-13",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 211,
+    "fields": {
+        "date": "2026-01-14",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 212,
+    "fields": {
+        "date": "2026-01-15",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 213,
+    "fields": {
+        "date": "2026-01-16",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 214,
+    "fields": {
+        "date": "2026-01-17",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 215,
+    "fields": {
+        "date": "2026-01-18",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 216,
+    "fields": {
+        "date": "2026-01-19",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 217,
+    "fields": {
+        "date": "2026-01-20",
+        "count": 1,
+        "reason": null
+    }
+},
+{
+    "model": "actividades.checkpoint",
+    "pk": 218,
+    "fields": {
+        "date": "2026-01-21",
+        "count": 1,
+        "reason": null
+    }
 }
 ]

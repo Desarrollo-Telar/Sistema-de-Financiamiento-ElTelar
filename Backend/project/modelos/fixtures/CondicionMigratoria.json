@@ -4,7 +4,8 @@
     "pk": 1,
     "fields": {
         "condition_name": "Residente temporal",
-        "description": ""
+        "description": "",
+        "creation_date": "2026-01-17T23:23:24.088Z"
     }
 },
 {
@@ -12,7 +13,8 @@
     "pk": 2,
     "fields": {
         "condition_name": "Turista o visitante",
-        "description": null
+        "description": null,
+        "creation_date": "2026-01-17T23:23:24.088Z"
     }
 },
 {
@@ -20,7 +22,8 @@
     "pk": 3,
     "fields": {
         "condition_name": "Residente permanente",
-        "description": null
+        "description": null,
+        "creation_date": "2026-01-17T23:23:24.088Z"
     }
 },
 {
@@ -28,7 +31,8 @@
     "pk": 4,
     "fields": {
         "condition_name": "Permiso de trabajo",
-        "description": null
+        "description": null,
+        "creation_date": "2026-01-17T23:23:24.088Z"
     }
 },
 {
@@ -36,7 +40,8 @@
     "pk": 5,
     "fields": {
         "condition_name": "Persona en trnsito",
-        "description": null
+        "description": null,
+        "creation_date": "2026-01-17T23:23:24.088Z"
     }
 },
 {
@@ -44,7 +49,8 @@
     "pk": 6,
     "fields": {
         "condition_name": "Permiso consular o similar",
-        "description": null
+        "description": null,
+        "creation_date": "2026-01-17T23:23:24.088Z"
     }
 },
 {
@@ -52,7 +58,8 @@
     "pk": 7,
     "fields": {
         "condition_name": "Otra",
-        "description": null
+        "description": null,
+        "creation_date": "2026-01-17T23:23:24.088Z"
     }
 }
 ]

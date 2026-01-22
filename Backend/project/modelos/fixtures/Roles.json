@@ -5,7 +5,8 @@
     "fields": {
         "role_name": "Secretari@",
         "description": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.433Z"
     }
 },
 {
@@ -14,7 +15,8 @@
     "fields": {
         "role_name": "Administrador",
         "description": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.433Z"
     }
 },
 {
@@ -23,7 +25,8 @@
     "fields": {
         "role_name": "Programador",
         "description": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.433Z"
     }
 },
 {
@@ -32,7 +35,8 @@
     "fields": {
         "role_name": "Asesor de Crédito",
         "description": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.433Z"
     }
 }
 ]

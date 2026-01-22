@@ -11,7 +11,10 @@
         "activa": true,
         "codigo_postal": "16001",
         "descripcion": "",
-        "codigo_establecimiento": "1"
+        "codigo_establecimiento": "1",
+        "numero_de_cuenta_banco": "3696008759",
+        "nombre_banco": "Banco de Desarrollo Rural",
+        "creation_date": "2026-01-17T23:23:28.751Z"
     }
 },
 {
@@ -26,7 +29,10 @@
         "activa": true,
         "codigo_postal": "16001",
         "descripcion": "",
-        "codigo_establecimiento": "2"
+        "codigo_establecimiento": "2",
+        "numero_de_cuenta_banco": "3253076042",
+        "nombre_banco": "Banco de Desarrollo Rural",
+        "creation_date": "2026-01-17T23:23:28.751Z"
     }
 }
 ]

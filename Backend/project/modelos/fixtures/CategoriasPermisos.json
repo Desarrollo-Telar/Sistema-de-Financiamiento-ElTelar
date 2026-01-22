@@ -5,7 +5,8 @@
     "fields": {
         "nombre": "Usuario",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -14,7 +15,8 @@
     "fields": {
         "nombre": "Clientes",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -23,7 +25,8 @@
     "fields": {
         "nombre": "Informacion Laboral",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -32,7 +35,8 @@
     "fields": {
         "nombre": "Destino del Credito",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -41,7 +45,8 @@
     "fields": {
         "nombre": "Direcciones",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -50,7 +55,8 @@
     "fields": {
         "nombre": "Referencias",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -59,7 +65,8 @@
     "fields": {
         "nombre": "Imagenes",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -68,7 +75,8 @@
     "fields": {
         "nombre": "Archivos",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -77,7 +85,8 @@
     "fields": {
         "nombre": "Credito",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -86,7 +95,8 @@
     "fields": {
         "nombre": "Plan de Pagos",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -95,7 +105,8 @@
     "fields": {
         "nombre": "Garantias",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -104,7 +115,8 @@
     "fields": {
         "nombre": "Desembolsos",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -113,7 +125,8 @@
     "fields": {
         "nombre": "Estados de Cuentas",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -122,7 +135,8 @@
     "fields": {
         "nombre": "Cuotas",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -131,7 +145,8 @@
     "fields": {
         "nombre": "Pagos",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -140,7 +155,8 @@
     "fields": {
         "nombre": "Recibos",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -149,7 +165,8 @@
     "fields": {
         "nombre": "Bancos",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -158,7 +175,8 @@
     "fields": {
         "nombre": "Acreedores",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -167,7 +185,8 @@
     "fields": {
         "nombre": "Seguros",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -176,7 +195,8 @@
     "fields": {
         "nombre": "Ingresos",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -185,7 +205,8 @@
     "fields": {
         "nombre": "Egresos",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -194,7 +215,8 @@
     "fields": {
         "nombre": "Reportes",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -203,7 +225,8 @@
     "fields": {
         "nombre": "Asesores de Credito",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -212,7 +235,8 @@
     "fields": {
         "nombre": "Boletas",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -221,7 +245,8 @@
     "fields": {
         "nombre": "FACTURAS",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 },
 {
@@ -230,7 +255,8 @@
     "fields": {
         "nombre": "Sistema",
         "descripcion": "",
-        "estado": true
+        "estado": true,
+        "creation_date": "2026-01-17T23:23:28.229Z"
     }
 }
 ]
