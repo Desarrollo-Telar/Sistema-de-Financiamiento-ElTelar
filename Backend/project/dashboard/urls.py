@@ -11,6 +11,24 @@ from django.contrib.auth.decorators import login_required
 app_name = 'dashboard'
 
 urlpatterns = [
-    path('clientes_por_mes/', login_required( views.ClientesPorMesAPIView.as_view()), name='clientes_por_mes'),
-    path('creditos_por_mes/', login_required(views.CreditosPorMesAPIView.as_view()), name='creditos_por_mes'),
+    # General
+    path('', login_required(views.dashboard), name='dashboard'),
+    # Clientes
+    path('clientes-por-mes/', views.ClientesPorMesAPIView.as_view(), name='clientes-por-mes'),
+    path('clientes-por-asesor/', views.ClientesPorAsesorMesAPIView.as_view(), name='clientes-por-asesor'),
+    
+    # Creditos
+    path('creditos-por-mes/', views.CreditosPorMesAPIView.as_view(), name='creditos-por-mes'),
+    path('tipos-credito/', views.TiposCreditoAPIView.as_view(), name='tipos-credito'),    
+    path('formas-pago/', views.FormasPagoAPIView.as_view(), name='formas-pago'),
+    path('casos-exito-asesor/', views.CasosExitoAsesorAPIView.as_view(), name='casos-exito-asesor'),
+    path('creditos-por-asesor-mes/', views.CreditosPorAsesorMesAPIView.as_view(), name='creditos-asesor-por-mes'),
+
+    # CONTABLE
+    path('desembolsos-por-mes/', views.DesembolsosPorMesAPIView.as_view(), name='desembolsos-por-mes'),
+    path('recuperacion-mensual/', views.RecuperacionMensualAPIView.as_view(), name='recuperacion-mensual'),
+    path('egresos-por-codigo-mes/', views.EgresosPorCodigoMesAPIView.as_view(),  name='gasto-por-mes'),
+    path('bancos-por-mes/', views.BancosPorMesAPIView.as_view(), name='bancos-por-mes'),
+    path('acreedores-por-mes/', views.AcreedoresPorMesAPIView.as_view(), name='acreedores-por-mes'),
+    path('morosidad-por-mes/', views.MorosidadPorMesAPIView.as_view(), name='morosidad-por-mes'),
 ]

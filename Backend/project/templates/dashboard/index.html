@@ -1,0 +1,117 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Financiero - El Telar</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/dashboard/estilo.css'%}">
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Dashboard Financiero - El Telar</h1>
+            <div class="header-info">
+                Sistema de análisis y visualización de datos financieros
+            </div>
+        </header>
+
+      
+
+        <div id="messages"></div>
+
+        
+
+        <div class="charts-grid">
+            <div class="chart-card">
+                <div class="chart-title">📊 Clientes por Mes</div>
+                <div class="chart-container">
+                    <canvas id="clientesMesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">💳 Créditos por Mes</div>
+                <div class="chart-container">
+                    <canvas id="creditosMesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">👨‍💼 Creditos por Asesor</div>
+                <div class="chart-container">
+                    <canvas id="clientesAsesorChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">📑 Tipos de Crédito</div>
+                <div class="chart-container">
+                    <canvas id="tiposCreditoChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">💵 Desembolsos Mensuales</div>
+                <div class="chart-container">
+                    <canvas id="desembolsosChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">📥 Recuperación Mensual</div>
+                <div class="chart-container">
+                    <canvas id="recuperacionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">💸 Egresos por Código</div>
+                <div class="chart-container">
+                    <canvas id="egresosChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">Saldos Bancarios</div>
+                <div class="chart-container">
+                    <canvas id="bancosChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">Estado de Acreedores por Mes</div>
+                <div class="chart-container">
+                    <canvas id="acreedoresChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">Crecimiento de Creditos con Morosidad</div>
+                <div class="chart-container">
+                    <canvas id="morosidadChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">💰 Formas de Pago</div>
+                <div class="chart-container">
+                    <canvas id="formasPagoChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">🎯 Casos de Éxito por Asesor</div>
+                <div class="chart-container">
+                    <canvas id="casosExitoChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+<script type="module" src="{% static 'js/dashboard/grafica.js' %}"></script>
+</body>
+</html>
