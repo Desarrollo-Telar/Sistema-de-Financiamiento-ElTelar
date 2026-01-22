@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django_redis',
     'storages',
+    'dashboard',
     #'modelos',
 ]
 INSTALLED_APPS += INSTALLED_APPS_MODELS + INSTALLED_APPS_REST

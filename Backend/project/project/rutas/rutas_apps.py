@@ -17,4 +17,5 @@ urlpatterns_apps = [
     path('financings/',include('apps.financings.urls')),
     path('actividades/',include('apps.actividades.urls')),
     path('sucursal/',include('apps.subsidiaries.urls')),
+    path('kpi/',include('dashboard.urls')),
 ]
