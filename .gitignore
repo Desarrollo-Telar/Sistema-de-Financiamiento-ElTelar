@@ -163,7 +163,7 @@ cython_debug/
 .idea/
 
 modelos/
-diagramas/
+Diagramas/
 .modelos/
-.diagramas
+.Diagramas
 
