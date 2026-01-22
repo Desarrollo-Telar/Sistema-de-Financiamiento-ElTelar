@@ -71,14 +71,14 @@ class Cobranza(models.Model):
             if self.estado_cobranza in estados_cobranza or self.resultado == 'Pago realizado':
                 self.estado_cobranza = 'PENDIENTE'
                 self.resultado = 'Promesa de pago'
-                self.save()
+                #self.save()
             return None
         else:
             estados_cobranza = ['PENDIENTE', 'INCUMPLIDO']
             if self.estado_cobranza in estados_cobranza:
                 self.resultado = 'Pago realizado'
                 self.estado_cobranza = 'COMPLETADO'
-                self.save()
+                #self.save()
 
         return obtener_recibo.pago.id
 
@@ -102,24 +102,7 @@ class Cobranza(models.Model):
         dias = (fecha - hoy ).days
            
         
-        if dias < 0:
-            if self.credito.is_paid_off:
-                self.resultado = 'Pago realizado'
-                self.estado_cobranza = 'COMPLETADO'
-                self.save()
-
-            
-
-            if self.estado_cobranza != 'INCUMPLIDO':
-                self.estado_cobranza = 'INCUMPLIDO'
-                self.resultado = 'Negativa de pago'            
-                self.observaciones = 'El cliente no se ha presentado segun lo gestionado.'
-                #self.save()
-        else:
-            if self.estado_cobranza != 'PENDIENTE':
-                self.estado_cobranza = 'PENDIENTE'
-                self.resultado = 'Promesa de pago'                
-                #self.save()
+        
 
         return dias
 
