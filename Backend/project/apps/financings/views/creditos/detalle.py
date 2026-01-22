@@ -50,24 +50,31 @@ def detail_credit(request,id):
     
     dia = datetime.now().date()
     dia_mas_uno = dia + timedelta(days=1)
-    
-    siguiente_pago = PaymentPlan.objects.filter(
-        credit_id=credito,
-        start_date__lte=dia,
-        fecha_limite__gte=dia_mas_uno
-    ).first()
+    siguiente_pago = None
 
+    if credito.is_paid_off:
+        siguiente_pago = PaymentPlan.objects.filter(
+        credit_id__id=credito.id).order_by('-id').first()
+        print(siguiente_pago)
+    else:
+        siguiente_pago = PaymentPlan.objects.filter(
+            credit_id__id=credito.id,
+            start_date__lte=dia,
+            fecha_limite__gte=dia_mas_uno
+        ).first()
+
+    print(siguiente_pago)
     if siguiente_pago is None:
         siguiente_pago = PaymentPlan.objects.filter(
-        credit_id=credito).order_by('-id').first()
+        credit_id__id=credito.id).order_by('-id').first()
     
-   
-    saldo_actual = siguiente_pago.saldo_pendiente + siguiente_pago.mora + siguiente_pago.interest
+    if siguiente_pago is not None:
+        saldo_actual = siguiente_pago.saldo_pendiente + siguiente_pago.mora + siguiente_pago.interest
 
-    credito.saldo_actual = saldo_actual
-    credito.save()
+        credito.saldo_actual = saldo_actual
+        credito.save()
 
-    
+    print(siguiente_pago)
     
    
    
