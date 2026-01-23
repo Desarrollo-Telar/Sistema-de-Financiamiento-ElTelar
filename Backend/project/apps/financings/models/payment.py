@@ -254,25 +254,25 @@ class Payment(models.Model):
         
 
         # VERIFICAR SI YA EXISTE UN RECIBO ASOCIADO CON EL PAGO O GENERAR UNO NUEVO
-        recibos = self.get_recibo().objects.filter(pago=pago)
+        # Definimos los valores que queremos que tenga el recibo
+        defaults = {
+            'mora': cuota.mora,
+            'interes': cuota.interest,
+            'total': self.monto,
+            'aporte_capital': aporte_capital,
+            'interes_pagado': pagado_interes,
+            'mora_pagada': pagado_mora,
+            'fecha': pago.fecha_emision.date(),
+            'cliente': informacion['cliente'],
+            'cuota': cuota,
+            'sucursal': self.sucursal
+        }
 
-        if not recibos.exists():
-            # Creamos un nuevo recibo si no hay existentes
-            recibo = self.get_recibo()(
-                mora=cuota.mora,
-                interes=cuota.interest,
-                pago=pago,
-                total=self.monto,
-                aporte_capital=aporte_capital,
-                interes_pagado=pagado_interes,
-                mora_pagada=pagado_mora,
-                fecha = pago.fecha_emision.date(),
-                cliente=informacion['cliente'],
-                cuota=cuota,
-                sucursal=self.sucursal
-            )
-            
-            recibo.save()
+        # Buscamos por 'pago'. Si existe, actualiza con 'defaults'. Si no, crea uno nuevo.
+        recibo, created = self.get_recibo().objects.update_or_create(
+            pago=pago, 
+            defaults=defaults
+        )
         
         # ACTUALIZACION DE LA CUOTA
         cuota.interest -=pagado_interes

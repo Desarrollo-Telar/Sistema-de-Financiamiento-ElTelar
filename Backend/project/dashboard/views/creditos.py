@@ -15,7 +15,7 @@ from rest_framework import status, permissions
 from apps.financings.models import Credit
 
 # SERIALIZADOR
-from apps.financings.api.serializers import CreditReporteSerializer
+from apps.financings.api.serializers import CreditReporteSerializer, CreditSerializer
 
 # Paginacion
 from .paginacion import StandardResultsSetPagination
@@ -210,9 +210,9 @@ class DetalleCasosExitoAPIView(APIView):
 
         # Obtenemos los objetos (QuerySet)
         creditos = Credit.objects.filter(filters).select_related('asesor_de_credito').order_by('id')
-        
+
         if request.query_params.get('no_page') == 'true':
-            serializer = CreditReporteSerializer(creditos, many=True)
+            serializer = CreditSerializer(creditos, many=True)
             return Response(serializer.data)
 
         # 2. Instanciar el paginador
@@ -220,12 +220,12 @@ class DetalleCasosExitoAPIView(APIView):
         page = paginator.paginate_queryset(creditos, request)
 
         if page is not None:
-            serializer = CreditReporteSerializer(page, many=True)
+            serializer = CreditSerializer(page, many=True)
             # 3. Retornar la respuesta paginada (incluye links a 'next' y 'previous')
             return paginator.get_paginated_response(serializer.data)
 
         # Usamos tu serializador (many=True porque es una lista)
-        serializer = CreditReporteSerializer(creditos, many=True)
+        serializer = CreditSerializer(creditos, many=True)
         
         return Response(serializer.data)
 
