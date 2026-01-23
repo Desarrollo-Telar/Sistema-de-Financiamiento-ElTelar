@@ -1,6 +1,6 @@
 
 # ORM
-from django.db.models import Count, Sum
+from django.db.models import Q, Sum, OuterRef, Subquery, Max
 from django.db.models.functions import TruncMonth
 
 # REST
@@ -8,8 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 
-# Filtrado
-from django.db.models import Q
+
 
 # Modelo
 from apps.financings.models import Payment, Recibo, Banco, AccountStatement, PaymentPlan
@@ -94,15 +93,25 @@ class EgresosPorCodigoMesAPIView(APIView):
 
 
 
+
+
 class BancosPorMesAPIView(APIView):
     def get(self, request):
-        sucursal = getattr(request,'sucursal_actual',None)
-        filters = Q()
+        sucursal = getattr(request, 'sucursal_actual', None)
+        filters = Q(registro_ficticio=False)
 
         if sucursal:
             filters &= Q(sucursal=sucursal)
-        
-        filters &= Q(registro_ficticio=False)
+
+        # 1. Definimos una subquery para encontrar el ID del último registro de cada mes
+        # Usamos OuterRef('mes') para vincularlo con el agrupamiento principal
+        ultimo_registro_id = Banco.objects.filter(
+            filters,
+            fecha__year=OuterRef('mes__year'),
+            fecha__month=OuterRef('mes__month')
+        ).order_by('-fecha', '-id').values('saldo_disponible')[:1]
+
+        # 2. Query principal
         data = (
             Banco.objects
             .filter(filters)
@@ -111,10 +120,12 @@ class BancosPorMesAPIView(APIView):
             .annotate(
                 ingreso=Sum('credito'),
                 egreso=Sum('debito'),
-                saldos=Sum('saldo_disponible')
+                # Obtenemos el saldo del último movimiento del mes
+                saldos=Subquery(ultimo_registro_id)
             )
             .order_by('mes')
         )
+        
         return Response(data)
 
 
