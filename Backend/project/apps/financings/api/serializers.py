@@ -84,6 +84,24 @@ class CreditSerializer(serializers.ModelSerializer):
             'sucursal': sucursal_serializado
         }
 
+class CreditReporteSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Credit
+        fields = '__all__'
+       
+
+    def to_representation(self, instance):
+        from apps.customers.api.serializers import CustomerSerializer
+        from apps.subsidiaries.api.seriealizer import SubsidiarySerializer
+       
+        cliente_serializado = CustomerSerializer(instance.customer_id).data if instance.customer_id else None
+        sucursal_serializado = SubsidiarySerializer(instance.sucursal).data if instance.sucursal else None
+        data = super().to_representation(instance)
+
+        return data
+
+
 class GuaranteesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Guarantees

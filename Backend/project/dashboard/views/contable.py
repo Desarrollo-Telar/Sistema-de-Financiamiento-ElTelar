@@ -1,6 +1,6 @@
 
 # ORM
-from django.db.models import Q, Sum, OuterRef, Subquery, Max
+from django.db.models import Q, Sum, OuterRef, Subquery, Max, Count
 from django.db.models.functions import TruncMonth
 
 # REST
