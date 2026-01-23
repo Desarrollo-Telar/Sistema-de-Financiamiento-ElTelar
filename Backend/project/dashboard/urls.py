@@ -22,7 +22,9 @@ urlpatterns = [
     path('tipos-credito/', views.TiposCreditoAPIView.as_view(), name='tipos-credito'),    
     path('formas-pago/', views.FormasPagoAPIView.as_view(), name='formas-pago'),
 
-    path('casos-exito-asesor/', views.CasosExitoAsesorAPIView.as_view(), name='casos-exito-asesor'), # KPI
+    path('casos-exito-asesor/', views.CasosExitoAsesorAPIView.as_view(), name='casos-exito-asesor'), # KPI CasosJudicialAsesorAPIView
+    path('casos-demanda-asesor/', views.CasosJudicialAsesorAPIView.as_view(), name='casos-demanda-asesor'),
+    path('casos-atraso-asesor/', views.CasosAtrasoAsesorAPIView.as_view(), name='casos-atraso-asesor'),
     path('casos-exito-asesor/power-bi/', views.DetalleCasosExitoAPIView.as_view(), name='casos-exito-asesor-power-bi'), # POWER BI
     path('creditos-por-asesor-mes/', views.CreditosPorAsesorMesAPIView.as_view(), name='creditos-asesor-por-mes'),
 
