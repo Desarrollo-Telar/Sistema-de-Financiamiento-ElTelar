@@ -165,7 +165,38 @@ class CasosAtrasoAsesorAPIView(APIView):
         )
         
         return Response(data)
+    
+class CasosAlDiaAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
 
+    def get(self, request):
+        sucursal = getattr(request, 'sucursal_actual', None)
+        
+        # Filtros generales (Base para todos los cálculos)
+        base_filters = Q(asesor_de_credito__isnull=False)
+        if sucursal:
+            base_filters &= Q(sucursal=sucursal)
+
+        data = (
+            Credit.objects
+            .filter(base_filters)
+            .values(
+                'asesor_de_credito__nombre',
+                'asesor_de_credito__apellido'
+            )
+            .annotate(
+                # Cuenta total de créditos asignados
+                total_otorgados=Count('id'),
+                # Cuenta solo donde is_paid_off es True
+                total_atrasados=Count(
+                    Case(When(estados_fechas=True, then=1))
+                )
+            )
+            .order_by('-total_otorgados') # Ordenar por el que más ha otorgado
+        )
+        
+        return Response(data)
+    
 class DetalleCasosExitoAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
