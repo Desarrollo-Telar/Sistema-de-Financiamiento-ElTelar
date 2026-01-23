@@ -14,6 +14,9 @@ from django.db.models import Q
 # Modelo
 from apps.financings.models import Credit
 
+# SERIALIZADOR
+from apps.financings.api.serializers import CreditSerializer
+
 class CreditosPorMesAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -90,7 +93,24 @@ class CasosExitoAsesorAPIView(APIView):
         )
         return Response(data)
 
+class DetalleCasosExitoAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
 
+    def get(self, request):
+        sucursal = getattr(request, 'sucursal_actual', None)
+        
+        # Aplicamos los mismos filtros de lógica de negocio
+        filters = Q(is_paid_off=True, asesor_de_credito__isnull=False)
+        if sucursal:
+            filters &= Q(sucursal=sucursal)
+
+        # Obtenemos los objetos (QuerySet)
+        creditos = Credit.objects.filter(filters).select_related('asesor_de_credito')
+
+        # Usamos tu serializador (many=True porque es una lista)
+        serializer = CreditSerializer(creditos, many=True)
+        
+        return Response(serializer.data)
 
 class CreditosPorAsesorMesAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]

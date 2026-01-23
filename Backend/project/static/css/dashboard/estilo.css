@@ -1,29 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
-}
 
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-}
 
-header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 25px 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-}
+
+
 
 h1 {
     color: #2d3748;
@@ -145,19 +124,32 @@ button:active {
     font-weight: 700;
 }
 
+/* Modifica esta clase para forzar una sola columna */
 .charts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 25px;
+    display: flex;
+    flex-direction: column; /* Alinea los elementos uno debajo del otro */
+    gap: 30px;              /* Espacio vertical entre cada gráfica */
     margin-bottom: 30px;
 }
 
+/* Opcional: Asegura que las tarjetas ocupen todo el ancho disponible */
 .chart-card {
     background: rgba(255, 255, 255, 0.95);
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ocupar el 100% de la fila */
 }
+
+/* Mejora la altura para que las gráficas se vean mejor al ser tan anchas */
+.chart-container {
+    position: relative;
+    height: 450px; /* Aumentamos de 300px a 450px para aprovechar el ancho */
+}
+
+
+
+
 
 .chart-title {
     color: #2d3748;
@@ -168,10 +160,7 @@ button:active {
     border-bottom: 2px solid #e2e8f0;
 }
 
-.chart-container {
-    position: relative;
-    height: 300px;
-}
+
 
 .loading {
     text-align: center;

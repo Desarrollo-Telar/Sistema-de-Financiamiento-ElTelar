@@ -26,7 +26,10 @@ from django.shortcuts import render, redirect
 # DJANGO HTTP
 from django.http import HttpResponse
 
+@login_required
 def dashboard(request):
     template_name = 'dashboard/index.html'
-    context = {}
+    context = {
+        'permisos':recorrer_los_permisos_usuario(request),
+    }
     return render(request, template_name, context)

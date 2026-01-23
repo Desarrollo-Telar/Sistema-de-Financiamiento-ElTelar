@@ -1,22 +1,18 @@
+{% extends 'base.html' %}
 {% load static%}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Financiero - El Telar</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <link rel="stylesheet" href="{% static 'css/dashboard/estilo.css'%}">
-    
-</head>
-<body>
+{% block css%}
+
+<link rel="stylesheet" href="{% static 'css/dashboard/estilo.css'%}">
+{% endblock%}
+
+    {% block content%}
     <div class="container">
-        <header>
+        <div>
             <h1>📊 Dashboard Financiero - El Telar</h1>
             <div class="header-info">
                 Sistema de análisis y visualización de datos financieros
             </div>
-        </header>
+        </div>
 
       
 
@@ -110,8 +106,8 @@
             </div>
         </div>
     </div>
+    {% endblock %}
 
-   
-<script type="module" src="{% static 'js/dashboard/grafica.js' %}"></script>
-</body>
-</html>
+{% block js %}
+<script type="module"  src="{% static 'js/dashboard/grafica.js' %}"></script>
+{% endblock %}

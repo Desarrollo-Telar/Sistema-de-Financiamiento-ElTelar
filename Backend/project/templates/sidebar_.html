@@ -92,9 +92,10 @@
         {% endif %}
         {% if permisos.puede_ver_registro_usuarios%}
         <li>
-            <a href="{% url 'actividades:list_logs' %}" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip"
-                data-bs-placement="right" aria-label="Actividad de Sistema" data-bs-original-title="Actividad de Sistema">
-                <i class="bi bi-terminal" style="width: 20; height: 20; color: black; "></i>
+            <a href="{% url 'dashboard:dashboard' %}" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip"
+                data-bs-placement="right" aria-label="DASHBOARD" data-bs-original-title="DASHBOARD">
+                
+                <i class="bi bi-speedometer2" style="width: 20; height: 20; color: black; "></i>
             </a>
         </li>
         {% endif %}

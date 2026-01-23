@@ -21,7 +21,9 @@ urlpatterns = [
     path('creditos-por-mes/', views.CreditosPorMesAPIView.as_view(), name='creditos-por-mes'),
     path('tipos-credito/', views.TiposCreditoAPIView.as_view(), name='tipos-credito'),    
     path('formas-pago/', views.FormasPagoAPIView.as_view(), name='formas-pago'),
-    path('casos-exito-asesor/', views.CasosExitoAsesorAPIView.as_view(), name='casos-exito-asesor'),
+
+    path('casos-exito-asesor/', views.CasosExitoAsesorAPIView.as_view(), name='casos-exito-asesor'), # KPI
+    path('casos-exito-asesor/power-bi/', views.DetalleCasosExitoAPIView.as_view(), name='casos-exito-asesor-power-bi'), # POWER BI
     path('creditos-por-asesor-mes/', views.CreditosPorAsesorMesAPIView.as_view(), name='creditos-asesor-por-mes'),
 
     # CONTABLE
