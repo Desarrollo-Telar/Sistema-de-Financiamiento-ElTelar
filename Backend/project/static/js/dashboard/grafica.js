@@ -659,42 +659,65 @@ async function morosidad() {
 
 async function casos_exito_asesor() {
   const data = await fetchData('casos-exito-asesor/');
+  if (!data.length) return;
+
+  // 1. Extraemos los nombres
   const labels = data.map(i =>
     `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim()
   );
-  const values = data.map(i => i.cantidad);
 
-  // Definimos una paleta de colores atractiva
-  const colors = [
-    'rgba(54, 162, 235, 0.8)',  // Azul
-    'rgba(75, 192, 192, 0.8)',  // Esmeralda
-    'rgba(153, 102, 255, 0.8)', // Violeta
-    'rgba(255, 159, 64, 0.8)',  // Naranja
-    'rgba(255, 99, 132, 0.8)',  // Rosa
-    'rgba(255, 205, 86, 0.8)',  // Amarillo
-    'rgba(201, 203, 207, 0.8)'  // Gris
-  ];
+  // 2. Extraemos los dos nuevos valores de la API
+  const otorgados = data.map(i => i.total_otorgados);
+  const cancelados = data.map(i => i.total_cancelados);
 
   createChart('casosExitoChart', {
     type: 'bar',
     data: { 
       labels, 
-      datasets: [{ 
-        label: 'Créditos Exitosos', 
-        data: values,
-        // Si el array de colores es más corto que los datos, Chart.js los cicla
-        backgroundColor: colors,
-        borderColor: colors.map(c => c.replace('0.8', '1')),
-        borderWidth: 1,
-        borderRadius: 5 // Bordes redondeados para un look moderno
-      }] 
+      datasets: [
+        { 
+          label: 'Total Otorgados', 
+          data: otorgados,
+          backgroundColor: 'rgba(54, 162, 235, 0.5)', // Azul transparente
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1,
+          borderRadius: 5
+        },
+        { 
+          label: 'Cancelados (Éxito)', 
+          data: cancelados,
+          backgroundColor: 'rgba(75, 192, 192, 0.8)', // Esmeralda sólido
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+          borderRadius: 5
+        }
+      ] 
     },
     options: { 
       indexAxis: 'y', 
       responsive: true, 
       maintainAspectRatio: false,
       plugins: {
-        legend: { display: false } // Ocultamos leyenda porque el eje X ya dice qué es
+        legend: { 
+          display: true, 
+          position: 'top' // Mostramos leyenda para distinguir las barras
+        },
+        tooltip: {
+          callbacks: {
+            // Agregamos el porcentaje de éxito al pasar el mouse
+            afterLabel: function(context) {
+              const index = context.dataIndex;
+              const porcentaje = ((cancelados[index] / otorgados[index]) * 100).toFixed(1);
+              return `Efectividad: ${porcentaje}%`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: { display: true, text: 'Cantidad de Créditos' }
+        }
       }
     }
   });

@@ -1,6 +1,6 @@
 
 # ORM
-from django.db.models import Count, Sum
+from django.db.models import Count, Q, Case, When
 from django.db.models.functions import TruncMonth
 
 # REST
@@ -8,8 +8,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 
-# Filtrado
-from django.db.models import Q
+
+
 
 # Modelo
 from apps.financings.models import Credit
@@ -75,25 +75,33 @@ class FormasPagoAPIView(APIView):
 
 class CasosExitoAsesorAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    def get(self, request):
-        sucursal = getattr(request,'sucursal_actual',None)
-        filters = Q()
 
-        if sucursal:
-            filters &= Q(sucursal=sucursal)
+    def get(self, request):
+        sucursal = getattr(request, 'sucursal_actual', None)
         
-        filters &= Q(is_paid_off=True)
-        filters &= Q(asesor_de_credito__isnull=False)
+        # Filtros generales (Base para todos los cálculos)
+        base_filters = Q(asesor_de_credito__isnull=False)
+        if sucursal:
+            base_filters &= Q(sucursal=sucursal)
 
         data = (
             Credit.objects
-            .filter(filters)
+            .filter(base_filters)
             .values(
                 'asesor_de_credito__nombre',
                 'asesor_de_credito__apellido'
             )
-            .annotate(cantidad=Count('id'))
+            .annotate(
+                # Cuenta total de créditos asignados
+                total_otorgados=Count('id'),
+                # Cuenta solo donde is_paid_off es True
+                total_cancelados=Count(
+                    Case(When(is_paid_off=True, then=1))
+                )
+            )
+            .order_by('-total_otorgados') # Ordenar por el que más ha otorgado
         )
+        
         return Response(data)
 
 class DetalleCasosExitoAPIView(APIView):
