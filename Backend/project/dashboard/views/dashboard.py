@@ -27,6 +27,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 @login_required
+@usuario_activo
 def dashboard(request):
     template_name = 'dashboard/index.html'
     context = {
