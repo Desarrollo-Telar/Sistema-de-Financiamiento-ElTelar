@@ -153,7 +153,7 @@ services:
       - STACKHERO_MINIO_HOST=pcxl65.stackhero-network.com
       - STACKHERO_MINIO_ROOT_ACCESS_KEY=WkXu9MHvOHvOsLiJjtda
       - STACKHERO_MINIO_ROOT_SECRET_KEY=g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe
-      - STACKHERO_MINIO_BUCKET_NAME=tu_nombre_de_bucket
+      - STACKHERO_MINIO_BUCKET_NAME=asiatrip
 
     networks:
       - app_fin

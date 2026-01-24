@@ -267,10 +267,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-AWS_ACCESS_KEY_ID = "WkXu9MHvOHvOsLiJjtda"  # Cambia según tu configuración
-AWS_SECRET_ACCESS_KEY = "g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe"
-AWS_STORAGE_BUCKET_NAME = "asiatrip"
-AWS_S3_ENDPOINT_URL = "https://pcxl65.stackhero-network.com"  # Reemplaza con la URL de tu MinIO
+AWS_ACCESS_KEY_ID = os.environ.get('STACKHERO_MINIO_ROOT_ACCESS_KEY')  # Cambia según tu configuración
+AWS_SECRET_ACCESS_KEY = os.environ.get('STACKHERO_MINIO_ROOT_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('STACKHERO_MINIO_BUCKET_NAME')
+AWS_S3_ENDPOINT_URL =  os.environ.get('STACKHERO_MINIO_CONSOLE_URL')  # Reemplaza con la URL de tu MinIO
 AWS_S3_ADDRESSING_STYLE = "path"
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}"
 AWS_S3_FILE_OVERWRITE = False
