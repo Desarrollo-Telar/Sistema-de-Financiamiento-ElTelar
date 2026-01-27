@@ -221,6 +221,8 @@ def generar_estado_cuenta_word(doc, id):
     tabla_dep = doc.add_table(rows=3, cols=2)
     dep = tabla_dep.rows
 
+    nombre_cuenta = 'Inversiones Integrales el Telar S.A.'
+
     dep[0].cells[0].text = "Depósito"
     dep[0].cells[1].text = sucursal.nombre_banco.upper()
 
@@ -228,7 +230,7 @@ def generar_estado_cuenta_word(doc, id):
     dep[1].cells[1].text = sucursal.numero_de_cuenta_banco
 
     dep[2].cells[0].text = "Nombre"
-    dep[2].cells[1].text = "Inversiones Integrales el Telar S.A."
+    dep[2].cells[1].text = 'El Telar S.A.' if sucursal.codigo_establecimiento == 2 else nombre_cuenta
     set_table_border(tabla_dep)
 
     # Números de reporte:
