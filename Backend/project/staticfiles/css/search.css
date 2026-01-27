@@ -1,0 +1,158 @@
+
+/* Estilos personalizados para los resultados de búsqueda */
+.search-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.search-title {
+    color: #495057;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.query-highlight {
+    color: #161A1D;
+    font-weight: 700;
+}
+
+.search-divider {
+    border-color: #dee2e6;
+    margin: 1rem 0;
+}
+
+.results-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.results-section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    color: #495057;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.result-card {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.credit-card {
+    border-left: 4px solid #28a745;
+}
+
+.client-card {
+    border-left: 4px solid #17a2b8;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.customer-info h6 {
+    color: #495057;
+}
+
+.status-badge {
+    flex-shrink: 0;
+}
+
+.credit-details, .client-details {
+    font-size: 0.9rem;
+}
+
+.credit-details p, .client-details p {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.credit-details i, .client-details i {
+    color: #6c757d;
+    width: 1.2rem;
+    flex-shrink: 0;
+}
+
+.empty-state {
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    margin: 2rem 0;
+}
+
+.card-footer {
+    padding: 0.75rem 1rem;
+}
+
+.btn {
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-header {
+        padding: 1rem;
+    }
+    
+    .results-summary {
+        justify-content: center;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+/* Mejoras de accesibilidad */
+.btn:focus,
+.card:focus-within {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+a:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 1px;
+}
+
+/* Animaciones suaves */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-card {
+    animation: fadeIn 0.3s ease forwards;
+}

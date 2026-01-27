@@ -18,7 +18,6 @@ export async function postReferencia(url, customer_id) {
             console.log('Respuesta de la API:', response.data);
         }
     } catch (error) {
-        alert('Error: ',error);
         console.error('Error en el envío de referencias:', error);
         throw error;
     }
