@@ -154,24 +154,24 @@ def creacion_cobranza(request):
             # PARA OBTENER LA CUOTA ACTUAL
             info_cuota = obtener_cuota(dia, credito)
 
-            fecha_cobranza = info_cuota.limite_cobranza_oficina()
-            asesor_de_credito = credito.asesor_de_credito
+            
 
             # Mensaje de error si el credito esta cancelado
             if credito.is_paid_off:
                 messages.error(request, 'El Credito se encuentra Cancelado, no se puede realizar ninguna gestión de cobranza.')
                 return redirect('financings:detail_credit', credito.id)
 
-            informe_reporte = obtener_informe_asesor(credito, asesor_autenticado)
+            informe_del_asesor_del_credito = obtener_informe_asesor(credito, asesor_autenticado)
 
             # POR SI VIENEN DE LA VISTA DETALLE DEL CREDITO
-            detalle_existente = DetalleInformeCobranza.objects.filter(reporte=informe_reporte,cobranza__credito=credito).first() 
-
-            detalle_info_e =  DetalleInformeCobranza.objects.filter(reporte=informe_usuario,cobranza__credito=credito).first()
+            detalle_info_e = DetalleInformeCobranza.objects.filter(
+                reporte=informe_usuario, 
+                cobranza__credito=credito
+            ).first()
             cobranza = None
 
-            if detalle_existente:
-                cobranza = registrar_cobranza_detalle_existente(detalle_existente, fcobranza, asesor_autenticado, info_cuota, form)
+            if detalle_info_e:
+                cobranza = registrar_cobranza_detalle_existente(detalle_info_e, fcobranza, asesor_autenticado, info_cuota, form)
             else:
                 fecha = form.cleaned_data.get('fecha_promesa_pago')
                 fecha_gestion = form.cleaned_data.get('fecha_gestion')
@@ -200,20 +200,15 @@ def creacion_cobranza(request):
                 fcobranza.save()
                 cobranza = fcobranza
 
-                if informe_reporte is not None:
-                    DetalleInformeCobranza.objects.create(
-                        reporte = informe_reporte,
-                        cobranza = cobranza
-                    )
-
-            if detalle_info_e is not None:
-                detalle_info_e.cobranza = cobranza
-                detalle_info_e.save()
-
-            else:
                 DetalleInformeCobranza.objects.create(
-                    reporte = informe_usuario,
-                    cobranza = cobranza
+                    reporte=informe_usuario,
+                    cobranza=cobranza
+                )
+
+            if informe_del_asesor_del_credito and informe_del_asesor_del_credito != informe_usuario:
+                DetalleInformeCobranza.objects.get_or_create(
+                    reporte=informe_del_asesor_del_credito,
+                    cobranza=cobranza
                 )
 
             if archivos:

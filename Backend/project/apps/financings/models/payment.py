@@ -203,19 +203,19 @@ class Payment(models.Model):
             cuota = self._cuota_pagar()
 
             if cuota is None:
-                print('Buscar a la siguiente cuota')
                 cuota = self._siguiente_cuota()
 
             saldo_pendiente = cuota.saldo_pendiente
-            print(saldo_pendiente)
+
 
             if saldo_pendiente is None:
                 raise MiExcepcionPersonalizada('No se puede continuar debido a que no se ha encontra una cuota asociada al pago', saldo_pendiente)
             
             mora = self._calculo_mora()
             interes = cuota.interest
+            capital_generado = cuota.capital_generado
             
-            procesos_de_pago(self,saldo_pendiente, interes,mora)
+            procesos_de_pago(self,saldo_pendiente, interes,mora, capital_generado)
 
         except MiExcepcionPersonalizada as e:
             print(f"Ocurrió un error: {e}")
@@ -276,7 +276,7 @@ class Payment(models.Model):
         
         # ACTUALIZACION DE LA CUOTA
         cuota.interest -=pagado_interes
-        mora_existente = cuota.mora
+       
         cuota.mora -= pagado_mora
         cuota.principal += aporte_capital
         cuota.saldo_pendiente = saldo_pendiente
@@ -297,6 +297,11 @@ class Payment(models.Model):
             cuota.status = True
 
             capital_original = cuota.capital_generado
+            cuota.capital_generado -= aporte_capital
+
+            if cuota.capital_generado < 0:
+                cuota.capital_generado = 0
+
 
             if cuota.principal >= capital_original:
                 informacion['credito'].estado_aportacion  = True
@@ -363,12 +368,16 @@ class Payment(models.Model):
         if saldo_pendiente <= 0:
             saldo_pendiente = 0
 
-            informacion['credito'].is_paid_off = True
+            
             informacion['credito'].saldo_pendiente  = 0
             informacion['credito'].saldo_actual  = 0
             informacion['credito'].estado_aportacion = True
-            informacion['credito'].estados_fechas = True
-            informacion['credito'].fecha_cancelacion = self.fecha_emision.date()
+
+            if cuota.interest <= 0 and cuota.mora <= 0:
+                informacion['credito'].is_paid_off = True
+                informacion['credito'].estados_fechas = True
+                informacion['credito'].fecha_cancelacion = self.fecha_emision.date()
+
             informacion['credito'].save()
             
 
@@ -384,8 +393,6 @@ class Payment(models.Model):
         if siguiente is not None:
             # Actualizamos la siguiente cuota si ya existe
             cuota_a_actualizar = siguiente
-            print(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES ANTIGUO: {cuota_a_actualizar.interest}\nMORA ANTIGUA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {cuota_a_actualizar.saldo_pendiente}')
-            cuota_a_actualizar.cambios = True
             
             if cuota.interest <=0:
                 cuota_a_actualizar.interest =  interes
@@ -400,11 +407,7 @@ class Payment(models.Model):
                 cuota_a_actualizar.mora = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)  
                 cuota_a_actualizar.mora_generado = Decimal(cuota_a_actualizar.interest) * Decimal(0.1)
                 
-        else:
-            print('CREACION DE UNA NUEVA  CUOTA')
-            
-            
-                
+        
 
         # En ambos casos (cuota nueva o existente), actualizamos los campos comunes
         if cuota_a_actualizar is not None:
@@ -418,13 +421,6 @@ class Payment(models.Model):
             informacion['credito'].saldo_actual   = saldo_pendiente + cuota_a_actualizar.mora + cuota_a_actualizar.interest
             informacion['credito'].save()
             
-            
-            
-            print(f'LA CUOTA: {siguiente}\nREALIZA CAMBIOS SOBRE:\nINTERES NUEVO: {cuota_a_actualizar.interest}\nMORA NUEVA: {cuota_a_actualizar.mora}\nSALDO PENDIENTE: {saldo_pendiente}')
-            
-
-            # Guardamos los cambios
-            #if cuota_a_actualizar:
             cuota_a_actualizar.save()
 
 

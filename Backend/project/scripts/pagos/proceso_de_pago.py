@@ -1,65 +1,76 @@
-
-def procesos_de_pago(self, saldo_pendiente, interes, mora):
+def procesos_de_pago(self, saldo_pendiente, interes, mora, capital_generado = 0, tipo_proceso='RECUPERACION TOTAL'):
     monto_depositado = self.monto
-
-    pagado_mora = 0
-    pagado_interes = 0
-    aporte_capital = 0
-
-
-    def procesar_pago(tipo, monto_requerido):
-        
-        nonlocal monto_depositado, pagado_mora, pagado_interes
-
-        if monto_depositado >= monto_requerido:
-            monto_depositado = round(monto_depositado - monto_requerido, 2)
-                    
-            if tipo == 'Mora':
-                pagado_mora += monto_requerido
-            elif tipo == 'Interes':
-                pagado_interes += monto_requerido
-
-            return 0
-        else:
-            saldo = round(monto_requerido - monto_depositado, 2)
-                    
-            if tipo == 'Mora':
-                pagado_mora += monto_depositado
-
-            elif tipo == 'Interes':
-                pagado_interes += monto_depositado
-
-            monto_depositado = 0    
-            return saldo
     
-     # Procesar pago de mora
-    mora = procesar_pago('Mora', mora) 
-    if mora > 0:
-        aporte_capital = monto_depositado       
-        self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente)
-        return f"Pago realizado parcialmente. Quedan Q{mora} de mora pendiente. "
-
-       
-    # Procesar pago de intereses
-    interes = procesar_pago('Interes', interes)
-        
-    if interes > 0:
-        aporte_capital = monto_depositado
-        self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente)
-        return f"Pago realizado parcialmente. Quedan Q{interes} de intereses pendientes. "
+    prioridades = {
+        'NORMAL': ['Mora', 'Interes', 'Capital'],
+        'RECUPERACION NORMAL': ['Capital', 'Interes', 'Mora'],
+        'RECUPERACION TOTAL': ['Capital', 'Interes', 'Mora'],
+    }
     
-    aporte_capital = monto_depositado
-    excedente = None
-    saldo_pendiente_antes = saldo_pendiente
-
-    saldo_pendiente -= aporte_capital
+    orden = prioridades.get(tipo_proceso.upper(), prioridades['NORMAL'])
     
+    resultados = {
+        'pagado_mora': 0,
+        'pagado_interes': 0,
+        'aporte_capital': 0,
+        'pendiente_mora': mora,
+        'pendiente_interes': interes,
+        'saldo_pendiente_cap': saldo_pendiente,
+        'pendiente_capital': capital_generado
+    }
 
-    if saldo_pendiente < 0:
-        excedente = saldo_pendiente
-        saldo_pendiente = 0
-        aporte_capital = saldo_pendiente_antes
-        
+    for rubro in orden:
+        if monto_depositado <= 0:
+            break
+            
+        if rubro == 'Mora':
+            pago = min(monto_depositado, resultados['pendiente_mora'])
+            resultados['pagado_mora'] = round(pago, 2)
+            resultados['pendiente_mora'] -= pago
+            monto_depositado -= pago
 
-    self._registrar_pago(pagado_mora=pagado_mora, pagado_interes=pagado_interes,aporte_capital=aporte_capital,saldo_pendiente=saldo_pendiente, excedente=excedente)
-    return f"Pago realizado con éxito. Q{self.monto} restante. Saldo pendiente total: Q{saldo_pendiente}"
+        elif rubro == 'Interes':
+            pago = min(monto_depositado, resultados['pendiente_interes'])
+            resultados['pagado_interes'] = round(pago, 2)
+            resultados['pendiente_interes'] -= pago
+            monto_depositado -= pago
+
+        elif rubro == 'Capital':
+            # Si es RECUPERACIÓN NORMAL, primero cubrimos la cuota de capital generada
+            if tipo_proceso == 'RECUPERACION NORMAL':
+                pago = min(monto_depositado, resultados['pendiente_capital'])
+            else:
+                pago = min(monto_depositado, resultados['saldo_pendiente_cap'])
+
+            resultados['aporte_capital'] += round(pago, 2)
+            resultados['saldo_pendiente_cap'] -= pago
+            monto_depositado -= pago
+
+    # --- NUEVA LÓGICA DE APLICACIÓN DE EXCEDENTE ---
+    # Si después de recorrer el orden aún queda dinero y todavía hay deuda...
+    if monto_depositado > 0 and resultados['saldo_pendiente_cap'] > 0:
+        # Todo lo que sobre se va a capital hasta dejar la deuda en 0
+        pago_extra = min(monto_depositado, resultados['saldo_pendiente_cap'])
+        resultados['aporte_capital'] += round(pago_extra, 2)
+        resultados['saldo_pendiente_cap'] -= pago_extra
+        monto_depositado -= pago_extra
+
+    # Ahora sí, el excedente real es solo si el cliente pagó de más de la deuda total
+    excedente = round(monto_depositado, 2) if monto_depositado > 0 else 0
+    
+    self._registrar_pago(
+        pagado_mora=resultados['pagado_mora'],
+        pagado_interes=resultados['pagado_interes'],
+        aporte_capital=resultados['aporte_capital'],
+        saldo_pendiente=resultados['saldo_pendiente_cap'],
+        excedente=excedente if excedente > 0 else None
+    )
+
+    return self._generar_resumen(resultados, excedente)
+
+def _generar_resumen(self, res, excedente):
+    if res['pendiente_mora'] > 0:
+        return f"Parcial. Pendiente Mora: Q{res['pendiente_mora']}"
+    if res['pendiente_interes'] > 0:
+        return f"Parcial. Pendiente Interés: Q{res['pendiente_interes']}"
+    return f"Pago procesado. Saldo Cap: Q{res['saldo_pendiente_cap']}. Excedente: Q{excedente}"

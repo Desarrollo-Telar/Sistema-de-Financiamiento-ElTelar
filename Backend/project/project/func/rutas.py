@@ -95,52 +95,52 @@ load_commands = [
     "python manage.py loaddata modelos/fixtures/PermisosUsuarios.json",
     "python manage.py loaddata modelos/fixtures/Direccion.json",
 
-    "python manage.py loaddata modelos/fixtures/Acreedor.json",
-    "python manage.py loaddata modelos/fixtures/Seguro.json",
-    "python manage.py loaddata modelos/fixtures/Ingreso.json",
-    "python manage.py loaddata modelos/fixtures/Gastos.json",
+    #"python manage.py loaddata modelos/fixtures/Acreedor.json",
+    #"python manage.py loaddata modelos/fixtures/Seguro.json",
+    #"python manage.py loaddata modelos/fixtures/Ingreso.json",
+    #"python manage.py loaddata modelos/fixtures/Gastos.json",
     
-    "python manage.py loaddata modelos/fixtures/InformacionLaboral.json",
-    "python manage.py loaddata modelos/fixtures/OtraInformacionDeIngreso.json",
-    "python manage.py loaddata modelos/fixtures/Referencia.json",
-    "python manage.py loaddata modelos/fixtures/Destino.json",
+    #"python manage.py loaddata modelos/fixtures/InformacionLaboral.json",
+    #"python manage.py loaddata modelos/fixtures/OtraInformacionDeIngreso.json",
+    #"python manage.py loaddata modelos/fixtures/Referencia.json",
+    #"python manage.py loaddata modelos/fixtures/Destino.json",
     
-    "python manage.py loaddata modelos/fixtures/Credito.json",
-    "python manage.py loaddata modelos/fixtures/Cuota.json",
-    "python manage.py loaddata modelos/fixtures/Desembolso.json",
+    #"python manage.py loaddata modelos/fixtures/Credito.json",
+    #"python manage.py loaddata modelos/fixtures/Cuota.json",
+    #"python manage.py loaddata modelos/fixtures/Desembolso.json",
 
     "python manage.py loaddata modelos/fixtures/Banco.json",
-    "python manage.py loaddata modelos/fixtures/Boleta.json",
-    "python manage.py loaddata modelos/fixtures/Recibo.json",
-    "python manage.py loaddata modelos/fixtures/Factura.json",
+    #"python manage.py loaddata modelos/fixtures/Boleta.json",
+    #"python manage.py loaddata modelos/fixtures/Recibo.json",
+    #"python manage.py loaddata modelos/fixtures/Factura.json",
     
     
     
-    "python manage.py loaddata modelos/fixtures/Garantia.json",
-    "python manage.py loaddata modelos/fixtures/DetalleGarantia.json",
-    "python manage.py loaddata modelos/fixtures/EstadoCuenta.json",
+    #"python manage.py loaddata modelos/fixtures/Garantia.json",
+    #"python manage.py loaddata modelos/fixtures/DetalleGarantia.json",
+    #"python manage.py loaddata modelos/fixtures/EstadoCuenta.json",
     
     
     
     
-    "python manage.py loaddata modelos/fixtures/Imagen.json",
-    "python manage.py loaddata modelos/fixtures/ImagenCliente.json",
-    "python manage.py loaddata modelos/fixtures/ImagenDireccion.json",
-    "python manage.py loaddata modelos/fixtures/ImagenGarantia.json",
-    "python manage.py loaddata modelos/fixtures/OtraImagen.json",
+    #"python manage.py loaddata modelos/fixtures/Imagen.json",
+    #"python manage.py loaddata modelos/fixtures/ImagenCliente.json",
+    #"python manage.py loaddata modelos/fixtures/ImagenDireccion.json",
+    #"python manage.py loaddata modelos/fixtures/ImagenGarantia.json",
+    #"python manage.py loaddata modelos/fixtures/OtraImagen.json",
 
-    "python manage.py loaddata modelos/fixtures/Documento.json",
-    "python manage.py loaddata modelos/fixtures/DocumentoBanco.json",    
-    "python manage.py loaddata modelos/fixtures/DocumentoCliente.json",
-    "python manage.py loaddata modelos/fixtures/DocumentoDireccion.json",
-    "python manage.py loaddata modelos/fixtures/DocumentoGarantia.json",
-    "python manage.py loaddata modelos/fixtures/OtroDocumento.json",
+    #"python manage.py loaddata modelos/fixtures/Documento.json",
+    #"python manage.py loaddata modelos/fixtures/DocumentoBanco.json",    
+    #"python manage.py loaddata modelos/fixtures/DocumentoCliente.json",
+    #"python manage.py loaddata modelos/fixtures/DocumentoDireccion.json",
+    #"python manage.py loaddata modelos/fixtures/DocumentoGarantia.json",
+    #"python manage.py loaddata modelos/fixtures/OtroDocumento.json",
     
     
 ]
 
 if __name__ == '__main__':
     print("PROCESANDO...")
-    for back in commands:
+    for back in load_commands:
         os.system(back)
     print("FINALIZADO")

@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SERVIDOR = True
+SERVIDOR = False
 ALLOWED_HOSTS = ['*']
 
 
@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django_redis',
     'storages',
     'dashboard',
-    #'modelos',
+    'modelos',
 ]
 INSTALLED_APPS += INSTALLED_APPS_MODELS + INSTALLED_APPS_REST
 SITE_ID = 1
