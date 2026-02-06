@@ -284,8 +284,38 @@
             </div>
         </div>
     </div>
+    <div class="form-section">
+        <h2 class="section-title">Configuración de la Cuota</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>{{ forms_cuota.saldo_pendiente.label }} <span class="required">*</span></label>
+                <div class="input-group">
+                    {{ forms_cuota.saldo_pendiente }}
+                    <span class="input-icon">Q</span>
+                </div>
+                {{ forms_cuota.saldo_pendiente.errors }}
+            </div>
+            <div class="form-group">
+                <label>{{ forms_cuota.mora.label }} <span class="required">*</span></label>
+                <div class="input-group">
+                    {{ forms_cuota.mora }}
+                    <span class="input-icon">Q</span>
+                </div>
+                {{ forms_cuota.mora.errors }}
+            </div>
+            <div class="form-group">
+                <label>{{ forms_cuota.interest.label }} <span class="required">*</span></label>
+                <div class="input-group">
+                    {{ forms_cuota.interest }}
+                    <span class="input-icon">Q</span>
+                </div>
+                {{ forms_cuota.interest.errors }}
+            </div>
+        </div>
+    </div>
 
     <div class="form-section">
+        <h2 class="section-title">Información Judicial</h2>
         <div class="form-row">
             <div class="form-group">
                 <label>Crédito Demandado</label>

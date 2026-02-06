@@ -45,7 +45,7 @@ async function fetchLastPaymentPlan(searchTerm) {
     
                 });
 
-            }else if (response.data['credit_id'].categoria_credito_demandado == null){
+            }else if (response.data['credit_id'].categoria_credito_demandado == null && response.data['credit_id'].estado_judicial ){
                 Swal.fire({
                     title: "Este Credito se encuentra demandado",
                    

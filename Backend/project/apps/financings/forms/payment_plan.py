@@ -6,18 +6,12 @@ from apps.financings.models import PaymentPlan
 class PaymentPlanForms(forms.ModelForm):
     class Meta:
         model = PaymentPlan
-        fields = [
-            'start_date',
-            #'due_date',
-            #'fecha_limite',
-            #'saldo_pendiente',
+        fields = [           
+            'saldo_pendiente',
             'mora',
             'interest',
         ]
-        labels = {
-            'start_date':'FECHA DE INICIO',
-            'due_date': 'FECHA DE VENCIMIENTO',
-            'fecha_limite':'FECHA LIMITE',
+        labels = {            
             'saldo_pendiente': 'SALDO CAPITAL PENDIENTE',
             'mora': 'MORA A PAGAR',
             'interest': 'INTERES A PAGAR',
