@@ -60,8 +60,18 @@
                     <span class="{% if credit_list.is_paid_off %}inactivo{% else %}activo{% endif %}">
                         {{credit_list.formato_credito_cancelado}}
                     </span>
+                    
                     {% endif %}
                 </p>
+                {% if credit_list.categoria_credito_demandado %}
+                 <p class="mb-2">
+                    <strong>CATEGORIA DE CREDITO DEMANDADO:</strong>
+                    <span
+                       >
+                        {{credit_list.categoria_credito_demandado}}
+                    </span>
+                </p>
+                {% endif %}
                 <p class="mb-2">
                     <strong>ESTADO POR APORTACIÓN:</strong>
                     <span
@@ -126,6 +136,9 @@
                 <p class="mb-2"><strong>PLAZO:</strong> <span class="fw-light">{{credit_list.plazo}} MESES</span></p>
                 <p class="mb-0"><strong>TASA DE INTERÉS MENSUAL:</strong> <span
                         class="fw-light">{{credit_list.tasa_mensual}}%</span></p>
+
+                <p class="mb-0"><strong>TIPO DE PROCESO DE PAGO:</strong> <span
+                        class="fw-light">{{credit_list.tipo_proceso}}</span></p>
             </div>
         </div>
     </div>
@@ -183,19 +196,13 @@
 {% if permisos.puede_asignar_estado_judicial %}
 
     <div class="col-md-3 mb-3">
-        {% if credit_list.estado_judicial %}
-        <a href="{% url 'financings:cambiar_estado_judicial_false' credit_list.id %}" class="btn_edit"
-            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Cambiar El Estado del Credito"
-            aria-label="Cambiar El Estado del Credito">
-            Cambiar El Estado Del Credito a Juridico
-        </a>
-        {% else %}
+        
         <a href="{% url 'financings:cambiar_estado_judicial' credit_list.id %}" class="btn_cancel"
-            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Cambiar El Estado del Credito"
-            aria-label="Cambiar El Estado del Credito">
-            Cambiar El Estado Del Credito a Juridico
+            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Re-estructuracion del Credito"
+            aria-label="Re-estructuracion del Credito">
+            Re-estructuracion del Credito
         </a>
-        {% endif %}
+        
     </div>
     {% endif %}
 </div>

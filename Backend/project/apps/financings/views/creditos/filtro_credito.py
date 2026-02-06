@@ -28,16 +28,19 @@ def filter_credito_reciente(request):
     sucursal = request.session['sucursal_id']
     hoy = datetime.now()
     inicio = hoy - timedelta(days=5)
-    credito = Credit.objects.filter(Q(creation_date__range=[inicio,hoy]), sucursal=sucursal).order_by('-id')
+    filters = Q()    
+    filters &= Q(sucursal=sucursal)
+   
+    filters &= Q(creation_date__range=[inicio,hoy])
+    
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        credito =  Credit.objects.filter(
-            Q(creation_date__range=[inicio,hoy]),
-            asesor_de_credito=asesor_autenticado
-            ).order_by('-id')
-
+        filters &= Q(asesor_de_credito=asesor_autenticado)
+        
+        
+    credito = Credit.objects.filter(filters).order_by('-id')
     page_obj = paginacion(request, credito)
     
     context = {
@@ -54,16 +57,21 @@ def filter_credito_reciente(request):
 @permiso_requerido('puede_ver_registros_credito')
 def filter_credito_cancelado(request):
     template_name = 'financings/credit/list.html'
-    credito =  Credit.objects.filter(is_paid_off=True).order_by('-id')
+    
     sucursal = request.session['sucursal_id']
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
-    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        credito =  Credit.objects.filter(
-            is_paid_off=True,
-            asesor_de_credito=asesor_autenticado, sucursal=sucursal
-            ).order_by('-id')
+    filters = Q()    
+    filters &= Q(sucursal=sucursal)
 
+    filters &= Q(is_paid_off=True)
+
+
+    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
+        filters &= Q(asesor_de_credito=asesor_autenticado)
+        
+        
+    credito =  Credit.objects.filter(filters).order_by('-id')
     page_obj = paginacion(request, credito)
 
     
@@ -82,16 +90,21 @@ def filter_credito_cancelado(request):
 def filter_credito_en_atraso(request):
     template_name = 'financings/credit/list.html'
     sucursal = request.session['sucursal_id']
-    credito =  Credit.objects.filter(estados_fechas=False, sucursal=sucursal).order_by('-fecha_actualizacion')
+
+    filters = Q()    
+    filters &= Q(sucursal=sucursal)
+    filters &= Q(estados_fechas=False)
+
+    
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        credito =  Credit.objects.filter(
-            estados_fechas=False,
-            asesor_de_credito=asesor_autenticado, sucursal=sucursal
-            ).order_by('-fecha_actualizacion')
+        filters &= Q(asesor_de_credito=asesor_autenticado)
+        
+        
 
+    credito =  Credit.objects.filter(filters).order_by('-fecha_actualizacion') 
     page_obj = paginacion(request, credito)
     
     context = {
@@ -110,16 +123,19 @@ def filter_credito_con_aportaciones(request):
     template_name = 'financings/credit/list.html'
     sucursal = request.session['sucursal_id']
 
-    credito =  Credit.objects.filter(estado_aportacion__isnull=False, is_paid_off=False, sucursal=sucursal).order_by('-fecha_actualizacion')
+    filters = Q()    
+    filters &= Q(sucursal=sucursal)
+
+    filters &= Q(estado_aportacion__isnull=False)
+    filters &= Q(is_paid_off=False)
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        credito =  Credit.objects.filter(
-            estado_aportacion__isnull=False, is_paid_off=False,
-            asesor_de_credito=asesor_autenticado, sucursal=sucursal
-            ).order_by('-fecha_actualizacion')
-
+        filters &= Q(asesor_de_credito=asesor_autenticado)
+        
+        
+    credito =  Credit.objects.filter(filters).order_by('-fecha_actualizacion')
     page_obj = paginacion(request, credito)
 
     
@@ -138,16 +154,20 @@ def filter_credito_con_aportaciones(request):
 def filter_credito_en_falta_aportacion(request):
     template_name = 'financings/credit/list.html'
     sucursal = request.session['sucursal_id']
-    credito =  Credit.objects.filter(estado_aportacion=False, sucursal=sucursal).order_by('-id')
+    
+
+    filters = Q()    
+    filters &= Q(sucursal=sucursal)
+
+    filters &= Q(estado_aportacion=False)
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        credito =  Credit.objects.filter(
-            estado_aportacion=False,
-            asesor_de_credito=asesor_autenticado, sucursal=sucursal
-            ).order_by('-fecha_actualizacion')
-
+        filters &= Q(asesor_de_credito=asesor_autenticado)
+        
+        
+    credito =  Credit.objects.filter(filters).order_by('-fecha_actualizacion')
     page_obj = paginacion(request, credito)
     
     context = {

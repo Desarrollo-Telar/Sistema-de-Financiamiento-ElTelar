@@ -1,10 +1,10 @@
-def procesos_de_pago(self, saldo_pendiente, interes, mora, capital_generado = 0, tipo_proceso='RECUPERACION TOTAL'):
+def procesos_de_pago(self, saldo_pendiente, interes, mora, capital_generado = 0, tipo_proceso='NORMAL'):
     monto_depositado = self.monto
     
     prioridades = {
-        'NORMAL': ['Mora', 'Interes', 'Capital'],
-        'RECUPERACION NORMAL': ['Capital', 'Interes', 'Mora'],
-        'RECUPERACION TOTAL': ['Capital', 'Interes', 'Mora'],
+        'NORMAL': ['Mora', 'Interes', 'Capital'], # PRIORIDAD CANCELAR LA MOROSIDAD DE LA CUOTA
+        'RECUPERACION PARCIAL CAPITAL': ['Capital', 'Interes', 'Mora'], # PRIORIDAD CANCELAR EL CAPITAL DE LA CUOTA GENERADA
+        'RECUPERACION TOTAL CAPITAL': ['Capital', 'Interes', 'Mora'], # PRIORIDAD CANCELAR LO MAS ANTES POSIBLE EL SALDO CAPITAL
     }
     
     orden = prioridades.get(tipo_proceso.upper(), prioridades['NORMAL'])
@@ -37,7 +37,7 @@ def procesos_de_pago(self, saldo_pendiente, interes, mora, capital_generado = 0,
 
         elif rubro == 'Capital':
             # Si es RECUPERACIÓN NORMAL, primero cubrimos la cuota de capital generada
-            if tipo_proceso == 'RECUPERACION NORMAL':
+            if tipo_proceso == 'RECUPERACION PARCIAL CAPITAL':
                 pago = min(monto_depositado, resultados['pendiente_capital'])
             else:
                 pago = min(monto_depositado, resultados['saldo_pendiente_cap'])
@@ -46,7 +46,7 @@ def procesos_de_pago(self, saldo_pendiente, interes, mora, capital_generado = 0,
             resultados['saldo_pendiente_cap'] -= pago
             monto_depositado -= pago
 
-    # --- NUEVA LÓGICA DE APLICACIÓN DE EXCEDENTE ---
+    
     # Si después de recorrer el orden aún queda dinero y todavía hay deuda...
     if monto_depositado > 0 and resultados['saldo_pendiente_cap'] > 0:
         # Todo lo que sobre se va a capital hasta dejar la deuda en 0

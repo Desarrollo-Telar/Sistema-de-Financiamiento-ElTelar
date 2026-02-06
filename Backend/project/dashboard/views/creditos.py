@@ -8,7 +8,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 
-
+# Tiempo
+from datetime import datetime
 
 
 # Modelo
@@ -26,6 +27,11 @@ class CreditosPorMesAPIView(APIView):
     def get(self, request):
         sucursal = getattr(request,'sucursal_actual',None)
         filters = Q()
+
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(creation_date__year = anio)
 
         if sucursal:
             filters &= Q(sucursal=sucursal)
@@ -240,6 +246,10 @@ class CreditosPorAsesorMesAPIView(APIView):
             filters &= Q(sucursal=sucursal)
         
         filters &= Q(asesor_de_credito__isnull=False)
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(creation_date__year = anio)
 
         data = (
             Credit.objects

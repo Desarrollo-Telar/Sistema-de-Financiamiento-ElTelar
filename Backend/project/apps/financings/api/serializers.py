@@ -58,31 +58,17 @@ class CreditSerializer(serializers.ModelSerializer):
        
         cliente_serializado = CustomerSerializer(instance.customer_id).data if instance.customer_id else None
         sucursal_serializado = SubsidiarySerializer(instance.sucursal).data if instance.sucursal else None
+        data = super().to_representation(instance)
 
-        return {
-            'id': instance.id,
-            'customer_id': cliente_serializado,  
-            'proposito': instance.proposito,
-            'monto': instance.monto,
-            'Fmonto': formatear_numero(instance.monto),
-            'plazo': instance.plazo,
-            'tasa_interes': instance.tasa_interes,
-            'forma_de_pago': instance.forma_de_pago,
-            'frecuencia_pago': instance.frecuencia_pago,
-            'fecha_inicio': instance.fecha_inicio,
-            'fecha_vencimiento': instance.fecha_vencimiento,
-            'tipo_credito': instance.tipo_credito,
-            'codigo_credito': instance.codigo_credito,
-            'saldo_actual': instance.saldo_actual,
-            'Fsaldo_actual': formatear_numero(instance.saldo_actual),
-            'saldo_pendiente': instance.saldo_pendiente,
-            'is_paid_off': instance.is_paid_off,
-            'estados_fechas': instance.estados_fechas,
-            'plazo_restante': instance.plazo_restante,
-            'estado_aportacion': instance.estado_aportacion,
-            'creation_date': instance.creation_date.date() if instance.creation_date else None,
-            'sucursal': sucursal_serializado
-        }
+        data['customer_id'] = cliente_serializado
+        data['Fmonto'] = formatear_numero(instance.monto)
+        data['Fsaldo_actual'] = formatear_numero(instance.saldo_actual)
+        data['sucursal'] = sucursal_serializado
+        data['creation_date'] = instance.creation_date.date() if instance.creation_date else None
+        data['categoria_credito_demandado'] = instance.categoria_credito_demandado.titulo if instance.categoria_credito_demandado else None
+        return data
+
+       
 
 class CreditReporteSerializer(serializers.ModelSerializer):
     
@@ -186,55 +172,28 @@ class PaymentPlanSerializer(serializers.ModelSerializer):
         fields = '__all__'
     def to_representation(self, instance):
         credit_data = None
-        if instance.credit_id:
-            credit_data = {
-                "id": instance.credit_id.id,
-                "codigo_credito": instance.credit_id.codigo_credito,
-                "is_paid_off": instance.credit_id.is_paid_off,
-                "estado_aportacion": instance.credit_id.estado_aportacion,
-                "estados_fechas": instance.credit_id.estados_fechas,
-                "forma_de_pago": instance.credit_id.forma_de_pago,
-                "customer_id": {
-                    "id": instance.credit_id.customer_id.id,
-                    "first_name": instance.credit_id.customer_id.first_name,
-                    "last_name": instance.credit_id.customer_id.last_name,
-                    "email":instance.credit_id.customer_id.email,
-                    "telephone":instance.credit_id.customer_id.telephone
-                }
-            }
+        data = super().to_representation(instance)
 
-        return {
-            "id": instance.id,
-            "mes": instance.mes,
-            "start_date": instance.start_date,
-            "due_date": instance.due_date,
-            "Fstart_date": instance.start_date,
-            "Fdue_date": instance.due_date,
-            "outstanding_balance": formatear_numero(instance.outstanding_balance),
-            "mora": formatear_numero(instance.mora),
-            "interest": formatear_numero(instance.interest),
-            "principal": formatear_numero(instance.principal),
-            "installment": formatear_numero(instance.installment),
-            "status": instance.status,
-            "saldo_pendiente": formatear_numero(instance.saldo_pendiente),
-            "interes_pagado": instance.interes_pagado,
-            "mora_pagado": instance.mora_pagado,
-            "fecha_limite": mostrar_fecha_limite(instance.fecha_limite),
-            "fecha_limite_d":  mostrar_fecha_limite(instance.fecha_limite).date(),
-            "cambios": instance.cambios,
-            "numero_referencia": instance.numero_referencia,
-            "cuota_vencida": instance.cuota_vencida,
-            "total_cancelar": total(instance.capital_generado, instance.interest, instance.mora, instance.principal),
-            "capital_generado": resultado_capital(instance.principal, instance.capital_generado),
-            "interes_generado": instance.interes_generado,
-            "interes_acumulado_generado": instance.interes_acumulado_generado,
-            "mora_acumulado_generado": instance.mora_acumulado_generado,
-            "mora_generado": instance.mora_generado,
-            "credit_id": credit_data,
-            "interes_vencido": formatear_numero(instance.calculo_interes_acumulado()),
-            'interes_actual': formatear_numero(instance.calculo_interes_actual())
-        }
+        data['credit_id'] = CreditSerializer(instance.credit_id).data if instance.credit_id else None
+        data['outstanding_balance'] = formatear_numero(instance.outstanding_balance)
+        data['mora'] = formatear_numero(instance.mora)
+        data['interest'] = formatear_numero(instance.interest)
+        data['principal'] = formatear_numero(instance.principal)
+        data['installment'] = formatear_numero(instance.installment)
+        data['saldo_pendiente'] = formatear_numero(instance.saldo_pendiente)
+        data['fecha_limite'] =  mostrar_fecha_limite(instance.fecha_limite)
+        data['fecha_limite_d'] = mostrar_fecha_limite(instance.fecha_limite).date()
+        data['total_cancelar'] = total(instance.capital_generado, instance.interest, instance.mora, instance.principal)
 
+        data['capital_generado'] = resultado_capital(instance.principal, instance.capital_generado)
+        data['interes_vencido'] = formatear_numero(instance.calculo_interes_acumulado())
+        data['interes_actual'] = formatear_numero(instance.calculo_interes_actual())
+
+        return data
+
+        
+
+     
 
 class PaymentPlanSerializerAcreedor(serializers.ModelSerializer):
     class Meta:

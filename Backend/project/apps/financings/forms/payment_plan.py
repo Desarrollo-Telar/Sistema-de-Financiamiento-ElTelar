@@ -7,7 +7,7 @@ class PaymentPlanForms(forms.ModelForm):
     class Meta:
         model = PaymentPlan
         fields = [
-            #'start_date',
+            'start_date',
             #'due_date',
             #'fecha_limite',
             #'saldo_pendiente',
@@ -24,9 +24,9 @@ class PaymentPlanForms(forms.ModelForm):
         }
 
         widgets = {
-            'start_date': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
-            'due_date': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
-            'fecha_limite': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
+            'start_date': forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'due_date': forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'fecha_limite': forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
             'saldo_pendiente': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"any"}),
             'mora': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"any"}),
             'interest': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"any"}),

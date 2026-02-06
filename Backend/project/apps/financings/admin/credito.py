@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # MODELO
-from apps.financings.models import Credit
+from apps.financings.models import Credit, CategoriaCreditoDemandado
 
 
 @admin.register(Credit)
@@ -31,3 +31,6 @@ class CreditAdmin(admin.ModelAdmin):
     list_filter = ('codigo_credito','sucursal')
     autocomplete_fields = ('customer_id', )
     date_hierarchy = 'creation_date'
+
+
+CREITODEMANDADO = admin.site.register(CategoriaCreditoDemandado)

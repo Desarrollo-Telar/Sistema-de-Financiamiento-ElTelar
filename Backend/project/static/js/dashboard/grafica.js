@@ -54,6 +54,8 @@ const labels_mes = [
 ];
 const currentYear = new Date().getFullYear();
 
+
+
 async function clientesPorMes() {
   const data = await fetchData('clientes-por-mes/');
 

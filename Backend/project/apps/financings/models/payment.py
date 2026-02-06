@@ -202,10 +202,14 @@ class Payment(models.Model):
         try:
             cuota = self._cuota_pagar()
 
+
             if cuota is None:
                 cuota = self._siguiente_cuota()
 
             saldo_pendiente = cuota.saldo_pendiente
+            informacion = sobre_que_es_pago(self)
+            tipo_proceso = informacion['tipo_proceso']
+
 
 
             if saldo_pendiente is None:
@@ -215,7 +219,7 @@ class Payment(models.Model):
             interes = cuota.interest
             capital_generado = cuota.capital_generado
             
-            procesos_de_pago(self,saldo_pendiente, interes,mora, capital_generado)
+            procesos_de_pago(self,saldo_pendiente, interes,mora, capital_generado, tipo_proceso)
 
         except MiExcepcionPersonalizada as e:
             print(f"Ocurrió un error: {e}")

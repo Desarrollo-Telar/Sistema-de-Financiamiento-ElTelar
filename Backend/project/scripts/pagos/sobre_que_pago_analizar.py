@@ -40,6 +40,7 @@ def sobre_que_es_pago(self):
         contexto['ultimo_registro_estado_cuenta'] = historial_a
         contexto['ultima_cuota_pagar'] = cuota_a_pagar
         contexto['cuotas'] = cuotas
+        contexto['tipo_proceso'] = self.credit.tipo_proceso  if self.credit.tipo_proceso else 'NORMAL'
 
     if self.acreedor is not None:
         cuotas = self.get_plan_pagos().objects.filter(acreedor=self.acreedor).order_by('fecha_limite')
@@ -62,6 +63,7 @@ def sobre_que_es_pago(self):
         contexto['ultimo_registro_estado_cuenta'] = historial_a
         contexto['ultima_cuota_pagar'] = cuota_a_pagar
         contexto['cuotas'] = cuotas
+        contexto['tipo_proceso'] = 'NORMAL'
         
     if self.seguro is not None:
         cuotas = self.get_plan_pagos().objects.filter(acreedor=self.acreedor).order_by('fecha_limite')
@@ -85,6 +87,7 @@ def sobre_que_es_pago(self):
         contexto['ultimo_registro_estado_cuenta'] = historial_a
         contexto['ultima_cuota_pagar'] = cuota_a_pagar
         contexto['cuotas'] = cuotas
+        contexto['tipo_proceso'] = 'NORMAL'
 
     
     

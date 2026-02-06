@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 
-
+from datetime import datetime
 
 # Modelo
 from apps.financings.models import Payment, Recibo, Banco, AccountStatement, PaymentPlan
@@ -23,6 +23,11 @@ class DesembolsosPorMesAPIView(APIView):
 
         if sucursal:
             filters &= Q(sucursal=sucursal)
+        
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(fecha_emision__year = anio)
         
         filters &= Q(tipo_pago='DESEMBOLSO')
         filters &= Q(registro_ficticio=False)
@@ -52,6 +57,10 @@ class RecuperacionMensualAPIView(APIView):
             filters &= Q(sucursal=sucursal)
         
         filters &= Q(cliente__isnull=False)
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(fecha__year = anio)
         
         data = (
             Recibo.objects
@@ -77,6 +86,11 @@ class EgresosPorCodigoMesAPIView(APIView):
 
         if sucursal:
             filters &= Q(sucursal=sucursal)
+        
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(fecha__year = anio)
 
         data = (
             Egress.objects
@@ -102,6 +116,11 @@ class BancosPorMesAPIView(APIView):
 
         if sucursal:
             filters &= Q(sucursal=sucursal)
+        
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(fecha__year = anio)
 
         # 1. Definimos una subquery para encontrar el ID del último registro de cada mes
         # Usamos OuterRef('mes') para vincularlo con el agrupamiento principal
@@ -141,6 +160,10 @@ class AcreedoresPorMesAPIView(APIView):
         
         filters &= Q(payment__isnull=False)
         filters &= Q(acreedor__isnull=False)
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(issue_date__year = anio)
 
         data = (
             AccountStatement.objects
@@ -171,6 +194,11 @@ class MorosidadPorMesAPIView(APIView):
 
         if sucursal:
             filters &= Q(sucursal=sucursal)
+        
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(fecha_limite__year = anio)
 
         data = (
             PaymentPlan.objects
