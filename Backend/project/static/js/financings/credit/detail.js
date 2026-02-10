@@ -34,6 +34,7 @@ async function fetchLastPaymentPlan(searchTerm) {
         if (response.data) {
             //console.log('Último PaymentPlan:', response.data);
             console.log(response.data['credit_id'].is_paid_off);
+            console.log(response.data['credit_id'].categoria_credito_demandado);
             
 
             if (response.data['credit_id'].is_paid_off){
@@ -44,7 +45,18 @@ async function fetchLastPaymentPlan(searchTerm) {
     
                 });
 
-            }else{
+            }else if (response.data['credit_id'].categoria_credito_demandado == null && response.data['credit_id'].estado_judicial ){
+                Swal.fire({
+                    title: "Este Credito se encuentra demandado",
+                   
+                    icon: "info",
+    
+                });
+
+
+            }
+            
+            else{
                 Swal.fire({
                     title: "Cuota por Cobrar:",
                     html: `<p>Fecha de Inicio: ${formato_fechas(response.data['start_date'])} </p>

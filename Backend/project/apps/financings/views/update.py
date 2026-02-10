@@ -11,14 +11,14 @@ from django.utils.decorators import method_decorator
 
 # Scripts
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
-from scripts.INFILE.fact import guardar_xml_recibo
 
 # FORMULARIO
 from apps.financings.forms import PaymentPlanForms, BoletaForm
 
 # Manejo de mensajes
 from django.contrib import messages
-# Create your views here.
+
+
 
 ### ---------------- ACTUALIZAR --------------------
 @login_required
@@ -111,28 +111,3 @@ def update_cuota(request, id):
 
 
 
-@login_required
-@permiso_requerido('puede_asignar_estado_judicial')
-def cambiar_estado_judicial(request, id):
-    credit = Credit.objects.filter(id=id).get()
-
-    if credit is None:
-        return redirect('http_404')
-    
-    credit.estado_judicial = True
-    credit.save()
-
-    return redirect('financings:detail_credit', credit.id)
-
-@login_required
-@permiso_requerido('puede_asignar_estado_judicial')
-def cambiar_estado_judicial_false(request, id):
-    credit = Credit.objects.filter(id=id).get()
-
-    if credit is None:
-        return redirect('http_404')
-    
-    credit.estado_judicial = False
-    credit.save()
-
-    return redirect('financings:detail_credit', credit.id)

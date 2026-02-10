@@ -1,7 +1,7 @@
 
 from .banco import BancoAdmin
 
-from .credito import CreditAdmin
+from .credito import CreditAdmin, CREITODEMANDADO
 
 from .desembolso import DisbursementAdmin
 

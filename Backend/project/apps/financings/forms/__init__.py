@@ -2,3 +2,5 @@
 from .payment_plan import PaymentPlanForms
 
 from .payment import BoletaSeguroForm, BoletaAcreedorForm, BoletaForm
+
+from .credito import CreditoForms

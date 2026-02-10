@@ -5,6 +5,7 @@ from math import floor
 from apps.customers.models import Customer, CreditCounselor
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.subsidiaries.models import Subsidiary
+from .credito_demandado import CategoriaCreditoDemandado
 # FORMATO
 from apps.financings.formato import formatear_numero
 from decimal import Decimal
@@ -73,6 +74,11 @@ class Credit(models.Model):
     fecha_cancelacion = models.DateField(verbose_name="Fecha de cancelacion", blank=True, null=True)
 
     fecha_entrar_en_mora = models.DateField(verbose_name="Fecha en entrar en Mora", blank=True, null=True)
+
+
+    categoria_credito_demandado = models.ForeignKey(CategoriaCreditoDemandado, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Categoria de Cliente Demandado')
+    tipo_proceso = models.CharField("Tipo de Proceso de Pago", max_length=75, blank=False, null=False, default='NORMAL')
+    
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
     

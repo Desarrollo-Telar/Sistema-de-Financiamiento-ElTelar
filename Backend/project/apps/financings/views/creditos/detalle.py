@@ -25,6 +25,44 @@ from .recoleccion_info_detalle import informacion_detalle
 ### ------------ DETALLE -------------- ###
 from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito
 
+def cuota(credito):
+    dia = datetime.now().date()
+    dia_mas_uno = dia + timedelta(days=1)
+    siguiente_pago = None
+
+    if credito.is_paid_off:
+        siguiente_pago = PaymentPlan.objects.filter(
+        credit_id__id=credito.id).order_by('-id').first()
+        
+    else:
+        siguiente_pago = PaymentPlan.objects.filter(
+            credit_id__id=credito.id,
+            start_date__lte=dia,
+            fecha_limite__gte=dia_mas_uno
+        ).first()
+
+    
+    if siguiente_pago is None:
+        siguiente_pago = PaymentPlan.objects.filter(
+        credit_id__id=credito.id).order_by('-id').first()
+
+    return siguiente_pago 
+
+def cuota_siguiente(credito):
+    # 1. Obtenemos la cuota actual usando tu lógica existente
+    cuota_actual = cuota(credito)
+    
+    if not cuota_actual:
+        return None
+
+    # 2. Buscamos la cuota que sigue en el plan de pagos
+    # Asumiendo que el orden lógico es por fecha de inicio o por ID
+    proxima = PaymentPlan.objects.filter(
+        credit_id__id=credito.id,
+        start_date__gt=cuota_actual.start_date # Que empiece después de la actual
+    ).order_by('start_date').first()
+    
+    return proxima
 
 @login_required
 @permiso_requerido('puede_ver_detalle_credito')
@@ -48,25 +86,10 @@ def detail_credit(request,id):
     generar_todas_las_cuotas_credito(credito.codigo_credito)
     
     
-    dia = datetime.now().date()
-    dia_mas_uno = dia + timedelta(days=1)
-    siguiente_pago = None
+    
+    siguiente_pago = cuota(credito)
 
-    if credito.is_paid_off:
-        siguiente_pago = PaymentPlan.objects.filter(
-        credit_id__id=credito.id).order_by('-id').first()
-        print(siguiente_pago)
-    else:
-        siguiente_pago = PaymentPlan.objects.filter(
-            credit_id__id=credito.id,
-            start_date__lte=dia,
-            fecha_limite__gte=dia_mas_uno
-        ).first()
-
-    print(siguiente_pago)
-    if siguiente_pago is None:
-        siguiente_pago = PaymentPlan.objects.filter(
-        credit_id__id=credito.id).order_by('-id').first()
+    
     
     if siguiente_pago is not None:
         saldo_actual = siguiente_pago.saldo_pendiente + siguiente_pago.mora + siguiente_pago.interest
@@ -74,7 +97,7 @@ def detail_credit(request,id):
         credito.saldo_actual = saldo_actual
         credito.save()
 
-    print(siguiente_pago)
+    
     
    
    

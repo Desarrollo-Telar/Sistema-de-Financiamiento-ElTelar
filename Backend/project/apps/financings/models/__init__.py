@@ -1,6 +1,6 @@
 # MODELO DE CREDITO
 from .credit import Credit
-
+from .credito_demandado import CategoriaCreditoDemandado
 # MODELO DE DESEMBOLSO
 from .disbursement import Disbursement
 
@@ -27,3 +27,4 @@ from .factura import Invoice
 
 # CUOTAS
 from .cuotas import Cuota
+

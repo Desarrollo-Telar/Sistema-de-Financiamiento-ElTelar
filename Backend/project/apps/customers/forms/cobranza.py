@@ -84,7 +84,7 @@ class CobranzaForms(forms.ModelForm):
 
         opciones_resultados = [            
             ('Promesa de pago', 'Promesa de pago'),
-            ('Pago realizado', 'Pago realizado'),
+            #('Pago realizado', 'Pago realizado'),
             ('No localizable', 'No localizable'),
             ('Negativa de pago', 'Negativa de pago'),
             ('Reprogramación de fecha', 'Reprogramación de fecha'),
@@ -95,8 +95,8 @@ class CobranzaForms(forms.ModelForm):
 
         opciones_estado_cobranza = [            
             ('PENDIENTE', 'PENDIENTE'),
-            ('INCUMPLIDO', 'INCUMPLIDO'),
-            ('COMPLETADO', 'COMPLETADO'),
+            #('INCUMPLIDO', 'INCUMPLIDO'),
+            #('COMPLETADO', 'COMPLETADO'),
 
         ]
 

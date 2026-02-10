@@ -17,6 +17,8 @@ from django.db.models import Q
 # Modelo
 from apps.customers.models import Customer
 
+# Tiempo
+from datetime import datetime
 
 
 class ClientesPorMesAPIView(APIView):
@@ -25,6 +27,10 @@ class ClientesPorMesAPIView(APIView):
     def get(self, request):
         sucursal = getattr(request,'sucursal_actual',None)
         filters = Q()
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(creation_date__year = anio)
 
         
 
@@ -42,6 +48,10 @@ class ClientesPorAsesorMesAPIView(APIView):
     def get(self, request):
         sucursal = getattr(request,'sucursal_actual',None)
         filters = Q()
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(creation_date__year = anio)
 
         if sucursal:
             filters &= Q(sucursal=sucursal)

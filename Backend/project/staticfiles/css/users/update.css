@@ -1,0 +1,447 @@
+:root {
+    --primary-dark: #0B090A;
+    --secondary-dark: #161A1D;
+    --primary-red: #660708;
+    --secondary-red: #A4161A;
+    --accent-red: #BA181B;
+    --light-red: #E5383B;
+    --neutral-light: #F5F3F4;
+    --neutral-medium: #D3D3D3;
+    --neutral-dark: #B1A7A6;
+    --background: #ededed;
+}
+
+body {
+    background-color: var(--background);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    padding: 20px 0;
+}
+
+.edit-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(11, 9, 10, 0.1);
+    border: 1px solid var(--neutral-medium);
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+}
+
+.edit-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--primary-red) 100%);
+    color: white;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.edit-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(166, 23, 26, 0.1) 50%, transparent 70%);
+    animation: shimmer 8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        transform: translateX(-100%);
+    }
+
+    50% {
+        transform: translateX(100%);
+    }
+}
+
+.edit-header-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.edit-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.form-container {
+    padding: 2.5rem;
+}
+
+/* Estilos personalizados para Django form fields */
+.form-group {
+    margin-bottom: 1.5rem !important;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-control {
+    border: 2px solid var(--neutral-medium);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-control:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 0.2rem rgba(102, 7, 8, 0.25);
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.form-control.is-valid {
+    border-color: #198754;
+}
+
+.form-select {
+    border: 2px solid var(--neutral-medium);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-select:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 0.2rem rgba(102, 7, 8, 0.25);
+}
+
+/* Estilos para errores de Django */
+.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+}
+
+.errorlist li {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    border-left: 4px solid #dc3545;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.errorlist li:before {
+    content: "⚠️ ";
+    margin-right: 0.5rem;
+}
+
+/* Secciones del formulario */
+.form-section {
+    background: var(--neutral-light);
+    border: 1px solid var(--neutral-medium);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.form-section:hover {
+    box-shadow: 0 5px 15px rgba(11, 9, 10, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-section-title {
+    color: var(--primary-red);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 2px solid var(--neutral-medium);
+    padding-bottom: 0.5rem;
+}
+
+.form-section-icon {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, var(--primary-red), var(--secondary-red));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+}
+
+/* File input personalizado */
+.file-input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.file-input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-input-display {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border: 2px dashed var(--neutral-medium);
+    border-radius: 12px;
+    background: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.file-input-display:hover {
+    border-color: var(--primary-red);
+    background: rgba(102, 7, 8, 0.02);
+}
+
+.file-input-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--neutral-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-red);
+}
+
+.current-image {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 8px;
+    border: 2px solid var(--neutral-medium);
+    object-fit: cover;
+    /* Asegura que la imagen no se distorsione */
+}
+
+.current-image-placeholder {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    border: 2px solid var(--neutral-medium);
+    background-color: var(--neutral-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Botones personalizados */
+.btn-custom-primary {
+    background: linear-gradient(45deg, var(--primary-red), var(--secondary-red));
+    border: none;
+    color: white;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.btn-custom-primary:hover {
+    background: linear-gradient(45deg, var(--secondary-red), var(--accent-red));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(164, 22, 26, 0.4);
+    color: white;
+}
+
+.btn-outline-custom {
+    border: 2px solid var(--neutral-medium);
+    color: var(--primary-dark);
+    background: white;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-outline-custom:hover {
+    background: var(--neutral-light);
+    color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-outline-danger {
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    background: white;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+    background: #dc3545;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Switch personalizado para estado */
+.status-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.status-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background: linear-gradient(45deg, var(--primary-red), var(--secondary-red));
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+/* Contenedor de notificaciones "Toast" */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast-message {
+    background: #fff;
+    color: #333;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid;
+    transform: translateX(110%);
+    animation: slideInToast 0.5s forwards;
+    min-width: 250px;
+}
+
+.toast-message.success {
+    border-color: #198754;
+}
+
+.toast-message.error {
+    border-color: #dc3545;
+}
+
+@keyframes slideInToast {
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Animaciones */
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.slide-in {
+    animation: slideIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .edit-header {
+        padding: 1.5rem;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    .edit-header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}

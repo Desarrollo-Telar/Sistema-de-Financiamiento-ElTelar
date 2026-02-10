@@ -6,27 +6,21 @@ from apps.financings.models import PaymentPlan
 class PaymentPlanForms(forms.ModelForm):
     class Meta:
         model = PaymentPlan
-        fields = [
-            #'start_date',
-            #'due_date',
-            #'fecha_limite',
-            #'saldo_pendiente',
+        fields = [           
+            'saldo_pendiente',
             'mora',
             'interest',
         ]
-        labels = {
-            'start_date':'FECHA DE INICIO',
-            'due_date': 'FECHA DE VENCIMIENTO',
-            'fecha_limite':'FECHA LIMITE',
+        labels = {            
             'saldo_pendiente': 'SALDO CAPITAL PENDIENTE',
             'mora': 'MORA A PAGAR',
             'interest': 'INTERES A PAGAR',
         }
 
         widgets = {
-            'start_date': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
-            'due_date': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
-            'fecha_limite': forms.DateTimeInput(attrs={'class':'form-control','type':'datetime-local'}),
+            'start_date': forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'due_date': forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'fecha_limite': forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}),
             'saldo_pendiente': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"any"}),
             'mora': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"any"}),
             'interest': forms.TextInput(attrs={'class':'form-control', 'type': 'number', 'min': '0', 'step':"any"}),

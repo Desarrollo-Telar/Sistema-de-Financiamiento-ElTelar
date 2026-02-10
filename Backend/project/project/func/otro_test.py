@@ -15,7 +15,7 @@ from scripts.cierre_diarrio.generar_cierre_diario import  generar_cierre_diario_
 from scripts.INFILE.consulta_nit import consulta_receptor
 
 from apps.customers.models import CreditCounselor, Cobranza, Customer
-from apps.financings.models import Credit
+from apps.financings.models import Credit, PaymentPlan, Recibo
 from apps.actividades.models import Informe, DetalleInformeCobranza, ModelHistory, DetalleInformeDiario
 
 
@@ -34,12 +34,17 @@ def pruebas(dia, sucursal):
 
 
 if __name__ == '__main__':
-   consulta_receptor('11024163-0')
+   # consulta_receptor('11024163-0')
    # {'nit': '11024163-0', 'nombre': '', 'mensaje': 'NIT no válido'}
-   
-      
-  
 
-   
-   
-  
+
+   cuotas = PaymentPlan.objects.filter(fecha_limite = '2026-01-22', credit_id__isnull = False)
+
+   for cuota_c in cuotas:
+      recibo = Recibo.objects.filter(cuota = cuota_c)
+
+      if not recibo.exists():
+         estado = cuota_c.credit_id.estados_fechas
+
+         if estado:
+            print(cuota_c.credit_id)
