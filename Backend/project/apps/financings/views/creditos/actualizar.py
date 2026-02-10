@@ -1,4 +1,5 @@
 
+
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Decoradores
@@ -52,7 +53,7 @@ def credito_reesctructurado(request, credit, data, despues):
 
 @login_required
 @permiso_requerido('puede_asignar_estado_judicial')
-def cambiar_estado_judicial(request, id):
+def reestructuracion_credito(request, id):
     template_name = 'financings/credit/ajustes.html'
     credit = Credit.objects.filter(id=id).first()
 
