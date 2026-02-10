@@ -77,7 +77,7 @@ class Credit(models.Model):
 
 
     categoria_credito_demandado = models.ForeignKey(CategoriaCreditoDemandado, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Categoria de Cliente Demandado')
-    tipo_proceso = models.CharField("Tipo de Proceso de Pago", max_length=75, blank=False, null=False, default='NORMAL')
+    tipo_proceso = models.CharField("Tipo de Proceso de Pago", max_length=75, blank=True, null=True, default='NORMAL')
     
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
