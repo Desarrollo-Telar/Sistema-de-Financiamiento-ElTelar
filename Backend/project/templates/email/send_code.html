@@ -6,24 +6,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codigo de verificación</title>
-
-
+    <title>Código de verificación</title>
 </head>
 
-
-<body>
-
-    <h2 style="font-size: 2rem;">Estimado/a {{user}},</h2>
-    <p style="font-size: 2rem;">Gracias por autenticarte en la aplicación ElTelar. Su código de
-        verificación
-        es: </p>
-        <hr>
-    <p style="background-color: black; color: aliceblue; border-radius: 2rem; padding: 2rem; font-size: 2rem;">{{code}}</p>
-
-
-
-
+<body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f4f4f4;">
+    
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f4f4f4;">
+        <tr>
+            <td align="center" style="padding: 40px 20px;">
+                
+                <!-- Contenedor principal -->
+                <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; max-width: 600px;">
+                    
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #420d0e 0%, #f27779 100%); background-color: #f27779; padding: 40px 30px; text-align: center;">
+                            <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: bold;"> Código de Verificación</h1>
+                        </td>
+                    </tr>
+                    
+                    <!-- Contenido -->
+                    <tr>
+                        <td style="padding: 40px 30px;">
+                            
+                            <!-- Usuario -->
+                            <p style="margin: 0 0 20px 0; font-size: 18px; color: #333333;">
+                                <strong>Usuario:</strong> <span style="color: #667eea;">{{ user }}</span>
+                            </p>
+                            
+                            <!-- Separador -->
+                            <hr style="border: none; border-top: 2px solid #e0e0e0; margin: 25px 0;">
+                            
+                            <!-- Mensaje -->
+                            <p style="margin: 0 0 30px 0; font-size: 16px; color: #666666; line-height: 1.6;">
+                                Ha solicitado un código de verificación para realizar un proceso de <strong>{{accion}}</strong>
+                            </p>
+                            
+                            <!-- Código -->
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td style="background-color: #1e3c72; border-radius: 8px; padding: 30px; text-align: center;">
+                                        <p style="margin: 0 0 10px 0; color: #ffffff; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">
+                                            Código de verificación
+                                        </p>
+                                        <p style="margin: 0; color: #ffffff; font-size: 32px; font-weight: bold; letter-spacing: 6px; font-family: 'Courier New', Courier, monospace;">
+                                            {{ code }}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Advertencia -->
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px;">
+                                <tr>
+                                    <td style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 4px;">
+                                        <p style="margin: 0; color: #856404; font-size: 14px;">
+                                            <strong>⚠️ Importante:</strong> Este código es confidencial y personal. No lo comparta con nadie.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f9f9f9; padding: 25px 30px; text-align: center; border-top: 1px solid #e0e0e0;">
+                            <p style="margin: 0; font-size: 13px; color: #999999;">
+                                Este es un mensaje automático del sistema de verificación.
+                            </p>
+                            <p style="margin: 10px 0 0 0; font-size: 13px; color: #999999;">
+                                Si no solicitó este código, por favor ignore este mensaje.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                </table>
+                
+            </td>
+        </tr>
+    </table>
+    
 </body>
 
 </html>

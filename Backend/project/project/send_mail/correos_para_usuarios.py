@@ -15,28 +15,29 @@ from django.db.models import Q
 
 # ENVIO DE MENSAJE DE EMAIL PARA CODIGO DE VERIFICACION
 
-def send_email_code_verification(user, code):
+def send_email_code_verification(user, code, usuario, accion):
     
   
     template = get_template('email/send_code.html')
     user_mail = user.email
     context = {
-        'user':user,
+        'user':usuario,
         'code':code,
+        'accion': accion
     }
 
     content = template.render(context)
  
     email = EmailMultiAlternatives(
-        'CODIGO DE VERIFICACIÓN',
-        'ELTELAR',
+        f'CODIGO DE VERIFICACIÓN. {code}',
+        'IIELTELAR',
         settings.EMAIL_HOST_USER,
         ['{}'.format(user_mail)]
     )
     email.attach_alternative(content, 'text/html')
 
-    if SERVIDOR:
-        email.send()
+    
+    email.send()
 
 # MENSAJES DE ALERTAS PARA LOS ADMINISTRADORES
 def send_email_user_conect_or_disconect(usuario, hora, estado):

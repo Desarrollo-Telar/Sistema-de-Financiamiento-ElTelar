@@ -1,0 +1,380 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+<style>
+    .header {
+        background: linear-gradient(135deg, #f8a9aa 0%, #d42e31 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .header p {
+        opacity: 0.9;
+        font-size: 16px;
+    }
+
+    .filters {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 40px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #e0e0e0;
+    }
+
+    .timeline-item {
+        position: relative;
+        background: white;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .timeline-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -28px;
+        top: 30px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 0 0 2px #667eea;
+    }
+
+    .timeline-item.create::before {
+        background-color: #10b981;
+        box-shadow: 0 0 0 2px #10b981;
+    }
+
+    .timeline-item.update::before {
+        background-color: #3b82f6;
+        box-shadow: 0 0 0 2px #3b82f6;
+    }
+
+    .timeline-item.delete::before {
+        background-color: #ef4444;
+        box-shadow: 0 0 0 2px #ef4444;
+    }
+
+    .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .item-title {
+        flex: 1;
+    }
+
+    .item-title h3 {
+        font-size: 20px;
+        color: #1f2937;
+        margin-bottom: 8px;
+    }
+
+    .item-meta {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        font-size: 14px;
+        color: #6b7280;
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .badge.create {
+        background-color: #d1fae5;
+        color: #065f46;
+    }
+
+    .badge.update {
+        background-color: #dbeafe;
+        color: #1e40af;
+    }
+
+    .badge.delete {
+        background-color: #fee2e2;
+        color: #991b1b;
+    }
+
+    .changes-section {
+        margin-top: 20px;
+    }
+
+    .section-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: #4b5563;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .changes-grid {
+        display: grid;
+        gap: 15px;
+    }
+
+    .change-item {
+        background-color: #f9fafb;
+        border-left: 3px solid #3b82f6;
+        padding: 15px;
+        border-radius: 4px;
+    }
+
+    .field-name {
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .value-comparison {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 10px;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .old-value {
+        background-color: #fee2e2;
+        color: #991b1b;
+        padding: 8px 12px;
+        border-radius: 4px;
+        word-break: break-word;
+    }
+
+    .new-value {
+        background-color: #d1fae5;
+        color: #065f46;
+        padding: 8px 12px;
+        border-radius: 4px;
+        word-break: break-word;
+    }
+
+    .arrow {
+        color: #6b7280;
+        font-weight: bold;
+    }
+
+    .data-section {
+        margin-top: 20px;
+        background-color: #f9fafb;
+        padding: 15px;
+        border-radius: 6px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .data-content {
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        color: #374151;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .notes-section {
+        margin-top: 20px;
+        background-color: #fffbeb;
+        border-left: 3px solid #f59e0b;
+        padding: 15px;
+        border-radius: 4px;
+    }
+
+    .notes-content {
+        color: #92400e;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: white;
+        border-radius: 8px;
+    }
+
+    .empty-state img {
+        width: 200px;
+        opacity: 0.5;
+        margin-bottom: 20px;
+    }
+
+    .empty-state h3 {
+        color: #6b7280;
+        font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+        .timeline {
+            padding-left: 25px;
+        }
+
+        .timeline::before {
+            left: 10px;
+        }
+
+        .timeline-item::before {
+            left: -18px;
+        }
+
+        .value-comparison {
+            grid-template-columns: 1fr;
+        }
+
+        .arrow {
+            transform: rotate(90deg);
+            text-align: center;
+        }
+
+        .item-header {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="header">
+    <h1>📋 Historial de Cambios</h1>
+    <p>Registro completo de todas las modificaciones realizadas en el sistema</p>
+</div>
+
+<!-- Timeline -->
+<div class="timeline">
+
+    {% for history in histories %}
+    <div class="timeline-item {{ history.action }}">
+
+        <!-- Header del item -->
+        <div class="item-header">
+            <div class="item-title">
+                <h3>{{ history.content_type }} #{{ history.object_id }}</h3>
+                <div class="item-meta">
+                    <div class="meta-item">
+                        <span>👤</span>
+                        <span>{{ history.user|default:"Sistema" }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>🕒</span>
+                        <span>{{ history.timestamp|date:"d/m/Y H:i:s" }}</span>
+                    </div>
+                </div>
+            </div>
+            <span class="badge {{ history.action }}">
+                {{ history.get_action_display }}
+            </span>
+            {% if history.content_type == 'financings.Credit' %}
+            <a href="{% url 'financings:detail_credit' history.object_id%}" class="btn_cancel">Ir al Credito</a>
+            {% endif %}
+        </div>
+
+        <!-- Cambios (solo para updates) -->
+        {% if history.action == 'update' and history.changes %}
+        <div class="changes-section">
+            <div class="section-title"> Cambios Realizados</div>
+            <div class="changes-grid">
+                {% for field, values in history.changes.items %}
+                <div class="change-item">
+                    <div class="field-name">{{ field|title }}</div>
+                    <div class="value-comparison">
+                        <div class="old-value">
+                            {{ values.antes|default:"(vacío)" }}
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="new-value">
+                            {{ values.despues|default:"(vacío)" }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Datos completos -->
+        {% if history.action == 'create' or history.action == 'delete' %}
+        <div class="data-section">
+            <div class="section-title">
+                {% if history.action == 'create' %}
+                Datos Creados
+                {% else %}
+                Datos Eliminados
+                {% endif %}
+            </div>
+            <div class="data-content">{{ history.data|safe }}</div>
+        </div>
+        {% endif %}
+
+        <!-- Notas -->
+        {% if history.notes %}
+        <div class="notes-section">
+            <div class="section-title">📝 Notas</div>
+            <div class="notes-content">{{ history.notes }}</div>
+        </div>
+        {% endif %}
+
+    </div>
+    {% empty %}
+    <div class="empty-state">
+        <h3>No hay registros de historial disponibles</h3>
+    </div>
+
+
+    {% endfor %}
+
+
+
+</div>
+{% endblock %}

@@ -21,6 +21,8 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 
 # FUNCION
 from .detalle import cuota as cuota_credito, cuota_siguiente
+from .funciones import generar_codigo_seguridad
+
 
 def credito_reesctructurado(request, credit, data, despues):
     
@@ -70,6 +72,8 @@ def reestructuracion_credito(request, id):
     saldo_capital = cuotas.saldo_pendiente
     interes = cuotas.interest
     mora = cuotas.mora
+    num = generar_codigo_seguridad(usuario_regis=request.user, accion='Reestructuración  del Crédito.')
+    request.session['codigo_migracion'] = num
 
 
     if request.method == 'POST':
@@ -131,6 +135,9 @@ def reestructuracion_credito(request, id):
     }
 
     return render(request, template_name, context )
+
+
+
 
 @login_required
 @permiso_requerido('puede_asignar_estado_judicial')

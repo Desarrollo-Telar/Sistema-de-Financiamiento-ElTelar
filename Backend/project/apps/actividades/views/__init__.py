@@ -6,3 +6,5 @@ from .votacion import votar_cliente, votar_credito
 from .logs import *
 
 from .cierre_diario import *
+
+from .bitacora import *

@@ -32,7 +32,9 @@ urlpatterns_credit = [
     path('credit/proximos/fecha_vencimiento/',login_required(filter_credito_proximos_vencerse),name='filter_credito_proximos_vencerse'),
 
     path('credit/reestructuracion_credito/<int:id>/', login_required(reestructuracion_credito), name='reestructuracion_credito'),
-    path('credit/cambiando_estado/judicial/<int:id>/', login_required(cambiar_estado_judicial_false), name='cambiar_estado_judicial_false'),
+    path('credit/migracion_credito/', login_required(migracion_creditos), name='migracion_creditos'),
+    path('validar-codigo-seguridad/', validar_codigo_seguridad),
+
 
     
 

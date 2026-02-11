@@ -16,8 +16,12 @@
 
   <hr />
 
+  
   {% if permisos.puede_crear_informacion_credito %}
   <div class="row mb-4">
+    <div class="col d-flex justify-content-end">
+      <a class="btn_cancel" href="{% url 'financings:migracion_creditos' %}">Migracion de Credito </a>
+    </div>
     <div class="col d-flex justify-content-end">
       <a class="btn_guardar" href="{% url 'financings:create_credit' %}">Añadir Credito Nuevo</a>
     </div>

@@ -22,9 +22,12 @@ class CreditoForms(forms.ModelForm):
             'fecha_inicio',
             'tasa_interes',
             'forma_de_pago',
+            'tipo_credito',
             'tipo_proceso',
             'estado_judicial',
             'categoria_credito_demandado',
+            'customer_id',
+            'asesor_de_credito'
         ]
 
         labels = {
@@ -36,7 +39,10 @@ class CreditoForms(forms.ModelForm):
             'forma_de_pago': 'Forma de Pago',
             'tipo_proceso': 'Tipo de Proceso de Pago',
             'categoria_credito_demandado': 'Categoria del Credito Demandado',
-            'estado_judicial': 'Credito Demandado'
+            'estado_judicial': 'Credito Demandado',
+            'tipo_credito':'Tipo de Credito',
+            'customer_id': 'Cliente',
+            'asesor_de_credito':'Asesor de Credito'
         }
 
         widgets = {
@@ -51,6 +57,9 @@ class CreditoForms(forms.ModelForm):
             'categoria_credito_demandado':forms.Select(attrs={'class':'form-control '}),
             'tipo_proceso': forms.Select(choices=[], attrs={'class': 'form-control'}),
             'forma_de_pago': forms.Select(choices=[], attrs={'class': 'form-control'}),
+            'tipo_credito': forms.Select(choices=[], attrs={'class': 'form-control'}),
+            'customer_id':forms.Select(attrs={'class':'form-control customer_id'}),
+            'asesor_de_credito':forms.Select(attrs={'class':'form-control asesor'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -70,11 +79,19 @@ class CreditoForms(forms.ModelForm):
             ('AMORTIZACIONES A CAPITAL', 'AMORTIZACIONES A CAPITAL')
 
         ]
+        opciones_tipo_credito = [
+            ('AGROPECUARIO Y/O PRODUCTIVO', 'AGROPECUARIO Y/O PRODUCTIVO'),
+            ('COMERCIO', 'COMERCIO'),
+            ('SERVICIOS', 'SERVICIOS'),
+            ('CONSUMO', 'CONSUMO'),
+            ('VIVIENDA', 'VIVIENDA')
+        ]
 
 
         # Asignar las opciones al widget 'Select'
         self.fields['tipo_proceso'].widget.choices = opciones_tipo_proceso
         self.fields['forma_de_pago'].widget.choices = opciones_forma_de_pago
+        self.fields['tipo_credito'].widget.choices = opciones_tipo_credito
 
         date_fields = ['fecha_inicio']
 

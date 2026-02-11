@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+
 
 # Models
 from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees, Banco, Payment, PaymentPlan, AccountStatement, Recibo
@@ -104,6 +106,12 @@ def clasificacion_detallar(request,numero_referencia):
 
     if not estado_cuenta:
         return redirect('financings:boleta', numero_referencia)
+    
+    if estado_cuenta.description == 'REESTRUCTURACION DEL CREDITO' and estado_cuenta.credit:
+        url = reverse('actividades:listar_historial')
+        parametros = f"?content_type=financings.Credit&object_id={estado_cuenta.credit.id}"
+
+        return redirect(url + parametros)
 
     if estado_cuenta.cuota:
         return redirect('financings:detail_credit',estado_cuenta.credit.id)
@@ -113,6 +121,8 @@ def clasificacion_detallar(request,numero_referencia):
 
     if estado_cuenta.disbursement:
         return redirect('financings:detail_disbursement', estado_cuenta.disbursement.id)
+    
+    
 
     
 

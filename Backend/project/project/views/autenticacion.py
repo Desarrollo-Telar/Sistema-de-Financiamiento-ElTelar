@@ -106,10 +106,11 @@ def login_view(request):
 ### --- AÁRTADO PARA VERIFICACION DE DOS PASOS --- ###
 def verification(request):
     template_name = 'verification/messages.html'
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+    
 
     form = CodeForm(request.POST or None)
     pk = request.session.get('pk')
+
     if isinstance(request.user,AnonymousUser ):
         if pk:
             user = User.objects.get(pk=pk)
@@ -118,7 +119,7 @@ def verification(request):
             if not request.POST:
                 # send sms
                 #print(code_user)
-                logging.info(code_user)
+                
                 send_email_code_verification(user,code_user)
                 
             if form.is_valid():

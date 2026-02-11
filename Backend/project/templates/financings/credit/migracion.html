@@ -12,8 +12,27 @@
             </div>
 
             <form method="post" class="box" id="creditForm"> {% csrf_token %}
+            
     <div class="form-section">
         <h2 class="section-title">Información General del Crédito</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label>{{ forms.customer_id.label }} <span class="required">*</span></label>
+                    {{ forms.customer_id }}
+                {{ forms.customer_id.errors }}
+            </div>
+
+            
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>{{ forms.asesor_de_credito.label }} <span class="required">*</span></label>
+                    {{ forms.asesor_de_credito }}
+                {{ forms.asesor_de_credito.errors }}
+            </div>
+
+            
+        </div>
         <div class="form-row">
             <div class="form-group">
                 <label>{{ forms.monto.label }} <span class="required">*</span></label>
@@ -40,7 +59,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>{{ forms.fecha_inicio.label }}</label>
+                <label>{{ forms.tipo_credito.label }} <span class="required">*</span></label>
+                {{ forms.tipo_credito }}
+            </div>
+            <div class="form-group">
+                <label>{{ forms.fecha_inicio.label }} <span class="required">*</span></label>
                 {{ forms.fecha_inicio }}
             </div>
         </div>
@@ -120,12 +143,15 @@
     </div>
 
     <div class="btn-group">
-        <button type="submit" class="btn_guardar">Guardar Cambios</button>
+        <button type="submit" id="btnGuardar" class="btn_guardar">Guardar</button>
         <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
     </div>
 </form>
         </div>
     </div>
+    
+    
+
 {% endblock %}
 
 {% block js %}
@@ -133,6 +159,5 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="module" src="{% static 'js/financings/credit/migracion.js'%}"></script>
 <script type="module" src="{% static 'js/financings/credit/codigo_seguridad.js'%}"></script>
-
 {% endblock %}
    

@@ -63,18 +63,19 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
         instance.asesor_de_credito = instance.customer_id.new_asesor_credito
         instance.save(update_fields=["asesor_de_credito"])  # actualiza solo ese campo
 
-    # Crear el plan de pago inicial
-    PaymentPlan.objects.create(
-        credit_id=instance,
-        start_date=instance.fecha_inicio,
-        outstanding_balance=instance.monto,
-        saldo_pendiente=instance.monto,
-        interest=interes,
-        interes_generado=interes,
-        fecha_limite=fecha_limite,
-        due_date=fecha_vencimiento,
-        sucursal=instance.sucursal
-    )
+    if not instance.es_credito_migrado:
+        # Crear el plan de pago inicial
+        PaymentPlan.objects.create(
+            credit_id=instance,
+            start_date=instance.fecha_inicio,
+            outstanding_balance=instance.monto,
+            saldo_pendiente=instance.monto,
+            interest=interes,
+            interes_generado=interes,
+            fecha_limite=fecha_limite,
+            due_date=fecha_vencimiento,
+            sucursal=instance.sucursal
+        )
 
     # Enviar notificación por correo
     send_email_new_credit(instance)
