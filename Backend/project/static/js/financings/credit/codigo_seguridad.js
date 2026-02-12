@@ -32,11 +32,7 @@ document.getElementById('creditForm').addEventListener('submit', function (e) {
 
     const id_tasa_interes = document.getElementById('id_tasa_interes');
 
-    if (id_tasa_interes.value == '0' || id_tasa_interes.value == 0){        
-        id_tasa_interes.closest('.form-group').classList.add('error');
-        isValid = false;
-
-    }
+    
 
     
 
