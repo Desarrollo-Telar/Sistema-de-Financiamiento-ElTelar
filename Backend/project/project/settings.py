@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django_redis',
     'storages',
     'dashboard',
-    'modelos',
+    #'modelos',
 ]
 INSTALLED_APPS += INSTALLED_APPS_MODELS + INSTALLED_APPS_REST
 SITE_ID = 1
