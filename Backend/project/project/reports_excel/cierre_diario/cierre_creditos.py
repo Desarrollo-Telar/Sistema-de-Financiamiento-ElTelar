@@ -118,6 +118,7 @@ def crear_excel_creditos(datos, dia = None):
             cuota = credito.get('cuota_vigente')
             fecha_limite = formater_fecha(cuota.get('fecha_limite')) if cuota else ''
             numero_referencia = cuota.get('numero_referencia') if cuota else ''
+            tasa_interes = informacion_credito.get('tasa_interes', 0) * 100
 
             # Mensajes de estado
             if credito['credito']['estado_aportacion']:
@@ -147,6 +148,7 @@ def crear_excel_creditos(datos, dia = None):
             if informacion_credito.get('estado_judicial',''):
                 es_credito_cancelado = 'NO'
                 es_credito_judicial = 'SI'
+                tasa_interes = 0
 
             
             if  saldo_actual < 0:
@@ -175,7 +177,7 @@ def crear_excel_creditos(datos, dia = None):
                 f"{informacion_credito.get('proposito', '')}",
 
                 f"{informacion_credito.get('plazo', '')}",
-                f"{informacion_credito.get('tasa_interes', 0) * 100}%",
+                f"{tasa_interes}%",
                 f"{informacion_credito.get('forma_de_pago', '')}",
                 f"{informacion_credito.get('tipo_credito', '')}",
 

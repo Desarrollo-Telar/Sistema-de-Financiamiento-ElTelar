@@ -87,6 +87,7 @@ def reestructuracion_credito(request, id):
             cuota_saldo_capital = cuota.saldo_pendiente
             cuota_interes = cuota.interest
             cuota_mora = cuota.mora
+            credito.estados_fechas = None
             proxima_cuota = None
             tasa_interes_c = Decimal(credito.tasa_interes) * Decimal(100)
 

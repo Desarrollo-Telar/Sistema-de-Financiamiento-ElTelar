@@ -71,7 +71,7 @@ def migracion_creditos(request):
 
             credito.es_credito_migrado = True
             credito.sucursal = sucursal
-            credito.estados_fechas = True
+            credito.estados_fechas = None
             tasa_interes = Decimal(credito.tasa_interes) * Decimal(100)
 
             if tasa_interes <= 0 :

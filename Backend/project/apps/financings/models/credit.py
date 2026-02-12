@@ -173,7 +173,13 @@ class Credit(models.Model):
         convertir =  round(self.tasa_interes * Decimal(100),2)
         return formatear_numero(convertir)
     
-    
+    def tasa_mensual_reporte(self):
+        convertir =  round(self.tasa_interes * Decimal(100),2)
+
+        if self.estado_judicial:
+            convertir = 0
+            
+        return formatear_numero(convertir)
 
     
     def save(self, *args, **kwargs):

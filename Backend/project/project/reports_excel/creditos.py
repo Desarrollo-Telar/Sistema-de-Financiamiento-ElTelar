@@ -94,7 +94,7 @@ def report_creditos(request, filtro_seleccionado):
             reporte.formato_monto(),
             reporte.proposito,
             reporte.plazo,
-            reporte.tasa_mensual(),
+            reporte.tasa_mensual_reporte(),
             str(reporte.forma_de_pago),
             str(reporte.tipo_credito),
             str(desembolso_forma),

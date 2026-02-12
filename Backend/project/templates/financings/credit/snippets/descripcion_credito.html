@@ -72,6 +72,7 @@
                     </span>
                 </p>
                 {% endif %}
+                {% if not credit_list.estado_judicial %}
                 <p class="mb-2">
                     <strong>ESTADO POR APORTACIÓN:</strong>
                     <span
@@ -85,6 +86,7 @@
                         {{credit_list.formato_estado_fecha}}
                     </span>
                 </p>
+                {% endif %}
                 {% if credit_list.tiene_gestion_cobranza %}
                 <p class="mb-0">
                     <strong>ESTADO POR COBRANZA:</strong>

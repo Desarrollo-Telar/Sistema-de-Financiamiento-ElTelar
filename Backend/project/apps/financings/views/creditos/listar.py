@@ -46,6 +46,7 @@ class CreditoList(ListView):
 
             # Crear una lista para almacenar los filtros
             filters = Q()
+            excluir = Q()
 
             
             
@@ -78,12 +79,15 @@ class CreditoList(ListView):
 
                     case 'Creditos Cancelados':
                         filters &= Q(is_paid_off=True)
+                        excluir &= Q(estado_judicial=True)
 
                     case 'Creditos en Atraso':
                         filters &= Q(estados_fechas=False)
+                        excluir &= Q(estado_judicial=True)
                     
                     case 'Creditos Falta de Aportacion':
                         filters &= Q(estado_aportacion=False)
+                        excluir &= Q(estado_judicial=True)
 
                     case 'Creditos en Estado Juridico':
                         filters &= Q(estado_judicial=True)
@@ -107,7 +111,7 @@ class CreditoList(ListView):
             
 
             # Filtrar los objetos Banco usando los filtros definidos
-            return Credit.objects.filter(filters).order_by('-id')
+            return Credit.objects.filter(filters).exclude(excluir).order_by('-id')
         
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío
