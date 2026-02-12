@@ -105,7 +105,7 @@ def crear_excel_creditos(datos, dia = None):
     for filtro,data in filtros.items():
         sheet = workbook.create_sheet(title=filtro[:31])
 
-        data = sorted(data, key=get_creation_date)
+        
 
         for col_idx, header in enumerate(encabezados, start=1):
             sheet.cell(row=1, column=col_idx, value=header)
@@ -180,7 +180,7 @@ def crear_excel_creditos(datos, dia = None):
                 f"{informacion_credito.get('tipo_credito', '')}",
 
                 # Desembolsos - manejo seguro de lista
-                f"{credito.get('desembolsos', [{}])[0].get('forma_desembolso', '')}",
+                f"{informacion_credito.get('desembolsos', [{}])[0].get('forma_desembolso', '')}",
                 f"{informacion_credito.get('fecha_inicio', '')}",
                 f"{informacion_credito.get('fecha_vencimiento', '')}",
 
