@@ -23,7 +23,7 @@ from django.contrib import messages
 from datetime import datetime, timedelta
 
 # financings.Credit
-
+@usuario_activo
 def historial(request):
     template_name = 'bitacora/index.html'
     filters = Q()

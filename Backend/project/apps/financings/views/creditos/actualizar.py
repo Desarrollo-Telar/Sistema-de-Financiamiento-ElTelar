@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from apps.financings.models import  AccountStatement,  Credit, PaymentPlan
 from apps.actividades.models import ModelHistory
 # Formulario
-from apps.financings.forms import CreditoForms, PaymentPlanForms
+from apps.financings.forms import CreditoMigradoForms , PaymentPlanForms
 
 # HISTORIAL Y BITACORA
 from apps.actividades.utils import log_user_action, log_system_event
@@ -22,7 +22,7 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 # FUNCION
 from .detalle import cuota as cuota_credito, cuota_siguiente
 from .funciones import generar_codigo_seguridad
-
+from decimal import Decimal
 
 def credito_reesctructurado(request, credit, data, despues):
     
@@ -54,7 +54,7 @@ def credito_reesctructurado(request, credit, data, despues):
     )
 
 @login_required
-@permiso_requerido('puede_asignar_estado_judicial')
+@permiso_requerido('puede_reestructurar_credito')
 def reestructuracion_credito(request, id):
     template_name = 'financings/credit/ajustes.html'
     credit = Credit.objects.filter(id=id).first()
@@ -77,7 +77,7 @@ def reestructuracion_credito(request, id):
 
 
     if request.method == 'POST':
-        form = CreditoForms(request.POST, instance=credit)
+        form = CreditoMigradoForms(request.POST, instance=credit)
         form_cuota = PaymentPlanForms(request.POST, instance=cuotas)
 
         if form.is_valid() and form_cuota.is_valid():
@@ -88,6 +88,11 @@ def reestructuracion_credito(request, id):
             cuota_interes = cuota.interest
             cuota_mora = cuota.mora
             proxima_cuota = None
+            tasa_interes_c = Decimal(credito.tasa_interes) * Decimal(100)
+
+            if tasa_interes_c <= 0:
+                credito.tasa_interes = 0.0
+                credito.forma_de_pago = 'AMORTIZACIONES A CAPITAL'
 
             if saldo_capital != cuota_saldo_capital or interes != cuota_interes or mora != cuota_mora:
                 proxima_cuota = cuota_siguiente(credit)
@@ -110,7 +115,10 @@ def reestructuracion_credito(request, id):
             
             if proxima_cuota is not None:
                 proxima_cuota.delete()
-                
+
+          
+
+            
 
             data_despues = model_to_dict(credito)
             credito_reesctructurado(request, credit, data, data_despues)
@@ -123,7 +131,7 @@ def reestructuracion_credito(request, id):
         else:
             print(form.errors)
     else:
-        form = CreditoForms(instance=credit)
+        form = CreditoMigradoForms(instance=credit)
         form_cuota = PaymentPlanForms(instance=cuotas)
     
 

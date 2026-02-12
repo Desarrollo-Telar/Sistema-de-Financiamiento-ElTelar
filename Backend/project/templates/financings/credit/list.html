@@ -17,15 +17,19 @@
   <hr />
 
   
-  {% if permisos.puede_crear_informacion_credito %}
+  {% if permisos.puede_crear_informacion_credito or permisos.puede_migrar_credito %}
+  {% if  permisos.puede_migrar_credito %}
   <div class="row mb-4">
     <div class="col d-flex justify-content-end">
       <a class="btn_cancel" href="{% url 'financings:migracion_creditos' %}">Migracion de Credito </a>
     </div>
+    {% endif %}
+    {% if permisos.puede_crear_informacion_credito %}
     <div class="col d-flex justify-content-end">
       <a class="btn_guardar" href="{% url 'financings:create_credit' %}">Añadir Credito Nuevo</a>
     </div>
   </div>
+  {% endif %}
   {% endif %}
 
 

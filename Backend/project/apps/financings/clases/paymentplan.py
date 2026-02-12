@@ -9,6 +9,7 @@ from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
 from apps.financings.formato import formatear_numero
 import re, calendar
 import math
+from decimal import Decimal
 
 class PaymentPlan:
     contador = 0
@@ -75,13 +76,19 @@ class PaymentPlan:
         calculo = round(intereses, 2)
         return self.redondear(calculo)
 
-    def calculo_cuota(self, interes=None, capital=None):
+    def calculo_cuota(self, interes=0, capital=0):
         if self.forma_pago == 'NIVELADA':
             #default_interes = self.interes / 12
             default_interes = self.interes
-            parte1 = (1 + default_interes) ** self.plazo * default_interes
-            parte2 = (1 + default_interes) ** self.plazo - 1
-            cuota = ((parte1 / parte2) * self.monto_inicial) 
+            tasa_interes_c = default_interes * 100
+            print(tasa_interes_c)
+            if tasa_interes_c > 0:
+                parte1 = (1 + default_interes) ** self.plazo * default_interes
+                parte2 = (1 + default_interes) ** self.plazo - 1
+                cuota = ((parte1 / parte2) * self.monto_inicial)
+            else:
+                cuota = interes + capital
+
         else:
             cuota = interes + capital
         calculo = round(cuota + self._agregar, 2)

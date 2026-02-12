@@ -86,9 +86,11 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
             'puede_crear_registro_desembolso',
             'puede_crear_registro_garantia',
             'puede_crear_boleta_pago',
+            'puede_migrar_credito',
             
             # ------- EDITAR
             'puede_editar_informacion_laboral_cliente',
+           
 
             # ------- DESCARGAR
             'puede_descargar_archivos',

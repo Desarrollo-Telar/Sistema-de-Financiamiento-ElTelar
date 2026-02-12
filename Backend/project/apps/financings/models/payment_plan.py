@@ -122,7 +122,7 @@ class PaymentPlan(models.Model):
         if  self.seguro is not None:
             tasa_interes = self.seguro.tasa
 
-        interes = (self.saldo_pendiente * tasa_interes)
+        interes = (Decimal(self.saldo_pendiente) * Decimal(tasa_interes))
         si = round(interes,2)
         return si
 
@@ -287,9 +287,16 @@ class PaymentPlan(models.Model):
         if forma_pago == 'NIVELADA':
             # Cálculo de la cuota nivelada basado en la fórmula de cuota fija
             default_interes = tasa_interes  # Asumiendo tasa mensual
-            parte1 = (1 + default_interes) ** plazo * default_interes
-            parte2 = (1 + default_interes) ** plazo - 1
-            cuota = (monto * parte1) / parte2
+            tasa_interes_c = Decimal(default_interes) * Decimal(100)
+            print(tasa_interes_c)
+
+            if  tasa_interes_c > 0:
+                parte1 = (1 + default_interes) ** plazo * default_interes
+                parte2 = (1 + default_interes) ** plazo - 1
+                cuota = (monto * parte1) / parte2
+            else:
+                capital = round(monto / plazo, 2)
+                cuota = Decimal(self.interest) + capital
         else:
             # En el caso de amortización a capital, no llamamos a calculo_capital aquí
             # Capital y cuota se calculan de forma separada

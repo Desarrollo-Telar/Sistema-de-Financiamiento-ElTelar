@@ -16,7 +16,7 @@ from apps.subsidiaries.models import Subsidiary
 
 # Formularios
 from apps.financings.forms import CreditoForms, PaymentPlanForms
-
+from decimal import Decimal
 # TIEMPO
 from datetime import datetime, date
 
@@ -40,6 +40,7 @@ def create_credit(request):
 
 
 @login_required
+@permiso_requerido('puede_migrar_credito')
 def migracion_creditos(request):
     template_name = 'financings/credit/migracion.html'
     sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
@@ -65,11 +66,20 @@ def migracion_creditos(request):
         if form.is_valid() and form_cuota.is_valid():
             
             credito = form.save(commit=False)
+            cuota = form_cuota.save(commit=False)
+
+
             credito.es_credito_migrado = True
             credito.sucursal = sucursal
             credito.estados_fechas = True
+            tasa_interes = Decimal(credito.tasa_interes) * Decimal(100)
 
-            cuota = form_cuota.save(commit=False)
+            if tasa_interes <= 0 :
+                credito.tasa_interes = 0.0
+                credito.forma_de_pago = 'AMORTIZACIONES A CAPITAL'
+
+
+            
 
             
             cuota.outstanding_balance = credito.monto
