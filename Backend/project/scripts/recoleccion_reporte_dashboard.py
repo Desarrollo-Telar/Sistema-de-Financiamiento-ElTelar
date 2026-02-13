@@ -51,7 +51,7 @@ def recolectar_informes_status_creditos(request):
         base_plan_filter["credit_id__isnull"] = False
 
     # Consultas principales
-    creditos = Credit.objects.filter(**base_credit_filter)
+    creditos = Credit.objects.filter(**base_credit_filter).exclude(estado_judicial=True)
     creditos_atrasados = Credit.objects.filter(estados_fechas=False, **base_credit_filter).exclude(estado_judicial=True)
 
     creditos_fecha_limite = PaymentPlan.objects.filter(

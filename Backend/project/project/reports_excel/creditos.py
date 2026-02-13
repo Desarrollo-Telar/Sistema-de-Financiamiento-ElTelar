@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 # Modelos
 from apps.financings.models import Credit, PaymentPlan, Disbursement
 from apps.customers.models import CreditCounselor
+from apps.actividades.models import ModelHistory
 
 from django.views.generic import TemplateView
 from django.shortcuts import render, get_object_or_404, redirect
@@ -40,8 +41,8 @@ def report_creditos(request, filtro_seleccionado):
         'Todos': lambda: Credit.objects.filter(sucursal=sucursal),
         'Recientes': lambda: Credit.objects.filter(creation_date__range=[inicio, hoy], sucursal=sucursal),
         'Creditos Cancelados': lambda: Credit.objects.filter(is_paid_off=True, sucursal=sucursal),
-        'Creditos en Atraso': lambda: Credit.objects.filter(estados_fechas=False, sucursal=sucursal),
-        'Creditos con falta de Aportacion': lambda: Credit.objects.filter(estado_aportacion=False, sucursal=sucursal),
+        'Creditos en Atraso': lambda: Credit.objects.filter(estados_fechas=False, sucursal=sucursal).exclude(estado_judicial = False),
+        'Creditos con falta de Aportacion': lambda: Credit.objects.filter(estado_aportacion=False, sucursal=sucursal).exclude(estado_judicial = False),
         'Creditos con excedente': lambda: Credit.objects.filter(Q(saldo_actual__lt=0) | Q(excedente__gt=0), sucursal=sucursal),
     }
 
@@ -60,7 +61,8 @@ def report_creditos(request, filtro_seleccionado):
         "CLIENTE", "MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
         "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
         "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", "FECHA EN QUE ENTRO A MORA", 
-        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS","STATUS POR APORTACION","STATUS JUDICIAL","STATUS CANCELADO", "NUMERO DE REFERENCIA", "ASESOR DE CREDITO"
+        "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS","STATUS POR APORTACION","STATUS JUDICIAL","STATUS CANCELADO", "NUMERO DE REFERENCIA", 
+        "ASESOR DE CREDITO","CATEGORIA DE CREDITO DEMANDADO", "REESTRUCTURACION DEL CREDITO","MIGRACION DEL CREDITO"
     ])
 
     # Agregar los datos
@@ -70,6 +72,15 @@ def report_creditos(request, filtro_seleccionado):
         fecha_limite_pago = cuota_limite.mostrar_fecha_limite().date() if cuota_limite else "---"
         desembolso_forma = desembolso.forma_desembolso if desembolso else "---"
         numero_referencia = cuota_limite.numero_referencia if cuota_limite else '---'
+        categoria_demandado = reporte.categoria_credito_demandado if reporte.categoria_credito_demandado else '---'
+
+        reestructuracion_credito =  ModelHistory.objects.filter(
+            content_type = 'financings.Credit',
+            object_id = reporte.id, action ='update'
+        )
+
+        if reestructuracion_credito is None:
+            reestructuracion_credito = ''
         
 
         # Mensajes de estado
@@ -110,7 +121,8 @@ def report_creditos(request, filtro_seleccionado):
             s_judicial,
             s_cancelado,
             numero_referencia,
-            str(reporte.customer_id.asesor)
+            str(reporte.customer_id.asesor),
+            categoria_demandado
 
 
         ])

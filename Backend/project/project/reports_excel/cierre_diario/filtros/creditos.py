@@ -38,7 +38,7 @@ def creditos_en_atraso(data):
     lista = []
 
     for dato in data:
-        if not dato['credito']['estados_fechas']:
+        if not dato['credito']['estados_fechas'] and  not dato['credito']['estado_judicial']:
             lista.append(dato)
     return lista
 

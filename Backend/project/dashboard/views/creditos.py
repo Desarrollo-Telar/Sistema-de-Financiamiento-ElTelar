@@ -158,7 +158,7 @@ class CasosAtrasoAsesorAPIView(APIView):
             .values(
                 'asesor_de_credito__nombre',
                 'asesor_de_credito__apellido'
-            )
+            ).exclude(estado_judicial = False)
             .annotate(
                 # Cuenta total de créditos asignados
                 total_otorgados=Count('id'),
