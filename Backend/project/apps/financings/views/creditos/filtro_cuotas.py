@@ -28,23 +28,24 @@ def filter_credito_proximos_vencerse(request):
     hoy = datetime.now() 
     hasta = hoy + timedelta(days=7)
     sucursal = request.session['sucursal_id']
-    creditos_proximos_vencerse= PaymentPlan.objects.filter(due_date__range=[hoy, hasta], status=False, sucursal=sucursal).order_by('due_date')
-
-    credito = credito_fecha_vencimiento_hoy(creditos_proximos_vencerse)
+    filters = Q()
+    filters &= Q(due_date__range=[hoy, hasta])
+    filters &= Q(status=False)
+    filters &= Q(sucursal=sucursal)
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        creditos_proximos_vencerse = PaymentPlan.objects.filter(due_date__range=[hoy, hasta], status=False, credit_id__asesor_de_credito=asesor_autenticado, sucursal=sucursal)
-        credito = credito_fecha_vencimiento_hoy(creditos_proximos_vencerse)
+        
+        filters &= Q(credit_id__asesor_de_credito=asesor_autenticado)
     
     if request.user.rol.role_name == 'Secretari@':
-        creditos_proximos_vencerse = PaymentPlan.objects.filter(
-            due_date__range=[hoy, hasta],
-            status=False,
-            credit_id__isnull=False, sucursal=sucursal
-        )
-        credito = credito_fecha_vencimiento_hoy(creditos_proximos_vencerse)
+        
+        filters &= Q(credit_id__isnull=False)
+        
+
+    creditos_proximos_vencerse= PaymentPlan.objects.filter(filters).order_by('due_date')
+    credito = credito_fecha_vencimiento_hoy(creditos_proximos_vencerse)
 
     page_obj = paginacion(request, credito)
     
@@ -65,24 +66,28 @@ def filter_credito_fecha_limite_hoy(request):
     template_name = 'financings/cuota/list.html'
     dia = datetime.now().date() # Obtener el dia 
     sucursal = request.session['sucursal_id']
-    creditos_fecha_limite = PaymentPlan.objects.filter(fecha_limite__date=dia, sucursal=sucursal)
     
-   
+    
+    filters = Q()
+    filters &= Q(fecha_limite__date=dia)
+    filters &= Q(sucursal=sucursal)
+    filters &= Q(credit_id__is_paid_off = False)
+    filters &= Q(credit_id__estado_judicial = False)
 
-    credito = credito_fecha_vencimiento_hoy(creditos_fecha_limite)
+
+    
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        creditos_fecha_limite = PaymentPlan.objects.filter(fecha_limite__date=dia, credit_id__asesor_de_credito=asesor_autenticado, sucursal=sucursal)
-        credito = credito_fecha_vencimiento_hoy(creditos_fecha_limite)
+        filters &= Q(credit_id__asesor_de_credito=asesor_autenticado)
 
     if request.user.rol.role_name == 'Secretari@':
-        creditos_fecha_limite = PaymentPlan.objects.filter(
-            fecha_limite__date=dia,
-            credit_id__isnull=False, sucursal=sucursal
-        )
-        credito = credito_fecha_vencimiento_hoy(creditos_fecha_limite)
+        filters &= Q(credit_id__isnull=False)
+        
+
+    creditos_fecha_limite = PaymentPlan.objects.filter(filters)
+    credito = credito_fecha_vencimiento_hoy(creditos_fecha_limite)
 
     page_obj = paginacion(request, credito)
     
@@ -102,24 +107,25 @@ def filter_credito_fecha_vencimiento_hoy(request):
     template_name = 'financings/cuota/list.html'
     dia = datetime.now().date() # Obtener el dia 
     sucursal = request.session['sucursal_id']
-    creditos_fecha_vencimiento = PaymentPlan.objects.filter(due_date__date=dia, sucursal=sucursal)
     
-   
-
-    credito = credito_fecha_vencimiento_hoy(creditos_fecha_vencimiento)
+    
+    filters = Q()
+    filters &= Q(due_date__date=dia)
+    filters &= Q(sucursal=sucursal)
+    
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        creditos_fecha_vencimiento = PaymentPlan.objects.filter(due_date__date=dia, credit_id__asesor_de_credito=asesor_autenticado, sucursal=sucursal)
-        credito = credito_fecha_vencimiento_hoy(creditos_fecha_vencimiento)
+        
+        filters &= Q(credit_id__asesor_de_credito=asesor_autenticado)
     
     if request.user.rol.role_name == 'Secretari@':
-        creditos_fecha_vencimiento = PaymentPlan.objects.filter(
-            due_date__date=dia,
-            credit_id__isnull=False, sucursal=sucursal
-        )
-        credito = credito_fecha_vencimiento_hoy(creditos_fecha_vencimiento)
+        filters &= Q(credit_id__isnull=False)
+
+    creditos_fecha_vencimiento = PaymentPlan.objects.filter(filters)
+    credito = credito_fecha_vencimiento_hoy(creditos_fecha_vencimiento)
+
 
     page_obj = paginacion(request, credito)
     

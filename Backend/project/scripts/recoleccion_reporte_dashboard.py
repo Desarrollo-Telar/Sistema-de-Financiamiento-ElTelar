@@ -63,7 +63,7 @@ def recolectar_informes_status_creditos(request):
 
     # Base filters comunes
     base_credit_filter = {"sucursal": sucursal, "is_paid_off": False}
-    base_plan_filter = {"sucursal": sucursal}
+    base_plan_filter = {"sucursal": sucursal, "credit_id__estado_judicial" : False, "credit_id__is_paid_off" : False}
 
     # Si el usuario es asesor, filtramos además por su registro
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
