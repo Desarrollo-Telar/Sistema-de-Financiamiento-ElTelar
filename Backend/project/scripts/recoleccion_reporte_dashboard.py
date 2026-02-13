@@ -6,6 +6,31 @@ from apps.actividades.models import DetalleInformeCobranza, Informe
 # Tiempo
 from datetime import datetime, timedelta
 
+from apps.financings.formato import formatear_numero
+
+def cuota(creditos):
+   dia = datetime.now().date()
+   dia_mas_uno = dia + timedelta(days=1)
+   cuota_actual = None
+   saldo_capital = 0
+   informacion_actual = {}
+
+   for credito in creditos:
+      cuota_actual = PaymentPlan.objects.filter(
+         credit_id=credito,
+         start_date__lte=dia,
+         fecha_limite__gte=dia_mas_uno
+      ).first()
+
+      saldo_capital += cuota_actual.saldo_pendiente
+
+
+   informacion_actual['saldo_capital'] = saldo_capital
+    
+   
+
+   return saldo_capital 
+
 def recolectar_informacion_cobranza(asesor_autenticado):
     if asesor_autenticado is None:
         return None
@@ -54,6 +79,11 @@ def recolectar_informes_status_creditos(request):
     creditos = Credit.objects.filter(**base_credit_filter).exclude(estado_judicial=True)
     creditos_atrasados = Credit.objects.filter(estados_fechas=False, **base_credit_filter).exclude(estado_judicial=True)
 
+    saldo_actual_todos = cuota(creditos)
+    saldo_acutal_atrasados =  cuota(creditos_atrasados)
+
+    indicador_mora = 0
+
     creditos_fecha_limite = PaymentPlan.objects.filter(
         fecha_limite__date=dia, **base_plan_filter
     )
@@ -73,6 +103,9 @@ def recolectar_informes_status_creditos(request):
         'creditos_fecha_vencimiento':creditos_fecha_vencimiento,
         'creditos_fecha_limite':creditos_fecha_limite,
         'creditos_proximos_vencerse':creditos_proximos_vencerse,
+        'saldo_actual_todos': formatear_numero(saldo_actual_todos),
+        'saldo_acutal_atrasados': formatear_numero(saldo_acutal_atrasados),
+        'indicador_mora':indicador_mora
     }
 
     return recoleccion

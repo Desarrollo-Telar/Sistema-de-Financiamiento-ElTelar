@@ -32,19 +32,35 @@ def pruebas(dia, sucursal):
    with connection.cursor() as cursor:
       cursor.execute("CALL generar_informe_diario(%s, %s)", [dia, sucursal.id])
 
+def cuota(creditos):
+   dia = datetime.now().date()
+   dia_mas_uno = dia + timedelta(days=1)
+   cuota_actual = None
+   saldo_capital = 0
+   informacion_actual = {}
+
+   for credito in creditos:
+      cuota_actual = PaymentPlan.objects.filter(
+         credit_id=credito,
+         start_date__lte=dia,
+         fecha_limite__gte=dia_mas_uno
+      ).first()
+
+      saldo_capital += cuota_actual.saldo_pendiente
+
+
+   informacion_actual['saldo_capital'] = saldo_capital
+    
+   
+
+   return informacion_actual 
+
 
 if __name__ == '__main__':
    # consulta_receptor('11024163-0')
    # {'nit': '11024163-0', 'nombre': '', 'mensaje': 'NIT no válido'}
+   sucursal = Subsidiary.objects.get(id=1)
 
-
-   cuotas = PaymentPlan.objects.filter(fecha_limite = '2026-01-22', credit_id__isnull = False)
-
-   for cuota_c in cuotas:
-      recibo = Recibo.objects.filter(cuota = cuota_c)
-
-      if not recibo.exists():
-         estado = cuota_c.credit_id.estados_fechas
-
-         if estado:
-            print(cuota_c.credit_id)
+   base_credit_filter = {"sucursal": sucursal, "is_paid_off": False}
+   creditos = Credit.objects.filter(estados_fechas=False, **base_credit_filter).exclude(estado_judicial=True)
+   print(cuota(creditos).get('saldo_capital'))
