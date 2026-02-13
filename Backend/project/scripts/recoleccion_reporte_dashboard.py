@@ -22,7 +22,8 @@ def cuota(creditos):
          fecha_limite__gte=dia_mas_uno
       ).first()
 
-      saldo_capital += cuota_actual.saldo_pendiente
+      if cuota_actual is not None:
+        saldo_capital += cuota_actual.saldo_pendiente
 
 
    informacion_actual['saldo_capital'] = saldo_capital
