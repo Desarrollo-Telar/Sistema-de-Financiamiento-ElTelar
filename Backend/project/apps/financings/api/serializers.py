@@ -67,6 +67,7 @@ class CreditSerializer(serializers.ModelSerializer):
         data['creation_date'] = instance.creation_date.date() if instance.creation_date else None
         data['categoria_credito_demandado'] = instance.categoria_credito_demandado.titulo if instance.categoria_credito_demandado else None
         data['codigo_credito'] = instance.codigo_credito
+        data['id'] = instance.id
         return data
 
        
