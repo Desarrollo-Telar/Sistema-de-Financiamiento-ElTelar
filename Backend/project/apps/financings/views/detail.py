@@ -197,7 +197,7 @@ def detalle_factura(request,id):
     
     else:
     
-        factura = Invoice.objects.filter(Q(recibo_id=recibo)).first()
+        factura = Invoice.objects.filter(Q(recibo_id__id=id)).first()
 
         if factura is not None:
             messages.error(request, 'Este recibo esta facturado dentro del portal de la SAT')
