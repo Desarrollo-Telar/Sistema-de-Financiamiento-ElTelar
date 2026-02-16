@@ -229,7 +229,7 @@ def creacion_cobranza(request):
 
 
             messages.success(request, "Registro Completado Con Exito.")
-            return redirect('customers:detail_informe_cobranza', user_code, informe_usuario.id)
+            return redirect('customers:detail_informe_cobranza_p', user_code, informe_usuario.id)
     else:
         form = CobranzaForms()
         if credito_q is not None:

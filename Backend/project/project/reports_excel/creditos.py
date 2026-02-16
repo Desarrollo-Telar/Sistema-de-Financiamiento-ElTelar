@@ -52,18 +52,13 @@ def report_creditos(request, filtro_seleccionado):
         ),
         
         'Creditos en Atraso': lambda: Credit.objects.filter(
-            estados_fechas=False, 
-            sucursal=sucursal
-        ).exclude(
-            # Excluye si es judicial O si tiene categoría de demandado
-            Q(estado_judicial=True) | Q(categoria_credito_demandado__isnull=False)
+            Q(estados_fechas=False) & Q(sucursal=sucursal) & ( Q(estado_judicial=False) | Q(categoria_credito_demandado__isnull=False))
+            
         ),
         
         'Creditos con falta de Aportacion': lambda: Credit.objects.filter(
-            estado_aportacion=False, 
-            sucursal=sucursal
-        ).exclude(
-            Q(estado_judicial=True) | Q(categoria_credito_demandado__isnull=False)
+            Q(estado_aportacion=False) & Q(sucursal=sucursal) & (Q(estado_judicial=False) | Q(categoria_credito_demandado__isnull=False))
+            
         ),
         
         'Creditos con excedente': lambda: Credit.objects.filter(
@@ -192,6 +187,7 @@ class ReporteCreditos(TemplateView):
 
             # Crear una lista para almacenar los filtros
             filters = Q()
+            excluir = Q()
 
             
             
@@ -227,12 +223,17 @@ class ReporteCreditos(TemplateView):
 
                     case 'Creditos en Atraso':
                         filters &= Q(estados_fechas=False)
+                        excluir |= Q(estado_judicial=True)
+                        excluir |= Q(categoria_credito_demandado__isnull=False)
                     
                     case 'Creditos Falta de Aportacion':
                         filters &= Q(estado_aportacion=False)
+                        excluir |= Q(estado_judicial=True)
+                        excluir |= Q(categoria_credito_demandado__isnull=False)
 
                     case 'Creditos en Estado Juridico':
                         filters &= Q(estado_judicial=True)
+                        filters &= Q(categoria_credito_demandado__isnull=False)
 
                     case 'Creditos con Excedente':
                         filters &= (Q(saldo_actual__lt=0) | Q(excedente__gt=0))
@@ -255,7 +256,7 @@ class ReporteCreditos(TemplateView):
             
 
             # Filtrar los objetos Banco usando los filtros definidos
-            return Credit.objects.filter(filters)
+            return Credit.objects.filter(filters).exclude(excluir)
         
         except Exception as e:
             # Manejar cualquier excepción que ocurra y devolver un queryset vacío

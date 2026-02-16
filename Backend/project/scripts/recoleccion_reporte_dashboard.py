@@ -7,6 +7,7 @@ from apps.actividades.models import DetalleInformeCobranza, Informe
 from datetime import datetime, timedelta
 
 from apps.financings.formato import formatear_numero
+from django.db.models import Q
 
 def cuota(creditos):
    dia = datetime.now().date()
@@ -77,8 +78,14 @@ def recolectar_informes_status_creditos(request):
         base_plan_filter["credit_id__isnull"] = False
 
     # Consultas principales
-    creditos = Credit.objects.filter(**base_credit_filter).exclude(estado_judicial=True)
-    creditos_atrasados = Credit.objects.filter(estados_fechas=False, **base_credit_filter).exclude(estado_judicial=True)
+    creditos = Credit.objects.filter(**base_credit_filter).exclude(
+            # Excluye si es judicial O si tiene categoría de demandado
+            Q(estado_judicial=True) | Q(categoria_credito_demandado__isnull=False)
+        )
+    creditos_atrasados = Credit.objects.filter(estados_fechas=False, **base_credit_filter).exclude(
+            # Excluye si es judicial O si tiene categoría de demandado
+            Q(estado_judicial=True) | Q(categoria_credito_demandado__isnull=False)
+        )
 
     saldo_actual_todos = cuota(creditos)
     saldo_acutal_atrasados =  cuota(creditos_atrasados)

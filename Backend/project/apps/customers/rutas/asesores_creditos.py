@@ -17,5 +17,6 @@ urlpatterns_asesores_creditos = [
     path('asesores_credito/cobranza/actualizar/<int:id>/',login_required( views.actualizacion_cobranza), name='actualizacion_cobranza'),
     path('asesores_credito/cobranza/eliminar/<int:id>/',login_required( views.eliminacion_cobranza), name='eliminacion_cobranza'),
     path('asesores_credito/cobranza/informe/<str:user_code>/<int:id>/',login_required( views.DetailInformeView.as_view()), name='detail_informe_cobranza'),
+    path('asesores_credito/cobranza/informe/<str:user_code>/<int:id>/',login_required( views.DetailInformePView.as_view()), name='detail_informe_cobranza_p'),
     path('asesores_credito/api/<str:user_code>/',login_required(views.InformacionAsesorCobranzaView.as_view()), name='api_informacion_cobranza_as'),
 ]

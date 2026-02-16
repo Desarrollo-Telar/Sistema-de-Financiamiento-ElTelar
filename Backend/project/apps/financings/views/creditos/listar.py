@@ -79,15 +79,18 @@ class CreditoList(ListView):
 
                     case 'Creditos Cancelados':
                         filters &= Q(is_paid_off=True)
-                        excluir &= Q(estado_judicial=True)
+                        excluir |= Q(estado_judicial=True)
+                        excluir |= Q(categoria_credito_demandado__isnull=False)
 
                     case 'Creditos en Atraso':
                         filters &= Q(estados_fechas=False)
-                        excluir &= Q(estado_judicial=True)
+                        excluir |= Q(estado_judicial=True)
+                        excluir |= Q(categoria_credito_demandado__isnull=False)
                     
                     case 'Creditos Falta de Aportacion':
                         filters &= Q(estado_aportacion=False)
-                        excluir &= Q(estado_judicial=True)
+                        excluir |= Q(estado_judicial=True)
+                        excluir |= Q(categoria_credito_demandado__isnull=False)
 
                     case 'Creditos en Estado Juridico':
                         filters &= Q(estado_judicial=True)
