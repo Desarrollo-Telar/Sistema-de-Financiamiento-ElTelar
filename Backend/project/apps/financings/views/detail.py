@@ -199,7 +199,7 @@ def detalle_factura(request,id):
     
         factura = Invoice.objects.filter(Q(recibo_id__id=id)).first()
 
-        if factura is not None:
+        if factura is None:
             messages.error(request, 'Este recibo esta facturado dentro del portal de la SAT')
             return redirect('financings:recibo',recibo.pago.id)
         
