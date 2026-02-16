@@ -211,7 +211,8 @@ class CasosJudicialAsesorAPIView(APIView):
                 total_otorgados=Count(
                     Case(
                         When(
-                            Q(categoria_credito_demandado__isnull=True) & Q(estado_judicial=False),
+                            Q(categoria_credito_demandado__isnull=True) & 
+                            Q(estado_judicial=False),
                             then=1
                         ),
                         output_field=IntegerField()
@@ -222,7 +223,8 @@ class CasosJudicialAsesorAPIView(APIView):
                 total_demandados=Count(
                     Case(
                         When(
-                            Q(estado_judicial=True) & Q(categoria_credito_demandado__isnull=False),
+                             #Q(categoria_credito_demandado__isnull=False) &
+                             Q(estado_judicial=True),
                             then=1
                         ),
                         output_field=IntegerField()
