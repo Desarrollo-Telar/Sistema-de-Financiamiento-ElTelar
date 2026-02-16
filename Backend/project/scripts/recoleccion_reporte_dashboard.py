@@ -25,6 +25,8 @@ def cuota(creditos):
 
       if cuota_actual is not None:
         saldo_capital += cuota_actual.saldo_pendiente
+        credito.saldo_pendiente = cuota_actual.saldo_pendiente
+        credito.save()
 
 
    informacion_actual['saldo_capital'] = saldo_capital

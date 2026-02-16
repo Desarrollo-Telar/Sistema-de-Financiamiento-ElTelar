@@ -1,7 +1,7 @@
 
 # ORM
-from django.db.models import Count, Q, Case, When
-from django.db.models.functions import TruncMonth
+from django.db.models import Count, Case, When, Q, IntegerField, DecimalField, Sum
+from django.db.models.functions import TruncMonth, Coalesce
 
 # REST
 from rest_framework.views import APIView
@@ -61,6 +61,65 @@ class TiposCreditoAPIView(APIView):
             .annotate(cantidad=Count('id'))
         )
         return Response(data)
+    
+
+
+
+
+class AsesorCarteraAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        # 1. Obtener sucursal del request (ajustado a tu lógica)
+        sucursal = getattr(request, 'sucursal_actual', None)
+        
+        # 2. Definir filtros de créditos "limpios" y vigentes
+        filters = Q(
+            is_paid_off=False,
+            estado_judicial=False,
+            categoria_credito_demandado__isnull=True,
+            asesor_de_credito__isnull=False
+        )
+
+        if sucursal:
+            filters &= Q(sucursal=sucursal)
+
+        # 3. Construir la consulta
+        data = (
+            Credit.objects.filter(filters)
+            .values(
+                'asesor_de_credito__nombre', 
+                'asesor_de_credito__apellido'
+            )
+            .annotate(
+                # Conteo de créditos
+                total_creditos=Count('id'),
+                creditos_en_atraso=Count(
+                    Case(When(estados_fechas=False, then=1))
+                ),
+                
+                # Montos de saldo pendiente (Capital)
+                saldo_cartera_total=Coalesce(
+                    Sum('saldo_pendiente'), 
+                    0, 
+                    output_field=DecimalField()
+                ),
+                saldo_en_atraso=Coalesce(
+                    Sum(
+                        Case(
+                            When(estados_fechas=False, then='saldo_pendiente'),
+                            default=0,
+                            output_field=DecimalField()
+                        )
+                    ),
+                    0, 
+                    output_field=DecimalField()
+                )
+            )
+            .order_by('-saldo_cartera_total')
+        )
+
+        return Response(data)
 
 class FormasPagoAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -79,16 +138,29 @@ class FormasPagoAPIView(APIView):
         )
         return Response(data)
 
+
+
 class CasosExitoAsesorAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         sucursal = getattr(request, 'sucursal_actual', None)
         
-        # Filtros generales (Base para todos los cálculos)
+        # 1. Definimos la condición de "Crédito Válido" (No judicial y sin categoría)
+        # Esto equivale a: categoria_id IS NULL AND estado_judicial = FALSE
+        condicion_limpio = Q(
+            categoria_credito_demandado__isnull=True, 
+            estado_judicial=False
+        )
+
+        # 2. Filtros base (Asesor existente y Sucursal si aplica)
         base_filters = Q(asesor_de_credito__isnull=False)
         if sucursal:
             base_filters &= Q(sucursal=sucursal)
+        
+        # Agregamos la condición de limpieza al filtro base para que 
+        # el "Total otorgados" solo cuente los que cumplen tu SQL
+        base_filters &= condicion_limpio
 
         data = (
             Credit.objects
@@ -98,17 +170,23 @@ class CasosExitoAsesorAPIView(APIView):
                 'asesor_de_credito__apellido'
             )
             .annotate(
-                # Cuenta total de créditos asignados
+                # TOTAL DE CREDITOS OTORGADOS (Cumpliendo base_filters)
                 total_otorgados=Count('id'),
-                # Cuenta solo donde is_paid_off es True
+                
+                # TOTAL DE CREDITOS CANCELADOS
+                # Además de los filtros base, debe ser is_paid_off = True
                 total_cancelados=Count(
-                    Case(When(is_paid_off=True, then=1))
+                    Case(
+                        When(is_paid_off=True, then=1)
+                    )
                 )
             )
-            .order_by('-total_otorgados') # Ordenar por el que más ha otorgado
+            .order_by('-total_otorgados')
         )
         
         return Response(data)
+
+
 
 class CasosJudicialAsesorAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -116,8 +194,8 @@ class CasosJudicialAsesorAPIView(APIView):
     def get(self, request):
         sucursal = getattr(request, 'sucursal_actual', None)
         
-        # Filtros generales (Base para todos los cálculos)
-        base_filters = Q(asesor_de_credito__isnull=False)
+        # Filtros base: Siempre queremos ver créditos NO pagados y con asesor
+        base_filters = Q(asesor_de_credito__isnull=False, is_paid_off=False)
         if sucursal:
             base_filters &= Q(sucursal=sucursal)
 
@@ -129,14 +207,29 @@ class CasosJudicialAsesorAPIView(APIView):
                 'asesor_de_credito__apellido'
             )
             .annotate(
-                # Cuenta total de créditos asignados
-                total_otorgados=Count('id'),
-                # Cuenta solo donde is_paid_off es True
+                # TOTAL DE CREDITOS OTORGADOS (Limpio: sin categoría Y no judicial)
+                total_otorgados=Count(
+                    Case(
+                        When(
+                            Q(categoria_credito_demandado__isnull=True) & Q(estado_judicial=False),
+                            then=1
+                        ),
+                        output_field=IntegerField()
+                    )
+                ),
+                
+                # TOTAL DE CREDITOS DEMANDADOS (Con categoría Y judicial)
                 total_demandados=Count(
-                    Case(When(estado_judicial=True, then=1))
+                    Case(
+                        When(
+                            Q(estado_judicial=True) & Q(categoria_credito_demandado__isnull=False),
+                            then=1
+                        ),
+                        output_field=IntegerField()
+                    )
                 )
             )
-            .order_by('-total_otorgados') # Ordenar por el que más ha otorgado
+            .order_by('-total_otorgados')
         )
         
         return Response(data)
@@ -148,7 +241,7 @@ class CasosAtrasoAsesorAPIView(APIView):
         sucursal = getattr(request, 'sucursal_actual', None)
         
         # Filtros generales (Base para todos los cálculos)
-        base_filters = Q(asesor_de_credito__isnull=False)
+        base_filters = Q(asesor_de_credito__isnull=False, is_paid_off=False)
         if sucursal:
             base_filters &= Q(sucursal=sucursal)
 
@@ -158,13 +251,26 @@ class CasosAtrasoAsesorAPIView(APIView):
             .values(
                 'asesor_de_credito__nombre',
                 'asesor_de_credito__apellido'
-            ).exclude(estado_judicial = False)
+            )
             .annotate(
                 # Cuenta total de créditos asignados
-                total_otorgados=Count('id'),
+                total_otorgados=Count(
+                    Case(
+                        When(
+                            Q(categoria_credito_demandado__isnull=True) & Q(estado_judicial=False),
+                            then=1
+                        ),
+                        output_field=IntegerField()
+                    )),
                 # Cuenta solo donde is_paid_off es True
                 total_atrasados=Count(
-                    Case(When(estados_fechas=False, then=1))
+                    Case(
+                        When(
+                            Q(estados_fechas=False) ,
+                            then=1
+                        ),
+                        output_field=IntegerField()
+                    )
                 )
             )
             .order_by('-total_otorgados') # Ordenar por el que más ha otorgado

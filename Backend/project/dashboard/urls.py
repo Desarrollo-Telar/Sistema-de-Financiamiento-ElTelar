@@ -21,6 +21,7 @@ urlpatterns = [
     path('creditos-por-mes/', views.CreditosPorMesAPIView.as_view(), name='creditos-por-mes'),
     path('tipos-credito/', views.TiposCreditoAPIView.as_view(), name='tipos-credito'),    
     path('formas-pago/', views.FormasPagoAPIView.as_view(), name='formas-pago'),
+    path('cartera-asesor/', views.AsesorCarteraAPIView.as_view(), name='cartera_asesor'),
 
     path('casos-exito-asesor/', views.CasosExitoAsesorAPIView.as_view(), name='casos-exito-asesor'), # KPI CasosAlDiaAPIView
     path('casos-demanda-asesor/', views.CasosJudicialAsesorAPIView.as_view(), name='casos-demanda-asesor'),

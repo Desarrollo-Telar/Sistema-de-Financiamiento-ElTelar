@@ -32,6 +32,8 @@ def pruebas(dia, sucursal):
    with connection.cursor() as cursor:
       cursor.execute("CALL generar_informe_diario(%s, %s)", [dia, sucursal.id])
 
+
+
 def cuota(creditos):
    dia = datetime.now().date()
    dia_mas_uno = dia + timedelta(days=1)
@@ -46,21 +48,79 @@ def cuota(creditos):
          fecha_limite__gte=dia_mas_uno
       ).first()
 
-      saldo_capital += cuota_actual.saldo_pendiente
+      if cuota_actual is not None:
+        saldo_capital += cuota_actual.saldo_pendiente
+        credito.saldo_pendiente = cuota_actual.saldo_pendiente
+        credito.save()
 
 
    informacion_actual['saldo_capital'] = saldo_capital
     
    
 
-   return informacion_actual 
+   return saldo_capital
 
+from django.db.models import Sum, OuterRef, Subquery, Q, DecimalField, Case, When
+from django.db.models.functions import Coalesce
+from django.db.models import Sum, OuterRef, Subquery, Q, DecimalField
+from django.db.models.functions import Coalesce
+
+from django.db.models import Sum, Q, DecimalField, Case, When
+from django.db.models.functions import Coalesce
+
+def obtener_cartera_por_asesor(sucursal_id):
+    # 1. Definimos los filtros de créditos "limpios" (sin procesos judiciales)
+    filtros_limpios = Q(
+        sucursal_id=sucursal_id,
+        is_paid_off=False,
+        estado_judicial=False,
+        categoria_credito_demandado__isnull=True
+    )
+
+    # 2. Consulta agrupada por asesor usando el campo saldo_pendiente de Credit
+    data = (
+        Credit.objects.filter(filtros_limpios)
+        .values('asesor_de_credito__nombre', 'asesor_de_credito__apellido')
+        .annotate(
+            # Sumamos directamente el campo del modelo Credit
+            saldo_cartera_total=Coalesce(
+                Sum('saldo_pendiente'), 
+                0, 
+                output_field=DecimalField()
+            ),
+            # Sumamos el saldo_pendiente solo si el crédito está en atraso
+            saldo_en_atraso=Coalesce(
+                Sum(
+                    Case(
+                        When(estados_fechas=False, then='saldo_pendiente'),
+                        default=0,
+                        output_field=DecimalField()
+                    )
+                ),
+                0, 
+                output_field=DecimalField()
+            )
+        )
+        .order_by('-saldo_cartera_total')
+    )
+    
+    return data
 
 if __name__ == '__main__':
-   # consulta_receptor('11024163-0')
-   # {'nit': '11024163-0', 'nombre': '', 'mensaje': 'NIT no válido'}
-   sucursal = Subsidiary.objects.get(id=1)
+   datos = obtener_cartera_por_asesor(1)
 
-   base_credit_filter = {"sucursal": sucursal, "is_paid_off": False}
-   creditos = Credit.objects.filter(estados_fechas=False, **base_credit_filter).exclude(estado_judicial=True)
-   print(cuota(creditos).get('saldo_capital'))
+   saldo_total_v = 0
+   saldo_total_a = 0
+
+   for fila in datos:
+      print(f"Asesor: {fila['asesor_de_credito__nombre'] } {fila['asesor_de_credito__apellido']}")
+      print(f"Cartera Total: Q{fila['saldo_cartera_total']}")
+      print(f"En Atraso: Q{fila['saldo_en_atraso']}")
+      saldo_total_v += fila['saldo_cartera_total']
+      saldo_total_a += fila['saldo_en_atraso']
+      print("-" * 20)
+   
+   
+  
+
+  

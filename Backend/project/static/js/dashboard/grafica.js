@@ -857,6 +857,72 @@ async function casos_atraso_asesor() {
   });
 }
 
+async function cartera_asesor() {
+  const data = await fetchData('cartera-asesor/');
+  if (!data.length) return;
+
+  // 1. Extraemos los nombres
+  const labels = data.map(i =>
+    `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim()
+  );
+
+  // 2. Extraemos los dos nuevos valores de la API
+  const otorgados = data.map(i => i.saldo_cartera_total);
+  const cancelados = data.map(i => i.saldo_en_atraso);
+
+  createChart('carteraAsesorChart', {
+    type: 'bar',
+    data: { 
+      labels, 
+      datasets: [
+        { 
+          label: 'Total Otorgados', 
+          data: otorgados,
+          backgroundColor: 'rgba(54, 162, 235, 0.5)', // Azul transparente
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1,
+          borderRadius: 5
+        },
+        { 
+          label: 'Atrasados', 
+          data: cancelados,
+          backgroundColor: 'rgba(75, 192, 192, 0.8)', // Esmeralda sólido
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+          borderRadius: 5
+        }
+      ] 
+    },
+    options: { 
+      indexAxis: 'x', 
+      responsive: true, 
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { 
+          display: true, 
+          position: 'top' // Mostramos leyenda para distinguir las barras
+        },
+        tooltip: {
+          callbacks: {
+            // Agregamos el porcentaje de éxito al pasar el mouse
+            afterLabel: function(context) {
+              const index = context.dataIndex;
+              const porcentaje = ((cancelados[index] / otorgados[index]) * 100).toFixed(1);
+              return `Tasa (Saldo Atraso / Saldo Total Otorgado): ${porcentaje}%`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: { display: true, text: 'Cantidad de Créditos' }
+        }
+      }
+    }
+  });
+}
+
 async function loadAllData() {
   showMessage('Cargando KPIs...');
   await Promise.all([
@@ -874,6 +940,7 @@ async function loadAllData() {
     casos_exito_asesor(),
     casos_judicial_asesor(),
     casos_atraso_asesor(),
+    cartera_asesor()
   ]);
   showMessage('Dashboard actualizado ✅');
 }
