@@ -36,14 +36,40 @@ def report_creditos(request, filtro_seleccionado):
     inicio = hoy - timedelta(days=5)
     sucursal = request.session['sucursal_id']
 
-    # Diccionario de filtros
+    
+
     filtros = {
         'Todos': lambda: Credit.objects.filter(sucursal=sucursal),
-        'Recientes': lambda: Credit.objects.filter(creation_date__range=[inicio, hoy], sucursal=sucursal),
-        'Creditos Cancelados': lambda: Credit.objects.filter(is_paid_off=True, sucursal=sucursal),
-        'Creditos en Atraso': lambda: Credit.objects.filter(estados_fechas=False, sucursal=sucursal).exclude(estado_judicial = False),
-        'Creditos con falta de Aportacion': lambda: Credit.objects.filter(estado_aportacion=False, sucursal=sucursal).exclude(estado_judicial = False),
-        'Creditos con excedente': lambda: Credit.objects.filter(Q(saldo_actual__lt=0) | Q(excedente__gt=0), sucursal=sucursal),
+        
+        'Recientes': lambda: Credit.objects.filter(
+            creation_date__range=[inicio, hoy], 
+            sucursal=sucursal
+        ),
+        
+        'Creditos Cancelados': lambda: Credit.objects.filter(
+            is_paid_off=True, 
+            sucursal=sucursal
+        ),
+        
+        'Creditos en Atraso': lambda: Credit.objects.filter(
+            estados_fechas=False, 
+            sucursal=sucursal
+        ).exclude(
+            # Excluye si es judicial O si tiene categoría de demandado
+            Q(estado_judicial=True) | Q(categoria_credito_demandado__isnull=False)
+        ),
+        
+        'Creditos con falta de Aportacion': lambda: Credit.objects.filter(
+            estado_aportacion=False, 
+            sucursal=sucursal
+        ).exclude(
+            Q(estado_judicial=True) | Q(categoria_credito_demandado__isnull=False)
+        ),
+        
+        'Creditos con excedente': lambda: Credit.objects.filter(
+            Q(saldo_actual__lt=0) | Q(excedente__gt=0), 
+            sucursal=sucursal
+        ),
     }
 
     # Obtener los créditos según el filtro seleccionado
