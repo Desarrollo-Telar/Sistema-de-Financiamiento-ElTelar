@@ -4,7 +4,7 @@ from .list import AsesoresCreditosList, CobranzaList, view_gestion
 
 from .detail import detail_asesor,  DetailInformeView, DetailInformePView
 
-from .crear import creacion_cobranza
+from .crear import creacion_cobranza, redireccionar_pefil_asesor
 
 from .actualizar import actualizacion_cobranza
 

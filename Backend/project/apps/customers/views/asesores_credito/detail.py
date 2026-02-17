@@ -219,7 +219,7 @@ class DetailInformePView(TemplateView):
 
         #user_code = kwargs.get("user_code")
         user_code = self.request.user.user_code
-        usuario = User.objects.filter(user_code=user_code).first()
+        usuario = User.objects.get(user_code=user_code)
         reporte_id = kwargs.get("id")
 
         reporte_id = get_informe_usuario(usuario)

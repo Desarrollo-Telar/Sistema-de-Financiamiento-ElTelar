@@ -13,7 +13,8 @@ from apps.customers.forms import CobranzaForms
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import permiso_requerido
+from project.decorador import permiso_requerido, usuario_activo
+ 
 
 # MENSAJES
 from django.contrib import messages
@@ -29,6 +30,13 @@ from scripts.recoleccion_informacion.detalle_asesor_credito import recoleccion_i
 from apps.actividades.utils import log_user_action, log_system_event
 from scripts.conversion_datos import model_to_dict, cambios_realizados
 
+@login_required
+@usuario_activo
+def redireccionar_pefil_asesor(request):
+    informe_usuario= obtener_informe(request)
+    codigo_usuario = request.user.user_code
+
+    return redirect('customers:detail_informe_cobranza_p',codigo_usuario, informe_usuario.id)
 
 def obtener_cuota(dia, credito):
     
@@ -229,7 +237,7 @@ def creacion_cobranza(request):
 
 
             messages.success(request, "Registro Completado Con Exito.")
-            return redirect('customers:detail_informe_cobranza_p', user_code, informe_usuario.id)
+            return redirect('customers:redireccionar_perfil_asesor')
     else:
         form = CobranzaForms()
         if credito_q is not None:
