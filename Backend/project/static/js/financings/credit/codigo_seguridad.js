@@ -1,17 +1,23 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const id_tasa_interes = document.getElementById('id_tasa_interes');
 
-    id_tasa_interes.addEventListener('blur', function() {
+    id_tasa_interes.addEventListener('blur', function () {
         if (this.value !== "") {
-            // Forzamos el formato a 1 decimal
-            this.value = parseFloat(this.value).toFixed(1);
+            let valor = parseFloat(this.value);
+            // Si el número es entero, le ponemos .0
+            // Si ya tiene decimales, lo dejamos como está
+            if (Number.isInteger(valor)) {
+                this.value = valor.toFixed(5);
+            } else {
+                this.value = valor;
+            }
         }
     });
 });
 
 document.getElementById('creditForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    
+
 
     // Remover errores previos
     document.querySelectorAll('.form-group').forEach(group => {
@@ -41,9 +47,9 @@ document.getElementById('creditForm').addEventListener('submit', function (e) {
 
     const id_tasa_interes = document.getElementById('id_tasa_interes');
 
-    
 
-    
+
+
 
     if (isValid) {
         // En lugar de enviar, pedimos el código
@@ -82,15 +88,15 @@ async function confirmarCodigoYEnviar(formElement) {
                 },
                 body: JSON.stringify({ codigo: codigoIngresado })
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la red');
-                }
-                return response.json();
-            })
-            .catch(error => {
-                Swal.showValidationMessage(`Solicitud fallida: ${error}`);
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la red');
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(`Solicitud fallida: ${error}`);
+                });
         },
         allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
@@ -104,12 +110,12 @@ async function confirmarCodigoYEnviar(formElement) {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                
+
                 // Un pequeño delay para que el usuario vea el éxito antes de redirigir
                 setTimeout(() => {
                     formElement.submit();
                 }, 1000);
-                
+
             } else {
                 Swal.fire('Error', 'El código ingresado es incorrecto.', 'error');
             }
