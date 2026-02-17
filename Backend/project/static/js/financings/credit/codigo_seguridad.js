@@ -1,11 +1,12 @@
-const id_tasa_interes = document.getElementById('id_tasa_interes');
+document.addEventListener('DOMContentLoaded', function() {
+    const id_tasa_interes = document.getElementById('id_tasa_interes');
 
-id_tasa_interes.addEventListener('blur', function() {
-  // Verificamos si hay un valor para evitar errores si está vacío
-  if (this.value !== "") {
-    // Convertimos a número y fijamos 1 decimal
-    this.value = parseFloat(this.value).toFixed(1);
-  }
+    id_tasa_interes.addEventListener('blur', function() {
+        if (this.value !== "") {
+            // Forzamos el formato a 1 decimal
+            this.value = parseFloat(this.value).toFixed(1);
+        }
+    });
 });
 
 document.getElementById('creditForm').addEventListener('submit', function (e) {
