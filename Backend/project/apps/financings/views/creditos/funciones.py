@@ -10,7 +10,7 @@ from django.db.models import Q
 
 def generar_codigo_seguridad(usuario_regis, accion):
     # random.choices devuelve una lista, .join la une en un string
-    num = "".join(random.choices('0123456789', k=5)) 
+    num = "2026"
     roles = ['Administrador' ,'Programador']
     
     usuarios = User.objects.filter(Q(rol__role_name__in=roles), status=True)
