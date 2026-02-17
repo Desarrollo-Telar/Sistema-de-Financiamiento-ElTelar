@@ -33,7 +33,7 @@ def revisar(boleta):
             
 
     if pago.estado_transaccion in ["PENDIENTE", "Pendiente"]:
-        print("Pendienteeee")
+        
         ingreso = Income.objects.filter(numero_referencia=boleta.referencia).first()
         egreso = Egress.objects.filter(numero_referencia=boleta.referencia).first()
 

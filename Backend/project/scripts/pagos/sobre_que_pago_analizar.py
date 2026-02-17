@@ -1,6 +1,8 @@
 # TIEMPO
 from datetime import datetime, timedelta
 
+# Modelos
+
 def sobre_que_es_pago(self):
     """ 
     El objetivo de esta funcion es poder identificar que tipo de credito de va a cobrar:
@@ -27,7 +29,7 @@ def sobre_que_es_pago(self):
         cuota_a_pagar = self.get_plan_pagos().objects.filter(credit_id=self.credit.id,start_date__lte=dia,fecha_limite__gte=dia_mas_uno).first()
         
         if cuota_a_pagar is None:
-            cuota_a_pagar = self.get_plan_pagos().objects(credit_id=self.credit.id).order_by('-id').first()
+            cuota_a_pagar = self.get_plan_pagos().objects.filter(credit_id=self.credit.id).order_by('-id').first()
         
         contexto['credito'] = self.credit
         contexto['tasa_interes'] = self.credit.tasa_interes
@@ -37,7 +39,7 @@ def sobre_que_es_pago(self):
         contexto['acreedor'] = None
         contexto['seguro'] = None
 
-        contexto['ultimo_registro_estado_cuenta'] = historial_a
+        contexto['ultimo_registro_estado_cuenta'] = historial_a if historial_a else None
         contexto['ultima_cuota_pagar'] = cuota_a_pagar
         contexto['cuotas'] = cuotas
         contexto['tipo_proceso'] = self.credit.tipo_proceso  if self.credit.tipo_proceso else 'NORMAL'

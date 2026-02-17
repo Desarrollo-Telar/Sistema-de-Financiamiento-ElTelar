@@ -217,7 +217,7 @@ class Payment(models.Model):
             
             mora = self._calculo_mora()
             interes = cuota.interest
-            capital_generado = cuota.capital_generado
+            capital_generado = cuota.capital_generado if cuota.capital_generado else 0
             
             procesos_de_pago(self,saldo_pendiente, interes,mora, capital_generado, tipo_proceso)
 

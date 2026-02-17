@@ -30,16 +30,17 @@ def cuota_a_pagar(self):
             return informacion['ultima_cuota_pagar']
     
     # Recorre las cuotas para realizar las comparaciones por fechas
+    print(informacion['cuotas'])
     for cuota in informacion['cuotas']:
         # Usar objetos datetime directamente
         fecha_inicio = cuota.start_date
         fecha_limite = cuota.fecha_limite
-        print(f"Comparando cuota con rango: {fecha_inicio.date()} a {fecha_limite.date()}")
+        print(f'Cuota: {cuota} # {cuota.id}. FECHA INICIO: {fecha_inicio}, Fecha Limite: {fecha_limite}, Fecha de Emision: {fecha_emision}')
                         
         # Comparar directamente objetos datetime
         if fecha_inicio <= fecha_emision <= fecha_limite:
             # Si la fecha de emisión cae dentro del rango de esta cuota
-            print("Cuota encontrada en rango de fechas")
+            print(f"Cuota encontrada en rango de fechas: {cuota}")
             if fecha_emision == fecha_limite:
                 print("Fecha de emisión es igual a la fecha límite, continuando a la siguiente cuota")
                 continue 
