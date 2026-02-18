@@ -78,7 +78,7 @@ def actualizacion_cobranza(request, id):
 
 
             messages.success(request, "Registro Completado Con Exito.")
-            return redirect('customers:detail_informe_cobranza', request.user.user_code,informe_usuario.reporte.id )
+            return redirect('customers:redireccionar_perfil_asesor')
     else:
         form = CobranzaForms(instance=cobranza)
 
