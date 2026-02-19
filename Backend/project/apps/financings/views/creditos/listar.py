@@ -72,6 +72,10 @@ class CreditoList(ListView):
             
             if status:
                 match status:
+                    case 'Vigentes':
+                        excluir |= Q(estado_judicial=True)
+                        excluir |= Q(categoria_credito_demandado__isnull=False)
+
                     case 'Recientes':
                         hoy = datetime.now()
                         inicio = hoy - timedelta(days=5)
@@ -143,7 +147,7 @@ class CreditoList(ListView):
         if not (context['object_list']):
             messages.error(self.request,'No se encontrado ningun dato')
         
-        status = ['Recientes', 'Creditos Cancelados','Creditos en Atraso', 'Creditos Falta de Aportacion', 'Creditos en Estado Juridico',
+        status = ['Vigentes','Recientes', 'Creditos Cancelados','Creditos en Atraso', 'Creditos Falta de Aportacion', 'Creditos en Estado Juridico',
                   'Creditos con Excedente']
         
         
