@@ -264,11 +264,11 @@ class CasosAtrasoAsesorAPIView(APIView):
                         ),
                         output_field=IntegerField()
                     )),
-                # Cuenta solo donde is_paid_off es True
+                
                 total_atrasados=Count(
                     Case(
                         When(
-                            Q(estados_fechas=False) ,
+                            (Q(estados_fechas=False) & Q(estado_judicial=False)) & (Q(categoria_credito_demandado__isnull=True)),
                             then=1
                         ),
                         output_field=IntegerField()
