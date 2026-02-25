@@ -876,7 +876,7 @@ async function cartera_asesor() {
       labels, 
       datasets: [
         { 
-          label: 'Total Otorgados', 
+          label: 'Vigentes', 
           data: otorgados,
           backgroundColor: 'rgba(54, 162, 235, 0.5)', // Azul transparente
           borderColor: 'rgba(54, 162, 235, 1)',
