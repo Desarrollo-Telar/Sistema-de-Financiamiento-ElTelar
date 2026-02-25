@@ -107,7 +107,7 @@ class AsesorCarteraAPIView(APIView):
                 saldo_en_atraso=Coalesce(
                     Sum(
                         Case(
-                            When(estados_fechas=False, then='saldo_pendiente'),
+                            When((Q(estados_fechas=False) & Q(estado_judicial=False)) & (Q(categoria_credito_demandado__isnull=True)), then='saldo_pendiente'),
                             default=0,
                             output_field=DecimalField()
                         )
