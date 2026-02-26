@@ -15,7 +15,8 @@ from django.utils.timezone import now
 
 # Modelos
 from apps.actividades.models import Informe
-
+from apps.financings.models import Recibo
+from apps.customers.models import Cobranza
 # SETTINGS
 from project.settings import SERVIDOR
 
@@ -34,7 +35,18 @@ def ver_cuotas(dia):
     
     print()
 
+def cobran():
+    # 1. Obtenemos los IDs de las cuotas desde la tabla de recibos (el Subquery)
+    cuotas_ids = Recibo.objects.values_list('cuota', flat=True)
 
+    # 2. Ejecutamos el update masivo
+    Cobranza.objects.filter(
+        estado_cobranza__in=['PENDIENTE', 'INCUMPLIDO'],
+        cuota__in=cuotas_ids
+    ).update(
+        estado_cobranza='COMPLETADO',
+        resultado='Pago realizado'
+    )
 
 @shared_task(name="apps.financings.task.cambiar_plan")
 def cambiar_plan():
@@ -51,6 +63,7 @@ def cambiar_plan():
     ver_estado_informe(dia)
     generar_cierre_diario_seguro()
     fechas_cobranzas()
+    cobran()
     
 
     
