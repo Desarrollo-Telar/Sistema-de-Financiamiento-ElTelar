@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
 from apps.customers.models import Customer, CreditCounselor, Cobranza
-from apps.financings.models import Credit
+from apps.financings.models import Credit, Recibo
 from apps.actividades.models import Informe, DetalleInformeCobranza
 from apps.users.models import User
 from django.db.models import Q
@@ -37,6 +37,21 @@ def get_informe_usuario(usuario):
     informe, created =  Informe.objects.get_or_create(usuario=usuario, esta_activo=True)
 
     return informe.id
+
+def cobran():
+    
+
+    # 1. Obtenemos los IDs de las cuotas desde la tabla de recibos (el Subquery)
+    cuotas_ids = Recibo.objects.values_list('cuota', flat=True)
+
+    # 2. Ejecutamos el update masivo
+    Cobranza.objects.filter(
+        estado_cobranza__in=['PENDIENTE', 'INCUMPLIDO'],
+        cuota__in=cuotas_ids
+    ).update(
+        estado_cobranza='COMPLETADO',
+        resultado='Pago realizado'
+    )
 
 
 @login_required
@@ -122,7 +137,7 @@ class DetailInformeView(TemplateView):
         reporte = get_object_or_404(Informe, id=reporte_id)
         # Obtener los detalles del informe usando get_queryset
         detalles_informe = self.get_queryset(reporte_id).order_by('-id')
-        
+        cobran()
         
         posicion = None
 
@@ -240,7 +255,7 @@ class DetailInformePView(TemplateView):
             posicion = self.request.GET.get("estado_cobranza")
 
      
-
+        cobran()
         
 
         context.update({

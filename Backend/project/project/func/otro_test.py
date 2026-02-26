@@ -106,19 +106,26 @@ def obtener_cartera_por_asesor(sucursal_id):
     
     return data
 
+
+
+
+def cobran():
+    
+
+    # 1. Obtenemos los IDs de las cuotas desde la tabla de recibos (el Subquery)
+    cuotas_ids = Recibo.objects.values_list('cuota', flat=True)
+
+    # 2. Ejecutamos el update masivo
+    Cobranza.objects.filter(
+        estado_cobranza__in=['PENDIENTE', 'INCUMPLIDO'],
+        cuota__in=cuotas_ids
+    ).update(
+        estado_cobranza='COMPLETADO',
+        resultado='Pago realizado'
+    )
+
 if __name__ == '__main__':
-   datos = obtener_cartera_por_asesor(1)
-
-   saldo_total_v = 0
-   saldo_total_a = 0
-
-   for fila in datos:
-      print(f"Asesor: {fila['asesor_de_credito__nombre'] } {fila['asesor_de_credito__apellido']}")
-      print(f"Cartera Total: Q{fila['saldo_cartera_total']}")
-      print(f"En Atraso: Q{fila['saldo_en_atraso']}")
-      saldo_total_v += fila['saldo_cartera_total']
-      saldo_total_a += fila['saldo_en_atraso']
-      print("-" * 20)
+   cobran()
    
    
   
