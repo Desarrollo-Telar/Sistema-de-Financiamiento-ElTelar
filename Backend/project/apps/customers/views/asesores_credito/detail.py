@@ -137,7 +137,7 @@ class DetailInformeView(TemplateView):
         reporte = get_object_or_404(Informe, id=reporte_id)
         # Obtener los detalles del informe usando get_queryset
         detalles_informe = self.get_queryset(reporte_id).order_by('-id')
-        cobran()
+        
         
         posicion = None
 
@@ -255,7 +255,7 @@ class DetailInformePView(TemplateView):
             posicion = self.request.GET.get("estado_cobranza")
 
      
-        cobran()
+      
         
 
         context.update({
