@@ -11,6 +11,7 @@ from datetime import datetime, timedelta, date
 # Modelo
 from apps.customers.models import Customer, CreditCounselor
 from apps.financings.formato import formatear_numero
+from apps.financings.models import CategoriaCreditoDemandado
 
 # Filtros
 from .filtros.creditos import *
@@ -20,6 +21,10 @@ def get_cliente(id):
     cliente =  Customer.objects.filter(id=id).first()
 
     return cliente if cliente else None
+
+def get_categoria_credito(id):
+    categoria = CategoriaCreditoDemandado.objects.filter(id=id).first()
+    return categoria if categoria else None
 
 def get_asesor_credito(id):
     asesor = CreditCounselor.objects.filter(id=id).first()
@@ -121,7 +126,7 @@ def crear_excel_creditos(datos, dia = None):
             numero_referencia = cuota.get('numero_referencia') if cuota else ''
 
             
-            categoria_demandado = informacion_credito.get('categoria_credito_demandado') or 'NO TIENE'
+            categoria_demandado = get_categoria_credito(informacion_credito.get('categoria_credito_demandado_id')) or 'NO TIENE'
             s_credito_migrado = informacion_credito.get('es_credito_migrado') or 'NO'
 
             tasa_interes = informacion_credito.get('tasa_interes', 0) * 100
