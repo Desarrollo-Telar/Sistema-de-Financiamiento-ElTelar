@@ -107,7 +107,7 @@ def detail_seguro(request, id):
     object_list = get_object_or_404(Insurance, id=id)
     siguiente_pago = PaymentPlan.objects.filter(seguro=object_list).order_by('-id').first()
     plan = planPagosCredito(object_list).generar_plan()
-    estado_cuenta = AccountStatement.objects.filter(seguro=object_list)
+    estado_cuenta = AccountStatement.objects.filter(seguro=object_list).order_by('issue_date')
     
     context = {
         'title':'Detalle de Seguro.',

@@ -68,7 +68,7 @@ def sobre_que_es_pago(self):
         contexto['tipo_proceso'] = 'NORMAL'
         
     if self.seguro is not None:
-        cuotas = self.get_plan_pagos().objects.filter(acreedor=self.acreedor).order_by('fecha_limite')
+        cuotas = self.get_plan_pagos().objects.filter(seguro=self.seguro.id).order_by('fecha_limite')
         # Historial de pagos anteriores (último pago realizado)
         historial_a = self.get_estado_cuenta().objects.filter(seguro=self.seguro, description='PAGO DE SEGURO').order_by('-id').first()
         

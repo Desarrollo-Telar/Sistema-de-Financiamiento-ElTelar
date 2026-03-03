@@ -293,7 +293,7 @@ class ReporteCreditos(TemplateView):
             "CLIENTE", "NUMERO DE TELEFONO","MONTO OTORGADO", "PROPOSITO", "PLAZO EN MESES", "TASA DE INTERES",
             "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
             "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", "FECHA DE CANCELACION DEL CREDITO", "FECHA EN ENTRAR A MORA", "DIAS DE MORA",
-            "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS",'STATUS POR APORTACION','STATUS JUDICIAL','STATUS DEL CREDITO', "NUMERO DE REFERENCIA", "ASESOR DE CREDITO", "FIADORES DEL CREDITO",
+            "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"STATUS POR FECHAS",'STATUS POR APORTACION','STATUS JUDICIAL','STATUS DEL CREDITO', "CLASIFICACION DE CREDITO DEMANDADO","NUMERO DE REFERENCIA", "ASESOR DE CREDITO", "FIADORES DEL CREDITO",
             "RESPONSABLE DE LA GESTION", "ESTADO DE LA COBRANZA", "RESULTADO DE COBRANZA","FECHA DE SEGUIMIENTO O DE PROMESA DE PAGO"
         ]
 
@@ -325,6 +325,7 @@ class ReporteCreditos(TemplateView):
             s_fecha = 'VIGENTE' if reporte.estados_fechas else 'EN ATRASO'
             s_judicial = 'EN PROCESO JUDICIAL' if reporte.estado_judicial else 'NO'
             s_credito = 'CANCELADO' if reporte.is_paid_off else 'VIGENTE'
+            clasificacion = reporte.categoria_credito_demandado.titulo if reporte.categoria_credito_demandado else 'NO TIENE'
             responsable = reporte.tiene_gestion_cobranza().asesor_credito if reporte.tiene_gestion_cobranza() else 'NO TIENE'
             estado = reporte.tiene_gestion_cobranza().estado_cobranza if reporte.tiene_gestion_cobranza() else 'NO TIENE'
             resultado = reporte.tiene_gestion_cobranza().resultado if reporte.tiene_gestion_cobranza() else 'NO TIENE'
@@ -352,7 +353,7 @@ class ReporteCreditos(TemplateView):
                 reporte.formato_saldo_actual(),
                 reporte.formato_saldo_pendiente(),
                 reporte.formato_saldo_excedente(),
-                s_fecha,aportacion,s_judicial,s_credito,
+                s_fecha,aportacion,s_judicial,s_credito,clasificacion,
                 numero_referencia,
                 str(reporte.asesor_de_credito),
                 str(obtener_fiadores(reporte)),
