@@ -24,7 +24,7 @@ def get_cliente(id):
 
 def get_categoria_credito(id):
     categoria = CategoriaCreditoDemandado.objects.filter(id=id).first()
-    return categoria if categoria else None
+    return categoria.titulo if categoria else None
 
 def get_asesor_credito(id):
     asesor = CreditCounselor.objects.filter(id=id).first()
