@@ -99,7 +99,7 @@ def crear_excel_creditos(datos, dia = None):
         "FORMA DE PAGO", "TIPO DE CREDITO", "DESEMBOLSO","FECHA DE INICIO DEL CREDITO", 
         "FECHA DE VENCIMIENTO DEL CREDITO", "FECHA LIMITE DE PAGO", 
         "SALDO ACTUAL", "SALDO CAPITAL PENDIENTE","SALDO EXCEDENTE" ,"DIAS DE MORA","STATUS POR FECHAS","STATUS POR APORTACION","STATUS JUDICIAL","STATUS CANCELADO", 
-        "NUMERO DE REFERENCIA", "ASESOR DE CREDITO","CATEGORIA DE CREDITO DEMANDADO"
+        "NUMERO DE REFERENCIA", "ASESOR DE CREDITO","CATEGORIA DE CREDITO DEMANDADO", "CREDITO MIGRADO"
     ]
 
     for filtro,data in filtros.items():
@@ -120,7 +120,10 @@ def crear_excel_creditos(datos, dia = None):
             fecha_limite = formater_fecha(cuota.get('fecha_limite')) if cuota else ''
             numero_referencia = cuota.get('numero_referencia') if cuota else ''
 
-            categoria_demandado =  '---'
+            
+            categoria_demandado = informacion_credito.get('categoria_credito_demandado') or 'NO TIENE'
+            s_credito_migrado = informacion_credito.get('es_credito_migrado') or 'NO'
+
             tasa_interes = informacion_credito.get('tasa_interes', 0) * 100
 
 
@@ -206,7 +209,7 @@ def crear_excel_creditos(datos, dia = None):
 
                 f"{numero_referencia}",
                 f"{get_asesor_credito(informacion_credito.get('asesor_de_credito_id', ''))}",
-                categoria_demandado
+                categoria_demandado,s_credito_migrado
 
             ]
 
