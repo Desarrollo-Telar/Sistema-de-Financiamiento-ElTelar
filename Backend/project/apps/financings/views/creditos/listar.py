@@ -98,6 +98,7 @@ class CreditoList(ListView):
 
                     case 'Creditos en Estado Juridico':
                         filters &= Q(estado_judicial=True)
+                        filters &= Q(categoria_credito_demandado__isnull=False)
                         
 
                     case 'Creditos con Excedente':

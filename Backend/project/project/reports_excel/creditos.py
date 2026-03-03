@@ -237,6 +237,9 @@ class ReporteCreditos(TemplateView):
 
                     case 'Creditos con Excedente':
                         filters &= (Q(saldo_actual__lt=0) | Q(excedente__gt=0))
+                        
+                    case 'Creditos con Categoria Demandado':
+                        filters &= Q(categoria_credito_demandado__isnull=False)
 
             
             if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
