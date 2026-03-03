@@ -98,9 +98,13 @@ class CreditoList(ListView):
 
                     case 'Creditos en Estado Juridico':
                         filters &= Q(estado_judicial=True)
+                        
 
                     case 'Creditos con Excedente':
                         filters &= (Q(saldo_actual__lt=0) | Q(excedente__gt=0))
+                    
+                    case 'Creditos con Categoria Demandado':
+                        filters &= Q(categoria_credito_demandado__isnull=False)
 
             
             if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
@@ -148,7 +152,7 @@ class CreditoList(ListView):
             messages.error(self.request,'No se encontrado ningun dato')
         
         status = ['Vigentes','Recientes', 'Creditos Cancelados','Creditos en Atraso', 'Creditos Falta de Aportacion', 'Creditos en Estado Juridico',
-                  'Creditos con Excedente']
+                  'Creditos con Excedente','Creditos con Categoria Demandado']
         
         
         credito_en_atraso = True if self.status() == 'Creditos en Atraso' else False
