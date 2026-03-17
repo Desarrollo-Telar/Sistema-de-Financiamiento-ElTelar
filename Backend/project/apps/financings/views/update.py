@@ -90,6 +90,7 @@ def update_cuota(request, id):
             # Actualizamos los valores de la cuota
             cuota.interest = interes_nuevo
             cuota.mora = mora_nueva
+            cuota.cuota_vencida = False
             cuota.save()
 
             messages.success(request,'El descuento fue aplicado')
