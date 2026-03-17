@@ -35,18 +35,31 @@ def ver_cuotas(dia):
     
     print()
 
-def cobran():
-    # 1. Obtenemos los IDs de las cuotas desde la tabla de recibos (el Subquery)
-    cuotas_ids = Recibo.objects.values_list('cuota', flat=True)
+from django.db import connection
 
-    # 2. Ejecutamos el update masivo
-    Cobranza.objects.filter(
-        estado_cobranza__in=['PENDIENTE', 'INCUMPLIDO'],
-        cuota__in=cuotas_ids
-    ).update(
-        estado_cobranza='COMPLETADO',
-        resultado='Pago realizado'
-    )
+def actualizar_cobranza_masiva():
+    query = """
+    UPDATE customers_cobranza AS cobranza
+    SET estado_cobranza = %s, 
+        resultado = %s
+    FROM financings_credit AS credito
+    WHERE credito.id = cobranza.credito_id
+      AND cobranza.estado_cobranza IN ('PENDIENTE', 'INCUMPLIDO')
+      AND cobranza.cuota_id IN (SELECT cuota_id FROM financings_recibo)
+      AND credito.estados_fechas = TRUE;
+    """
+    
+    with connection.cursor() as cursor:
+        # Pasamos los valores como parámetros para evitar SQL Injection
+        cursor.execute(query, ['COMPLETADO', 'Pago realizado'])
+        
+        # Opcional: obtener cuántas filas se afectaron
+        row_count = cursor.rowcount
+        
+    return row_count
+
+def cobran():
+    actualizar_cobranza_masiva()
 
 @shared_task(name="apps.financings.task.cambiar_plan")
 def cambiar_plan():
