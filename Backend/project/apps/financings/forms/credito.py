@@ -76,7 +76,9 @@ class CreditoForms(forms.ModelForm):
 
         opciones_forma_de_pago = [        
             ('NIVELADA', 'NIVELADA'),
-            ('AMORTIZACIONES A CAPITAL', 'AMORTIZACIONES A CAPITAL')
+            ('AMORTIZACIONES A CAPITAL', 'AMORTIZACIONES A CAPITAL'),
+            ('INTERES MENSUAL Y CAPITAL AL VENCIMIENTO', 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO'),
+            ('INTERES Y CAPITAL AL VENCIMIENTO', 'INTERES Y CAPITAL AL VENCIMIENTO')
 
         ]
         opciones_tipo_credito = [
@@ -163,7 +165,9 @@ class CreditoMigradoForms(forms.ModelForm):
 
         opciones_forma_de_pago = [        
             ('NIVELADA', 'NIVELADA'),
-            ('AMORTIZACIONES A CAPITAL', 'AMORTIZACIONES A CAPITAL')
+            ('AMORTIZACIONES A CAPITAL', 'AMORTIZACIONES A CAPITAL'),
+            ('INTERES MENSUAL Y CAPITAL AL VENCIMIENTO', 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO'),
+            ('INTERES Y CAPITAL AL VENCIMIENTO', 'INTERES Y CAPITAL AL VENCIMIENTO')
 
         ]
         opciones_tipo_credito = [

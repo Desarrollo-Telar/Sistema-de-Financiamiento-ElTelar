@@ -19,7 +19,9 @@ from django.db.models import Q
 class Credit(models.Model):
     formaPago = [
         ('NIVELADA', 'NIVELADA'),
-        ('AMORTIZACIONES A CAPITAL', 'AMORTIZACIONES A CAPITAL')
+        ('AMORTIZACIONES A CAPITAL', 'AMORTIZACIONES A CAPITAL'),
+        ('INTERES MENSUAL Y CAPITAL AL VENCIMIENTO', 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO'),
+        ('INTERES Y CAPITAL AL VENCIMIENTO', 'INTERES Y CAPITAL AL VENCIMIENTO')
     ]
     frecuenciaPago = [
         ('MENSUAL', 'MENSUAL'),
@@ -79,6 +81,9 @@ class Credit(models.Model):
     categoria_credito_demandado = models.ForeignKey(CategoriaCreditoDemandado, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Categoria de Cliente Demandado')
     tipo_proceso = models.CharField("Tipo de Proceso de Pago", max_length=75, blank=True, null=True, default='NORMAL')
     es_credito_migrado = models.BooleanField(default=False)
+
+    plazo_gracia =  models.IntegerField("Plazo de Gracia", blank=True, null=True)
+    fecha_finalizacion_gracia = models.DateField("Fecha de Finalizacion de Gracia",blank=True, null=True)
     
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
@@ -168,6 +173,13 @@ class Credit(models.Model):
     def calcular_fecha_vencimiento(self):
         self.fecha_vencimiento = self.fecha_inicio + relativedelta(months=self.plazo)
         return self.fecha_vencimiento
+    
+    def calcular_fecha_vencimiento_gracia(self):
+        if self.plazo_gracia is  None:
+            return None 
+        
+        self.fecha_finalizacion_gracia = self.fecha_inicio + relativedelta(months=self.plazo_gracia)
+        return self.fecha_finalizacion_gracia
 
     def tasa_mensual(self):
         convertir =  round(self.tasa_interes * Decimal(100),2)
@@ -184,6 +196,7 @@ class Credit(models.Model):
     
     def save(self, *args, **kwargs):
         self.calcular_fecha_vencimiento()
+        self.calcular_fecha_vencimiento_gracia()
         super().save(*args, **kwargs)
    
     

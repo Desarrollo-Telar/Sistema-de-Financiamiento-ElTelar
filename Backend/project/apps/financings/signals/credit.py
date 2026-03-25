@@ -65,11 +65,17 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
 
     if not instance.es_credito_migrado:
         # Crear el plan de pago inicial
+        saldo_pendiente = instance.monto
+
+        if instance.forma_de_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
+            saldo_pendiente += interes
+
+
         PaymentPlan.objects.create(
             credit_id=instance,
             start_date=instance.fecha_inicio,
             outstanding_balance=instance.monto,
-            saldo_pendiente=instance.monto,
+            saldo_pendiente= saldo_pendiente,
             interest=interes,
             interes_generado=interes,
             fecha_limite=fecha_limite,
