@@ -75,7 +75,7 @@ def send_email_next_update_of_quotas(cuotas):
         
     }
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Administrador')| Q(rol__role_name='Programador'), status=True)]
+    usuarios_email = [user.email for user in User.objects.filter( Q(rol__role_name='Programador'), status=True)]
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
@@ -121,7 +121,7 @@ def send_email_update_of_quotas(cuotas):
         
     }
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Administrador')| Q(rol__role_name='Programador'), status=True)]
+    usuarios_email = [user.email for user in User.objects.filter( Q(rol__role_name='Programador'), status=True)]
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
@@ -167,7 +167,7 @@ def send_email_quotas_for_change(cuotas, hoy, hasta):
         
     }
     # Recolectar correos electrónicos de todos los superusuarios
-    usuarios_email = [user.email for user in User.objects.filter(Q(rol__role_name='Administrador')| Q(rol__role_name='Programador'), status=True)]
+    usuarios_email = [user.email for user in User.objects.filter( Q(rol__role_name='Programador'), status=True)]
 
     # Renderizar el contenido del correo electrónico
     content = template.render(context)
