@@ -253,6 +253,7 @@ class PaymentPlan(models.Model):
                 return Decimal(0) # No hay abono a capital antes del vencimiento
             
             if self.mes == plazo:
+                capital_nuevo =  round(cuota - intereses, 2)
                 return round(capital_nuevo, 2)
                 
             # 3. AJUSTE: Si supera lo proyectado (mes > plazo), se vuelve NIVELADA

@@ -13,7 +13,11 @@ export class Credit {
     #destino_id;
     #customer_id;
 
-    constructor(proposito = '', monto = '', plazo = '', tasa_interes = '', forma_de_pago = '', frecuencia_pago = '', fecha_inicio = '', tipo_credito = '', destino_id = null, customer_id = '', fecha_vencimiento = null) {
+    #plazo_gracia;
+    #fecha_finalizacion_gracia;
+
+    constructor(proposito = '', monto = '', plazo = '', tasa_interes = '', forma_de_pago = '', 
+        frecuencia_pago = '', fecha_inicio = '', tipo_credito = '', destino_id = null, customer_id = '', fecha_vencimiento = null, plazo_gracia = 0, fecha_finalizacion_gracia = null) {
         Credit.contador++;
         this.#id = Credit.contador;
         this.#proposito = proposito;
@@ -27,6 +31,9 @@ export class Credit {
         this.#tipo_credito = tipo_credito;
         this.#destino_id = destino_id;
         this.#customer_id = customer_id;
+        this.#plazo_gracia = plazo_gracia
+        this.#fecha_finalizacion_gracia = fecha_finalizacion_gracia ? new Date(fecha_finalizacion_gracia): this.calcularFechaVencimientoGracia();
+
     }
 
     get proposito() {
@@ -39,6 +46,10 @@ export class Credit {
 
     get plazo() {
         return this.#plazo;
+    }
+
+    get plazo_gracia() {
+        return this.#plazo_gracia;
     }
 
     get tasaInteres() {
@@ -96,7 +107,7 @@ export class Credit {
     }
 
     set formaDePago(value) {
-        const formasDePagoValidas = ['NIVELADA', 'AMORTIZACIONES A CAPITAL'];
+        const formasDePagoValidas = ['NIVELADA', 'AMORTIZACIONES A CAPITAL', 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO', 'INTERES Y CAPITAL AL VENCIMIENTO'];
         if (formasDePagoValidas.includes(value)) {
             this.#forma_de_pago = value;
         } else {
@@ -142,6 +153,13 @@ export class Credit {
         const fechaInicio = this.#fecha_inicio;
         const fechaVencimiento = new Date(fechaInicio);
         fechaVencimiento.setMonth(fechaVencimiento.getMonth() + this.#plazo);
+        return fechaVencimiento;
+    }
+
+    calcularFechaVencimientoGracia() {
+        const fechaInicio = this.#fecha_inicio;
+        const fechaVencimiento = new Date(fechaInicio);
+        fechaVencimiento.setMonth(fechaVencimiento.getMonth() + this.#plazo_gracia);
         return fechaVencimiento;
     }
 

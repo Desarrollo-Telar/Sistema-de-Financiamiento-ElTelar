@@ -8,9 +8,8 @@ import {get_credit} from '../../API/credito/obtener_credito.js'
 import { actualizar_credito } from '../../API/credito/actualizar.js'
 
 
-const plazo = document.getElementById('plazo');
-const fecha_inicio = document.getElementById('fecha_inicio');
-const fecha_vencimiento = document.getElementById('fecha_vencimiento');
+
+
 const monto_credito_vigente = document.getElementById('monto_credito_vigente');
 const saldo_capital_credito_vigente = document.getElementById('saldo_capital_credito_vigente');
 const honorarios_desembolso = document.getElementById('honorarios_desembolso');
@@ -30,26 +29,83 @@ const dominio = window.location.hostname; // Ejemplo: "example.com"
 const puerto = window.location.port; // Ejemplo: "8080" o "" si no está explícito
 const baseUrl = `${protocolo}//${dominio}${puerto ? `:${puerto}` : ''}`;
 
+
+const plazo = document.getElementById('plazo');
+const fecha_inicio = document.getElementById('fecha_inicio');
+const fecha_finalizacion_gracia = document.getElementById('fecha_finalizacion_gracia_id');
+const plazo_gracia = document.getElementById('plazo_gracia_id');
+const fecha_vencimiento = document.getElementById('fecha_vencimiento');
+
+function validarPlazoGracia() {
+    const plazoValue = parseInt(plazo.value, 10);
+    const plazoGValue = parseInt(plazo_gracia.value, 10);
+
+    if (!isNaN(plazoValue) && !isNaN(plazoGValue)) {
+        if (plazoGValue >= plazoValue) {
+            
+            Swal.fire({
+                icon: "error",
+                title: `Error `,
+                text: 'El plazo de gracia no puede ser mayor o igual al plazo',
+                timer: 10000,
+                showConfirmButton: false,
+            });
+
+            plazo_gracia.value = ''; // limpiar
+            fecha_finalizacion_gracia.value = '';
+            return false;
+        }
+    }
+    return true;
+}
+
 fecha_inicio.addEventListener('input', function (event) {
-    const plazoValue = parseInt(plazo.value, 10); // Obtén el valor del plazo
+    if (!validarPlazoGracia()) return;
+
+    const plazoValue = parseInt(plazo.value, 10);
+    const plazoGValue = parseInt(plazo_gracia.value, 10);
+
     const fechaInicioValue = new Date(event.target.value);
-    if (!isNaN(plazoValue) && fechaInicioValue instanceof Date && !isNaN(fechaInicioValue)) {
-        fechaInicioValue.setMonth(fechaInicioValue.getMonth() + plazoValue);
-        fecha_vencimiento.value = fechaInicioValue.toISOString().split('T')[0];
+
+    if (!isNaN(plazoValue) && !isNaN(fechaInicioValue)) {
+        let fechaVenc = new Date(fechaInicioValue);
+        fechaVenc.setMonth(fechaVenc.getMonth() + plazoValue);
+        fecha_vencimiento.value = fechaVenc.toISOString().split('T')[0];
+
+        if (!isNaN(plazoGValue)) {
+            let fechaGracia = new Date(fechaInicioValue);
+            fechaGracia.setMonth(fechaGracia.getMonth() + plazoGValue);
+            fecha_finalizacion_gracia.value = fechaGracia.toISOString().split('T')[0];
+        }
     }
 });
 
 plazo.addEventListener('input', function (event) {
-    const plazoValue = parseInt(event.target.value, 10); // Obtén el valor del plazo
+    if (!validarPlazoGracia()) return;
+
+    const plazoValue = parseInt(event.target.value, 10);
     const fechaInicioValue = new Date(fecha_inicio.value);
-    if (!isNaN(plazoValue) && fechaInicioValue instanceof Date && !isNaN(fechaInicioValue)) {
-        fechaInicioValue.setMonth(fechaInicioValue.getMonth() + plazoValue);
-        fecha_vencimiento.value = fechaInicioValue.toISOString().split('T')[0];
-        console.log(fechaInicioValue.toISOString().split('T')[0]);
+
+    if (!isNaN(plazoValue) && !isNaN(fechaInicioValue)) {
+        let fechaVenc = new Date(fechaInicioValue);
+        fechaVenc.setMonth(fechaVenc.getMonth() + plazoValue);
+        fecha_vencimiento.value = fechaVenc.toISOString().split('T')[0];
     }
 });
 
 
+plazo_gracia.addEventListener('input', function (event) {
+    if (!validarPlazoGracia()) return;
+
+    const plazoGValue = parseInt(event.target.value, 10);
+    const fechaInicioValue = new Date(fecha_inicio.value);
+
+    if (!isNaN(plazoGValue) && !isNaN(fechaInicioValue)) {
+        let fechaGracia = new Date(fechaInicioValue);
+        fechaGracia.setMonth(fechaGracia.getMonth() + plazoGValue);
+        fecha_finalizacion_gracia.value = fechaGracia.toISOString().split('T')[0];
+    }
+});
 
 $(document).ready(function () {
     $('.asesor').select2({

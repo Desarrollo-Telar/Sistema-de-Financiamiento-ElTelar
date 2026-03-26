@@ -12,7 +12,7 @@ from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
 
 class Credit:
     contador = 0
-    def __init__(self, proposito, monto, plazo, tasa_interes, forma_de_pago, frecuencia_pago, fecha_inicio, tipo_credito,  customer_id,destino_id=None, fecha_vencimiento=None):
+    def __init__(self, proposito, monto, plazo, tasa_interes, forma_de_pago, frecuencia_pago, fecha_inicio, tipo_credito,  customer_id,destino_id=None, fecha_vencimiento=None, plazo_gracia = 0, fecha_finalizacion_gracia=None):
         Credit.contador+=1
         self._id = Credit.contador
         self.__proposito = 'NADA'
@@ -26,6 +26,8 @@ class Credit:
         self.__tipo_credito = tipo_credito
         self.__destino_id = destino_id
         self.__customer_id = customer_id
+        self.__plazo_gracia = plazo_gracia
+        self.fecha_finalizacion_gracia = fecha_finalizacion_gracia if fecha_finalizacion_gracia else self.calcular_fecha_vencimientoGracia()
     
     @property
     def proposito(self):
@@ -38,6 +40,10 @@ class Credit:
     @property
     def plazo(self):
         return self.__plazo
+    
+    @property
+    def plazo_gracia(self):
+        return self.__plazo_gracia
     
     @property
     def tasa_interes(self):
@@ -143,6 +149,15 @@ class Credit:
         # Convertir fecha_inicio a un objeto datetime
         fecha_inicio = datetime.strptime(self.__fecha_inicio, '%Y-%m-%d')
         plazo = self.__plazo
+        # Usar relativedelta para sumar meses al objeto datetime
+        fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
+        # Devolver la fecha en formato string
+        return fecha_vencimiento.strftime('%Y-%m-%d')
+    
+    def calcular_fecha_vencimientoGracia(self):
+        # Convertir fecha_inicio a un objeto datetime
+        fecha_inicio = datetime.strptime(self.__fecha_inicio, '%Y-%m-%d')
+        plazo = self.__plazo_gracia
         # Usar relativedelta para sumar meses al objeto datetime
         fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
         # Devolver la fecha en formato string

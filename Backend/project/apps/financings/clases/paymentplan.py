@@ -1,15 +1,12 @@
-# CLASE PARA VER LOS PLANES DE PAGOS
+import math
+import calendar
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from .credit import Credit
-
-from apps.customers.clases.customer import Customer
-from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
-# FORMATO
-from apps.financings.formato import formatear_numero
-import re, calendar
-import math
 from decimal import Decimal
+from apps.financings.formato import formatear_numero
+
+# Asumo que formatear_numero está importado
+# from apps.financings.formato import formatear_numero 
 
 class PaymentPlan:
     contador = 0
@@ -21,28 +18,24 @@ class PaymentPlan:
         self.__estado_pago = self.generar_estado()
         self.__plan = []
         self.__plazo = int(self.__credit.plazo)
+        self.__plazo_gracia = int(getattr(self.__credit, 'plazo_gracia', 0))
         self._agregar = 0
         self.original_day = fecha_inicio_credito
-    
-    
 
     @property
     def plazo(self):
         return self.__plazo
 
+    @property
+    def plazo_gracia(self):
+        return self.__plazo_gracia
+
     def generar_estado(self):
         return 'VIGENTE'
-    
-    @property
-    def credit(self):
-        return self.__credit
-    
-    @credit.setter
-    def credit(self,value):
-        self.__credit = value
 
     @property
     def interes(self):
+        # Asegúrate que el modelo Credit devuelva la tasa mensual decimal (ej. 0.10)
         return self.__credit.tasa_interes
 
     @property
@@ -51,96 +44,108 @@ class PaymentPlan:
 
     @property
     def monto_inicial(self):
-        return round(self.__credit.monto, 2)
-    
+        return round(Decimal(self.__credit.monto), 2)
 
     def redondear(self, valor):
         return math.ceil(valor)
 
-    
     def next_month_preserving_day(self, current_date):
-        target_day = self.original_day
+        target_day = self.original_day if self.original_day != 0 else current_date.day
         next_month = current_date + relativedelta(months=1)
         last_day = calendar.monthrange(next_month.year, next_month.month)[1]
-
         valid_day = min(target_day, last_day)
-
         return next_month.replace(day=valid_day)
 
-    def calculo_intereses(self, dia=None,monto=None):
+    def calculo_intereses(self, dia=None, monto=None):
         if monto is None:
             monto = self.monto_inicial
-        #intereses = ((monto * self.interes) / 365)*dia
-        
-        intereses = ((monto * self.interes) )
-        calculo = round(intereses, 2)
-        return self.redondear(calculo)
 
-    def calculo_cuota(self, interes=0, capital=0):
+        # Si NO usas días, ignóralo
+        intereses = Decimal(monto) * Decimal(self.interes)
+
+        return self.redondear(round(intereses, 2))
+
+    def calculo_cuota(self, interes=0, capital=0, mes_actual=None):
+        cuota = 0
+        plazo = self.plazo
+
+        # 👇 si tienes plazo_gracia en tu modelo
+        gracia = int(getattr(self.__credit, 'plazo_gracia', 0))
+
         if self.forma_pago == 'NIVELADA':
-            #default_interes = self.interes / 12
-            default_interes = self.interes
-            tasa_interes_c = default_interes * 100
-            print(tasa_interes_c)
-            if tasa_interes_c > 0:
-                parte1 = (1 + default_interes) ** self.plazo * default_interes
-                parte2 = (1 + default_interes) ** self.plazo - 1
-                cuota = ((parte1 / parte2) * self.monto_inicial)
+            i = self.interes
+            if i > 0:
+                parte1 = (1 + i) ** plazo * i
+                parte2 = (1 + i) ** plazo - 1
+                cuota = (parte1 / parte2) * self.monto_inicial
             else:
                 cuota = interes + capital
 
-        else:
+        elif self.forma_pago == 'AMORTIZACIONES A CAPITAL':
+            capital = self.calculo_capital(mes_actual=mes_actual)
             cuota = interes + capital
+
+        elif self.forma_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO':
+            if mes_actual == plazo:
+                cuota = interes + self.monto_inicial
+            else:
+                cuota = interes
+
+        elif self.forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
+            if mes_actual == plazo:
+                i = self.interes
+                n_menos_m = plazo - gracia
+
+                capital_nuevo = self.monto_inicial * ((1 + i) ** gracia)
+
+                num = i * ((1 + i) ** n_menos_m)
+                den = ((1 + i) ** n_menos_m) - 1
+
+                cuota = capital_nuevo * (num / den) if den != 0 else capital_nuevo * (1 + i)
+            else:
+                cuota = 0
+
         calculo = round(cuota + self._agregar, 2)
         return self.redondear(calculo)
+    
+    def calculo_capital(self, cuota=None, intereses=None, mes_actual=None):
+        plazo = self.plazo
 
-    def calculo_capital(self, cuota=None, intereses=None):
         if self.forma_pago == 'NIVELADA':
-            calculo = round(cuota - intereses, 2)
-            return self.redondear(calculo)
-        else:
-            calculo =  round(self.monto_inicial / self.plazo, 2)
-            return self.redondear(calculo)
+            return self.redondear(round(cuota - intereses, 2))
 
-    def mes_inicial(self):
-        return self.__credit.fecha_inicio
+        elif self.forma_pago == 'AMORTIZACIONES A CAPITAL':
+            return self.redondear(round(self.monto_inicial / plazo, 2))
+
+        elif self.forma_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO':
+            return self.monto_inicial if mes_actual == plazo else 0
+
+        elif self.forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
+            if mes_actual == plazo:
+                return self.redondear(round(cuota - intereses, 2))
+            return 0
 
     def inicial(self):
-        mes_inicial = self.mes_inicial()  # Esto debería retornar un objeto 'datetime'
-        if isinstance(mes_inicial, str):  # Si mes_inicial es un string, lo conviertes
-            mes_inicial = datetime.strptime(mes_inicial, '%Y-%m-%d')
+        mes_inicio = self.__credit.fecha_inicio
+        if isinstance(mes_inicio, str):
+            mes_inicio = datetime.strptime(mes_inicio, '%Y-%m-%d')
         
-        if self.original_day != 0:
-            mes_final = self.next_month_preserving_day(mes_inicial)
-        else:
-            mes_final = mes_inicial + relativedelta(months=1)
+        mes_fin = self.next_month_preserving_day(mes_inicio)
+        
+        monto_p = self.monto_inicial
+        intereses = self.calculo_intereses(monto_p)
+        cuota = self.calculo_cuota(intereses, 0, 1)
+        capital = self.calculo_capital(cuota, intereses, 1)
 
-
-        dias_diferencia = (mes_final - mes_inicial).days
-        Fmes_inicio = mes_inicial.strftime('%d-%m-%Y')  # Convierte a cadena con formato "YYYY-MM-DD"
-        Fmes_fin = mes_final.strftime('%d-%m-%Y')      # Convierte a cadena con formato "YYYY-MM-DD"
-
-
-        dicio = {
+        return {
             'mes': 1,
-            'fecha_inicio': mes_inicial,
-            'fecha_final': mes_final,
-            'Ffecha_inicio': mes_inicial.date,
-            'Ffecha_final': mes_final.date,
+            'fecha_inicio': mes_inicio,
+            'fecha_final': mes_fin,
+            'Ffecha_inicio': mes_inicio.date,
+            'Ffecha_final': mes_fin.date,
             'monto_prestado': self.monto_inicial,
             'fmonto_prestado': formatear_numero(self.monto_inicial),
             'mora': 0,
-        }
-        intereses = self.calculo_intereses(dias_diferencia, self.monto_inicial)
-        
-        if self.forma_pago == 'NIVELADA':
-            cuota = self.calculo_cuota()
-            capital = self.calculo_capital(cuota, intereses)
-        else:
-            capital = self.calculo_capital()
-            cuota = self.calculo_cuota(intereses, capital)
-
-        dicio.update({
             'intereses': self.redondear(intereses) ,
             'fintereses':formatear_numero(intereses),
             'capital': self.redondear( capital),
@@ -151,31 +156,43 @@ class PaymentPlan:
             'total': cuota,
             'ftotal': formatear_numero(cuota),
             'estado': 'PENDIENTE'
-        })
-        return dicio
+        }
 
-    def generar_plan(self):   
-        self.__plan.clear()     
-        self.__plan.append(self.inicial())
-        plan = [self.inicial()]
-        
+    def generar_plan(self):
+        self.__plan.clear()
+        primera = self.inicial()
+        self.__plan.append(primera)
+
         for mes in range(2, self.plazo + 1):
             anterior = self.__plan[-1]
-            monto_prestado = round(anterior['monto_prestado'] - anterior['capital'], 2)
-            
+
+            # 🔥 LÓGICA IMPORTANTE
+            if self.forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
+                monto_prestado = (
+                    anterior['monto_prestado'] + anterior['intereses']
+                )
+
+            elif self.forma_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO':
+                monto_prestado = self.monto_inicial
+
+            else:
+                monto_prestado = (
+                    anterior['monto_prestado'] - anterior['capital']
+                )
+
             mes_inicial = anterior['fecha_final']
+
             if self.original_day != 0:
                 mes_final = self.next_month_preserving_day(mes_inicial)
             else:
                 mes_final = mes_inicial + relativedelta(months=1)
-            
-            dias_diferencia = (mes_final - mes_inicial).days
 
-            intereses = self.calculo_intereses(dias_diferencia,monto_prestado)
-            Fmes_inicio = mes_inicial.strftime('%d-%m-%Y')  # Convierte a cadena con formato "YYYY-MM-DD"
-            Fmes_fin = mes_final.strftime('%d-%m-%Y')      # Convierte a cadena con formato "YYYY-MM-DD"
+            dias = (mes_final - mes_inicial).days
 
-            #print(f'MES: {anterior['mes']}, Fecha Inicio: {anterior['fecha_inicio'].strftime('%Y-%m-%d')}, Fecha Final: {anterior['fecha_final'].strftime('%Y-%m-%d')}')
+            intereses = self.calculo_intereses(dias, monto_prestado)
+            cuota = self.calculo_cuota(intereses, None, mes)
+            capital = self.calculo_capital(cuota, intereses, mes)
+
             dicio = {
                 'mes': mes,
                 'fecha_inicio': mes_inicial,
@@ -187,14 +204,6 @@ class PaymentPlan:
                 'mora':0,
                 'intereses': intereses,
                 'fintereses':formatear_numero(intereses),
-            }
-            if self.forma_pago == 'NIVELADA':
-                cuota = self.calculo_cuota()
-                capital = self.calculo_capital(cuota, intereses)
-            else:
-                capital = round(anterior['capital'], 2)
-                cuota = self.calculo_cuota(intereses, capital)
-            dicio.update({
                 'capital': capital,
                 'fcapital':formatear_numero(capital),
                 'cuota': cuota,
@@ -203,8 +212,10 @@ class PaymentPlan:
                 'total':cuota,
                 'ftotal': formatear_numero(cuota),
                 'estado':'PENDIENTE'
-            })
+            }
+
             self.__plan.append(dicio)
+
         return self.__plan
     
     def recalcular_capital(self):
@@ -251,33 +262,3 @@ class PaymentPlan:
            
 
         return round(total_cuotas,2)
-
-
-
-
-
-if __name__ == '__main__':
-    fiador = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
-    cliente = Customer('Juan', 'Lopez', 'lopez@gmail.com', 'DPI', '323846682', '1106369', '42256694', 'RESIDENTE', 'Aprobado', 'MASCULINO', 'AGRONOMO', 'GUATEMALTECA', 'COBAN', '14-03-1995', 'SOLTERO', 'Individual (PI)')
-    destino = InvestmentPlan('CONSUMO', 1500, 750, 100, cliente)
-    credito = Credit(destino.type_of_product_or_service, 50000, 36, 0.1, 'NIVELADA', 'MENSUAL', '2024-09-15', 'CONSUMO', destino, fiador)
-    plan_pago = PaymentPlan(credito)
-
-    #print(plan_pago.calculo_cuota())
-    plan = plan_pago.recalcular_capital()
-    print(plan_pago.calcular_total_cuotas())
-
-    #print(plan_pago.calculo_cuota())
-    fecha_inicio = datetime.strptime('2024-09-01','%Y-%m-%d')
-    fecha_vencimiento = fecha_inicio + relativedelta(months=1)
-    fecha_limite = fecha_inicio + relativedelta(months=1, days=15)
-    fecha_vencimiento += relativedelta(days=15)
-
-    print(fecha_limite.strftime('%Y-%m-%d'))
-    print(datetime.now().date())
-   
-    
-
-
-  
-    
