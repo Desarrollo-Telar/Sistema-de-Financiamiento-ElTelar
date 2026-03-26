@@ -136,6 +136,12 @@
 
 
                 <p class="mb-2"><strong>PLAZO:</strong> <span class="fw-light">{{credit_list.plazo}} MESES</span></p>
+                
+                {% if credit_list.plazo_gracia %}
+                <p class="mb-2"><strong>PLAZO DE GRACIA:</strong> <span class="fw-light">{{credit_list.plazo_gracia}} MESES</span></p>
+                {% endif %}
+
+
                 <p class="mb-0"><strong>TASA DE INTERÉS MENSUAL:</strong> <span
                         class="fw-light">{{credit_list.tasa_mensual}}%</span></p>
 
@@ -155,6 +161,12 @@
         <p class="mb-0"><strong>FECHA VENCIMIENTO:</strong> <span
                 class="fw-light">{{credit_list.fecha_vencimiento}}</span></p>
     </div>
+    {% if credit_list.fecha_finalizacion_gracia %}
+    <div class="col-md-4 mb-3">
+        <p class="mb-0"><strong>FECHA VENCIMIENTO DE GRACIA:</strong> <span
+                class="fw-light">{{credit_list.fecha_finalizacion_gracia}}</span></p>
+    </div>
+    {% endif %}
     <div class="col-md-4 mb-3">
         <p class="mb-0"><strong>DIAS DE MORA:</strong> <span
                 class="fw-light">{{credit_list.dias_de_mora}} DIAS</span></p>

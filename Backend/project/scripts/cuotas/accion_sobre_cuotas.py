@@ -48,12 +48,17 @@ def calcular_interes_y_mora(cuota):
     tasa_interes = 0
     interes = 0
     mora = 0
+    saldo_pendiente = cuota.saldo_pendiente
 
     if cuota.credit_id is not None:
         tasa_interes =  cuota.credit_id.tasa_interes
+        forma_pago = cuota.credit_id.forma_de_pago
 
         if not cuota.status:
             mora = Decimal(cuota.mora) + (Decimal(cuota.interest) * Decimal("0.10")) # Por lo establecido la mora es del 10%
+        
+        
+
     
     if cuota.acreedor is not None:
         tasa_interes = cuota.acreedor.tasa
@@ -61,7 +66,7 @@ def calcular_interes_y_mora(cuota):
     if cuota.seguro is not None:
         tasa_interes = cuota.seguro.tasa
     
-    interes = calculo_interes(cuota.saldo_pendiente, tasa_interes)
+    interes = calculo_interes(saldo_pendiente, tasa_interes)
 
     return interes, mora
 
@@ -85,7 +90,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 
             fecha_inicio = pago.credit_id.fecha_inicio
             fecha_emision = dia
-            fecha_limite = pago.credit_id.fecha_finalizacion_gracia
+            fecha_limite = pago.credit_id.fecha_vencimiento
             forma_pago = pago.credit_id.forma_de_pago
 
 
@@ -94,7 +99,12 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
                 fecha_inicio <= fecha_emision <= fecha_limite and
                 forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
             ):
+                
                 siguiente_cuota.saldo_pendiente = pago.saldo_pendiente + interes
+
+                tasa_interes =  pago.credit_id.tasa_interes
+                interes  = calculo_interes(siguiente_cuota.saldo_pendiente, tasa_interes)
+
                 siguiente_cuota.interest = interes
 
 
@@ -132,7 +142,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 
             fecha_inicio = pago.credit_id.fecha_inicio
             fecha_emision = dia
-            fecha_limite = pago.credit_id.fecha_finalizacion_gracia
+            fecha_limite = pago.credit_id.fecha_vencimiento
             forma_pago = pago.credit_id.forma_de_pago
 
 
@@ -142,6 +152,10 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
                 forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
             ):
                 cuota.saldo_pendiente = pago.saldo_pendiente + interes
+
+                tasa_interes =  pago.credit_id.tasa_interes
+                interes  = calculo_interes(cuota.saldo_pendiente, tasa_interes)
+
                 cuota.interest = interes
 
         if pago.seguro:
@@ -169,7 +183,7 @@ def generar_estado_cuenta(cuota, accion, dia):
         estado_cuenta.credit = cuota.credit_id
         fecha_inicio = cuota.credit_id.fecha_inicio
         fecha_emision = dia
-        fecha_limite = cuota.credit_id.fecha_finalizacion_gracia
+        fecha_limite = cuota.credit_id.fecha_vencimiento
         forma_pago = cuota.credit_id.forma_de_pago
 
 
@@ -261,7 +275,8 @@ def recorrido_de_cuotas(cuotas, accion, dia=None):
         if cuota.credit_id:
             fecha_inicio = cuota.credit_id.fecha_inicio
             fecha_emision = dia
-            fecha_limite = cuota.credit_id.fecha_finalizacion_gracia
+            fecha_limite = cuota.credit_id.fecha_vencimiento
+           
             forma_pago = cuota.credit_id.forma_de_pago
 
 
@@ -271,18 +286,19 @@ def recorrido_de_cuotas(cuotas, accion, dia=None):
                     forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
                 ):
                 cambiar_estados = False
+                cuota.status = True
 
         
         
 
         if accion == 'FECHA_LIMITE':
-
+            
             interes, mora = calcular_interes_y_mora(cuota)
             interes_acumulado = 0
             
             
 
-            if (not cuota.status) and cambiar_estados:
+            if not cuota.status :
                 cuota.cuota_vencida = True
                 credito.estado_aportacion = False
 

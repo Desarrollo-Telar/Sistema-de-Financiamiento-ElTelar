@@ -67,8 +67,7 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
         # Crear el plan de pago inicial
         saldo_pendiente = instance.monto
 
-        if instance.forma_de_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
-            saldo_pendiente += interes
+       
 
 
         PaymentPlan.objects.create(

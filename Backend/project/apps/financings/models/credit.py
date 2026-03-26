@@ -175,8 +175,8 @@ class Credit(models.Model):
         return self.fecha_vencimiento
     
     def calcular_fecha_vencimiento_gracia(self):
-        if self.plazo_gracia is  None:
-            return None 
+        if self.plazo_gracia is  None or self.plazo_gracia == 0:
+            self.plazo_gracia = 0 
         
         self.fecha_finalizacion_gracia = self.fecha_inicio + relativedelta(months=self.plazo_gracia)
         return self.fecha_finalizacion_gracia

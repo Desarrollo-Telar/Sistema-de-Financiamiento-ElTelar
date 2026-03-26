@@ -23,7 +23,7 @@ def verificador_de_cuotas_vencidas(dia):
     if not planes.exists():
         print("No hay registro")
         return
-    recorrido_de_cuotas(planes, 'FECHA_VENCIMIENTO')
+    recorrido_de_cuotas(planes, 'FECHA_VENCIMIENTO', dia)
     for cuota in planes:
         print(cuota)
     
