@@ -28,7 +28,7 @@ def verificador_de_cuotas_fecha_limite(dia):
     if not planes.exists():
         print("No hay registro")
         return
-    recorrido_de_cuotas(planes, 'FECHA_LIMITE')
+    recorrido_de_cuotas(planes, 'FECHA_LIMITE', dia)
     for cuota in planes:
         print(cuota)
 

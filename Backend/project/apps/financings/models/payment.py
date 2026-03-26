@@ -312,6 +312,24 @@ class Payment(models.Model):
                 
             else:
                 informacion['credito'].estado_aportacion  = False
+        
+        
+
+        if cuota.credit_id:
+            fecha_inicio = cuota.credit_id.fecha_inicio
+            fecha_emision = self.fecha_emision
+            fecha_limite = cuota.credit_id.fecha_finalizacion_gracia
+            forma_pago = cuota.credit_id.forma_de_pago
+            
+            formas_p = ['INTERES Y CAPITAL AL VENCIMIENTO', 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO']
+
+
+            if (
+                    fecha_limite is not None and
+                    fecha_inicio <= fecha_emision <= fecha_limite and
+                    forma_pago in formas_p
+                ):
+                cuota.status = True
             
         
         cuota.save()
