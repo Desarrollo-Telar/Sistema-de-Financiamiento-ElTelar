@@ -12,10 +12,10 @@ def cuota_a_pagar(self):
     informacion = sobre_que_es_pago(self)
 
     # Fecha de emisión (como objeto datetime)
-    fecha_emision = self.fecha_emision
+    fecha_emision = self.fecha_emision.date()
 
     if informacion['ultimo_registro_estado_cuenta'] is not None:
-        ultima_fecha = informacion['ultimo_registro_estado_cuenta'].payment.fecha_emision
+        ultima_fecha = informacion['ultimo_registro_estado_cuenta'].payment.fecha_emision.date()
             
 
         # Calcular la diferencia en días
@@ -33,15 +33,16 @@ def cuota_a_pagar(self):
     print(informacion['cuotas'])
     for cuota in informacion['cuotas']:
         # Usar objetos datetime directamente
-        fecha_inicio = cuota.start_date
-        fecha_limite = cuota.fecha_limite
-        print(f'Cuota: {cuota} # {cuota.id}. FECHA INICIO: {fecha_inicio}, Fecha Limite: {fecha_limite}, Fecha de Emision: {fecha_emision}')
+        fecha_inicio = cuota.start_date.date()
+        fecha_limite = cuota.fecha_limite.date()
+        fecha_emision_date = fecha_emision
+        
                         
         # Comparar directamente objetos datetime
-        if fecha_inicio <= fecha_emision <= fecha_limite:
+        if fecha_inicio <= fecha_emision_date <= fecha_limite:
             # Si la fecha de emisión cae dentro del rango de esta cuota
             print(f"Cuota encontrada en rango de fechas: {cuota}")
-            if fecha_emision == fecha_limite:
+            if fecha_emision_date == fecha_limite:
                 print("Fecha de emisión es igual a la fecha límite, continuando a la siguiente cuota")
                 continue 
             return cuota

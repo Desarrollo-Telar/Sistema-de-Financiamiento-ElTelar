@@ -66,9 +66,9 @@ def procesos_de_pago(self, saldo_pendiente, interes, mora, capital_generado = 0,
         excedente=excedente if excedente > 0 else None
     )
 
-    return self._generar_resumen(resultados, excedente)
+    return _generar_resumen(resultados, excedente)
 
-def _generar_resumen(self, res, excedente):
+def _generar_resumen( res, excedente):
     if res['pendiente_mora'] > 0:
         return f"Parcial. Pendiente Mora: Q{res['pendiente_mora']}"
     if res['pendiente_interes'] > 0:

@@ -165,14 +165,14 @@ class Payment(models.Model):
         cuota = self._cuota_pagar()
         
         # Fecha de creación del pago
-        fecha_creacion_pago = self.creation_date
+        fecha_creacion_pago = self.creation_date.date()
 
         # Obtener información del banco
         info_banco = self.banco()
         
         if info_banco:
             # Fecha de creación del registro en el banco
-            fecha_creacion_registro_banco = info_banco.creation_date
+            fecha_creacion_registro_banco = info_banco.creation_date.date()
             print(fecha_creacion_registro_banco)
             print(fecha_creacion_pago)
             
@@ -207,7 +207,9 @@ class Payment(models.Model):
                 cuota = self._siguiente_cuota()
 
             saldo_pendiente = cuota.saldo_pendiente
+
             informacion = sobre_que_es_pago(self)
+            
             tipo_proceso = informacion['tipo_proceso']
 
 
@@ -218,6 +220,7 @@ class Payment(models.Model):
             mora = self._calculo_mora()
             interes = cuota.interest
             capital_generado = cuota.capital_generado if cuota.capital_generado else 0
+            
             
             procesos_de_pago(self,saldo_pendiente, interes,mora, capital_generado, tipo_proceso)
 
@@ -317,7 +320,7 @@ class Payment(models.Model):
 
         if cuota.credit_id:
             fecha_inicio = cuota.credit_id.fecha_inicio
-            fecha_emision = self.fecha_emision
+            fecha_emision = self.fecha_emision.date()
             fecha_limite = cuota.credit_id.fecha_finalizacion_gracia
             forma_pago = cuota.credit_id.forma_de_pago
             
