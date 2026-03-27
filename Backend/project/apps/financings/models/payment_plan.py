@@ -97,6 +97,21 @@ class PaymentPlan(models.Model):
     
     def formato_cuota_saldo_pendiente(self):
         return formatear_numero(self.saldo_pendiente)
+    
+    def calculo_inte(self):
+        tasa_interes = 0
+        if self.credit_id is not None:
+            tasa_interes = self.credit_id.tasa_interes
+        
+        if  self.acreedor is not None:
+            tasa_interes = self.acreedor.tasa
+        
+        if  self.seguro is not None:
+            tasa_interes = self.seguro.tasa
+
+        interes = (self.outstanding_balance * tasa_interes)
+        si = round(interes,2)
+        return si
    
     def no_mes(self):
         contar = 0
