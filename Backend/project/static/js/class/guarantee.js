@@ -8,7 +8,7 @@ export class Guarantee {
         this._count = Guarantee.contador;
         this._description = descripcion;
         this._detalle_garantia = detalle_garantia.map(dg => new DetailGuarantee(dg.tipo_garantia, dg.valor_cobertura, dg.especificacion));
-        this._suma_total = this.calcularSumaTotal();
+        this._suma_total = this.calcularSumaTotal().toFixed(2);
         this._guarantee = {};
     }
 
