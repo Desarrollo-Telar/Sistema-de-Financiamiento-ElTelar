@@ -75,11 +75,13 @@ class WorkingInformation(models.Model):
     
     def get_empresa_laburo(self):
         empresa_laburo_cliente = ''
+
         if self.source_of_income != 'Otra':
             empresa_laburo_cliente = self.company_name
         else:
             otra_fuente_ingreso = OtherSourcesOfIncome.objects.filter(customer_id=self.customer_id.id).first()
-            empresa_laburo_cliente = otra_fuente_ingreso.source_of_income
+
+            empresa_laburo_cliente = otra_fuente_ingreso.source_of_income if otra_fuente_ingreso else '---'
 
         return empresa_laburo_cliente
     
