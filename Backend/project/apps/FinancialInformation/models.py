@@ -59,7 +59,7 @@ class WorkingInformation(models.Model):
             fuente_ingreso_cliente = self.source_of_income
         else:
             otra_fuente_ingreso = OtherSourcesOfIncome.objects.filter(customer_id=self.customer_id.id).first()
-            fuente_ingreso_cliente = otra_fuente_ingreso.source_of_income
+            fuente_ingreso_cliente = otra_fuente_ingreso.source_of_income if otra_fuente_ingreso else '---'
 
         return fuente_ingreso_cliente
     
