@@ -223,7 +223,7 @@ class PaymentPlan(models.Model):
         
       
         capital = Decimal(0)
-        es_vencimiento_o_mas = self.mes >= plazo
+        es_vencimiento_o_mas = self.mes > gracia
         capital_nuevo = monto_inicial * (Decimal(1) + tasa_interes) ** gracia
         
 
@@ -242,25 +242,24 @@ class PaymentPlan(models.Model):
 
         elif forma_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO':
             # Solo se paga capital en el último mes
-            if es_vencimiento_o_mas:                
-                return Decimal(self.saldo_pendiente)
+            if es_vencimiento_o_mas:
+                plazo = plazo - gracia
+                capital = round(monto_inicial / plazo, 2)  
+
+                return Decimal(capital)
+            
             return Decimal(0)
 
         elif forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
             # Solo se paga capital en el último mes
             # Si estamos dentro del plazo proyectado (mes <= plazo)
-            if self.mes < plazo:
-                return Decimal(0) # No hay abono a capital antes del vencimiento
+            if es_vencimiento_o_mas:
+                plazo = plazo - gracia
+                capital = round(monto_inicial / plazo, 2)  
+
+                return Decimal(capital)
             
-            if self.mes == plazo:
-                capital_nuevo =  round(cuota - intereses, 2)
-                return round(capital_nuevo, 2)
-                
-            # 3. AJUSTE: Si supera lo proyectado (mes > plazo), se vuelve NIVELADA
-            # Aquí calculamos el capital como una cuota nivelada normal sobre el saldo
-            intereses = self.calculo_interes()
-            cuota_nivelada = self.calculo_cuota()
-            return round(cuota_nivelada - intereses, 2)
+            return Decimal(0)
         
         
         return Decimal(capital)
@@ -291,7 +290,7 @@ class PaymentPlan(models.Model):
             plazo = self.seguro.plazo
             monto = Decimal(self.seguro.monto)
         
-        es_vencimiento_o_mas = self.mes >= plazo
+        es_vencimiento_o_mas = self.mes > gracia
         
 
         if forma_pago == 'NIVELADA':
@@ -311,41 +310,31 @@ class PaymentPlan(models.Model):
             return round(cuota, 2)
         
         elif forma_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO':
-            if self.mes == plazo:
+            if es_vencimiento_o_mas:
                 # Último mes: Interés del mes + Total del Capital
-                return round(self.interest + monto, 2)
+                plazo = plazo - gracia
+
+                capital = round(monto / plazo, 2)
+                cuota = Decimal(self.interest) + capital
+                return round(cuota, 2)
             else:
                 # Meses intermedios: Solo el interés
                 return round(self.interest, 2)
 
         elif forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
-            if self.mes < plazo:
+            if es_vencimiento_o_mas:
+                plazo = plazo - gracia
+
+                capital = round(monto / plazo, 2)
+                cuota = Decimal(self.interest) + capital
+                return round(cuota, 2)
+
+                
+            else:
                 return Decimal(0)
             
 
-            # Caso B: Al vencimiento (Mes 5 en tu ejemplo)
-            # cuota = capital_nuevo * ( (i * (1+i)^(n-m)) / ((1+i)^(n-m) - 1) )
-            if self.mes == plazo:
-                capital_nuevo = monto * (Decimal(1) + tasa_interes) ** gracia
-                exponente = plazo - gracia # (n - m)
-                
-                # Si el exponente es 1, la fórmula se simplifica a: capital_nuevo * (1 + i)
-                numerador = tasa_interes * (Decimal(1) + tasa_interes) ** exponente
-                denominador = (Decimal(1) + tasa_interes) ** exponente - Decimal(1)
-                
-                if denominador == 0: # Evitar división por cero
-                    return round(capital_nuevo * (Decimal(1) + tasa_interes), 2)
-                    
-                cuota = capital_nuevo * (numerador / denominador)
-                return round(cuota, 2)
-
-            # Caso C: Supera lo proyectado (Mora/Ajuste a Nivelada)
-            # Calculamos una cuota nivelada estándar sobre el saldo pendiente actual
-            saldo = Decimal(self.saldo_pendiente)
-            if tasa_interes > 0:
-                # Usamos un plazo remanente ficticio o 1 para cobrar el saldo restante
-                return round(saldo * (Decimal(1) + tasa_interes), 2)
-            return saldo
+            
 
         return Decimal(0)
 

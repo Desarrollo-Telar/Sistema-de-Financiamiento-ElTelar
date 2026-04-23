@@ -90,7 +90,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 
             fecha_inicio = pago.credit_id.fecha_inicio
             fecha_emision = dia
-            fecha_limite = pago.credit_id.fecha_vencimiento
+            fecha_limite = pago.credit_id.fecha_finalizacion_gracia
             forma_pago = pago.credit_id.forma_de_pago
 
 
@@ -100,10 +100,10 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
                 forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
             ):
                 
-                siguiente_cuota.saldo_pendiente = pago.saldo_pendiente + interes
+                saldo_acumulativo = pago.saldo_pendiente + interes
 
                 tasa_interes =  pago.credit_id.tasa_interes
-                interes  = calculo_interes(siguiente_cuota.saldo_pendiente, tasa_interes)
+                interes  = calculo_interes(saldo_acumulativo, tasa_interes)
 
                 siguiente_cuota.interest = interes
 
@@ -142,7 +142,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 
             fecha_inicio = pago.credit_id.fecha_inicio
             fecha_emision = dia
-            fecha_limite = pago.credit_id.fecha_vencimiento
+            fecha_limite = pago.credit_id.fecha_finalizacion_gracia
             forma_pago = pago.credit_id.forma_de_pago
 
 
@@ -151,10 +151,10 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
                 fecha_inicio <= fecha_emision <= fecha_limite and
                 forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
             ):
-                cuota.saldo_pendiente = pago.saldo_pendiente + interes
+                saldo_acumulativo = pago.saldo_pendiente + interes
 
                 tasa_interes =  pago.credit_id.tasa_interes
-                interes  = calculo_interes(cuota.saldo_pendiente, tasa_interes)
+                interes  = calculo_interes(saldo_acumulativo, tasa_interes)
 
                 cuota.interest = interes
 

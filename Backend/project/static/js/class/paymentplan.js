@@ -54,9 +54,9 @@ export class PaymentPlan {
 
 calculoCuota(interes = null, capital = null, mesActual = null) {
     let cuota = 0;
-    const plazo = this.plazo;
-    const gracia = this.plazoGracia;
-    console.log(gracia)
+    let plazo = this.plazo;
+    let gracia = this.plazoGracia;
+    
 
     if (this.formaPago === 'NIVELADA') {
         const defaultInteres = this.interes;
@@ -70,8 +70,12 @@ calculoCuota(interes = null, capital = null, mesActual = null) {
 
     } else if (this.formaPago === 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO') {
         // Si es el último mes, paga Interés + Todo el Capital
-        if (mesActual === plazo) {
-            cuota = parseFloat(interes) + parseFloat(this.montoInicial);
+        if (mesActual > gracia) {
+            plazo -= gracia;
+           
+
+            capital = redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
+            cuota = parseFloat(interes) + parseFloat(capital);
         } else {
             // Meses intermedios: Solo el interés
             cuota = parseFloat(interes);
@@ -79,16 +83,13 @@ calculoCuota(interes = null, capital = null, mesActual = null) {
 
     } else if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
         // Tu lógica específica: Capitalización en gracia y cuota única al final
-        if (mesActual === plazo) {
-            const i = this.interes;
-            const n_menos_m = plazo - gracia;
-            const capital_nuevo = this.montoInicial * Math.pow(1 + i, gracia);
-            
-            // Fórmula: cuota = capital_nuevo * [ (i * (1+i)^exponente) / ((1+i)^exponente - 1) ]
-            const num = i * Math.pow(1 + i, n_menos_m);
-            const den = Math.pow(1 + i, n_menos_m) - 1;
-            
-            cuota = (den === 0) ? capital_nuevo * (1 + i) : capital_nuevo * (num / den);
+        if (mesActual > gracia) {
+            plazo -= gracia;
+           
+
+            capital = redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
+           
+            cuota = parseFloat(interes) + parseFloat(capital);
             
             
 
@@ -105,7 +106,8 @@ calculoCuota(interes = null, capital = null, mesActual = null) {
 }
 
 calculoCapital(cuota = null, intereses = null, mesActual = null) {
-    const plazo = this.plazo;
+    let plazo = this.plazo;
+    let gracia = this.plazoGracia;
 
     if (this.formaPago === 'NIVELADA') {
         return redondearArriba(parseFloat(cuota - intereses).toFixed(2));
@@ -114,19 +116,28 @@ calculoCapital(cuota = null, intereses = null, mesActual = null) {
         return redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
 
     } else if (this.formaPago === 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO') {
-        // Capital es 0 hasta el último mes
-        return (mesActual === plazo) ? parseFloat(this.montoInicial) : 0;
+        
+        if (mesActual > gracia) {
+            plazo -= gracia;
+           
+
+            return redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
+
+        } else {
+            
+            return 0;
+        }
 
     } else if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
-        if (mesActual === plazo) {
-            // Buscamos el monto prestado del último mes en el plan que se está generando
-            // O recalculamos el capital capitalizado:
-            const i = this.interes;
-            const gracia = parseInt(this._credit._plazo_gracia || 0);
-            const capitalCapitalizado = this.montoInicial * Math.pow(1 + i, gracia);
-            return redondearArriba(parseFloat(cuota - intereses).toFixed(2));
+        if (mesActual > gracia) {
+            plazo = plazo - gracia
+
+            return redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
+
+        } else {
+            
+            return 0;
         }
-        return 0;
     }
 }
 
@@ -144,7 +155,8 @@ inicial() {
         mes: 1,
         fecha_inicio: mesInicial,
         fecha_final: mesFinal,
-        monto_prestado: this.montoInicial
+        monto_prestado: this.montoInicial,
+        monto_interes: this.montoInicial
     };
 
     const intereses = this.calculoIntereses(null, this.montoInicial);
@@ -164,6 +176,8 @@ generarPlan() {
     this._plan = [];
     const primeraCuota = this.inicial();
     this._plan.push(primeraCuota);
+    let plazo = this.plazo;
+    let gracia = this.plazoGracia;
 
     for (let mes = 2; mes <= this.plazo; mes++) {
         const anterior = this._plan[this._plan.length - 1];
@@ -172,16 +186,21 @@ generarPlan() {
         // 1. LÓGICA DE SALDOS SEGÚN FORMA DE PAGO
         if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
             // CAPITALIZACIÓN: El nuevo monto es el anterior + los intereses que no se pagaron
-            montoParaInteres = parseFloat(anterior.monto_prestado) + parseFloat(anterior.intereses);
+            montoParaInteres = parseFloat(anterior.monto_interes) + parseFloat(anterior.intereses);
+            
+          
+            
         } 
         else if (this.formaPago === 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO') {
             // Se mantiene el monto inicial porque el interés se paga mes a mes
-            montoParaInteres = parseFloat(this.montoInicial);
+            montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
         } 
         else {
             // NIVELADA o AMORTIZACIÓN CONSTANTE: Se resta el capital ya pagado
             montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
         }
+
+        let montoOtorgado = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
 
         // 2. FECHAS
         const mesInicial = new Date(anterior.fecha_final);
@@ -200,7 +219,8 @@ generarPlan() {
             mes: mes,
             fecha_inicio: mesInicial,
             fecha_final: mesFinal,
-            monto_prestado: parseFloat(montoParaInteres).toFixed(2), // Aquí se ve el aumento
+            monto_prestado: parseFloat(montoOtorgado).toFixed(2), // Aquí se ve el aumento
+            monto_interes: parseFloat(montoParaInteres).toFixed(2),
             intereses: intereses,
             capital: capital,
             cuota: cuota
