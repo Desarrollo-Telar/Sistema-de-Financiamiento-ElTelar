@@ -72,7 +72,7 @@ def cobran():
 @shared_task(name="apps.financings.task.cambiar_plan")
 def cambiar_plan():
     #validacion = ejecutar_max_1_veces_al_dia()
-    dia = '2026-10-11'
+    dia = '2026-06-06'
     from datetime import datetime
 
     dia = datetime.strptime(dia, "%Y-%m-%d").date()
