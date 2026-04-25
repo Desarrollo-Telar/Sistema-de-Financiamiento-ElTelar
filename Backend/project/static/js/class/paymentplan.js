@@ -186,7 +186,15 @@ generarPlan() {
         // 1. LÓGICA DE SALDOS SEGÚN FORMA DE PAGO
         if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
             // CAPITALIZACIÓN: El nuevo monto es el anterior + los intereses que no se pagaron
-            montoParaInteres = parseFloat(anterior.monto_interes) + parseFloat(anterior.intereses);
+            if (mes >  (gracia+1)){
+                montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
+
+            }else{
+                montoParaInteres = parseFloat(anterior.monto_interes) + parseFloat(anterior.intereses);
+
+            }
+            
+            
             
           
             
