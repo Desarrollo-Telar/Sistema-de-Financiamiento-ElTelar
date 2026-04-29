@@ -205,7 +205,7 @@ $(document).ready(function () {
                                 console.log(item);
                                 return {
                                     id: item.id,
-                                    text: item.codigo_credito + ' ' + item.customer_id.first_name + ' ' + item.customer_id.last_name
+                                    text: item.sucursal.nombre+' - '+ item.codigo_credito + ' ' + item.customer_id.first_name + ' ' + item.customer_id.last_name 
                                 };
                             })
                     };

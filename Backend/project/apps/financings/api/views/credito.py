@@ -199,10 +199,10 @@ class CreditVigentesViewSet(viewsets.ModelViewSet):
         asesor_autenticado = CreditCounselor.objects.filter(usuario=self.request.user).first()
         roles = ['Administrador', 'Programador', 'Secretari@']
 
-        sucursal = getattr(self.request,'sucursal_actual',None)
+        """sucursal = getattr(self.request,'sucursal_actual',None)
 
         if sucursal:
-            queryset = queryset.filter(Q(sucursal=sucursal))
+            queryset = queryset.filter(Q(sucursal=sucursal))"""
 
         if search_term:
             filters = (
