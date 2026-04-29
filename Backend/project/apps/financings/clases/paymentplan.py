@@ -64,6 +64,27 @@ class PaymentPlan:
         intereses = Decimal(monto) * Decimal(self.interes)
 
         return self.redondear(round(intereses, 2))
+    
+    def calculo_interes_acumulado( self, saldo_capital_pendiente, n):
+    # Convertimos a Decimal para precisión financiera
+        tasa = Decimal(str(self.interes))
+        saldo = Decimal(str(saldo_capital_pendiente))
+        interes_acumulado = Decimal('0')
+        
+        i = 0
+        # Cambiamos == por < para que el ciclo funcione
+        while i < n:
+            # El interés del mes actual sobre el saldo pendiente
+            interes_del_mes = saldo * tasa
+            interes_acumulado += interes_del_mes
+            
+            # El saldo aumenta porque el interés se capitaliza
+            saldo += interes_del_mes
+            
+            i += 1
+            print(f'MES: {i}, Interés del mes: {interes_del_mes:.2f}, Acumulado: {interes_acumulado:.2f}')
+        
+        return interes_acumulado
 
     def calculo_cuota(self, interes=0, capital=0, mes_actual=None):
         cuota = 0
@@ -86,22 +107,22 @@ class PaymentPlan:
             cuota = interes + capital
 
         elif self.forma_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO':
-            if mes_actual == plazo:
-                cuota = interes + self.monto_inicial
+            if mes_actual > gracia:
+                plazo -= gracia
+
+                capital = self.redondear(round(self.monto_inicial / plazo, 2))
+
+                cuota = interes + capital
             else:
                 cuota = interes
 
         elif self.forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
-            if mes_actual == plazo:
-                i = self.interes
-                n_menos_m = plazo - gracia
+            if mes_actual > gracia:
+                plazo -= gracia
 
-                capital_nuevo = self.monto_inicial * ((1 + i) ** gracia)
+                capital = self.redondear(round(self.monto_inicial / plazo, 2))
 
-                num = i * ((1 + i) ** n_menos_m)
-                den = ((1 + i) ** n_menos_m) - 1
-
-                cuota = capital_nuevo * (num / den) if den != 0 else capital_nuevo * (1 + i)
+                cuota = interes + capital
             else:
                 cuota = 0
 
@@ -110,6 +131,7 @@ class PaymentPlan:
     
     def calculo_capital(self, cuota=None, intereses=None, mes_actual=None):
         plazo = self.plazo
+        gracia = int(getattr(self.__credit, 'plazo_gracia', 0))
 
         if self.forma_pago == 'NIVELADA':
             return self.redondear(round(cuota - intereses, 2))
@@ -118,12 +140,20 @@ class PaymentPlan:
             return self.redondear(round(self.monto_inicial / plazo, 2))
 
         elif self.forma_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO':
-            return self.monto_inicial if mes_actual == plazo else 0
+            if (mes_actual > gracia):
+                plazo -= gracia
+                return self.redondear(round(self.monto_inicial / plazo, 2))
+
+            else:
+                return 0
 
         elif self.forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
-            if mes_actual == plazo:
-                return self.redondear(round(cuota - intereses, 2))
-            return 0
+            if (mes_actual > gracia):
+                plazo -= gracia
+                return self.redondear(round(self.monto_inicial / plazo, 2))
+
+            else:
+                return 0
 
     def inicial(self):
         mes_inicio = self.__credit.fecha_inicio
@@ -144,6 +174,7 @@ class PaymentPlan:
             'Ffecha_inicio': mes_inicio.date,
             'Ffecha_final': mes_fin.date,
             'monto_prestado': self.monto_inicial,
+            'monto_interes': self.monto_inicial,
             'fmonto_prestado': formatear_numero(self.monto_inicial),
             'mora': 0,
             'intereses': self.redondear(intereses) ,
@@ -162,25 +193,42 @@ class PaymentPlan:
         self.__plan.clear()
         primera = self.inicial()
         self.__plan.append(primera)
+        gracia = int(getattr(self.__credit, 'plazo_gracia', 0))
+        dias = None
 
         for mes in range(2, self.plazo + 1):
             anterior = self.__plan[-1]
 
-            # 🔥 LÓGICA IMPORTANTE
+            
             if self.forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
-                monto_prestado = (
-                    anterior['monto_prestado'] + anterior['intereses']
-                )
+                if (mes > (gracia +1)):
+                   monto_prestado = (
+                        anterior['monto_prestado'] - anterior['capital']
+                    )
+                   intereses = self.calculo_intereses(dias, monto_prestado)
+                else:
+                    monto_prestado = (
+                        anterior['monto_interes'] + anterior['intereses']
+                    )
+                    intereses = self.calculo_interes_acumulado(anterior['monto_prestado'],mes)
+                    #intereses = self.calculo_intereses(dias, monto_prestado) + anterior['intereses']
 
             elif self.forma_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO':
-                monto_prestado = self.monto_inicial
+                monto_prestado = (
+                    anterior['monto_prestado'] - anterior['capital']
+                )
+                intereses = self.calculo_intereses(dias, monto_prestado)
 
             else:
                 monto_prestado = (
                     anterior['monto_prestado'] - anterior['capital']
                 )
+                intereses = self.calculo_intereses(dias, monto_prestado)
 
             mes_inicial = anterior['fecha_final']
+            monto_otorgado =  (
+                    anterior['monto_prestado'] - anterior['capital']
+                )
 
             if self.original_day != 0:
                 mes_final = self.next_month_preserving_day(mes_inicial)
@@ -189,7 +237,7 @@ class PaymentPlan:
 
             dias = (mes_final - mes_inicial).days
 
-            intereses = self.calculo_intereses(dias, monto_prestado)
+            
             cuota = self.calculo_cuota(intereses, None, mes)
             capital = self.calculo_capital(cuota, intereses, mes)
 
@@ -199,8 +247,9 @@ class PaymentPlan:
                 'fecha_final': mes_final,
                 'Ffecha_inicio': mes_inicial.date,
                 'Ffecha_final': mes_final.date,
-                'monto_prestado': monto_prestado,
-                'fmonto_prestado': formatear_numero(monto_prestado),
+                'monto_prestado': monto_otorgado,
+                'monto_interes':monto_prestado,
+                'fmonto_prestado': formatear_numero(monto_otorgado),
                 'mora':0,
                 'intereses': intereses,
                 'fintereses':formatear_numero(intereses),

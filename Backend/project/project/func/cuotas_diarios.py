@@ -69,11 +69,40 @@ def actualizar_cobranza_masiva():
 def cobran():
     actualizar_cobranza_masiva()
 
-@shared_task(name="apps.financings.task.cambiar_plan")
+from decimal import Decimal
+
+def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
+    # Convertimos a Decimal para precisión financiera
+    tasa = Decimal(str(tasa_interes))
+    saldo = Decimal(str(saldo_capital_pendiente))
+    interes_acumulado = Decimal('0')
+    
+    i = 0
+    # Cambiamos == por < para que el ciclo funcione
+    while i < n:
+        # El interés del mes actual sobre el saldo pendiente
+        interes_del_mes = saldo * tasa
+        interes_acumulado += interes_del_mes
+        
+        # El saldo aumenta porque el interés se capitaliza
+        saldo += interes_del_mes
+        
+        i += 1
+        print(f'MES: {i}, Interés del mes: {interes_del_mes:.2f}, Acumulado: {interes_acumulado:.2f}')
+    
+    return interes_acumulado
+
+
+
+
 def cambiar_plan():
     #validacion = ejecutar_max_1_veces_al_dia()
     dia = '2026-03-25'
     
+    
+    from datetime import datetime
+
+    dia = datetime.strptime(dia, "%Y-%m-%d").date()
     
     
     ver_cuotas(dia)
@@ -84,4 +113,5 @@ def cambiar_plan():
 
 
 if __name__ == '__main__':
-    cambiar_plan()
+    #cambiar_plan()
+    print(calculo_interes_acumulado(0.1,10000,3))
