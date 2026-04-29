@@ -9,6 +9,7 @@ import uuid
 from apps.financings.models import PaymentPlan, Credit, AccountStatement, Payment
 from apps.accountings.models import Creditor, Insurance
 from django.db.models import Q
+from dateutil.relativedelta import relativedelta
 from apps.codes.models import TokenCliente
 
 # CALCULOS
@@ -73,7 +74,8 @@ def calcular_interes_y_mora(cuota):
 def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, mora, dia):
     datos_viejos = {}
     datos_nuevos = {}
-    
+    print(f'Interes: {interes}, Saldo Pendiente: {pago.saldo_pendiente}, Interes Acumulado:{interes_acumulado}')
+    mes = pago.mes + 1
 
     if siguiente_cuota is not None:
         
@@ -90,7 +92,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 
             fecha_inicio = pago.credit_id.fecha_inicio
             fecha_emision = dia
-            fecha_limite = pago.credit_id.fecha_finalizacion_gracia
+            fecha_limite = pago.credit_id.fecha_finalizacion_gracia + relativedelta(months=1)
             forma_pago = pago.credit_id.forma_de_pago
 
 
@@ -99,13 +101,17 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
                 fecha_inicio <= fecha_emision <= fecha_limite and
                 forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
             ):
-                
-                saldo_acumulativo = pago.saldo_pendiente + interes
-
                 tasa_interes =  pago.credit_id.tasa_interes
+                tasa = Decimal(tasa_interes) + Decimal (1)
+                
+                saldo_acumulativo = Decimal(pago.saldo_pendiente) * (Decimal(tasa) ** (mes - 1))
+
+                #saldo_acumulativo = Decimal(pago.saldo_pendiente) + Decimal(interes_acumulado)
+
+                
                 interes  = calculo_interes(saldo_acumulativo, tasa_interes)
 
-                siguiente_cuota.interest = interes
+                siguiente_cuota.interest = interes + interes_acumulado
 
 
         if pago.seguro:
@@ -142,7 +148,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 
             fecha_inicio = pago.credit_id.fecha_inicio
             fecha_emision = dia
-            fecha_limite = pago.credit_id.fecha_finalizacion_gracia
+            fecha_limite = pago.credit_id.fecha_finalizacion_gracia + relativedelta(months=1)
             forma_pago = pago.credit_id.forma_de_pago
 
 
@@ -151,12 +157,17 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
                 fecha_inicio <= fecha_emision <= fecha_limite and
                 forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
             ):
-                saldo_acumulativo = pago.saldo_pendiente + interes
-
                 tasa_interes =  pago.credit_id.tasa_interes
+                tasa = Decimal(tasa_interes) + Decimal (1)
+                
+                saldo_acumulativo = Decimal(pago.saldo_pendiente) * (Decimal(tasa) ** (mes - 1))
+
+                #saldo_acumulativo = Decimal(pago.saldo_pendiente) + Decimal(interes_acumulado)
+
+                
                 interes  = calculo_interes(saldo_acumulativo, tasa_interes)
 
-                cuota.interest = interes
+                cuota.interest = interes + interes_acumulado
 
         if pago.seguro:
             cuota.seguro = pago.seguro
@@ -275,7 +286,7 @@ def recorrido_de_cuotas(cuotas, accion, dia=None):
         if cuota.credit_id:
             fecha_inicio = cuota.credit_id.fecha_inicio
             fecha_emision = dia
-            fecha_limite = cuota.credit_id.fecha_vencimiento
+            fecha_limite = cuota.credit_id.fecha_finalizacion_gracia 
            
             forma_pago = cuota.credit_id.forma_de_pago
 
@@ -315,7 +326,25 @@ def recorrido_de_cuotas(cuotas, accion, dia=None):
 
             credito.save()
             siguiente_cuota = obtener_la_siguiente_cuota(cuota)
+
             interes_acumulado = cuota.interest + interes
+
+            if cuota.credit_id:
+                forma_pago = cuota.credit_id.forma_de_pago
+                fecha_inicio = cuota.credit_id.fecha_inicio
+                fecha_emision = dia
+                fecha_limite = cuota.credit_id.fecha_finalizacion_gracia + relativedelta(months=1)
+                forma_pago = cuota.credit_id.forma_de_pago
+                if (
+                    fecha_limite is not None and
+                    fecha_inicio <= fecha_emision <= fecha_limite and
+                    forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
+                ):
+                    interes_acumulado = cuota.interest
+
+
+
+
 
             if cuota.credit_id is not None:
 

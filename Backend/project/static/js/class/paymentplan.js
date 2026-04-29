@@ -169,7 +169,29 @@ inicial() {
     dicio.cuota = cuota;
     return dicio;
 }
+calculoInteresAcumulado(saldoCapitalPendiente, n) {
+    let saldo = Number(saldoCapitalPendiente);
+    let tasa = Number(this.interes);
+    let interesAcumulado = 0;
 
+    let i = 0;
+    // En JS usamos 'while' o un ciclo 'for'
+    while (i < n) {
+        // Cálculo del interés del mes actual
+        let interesDelMes = saldo * tasa;
+        
+        // Acumulamos el interés
+        interesAcumulado += interesDelMes;
+        
+        // El saldo aumenta (Capitalización)
+        saldo += interesDelMes;
+
+        i++;
+        console.log(`MES: ${i}, Interés del mes: ${interesDelMes.toFixed(2)}, Acumulado: ${interesAcumulado.toFixed(2)}`);
+    }
+
+    return interesAcumulado;
+}
 // Ajuste en el loop de generarPlan()
 generarPlan() {
     // Limpiamos el plan antes de empezar
@@ -182,15 +204,18 @@ generarPlan() {
     for (let mes = 2; mes <= this.plazo; mes++) {
         const anterior = this._plan[this._plan.length - 1];
         let montoParaInteres = 0;
+        let intereses = 0;
 
         // 1. LÓGICA DE SALDOS SEGÚN FORMA DE PAGO
         if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
             // CAPITALIZACIÓN: El nuevo monto es el anterior + los intereses que no se pagaron
             if (mes >  (gracia+1)){
                 montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
+                intereses = this.calculoIntereses(null, montoParaInteres);
 
             }else{
                 montoParaInteres = parseFloat(anterior.monto_interes) + parseFloat(anterior.intereses);
+                intereses = this.calculoInteresAcumulado(anterior.monto_prestado, mes);
 
             }
             
@@ -202,10 +227,12 @@ generarPlan() {
         else if (this.formaPago === 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO') {
             // Se mantiene el monto inicial porque el interés se paga mes a mes
             montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
+            intereses = this.calculoIntereses(null, montoParaInteres);
         } 
         else {
             // NIVELADA o AMORTIZACIÓN CONSTANTE: Se resta el capital ya pagado
             montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
+            intereses = this.calculoIntereses(null, montoParaInteres);
         }
 
         let montoOtorgado = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
@@ -217,7 +244,7 @@ generarPlan() {
 
         // 3. CÁLCULOS DEL MES ACTUAL
         // Importante: calculoIntereses debe recibir el monto capitalizado
-        const intereses = this.calculoIntereses(null, montoParaInteres);
+        
         
         // La cuota y el capital necesitan saber el mes actual para decidir si es el vencimiento
         const cuota = this.calculoCuota(intereses, null, mes);

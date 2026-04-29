@@ -223,7 +223,7 @@ class PaymentPlan(models.Model):
         
       
         capital = Decimal(0)
-        es_vencimiento_o_mas = self.mes > gracia
+        es_vencimiento_o_mas = self.mes > gracia 
         capital_nuevo = monto_inicial * (Decimal(1) + tasa_interes) ** gracia
         
 
@@ -247,8 +247,8 @@ class PaymentPlan(models.Model):
                 capital = round(monto_inicial / plazo, 2)  
 
                 return Decimal(capital)
-            
-            return Decimal(0)
+            else:
+                return Decimal(0)
 
         elif forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
             # Solo se paga capital en el último mes
