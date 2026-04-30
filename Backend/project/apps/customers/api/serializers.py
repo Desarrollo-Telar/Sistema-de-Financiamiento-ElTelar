@@ -36,7 +36,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         ]
 
     def to_representation(self, instance):
-        usuario_serializado = instance.user_id if instance.user_id else None
+        usuario_serializado = instance.user_id.id if instance.user_id else None
         asesor_serializado = CreditCounselorSerializer(instance.new_asesor_credito).data if instance.new_asesor_credito else None
         condicion_migratoria_serializado = ImmigrationStatusSerializer(instance.immigration_status_id).data if instance.immigration_status_id else None
         ocupacion_serializado = None
@@ -72,7 +72,7 @@ class CustomerSerializer(serializers.ModelSerializer):
             "lugar_emision_tipo_identificacion_municipio":instance.lugar_emision_tipo_identificacion_municipio,
             "valoracion":instance.valoracion,
             "numero_identificacion_sucursal":instance.numero_identificacion_sucursal,
-            "user_id":usuario_serializado,
+            #"user_id":usuario_serializado,
             "new_asesor_credito":asesor_serializado,
             "immigration_status_id":condicion_migratoria_serializado,
             "sucursal":sucursal_serializado,
