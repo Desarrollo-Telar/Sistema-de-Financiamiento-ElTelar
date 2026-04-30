@@ -36,7 +36,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         ]
 
     def to_representation(self, instance):
-        usuario_serializado = UserSerializer(instance.user_id).data if instance.user_id else None
+        usuario_serializado = instance.user_id if instance.user_id else None
         asesor_serializado = CreditCounselorSerializer(instance.new_asesor_credito).data if instance.new_asesor_credito else None
         condicion_migratoria_serializado = ImmigrationStatusSerializer(instance.immigration_status_id).data if instance.immigration_status_id else None
         ocupacion_serializado = None
