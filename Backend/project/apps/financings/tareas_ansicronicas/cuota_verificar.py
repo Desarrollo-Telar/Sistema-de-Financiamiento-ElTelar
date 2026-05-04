@@ -21,7 +21,7 @@ def ver_caso_de_gastos():
         boleta = Payment.objects.filter(numero_referencia=numero_referencia).first()
         banco = Banco.objects.filter(referencia = numero_referencia).first()
 
-        if boleta is not None:
+        if boleta is not None and banco is not None:
             
             
             
