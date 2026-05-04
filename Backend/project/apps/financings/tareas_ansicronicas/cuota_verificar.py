@@ -37,7 +37,8 @@ def ver_caso_de_gastos():
                 banco.status = True
                 banco.save()
         
-        else:
+        elif boleta is None:
+            
             boletas = Payment(
                     fecha_emision=gasto.fecha,
                     numero_referencia=numero_referencia,
