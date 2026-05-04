@@ -23,7 +23,7 @@ def ver_caso_de_gastos():
 
         if boleta is not None:
             
-            print(f'BOLETA: {boleta},Estado de la boleta: {boleta.estado_transaccion}, Gatos: {gasto.numero_referencia}, Banco: {banco}, Estado en banco: {banco.status}')
+            
             
             if boleta.estado_transaccion == 'COMPLETADO' and banco.status:
                 gasto.status = True
