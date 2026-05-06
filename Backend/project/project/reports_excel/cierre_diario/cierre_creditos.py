@@ -131,6 +131,9 @@ def crear_excel_creditos(datos, dia = None):
 
             tasa_interes = informacion_credito.get('tasa_interes', 0) * 100
 
+            if informacion_credito is None:
+                continue
+
 
 
             # Mensajes de estado
