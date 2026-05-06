@@ -55,11 +55,12 @@ def creditos_con_excedentes(data):
     lista = []
 
     for dato in data:
-        if dato['credito']['excedente'] > 0:
+        excedente = dato['credito'].get('excedente')
+
+        if excedente is not None and excedente > 0:
             lista.append(dato)
             
     return lista
-
 def creditos_estado_juridico(data):
     lista = []
 
