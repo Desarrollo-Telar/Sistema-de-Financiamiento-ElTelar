@@ -79,7 +79,12 @@ def get_creation_date(credito):
 
     return datetime.min
 
-
+def to_number(value):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return 0
+    
 def crear_excel_creditos(datos, dia = None):
     if dia is None:
         dia = datetime.now().date()
@@ -147,9 +152,9 @@ def crear_excel_creditos(datos, dia = None):
             aportacion = mensaje
             estado_fechas = 'VIGENTE' if informacion_credito.get('estados_fechas','') else 'EN ATRASO'
 
-            saldo_actual = informacion_credito.get('saldo_actual','')
-            saldo_capital_pendiente = informacion_credito.get('saldo_pendiente','')
-            saldo_excedente = informacion_credito.get('excedente','')
+            saldo_actual = to_number(informacion_credito.get('saldo_actual'))
+            saldo_capital_pendiente = to_number(informacion_credito.get('saldo_pendiente'))
+            saldo_excedente = to_number(informacion_credito.get('excedente'))
 
             es_credito_judicial = 'NO'
             es_credito_cancelado = 'NO'
@@ -167,18 +172,18 @@ def crear_excel_creditos(datos, dia = None):
                 tasa_interes = 0
 
             
-            if  saldo_actual < 0:
-                saldo_excedente = abs(informacion_credito.get('saldo_actual',''))
+            if saldo_actual < 0:
+                saldo_excedente = abs(saldo_actual)
                 saldo_actual = 0
                 saldo_capital_pendiente = 0
-            
-            if  saldo_capital_pendiente < 0:
-                saldo_excedente = abs(informacion_credito.get('saldo_pendiente',''))
+
+            if saldo_capital_pendiente < 0:
+                saldo_excedente = abs(saldo_capital_pendiente)
                 saldo_actual = 0
                 saldo_capital_pendiente = 0
-            
-            if  saldo_excedente < 0:
-                saldo_excedente = abs(informacion_credito.get('excedente',''))
+
+            if saldo_excedente < 0:
+                saldo_excedente = abs(saldo_excedente)
                 saldo_actual = 0
                 saldo_capital_pendiente = 0
 
