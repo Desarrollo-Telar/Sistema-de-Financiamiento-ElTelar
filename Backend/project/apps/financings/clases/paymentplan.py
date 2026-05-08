@@ -65,9 +65,9 @@ class PaymentPlan:
 
         return self.redondear(round(intereses, 2))
     
-    def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
+    def calculo_interes_acumulado(self,  saldo_capital_pendiente, n):
         # Convertimos a Decimal para precisión financiera
-        tasa = Decimal(str(tasa_interes))
+        tasa = Decimal(str(self.interes))
         saldo = Decimal(str(saldo_capital_pendiente))
         interes_acumulado = Decimal('0')
         
@@ -90,7 +90,7 @@ class PaymentPlan:
         cuota = 0
         plazo = self.plazo
 
-        # 👇 si tienes plazo_gracia en tu modelo
+        #
         gracia = int(getattr(self.__credit, 'plazo_gracia', 0))
 
         if self.forma_pago == 'NIVELADA':

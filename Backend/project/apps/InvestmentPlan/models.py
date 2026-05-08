@@ -31,7 +31,9 @@ class InvestmentPlan(models.Model):
     ]
     formaPago = [
         ('NIVELADA', 'NIVELADA'),
-        ('AMORTIZACIONES A CAPITAL', 'AMORTIZACIONES A CAPITAL')
+        ('AMORTIZACIONES A CAPITAL', 'AMORTIZACIONES A CAPITAL'),
+        ('INTERES MENSUAL Y CAPITAL AL VENCIMIENTO', 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO'),
+        ('INTERES Y CAPITAL AL VENCIMIENTO', 'INTERES Y CAPITAL AL VENCIMIENTO')
     ]
     type_of_product_or_service = models.CharField("Tipo de Producto o Servicio", max_length=75,choices=tipo_producto_servicio)
     total_value_of_the_product_or_service = models.DecimalField("Valor Total del Producto o Servicio", max_digits=15, decimal_places=2, blank=False, null=False)
@@ -54,6 +56,11 @@ class InvestmentPlan(models.Model):
     credito_anterior_vigente = models.JSONField(null=True, blank=True, verbose_name="Credito Anterior Vigente")
     tipo_pagare = models.CharField(verbose_name="Tipo de pagare", max_length=150, blank=True, null=True)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+
+    plazo_gracia =  models.IntegerField("Plazo de Gracia", blank=True, null=True)
+    fecha_finalizacion_gracia = models.DateField("Fecha de Finalizacion de Gracia",blank=True, null=True)
+
+    
     def fecha_primer_pago(self):
         
         return self.fecha_inicio + relativedelta(months=1)

@@ -94,6 +94,7 @@ def generar_estado_cuenta_word(doc, id):
 
     cliente = plan.customer_id
     sucursal = plan.sucursal
+    gracia = plan.plazo_gracia if plan.plazo_gracia else 0
     dia = datetime.now().date()
 
     plazo = plan.plazo if plan.plazo else 1
@@ -101,7 +102,7 @@ def generar_estado_cuenta_word(doc, id):
     forma_pago = plan.forma_de_pago if plan.forma_de_pago else 'NIVELADA'
     fecha_inicio = plan.fecha_inicio if plan.fecha_inicio else dia
 
-    credito = Credit('', plan.total_value_of_the_product_or_service, plazo, tasa_interes, forma_pago, 'MENSUAL', fecha_inicio.strftime('%Y-%m-%d'), 'CONSUMO', cliente)
+    credito = Credit('', plan.total_value_of_the_product_or_service, plazo, tasa_interes, forma_pago, 'MENSUAL', fecha_inicio.strftime('%Y-%m-%d'), 'CONSUMO', cliente, None,None,gracia)
     plan_pago = PaymentPlan(credito)
 
     cuotas = plan_pago.generar_plan()     # <--- AJUSTA si tu método es otro

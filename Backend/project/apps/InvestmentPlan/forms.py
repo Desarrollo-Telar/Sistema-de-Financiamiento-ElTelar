@@ -14,6 +14,7 @@ class InvestmentPlanForms(forms.ModelForm):
             'fiador',
             'total_value_of_the_product_or_service',
             'plazo',
+            'plazo_gracia',
             'tasa_interes',
             'forma_de_pago',
             'fecha_inicio',
@@ -35,6 +36,7 @@ class InvestmentPlanForms(forms.ModelForm):
             'tipo_pagare':'Tipo de Pagare',
             'credito_anterior_vigente':'Credito Anterior',
             'fiador':'Fiador',
+            'plazo_gracia': 'Plazo de Gracia',
            
         }
 
@@ -47,6 +49,7 @@ class InvestmentPlanForms(forms.ModelForm):
             'transfers_or_transfer_of_funds':forms.CheckboxInput(),
             'type_of_transfers_or_transfer_of_funds':forms.Select(attrs={'class':'form-control'}),
             'plazo':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0'}),
+            'plazo_gracia':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0'}),
             'tasa_interes':forms.TextInput(attrs={'class':'form-control','type':'number', 'min':'0'}),
             'forma_de_pago':forms.Select(attrs={'class':'form-control'}),
             'fecha_inicio':forms.TextInput(attrs={'class':'form-control','type':'date'}),

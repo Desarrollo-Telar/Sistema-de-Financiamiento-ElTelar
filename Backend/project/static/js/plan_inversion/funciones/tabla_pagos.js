@@ -12,6 +12,7 @@ export function generar_plan() {
 
     const fecha_inicio = document.getElementById('id_fecha_inicio');
     const tipo_credito = document.getElementById('id_type_of_product_or_service');
+    const plazo_gracia = document.getElementById('id_plazo_gracia');
     const customer_id = '';
 
     tbody_plan.innerHTML = '';
@@ -28,7 +29,7 @@ export function generar_plan() {
         fecha_inicio.value,
         tipo_credito.value,
         null,
-        customer_id
+        customer_id,null,plazo_gracia.value
     );
 
     const plan_pago = new PaymentPlan(credito);

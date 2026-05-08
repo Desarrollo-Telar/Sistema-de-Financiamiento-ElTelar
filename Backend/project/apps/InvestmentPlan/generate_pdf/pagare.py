@@ -128,8 +128,15 @@ def render_pagare_docx(request, id, customer_code):
     # ============================
     #   TEXTO PRINCIPAL
     # ============================
+    municipio = ''
+    departamento = ''
+
+    if sucursal.get_direc() != '':
+        municipio = str(sucursal.get_direc().state) if sucursal.get_direc().state else ''
+        departamento = str(sucursal.get_direc().city) if sucursal.get_direc().city  else ''
+
     texto = (
-        f"En la ciudad de {sucursal.get_direc().state}, departamento de {sucursal.get_direc().city} "
+        f"En la ciudad de {municipio}, departamento de {departamento } "
         f"el día {fecha_formateada(dia)}, YO, {cliente.get_full_name().upper()} de {cliente.get_edad_en_letras()} "
         f"({cliente.get_edad()}) años de edad, estado civil {cliente.get_estado_civil().upper()}, "
         f"de profesión {cliente.profession_trade.upper()}, {cliente.get_nacionalidad()}, de este domicilio me identifico "
@@ -198,10 +205,14 @@ def render_pagare_docx(request, id, customer_code):
     set_paragraph_format(pf_1)
     pf_2 = doc.add_paragraph(f"DPI {cliente.identification_number}")
     set_paragraph_format(pf_2)
-    pf_2 = doc.add_paragraph(f"{cliente.get_direccion().street.upper() if cliente.get_direccion() != '' else '' }")
-    set_paragraph_format(pf_2)
-    pf_4 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
-    set_paragraph_format(pf_4)
+
+    if cliente.get_direccion() != '':
+        pf_2 = doc.add_paragraph(f"{cliente.get_direccion().street.upper() if cliente.get_direccion() != '' else '' }")
+        set_paragraph_format(pf_2)
+
+    if sucursal.get_direc() != '':
+        pf_4 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
+        set_paragraph_format(pf_4)
 
     if fiador:
         doc.add_paragraph("")
@@ -225,10 +236,14 @@ def render_pagare_docx(request, id, customer_code):
 
         pf_6 = doc.add_paragraph(f"DPI {fiador.identification_number}")
         set_paragraph_format(pf_6)
-        pf_7 = doc.add_paragraph(f"{fiador.get_direccion().street.upper() if fiador.get_direccion() != '' else '' }")
-        set_paragraph_format(pf_7)
-        pf_8 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
-        set_paragraph_format(pf_8)
+        
+        if fiador.get_direccion() != '':
+            pf_7 = doc.add_paragraph(f"{fiador.get_direccion().street.upper() if fiador.get_direccion() != '' else '' }")
+            set_paragraph_format(pf_7)
+
+        if sucursal.get_direc() != '':
+            pf_8 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
+            set_paragraph_format(pf_8)
 
     doc.add_paragraph("")
     doc.add_paragraph("__________________________   ÚLTIMA LINEA")
