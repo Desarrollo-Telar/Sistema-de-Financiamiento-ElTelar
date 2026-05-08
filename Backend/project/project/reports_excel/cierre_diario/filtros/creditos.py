@@ -34,11 +34,20 @@ def creditos_cancelados(data):
 
     return lista_cancelados
 
+from apps.financings.models import CategoriaCreditoDemandado
+
+def get_categoria_credito(id):
+    categoria = CategoriaCreditoDemandado.objects.filter(id=id).first()
+    return categoria.titulo if categoria else None
+
 def creditos_en_atraso(data):
     lista = []
 
     for dato in data:
-        if not dato['credito']['estados_fechas'] and  not dato['credito']['estado_judicial']:
+        categoria_demandado = get_categoria_credito(dato['credito']['categoria_credito_demandado_id']) or None
+        judicial = dato['credito']['estado_judicial'] or categoria_demandado is not None
+
+        if not dato['credito']['estados_fechas'] and not judicial:
             lista.append(dato)
     return lista
 
@@ -65,7 +74,10 @@ def creditos_estado_juridico(data):
     lista = []
 
     for dato in data:
-        if  dato['credito']['estado_judicial'] :
+        categoria_demandado = get_categoria_credito(dato['credito']['categoria_credito_demandado_id']) or None
+
+        judicial = dato['credito']['estado_judicial'] or categoria_demandado is not None
+        if  judicial :
             lista.append(dato)
             
     return lista

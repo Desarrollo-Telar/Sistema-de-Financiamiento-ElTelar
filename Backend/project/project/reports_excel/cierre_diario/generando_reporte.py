@@ -122,11 +122,11 @@ class CierreDiario(TemplateView):
             # Creacion individual del reporte
             cierre_diario_buffer = io.BytesIO()
 
-            if registro.tipo_datos == 'clientes' and registro.data['clientes'] is not None:
+            """if registro.tipo_datos == 'clientes' and registro.data['clientes'] is not None:
                 wb_cliente = crear_excel_clientes(registro.data['clientes'], dia)
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
-                zip_file.writestr(f"reporte_clientes.xlsx", cierre_diario_buffer.read())
+                zip_file.writestr(f"reporte_clientes.xlsx", cierre_diario_buffer.read())"""
             
             if registro.tipo_datos == 'creditos' and registro.data['creditos'] is not None:
                 wb_cliente = crear_excel_creditos(registro.data['creditos'], dia)
@@ -134,7 +134,7 @@ class CierreDiario(TemplateView):
                 cierre_diario_buffer.seek(0)
                 zip_file.writestr(f"reporte_creditos.xlsx", cierre_diario_buffer.read())
             
-            if registro.tipo_datos == 'acreedores' and registro.data['acreedores'] is not None:
+            """if registro.tipo_datos == 'acreedores' and registro.data['acreedores'] is not None:
                 wb_cliente = crear_excel_creditos_asesores(registro.data['acreedores'], dia)
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
@@ -180,7 +180,7 @@ class CierreDiario(TemplateView):
                 wb_cliente = crear_excel_facturas(registro.data['facturas'], dia)
                 wb_cliente.save(cierre_diario_buffer)
                 cierre_diario_buffer.seek(0)
-                zip_file.writestr(f"reporte_facturas.xlsx", cierre_diario_buffer.read())
+                zip_file.writestr(f"reporte_facturas.xlsx", cierre_diario_buffer.read())"""
 
         # Crear respuesta de descarga
 
