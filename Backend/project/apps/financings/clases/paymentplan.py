@@ -65,9 +65,9 @@ class PaymentPlan:
 
         return self.redondear(round(intereses, 2))
     
-    def calculo_interes_acumulado( self, saldo_capital_pendiente, n):
-    # Convertimos a Decimal para precisión financiera
-        tasa = Decimal(str(self.interes))
+    def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
+        # Convertimos a Decimal para precisión financiera
+        tasa = Decimal(str(tasa_interes))
         saldo = Decimal(str(saldo_capital_pendiente))
         interes_acumulado = Decimal('0')
         
@@ -76,7 +76,7 @@ class PaymentPlan:
         while i < n:
             # El interés del mes actual sobre el saldo pendiente
             interes_del_mes = saldo * tasa
-            interes_acumulado += interes_del_mes
+            interes_acumulado = Decimal(interes_del_mes) + Decimal(interes_acumulado) + ( Decimal(interes_acumulado) * Decimal(0.1))
             
             # El saldo aumenta porque el interés se capitaliza
             saldo += interes_del_mes
@@ -84,7 +84,7 @@ class PaymentPlan:
             i += 1
             print(f'MES: {i}, Interés del mes: {interes_del_mes:.2f}, Acumulado: {interes_acumulado:.2f}')
         
-        return interes_acumulado
+        return round(interes_acumulado,2)
 
     def calculo_cuota(self, interes=0, capital=0, mes_actual=None):
         cuota = 0

@@ -181,7 +181,7 @@ calculoInteresAcumulado(saldoCapitalPendiente, n) {
         let interesDelMes = saldo * tasa;
         
         // Acumulamos el interés
-        interesAcumulado += interesDelMes;
+        interesAcumulado = interesDelMes + interesAcumulado + (interesAcumulado * 0.1);
         
         // El saldo aumenta (Capitalización)
         saldo += interesDelMes;

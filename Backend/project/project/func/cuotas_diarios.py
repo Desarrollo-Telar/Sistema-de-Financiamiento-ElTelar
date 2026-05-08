@@ -70,6 +70,9 @@ def cobran():
     actualizar_cobranza_masiva()
 
 from decimal import Decimal
+import math
+def redondear(valor):
+    return math.ceil(valor)
 
 def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
     # Convertimos a Decimal para precisión financiera
@@ -82,7 +85,7 @@ def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
     while i < n:
         # El interés del mes actual sobre el saldo pendiente
         interes_del_mes = saldo * tasa
-        interes_acumulado += interes_del_mes
+        interes_acumulado = Decimal(interes_del_mes) + Decimal(interes_acumulado) + ( Decimal(interes_acumulado) * Decimal(0.1))
         
         # El saldo aumenta porque el interés se capitaliza
         saldo += interes_del_mes
@@ -90,7 +93,7 @@ def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
         i += 1
         print(f'MES: {i}, Interés del mes: {interes_del_mes:.2f}, Acumulado: {interes_acumulado:.2f}')
     
-    return interes_acumulado
+    return round(interes_acumulado,2)
 
 
 
@@ -114,4 +117,4 @@ def cambiar_plan():
 
 if __name__ == '__main__':
     #cambiar_plan()
-    print(calculo_interes_acumulado(0.1,10000,3))
+    print(calculo_interes_acumulado(0.075,8000,1))
