@@ -127,7 +127,7 @@ def report_pagos(request, filtro_seleccionado, anio, mes, total):
     # Agregar encabezados
     sheet['A1'] = f'REPORTE SOBRE {filtro_seleccionado}'
     sheet['F1'] = str(total)
-    sheet.append(["#", "FECHA", "CODIGO DEL CREDITO", "CLIENTE", "NO. REFERENCIA", "MONTO PAGADO", "BOLETA FICTICIA","STATUS DEL CREDITO"])
+    sheet.append(["#", "FECHA", "CODIGO DEL CREDITO", "CLIENTE", "NO. REFERENCIA", "MONTO PAGADO", "BOLETA FICTICIA","STATUS DEL CREDITO APORTACION", "STATUS DEL CREDITO POR FECHA", "OFICINA"])
 
     # Agregar los datos al archivo Excel
     for idx, reporte in enumerate(reportes, start=1):
@@ -152,6 +152,7 @@ def report_pagos(request, filtro_seleccionado, anio, mes, total):
 
         aportacion = mensaje
         s_fecha = 'VIGENTE' if reporte.pago.credit.estados_fechas else 'EN ATRASO'
+       
         sheet.append([
             idx, 
             str(reporte.fecha),
@@ -160,8 +161,10 @@ def report_pagos(request, filtro_seleccionado, anio, mes, total):
             str(reporte.pago.numero_referencia),
             str(monto),
             str(reporte.pago.get_registro_ficticio()),
-            f"Status de Aportación: {aportacion}, "
-            f"Status por Fecha: {s_fecha}"
+            str(aportacion),
+            str(s_fecha),
+            str(reporte.sucursal.nombre)
+            
         ])
 
     # Crear respuesta HTTP para descargar el archivo Excel
