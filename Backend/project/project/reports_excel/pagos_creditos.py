@@ -102,6 +102,8 @@ def report_pagos(request, filtro_seleccionado, anio, mes, total):
     filters &= Q(fecha__month=mes)
     #filters &= Q(pago__registro_ficticio=False)
     filters &= Q(pago__credit__isnull=False)
+    sucursal = request.session['sucursal_id']
+    filters &= Q(sucursal=sucursal)
 
    
 
