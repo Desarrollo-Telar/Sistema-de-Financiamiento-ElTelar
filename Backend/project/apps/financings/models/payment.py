@@ -232,6 +232,9 @@ class Payment(models.Model):
     
 
     def _registrar_pago(self, pagado_mora, pagado_interes,aporte_capital, saldo_pendiente, excedente=None):
+        from django.db import transaction
+        from django.db import IntegrityError
+        
         # ------------------------------------ #
         informacion = sobre_que_es_pago(self)
 
@@ -274,12 +277,17 @@ class Payment(models.Model):
             'cuota': cuota,
             'sucursal': self.sucursal
         }
-
-        # Buscamos por 'pago'. Si existe, actualiza con 'defaults'. Si no, crea uno nuevo.
-        recibo, created = self.get_recibo().objects.update_or_create(
-            pago=pago, 
-            defaults=defaults
-        )
+        
+        try:
+            with transaction.atomic():
+                recibo, created = self.get_recibo().objects.update_or_create(
+                    pago=pago, 
+                    defaults=defaults
+                )
+        except IntegrityError:
+            # En caso de que la base de datos rechace un duplicado por milisegundos
+            recibo = self.get_recibo().objects.get(pago=pago)
+            created = False
         
         # ACTUALIZACION DE LA CUOTA
         cuota.interest -=pagado_interes

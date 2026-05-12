@@ -10,6 +10,7 @@ from apps.financings.clases.personality_logs import logger
 
 # ENVIO DE EMAIL
 from apps.financings.task import envio_mensaje_alerta, envio_mensaje_alerta_recibo,comparacion
+from django.db import transaction
 
 # GENERACION DE NUMEROS DE RECIBO
 @receiver(pre_save, sender=Recibo)
@@ -27,15 +28,16 @@ def generar_noRecibo(sender, instance, **kwargs):
 @receiver(post_save, sender=Recibo)
 def enviar_recibo(sender, instance, created, **kwargs):
     if created:
-        envio_mensaje_alerta_recibo(instance.id)
-        logger.info('DESDE SIGNALS DE RECIBO: ENVIO DE MENSAJE DE RECIBO CARGADO')
-        cobranza_completado = Cobranza.objects.filter(cuota=instance.cuota).first()
+        with transaction.atomic():
+            envio_mensaje_alerta_recibo(instance.id)
+            
+            cobranza_completado = Cobranza.objects.filter(cuota=instance.cuota).first()
 
-        if cobranza_completado is not None:
-            cobranza_completado.estado_cobranza = 'COMPLETADO'
-            cobranza_completado.resultado = 'Pago realizado'
-            cobranza_completado.observaciones = f'EL CLIENTE {instance.cliente} realizo un abono de: Q{instance.Ftotal()}'
-            cobranza_completado.save()
+            if cobranza_completado is not None:
+                cobranza_completado.estado_cobranza = 'COMPLETADO'
+                cobranza_completado.resultado = 'Pago realizado'
+                cobranza_completado.observaciones = f'EL CLIENTE {instance.cliente} realizo un abono de: Q{instance.Ftotal()}'
+                cobranza_completado.save()
 
 
 @receiver(post_delete, sender=Recibo)
