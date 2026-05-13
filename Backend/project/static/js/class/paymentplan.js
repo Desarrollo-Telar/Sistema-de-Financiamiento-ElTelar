@@ -256,7 +256,7 @@ generarPlan() {
             fecha_final: mesFinal,
             monto_prestado: parseFloat(montoOtorgado).toFixed(2), // Aquí se ve el aumento
             monto_interes: parseFloat(montoParaInteres).toFixed(2),
-            intereses: intereses,
+            intereses: parseFloat(intereses).toFixed(2),
             capital: capital,
             cuota: cuota
         });
