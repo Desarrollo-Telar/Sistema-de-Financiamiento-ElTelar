@@ -173,6 +173,7 @@ calculoInteresAcumulado(saldoCapitalPendiente, n) {
     let saldo = Number(saldoCapitalPendiente);
     let tasa = Number(this.interes);
     let interesAcumulado = 0;
+    let mora = 0
 
     let i = 0;
     // En JS usamos 'while' o un ciclo 'for'
@@ -180,11 +181,13 @@ calculoInteresAcumulado(saldoCapitalPendiente, n) {
         // Cálculo del interés del mes actual
         let interesDelMes = saldo * tasa;
         
-        // Acumulamos el interés
-        interesAcumulado = interesDelMes + interesAcumulado + (interesAcumulado * 0.1);
+        interesAcumulado = (interesAcumulado - mora) + interesDelMes
+
+        mora = (interesDelMes * i ) * 0.1
         
-        // El saldo aumenta (Capitalización)
-        saldo += interesDelMes;
+        interesAcumulado =  interesAcumulado + mora;
+        
+        
 
         i++;
         console.log(`MES: ${i}, Interés del mes: ${interesDelMes.toFixed(2)}, Acumulado: ${interesAcumulado.toFixed(2)}`);

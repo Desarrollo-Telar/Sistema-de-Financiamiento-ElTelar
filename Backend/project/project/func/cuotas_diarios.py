@@ -79,16 +79,24 @@ def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
     tasa = Decimal(str(tasa_interes))
     saldo = Decimal(str(saldo_capital_pendiente))
     interes_acumulado = Decimal('0')
+    mora = Decimal('0')
     
     i = 0
     # Cambiamos == por < para que el ciclo funcione
     while i < n:
+
         # El interés del mes actual sobre el saldo pendiente
         interes_del_mes = saldo * tasa
-        interes_acumulado = Decimal(interes_del_mes) + Decimal(interes_acumulado) + ( Decimal(interes_acumulado) * Decimal(0.1))
         
-        # El saldo aumenta porque el interés se capitaliza
-        saldo += interes_del_mes
+
+        interes_acumulado = (Decimal(interes_acumulado) - mora) + interes_del_mes
+
+        mora = ( Decimal(interes_del_mes) * Decimal(i))* Decimal(0.1) 
+
+        interes_acumulado =  Decimal(interes_acumulado) + Decimal(mora)
+        
+        
+        
         
         i += 1
         print(f'MES: {i}, Interés del mes: {interes_del_mes:.2f}, Acumulado: {interes_acumulado:.2f}')
@@ -117,4 +125,4 @@ def cambiar_plan():
 
 if __name__ == '__main__':
     #cambiar_plan()
-    print(calculo_interes_acumulado(0.075,8000,1))
+    print(calculo_interes_acumulado(0.1,8000,2))
