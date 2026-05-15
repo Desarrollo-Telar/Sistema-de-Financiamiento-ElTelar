@@ -125,4 +125,4 @@ def cambiar_plan():
 
 if __name__ == '__main__':
     #cambiar_plan()
-    print(calculo_interes_acumulado(0.1,8000,2))
+    print(calculo_interes_acumulado(0.1,8000,3))
