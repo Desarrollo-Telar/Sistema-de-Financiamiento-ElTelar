@@ -75,7 +75,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
     datos_viejos = {}
     datos_nuevos = {}
     print(f'Interes: {interes}, Saldo Pendiente: {pago.saldo_pendiente}, Interes Acumulado:{interes_acumulado}')
-    mes = pago.mes + 1
+    mes = pago.mes
 
     if siguiente_cuota is not None:
         
@@ -104,14 +104,23 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
                 tasa_interes =  pago.credit_id.tasa_interes
                 tasa = Decimal(tasa_interes) + Decimal (1)
                 
-                saldo_acumulativo = Decimal(pago.saldo_pendiente) * (Decimal(tasa) ** (mes - 1))
+                saldo_acumulativo = Decimal(pago.saldo_pendiente) 
 
                 #saldo_acumulativo = Decimal(pago.saldo_pendiente) + Decimal(interes_acumulado)
 
                 
                 interes  = calculo_interes(saldo_acumulativo, tasa_interes)
+                
+                
 
-                siguiente_cuota.interest = interes + interes_acumulado
+                if mes > 1: 
+                    mora = ( Decimal(interes) * Decimal(mes-1))* Decimal(0.1) 
+
+                    interes_acumulado = (Decimal(interes_acumulado) - mora) 
+
+                mora = ( Decimal(interes) * Decimal(mes))* Decimal(0.1) 
+
+                siguiente_cuota.interest = interes + interes_acumulado + mora
 
 
         if pago.seguro:
@@ -160,14 +169,21 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
                 tasa_interes =  pago.credit_id.tasa_interes
                 tasa = Decimal(tasa_interes) + Decimal (1)
                 
-                saldo_acumulativo = Decimal(pago.saldo_pendiente) * (Decimal(tasa) ** (mes - 1))
+                saldo_acumulativo = Decimal(pago.saldo_pendiente) 
 
                 #saldo_acumulativo = Decimal(pago.saldo_pendiente) + Decimal(interes_acumulado)
 
                 
                 interes  = calculo_interes(saldo_acumulativo, tasa_interes)
 
-                cuota.interest = interes + interes_acumulado
+                if mes > 1: 
+                    mora = ( Decimal(interes) * Decimal(mes-1))* Decimal(0.1) 
+
+                    interes_acumulado = (Decimal(interes_acumulado) - mora) 
+
+                mora = ( Decimal(interes) * Decimal(mes))* Decimal(0.1) 
+
+                cuota.interest = interes + interes_acumulado + mora
 
         if pago.seguro:
             cuota.seguro = pago.seguro
