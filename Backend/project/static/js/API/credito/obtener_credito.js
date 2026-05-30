@@ -30,7 +30,8 @@ export async function get_mensaje(credito, cuota) {
   const cliente = await get_credit(credito)
   
   return `Estimado ${cliente.customer_id.first_name} ${cliente.customer_id.last_name}.
-Le recordamos la importancia de realizar su pago correspondiente, el total del monto a cancelar es de Q${cuota.total_cancelar} para su cuota No. ${cuota.mes}.
-Tiene como fecha de pago el ${formato_fechas(cuota.due_date)}. Agradecemos su boleta de manera urgente para evitar recargos adicionales.`
+
+  Le recordamos que su cuota No. ${cuota.mes}. Tiene como fecha de pago el ${formato_fechas(cuota.due_date)}. Por el monto a Q${cuota.total_cancelar}
+ Agradecemos su boleta de manera urgente para evitar recargos adicionales.`
 }
   
