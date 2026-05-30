@@ -37,11 +37,13 @@ class GenerarMensajePagoAPIView(APIView):
         telefono = f'502{cliente.telephone}'
         mensaje = f'''
 Estimado *{cliente.first_name} {cliente.last_name}*.
-Le recordamos la importancia de realizar su pago correspondiente, el total del monto a cancelar es de *Q{cuota.formato_cuota_total()}* para su cuota No. _{cuota.mes}_.
-Tiene como fecha de pago el *{cuota.due_date.date()}*. Agradecemos su boleta de manera urgente para evitar recargos adicionales.
+Le recordamos que su cuota No. _{cuota.mes}_., tiene fecha de pago el para su cuota *{cuota.due_date.date()}* por un monto de *Q{cuota.formato_cuota_total()}*.
 
-Si tiene alguna duda o necesita asistencia, no dude en comunicarse con nosotros.
+Actualmente, mantiene un saldo pendiente total de *{cuota.formato_cuota_saldo_pendiente()}*.
+Le agradecemos realizar su pago a la brevedad y enviar su boleta de pago para evitar recargos adicionales o inconvenientes futuros.
 
+Si tiene alguna duda o necesita asistencia, puede comunicarse con nosotros con toda confianza.
+Quedamos atentos a su pronta respuesta.        
 Nota. En el siguiente link puede cargar su boleta de pago:
 https://www.ii-eltelarsa.com/cliente/{tokken.uuid}/
         '''
@@ -65,8 +67,8 @@ class GenerandoMensajeSaldoApi(APIView):
         
         mensaje = f'''
 Estimado *{obtener_credito.customer_id.first_name} {obtener_credito.customer_id.last_name}*.
-Le queremos informar que su saldo actual es de *Q {formatear_numero(obtener_credito.saldo_actual)}*
-Si requiere verificar detalles, aclarar dudas o necesita asistencia, nuestro equipo está a su disposición. No dude en escribirnos.
+Le informamos que, después de aplicar el pago realizado, su nuevo saldo de capital pendiente es de *Q {formatear_numero(obtener_credito.saldo_actual)}*
+Si desea verificar el detalle de su saldo, aclarar alguna duda o necesita asistencia adicional, nuestro equipo está a su disposición. No dude en comunicarse con nosotros.
 
         '''
         mensaje_codificado = urllib.parse.quote(mensaje)

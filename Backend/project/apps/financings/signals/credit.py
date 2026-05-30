@@ -79,7 +79,7 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
             interes_generado=interes,
             fecha_limite=fecha_limite,
             due_date=fecha_vencimiento,
-            sucursal=instance.sucursal
+            sucursal=instance.sucursal, status = False
         )
 
     # Enviar notificación por correo

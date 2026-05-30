@@ -35,10 +35,10 @@ def ver_cuotas(dia):
     verificador_de_cuotas_vencidas(dia)
     print()
     print(f'VERIFICACION DE CUOTAS POR FECHA LIMITE')
-    verificador_de_cuotas_fecha_limite(dia)
+    #verificador_de_cuotas_fecha_limite(dia)
     print()
     print(f'VERIFICACION DE PROXIMAS CUOTAS')
-    cuotas_por_vencerse_alerta()
+    #cuotas_por_vencerse_alerta()
     print()
     
     print()
@@ -108,7 +108,7 @@ def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
 
 def cambiar_plan():
     #validacion = ejecutar_max_1_veces_al_dia()
-    dia = '2026-03-25'
+    dia = '2026-05-29'
     
     
     from datetime import datetime
@@ -117,12 +117,9 @@ def cambiar_plan():
     
     
     ver_cuotas(dia)
-    ver_estado_informe(dia)
-    generar_cierre_diario_seguro()
-    fechas_cobranzas()
-    cobran()
+    
 
 
 if __name__ == '__main__':
-    #cambiar_plan()
-    print(calculo_interes_acumulado(0.1,8000,3))
+    cambiar_plan()
+    #print(calculo_interes_acumulado(0.1,8000,3))
