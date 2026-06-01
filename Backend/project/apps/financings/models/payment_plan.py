@@ -90,6 +90,12 @@ class PaymentPlan(models.Model):
 
     def formato_saldo_capital_pendiente(self):
         return formatear_numero(self.outstanding_balance)
+    
+    def formato_saldo_actual(self):
+        saldo_actual = self.mora + self.interest + self.saldo_pendiente
+        
+        return formatear_numero(saldo_actual)
+
 
     def formato_cuota_total(self):
         calculo = redondear(self.total())

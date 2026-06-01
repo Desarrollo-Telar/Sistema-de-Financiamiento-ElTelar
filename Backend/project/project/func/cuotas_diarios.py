@@ -23,8 +23,8 @@ from django.utils.timezone import now
 
 # Modelos
 from apps.actividades.models import Informe
-from apps.financings.models import Recibo
-from apps.customers.models import Cobranza
+from apps.financings.models import Recibo, Credit
+from apps.customers.models import Cobranza, Customer
 # SETTINGS
 from project.settings import SERVIDOR
 
@@ -119,7 +119,47 @@ def cambiar_plan():
     ver_cuotas(dia)
     
 
+def analisis_credito():
+    creditos = Credit.objects.filter(fecha_inicio__year = 2025)
+    contador = 0
+    contador_oficina_1 = 0
+    contador_oficina_2 = 0
+
+    for credito in creditos:
+        monto_otorgado = credito.monto
+        saldo_cap_pendiete = credito.saldo_pendiente
+
+        if credito.is_paid_off == True:
+            continue
+
+        if monto_otorgado == 0:
+            continue
+
+        obtener_cincuenta_porciento = (Decimal(saldo_cap_pendiete) * Decimal(100)) / Decimal(monto_otorgado)
+
+        if obtener_cincuenta_porciento == 100:
+            contador += 1
+
+            print(f'El credito {credito.codigo_credito} tuvo un monto otorgado de. {monto_otorgado} y tiene un saldo cap p de {saldo_cap_pendiete}, con un % de {obtener_cincuenta_porciento}')
+
+            if credito.sucursal.id == 1:
+                contador_oficina_1 += 1
+            
+            if credito.sucursal.id == 2:
+                contador_oficina_2 += 1
+
+
+    
+    print(f'La cantidad de creditos que no han tenido abonos {contador}, en donde oficina 1 {contador_oficina_1} y en oficina 2 {contador_oficina_2}')
+
+
+def analisis_cliente():
+    pass
+      
 
 if __name__ == '__main__':
-    cambiar_plan()
+    #cambiar_plan()
     #print(calculo_interes_acumulado(0.1,8000,3))
+
+    print(f'Analisi...')
+    analisis_credito()

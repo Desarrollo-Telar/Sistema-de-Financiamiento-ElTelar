@@ -39,7 +39,7 @@ class GenerarMensajePagoAPIView(APIView):
 Estimado *{cliente.first_name} {cliente.last_name}*.
 Le recordamos que su cuota No. _{cuota.mes}_., tiene fecha de pago el para su cuota *{cuota.due_date.date()}* por un monto de *Q{cuota.formato_cuota_total()}*.
 
-Actualmente, mantiene un saldo pendiente total de *{cuota.formato_cuota_saldo_pendiente()}*.
+Actualmente, mantiene un saldo pendiente total de *{cuota.formato_saldo_actual()}*.
 Le agradecemos realizar su pago a la brevedad y enviar su boleta de pago para evitar recargos adicionales o inconvenientes futuros.
 
 Si tiene alguna duda o necesita asistencia, puede comunicarse con nosotros con toda confianza.
