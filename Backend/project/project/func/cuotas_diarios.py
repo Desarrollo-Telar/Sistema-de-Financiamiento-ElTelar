@@ -154,7 +154,10 @@ def analisis_credito():
 
 
 def analisis_cliente():
-    pass
+    clientes = Customer.objects.filter(status= 'Aprobado')
+
+    for cliente  in clientes:
+        pass
       
 
 if __name__ == '__main__':

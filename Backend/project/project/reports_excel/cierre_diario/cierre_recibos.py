@@ -17,7 +17,7 @@ from apps.financings.models import Payment
 
 def recibo_para(instance):
         mensaje = ''
-        if instance is None:
+        if instance is None or instance == '':
             return mensaje
         
         pago = Payment.objects.get(id=instance)
@@ -25,16 +25,17 @@ def recibo_para(instance):
         if pago is None:
             return mensaje
        
-        if pago.acreedor:
+        if pago.acreedor is not None:
             mensaje = f'{pago.acreedor.nombre_acreedor}'
         
-        if pago.seguro:
+        if pago.seguro is not None:
             mensaje = f'{pago.seguro.nombre_acreedor}'
         
-        if pago.credit:
+        if pago.credit is not None:
             mensaje = f'{pago.credit.customer_id}'
         
-      
+        if pago.cliente is not None:
+            mensaje = f'{pago.cliente}'
 
         return mensaje
 
