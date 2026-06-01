@@ -16,7 +16,7 @@ from apps.financings.models import Recibo
 
 def informacion_recibo(instance):
 
-    if instance is None:
+    if instance is None or instance == '':
         return ''
     
     recibo = Recibo.objects.get(id=instance)
