@@ -235,11 +235,17 @@ def generar_estado_cuenta(cuota, accion, dia):
     if accion == 'FECHA_LIMITE' :
         if cuota.interes_pagado > 0:
             estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida.\nCapital Pendiente Por Pagar.'
+            if cuota.credit_id:
+                cuota.credit_id.estados_fechas = False
+                
         else:
+
             estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida.\nFalta de Pago.'
 
     if accion == 'FECHA_VENCIMIENTO' :
         if cuota.interes_pagado > 0:
+            if cuota.credit_id:
+                cuota.credit_id.estados_fechas = False
             estado_cuenta.description = f'La cuota No. {cuota.mes} ha pasado al estado de "Fechas en atraso".\nPor Capital Pendiente Por Pagar.'
         else:
             estado_cuenta.description = f'La cuota No. {cuota.mes} ha pasado al estado de "Fechas en atraso".\nPor Falta de Pago.'
@@ -325,7 +331,7 @@ def recorrido_de_cuotas(cuotas, accion, dia=None):
             
             
 
-            if not cuota.status :
+            if ( cuota.status == False or cuota.status is None) :
                 cuota.cuota_vencida = True
                 credito.estado_aportacion = False
 
@@ -391,7 +397,7 @@ def recorrido_de_cuotas(cuotas, accion, dia=None):
             
             cuota.paso_por_task = True           
 
-            if (not cuota.status) and cambiar_estados:
+            if ( cuota.status == False or cuota.status is None) and cambiar_estados:
 
                 if cuota.interest > 0:
                     credito.estados_fechas = False

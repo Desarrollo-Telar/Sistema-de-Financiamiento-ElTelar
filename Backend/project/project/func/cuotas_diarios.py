@@ -25,6 +25,10 @@ from django.utils.timezone import now
 from apps.actividades.models import Informe
 from apps.financings.models import Recibo, Credit
 from apps.customers.models import Cobranza, Customer
+from apps.addresses.models import Address
+
+from django.db.models import Q
+
 # SETTINGS
 from project.settings import SERVIDOR
 
@@ -153,16 +157,68 @@ def analisis_credito():
     print(f'La cantidad de creditos que no han tenido abonos {contador}, en donde oficina 1 {contador_oficina_1} y en oficina 2 {contador_oficina_2}')
 
 
-def analisis_cliente():
-    clientes = Customer.objects.filter(status= 'Aprobado')
+from django.db.models import Count, Q
 
-    for cliente  in clientes:
-        pass
-      
+def analisis_cliente():
+    # 1. Definimos los filtros para excluir las direcciones de trabajo
+    # (Mantenemos tus dos variantes por si hay errores de dedo en la base de datos)
+    filtros_excluir = Q(type_address='Dirección de Trabajo') | Q(type_address='Direccin de Trabajo')
+    
+    # 2. Hacemos la consulta optimizada
+    sectores_top = (
+        Address.objects
+        # Filtramos solo direcciones de clientes con estatus 'Aprobado'
+        .filter(customer_id__status='Aprobado')
+        # Excluimos las direcciones laborales para quedarnos con las personales/domicilio
+        .exclude(filtros_excluir)
+        # Agrupamos por el campo de la ciudad/municipio
+        .values('state')
+        # Contamos cuántas direcciones (clientes) hay por cada municipio
+        .annotate(total_clientes=Count('customer_id'))
+        # Ordenamos de mayor a menor según la cantidad de clientes
+        .order_by('-total_clientes')
+    )
+    
+    # 3. Mostramos los resultados
+    print("--- TOP DE SECTORES CON MÁS CLIENTES ---")
+    for sector in sectores_top:
+        # Si 'state' está vacío o es None, lo nombramos como 'No especificado'
+        municipio = sector['state'] if sector['state'] else 'No especificado'
+        print(f"Municipio: {municipio:<25} | Clientes: {sector['total_clientes']}")
+        
+    return sectores_top
+   
+
+
+def analisando_clientes():
+    clientes = Customer.objects.filter(status = 'Aprobado')
+    contador_si = 0
+    contador_no = 0
+
+    for cliente in clientes:
+        correo = str(cliente.email)
+        if correo is None:
+            contador_no += 1
+
+        if "notienecorreo" in correo :
+            # Continuar con la lógica del cliente
+            
+            contador_no += 1
+            print(cliente.email)
+        else:
+            # Registrar el error del correo en un log y seguir con el siguiente cliente
+            
+
+            contador_si += 1
+            
+            
+    
+    print(f'LA CANTIDAD DE CLIENTES SIN CORREO SON: {contador_no} y la cantidad de clientes que si tienen: {contador_si}')
+
 
 if __name__ == '__main__':
     #cambiar_plan()
     #print(calculo_interes_acumulado(0.1,8000,3))
 
     print(f'Analisi...')
-    analisis_credito()
+    analisando_clientes()
