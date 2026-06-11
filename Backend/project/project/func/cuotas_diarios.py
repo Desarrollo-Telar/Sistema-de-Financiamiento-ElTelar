@@ -95,7 +95,7 @@ def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
 
         interes_acumulado = (Decimal(interes_acumulado) - mora) + interes_del_mes
 
-        mora = ( Decimal(interes_del_mes) * Decimal(i))* Decimal(0.1) 
+        mora = ( Decimal(interes_del_mes) * Decimal(i + 1))* Decimal(0.1) 
 
         interes_acumulado =  Decimal(interes_acumulado) + Decimal(mora)
         
@@ -103,7 +103,7 @@ def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
         
         
         i += 1
-        print(f'MES: {i}, Interés del mes: {interes_del_mes:.2f}, Acumulado: {interes_acumulado:.2f}')
+        print(f'MES: {i}, Interés del mes: {interes_del_mes:.2f}, Acumulado: {interes_acumulado:.2f}, mora: {mora:.2f}')
     
     return round(interes_acumulado,2)
 
@@ -218,7 +218,6 @@ def analisando_clientes():
 
 if __name__ == '__main__':
     #cambiar_plan()
-    #print(calculo_interes_acumulado(0.1,8000,3))
+    print(calculo_interes_acumulado(0.075,1000,3))
 
-    print(f'Analisi...')
-    analisando_clientes()
+    
