@@ -13,7 +13,7 @@ from project.send_mail import send_email_next_update_of_quotas
 
 def verificador_de_cuotas_vencidas(dia):
     print('ANALISIS SOBRE FECHA_VENCIMIENTO')
-    planes = PaymentPlan.objects.filter(due_date__date=dia, paso_por_task=False).filter( 
+    planes = PaymentPlan.objects.filter(due_date__date=dia).filter( 
         Q(credit_id__is_paid_off = False) | 
         Q(acreedor__is_paid_off = False ) | 
         Q(seguro__is_paid_off = False) |

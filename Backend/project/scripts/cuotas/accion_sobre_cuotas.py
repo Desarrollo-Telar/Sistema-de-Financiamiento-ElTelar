@@ -1,20 +1,17 @@
 # HISTORIAL Y BITACORA
 from apps.actividades.utils import log_user_action, log_system_event
 
-
 # UUID
 import uuid
 
 # MODELOS
-from apps.financings.models import PaymentPlan, Credit, AccountStatement, Payment
+from apps.financings.models import   Payment
 from apps.accountings.models import Creditor, Insurance
 from django.db.models import Q
 from dateutil.relativedelta import relativedelta
 from apps.codes.models import TokenCliente
 
-# CALCULOS
-from apps.financings.calculos import calculo_mora, calculo_interes
-from decimal import Decimal
+
 
 # MENSAJES DE ALERTA
 from project.send_mail import send_email_update_of_quotas
@@ -24,267 +21,10 @@ from datetime import datetime
 import logging
 logger = logging.getLogger(__name__)
 
-def get_credito(cuota):
-    logger.info("OBTENIENDO EL CREDITO")
-    credito = None
 
-    if cuota.credit_id is not None:
-        credito =  Credit.objects.get(id=cuota.credit_id.id)
-
-        if credito.estado_judicial:
-            return None
-    
-    if cuota.acreedor is not None:
-        credito =  Creditor.objects.get(id=cuota.acreedor.id)
-    
-    if cuota.seguro is not None:
-        credito =  Insurance.objects.get(id=cuota.seguro.id)
-
-    return credito
-
-
-
-def calcular_interes_y_mora(cuota):
-
-    tasa_interes = 0
-    interes = 0
-    mora = 0
-    saldo_pendiente = cuota.saldo_pendiente
-
-    if cuota.credit_id is not None:
-        tasa_interes =  cuota.credit_id.tasa_interes
-        forma_pago = cuota.credit_id.forma_de_pago
-
-        if not cuota.status:
-            mora = Decimal(cuota.mora) + (Decimal(cuota.interest) * Decimal("0.10")) # Por lo establecido la mora es del 10%
-        
-        
-
-    
-    if cuota.acreedor is not None:
-        tasa_interes = cuota.acreedor.tasa
-    
-    if cuota.seguro is not None:
-        tasa_interes = cuota.seguro.tasa
-    
-    interes = calculo_interes(saldo_pendiente, tasa_interes)
-
-    return interes, mora
-
-def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, mora, dia):
-    datos_viejos = {}
-    datos_nuevos = {}
-    print(f'Interes: {interes}, Saldo Pendiente: {pago.saldo_pendiente}, Interes Acumulado:{interes_acumulado}')
-    mes = pago.mes
-
-    if siguiente_cuota is not None:
-        
-
-        siguiente_cuota.outstanding_balance = pago.saldo_pendiente
-        siguiente_cuota.saldo_pendiente = pago.saldo_pendiente
-
-
-
-        if pago.credit_id:
-            siguiente_cuota.credit_id = pago.credit_id
-            siguiente_cuota.mora = mora 
-            siguiente_cuota.interest = interes_acumulado
-
-            fecha_inicio = pago.credit_id.fecha_inicio
-            fecha_emision = dia
-            fecha_limite = pago.credit_id.fecha_finalizacion_gracia + relativedelta(months=1)
-            forma_pago = pago.credit_id.forma_de_pago
-
-
-            if (
-                fecha_limite is not None and
-                fecha_inicio <= fecha_emision <= fecha_limite and
-                forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
-            ):
-                tasa_interes =  pago.credit_id.tasa_interes
-                tasa = Decimal(tasa_interes) + Decimal (1)
-                
-                saldo_acumulativo = Decimal(pago.saldo_pendiente) 
-
-                #saldo_acumulativo = Decimal(pago.saldo_pendiente) + Decimal(interes_acumulado)
-
-                
-                interes  = calculo_interes(saldo_acumulativo, tasa_interes)
-                
-                
-
-                if mes > 1: 
-                    mora = ( Decimal(interes) * Decimal(mes-1))* Decimal(0.1) 
-
-                    interes_acumulado = (Decimal(interes_acumulado) - mora) 
-
-                mora = ( Decimal(interes) * Decimal(mes))* Decimal(0.1) 
-
-                siguiente_cuota.interest = interes + interes_acumulado + mora
-
-
-        if pago.seguro:
-            siguiente_cuota.seguro = pago.seguro
-            siguiente_cuota.interest = interes
-        
-        if pago.acreedor:
-            siguiente_cuota.acreedor = pago.acreedor
-            siguiente_cuota.interest = interes
-
-        
-
-        siguiente_cuota.interes_generado =interes
-        siguiente_cuota.start_date = pago.due_date
-        siguiente_cuota.cambios = True
-        siguiente_cuota.save()
-
-        
-        
-
-       
-        
-
-    else:
-        cuota = PaymentPlan()
-        cuota.outstanding_balance = pago.saldo_pendiente
-        cuota.saldo_pendiente = pago.saldo_pendiente
-
-        if pago.credit_id:
-            cuota.credit_id = pago.credit_id
-            cuota.interes_generado =interes
-            cuota.interest = interes_acumulado
-            cuota.mora = mora
-
-            fecha_inicio = pago.credit_id.fecha_inicio
-            fecha_emision = dia
-            fecha_limite = pago.credit_id.fecha_finalizacion_gracia + relativedelta(months=1)
-            forma_pago = pago.credit_id.forma_de_pago
-
-
-            if (
-                fecha_limite is not None and
-                fecha_inicio <= fecha_emision <= fecha_limite and
-                forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
-            ):
-                tasa_interes =  pago.credit_id.tasa_interes
-                tasa = Decimal(tasa_interes) + Decimal (1)
-                
-                saldo_acumulativo = Decimal(pago.saldo_pendiente) 
-
-                #saldo_acumulativo = Decimal(pago.saldo_pendiente) + Decimal(interes_acumulado)
-
-                
-                interes  = calculo_interes(saldo_acumulativo, tasa_interes)
-
-                if mes > 1: 
-                    mora = ( Decimal(interes) * Decimal(mes-1))* Decimal(0.1) 
-
-                    interes_acumulado = (Decimal(interes_acumulado) - mora) 
-
-                mora = ( Decimal(interes) * Decimal(mes))* Decimal(0.1) 
-
-                cuota.interest = interes + interes_acumulado + mora
-
-        if pago.seguro:
-            cuota.seguro = pago.seguro
-            cuota.interest = interes
-        
-        if pago.acreedor:
-            cuota.acreedor = pago.acreedor
-            cuota.interest = interes
-
-        cuota.start_date = pago.due_date
-        cuota.save()
-
-        
-        
-        
-
-
-
-def generar_estado_cuenta(cuota, accion, dia):
-    estado_cuenta = AccountStatement()
-    mostrar = True
-
-    if cuota.credit_id:
-        estado_cuenta.credit = cuota.credit_id
-        fecha_inicio = cuota.credit_id.fecha_inicio
-        fecha_emision = dia
-        fecha_limite = cuota.credit_id.fecha_vencimiento
-        forma_pago = cuota.credit_id.forma_de_pago
-
-
-        if (
-                fecha_limite is not None and
-                fecha_inicio <= fecha_emision <= fecha_limite and
-                forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO'
-            ):
-            mostrar = False
-    
-    if cuota.acreedor:
-        estado_cuenta.acreedor = cuota.acreedor
-    
-    if cuota.seguro:
-        estado_cuenta.seguro = cuota.seguro
-
-    estado_cuenta.numero_referencia = str(uuid.uuid4())[:8]
-
-    if not mostrar:
-        return f'No mostrar'
-
-    if accion == 'FECHA_LIMITE' :
-        if cuota.interes_pagado > 0:
-            estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida.\nCapital Pendiente Por Pagar.'
-            if cuota.credit_id:
-                cuota.credit_id.estados_fechas = False
-                
-        else:
-
-            estado_cuenta.description = f'La cuota No. {cuota.mes} se encuentra vencida.\nFalta de Pago.'
-
-    if accion == 'FECHA_VENCIMIENTO' :
-        if cuota.interes_pagado > 0:
-            if cuota.credit_id:
-                cuota.credit_id.estados_fechas = False
-            estado_cuenta.description = f'La cuota No. {cuota.mes} ha pasado al estado de "Fechas en atraso".\nPor Capital Pendiente Por Pagar.'
-        else:
-            estado_cuenta.description = f'La cuota No. {cuota.mes} ha pasado al estado de "Fechas en atraso".\nPor Falta de Pago.'
-
-
-    estado_cuenta.cuota = cuota
-    estado_cuenta.saldo_pendiente = cuota.saldo_pendiente
-    estado_cuenta.save()
-
-
-def get_boleta(credito):
-    boleta = None
-
-    return boleta
-
-def obtener_la_siguiente_cuota(cuota):
-    siguiente_cuota = None
-
-    if cuota.credit_id:
-        siguiente_cuota = PaymentPlan.objects.filter(
-            credit_id=cuota.credit_id,
-            fecha_limite__gt=cuota.fecha_limite
-            ).order_by('fecha_limite').first()
-                
-
-    if cuota.acreedor:
-        siguiente_cuota = PaymentPlan.objects.filter(
-            acreedor=cuota.acreedor,
-            fecha_limite__gt=cuota.fecha_limite
-            ).order_by('fecha_limite').first()
-                
-            
-    if cuota.seguro:
-        siguiente_cuota = PaymentPlan.objects.filter(
-            seguro=cuota.seguro,
-            fecha_limite__gt=cuota.fecha_limite
-            ).order_by('fecha_limite').first()
-                
-    return siguiente_cuota
+# FUNCIONES
+from .funciones import get_credito, calcular_interes_y_mora, calculo_interes, calculo_mora, procesar_siguiente_cuota, generar_estado_cuenta
+from .funciones import obtener_la_siguiente_cuota
 
 def recorrido_de_cuotas(cuotas, accion, dia=None):
 
@@ -322,8 +62,6 @@ def recorrido_de_cuotas(cuotas, accion, dia=None):
                 cuota.status = True
 
         
-        
-
         if accion == 'FECHA_LIMITE':
             
             interes, mora = calcular_interes_y_mora(cuota)
@@ -392,26 +130,36 @@ def recorrido_de_cuotas(cuotas, accion, dia=None):
             
 
             procesar_siguiente_cuota(cuota, siguiente_cuota,interes ,interes_acumulado, mora, dia)
-            
+
+      
         if accion == 'FECHA_VENCIMIENTO':
             
-            cuota.paso_por_task = True           
+            cuota.paso_por_task = True   
+            cuota.save() 
+            
+               
 
             if ( cuota.status == False or cuota.status is None) and cambiar_estados:
+               
 
                 if cuota.interest > 0:
                     credito.estados_fechas = False
                     if credito.fecha_entrar_en_mora is None:
                         credito.fecha_entrar_en_mora = datetime.now().date()
-                    
-                credito.estado_aportacion = False
+                
+                verificacion_estado_aportacion = cuota.capital_generado - cuota.principal 
+
+                if verificacion_estado_aportacion > 0:
+                    credito.estado_aportacion = False
+
                 generar_estado_cuenta(cuota, accion, dia)
 
             else:
                 credito.estados_fechas = True
 
+            print(credito.estados_fechas)
             credito.save()
-            cuota.save()
+            
             
             
 

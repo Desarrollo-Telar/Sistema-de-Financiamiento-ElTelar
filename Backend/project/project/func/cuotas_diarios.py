@@ -110,17 +110,7 @@ def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
 
 
 
-def cambiar_plan():
-    #validacion = ejecutar_max_1_veces_al_dia()
-    dia = '2026-05-29'
-    
-    
-    from datetime import datetime
 
-    dia = datetime.strptime(dia, "%Y-%m-%d").date()
-    
-    
-    ver_cuotas(dia)
     
 
 def analisis_credito():
@@ -215,9 +205,20 @@ def analisando_clientes():
     
     print(f'LA CANTIDAD DE CLIENTES SIN CORREO SON: {contador_no} y la cantidad de clientes que si tienen: {contador_si}')
 
+def cambiar_plan():
+    #validacion = ejecutar_max_1_veces_al_dia()
+    dia = '2026-06-14'
+    
+    
+    from datetime import datetime
 
+    dia = datetime.strptime(dia, "%Y-%m-%d").date()
+    
+    
+    ver_cuotas(dia)
+    
 if __name__ == '__main__':
-    #cambiar_plan()
-    print(calculo_interes_acumulado(0.075,1000,3))
+    cambiar_plan()
+    """print(calculo_interes_acumulado(0.075,1000,3))"""
 
     
