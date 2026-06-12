@@ -395,23 +395,31 @@ def recorrido_de_cuotas(cuotas, accion, dia=None):
             
         if accion == 'FECHA_VENCIMIENTO':
             
-            cuota.paso_por_task = True           
+            cuota.paso_por_task = True   
+            cuota.save() 
+            
+               
 
             if ( cuota.status == False or cuota.status is None) and cambiar_estados:
+               
 
                 if cuota.interest > 0:
                     credito.estados_fechas = False
                     if credito.fecha_entrar_en_mora is None:
                         credito.fecha_entrar_en_mora = datetime.now().date()
-                    
-                credito.estado_aportacion = False
+                
+                verificacion_estado_aportacion = cuota.capital_generado - cuota.principal 
+
+                if verificacion_estado_aportacion > 0:
+                    credito.estado_aportacion = False
+
                 generar_estado_cuenta(cuota, accion, dia)
 
             else:
                 credito.estados_fechas = True
 
+            
             credito.save()
-            cuota.save()
             
             
 
