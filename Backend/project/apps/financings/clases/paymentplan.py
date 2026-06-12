@@ -81,7 +81,7 @@ class PaymentPlan:
 
             interes_acumulado = (Decimal(interes_acumulado) - mora) + interes_del_mes
 
-            mora = ( Decimal(interes_del_mes) * Decimal(i))* Decimal(0.1) 
+            mora = ( Decimal(interes_del_mes) * Decimal(i + 1))* Decimal(0.1) 
 
             interes_acumulado =  Decimal(interes_acumulado) + Decimal(mora)
             
@@ -169,7 +169,16 @@ class PaymentPlan:
         mes_fin = self.next_month_preserving_day(mes_inicio)
         
         monto_p = self.monto_inicial
-        intereses = self.calculo_intereses(monto_p)
+
+        if self.forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
+            intereses_amtes = self.calculo_intereses(monto_p)
+            mora = Decimal(intereses_amtes) * Decimal(0.1)
+
+            intereses = Decimal(intereses_amtes) + mora
+
+        else:
+            intereses = self.calculo_intereses(monto_p)
+            
         cuota = self.calculo_cuota(intereses, 0, 1)
         capital = self.calculo_capital(cuota, intereses, 1)
 

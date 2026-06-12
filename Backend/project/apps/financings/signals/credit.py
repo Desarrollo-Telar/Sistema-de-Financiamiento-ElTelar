@@ -55,6 +55,10 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
 
     # Calcular valores base
     interes = calculo_interes(instance.monto, instance.tasa_interes)
+
+    if instance.forma_de_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
+        interes = calculo_interes(instance.monto, instance.tasa_interes) + (calculo_mora(instance.monto, instance.tasa_interes))
+
     fecha_limite = calcular_fecha_maxima(instance.fecha_inicio)
     fecha_vencimiento = calcular_fecha_vencimiento(instance.fecha_inicio)
 

@@ -164,7 +164,16 @@ inicial() {
     const cuota = this.calculoCuota(intereses, null, 1);
     const capital = this.calculoCapital(cuota, intereses, 1);
 
-    dicio.intereses = intereses;
+    if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
+
+        dicio.intereses = intereses + (intereses * 0.1);
+        
+    }else{
+        dicio.intereses = intereses;
+
+    }
+
+    
     dicio.capital = capital;
     dicio.cuota = cuota;
     return dicio;
@@ -183,7 +192,7 @@ calculoInteresAcumulado(saldoCapitalPendiente, n) {
         
         interesAcumulado = (interesAcumulado - mora) + interesDelMes
 
-        mora = (interesDelMes * i ) * 0.1
+        mora = (interesDelMes * (i + 1) ) * 0.1
         
         interesAcumulado =  interesAcumulado + mora;
         
@@ -195,6 +204,8 @@ calculoInteresAcumulado(saldoCapitalPendiente, n) {
 
     return interesAcumulado;
 }
+
+
 // Ajuste en el loop de generarPlan()
 generarPlan() {
     // Limpiamos el plan antes de empezar
