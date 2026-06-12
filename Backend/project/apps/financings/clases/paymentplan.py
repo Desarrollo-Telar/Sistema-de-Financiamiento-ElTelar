@@ -170,7 +170,7 @@ class PaymentPlan:
         
         monto_p = self.monto_inicial
 
-        if self.forma_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO':
+        if self.forma_pago == 'INTERES Y CAPITAL AL VENCIMIENTO':
             intereses_amtes = self.calculo_intereses(monto_p)
             mora = Decimal(intereses_amtes) * Decimal(0.1)
 
