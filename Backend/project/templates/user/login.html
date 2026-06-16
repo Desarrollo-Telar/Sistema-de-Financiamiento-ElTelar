@@ -1,18 +1,22 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
+  
   <title>{{title}}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
   <link rel="stylesheet" href="{% static 'css/login.css'%}" />
  <link rel="icon" href="{% static 'img/logo_icon.jpeg' %}" />
  <meta name="description" content="Un hilo de oportunidades.">
   <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+
   <style type="text/css">
     @font-face {
       font-family: 'Quicksand';
@@ -24,51 +28,274 @@
       /* Estilo normal */
     }
 
+   
+  </style>
+
+ 
+ 
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background-color: #eef0f2;
-      overflow: hidden;
-      font-family: "Quicksand", serif;
+      min-height: 100vh;
+      background: #660708;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .login-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 2.5rem 2.25rem;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    /* Logo */
+    .bank-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+    .bank-icon {
+      width: 44px;
+      height: 44px;
+      background: #0A1628;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .bank-icon i { color: #f7f6f4; font-size: 24px; }
+    .bank-name { font-size: 18px; font-weight: 600; color: #0A1628; letter-spacing: 0.02em; text-transform: uppercase;}
+    .bank-sub { font-size: 11px; color: #888; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+
+    .divider { height: 1px; background: #EBEBEB; margin-bottom: 1.75rem; }
+
+    .form-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: #0A1628;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Error */
+    .error-msg {
+      font-size: 13px;
+      color: #9B2020;
+      background: #FFF0F0;
+      border: 1px solid #F5C5C5;
+      border-radius: 7px;
+      padding: 10px 14px;
+      margin-bottom: 1.25rem;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+    .error-msg.show { display: flex; }
+    .error-msg i { font-size: 16px; flex-shrink: 0; }
+
+    /* Campos */
+    .field { margin-bottom: 1.25rem; }
+    .field label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #555;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .input-wrap { position: relative; display: flex; align-items: center; }
+    .input-wrap .field-icon {
+      position: absolute;
+      left: 12px;
+      font-size: 18px;
+      color: #AAA;
+      pointer-events: none;
+    }
+    .input-wrap input {
+      width: 100%;
+      padding: 11px 42px 11px 40px;
+      border: 1px solid #DDD;
+      border-radius: 7px;
+      font-size: 14px;
+      color: #0A1628;
+      background: #F9F9F9;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+      font-family: inherit;
+    }
+    .input-wrap input:focus {
+      border-color: #0A1628;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(10, 22, 40, 0.07);
+    }
+    .input-wrap input::placeholder { color: #BBB; }
+    .toggle-pw {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #AAA;
+      font-size: 18px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      transition: color 0.15s;
+    }
+    .toggle-pw:hover { color: #555; }
+
+    /* Caps Lock */
+    .capslock-warn {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      color: #996600;
+      margin-top: 5px;
+    }
+    .capslock-warn.show { display: flex; }
+    .capslock-warn i { font-size: 13px; }
+
+    /* Botón */
+    .btn-login {
+      width: 100%;
+      padding: 13px;
+      background: #0A1628;
+      color: #e0dcd5;
+      border: none;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.15s, opacity 0.15s, transform 0.1s;
+      margin-top: 0.5rem;
+      font-family: inherit;
+    }
+    .btn-login:hover { background: #15284A; }
+    .btn-login:active { transform: scale(0.99); opacity: 0.9; }
+    .btn-login:disabled { opacity: 0.7; cursor: not-allowed; }
+    .btn-login i { font-size: 18px; }
+
+    /* Nota de seguridad */
+    .security-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 1.5rem;
+    }
+    .security-note i { font-size: 14px; color: #999; }
+    .security-note span { font-size: 11.5px; color: #AAA; }
+
+    /* Footer */
+    .footer-bar {
+      margin-top: 1.75rem;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.3);
+      text-align: center;
+    }
+
+    /* Spinner */
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .spinning { animation: spin 0.8s linear infinite; }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .login-card { padding: 2rem 1.5rem; }
     }
   </style>
 </head>
-
 <body>
 
-  <main>
-    <div class="container shadow p-3 mb-5 bg-body-tertiary rounded" style="margin-top: 10rem; margin-bottom: 10rem;">
-      <div class="row" style="padding:5rem">
-        <div class="col-xs-12 col-md-6">
-          <h3 style="color: #c52233; font-weight: bold;">Inicia Sesión</h3>
-          <p>Utilice su cuenta de El Telar para ingresar al sistema</p>
-        </div>
-        <div class="col-xs-12 col-md-6">
-          <form method="POST" autocomplete="off">
-            {% csrf_token %}
-            <div class="form-group">
-              <label for="username" style="font-weight: bold;">Nombre de usuario</label>
-              <input type="text" name="username" class="form-control" />
-            </div>
-            <div class="form-group" style="margin-top: 0.5rem;">
-              <label for="password" style="font-weight: bold;">Contraseña</label>
-              <input type="password" name="password" class="form-control" />
-            </div>
-            <!-- 
-            <div class="" style="margin-top: 0.5rem;">
-              <a href="{% url 'password_reset' %}">Se me ha olvidado la contraseña</a>
-            </div>
--->
-            <div class="d-grid grap-2 col-6 mx-auto" style="margin-top: 1.5rem;">
-              <button type="submit" class="btn_iniciar"
-                style="background-color: #a7333f; color: #fbfbf2;border-color: #a7333f; border-radius: 2rem;border-style: solid;">
-                Iniciar Sesión
-              </button>
-            </div>
-          </form>
-        </div>
+  <div class="login-card">
+
+    <div class="bank-logo">
+      <div class="bank-icon">
+        <i class="ti ti-building-bank" aria-hidden="true"></i>
+      </div>
+      <div>
+        <div class="bank-name">Inversiones Integrales</div>
+        <div class="bank-sub">El Telar S.A.</div>
       </div>
     </div>
 
-  </main>
+    <div class="divider"></div>
+
+    
+
+    <form method="POST" autocomplete="off" id="loginForm" novalidate>
+      {% csrf_token %}
+
+      <div class="error-msg" id="errorMsg" role="alert" aria-live="assertive">
+        <i class="ti ti-alert-circle" aria-hidden="true"></i>
+        <span id="errorText">Usuario o contraseña incorrectos.</span>
+      </div>
+
+      <div class="field">
+        <label for="username">Usuario</label>
+        <div class="input-wrap">
+          <i class="ti ti-user field-icon" aria-hidden="true"></i>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Ingrese su usuario"
+            autocomplete="username"
+            spellcheck="false"
+            autocorrect="off"
+            autocapitalize="off"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password">Contraseña</label>
+        <div class="input-wrap">
+          <i class="ti ti-lock field-icon" aria-hidden="true"></i>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+          <button class="toggle-pw" id="togglePw" type="button" aria-label="Mostrar contraseña">
+            <i class="ti ti-eye" id="eyeIcon" aria-hidden="true"></i>
+          </button>
+        </div>
+        
+      </div>
+
+      <button class="btn-login" id="btnLogin" type="submit">
+        <i class="ti ti-login" id="btnIcon" aria-hidden="true"></i>
+        <span id="btnText">Ingresar al sistema</span>
+      </button>
+
+    </form>
+
+    
+
+  </div>
+
+  <div class="footer-bar">© 2026 Inversiones Integrales El Telar S.A. · Todos los derechos reservados</div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
     crossorigin="anonymous"></script>
@@ -85,6 +312,72 @@
     {% endfor %}
     {% endif %}
   </script>
-</body>
 
+  <script>
+    const btn       = document.getElementById('btnLogin');
+    const btnIcon   = document.getElementById('btnIcon');
+    const btnText   = document.getElementById('btnText');
+    const userInput = document.getElementById('username');
+    const pwInput   = document.getElementById('password');
+    const togglePw  = document.getElementById('togglePw');
+    const eyeIcon   = document.getElementById('eyeIcon');
+    const errorMsg  = document.getElementById('errorMsg');
+    const errorText = document.getElementById('errorText');
+    const capsWarn  = document.getElementById('capsWarn');
+
+    /* Mostrar / ocultar contraseña */
+    togglePw.addEventListener('click', () => {
+      const visible = pwInput.type === 'text';
+      pwInput.type = visible ? 'password' : 'text';
+      eyeIcon.className = visible ? 'ti ti-eye' : 'ti ti-eye-off';
+      togglePw.setAttribute('aria-label', visible ? 'Mostrar contraseña' : 'Ocultar contraseña');
+    });
+
+    /* Detectar Bloq Mayús */
+    pwInput.addEventListener('keyup', (e) => {
+      const caps = e.getModifierState && e.getModifierState('CapsLock');
+      capsWarn.classList.toggle('show', caps);
+    });
+
+    /* Mostrar error */
+    function showError(msg) {
+      errorText.textContent = msg;
+      errorMsg.classList.add('show');
+    }
+
+    /* Limpiar error al escribir */
+    [userInput, pwInput].forEach(el => {
+      el.addEventListener('input', () => errorMsg.classList.remove('show'));
+    });
+
+    /* Validación */
+    function validate() {
+      const u = userInput.value.trim();
+      const p = pwInput.value;
+      errorMsg.classList.remove('show');
+      if (!u) { showError('El campo de usuario es obligatorio.'); userInput.focus(); return false; }
+      if (!p) { showError('El campo de contraseña es obligatorio.'); pwInput.focus(); return false; }
+      if (p.length < 6) { showError('La contraseña debe tener al menos 6 caracteres.'); pwInput.focus(); return false; }
+      return true;
+    }
+
+    /* Envío — el form hace POST a Django con el CSRF token incluido */
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', (e) => {
+      if (!validate()) {
+        e.preventDefault();
+        return;
+      }
+      btn.disabled = true;
+      btnIcon.className = 'ti ti-loader-2 spinning';
+      btnText.textContent = 'Verificando...';
+      /* El form se envía normalmente a Django vía POST */
+    });
+  </script>
+
+</body>
 </html>
+
+
+
