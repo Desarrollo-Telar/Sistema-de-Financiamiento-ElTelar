@@ -157,9 +157,14 @@ def recorrido_de_cuotas(cuotas, accion, dia=None):
             else:
                 credito.estados_fechas = True
 
+<<<<<<< HEAD
             print(credito.estados_fechas)
             credito.save()
             
+=======
+            
+            credito.save()
+>>>>>>> master
             
             
 
