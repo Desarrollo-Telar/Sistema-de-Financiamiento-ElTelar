@@ -1,75 +1,172 @@
 {% load static %}
+
+<style>
+    .table-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid #e9ecef;
+    }
+    .table-custom {
+        margin-bottom: 0;
+        vertical-align: middle;
+    }
+    .table-custom th {
+        background-color: #f8f9fa;
+        color: #495057;
+        font-weight: 600;
+        width: 30%; /* Alineación uniforme para las etiquetas */
+        border-bottom: 2px solid #dee2e6;
+    }
+    .table-custom td {
+        color: #212529;
+    }
+    .section-title {
+        font-size: 1.1rem;
+        color: #0d6efd;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #e9ecef;
+    }
+    .btn-custom-edit {
+        background-color: #ffffff;
+        color: #000000;
+        border: 1px solid #0B090A;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+    }
+    .btn-custom-edit:hover {
+        background-color: #020202;
+        color: #fffdfd;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+    .btn-custom-create {
+        background-color: #e5383b;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        font-weight: 500;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: inline-block;
+    }
+    .btn-custom-create:hover {
+        background-color: #b22325;
+        color: white;
+        box-shadow: 0 4px 8px rgba(13, 110, 253, 0.2);
+    }
+</style>
+
 <div class="row" style="margin: 1rem 0;">
-    {% if informacion_laboral%}
-    {% for laboral in informacion_laboral %}
-    <p class="fw-semibold">Puesto</p>
-    <p>{{laboral.position}}</p>
-    <hr>
-    <p class="fw-semibold">Nombre de la Empresa</p>
-    <p>{{laboral.company_name}}</p>
-    <hr>
-    <p class="fw-semibold">Fecha de Inicio</p>
-    <p>{{laboral.start_date}}</p>
-    <hr>
-    <p class="fw-semibold">Salario</p>
-    <p>{{laboral.salary}}</p>
-    <hr>
-    <p class="fw-semibold">Horario de Trabajo</p>
-    <p>{{laboral.working_hours}}</p>
-    <hr>
-    <p class="fw-semibold">Número de Teléfono</p>
-    <p>{{laboral.phone_number}}</p>
-    <hr>
-    <p class="fw-semibold">Fuente de Ingreso</p>
-    <p>{{laboral.source_of_income}}</p>
-    <hr>
-    <p class="fw-semibold">Estado Laboral</p>
-    <p>{{laboral.employment_status}}</p>
-    <hr>
-    <p class="fw-semibold"> Detalles de ingresos a sus Funciones </p>
-    <p>{{laboral.income_detail}}</p>
-    <hr>
-    <p class="fw-semibold">Información de la Empresa</p>
-    <p>{{laboral.description}}</p>
+    <div class="row text-right">
+            
+            <a href="{% url 'financial_information:create_working_information' customer_code %}" class="btn-custom-create">
+                Registrar Información Laboral
+            </a>
+        </div>
 
-    {% if permisos.puede_editar_informacion_laboral_cliente %}
-    <div>
-        <hr>
-        <a href="{% url 'financial_information:update_working_information' laboral.id customer_code %}"
-            class="btn_edit">Editar informacion Personal</a>
-    </div>
-
+    {% if informacion_laboral %}
+        {% for laboral in informacion_laboral %}
+        <div class="col-12 table-container">
+            <div class="d-flex justify-content-between align-items-center section-title">
+                <span class="fw-bold"><i class="bi bi-briefcase-fill me-2"></i>Información Laboral</span>
+                {% if permisos.puede_editar_informacion_laboral_cliente %}
+                    <a href="{% url 'financial_information:update_working_information' laboral.id customer_code %}" class="btn-custom-edit">
+                        Editar Información
+                    </a>
+                {% endif %}
+            </div>
+            
+            <table class="table table-bordered table-custom">
+                <tbody>
+                    <tr>
+                        <th>Puesto</th>
+                        <td>{{ laboral.position }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de la Empresa</th>
+                        <td>{{ laboral.company_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de Inicio</th>
+                        <td>{{ laboral.start_date }}</td>
+                    </tr>
+                    <tr>
+                        <th>Salario</th>
+                        <td class="fw-semibold text-success">Q {{ laboral.salary }}</td>
+                    </tr>
+                    <tr>
+                        <th>Horario de Trabajo</th>
+                        <td>{{ laboral.working_hours }}</td>
+                    </tr>
+                    <tr>
+                        <th>Número de Teléfono</th>
+                        <td>{{ laboral.phone_number }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fuente de Ingreso</th>
+                        <td>{{ laboral.source_of_income }}</td>
+                    </tr>
+                    <tr>
+                        <th>Estado Laboral</th>
+                        <td><span class="badge bg-secondary">{{ laboral.employment_status }}</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Información de la Empresa</th>
+                        <td>{{ laboral.description|default:"---" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
     {% endif %}
 
-    {% endfor %}
+    {% if otra_informacion_laboral %}
+        {% for other in otra_informacion_laboral %}
+        <div class="col-12 table-container">
+            <div class="d-flex justify-content-between align-items-center section-title">
+                <span class="fw-bold"><i class="bi bi-wallet2 me-2"></i>Otras Fuentes de Ingreso</span>
+                {% if permisos.puede_editar_informacion_laboral_cliente %}
+                    <a href="{% url 'financial_information:update_other_information' other.id customer_code %}" class="btn-custom-edit">
+                        Editar Información
+                    </a>
+                {% endif %}
+            </div>
+
+            <table class="table table-bordered table-custom">
+                <tbody>
+                    <tr>
+                        <th>Fuentes de Ingreso</th>
+                        <td>{{ other.source_of_income }}</td>
+                    </tr>
+                    <tr>
+                        <th>NIT</th>
+                        <td class="fw-mono">{{ other.nit }}</td>
+                    </tr>
+                    <tr>
+                        <th>Número de Teléfono</th>
+                        <td>{{ other.phone_number }}</td>
+                    </tr>
+                    <tr>
+                        <th>Salario</th>
+                        <td class="fw-semibold text-success">Q {{ other.salary }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
     {% endif %}
 
-    {% if otra_informacion_laboral%}
-    {% for other in otra_informacion_laboral%}
-    <p class="fw-semibold">Fuentes de ingreso</p>
-    <p>{{other.source_of_income}}</p>
-    <hr>
-    <p class="fw-semibold">NIT</p>
-    <p class="fw-semibold">{{other.nit}}</p>
-    <hr>
-    <p class="fw-semibold">Numero de telefono</p>
-    <p>{{other.phone_number}}</p>
-    <hr>
-    <p class="fw-semibold">Salario</p>
-    <p>Q{{other.salary}}</p>
-    {% if permisos.puede_editar_informacion_laboral_cliente %}
-    <div>
-        <hr>
-        <a href="{% url 'financial_information:update_other_information' other.id customer_code %}"
-            class="btn_edit">Editar informacion Personal</a>
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-
-    {% if not otra_informacion_laboral and not informacion_laboral%}
-    <a href="{% url 'financial_information:create_working_information' customer_code %}"
-            class="btn_edit">Registrar Informacion Laboral</a>
-    {% endif%}
+  
 
 </div>

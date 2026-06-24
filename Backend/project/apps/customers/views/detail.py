@@ -48,6 +48,7 @@ def detail_customer(request,customer_code):
 
     informacion_laboral = WorkingInformation.objects.filter(Q(customer_id=customer_list))
     otra_informacion_laboral = OtherSourcesOfIncome.objects.filter(Q(customer_id=customer_list))
+    
     direccion = Address.objects.filter(Q(customer_id=customer_list))
     
     plan_inversion = InvestmentPlan.objects.filter(Q(customer_id=customer_list))

@@ -1,125 +1,136 @@
 {% load static %}
+
+<style>
+    .profile-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid #e9ecef;
+    }
+    .profile-title {
+        font-size: 1.1rem;
+        color: #0d6efd;
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #e9ecef;
+    }
+    .table-profile {
+        margin-bottom: 0;
+    }
+    .table-profile th {
+        background-color: #f8f9fa;
+        color: #495057;
+        font-weight: 600;
+        width: 35%;
+        vertical-align: middle;
+    }
+    .table-profile td {
+        color: #212529;
+        vertical-align: middle;
+    }
+    .badge-status {
+        font-size: 0.85rem;
+        padding: 0.4em 0.65em;
+    }
+</style>
+
 <div class="row" style="margin: 1rem 0;">
+    <div class="col-12 profile-container">
+        
+        <div class="section-title profile-title fw-bold">
+            <i class="bi bi-person-lines-fill me-2"></i> Datos Generales del Cliente
+        </div>
 
-    <p class="fw-semibold">Nombre del Cliente</p>
-    <p style="margin-left: 0.5rem;">{{customer_list.first_name}} {{customer_list.last_name}}</p>
-    <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-bordered table-profile mb-3 mb-md-0">
+                    <tbody>
+                        <tr>
+                            <th>Nombre del Cliente</th>
+                            <td class="fw-bold text-primary">{{ customer_list.first_name }} {{ customer_list.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tipo de Identificación</th>
+                            <td>{{ customer_list.type_identification }}</td>
+                        </tr>
+                        <tr>
+                            <th>No. de Identificación</th>
+                            <td class="fw-semibold">{{ customer_list.identification_number }}</td>
+                        </tr>
+                        <tr>
+                            <th>Vencimiento Identificación</th>
+                            <td>{{ customer_list.fehca_vencimiento_de_tipo_identificacion|default:"No registra" }}</td>
+                        </tr>
+                        <tr>
+                            <th>NIT</th>
+                            <td>{{ customer_list.number_nit|default:"---" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Número de Teléfono</th>
+                            <td>{{ customer_list.telephone }}</td>
+                        </tr>
+                        <tr>
+                            <th>Correo Electrónico</th>
+                            <td><a href="mailto:{{ customer_list.email }}" class="text-decoration-none">{{ customer_list.email }}</a></td>
+                        </tr>
+                        <tr>
+                            <th>Status del Cliente</th>
+                            <td>
+                                <span class="badge bg-success badge-status">{{ customer_list.status }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
+            <div class="col-md-6">
+                <table class="table table-bordered table-profile">
+                    <tbody>
+                        <tr>
+                            <th>Fecha de Nacimiento</th>
+                            <td>{{ customer_list.date_birth }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lugar de Vecindad</th>
+                            <td>{{ customer_list.place_birth }}</td>
+                        </tr>
+                        <tr>
+                            <th>Estado Civil</th>
+                            <td>{{ customer_list.marital_status }}</td>
+                        </tr>
+                        <tr>
+                            <th>Profesión u Oficio</th>
+                            <td>{{ customer_list.profession_trade }}</td>
+                        </tr>
+                        <tr>
+                            <th>Género</th>
+                            <td>{{ customer_list.gender }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nacionalidad</th>
+                            <td>{{ customer_list.nationality }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tipo de Persona</th>
+                            <td>{{ customer_list.person_type }}</td>
+                        </tr>
+                        <tr>
+                            <th>Asesor del Crédito</th>
+                            <td><span class="text-muted">{{ customer_list.asesor|default:"Sin asesor asignado" }}</span></td>
+                        </tr>
+                        
+                        {% if request.user.rol.role_name == 'Administrador' or request.user.rol.role_name == 'Programador' %}
+                        <tr class="table-warning">
+                            <th>Usuario Registrador</th>
+                            <td class="fw-semibold">{{ customer_list.user_id }}</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <p class="fw-semibold">Tipo de identificación</p>
-    <p style="margin-left: 0.5rem;">{{customer_list.type_identification}} </p>
-    <hr>
-
-
-    <p class="fw-semibold">Numero de identificación</p>
-    <p style="margin-left: 0.5rem;">{{customer_list.identification_number}}</p>
-    <hr>
-
-
-    <p class="fw-semibold">Numero de telefono</p>
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.telephone}}
-    </p>
-    <hr>
-
-    <p class="fw-semibold">Correo Electronico</p>
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.email}}
-    </p>
-    <hr>
-
-    <p class="fw-semibold">Fecha de Nacimiento</p>
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.date_birth}}
-    </p>
-    <hr>
-
-
-    <p class="fw-semibold">NIT</p>
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.number_nit}}
-    </p>
-    <hr>
-
-
-    <p class="fw-semibold">Lugar de Vencidad</p>
-
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.place_birth}}
-    </p>
-    <hr>
-
-    <p class="fw-semibold">Estado Civil</p>
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.marital_status}}
-    </p>
-    <hr>
-
-    <p class="fw-semibold">Profesion u Oficio</p>
-
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.profession_trade}}
-    </p>
-
-
-    <hr>
-
-    <p class="fw-semibold">Genero</p>
-
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.gender}}
-    </p>
-
-
-    <hr>
-
-
-    <p class="fw-semibold">Nacionalidad</p>
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.nationality}}
-    </p>
-
-
-
-    <hr>
-
-    <p class="fw-semibold">Tipo de Persona</p>
-
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.person_type}}
-    </p>
-
-
-    <hr>
-
-    <p class="fw-semibold">Status del Cliente</p>
-
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.status}}
-    </p>
-    <hr>
-
-    <p class="fw-semibold">Fecha de Vencimiento del Tipo de Identificación</p>
-
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.fehca_vencimiento_de_tipo_identificacion}}
-    </p>
-    <hr>
-
-    <p class="fw-semibold">Asesor del Credito</p>
-
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.asesor}}
-    </p>
-    
-    {% if request.user.rol.role_name == 'Administrador' or request.user.rol.role_name == 'Programador' %}
-    <hr>
-    <p class="fw-semibold">Usuario quien registro a este Cliente</p>
-
-    <p style="margin-left: 0.5rem;">
-        {{customer_list.user_id}}
-    </p>
-    {% endif %}
-
-
+    </div>
 </div>
