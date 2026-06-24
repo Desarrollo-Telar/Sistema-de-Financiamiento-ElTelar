@@ -68,7 +68,7 @@
     {% endif %}
 
     {% if not otra_informacion_laboral and not informacion_laboral%}
-    <a href="{% url 'financial_information:seleccionar' customer_code %}"
+    <a href="{% url 'financial_information:create_working_information' customer_code %}"
             class="btn_edit">Registrar Informacion Laboral</a>
     {% endif%}
 

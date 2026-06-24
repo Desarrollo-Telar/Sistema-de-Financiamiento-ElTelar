@@ -4,68 +4,238 @@
 
 {% block css %}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/customers/informacion_laboral.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container box">
-    <div class="row">
-        <form method="POST"  enctype="multipart/form-data" autocomplete="off">
-            {% csrf_token %}
-            <div class="row" style="margin-top: 1rem;">
-                <h3>Información Laboral</h3>
-                <hr>
-                {% for field in informacion_laboral_form %}
-                <div class="form-group" style="margin-top: 0.5rem;">
-                    <label for="{{ field.id_for_label }}" class="form-label fw-bold">
-                        {{ field.label }}
-                    </label>
-                    {{ field }}
-                    {% if field.errors %}
-                    {{ field.errors }}
-                    {% endif %}
-                </div>
-                <br />
-
-                {% endfor %}
-            </div>
-            <div class="row" style="margin-top: 2rem;">
-            <h3>Dirección Personal</h3>
-            <hr>
-            {% for field in form_direccion %}
-
-            <div class="form-group" style="margin-top: 0.5rem;">
-                <label for="{{ field.id_for_label }}" class="form-label fw-bold">
-                    {{ field.label }}
-                </label>
-                {{ field }}
-                {% if field.errors %}
-                {{ field.errors }}
-                {% endif %}
-            </div>
-            <br />
-
-            {% endfor %}
-
-        </div>
-
-            <div class="row" style="margin-top: 1rem;">
-                <div class="col">
-                    <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
-
-                </div>
-                <div class="col">
-                    <button type="submit" class="btn_guardar">Siguiente</button>
-
-                </div>
 
 
+<div class="page">
 
-            </div>
-
-
-        </form>
-
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="topbar__mark">RL</span>
+      <div class="topbar__text">
+        <span class="topbar__title">Registro laboral</span>
+        <span class="topbar__subtitle">Información de empleo y dirección de trabajo</span>
+      </div>
     </div>
+    <div class="topbar__progress" aria-hidden="true">
+      <span class="topbar__progress-label">Avance</span>
+      <div class="topbar__progress-track">
+        <div class="topbar__progress-fill" id="progressFill"></div>
+      </div>
+      <span class="topbar__progress-value" id="progressValue">0%</span>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <nav class="rail" aria-label="Secciones del formulario">
+      <button class="rail__step is-active" type="button" data-target="laboral">
+        <span class="rail__number">01</span>
+        <span class="rail__label">
+          <span class="rail__label-title">Información laboral</span>
+          <span class="rail__label-desc">Empresa, cargo y condiciones</span>
+        </span>
+      </button>
+      <span class="rail__connector" aria-hidden="true"></span>
+      <button class="rail__step" type="button" data-target="direccion">
+        <span class="rail__number">02</span>
+        <span class="rail__label">
+          <span class="rail__label-title">Dirección de trabajo</span>
+          <span class="rail__label-desc">Ubicación del centro laboral</span>
+        </span>
+      </button>
+    </nav>
+
+    <main class="content">
+
+      <form id="registroForm" novalidate>
+        {% csrf_token %}
+        <meta name="csrf-token" content="{{ csrf_token }}">
+        <input type="hidden" id="subsidiary" value="{{subsidiary}}">
+        <input type="hidden" id="customer_id" value="{{cliente}}">
+
+        <section class="card" id="laboral" data-section>
+          <header class="card__header">
+            <span class="card__index">01</span>
+            <div>
+              <h2 class="card__title">Información laboral</h2>
+              <p class="card__subtitle">Datos del empleo actual del cliente.</p>
+            </div>
+          </header>
+
+          <div class="grid">
+
+            <div class="field">
+              <label for="empresa">Nombre de la empresa</label>
+              <input type="text" id="empresa" name="empresa" placeholder="Ej. Industrias del Norte, S.A." required>
+              <span class="field__error" data-error-for="empresa"></span>
+            </div>
+
+            <div class="field">
+              <label for="cargo">Cargo o puesto</label>
+              <input type="text" id="cargo" name="cargo" placeholder="Ej. Analista de crédito" required>
+              <span class="field__error" data-error-for="cargo"></span>
+            </div>
+
+            <div class="field">
+              <label for="tipoContrato">Fuente de Ingreso</label>
+              <select id="tipoContrato" name="FuenteIngreso" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Relación de Dependencia">Relación de Dependencia</option>
+                <option value="Negocio Propio">Negocio Propio</option>
+                <option value="Otra">Otra</option>
+                
+              </select>
+              <span class="field__error" data-error-for="tipoContrato"></span>
+            </div>
+
+            <div class="field">
+              <label for="fechaIngreso">Fecha de ingreso</label>
+              <input type="date" id="fechaIngreso" name="fechaIngreso" required>
+              <span class="field__error" data-error-for="fechaIngreso"></span>
+            </div>
+
+            <div class="field">
+              <label for="salario">Salario mensual (Q)</label>
+              <input type="number" id="salario" name="salario" placeholder="Ej. 4500" min="0" step="0.01" required>
+              <span class="field__error" data-error-for="salario"></span>
+            </div>
+
+            <div class="field">
+              <label for="telefonoEmpresa">Teléfono de la empresa</label>
+              <input type="tel" id="telefonoEmpresa" name="telefonoEmpresa" placeholder="Ej. 7942 1100" required>
+              <span class="field__error" data-error-for="telefonoEmpresa"></span>
+            </div>
+
+            <div class="field ">
+              <label for="employment_status">Estado Laboral</label>
+              <select id="employment_status" name="employment_status" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Empleado a Tiempo Completo">Empleado a Tiempo Completo</option>
+                <option value="Empleado a Tiempo Parcial">Empleado a Tiempo Parcial</option>
+                <option value="Autónomo">Autónomo</option>
+                <option value="Desempleado">Desempleado</option>
+                <option value="Trabajador Temporal">Trabajador Temporal</option>
+                <option value="Contratista">Contratista</option>
+                <option value="Freelancer">Freelancer</option>
+                <option value="Estudiante">Estudiante</option>
+                <option value="Jubilado">Jubilado</option>
+                <option value="Hogar">Hogar</option>
+                <option value="Practicante o Pasante">Practicante o Pasante</option>
+                <option value="Trabajador a Domicilio">Trabajador a Domicilio</option>
+                <option value="Voluntario">Voluntario</option>
+                
+                
+              </select>
+              <span class="field__error" data-error-for="employment_status"></span>
+            </div>
+
+            <div class="field">
+              <label for="working_hours">Horario de Trabajo</label>
+              <select id="working_hours" name="Horario de Trabajo" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="VESPERTINA">VESPERTINA</option>
+                <option value="NOCTURNO">NOCTURNO</option>
+                <option value="FIN DE SEMANA">FIN DE SEMANA</option>
+                
+              </select>
+              <span class="field__error" data-error-for="working_hours"></span>
+            </div>
+
+            <div class="field field--wide">
+              <label for="description">Información de la Empresa</label>
+              <textarea name="Información de la Empresa" id="description" rows="3" required></textarea>
+              
+              <span class="field__error" data-error-for="description"></span>
+            </div>
+
+          </div>
+
+          <button type="button" class="btn btn--ghost card__next" data-next="direccion">
+            Continuar a dirección de trabajo
+          </button>
+        </section>
+
+        <section class="card" id="direccion" data-section>
+          <header class="card__header">
+            <span class="card__index">02</span>
+            <div>
+              <h2 class="card__title">Dirección de trabajo</h2>
+              <p class="card__subtitle">Ubicación física del lugar de empleo.</p>
+            </div>
+          </header>
+
+          <div class="grid">
+
+            <div class="field">
+              <label for="departamento">Departamento</label>
+              <select id="departamento" name="departamento" class="city1" required></select>
+              <span class="field__error" data-error-for="departamento"></span>
+            </div>
+
+            <div class="field">
+              <label for="municipio">Municipio</label>
+              <select id="municipio" name="municipio" class="state1" required></select>
+              
+              <span class="field__error" data-error-for="municipio"></span>
+            </div>
+
+            <div class="field field--wide">
+              <label for="zona">Zona / colonia</label>
+              <input type="text" id="zona" name="zona" placeholder="Ej. Zona 2" required> 
+              <span class="field__error" data-error-for="zona"></span>
+            </div>
+
+            <div class="field">
+              <label for="latitud">Latitud</label>
+              <input type="text" id="latitud" name="latitud"  required>
+              <span class="field__error" data-error-for="latitud"></span>
+            </div>
+
+            <div class="field">
+              <label for="longitud">Longitud</label>
+              <input type="text" id="longitud" name="longitud" required>
+              <span class="field__error" data-error-for="longitud"></span>
+            </div>
+
+           
+
+            <div class="field field--wide">
+              <label for="direccionCompleta">Calle, avenida y número</label>
+              <textarea name="direccionCompleta" id="direccionCompleta" rows="3" placeholder="Ej: 4ta calle 6-22"></textarea>
+              <span class="field__error" data-error-for="direccionCompleta"></span>
+            </div>
+
+           
+
+          </div>
+
+          <div class="card__actions">
+            <a href="{% url 'customers:detail'  customer_code %}" class="btn btn--ghost" >Regresar</a>
+            <button type="submit" class="btn btn--primary">Guardar registro</button>
+          </div>
+        </section>
+
+      </form>
+
+      <section class="summary" id="summary" hidden>
+        <div class="summary__icon" aria-hidden="true">✓</div>
+        <h2 class="summary__title">Registro guardado</h2>
+        <p class="summary__desc">Esta es la información que se guardó para el cliente.</p>
+        <dl class="summary__list" id="summaryList"></dl>
+        
+        <a href="{% url 'customers:detail'  customer_code %}" class="btn btn--ghost" >Regresar</a>
+        <a href="{% url 'financial_information:create_working_information' customer_code%}" class="btn btn--primary">Guardar otro registro</a>
+      </section>
+
+    </main>
+  </div>
 </div>
 
 {% endblock %}
@@ -76,5 +246,11 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script type="text/javascript" src="{% static 'js/customer/seleccionar.js'%}"></script>
-
+<script type="module" src="{% static 'js/customer/informacion_laboral.js'%}"></script>
 {% endblock %}
+
+
+
+
+
+

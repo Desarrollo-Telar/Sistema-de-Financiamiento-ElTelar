@@ -60,64 +60,17 @@ def delete_working_information(request,id, customer_code):
 @login_required
 @usuario_activo
 def create_working_information(request, customer_code):
+    
     template_name = 'FinancialInformation/create_working_information.html'
     customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
-    
-    informacion__laboral = WorkingInformation.objects.filter(customer_id=customer_id).first()
-    direccion_trabajo = Address.objects.filter(customer_id=customer_id,type_address='Dirección de Trabajo').first()
+    sucursal = request.session['sucursal_id']
 
-    if request.method == 'POST':
-        informacion_laboral_form = WorkingInformationForms(request.POST)
-        form_direccion = AddressForms(request.POST)
-
-        if informacion__laboral is not None:
-            informacion_laboral_form = WorkingInformationForms(request.POST, instance=informacion__laboral)
-        
-        if direccion_trabajo is not None:
-            form_direccion = AddressForms(request.POST, instance=direccion_trabajo)
-
-        if informacion_laboral_form.is_valid() and form_direccion.is_valid():
-
-            informacion_laboral = informacion_laboral_form.save(commit=False)
-            informacion_laboral.customer_id = customer_id
-            informacion_laboral.save()
-
-            direccion = form_direccion.save(commit=False)
-            direccion.customer_id = customer_id
-            direccion.type_address = 'Dirección de Trabajo'
-            direccion.save()
-
-            
-            plan_inversion = InvestmentPlan.objects.filter(customer_id=customer_id).exists()
-            referencias = Reference.objects.filter(customer_id=customer_id).exists()
-
-            if plan_inversion and referencias and not customer_id.completado:
-                customer_id.completado = True
-                customer_id.save()
-                send_email_new_customer(customer_id)
-            
-            if plan_inversion:                
-                return redirect('customers:detail',customer_code)
-            
-            return redirect('investment_plan:create',customer_code)
-
-    
-    informacion_laboral_form = WorkingInformationForms()
-    form_direccion = AddressForms()
-
-    if informacion__laboral is not None:
-            informacion_laboral_form = WorkingInformation(instance=informacion__laboral)
-        
-    if direccion_trabajo is not None:
-
-        form_direccion = AddressForms( instance=direccion_trabajo)
-
-    form_direccion.fields.pop('type_address')
     context = {
-        'informacion_laboral_form':informacion_laboral_form,
-        'form_direccion':form_direccion,
+        
+        'permisos':recorrer_los_permisos_usuario(request),
         'customer_code':customer_code,
-        'permisos':recorrer_los_permisos_usuario(request)
+        'subsidiary': sucursal,
+        'cliente': customer_id.id
     }
 
     return render(request, template_name, context)
@@ -127,64 +80,14 @@ def create_working_information(request, customer_code):
 def create_other_information(request, customer_code):
     template_name = 'FinancialInformation/create_working_information.html'
     customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
+    sucursal = request.session['sucursal_id']
 
-    informacion__laboral = OtherSourcesOfIncome.objects.filter(customer_id=customer_id).first()
-    direccion_trabajo = Address.objects.filter(customer_id=customer_id,type_address='Dirección de Trabajo').first()
-    
-    
-
-    if request.method == 'POST':
-        informacion_laboral_form = OtherSourcesOfIncomeForms(request.POST)
-        form_direccion = AddressForms(request.POST)
-
-        if informacion__laboral is not None:
-            informacion_laboral_form = OtherSourcesOfIncomeForms(request.POST, instance=informacion__laboral)
-        
-        if direccion_trabajo is not None:
-            form_direccion = AddressForms(request.POST, instance=direccion_trabajo)
-
-
-
-        if informacion_laboral_form.is_valid() and form_direccion.is_valid():
-
-            informacion_laboral = informacion_laboral_form.save(commit=False)
-            informacion_laboral.customer_id = customer_id
-            informacion_laboral.save()
-
-            direccion = form_direccion.save(commit=False)
-            direccion.customer_id = customer_id
-            direccion.type_address = 'Dirección de Trabajo'
-            direccion.save()
-
-            plan_inversion = InvestmentPlan.objects.filter(customer_id=customer_id).exists()
-            referencias = Reference.objects.filter(customer_id=customer_id).exists()
-
-            if plan_inversion and referencias and not customer_id.completado:
-                customer_id.completado = True
-                customer_id.save()
-                send_email_new_customer(customer_id)
-            
-            if plan_inversion:                
-                return redirect('customers:detail',customer_code)
-            
-            return redirect('investment_plan:create',customer_code)
-
-       
-    informacion_laboral_form = OtherSourcesOfIncomeForms()
-    form_direccion = AddressForms()
-
-    if informacion__laboral is not None:
-            informacion_laboral_form = OtherSourcesOfIncomeForms(instance=informacion__laboral)
-        
-    if direccion_trabajo is not None:
-        form_direccion = AddressForms( instance=direccion_trabajo)
-
-    form_direccion.fields.pop('type_address')
     context = {
-        'informacion_laboral_form':informacion_laboral_form,
-        'form_direccion':form_direccion,
+        
+        'permisos':recorrer_los_permisos_usuario(request),
         'customer_code':customer_code,
-        'permisos':recorrer_los_permisos_usuario(request)
+        'subsidiary': sucursal,
+        'cliente': customer_id
     }
 
     return render(request, template_name, context)

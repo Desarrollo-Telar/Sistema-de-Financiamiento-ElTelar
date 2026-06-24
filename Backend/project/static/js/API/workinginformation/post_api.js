@@ -7,8 +7,8 @@ const URLW = urls_p.api_url_informacion_laboral;
 
 export async function postLaboral(formData) {
     try {
-        const sourceOfIncome1 = document.getElementById('source_of_income1').value;
-        const urls = sourceOfIncome1 === 'Otra' ? URLO : URLW;
+        
+        const urls = URLW;
 
         const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
         if (!csrfTokenElement) {

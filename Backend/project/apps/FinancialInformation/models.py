@@ -151,13 +151,3 @@ class Reference(models.Model):
         verbose_name = "Referencia"
         verbose_name_plural = "Referencias"
 
-
-@receiver(pre_save, sender=WorkingInformation)
-def consultar_working_information(sender, instance, **kwargs):
-    customer_id = instance.customer_id
-    OtherSourcesOfIncome.objects.filter(customer_id=customer_id).delete()
-
-@receiver(pre_save, sender=OtherSourcesOfIncome)
-def consultar_other_sources_of_income(sender, instance, **kwargs):
-    customer_id = instance.customer_id
-    WorkingInformation.objects.filter(customer_id=customer_id).delete()

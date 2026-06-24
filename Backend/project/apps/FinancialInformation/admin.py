@@ -22,7 +22,7 @@ class WorkingInformationAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'customer_id','phone_number','salary')
     list_filter = ('customer_id',)
     autocomplete_fields = ('customer_id',)
-    search_fields = ('salary','customer_id')
+    search_fields = ('salary','customer_id__first_name')
     
 @admin.register(OtherSourcesOfIncome)
 class OtherSourcesOfIncomeAdmin(admin.ModelAdmin):
