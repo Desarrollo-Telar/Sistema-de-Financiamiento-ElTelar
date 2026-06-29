@@ -151,3 +151,12 @@ class Reference(models.Model):
         verbose_name = "Referencia"
         verbose_name_plural = "Referencias"
 
+class TipoGasto(models.Model):
+    nombre = models.CharField("Nombre del Tipo de Gasto", max_length=150, blank=False, null=False, unique=True)
+    creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+
+class GastoCliente(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    tipo_gasto = models.ForeignKey(TipoGasto, on_delete=models.SET_NULL, null=True, blank=True)
+    descripcion =  models.TextField("Descripción", blank=True, null=True)
+    monto = models.DecimalField("Monto", max_digits=10, decimal_places=2, blank=False, null=False, default=0)
