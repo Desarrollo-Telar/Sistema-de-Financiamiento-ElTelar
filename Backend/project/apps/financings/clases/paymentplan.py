@@ -71,6 +71,7 @@ class PaymentPlan:
         saldo = Decimal(str(saldo_capital_pendiente))
         interes_acumulado = Decimal('0')
         mora = Decimal('0')
+        listado_acumulacion = []
         
         i = 0
         # Cambiamos == por < para que el ciclo funcione
@@ -83,11 +84,18 @@ class PaymentPlan:
 
             mora = ( Decimal(interes_del_mes) * Decimal(i + 1))* Decimal(0.1) 
 
+            i += 1
+
+        
+
+            if i == n:
+                mora = sum(listado_acumulacion)
+            else:
+                listado_acumulacion.append(mora)
+
+
             interes_acumulado =  Decimal(interes_acumulado) + Decimal(mora)
             
-        
-            
-            i += 1
             print(f'MES: {i}, Interés del mes: {interes_del_mes:.2f}, Acumulado: {interes_acumulado:.2f}')
         
         return round(interes_acumulado,2)

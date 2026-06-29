@@ -78,12 +78,22 @@ import math
 def redondear(valor):
     return math.ceil(valor)
 
+
+
+    
+
+    
+
+    
+
+
 def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
     # Convertimos a Decimal para precisión financiera
     tasa = Decimal(str(tasa_interes))
     saldo = Decimal(str(saldo_capital_pendiente))
     interes_acumulado = Decimal('0')
     mora = Decimal('0')
+    listado_acumulacion = []
     
     i = 0
     # Cambiamos == por < para que el ciclo funcione
@@ -97,12 +107,22 @@ def calculo_interes_acumulado(tasa_interes, saldo_capital_pendiente, n):
 
         mora = ( Decimal(interes_del_mes) * Decimal(i + 1))* Decimal(0.1) 
 
+        i += 1
+
+        
+
+        if i == n:
+            mora = sum(listado_acumulacion)
+        else:
+            listado_acumulacion.append(mora)
+
+
         interes_acumulado =  Decimal(interes_acumulado) + Decimal(mora)
         
         
         
         
-        i += 1
+        
         print(f'MES: {i}, Interés del mes: {interes_del_mes:.2f}, Acumulado: {interes_acumulado:.2f}, mora: {mora:.2f}')
     
     return round(interes_acumulado,2)
@@ -218,7 +238,7 @@ def cambiar_plan():
     ver_cuotas(dia)
     
 if __name__ == '__main__':
-    cambiar_plan()
-    """print(calculo_interes_acumulado(0.075,1000,3))"""
+    #cambiar_plan()
+    print(calculo_interes_acumulado(0.075,6000,4))
 
     
