@@ -51,9 +51,9 @@ def generar_factura(request, id):
         )
         print("Archivo XML guardado en:", ruta_guardado)
         factura_instance = Invoice.objects.filter(recibo_id=recibo).first()
-        factura_data = model_to_dict(factura_instance)
+        #factura_data = model_to_dict(factura_instance)
         
-        log_system_event('Factura generada y certificada exitosamente.', "INFO",'Sistema','Facturación',None,factura_data)
+        log_system_event('Factura generada y certificada exitosamente.', "INFO",'Sistema','Facturación',None,None)
 
         messages.success(request, "Factura generada y certificada exitosamente.")
         return redirect(f"https://report.feel.com.gt/ingfacereport/ingfacereport_documento?uuid={factura_instance.numero_autorizacion}")
