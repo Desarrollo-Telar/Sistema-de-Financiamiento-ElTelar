@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/customers/gastos_cliente.css' %}">
+{% endblock %}
+
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="module" src="{% static 'js/customer/gastos_cliente.js'%}"></script>
+{% endblock %}
+
+{% block content %}
+<input type="hidden" id="customer_id" value="{{ cliente.id }}">
+<input type="hidden" id="codigo_cliente" value="{{ cliente.customer_code }}">
+  <input type="hidden" id="customer_name_hdn" value="{{ cliente.first_name }} {{ cliente.last_name }}">
+  
+
+  <main class="layout">
+
+    <section class="card form-card" aria-labelledby="formTitle">
+      <div class="card__header">
+        <span class="card__eyebrow">Nueva partida</span>
+        <h2 id="formTitle">Registrar gasto</h2>
+      </div>
+
+      <form id="gastoForm" novalidate>
+        <input type="hidden" id="gastoId" value="">
+
+        <div class="field">
+          <label for="tipoGasto">Tipo de gasto</label>
+          <select id="tipoGasto" name="tipo_gasto">
+            <option value="" selected>Sin clasificar</option>
+          </select>
+        </div>
+
+        <div class="field field--row">
+          <div>
+            <label for="monto">Monto <span class="req">*</span></label>
+            <div class="input-money">
+              <span>Q</span>
+              <input type="number" id="monto" name="monto" min="0" step="0.01" placeholder="0.00" required>
+            </div>
+            <span class="error-msg" data-for="monto">Indica un monto mayor a 0.</span>
+          </div>
+
+          <div>
+            <label for="frecuencia">Frecuencia</label>
+            <select id="frecuencia" name="frecuencia">
+              <option value="Único" selected>Único</option>
+              <option value="Diario">Diario</option>
+              <option value="Semanal">Semanal</option>
+              <option value="Quincenal">Quincenal</option>
+              <option value="Mensual">Mensual</option>
+              <option value="Anual">Anual</option>
+              <option value="Otro">Otro (especificar)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field field--otro hidden" id="frecuenciaOtroWrap">
+          <label for="frecuenciaOtro">Especifica la frecuencia</label>
+          <input type="text" id="frecuenciaOtro" name="frecuencia_otro" placeholder="Ej. cada 3 meses">
+        </div>
+
+        <div class="field">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" name="descripcion" rows="2" placeholder="¿En qué consistió el gasto?"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="observaciones">Observaciones</label>
+          <textarea id="observaciones" name="observaciones" rows="2" placeholder="Notas adicionales (opcional)"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn--ghost" id="cancelEdit" hidden>Cancelar edición</button>
+          <button type="submit" class="btn btn--primary" id="submitBtn">Añadir al Recibo</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="receipt-wrap">
+      <div class="receipt" id="receipt">
+
+        <div class="receipt__head">
+          <span class="receipt__eyebrow">Recibo de gastos</span>
+          <h2 id="receiptCustomerName">Cargando Cliente...</h2>
+          <div class="receipt__meta">
+            <span id="receiptDate"></span>
+            <span id="receiptCount">0 partidas</span>
+          </div>
+        </div>
+
+        <div class="receipt__cols">
+          <span>Detalle</span>
+          <span>Monto</span>
+        </div>
+
+        <ul class="receipt__items" id="receiptItems"></ul>
+
+        <div class="receipt__divider" aria-hidden="true"></div>
+
+        <div class="receipt__total">
+          <span>Total Acumulado</span>
+          <span id="receiptTotal">Q0.00</span>
+        </div>
+
+        <p class="receipt__foot">Listado temporal en memoria local.</p>
+        
+        <button type="button" class="btn btn--success" id="btnGuardarApi" disabled>
+          Guardar Todo 
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <template id="itemTemplate">
+    <li class="receipt-item" data-id="">
+      <div class="receipt-item__main">
+        <span class="receipt-item__type"></span>
+        <span class="receipt-item__desc"></span>
+      </div>
+      <div class="receipt-item__side">
+        <span class="receipt-item__amount"></span>
+        <span class="receipt-item__freq"></span>
+        <div class="receipt-item__actions">
+          <button type="button" class="icon-btn icon-btn--edit" title="Editar">✎</button>
+          <button type="button" class="icon-btn icon-btn--del" title="Eliminar">✕</button>
+        </div>
+      </div>
+    </li>
+  </template>
+{% endblock %}

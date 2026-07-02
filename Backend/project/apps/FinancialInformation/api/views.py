@@ -1,5 +1,5 @@
 # Serializador
-from .serializers import WorkingInformationSerializer, OtherSourcesOfIncomeSerializer, ReferenceSerializer
+from .serializers import WorkingInformationSerializer, OtherSourcesOfIncomeSerializer, ReferenceSerializer, TipoGastoSerializer, GastoClienteSerializer
 
 # API
 from rest_framework import viewsets, status, generics
@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 # MODELS
-from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
+from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference, TipoGasto, GastoCliente
 from django.db.models import Q
 # HISTORIAL Y BITACORA
 from apps.actividades.utils import log_user_action, log_system_event
@@ -16,6 +16,15 @@ from scripts.conversion_datos import model_to_dict, cambios_realizados
 import traceback
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
+
+class TipoGastoViewSet(viewsets.ModelViewSet):
+    serializer_class = TipoGastoSerializer
+    queryset = TipoGasto.objects.all()
+
+class GastoClienteViewSet(viewsets.ModelViewSet):
+    serializer_class = GastoClienteSerializer
+    queryset = GastoCliente.objects.all()
+
 
 class WorkingInformationViewSet(viewsets.ModelViewSet):
     serializer_class = WorkingInformationSerializer

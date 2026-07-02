@@ -92,6 +92,25 @@ def create_other_information(request, customer_code):
 
     return render(request, template_name, context)
 
+from django.views.decorators.csrf import ensure_csrf_cookie 
+
+@login_required
+@usuario_activo
+@ensure_csrf_cookie  
+def create_gastos_cliente(request, customer_code):
+    template_name = 'FinancialInformation/gastos_cliente.html'
+    customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
+    sucursal = request.session.get('sucursal_id') # Es más seguro usar .get() por si no existe la sesión
+
+    context = {
+        'permisos': recorrer_los_permisos_usuario(request),
+        'customer_code': customer_code,
+        'subsidiary': sucursal,
+        'cliente': customer_id
+    }
+
+    return render(request, template_name, context)
+
 
 @login_required
 @usuario_activo

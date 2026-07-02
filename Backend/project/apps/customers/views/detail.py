@@ -55,7 +55,7 @@ def detail_customer(request,customer_code):
     reference = Reference.objects.filter(Q(customer_id=customer_list))
     imagen = ImagenCustomer.objects.filter(Q(customer_id=customer_list))
     document = DocumentCustomer.objects.filter(Q(customer_id=customer_list))
-    credito = Credit.objects.filter(Q(customer_id =customer_list ))
+    credito = Credit.objects.filter(Q(customer_id =customer_list )).order_by('id')
     comentarios = VotacionCliente.objects.filter(cliente=customer_list).order_by('-id')
     #print(credito)
       
