@@ -35,59 +35,11 @@ def create_plan_financiamiento(request, customer_code):
     template_name = 'InvestmentPlan/create.html'
     sucursal = Subsidiary.objects.get(id=request.session['sucursal_id'])
 
-    if request.method == 'POST':
-        form = InvestmentPlanForms(request.POST)
-
-        if form.is_valid():
-            plan = form.save(commit=False)
-            plan.customer_id = customer_id
-            plan.type_of_transfers_or_transfer_of_funds = 'Local'
-            plan.transfers_or_transfer_of_funds = True
-            plan.sucursal = sucursal
-            fecha_inicio = form.cleaned_data.get('fecha_inicio')
-            plazo = form.cleaned_data.get('plazo')
-            plan.fecha_vencimiento = fecha_inicio + relativedelta(months=plazo)
-            credito_seleccionado = form.cleaned_data.get('credito_anterior_vigente')
-            fiador_seleccionado = form.cleaned_data.get('fiador')
-
-            if credito_seleccionado:
-                credito = Credit.objects.get(id=credito_seleccionado)
-                plan.credito_anterior_vigente = model_to_dict(credito)
-            
-            if fiador_seleccionado:
-                fiador = Customer.objects.get(id=fiador_seleccionado)
-                plan.fiador = model_to_dict(fiador)
-
-
-            plan.save()
-
-            informacion_laboral = WorkingInformation.objects.filter(customer_id=customer_id).exists()
-            
-
-            if not informacion_laboral:
-                informacion_laboral = OtherSourcesOfIncome.objects.filter(customer_id=customer_id).exists()
-
-            if cantidad.exists() and informacion_laboral and  not customer_id.completado:
-                customer_id.completado = True
-                customer_id.save()
-                send_email_new_customer(customer_id)
-
-            if cantidad.count() < 4:               
-                return redirect('financial_information:create_reference_information', customer_id.customer_code)
-            
-            return redirect('customers:detail',customer_id.customer_code)
-        else:
-            print("ERRORES DEL FORMULARIO:", form.errors)
-            return render(request, template_name, {
-                'form': form,
-                'errors': form.errors,
-                'customer_code':customer_code
-            })
-            
-    form = InvestmentPlanForms()
+   
     
     context = {
-        'form':form,
+        'customer_id':customer_id,
+        'sucursal': sucursal,
         'customer_code':customer_code,
         'permisos':recorrer_los_permisos_usuario(request)
     }

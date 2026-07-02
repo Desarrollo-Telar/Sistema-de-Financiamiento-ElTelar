@@ -21,7 +21,7 @@ class InvestmentPlanViewSet(viewsets.ModelViewSet):
     serializer_class = InvestmentPlanSerializer
     queryset = InvestmentPlan.objects.all()
 
-    def perform_create(self, serializer):
+    """def perform_create(self, serializer):
         try:
             
             data = serializer.save()
@@ -56,7 +56,7 @@ class InvestmentPlanViewSet(viewsets.ModelViewSet):
             # 4. Relanzamos una excepción para que el cliente reciba un error 400/500
             raise ValidationError({
                 "error": "No se pudo completar la operación. El incidente ha sido reportado al sistema."
-            })
+            })"""
     
     def perform_update(self, serializer):
         try:

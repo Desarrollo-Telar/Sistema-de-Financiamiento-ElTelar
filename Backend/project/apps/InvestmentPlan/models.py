@@ -1,7 +1,7 @@
 from django.db import models
 
 # Relaciones
-from apps.customers.models import Customer
+from apps.customers.models import Customer, CreditCounselor 
 from apps.subsidiaries.models import Subsidiary
 
 # Create your models here.
@@ -35,6 +35,7 @@ class InvestmentPlan(models.Model):
         ('INTERES MENSUAL Y CAPITAL AL VENCIMIENTO', 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO'),
         ('INTERES Y CAPITAL AL VENCIMIENTO', 'INTERES Y CAPITAL AL VENCIMIENTO')
     ]
+
     type_of_product_or_service = models.CharField("Tipo de Producto o Servicio", max_length=75,choices=tipo_producto_servicio)
     total_value_of_the_product_or_service = models.DecimalField("Valor Total del Producto o Servicio", max_digits=15, decimal_places=2, blank=False, null=False)
     investment_plan_description = models.TextField("Descripción del Plan de Inversión", blank=True, null=True)
@@ -59,6 +60,11 @@ class InvestmentPlan(models.Model):
 
     plazo_gracia =  models.IntegerField("Plazo de Gracia", blank=True, null=True)
     fecha_finalizacion_gracia = models.DateField("Fecha de Finalizacion de Gracia",blank=True, null=True)
+
+    tipo_documento = models.CharField("Tipo de documento", max_length=75, blank=True, null=True)
+    asesor_responsable = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, blank=True)
+    estado_aprobacion  = models.CharField("Estado de Aprobacion", max_length=75, blank=True, null=True)
+    garantias = models.JSONField(null=True, blank=True, verbose_name="Garantias de la Solicitud de Credito")
 
     
     def fecha_primer_pago(self):

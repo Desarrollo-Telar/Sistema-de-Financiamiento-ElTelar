@@ -2,36 +2,187 @@
 {% load static %}
 {% block css %}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/credito/Solicitud_credito.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container box">
-    <div class="row">
-        <form method="POST" id="plan_destino">
+<form id="frmInvestmentPlan">
 
-            {% csrf_token %}
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
 
-            <div class="row" style="margin-top: 2rem;">
-                <h3>Plan de Inversion (Destino) </h3>
-                <hr>
-                {% for field in form %}
+    <!-- Cliente -->
+    <input type="hidden" id="customer_id" name="customer_id" value="{{ customer_id.id }}">
+    <input type="hidden" id="codigo_cliente" value="{{ customer_id.customer_code }}">
+    <input type="hidden" id="sucursal" name="sucursal" value="{{ sucursal.id }}">
 
-                <div class="form-group" style="margin-top: 0.5rem;">
-                    <label for="{{ field.id_for_label }}" class="form-label fw-bold">
-                        {{ field.label }}
+    <!-- ========================= -->
+    <!-- INFORMACIÓN DEL CRÉDITO -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <div class="card-header">
+            Información del Crédito
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-12 mb-3">
+
+                    <label>
+                        Asesor Responsable
                     </label>
-                    {{ field }}
-                    {% if field.errors %}
-                    {{ field.errors }}
-                    {% endif %}
-                </div>
-                <br />
 
-                {% endfor %}
+                    <select class="form-control asesor" id="asesor_responsable" name="asesor_responsable" >
+
+                    </select>
+
+                </div>
+                <div class="col-md-4 mb-3">
+
+                    <label>
+                        Estado de Aprobacion
+                    </label>
+
+                    <select class="form-control" id="estado_aprobacion" name="estado_aprobacion">
+
+                        
+
+                        <option value="PENDIENTE">
+                            PENDIENTE
+                        </option>
+                        <option value="ACEPTADO">
+                            ACEPTADO
+                        </option>
+
+                        <option value="NEGADO">
+                            NEGADO
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <label>
+                        Tipo de Producto
+                    </label>
+
+                    <select class="form-control" id="type_of_product_or_service" name="type_of_product_or_service" >
+
+                        
+
+                        <option value="AGROPECUARIO Y/O PRODUCTIVO">
+                            AGROPECUARIO Y/O PRODUCTIVO
+                        </option>
+
+                        <option value="COMERCIO">
+                            COMERCIO
+                        </option>
+
+                        <option value="SERVICIOS">
+                            SERVICIOS
+                        </option>
+
+                        <option value="CONSUMO">
+                            CONSUMO
+                        </option>
+
+                        <option value="VIVIENDA">
+                            VIVIENDA
+                        </option>
+
+                    </select>
+
+                </div>
+                 <div class="col-md-4 mb-3">
+
+                    <label>
+                        Forma de Pago
+                    </label>
+
+                    <select class="form-control" id="forma_de_pago" >
+
+                        <option>NIVELADA</option>
+
+                        <option>AMORTIZACIONES A CAPITAL</option>
+
+                        <option>INTERES MENSUAL Y CAPITAL AL VENCIMIENTO</option>
+
+                        <option>INTERES Y CAPITAL AL VENCIMIENTO</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label>
+                        Valor del Producto
+                    </label>
+
+                    <input type="number" step="0.01" class="form-control" id="total_value_of_the_product_or_service" >
+
+                </div>
+                <div class="col-md-4 mb-3">
+
+                    <label>
+                        Tasa de interés (Anual)
+                    </label>
+
+                    <input type="number" step="0.001" class="form-control" id="tasa_interes" >
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label>
+                        Fecha de Inicio
+                    </label>
+                    <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" >
+                </div>
+
+               
+
+                <div class="col-md-4 mb-3">
+                    <label>
+                        Plazo
+                    </label>
+                    <input type="number" class="form-control" id="plazo" >
+                </div>
+
+                <div class="col-md-4 mb-3" id="contenedor_plazo_garantia" style="display: none;">
+                    <label>
+                        Plazo de Garantía
+                    </label>
+                    <input type="number" class="form-control" id="plazo_garantia" name="plazo_garantia">
+                </div>
+
+               
+
+
+                
+
+               
+
+                <div class="col-md-12 mb-3">
+        <label for="investment_plan_description">
+            Descripción
+        </label>
+        <textarea 
+            class="form-control" 
+            name="investment_plan_description" 
+            id="investment_plan_description" 
+            rows="3"
+            placeholder="Escriba los detalles del plan de inversión..."></textarea>
+    </div>
 
             </div>
-            
 
-            <div style="margin-top: 2rem;" class="row">
+        </div>
+        <div style="margin-top: 2rem;" class="row">
                 <a type="button" onclick="generar_plan()" class="btn_cancel" id="generar_plan">Generar Plan de Pagos</a>
             </div>
             <div class="row">
@@ -43,73 +194,228 @@
 
             </div>
 
-            <div class="row" style="margin-top: 1rem;">
-                <div class="col">
-                    <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- DOCUMENTACIÓN -->
+    <!-- ========================= -->
+
+    <div class="card mt-4">
+
+        <div class="card-header">
+
+            Documentación
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <label>
+
+                        Tipo de Documento
+
+                    </label>
+
+                    <select class="form-control" id="tipo_documento" >
+
+                        <option value="">
+                            Seleccione
+                        </option>
+
+                        <option value="PAGARE">
+                            PAGARE
+                        </option>
+
+                        <option value="ESCRITURA PUBLICA">
+                            Escritura Pública
+                        </option>
+
+                        <option value="RECONOCIMIENTO DE DEUDA">
+                            Reconocimiento de deuda
+                        </option>
+
+                    </select>
 
                 </div>
-                <div class="col">
-                    <button type="submit" class="btn_guardar">Siguiente</button>
+
+            </div>
+
+            <!-- PAGARE -->
+
+            <div id="contenedor_pagare" style="display:none;">
+
+                <hr>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <label>
+
+                            Tipo de Pagaré
+
+                        </label>
+
+                        <select id="tipo_pagare" class="form-control">
+
+                           
+
+                            <option value="Normal">
+                                Normal
+                            </option>
+
+                            <option value="Fiador">
+                                Fiador
+                            </option>
+
+                            <option value="Restructuracion">
+                                Reestructuración
+                            </option>
+
+                        </select>
+
+                    </div>
 
                 </div>
-
-
 
             </div>
 
 
-        </form>
+
+            <!-- ========================== -->
+            <!-- FIADORES -->
+            <!-- ========================== -->
+
+            <div id="contenedor_fiadores" style="display:none;">
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
+
+                    <h5>
+
+                        Fiadores
+
+                    </h5>
+
+
+                    <button type="button" id="btnAgregarFiador" class="btn btn-danger">
+
+                        Agregar
+
+                    </button>
+
+                </div>
+
+                <div id="lista_fiadores">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ========================== -->
+            <!-- CREDITOS -->
+            <!-- ========================== -->
+
+            <div id="contenedor_creditos" style="display:none;">
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
+
+                    <h5>
+
+                        Créditos Vigentes
+
+                    </h5>
+
+                    <button type="button" id="btnAgregarCredito" class="btn btn-danger">
+
+                        Agregar
+
+                    </button>
+
+                </div>
+
+                <div id="lista_creditos">
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
-</div>
 
+
+
+    <!-- ========================= -->
+    <!-- GARANTIAS -->
+    <!-- ========================= -->
+
+    <div class="card mt-4">
+
+        <div class="card-header">
+
+            Garantías
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between">
+
+                <h5>
+
+                    Garantías Registradas
+
+                </h5>
+
+
+                <button type="button" id="btnAgregarGarantia" class="btn btn-danger">
+
+                    Agregar Garantía
+
+                </button>
+
+            </div>
+
+            <div id="lista_garantias">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="text-end mt-4">
+
+        <button type="submit" class="btn_guardar">
+
+            Guardar Solicitud
+
+        </button>
+
+    </div>
+
+</form>
 {% endblock %}
 
 {% block js %}
 <script type="module" src="{% static 'js/plan_inversion/destino.js'%}"></script>
+<script type="module" src="{% static 'js/plan_inversion/formulario.js'%}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
 
-    const form = document.getElementById("plan_destino");
-    const tipoPagare = document.getElementById("id_tipo_pagare");
-    const fiadorField = document.getElementById("id_fiador");
-    const creditoAnteriorField = document.getElementById("id_credito_anterior_vigente");
-
-    form.addEventListener("submit", function (event) {
-
-        const tipo = tipoPagare.value;
-        let errores = [];
-
-        if (tipo === "Fiador") {
-            if (!fiadorField.value || fiadorField.value.trim() === "") {
-                errores.push("Debe ingresar información del FIADOR.");
-                
-                fiadorField.focus();
-            }
-        }
-
-        if (tipo === "Restructuracion") {
-            if (!creditoAnteriorField.value || creditoAnteriorField.value.trim() === "") {
-                errores.push("Debe ingresar el CRÉDITO ANTERIOR VIGENTE.");
-                creditoAnteriorField.focus();
-            }
-        }
-
-        if (errores.length > 0) {
-            event.preventDefault(); // ❌ Cancela el envío            
-            Swal.fire({
-                icon: "error",
-                title: `${errores.join("\n")}`,
-                timer: 4000,
-                showConfirmButton: false,
-            });
-        }
-
-    });
-
-});
-</script>
 
 
 
