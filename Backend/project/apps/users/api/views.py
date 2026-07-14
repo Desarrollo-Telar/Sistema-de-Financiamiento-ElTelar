@@ -3,11 +3,13 @@ from .serializers import UserSerializer, PermisoUsuarioSerializer
 
 # Models
 from apps.users.models import User, PermisoUsuario
+from django.db.models import Q
 
 # API
 from rest_framework import viewsets, status, generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 
 # HISTORIAL Y BITACORA
 from apps.actividades.utils import log_user_action, log_system_event
@@ -20,6 +22,23 @@ from rest_framework.exceptions import ValidationError
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        sucursal = getattr(self.request, 'sucursal_actual', None)
+        search_term = self.request.query_params.get('term', '')
+
+        queryset = queryset.filter(rol__role_name ='Notario')
+       
+        if search_term:
+            queryset = queryset.filter(
+                Q(first_name__icontains=search_term) |
+                Q(last_name__icontains=search_term) |
+                Q(username__icontains=search_term)
+            )
+
+        return queryset
 
     
     def perform_create(self, serializer):

@@ -1,23 +1,165 @@
-{% extends "base.html" %} {% load static %} {% block content %}
-<div class="row box">
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %} {% for field in form %}
+{% extends "base.html" %} 
+{% load static %} 
 
-    <div class="form-group">
-      {{ field.label_tag }} {{ field }} {% if field.errors %} {{ field.errors }}
+{% block content %}
+<style>
+  /* Fondo general de la página */
+  body {
+    background-color: #D3D3D3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #161A1D;
+  }
+
+  /* Contenedor principal con efecto Glassmorphic */
+  .glass-container {
+    background: rgba(255, 255, 255, 0.45); /* Blanco translúcido */
+    backdrop-filter: blur(12px); /* Efecto de desenfoque del fondo */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Borde sutil brillante */
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+    max-width: 900px;
+    margin: 3rem auto;
+  }
+
+  /* Título del Formulario */
+  .form-title {
+    color: #0B090A;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Estilos para las etiquetas */
+  .form-group label {
+    font-weight: 600;
+    color: #161A1D;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* Inputs semi-translúcidos */
+  .form-control, .form-select {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border: 1px solid rgba(177, 167, 166, 0.5) !important; /* Usando B1A7A6 */
+    color: #161A1D !important;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus, .form-select:focus {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-color: #A4161A !important; /* Rojo de enfoque */
+    box-shadow: 0 0 0 0.25rem rgba(164, 22, 26, 0.25) !important;
+  }
+
+  /* Alertas de error estéticas */
+  .errorlist {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+    color: #BA181B; /* Rojo de error */
+    font-weight: bold;
+  }
+
+  /* Botones personalizados con tu paleta */
+  .btn-custom-save {
+    background-color: #E5383B;
+    color: #FFFFFF;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-custom-save:hover {
+    background-color: #BA181B;
+    box-shadow: 0 4px 12px rgba(229, 56, 59, 0.4);
+    transform: translateY(-1px);
+    color: #FFFFFF;
+  }
+
+  .btn-custom-cancel {
+    background-color: rgba(22, 26, 29, 0.1);
+    color: #161A1D;
+    border: 1px solid rgba(22, 26, 29, 0.2);
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-custom-cancel:hover {
+    background-color: #161A1D;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+  }
+
+  /* Línea divisoria elegante */
+  hr.custom-hr {
+    border-top: 1px solid rgba(177, 167, 166, 0.4);
+    margin: 2rem 0;
+  }
+</style>
+
+<div class="container">
+  <div class="glass-container">
+    <h2 class="form-title">Registro de Usuario</h2>
+    
+    <form method="POST" enctype="multipart/form-data" class="needs-validation">
+      {% csrf_token %}
+      
+      <!-- Errores generales del formulario (si los hay) -->
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+          {% for error in form.non_field_errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
       {% endif %}
-    </div>
-    <br />
 
-    {% endfor %}
+      <!-- Grid de dos columnas para optimizar el espacio -->
+      <div class="row g-4">
+        {% for field in form %}
+          <!-- Campos que se verán mejor a pantalla completa (como la foto de perfil) -->
+          {% if field.name == 'profile_pic' or   field.name == 'sucursal' %}
+            <div class="col-12 form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.errors %}
+                <div class="errorlist">{{ field.errors }}</div>
+              {% endif %}
+            </div>
+          {% else %}
+            <!-- El resto de campos se organizan de a dos por fila en pantallas medianas/grandes -->
+            <div class="col-md-6 col-12 form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.errors %}
+                <div class="errorlist">{{ field.errors }}</div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
 
-    <br />
-    <hr />
-    <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
-    <button type="submit" class="btn_guardar">
-      {{accion}}
-    </button>
-  </form>
+      <hr class="custom-hr" />
+
+      <!-- Acciones del Formulario -->
+      <div class="d-flex justify-content-end gap-3">
+        <button onclick="window.history.back()" type="button" class="btn btn-custom-cancel">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-custom-save">
+          {{ accion|default:"Guardar" }}
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
-
 {% endblock content %}

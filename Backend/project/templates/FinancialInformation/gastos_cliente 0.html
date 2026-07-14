@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de Gastos · Cliente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --ink-900:#0B090A;
+  --ink-800:#161A1D;
+  --maroon-700:#660708;
+  --red-600:#A4161A;
+  --red-500:#BA181B;
+  --coral-500:#E5383B;
+  --warm-300:#B1A7A6;
+  --grey-200:#D3D3D3;
+  --grey-100:#F5F3F4;
+  --white:#FFFFFF;
+  --bg:#ededed;
+  --font-display:'Bebas Neue', sans-serif;
+  --font-body:'Inter', system-ui, sans-serif;
+  --font-mono:'JetBrains Mono', monospace;
+  --radius-sm:6px;
+  --radius-md:10px;
+  --shadow-card:0 1px 2px rgba(11,9,10,.06), 0 8px 24px -12px rgba(11,9,10,.18);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+
+body{
+  background:#ededed;
+  font-family:var(--font-body);
+  color:var(--ink-900);
+  line-height:1.45;
+  min-height:100vh;
+}
+
+.hidden{display:none !important;}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+.layout{
+  max-width:1180px;
+  margin:0 auto;
+  padding:32px 28px 64px;
+  display:grid;
+  grid-template-columns:minmax(0,420px) minmax(0,1fr);
+  gap:28px;
+  align-items:start;
+}
+@media (max-width:920px){
+  .layout{grid-template-columns:1fr;}
+}
+
+/* =========================================================
+   CARD / FORM
+   ========================================================= */
+.card{
+  background:var(--white);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-card);
+  padding:24px 24px 28px;
+}
+.card__header{margin-bottom:18px;}
+.card__eyebrow{
+  display:inline-block;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--red-600);
+  font-weight:700;
+  margin-bottom:4px;
+}
+.card__header h2{
+  margin:0;
+  font-family:var(--font-display);
+  font-size:24px;
+  letter-spacing:.3px;
+  color:var(--ink-900);
+  text-transform:uppercase;
+}
+
+.field{margin-bottom:16px;}
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  color:var(--ink-800);
+  margin-bottom:6px;
+}
+.req{color:var(--red-500);}
+
+.field--row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+@media (max-width:480px){
+  .field--row{grid-template-columns:1fr;}
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="number"]{
+  width:100%;
+  font-family:var(--font-body);
+  font-size:14px;
+  color:var(--ink-900);
+  background:var(--grey-100);
+  border:1px solid var(--grey-200);
+  border-radius:var(--radius-sm);
+  padding:10px 12px;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+textarea{resize:vertical; min-height:54px;}
+
+select:focus,
+textarea:focus,
+input:focus{
+  outline:none;
+  border-color:var(--red-500);
+  box-shadow:0 0 0 3px rgba(186,24,27,.15);
+  background:var(--white);
+}
+
+.input-money{
+  display:flex;
+  align-items:stretch;
+  border:1px solid var(--grey-200);
+  border-radius:var(--radius-sm);
+  background:var(--grey-100);
+  overflow:hidden;
+}
+.input-money:has(input:focus){
+  border-color:var(--red-500);
+  box-shadow:0 0 0 3px rgba(186,24,27,.15);
+  background:var(--white);
+}
+.input-money span{
+  display:flex;
+  align-items:center;
+  padding:0 10px;
+  font-family:var(--font-mono);
+  font-weight:700;
+  color:var(--red-600);
+  background:var(--grey-200);
+}
+.input-money input{
+  border:none;
+  background:transparent;
+  font-family:var(--font-mono);
+  font-weight:600;
+}
+.input-money input:focus{box-shadow:none; background:transparent;}
+
+.error-msg{
+  display:none;
+  font-size:12px;
+  color:var(--red-500);
+  margin-top:4px;
+}
+.field.invalid .error-msg{display:block;}
+.field.invalid select,
+.field.invalid input,
+.field.invalid .input-money{
+  border-color:var(--red-500);
+}
+
+.form-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:8px;
+}
+
+.btn{
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:14px;
+  border:none;
+  border-radius:var(--radius-sm);
+  padding:11px 20px;
+  cursor:pointer;
+  transition:transform .12s ease, background .15s ease, box-shadow .15s ease;
+}
+.btn:active{transform:translateY(1px);}
+.btn--primary{
+  background:var(--red-600);
+  color:var(--white);
+  box-shadow:0 6px 16px -6px rgba(164,22,26,.55);
+}
+.btn--primary:hover{background:var(--red-500);}
+.btn--success{
+  background: #198754;
+  color: var(--white);
+  width: 100%;
+  margin-top: 15px;
+  font-size: 15px;
+  padding: 13px;
+  box-shadow:0 6px 16px -6px rgba(25,135,84,.45);
+}
+.btn--success:hover{background:#157347;}
+.btn--success:disabled {
+  background: #a5cbb7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.btn--ghost{
+  background:transparent;
+  color:var(--ink-800);
+  border:1px solid var(--grey-200);
+}
+.btn--ghost:hover{background:var(--grey-100);}
+
+/* =========================================================
+   RECEIPT
+   ========================================================= */
+.receipt-wrap{
+  display:flex; 
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+.receipt{
+  position:relative;
+  width:100%;
+  max-width:560px;
+  background:var(--white);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-card);
+  padding:26px 28px 30px;
+}
+
+.receipt__head{
+  text-align:center;
+  padding-bottom:14px;
+  border-bottom:2px dashed var(--grey-200);
+}
+.receipt__eyebrow{
+  display:block;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--warm-300);
+  font-weight:700;
+}
+.receipt__head h2{
+  font-family:var(--font-display);
+  font-size:30px;
+  letter-spacing:.4px;
+  margin:4px 0 6px;
+  color:var(--ink-900);
+  text-transform:uppercase;
+}
+.receipt__meta{
+  display:flex;
+  justify-content:space-between;
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-800);
+}
+
+.receipt__cols{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--warm-300);
+  font-weight:700;
+  padding:16px 2px 6px;
+}
+
+.receipt__items{
+  list-style:none;
+  margin:0;
+  padding:0;
+  min-height:64px;
+}
+
+.receipt-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  padding:12px 2px;
+  border-bottom:1px dotted var(--grey-200);
+}
+.receipt-item:last-child{border-bottom:none;}
+
+.receipt-item__main{display:flex; flex-direction:column; gap:2px; min-width:0;}
+.receipt-item__type{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--red-600);
+}
+.receipt-item__desc{
+  font-size:14px;
+  color:var(--ink-900);
+  overflow-wrap:anywhere;
+}
+
+.receipt-item__side{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:4px;
+  flex-shrink:0;
+}
+.receipt-item__amount{
+  font-family:var(--font-mono);
+  font-weight:700;
+  font-size:15px;
+  color:var(--ink-900);
+}
+.receipt-item__freq{
+  font-size:11px;
+  color:var(--warm-300);
+}
+.receipt-item__actions{display:flex; gap:6px;}
+
+.icon-btn{
+  border:none;
+  background:var(--grey-100);
+  color:var(--ink-800);
+  width:24px;
+  height:24px;
+  border-radius:5px;
+  cursor:pointer;
+  font-size:12px;
+  line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .15s ease, color .15s ease;
+}
+.icon-btn--edit:hover{background:var(--red-600); color:var(--white);}
+.icon-btn--del:hover{background:var(--maroon-700); color:var(--white);}
+
+.receipt-empty{
+  text-align:center;
+  padding:28px 10px;
+  color:var(--warm-300);
+  font-size:13px;
+}
+.receipt-empty strong{display:block; color:var(--ink-800); font-size:14px; margin-bottom:4px;}
+
+.receipt__divider{
+  border-top:2px dashed var(--grey-200);
+  margin-top:4px;
+}
+
+.receipt__total{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  padding:16px 2px 6px;
+  font-family:var(--font-display);
+  letter-spacing:.4px;
+}
+.receipt__total span:first-child{
+  font-size:15px;
+  text-transform:uppercase;
+  color:var(--ink-800);
+}
+.receipt__total span:last-child{
+  font-family:var(--font-mono);
+  font-size:24px;
+  font-weight:700;
+  color:var(--red-600);
+}
+
+.receipt__foot{
+  text-align:center;
+  font-size:11px;
+  color:var(--warm-300);
+  margin:6px 0 0;
+}
+
+@media (max-width:560px){
+  .layout{padding:24px 16px 64px;}
+  .receipt{padding:22px 18px 25px;}
+}
+</style>
+</head>
+<body>
+
+  <input type="hidden" id="customer_id" value="{{ cliente.id }}">
+  <input type="hidden" id="customer_name_hdn" value="{{ cliente.first_name }} {{ cliente.last_name }}">
+
+  <main class="layout">
+
+    <section class="card form-card" aria-labelledby="formTitle">
+      <div class="card__header">
+        <span class="card__eyebrow">Nueva partida</span>
+        <h2 id="formTitle">Registrar gasto</h2>
+      </div>
+
+      <form id="gastoForm" novalidate>
+        <input type="hidden" id="gastoId" value="">
+
+        <div class="field">
+          <label for="tipoGasto">Tipo de gasto</label>
+          <select id="tipoGasto" name="tipo_gasto">
+            <option value="" selected>Sin clasificar</option>
+          </select>
+        </div>
+
+        <div class="field field--row">
+          <div>
+            <label for="monto">Monto <span class="req">*</span></label>
+            <div class="input-money">
+              <span>Q</span>
+              <input type="number" id="monto" name="monto" min="0" step="0.01" placeholder="0.00" required>
+            </div>
+            <span class="error-msg" data-for="monto">Indica un monto mayor a 0.</span>
+          </div>
+
+          <div>
+            <label for="frecuencia">Frecuencia</label>
+            <select id="frecuencia" name="frecuencia">
+              <option value="Único" selected>Único</option>
+              <option value="Diario">Diario</option>
+              <option value="Semanal">Semanal</option>
+              <option value="Quincenal">Quincenal</option>
+              <option value="Mensual">Mensual</option>
+              <option value="Anual">Anual</option>
+              <option value="Otro">Otro (especificar)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field field--otro hidden" id="frecuenciaOtroWrap">
+          <label for="frecuenciaOtro">Especifica la frecuencia</label>
+          <input type="text" id="frecuenciaOtro" name="frecuencia_otro" placeholder="Ej. cada 3 meses">
+        </div>
+
+        <div class="field">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" name="descripcion" rows="2" placeholder="¿En qué consistió el gasto?"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="observaciones">Observaciones</label>
+          <textarea id="observaciones" name="observaciones" rows="2" placeholder="Notas adicionales (opcional)"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn--ghost" id="cancelEdit" hidden>Cancelar edición</button>
+          <button type="submit" class="btn btn--primary" id="submitBtn">Añadir al Recibo</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="receipt-wrap">
+      <div class="receipt" id="receipt">
+
+        <div class="receipt__head">
+          <span class="receipt__eyebrow">Recibo de gastos</span>
+          <h2 id="receiptCustomerName">Cargando Cliente...</h2>
+          <div class="receipt__meta">
+            <span id="receiptDate"></span>
+            <span id="receiptCount">0 partidas</span>
+          </div>
+        </div>
+
+        <div class="receipt__cols">
+          <span>Detalle</span>
+          <span>Monto</span>
+        </div>
+
+        <ul class="receipt__items" id="receiptItems"></ul>
+
+        <div class="receipt__divider" aria-hidden="true"></div>
+
+        <div class="receipt__total">
+          <span>Total Acumulado</span>
+          <span id="receiptTotal">Q0.00</span>
+        </div>
+
+        <p class="receipt__foot">Listado temporal en memoria local.</p>
+        
+        <button type="button" class="btn btn--success" id="btnGuardarApi" disabled>
+          Guardar Todo 
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <template id="itemTemplate">
+    <li class="receipt-item" data-id="">
+      <div class="receipt-item__main">
+        <span class="receipt-item__type"></span>
+        <span class="receipt-item__desc"></span>
+      </div>
+      <div class="receipt-item__side">
+        <span class="receipt-item__amount"></span>
+        <span class="receipt-item__freq"></span>
+        <div class="receipt-item__actions">
+          <button type="button" class="icon-btn icon-btn--edit" title="Editar">✎</button>
+          <button type="button" class="icon-btn icon-btn--del" title="Eliminar">✕</button>
+        </div>
+      </div>
+    </li>
+  </template>
+
+  <script>
+    /* =========================================================
+   ESTADO Y CONFIGURACIÓN DE LA API
+   ========================================================= */
+// Eliminamos el arreglo estático de TIPOS_GASTO porque ahora vendrá de la base de datos
+let tiposGastoDesdeApi = []; 
+let gastos = [];
+let nextId = 1;
+let editingId = null;
+
+const $ = (sel) => document.querySelector(sel);
+const moneyFmt = new Intl.NumberFormat('es-GT', { style: 'currency', currency: 'GTQ' });
+
+function formatMoney(n) {
+  return moneyFmt.format(Number(n) || 0);
+}
+
+// Modificamos esta función para que busque en la lista que descargamos de la API
+function tipoGastoName(id) {
+  if (!id) return 'Sin clasificar';
+  const t = tiposGastoDesdeApi.find((t) => t.id === Number(id));
+  return t ? t.nombre : 'Sin clasificar';
+}
+
+/* =========================================================
+   LLAMADA A LA API PARA OBTENER LOS TIPOS DE GASTO
+   ========================================================= */
+async function cargarTiposGasto() {
+  const tipoSel = $('#tipoGasto');
+  
+  // URL de tu vista en Django que serializa el modelo TipoGasto (ej: JsonResponse)
+  const URL_TIPOS_GASTO = '/api/tipos-gasto/'; 
+
+  try {
+    const response = await fetch(URL_TIPOS_GASTO);
+    if (!response.ok) throw new Error('No se pudieron obtener los tipos de gasto.');
+    
+    // Guardamos la respuesta en nuestra variable global
+    tiposGastoDesdeApi = await response.json();
+
+    // Poblamos el elemento <select> dinámicamente
+    tiposGastoDesdeApi.forEach((t) => {
+      // Usamos t.id y t.nombre que coinciden con los campos de tu modelo en Django
+      tipoSel.add(new Option(t.nombre, t.id));
+    });
+
+  } catch (error) {
+    console.error('Error al cargar tipos de gasto desde la API:', error);
+    // Opción de respaldo por si la API falla temporalmente
+    tipoSel.add(new Option('Error al cargar categorías...', ''));
+  }
+}
+
+/* =========================================================
+   INICIALIZAR NOMENCLATURA DE LA PÁGINA
+   ========================================================= */
+function initPage() {
+  // Llamamos a la función asíncrona para traer los datos del backend
+  cargarTiposGasto();
+
+  // Capturar nombre del cliente desde el input hidden asignado por Django
+  const currentCustomerName = $('#customer_name_hdn')?.value || 'Cliente Seleccionado';
+  $('#receiptCustomerName').textContent = currentCustomerName;
+}
+
+/* =========================================================
+   VALIDACIÓN
+   ========================================================= */
+function setFieldError(fieldEl, hasError) {
+  fieldEl.classList.toggle('invalid', hasError);
+}
+
+function validateForm() {
+  let valid = true;
+
+  const montoField = $('#monto').closest('.field');
+  const montoVal = parseFloat($('#monto').value);
+  if (!montoVal || montoVal <= 0) {
+    setFieldError(montoField, true);
+    valid = false;
+  } else {
+    setFieldError(montoField, false);
+  }
+
+  return valid;
+}
+
+/* =========================================================
+   FORMULARIO: Frecuencia "Otro"
+   ========================================================= */
+$('#frecuencia').addEventListener('change', (e) => {
+  const wrap = $('#frecuenciaOtroWrap');
+  wrap.classList.toggle('hidden', e.target.value !== 'Otro');
+});
+
+/* =========================================================
+   ACCIONES LOCALES (C-U-D MEMORIA)
+   ========================================================= */
+function resetForm() {
+  $('#gastoForm').reset();
+  $('#gastoId').value = '';
+  $('#frecuenciaOtroWrap').classList.add('hidden');
+  $('#frecuencia').value = 'Único';
+  editingId = null;
+  $('#submitBtn').textContent = 'Añadir al Recibo';
+  $('#cancelEdit').hidden = true;
+  setFieldError($('#monto').closest('.field'), false);
+}
+
+function getFrecuenciaValue() {
+  const base = $('#frecuencia').value;
+  if (base === 'Otro') {
+    return $('#frecuenciaOtro').value.trim() || 'Otro';
+  }
+  return base;
+}
+
+$('#gastoForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!validateForm()) return;
+
+  const payload = {
+    id: editingId ?? nextId++,
+    customer_id: $('#customer_id').value, 
+    tipo_gasto: $('#tipoGasto').value || null,
+    descripcion: $('#descripcion').value.trim(),
+    monto: parseFloat($('#monto').value),
+    frecuencia: getFrecuenciaValue(),
+    observaciones: $('#observaciones').value.trim(),
+  };
+
+  if (editingId) {
+    const idx = gastos.findIndex((g) => g.id === editingId);
+    gastos[idx] = payload;
+  } else {
+    gastos.push(payload);
+  }
+
+  resetForm();
+  renderReceipt();
+});
+
+$('#cancelEdit').addEventListener('click', resetForm);
+
+function startEdit(id) {
+  const g = gastos.find((g) => g.id === id);
+  if (!g) return;
+
+  editingId = id;
+  $('#gastoId').value = id;
+  $('#tipoGasto').value = g.tipo_gasto || '';
+  $('#descripcion').value = g.descripcion || '';
+  $('#monto').value = g.monto;
+  $('#observaciones').value = g.observaciones || '';
+
+  const knownFreqs = ['Único', 'Diario', 'Semanal', 'Quincenal', 'Mensual', 'Anual'];
+  if (knownFreqs.includes(g.frecuencia)) {
+    $('#frecuencia').value = g.frecuencia;
+    $('#frecuenciaOtroWrap').classList.add('hidden');
+  } else {
+    $('#frecuencia').value = 'Otro';
+    $('#frecuenciaOtroWrap').classList.remove('hidden');
+    $('#frecuenciaOtro').value = g.frecuencia;
+  }
+
+  $('#submitBtn').textContent = 'Guardar cambios';
+  $('#cancelEdit').hidden = false;
+  $('#gastoForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function deleteGasto(id) {
+  gastos = gastos.filter((g) => g.id !== id);
+  if (editingId === id) resetForm();
+  renderReceipt();
+}
+
+/* =========================================================
+   RENDERIZACIÓN DEL RECIBO ÚNICO
+   ========================================================= */
+function renderReceipt() {
+  $('#receiptDate').textContent = new Date().toLocaleDateString('es-GT', {
+    day: '2-digit', month: 'short', year: 'numeric',
+  });
+  $('#receiptCount').textContent = `${gastos.length} partida${gastos.length === 1 ? '' : 's'}`;
+
+  const itemsEl = $('#receiptItems');
+  itemsEl.innerHTML = '';
+
+  if (gastos.length === 0) {
+    itemsEl.innerHTML = `
+      <li class="receipt-empty">
+        <strong>Aún no hay gastos en esta tanda</strong>
+        Usa el formulario de la izquierda para anexar elementos.
+      </li>`;
+    $('#btnGuardarApi').disabled = true;
+  } else {
+    const tpl = $('#itemTemplate');
+    gastos
+      .slice()
+      .sort((a, b) => b.id - a.id)
+      .forEach((g) => {
+        const node = tpl.content.cloneNode(true);
+        const li = node.querySelector('.receipt-item');
+        li.dataset.id = g.id;
+        li.querySelector('.receipt-item__type').textContent = tipoGastoName(g.tipo_gasto);
+        li.querySelector('.receipt-item__desc').textContent = g.descripcion || 'Sin descripción';
+        li.querySelector('.receipt-item__amount').textContent = formatMoney(g.monto);
+        li.querySelector('.receipt-item__freq').textContent = g.frecuencia;
+        li.querySelector('.icon-btn--edit').addEventListener('click', () => startEdit(g.id));
+        li.querySelector('.icon-btn--del').addEventListener('click', () => deleteGasto(g.id));
+        itemsEl.appendChild(li);
+      });
+    $('#btnGuardarApi').disabled = false;
+  }
+
+  const total = gastos.reduce((sum, g) => sum + Number(g.monto), 0);
+  $('#receiptTotal').textContent = formatMoney(total);
+}
+
+/* =========================================================
+   ENVÍO POST DE LA INFORMACIÓN AL BACKEND / API
+   ========================================================= */
+$('#btnGuardarApi').addEventListener('click', async () => {
+  if (gastos.length === 0) return;
+
+  const btn = $('#btnGuardarApi');
+  btn.disabled = true;
+  btn.textContent = 'Enviando información...';
+
+  const URL_API = '/api/guardar-gastos-cliente/'; 
+
+  try {
+    const response = await fetch(URL_API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken') 
+      },
+      body: JSON.stringify({
+        customer_id: $('#customer_id').value,
+        lista_gastos: gastos
+      })
+    });
+
+    if (response.ok) {
+      alert('¡Éxito! Todos los gastos se han guardado correctamente.');
+      gastos = []; 
+      resetForm();
+      renderReceipt();
+    } else {
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(errData.message || 'Error en respuesta del servidor.');
+    }
+
+  } catch (error) {
+    console.error('Error al guardar datos:', error);
+    alert(`Ocurrió un inconveniente: ${error.message}`);
+    btn.disabled = false;
+  } finally {
+    btn.textContent = 'Guardar Todo en la Base de Datos';
+  }
+});
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+initPage();
+renderReceipt();
+</script>
+  </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Plan de Inversión</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <style>
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    padding: 20px;
+}
+.form-container {
+    max-width: 700px;
+    background: #fff;
+    margin: 0 auto;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.hidden {
+    display: none !important;
+}
+.form-section {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background-color: #fafafa;
+}
+.dinamic-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.dinamic-item .select2-container {
+    flex-grow: 1;
+}
+button {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 8px 12px;
+    border: none;
+}
+.btn-primary { background-color: #007bff; color: white; }
+.btn-secondary { background-color: #6c757d; color: white; margin-top: 5px; }
+.btn-danger { background-color: #dc3545; color: white; }
+.btn-submit { background-color: #28a745; color: white; width: 100%; padding: 12px; font-size: 16px; margin-top: 15px; }
+
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Formulario Plan de Inversión</h2>
+    <form id="investment-form">
+        
+        <div class="form-group">
+            <label for="id_tipo_documento">Tipo de Documento:</label>
+            <select id="id_tipo_documento" name="tipo_documento" class="form-control">
+                <option value="">Seleccione una opción</option>
+                <option value="Pagare">Pagaré</option>
+                <option value="Escritura Publica">Escritura Pública</option>
+                <option value="reconocimiento de deuda">Reconocimiento de Deuda</option>
+            </select>
+        </div>
+
+        <div id="wrapper_tipo_pagare" class="form-group hidden">
+            <label for="id_tipo_pagare">Tipo de Pagaré:</label>
+            <select id="id_tipo_pagare" name="tipo_pagare" class="form-control">
+                <option value="">Seleccione tipo de pagaré</option>
+                <option value="Normal">Normal</option>
+                <option value="fiador">Fiador</option>
+                <option value="reestructuración">Reestructuración</option>
+            </select>
+        </div>
+
+        <div id="seccion_fiadores" class="form-section hidden">
+            <h3>Fiadores</h3>
+            <div id="contenedor_fiadores"></div>
+            <button type="button" id="btn_agregar_fiador" class="btn-secondary">+ Agregar Fiador</button>
+        </div>
+
+        <div id="seccion_creditos" class="form-section hidden">
+            <h3>Créditos Anteriores Vigentes</h3>
+            <div id="contenedor_creditos"></div>
+            <button type="button" id="btn_agregar_credito" class="btn-secondary">+ Agregar Crédito</button>
+        </div>
+
+        <div id="seccion_garantias" class="form-section">
+            <h3>Garantías de la Solicitud</h3>
+            <div id="contenedor_garantias"></div>
+            <button type="button" id="btn_agregar_garantia" class="btn-secondary">+ Agregar Garantía</button>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" id="generar_plan" class="btn-primary">Generar Plan de Pagos</button>
+            <button type="submit" class="btn-submit">Guardar Registro</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    import { generar_plan } from './funciones/tabla_pagos.js';
+import { urls_p } from '../API/urls_api.js';
+
+document.getElementById('generar_plan').onclick = generar_plan;
+
+$(document).ready(function () {
+    const tipoDocumento = document.getElementById('id_tipo_documento');
+    const tipoPagare = document.getElementById('id_tipo_pagare');
+    
+    const wrapperPagare = document.getElementById('wrapper_tipo_pagare');
+    const seccionFiadores = document.getElementById('seccion_fiadores');
+    const seccionCreditos = document.getElementById('seccion_creditos');
+
+    // --- LOGICA DE VISIBILIDAD ---
+    tipoDocumento.addEventListener('change', function () {
+        if (this.value === 'Pagare') {
+            wrapperPagare.classList.remove('hidden');
+        } else {
+            wrapperPagare.classList.add('hidden');
+            tipoPagare.value = ""; // Reset
+            evaluarTipoPagare("");
+        }
+    });
+
+    tipoPagare.addEventListener('change', function () {
+        evaluarTipoPagare(this.value);
+    });
+
+    function evaluarTipoPagare(val) {
+        seccionFiadores.classList.add('hidden');
+        seccionCreditos.classList.add('hidden');
+
+        if (val === 'fiador') {
+            seccionFiadores.classList.remove('hidden');
+        } else if (val === 'reestructuración') {
+            seccionCreditos.classList.remove('hidden');
+        }
+    }
+
+    // --- SELECT2 REUTILIZABLE PARA NUEVOS ELEMENTOS ---
+    function inicializarSelect2Cliente(elemento) {
+        $(elemento).select2({
+            width: '100%',
+            ajax: {
+                url: urls_p.api_url_cliente,
+                dataType: 'json',
+                delay: 250,
+                data: params => ({ term: params.term }),
+                processResults: data => ({
+                    results: Array.isArray(data) ? data.map(item => ({
+                        id: item.id,
+                        text: `${item.customer_code} ${item.first_name} ${item.last_name}`
+                    })) : []
+                }),
+                cache: true
+            },
+            placeholder: 'Seleccione un Cliente/Fiador',
+            minimumInputLength: 1
+        });
+    }
+
+    function inicializarSelect2Credito(elemento) {
+        $(elemento).select2({
+            width: '100%',
+            ajax: {
+                url: urls_p.api_url_credit_vigente,
+                dataType: 'json',
+                delay: 250,
+                data: params => ({ term: params.term }),
+                processResults: data => ({
+                    results: Array.isArray(data) ? data.map(item => ({
+                        id: item.id,
+                        text: `${item.codigo_credito} ${item.customer_id.first_name} ${item.customer_id.last_name}`
+                    })) : []
+                }),
+                cache: true
+            },
+            placeholder: 'Seleccione un Crédito Vigente',
+            minimumInputLength: 1
+        });
+    }
+
+    // --- AGREGAR CAMPOS DINÁMICOS ---
+
+    // 1. Agregar Fiadores (Usa la misma estructura que clientes)
+    $('#btn_agregar_fiador').click(function() {
+        const idUnico = 'fiador_' + Date.now();
+        const html = `
+            <div class="dinamic-item" id="row_${idUnico}">
+                <select class="form-control select2-fiador" name="fiadores_array[]"></select>
+                <button type="button" class="btn-danger btn-eliminar" data-target="#row_${idUnico}">X</button>
+            </div>`;
+        $('#contenedor_fiadores').append(html);
+        inicializarSelect2Cliente(`#row_${idUnico} .select2-fiador`);
+    });
+
+    // 2. Agregar Créditos Vigentes
+    $('#btn_agregar_credito').click(function() {
+        const idUnico = 'credito_' + Date.now();
+        const html = `
+            <div class="dinamic-item" id="row_${idUnico}">
+                <select class="form-control select2-credito" name="creditos_array[]"></select>
+                <button type="button" class="btn-danger btn-eliminar" data-target="#row_${idUnico}">X</button>
+            </div>`;
+        $('#contenedor_creditos').append(html);
+        inicializarSelect2Credito(`#row_${idUnico} .select2-credito`);
+    });
+
+    // 3. Agregar Garantías (Texto simple o campos que requieras)
+    $('#btn_agregar_garantia').click(function() {
+        const idUnico = 'garantia_' + Date.now();
+        const html = `
+            <div class="dinamic-item" id="row_${idUnico}">
+                <input type="text" class="form-control input-garantia" name="garantias_array[]" placeholder="Descripción de la garantía">
+                <button type="button" class="btn-danger btn-eliminar" data-target="#row_${idUnico}">X</button>
+            </div>`;
+        $('#contenedor_garantias').append(html);
+    });
+
+    // Evento delegado para eliminar cualquier fila dinámica
+    $(document).on('click', '.btn-eliminar', function() {
+        const target = $(this).data('target');
+        $(target).remove();
+    });
+
+    // --- PROCESAMIENTO DEL ENVÍO DEL FORMULARIO (Hacia Django JSONField) ---
+    $('#investment-form').on('submit', function(e) {
+        // Si mandas esto vía AJAX a un API en Django (como REST Framework), 
+        // puedes mapear los arreglos para que entren limpios como JSON:
+        
+        const fiadoresSeleccionados = $('.select2-fiador').map(function() { return $(this).val(); }).get();
+        const creditosSeleccionados = $('.select2-credito').map(function() { return $(this).val(); }).get();
+        const garantiasIngresadas = $('.input-garantia').map(function() { return $(this).val(); }).get();
+
+        console.log("Fiadores JSON listo para Django:", JSON.stringify(fiadoresSeleccionados));
+        console.log("Créditos JSON listo para Django:", JSON.stringify(creditosSeleccionados));
+        console.log("Garantías JSON listo para Django:", JSON.stringify(garantiasIngresadas));
+
+        // Si vas a usar un envío de formulario tradicional (POST síncrono), puedes crear 
+        // inputs ocultos antes del envío y meter estos JSON stringificados ahí.
+    });
+});
+</script>
+</body>
+</html>

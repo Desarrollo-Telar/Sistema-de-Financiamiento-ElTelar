@@ -1,52 +1,167 @@
 {% load static %}
-<div class="row" style="margin: 2rem ;">
-  <div class="table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Tipo de Producto o Servicio</th>
-          <th scope="col">Valor Total del Producto o Servicio</th>
-          <th scope="col">Monto Inicial</th>
-          <th scope="col">Monto Mensual</th>         
-          <th scope="col">Pagare</th>
-          <th></th>
 
-        </tr>
-      </thead>
-      <tbody>
-        {% for plan in plan_inversion%}
-        <tr>
-          <th scope="row">{{plan.investment_plan_code}}</th>
-          <td>{{plan.type_of_product_or_service}}</td>
-          <td>{{plan.total_value_of_the_product_or_service}}</td>
-          <td>{{plan.initial_amount}}</td>
-          <td>{{plan.monthly_amount}}</td>
-          <td><a href="{% url 'investment_plan:pagare' plan.id customer_code %}">Pagare</a></td>
-          {% if permisos.puede_eliminar_informacion_destino_credito  or permisos.puede_editar_informacion_destino_credito %}
-          <td>
-          {% if permisos.puede_editar_informacion_destino_credito %}       
-            <a href="{% url 'investment_plan:update' plan.id customer_code %}" class="btn_add">Editar</a>         
-          {% endif %}
-          {% if permisos.puede_eliminar_informacion_destino_credito %}    
-            <a href="{% url 'investment_plan:delete' plan.id customer_code %}" class="btn_edit">Eliminar</a>          
-          {% endif %}
-          </td>
-          {% endif %}
+<style>
+    .plan-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid #e9ecef;
+    }
+    .table-custom {
+        margin-bottom: 0;
+        vertical-align: middle;
+    }
+    .table-custom thead th {
+        background-color: #f8f9fa;
+        color: #495057;
+        font-weight: 600;
+        border-bottom: 2px solid #dee2e6;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .table-custom tbody tr {
+        transition: background-color 0.2s ease;
+    }
+    .table-custom tbody td, .table-custom tbody th {
+        padding: 1rem 0.75rem;
+        color: #212529;
+    }
+    .badge-code {
+        background-color: #e9ecef;
+        color: #495057;
+        font-weight: 600;
+        padding: 0.4rem 0.6rem;
+        border-radius: 4px;
+        font-family: monospace;
+    }
+    .link-pagare {
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+    }
+    .link-pagare:hover {
+        text-decoration: underline;
+        color: #0a58ca;
+    }
+    .btn-action-edit {
+        background-color: #ffffff;
+        color: #000000;
+        border: 1px solid #0B090A;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        margin-right: 0.25rem;
+    }
+    .btn-action-edit:hover {
+        background-color: #020202;
+        color: #fffdfd;
+    }
+    .btn-action-delete {
+        background-color: #ffffff;
+        color: #dc3545;
+        border: 1px solid #dc3545;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+    }
+    .btn-action-delete:hover {
+        background-color: #dc3545;
+        color: #ffffff;
+    }
+</style>
 
-        </tr>
-        {% endfor %}
+<div class="row" style="margin: 1rem 0;">
+    
+    {% if permisos.puede_crear_informacion_destino_credito %}
+    <div class="row text-right mb-4">
+        <a href="{% url 'investment_plan:create' customer_code %}" class="btn_guardar">
+            <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Plan de Inversión
+        </a>
+    </div>
+    {% endif %}
 
-      </tbody>
-    </table>
-  </div>
-  {% if permisos.puede_crear_informacion_destino_credito %}
-  <div style="margin-top: 2rem;">
-    <a href="{% url 'investment_plan:create' customer_code %}" class="btn_edit">Crear Nuevo Plan de Inversion</a>
-
-  </div>
-  {% endif %}
-
-
-
+    <div class="col-12 plan-container">
+        <div class="table-responsive">
+            <table class="table table-hover table-custom">
+                <thead>
+                    <tr>
+                        <th scope="col"># Código</th>
+                        <th scope="col">Tipo de Producto / Servicio</th>
+                        <th scope="col">Valor Total</th>
+                        <th scope="col">Monto Inicial</th>
+                        <th scope="col">Monto Mensual</th>         
+                        <th scope="col">Documento</th>
+                        {% if permisos.puede_eliminar_informacion_destino_credito or permisos.puede_editar_informacion_destino_credito %}
+                            <th scope="col" class="text-center">Acciones</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if plan_inversion %}
+                        {% for plan in plan_inversion %}
+                        <tr>
+                            <th scope="row">
+                                <span class="badge-code">{{ plan.investment_plan_code }}</span>
+                            </th>
+                            <td class="fw-medium">{{ plan.type_of_product_or_service }}</td>
+                            <td>Q {{ plan.total_value_of_the_product_or_service }}</td>
+                            <td>Q {{ plan.initial_amount }}</td>
+                            <td class="fw-semibold text-primary">Q {{ plan.monthly_amount }}</td>
+                            
+                           
+                            <td>
+                              {% if plan.tipo_documento == 'PAGARE' %}
+                                <a href="{% url 'investment_plan:pagare' plan.id customer_code %}" class="link-pagare">
+                                    <i class="bi bi-file-earmark-text me-1"></i>Pagaré
+                                </a>
+                              {% else %}
+                              <a href="{% url 'investment_plan:plan_pagos' plan.id customer_code %}" class="link-pagare">
+                                    <i class="bi bi-file-earmark-text me-1"></i> {{plan.tipo_documento}}
+                                </a>
+                                {% endif%}
+                            </td>
+                            
+                            {% if permisos.puede_eliminar_informacion_destino_credito or permisos.puede_editar_informacion_destino_credito %}
+                            <td class="text-center">
+                                {% if permisos.puede_editar_informacion_destino_credito %}       
+                                    <a href="{% url 'investment_plan:update' plan.id customer_code %}" class="btn-action-edit">
+                                        <i class="bi bi-pencil me-1"></i>Editar
+                                    </a>         
+                                {% endif %}
+                                {% if permisos.puede_eliminar_informacion_destino_credito %}    
+                                    <a href="{% url 'investment_plan:delete' plan.id customer_code %}" class="btn-action-delete">
+                                        <i class="bi bi-trash me-1"></i>Eliminar
+                                    </a>          
+                                {% endif %}
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center text-muted py-4">
+                                <i class="bi bi-folder-x display-6 d-block mb-2"></i>
+                                No hay planes de inversión registrados para este cliente.
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

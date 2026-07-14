@@ -13,3 +13,6 @@ from .correos_para_creditos import send_email_new_credit, send_email_update_of_q
 
 #  CON RELACION A LOS ASESORES DE CREDITOS
 from .correos_para_cobranza import send_email_recordatorio_cobranza
+
+# CON RELACION A LOS NOTARIOS
+from .correos_para_notarios import send_email_notario

@@ -230,7 +230,7 @@
         <p class="summary__desc">Esta es la información que se guardó para el cliente.</p>
         <dl class="summary__list" id="summaryList"></dl>
         
-        <a href="{% url 'customers:detail'  customer_code %}" class="btn btn--ghost" >Regresar</a>
+        <a href="{% url 'check_list_customer'  customer_code %}" class="btn btn--ghost" >Regresar</a>
         <a href="{% url 'financial_information:create_working_information' customer_code%}" class="btn btn--primary">Guardar otro registro</a>
       </section>
 

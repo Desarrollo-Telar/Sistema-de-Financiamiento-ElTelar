@@ -10,6 +10,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # MODELOS
 from apps.financings.models import Recibo, Invoice,AccountStatement,Credit,PaymentPlan, Payment, Cuota
 from apps.accountings.models import Creditor, Insurance
+from apps.InvestmentPlan.models import InvestmentPlan   
 
 import os
 from django.conf import settings
@@ -258,6 +259,35 @@ def planPagosCreditoAS(credito):
 def render_pdf_plan_pagos(request,id):
     
     credito = get_object_or_404(Credit,id=id)    
+    plan = planPagosCredito(credito).recalcular_capital()
+    
+
+    template_path = 'financings/credit/plan_pagos/detail.html'
+    template = get_template(template_path)
+    
+    
+
+    context = {
+        'title':'ELTELAR',
+        'credito':credito,
+        'plan':plan,
+        'total_cuota':formatear_numero(planPagosCredito(credito).calcular_total_cuotas()),
+        'total_capital':formatear_numero(planPagosCredito(credito).calcular_total_capital()),
+        'total_interes':formatear_numero(planPagosCredito(credito).calcular_total_interes()),
+        
+        
+    }
+
+    html = template.render(context)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = ' filename="plan_pagos.pdf"'
+    HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
+
+    return response
+
+def render_plan_pdf_plan_pagos(request,id):
+    
+    credito = get_object_or_404(InvestmentPlan,id=id)    
     plan = planPagosCredito(credito).recalcular_capital()
     
 

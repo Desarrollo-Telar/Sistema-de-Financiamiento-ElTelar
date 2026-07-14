@@ -1,7 +1,7 @@
 from django.db import models
 
 # Relaciones
-from apps.customers.models import Customer
+from apps.customers.models import Customer, CreditCounselor 
 from apps.subsidiaries.models import Subsidiary
 
 # Create your models here.
@@ -35,6 +35,7 @@ class InvestmentPlan(models.Model):
         ('INTERES MENSUAL Y CAPITAL AL VENCIMIENTO', 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO'),
         ('INTERES Y CAPITAL AL VENCIMIENTO', 'INTERES Y CAPITAL AL VENCIMIENTO')
     ]
+
     type_of_product_or_service = models.CharField("Tipo de Producto o Servicio", max_length=75,choices=tipo_producto_servicio)
     total_value_of_the_product_or_service = models.DecimalField("Valor Total del Producto o Servicio", max_digits=15, decimal_places=2, blank=False, null=False)
     investment_plan_description = models.TextField("Descripción del Plan de Inversión", blank=True, null=True)
@@ -59,6 +60,16 @@ class InvestmentPlan(models.Model):
 
     plazo_gracia =  models.IntegerField("Plazo de Gracia", blank=True, null=True)
     fecha_finalizacion_gracia = models.DateField("Fecha de Finalizacion de Gracia",blank=True, null=True)
+
+    tipo_documento = models.CharField("Tipo de documento", max_length=75, blank=True, null=True, default='PAGARE')
+    asesor_responsable = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, blank=True)
+    estado_aprobacion  = models.CharField("Estado de Aprobacion", max_length=75, blank=True, null=True)
+    garantias = models.JSONField(null=True, blank=True, verbose_name="Garantias de la Solicitud de Credito")
+    notarios = models.JSONField(null=True, blank=True, verbose_name="Notarios")
+    riesgo_comercial = models.TextField("Riesgo Comercial", blank=True, null=True)
+    diganostico_oportunidad = models.TextField("Diagnóstico de Oportunidades", blank=True, null=True)
+    mitigadores = models.TextField("Mitigadores", blank=True, null=True)
+    evaluacion_mercado = models.TextField("Evaluación del Mercado", blank=True, null=True)
 
     
     def fecha_primer_pago(self):
@@ -155,3 +166,82 @@ def set_investment_plan_code(sender, instance, **kwargs):
         
         if not validar_codigo(instance.investment_plan_code):
             generar_codigo(instance)
+
+@receiver(post_save, sender=InvestmentPlan)
+def handle_investment_plan_approval(sender, instance, created, **kwargs):
+    from apps.users.models import User
+    from project.send_mail.correos_para_notarios import send_email_notario
+    """
+    Signal que se ejecuta después de guardar un InvestmentPlan.
+    Si el estado cambia a 'ACEPTADO', distribuye los correos a los notarios correspondientes.
+    """
+    # 1. Validamos que el estado sea 'ACEPTADO'
+    # (Ajusta 'estado' al nombre real de tu campo de estado en el modelo)
+    if instance.estado_aprobacion != 'ACEPTADO':
+        return
+
+    # Evitamos re-enviar correos si el plan ya estaba ACEPTADO antes de esta actualización
+    if not created:
+        original = InvestmentPlan.objects.filter(id=instance.id).first()
+        # Si ya estaba ACEPTADO antes de este save, no hacemos nada
+        if original and original.estado_aprobacion == 'ACEPTADO':
+            return
+
+    # 2. Obtenemos el listado de notarios desde el JSONField del plan
+    notarios_lista = instance.notarios or []
+    if not notarios_lista:
+        return
+
+    # 3. Analizamos los IDs para determinar si son el mismo notario o diferentes
+    # Extraemos todos los IDs de los notarios registrados
+    ids_notarios = [notario.get('id') for notario in notarios_lista if notario.get('id')]
+    
+    # Convertimos a un set para ver cuántos IDs únicos hay
+    ids_unicos = set(ids_notarios)
+
+    # 4. Aplicamos las reglas de negocio para el envío de correos
+    if len(ids_unicos) == 1:
+        # CASO 1: Todos los módulos están asignados al mismo notario (ej. ID 1 y ID 1)
+        id_unico = list(ids_unicos)[0]
+        try:
+            user_notario = User.objects.get(id=id_unico)
+            # Se envía un único correo con el 'formato_01'
+            send_email_notario(
+                user=user_notario, 
+                plan_inversion_id=instance.id, 
+                
+                formato='formato_01'
+            )
+        except User.DoesNotExist:
+            pass  # Manejo de error si el usuario no existe en la base de datos
+
+    else:
+        # CASO 2: Los IDs son diferentes, enviamos correos individuales con formatos específicos
+        for notario in notarios_lista:
+            id_notario = notario.get('id')
+            modulo = notario.get('modulo')
+            
+            if not id_notario or not modulo:
+                continue
+                
+            try:
+                user_notario = User.objects.get(id=id_notario)
+                
+                # Determinamos el formato de correo según el módulo
+                if modulo == 'documentacion':
+                    formato_envio = 'formato_02'
+                    asunto_envio = 'Asignación de Documentación'
+                elif modulo == 'garantia':
+                    formato_envio = 'formato_03'
+                    asunto_envio = 'Asignación de Garantías'
+                else:
+                    continue # Si hubiera otro módulo no contemplado
+
+                send_email_notario(
+                    user=user_notario, 
+                    plan_inversion_id=instance.id, 
+                  
+                    formato=formato_envio
+                )
+            except User.DoesNotExist:
+                continue

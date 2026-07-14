@@ -79,6 +79,20 @@ def render_pagare_docx(request, id, customer_code):
     cliente = destino.customer_id  # Ajusta esto si tu relación es distinta
     
     fiador = Customer.objects.filter(id= destino.fiador['id']).first() if destino.fiador else None
+    
+    fiadores_list = []
+    # Verificamos si destino.fiador es una lista o un solo diccionario
+    if destino.fiador:
+        if isinstance(destino.fiador, list):
+            for f_data in destino.fiador:
+                f_obj = Customer.objects.filter(id=f_data.get('id')).first()
+                if f_obj:
+                    fiadores_list.append(f_obj)
+        elif isinstance(destino.fiador, dict):
+            f_obj = Customer.objects.filter(id=destino.fiador.get('id')).first()
+            if f_obj:
+                fiadores_list.append(f_obj)
+
 
     destino_anterior = (
         InvestmentPlan.objects.filter(customer_id=cliente).exclude(id=destino.id).order_by('-id').first()
@@ -214,36 +228,37 @@ def render_pagare_docx(request, id, customer_code):
         pf_4 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
         set_paragraph_format(pf_4)
 
-    if fiador:
-        doc.add_paragraph("")
-        aval_text = (
-            f"AVAL: Por este medio el abajo firmante, titular del Documento Personal de Identificación respectivamente indicado, " 
-            f"me constituyo expresamente en avalista voluntario del presente pagaré en todas y cada una de las obligaciones que asume "
-            f"el librador del mismo."
-        )
-        aval_text_p = doc.add_paragraph(aval_text)
-        run = aval_text_p.runs[0]
-        run.font.size = Pt(9)
+    if len(fiadores_list) > 1:
+        for idx, fia in enumerate(fiadores_list, start=1):
+            doc.add_paragraph("")
+            # Texto de aval adaptado para múltiples o único fiador
+            num_aval = f" {idx}" if len(fiadores_list) > 1 else ""
+            aval_text = (
+                f"AVAL{num_aval}: Por este medio el abajo firmante, titular del Documento Personal de Identificación respectivamente indicado, " 
+                f"me constituyo expresamente en avalista voluntario del presente pagaré en todas y cada una de las obligaciones que asume "
+                f"el librador del mismo."
+            )
+            aval_text_p = doc.add_paragraph(aval_text)
+            run = aval_text_p.runs[0]
+            run.font.size = Pt(9)
+            set_paragraph_format(aval_text_p)
 
-        set_paragraph_format(aval_text_p)
+            doc.add_paragraph("")
 
-        
-        doc.add_paragraph("")
+            pf_5 = doc.add_paragraph(f"{fia.get_full_name().upper()}")
+            pf_5.bold = True
+            set_paragraph_format(pf_5)
 
-        pf_5 = doc.add_paragraph(f"{fiador.get_full_name().upper()}")
-        pf_5.bold = True
-        set_paragraph_format(pf_5)
+            pf_6 = doc.add_paragraph(f"DPI {fia.identification_number}")
+            set_paragraph_format(pf_6)
+            
+            if fia.get_direccion() != '':
+                pf_7 = doc.add_paragraph(f"{fia.get_direccion().street.upper()}")
+                set_paragraph_format(pf_7)
 
-        pf_6 = doc.add_paragraph(f"DPI {fiador.identification_number}")
-        set_paragraph_format(pf_6)
-        
-        if fiador.get_direccion() != '':
-            pf_7 = doc.add_paragraph(f"{fiador.get_direccion().street.upper() if fiador.get_direccion() != '' else '' }")
-            set_paragraph_format(pf_7)
-
-        if sucursal.get_direc() != '':
-            pf_8 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
-            set_paragraph_format(pf_8)
+            if sucursal.get_direc() != '':
+                pf_8 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
+                set_paragraph_format(pf_8)
 
     doc.add_paragraph("")
     doc.add_paragraph("__________________________   ÚLTIMA LINEA")

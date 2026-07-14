@@ -22,6 +22,8 @@ export const urls = {
     api_url_referencia:  `${baseUrl}/financial_information/api/reference/`,
     api_url_informacion_laboral: `${baseUrl}/financial_information/api/working_information/`,
     api_url_otra_informacion_laboral: `${baseUrl}/financial_information/api/other_sources/`,
+    api_url_gastos_cliente:`${baseUrl}/financial_information/api/gasto_cliente/`,
+    api_url_tipo_gasto:`${baseUrl}/financial_information/api/tipo_gasto/`,
 
     // USUARIOS
     api_url_usuarios: `${baseUrl}/users/api/users/`,
@@ -75,9 +77,12 @@ export const urls_p = {
     api_url_referencia:  `${baseUrl}/financial_information/api/reference/`,
     api_url_informacion_laboral: `${baseUrl}/financial_information/api/working_information/`,
     api_url_otra_informacion_laboral: `${baseUrl}/financial_information/api/other_sources/`,
+    api_url_gastos_cliente:`${baseUrl}/financial_information/api/gasto_cliente/`,
+    api_url_tipo_gasto:`${baseUrl}/financial_information/api/tipo_gasto/`,
 
     // USUARIOS
     api_url_usuarios: `${baseUrl}/users/api/users/`,
+    api_url_notario: `${baseUrl}/users/api/users/`,
 
     // ROL
     api_url_rol: `${baseUrl}/roles&permissions/api/role/`,

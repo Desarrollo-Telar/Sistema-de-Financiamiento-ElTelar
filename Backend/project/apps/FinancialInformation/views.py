@@ -21,7 +21,7 @@ from django.utils.decorators import method_decorator
 
 # Scripts
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
-from project.send_mail import send_email_new_customer
+
 
 # Create your views here.
 # Import
@@ -86,6 +86,25 @@ def create_other_information(request, customer_code):
         
         'permisos':recorrer_los_permisos_usuario(request),
         'customer_code':customer_code,
+        'subsidiary': sucursal,
+        'cliente': customer_id
+    }
+
+    return render(request, template_name, context)
+
+from django.views.decorators.csrf import ensure_csrf_cookie 
+
+@login_required
+@usuario_activo
+@ensure_csrf_cookie  
+def create_gastos_cliente(request, customer_code):
+    template_name = 'FinancialInformation/gastos_cliente.html'
+    customer_id = get_object_or_404(Customer, customer_code=str(customer_code))
+    sucursal = request.session.get('sucursal_id') # Es más seguro usar .get() por si no existe la sesión
+
+    context = {
+        'permisos': recorrer_los_permisos_usuario(request),
+        'customer_code': customer_code,
         'subsidiary': sucursal,
         'cliente': customer_id
     }
@@ -213,18 +232,12 @@ def create_references_customer(request, customer_code):
             referencia4.reference_type = 'Laborales'
             referencia4.save()
 
-            informacion_laboral = WorkingInformation.objects.filter(customer_id=customer_id).exists()
-            plan_inversion = InvestmentPlan.objects.filter(customer_id=customer_id).exists()
+           
+          
+                
+                
 
-            if not informacion_laboral:
-                informacion_laboral = OtherSourcesOfIncome.objects.filter(customer_id=customer_id).exists()
-            
-            if informacion_laboral and plan_inversion and not customer_id.completado:
-                customer_id.completado = True
-                customer_id.save()
-                send_email_new_customer(customer_id)
-
-            return redirect('customers:detail', customer_code)
+            return redirect('check_list_customer', customer_code)
     else:
         form = ReferenceForms(prefix='form1')
         form_2 = ReferenceForms(prefix='form2')

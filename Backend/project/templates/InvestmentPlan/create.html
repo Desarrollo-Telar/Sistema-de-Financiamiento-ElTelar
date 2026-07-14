@@ -2,114 +2,570 @@
 {% load static %}
 {% block css %}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/credito/Solicitud_credito.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container box">
-    <div class="row">
-        <form method="POST" id="plan_destino">
+<form id="frmInvestmentPlan">
 
-            {% csrf_token %}
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
 
-            <div class="row" style="margin-top: 2rem;">
-                <h3>Plan de Inversion (Destino) </h3>
-                <hr>
-                {% for field in form %}
+    <!-- Cliente -->
+    <input type="hidden" id="customer_id" name="customer_id" value="{{ customer_id.id }}">
+    <input type="hidden" id="codigo_cliente" value="{{ customer_id.customer_code }}">
+    <input type="hidden" id="sucursal" name="sucursal" value="{{ sucursal.id }}">
+    <input type="hidden" id="investment_plan_id" value="{{ plan.id|default:'' }}">
 
-                <div class="form-group" style="margin-top: 0.5rem;">
-                    <label for="{{ field.id_for_label }}" class="form-label fw-bold">
-                        {{ field.label }}
-                    </label>
-                    {{ field }}
-                    {% if field.errors %}
-                    {{ field.errors }}
-                    {% endif %}
-                </div>
-                <br />
+    <div class="card mt-4">
 
-                {% endfor %}
+        <div class="card-header">
 
-            </div>
-            
+            Información a Considerar 
 
-            <div style="margin-top: 2rem;" class="row">
-                <a type="button" onclick="generar_plan()" class="btn_cancel" id="generar_plan">Generar Plan de Pagos</a>
-            </div>
+        </div>
+
+        <div class="card-body">
+
             <div class="row">
 
-                <div class="table-responsive">
-                    {% include 'financings/credit/snippets/forms/plan.html' %}
+                <div class="col-md-12">
+                    <label for="disponibilidad_efectiva">Disponibilidad Efectiva</label>
+                    <input type="text"  value="Q {{ disponibilidad_efectiva }}" class="form-control" disabled>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- INFORMACIÓN DEL CRÉDITO -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <div class="card-header">
+            Información del Crédito
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-12 mb-3">
+
+                    <label>
+                        Asesor Responsable
+                    </label>
+
+                    <select class="form-control asesor" id="asesor_responsable" name="asesor_responsable">
+
+                    </select>
+
+                </div>
+                <div class="col-md-4 mb-3">
+
+                    <label>
+                        Estado de Aprobacion
+                    </label>
+
+                    <select class="form-control" id="estado_aprobacion" name="estado_aprobacion">
+
+
+
+                        <option value="PENDIENTE">
+                            PENDIENTE
+                        </option>
+                        {% if  not es_asesor %}
+                        <option value="ACEPTADO">
+                            ACEPTADO
+                        </option>
+
+                        <option value="NEGADO">
+                            NEGADO
+                        </option>
+                        {% endif %}
+
+                    </select>
+
                 </div>
 
+
+                <div class="col-md-4 mb-3">
+
+                    <label>
+                        Tipo de Producto
+                    </label>
+
+
+                    <select class="form-control" id="type_of_product_or_service" name="type_of_product_or_service">
+                        <option value="">Seleccione</option>
+                        <option value="AGROPECUARIO Y/O PRODUCTIVO" 
+                        {% if plan.type_of_product_or_service == "AGROPECUARIO Y/O PRODUCTIVO" %}selected{% endif %}>
+                            AGROPECUARIO Y/O PRODUCTIVO</option>
+                        <option value="COMERCIO" {% if plan.type_of_product_or_service == "COMERCIO" %}selected{% endif  %}>COMERCIO</option>
+                        <option value="SERVICIOS" {% if plan.type_of_product_or_service == "SERVICIOS" %}selected{% endif%}>SERVICIOS</option>
+                        <option value="CONSUMO" {% if plan.type_of_product_or_service == "CONSUMO" %}selected{% endif %}>
+                            CONSUMO</option>
+                        <option value="VIVIENDA" {% if plan.type_of_product_or_service == "VIVIENDA" %}selected{% endif %}>VIVIENDA</option>
+                    </select>
+
+                </div>
+                <div class="col-md-4 mb-3">
+
+                    <label>
+                        Forma de Pago
+                    </label>
+
+                    <select class="form-control" id="forma_de_pago">
+                        <option value="NIVELADA" {% if plan.forma_de_pago == "NIVELADA" %}selected{% endif %}>NIVELADA
+                        </option>
+                        <option value="AMORTIZACIONES A CAPITAL" 
+                        {% if plan.forma_de_pago == "AMORTIZACIONES A CAPITAL" %}selected{% endif %}>AMORTIZACIONES A CAPITAL</option>
+                        <option value="INTERES MENSUAL Y CAPITAL AL VENCIMIENTO" 
+                        {% if plan.forma_de_pago == "INTERES MENSUAL Y CAPITAL AL VENCIMIENTO" %}selected{% endif %}>INTERES
+                            MENSUAL Y CAPITAL AL VENCIMIENTO</option>
+                        <option value="INTERES Y CAPITAL AL VENCIMIENTO" 
+                        {% if plan.forma_de_pago == "INTERES Y CAPITAL AL VENCIMIENTO" %}selected{% endif %}>INTERES Y
+                            CAPITAL AL VENCIMIENTO</option>
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label>
+                        Valor del Producto
+                    </label>
+
+
+
+
+                    <input type="text" step="0.01" class="form-control" id="total_value_of_the_product_or_service"
+                        value="{{ plan.total_value_of_the_product_or_service }}">
+
+
+
+                </div>
+                <div class="col-md-4 mb-3">
+
+                    <label>
+                        Tasa de interés (Anual)
+                    </label>
+
+
+                    <input type="text" step="0.001" class="form-control" id="tasa_interes"
+                        value="{{ plan.tasa_interes }}">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label>
+                        Fecha de Inicio
+
+                        <input type="date" class="form-control" id="fecha_inicio"
+                            value="{{ plan.fecha_inicio|date:'Y-m-d' }}">
+                </div>
+
+
+
+                <div class="col-md-4 mb-3">
+                    <label>
+                        Plazo
+                    </label>
+                    <input type="number" class="form-control" id="plazo" value="{{ plan.plazo }}">
+                </div>
+
+
+
+                <div class="col-md-4 mb-3" id="contenedor_plazo_garantia"
+                    style="{% if plan.forma_de_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO' or plan.forma_de_pago == 'INTERES Y CAPITAL AL VENCIMIENTO' %}display: block;{% else %}display: none;{% endif %}">
+                    <label>Plazo de Garantía</label>
+                    <input type="number" class="form-control" id="plazo_garantia" value="{{ plan.plazo_gracia }}">
+                </div>
+
+
+
+
+
+
+
+
+                <div class="col-md-12 mb-3">
+                    <label for="investment_plan_description">
+                        Descripción
+                    </label>
+                    <textarea class="form-control" id="investment_plan_description" rows="3">{{ plan.investment_plan_description|default:'' }}</textarea>
+                </div>
 
             </div>
 
-            <div class="row" style="margin-top: 1rem;">
-                <div class="col">
-                    <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+        </div>
+        <div style="margin-top: 2rem;" class="row">
+            <a type="button" onclick="generar_plan()" class="btn_cancel" id="generar_plan">Generar Plan de Pagos</a>
+        </div>
+        <div class="row">
 
-                </div>
-                <div class="col">
-                    <button type="submit" class="btn_guardar">Siguiente</button>
-
-                </div>
-
-
-
+            <div class="table-responsive">
+                {% include 'financings/credit/snippets/forms/plan.html' %}
             </div>
 
 
-        </form>
+        </div>
 
     </div>
-</div>
 
+
+
+    <!-- ========================= -->
+    <!-- DOCUMENTACIÓN -->
+    <!-- ========================= -->
+
+    <div class="card mt-4">
+
+        <div class="card-header">
+
+            Documentación
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <label>
+
+                        Tipo de Documento
+
+                    </label>
+                    <select class="form-control" id="tipo_documento" name="tipo_documento">
+                        <option value="">Seleccione</option>
+
+                        <option value="PAGARE" 
+                        {% if plan.tipo_documento == "PAGARE" %}selected{% endif %}>
+                            PAGARE</option>
+
+                        <option value="ESCRITURA PUBLICA" {% if plan.tipo_documento == "ESCRITURA PUBLICA" %}selected{% endif  %}>ESCRITURA PUBLICA</option>
+
+                        <option value="RECONOCIMIENTO DE DEUDA" {% if plan.tipo_documento == "RECONOCIMIENTO DE DEUDA" %}selected{% endif%}>RECONOCIMIENTO DE DEUDA</option>
+
+                       
+                    </select>
+
+                    
+
+
+                </div>
+
+            </div>
+
+            <!-- PAGARE -->
+
+            <div id="contenedor_pagare" style="display:none;">
+
+                <hr>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <label>
+
+                            Tipo de Pagaré
+
+                        </label>
+
+                        <select id="tipo_pagare" class="form-control">
+                                <option value="Normal"  {% if plan.tipo_pagare == "Normal" %}selected{% endif %}>Normal</option>
+
+                        <option value="Fiador" {% if plan.tipo_pagare == "Fiador" %}selected{% endif  %}>Fiador</option>
+
+                        <option value="Restructuracion" {% if plan.tipo_pagare == "Restructuracion" %}selected{% endif%}>Restructuracion</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ========================== -->
+            <!-- FIADORES -->
+            <!-- ========================== -->
+
+            <div id="contenedor_fiadores" style="display:none;">
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
+
+                    <h5>
+
+                        Fiadores
+
+                    </h5>
+
+
+                    <button type="button" id="btnAgregarFiador" class="btn btn-danger">
+
+                        Agregar
+
+                    </button>
+
+                </div>
+
+                <div id="lista_fiadores">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ========================== -->
+            <!-- CREDITOS -->
+            <!-- ========================== -->
+
+            <div id="contenedor_creditos" style="display:none;">
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
+
+                    <h5>
+
+                        Créditos Vigentes
+
+                    </h5>
+
+                    <button type="button" id="btnAgregarCredito" class="btn btn-danger">
+
+                        Agregar
+
+                    </button>
+
+                </div>
+
+                <div id="lista_creditos">
+
+                </div>
+
+            </div>
+
+            <!-- ========================== -->
+            <!-- Notario -->
+            <!-- ========================== -->
+
+            <div id="contenedor_notarios_doc" style="display:none;">
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="fw-bold text-secondary">Notario de Documentación</label>
+                        <select class="form-control" id="notario_documentacion" style="width: 100%;"></select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- GARANTIAS -->
+    <!-- ========================= -->
+
+    <div class="card mt-4">
+
+        <div class="card-header">
+
+            Garantías
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between">
+
+                <h5>
+
+                    Garantías Registradas
+
+                </h5>
+
+
+                <button type="button" id="btnAgregarGarantia" class="btn btn-danger">
+
+                    Agregar Garantía
+
+                </button>
+
+            </div>
+
+            <div id="lista_garantias">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- CONDICIONES-->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <div class="card-header">
+            Condiciones de la Solicitud de Crédito
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+                 <div class="col-md-12 mb-3">
+
+                    <label>
+
+                        Riesgos Comerciales Principales 
+
+                    </label>
+                    <textarea class="form-control" id="riesgo_comercial" rows="3">{{ plan.riesgo_comercial|default:'' }}</textarea>
+                 </div>
+                 <div class="col-md-12 mb-3">
+
+                    <label>
+
+                        Diagnósitco de Oportunidades 
+
+                    </label>
+                    <textarea class="form-control" id="diganostico_oportunidad" rows="3">{{ plan.diganostico_oportunidad|default:'' }}</textarea>
+                 </div>
+                 <div class="col-md-12 mb-3">
+
+                    <label>
+
+                        Mitigadores  
+
+                    </label>
+                    <textarea class="form-control" id="mitigadores" rows="3">{{ plan.mitigadores|default:'' }}</textarea>
+                 </div>
+                 <div class="col-md-12 mb-3">
+
+                    <label>
+
+                        Evaluación del mercado 
+
+                    </label>
+                    <textarea class="form-control" id="evaluacion_mercado" rows="3">{{ plan.evaluacion_mercado|default:'' }}</textarea>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="text-end mt-4">
+        <a href="{% url 'customers:detail' customer_code%}" class="btn btn-link">Cancelar</a>
+
+        <button type="submit" class="btn_guardar">
+
+            Guardar Solicitud
+
+        </button>
+
+    </div>
+
+</form>
 {% endblock %}
 
 {% block js %}
 <script type="module" src="{% static 'js/plan_inversion/destino.js'%}"></script>
+<script type="module" src="{% static 'js/plan_inversion/formulario.js'%}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+    $(document).ready(function() {
+    // Leemos los bloques JSON inyectados de forma segura desde el backend
+    // Usamos el filtro |safe de Django montando bloques de scripts en el HTML o leyéndolos de variables globales
+    // Para este ejemplo asumiremos que los pasas renderizando listas ocultas o recuperándolos mediante los tags de Django:
+    
+    {% if plan %}
+        // --- Cargar Fiadores Existentes ---
+        const fiadoresExistentes = {{ plan.fiador|default:"[]"|safe }};
+        fiadoresExistentes.forEach(f => {
+            // Simulamos el click para crear la fila vacía
+            $("#btnAgregarFiador").click();
+            // Obtenemos la última fila agregada
+            const ultimaFila = $(".fila-fiador").last();
+            const selectContainer = ultimaFila.find('.fiador_select');
 
-    const form = document.getElementById("plan_destino");
-    const tipoPagare = document.getElementById("id_tipo_pagare");
-    const fiadorField = document.getElementById("id_fiador");
-    const creditoAnteriorField = document.getElementById("id_credito_anterior_vigente");
+            // Select2 necesita que la opción preseleccionada exista en el DOM antes de fijar el valor mediante AJAX
+            // Como no tenemos el texto completo aquí, hacemos una petición rápida o añadimos una opción temporal:
+            const optionTemplate = new Option(`Cargando ID: ${f.id}...`, f.id, true, true);
+            selectContainer.append(optionTemplate).trigger('change');
+            
+            // Opcional: Si tu API de Clientes permite buscar por ID exacto, puedes hacer un fetch individual 
+            // para cambiar el texto temporal "Cargando ID: X..." por el nombre real del cliente asociado.
+        });
 
-    form.addEventListener("submit", function (event) {
+        // --- Cargar Créditos Vigentes Existentes ---
+        const creditosExistentes = {{ plan.credito_anterior_vigente|default:"[]"|safe }};
+        creditosExistentes.forEach(c => {
+            $("#btnAgregarCredito").click();
+            const ultimaFila = $(".fila-credito").last();
+            const selectContainer = ultimaFila.find('.credito_vigente');
+            
+            const optionTemplate = new Option(`Cargando Crédito ID: ${c.id}...`, c.id, true, true);
+            selectContainer.append(optionTemplate).trigger('change');
+        });
 
-        const tipo = tipoPagare.value;
-        let errores = [];
+        
 
-        if (tipo === "Fiador") {
-            if (!fiadorField.value || fiadorField.value.trim() === "") {
-                errores.push("Debe ingresar información del FIADOR.");
+        // --- Cargar Garantías y sus Notarios Existentes ---
+        const garantiasExistentes = {{ plan.garantias|default:"[]"|safe }};
+        
+        garantiasExistentes.forEach(g => {
+            // 1. Forzamos el click para crear la fila con su estructura HTML y eventos
+            $("#btnAgregarGarantia").click();
+            
+            // 2. Obtenemos la última fila insertada en el DOM
+            const ultimaFila = $(".fila-garantia").last();
+            
+            // 3. Seteamos los valores básicos de la garantía
+            ultimaFila.find(".garantia-tipo").val(g.tipo).trigger('change');
+            ultimaFila.find(".garantia-descripcion").val(g.descripcion);
+            ultimaFila.find(".garantia-valor").val(g.valor).trigger('keyup'); // Trigger keyup activa el contenedor de notarios si > 5000
+            
+            // 4. Si la garantía viene con un notario guardado, lo preseleccionamos en su Select2
+            if (g.notario && g.notario.id) {
+                const selectNotarioFila = ultimaFila.find(".garantia-notario-select");
                 
-                fiadorField.focus();
+                // Creamos la opción persistente para Select2
+                const optionTemplate = new Option(g.notario.nombre, g.notario.id, true, true);
+                selectNotarioFila.append(optionTemplate).trigger('change');
             }
-        }
+        });
 
-        if (tipo === "Restructuracion") {
-            if (!creditoAnteriorField.value || creditoAnteriorField.value.trim() === "") {
-                errores.push("Debe ingresar el CRÉDITO ANTERIOR VIGENTE.");
-                creditoAnteriorField.focus();
+        // --- Cargar Notario de Documentación Global ---
+        const notariosExistentes = {{ plan.notarios|default:"[]"|safe }};
+        notariosExistentes.forEach(n => {
+            if (n.modulo === 'documentacion') {
+                const optionDoc = new Option(n.nombre, n.id, true, true);
+                $("#notario_documentacion").append(optionDoc).trigger('change');
             }
-        }
+        });
 
-        if (errores.length > 0) {
-            event.preventDefault(); // ❌ Cancela el envío            
-            Swal.fire({
-                icon: "error",
-                title: `${errores.join("\n")}`,
-                timer: 4000,
-                showConfirmButton: false,
-            });
-        }
-
-    });
-
+        setTimeout(() => {
+            $('#tipo_documento').trigger('change');
+            $('#tipo_pagare').trigger('change');
+        }, 100);
+    {% endif %}
 });
 </script>
+
 
 
 

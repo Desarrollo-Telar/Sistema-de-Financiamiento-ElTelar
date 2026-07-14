@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<style>
+
+body{
+    margin:0;
+    padding:30px;
+    background:#F5F3F4;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:#FFFFFF;
+    border:1px solid #D3D3D3;
+}
+
+.header{
+    background:#0B090A;
+    padding:30px;
+    text-align:center;
+}
+.button{
+
+    display:inline-block;
+    padding:14px 30px;
+    background:#E5383B;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+
+}
+
+.header h1{
+    margin:0;
+    color:#FFFFFF;
+    font-size:28px;
+}
+
+.subtitle{
+    background:#A4161A;
+    color:#FFFFFF;
+    padding:18px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.content{
+    padding:35px;
+    color:#161A1D;
+    line-height:1.7;
+    font-size:15px;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.section-title{
+    background:#BA181B;
+    color:#FFFFFF;
+    padding:12px 18px;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.table td{
+    padding:12px;
+    border-bottom:1px solid #D3D3D3;
+    vertical-align:top;
+}
+
+.label{
+    width:35%;
+    background:#F5F3F4;
+    color:#660708;
+    font-weight:bold;
+}
+
+.footer{
+    background:#161A1D;
+    color:#B1A7A6;
+    padding:25px;
+    text-align:center;
+    font-size:13px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>
+            Inversiones Integrales El Telar S.A.
+        </h1>
+
+    </div>
+
+    <div class="subtitle">
+
+        Solicitud de Elaboración de {{ tipo_documento }}
+
+    </div>
+
+    <div class="content">
+
+        <p>
+
+            Estimado(a) Licenciado(a)
+            <strong>{{ abogado }}</strong>,
+
+        </p>
+
+        <p>
+
+            Es un gusto saludarle.
+
+        </p>
+
+        <p>
+
+            Por este medio le solicitamos cordialmente sus servicios profesionales para la elaboración de un documento de
+            <strong>{{ tipo_documento }}</strong>
+            correspondiente a un crédito aprobado.
+
+        </p>
+
+        <p>
+
+            Para este caso en particular, el crédito será respaldado únicamente mediante dicho instrumento público.
+
+        </p>
+
+        <p>
+
+            A continuación compartimos la información necesaria para la elaboración del documento.
+
+        </p>
+
+        <!-- Oficina -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                Datos de la Oficina y Asesor
+
+            </div>
+
+            <table class="table">
+
+                <tr>
+
+                    <td class="label">Oficina</td>
+                    <td>{{ plan_inversion.sucursal }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Asesor de Crédito</td>
+                    <td>{{  plan_inversion.asesor_responsable }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Teléfono</td>
+                    <td>{{  plan_inversion.asesor_responsable.telephone }}</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Cliente -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                Información General del Cliente
+
+            </div>
+
+            <table class="table">
+                <tr>
+
+                    <td class="label">Nombre Completo</td>
+                    <td>{{  plan_inversion.customer_id }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">DPI</td>
+                    <td>{{  plan_inversion.customer_id.identification_number }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">NIT</td>
+                    <td>{{ plan_inversion.customer_id.number_nit }}</td>
+
+                </tr>
+            
+                <tr>
+
+                    <td class="label">Estado Civil</td>
+                    <td>{{ plan_inversion.customer_id.marital_status }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Profesión u Oficio</td>
+                     <td>{{ plan_inversion.customer_id.profession_trade }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Dirección</td>
+                    <td>{{ direccion }}</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Crédito -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                Condiciones del Crédito
+
+            </div>
+
+            <table class="table">
+
+                <tr>
+
+                    <td class="label">Monto</td>
+                    <td>{{ plan_inversion.total_value_of_the_product_or_service }}</td>
+
+                </tr>
+                <tr>
+                    <td class="label">Forma de Pago</td>
+                    <td>{{ plan_inversion.forma_de_pago }}</td>
+                </tr>
+                
+                <tr>
+
+                    <td class="label">Tipo de Crédito</td>
+                    <td>{{ plan_inversion.type_of_product_or_service }}</td>
+                </tr>
+                <tr>
+
+                    <td class="label">Plazo</td>
+                    <td>{{ plan_inversion.plazo }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Tasa</td>
+                    <td>{{ plan_inversion.tasa_interes }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Destino</td>
+                    <td>{{ plan_inversion.investment_plan_description }}</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <br><br>
+
+       
+        <center>
+
+            <a href="https://www.ii-eltelarsa.com/plan_inversion/plan_pagos/{{ plan_inversion.id }}/{{plan_inversion.customer_id.customer_code}}/" class="button">
+
+                Ver Plan de Pagos 
+
+            </a>
+
+        </center>
+        <br>
+
+        <p>
+
+            Agradecemos nos puedan remitir el borrador del documento para la respectiva validación interna previo a la firma del cliente.
+
+        </p>
+
+        <p>
+
+            Asimismo, quedamos atentos a sus indicaciones para coordinar la fecha y hora de la cita correspondiente.
+
+        </p>
+
+        <br>
+
+        <p>
+
+            Atentamente,
+
+            <br><br>
+
+            <strong>Inversiones Integrales El Telar S.A.</strong>
+
+        </p>
+
+    </div>
+
+    <div class="footer">
+
+        Este correo fue generado automáticamente por el Sistema de Gestión de Créditos de
+        <strong>Inversiones Integrales El Telar S.A.</strong>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

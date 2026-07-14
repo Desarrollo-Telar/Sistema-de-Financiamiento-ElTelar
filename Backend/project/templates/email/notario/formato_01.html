@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    background:#F5F3F4;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container{
+    width:700px;
+    margin:auto;
+    background:#FFFFFF;
+    border:1px solid #D3D3D3;
+}
+
+.header{
+    background:#0B090A;
+    padding:30px;
+    text-align:center;
+}
+
+.logo{
+    color:white;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.title{
+    background:#A4161A;
+    color:white;
+    padding:18px;
+    font-size:22px;
+    text-align:center;
+}
+
+.content{
+    padding:35px;
+    color:#161A1D;
+    line-height:1.7;
+}
+
+.section{
+
+    margin-top:30px;
+
+}
+
+.section-title{
+
+    background:#BA181B;
+    color:white;
+    padding:12px 20px;
+    font-size:17px;
+    font-weight:bold;
+
+}
+
+.table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+.table td{
+
+    padding:12px;
+    border-bottom:1px solid #D3D3D3;
+
+}
+
+.label{
+
+    width:35%;
+    font-weight:bold;
+    color:#660708;
+
+}
+
+.button{
+
+    display:inline-block;
+    padding:14px 30px;
+    background:#E5383B;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+
+}
+
+.footer{
+
+    background:#161A1D;
+    color:#B1A7A6;
+    padding:25px;
+    text-align:center;
+    font-size:13px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div class="logo">
+            Inversiones Integrales El Telar S.A.
+        </div>
+
+    </div>
+
+    <div class="title">
+
+        Solicitud de Elaboración de Documentación Legal
+
+    </div>
+
+    <div class="content">
+
+        <p>
+
+            Estimado(a) Licenciado(a)
+            <strong>{{ abogado }}</strong>
+
+        </p>
+
+        <p>
+
+            Es un gusto saludarle.
+
+            Por este medio le solicitamos su apoyo profesional para la elaboración de la documentación legal correspondiente a la aprobación de un nuevo crédito.
+
+        </p>
+
+        <p>
+
+            Se requiere elaborar un documento de <strong>{{ tipo_documento }}</strong>, así como formalizar las garantías correspondientes.
+
+        </p>
+
+        <!-- Oficina -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                Datos de la Oficina y Asesor
+
+            </div>
+
+            <table class="table">
+
+                <tr>
+
+                    <td class="label">Oficina</td>
+                    <td>{{ plan_inversion.sucursal }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Asesor de Crédito</td>
+                    <td>{{  plan_inversion.asesor_responsable }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Teléfono</td>
+                    <td>{{  plan_inversion.asesor_responsable.telephone }}</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Cliente -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                Información General del Cliente
+
+            </div>
+
+            <table class="table">
+                <tr>
+
+                    <td class="label">Nombre Completo</td>
+                    <td>{{  plan_inversion.customer_id }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">DPI</td>
+                    <td>{{  plan_inversion.customer_id.identification_number }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">NIT</td>
+                    <td>{{ plan_inversion.customer_id.number_nit }}</td>
+
+                </tr>
+            
+                <tr>
+
+                    <td class="label">Estado Civil</td>
+                    <td>{{ plan_inversion.customer_id.marital_status }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Profesión u Oficio</td>
+                     <td>{{ plan_inversion.customer_id.profession_trade }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Dirección</td>
+                    <td>{{ direccion }}</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Crédito -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                Condiciones del Crédito
+
+            </div>
+
+            <table class="table">
+
+                <tr>
+
+                    <td class="label">Monto</td>
+                    <td>Q {{ plan_inversion.total_value_of_the_product_or_service }}</td>
+
+                </tr>
+                <tr>
+                    <td class="label">Forma de Pago</td>
+                    <td>{{ plan_inversion.forma_de_pago }}</td>
+                </tr>
+                
+                <tr>
+
+                    <td class="label">Tipo de Crédito</td>
+                    <td>{{ plan_inversion.type_of_product_or_service }}</td>
+                </tr>
+                <tr>
+
+                    <td class="label">Plazo</td>
+                    <td>{{ plan_inversion.plazo }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Tasa</td>
+                    <td>{{ plan_inversion.tasa_interes }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Destino</td>
+                    <td>{{ plan_inversion.investment_plan_description }}</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Garantías -->
+
+        <div class="section">
+    <div class="section-title">
+        Garantías
+    </div>
+
+    {% for garantia in garantias %}
+        <table class="table" style="margin-bottom:20px;">
+            <tr>
+                <td class="label">Tipo</td>
+                <!-- Django Template accede a los diccionarios con punto: diccionario.llave -->
+                <td>{{ garantia.tipo }}</td>
+            </tr>
+            <tr>
+                <td class="label">Descripción</td>
+                <td>{{ garantia.descripcion }}</td>
+            </tr>
+            <tr>
+                <td class="label">Valor</td>
+                <td>{{ garantia.valor }}</td>
+            </tr>
+        </table>
+
+       
+        {% if not forloop.last %}
+            <hr style="border:none;border-top:1px solid #D3D3D3;margin:20px 0;">
+        {% endif %}
+
+    {% empty %}
+        <!-- Este bloque se ejecuta automáticamente si 'garantias' es None o una lista vacía -->
+        <table class="table">
+            <tr>
+                <td>No se registraron garantías para este notario.</td>
+            </tr>
+        </table>
+    {% endfor %}
+</div>
+
+        <br><br>
+
+       
+        <center>
+
+            <a href="https://www.ii-eltelarsa.com/plan_inversion/plan_pagos/{{ plan_inversion.id }}/{{plan_inversion.customer_id.customer_code}}/" class="button" >
+
+                Ver Plan de Pagos 
+
+            </a>
+
+        </center>
+       
+
+        <br>
+
+        <p>
+
+            Agradecemos de antemano su apoyo para indicarnos la fecha y hora en que el cliente podrá presentarse a firmar, o bien coordinar la entrega de los borradores para su revisión.
+
+        </p>
+
+        <p>
+
+            Atentamente,
+
+            <br><br>
+
+            <strong>Inversiones Integrales El Telar S.A.</strong>
+
+        </p>
+
+    </div>
+
+    <div class="footer">
+
+        Este correo fue generado automáticamente por el Sistema de Créditos de Inversiones Integrales El Telar S.A.
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

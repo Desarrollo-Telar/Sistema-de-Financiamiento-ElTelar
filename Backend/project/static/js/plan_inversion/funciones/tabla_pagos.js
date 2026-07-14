@@ -4,15 +4,15 @@ import { Credit } from '../../class/credit.js'
 export function generar_plan() {
     const tbody_plan = document.getElementById('tbody_plan');
     const proposito = '';
-    const monto = document.getElementById('id_total_value_of_the_product_or_service');
-    const plazo = document.getElementById('id_plazo');
-    const tasa_interes = document.getElementById('id_tasa_interes');
-    const forma_de_pago = document.getElementById('id_forma_de_pago');
+    const monto = document.getElementById('total_value_of_the_product_or_service');
+    const plazo = document.getElementById('plazo');
+    const tasa_interes = document.getElementById('tasa_interes');
+    const forma_de_pago = document.getElementById('forma_de_pago');
     // const frecuencia_pago = document.getElementById('frecuencia_pago');
 
-    const fecha_inicio = document.getElementById('id_fecha_inicio');
-    const tipo_credito = document.getElementById('id_type_of_product_or_service');
-    const plazo_gracia = document.getElementById('id_plazo_gracia');
+    const fecha_inicio = document.getElementById('fecha_inicio');
+    const tipo_credito = document.getElementById('type_of_product_or_service');
+    const plazo_gracia = document.getElementById('plazo_garantia');
     const customer_id = '';
 
     tbody_plan.innerHTML = '';

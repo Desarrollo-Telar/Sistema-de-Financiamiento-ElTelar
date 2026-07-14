@@ -1,42 +1,111 @@
 {% load static %}
-<div class="row" style="margin: 2rem ;">
-    {% if reference %}
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Nombre Completo</th>
-                    <th scope="col">Numero de telefono</th>
-                    <th scope="col">Tipo de referencia</th>
-                    {% if permisos.puede_editar_referencias %}
-                    <th scope="col">Editar</th>
-                    {% endif %}
 
-                </tr>
-            </thead>
-            <tbody>
-                {% for referencia in reference %}
-                <tr>
-                    <th>{{referencia.full_name}}</th>
-                    <td>{{referencia.phone_number}}</td>
-                    <td>{{referencia.reference_type}}</td>
-                    {% if permisos.puede_editar_referencias %}
-                    <td>
-                        <a href="{%url 'financial_information:update_reference' referencia.id customer_code %}"
-                            class="btn btn-outline-dark" role="button" aria-disabled="true">Editar Referencia</a>
-                    </td>
-                    {% endif %}
+<style>
+    .reference-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid #e9ecef;
+    }
+    .header-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    .list-title {
+        font-size: 1.2rem;
+        color: #212529;
+        margin: 0;
+    }
+    .table-custom-ref th, .table-custom-ref td {
+        vertical-align: middle;
+    }
+    /* Estilo del botón compacto de edición */
+    .btn-action-edit {
+        padding: 0.3rem 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+    }
+    /* Estilo del botón para registrar desde cero */
+    .btn-custom-create {
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        font-weight: 500;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: inline-block;
+    }
+    .btn-custom-create:hover {
+        background-color: #0b5ed7;
+        color: white;
+        box-shadow: 0 4px 8px rgba(13, 110, 253, 0.2);
+    }
+</style>
 
-                </tr>
+<div class="row" style="margin: 1rem 0;">
+    <div class="col-12 reference-container">
 
-                {% endfor %}
+        {% if reference %}
+            <div class="header-actions">
+                <h3 class="list-title fw-bold">
+                    <i class="bi bi-people-fill me-2 text-primary"></i> Referencias del Cliente
+                </h3>
+                </div>
 
+            <div class="table-responsive">
+                <table class="table table-hover table-custom-ref" style="margin-top: 0.5rem;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Nombre Completo</th>
+                            <th scope="col">Número de Teléfono</th>
+                            <th scope="col">Tipo de Referencia</th>
+                            {% if permisos.puede_editar_referencias %}
+                            <th scope="col" class="text-center">Acciones</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for referencia in reference %}
+                        <tr>
+                            <td class="fw-semibold text-dark">{{ referencia.full_name }}</td>
+                            <td>
+                                <i class="bi bi-telephone me-1 text-muted"></i> {{ referencia.phone_number }}
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-secondary border px-2 py-1.5">
+                                    {{ referencia.reference_type }}
+                                </span>
+                            </td>
+                            {% if permisos.puede_editar_referencias %}
+                            <td class="text-center">
+                                <a href="{% url 'financial_information:update_reference' referencia.id customer_code %}"
+                                   class="btn btn-sm btn-outline-primary btn-action-edit" 
+                                   role="button">
+                                    <i class="bi bi-pencil-square me-1"></i> Editar
+                                </a>
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center p-5 border rounded bg-light">
+                <p class="text-muted mb-3 fs-5">El cliente no cuenta con referencias registradas en el sistema.</p>
+                <a class="btn-custom-create" href="{% url 'financial_information:create_reference_information' customer_list.customer_code %}">
+                    <i class="bi bi-person-plus-fill me-1"></i> Registrar Las Referencias del Cliente
+                </a>
+            </div>
+        {% endif %}
 
-            </tbody>
-        </table>
     </div>
-    {% else %}
-    <a class="btn_guardar" href="{% url 'financial_information:create_reference_information' customer_list.customer_code %}">Registrar Las Referencias del Cliente</a>
-
-    {% endif %}
 </div>
