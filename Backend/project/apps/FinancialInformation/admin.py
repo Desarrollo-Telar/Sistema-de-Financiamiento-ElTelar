@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from .models import WorkingInformation, OtherSourcesOfIncome, Reference
+from .models import WorkingInformation, OtherSourcesOfIncome, Reference, TipoGasto
+
+admin.site.register(TipoGasto)
 # Register your models here.
 
 @admin.register(WorkingInformation)
