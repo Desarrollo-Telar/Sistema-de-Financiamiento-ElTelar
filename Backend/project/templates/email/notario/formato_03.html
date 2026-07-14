@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<style>
+
+body{
+    margin:0;
+    padding:30px;
+    background:#F5F3F4;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:#FFFFFF;
+    border:1px solid #D3D3D3;
+}
+
+.header{
+    background:#0B090A;
+    padding:30px;
+    text-align:center;
+}
+
+.header h1{
+    margin:0;
+    color:#FFFFFF;
+    font-size:28px;
+}
+
+.subtitle{
+    background:#A4161A;
+    color:#FFFFFF;
+    padding:18px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.content{
+    padding:35px;
+    color:#161A1D;
+    font-size:15px;
+    line-height:1.7;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.section-title{
+    background:#BA181B;
+    color:#FFFFFF;
+    padding:12px 18px;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.table td{
+    padding:12px;
+    border-bottom:1px solid #D3D3D3;
+    vertical-align:top;
+}
+
+.label{
+    width:35%;
+    background:#F5F3F4;
+    color:#660708;
+    font-weight:bold;
+}
+
+.notice{
+    background:#FFF7F7;
+    border-left:5px solid #E5383B;
+    padding:15px;
+    margin:25px 0;
+}
+
+.footer{
+    background:#161A1D;
+    color:#B1A7A6;
+    padding:25px;
+    text-align:center;
+    font-size:13px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>
+
+            Inversiones Integrales El Telar S.A.
+
+        </h1>
+
+    </div>
+
+    <div class="subtitle">
+
+        Solicitud de Formalización de Garantías
+
+    </div>
+
+    <div class="content">
+
+        <p>
+
+            Estimado(a) Licenciado(a)
+            <strong>{{ abogado }}</strong>,
+
+        </p>
+
+        <p>
+
+            Es un gusto saludarle.
+
+        </p>
+
+        <p>
+
+            Por este medio solicitamos cordialmente su apoyo profesional para la elaboración y/o legalización de las firmas de los documentos de garantía (<strong>Cheque y/o Pagaré</strong>) correspondientes al crédito que se detalla a continuación.
+
+        </p>
+
+        <div class="notice">
+
+            <strong>Importante:</strong><br>
+
+            El desembolso del crédito queda sujeto a la correcta formalización de las garantías documentales descritas en esta solicitud.
+
+        </div>
+
+        <!-- Oficina -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                Datos de la Oficina y Asesor
+
+            </div>
+
+            <table class="table">
+
+                <tr>
+
+                    <td class="label">Oficina</td>
+                    <td>{{ plan_inversion.sucursal }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Asesor de Crédito</td>
+                    <td>{{  plan_inversion.asesor_responsable }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Teléfono</td>
+                    <td>{{  plan_inversion.asesor_responsable.telephone }}</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Cliente -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                Información General del Cliente
+
+            </div>
+
+            <table class="table">
+
+                <tr>
+
+                    <td class="label">Nombre Completo</td>
+                    <td>{{  plan_inversion.customer_id }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">DPI</td>
+                    <td>{{  plan_inversion.customer_id.identification_number }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">NIT</td>
+                    <td>{{ plan_inversion.customer_id.number_nit }}</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="label">Dirección</td>
+                    <td>{{ direccion }}</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Garantías -->
+
+        <div class="section">
+    <div class="section-title">
+        Garantías
+    </div>
+
+    {% for garantia in garantias %}
+        <table class="table" style="margin-bottom:20px;">
+            <tr>
+                <td class="label">Tipo</td>
+                <!-- Django Template accede a los diccionarios con punto: diccionario.llave -->
+                <td>{{ garantia.tipo }}</td>
+            </tr>
+            <tr>
+                <td class="label">Descripción</td>
+                <td>{{ garantia.descripcion }}</td>
+            </tr>
+            <tr>
+                <td class="label">Valor</td>
+                <td>{{ garantia.valor }}</td>
+            </tr>
+        </table>
+
+        
+        {% if not forloop.last %}
+            <hr style="border:none;border-top:1px solid #D3D3D3;margin:20px 0;">
+        {% endif %}
+
+    {% empty %}
+        <!-- Este bloque se ejecuta automáticamente si 'garantias' es None o una lista vacía -->
+        <table class="table">
+            <tr>
+                <td>No se registraron garantías para este notario.</td>
+            </tr>
+        </table>
+    {% endfor %}
+</div>
+
+        <br>
+
+        <p>
+
+            Le agradeceremos indicarnos el procedimiento y los documentos físicos adicionales que el asesor o el cliente deberán presentar en su oficina para completar satisfactoriamente este proceso.
+
+        </p>
+
+        <br>
+
+        <p>
+
+            Atentamente,
+
+            <br><br>
+
+            <strong>Inversiones Integrales El Telar S.A.</strong>
+
+        </p>
+
+    </div>
+
+    <div class="footer">
+
+        Este correo fue generado automáticamente por el Sistema de Gestión de Créditos de
+        <strong>Inversiones Integrales El Telar S.A.</strong>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

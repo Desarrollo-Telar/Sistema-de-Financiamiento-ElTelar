@@ -413,6 +413,59 @@
 
     </div>
 
+    <!-- ========================= -->
+    <!-- CONDICIONES-->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <div class="card-header">
+            Condiciones de la Solicitud de Crédito
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+                 <div class="col-md-12 mb-3">
+
+                    <label>
+
+                        Riesgos Comerciales Principales 
+
+                    </label>
+                    <textarea class="form-control" id="riesgo_comercial" rows="3">{{ plan.riesgo_comercial|default:'' }}</textarea>
+                 </div>
+                 <div class="col-md-12 mb-3">
+
+                    <label>
+
+                        Diagnósitco de Oportunidades 
+
+                    </label>
+                    <textarea class="form-control" id="diganostico_oportunidad" rows="3">{{ plan.diganostico_oportunidad|default:'' }}</textarea>
+                 </div>
+                 <div class="col-md-12 mb-3">
+
+                    <label>
+
+                        Mitigadores  
+
+                    </label>
+                    <textarea class="form-control" id="mitigadores" rows="3">{{ plan.mitigadores|default:'' }}</textarea>
+                 </div>
+                 <div class="col-md-12 mb-3">
+
+                    <label>
+
+                        Evaluación del mercado 
+
+                    </label>
+                    <textarea class="form-control" id="evaluacion_mercado" rows="3">{{ plan.evaluacion_mercado|default:'' }}</textarea>
+                 </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <div class="text-end mt-4">

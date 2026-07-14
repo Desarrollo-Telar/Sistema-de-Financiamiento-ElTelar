@@ -28,6 +28,7 @@ from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 from project.send_mail import send_email_new_customer
 from scripts.conversion_datos import model_to_dict
 # Create your views here.
+from apps.financings.views.creditos.funciones import generar_codigo_seguridad
 
 @login_required
 @usuario_activo
@@ -42,6 +43,9 @@ def create_plan_financiamiento(request, customer_code):
 
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         es_asesor = True
+    
+    num = generar_codigo_seguridad(usuario_regis=request.user, accion='Solicitud de Credito.')
+    request.session['codigo_migracion'] = num
 
    
     
@@ -67,6 +71,8 @@ def delete_plan_financiamiento(request, id,customer_code):
 @login_required
 @usuario_activo
 def update_plan_financiamiento(request, id, customer_code):
+    num = generar_codigo_seguridad(usuario_regis=request.user, accion='Solicitud de Credito.')
+    request.session['codigo_migracion'] = num
     template_name = 'InvestmentPlan/create.html'
     get_plan = get_object_or_404(InvestmentPlan, id=id)
     customer_id = get_object_or_404(Customer, customer_code=customer_code)

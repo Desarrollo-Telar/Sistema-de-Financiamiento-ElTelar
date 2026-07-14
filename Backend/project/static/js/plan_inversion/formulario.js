@@ -10,6 +10,65 @@ import { urls_p } from '../API/urls_api.js'
 const URL = urls_p.api_url_investment_plan;
 
 
+async function verificarCodigoSeguridad() {
+    const result = await Swal.fire({
+        title: 'Autorización Requerida',
+        text: "Ingrese el código de seguridad enviado al administrador:",
+        input: 'password',
+        inputAttributes: {
+            autocapitalize: 'off',
+            autocorrect: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Verificar y Guardar',
+        confirmButtonColor: '#28a745',
+        cancelButtonText: 'Cancelar',
+        showLoaderOnConfirm: true,
+        preConfirm: async (codigoIngresado) => {
+            try {
+                // Obtener el token CSRF para la petición POST de verificación
+                const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+                const csrfToken = csrfTokenElement ? csrfTokenElement.getAttribute('content') : '';
+
+                const response = await fetch('/financings/validar-codigo-seguridad/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken // Añadido soporte CSRF por si lo requiere tu Django
+                    },
+                    body: JSON.stringify({ codigo: codigoIngresado })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error en la red o servidor');
+                }
+                return await response.json();
+            } catch (error) {
+                Swal.showValidationMessage(`Solicitud fallida: ${error.message}`);
+            }
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+    });
+
+    if (result.isConfirmed) {
+        if (result.value && result.value.valido) {
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'Código verificado correctamente.',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+            });
+            // Esperamos un segundo para que el usuario aprecie el feedback visual
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            return true;
+        } else {
+            Swal.fire('Error', 'El código ingresado es incorrecto.', 'error');
+            return false;
+        }
+    }
+    return false; // El usuario canceló la alerta
+}
 
 // Inicializar Select2 para el notario de documentación
 notarioDocSelect.select2({
@@ -524,6 +583,44 @@ function validarFormulario() {
         return false;
     }
 
+    if (valorTotalProducto >= 25000) {
+        if (!$("#riesgo_comercial").val()) {
+            Swal.fire({
+                icon: "warning",
+                title: "Campo requerido",
+                text: "Debe poner los riesgos comerciales principales."
+            });
+            return false;
+        }
+
+        if (!$("#diganostico_oportunidad").val()) {
+            Swal.fire({
+                icon: "warning",
+                title: "Campo requerido",
+                text: "Debe poner el diagnóstico de oportunidades."
+            });
+            return false;
+        }
+
+        if (!$("#mitigadores").val()) {
+            Swal.fire({
+                icon: "warning",
+                title: "Campo requerido",
+                text: "Debe poner los mitigadores."
+            });
+            return false;
+        }
+
+        if (!$("#evaluacion_mercado").val()) {
+            Swal.fire({
+                icon: "warning",
+                title: "Campo requerido",
+                text: "Debe poner la evaluación del mercado."
+            });
+            return false;
+        }
+    }
+
     return true;
 }
 
@@ -534,6 +631,17 @@ $("#frmInvestmentPlan").on("submit", async function(e) {
     if (!validarFormulario()) {
         return;
     }
+
+    const estadoAprobacion = $("#estado_aprobacion").val();
+    
+    if (estadoAprobacion === "ACEPTADO") {
+        // Ejecutamos la función de validación y esperamos su respuesta
+        const codigoValido = await verificarCodigoSeguridad();
+        if (!codigoValido) {
+            return; // Detiene la ejecución si el código no es correcto o cancelan
+        }
+    }
+
     const planId = $("#investment_plan_id").val();
 
     
@@ -626,6 +734,10 @@ $("#frmInvestmentPlan").on("submit", async function(e) {
         
         // 3. CORRECCIÓN: Se agregó el '#' faltante para recuperar el textarea
         investment_plan_description: $("#investment_plan_description").val() || "",
+        riesgo_comercial: $("#riesgo_comercial").val() || "",
+        diganostico_oportunidad: $("#diganostico_oportunidad").val() || "",
+        mitigadores: $("#mitigadores").val() || "",
+        evaluacion_mercado: $("#evaluacion_mercado").val() || "",
         
         // Atributos estructurados mapeados a tus JSONFields
         fiador: fiadores,
@@ -645,7 +757,7 @@ $("#frmInvestmentPlan").on("submit", async function(e) {
             icon: "success",
             title: "Registro Completado",
          
-            timer: 5000,
+            timer: 500,
             showConfirmButton: false,
         });
         let codigo_cliente = document.getElementById('codigo_cliente').value;
@@ -662,3 +774,5 @@ $("#frmInvestmentPlan").on("submit", async function(e) {
         console.error(e);
     }
 });
+
+

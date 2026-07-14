@@ -81,15 +81,40 @@ def set_table_border(table):
 
     tblPr.append(tblBorders)
 
+def render_plan_pagos_docx(request, id, customer_code):
+    plan = get_object_or_404(InvestmentPlan, id=id)
+    return generar_estado_cuenta_word(None, id)
 
 
-def generar_estado_cuenta_word(doc, id):
+def generar_estado_cuenta_word(doc = None, id = None):
+    generar = False
+    if doc is None:
+        generar = True
+        # ============================
+        #   CREAR DOCUMENTO
+        # ============================
+        doc = Document()
+    
+    if id is None:
+        id = 1
+
     plan = get_object_or_404(InvestmentPlan, id=id)
 
-    credito_anterior = Credito.objects.filter(id=plan.credito_anterior_vigente['id']).first() if plan.credito_anterior_vigente else None
+    saldo_actual = 0
     
-
-    saldo_actual = credito_anterior.saldo_actual if credito_anterior else 0
+    if plan.credito_anterior_vigente:
+        # Caso 1: Si es una lista de registros [{"id": 1}, {"id": 2}]
+        if isinstance(plan.credito_anterior_vigente, list):
+            for c_data in plan.credito_anterior_vigente:
+                credito_obj = Credito.objects.filter(id=c_data.get('id')).first()
+                if credito_obj and credito_obj.saldo_actual:
+                    saldo_actual += credito_obj.saldo_actual
+                    
+        # Caso 2: Por retrocompatibilidad, si todavía fuera un único diccionario {"id": 1}
+        elif isinstance(plan.credito_anterior_vigente, dict):
+            credito_obj = Credito.objects.filter(id=plan.credito_anterior_vigente.get('id')).first()
+            if credito_obj and credito_obj.saldo_actual:
+                saldo_actual = credito_obj.saldo_actual
 
 
     cliente = plan.customer_id
@@ -248,5 +273,11 @@ def generar_estado_cuenta_word(doc, id):
     # ---------------------------
     # RESPUESTA HTTP
     # ---------------------------
+
+    if generar:
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+        response['Content-Disposition'] = f'attachment; filename=plan_de_pagos_{plan.investment_plan_code}.docx'
+        doc.save(response)
+        return response
     
 

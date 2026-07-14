@@ -130,7 +130,7 @@
                                     <i class="bi bi-file-earmark-text me-1"></i>Pagaré
                                 </a>
                               {% else %}
-                              <a href="#" class="link-pagare">
+                              <a href="{% url 'investment_plan:plan_pagos' plan.id customer_code %}" class="link-pagare">
                                     <i class="bi bi-file-earmark-text me-1"></i> {{plan.tipo_documento}}
                                 </a>
                                 {% endif%}

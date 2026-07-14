@@ -18,6 +18,7 @@ urlpatterns_credit = [
     path('credit/estado_cuenta/pdf/<int:id>/',login_required(render_pdf_estado_cuenta),name='estado_cuenta_pdf'),
     path('credit/calculos_realizados/pdf/<int:id>/',login_required(render_pdf_calculos_credito),name='calculos_realizados'),
     path('credit/plan_pagos/pdf/<int:id>/',login_required(render_pdf_plan_pagos),name='plan_pagos'),
+    #path('plan_inversion/plan_pagos/pdf/<int:id>/', render_plan_pdf_plan_pagos,name='plan_inversion_plan_pagos'),
     path('credit/clasificar/',list_clasificacion, name='list_clasificacion'),
     path('credit/excedente/',filter_credito_con_excedente, name='filter_credito_con_excedente'),
     path('credit/clasificacion_mes_anio/',filter_credito_por_mes_anio, name='filter_credito_por_mes_anio'),

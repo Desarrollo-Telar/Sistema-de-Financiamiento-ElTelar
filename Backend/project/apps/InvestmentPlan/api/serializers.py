@@ -29,7 +29,11 @@ class InvestmentPlanSerializer(serializers.ModelSerializer):
             'credito_anterior_vigente',
             'garantias',
             'sucursal',
-            'notarios'
+            'notarios',
+            'riesgo_comercial',
+            'diganostico_oportunidad',
+            'mitigadores',
+            'evaluacion_mercado',
 
 
         ]
