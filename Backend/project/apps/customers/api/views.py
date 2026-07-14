@@ -8,6 +8,7 @@ from rest_framework.response import Response
 
 # Models
 from apps.customers.models import Customer, ImmigrationStatus, CreditCounselor, Cobranza, HistorialCobranza
+from apps.users.models import User
 
 from django.db.models import Q
 
@@ -561,27 +562,33 @@ class CreditCounselorSerializerViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        user = self.request.user
-        request = self.request
-        search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
 
-        # obteniendo la sucursal del usuario
-        sucursal = getattr(request,'sucursal_actual',None)
+        sucursal = getattr(self.request, 'sucursal_actual', None)
+        search_term = self.request.query_params.get('term', '')
 
-        
+        asesor_autenticado = queryset.filter(
+            usuario=self.request.user
+        ).first()
+
+        if (
+            asesor_autenticado is not None and
+            self.request.user.rol.role_name == 'Asesor de Crédito'
+        ):
+            return queryset.filter(pk=asesor_autenticado.pk)
 
         if sucursal:
-            queryset = queryset.filter(Q(sucursal=sucursal)| Q(sucursal__isnull=True))
-
+            queryset = queryset.filter(
+                Q(sucursal=sucursal) |
+                Q(sucursal__isnull=True)
+            )
 
         if search_term:
             queryset = queryset.filter(
                 Q(nombre__icontains=search_term) |
                 Q(apellido__icontains=search_term) |
-                Q(codigo_asesor__icontains=search_term) |
-                Q(sucursal__isnull=True)
-                )# Filtrar por el término de búsqueda
-            
+                Q(codigo_asesor__icontains=search_term)
+            )
+
         return queryset
     
     def perform_create(self, serializer):

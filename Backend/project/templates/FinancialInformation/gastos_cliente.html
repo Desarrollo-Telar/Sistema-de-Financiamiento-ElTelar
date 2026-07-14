@@ -55,13 +55,9 @@
           <div>
             <label for="frecuencia">Frecuencia</label>
             <select id="frecuencia" name="frecuencia">
-              <option value="Único" selected>Único</option>
-              <option value="Diario">Diario</option>
-              <option value="Semanal">Semanal</option>
-              <option value="Quincenal">Quincenal</option>
-              <option value="Mensual">Mensual</option>
-              <option value="Anual">Anual</option>
-              <option value="Otro">Otro (especificar)</option>
+              
+              <option value="Mensual" selected>Mensual</option>
+              
             </select>
           </div>
         </div>
@@ -82,6 +78,7 @@
         </div>
 
         <div class="form-actions">
+          <a href="{% url 'customers:detail' cliente.customer_code %}" class="btn btn-link">Cancelar</a>
           <button type="button" class="btn btn--ghost" id="cancelEdit" hidden>Cancelar edición</button>
           <button type="submit" class="btn btn--primary" id="submitBtn">Añadir al Recibo</button>
         </div>

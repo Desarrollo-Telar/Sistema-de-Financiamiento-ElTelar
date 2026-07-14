@@ -6,7 +6,7 @@ from apps.actividades.forms.votaciones import VotacionClienteForm
 # Models
 from apps.customers.models import Customer, CreditCounselor
 from apps.addresses.models import Address
-from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference
+from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference, GastoCliente
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.pictures.models import ImagenCustomer
 from apps.documents.models import DocumentCustomer
@@ -14,6 +14,8 @@ from apps.financings.models import Credit
 from django.db.models import Q
 from apps.actividades.models import VotacionCliente
 
+# FORMATO
+from apps.financings.formato import formatear_numero
 
 
 # Decoradores
@@ -57,6 +59,7 @@ def detail_customer(request,customer_code):
     document = DocumentCustomer.objects.filter(Q(customer_id=customer_list))
     credito = Credit.objects.filter(Q(customer_id =customer_list )).order_by('id')
     comentarios = VotacionCliente.objects.filter(cliente=customer_list).order_by('-id')
+    gastos_cliente = GastoCliente.objects.filter(Q(customer=customer_list))
     #print(credito)
       
     
@@ -82,5 +85,9 @@ def detail_customer(request,customer_code):
         'permisos':recorrer_los_permisos_usuario(request),
         'form':VotacionClienteForm(),
         'comentarios':comentarios,
+        'gastos_cliente':gastos_cliente,
+        'total_ingresos': formatear_numero(customer_list.total_ingresos()),
+        'total_egresos': formatear_numero(customer_list.total_egresos()),
+        'disponibilidad_efectiva': formatear_numero(customer_list.disponibilidad_efectiva()),
     }
     return render(request, template_name, context)

@@ -82,6 +82,7 @@ export const urls_p = {
 
     // USUARIOS
     api_url_usuarios: `${baseUrl}/users/api/users/`,
+    api_url_notario: `${baseUrl}/users/api/users/`,
 
     // ROL
     api_url_rol: `${baseUrl}/roles&permissions/api/role/`,

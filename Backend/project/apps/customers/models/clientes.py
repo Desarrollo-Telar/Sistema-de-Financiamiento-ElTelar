@@ -12,6 +12,7 @@ from apps.subsidiaries.models import Subsidiary
 # Django
 from datetime import datetime
 from datetime import timedelta
+from django.db.models import Sum
 from project.database_store import minio_client
 
 import uuid
@@ -125,6 +126,36 @@ class Customer(models.Model):
 
     def get_telefono(self):
         return self.telephone if self.telephone else ''
+    
+    def total_ingresos(self):
+        
+        from apps.FinancialInformation.models import (
+            WorkingInformation,
+            OtherSourcesOfIncome
+        )
+
+        total_w = WorkingInformation.objects.filter(
+            customer_id=self
+        ).aggregate(total=Sum('salary'))['total'] or 0
+
+        total_o = OtherSourcesOfIncome.objects.filter(
+            customer_id=self
+        ).aggregate(total=Sum('salary'))['total'] or 0
+
+        return total_w + total_o
+    
+    def total_egresos(self):
+        from apps.FinancialInformation.models import GastoCliente
+
+        total = GastoCliente.objects.filter(
+            customer=self
+        ).aggregate(total=Sum('monto'))['total'] or 0
+
+        return total
+    
+    def disponibilidad_efectiva(self):
+        return self.total_ingresos() - self.total_egresos()
+
     
 
     def get_qr(self):

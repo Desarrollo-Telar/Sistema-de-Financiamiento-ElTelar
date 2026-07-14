@@ -34,6 +34,7 @@ class UserSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         sucursal_serializado = SubsidiarySerializer(instance.sucursal).data if instance.sucursal else None
         rol_serializado = RoleSerializer(instance.rol).data if instance.rol else None
+        nombre_completo = f'{instance.first_name} {instance.last_name}' 
 
         return{
             "id":instance.id,
@@ -49,7 +50,9 @@ class UserSerializer(serializers.ModelSerializer):
             'status':instance.status,
             'rol': rol_serializado,
             'nit': instance.nit,
-            'sucursal': sucursal_serializado
+            'sucursal': sucursal_serializado,
+            'nombre_completo':  str(nombre_completo),
+            'nombre': instance.first_name
         }
 
 

@@ -43,6 +43,7 @@ urlpatterns = [
     path('pdf/<int:id>', generate_pdf.generar_pdf, name='pdf'),
     path('boleta_procesada/', views.agradecimeinto, name='boleta_procesada'),
     path('cliente/<str:uuid>/', subida_documento, name='subida_documento_cliente'),
+    path('customer/checklist/<str:customer_code>/', views.check_list_customer, name='check_list_customer'),
 
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),

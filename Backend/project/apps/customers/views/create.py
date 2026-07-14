@@ -77,7 +77,7 @@ def create_customer(request):
             direccion.save()
 
             
-            return redirect('financial_information:seleccionar',  cliente.customer_code)
+            return redirect('check_list_customer',  cliente.customer_code)
         else:
             print(f'{form_cliente.errors}  {form_direccion.errors}')
             

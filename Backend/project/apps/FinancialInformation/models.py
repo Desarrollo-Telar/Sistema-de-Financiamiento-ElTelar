@@ -155,6 +155,9 @@ class TipoGasto(models.Model):
     nombre = models.CharField("Nombre del Tipo de Gasto", max_length=150, blank=False, null=False, unique=True)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
 
+    def __str__(self):
+        return self.nombre
+
 class GastoCliente(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     tipo_gasto = models.ForeignKey(TipoGasto, on_delete=models.SET_NULL, null=True, blank=True)

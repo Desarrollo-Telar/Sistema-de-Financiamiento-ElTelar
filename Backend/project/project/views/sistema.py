@@ -5,6 +5,7 @@ from project.decorador import usuario_activo
 # Recoleccion de datos
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
 from scripts.recoleccion_reporte_dashboard import recolectar_informes_status_creditos, recolectar_informacion_cobranza
+from project.send_mail import send_email_new_customer
 
 # OS
 import os
@@ -18,7 +19,7 @@ from django.conf import settings
 # Modelos
 from apps.customers.models import Customer,CreditCounselor, Cobranza
 from apps.actividades.models import UserLog
-
+from apps.FinancialInformation.models import WorkingInformation, OtherSourcesOfIncome, Reference, GastoCliente
 
 # URLS
 from django.shortcuts import render, redirect
@@ -102,3 +103,38 @@ def agradecimeinto(request):
 
     }
     return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def check_list_customer(request, customer_code):
+    
+    customer = Customer.objects.filter(customer_code=customer_code).first()
+    listado_clientes_no_permitidos = ['No Aprobado',  'Dar de Baja']
+
+    info_trabajo = WorkingInformation.objects.filter(customer_id=customer).first()
+    info_ingresos = OtherSourcesOfIncome.objects.filter(customer_id=customer).first()
+    info_referencias = Reference.objects.filter(customer_id=customer).first()
+    info_gastos = GastoCliente.objects.filter(customer=customer).first()
+
+    if customer is None :
+        return redirect('customers:customers')
+    
+    if customer.status in listado_clientes_no_permitidos:
+        return redirect('customers:detail', customer_code=customer_code)
+    
+    if info_trabajo is None or info_ingresos is None:
+        return redirect('financial_information:create_working_information', customer_code)
+    
+    if info_referencias is None:
+        return redirect('financial_information:create_reference_information', customer_code)
+    
+    if info_gastos is None:
+        return redirect('financial_information:create_gastos_cliente', customer_code)
+    
+    if not customer.completado:
+        customer.completado = True
+        customer.save()
+
+        send_email_new_customer(customer)
+    
+    return redirect('customers:detail', customer_code=customer_code)

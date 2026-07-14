@@ -3,41 +3,59 @@ const tipoPagare = document.getElementById("tipo_pagare");
 const contenedorPagare = document.getElementById("contenedor_pagare");
 const contenedorFiadores = document.getElementById("contenedor_fiadores");
 const contenedorCreditos = document.getElementById("contenedor_creditos");
+const contenedorNotariosDoc = document.getElementById("contenedor_notarios_doc");
+const notarioDocSelect = $("#notario_documentacion");
 
 import { urls_p } from '../API/urls_api.js'
 const URL = urls_p.api_url_investment_plan;
 
-// 1. CORRECCIÓN: Cambiado headers a application/json para soportar los JSONFields cómodamente
-export async function postPlanInversion(formData) {
+
+
+// Inicializar Select2 para el notario de documentación
+notarioDocSelect.select2({
+    width: '100%',
+    ajax: {
+        url: urls_p.api_url_notario, // Ajusta a tu endpoint real de notarios
+        dataType: 'json',
+        delay: 250,
+        data: function (params) { return { term: params.term }; },
+        processResults: function (data) {
+            return {
+                results: data.map(item => ({ id: item.id, text: item.nombre_completo || item.nombre }))
+            };
+        },
+        cache: true
+    },
+    placeholder: 'Seleccione al Notario',
+    allowClear: true
+});
+
+
+
+
+export async function savePlanInversion(formData, planId = null) {
     try {
         const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
-        if (!csrfTokenElement) {
-            throw new Error('CSRF token not found');
-        }
+        if (!csrfTokenElement) throw new Error('CSRF token not found');
         const csrfToken = csrfTokenElement.getAttribute('content');
 
+        // Si hay un planId, apuntamos a la URL de detalle (ej: /api/investment-plan/5/), sino a la lista general
+        const urlFinal = planId ? `${urls_p.api_url_investment_plan}${planId}/` : urls_p.api_url_investment_plan;
+        const metodo = planId ? 'put' : 'post'; // O 'patch' si solo actualizas parcialmente
+
         const response = await axios({
-            method: 'post',
-            url: URL,
+            method: metodo,
+            url: urlFinal,
             headers: {
-                'Content-Type': 'application/json', // Cambiado para enviar el objeto estructurado nativamente
+                'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken
             },
-            data: formData // Aquí viaja el payload directo
+            data: formData
         });
 
-        console.log("Plan guardado con éxito:", response.data);
         return response.data;
     } catch (error) {
-        console.error(error);
-        if (error.response) {
-            console.error('Error en la respuesta del servidor:', error.response.data);
-            console.error('Código de estado:', error.response.status);
-        } else if (error.request) {
-            console.error('Error en la solicitud (no hubo respuesta):', error.request);
-        } else {
-            console.error('Error:', error.message);
-        }
+        console.error(`Error en la operación ${planId ? 'PUT' : 'POST'}:`, error.response?.data || error.message);
         throw error;
     }
 }
@@ -83,6 +101,47 @@ tipoPagare.addEventListener("change", () => {
         contenedorCreditos.style.display = "block";
     }
 });
+
+// --- LÓGICA DE VISIBILIDAD DE CONTENEDORES ---
+
+function actualizarVisibilidadDocumento() {
+    contenedorPagare.style.display = "none";
+    contenedorFiadores.style.display = "none";
+    contenedorCreditos.style.display = "none";
+    contenedorNotariosDoc.style.display = "none"; // Ocultar por defecto
+
+    const docSeleccionado = tipoDocumento.value;
+
+    if (docSeleccionado === "PAGARE") {
+        contenedorPagare.style.display = "block";
+        actualizarVisibilidadPagare();
+    } else if (docSeleccionado !== "") {
+        // Si se selecciona un documento diferente a Pagaré y no está vacío
+        contenedorNotariosDoc.style.display = "block";
+    }
+}
+
+function actualizarVisibilidadPagare() {
+    // Resetear visibilidad interna del pagaré
+    contenedorFiadores.style.display = "none";
+    contenedorCreditos.style.display = "none";
+
+    const valorPagare = tipoPagare.value.toUpperCase();
+
+    if (valorPagare === "FIADOR") {
+        contenedorFiadores.style.display = "block";
+    }
+    if (valorPagare === "RESTRUCTURACION" || valorPagare === "REESTRUCTURACION") {
+        contenedorCreditos.style.display = "block";
+    }
+}
+
+// Asignar los eventos para cuando el usuario cambie las opciones manualmente
+tipoDocumento.addEventListener("change", actualizarVisibilidadDocumento);
+tipoPagare.addEventListener("change", actualizarVisibilidadPagare);
+
+// ¡CRUCIAL! Ejecutar las funciones al cargar el script para el modo UPDATE
+actualizarVisibilidadDocumento();
 
 // --- AGREGAR FIADORES ---
 $("#btnAgregarFiador").click(function() {
@@ -170,6 +229,8 @@ $("#btnAgregarCredito").click(function() {
 
 // --- AGREGAR GARANTÍAS ---
 $("#btnAgregarGarantia").click(function() {
+    const idUnico = 'notario_garantia_' + Date.now() + Math.floor(Math.random() * 100);
+    
     $("#lista_garantias").append(`
         <div class="row mb-2 fila-garantia align-items-end p-2 border rounded bg-light">
             <div class="col-md-3">
@@ -182,19 +243,57 @@ $("#btnAgregarGarantia").click(function() {
                     <option value="MOBILIARIA">MOBILIARIA</option>
                 </select>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-3">
                 <label class="small text-muted">Descripción</label>
                 <input type="text" class="form-control garantia-descripcion" placeholder="Detalles de la garantía...">
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="small text-muted">Valor</label>
                 <input type="number" step="0.01" class="form-control garantia-valor" placeholder="0.00">
             </div>
+            
+            <div class="col-md-3 contenedor-notario-garantia" style="display: none;">
+                <label class="small text-danger fw-bold">Notario Asignado</label>
+                <select class="form-control garantia-notario-select" id="${idUnico}" style="width: 100%;"></select>
+            </div>
+            
             <div class="col-md-1">
                 <button type="button" class="btn btn-danger btn-eliminar w-100">X</button>
             </div>
         </div>
     `);
+
+    // Inicializar Select2 en el nuevo selector creado para la fila
+    $(`#${idUnico}`).select2({
+        width: '100%',
+        ajax: {
+            url: urls_p.api_url_notario,
+            dataType: 'json',
+            delay: 250,
+            data: function (params) { return { term: params.term }; },
+            processResults: function (data) {
+                return {
+                    results: data.map(item => ({ id: item.id, text: item.nombre_completo || item.nombre }))
+                };
+            }
+        },
+        placeholder: 'Seleccione Notario'
+    });
+});
+
+// Detectar cambios en Tipo y Valor de Garantías para evaluar la regla (> 5000 y CHEQUE / PAGARE)
+$(document).on('change keyup', '.garantia-tipo, .garantia-valor', function() {
+    const fila = $(this).closest('.fila-garantia');
+    const tipo = fila.find('.garantia-tipo').val();
+    const valor = parseFloat(fila.find('.garantia-valor').val()) || 0;
+    const contenedorNotario = fila.find('.contenedor-notario-garantia');
+
+    if (tipo === "CHEQUE / PAGARE" && valor > 500) {
+        contenedorNotario.fadeIn();
+    } else {
+        contenedorNotario.fadeOut();
+        fila.find('.garantia-notario-select').val(null).trigger('change'); // Limpiar selección si se oculta
+    }
 });
 
 $(document).on('click', '.btn-eliminar', function() {
@@ -405,6 +504,26 @@ function validarFormulario() {
         return false;
     }
 
+    
+    const valorTotalProducto = parseFloat($("#total_value_of_the_product_or_service").val()) || 0;
+    let sumaGarantias = 0;
+
+    // Sumar el valor de cada fila de garantía registrada
+    $(".fila-garantia").each(function () {
+        const valorGarantia = parseFloat($(this).find(".garantia-valor").val()) || 0;
+        sumaGarantias += valorGarantia;
+    });
+
+    // Validar que la suma de las garantías sea mayor o igual al valor del producto
+    if (sumaGarantias < valorTotalProducto) {
+        Swal.fire({
+            icon: "error",
+            title: "Garantías insuficientes",
+            text: `El valor de las garantías (Q ${sumaGarantias.toFixed(2)}) debe ser mayor o igual al valor total del producto (Q ${valorTotalProducto.toFixed(2)}).`
+        });
+        return false;
+    }
+
     return true;
 }
 
@@ -415,15 +534,53 @@ $("#frmInvestmentPlan").on("submit", async function(e) {
     if (!validarFormulario()) {
         return;
     }
+    const planId = $("#investment_plan_id").val();
 
-    const garantias = [];
-    $(".fila-garantia").each(function() {
+    
+    let garantias = [];
+    const listaNotariosPayload = []; // Tu lista global unificada
+
+    // 1. Capturar Notario de Documentación (si aplica)
+    if (tipoDocumento.value !== "PAGARE" && tipoDocumento.value !== "" && $("#notario_documentacion").val()) {
+        listaNotariosPayload.push({
+            'id': parseInt($("#notario_documentacion").val()),
+            'nombre': $("#notario_documentacion").find('option:selected').text(),
+            'modulo': 'documentacion'
+        });
+    }
+
+    // 2. Recorrer Garantías
+    $(".fila-garantia").each(function () {
+        const tipo = $(this).find(".garantia-tipo").val();
+        const descripcion = $(this).find(".garantia-descripcion").val();
+        const valor = parseFloat($(this).find(".garantia-valor").val()) || 0;
+        
+        const selectNotario = $(this).find(".garantia-notario-select");
+        let notarioGarantia = null;
+
+        // Si cumple la condición, extraemos el notario de esta fila
+        if (tipo === "CHEQUE / PAGARE" && valor > 5000 && selectNotario.val()) {
+            notarioGarantia = {
+                'id': parseInt(selectNotario.val()),
+                'nombre': selectNotario.find('option:selected').text()
+            };
+
+            // También lo agregamos a la lista global histórica si tu backend lo requiere de ambos lados
+            listaNotariosPayload.push({
+                'id': notarioGarantia.id,
+                'nombre': notarioGarantia.nombre,
+                'modulo': 'garantia'
+            });
+        }
+
         garantias.push({
-            tipo: $(this).find(".garantia-tipo").val(),
-            descripcion: $(this).find(".garantia-descripcion").val(),
-            valor: parseFloat($(this).find(".garantia-valor").val()) || 0.00
+            tipo: tipo,
+            descripcion: descripcion,
+            valor: valor,
+            notario: notarioGarantia // <--- El notario ahora vive de forma nativa en la garantía
         });
     });
+   
 
     const fiadores = [];
     $(".fiador_select").each(function() {
@@ -454,6 +611,7 @@ $("#frmInvestmentPlan").on("submit", async function(e) {
         type_of_product_or_service: $("#type_of_product_or_service").val(),
         total_value_of_the_product_or_service: montoInicial, // Ajustar según lógica de negocio si cambia
         initial_amount: montoInicial,
+        monthly_amount:montoInicial,
         
         fecha_inicio: $("#fecha_inicio").val() || null,
         plazo: $("#plazo").val() ? parseInt($("#plazo").val()) : null,
@@ -474,14 +632,15 @@ $("#frmInvestmentPlan").on("submit", async function(e) {
         credito_anterior_vigente: creditos,
         garantias: garantias,
         asesor_responsable:  parseInt($("#asesor_responsable").val()),
-        estado_aprobacion: $("#estado_aprobacion").val()
+        estado_aprobacion: $("#estado_aprobacion").val(),
+        notarios: listaNotariosPayload
     };
 
     console.log("Payload enviado en JSON:", payload);
 
     try {
         // 4. CORRECCIÓN: Invocación correcta pasando el payload estructurado
-        const resultado = await postPlanInversion(payload);
+        const resultado = await savePlanInversion(payload, planId ? planId : null);
          Swal.fire({
             icon: "success",
             title: "Registro Completado",

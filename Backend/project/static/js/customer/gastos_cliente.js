@@ -276,7 +276,7 @@ $('#btnGuardarApi').addEventListener('click', async () => {
         resetForm();
         renderReceipt();
         let codigo_cliente = document.getElementById('codigo_cliente').value;
-        setTimeout(() => { window.location.href = `/customers/detail/${codigo_cliente}/`; }, 1000);
+        setTimeout(() => { window.location.href = `/customer/checklist/${codigo_cliente}/`; }, 1000);
 
     } catch (error) {
 

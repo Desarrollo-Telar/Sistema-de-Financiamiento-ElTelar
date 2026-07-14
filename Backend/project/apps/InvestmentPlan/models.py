@@ -61,10 +61,11 @@ class InvestmentPlan(models.Model):
     plazo_gracia =  models.IntegerField("Plazo de Gracia", blank=True, null=True)
     fecha_finalizacion_gracia = models.DateField("Fecha de Finalizacion de Gracia",blank=True, null=True)
 
-    tipo_documento = models.CharField("Tipo de documento", max_length=75, blank=True, null=True)
+    tipo_documento = models.CharField("Tipo de documento", max_length=75, blank=True, null=True, default='PAGARE')
     asesor_responsable = models.ForeignKey(CreditCounselor, on_delete=models.SET_NULL, null=True, blank=True)
     estado_aprobacion  = models.CharField("Estado de Aprobacion", max_length=75, blank=True, null=True)
     garantias = models.JSONField(null=True, blank=True, verbose_name="Garantias de la Solicitud de Credito")
+    notarios = models.JSONField(null=True, blank=True, verbose_name="Notarios")
 
     
     def fecha_primer_pago(self):

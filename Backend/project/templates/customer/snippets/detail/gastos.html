@@ -1,0 +1,108 @@
+{% load static %}
+
+<style>
+    .table-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid #e9ecef;
+    }
+    .table-custom {
+        margin-bottom: 0;
+        vertical-align: middle;
+    }
+    .table-custom th {
+        background-color: #f8f9fa;
+        color: #495057;
+        font-weight: 600;
+        width: 30%; /* Alineación uniforme para las etiquetas */
+        border-bottom: 2px solid #dee2e6;
+    }
+    .table-custom td {
+        color: #212529;
+    }
+    .section-title {
+        font-size: 1.1rem;
+        color: #dc3545; /* Rojo para gastos/egresos, o puedes cambiarlo a #0d6efd si prefieres azul */
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #e9ecef;
+    }
+    .btn-custom-edit {
+        background-color: #ffffff;
+        color: #000000;
+        border: 1px solid #0B090A;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+    }
+    .btn-custom-edit:hover {
+        background-color: #020202;
+        color: #fffdfd;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+</style>
+
+<div class="row" style="margin: 1rem 0;">
+    <div class="row text-right mb-3">
+        <a href="{% url 'financial_information:create_gastos_cliente' customer_code %}" class="btn_guardar">
+            Registrar Gasto de Cliente
+        </a>
+    </div>
+
+    {% if gastos_cliente %}
+        {% for gasto in gastos_cliente %}
+        <div class="col-12 table-container">
+            <div class="d-flex justify-content-between align-items-center section-title">
+                <span class="fw-bold"><i class="bi bi-cash-stack me-2"></i>Información de Gasto</span>
+                
+                {% if permisos.puede_editar_gastos_cliente %}
+                    <a href="#" class="btn-custom-edit">
+                        Editar Información
+                    </a>
+                {% endif %}
+            </div>
+            
+            <table class="table table-bordered table-custom">
+                <tbody>
+                    <tr>
+                        <th>Tipo de Gasto</th>
+                        <td>{{ gasto.tipo_gasto|default:"No especificado" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Monto</th>
+                        <td class="fw-semibold text-danger">Q {{ gasto.monto }}</td>
+                    </tr>
+                    <tr>
+                        <th>Frecuencia</th>
+                        <td>{{ gasto.frecuencia|default:"---" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Descripción</th>
+                        <td>{{ gasto.descripcion|default:"---" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Observaciones</th>
+                        <td>{{ gasto.observaciones|default:"---" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de Registro</th>
+                        <td>{{ gasto.creation_date|date:"d/m/Y H:i" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12 text-center text-muted my-4">
+            <p>No hay gastos registrados para este cliente.</p>
+        </div>
+    {% endif %}
+</div>

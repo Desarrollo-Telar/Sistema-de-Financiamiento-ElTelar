@@ -28,7 +28,8 @@ class InvestmentPlanSerializer(serializers.ModelSerializer):
             'fiador',
             'credito_anterior_vigente',
             'garantias',
-            'sucursal'
+            'sucursal',
+            'notarios'
 
 
         ]

@@ -14,6 +14,28 @@
     <input type="hidden" id="customer_id" name="customer_id" value="{{ customer_id.id }}">
     <input type="hidden" id="codigo_cliente" value="{{ customer_id.customer_code }}">
     <input type="hidden" id="sucursal" name="sucursal" value="{{ sucursal.id }}">
+    <input type="hidden" id="investment_plan_id" value="{{ plan.id|default:'' }}">
+
+    <div class="card mt-4">
+
+        <div class="card-header">
+
+            Información a Considerar 
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <label for="disponibilidad_efectiva">Disponibilidad Efectiva</label>
+                    <input type="text"  value="Q {{ disponibilidad_efectiva }}" class="form-control" disabled>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ========================= -->
     <!-- INFORMACIÓN DEL CRÉDITO -->
@@ -34,7 +56,7 @@
                         Asesor Responsable
                     </label>
 
-                    <select class="form-control asesor" id="asesor_responsable" name="asesor_responsable" >
+                    <select class="form-control asesor" id="asesor_responsable" name="asesor_responsable">
 
                     </select>
 
@@ -47,11 +69,12 @@
 
                     <select class="form-control" id="estado_aprobacion" name="estado_aprobacion">
 
-                        
+
 
                         <option value="PENDIENTE">
                             PENDIENTE
                         </option>
+                        {% if  not es_asesor %}
                         <option value="ACEPTADO">
                             ACEPTADO
                         </option>
@@ -59,6 +82,7 @@
                         <option value="NEGADO">
                             NEGADO
                         </option>
+                        {% endif %}
 
                     </select>
 
@@ -71,49 +95,37 @@
                         Tipo de Producto
                     </label>
 
-                    <select class="form-control" id="type_of_product_or_service" name="type_of_product_or_service" >
 
-                        
-
-                        <option value="AGROPECUARIO Y/O PRODUCTIVO">
-                            AGROPECUARIO Y/O PRODUCTIVO
-                        </option>
-
-                        <option value="COMERCIO">
-                            COMERCIO
-                        </option>
-
-                        <option value="SERVICIOS">
-                            SERVICIOS
-                        </option>
-
-                        <option value="CONSUMO">
-                            CONSUMO
-                        </option>
-
-                        <option value="VIVIENDA">
-                            VIVIENDA
-                        </option>
-
+                    <select class="form-control" id="type_of_product_or_service" name="type_of_product_or_service">
+                        <option value="">Seleccione</option>
+                        <option value="AGROPECUARIO Y/O PRODUCTIVO" 
+                        {% if plan.type_of_product_or_service == "AGROPECUARIO Y/O PRODUCTIVO" %}selected{% endif %}>
+                            AGROPECUARIO Y/O PRODUCTIVO</option>
+                        <option value="COMERCIO" {% if plan.type_of_product_or_service == "COMERCIO" %}selected{% endif  %}>COMERCIO</option>
+                        <option value="SERVICIOS" {% if plan.type_of_product_or_service == "SERVICIOS" %}selected{% endif%}>SERVICIOS</option>
+                        <option value="CONSUMO" {% if plan.type_of_product_or_service == "CONSUMO" %}selected{% endif %}>
+                            CONSUMO</option>
+                        <option value="VIVIENDA" {% if plan.type_of_product_or_service == "VIVIENDA" %}selected{% endif %}>VIVIENDA</option>
                     </select>
 
                 </div>
-                 <div class="col-md-4 mb-3">
+                <div class="col-md-4 mb-3">
 
                     <label>
                         Forma de Pago
                     </label>
 
-                    <select class="form-control" id="forma_de_pago" >
-
-                        <option>NIVELADA</option>
-
-                        <option>AMORTIZACIONES A CAPITAL</option>
-
-                        <option>INTERES MENSUAL Y CAPITAL AL VENCIMIENTO</option>
-
-                        <option>INTERES Y CAPITAL AL VENCIMIENTO</option>
-
+                    <select class="form-control" id="forma_de_pago">
+                        <option value="NIVELADA" {% if plan.forma_de_pago == "NIVELADA" %}selected{% endif %}>NIVELADA
+                        </option>
+                        <option value="AMORTIZACIONES A CAPITAL" 
+                        {% if plan.forma_de_pago == "AMORTIZACIONES A CAPITAL" %}selected{% endif %}>AMORTIZACIONES A CAPITAL</option>
+                        <option value="INTERES MENSUAL Y CAPITAL AL VENCIMIENTO" 
+                        {% if plan.forma_de_pago == "INTERES MENSUAL Y CAPITAL AL VENCIMIENTO" %}selected{% endif %}>INTERES
+                            MENSUAL Y CAPITAL AL VENCIMIENTO</option>
+                        <option value="INTERES Y CAPITAL AL VENCIMIENTO" 
+                        {% if plan.forma_de_pago == "INTERES Y CAPITAL AL VENCIMIENTO" %}selected{% endif %}>INTERES Y
+                            CAPITAL AL VENCIMIENTO</option>
                     </select>
 
                 </div>
@@ -124,7 +136,13 @@
                         Valor del Producto
                     </label>
 
-                    <input type="number" step="0.01" class="form-control" id="total_value_of_the_product_or_service" >
+
+
+
+                    <input type="text" step="0.01" class="form-control" id="total_value_of_the_product_or_service"
+                        value="{{ plan.total_value_of_the_product_or_service }}">
+
+
 
                 </div>
                 <div class="col-md-4 mb-3">
@@ -133,66 +151,65 @@
                         Tasa de interés (Anual)
                     </label>
 
-                    <input type="number" step="0.001" class="form-control" id="tasa_interes" >
+
+                    <input type="text" step="0.001" class="form-control" id="tasa_interes"
+                        value="{{ plan.tasa_interes }}">
 
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label>
                         Fecha de Inicio
-                    </label>
-                    <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" >
+
+                        <input type="date" class="form-control" id="fecha_inicio"
+                            value="{{ plan.fecha_inicio|date:'Y-m-d' }}">
                 </div>
 
-               
+
 
                 <div class="col-md-4 mb-3">
                     <label>
                         Plazo
                     </label>
-                    <input type="number" class="form-control" id="plazo" >
+                    <input type="number" class="form-control" id="plazo" value="{{ plan.plazo }}">
                 </div>
 
-                <div class="col-md-4 mb-3" id="contenedor_plazo_garantia" style="display: none;">
-                    <label>
-                        Plazo de Garantía
-                    </label>
-                    <input type="number" class="form-control" id="plazo_garantia" name="plazo_garantia">
+
+
+                <div class="col-md-4 mb-3" id="contenedor_plazo_garantia"
+                    style="{% if plan.forma_de_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO' or plan.forma_de_pago == 'INTERES Y CAPITAL AL VENCIMIENTO' %}display: block;{% else %}display: none;{% endif %}">
+                    <label>Plazo de Garantía</label>
+                    <input type="number" class="form-control" id="plazo_garantia" value="{{ plan.plazo_gracia }}">
                 </div>
 
-               
 
 
-                
 
-               
+
+
+
 
                 <div class="col-md-12 mb-3">
-        <label for="investment_plan_description">
-            Descripción
-        </label>
-        <textarea 
-            class="form-control" 
-            name="investment_plan_description" 
-            id="investment_plan_description" 
-            rows="3"
-            placeholder="Escriba los detalles del plan de inversión..."></textarea>
-    </div>
+                    <label for="investment_plan_description">
+                        Descripción
+                    </label>
+                    <textarea class="form-control" id="investment_plan_description" rows="3">{{ plan.investment_plan_description|default:'' }}</textarea>
+                </div>
 
             </div>
 
         </div>
         <div style="margin-top: 2rem;" class="row">
-                <a type="button" onclick="generar_plan()" class="btn_cancel" id="generar_plan">Generar Plan de Pagos</a>
+            <a type="button" onclick="generar_plan()" class="btn_cancel" id="generar_plan">Generar Plan de Pagos</a>
+        </div>
+        <div class="row">
+
+            <div class="table-responsive">
+                {% include 'financings/credit/snippets/forms/plan.html' %}
             </div>
-            <div class="row">
-
-                <div class="table-responsive">
-                    {% include 'financings/credit/snippets/forms/plan.html' %}
-                </div>
 
 
-            </div>
+        </div>
 
     </div>
 
@@ -221,26 +238,22 @@
                         Tipo de Documento
 
                     </label>
+                    <select class="form-control" id="tipo_documento" name="tipo_documento">
+                        <option value="">Seleccione</option>
 
-                    <select class="form-control" id="tipo_documento" >
+                        <option value="PAGARE" 
+                        {% if plan.tipo_documento == "PAGARE" %}selected{% endif %}>
+                            PAGARE</option>
 
-                        <option value="">
-                            Seleccione
-                        </option>
+                        <option value="ESCRITURA PUBLICA" {% if plan.tipo_documento == "ESCRITURA PUBLICA" %}selected{% endif  %}>ESCRITURA PUBLICA</option>
 
-                        <option value="PAGARE">
-                            PAGARE
-                        </option>
+                        <option value="RECONOCIMIENTO DE DEUDA" {% if plan.tipo_documento == "RECONOCIMIENTO DE DEUDA" %}selected{% endif%}>RECONOCIMIENTO DE DEUDA</option>
 
-                        <option value="ESCRITURA PUBLICA">
-                            Escritura Pública
-                        </option>
-
-                        <option value="RECONOCIMIENTO DE DEUDA">
-                            Reconocimiento de deuda
-                        </option>
-
+                       
                     </select>
+
+                    
+
 
                 </div>
 
@@ -263,21 +276,11 @@
                         </label>
 
                         <select id="tipo_pagare" class="form-control">
+                                <option value="Normal"  {% if plan.tipo_pagare == "Normal" %}selected{% endif %}>Normal</option>
 
-                           
+                        <option value="Fiador" {% if plan.tipo_pagare == "Fiador" %}selected{% endif  %}>Fiador</option>
 
-                            <option value="Normal">
-                                Normal
-                            </option>
-
-                            <option value="Fiador">
-                                Fiador
-                            </option>
-
-                            <option value="Restructuracion">
-                                Reestructuración
-                            </option>
-
+                        <option value="Restructuracion" {% if plan.tipo_pagare == "Restructuracion" %}selected{% endif%}>Restructuracion</option>
                         </select>
 
                     </div>
@@ -351,6 +354,20 @@
 
             </div>
 
+            <!-- ========================== -->
+            <!-- Notario -->
+            <!-- ========================== -->
+
+            <div id="contenedor_notarios_doc" style="display:none;">
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="fw-bold text-secondary">Notario de Documentación</label>
+                        <select class="form-control" id="notario_documentacion" style="width: 100%;"></select>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -399,6 +416,7 @@
 
 
     <div class="text-end mt-4">
+        <a href="{% url 'customers:detail' customer_code%}" class="btn btn-link">Cancelar</a>
 
         <button type="submit" class="btn_guardar">
 
@@ -415,6 +433,85 @@
 <script type="module" src="{% static 'js/plan_inversion/destino.js'%}"></script>
 <script type="module" src="{% static 'js/plan_inversion/formulario.js'%}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+    // Leemos los bloques JSON inyectados de forma segura desde el backend
+    // Usamos el filtro |safe de Django montando bloques de scripts en el HTML o leyéndolos de variables globales
+    // Para este ejemplo asumiremos que los pasas renderizando listas ocultas o recuperándolos mediante los tags de Django:
+    
+    {% if plan %}
+        // --- Cargar Fiadores Existentes ---
+        const fiadoresExistentes = {{ plan.fiador|default:"[]"|safe }};
+        fiadoresExistentes.forEach(f => {
+            // Simulamos el click para crear la fila vacía
+            $("#btnAgregarFiador").click();
+            // Obtenemos la última fila agregada
+            const ultimaFila = $(".fila-fiador").last();
+            const selectContainer = ultimaFila.find('.fiador_select');
+
+            // Select2 necesita que la opción preseleccionada exista en el DOM antes de fijar el valor mediante AJAX
+            // Como no tenemos el texto completo aquí, hacemos una petición rápida o añadimos una opción temporal:
+            const optionTemplate = new Option(`Cargando ID: ${f.id}...`, f.id, true, true);
+            selectContainer.append(optionTemplate).trigger('change');
+            
+            // Opcional: Si tu API de Clientes permite buscar por ID exacto, puedes hacer un fetch individual 
+            // para cambiar el texto temporal "Cargando ID: X..." por el nombre real del cliente asociado.
+        });
+
+        // --- Cargar Créditos Vigentes Existentes ---
+        const creditosExistentes = {{ plan.credito_anterior_vigente|default:"[]"|safe }};
+        creditosExistentes.forEach(c => {
+            $("#btnAgregarCredito").click();
+            const ultimaFila = $(".fila-credito").last();
+            const selectContainer = ultimaFila.find('.credito_vigente');
+            
+            const optionTemplate = new Option(`Cargando Crédito ID: ${c.id}...`, c.id, true, true);
+            selectContainer.append(optionTemplate).trigger('change');
+        });
+
+        
+
+        // --- Cargar Garantías y sus Notarios Existentes ---
+        const garantiasExistentes = {{ plan.garantias|default:"[]"|safe }};
+        
+        garantiasExistentes.forEach(g => {
+            // 1. Forzamos el click para crear la fila con su estructura HTML y eventos
+            $("#btnAgregarGarantia").click();
+            
+            // 2. Obtenemos la última fila insertada en el DOM
+            const ultimaFila = $(".fila-garantia").last();
+            
+            // 3. Seteamos los valores básicos de la garantía
+            ultimaFila.find(".garantia-tipo").val(g.tipo).trigger('change');
+            ultimaFila.find(".garantia-descripcion").val(g.descripcion);
+            ultimaFila.find(".garantia-valor").val(g.valor).trigger('keyup'); // Trigger keyup activa el contenedor de notarios si > 5000
+            
+            // 4. Si la garantía viene con un notario guardado, lo preseleccionamos en su Select2
+            if (g.notario && g.notario.id) {
+                const selectNotarioFila = ultimaFila.find(".garantia-notario-select");
+                
+                // Creamos la opción persistente para Select2
+                const optionTemplate = new Option(g.notario.nombre, g.notario.id, true, true);
+                selectNotarioFila.append(optionTemplate).trigger('change');
+            }
+        });
+
+        // --- Cargar Notario de Documentación Global ---
+        const notariosExistentes = {{ plan.notarios|default:"[]"|safe }};
+        notariosExistentes.forEach(n => {
+            if (n.modulo === 'documentacion') {
+                const optionDoc = new Option(n.nombre, n.id, true, true);
+                $("#notario_documentacion").append(optionDoc).trigger('change');
+            }
+        });
+
+        setTimeout(() => {
+            $('#tipo_documento').trigger('change');
+            $('#tipo_pagare').trigger('change');
+        }, 100);
+    {% endif %}
+});
+</script>
 
 
 
