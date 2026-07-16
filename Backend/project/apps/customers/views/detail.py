@@ -26,11 +26,42 @@ from project.decorador import permiso_requerido
 
 # MENSAJES
 from django.contrib import messages
-
+from project.send_mail import send_email_new_customer
 
 
 # SCRIPTS
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+
+def check_list_customer(request, customer_code):
+    
+    customer = Customer.objects.filter(customer_code=customer_code).first()
+    listado_clientes_no_permitidos = ['No Aprobado',  'Dar de Baja']
+
+    info_trabajo = WorkingInformation.objects.filter(customer_id=customer).first()
+    info_ingresos = OtherSourcesOfIncome.objects.filter(customer_id=customer).first()
+    info_referencias = Reference.objects.filter(customer_id=customer).first()
+    info_gastos = GastoCliente.objects.filter(customer=customer).first()
+
+    if customer is None :
+        return redirect('customers:customers')
+    
+    if customer.status in listado_clientes_no_permitidos:
+        pass
+    
+    if info_trabajo is None or info_ingresos is None:
+        messages.error(request,'No el Cliente no tiene información de sus ingresos registrados.')
+    
+    if info_referencias is None:
+        messages.error(request,'No el Cliente no tiene información de referencias registrada.')
+    
+    if info_gastos is None:
+        messages.error(request,'No el Cliente no tiene información de gastos registrada.')
+    
+    if not customer.completado:
+        customer.completado = True
+        customer.save()
+
+        send_email_new_customer(customer)
 # ----- VER DETALLES DE UN CLIENTE ----- #
 @login_required
 @permiso_requerido('puede_visualizar_detalle_cliente')
@@ -38,6 +69,7 @@ def detail_customer(request,customer_code):
     template_name = 'customer/detail.html'
     
     customer_list = get_object_or_404(Customer,customer_code=customer_code)
+    
 
     asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
 
@@ -47,7 +79,7 @@ def detail_customer(request,customer_code):
             messages.error(request,'No tienes permitido visualizar el perfil de este cliente.')
             return redirect('customers:customers')
 
-
+    check_list_customer(request, customer_code)
     informacion_laboral = WorkingInformation.objects.filter(Q(customer_id=customer_list))
     otra_informacion_laboral = OtherSourcesOfIncome.objects.filter(Q(customer_id=customer_list))
     
