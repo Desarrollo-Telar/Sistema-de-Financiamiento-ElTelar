@@ -228,7 +228,7 @@ def render_pagare_docx(request, id, customer_code):
         pf_4 = doc.add_paragraph(f"{sucursal.get_direc().state.upper()}, {sucursal.get_direc().city.upper()}")
         set_paragraph_format(pf_4)
 
-    if len(fiadores_list) > 1:
+    if len(fiadores_list) >= 1:
         for idx, fia in enumerate(fiadores_list, start=1):
             doc.add_paragraph("")
             # Texto de aval adaptado para múltiples o único fiador
