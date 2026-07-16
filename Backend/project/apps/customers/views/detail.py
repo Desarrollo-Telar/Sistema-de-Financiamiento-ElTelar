@@ -41,6 +41,7 @@ def check_list_customer(request, customer_code):
     info_ingresos = OtherSourcesOfIncome.objects.filter(customer_id=customer).first()
     info_referencias = Reference.objects.filter(customer_id=customer).first()
     info_gastos = GastoCliente.objects.filter(customer=customer).first()
+    cambios = False
 
     if customer is None :
         return redirect('customers:customers')
@@ -57,7 +58,11 @@ def check_list_customer(request, customer_code):
     if info_gastos is None:
         messages.error(request,'No el Cliente no tiene información de gastos registrada.')
     
-    if not customer.completado:
+    
+    if (info_trabajo is not None or info_ingresos is not None ) and info_referencias is not None and info_gastos is not None:
+        cambios = True
+
+    if cambios and not customer.completado:
         customer.completado = True
         customer.save()
 
