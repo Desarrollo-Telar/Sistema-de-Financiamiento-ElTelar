@@ -122,7 +122,7 @@ def check_list_customer(request, customer_code):
     if customer.status in listado_clientes_no_permitidos:
         return redirect('customers:detail', customer_code=customer_code)
     
-    if info_trabajo is None or info_ingresos is None:
+    if info_trabajo is None and info_ingresos is None:
         return redirect('financial_information:create_working_information', customer_code)
     
     if info_referencias is None:
