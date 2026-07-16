@@ -78,7 +78,7 @@ def render_pagare_docx(request, id, customer_code):
 
     cliente = destino.customer_id  # Ajusta esto si tu relación es distinta
     
-    fiador = Customer.objects.filter(id= destino.fiador['id']).first() if destino.fiador else None
+    #fiador = Customer.objects.filter(id= destino.fiador['id']).first() if destino.fiador else None
     
     fiadores_list = []
     # Verificamos si destino.fiador es una lista o un solo diccionario
