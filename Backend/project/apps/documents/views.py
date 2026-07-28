@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import DocumentForms, DocumentBankForms
 
 # MODELOS
-from .models import Document, DocumentAddress, DocumentCustomer, DocumentGuarantee, DocumentOther, DocumentBank
+from .models import Document, DocumentAddress, DocumentCustomer, DocumentGuarantee, DocumentOther, DocumentBank, DocumentExpediente
 from apps.customers.models import Customer
 from apps.addresses.models import Address
 from apps.InvestmentPlan.models import InvestmentPlan
@@ -176,6 +176,15 @@ def delete(request, id, customer_code):
     document.delete()
     messages.success(request, 'Documento Eliminado')
     return redirect('customers:detail',customer_code)
+
+@login_required
+@usuario_activo
+def delete_expediente(request, id, uuid):    
+    document = get_object_or_404(DocumentExpediente, id=id)
+    document.delete()
+    messages.success(request, 'Documento Eliminado')
+    return redirect('investment_plan:lista_expedientes_notarios',uuid)
+
 
 @login_required
 @usuario_activo

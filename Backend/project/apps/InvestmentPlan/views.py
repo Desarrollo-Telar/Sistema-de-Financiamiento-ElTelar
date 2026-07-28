@@ -15,12 +15,7 @@ from apps.documents.models import DocumentExpediente, DocumentCustomer
 from apps.pictures.models import ImagenCustomer
 
 # LIBRERIAS PARA CRUD
-from django.views.generic import CreateView
-from django.views.generic.list import ListView
-from django.views.generic import UpdateView
-from django.views.generic import DeleteView
-from django.views.generic.detail import DetailView
-from django.db.models import Q
+from django.contrib import messages
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -77,9 +72,15 @@ def delete_plan_financiamiento(request, id,customer_code):
 def gestion_de_expedientes_notarios(request, id):
     plan = get_object_or_404(InvestmentPlan, id=id)
     customer_code = plan.customer_id.customer_code
-    notarios_lista = plan.notarios or []
 
-    if not notarios_lista:
+    if plan.estado_aprobacion != 'ACEPTADO':
+        return redirect('customers:detail',customer_code)
+
+    notarios_lista = plan.notarios or []
+    expediente_existente = ExpedientePlanNotario.objects.filter(investment_plan=plan)
+
+    if not notarios_lista and not expediente_existente.exists():
+        
         # Manejar el caso cuando no hay notarios asignados
         return redirect('customers:detail',customer_code)
 
@@ -100,6 +101,10 @@ def gestion_de_expedientes_notarios(request, id):
 
    
     usando_ids_unicos = User.objects.filter(id__in=ids_unicos)
+
+    if not usando_ids_unicos:
+        messages.error(request, 'Esta Solicitud De Credito No Tiene Notario.')
+        return redirect('investment_plan:lista_expedientes_notarios', expediente_existente.uuid)
 
 
     template_name = 'InvestmentPlan/gestion_de_expedientes_notarios.html'
@@ -142,8 +147,19 @@ def lista_expedientes_notarios(request, uuid):
     
     template_name = 'InvestmentPlan/lista_expedientes_notarios.html'
     expedientes = ExpedientePlanNotario.objects.get(uuid=uuid)
-    es_autenticado = request.user.is_authenticated
+
     plan = expedientes.investment_plan
+    notarios = plan.listado_de_notarios()
+    siguiente_expediente = None
+    if notarios:
+
+        siguiente_expediente = ExpedientePlanNotario.objects.filter(
+            notario__id__in = notarios, investment_plan = plan
+
+        ).exclude(id=expedientes.id)
+    es_autenticado = request.user.is_authenticated
+
+    
     customer_code = plan.customer_id.customer_code
 
     fiadores_lista = plan.fiador or []
@@ -177,7 +193,8 @@ def lista_expedientes_notarios(request, uuid):
         'fiadores': fiadores,
         'informacion_laboral':informacion_laboral,
         'imagen': imagen,
-        'document': document
+        'document': document,
+        'siguiente_expediente':siguiente_expediente
     }
 
     return render(request, template_name, context)

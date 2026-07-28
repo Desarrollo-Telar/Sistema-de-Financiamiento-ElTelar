@@ -88,7 +88,7 @@ class InvestmentPlan(models.Model):
         
         calculo = Decimal(tasa_interes) / Decimal(12)
 
-        return round(calculo,  2)
+        return formatear_numero(round(calculo,  2))
 
     def calcular_fecha_vencimiento(self):
         self.fecha_vencimiento = self.fecha_inicio + relativedelta(months=self.plazo)
@@ -117,6 +117,26 @@ class InvestmentPlan(models.Model):
 
     def tipo_transferencia(self):
         return 'Local' if self.transfers_or_transfer_of_funds else 'Internacional'
+
+    def listado_de_notarios(self):
+        notarios_lista = self.notarios or []
+
+        if not notarios_lista:
+            return None
+        
+        ids_notarios = [notario.get('id') for notario in notarios_lista if notario.get('id')]
+        
+        ids_unicos = set(ids_notarios)
+        return ids_unicos
+
+    def tengo_expediente(self):
+        exped = ExpedientePlanNotario.objects.filter(investment_plan=self)
+        notarios = self.listado_de_notarios()
+
+        if exped and notarios and self.estado_aprobacion == 'ACEPTADO':
+            return True
+        return False
+        
     
     
 
@@ -129,7 +149,7 @@ class InvestmentPlan(models.Model):
 
 
 class ExpedientePlanNotario(models.Model):
-    investment_plan = models.OneToOneField(InvestmentPlan, on_delete=models.CASCADE)
+    investment_plan = models.ForeignKey(InvestmentPlan, on_delete=models.CASCADE)
     notario = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_asignacion = models.DateTimeField(auto_now_add=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
@@ -185,4 +205,45 @@ def set_investment_plan_code(sender, instance, **kwargs):
         
         if not validar_codigo(instance.investment_plan_code):
             generar_codigo(instance)
+
+
+@receiver(post_save, sender=InvestmentPlan)
+def handle_investment_plan_approval(sender, instance, created, **kwargs):
+    from apps.users.models import User
+    from project.send_mail.correos_para_notarios import send_email_notario
+
+    if instance.estado_aprobacion != "ACEPTADO":
+        return
+
+    if not instance.notarios:
+        return
+
+    ids_unicos = {
+        notario["id"]
+        for notario in instance.notarios
+        if notario.get("id")
+    }
+
+    for id_notario in ids_unicos:
+        try:
+            user_notario = User.objects.get(id=id_notario)
+
+            expediente, creado = ExpedientePlanNotario.objects.get_or_create(
+                investment_plan=instance,
+                notario=user_notario
+            )
+
+            if not creado:
+                continue
+
+            send_email_notario(
+                user=user_notario,
+                plan_inversion_id=instance.id,
+                formato="formato_01",
+                uuid=expediente.uuid
+            )
+
+        except User.DoesNotExist:
+            continue
+
 

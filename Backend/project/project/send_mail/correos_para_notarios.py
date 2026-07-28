@@ -18,7 +18,7 @@ from apps.InvestmentPlan.models import InvestmentPlan
 
 # Asegúrate de importar tu modelo InvestmentPlan
 
-def send_email_notario(user, plan_inversion_id, formato='formato_01'):
+def send_email_notario(user, plan_inversion_id, formato='formato_01', uuid = None):
     # 1. Obtenemos el plan de inversión
     plan_inversion = InvestmentPlan.objects.get(id=plan_inversion_id)
     
@@ -77,6 +77,7 @@ def send_email_notario(user, plan_inversion_id, formato='formato_01'):
         'accion': accion,
         'direccion': plan_inversion.customer_id.get_direccion(),
         'tipo_documento': plan_inversion.tipo_documento, 
+        'uuid': uuid,
         
     }
 

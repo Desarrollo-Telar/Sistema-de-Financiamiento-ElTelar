@@ -106,6 +106,7 @@
                         <th scope="col">Monto Inicial</th>
                         <th scope="col">Monto Mensual</th>         
                         <th scope="col">Documento</th>
+                        <th scope="col">Expediente</th>
                         {% if permisos.puede_eliminar_informacion_destino_credito or permisos.puede_editar_informacion_destino_credito %}
                             <th scope="col" class="text-center">Acciones</th>
                         {% endif %}
@@ -135,13 +136,28 @@
                                 </a>
                                 {% endif%}
                             </td>
+                            <td class="text-center">
+                                {% if plan.tengo_expediente %}
+                                <a href="{% url 'investment_plan:gestion_de_expedientes_notarios' plan.id  %}" class="btn btn-dark">
+                                       <i class="bi bi-file-earmark-text"></i>Expedientes.
+                                    </a> 
+                                {% else %}
+                                <a href="#" class="btn btn-warning">
+                                      <i class="bi bi-exclamation-circle"></i>No Hay Expediente.
+                                    </a> 
+                                    {% endif %} 
+
+                            </td>
                             
                             {% if permisos.puede_eliminar_informacion_destino_credito or permisos.puede_editar_informacion_destino_credito %}
                             <td class="text-center">
-                                {% if permisos.puede_editar_informacion_destino_credito %}       
+                                 
+                                {% if permisos.puede_editar_informacion_destino_credito %}   
+                                {% if plan.estado_aprobacion != 'ACEPTADO' %}    
                                     <a href="{% url 'investment_plan:update' plan.id customer_code %}" class="btn-action-edit">
                                         <i class="bi bi-pencil me-1"></i>Editar
-                                    </a>         
+                                    </a>     
+                                    {% endif %}    
                                 {% endif %}
                                 {% if permisos.puede_eliminar_informacion_destino_credito %}    
                                     <a href="{% url 'investment_plan:delete' plan.id customer_code %}" class="btn-action-delete">

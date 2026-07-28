@@ -283,7 +283,7 @@ body{
                 <tr>
 
                     <td class="label">Tasa</td>
-                    <td>{{ plan_inversion.tasa_interes }}</td>
+                    <td>{{ plan_inversion.get_tasa }}</td>
 
                 </tr>
 
@@ -342,9 +342,9 @@ body{
        
         <center>
 
-            <a href="https://www.ii-eltelarsa.com/plan_inversion/plan_pagos/{{ plan_inversion.id }}/{{plan_inversion.customer_id.customer_code}}/" class="button" >
+            <a href="https://www.ii-eltelarsa.com/plan_inversion/lista_expedientes_notarios/{{uuid}}/" class="button" >
 
-                Ver Plan de Pagos 
+                Ver Documentos
 
             </a>
 

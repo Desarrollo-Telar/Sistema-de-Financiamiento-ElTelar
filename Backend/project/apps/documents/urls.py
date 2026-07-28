@@ -20,6 +20,7 @@ urlpatterns = [
     path('delete_document/<int:id>/<str:customer_code>/',views.delete,name='delete_document'),
     path('update_document/<int:id>/<str:customer_code>/',views.update_document,name='update_document'),
     path('create/',views.subir_banco,name='banco'),
+    path('delete_document/expediente/<int:id>/<uuid:uuid>/', views.delete_expediente, name='delete_expediente'),
 ]
 
 urlpatterns += routers.urlpatterns
