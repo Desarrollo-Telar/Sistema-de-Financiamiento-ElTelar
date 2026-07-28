@@ -1,0 +1,198 @@
+{% extends 'base_notario.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/documentos/listado.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <div class="document-manager">
+    <input type="hidden" id="expedienteId" value="{{ expediente_id }}">
+    
+    {% if es_autenticado %}
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb bg-transparent p-0 m-0">
+        <li class="breadcrumb-item"><a href="/" class="text-decoration-none" style="color: #161A1D;">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'customers:customers' %}" class="text-decoration-none" style="color: #161A1D;">Clientes</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <a href="{% url 'customers:detail' customer_code %}" class="text-decoration-none fw-semibold" style="color: #A4161A;">
+            {{ cliente.first_name }} {{ cliente.last_name }}
+          </a>
+        </li>
+      </ol>
+    </nav>
+    {% endif %}
+
+    <!-- Tarjeta de Resumen de la Solicitud -->
+    <div class="solicitud-card p-4 mb-4">
+      <div class="solicitud-header mb-3">
+        <h2 class="fw-bold fs-4 m-0" style="color: #0B090A;">INFORMACIÓN DE LA SOLICITUD DE CRÉDITO</h2>
+        <h3 class="fs-6 text-uppercase fw-semibold mt-1" style="color: #A4161A;">
+          Cliente: {{ cliente.first_name }} {{ cliente.last_name }}
+        </h3>
+      </div>
+
+      <!-- Métricas / Datos del Plan -->
+      <div class="row g-3">
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-item">
+            <span class="label">Monto Solicitado</span>
+            <span class="value">Q {{ plan.f_total_value_of_the_product_or_service }}</span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-item">
+            <span class="label">Forma de Pago</span>
+            <span class="value">{{ plan.forma_de_pago }}</span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-item">
+            <span class="label">Tipo de Producto</span>
+            <span class="value">{{ plan.type_of_product_or_service }}</span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-item">
+            <span class="label">Propósito</span>
+            <span class="value text-truncate d-block" title="{{ plan.investment_plan_description }}">
+              {{ plan.investment_plan_description }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Fiadores -->
+    {% if fiadores %}
+    <div class="solicitud-card p-4 mb-4">
+      <h3 class="fs-5 fw-bold text-uppercase mb-3" style="color: #0B090A;">Fiadores</h3>
+
+      <!-- Tabs -->
+      <ul class="nav nav-tabs" id="fiadoresTab" role="tablist">
+        {% for customer_list in fiadores %}
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link {% if forloop.first %}active{% endif %}"
+            id="fiador-{{ forloop.counter }}-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#fiador-{{ forloop.counter }}"
+            type="button"
+            role="tab"
+            aria-controls="fiador-{{ forloop.counter }}"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+            Fiador {{ forloop.counter }}
+            {% if customer_list.first_name %}
+              - {{ customer_list.first_name }} {{ customer_list.last_name }}
+            {% endif %}
+          </button>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <!-- Contenido Tab -->
+      <div class="tab-content border border-top-0 p-3 rounded-bottom" id="fiadoresTabContent" style="background-color: #FFFFFF;">
+        {% for customer_list in fiadores %}
+        <div
+          class="tab-pane fade {% if forloop.first %}show active{% endif %}"
+          id="fiador-{{ forloop.counter }}"
+          role="tabpanel"
+          aria-labelledby="fiador-{{ forloop.counter }}-tab">
+
+          {% include 'customer/snippets/detail/informacion_personal.html' %}
+          {% include 'customer/snippets/detail/informacion_laboral.html' %}
+          
+          <h4 class="fs-6 fw-bold text-uppercase my-3" style="color: #161A1D;">Documentación Adjunta:</h4>
+          {% include 'customer/snippets/detail/imagen.html' %}
+          {% include 'customer/snippets/detail/documents.html' %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Encabezado de Documentos del Expediente -->
+     <div class="solicitud-card" >
+
+     
+    <div class="dm-header" style="padding: 0.5rem;">
+      <div class="dm-title-group">
+        <h2 class="fw-bold" style="color: #0B090A;">Documentos del Expediente</h2>
+        <span class="dm-badge" id="totalCount">{{ documentos.count }} archivos</span>
+      </div>
+    </div>
+
+    <!-- Rejilla de Archivos -->
+    <div id="documentsContainer" class="dm-grid mb-4 " style="padding: 0.5rem;">
+
+      <!-- Tarjeta del Pagaré / Plan de Pagos -->
+      <div class="dm-card">
+        <div class="dm-card-body">
+          <div class="dm-file-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+            </svg>
+          </div>
+          <div class="dm-file-info">
+            <p class="dm-file-name" title="Pagaré y/o Plan de Pagos">Pagaré y/o Plan de Pagos</p>
+            <p class="dm-file-date">Subido: {{ plan.creation_date|date:"d M Y" }}</p>
+          </div>
+        </div>
+        <div class="dm-card-footer">
+          {% if plan.tipo_documento == 'PAGARE' %}
+            <a href="{% url 'investment_plan:pagare' plan.id customer_code %}" class="link-pagare">
+              <i class="bi bi-file-earmark-text me-1"></i> Ver Pagaré
+            </a>
+          {% else %}
+            <a href="{% url 'investment_plan:plan_pagos' plan.id customer_code %}" class="link-pagare">
+              <i class="bi bi-file-earmark-text me-1"></i> {{ plan.tipo_documento }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Iteración de Documentos -->
+      {% for doc in documentos %}
+        <div class="dm-card" id="doc-card-{{ doc.id }}">
+          <div class="dm-card-body">
+            <div class="dm-file-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+              </svg>
+            </div>
+            <div class="dm-file-info">
+              <p class="dm-file-name" title="{{ doc.nombre_archivo }}">{{ doc.nombre_archivo }}</p>
+              <p class="dm-file-date">Subido: {{ doc.fecha_subida|date:"d M Y" }}</p>
+            </div>
+          </div>
+          <div class="dm-card-footer">
+            <a href="{{ doc.get_document }}" target="_blank" rel="noopener" class="dm-link">
+              <i class="bi bi-box-arrow-up-right me-1"></i> Ver / Abrir
+            </a>
+            {% if es_autenticado %}
+            <a href="#" target="_blank" rel="noopener" class="dm-btn-delete">
+              <i class="bi bi-trash"></i> Eliminar
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12 py-4 text-center">
+          <p style="color: #B1A7A6;">No hay documentos adicionales en este expediente.</p>
+        </div>
+      {% endfor %}
+
+    </div>
+    </div>
+
+    <!-- Estado Vacío JS -->
+    <div id="emptyState" class="dm-empty-state" style="display: none;">
+      <svg viewBox="0 0 24 24" width="64" height="64"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+      <p style="color: #B1A7A6;">No hay documentos registrados en este expediente.</p>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

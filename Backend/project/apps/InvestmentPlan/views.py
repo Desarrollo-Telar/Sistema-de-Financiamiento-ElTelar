@@ -7,10 +7,13 @@ from apps.financings.formato import formatear_numero
 
 # MODELOS
 from apps.customers.models import Customer, CreditCounselor
-from .models import InvestmentPlan
+from .models import InvestmentPlan, ExpedientePlanNotario
+from apps.users.models import User
 from apps.FinancialInformation.models import Reference, WorkingInformation, OtherSourcesOfIncome
 from apps.subsidiaries.models import Subsidiary
-from apps.financings.models import Credit
+from apps.documents.models import DocumentExpediente, DocumentCustomer
+from apps.pictures.models import ImagenCustomer
+
 # LIBRERIAS PARA CRUD
 from django.views.generic import CreateView
 from django.views.generic.list import ListView
@@ -29,6 +32,7 @@ from project.send_mail import send_email_new_customer
 from scripts.conversion_datos import model_to_dict
 # Create your views here.
 from apps.financings.views.creditos.funciones import generar_codigo_seguridad
+from django.views.decorators.csrf import ensure_csrf_cookie 
 
 @login_required
 @usuario_activo
@@ -44,8 +48,8 @@ def create_plan_financiamiento(request, customer_code):
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         es_asesor = True
     
-    num = generar_codigo_seguridad(usuario_regis=request.user, accion='Solicitud de Credito.')
-    request.session['codigo_migracion'] = num
+    #num = generar_codigo_seguridad(usuario_regis=request.user, accion='Solicitud de Credito.')
+    request.session['codigo_migracion'] = 2026
 
    
     
@@ -66,6 +70,117 @@ def delete_plan_financiamiento(request, id,customer_code):
     plan = get_object_or_404(InvestmentPlan, id = id)
     plan.delete()
     return redirect('customers:detail',customer_code)
+
+
+@login_required
+@usuario_activo
+def gestion_de_expedientes_notarios(request, id):
+    plan = get_object_or_404(InvestmentPlan, id=id)
+    customer_code = plan.customer_id.customer_code
+    notarios_lista = plan.notarios or []
+
+    if not notarios_lista:
+        # Manejar el caso cuando no hay notarios asignados
+        return redirect('customers:detail',customer_code)
+
+    ids_notarios = [notario.get('id') for notario in notarios_lista if notario.get('id')]
+
+    ids_unicos = set(ids_notarios)
+
+    if len(ids_unicos) == 1:
+        # CASO 1: Todos los módulos están asignados al mismo notario (ej. ID 1 y ID 1)
+        id_unico = list(ids_unicos)[0]
+        try:
+            user_notario = User.objects.get(id=id_unico)
+
+            return redirect('investment_plan:subir_archivos', plan.id, user_notario.id)
+            
+        except User.DoesNotExist:
+            pass  # Manejo de error si el usuario no existe en la base de datos
+
+   
+    usando_ids_unicos = User.objects.filter(id__in=ids_unicos)
+
+
+    template_name = 'InvestmentPlan/gestion_de_expedientes_notarios.html'
+    context = {
+        'plan_id': plan.id,
+        'permisos': recorrer_los_permisos_usuario(request),
+        'sucursales': usando_ids_unicos,
+    }
+    return render(request, template_name, context)
+
+
+
+@login_required
+@usuario_activo
+@ensure_csrf_cookie
+def subir_archivos_expedientes_notarios(request,plan_id,user_id):
+  
+    template_name = 'InvestmentPlan/expediente.html'
+
+    plan = get_object_or_404(InvestmentPlan, id=plan_id)
+    notario = get_object_or_404(User, id=user_id)
+
+   
+    expediente_existente, created = ExpedientePlanNotario.objects.get_or_create(investment_plan=plan, notario=notario)
+
+
+    context = {
+        'plan': plan,
+        'notario': notario, 
+        'expediente_id':expediente_existente.id,
+        'permisos': recorrer_los_permisos_usuario(request),
+        'codigo': expediente_existente.uuid,
+    }
+    
+    return render(request, template_name, context)
+
+    
+
+def lista_expedientes_notarios(request, uuid):
+    
+    template_name = 'InvestmentPlan/lista_expedientes_notarios.html'
+    expedientes = ExpedientePlanNotario.objects.get(uuid=uuid)
+    es_autenticado = request.user.is_authenticated
+    plan = expedientes.investment_plan
+    customer_code = plan.customer_id.customer_code
+
+    fiadores_lista = plan.fiador or []
+    fiadores = None
+    informacion_laboral = None
+    imagen = None
+    document = None
+
+    if  fiadores_lista:
+        ids_fiadores = [fiador.get('id') for fiador in fiadores_lista if fiador.get('id')]
+        ids_unicos_fiadores = set(ids_fiadores)
+        fiadores = Customer.objects.filter(id__in = ids_unicos_fiadores)
+        informacion_laboral = WorkingInformation.objects.filter(customer_id__id__in = ids_unicos_fiadores)
+        imagen = ImagenCustomer.objects.filter(customer_id__id__in = ids_unicos_fiadores)
+        document = DocumentCustomer.objects.filter(customer_id__id__in = ids_unicos_fiadores)
+
+    cliente = Customer.objects.get(customer_code = customer_code)
+
+
+
+
+    context = {
+        'expedientes': expedientes,
+        'expediente_id': expedientes.id,
+        'documentos':DocumentExpediente.objects.filter(expediente=expedientes),
+        'es_autenticado': es_autenticado,
+        'permisos': recorrer_los_permisos_usuario(request),
+        'plan': plan,
+        'customer_code': customer_code,
+        'cliente': cliente,
+        'fiadores': fiadores,
+        'informacion_laboral':informacion_laboral,
+        'imagen': imagen,
+        'document': document
+    }
+
+    return render(request, template_name, context)
 
 
 @login_required

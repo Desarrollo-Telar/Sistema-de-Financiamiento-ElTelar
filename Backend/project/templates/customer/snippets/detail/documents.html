@@ -1,69 +1,157 @@
 {% load static %}
-<div class="row" style="margin: 2rem;">
-  {% if permisos.puede_subir_archivos %}
-  <div>
-    <a href="{% url 'document:create_document_customer' customer_code %}" class="btn_edit">Agregar un nuevo
-      Documento</a>
-  </div>
-  {% endif %}
 
-  <div class="col-12" style="margin-top: 3rem;">
-    <div class="row d-flex justify-content-center">
-      <div class="col-6 ">
-        <table class="table table-hover">
-          <thead>
-            <tr>
+<style>
+    .docs-container {
+        padding: 2rem 1rem;
+    }
+    .btn-custom-primary {
+        background-color: #A4161A;
+        color: #FFFFFF;
+        border: none;
+        transition: background-color 0.2s ease;
+    }
+    .btn-custom-primary:hover {
+        background-color: #660708;
+        color: #FFFFFF;
+    }
+    .btn-custom-danger-outline {
+        color: #BA181B;
+        border: 1px solid #BA181B;
+        background: transparent;
+        transition: all 0.2s ease;
+    }
+    .btn-custom-danger-outline:hover {
+        background-color: #BA181B;
+        color: #FFFFFF;
+    }
+    .custom-table-card {
+        border: 1px solid #D3D3D3;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(11, 9, 10, 0.04);
+    }
+    .custom-table {
+        margin-bottom: 0;
+    }
+    .custom-table thead {
+        background-color: #161A1D;
+        color: #FFFFFF;
+    }
+    .custom-table th {
+        font-weight: 600;
+        padding: 1rem;
+        border: none;
+    }
+    .custom-table td {
+        padding: 0.85rem 1rem;
+        vertical-align: middle;
+        border-bottom: 1px solid #F5F3F4;
+    }
+    .custom-table tbody tr:hover {
+        background-color: #F5F3F4;
+    }
+    .doc-link {
+        color: #0B090A;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+    .doc-link:hover {
+        color: #A4161A;
+    }
+    .doc-icon {
+        color: #A4161A;
+        margin-right: 0.5rem;
+    }
+    .badge-system {
+        background-color: #F5F3F4;
+        color: #161A1D;
+        border: 1px solid #B1A7A6;
+        font-weight: 500;
+        font-size: 0.75rem;
+    }
+</style>
 
-              <th scope="col">Nombre del Documento</th>
-
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <a href="{% url 'pdf' customer_list.id  %}" target="_blank">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                    class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z" />
-                  </svg>
-                  Formulario IVE
-                </a>
-              </td>
-
-              <td></td>
-            </tr>
-            {% for doc in document %}
-            <tr>
-
-              <td>
-                <a href="{{doc.document_id.get_document}}">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                    class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z" />
-                  </svg>
-
-                  {{doc.titulo}}
-                </a>
-              </td>
-              {% if permisos.puede_eliminar_archivos %}
-              <td>
-                <a href="{% url 'document:delete_document' doc.document_id.id customer_code %}"
-                  class="btn_add">Eliminar</a>
-              </td>
-              {% endif %}
-            </tr>
-            {%endfor%}
-
-          </tbody>
-        </table>
-      </div>
-
-
-
+<div class="container-fluid docs-container">
+    <!-- Encabezado y Acción Principal -->
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom" style="border-color: #D3D3D3 !important;">
+        <h4 style="color: #0B090A;" class="fw-bold m-0">Documentos del Cliente</h4>
+        {% if permisos.puede_subir_archivos %}
+            <a href="{% url 'document:create_document_customer' customer_code %}" class="btn btn-custom-primary px-3 py-2 fw-semibold">
+                <i class="bi bi-file-earmark-plus me-1"></i> Agregar un nuevo Documento
+            </a>
+        {% endif %}
     </div>
-  </div>
 
+    <!-- Tabla de Documentos -->
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+            <div class="custom-table-card">
+                <div class="table-responsive">
+                    <table class="table custom-table align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 65%;">Nombre del Documento</th>
+                                <th scope="col" style="width: 15%;" class="text-center">Tipo</th>
+                                <th scope="col" style="width: 20%;" class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Documento Fijo / Sistema: Formulario IVE -->
+                            <tr>
+                                <td>
+                                    <a href="{% url 'pdf' customer_list.id %}" target="_blank" class="doc-link d-inline-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-file-earmark-text-fill doc-icon" viewBox="0 0 16 16">
+                                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z"/>
+                                        </svg>
+                                        Formulario IVE
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge badge-system px-2 py-1">Sistema</span>
+                                </td>
+                                <td class="text-end">
+                                    <a href="{% url 'pdf' customer_list.id %}" target="_blank" class="btn btn-sm btn-custom-primary">
+                                        Ver / Descargar
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <!-- Lista de Documentos Dinámicos -->
+                            {% for doc in document %}
+                                {% if doc.customer_id == customer_list %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ doc.document_id.get_document }}" target="_blank" class="doc-link d-inline-flex align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-file-earmark-text-fill doc-icon" viewBox="0 0 16 16">
+                                                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z"/>
+                                                </svg>
+                                                {{ doc.titulo }}
+                                            </a>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-light text-dark border px-2 py-1">Adjunto</span>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="d-inline-flex gap-2">
+                                                <a href="{{ doc.document_id.get_document }}" target="_blank" class="btn btn-sm btn-custom-primary">
+                                                    Ver / Descargar
+                                                </a>
+                                                {% if permisos.puede_eliminar_archivos %}
+                                                    <a href="{% url 'document:delete_document' doc.document_id.id customer_code %}" class="btn btn-sm btn-custom-danger-outline">
+                                                        Eliminar
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

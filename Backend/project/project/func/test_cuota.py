@@ -10,6 +10,8 @@ from datetime import datetime,timedelta
 
 # Modelos
 from apps.financings.models import Credit, PaymentPlan
+from apps.InvestmentPlan.models import InvestmentPlan
+from apps.users.models import User  
 
 # DECIMAL
 from decimal import Decimal
@@ -41,30 +43,66 @@ def cuota_actual(credito):
 
 if __name__ == '__main__':
 
-    creditos = Credit.objects.filter(
-        estados_fechas=True, 
-        is_paid_off=False)
     
-    for credito in creditos:
-        cuota = cuota_actual(credito)
+    contextoA = {
+        'modulo': 'Plan de Inversión',
+        'id': 1
+    }
 
-        if cuota.mora != 0:
-            continue
+    contextoB = {
+            'modulo': 'Plan de Inversión',
+            'id': 1
+    }
+    contextoC = {
+            'modulo': 'Plan de Inversión',
+            'id': 2
+        }
+    contextoD = {
+                'modulo': 'Plan de Inversión',
+                'id': 2
+            }
 
-        tasa_interes = credito.tasa_interes
+    notarios_lista = [ contextoA, contextoB, contextoC, contextoD ]
 
-        saldo_capital_pendiente = cuota.saldo_pendiente
+    ids_notarios = [ ]
 
-        interes_cuota =  round(Decimal(cuota.interest),2)
+    for notario in notarios_lista:
+        if notario.get('id'):
+            ids_notarios.append(notario.get('id'))
+            
 
-        calculo_interes = round( Decimal(saldo_capital_pendiente) * Decimal(tasa_interes), 2)
+    ids_unicos = set(ids_notarios)
+    
 
-        if interes_cuota == 0:
-            continue
+    usando_ids_unicos = User.objects.filter(id__in=ids_unicos)
+    
+    print(f"Usuarios notarios encontrados: {[user.email for user in usando_ids_unicos]}")
 
-        verificacion = interes_cuota - calculo_interes
+    if len(ids_unicos) == 1:
+        # CASO 1: Todos los módulos están asignados al mismo notario (ej. ID 1 y ID 1)
+        id_unico = list(ids_unicos)[0]
+        try:
+            user_notario = User.objects.get(id=id_unico)
+            print(f"Enviando correo al notario con ID {id_unico} y correo {user_notario.email}")
+        except User.DoesNotExist:
+            pass  # Manejo de error si el usuario no existe en la base de datos
+            
 
-        if verificacion != 0:
-            print(f'REVISEMOS ESTE CREDITO: {credito.id} porque tiene un resultado: {verificacion}')
+    else:
+        # CASO 2: Los IDs son diferentes, enviamos correos individuales con formatos específicos
+        for notario in notarios_lista:
+            id_notario = notario.get('id')
+            modulo = notario.get('modulo')
+            
+            if not id_notario or not modulo:
+                continue
+                
+            try:
+                user_notario = User.objects.get(id=id_notario)
+                
+                print(f"Enviando correo al notario con ID {id_notario}, correo {user_notario.email} y módulo {modulo}")
+            
+            except User.DoesNotExist:
+                continue
 
 

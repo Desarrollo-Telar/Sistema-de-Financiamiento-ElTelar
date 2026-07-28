@@ -1,43 +1,124 @@
 {% load static %}
-<div class="row" style="margin: 2rem;">
-    {% if permisos.puede_subir_imagenes %}
-    <div>
-        <a href="{% url 'imagen:create_image' customer_code %}" class="btn_edit">Agregar una nueva Imagen</a>
+
+<!-- Estilos personalizados basados en tu paleta -->
+<style>
+    .gallery-container {
+        padding: 2rem 1rem;
+    }
+    .btn-custom-primary {
+        background-color: #A4161A;
+        color: #FFFFFF;
+        border: none;
+        transition: background-color 0.2s ease;
+    }
+    .btn-custom-primary:hover {
+        background-color: #660708;
+        color: #FFFFFF;
+    }
+    .btn-custom-danger {
+        background-color: #BA181B;
+        color: #FFFFFF;
+        border: none;
+        transition: background-color 0.2s ease;
+    }
+    .btn-custom-danger:hover {
+        background-color: #E5383B;
+        color: #FFFFFF;
+    }
+    .btn-custom-outline {
+        border: 1px solid #161A1D;
+        color: #161A1D;
+        background: transparent;
+        transition: all 0.2s ease;
+    }
+    .btn-custom-outline:hover {
+        background-color: #161A1D;
+        color: #FFFFFF;
+    }
+    .image-card {
+        border: 1px solid #D3D3D3;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .image-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(11, 9, 10, 0.08);
+    }
+    .image-preview-placeholder {
+        height: 160px;
+        background-color: #F5F3F4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #D3D3D3;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        overflow: hidden;
+    }
+    .image-preview-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
+<div class="container-fluid gallery-container">
+    <!-- Encabezado y Acción Principal -->
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom" style="border-color: #D3D3D3 !important;">
+        <h4 style="color: #0B090A;" class="fw-bold m-0">Galería de Imágenes</h4>
+        {% if permisos.puede_subir_imagenes %}
+            <a href="{% url 'imagen:create_image' customer_code %}" class="btn btn-custom-primary px-3 py-2 fw-semibold">
+                <i class="bi bi-plus-lg me-1"></i> Agregar una nueva Imagen
+            </a>
+        {% endif %}
     </div>
-    {% endif %}
-    <div class="col-12" style="margin-top: 2rem;">
+
+    <!-- Grid de Imágenes -->
+    <div class="row g-4">
         {% for image in imagen %}
-        <div class="row" style="margin-top: 0.5rem;">
-            <div class="col-2">
-                <p class="fw-semibold">{{image.image_id.description}}</p>
+            {% if image.customer_id == customer_list %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="image-card h-100 d-flex flex-column">
+                        
+                        <!-- Vista previa de la imagen -->
+                        <div class="image-preview-placeholder">
+                            <img src="{{ image.image_id.get_image }}" alt="{{ image.image_id.description }}" loading="lazy">
+                        </div>
 
-            </div>
-            
-            <div class="col-2">
-                <a href="{{image.image_id.get_image}}">Descargar</a>
-                
-            </div>
-            {% if permisos.puede_editar_imagenes %}
-            <div class="col-2">
-                <a href="{% url 'imagen:update_image' image.image_id.id customer_code %}" class="btn_edit">Editar
-                    Imagen</a>
+                        <!-- Información y Detalles -->
+                        <div class="card-body p-3 d-flex flex-column justify-content-between flex-grow-1">
+                            <p class="fw-semibold text-truncate mb-3" style="color: #161A1D;" title="{{ image.image_id.description }}">
+                                {{ image.image_id.description }}
+                            </p>
 
-            </div>
+                            <!-- Acciones -->
+                            <div class="d-flex flex-wrap gap-2 pt-2 border-top" style="border-color: #F5F3F4 !important;">
+                                <a href="{{ image.image_id.get_image }}" class="btn btn-sm btn-custom-outline flex-fill text-center" download>
+                                    Descargar
+                                </a>
+
+                                {% if permisos.puede_editar_imagenes %}
+                                    <a href="{% url 'imagen:update_image' image.image_id.id customer_code %}" class="btn btn-sm btn-custom-outline flex-fill text-center">
+                                        Editar
+                                    </a>
+                                {% endif %}
+
+                                {% if permisos.puede_eliminar_imagenes %}
+                                    <a href="{% url 'imagen:delete_image' image.image_id.id customer_code %}" class="btn btn-sm btn-custom-danger flex-fill text-center">
+                                        Eliminar
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             {% endif %}
-            {% if permisos.puede_eliminar_imagenes %}
-            <div class="col-2">
-                <a href="{% url 'imagen:delete_image' image.image_id.id customer_code %}" class="btn_add">Eliminar
-                    Imagen</a>
+        {% empty %}
+            <div class="col-12 text-center py-5">
+                <p style="color: #B1A7A6;" class="fs-5">No hay imágenes disponibles para este cliente.</p>
             </div>
-            {% endif %}
-
-        </div>
-
-
-
         {% endfor %}
-
     </div>
-
-
 </div>

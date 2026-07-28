@@ -1,7 +1,10 @@
 # SERIALIZADOR
 from .serializers import DocumentCustomerSerializer,DocumentGuaranteeSerializer, DocumentOtherSerializer,DocumentSerializer,DocumentAddressSerializer
+from .serializers import DocumentExpedienteSerializer
+
 # MODELS
-from apps.documents.models import Document,DocumentAddress,DocumentCustomer,DocumentGuarantee,DocumentOther
+from apps.documents.models import Document,DocumentAddress,DocumentCustomer,DocumentGuarantee,DocumentOther, DocumentExpediente
+
 # API
 from rest_framework import viewsets, status, generics
 from rest_framework.views import APIView
@@ -14,6 +17,32 @@ from scripts.conversion_datos import model_to_dict, cambios_realizados
 import traceback
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
+from django.db.models import Q
+
+
+from rest_framework.parsers import MultiPartParser, FormParser
+
+
+
+class DocumentExpedienteViewSet(viewsets.ModelViewSet):
+    serializer_class = DocumentExpedienteSerializer
+    queryset = DocumentExpediente.objects.select_related('expediente').all()
+    parser_classes = (MultiPartParser, FormParser)  # Soporte para subida de archivos
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        
+        # 1. Filtrar por ID de expediente si viene en la query (p. ej. ?expediente=1 o ?term=1)
+        expediente_id = self.request.query_params.get('expediente') or self.request.query_params.get('term')
+        if expediente_id:
+            queryset = queryset.filter(expediente_id=expediente_id)
+
+        # 2. Búsqueda por nombre de archivo (p. ej. ?search=acta)
+        search = self.request.query_params.get('search')
+        if search:
+            queryset = queryset.filter(archivo__icontains=search)
+
+        return queryset
 
 class DocumentViewSet(viewsets.ModelViewSet):
     serializer_class = DocumentSerializer

@@ -1,0 +1,249 @@
+
+    /* Integración de tu paleta de colores */
+    :root {
+      --c-black: #0B090A;
+      --c-dark-charcoal: #161A1D;
+      --c-maroon: #660708;
+      --c-dark-red: #A4161A;
+      --c-red: #BA181B;
+      --c-bright-red: #E5383B;
+      --c-muted-gray: #B1A7A6;
+      --c-light-gray: #D3D3D3;
+      --c-off-white: #F5F3F4;
+      --c-white: #FFFFFF;
+
+      /* Mapeo de la interfaz */
+      --bg-color: var(--c-off-white);
+      --card-bg: var(--c-white);
+      --text-main: var(--c-black);
+      --text-muted: var(--c-dark-charcoal);
+      --border-color: var(--c-light-gray);
+      --primary: var(--c-dark-red);
+      --primary-hover: var(--c-maroon);
+      --accent: var(--c-bright-red);
+      --danger: var(--c-red);
+      --danger-hover: var(--c-maroon);
+    }
+
+   .container {
+      width: 100%;
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+
+    .header {
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--c-black);
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* Zona de Carga (Dropzone) */
+    .dropzone {
+      background-color: var(--card-bg);
+      border: 2px dashed var(--c-muted-gray);
+      border-radius: 12px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 6px -1px rgba(11, 9, 10, 0.03);
+    }
+
+    .dropzone:hover, .dropzone.active {
+      border-color: var(--accent);
+      background-color: var(--c-white);
+      box-shadow: 0 10px 15px -3px rgba(164, 22, 26, 0.08);
+    }
+
+    .dropzone-icon {
+      width: 48px;
+      height: 48px;
+      fill: var(--primary);
+      margin-bottom: 0.75rem;
+      transition: transform 0.2s ease;
+    }
+
+    .dropzone:hover .dropzone-icon {
+      transform: translateY(-3px);
+      fill: var(--accent);
+    }
+
+    .dropzone p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .btn-select {
+      background-color: var(--primary);
+      color: var(--c-white);
+      border: none;
+      padding: 0.65rem 1.3rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-select:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-select:active {
+      transform: scale(0.98);
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    /* Lista de Documentos */
+    .document-section {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(11, 9, 10, 0.03);
+    }
+
+    .document-section h2 {
+      font-size: 1.1rem;
+      color: var(--c-black);
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .badge_d {
+      background-color: var(--c-off-white);
+       color: var(--c-dark-red); 
+      border: 1px solid var(--c-light-gray);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: 12px;
+    }
+
+    .file-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      opacity: 0.75;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: var(--c-off-white);
+      transition: border-color 0.2s ease;
+    }
+
+    .file-item:hover {
+      border-color: var(--c-muted-gray);
+    }
+
+    .file-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      overflow: hidden;
+    }
+
+    .file-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      fill: var(--primary);
+    }
+
+    .file-details {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .file-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--c-black);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 280px;
+    }
+
+    .file-size {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0.8;
+    }
+
+    .file-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-action {
+      border: none;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      font-weight: 600;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-view {
+      background-color: var(--c-white);
+      color: var(--c-dark-charcoal);
+      border: 1px solid var(--c-light-gray);
+    }
+
+    .btn-view:hover {
+      background-color: var(--c-light-gray);
+      color: var(--c-black);
+    }
+
+    .btn-delete {
+      background-color: #fef2f2;
+      color: var(--danger);
+      border: 1px solid #fecaca;
+    }
+
+    .btn-delete:hover {
+      background-color: var(--danger);
+      color: var(--c-white);
+      border-color: var(--danger);
+    }

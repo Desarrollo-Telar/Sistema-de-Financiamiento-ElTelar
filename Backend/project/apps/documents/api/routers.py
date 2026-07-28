@@ -13,6 +13,7 @@ router.register(r'documento_direccion',views.DocumentAddressViewSet, 'documento_
 router.register(r'documento_cliente',views.DocumentCustomerViewSet, 'documento_cliente')
 router.register(r'otro_documento',views.DocumentOtherViewSet, 'otro_documento')
 router.register(r'documento_garantia',views.DocumentGuaranteeViewSet, 'documento_garantia')
+router.register(r'documento_expediente',views.DocumentExpedienteViewSet, 'documento_expediente')
 
 urlpatterns = [
     path('api/', include(router.urls)),

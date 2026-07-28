@@ -67,15 +67,19 @@
 </style>
 
 <div class="row" style="margin: 1rem 0;">
+    {% if permisos.puede_crear_informacion_laboral_cliente %}
+
     <div class="row text-right">
             
             <a href="{% url 'financial_information:create_working_information' customer_code %}" class="btn_guardar">
                 Registrar Información Laboral
             </a>
         </div>
+    {% endif %}
 
     {% if informacion_laboral %}
         {% for laboral in informacion_laboral %}
+        {% if laboral.customer_id == customer_list %}
         <div class="col-12 table-container">
             <div class="d-flex justify-content-between align-items-center section-title">
                 <span class="fw-bold"><i class="bi bi-briefcase-fill me-2"></i>Información Laboral</span>
@@ -102,7 +106,7 @@
                     </tr>
                     <tr>
                         <th>Salario</th>
-                        <td class="fw-semibold text-success">Q {{ laboral.salary }}</td>
+                        <td class="fw-semibold text-success">Q {{ laboral.f_salary }}</td>
                     </tr>
                     <tr>
                         <th>Horario de Trabajo</th>
@@ -128,7 +132,9 @@
                 </tbody>
             </table>
         </div>
+        {% endif %}
         {% endfor %}
+        
     {% endif %}
 
     {% if otra_informacion_laboral %}

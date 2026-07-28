@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Modelos
-from .models import Document, DocumentCustomer, DocumentAddress, DocumentGuarantee, DocumentOther, DocumentBank, DocumentoCobranza
+from .models import Document, DocumentCustomer, DocumentAddress, DocumentGuarantee, DocumentOther, DocumentBank, DocumentoCobranza, DocumentExpediente
 
 # Formularios
 from .forms import DocumentForms
@@ -16,7 +16,11 @@ class DocumentAdmin(admin.ModelAdmin):
     form = DocumentForms
     list_display = ('document', 'description')
     search_fields = ('document', 'description')
-    
+
+@admin.register(DocumentExpediente)
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = ('expediente', 'archivo')
+    search_fields = ('expediente', 'archivo')
 
 @admin.register(DocumentAddress)
 class DocumentAddressAdmin(admin.ModelAdmin):

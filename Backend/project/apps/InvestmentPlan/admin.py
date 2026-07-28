@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from .models import InvestmentPlan
+from .models import InvestmentPlan, ExpedientePlanNotario
+
+admin.site.register(ExpedientePlanNotario)
 
 # Register your models here.
 @admin.register(InvestmentPlan)

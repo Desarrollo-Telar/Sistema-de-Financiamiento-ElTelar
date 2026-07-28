@@ -1,0 +1,322 @@
+
+:root {
+  --primary: #A4161A;
+  --primary-hover: #660708;
+  --danger: #BA181B;
+  --danger-hover: #E5383B;
+  --bg-card: #FFFFFF;
+  --bg-main: #F5F3F4;
+  --border-color: #D3D3D3;
+  --text-main: #0B090A;
+  --text-secondary: #161A1D;
+  --text-muted: #B1A7A6;
+  --radius: 8px;
+}
+
+.document-manager {
+  font-family: system-ui, -apple-system, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tarjeta principal de la solicitud */
+.solicitud-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(11, 9, 10, 0.05);
+}
+
+.solicitud-header {
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 0.75rem;
+}
+
+.info-item {
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.info-item .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  display: block;
+}
+
+.info-item .value {
+  font-size: 1rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+/* Pestañas de Fiadores */
+.nav-tabs .nav-link {
+  color: var(--text-secondary);
+  border-color: transparent;
+  font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--primary);
+  border-color: var(--border-color) var(--border-color) #FFFFFF;
+  border-top: 3px solid var(--primary);
+  font-weight: 700;
+}
+
+/* Header & Badges */
+.dm-badge {
+  background-color: var(--bg-main);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Cards de Archivos */
+.dm-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dm-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(11, 9, 10, 0.08);
+}
+
+.dm-file-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-main);
+  color: var(--primary);
+}
+
+.dm-file-icon svg {
+  fill: var(--primary);
+}
+
+.dm-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.dm-link:hover {
+  color: var(--primary);
+}
+
+.link-pagare {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.link-pagare:hover {
+  color: var(--primary-hover);
+}
+
+
+
+
+
+
+/* Header & Filtros */
+.dm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dm-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dm-title-group h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-main);
+}
+
+
+
+.dm-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.dm-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dm-search-box input {
+  padding: 8px 12px 8px 36px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  outline: none;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.dm-search-box input:focus {
+  border-color: var(--primary);
+}
+
+.dm-icon-search {
+  position: absolute;
+  left: 10px;
+  width: 18px;
+  height: 18px;
+  fill: var(--text-muted);
+}
+
+/* Botones */
+.dm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.dm-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.dm-btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.dm-btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Layout Grid */
+.dm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+
+
+.dm-card-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.dm-file-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+}
+
+.dm-file-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.dm-file-info {
+  overflow: hidden;
+}
+
+.dm-file-name {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dm-file-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Acciones en Tarjeta */
+.dm-card-footer {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.dm-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.dm-link:hover {
+  text-decoration: underline;
+}
+
+.dm-btn-delete {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.dm-btn-delete:hover {
+  color: var(--danger-hover);
+}
+
+/* Estado Vacío */
+.dm-empty-state {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--text-muted);
+}
+
+.dm-empty-state svg {
+  width: 64px;
+  height: 64px;
+  fill: #cbd5e1;
+  margin-bottom: 12px;
+}

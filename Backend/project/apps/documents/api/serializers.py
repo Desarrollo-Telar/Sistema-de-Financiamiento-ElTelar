@@ -2,8 +2,12 @@
 from rest_framework import serializers
 
 # Models
-from apps.documents.models import Document, DocumentAddress, DocumentCustomer, DocumentGuarantee, DocumentOther
+from apps.documents.models import Document, DocumentAddress, DocumentCustomer, DocumentGuarantee, DocumentOther, DocumentExpediente
 
+class DocumentExpedienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DocumentExpediente
+        fields = '__all__'
 
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:

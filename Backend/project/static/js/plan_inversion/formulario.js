@@ -751,27 +751,43 @@ $("#frmInvestmentPlan").on("submit", async function(e) {
     console.log("Payload enviado en JSON:", payload);
 
     try {
-        // 4. CORRECCIÓN: Invocación correcta pasando el payload estructurado
+        // Invocación pasando el payload estructurado
         const resultado = await savePlanInversion(payload, planId ? planId : null);
-         Swal.fire({
+
+        // 1. Extraer el ID soportando varias fuentes (resultado.id, resultado.data.id o planId existente)
+        const codigo_cliente = resultado?.id || resultado?.data?.id || planId;
+
+        if (!codigo_cliente) {
+            console.error("El backend no devolvió un ID válido:", resultado);
+            Swal.fire({
+                icon: "warning",
+                title: "Atención",
+                text: "El registro se guardó pero no se pudo obtener el código para la redirección."
+            });
+            return;
+        }
+
+        Swal.fire({
             icon: "success",
             title: "Registro Completado",
-         
             timer: 500,
             showConfirmButton: false,
         });
-        let codigo_cliente = document.getElementById('codigo_cliente').value;
-        setTimeout(() => { window.location.href = `/customers/detail/${codigo_cliente}/`; }, 1000);
-        // Aquí puedes redirigir, p. ej.: window.location.href = '/planes/';
+
+        // 2. Redirección usando el ID verificado
+        setTimeout(() => { 
+            window.location.href = `/plan_inversion/gestion_de_expedientes_notarios/${codigo_cliente}/`; 
+        }, 1000);
+
     } catch (err) {
         Swal.fire({
             icon: "error",
             title: "Error",
-            text: err,
+            text: err.response?.data?.message || err.message || "Error al procesar la solicitud",
             timer: 7000,
             showConfirmButton: false,
         });
-        console.error(e);
+        console.error("Error en submit:", err);
     }
 });
 
