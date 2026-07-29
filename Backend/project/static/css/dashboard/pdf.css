@@ -1,0 +1,113 @@
+  
+
+  
+  /* ===============================
+   ESTILOS OPTIMIZADOS PARA PDF (LETTER)
+=================================*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal ajustado estrictamente a 190mm de ancho */
+#reporte-pdf {
+  width: 190mm;
+  margin: 0 auto;
+  padding: 0;
+  background: #ffffff;
+}
+
+.no-print {
+  margin: 15px;
+}
+
+/* Reemplazo de flex/grid por tabla nativa para compatibilidad con html2canvas */
+.grid-table {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* Evita que las columnas se estiren fuera del límite */
+  margin-bottom: 10px;
+}
+
+.grid-row {
+  display: table-row;
+}
+
+.grid-col {
+  display: table-cell;
+  width: 50%;
+  vertical-align: top;
+  padding: 4px;
+}
+
+/* Tarjetas compactas */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 8px;
+  page-break-inside: avoid; /* Evita que una tarjeta se corte a la mitad entre páginas */
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: 8.5pt;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-bottom: 6px;
+  padding-bottom: 3px;
+  border-bottom: 2px solid #3b82f6;
+}
+
+/* Reducción de altura del contenedor de gráficas para evitar desbordes */
+.chart-container {
+  text-align: center;
+  position: relative;
+  height: 140px; /* Reducido de 180px a 140px para mejor encuadre */
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+/* Tablas internas */
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 7pt;
+  margin-top: 4px;
+  table-layout: fixed;
+  word-wrap: break-word; /* Forzar ajuste de texto largo */
+}
+
+table.data-table th {
+  background-color: #1e3a8a;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: left;
+  padding: 3px 5px;
+}
+
+table.data-table td {
+  padding: 3px 5px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  white-space: normal;
+}
+
+table.data-table tr:nth-child(even) td {
+  background-color: #f8fafc;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.page-break {
+  page-break-after: always;
+}
+

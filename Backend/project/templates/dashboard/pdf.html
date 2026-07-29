@@ -1,0 +1,223 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="{%static 'css/dashboard/pdf.css'%}">
+
+<!-- Chart.js para renderizar los gráficos -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  
+  <div class="no-print">
+    <button onclick="descargarPDF()" style="padding: 10px 20px; background: #3b82f6; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      📥 Descargar PDF Manualmente
+    </button>
+  </div>
+  <div id="reporte-pdf">
+    <h2 style="text-align: center; color: #1e3a8a; margin-top: 0;">📊 Reporte Financiero - El Telar</h2>
+
+    <div class="grid-table">
+    
+    <!-- FILA 1 -->
+    <div class="grid-row">
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Registro de Clientes por Mes</div>
+          <div class="chart-container"><canvas id="clientesMesChart"></canvas></div>
+          <table class="data-table" id="tablaClientesMes">
+            <thead><tr><th>Mes</th><th class="text-right">Total</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Registro de Créditos por Mes</div>
+          <div class="chart-container"><canvas id="creditosMesChart"></canvas></div>
+          <table class="data-table" id="tablaCreditosMes">
+            <thead><tr><th>Mes</th><th class="text-right">Total</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 2 -->
+    <div class="grid-row">
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Registro de Créditos por Asesor</div>
+          <div class="chart-container"><canvas id="clientesAsesorChart"></canvas></div>
+          <table class="data-table" id="tablaClientesAsesor">
+            <thead><tr><th>Mes</th><th>Asesor</th><th class="text-right">Total</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Tipos de Créditos Otorgados</div>
+          <div class="chart-container"><canvas id="tiposCreditoChart"></canvas></div>
+          <table class="data-table" id="tablaTiposCredito">
+            <thead><tr><th>Tipo</th><th class="text-right">Cantidad</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 3 -->
+    <div class="grid-row">
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Cantidad de Desembolsos Aplicados Mensual</div>
+          <div class="chart-container"><canvas id="desembolsosChart"></canvas></div>
+          <table class="data-table" id="tablaDesembolsos">
+            <thead><tr><th>Mes</th><th class="text-right">Monto</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Recuperación Mensual</div>
+          <div class="chart-container"><canvas id="recuperacionChart"></canvas></div>
+          <table class="data-table" id="tablaRecuperacion">
+            <thead><tr><th>Mes</th><th class="text-right">Capital</th><th class="text-right">Interés</th><th class="text-right">Mora</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 4 -->
+    <div class="grid-row">
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Gastos por Código</div>
+          <div class="chart-container"><canvas id="egresosChart"></canvas></div>
+          <table class="data-table" id="tablaEgresos">
+            <thead><tr><th>Mes</th><th>Código</th><th class="text-right">Monto</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Saldos Bancarios</div>
+          <div class="chart-container"><canvas id="bancosChart"></canvas></div>
+          <table class="data-table" id="tablaBancos">
+            <thead><tr><th>Mes</th><th class="text-right">Ingreso</th><th class="text-right">Egreso</th><th class="text-right">Saldo</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 5 -->
+    <div class="grid-row">
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Estado de Acreedores por Mes</div>
+          <div class="chart-container"><canvas id="acreedoresChart"></canvas></div>
+          <table class="data-table" id="tablaAcreedores">
+            <thead><tr><th>Mes</th><th class="text-right">Pagos</th><th class="text-right">Mora</th><th class="text-right">Interés</th><th class="text-right">Capital</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Crecimiento de Créditos con Morosidad</div>
+          <div class="chart-container"><canvas id="morosidadChart"></canvas></div>
+          <table class="data-table" id="tablaMorosidad">
+            <thead><tr><th>Mes</th><th class="text-right">Clientes en Mora</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 6 -->
+    <div class="grid-row">
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Formas de Pago</div>
+          <div class="chart-container"><canvas id="formasPagoChart"></canvas></div>
+          <table class="data-table" id="tablaFormasPago">
+            <thead><tr><th>Forma</th><th class="text-right">Cantidad</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Cartera por Asesor</div>
+          <div class="chart-container"><canvas id="carteraAsesorChart"></canvas></div>
+          <table class="data-table" id="tablaCarteraAsesor">
+            <thead><tr><th>Asesor</th><th class="text-right">Saldo Vigente</th><th class="text-right">Saldo Atraso</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 7 -->
+    <div class="grid-row">
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Casos de Éxito por Asesor</div>
+          <div class="chart-container"><canvas id="casosExitoChart"></canvas></div>
+          <table class="data-table" id="tablaCasosExito">
+            <thead><tr><th>Asesor</th><th class="text-right">Otorgados</th><th class="text-right">Cancelados</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Casos Demandados por Asesor</div>
+          <div class="chart-container"><canvas id="casosDemandaChart"></canvas></div>
+          <table class="data-table" id="tablaCasosDemanda">
+            <thead><tr><th>Asesor</th><th class="text-right">Otorgados</th><th class="text-right">Demandados</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILA 8 -->
+    <div class="grid-row">
+      <div class="grid-col">
+        <div class="card">
+          <div class="card-title">Casos de Atraso por Asesor</div>
+          <div class="chart-container"><canvas id="casosAtrasadoChart"></canvas></div>
+          <table class="data-table" id="tablaCasosAtrasado">
+            <thead><tr><th>Asesor</th><th class="text-right">Otorgados</th><th class="text-right">Atrasados</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="grid-col"></div> <!-- Columna vacía para balancear el grid -->
+    </div>
+
+  </div>
+
+  </div>
+  <div id="messages"></div>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module" src="{% static 'js/dashboard/grafica_pdf.js' %}"></script>
+</body>
+</html>

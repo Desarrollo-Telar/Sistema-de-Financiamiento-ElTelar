@@ -954,6 +954,29 @@ async function cartera_asesor() {
    INICIALIZACIÓN
 =================================*/
 
+
+
+
+
+/* ===============================
+   EXPORTACIÓN A PDF (FRONTEND)
+=================================*/
+function descargarPDF() {
+  const elemento = document.getElementById('reporte-pdf');
+  
+  // Opciones de configuración para html2pdf
+  const opciones = {
+    margin:       [10, 10, 10, 10], // Margen en mm [arriba, izquierda, abajo, derecha]
+    filename:     `dashboard_${new Date().toISOString().slice(0,10)}.pdf`,
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2, useCORS: true, logging: false }, // Scale 2 asegura nitidez en canvas
+    jsPDF:        { unit: 'mm', format: 'letter', orientation: 'portrait' }
+  };
+
+  // Convertir a PDF y descargar
+  html2pdf().set(opciones).from(elemento).save();
+}
+
 async function loadAllData() {
   showMessage('Cargando KPIs...');
   await Promise.all([
@@ -974,6 +997,11 @@ async function loadAllData() {
     cartera_asesor()
   ]);
   showMessage('Dashboard actualizado ✅');
+
+  // Pequeña pausa (500ms) para garantizar el renderizado completo de las animaciones de Chart.js
+  setTimeout(() => {
+     descargarPDF();
+  }, 500);
 }
 
 window.onload = loadAllData;

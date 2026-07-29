@@ -29,7 +29,7 @@ class UserViewSet(viewsets.ModelViewSet):
         sucursal = getattr(self.request, 'sucursal_actual', None)
         search_term = self.request.query_params.get('term', '')
 
-        #queryset = queryset.filter(rol__role_name ='Notario')
+        queryset = queryset.filter(rol__role_name ='Notario')
        
         if search_term:
             queryset = queryset.filter(

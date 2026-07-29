@@ -21,6 +21,8 @@ from project.decorador import usuario_activo
 from django.utils.decorators import method_decorator
 from django.template.loader import render_to_string
 
+from datetime  import datetime
+
 def generar_pdf(request,id):
     # Obtener la plantilla HTML
     template_path = 'customer/forms/forms_ive_pdf.html'  # Ruta a tu plantilla HTML
@@ -51,3 +53,10 @@ def generar_pdf(request,id):
     HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(response)
 
     return response
+
+def generar_pdf_dash(request):
+    context = {
+        'title': 'EL TELAR',
+    }
+    # Retornamos directamente el render HTML del navegador
+    return render(request, 'dashboard/pdf.html', context)
