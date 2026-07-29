@@ -39,12 +39,7 @@ body {
   display: table-row;
 }
 
-.grid-col {
-  display: table-cell;
-  width: 50%;
-  vertical-align: top;
-  padding: 4px;
-}
+
 
 /* Tarjetas compactas */
 .card {
@@ -67,11 +62,9 @@ body {
 
 /* Reducción de altura del contenedor de gráficas para evitar desbordes */
 .chart-container {
-  text-align: center;
   position: relative;
-  height: 140px; /* Reducido de 180px a 140px para mejor encuadre */
+  height: 350px; /* Altura fija recomendada para lectura cómoda */
   width: 100%;
-  margin-bottom: 6px;
 }
 
 /* Tablas internas */
@@ -111,3 +104,16 @@ table.data-table tr:nth-child(even) td {
   page-break-after: always;
 }
 
+/* Cambia el contenedor general a 1 sola columna */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr; /* <-- 1 sola columna de ancho completo */
+  gap: 20px; /* Espacio vertical entre cada gráfica */
+}
+
+/* Asegúrate de que los elementos hijos ocupen todo el ancho */
+.grid-col {
+  width: 100% !important;
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}

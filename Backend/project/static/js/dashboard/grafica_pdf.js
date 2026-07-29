@@ -123,8 +123,7 @@ async function clientesPorMes() {
     }
   });
 
-  document.getElementById('totalClientes').textContent =
-    values.reduce((a, b) => a + b, 0).toLocaleString();
+ 
     
   // Corrección: Mapeo correcto fila por fila (Mes, Cantidad)
   renderTableData('tablaClientesMes', dataProcesada.map(i => [i.mesFormateado, i.total.toLocaleString()]));
@@ -175,35 +174,61 @@ async function creditosPorMes() {
 }
 
 async function creditosPorAsesor() {
-  const data = await fetchData('creditos-por-asesor-mes/');
-  if (!data.length) return;
+  const data = await fetchData('creditos-por-asesor-mes/pdf/');
+ 
+  if (!data || !data.length) return;
 
-  const dataProcesada = data.map(i => {
-    const fecha = new Date(i.mes);
+  const mesesFallback = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+  const lookupMap = new Map();
+  const mesesSet = new Set();
+  const asesoresSet = new Set();
+
+  const dataProcesada = data.map(item => {
+    // Parseo seguro de la fecha
+    const fecha = new Date(item.mes);
+    const mesIdx = isNaN(fecha.getTime()) ? 0 : fecha.getMonth();
+    const anio = isNaN(fecha.getTime()) ? '' : fecha.getFullYear();
+    
+    const nombreMes = (typeof labels_mes !== 'undefined' && labels_mes[mesIdx]) 
+      ? labels_mes[mesIdx] 
+      : mesesFallback[mesIdx];
+      
+    const mesLabel = `${nombreMes} ${anio}`.trim();
+
+    // Soporte tanto para 'item.asesor' como para los campos de Django por separado
+    const nombreRaw = item.asesor || `${item.asesor_de_credito__nombre || ''} ${item.asesor_de_credito__apellido || ''}`;
+    const asesorNombre = nombreRaw.trim() || 'SIN ASESOR';
+
+    mesesSet.add(mesLabel);
+    asesoresSet.add(asesorNombre);
+
+    lookupMap.set(`${mesLabel}_${asesorNombre}`, item.total);
+
     return {
-      ...i,
-      mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`,
-      nombreCompleto: `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim() || 'SIN ASESOR',
-      timestamp: fecha.getTime()
+      mesFormateado: mesLabel,
+      nombreCompleto: asesorNombre,
+      total: item.total
     };
-  }).sort((a, b) => a.timestamp - b.timestamp);
+  });
 
-  const labels = [...new Set(dataProcesada.map(i => i.mesFormateado))];
-  const asesores = [...new Set(dataProcesada.map(i => i.nombreCompleto))];
+  const labels = Array.from(mesesSet);
+  const asesores = Array.from(asesoresSet);
 
-  const datasets = asesores.map((asesor, idx) => ({
-    label: asesor,
-    data: labels.map(mesLabel => {
-      const registro = dataProcesada.find(
-        i => i.mesFormateado === mesLabel && i.nombreCompleto === asesor
-      );
-      return registro ? registro.total : 0;
-    }),
-    backgroundColor: colorPalette[idx % colorPalette.length] + 'CC',
-    borderColor: colorPalette[idx % colorPalette.length],
-    borderWidth: 1,
-    borderRadius: 2
-  }));
+  const datasets = asesores.map((asesor, idx) => {
+    const color = (typeof colorPalette !== 'undefined' && colorPalette[idx % colorPalette.length]) 
+      ? colorPalette[idx % colorPalette.length] 
+      : '#3b82f6';
+
+    return {
+      label: asesor,
+      data: labels.map(mesLabel => lookupMap.get(`${mesLabel}_${asesor}`) || 0),
+      backgroundColor: color + 'CC',
+      borderColor: color,
+      borderWidth: 1,
+      borderRadius: 2
+    };
+  });
 
   createChart('clientesAsesorChart', {
     type: 'bar', 
@@ -221,8 +246,7 @@ async function creditosPorAsesor() {
     }
   });
 
-  // Renderizado de tabla estructurada por asesor y mes
-  renderTableData('tablaCreditosAsesor', dataProcesada.map(i => [
+  renderTableData('tablaClientesAsesor', dataProcesada.map(i => [
     i.mesFormateado,
     i.nombreCompleto,
     i.total
@@ -323,8 +347,7 @@ async function desembolsos() {
     }
   });
 
-  document.getElementById('totalDesembolsos').textContent =
-    formatCurrency(values.reduce((a, b) => a + b, 0));
+ 
 
   // Corrección: Se agregó renderTableData que faltaba
   renderTableData('tablaDesembolsos', dataProcesada.map(i => [i.mesFormateado, formatCurrency(i.total)]));
@@ -385,7 +408,7 @@ async function recuperacion() {
   });
 
   const granTotal = dataProcesada.reduce((a, b) => a + b.capital + b.interes + b.mora, 0);
-  document.getElementById('totalRecuperacion').textContent = formatCurrency(granTotal);
+  
 
   renderTableData('tablaRecuperacion', dataProcesada.map(i => [
     i.mesFormateado, 
@@ -674,8 +697,7 @@ async function morosidad() {
     }
   });
 
-  document.getElementById('totalMorosidad').textContent =
-    values.reduce((a, b) => a + b, 0).toLocaleString();
+  
 
   renderTableData('tablaMorosidad', dataProcesada.map(i => [i.mesFormateado, i.cantidad]));
 }

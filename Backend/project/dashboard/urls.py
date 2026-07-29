@@ -29,6 +29,8 @@ urlpatterns = [
     path('casos-al-dia-asesor/', views.CasosAlDiaAPIView.as_view(), name='casos-al-dia-asesor'),
     path('casos-exito-asesor/power-bi/', views.DetalleCasosExitoAPIView.as_view(), name='casos-exito-asesor-power-bi'), # POWER BI
     path('creditos-por-asesor-mes/', views.CreditosPorAsesorMesAPIView.as_view(), name='creditos-asesor-por-mes'),
+    path('creditos-por-asesor-mes/pdf/', views.CreditosPorAsesorMesPDFAPIView.as_view(), name='creditos-asesor-por-mes'),
+    
 
     # CONTABLE
     path('desembolsos-por-mes/', views.DesembolsosPorMesAPIView.as_view(), name='desembolsos-por-mes'),

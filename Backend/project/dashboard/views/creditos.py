@@ -10,7 +10,9 @@ from rest_framework import status, permissions
 
 # Tiempo
 from datetime import datetime
-
+from django.db.models import Count, Value, Q
+from django.db.models.functions import TruncMonth, Concat
+from django.utils import timezone
 
 # Modelo
 from apps.financings.models import Credit
@@ -371,4 +373,37 @@ class CreditosPorAsesorMesAPIView(APIView):
             .annotate(total=Count('id'))
             .order_by('-mes')
         )
+        return Response(data)
+
+class CreditosPorAsesorMesPDFAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        sucursal = getattr(request, 'sucursal_actual', None)
+        filters = Q(asesor_de_credito__isnull=False)
+
+        if sucursal:
+            filters &= Q(sucursal=sucursal)
+
+        # Usar timezone.now() en lugar de datetime.now() para Django
+        anio_actual = timezone.now().year
+        filters &= Q(creation_date__year=anio_actual)
+
+        data = (
+            Credit.objects
+            .filter(filters)
+            .annotate(
+                mes=TruncMonth('creation_date'),
+                # Concatenamos nombre y apellido directamente en la BD
+                asesor=Concat(
+                    'asesor_de_credito__nombre',
+                    Value(' '),
+                    'asesor_de_credito__apellido'
+                )
+            )
+            .values('mes', 'asesor')
+            .annotate(total=Count('id'))
+            .order_by('mes')  # Orden ascendente facilita la gráfica
+        )
+
         return Response(data)
