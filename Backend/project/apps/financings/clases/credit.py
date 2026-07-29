@@ -3,7 +3,7 @@ from dateutil.relativedelta import relativedelta
 import sys
 import os
 import json
-
+from decimal import Decimal
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 from apps.customers.clases.customer import Customer
 from apps.InvestmentPlan.clases.investmentPlan import InvestmentPlan
@@ -50,7 +50,7 @@ class Credit:
         tasa = float(self.__tasa_interes)
 
         if tasa > 1:
-            return (self.__tasa_interes )/100
+            return Decimal(str(self.__tasa_interes)) / Decimal(100)
         return (self.__tasa_interes)
 
     @property

@@ -59,6 +59,7 @@ class PaymentPlan:
     def calculo_intereses(self, dia=None, monto=None):
         if monto is None:
             monto = self.monto_inicial
+        
 
         # Si NO usas días, ignóralo
         intereses = Decimal(monto) * Decimal(self.interes)
