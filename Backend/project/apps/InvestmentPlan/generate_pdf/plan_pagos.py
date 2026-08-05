@@ -260,11 +260,13 @@ def generar_estado_cuenta_word(doc = None, id = None):
     set_table_border(tabla_dep)
 
     # Números de reporte:
+    telefono1 = sucursal.numero_telefono if sucursal.numero_telefono else " "
+    telefono2 = sucursal.otro_numero_telefono if sucursal.otro_numero_telefono else " "
     
     table_rep = doc.add_table(rows=1, cols=2)
     r = table_rep.rows[0].cells
     r[0].text = "Reportar pagos a los números:"
-    r[1].text = f"{sucursal.numero_telefono}\n{sucursal.otro_numero_telefono}"
+    r[1].text = f"{telefono1}\n{telefono2}"
     set_table_border(table_rep)
     doc.add_paragraph("")
     
