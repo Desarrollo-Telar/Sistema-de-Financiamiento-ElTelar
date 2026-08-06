@@ -26,18 +26,18 @@
           {% endif %}
 
           {# Números de página #}
-          {% for num in page_obj.paginator.page_range %}
-            {% if num == page_obj.number %}
+          {% for num in page_obj.custom_page_range %}
+            {% if num == page_obj.paginator.ELLIPSIS %}
+              <li class="page-item disabled">
+                <span class="page-link">&hellip;</span>
+              </li>
+            {% elif num == page_obj.number %}
               <li class="page-item active" aria-current="page">
-                <a class="page-link" style="background-color:#fea3a5; color: #46090a; border: 1px solid #fea3a5;">{{ num }}</a>
+                <span class="page-link" style="background-color:#fea3a5; color: #46090a; border-color: #fea3a5;">{{ num }}</span>
               </li>
             {% else %}
               <li class="page-item">
-                {% if query %}
-                <a class="page-link" href="?q={{ query }}&?page={{ num }}" style="color: black;">{{ num }}</a>
-                {% else %}
-                <a class="page-link" href="?page={{ num }}" style="color: black;">{{ num }}</a>
-                {% endif %}
+                <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}page={{ num }}" style="color: black;">{{ num }}</a>
               </li>
             {% endif %}
           {% endfor %}
