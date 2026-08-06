@@ -29,17 +29,12 @@ class DocumentoNotificacionClientesList(ListView):
     model = DocumentoNotificacionCliente
     template_name = 'customer/boletas_clientes/list.html'
     paginate_by = 50
- 
+
     def get_queryset(self):
         sucursal = self.request.session['sucursal_id']
         try:
-            
-            # Asignar la consulta a una variable local
             query = self.query()
-
-            # Crear una lista para almacenar los filtros
             filters = Q()
-            
 
             if query:
                 try:
@@ -48,46 +43,53 @@ class DocumentoNotificacionClientesList(ListView):
                     fecha_fin = datetime.combine(fecha.date(), datetime.max.time())
                     filters |= Q(created_at__range=(fecha_inicio, fecha_fin))
                 except ValueError:
-                    pass  # No es fecha válida, continúa con los otros filtros
-                filters |= Q(status__icontains = query)
-                filters |= Q(cliente__first_name__icontains = query)             
-                filters |= Q(cliente__last_name__icontains = query)
-                filters |= Q(cliente__customer_code__icontains = query)
-                filters |= Q(cuota__credit_id__codigo_credito__icontains = query)
+                    pass
 
+                filters |= Q(status__icontains=query)
+                filters |= Q(cliente__first_name__icontains=query)
+                filters |= Q(cliente__last_name__icontains=query)
+                filters |= Q(cliente__customer_code__icontains=query)
+                filters |= Q(cuota__credit_id__codigo_credito__icontains=query)
 
             return DocumentoNotificacionCliente.objects.filter(filters, sucursal=sucursal).order_by('-fecha_actualizacion')
-        
+
         except Exception as e:
             print(f'error: {e}')
-            
-            return DocumentoNotificacionCliente.objects.all().order_by('-fecha_actualizacion').filter(sucursal=sucursal)
-    
-    
+            return DocumentoNotificacionCliente.objects.filter(sucursal=sucursal).order_by('-fecha_actualizacion')
+
     def query(self):
         return self.request.GET.get('q')
-    
+
     @method_decorator([permiso_requerido('puede_ver_registro_boletas')])
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        if not (context['object_list']):
-            messages.error(self.request,'No se encontrado ningun dato')
+        # 1. Agregamos el rango elidido a page_obj para la plantilla de paginación
+        if context.get('is_paginated'):
+            page_obj = context['page_obj']
+            page_obj.custom_page_range = page_obj.paginator.get_elided_page_range(
+                page_obj.number, on_each_side=2, on_ends=1
+            )
+
+        if not context['object_list']:
+            messages.error(self.request, 'No se ha encontrado ningún dato')
 
         if self.query():
             context['query'] = self.query()
-            
-            
-        consulta = self.query()
-        if consulta is None:
-            consulta = ''
 
-        
+        consulta = self.query() or ''
+
         context['title'] = f'Boletas Subidas Por Clientes | {consulta}'
-        context['count'] = context['object_list'].count()
+        
+        # 2. Conteo del total general de registros (no solo los 50 de la página actual)
+        if context.get('paginator'):
+            context['count'] = context['paginator'].count
+        else:
+            context['count'] = len(context['object_list'])
+
         context['posicion'] = self.query() if self.query() else ''
         context['permisos'] = recorrer_los_permisos_usuario(self.request)
         context['usuario'] = self.request.user

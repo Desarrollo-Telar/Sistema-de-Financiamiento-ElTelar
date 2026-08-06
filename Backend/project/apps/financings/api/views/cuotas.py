@@ -154,7 +154,7 @@ class PaymentPlanUltimoViewSet(viewsets.ModelViewSet):
         search_term = self.request.query_params.get('term', '')  # Obtener el parámetro 'term'
 
         if search_term:
-            queryset = PaymentPlan.filter(
+            queryset = PaymentPlan.objects.filter(
                 Q(id__icontains=search_term) 
             ).first()
 

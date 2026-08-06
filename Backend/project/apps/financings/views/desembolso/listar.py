@@ -112,8 +112,21 @@ class DesembolsoList(ListView):
         context = super().get_context_data(**kwargs)
         dia = datetime.now().date()
 
-        if not (context['object_list']):
-            messages.error(self.request,'No se encontrado ningun dato')
+        # 1. Agregamos el rango elidido a page_obj para la plantilla de paginación
+        if context.get('is_paginated'):
+            page_obj = context['page_obj']
+            page_obj.custom_page_range = page_obj.paginator.get_elided_page_range(
+                page_obj.number, on_each_side=2, on_ends=1
+            )
+
+        if not context['object_list']:
+            messages.error(self.request, 'No se ha encontrado ningún dato')
+        # 2. Conteo correcto del total general de registros (no solo los 75 de la página)
+        if context.get('paginator'):
+            context['count'] = context['paginator'].count
+        else:
+            context['count'] = len(context['object_list']) 
+      
 
         
         context['title'] = f'Consulta de Registro Desembolsos de Creditos.'

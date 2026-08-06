@@ -27,21 +27,15 @@ from django.db.models import Q
 
 class RecibosListView(ListView):
     template_name = 'financings/recibos/list.html'
-    model=Recibo
+    model = Recibo
     paginate_by = 75
-    
-    
 
     def get_queryset(self):
         try:
             sucursal = self.request.session['sucursal_id']
-
-            # Asignar la consulta a una variable local
             query = self.query()
 
-            # Crear una lista para almacenar los filtros
             filters = Q()
-            # Filtro especial para Secretari@
             if self.request.user.rol.role_name == 'Secretari@':
                 filters &= Q(pago__tipo_pago='CREDITO')
 
@@ -50,50 +44,53 @@ class RecibosListView(ListView):
                     fecha = datetime.strptime(query, '%Y-%m-%d')
                     fecha_inicio = datetime.combine(fecha.date(), datetime.min.time())
                     fecha_fin = datetime.combine(fecha.date(), datetime.max.time())
-
                     filters |= Q(fecha__range=(fecha_inicio, fecha_fin))
                 except ValueError:
-                    pass  # No es fecha válida, continúa con los otros filtros
+                    pass
 
-                filters |= Q(recibo__icontains = query)
-                filters |= Q(cliente__first_name__icontains = query)
-                filters |= Q(cliente__last_name__icontains = query)
-                filters |= Q(pago__numero_referencia__icontains = query)
-
+                filters |= Q(recibo__icontains=query)
+                filters |= Q(cliente__first_name__icontains=query)
+                filters |= Q(cliente__last_name__icontains=query)
+                filters |= Q(pago__numero_referencia__icontains=query)
 
             return Recibo.objects.filter(filters, sucursal=sucursal).order_by('-recibo')
-        
+
         except Exception as e:
             print(f'error: {e}')
-            
             return Recibo.objects.none()
-    
+
     def query(self):
         return self.request.GET.get('q')
-    
 
-
-    
-    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        if not (context['object_list']):
-            messages.error(self.request,'No se encontrado ningun dato')
+        # 1. Paginación elidida (recortada con puntos suspensivos)
+        if context.get('is_paginated'):
+            page_obj = context['page_obj']
+            page_obj.custom_page_range = page_obj.paginator.get_elided_page_range(
+                page_obj.number, on_each_side=2, on_ends=1
+            )
+
+        if not context['object_list']:
+            messages.error(self.request, 'No se ha encontrado ningún dato')
 
         if self.query():
             context['query'] = self.query()
-            
-            
-        consulta = self.query()
-        if consulta is None:
-            consulta = ''
 
-        
+        consulta = self.query() or ''
+
         context['title'] = f'Recibos | {consulta}'
-        context['count'] = context['object_list'].count()
+        
+        # 2. Conteo correcto del total general de registros (no solo los 75 de la página)
+        if context.get('paginator'):
+            context['count'] = context['paginator'].count
+        else:
+            context['count'] = len(context['object_list'])
+
         context['posicion'] = self.query() if self.query() else ''
         context['permisos'] = recorrer_los_permisos_usuario(self.request)
+        
         return context
     
 

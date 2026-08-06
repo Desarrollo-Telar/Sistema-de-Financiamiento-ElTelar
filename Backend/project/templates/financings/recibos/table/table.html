@@ -1,56 +1,51 @@
 {% load static %}
-<div class="row">
-    <div class="col-12 ">
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">No. Recibo</th>
-                        <th scope="col">Fecha de Recibo</th>
-                        <th scope="col">Para</th>                        
-                        <th scope="col">Total</th>
-                        <th scope="col">Descargar Recibo</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for data in object_list %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>
-                            <a class="row-link" href="{% url 'financings:recibo' data.pago.id %}">
-                                {{ data.recibo }}
-                            </a>
-                        </td>
-                        <td>
-                            <a class="row-link" href="{% url 'financings:recibo' data.pago.id %}">
-                                {{ data.fecha }}
-                            </a>
-                        </td>
-                        
-                        <td>
-                            <a class="row-link" href="{% url 'financings:recibo' data.pago.id %}">
-                                {{ data.recibo_para }} 
-                            </a>
-                        </td>
-                        
-                        <td>
-                            <a class="row-link" href="{% url 'financings:recibo' data.pago.id %}">
-                                Q{{ data.Ftotal }}
-                            </a>
-                        </td>
-                        <td>
-                            <a class="row-link" href="{% url 'financings:recibo_pdf' data.pago.id %}">
-                                <i class="fas fa-file-pdf"></i>
-                            </a>
-                        </td>
-                        
-                     
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="table-responsive">
+    <table class="glass-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>No. Recibo</th>
+                <th>Fecha de Recibo</th>
+                <th>Para</th>
+                <th>Total</th>
+                <th class="text-end">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in object_list %}
+            <tr onclick="window.location='{% url 'financings:recibo' data.pago.id %}';">
+                <td class="fw-bold">{{ forloop.counter }}</td>
+                <td>
+                    <span class="fw-semibold" style="color: var(--color-dark);">
+                        {{ data.recibo }}
+                    </span>
+                </td>
+                <td>{{ data.fecha }}</td>
+                <td>
+                    <span class="fw-medium" style="color: var(--color-dark);">
+                        {{ data.recibo_para }}
+                    </span>
+                </td>
+                <td class="fw-bold" style="color: var(--color-wine);">
+                    Q{{ data.Ftotal }}
+                </td>
+                <td class="text-end">
+                    <a href="{% url 'financings:recibo_pdf' data.pago.id %}" 
+                       class="btn-glass-pdf" 
+                       title="Descargar PDF"
+                       onclick="event.stopPropagation();">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>PDF</span>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center py-4 text-muted">
+                    No se encontraron recibos registrados.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>

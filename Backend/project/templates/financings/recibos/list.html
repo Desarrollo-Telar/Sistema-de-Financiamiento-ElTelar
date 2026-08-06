@@ -3,32 +3,41 @@
 
 {% block css %}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/financings/payment/list.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container my-4 p-4 bg-white rounded shadow-sm">
+<div class="container py-4">
 
-    <div class="row mb-4">
+    <!-- Sección de presentación en tarjeta Glass -->
+    <div class="glass-card mb-4">
         {% include 'financings/recibos/snippets/presentation.html' %}
+    </div>
 
+    <!-- Barra de búsqueda -->
+    <div class="glass-card mb-4 py-3">
+        <div class="row align-items-center g-3">
+            <div class="col-12 col-md-8 col-lg-6">
+                {% include 'financings/recibos/snippets/search.html' with query=query %}
+            </div>
+        </div>
     </div>
-    <div class="row align-items-center mb-4 gx-3 gy-2">
-        <div class="col-12 col-md-6 col-lg-5">
-        {% include 'financings/recibos/snippets/search.html' with query=query %}
-      </div>
+
+    <!-- Tabla de Recibos -->
+    <div class="row mb-4">
+        <div class="col-12">
+            {% include 'financings/recibos/table/table.html' %}
+        </div>
     </div>
-    <div class="row  mb-4">
-        {% include 'financings/recibos/table/table.html' %}
-    </div>
+
     <!-- Paginación -->
     {% if page_obj %}
     <div class="row">
-
-        {% include 'snippets/pages.html' %}
-
+        <div class="col-12">
+            {% include 'snippets/pages.html' %}
+        </div>
     </div>
     {% endif %}
 
 </div>
-
 {% endblock %}

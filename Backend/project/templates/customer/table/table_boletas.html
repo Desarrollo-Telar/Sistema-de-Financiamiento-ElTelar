@@ -1,65 +1,64 @@
 {% load static %}
-<div class="row">
-    <div class="col-12" style="text-align: center;">
-        <div class="table-responsive mb-4">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Código Credito</th>
-                        <th scope="col">Nombre del Cliente</th>
-                        <th scope="col">Cuota del Mes</th>
-                        <th scope="col">Fecha de Registro</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for boleta in object_list %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>
-                            <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
-                                {{ boleta.cuota.credit_id.codigo_credito }}
-                            </a>
-                        </td>
-                        <td>
-                            <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
-                                {{ boleta.cliente }}
-                                <br>
-                                NIT: {{boleta.cliente.number_nit}}
-                            </a>
-                        </td>
-                        <td>
-                            <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
-                                {{ boleta.cuota.mes}}
-                            </a>
-                        </td>
-                        <td>
-                            <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
-                                {{ boleta.fecha_de_emision_boleta }}
-                            </a>
-                        </td>
-                        <td>
-                            <a class="row-link" href="{% url 'actividades:detalle_boleta_cliente' boleta.id%}">
-                                {% if boleta.status is None %}
-                                Pendiente de Validar
-                                {% else %}
-                                
-                                    {% if boleta.status %}
-                                    Validado
-                                    {% else %}
-                                    Rechazado
-                                    {% endif %}
-
-
-                                {% endif %}
-                            </a>
-                        </td>
-
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="table-responsive">
+    <table class="glass-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Código Crédito</th>
+                <th>Cliente</th>
+                <th>Cuota del Mes</th>
+                <th>Fecha de Registro</th>
+                <th class="text-center">Estatus</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for boleta in object_list %}
+            <tr onclick="window.location='{% url 'actividades:detalle_boleta_cliente' boleta.id %}';">
+                <td class="fw-bold">{{ forloop.counter }}</td>
+                <td>
+                    <span class="fw-semibold" style="color: var(--color-dark);">
+                        {{ boleta.cuota.credit_id.codigo_credito }}
+                    </span>
+                </td>
+                <td>
+                    <div class="fw-medium" style="color: var(--color-dark);">{{ boleta.cliente }}</div>
+                    <small class="text-secondary">NIT: {{ boleta.cliente.number_nit }}</small>
+                </td>
+                <td>{{ boleta.cuota.mes }}</td>
+                <td>{{ boleta.fecha_de_emision_boleta }}</td>
+                <td class="text-center">
+                    {% if boleta.status is None %}
+                        <span class="badge-status badge-pendiente">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+                                <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.122.341zm2.41 1.287a7 7 0 0 0-.832-.556l.432-.901c.424.203.83.441 1.214.712zm2.14 2.128a7 7 0 0 0-.556-.832l.901-.432c.271.384.509.79.712 1.214zm.82 2.656a7 7 0 0 0-.299-.985l.976-.219c.141.362.255.739.341 1.122zM8 1a7 7 0 1 0 7 7h-1a6 6 0 1 1-6-6s0 0 0 0z"/>
+                                <path d="M8.5 4.5a.5.5 0 0 0-1 0v3.793L5.354 10.44a.5.5 0 0 0 .708.708l2.5-2.5A.5.5 0 0 0 8.5 8z"/>
+                            </svg>
+                            Pendiente de Validar
+                        </span>
+                    {% elif boleta.status %}
+                        <span class="badge-status badge-completado">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            Validado
+                        </span>
+                    {% else %}
+                        <span class="badge-status badge-rechazado">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                            </svg>
+                            Rechazado
+                        </span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center py-4 text-muted">
+                    No se encontraron boletas de clientes.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>

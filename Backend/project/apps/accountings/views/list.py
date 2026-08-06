@@ -136,13 +136,27 @@ class AcreedoresListView(ListView):
         context = super().get_context_data(**kwargs)
         status = ['Recientes', 'Acreedores Cancelados','En Atraso por Aportación', 'En Atraso por Fechas', 'Acreedores con Excedente']
 
-        if not (context['object_list']):
-            messages.error(self.request,'No se encontrado ningun dato')
+        # 1. Agregamos el rango elidido a page_obj para la plantilla de paginación
+        if context.get('is_paginated'):
+            page_obj = context['page_obj']
+            page_obj.custom_page_range = page_obj.paginator.get_elided_page_range(
+                page_obj.number, on_each_side=2, on_ends=1
+            )
+
+        if not context['object_list']:
+            messages.error(self.request, 'No se ha encontrado ningún dato')
+        # 2. Conteo correcto del total general de registros (no solo los 75 de la página)
+        if context.get('paginator'):
+            context['count'] = context['paginator'].count
+        else:
+            context['count'] = len(context['object_list']) 
+      
 
         context['query'] = self.query() if self.query() else ''
         context['title'] = f'Registro de Acreedores'
         context['count'] = context['object_list'].count()
         context['posicion'] = self.query() if self.query() else ''
+              
 
         
         context['permisos'] = recorrer_los_permisos_usuario(self.request)
@@ -261,9 +275,21 @@ class SeguroListView(ListView):
         context = super().get_context_data(**kwargs)
         status = ['Recientes', 'Seguros Cancelados','En Atraso por Aportación', 'En Atraso por Fechas', 'Seguros con Excedente']
 
-        if not (context['object_list']):
-            messages.error(self.request,'No se encontrado ningun dato')
+        # 1. Agregamos el rango elidido a page_obj para la plantilla de paginación
+        if context.get('is_paginated'):
+            page_obj = context['page_obj']
+            page_obj.custom_page_range = page_obj.paginator.get_elided_page_range(
+                page_obj.number, on_each_side=2, on_ends=1
+            )
 
+        if not context['object_list']:
+            messages.error(self.request, 'No se ha encontrado ningún dato')
+        # 2. Conteo correcto del total general de registros (no solo los 75 de la página)
+        if context.get('paginator'):
+            context['count'] = context['paginator'].count
+        else:
+            context['count'] = len(context['object_list']) 
+      
         context['query'] = self.query() if self.query() else ''
         context['title'] = f'Registro de Seguros'
         context['count'] = context['object_list'].count()
@@ -348,9 +374,21 @@ class IngresosList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        if not context['object_list'] and self.query() is not None:
+        # 1. Agregamos el rango elidido a page_obj para la plantilla de paginación
+        if context.get('is_paginated'):
+            page_obj = context['page_obj']
+            page_obj.custom_page_range = page_obj.paginator.get_elided_page_range(
+                page_obj.number, on_each_side=2, on_ends=1
+            )
 
-            messages.error(self.request, 'No se encontró ningún dato')
+        if not context['object_list']:
+            messages.error(self.request, 'No se ha encontrado ningún dato')
+        # 2. Conteo correcto del total general de registros (no solo los 75 de la página)
+        if context.get('paginator'):
+            context['count'] = context['paginator'].count
+        else:
+            context['count'] = len(context['object_list']) 
+      
 
         # Mantener valores que el usuario eligió en el form
         mes = self.mes_reporte() or datetime.now().month
@@ -451,8 +489,21 @@ class EgresosList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        if not context['object_list'] and self.query() is not None:
-            messages.error(self.request,'No se encontrado ningun dato')
+        # 1. Agregamos el rango elidido a page_obj para la plantilla de paginación
+        if context.get('is_paginated'):
+            page_obj = context['page_obj']
+            page_obj.custom_page_range = page_obj.paginator.get_elided_page_range(
+                page_obj.number, on_each_side=2, on_ends=1
+            )
+
+        if not context['object_list']:
+            messages.error(self.request, 'No se ha encontrado ningún dato')
+        # 2. Conteo correcto del total general de registros (no solo los 75 de la página)
+        if context.get('paginator'):
+            context['count'] = context['paginator'].count
+        else:
+            context['count'] = len(context['object_list']) 
+      
 
         # Mantener valores que el usuario eligió en el form
         mes = self.mes_reporte() or datetime.now().month

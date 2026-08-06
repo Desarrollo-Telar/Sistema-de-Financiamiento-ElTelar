@@ -1,31 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/list.css' %}">
+<link rel="stylesheet" href="{% static 'css/financings/payment/list.css' %}">
+
 {% endblock %}
 
 {% block content %}
-<div class="container box">
-  <div class="row align-items-center mb-4 gx-3 gy-2">
-    <div class="col-12 col-md-6 col-lg-5">
-      {% include 'customer/snippets/search_boletas.html' with query=query %}
-    </div>
-    <div class="col-2 col-md-2 col-lg-1">
-      {% include 'customer/snippets/filtros_boletas.html' %}
-    </div>
-  </div>
-  <div class="row mb-4">
-    {% include 'customer/table/table_boletas.html' %}
-  </div>
+<div class="container py-4">
 
-  
-  
-  <hr>
+    <!-- Búsqueda y Filtros estilo Glass -->
+    <div class="glass-card mb-4 py-3">
+        <div class="row align-items-center g-3">
+            <div class="col-12 col-md-8 col-lg-6">
+                {% include 'customer/snippets/search_boletas.html' with query=query %}
+            </div>
+            <div class="col-12 col-md-4 col-lg-6 d-flex justify-content-md-end">
+                {% include 'customer/snippets/filtros_boletas.html' %}
+            </div>
+        </div>
+    </div>
 
-  {% if page_obj %}
-    {% include 'snippets/pages.html' %}
-  {% endif %}
+    <!-- Tabla Glass -->
+    <div class="row mb-4">
+        <div class="col-12">
+            {% include 'customer/table/table_boletas.html' %}
+        </div>
+    </div>
+
+    <!-- Paginación Glass -->
+    {% if page_obj %}
+    <div class="row">
+        <div class="col-12">
+            {% include 'snippets/pages.html' %}
+        </div>
+    </div>
+    {% endif %}
 
 </div>
 {% endblock %}

@@ -172,3 +172,34 @@ body {
     color: #FFFFFF !important;
     font-weight: 600;
 }
+
+.badge-rechazado {
+  background-color: rgba(229, 56, 59, 0.15);
+  color: var(--color-accent);
+  border: 1px solid rgba(229, 56, 59, 0.3);
+}
+
+
+/* Botón estilizado para la descarga de PDF */
+.btn-glass-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(164, 22, 26, 0.12);
+    color: var(--color-red);
+    border: 1px solid rgba(164, 22, 26, 0.25);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.825rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.btn-glass-pdf:hover {
+    background-color: var(--color-red);
+    color: #FFFFFF;
+    border-color: var(--color-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(164, 22, 26, 0.25);
+}
