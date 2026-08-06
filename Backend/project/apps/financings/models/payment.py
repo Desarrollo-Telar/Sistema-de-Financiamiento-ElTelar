@@ -263,8 +263,9 @@ class Payment(models.Model):
        
         
 
-        # VERIFICAR SI YA EXISTE UN RECIBO ASOCIADO CON EL PAGO O GENERAR UNO NUEVO
-        # Definimos los valores que queremos que tenga el recibo
+        # Tomamos solo el primer recibo si existen varios
+        recibo = self.get_recibo().objects.filter(pago=pago).first()
+
         defaults = {
             'mora': cuota.mora,
             'interes': cuota.interest,
@@ -275,19 +276,17 @@ class Payment(models.Model):
             'fecha': pago.fecha_emision.date(),
             'cliente': informacion['cliente'],
             'cuota': cuota,
-            'sucursal': self.sucursal
+            'sucursal': self.sucursal,
         }
-        
-        try:
-            with transaction.atomic():
-                recibo, created = self.get_recibo().objects.update_or_create(
-                    pago=pago, 
-                    defaults=defaults
-                )
-        except IntegrityError:
-            # En caso de que la base de datos rechace un duplicado por milisegundos
-            recibo = self.get_recibo().objects.get(pago=pago)
-            created = False
+
+        if recibo:
+            # Actualizamos la instancia encontrada
+            for key, value in defaults.items():
+                setattr(recibo, key, value)
+            recibo.save()
+        else:
+            # Creamos uno nuevo
+            recibo = self.get_recibo().objects.create(pago=pago, **defaults)
         
         # ACTUALIZACION DE LA CUOTA
         cuota.interest -=pagado_interes
