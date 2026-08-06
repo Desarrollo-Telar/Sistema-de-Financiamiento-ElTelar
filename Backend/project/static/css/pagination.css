@@ -1,0 +1,107 @@
+/* ==========================================================================
+   GLASSMORPHISM PAGINATION STYLES
+   ========================================================================== */
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-shadow: 0 8px 32px 0 rgba(11, 9, 10, 0.08);
+  --color-dark: #0B090A;
+  --color-wine: #660708;
+  --color-red: #A4161A;
+  --color-accent: #E5383B;
+  --color-gray: #B1A7A6;
+  --color-light: #F5F3F4;
+}
+
+/* Contenedor principal */
+.pagination-glass-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Lista flotante translúcida */
+.pagination-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  list-style: none;
+  margin: 0;
+}
+
+/* Ítem base */
+.pagination-glass .page-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botón interactivo */
+.pagination-glass .page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-dark);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+/* Efecto Hover */
+.pagination-glass .page-item:not(.active):not(.disabled) .page-link:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-wine);
+  border-color: rgba(102, 7, 8, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 7, 8, 0.12);
+}
+
+/* Página Activa */
+.pagination-glass .page-item.active .page-link {
+  background: linear-gradient(135deg, var(--color-wine) 0%, var(--color-red) 100%);
+  color: #FFFFFF !important;
+  border-color: var(--color-red);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(102, 7, 8, 0.35);
+  transform: scale(1.05);
+}
+
+/* Estado Deshabilitado */
+.pagination-glass .page-item.disabled .page-link {
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--color-gray);
+  border-color: rgba(255, 255, 255, 0.4);
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Ajuste para puntos suspensivos (...) */
+.pagination-glass .page-item.disabled .page-link.ellipsis {
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}

@@ -1,80 +1,31 @@
 {% load static %}
-<tr>
-                        <td>
-                            <a style="text-decoration: none; color: black;"
-                            href="{% url 'financings:detalle_boleta' credit.id %}">
-                            {{ forloop.counter }}
-                            </a>
-                        
-                        </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                            href="{% url 'financings:detalle_boleta' credit.id %}">
-                            {{credit.fecha_emision.date}}
-                            </a>
-                        </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                            href="{% url 'financings:detalle_boleta' credit.id %}">
-                            {{credit.numero_referencia}}
-                            </a>
-
-                        </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                            href="{% url 'financings:detalle_boleta' credit.id %}">
-                            Q{{credit.Fmonto}}
-                            </a>
-
-
-                        </td>
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                            href="{% url 'financings:detalle_boleta' credit.id %}">
-                            {{credit.tipo_pago}}
-                            </a>
-                        </td>
-
-
-                        <td scope="row">
-                            <a style="text-decoration: none; color: black;"
-                            href="{% url 'financings:detalle_boleta' credit.id %}">
-                            {{credit.estado_transaccion}}
-
-                            </a>
-                            
-                        </td>
-                        <td scope="row">
-                            {% if credit.estado_transaccion == 'COMPLETADO' %}
-                            <div class="activo ">
-                                <a href="{% url 'financings:detalle_boleta' credit.id %}" 
-                                    style="text-decoration: none; color: #00340c;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                                    </svg>
-
-                                </a>
-
-
-                            </div>
-                            {% else %}
-                            <div class=" inactivo ">
-                                <a href="{% url 'financings:detalle_boleta' credit.id %}" style="text-decoration: none; color: #00340c;">Pendiente de vincular</a>
-                                
-
-
-                            </div>
-                            {% endif %}
-                            
-                        </td>
-
-
-
-
-
-
-
-
-                    </tr>
+<tr onclick="window.location='{% url 'financings:detalle_boleta' credit.id %}';">
+    <td class="fw-bold">{{ forloop.counter }}</td>
+    <td>{{ credit.fecha_emision.date }}</td>
+    <td><span class="fw-medium" style="color: var(--color-dark);">{{ credit.numero_referencia }}</span></td>
+    <td class="fw-bold" style="color: var(--color-wine);">Q{{ credit.Fmonto }}</td>
+    <td>{{ credit.tipo_pago }}</td>
+    <td>
+        {% if credit.estado_transaccion == 'COMPLETADO' %}
+            <span class="badge-status badge-completado">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+                Completado
+            </span>
+        {% else %}
+            <span class="badge-status badge-pendiente">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+                    <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.122.341zm2.41 1.287a7 7 0 0 0-.832-.556l.432-.901c.424.203.83.441 1.214.712zm2.14 2.128a7 7 0 0 0-.556-.832l.901-.432c.271.384.509.79.712 1.214zm.82 2.656a7 7 0 0 0-.299-.985l.976-.219c.141.362.255.739.341 1.122zM8 1a7 7 0 1 0 7 7h-1a6 6 0 1 1-6-6s0 0 0 0z"/>
+                    <path d="M8.5 4.5a.5.5 0 0 0-1 0v3.793L5.354 10.44a.5.5 0 0 0 .708.708l2.5-2.5A.5.5 0 0 0 8.5 8z"/>
+                </svg>
+                Pendiente de vincular
+            </span>
+        {% endif %}
+    </td>
+    <td class="text-end">
+        <a href="{% url 'financings:detalle_boleta' credit.id %}" class="btn btn-sm btn-light border">
+            Ver detalle
+        </a>
+    </td>
+</tr>

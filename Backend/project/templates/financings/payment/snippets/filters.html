@@ -1,25 +1,34 @@
 {% load static %}
 <div class="dropdown">
-    <button style="border: none; background-color: white;" type="button" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filter"
-            viewBox="0 0 16 16">
-            <path
-                d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+    <button class="btn-glass-filter" 
+            type="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false" 
+            title="Filtrar por estado"
+            aria-label="Filtrar por estado">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="var(--color-dark)" class="bi bi-filter" viewBox="0 0 16 16">
+            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
         </svg>
     </button>
 
-
-    <ul class="dropdown-menu ">
-        <li><a class="dropdown-item fw-bold" href="{% url 'financings:list_payment' %}">Todos </a></li>
-        <li><a class="dropdown-item fw-normal" href="{% url 'financings:filter_list_payment_pendiente' %}">Pendientes de
-                Vincular </a></li>
-        <li><a class="dropdown-item fw-normal" href="{% url 'financings:filter_list_payment_completados'%}">Completados
+    <ul class="dropdown-menu dropdown-menu-end glass-dropdown-menu shadow">
+        <li>
+            <a class="dropdown-item {% if request.resolver_match.url_name == 'list_payment' %}active-filter{% endif %}" 
+               href="{% url 'financings:list_payment' %}{% if query %}?q={{ query }}{% endif %}">
+                Todos
             </a>
         </li>
-
-
-
+        <li>
+            <a class="dropdown-item {% if request.resolver_match.url_name == 'filter_list_payment_pendiente' %}active-filter{% endif %}" 
+               href="{% url 'financings:filter_list_payment_pendiente' %}{% if query %}?q={{ query }}{% endif %}">
+                Pendientes de Vincular
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item {% if request.resolver_match.url_name == 'filter_list_payment_completados' %}active-filter{% endif %}" 
+               href="{% url 'financings:filter_list_payment_completados' %}{% if query %}?q={{ query }}{% endif %}">
+                Completados
+            </a>
+        </li>
     </ul>
-
 </div>

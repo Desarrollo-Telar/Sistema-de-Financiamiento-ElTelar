@@ -1,0 +1,174 @@
+/* Variables con tu paleta de colores */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 8px 32px 0 rgba(11, 9, 10, 0.08);
+  --color-dark: #0B090A;
+  --color-wine: #660708;
+  --color-red: #A4161A;
+  --color-accent: #E5383B;
+  --color-light: #F5F3F4;
+  --color-gray: #B1A7A6;
+}
+
+/* Fondo para activar el efecto translúcido del glassmorfismo */
+body {
+  background: linear-gradient(135deg, #f5f3f4 0%, #d3d3d3 50%, #b1a7a6 100%);
+  min-height: 100vh;
+}
+
+/* Tarjeta principal estilo Glassmorphism */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Botones con estilo elegante */
+.btn-glass-primary {
+  background-color: var(--color-wine);
+  color: #FFFFFF;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-glass-primary:hover {
+  background-color: var(--color-red);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(164, 22, 26, 0.3);
+}
+
+/* Estilos de Tabla */
+.glass-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.glass-table thead th {
+  border: none;
+  color: var(--color-dark);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.825rem;
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+}
+
+.glass-table tbody tr {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.glass-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.005);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.glass-table tbody td {
+  padding: 14px 16px;
+  vertical-align: middle;
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.glass-table tbody tr td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.glass-table tbody tr td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Badges de estado */
+.badge-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-completado {
+  background-color: rgba(102, 7, 8, 0.12);
+  color: var(--color-wine);
+  border: 1px solid rgba(102, 7, 8, 0.2);
+}
+
+.badge-pendiente {
+  background-color: rgba(177, 167, 166, 0.25);
+  color: #4A4A4A;
+  border: 1px solid rgba(177, 167, 166, 0.4);
+}
+
+/* Botón del filtro estilo Glass */
+.btn-glass-filter {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: 6px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-glass-filter:hover {
+    background: rgba(255, 255, 255, 0.85);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Menú flotante estilo Glassmorphism */
+.glass-dropdown-menu {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-radius: 12px !important;
+    padding: 6px !important;
+    min-width: 210px;
+}
+
+.glass-dropdown-menu .dropdown-item {
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--color-dark);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.glass-dropdown-menu .dropdown-item:hover {
+    background-color: rgba(102, 7, 8, 0.1);
+    color: var(--color-wine);
+}
+
+/* Opción activa seleccionada */
+.glass-dropdown-menu .dropdown-item.active-filter {
+    background-color: var(--color-wine);
+    color: #FFFFFF !important;
+    font-weight: 600;
+}

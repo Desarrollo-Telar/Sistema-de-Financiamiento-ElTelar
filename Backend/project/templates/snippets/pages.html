@@ -1,70 +1,55 @@
 {% load static %}
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-auto">
-      <nav aria-label="Paginación responsive">
-        <ul class="pagination flex-wrap justify-content-center">
 
-          {# Botón anterior #}
+<!-- Carga del CSS si no está en el base.html -->
+<link rel="stylesheet" href="{% static 'css/pagination.css' %}">
 
-          {% if page_obj.has_previous %}
-            <li class="page-item">
-              {% if query %}
-              <a class="page-link" href="?q={{ query }}&?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-              {% else %}
-              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-              {% endif %}
-            </li>
-          {% else %}
-            <li class="page-item disabled">
-              <span class="page-link">&laquo;</span>
-            </li>
-          {% endif %}
+<div class="pagination-glass-container">
+  <nav aria-label="Paginación de resultados">
+    <ul class="pagination-glass">
 
-          {# Números de página #}
-          {% for num in page_obj.custom_page_range %}
-            {% if num == page_obj.paginator.ELLIPSIS %}
-              <li class="page-item disabled">
-                <span class="page-link">&hellip;</span>
-              </li>
-            {% elif num == page_obj.number %}
-              <li class="page-item active" aria-current="page">
-                <span class="page-link" style="background-color:#fea3a5; color: #46090a; border-color: #fea3a5;">{{ num }}</span>
-              </li>
-            {% else %}
-              <li class="page-item">
-                <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}page={{ num }}" style="color: black;">{{ num }}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
+      {# Botón anterior #}
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">&laquo;</span>
+        </li>
+      {% endif %}
 
-          {# Botón siguiente #}
-          {% if page_obj.has_next %}
-            <li class="page-item">
-              {% if query %}
-                <a class="page-link" href="?q={{ query }}&?page={{ page_obj.next_page_number }}" style="color: black;">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-                {% else %}
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Siguiente">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-                {% endif %}
+      {# Números de página con elisión #}
+      {% for num in page_obj.custom_page_range %}
+        {% if num == page_obj.paginator.ELLIPSIS %}
+          <li class="page-item disabled">
+            <span class="page-link ellipsis">&hellip;</span>
+          </li>
+        {% elif num == page_obj.number %}
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">{{ num }}</span>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}page={{ num }}">{{ num }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
 
-              
-            </li>
-          {% else %}
-            <li class="page-item disabled">
-              <span class="page-link">&raquo;</span>
-            </li>
-          {% endif %}
+      {# Botón siguiente #}
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}page={{ page_obj.next_page_number }}" aria-label="Siguiente">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">&raquo;</span>
+        </li>
+      {% endif %}
 
-        </ul>
-      </nav>
-    </div>
-  </div>
+    </ul>
+  </nav>
 </div>
