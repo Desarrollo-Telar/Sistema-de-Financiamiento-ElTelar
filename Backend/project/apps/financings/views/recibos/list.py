@@ -53,7 +53,7 @@ class RecibosListView(ListView):
                 filters |= Q(cliente__last_name__icontains=query)
                 filters |= Q(pago__numero_referencia__icontains=query)
 
-            return Recibo.objects.filter(filters, sucursal=sucursal).order_by('-recibo')
+            return Recibo.objects.filter(filters, sucursal=sucursal).order_by('-id')
 
         except Exception as e:
             print(f'error: {e}')
