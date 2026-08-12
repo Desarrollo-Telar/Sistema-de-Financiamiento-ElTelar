@@ -764,7 +764,8 @@ async function casos_exito_asesor() {
   renderTableData('tablaCasosExito', data.map(i => [
     `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim(),
     i.total_otorgados,
-    i.total_cancelados
+    i.total_cancelados,
+    ((i.total_cancelados / i.total_otorgados) * 100).toFixed(1) + '%'
   ]));
 }
 
@@ -830,7 +831,8 @@ async function casos_judicial_asesor() {
   renderTableData('tablaCasosDemanda', data.map(i => [
     `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim(),
     i.total_otorgados,
-    i.total_demandados
+    i.total_demandados,
+    ((i.total_demandados / i.total_otorgados) * 100).toFixed(1) + '%'
   ]));
 }
 
@@ -896,7 +898,8 @@ async function casos_atraso_asesor() {
   renderTableData('tablaCasosAtrasado', data.map(i => [
     `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim(),
     i.total_otorgados,
-    i.total_atrasados
+    i.total_atrasados,
+    ((i.total_atrasados / i.total_otorgados) * 100).toFixed(1) + '%'
   ]));
 }
 
@@ -968,7 +971,8 @@ async function cartera_asesor() {
   renderTableData('tablaCarteraAsesor', data.map(i => [
     `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim(),
     formatCurrency(i.saldo_cartera_total),
-    formatCurrency(i.saldo_en_atraso)
+    formatCurrency(i.saldo_en_atraso),
+    ((i.saldo_en_atraso / i.saldo_cartera_total) * 100).toFixed(1) + '%'
   ]));
 }
 
