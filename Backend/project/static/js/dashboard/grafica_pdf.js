@@ -1,19 +1,13 @@
 /* ===============================
    CONFIGURACIÓN GLOBAL
 =================================*/
-const charts = {};
+const charts = {}; // Declaration necesaria para evitar errores de referencia
 
-// Obtener el protocolo (HTTP/HTTPS)
 const protocolo = window.location.protocol; 
-
-// Obtener el dominio (hostname)
 const dominio = window.location.hostname; 
-
-// Obtener el puerto
 const puerto = window.location.port; 
 const baseUrl = `${protocolo}//${dominio}${puerto ? `:${puerto}` : ''}`;
 
-// Función auxiliar para renderizar datos en las tablas del PDF/HTML
 function renderTableData(tableId, rows) {
   const tableEl = document.getElementById(tableId);
   if (!tableEl) return;
@@ -28,7 +22,6 @@ function renderTableData(tableId, rows) {
 }
 
 const API = () => `${baseUrl}/kpi`;
-console.log(API);
 
 /* ===============================
    UTILIDADES
@@ -58,26 +51,29 @@ async function fetchData(endpoint) {
   }
 }
 
+// Desactivar animaciones para renderizado instantáneo y evitar PDF en blanco
 function createChart(id, config) {
-  if (charts[id]) charts[id].destroy();
-  charts[id] = new Chart(document.getElementById(id), config);
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+
+  if (charts[id]) {
+    charts[id].destroy();
+  }
+
+  config.options = config.options || {};
+  config.options.animation = false; // Desactivar animación
+  config.options.responsiveAnimationDuration = 0;
+
+  charts[id] = new Chart(canvas, config);
 }
 
 const labels_mes = [
     'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
     'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 ];
-const currentYear = new Date().getFullYear();
 
-// Paleta de colores reutilizable
 const colorPalette = [
-  '#3b82f6', // Azul
-  '#10b981', // Verde
-  '#f59e0b', // Naranja
-  '#ef4444', // Rojo
-  '#8b5cf6', // Morado
-  '#06b6d4', // Cian
-  '#ec4899'  // Rosa
+  '#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4', '#ec4899'
 ];
 
 /* ===============================
@@ -97,35 +93,15 @@ async function clientesPorMes() {
     };
   }).sort((a, b) => a.timestamp - b.timestamp);
 
-  const labels = dataProcesada.map(i => i.mesFormateado);
-  const values = dataProcesada.map(i => i.total);
-
   createChart('clientesMesChart', {
     type: 'line',
     data: { 
-      labels: labels, 
-      datasets: [{ 
-        label: 'Clientes', 
-        data: values, 
-        fill: true,
-        borderColor: 'rgb(59, 130, 246)',
-        tension: 0.3
-      }] 
+      labels: dataProcesada.map(i => i.mesFormateado), 
+      datasets: [{ label: 'Clientes', data: dataProcesada.map(i => i.total), fill: true, borderColor: 'rgb(59, 130, 246)', tension: 0.3 }] 
     },
-    options: { 
-      responsive: true, 
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          ticks: { maxRotation: 45, minRotation: 45 }
-        }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
 
- 
-    
-  // Corrección: Mapeo correcto fila por fila (Mes, Cantidad)
   renderTableData('tablaClientesMes', dataProcesada.map(i => [i.mesFormateado, i.total.toLocaleString()]));
 }
 
@@ -142,115 +118,58 @@ async function creditosPorMes() {
     };
   }).sort((a, b) => a.timestamp - b.timestamp);
 
-  const labels = dataProcesada.map(i => i.mesFormateado);
-  const values = dataProcesada.map(i => i.total);
-
   createChart('creditosMesChart', {
     type: 'bar',
     data: { 
-      labels, 
-      datasets: [{ 
-        label: 'Créditos', 
-        data: values,
-        backgroundColor: 'rgba(59, 130, 246, 0.7)',
-        borderColor: '#3b82f6',
-        borderWidth: 1,
-        borderRadius: 4
-      }] 
+      labels: dataProcesada.map(i => i.mesFormateado), 
+      datasets: [{ label: 'Créditos', data: dataProcesada.map(i => i.total), backgroundColor: 'rgba(59, 130, 246, 0.7)', borderColor: '#3b82f6', borderWidth: 1 }] 
     },
-    options: { 
-      responsive: true, 
-      maintainAspectRatio: false,
-      scales: {
-        y: { beginAtZero: true, ticks: { precision: 0 } }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
 
-  
-
-  // Corrección: Mapeo correcto fila por fila
   renderTableData('tablaCreditosMes', dataProcesada.map(i => [i.mesFormateado, i.total.toLocaleString()]));
 }
 
 async function creditosPorAsesor() {
   const data = await fetchData('creditos-por-asesor-mes/pdf/');
- 
   if (!data || !data.length) return;
-
-  const mesesFallback = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
   const lookupMap = new Map();
   const mesesSet = new Set();
   const asesoresSet = new Set();
 
   const dataProcesada = data.map(item => {
-    // Parseo seguro de la fecha
     const fecha = new Date(item.mes);
     const mesIdx = isNaN(fecha.getTime()) ? 0 : fecha.getMonth();
     const anio = isNaN(fecha.getTime()) ? '' : fecha.getFullYear();
-    
-    const nombreMes = (typeof labels_mes !== 'undefined' && labels_mes[mesIdx]) 
-      ? labels_mes[mesIdx] 
-      : mesesFallback[mesIdx];
-      
-    const mesLabel = `${nombreMes} ${anio}`.trim();
-
-    // Soporte tanto para 'item.asesor' como para los campos de Django por separado
-    const nombreRaw = item.asesor || `${item.asesor_de_credito__nombre || ''} ${item.asesor_de_credito__apellido || ''}`;
-    const asesorNombre = nombreRaw.trim() || 'SIN ASESOR';
+    const mesLabel = `${labels_mes[mesIdx] || 'Enero'} ${anio}`.trim();
+    const asesorNombre = (item.asesor || `${item.asesor_de_credito__nombre || ''} ${item.asesor_de_credito__apellido || ''}`).trim() || 'SIN ASESOR';
 
     mesesSet.add(mesLabel);
     asesoresSet.add(asesorNombre);
-
     lookupMap.set(`${mesLabel}_${asesorNombre}`, item.total);
 
-    return {
-      mesFormateado: mesLabel,
-      nombreCompleto: asesorNombre,
-      total: item.total
-    };
+    return { mesFormateado: mesLabel, nombreCompleto: asesorNombre, total: item.total };
   });
 
   const labels = Array.from(mesesSet);
   const asesores = Array.from(asesoresSet);
 
-  const datasets = asesores.map((asesor, idx) => {
-    const color = (typeof colorPalette !== 'undefined' && colorPalette[idx % colorPalette.length]) 
-      ? colorPalette[idx % colorPalette.length] 
-      : '#3b82f6';
-
-    return {
-      label: asesor,
-      data: labels.map(mesLabel => lookupMap.get(`${mesLabel}_${asesor}`) || 0),
-      backgroundColor: color + 'CC',
-      borderColor: color,
-      borderWidth: 1,
-      borderRadius: 2
-    };
-  });
+  const datasets = asesores.map((asesor, idx) => ({
+    label: asesor,
+    data: labels.map(mesLabel => lookupMap.get(`${mesLabel}_${asesor}`) || 0),
+    backgroundColor: (colorPalette[idx % colorPalette.length]) + 'CC',
+    borderColor: colorPalette[idx % colorPalette.length],
+    borderWidth: 1
+  }));
 
   createChart('clientesAsesorChart', {
     type: 'bar', 
     data: { labels, datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'bottom', labels: { boxWidth: 12 } }
-      },
-      scales: {
-        x: { stacked: true },
-        y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true } } }
   });
 
-  renderTableData('tablaClientesAsesor', dataProcesada.map(i => [
-    i.mesFormateado,
-    i.nombreCompleto,
-    i.total
-  ]));
+  renderTableData('tablaClientesAsesor', dataProcesada.map(i => [i.mesFormateado, i.nombreCompleto, i.total]));
 }
 
 async function tiposCredito() {
@@ -261,24 +180,9 @@ async function tiposCredito() {
     type: 'doughnut',
     data: {
       labels: data.map(i => i.tipo_credito),
-      datasets: [{
-        data: data.map(i => i.cantidad),
-        backgroundColor: colorPalette,
-        hoverOffset: 10,
-        borderWidth: 2
-      }]
+      datasets: [{ data: data.map(i => i.cantidad), backgroundColor: colorPalette }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: { padding: 20, usePointStyle: true }
-        }
-      },
-      cutout: '70%'
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
   renderTableData('tablaTiposCredito', data.map(i => [i.tipo_credito, i.cantidad]));
 }
@@ -291,22 +195,9 @@ async function formasPago() {
     type: 'pie',
     data: {
       labels: data.map(i => i.forma_de_pago),
-      datasets: [{
-        data: data.map(i => i.cantidad),
-        backgroundColor: colorPalette.slice().reverse(),
-        borderWidth: 2
-      }]
+      datasets: [{ data: data.map(i => i.cantidad), backgroundColor: colorPalette.slice().reverse() }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: { padding: 20, usePointStyle: true }
-        }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
   renderTableData('tablaFormasPago', data.map(i => [i.forma_de_pago, i.cantidad]));
 }
@@ -324,33 +215,16 @@ async function desembolsos() {
     };
   }).sort((a, b) => a.timestamp - b.timestamp);
 
-  const labels = dataProcesada.map(i => i.mesFormateado);
-  const values = dataProcesada.map(i => i.total);
-
   createChart('desembolsosChart', {
     type: 'line',
     data: {
-      labels: labels,
-      datasets: [{ 
-        label: 'Desembolsos', 
-        data: values, 
-        fill: true,
-        borderColor: '#10b981',
-        backgroundColor: 'rgba(16, 185, 129, 0.1)',
-        tension: 0.3
-      }]
+      labels: dataProcesada.map(i => i.mesFormateado),
+      datasets: [{ label: 'Desembolsos', data: dataProcesada.map(i => i.total), borderColor: '#10b981', fill: true }]
     },
-    options: { 
-      responsive: true, 
-      maintainAspectRatio: false,
-      plugins: { legend: { display: true } }
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
 
- 
-
-  // Corrección: Se agregó renderTableData que faltaba
-  renderTableData('tablaDesembolsos', dataProcesada.map(i => [i.mesFormateado, formatCurrency(i.total)]));
+  renderTableData('tablaDesembolsos', dataProcesada.map(i => [i.mesFormateado, i.total]));
 }
 
 async function recuperacion() {
@@ -359,63 +233,23 @@ async function recuperacion() {
 
   const dataProcesada = data.map(i => {
     const fecha = new Date(i.mes);
-    return {
-      ...i,
-      mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`,
-      timestamp: fecha.getTime()
-    };
+    return { ...i, mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`, timestamp: fecha.getTime() };
   }).sort((a, b) => a.timestamp - b.timestamp);
-
-  const labels = dataProcesada.map(i => i.mesFormateado);
 
   createChart('recuperacionChart', {
     type: 'bar',
     data: {
-      labels: labels,
+      labels: dataProcesada.map(i => i.mesFormateado),
       datasets: [
-        { 
-          label: 'Mora', 
-          data: dataProcesada.map(i => i.mora),
-          backgroundColor: '#ef4444'
-        },
-        { 
-          label: 'Interés', 
-          data: dataProcesada.map(i => i.interes),
-          backgroundColor: '#f59e0b'
-        },
-        { 
-          label: 'Capital', 
-          data: dataProcesada.map(i => i.capital),
-          backgroundColor: '#3b82f6'
-        }
+        { label: 'Mora', data: dataProcesada.map(i => i.mora), backgroundColor: '#ef4444' },
+        { label: 'Interés', data: dataProcesada.map(i => i.interes), backgroundColor: '#f59e0b' },
+        { label: 'Capital', data: dataProcesada.map(i => i.capital), backgroundColor: '#3b82f6' }
       ]
     },
-    options: { 
-      responsive: true, 
-      maintainAspectRatio: false,
-      scales: {
-        x: { stacked: true },
-        y: {
-          stacked: true,
-          beginAtZero: true,
-          ticks: {
-            callback: value => 'Q' + value.toLocaleString()
-          }
-        }
-      },
-      plugins: { legend: { position: 'bottom' } }
-    }
+    options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true } } }
   });
 
-  const granTotal = dataProcesada.reduce((a, b) => a + b.capital + b.interes + b.mora, 0);
-  
-
-  renderTableData('tablaRecuperacion', dataProcesada.map(i => [
-    i.mesFormateado, 
-    formatCurrency(i.capital), 
-    formatCurrency(i.interes), 
-    formatCurrency(i.mora)
-  ]));
+  renderTableData('tablaRecuperacion', dataProcesada.map(i => [i.mesFormateado, formatCurrency(i.capital), formatCurrency(i.interes), formatCurrency(i.mora)]));
 }
 
 async function egresos() {
@@ -424,69 +258,28 @@ async function egresos() {
 
   const dataProcesada = data.map(i => {
     const fecha = new Date(i.mes);
-    return {
-      ...i,
-      mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`,
-      timestamp: fecha.getTime()
-    };
+    return { ...i, mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`, timestamp: fecha.getTime() };
   }).sort((a, b) => a.timestamp - b.timestamp);
 
   const labels = [...new Set(dataProcesada.map(i => i.mesFormateado))];
   const codigosUnicos = [...new Set(dataProcesada.map(i => i.codigo_egreso))];
 
-  const datasets = codigosUnicos.map((codigo) => {
-    return {
-      label: codigo,
-      data: labels.map(mesLabel => {
-        const registro = dataProcesada.find(
-          i => i.mesFormateado === mesLabel && i.codigo_egreso === codigo
-        );
-        return registro ? registro.monto : 0;
-      }),
-      backgroundColor: `hsl(${Math.random() * 360}, 70%, 60%)`,
-      borderWidth: 1
-    };
-  });
+  const datasets = codigosUnicos.map((codigo) => ({
+    label: codigo,
+    data: labels.map(mesLabel => {
+      const registro = dataProcesada.find(i => i.mesFormateado === mesLabel && i.codigo_egreso === codigo);
+      return registro ? registro.monto : 0;
+    }),
+    backgroundColor: `hsl(${Math.random() * 360}, 70%, 60%)`
+  }));
 
   createChart('egresosChart', {
     type: 'bar',
     data: { labels, datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'right',
-          labels: { boxWidth: 12, font: { size: 10 } }
-        },
-        tooltip: {
-          callbacks: {
-            label: (context) => `${context.dataset.label}: Q${context.raw.toLocaleString()}`
-          }
-        }
-      },
-      scales: {
-        x: { 
-          stacked: true,
-          ticks: { maxRotation: 45, minRotation: 45 }
-        },
-        y: { 
-          stacked: true,
-          beginAtZero: true,
-          ticks: {
-            callback: value => 'Q' + value.toLocaleString()
-          }
-        }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true } } }
   });
 
-  // Corrección: Renderizado de la tabla de egresos por código y mes
-  renderTableData('tablaEgresos', dataProcesada.map(i => [
-    i.mesFormateado,
-    i.codigo_egreso,
-    formatCurrency(i.monto)
-  ]));
+  renderTableData('tablaEgresos', dataProcesada.map(i => [i.mesFormateado, i.codigo_egreso, formatCurrency(i.monto)]));
 }
 
 async function bancos() {
@@ -495,81 +288,23 @@ async function bancos() {
 
   const dataProcesada = data.map(i => {
     const fecha = new Date(i.mes);
-    return {
-      ...i,
-      mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`,
-      timestamp: fecha.getTime()
-    };
+    return { ...i, mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`, timestamp: fecha.getTime() };
   }).sort((a, b) => a.timestamp - b.timestamp);
-
-  const labels = dataProcesada.map(i => i.mesFormateado);
-  const saldos = dataProcesada.map(i => i.saldos);
-  const ingresos = dataProcesada.map(i => i.ingreso);
-  const egresos = dataProcesada.map(i => i.egreso);
 
   createChart('bancosChart', {
     type: 'bar',
     data: {
-      labels: labels,
+      labels: dataProcesada.map(i => i.mesFormateado),
       datasets: [
-        { 
-          label: 'Ingresos', 
-          data: ingresos, 
-          backgroundColor: 'rgba(16, 185, 129, 0.7)',
-          borderColor: '#10b981',
-          borderWidth: 1
-        },
-        { 
-          label: 'Egresos', 
-          data: egresos, 
-          backgroundColor: 'rgba(239, 68, 68, 0.7)',
-          borderColor: '#ef4444',
-          borderWidth: 1
-        },
-        { 
-          label: 'Saldos', 
-          type: 'line',
-          data: saldos, 
-          borderColor: '#3b82f6',
-          backgroundColor: 'transparent',
-          tension: 0.3,
-          fill: false,
-          pointStyle: 'circle',
-          pointRadius: 5
-        }
+        { label: 'Ingresos', data: dataProcesada.map(i => i.ingreso), backgroundColor: '#10b981' },
+        { label: 'Egresos', data: dataProcesada.map(i => i.egreso), backgroundColor: '#ef4444' },
+        { label: 'Saldos', type: 'line', data: dataProcesada.map(i => i.saldos), borderColor: '#3b82f6', fill: false }
       ]
     },
-    options: { 
-      responsive: true, 
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'bottom' },
-        tooltip: {
-          callbacks: {
-            label: (context) => `${context.dataset.label}: Q${context.raw.toLocaleString()}`
-          }
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: value => 'Q' + value.toLocaleString()
-          }
-        }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
 
-  const ultimoSaldo = saldos[saldos.length - 1] || 0;
-  
-
-  renderTableData('tablaBancos', dataProcesada.map(i => [
-    i.mesFormateado, 
-    formatCurrency(i.ingreso), 
-    formatCurrency(i.egreso), 
-    formatCurrency(i.saldos)
-  ]));
+  renderTableData('tablaBancos', dataProcesada.map(i => [i.mesFormateado, formatCurrency(i.ingreso), formatCurrency(i.egreso), formatCurrency(i.saldos)]));
 }
 
 async function acreedores() {
@@ -578,81 +313,24 @@ async function acreedores() {
 
   const dataProcesada = data.map(i => {
     const fecha = new Date(i.mes);
-    return {
-      ...i,
-      mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`,
-      timestamp: fecha.getTime()
-    };
+    return { ...i, mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`, timestamp: fecha.getTime() };
   }).sort((a, b) => a.timestamp - b.timestamp);
-
-  const labels = dataProcesada.map(i => i.mesFormateado);
 
   createChart('acreedoresChart', {
     type: 'line',
     data: {
-      labels: labels,
+      labels: dataProcesada.map(i => i.mesFormateado),
       datasets: [
-        { 
-          label: 'Pagos', 
-          data: dataProcesada.map(i => i.pagos), 
-          borderColor: '#3b82f6',
-          backgroundColor: 'transparent',
-          tension: 0.3
-        },
-        { 
-          label: 'Mora Pagada', 
-          data: dataProcesada.map(i => i.mora_pagada), 
-          borderColor: '#ef4444',
-          backgroundColor: 'transparent',
-          tension: 0.3
-        },
-        { 
-          label: 'Interés Pagado', 
-          data: dataProcesada.map(i => i.interes_pagado), 
-          borderColor: '#f59e0b',
-          backgroundColor: 'transparent',
-          tension: 0.3
-        },
-        { 
-          label: 'Aportes A Capital', 
-          data: dataProcesada.map(i => i.aporte_capital), 
-          borderColor: '#10b981',
-          backgroundColor: 'transparent',
-          tension: 0.3
-        }
+        { label: 'Pagos', data: dataProcesada.map(i => i.pagos), borderColor: '#3b82f6' },
+        { label: 'Mora Pagada', data: dataProcesada.map(i => i.mora_pagada), borderColor: '#ef4444' },
+        { label: 'Interés Pagado', data: dataProcesada.map(i => i.interes_pagado), borderColor: '#f59e0b' },
+        { label: 'Aportes A Capital', data: dataProcesada.map(i => i.aporte_capital), borderColor: '#10b981' }
       ]
     },
-    options: { 
-      responsive: true, 
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'bottom' },
-        tooltip: {
-          mode: 'index',
-          intersect: false,
-          callbacks: {
-            label: (context) => `${context.dataset.label}: Q${context.raw.toLocaleString()}`
-          }
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: value => 'Q' + value.toLocaleString()
-          }
-        }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
 
-  renderTableData('tablaAcreedores', dataProcesada.map(i => [
-    i.mesFormateado,
-    formatCurrency(i.pagos),
-    formatCurrency(i.mora_pagada),
-    formatCurrency(i.interes_pagado),
-    formatCurrency(i.aporte_capital)
-  ]));
+  renderTableData('tablaAcreedores', dataProcesada.map(i => [i.mesFormateado, formatCurrency(i.pagos), formatCurrency(i.mora_pagada), formatCurrency(i.interes_pagado), formatCurrency(i.aporte_capital)]));
 }
 
 async function morosidad() {
@@ -661,43 +339,17 @@ async function morosidad() {
 
   const dataProcesada = data.map(i => {
     const fecha = new Date(i.periodo);
-    return {
-      cantidad: i.cantidad,
-      mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`,
-      timestamp: fecha.getTime()
-    };
+    return { cantidad: i.cantidad, mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`, timestamp: fecha.getTime() };
   }).sort((a, b) => a.timestamp - b.timestamp);
-
-  const labels = dataProcesada.map(i => i.mesFormateado);
-  const values = dataProcesada.map(i => i.cantidad);
 
   createChart('morosidadChart', {
     type: 'line',
     data: {
-      labels: labels,
-      datasets: [{ 
-        label: 'Clientes en Mora', 
-        data: values, 
-        fill: true,
-        borderColor: '#f43f5e',
-        backgroundColor: 'rgba(244, 63, 94, 0.1)',
-        tension: 0.3 
-      }]
+      labels: dataProcesada.map(i => i.mesFormateado),
+      datasets: [{ label: 'Clientes en Mora', data: dataProcesada.map(i => i.cantidad), borderColor: '#f43f5e', fill: true }]
     },
-    options: { 
-      responsive: true, 
-      maintainAspectRatio: false,
-      plugins: { legend: { display: true } },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: { precision: 0 }
-        }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
-
-  
 
   renderTableData('tablaMorosidad', dataProcesada.map(i => [i.mesFormateado, i.cantidad]));
 }
@@ -706,59 +358,18 @@ async function casos_exito_asesor() {
   const data = await fetchData('casos-exito-asesor/');
   if (!data.length) return;
 
-  const labels = data.map(i =>
-    `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim()
-  );
-
-  const otorgados = data.map(i => i.total_otorgados);
-  const cancelados = data.map(i => i.total_cancelados);
+  const labels = data.map(i => `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim());
 
   createChart('casosExitoChart', {
     type: 'bar',
     data: { 
       labels, 
       datasets: [
-        { 
-          label: 'Total Otorgados', 
-          data: otorgados,
-          backgroundColor: 'rgba(54, 162, 235, 0.5)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1,
-          borderRadius: 5
-        },
-        { 
-          label: 'Cancelados (Éxito)', 
-          data: cancelados,
-          backgroundColor: 'rgba(75, 192, 192, 0.8)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1,
-          borderRadius: 5
-        }
+        { label: 'Total Otorgados', data: data.map(i => i.total_otorgados), backgroundColor: 'rgba(54, 162, 235, 0.5)' },
+        { label: 'Cancelados (Éxito)', data: data.map(i => i.total_cancelados), backgroundColor: 'rgba(75, 192, 192, 0.8)' }
       ] 
     },
-    options: { 
-      indexAxis: 'y', 
-      responsive: true, 
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: true, position: 'top' },
-        tooltip: {
-          callbacks: {
-            afterLabel: function(context) {
-              const index = context.dataIndex;
-              const porcentaje = ((cancelados[index] / otorgados[index]) * 100).toFixed(1);
-              return `Efectividad: ${porcentaje}%`;
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          beginAtZero: true,
-          title: { display: true, text: 'Cantidad de Créditos' }
-        }
-      }
-    }
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false }
   });
 
   renderTableData('tablaCasosExito', data.map(i => [
@@ -773,59 +384,18 @@ async function casos_judicial_asesor() {
   const data = await fetchData('casos-demanda-asesor/');
   if (!data.length) return;
 
-  const labels = data.map(i =>
-    `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim()
-  );
-
-  const otorgados = data.map(i => i.total_otorgados);
-  const demandados = data.map(i => i.total_demandados);
+  const labels = data.map(i => `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim());
 
   createChart('casosDemandaChart', {
     type: 'bar',
     data: { 
       labels, 
       datasets: [
-        { 
-          label: 'Total Otorgados', 
-          data: otorgados,
-          backgroundColor: 'rgba(54, 162, 235, 0.5)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1,
-          borderRadius: 5
-        },
-        { 
-          label: 'Demandados', 
-          data: demandados,
-          backgroundColor: 'rgba(239, 68, 68, 0.8)',
-          borderColor: 'rgba(239, 68, 68, 1)',
-          borderWidth: 1,
-          borderRadius: 5
-        }
+        { label: 'Total Otorgados', data: data.map(i => i.total_otorgados), backgroundColor: 'rgba(54, 162, 235, 0.5)' },
+        { label: 'Demandados', data: data.map(i => i.total_demandados), backgroundColor: 'rgba(239, 68, 68, 0.8)' }
       ] 
     },
-    options: { 
-      indexAxis: 'y', 
-      responsive: true, 
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: true, position: 'top' },
-        tooltip: {
-          callbacks: {
-            afterLabel: function(context) {
-              const index = context.dataIndex;
-              const porcentaje = ((demandados[index] / otorgados[index]) * 100).toFixed(1);
-              return `Tasa: ${porcentaje}%`;
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          beginAtZero: true,
-          title: { display: true, text: 'Cantidad de Créditos' }
-        }
-      }
-    }
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false }
   });
 
   renderTableData('tablaCasosDemanda', data.map(i => [
@@ -840,59 +410,18 @@ async function casos_atraso_asesor() {
   const data = await fetchData('casos-atraso-asesor/');
   if (!data.length) return;
 
-  const labels = data.map(i =>
-    `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim()
-  );
-
-  const otorgados = data.map(i => i.total_otorgados);
-  const atrasados = data.map(i => i.total_atrasados);
+  const labels = data.map(i => `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim());
 
   createChart('casosAtrasadoChart', {
     type: 'bar',
     data: { 
       labels, 
       datasets: [
-        { 
-          label: 'Total Otorgados', 
-          data: otorgados,
-          backgroundColor: 'rgba(54, 162, 235, 0.5)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1,
-          borderRadius: 5
-        },
-        { 
-          label: 'Atrasados', 
-          data: atrasados,
-          backgroundColor: 'rgba(245, 158, 11, 0.8)',
-          borderColor: 'rgba(245, 158, 11, 1)',
-          borderWidth: 1,
-          borderRadius: 5
-        }
+        { label: 'Total Otorgados', data: data.map(i => i.total_otorgados), backgroundColor: 'rgba(54, 162, 235, 0.5)' },
+        { label: 'Atrasados', data: data.map(i => i.total_atrasados), backgroundColor: 'rgba(245, 158, 11, 0.8)' }
       ] 
     },
-    options: { 
-      indexAxis: 'y', 
-      responsive: true, 
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: true, position: 'top' },
-        tooltip: {
-          callbacks: {
-            afterLabel: function(context) {
-              const index = context.dataIndex;
-              const porcentaje = ((atrasados[index] / otorgados[index]) * 100).toFixed(1);
-              return `Tasa: ${porcentaje}%`;
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          beginAtZero: true,
-          title: { display: true, text: 'Cantidad de Créditos' }
-        }
-      }
-    }
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false }
   });
 
   renderTableData('tablaCasosAtrasado', data.map(i => [
@@ -907,65 +436,18 @@ async function cartera_asesor() {
   const data = await fetchData('cartera-asesor/');
   if (!data.length) return;
 
-  const labels = data.map(i =>
-    `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim()
-  );
-
-  const otorgados = data.map(i => i.saldo_cartera_total);
-  const cancelados = data.map(i => i.saldo_en_atraso);
+  const labels = data.map(i => `${i.asesor_de_credito__nombre || ''} ${i.asesor_de_credito__apellido || ''}`.trim());
 
   createChart('carteraAsesorChart', {
     type: 'bar',
     data: { 
       labels, 
       datasets: [
-        { 
-          label: 'Vigentes', 
-          data: otorgados,
-          backgroundColor: 'rgba(54, 162, 235, 0.5)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1,
-          borderRadius: 5
-        },
-        { 
-          label: 'Atrasados', 
-          data: cancelados,
-          backgroundColor: 'rgba(239, 68, 68, 0.8)',
-          borderColor: 'rgba(239, 68, 68, 1)',
-          borderWidth: 1,
-          borderRadius: 5
-        }
+        { label: 'Vigentes', data: data.map(i => i.saldo_cartera_total), backgroundColor: 'rgba(54, 162, 235, 0.5)' },
+        { label: 'Atrasados', data: data.map(i => i.saldo_en_atraso), backgroundColor: 'rgba(239, 68, 68, 0.8)' }
       ] 
     },
-    options: { 
-      indexAxis: 'x', 
-      responsive: true, 
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: true, position: 'top' },
-        tooltip: {
-          callbacks: {
-            afterLabel: function(context) {
-              const index = context.dataIndex;
-              const porcentaje = ((cancelados[index] / otorgados[index]) * 100).toFixed(1);
-              return `Tasa (Saldo Atraso / Saldo Total Otorgado): ${porcentaje}%`;
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          beginAtZero: true,
-          title: { display: true, text: 'Asesores' }
-        },
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: value => 'Q' + value.toLocaleString()
-          }
-        }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false }
   });
 
   renderTableData('tablaCarteraAsesor', data.map(i => [
@@ -977,57 +459,59 @@ async function cartera_asesor() {
 }
 
 /* ===============================
-   INICIALIZACIÓN
-=================================*/
-
-
-
-
-
-/* ===============================
    EXPORTACIÓN A PDF (FRONTEND)
 =================================*/
 function descargarPDF() {
   const elemento = document.getElementById('reporte-pdf');
-  
-  // Opciones de configuración para html2pdf
+  if (!elemento) return;
+
   const opciones = {
-    margin:       [10, 10, 10, 10], // Margen en mm [arriba, izquierda, abajo, derecha]
+    margin:       [8, 8, 8, 8], // Márgenes superior, izquierdo, inferior, derecho en mm
     filename:     `dashboard_${new Date().toISOString().slice(0,10)}.pdf`,
     image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2, useCORS: true, logging: false }, // Scale 2 asegura nitidez en canvas
+    html2canvas:  { 
+      scale: 2, 
+      useCORS: true, 
+      logging: false,
+      scrollY: 0, // Fuerza la captura desde el inicio del contenedor eliminando espacio en blanco
+      scrollX: 0
+    },
+    pagebreak:    { mode: ['css', 'legacy'] },
     jsPDF:        { unit: 'mm', format: 'letter', orientation: 'portrait' }
   };
 
-  // Convertir a PDF y descargar
   html2pdf().set(opciones).from(elemento).save();
 }
 
 async function loadAllData() {
   showMessage('Cargando KPIs...');
-  await Promise.all([
-    clientesPorMes(),
-    creditosPorMes(),
-    creditosPorAsesor(),
-    tiposCredito(),
-    formasPago(),
-    desembolsos(),
-    recuperacion(),
-    egresos(),
-    bancos(),
-    acreedores(),
-    morosidad(),
-    casos_exito_asesor(),
-    casos_judicial_asesor(),
-    casos_atraso_asesor(),
-    cartera_asesor()
-  ]);
-  showMessage('Dashboard actualizado ✅');
-
-  // Pequeña pausa (500ms) para garantizar el renderizado completo de las animaciones de Chart.js
-  setTimeout(() => {
-     descargarPDF();
-  }, 500);
+  try {
+    await Promise.all([
+      clientesPorMes(),
+      creditosPorMes(),
+      creditosPorAsesor(),
+      tiposCredito(),
+      formasPago(),
+      desembolsos(),
+      recuperacion(),
+      egresos(),
+      bancos(),
+      acreedores(),
+      morosidad(),
+      casos_exito_asesor(),
+      casos_judicial_asesor(),
+      casos_atraso_asesor(),
+      cartera_asesor()
+    ]);
+    showMessage('Dashboard actualizado ✅');
+  } catch (err) {
+    console.error("Error cargando los KPIs:", err);
+  } finally {
+    // Se ejecuta siempre, garantizando la descarga tras cargar datos
+    setTimeout(() => {
+      descargarPDF();
+    }, 800);
+  }
 }
 
 window.onload = loadAllData;
