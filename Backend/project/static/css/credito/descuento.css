@@ -1,0 +1,205 @@
+/* =========================================================
+   VARIABLES DE COLOR
+   ========================================================= */
+:root {
+  --bg-dark-1: #0B090A;
+  --bg-dark-2: #161A1D;
+  --primary-dark: #660708;
+  --primary-medium: #A4161A;
+  --primary-red: #BA181B;
+  --primary-bright: #E5383B;
+  --text-muted: #B1A7A6;
+  --gray-light: #D3D3D3;
+  --off-white: #F5F3F4;
+  --white: #FFFFFF;
+}
+
+body {
+  background-color: #ededed;
+  font-family: "Quicksand", sans-serif;
+  margin: 0;
+}
+
+/* Contenedor de la tarjeta del formulario */
+.glass-card {
+  position: relative;
+  z-index: 2;
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  padding: 35px;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.glass-card h2 {
+  color: var(--bg-dark-1);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--bg-dark-2);
+  margin-bottom: 8px;
+}
+
+/* Campos de entrada (Inputs, Selects y Textareas) limpios y contrastados */
+.form-control {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--off-white);
+  border: 1.5px solid var(--gray-light);
+  border-radius: 8px;
+  color: var(--bg-dark-1);
+  font-family: inherit;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition: all 0.25s ease-in-out;
+}
+
+.form-control::placeholder {
+  color: #9ca3af;
+}
+
+.form-control:focus {
+  outline: none;
+  background: var(--white);
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 4px rgba(186, 24, 27, 0.12);
+}
+
+select.form-control {
+  cursor: pointer;
+}
+
+select.form-control option {
+  background-color: var(--white);
+  color: var(--bg-dark-1);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* Checkbox estilizado */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  color: var(--bg-dark-2);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--gray-light);
+  border-radius: 6px;
+  background: var(--off-white);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+  background-color: var(--primary-red);
+  border-color: var(--primary-red);
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Botón Guardar Principal */
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-medium) 100%);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(186, 24, 27, 0.25);
+}
+
+.btn-submit:hover {
+  background: linear-gradient(135deg, var(--primary-bright) 0%, var(--primary-red) 100%);
+  box-shadow: 0 6px 16px rgba(186, 24, 27, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Botón Cancelar */
+.btn_cancel {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: transparent;
+  color: var(--primary-red);
+  border: 1.5px solid var(--gray-light);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.btn_cancel:hover {
+  background: rgba(186, 24, 27, 0.05);
+  border-color: var(--primary-red);
+  color: var(--primary-medium);
+}
+
+/* Mensajes de Alerta */
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.alert-success {
+  background: #d1fae5;
+  border: 1px solid #34d399;
+  color: #065f46;
+}
+
+.alert-error {
+  background: #fee2e2;
+  border: 1px solid #f87171;
+  color: #991b1b;
+}

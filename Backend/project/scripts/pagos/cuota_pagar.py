@@ -14,6 +14,10 @@ def cuota_a_pagar(self):
     # Fecha de emisión (como objeto datetime)
     fecha_emision = self.fecha_emision.date()
 
+    if self._tiene_descuento() is not None:
+        return self._tiene_descuento().cuota
+    
+
     if informacion['ultimo_registro_estado_cuenta'] is not None:
         ultima_fecha = informacion['ultimo_registro_estado_cuenta'].payment.fecha_emision.date()
             

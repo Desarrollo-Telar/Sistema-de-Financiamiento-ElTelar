@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Descuento</title>
+  
+  <!-- Fuente Quicksand (por si no la tenías importada) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Tu estilo base */
+    body {
+      background-color: #ededed;
+      font-family: "Quicksand", serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* =========================================================
+       VARIABLES DE COLOR (Paleta enviada)
+       ========================================================= */
+    :root {
+      --bg-dark-1: #0B090A;
+      --bg-dark-2: #161A1D;
+      --primary-dark: #660708;
+      --primary-medium: #A4161A;
+      --primary-red: #BA181B;
+      --primary-bright: #E5383B;
+      --text-muted: #B1A7A6;
+      --gray-light: #D3D3D3;
+      --off-white: #F5F3F4;
+      --white: #FFFFFF;
+    }
+
+    /* Contenedor principal que genera el fondo oscuro/rojo para que luzca el Glassmorphism */
+    .glass-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 50%, var(--primary-dark) 100%);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Luces de fondo para el blur del cristal */
+    .glass-wrapper::before, 
+    .glass-wrapper::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      z-index: 1;
+    }
+
+    .glass-wrapper::before {
+      width: 220px;
+      height: 220px;
+      background: var(--primary-bright);
+      opacity: 0.35;
+      top: -30px;
+      right: -30px;
+    }
+
+    .glass-wrapper::after {
+      width: 200px;
+      height: 200px;
+      background: var(--primary-red);
+      opacity: 0.4;
+      bottom: -30px;
+      left: -30px;
+    }
+
+    /* Tarjeta Glassmorphism */
+    .glass-card {
+      position: relative;
+      z-index: 2;
+      background: rgba(22, 26, 29, 0.5);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 14px;
+      border: 1px solid rgba(245, 243, 244, 0.15);
+      padding: 24px;
+    }
+
+    .glass-card h2 {
+      color: var(--white);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--off-white);
+      margin-bottom: 6px;
+    }
+
+    /* Controles de Formulario */
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(245, 243, 244, 0.08);
+      border: 1px solid rgba(211, 211, 211, 0.25);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    .form-control::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-control:focus {
+      outline: none;
+      background: rgba(245, 243, 244, 0.15);
+      border-color: var(--primary-bright);
+      box-shadow: 0 0 10px rgba(229, 56, 59, 0.3);
+    }
+
+    select.form-control option {
+      background-color: var(--bg-dark-2);
+      color: var(--white);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Checkbox personalizado */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+      color: var(--off-white);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(211, 211, 211, 0.4);
+      border-radius: 4px;
+      background: rgba(245, 243, 244, 0.08);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .checkbox-group input[type="checkbox"]:checked {
+      background-color: var(--primary-red);
+      border-color: var(--primary-bright);
+    }
+
+    .checkbox-group input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      color: var(--white);
+      font-size: 12px;
+      font-weight: bold;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Botón */
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-medium) 100%);
+      color: var(--white);
+      border: 1px solid rgba(229, 56, 59, 0.4);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(186, 24, 27, 0.3);
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, var(--primary-bright) 0%, var(--primary-red) 100%);
+      box-shadow: 0 6px 18px rgba(229, 56, 59, 0.5);
+      transform: translateY(-1px);
+    }
+
+    /* Mensajes de Alerta */
+    .alert {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .alert-success {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #86efac;
+    }
+
+    .alert-error {
+      background: rgba(229, 56, 59, 0.2);
+      border: 1px solid var(--primary-bright);
+      color: #fca5a5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Wrapper que otorga el fondo ideal para el efecto cristal -->
+  <div class="glass-wrapper">
+    <div class="glass-card">
+      <h2>Registrar Descuento</h2>
+
+      <div id="alert-message" class="alert"></div>
+
+      <form id="descuento-form">
+        <!-- Campos Ocultos (Hidden) -->
+        <input type="hidden" name="credit" id="credit" value="1">
+        <input type="hidden" name="cuota" id="cuota" value="1">
+        <input type="hidden" name="sucursal" id="sucursal" value="1">
+        <input type="hidden" name="usuario_descuento" id="usuario_descuento" value="1">
+
+        <!-- Campos Visibles -->
+        <div class="form-group">
+          <label for="interes_por_cobrar">Interés por cobrar</label>
+          <input type="number" step="0.01" min="0" name="interes_por_cobrar" id="interes_por_cobrar" class="form-control" placeholder="0.00" required>
+        </div>
+
+        <div class="form-group">
+          <label for="mora_por_cobrar">Mora por cobrar</label>
+          <input type="number" step="0.01" min="0" name="mora_por_cobrar" id="mora_por_cobrar" class="form-control" placeholder="0.00" required>
+        </div>
+
+        <div class="form-group">
+          <label for="saldo_capital_por_cobrar">Saldo capital por cobrar</label>
+          <input type="number" step="0.01" min="0" name="saldo_capital_por_cobrar" id="saldo_capital_por_cobrar" class="form-control" placeholder="0.00" required>
+        </div>
+
+        <div class="form-group">
+          <label for="tipo_descuento">Tipo de descuento</label>
+          <select name="tipo_descuento" id="tipo_descuento" class="form-control" required>
+            <option value="" disabled selected>Seleccione una opción</option>
+            <option value="PARCIAL">Parcial</option>
+            <option value="TOTAL">Total</option>
+            <option value="ESPECIAL">Especial</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="motivo_descuento">Motivo del descuento</label>
+          <textarea name="motivo_descuento" id="motivo_descuento" class="form-control" placeholder="Escriba la razón del descuento..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-group">
+            <input type="checkbox" name="recalcular_cuota" id="recalcular_cuota">
+            <span>Recalcular cuota</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit">Guardar Descuento</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('descuento-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const alertBox = document.getElementById('alert-message');
+      alertBox.style.display = 'none';
+
+      const formData = new FormData(this);
+      const data = {
+        credit: parseInt(formData.get('credit')),
+        cuota: parseInt(formData.get('cuota')),
+        sucursal: parseInt(formData.get('sucursal')),
+        usuario_descuento: parseInt(formData.get('usuario_descuento')),
+        interes_por_cobrar: parseFloat(formData.get('interes_por_cobrar')),
+        mora_por_cobrar: parseFloat(formData.get('mora_por_cobrar')),
+        saldo_capital_por_cobrar: parseFloat(formData.get('saldo_capital_por_cobrar')),
+        tipo_descuento: formData.get('tipo_descuento'),
+        motivo_descuento: formData.get('motivo_descuento'),
+        recalcular_cuota: formData.get('recalcular_cuota') === 'on'
+      };
+
+      try {
+        const response = await fetch('/financings/api/descuento/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          showAlert('Descuento registrado exitosamente.', 'success');
+          this.reset();
+        } else {
+          const errorData = await response.json();
+          showAlert('Error al guardar: ' + JSON.stringify(errorData), 'error');
+        }
+      } catch (error) {
+        showAlert('Ocurrió un error al procesar la solicitud.', 'error');
+      }
+    });
+
+    function showAlert(message, type) {
+      const alertBox = document.getElementById('alert-message');
+      alertBox.textContent = message;
+      alertBox.className = `alert alert-${type}`;
+      alertBox.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

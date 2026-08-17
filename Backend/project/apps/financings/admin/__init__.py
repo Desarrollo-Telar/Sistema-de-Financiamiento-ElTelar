@@ -7,7 +7,7 @@ from .desembolso import DisbursementAdmin
 
 from .estado_cuenta import AccountStatementAdmin
 
-from .otros import GARANTIA, DETALLE_DE_GARANTIA, FACTURA, CUOTA
+from .otros import GARANTIA, DETALLE_DE_GARANTIA, FACTURA, CUOTA, DESCUENTO
 
 from .pagos import PaymentAdmin
 

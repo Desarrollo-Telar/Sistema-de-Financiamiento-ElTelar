@@ -23,6 +23,7 @@ router.register(r'cuota_seguro',views.PaymentPlanSeguroUltimoViewSet,'cuota_segu
 router.register(r'cuotas',views.PaymentPlanViewSet,'cuotas')
 router.register(r'cuota_ampliacion',views.PaymentPlanAmpliacion,'cuota_ampliacion')
 router.register(r'estado_cuenta',views.EstadoCuentaViewSet,'estado_cuenta')
+router.register(r'descuento', views.DescuenntoViewSet, 'descuento')
 urlpatterns = [
     path('api/', include(router.urls)),
 ]

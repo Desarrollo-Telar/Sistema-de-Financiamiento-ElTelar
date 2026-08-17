@@ -9,3 +9,5 @@ from .factura import *
 from .pago import *
 
 from .recibo import *
+
+from .descuento import *

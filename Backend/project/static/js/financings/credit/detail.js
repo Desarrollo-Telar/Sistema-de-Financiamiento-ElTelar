@@ -67,7 +67,7 @@ async function fetchLastPaymentPlan(searchTerm) {
                 <p>Interes: Q${response.data['interes_actual']}</p>
                 <p>Capital aportar: Q${response.data['capital_generado']}</p>
                 <p>Total de la Cuota a Cancelar: Q${response.data['total_cancelar']}</p>
-                <a href="/financings/payment/cuota/update/${response.data['id']}/">Aplicar Descuento</a>
+                
                            
                 `,
                     icon: "info",

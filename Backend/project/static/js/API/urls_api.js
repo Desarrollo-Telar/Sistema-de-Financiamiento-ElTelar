@@ -110,6 +110,7 @@ export const urls_p = {
     api_url_cuota_ampliacion: `${baseUrl}/financings/api/cuota_ampliacion/`,
     api_url_estado_cuenta: `${baseUrl}/financings/api/estado_cuenta/`,
     api_url_recibo:`${baseUrl}/financings/api/recibo/`,
+    api_url_descuento:`${baseUrl}/financings/api/descuento/`,
 
     // DOCUMENTOS
     api_url_documento_garantia: `${baseUrl}/documents/api/documento_garantia/`,

@@ -198,10 +198,18 @@ class Payment(models.Model):
         total = cuota.interest + cuota.mora
         return round(total)
 
+    def _tiene_descuento(self):
+        from apps.financings.models.descuento import Descuento
+
+        return (
+            Descuento.objects.filter(credit=self.credit, activo=True)
+            .order_by("-pk")
+            .first()
+        )
+
     def realizar_pago(self):
         try:
             cuota = self._cuota_pagar()
-
 
             if cuota is None:
                 cuota = self._siguiente_cuota()
@@ -242,6 +250,7 @@ class Payment(models.Model):
         pago = self.pago()
         cuota = self._cuota_pagar()
         siguiente = self._siguiente_cuota()
+        descuento_activo = self._tiene_descuento()
 
         # ------------------------------------ #
         cuota_a_actualizar = False
@@ -422,6 +431,8 @@ class Payment(models.Model):
         informacion['credito'].saldo_actual   = saldo_pendiente + cuota.mora + cuota.interest
         informacion['credito'].save()
 
+        
+
         if siguiente is not None:
             # Actualizamos la siguiente cuota si ya existe
             cuota_a_actualizar = siguiente
@@ -454,6 +465,25 @@ class Payment(models.Model):
             informacion['credito'].save()
             
             cuota_a_actualizar.save()
+
+        # ----------------------------------------------------
+        # Al final de _registrar_pago:
+        # ----------------------------------------------------
+        if descuento_activo is not None:
+            # Si la cuota del descuento es la misma que acabamos de procesar,
+            # simplemente desactivamos el descuento.
+            if descuento_activo.recalcular_cuota:
+                # Si requieres actualizar la SIGUIENTE cuota con el nuevo saldo/interés:
+                if cuota is not None:
+                    cuota.saldo_pendiente = saldo_pendiente
+                    cuota.interest = interes
+                    cuota.save()
+
+                descuento_activo.recalcular_cuota = False
+
+            # Desactivar el descuento procesado
+            descuento_activo.activo = False
+            descuento_activo.save()
 
 
     def __str__(self):

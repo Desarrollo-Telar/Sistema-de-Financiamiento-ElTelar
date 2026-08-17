@@ -28,3 +28,5 @@ from .factura import Invoice
 # CUOTAS
 from .cuotas import Cuota
 
+# DESCUENTOS
+from .descuento import Descuento

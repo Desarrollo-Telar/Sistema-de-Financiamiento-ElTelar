@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/credito/descuento.css' %}">
+ <!-- Fuente Quicksand (por si no la tenías importada) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+ <div class="glass-card">
+    <h2>Registrar Descuento</h2>
+
+    <div id="alert-message" class="alert"></div>
+
+    <form id="descuento-form">
+         {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+      <!-- Campos Hidden -->
+      <input type="hidden" name="credit" id="credit" value="{{credito.id}}">
+      <input type="hidden" name="cuota" id="cuota" value="{{cuota.id}}">
+      <input type="hidden" name="sucursal" id="sucursal" value="{{sucursal}}">
+      <input type="hidden" name="usuario_descuento" id="usuario_descuento" value="{{usuario_descuento.id}}">
+
+      <!-- Campos Visibles -->
+      <div class="form-group">
+        <label for="interes_por_cobrar">Interés por cobrar</label>
+        <input type="number" step="0.01" min="0" name="interes_por_cobrar" id="interes_por_cobrar" class="form-control"  required value="{{interes_por_cobrar}}">
+      </div>
+
+      <div class="form-group">
+        <label for="mora_por_cobrar">Mora por cobrar</label>
+        <input type="number" step="0.01" min="0" name="mora_por_cobrar" id="mora_por_cobrar" class="form-control"  required value="{{mora_por_cobrar}}"   >
+      </div>
+
+      <div class="form-group">
+        <label for="saldo_capital_por_cobrar">Saldo capital por cobrar</label>
+        <input type="number" step="0.01" min="0" name="saldo_capital_por_cobrar" id="saldo_capital_por_cobrar" class="form-control"  required value="{{saldo_capital_por_cobrar}}">
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_descuento">Tipo de descuento</label>
+        <select name="tipo_descuento" id="tipo_descuento" class="form-control" required>
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option value="Descuento sobre intereses">Descuento sobre intereses</option>
+          <option value="Descuento sobre mora">Descuento sobre mora</option>
+          <option value="Descuento sobre capital">Descuento sobre capital</option>
+          <option value="Descuento por negociación">Descuento por negociación</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="motivo_descuento">Motivo del descuento</label>
+        <textarea name="motivo_descuento" id="motivo_descuento" class="form-control" placeholder="Escriba la razón del descuento..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox-group">
+          <input type="checkbox" name="recalcular_cuota" id="recalcular_cuota">
+          <span>Recalcular cuota</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn-submit">Guardar Descuento</button>
+      <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
+    </form>
+  </div>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/financings/descuento/aplicar_descuento.js' %}" type="module"></script>
+{% endblock %}

@@ -9,7 +9,7 @@ from dateutil.relativedelta import relativedelta
 
 # MODELS
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
-from apps.financings.models import PaymentPlan, AccountStatement, Banco
+from apps.financings.models import PaymentPlan, AccountStatement, Descuento
 
 
 # ------------ FUNCIONES ----------------------
@@ -91,6 +91,18 @@ class CreditReporteSerializer(serializers.ModelSerializer):
 
         return data
 
+class DescuentoSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Descuento
+        fields = '__all__'
+       
+
+    def to_representation(self, instance):
+        
+        data = super().to_representation(instance)
+
+        return data
 
 class GuaranteesSerializer(serializers.ModelSerializer):
     class Meta:

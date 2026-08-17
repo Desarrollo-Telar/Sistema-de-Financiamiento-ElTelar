@@ -46,3 +46,6 @@ from .creditos import *
 
 # DESEMBOLSOS
 from .desembolso import *
+
+# DESCUENTOS
+from .descuentos import aplicacion_descuento_view

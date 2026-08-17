@@ -199,6 +199,15 @@
             Mandar Saldo Actual
         </button>
     </div>
+    {% if permisos.puede_aplicar_descuento_cuota%}
+    <div class="col-md-3 mb-3">
+        <a href="{% url 'financings:aplicar_descuento' credit_list.id  siguiente_pago.id %}" class="btn_cancel"
+            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Aplicación de Descuento"
+            aria-label="Aplicación de Descuento">
+            Aplicación de Descuento
+        </a>
+    </div>
+    {% endif %}
     
     <div class="col-md-3 mb-3">
         {% include 'votacion/snippets/modal_credito.html' with form=form%}

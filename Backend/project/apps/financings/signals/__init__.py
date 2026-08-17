@@ -21,3 +21,5 @@ from .estado_cuenta import set_numero_referencia_estado_cuenta
 
 # BANCO
 from .banco import generar_comparacion
+
+from .descuento import marcar_estado_cuenta
