@@ -37,7 +37,7 @@ class GenerarMensajePagoAPIView(APIView):
         telefono = f'502{cliente.telephone}'
         mensaje = f'''
 Estimado *{cliente.first_name} {cliente.last_name}*.
-Le recordamos que su cuota No. _{cuota.mes}_., tiene fecha de pago el para su cuota *{cuota.due_date.date()}* por un monto de *Q{cuota.formato_cuota_total()}*.
+Le recordamos que su cuota No. _{cuota.mes}_., tiene fecha de pago el *{cuota.due_date.date()}* para su cuota por un monto de *Q{cuota.formato_cuota_total()}*.
 
 Actualmente, mantiene un saldo pendiente total de *Q{cuota.formato_saldo_actual()}*.
 Le agradecemos realizar su pago a la brevedad y enviar su boleta de pago para evitar recargos adicionales o inconvenientes futuros.
