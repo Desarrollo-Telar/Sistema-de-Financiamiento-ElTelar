@@ -52,6 +52,7 @@ def detallar_desembolso(request,id):
     credit_list = Credit.objects.filter(codigo_credito=desembolso.credit_id.codigo_credito).first()
     customer_list = Customer.objects.filter(id=credit_list.customer_id.id).first()
     template_name = 'financings/disbursement/detail.html'
+
     context = {
         'title':'Detalle del Desembolso. {}'.format(desembolso.credit_id),
         'desembolso':desembolso,
@@ -59,6 +60,8 @@ def detallar_desembolso(request,id):
         'credit_list':credit_list,
         'customer_list':customer_list,
         'permisos':recorrer_los_permisos_usuario(request),
+
+        'siguiente_pago':PaymentPlan.objects.filter(id=request.session.get('cuota_id')).first(),
     }
     return render(request, template_name, context)
 

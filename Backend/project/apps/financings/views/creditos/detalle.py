@@ -97,6 +97,7 @@ def detail_credit(request,id):
         credito.saldo_actual = saldo_actual
         credito.save()
 
+    request.session['cuota_id'] = siguiente_pago.id if siguiente_pago else None
     
     
    
