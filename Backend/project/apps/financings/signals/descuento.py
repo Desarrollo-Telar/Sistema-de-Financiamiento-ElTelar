@@ -8,6 +8,7 @@ from apps.financings.models import Descuento, PaymentPlan, AccountStatement
 @receiver(post_save, sender=Descuento)
 def marcar_estado_cuenta(sender, instance, created, **kwargs):
     if created:
+        Descuento.objects.filter(credit=instance.credit).exclude(id=instance.id).update(activo=False)
         # Obtener la cuota asociada al descuento
         cuota = instance.cuota
         mora = 0
