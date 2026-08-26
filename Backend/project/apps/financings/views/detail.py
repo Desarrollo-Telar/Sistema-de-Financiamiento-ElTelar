@@ -84,6 +84,7 @@ def detallar_garantia(request, id):
         'garantia':garantia,
         'documentos':documentos,
         'permisos':recorrer_los_permisos_usuario(request),
+        'siguiente_pago':PaymentPlan.objects.filter(id=request.session.get('cuota_id')).first(),
     }
     return render(request, template_name, context)
    
