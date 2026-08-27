@@ -11,7 +11,7 @@ def marcar_estado_cuenta(sender, instance, created, **kwargs):
 
     with transaction.atomic():
         # 1. Desactivar otros descuentos del crédito
-        Descuento.objects.filter(credit=instance.credit).exclude(id=instance.id).update(activo=False)
+        Descuento.objects.filter(credit=instance.credit).exclude(pk=instance.pk).update(activo=False)
 
         cuota = instance.cuota
 
@@ -20,7 +20,7 @@ def marcar_estado_cuenta(sender, instance, created, **kwargs):
         data_cuota_original = model_to_dict(cuota)
 
         # 3. Guardar snapshot en el registro de Descuento
-        Descuento.objects.filter(id=instance.id).update(data_cuota=data_cuota_original)
+        Descuento.objects.filter(pk=instance.pk).update(data_cuota=data_cuota_original)
 
         # 4. Calcular diferencias para el Estado de Cuenta
         mora = -instance.mora_por_cobrar if cuota.mora != instance.mora_por_cobrar else 0
