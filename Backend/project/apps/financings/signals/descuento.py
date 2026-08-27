@@ -1,44 +1,98 @@
 from django.db import transaction
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from apps.financings.models import Descuento, AccountStatement
+
+# MODELOS
+from apps.financings.models import (
+    Descuento,
+    PaymentPlan,
+    AccountStatement,
+)
+
 from scripts.conversion_datos import model_to_dict
+
 
 @receiver(post_save, sender=Descuento)
 def marcar_estado_cuenta(sender, instance, created, **kwargs):
+
+    # Solo ejecutar la lógica cuando el descuento
+    # se está creando por primera vez.
     if not created:
         return
 
     with transaction.atomic():
-        # 1. Desactivar otros descuentos del crédito
-        Descuento.objects.filter(credit=instance.credit).exclude(pk=instance.pk).update(activo=False)
 
+        # ---------------------------------------------------------
+        # 1. Desactivar descuentos anteriores del mismo crédito
+        # ---------------------------------------------------------
+        Descuento.objects.filter(
+            credit=instance.credit
+        ).exclude(
+            pk=instance.pk
+        ).update(
+            activo=False
+        )
+
+        # ---------------------------------------------------------
+        # 2. Obtener la cuota asociada
+        # ---------------------------------------------------------
         cuota = instance.cuota
 
-        # 2. Tomar SNAPSHOT del estado ORIGINAL de la cuota usando tu model_to_dict
-        #    (Pasamos la instancia directamente, no hace falta volver a consultar a la BD con .get())
-        data_cuota_original = model_to_dict(cuota)
+        # ---------------------------------------------------------
+        # 3. Guardar una copia del estado de la cuota
+        #    antes de aplicar el descuento
+        # ---------------------------------------------------------
+        data_cuota = model_to_dict(cuota)
 
-        # 3. Guardar snapshot en el registro de Descuento
-        Descuento.objects.filter(pk=instance.pk).update(data_cuota=data_cuota_original)
+        instance.data_cuota = data_cuota
 
-        # 4. Calcular diferencias para el Estado de Cuenta
-        mora = -instance.mora_por_cobrar if cuota.mora != instance.mora_por_cobrar else 0
-        interes = -instance.interes_por_cobrar if cuota.interest != instance.interes_por_cobrar else 0
+        # Guardamos solamente data_cuota.
+        # Este save volverá a disparar post_save, pero como
+        # created=False, el signal terminará inmediatamente.
+        instance.save(
+            update_fields=["data_cuota"]
+        )
 
-        # 5. Registrar en Estado de Cuenta
+        # ---------------------------------------------------------
+        # 4. Calcular los valores del descuento
+        # ---------------------------------------------------------
+
+        # Valor de mora que se está descontando
+        mora = 0
+
+        # Valor de interés que se está descontando
+        interes = 0
+
+        if cuota.mora != instance.mora_por_cobrar:
+            mora = cuota.mora - instance.mora_por_cobrar
+
+        if cuota.interest != instance.interes_por_cobrar:
+            interes = cuota.interest - instance.interes_por_cobrar
+
+        # ---------------------------------------------------------
+        # 5. Crear el movimiento en el estado de cuenta
+        # ---------------------------------------------------------
         AccountStatement.objects.create(
             credit=instance.credit,
             cuota=cuota,
             numero_referencia=instance.numero_referencia,
-            description=f"Descuento aplicado: {instance.tipo_descuento}\nPor: {instance.usuario_descuento.username}",
+            description=f"Descuento aplicado: {instance.tipo_descuento}",
             saldo_pendiente=instance.saldo_capital_por_cobrar,
-            late_fee_paid=mora,
-            interest_paid=interes
+            late_fee_paid=-mora,
+            interest_paid=-interes,
         )
 
-        # 6. Actualizar la cuota con los montos con descuento
+        # ---------------------------------------------------------
+        # 6. Actualizar la cuota con los nuevos valores
+        # ---------------------------------------------------------
         cuota.saldo_pendiente = instance.saldo_capital_por_cobrar
-        cuota.mora = instance.mora_por_cobrar  
+        cuota.mora = instance.mora_por_cobrar
         cuota.interest = instance.interes_por_cobrar
-        cuota.save(update_fields=['saldo_pendiente', 'mora', 'interest'])
+
+        cuota.save(
+            update_fields=[
+                "saldo_pendiente",
+                "mora",
+                "interest",
+            ]
+        )
