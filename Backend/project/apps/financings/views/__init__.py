@@ -26,7 +26,7 @@ from .delete import delete_credit
 
 # ORGANIZACION DEL CODIGO
 # PAGOS
-from .payment import create_payment, create_payment_credit
+from .payment import create_payment, create_payment_credit, reversion_pago
 
 # Filtros
 from .filtros import filter_list_payment_pendiente, filter_list_payment_completados

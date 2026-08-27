@@ -18,4 +18,5 @@ urlpatterns_payment = [
     path('payment/detail/<int:id>/',login_required(detalle_boleta),name='detalle_boleta'),
     path('payment/search/',login_required(PaymentSearch.as_view()),name='payment_search'),
     path('payment/cuota/update/<int:id>/',login_required(update_cuota), name='paymente_update_cuota'),
+    path('payment/reversion_pago/<int:id>/',login_required(reversion_pago), name='reversion_pago'),
 ]

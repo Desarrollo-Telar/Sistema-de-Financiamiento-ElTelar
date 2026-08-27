@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Confirmar Reversión de Pago
+                    </h5>
+                </div>
+                
+                <div class="card-body text-center py-4">
+                    <p class="fs-5 text-dark">
+                        ¿Estás seguro de que quieres revertir el pago 
+                        <strong>#{{ pago.numero_referencia|default:pago.id }}</strong>?
+                    </p>
+
+                    <!-- Resumen de información del pago -->
+                    <div class="alert alert-light border text-start my-3">
+                        <ul class="list-unstyled mb-0">                            
+                            <li><strong>Monto:</strong> Q{{ pago.monto|floatformat:2 }}</li>
+                            <li><strong>Fecha del Pago:</strong> {{ pago.fecha_emision|date:"d/m/Y H:i" }}</li>
+                        </ul>
+                    </div>
+
+                    <p class="text-muted small mb-4">
+                        Esta acción **eliminará el registro del pago** de forma permanente y no se podrá deshacer.
+                    </p>
+
+                    <!-- Formulario POST de confirmación -->
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="{% url 'financings:list_payment' %}" class="btn btn-secondary">
+                                <i class="fas fa-times me-1"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-undo me-1"></i> Sí, revertir pago
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
