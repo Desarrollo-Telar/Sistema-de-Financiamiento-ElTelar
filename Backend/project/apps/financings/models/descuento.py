@@ -39,6 +39,7 @@ class Descuento(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
     activo = models.BooleanField(default=True)
+    data_cuota = models.JSONField(null=True, blank=True)
 
     class Meta:
         verbose_name = "Descuento"

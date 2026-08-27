@@ -3,14 +3,13 @@ from decimal import Decimal
 from django.db import models
 
 
-
 def model_to_dict(instance, exclude_fields=None):
     """
     Convierte una instancia de modelo Django a un diccionario JSON serializable.
-    Incluye manejo seguro para campos FileField/ImageField.
+    Incluye manejo seguro para campos FileField/ImageField y optimización de Foreign Keys.
     """
     if exclude_fields is None:
-        exclude_fields = ['_state', 'password','uuid']
+        exclude_fields = ['_state', 'password', 'uuid']
     
     data = {}
 
@@ -19,29 +18,32 @@ def model_to_dict(instance, exclude_fields=None):
         if field_name in exclude_fields:
             continue
 
-        value = getattr(instance, field_name)
+        #  REEMPLAZO ÓPTIMO PARA FK / OneToOne:
+        # Obtiene el ID directamente de memoria (ej. credit_id_id) sin hacer SQL extra
+        if field.is_relation and field.many_to_one:
+            value = getattr(instance, field.attname)
 
-        # 🔹 Relaciones FK o OneToOne
-        if isinstance(value, models.Model):
-            value = value.pk
+        #  Si no es relación, obtenemos el valor normal del campo
+        else:
+            value = getattr(instance, field_name)
 
-        # 🔹 Decimales
-        elif isinstance(value, Decimal):
-            value = float(value)
+            #  Decimales
+            if isinstance(value, Decimal):
+                value = float(value)
 
-        # 🔹 Fechas y datetimes
-        elif isinstance(value, (date, datetime)):
-            value = value.isoformat()
+            #  Fechas y datetimes
+            elif isinstance(value, (date, datetime)):
+                value = value.isoformat()
 
-        # 🔹 Archivos o imágenes
-        elif isinstance(value, models.fields.files.FieldFile):
-            if value and value.name:  # Solo si tiene archivo asociado
-                try:
-                    value = value.url  # URL relativa o absoluta según configuración
-                except ValueError:
+            #  Archivos o imágenes
+            elif isinstance(value, models.fields.files.FieldFile):
+                if value and value.name:
+                    try:
+                        value = value.url
+                    except ValueError:
+                        value = None
+                else:
                     value = None
-            else:
-                value = None
 
         data[field_name] = value
 
