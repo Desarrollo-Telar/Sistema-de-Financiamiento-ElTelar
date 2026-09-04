@@ -33,6 +33,25 @@
           Cliente: {{ cliente.first_name }} {{ cliente.last_name }}
         </h3>
       </div>
+      <!-- Asunto del Expediente -->
+      <div class="row g-3 p-4 mb-4">
+        <div class="col-12 col-sm-12 col-md-10">
+          <div class="info-item">
+            <span class="label">Asunto del Expediente</span>
+            {% if expedientes.asunto_expediente %}
+              <span class="value">{{ expedientes.asunto_expediente }}</span>
+            {% else %}
+              <span class="value text-muted">No especificado</span>
+            {% endif %}
+          </div>
+        </div>
+        {% if es_autenticado %}
+        <div class="col-12 col-sm-6 col-md-2">
+          <a href="{% url 'investment_plan:editar_asunto_expediente' expediente_id %}" class="btn btn-sm btn-outline-dark ms-2">Editar</a>
+
+        </div>
+        {% endif %}
+      </div>
 
       <!-- Métricas / Datos del Plan -->
       <div class="row g-3">
@@ -63,7 +82,7 @@
             </span>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-12 col-sm-12 col-md-12">
           <div class="info-item">
             <span class="label">Propósito</span>
             <span class="value text-truncate d-block" title="{{ plan.investment_plan_description }}">

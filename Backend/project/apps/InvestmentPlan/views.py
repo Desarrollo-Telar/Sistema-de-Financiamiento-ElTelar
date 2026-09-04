@@ -142,6 +142,25 @@ def subir_archivos_expedientes_notarios(request,plan_id,user_id):
     return render(request, template_name, context)
 
     
+@login_required
+@usuario_activo
+def editar_asunto_expediente(request, plan_id):
+    expedientes = ExpedientePlanNotario.objects.get(id=plan_id)
+    
+
+    if request.method == 'POST':
+        asunto_expediente = request.POST.get('asunto_expediente')
+        expedientes.asunto_expediente = asunto_expediente
+        expedientes.save()
+        messages.success(request, 'Asunto del expediente actualizado correctamente.')
+        return redirect('investment_plan:lista_expedientes_notarios', expedientes.uuid)
+
+    context = {
+        'expedientes': expedientes,
+        'permisos': recorrer_los_permisos_usuario(request),
+    }
+    return render(request, 'InvestmentPlan/editar_asunto_expediente.html', context)
+
 
 def lista_expedientes_notarios(request, uuid):
     

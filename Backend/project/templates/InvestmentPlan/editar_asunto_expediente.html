@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  /* Tarjeta contenedora estilo interfaz principal */
+  .card-container {
+    background-color: #FFFFFF;
+    border: 1px solid #D3D3D3;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Encabezados y títulos */
+  .title-header {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0B090A;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .subtitle-header {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #660708;
+    text-transform: uppercase;
+  }
+
+  .divider-red {
+    border-top: 2px solid #660708;
+    opacity: 1;
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  /* Campo de formulario tipo tarjeta gris */
+  .form-card-field {
+    background-color: #F5F3F4;
+    border: 1px solid #D3D3D3;
+    border-radius: 6px;
+    padding: 16px;
+  }
+
+  .field-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #B1A7A6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .custom-textarea {
+    background-color: #FFFFFF;
+    border: 1px solid #D3D3D3;
+    border-radius: 4px;
+    color: #0B090A;
+    font-weight: 600;
+    padding: 10px 12px;
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .custom-textarea:focus {
+    border-color: #A4161A;
+    box-shadow: 0 0 0 3px rgba(164, 22, 26, 0.15);
+    outline: none;
+  }
+
+  /* Botones alineados con la interfaz */
+  .btn-custom-danger {
+    background-color: #A4161A;
+    color: #FFFFFF;
+    border: 1px solid #660708;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 8px 20px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-custom-danger:hover {
+    background-color: #BA181B;
+    color: #FFFFFF;
+  }
+
+  .btn-custom-outline {
+    background-color: #FFFFFF;
+    color: #161A1D;
+    border: 1px solid #161A1D;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 8px 20px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-custom-outline:hover {
+    background-color: #F5F3F4;
+    color: #0B090A;
+  }
+</style>
+
+<div class="container py-4">
+  <div class="card-container p-4">
+    
+    <!-- Encabezado de la Sección -->
+    <div>
+      <h2 class="title-header m-0">Modificar Asunto de Expediente</h2>
+      {% if expedientes.plan.cliente %}
+        <span class="subtitle-header">Cliente: {{ expedientes.plan.cliente }}</span>
+      {% endif %}
+    </div>
+    
+    <hr class="divider-red">
+
+    <!-- Formulario -->
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="form-card-field mb-4">
+        <label for="asunto_expediente" class="field-label">Asunto del Expediente</label>
+        <textarea 
+          name="asunto_expediente" 
+          id="asunto_expediente" 
+          class="custom-textarea" 
+          rows="3" 
+          placeholder="Ingrese el asunto del expediente..." 
+          required>{{ expedientes.asunto_expediente|default_if_none:'' }}</textarea>
+      </div>
+
+      <!-- Acciones / Botones -->
+      <div class="d-flex justify-content-end gap-2">
+        <a href="{% url 'investment_plan:lista_expedientes_notarios' expedientes.uuid %}" class="btn btn-custom-outline text-decoration-none">
+          Cancelar
+        </a>
+        <button type="submit" class="btn btn-custom-danger">
+          Guardar Asunto
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

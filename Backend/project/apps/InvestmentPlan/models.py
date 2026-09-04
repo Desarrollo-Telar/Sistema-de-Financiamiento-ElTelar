@@ -153,6 +153,7 @@ class ExpedientePlanNotario(models.Model):
     notario = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_asignacion = models.DateTimeField(auto_now_add=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    asunto_expediente = models.TextField("Asunto del Expediente", blank=True, null=True)
 
     def __str__(self):
         return f"Expediente de Plan de Inversión: {self.investment_plan} - Notario: {self.notario} - {self.uuid}"
