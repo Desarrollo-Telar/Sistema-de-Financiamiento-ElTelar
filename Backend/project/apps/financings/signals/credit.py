@@ -1,10 +1,13 @@
 
+from decimal import Decimal
+
 from django.db.models.signals import post_save, pre_save, pre_delete, post_delete
 from django.dispatch import receiver
 
 # MODELOS
 from apps.financings.models import  Credit, PaymentPlan
 from apps.customers.models import Cobranza
+from apps.FinancialInformation.models import GastoCliente, TipoGasto
 # CLASES
 from apps.financings.calculos import calcular_fecha_maxima, calcular_fecha_vencimiento, calculo_mora, calculo_interes
 
@@ -39,6 +42,11 @@ def generar_codigo(sender, instance, **kwargs):
 
     if instance.is_paid_off:
         cobranza = Cobranza.objects.filter(credito__id = instance.id).order_by('-id').first()
+
+        gasto_cliente = GastoCliente.objects.filter(observaciones=f'#{instance.id}').first()
+
+        if gasto_cliente is not None:
+            gasto_cliente.delete()
         
         if cobranza is not None:
             if cobranza.estado_cobranza != 'COMPLETADO':
@@ -66,6 +74,7 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
     if instance.asesor_de_credito is None and hasattr(instance.customer_id, "new_asesor_credito"):
         instance.asesor_de_credito = instance.customer_id.new_asesor_credito
         instance.save(update_fields=["asesor_de_credito"])  # actualiza solo ese campo
+    
 
     if not instance.es_credito_migrado:
         # Crear el plan de pago inicial
@@ -85,6 +94,18 @@ def generar_plan_pagos_nuevo(sender, instance, created, **kwargs):
             due_date=fecha_vencimiento,
             sucursal=instance.sucursal, status = False
         )
+
+    tipo_gasto, creado = TipoGasto.objects.get_or_create(nombre="CREDITO EL TELAR")
+    cuota = Decimal(interes) + (Decimal(instance.monto) / Decimal(instance.plazo))
+
+    GastoCliente.objects.create(
+        customer=instance.customer_id,
+        tipo_gasto=tipo_gasto,
+        descripcion=f"Gasto generado por el crédito {instance.codigo_credito} del cliente {instance.customer_id}",
+        monto=cuota,
+        frecuencia = "Mensual",
+        observaciones=f'#{instance.id}'
+    )
 
     # Enviar notificación por correo
     send_email_new_credit(instance)

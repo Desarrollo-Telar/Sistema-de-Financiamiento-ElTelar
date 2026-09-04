@@ -34,27 +34,32 @@ from django.contrib import messages
 @usuario_activo
 def subir_banco(request):
     template_name = 'documents/create/banco.html'
-    sucursal = request.session['sucursal_id']
+    
     if request.method == 'POST':
         form = DocumentBankForms(request.POST, request.FILES)
 
         if form.is_valid():
-            documento = DocumentBank()
-            documento.document = form.cleaned_data.get('document')
-            documento.sucursal = Subsidiary.objects.get(id=sucursal)
-            documento.save()       
-            messages.success(request, 'Documento Subido')
-            return redirect('financings:list_bank')
+            # Guarda la instancia de DocumentBank con sucursal y nombre_del_banco
+            documento = form.save()
+            
+           
+            banco_seleccionado = documento.nombre_del_banco
 
-    form = DocumentBankForms
+            
+
+            messages.success(request, f'Documento de {banco_seleccionado} procesado.')
+            return redirect('financings:list_bank')
+    else:
+        # Pasa valores iniciales si los tienes en la sesión
+        sucursal_id = request.session.get('sucursal_id')
+        form = DocumentBankForms(initial={'sucursal': sucursal_id})
+
     context = {
-        'form':form,
-        
-        'permisos':recorrer_los_permisos_usuario(request),
+        'form': form,
+        'permisos': recorrer_los_permisos_usuario(request),
     } 
 
     return render(request, template_name, context)
-
 
 
 @login_required

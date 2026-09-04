@@ -22,7 +22,7 @@ def crear_excel_bancos(data, dia = None):
     encabezados = [
         "#","FECHA","NUMERO DE REFERENCIA","SECUENCIAL","CHEQUE",
         "CREDITO","DEBITO","DESCRIPCION","SALDO CONTABLE",
-        "SALDO DISPONIBLE","REGISTRO FICTICIO"
+        "SALDO DISPONIBLE","NOMBRE DEL BANCO","REGISTRO FICTICIO"
 
     ]
 
@@ -52,6 +52,7 @@ def crear_excel_bancos(data, dia = None):
             informacion_banco.get('descripcion',''),
             formatear_numero(informacion_banco.get('saldo_contable','')),
             formatear_numero(informacion_banco.get('saldo_disponible','')),
+            informacion_banco.get('nombre_del_banco',''),
             informacion_banco.get('registro_ficticio',''),
             ]
 

@@ -16,7 +16,7 @@ from apps.financings.models import Credit, PaymentPlan, Banco, Payment, Recibo, 
 from apps.users.models import User
 from apps.subsidiaries.models import Subsidiary
 from apps.accountings.models import Income, Egress
-
+from apps.FinancialInformation.models import GastoCliente, TipoGasto
 # Scripts
 from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
 from scripts.cargar_fiadores.vincular import main_vincular
@@ -26,6 +26,10 @@ from scripts.INFILE.fact import guardar_xml_recibo
 from scripts.INFILE.consulta_nit import ejemplo_uso_consulta_receptor
 from scripts.cuotas.cuotas_fecha_limite import verificador_de_cuotas_fecha_limite
 
+# DECIMAL
+from decimal import Decimal
+# CALCULOS
+from apps.financings.utils import calcular_capital, calcular_interes, calcular_mora
 # Tiempo
 from datetime import datetime, timedelta, timezone
 from django.utils import timezone
@@ -95,6 +99,34 @@ def xd():
 from django.db.models.functions import Replace
 from django.db.models import F, Value
 
+def agregar_gasto_de_cliente():
+    creditos = Credit.objects.filter(is_paid_off=False)
+    tipo_gasto, creado = TipoGasto.objects.get_or_create(nombre="CREDITO EL TELAR")
+
+    for credito in creditos:
+        primera_cuota = PaymentPlan.objects.filter(credit_id=credito, mes=1).first()
+        monto_origial = Decimal(credito.monto)
+        plazo = Decimal(credito.plazo)
+        tasa_interes = Decimal(credito.tasa_interes)
+
+        interes = monto_origial * tasa_interes
+        capital = monto_origial / plazo
+
+        cuota = capital + interes
+
+        GastoCliente.objects.create(
+            customer=credito.customer_id,
+            tipo_gasto=tipo_gasto,
+            descripcion=f"Gasto generado por el crédito {credito.codigo_credito} del cliente {credito.customer_id}",
+            monto=cuota,
+            frecuencia = "Mensual",
+            observaciones=f'#{credito.id}'
+        )
+        print(f"Gasto agregado para el cliente {credito.customer_id} por el crédito {credito.codigo_credito} con monto {cuota}")
+
+        
+        
+        
 
 
 
@@ -221,7 +253,7 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-      asignar()
+      agregar_gasto_de_cliente()
     
    
 

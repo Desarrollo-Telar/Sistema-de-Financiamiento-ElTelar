@@ -2,7 +2,7 @@ import csv
 import os
 import pandas as pd
 
-from .process_read_csv import process
+from .process_read_csv import process, process_banco_industrial
 
 
 
@@ -49,6 +49,39 @@ def read(file_path, sucursal):
                     
         process(nuevo, sucursal)
 
+def read_banco_industrial(file_path, sucursal):
+    nuevo = 'apps/financings/clases/buenoo_industrial.csv'
+    # Elimina el archivo si ya existe antes de empezar a escribir
+    if os.path.exists(nuevo):
+        os.remove(nuevo)
+
+    # Función para crear un archivo nuevo y escribir en él
+    def crear_archivo_nuevo(info):
+        print('creando archivo nuevo')
+        with open(nuevo, 'a', newline='') as archivo:
+            writer = csv.writer(archivo)
+            writer.writerow(info)
+            
+    if os.path.exists(file_path):
+        # Lee el archivo CSV original de Banco Industrial
+        with open(file_path, newline='', encoding='latin1') as csvfile:
+            file = csv.reader(csvfile, delimiter=',')
+
+            # Variable para activar la captura de los movimientos
+            capture_data = False
+
+            for row in file:        
+                # Detecta el encabezado oficial de Banco Industrial
+                if row == ['Fecha', 'TT', 'Descripción', 'No. Doc', 'Debe (GTQ)', 'Haber (GTQ)', 'Saldo (GTQ)']:
+                    capture_data = True
+                    crear_archivo_nuevo(row)  # Escribe el encabezado
+                    continue
+
+                # Captura las filas de datos omitiendo filas vacías
+                if capture_data and row and any(field.strip() for field in row):
+                    crear_archivo_nuevo(row)
+                    
+        process_banco_industrial(nuevo, sucursal)
 
 import re
 from datetime import datetime

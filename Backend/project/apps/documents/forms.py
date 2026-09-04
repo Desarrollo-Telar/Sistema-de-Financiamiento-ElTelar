@@ -38,26 +38,54 @@ class DocumentForms(forms.ModelForm):
         return cleaned_data
 
 
+
+from .models import DocumentBank
+
 class DocumentBankForms(forms.ModelForm):
+    # Opciones estáticas para el banco
+    BANCO_CHOICES = [
+        ('', 'Seleccione un banco'),
+        ('BANRURAL', 'BANRURAL'),
+        ('BANCO INDUSTRIAL', 'BANCO INDUSTRIAL'),
+    ]
+
+    # Sobrescribimos o añadimos el campo con Choices
+    nombre_del_banco = forms.ChoiceField(
+        choices=BANCO_CHOICES,
+        label='Nombre del Banco',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
     class Meta:
         model = DocumentBank
-        fields = ['document']
-        labels = {'document': 'Documento'}
+        fields = ['document', 'sucursal', 'nombre_del_banco']
+        labels = {
+            'document': 'Documento',
+            'sucursal': 'Sucursal',
+            'nombre_del_banco': 'Nombre del Banco',
+        }
         widgets = {
             'document': forms.FileInput(attrs={
-                'type': 'file',
                 'class': 'form-control',
-                'name': 'document',
                 'accept': '.csv, .txt'
+            }),
+            'sucursal': forms.Select(attrs={
+                'class': 'form-select'
             }),
         }
 
     def clean(self):
         cleaned_data = super().clean()
         document = cleaned_data.get('document')
+        sucursal = cleaned_data.get('sucursal')
+        nombre_del_banco = cleaned_data.get('nombre_del_banco')
 
         if not document:
             self.add_error('document', 'Debe adjuntar un archivo.')
+        if not sucursal:
+            self.add_error('sucursal', 'Debe seleccionar una sucursal.')
+        if not nombre_del_banco:
+            self.add_error('nombre_del_banco', 'Debe seleccionar un banco.')
 
         return cleaned_data
 

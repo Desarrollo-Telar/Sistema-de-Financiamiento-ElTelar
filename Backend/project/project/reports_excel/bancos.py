@@ -23,6 +23,7 @@ def report_filtro_banco(filters):
     sheet['H1'] = "CREDITO(+)"
     sheet['I1'] = "SALDO CONTABLE"
     sheet['J1'] = "SALDO DISPONIBLE"
+    sheet['K1'] = "NOMBRE DEL BANCO"
     sheet['L1'] = "MONTO REF COMPARATIVA"
     sheet['M1'] = "TIPO DE PAGO"
     sheet['N1'] = "DESCRIPCION"
@@ -49,7 +50,7 @@ def report_filtro_banco(filters):
         sheet[f'H{idx}'] = banco.credito
         sheet[f'I{idx}'] = banco.saldo_contable
         sheet[f'J{idx}'] = banco.saldo_disponible
-
+        sheet[f'K{idx}'] = banco.nombre_del_banco if banco.nombre_del_banco else ""
         # Agregar datos de boleta si existe
         if boleta:
             sheet[f'L{idx}'] = boleta.monto
@@ -100,6 +101,7 @@ def report_banco(request):
     sheet['H1'] = "CREDITO(+)"
     sheet['I1'] = "SALDO CONTABLE"
     sheet['J1'] = "SALDO DISPONIBLE"
+    sheet['K1'] = "NOMBRE DEL BANCO"
     sheet['L1'] = "MONTO REF COMPARATIVA"
     sheet['M1'] = "TIPO DE PAGO"
     sheet['N1'] = "DESCRIPCION"
@@ -126,6 +128,7 @@ def report_banco(request):
         sheet[f'H{idx}'] = banco.credito
         sheet[f'I{idx}'] = banco.saldo_contable
         sheet[f'J{idx}'] = banco.saldo_disponible
+        sheet[f'K{idx}'] = banco.nombre_del_banco if banco.nombre_del_banco else ""
 
         # Agregar datos de boleta si existe
         if boleta:

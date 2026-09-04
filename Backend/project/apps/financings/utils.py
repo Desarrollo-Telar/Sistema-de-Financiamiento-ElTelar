@@ -10,19 +10,19 @@ def calcular_interes(saldo_pendiente, tasa_interes, fecha_inicio, fecha_pago, fe
 
     dias_transcurridos = (fecha_pago - fecha_inicio).days
     fecha_vencimiento = fecha_inicio + relativedelta(months=1)
-    fecha_gracia = fecha_vencimiento + relativedelta(days=15)
+    fecha_gracia = fecha_vencimiento + relativedelta(days=16)
     dias_total = (fecha_vencimiento - fecha_inicio).days
     dias_atrasados = max((fecha_emision - fecha_vencimiento).days, 0)
     if fecha_pago > fecha_gracia: 
-        dias_adicionales = dias_total + (dias_atrasados-15)
+        dias_adicionales = dias_total + (dias_atrasados-16)
         dias_transcurridos = dias_adicionales
 
     interes_generado = (saldo_pendiente * tasa_interes / Decimal(365)) * Decimal(dias_transcurridos)
     
-    return interes_generado   
+    return round(interes_generado, 2)
 
 def calcular_mora(saldo_pendiente, tasa_interes, fecha_vencimiento, fecha_pago):
-    dias_atraso = (fecha_pago - fecha_vencimiento).days - 15
+    dias_atraso = (fecha_pago - fecha_vencimiento).days - 16
     if dias_atraso > 0:
         mora_generada = (saldo_pendiente * (tasa_interes / Decimal(365))) * Decimal(dias_atraso)
         return mora_generada

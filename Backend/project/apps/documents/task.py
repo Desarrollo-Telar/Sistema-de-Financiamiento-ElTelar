@@ -2,7 +2,7 @@ from celery import shared_task
 import time
 import os
 
-from apps.financings.read_csv import read, read_txt_movements
+from apps.financings.read_csv import read, read_txt_movements, read_banco_industrial
 from .models import DocumentBank
 # Ejemplo de tarea asíncrona
 @shared_task
@@ -11,21 +11,24 @@ def tarea_larga_duracion():
     return 'La tarea ha terminado'
 
 @shared_task
-def leer_documento(file, id, sucursal):
+def leer_documento(file, id, sucursal, nombre_del_banco):
     try:
         # Obtener la extensión del archivo
         extension = os.path.splitext(file)[1].lower()
         
         print(extension)
 
-        # Dependiendo del tipo de archivo, llamar a la función correspondiente
-        if extension == '.csv':
-            read(file, sucursal)  # Llama a tu función original para archivos CSV
-        elif extension == '.txt':
-            print('FORMATO .TXT')
-            read_txt_movements(file, sucursal)  # Llama a la nueva función para archivos TXT
-        else:
-            return f"Error: Tipo de archivo '{extension}' no soportado."
+        if nombre_del_banco == 'BANCO INDUSTRIAL':
+            read_banco_industrial(file, sucursal)
+        else:   
+            # Dependiendo del tipo de archivo, llamar a la función correspondiente
+            if extension == '.csv':
+                read(file, sucursal)  # Llama a tu función original para archivos CSV
+            elif extension == '.txt':
+                print('FORMATO .TXT')
+                read_txt_movements(file, sucursal)  # Llama a la nueva función para archivos TXT
+            else:
+                return f"Error: Tipo de archivo '{extension}' no soportado."
 
         # Eliminar el documento de la base de datos después de procesarlo
         delete_b = DocumentBank.objects.get(id=id)
