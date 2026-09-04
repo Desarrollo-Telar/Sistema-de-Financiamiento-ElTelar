@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
-from project.decorador import usuario_activo,  permiso_requerido
+from project.decorador import usuario_activo, permiso_requerido
 from django.utils.decorators import method_decorator
 
 # SCRIPTS
@@ -22,7 +22,7 @@ def update_payment(request, id):
     return render(request, template_name, context)
 
 @login_required
-@usuario_activo
+@permiso_requerido('puede_revertir_pago')
 def reversion_pago(request, id):
     pago = get_object_or_404(Payment, id=id)
     if request.method == 'POST':

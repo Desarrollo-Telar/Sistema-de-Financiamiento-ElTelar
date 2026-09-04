@@ -1,3 +1,4 @@
+import requests  # Importación necesaria para capturar RequestException
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
@@ -23,56 +24,59 @@ from apps.financings.forms import PaymentPlanForms, BoletaForm
 
 # Manejo de mensajes
 from django.contrib import messages
-#https://report.feel.com.gt/ingfacereport/ingfacereport_documento?uuid=
 
 @login_required
 @usuario_activo
 def generar_factura(request, id):
     recibo = get_object_or_404(Recibo, id=id)
     factura_data = model_to_dict(recibo)
+    
     # Si ya tiene factura, no volver a certificar
     if recibo.factura:
         messages.info(request, "Este recibo ya fue facturado.")
         return redirect('financings:factura_list', recibo.pago.credit.id)
     
     if recibo.cliente is None:
-        messages.error(request, f"NO SE PUEDE FACTURAR, EL RECIBO NO PERTENECE A UN CLIENTE")
+        messages.error(request, "NO SE PUEDE FACTURAR, EL RECIBO NO PERTENECE A UN CLIENTE")
         return redirect('index')
 
     try:
         if not consulta_receptor(recibo.cliente.number_nit):
-            messages.error(request, f"NIT NO VALIDO")
+            messages.error(request, "NIT NO VÁLIDO")
             return redirect('index')
 
         # Generar y enviar XML a FEL
+        # Asegúrate de que guardar_xml_recibo registre o cree la Invoice en BD si no existía
         ruta_guardado = guardar_xml_recibo(
             recibo, 
             nombre_archivo=f"recibo_{recibo.id}_{recibo.fecha.strftime('%Y%m%d')}.xml"
         )
         print("Archivo XML guardado en:", ruta_guardado)
-        factura_instance = Invoice.objects.filter(recibo_id=recibo).first()
-        #factura_data = model_to_dict(factura_instance)
-        
-        log_system_event('Factura generada y certificada exitosamente.', "INFO",'Sistema','Facturación',None,None)
 
+        # Buscar la instancia creada/actualizada
+        factura_instance = Invoice.objects.filter(recibo_id=recibo).first()
+        
+        # Validación de seguridad: verificar que realmente se obtuvo la instancia
+        if not factura_instance or not factura_instance.numero_autorizacion:
+            log_system_event('Error al recuperar factura generada', "ERROR", 'Sistema', 'Facturación', 'No se encontró la factura en BD o no posee UUID', factura_data)
+            messages.error(request, "El documento fue procesado pero no se pudo obtener el número de autorización (UUID).")
+            return redirect('financings:factura_list', recibo.pago.credit.id)
+
+        log_system_event('Factura generada y certificada exitosamente.', "INFO", 'Sistema', 'Facturación', None, None)
         messages.success(request, "Factura generada y certificada exitosamente.")
+        
         return redirect(f"https://report.feel.com.gt/ingfacereport/ingfacereport_documento?uuid={factura_instance.numero_autorizacion}")
 
     except ValueError as e:
-        # Error en configuración de variables de entorno o datos faltantes
-        
-        log_system_event('Error de configuración', "ERROR",'Sistema','Facturación',f'{e}',factura_data)
+        log_system_event('Error de configuración', "ERROR", 'Sistema', 'Facturación', f'{e}', factura_data)
         messages.error(request, f"Error de configuración: {e}")
 
-    except request.exceptions.RequestException as e:
-        # Error de conexión a FEL
-        
-        log_system_event('Error de conexión con la API FEL', "ERROR",'Sistema','Facturación',f'{e}',factura_data)
+    except requests.exceptions.RequestException as e:  # Corregido: requests (librería) en lugar de request (vista)
+        log_system_event('Error de conexión con la API FEL', "ERROR", 'Sistema', 'Facturación', f'{e}', factura_data)
         messages.error(request, "No se pudo conectar con el servicio de certificación FEL.")
 
     except Exception as e:
-        # Cualquier otro error
-        log_system_event('Error al generar factura para el recibo', "ERROR",'Sistema','Facturación',f'{e}',factura_data)
+        log_system_event('Error al generar factura para el recibo', "ERROR", 'Sistema', 'Facturación', f'{e}', factura_data)
         messages.error(request, f"Ocurrió un error al generar la factura: {e}")
 
     return redirect('financings:factura_list', recibo.pago.credit.id)
