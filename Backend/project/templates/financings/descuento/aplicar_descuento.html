@@ -23,6 +23,7 @@
       <input type="hidden" name="cuota" id="cuota" value="{{cuota.id}}">
       <input type="hidden" name="sucursal" id="sucursal" value="{{sucursal}}">
       <input type="hidden" name="usuario_descuento" id="usuario_descuento" value="{{usuario_descuento.id}}">
+      <input type="hidden" id="siguiente_pago" value="{{siguiente_pago.id}}">
 
       <!-- Campos Visibles -->
       <div class="form-group">
@@ -64,6 +65,7 @@
       </div>
 
       <button type="submit" class="btn-submit">Guardar Descuento</button>
+      <button id="cuota_por_cobrar" type="button" class="btn_cancel">Cuota por cobrar</button>
       <button onclick="window.history.back()" type="button" class="btn_cancel">Cancelar</button>
     </form>
   </div>
@@ -72,4 +74,5 @@
 
 {% block js %}
 <script src="{% static 'js/financings/descuento/aplicar_descuento.js' %}" type="module"></script>
+<script type="module" src="{% static 'js/financings/credit/detail.js' %}"></script>
 {% endblock %}

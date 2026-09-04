@@ -41,5 +41,7 @@ def aplicacion_descuento_view(request, credit_id, cuota_id):
         'mora_por_cobrar': mora,   
         'saldo_capital_por_cobrar': saldo,
         'permisos': recorrer_los_permisos_usuario(request),
+        'siguiente_pago': cuota,
+        
     }
     return render(request, template_name, context)
