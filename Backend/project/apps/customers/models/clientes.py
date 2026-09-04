@@ -119,6 +119,12 @@ class Customer(models.Model):
 
     def get_email_customer():
         pass
+
+    def get_number_nit(self):
+        if self.number_nit == 'CF' or self.number_nit is None:
+            return self.identification_number
+        
+        return self.number_nit
         
 
     def get_nit_customer():

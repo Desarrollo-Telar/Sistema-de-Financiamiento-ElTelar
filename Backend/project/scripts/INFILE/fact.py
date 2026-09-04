@@ -108,7 +108,7 @@ def generar_xml_recibo(recibo) -> str:
     
     receptor = ET.SubElement(DatosEmision, f"{{{DTE_NS}}}Receptor", {
         "CorreoReceptor": "",
-        "IDReceptor": str(recibo.cliente.number_nit),
+        "IDReceptor": str(recibo.cliente.get_number_nit()),
         "NombreReceptor": str(recibo.cliente)
     })
 
