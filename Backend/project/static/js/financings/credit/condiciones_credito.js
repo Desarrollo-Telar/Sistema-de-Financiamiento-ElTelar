@@ -153,3 +153,20 @@ function mostrarError(mensaje) {
 function ocultarAlerta() {
     document.getElementById('apiAlert').classList.add('d-none');
 }
+
+document.getElementById('tablaCondiciones').addEventListener('click', function (e) {
+    const btnEditar = e.target.closest('.btn-editar');
+    const btnEliminar = e.target.closest('.btn-eliminar');
+
+    if (btnEditar) {
+        const id = btnEditar.dataset.id;
+        const regla = btnEditar.dataset.regla;
+        const monto = btnEditar.dataset.monto;
+        cargarParaEditar(id, regla, monto);
+    }
+
+    if (btnEliminar) {
+        const id = btnEliminar.dataset.id;
+        eliminarCondicion(id);
+    }
+});
