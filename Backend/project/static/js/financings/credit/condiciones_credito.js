@@ -104,7 +104,7 @@ document.getElementById('condicionForm').addEventListener('submit', async functi
     }
 });
 
-function cargarParaEditar(id, regla, monto) {
+window.cargarParaEditar = function(id, regla, monto) {
     document.getElementById('condicion_id').value = id;
     document.getElementById('reglas').value = regla;
     document.getElementById('monto').value = monto;
@@ -112,9 +112,9 @@ function cargarParaEditar(id, regla, monto) {
     document.getElementById('formTitle').innerText = 'Editar Condición';
     document.getElementById('btnGuardar').innerText = 'Actualizar Condición';
     document.getElementById('btnCancelar').classList.remove('d-none');
-}
+};
 
-async function eliminarCondicion(id) {
+window.eliminarCondicion = async function(id) {
     if (!confirm('¿Deseas eliminar esta condición del crédito?')) return;
 
     try {
@@ -131,7 +131,8 @@ async function eliminarCondicion(id) {
     } catch (error) {
         mostrarError('Error de conexión al eliminar.');
     }
-}
+};
+
 
 function resetearFormulario() {
     document.getElementById('condicionForm').reset();
