@@ -1,6 +1,8 @@
 # MODELO DE CREDITO
 from .credit import Credit
 from .credito_demandado import CategoriaCreditoDemandado
+from .condiciones_credito import CondicionesCredito
+
 # MODELO DE DESEMBOLSO
 from .disbursement import Disbursement
 

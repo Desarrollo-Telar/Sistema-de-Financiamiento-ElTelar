@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # MODELO
-from apps.financings.models import Guarantees, DetailsGuarantees, Invoice, Cuota, Descuento
+from apps.financings.models import Guarantees, DetailsGuarantees, Invoice, Cuota, Descuento, CondicionesCredito
 
 
 
@@ -12,3 +12,4 @@ DETALLE_DE_GARANTIA = admin.site.register(DetailsGuarantees)
 FACTURA = admin.site.register(Invoice)
 CUOTA = admin.site.register(Cuota)
 DESCUENTO = admin.site.register(Descuento)
+CONDICIONES_CREDITO = admin.site.register(CondicionesCredito)
