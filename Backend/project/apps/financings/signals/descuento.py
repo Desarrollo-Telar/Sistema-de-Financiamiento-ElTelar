@@ -11,6 +11,7 @@ from apps.financings.models import (
 
 from scripts.conversion_datos import model_to_dict
 
+from apps.financings.func import cuota, cuota_siguiente
 
 @receiver(post_save, sender=Descuento)
 def marcar_estado_cuenta(sender, instance, created, **kwargs):
@@ -96,3 +97,8 @@ def marcar_estado_cuenta(sender, instance, created, **kwargs):
                 "interest",
             ]
         )
+
+        siguiente_cuota = cuota_siguiente(instance.credit)
+        
+        if siguiente_cuota:
+            siguiente_cuota.delete()
