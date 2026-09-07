@@ -111,7 +111,7 @@ window.cargarParaEditar = function(id, regla, monto) {
 
     document.getElementById('formTitle').innerText = 'Editar Condición';
     document.getElementById('btnGuardar').innerText = 'Actualizar Condición';
-    document.getElementById('btnCancelar').classList.remove('d-none');
+    
 };
 
 window.eliminarCondicion = async function(id) {
