@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from django.core.exceptions import ValidationError
 from apps.financings.models import CondicionesCredito
 
-from apps.financings.func import cuota
+from apps.financings.func import cuota, cuota_siguiente
 from apps.financings.models import Credit
 
 @receiver(pre_save, sender=CondicionesCredito)
@@ -32,6 +32,7 @@ def validar_reglas_unicas_credito(sender, instance, **kwargs):
 def actualizar_cuota_al_guardar_condicion(sender, instance, created, **kwargs):
     # 1. Obtener la cuota activa del crédito
     cuota_actual = cuota(instance.credit)
+    siguiente_cuota = cuota_siguiente(instance.credit)
     
     if cuota_actual:
         # 2. Verificar el tipo de regla y actualizar el campo correspondiente
@@ -43,6 +44,9 @@ def actualizar_cuota_al_guardar_condicion(sender, instance, created, **kwargs):
             cuota_actual.capital_generado = instance.monto
             cuota_actual.save()
 
+        if siguiente_cuota:
+            siguiente_cuota.delete()
+
 
 @receiver(post_delete, sender=CondicionesCredito)
 def recalcular_cuota_al_eliminar_condicion(sender, instance, **kwargs):
@@ -51,6 +55,7 @@ def recalcular_cuota_al_eliminar_condicion(sender, instance, **kwargs):
     recalcula el valor dinámico original en la cuota actual.
     """
     cuota_actual = cuota(instance.credit)
+    siguiente_cuota = cuota_siguiente(instance.credit)
     
     if cuota_actual:
         if instance.reglas == 'INTERES FIJO':
@@ -60,3 +65,6 @@ def recalcular_cuota_al_eliminar_condicion(sender, instance, **kwargs):
         elif instance.reglas == 'CAPITAL FIJO':
             cuota_actual.capital_generado = cuota_actual.calculo_capital()
             cuota_actual.save()
+
+        if siguiente_cuota:
+            siguiente_cuota.delete()

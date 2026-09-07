@@ -6,7 +6,7 @@ from apps.customers.models import CreditCounselor
 
 
 # FUNC
-from apps.financings.func.obtener_cuota_credito import cuota
+from apps.financings.func import cuota, cuota_siguiente
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -24,21 +24,7 @@ from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito
 
 
 
-def cuota_siguiente(credito):
-    # 1. Obtenemos la cuota actual usando tu lógica existente
-    cuota_actual = cuota(credito)
-    
-    if not cuota_actual:
-        return None
 
-    # 2. Buscamos la cuota que sigue en el plan de pagos
-    # Asumiendo que el orden lógico es por fecha de inicio o por ID
-    proxima = PaymentPlan.objects.filter(
-        credit_id__id=credito.id,
-        start_date__gt=cuota_actual.start_date # Que empiece después de la actual
-    ).order_by('start_date').first()
-    
-    return proxima
 
 @login_required
 @permiso_requerido('puede_ver_detalle_credito')
