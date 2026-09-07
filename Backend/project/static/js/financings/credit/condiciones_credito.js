@@ -92,6 +92,13 @@ document.getElementById('condicionForm').addEventListener('submit', async functi
 
         resetearFormulario();
         cargarCondiciones();
+        Swal.fire({
+                        icon: "success",
+                        title: `Registro Completado`,
+                        text: '¡Formulario enviado con éxito!',
+                        timer: 1000,
+                        showConfirmButton: false,
+                    });
     } catch (error) {
         mostrarError('Error de red al intentar guardar.');
     }
