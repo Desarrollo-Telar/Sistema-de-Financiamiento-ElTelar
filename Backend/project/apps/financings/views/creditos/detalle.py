@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Models
-from apps.financings.models import Credit, Guarantees, Disbursement,DetailsGuarantees,  PaymentPlan, AccountStatement
+from apps.financings.models import Credit, PaymentPlan
 from apps.customers.models import CreditCounselor
-from django.db.models import Q
-from apps.actividades.models import VotacionCredito
 
 
+# FUNC
+from apps.financings.func.obtener_cuota_credito import cuota
 
 # Decoradores
 from django.contrib.auth.decorators import login_required
@@ -15,9 +15,6 @@ from project.decorador import permiso_requerido
 # Manejo de mensajes
 from django.contrib import messages
 
-# Tiempo
-from datetime import datetime,timedelta
-
 
 # SCRIPTS 
 from .recoleccion_info_detalle import informacion_detalle
@@ -25,28 +22,7 @@ from .recoleccion_info_detalle import informacion_detalle
 ### ------------ DETALLE -------------- ###
 from apps.financings.tareas_ansicronicas import generar_todas_las_cuotas_credito
 
-def cuota(credito):
-    dia = datetime.now().date()
-    dia_mas_uno = dia + timedelta(days=1)
-    siguiente_pago = None
 
-    if credito.is_paid_off:
-        siguiente_pago = PaymentPlan.objects.filter(
-        credit_id__id=credito.id).order_by('-id').first()
-        
-    else:
-        siguiente_pago = PaymentPlan.objects.filter(
-            credit_id__id=credito.id,
-            start_date__lte=dia,
-            fecha_limite__gte=dia_mas_uno
-        ).first()
-
-    
-    if siguiente_pago is None:
-        siguiente_pago = PaymentPlan.objects.filter(
-        credit_id__id=credito.id).order_by('-id').first()
-
-    return siguiente_pago 
 
 def cuota_siguiente(credito):
     # 1. Obtenemos la cuota actual usando tu lógica existente

@@ -6,6 +6,7 @@ from .payment_plan import generar_planes, eliminar_siguientes_cuotas
 
 # CREDITOS
 from .credit import  generar_plan_pagos_nuevo
+from .condiciones_credito import validar_reglas_unicas_credito, actualizar_cuota_al_guardar_condicion, recalcular_cuota_al_eliminar_condicion
 
 # RECIBOS
 from .recibo import generar_noRecibo, enviar_recibo

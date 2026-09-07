@@ -1,0 +1,78 @@
+
+    /* Variables de la paleta extraídas de la imagen */
+    :root {
+        --color-dark-main: #0B090A;
+        --color-dark-card: #161A1D;
+        --color-red-dark: #660708;
+        --color-red-primary: #A4161A;
+        --color-red-accent: #BA181B;
+        --color-red-bright: #E5383B;
+        --color-gray-dark: #B1A7A6;
+        --color-gray-mid: #D3D3D3;
+        --color-gray-light: #F5F3F4;
+    }
+
+    /* Estilo Glassmorphism para las tarjetas */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px 0 rgba(11, 9, 10, 0.08);
+    }
+
+    .glass-input, .glass-select {
+        background: rgba(245, 243, 244, 0.8) !important;
+        border: 1px solid var(--color-gray-mid) !important;
+        border-radius: 8px !important;
+        color: var(--color-dark-card) !important;
+    }
+
+    .glass-input:focus, .glass-select:focus {
+        border-color: var(--color-red-accent) !important;
+        box-shadow: 0 0 0 0.25rem rgba(186, 24, 27, 0.2) !important;
+    }
+
+    /* Botones principales y acciones */
+    .btn-red-primary {
+        background-color: var(--color-red-accent);
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-red-primary:hover {
+        background-color: var(--color-red-primary);
+        color: #ffffff;
+    }
+
+    .btn-outline-red {
+        border: 1px solid var(--color-red-accent);
+        color: var(--color-red-accent);
+        border-radius: 6px;
+    }
+
+    .btn-outline-red:hover {
+        background-color: var(--color-red-accent);
+        color: #ffffff;
+    }
+
+    /* Estilos de la tabla */
+    .glass-table {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .glass-table th {
+        background-color: rgba(22, 26, 29, 0.05);
+        color: var(--color-dark-card);
+        font-weight: 600;
+        border-bottom: 2px solid var(--color-gray-mid);
+    }
+
+    .glass-table td {
+        border-bottom: 1px solid rgba(211, 211, 211, 0.5);
+    }

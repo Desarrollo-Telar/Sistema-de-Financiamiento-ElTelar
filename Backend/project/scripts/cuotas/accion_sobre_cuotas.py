@@ -5,7 +5,7 @@ from apps.actividades.utils import log_user_action, log_system_event
 import uuid
 
 # MODELOS
-from apps.financings.models import   Payment
+
 from apps.accountings.models import Creditor, Insurance
 from django.db.models import Q
 from dateutil.relativedelta import relativedelta

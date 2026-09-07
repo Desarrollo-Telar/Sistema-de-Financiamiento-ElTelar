@@ -208,6 +208,9 @@
         </a>
     </div>
     {% endif %}
+
+    
+
     
     <div class="col-md-3 mb-3">
         {% include 'votacion/snippets/modal_credito.html' with form=form%}
@@ -226,6 +229,15 @@
             Re-estructuracion del Credito
         </a>
         
+    </div>
+    {% endif %}
+    {% if permisos.puede_registrar_condiciones_credito%}
+    <div class="col-md-3 mb-3">
+        <a href="{% url 'financings:gestion_condiciones_credito' credit_list.id %}" class="btn_cancel"
+            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Gestión de Condiciones de Crédito"
+            aria-label="Gestión de Condiciones de Crédito">
+            Gestión de Condiciones de Crédito
+        </a>
     </div>
     {% endif %}
 </div>

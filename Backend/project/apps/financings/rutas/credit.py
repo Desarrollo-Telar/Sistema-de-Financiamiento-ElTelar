@@ -35,7 +35,8 @@ urlpatterns_credit = [
     path('credit/reestructuracion_credito/<int:id>/', login_required(reestructuracion_credito), name='reestructuracion_credito'),
     path('credit/migracion_credito/', login_required(migracion_creditos), name='migracion_creditos'),
     path('validar-codigo-seguridad/', validar_codigo_seguridad, name='validar_codigo'),
-    path('descuento/<int:credit_id>/<int:cuota_id>/', aplicacion_descuento_view, name = 'aplicar_descuento')
+    path('descuento/<int:credit_id>/<int:cuota_id>/', aplicacion_descuento_view, name = 'aplicar_descuento'),
+    path('credit/condiciones_credito/<int:credit_id>/', login_required(gestion_condiciones_credito_view), name='gestion_condiciones_credito'),
 
 
     

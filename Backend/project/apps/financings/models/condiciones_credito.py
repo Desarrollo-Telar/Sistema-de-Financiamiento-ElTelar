@@ -31,3 +31,11 @@ class CondicionesCredito(models.Model):
 
     def __str__(self):
         return f"Condiciones de Crédito: {self.credit.codigo_credito} - Monto: {formatear_numero(self.monto)}"
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['credit', 'reglas'],
+                name='unique_regla_por_credito'
+            )
+        ]

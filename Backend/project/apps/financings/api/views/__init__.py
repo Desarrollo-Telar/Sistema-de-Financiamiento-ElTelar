@@ -11,3 +11,5 @@ from .pago import *
 from .recibo import *
 
 from .descuento import *
+
+from .condiciones_credito import *

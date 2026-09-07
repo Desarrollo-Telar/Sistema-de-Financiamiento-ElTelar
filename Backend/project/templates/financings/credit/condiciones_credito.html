@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/credito/condiciones.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container py-4" style="max-width: 950px;">
+    
+    <!-- Banner de Alerta de API -->
+    <div id="apiAlert" class="alert alert-danger alert-dismissible fade show d-none glass-card mb-4 border-0" role="alert" style="background: rgba(229, 56, 59, 0.15); color: var(--color-red-dark);">
+        <strong id="alertMessage"></strong>
+        <button type="button" class="btn-close" onclick="ocultarAlerta()"></button>
+    </div>
+
+    <!-- Formulario Glassmorphism -->
+    <div class="card glass-card mb-4 border-0">
+        <div class="card-header bg-transparent border-0 pt-4 px-4">
+            <h4 class="fw-bold mb-0" id="formTitle" style="color: var(--color-dark-card);">Registrar Condición</h4>
+            <small class="text-muted">Crédito ID: {{ credito.codigo_credito }}</small>
+        </div>
+        <div class="card-body px-4 pb-4">
+            <form id="condicionForm">
+                {% csrf_token %}
+                <input type="hidden" name="credit" id="credit" value="{{ credito.id }}">
+                <input type="hidden" id="condicion_id" value="">
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="reglas" class="form-label fw-semibold" style="color: var(--color-dark-card);">Regla / Tipo</label>
+                        <select class="form-select glass-select" id="reglas" name="reglas" required>
+                            <option value="" selected disabled>Seleccione una opción</option>
+                            <option value="INTERES FIJO">INTERES FIJO</option>
+                            <option value="CAPITAL FIJO">CAPITAL FIJO</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="monto" class="form-label fw-semibold" style="color: var(--color-dark-card);">Monto (Q)</label>
+                        <input type="number" step="0.01" min="0" class="form-control glass-input" id="monto" name="monto" placeholder="0.00" required>
+                    </div>
+                </div>
+
+                <div class="mt-4 d-flex justify-content-end gap-2">
+                    <button type="button" id="btnCancelar" class="btn btn-light d-none" onclick="resetearFormulario()">Cancelar</button>
+                    <button type="submit" id="btnGuardar" class="btn btn-red-primary px-4 py-2">Guardar Condición</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tabla de Registros -->
+    <div class="card glass-card border-0">
+        <div class="card-header bg-transparent border-0 pt-4 px-4">
+            <h5 class="fw-bold mb-0" style="color: var(--color-dark-card);">Condiciones Registradas</h5>
+        </div>
+        <div class="card-body px-4 pb-4 p-0">
+            <div class="table-responsive">
+                <table class="table glass-table align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">Regla</th>
+                            <th>Monto</th>
+                            <th class="text-end pe-4">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaCondiciones">
+                        <!-- Carga dinámica vía JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block js%}
+    <script src="{% static 'js/financings/credit/condiciones_credito.js' %}" type="module"></script>
+{% endblock %}

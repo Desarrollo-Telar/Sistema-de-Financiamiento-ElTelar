@@ -9,7 +9,7 @@ from dateutil.relativedelta import relativedelta
 
 # MODELS
 from apps.financings.models import Credit, Guarantees, DetailsGuarantees, Disbursement, Payment, Invoice, Recibo
-from apps.financings.models import PaymentPlan, AccountStatement, Descuento
+from apps.financings.models import PaymentPlan, AccountStatement, Descuento, CondicionesCredito
 
 
 # ------------ FUNCIONES ----------------------
@@ -25,6 +25,17 @@ def total(capital, interes,mora, aporte_capital):
         capitals = 0
     total = interes + mora + capitals
     return formatear_numero(total)
+
+class CondicionesCreditoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CondicionesCredito
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+    
+        return data
+
 
 class CreditSerializer(serializers.ModelSerializer):
     

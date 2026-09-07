@@ -11,6 +11,7 @@ from decimal import Decimal
 
 # MODELOS
 from .credit import Credit
+from apps.financings.models import CondicionesCredito
 from apps.accountings.models import Creditor, Insurance
 from apps.subsidiaries.models import Subsidiary
 
@@ -134,7 +135,10 @@ class PaymentPlan(models.Model):
    
 
     def calculo_interes(self):
+        
         tasa_interes = 0
+        tiene_condicion_interes = CondicionesCredito.objects.filter(credit=self.credit_id, reglas='INTERES FIJO').first()
+
         if self.credit_id is not None:
             tasa_interes = self.credit_id.tasa_interes
         
@@ -145,6 +149,11 @@ class PaymentPlan(models.Model):
             tasa_interes = self.seguro.tasa
 
         interes = (Decimal(self.saldo_pendiente) * Decimal(tasa_interes))
+
+        if tiene_condicion_interes is not None:
+            interes = Decimal(tiene_condicion_interes.monto)
+
+        
         si = round(interes,2)
         return si
 
@@ -223,6 +232,8 @@ class PaymentPlan(models.Model):
         monto_inicial = 0
         gracia = 0
 
+        tiene_condicion_capital = CondicionesCredito.objects.filter(credit=self.credit_id, reglas='CAPITAL FIJO').first()
+
         if self.credit_id is not None:
             forma_pago = self.credit_id.forma_de_pago
             tasa_interes = Decimal(self.credit_id.tasa_interes)   # Aseguramos que sea decimal
@@ -281,6 +292,9 @@ class PaymentPlan(models.Model):
                 return Decimal(capital)
             
             return Decimal(0)
+
+        if tiene_condicion_capital is not None:
+            capital = Decimal(tiene_condicion_capital.monto)
         
         
         return Decimal(capital)
