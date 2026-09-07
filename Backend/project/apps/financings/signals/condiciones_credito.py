@@ -40,7 +40,7 @@ def actualizar_cuota_al_guardar_condicion(sender, instance, created, **kwargs):
             cuota_actual.save()
             
         elif instance.reglas == 'CAPITAL FIJO':
-            cuota_actual.principal = instance.monto
+            cuota_actual.capital_generado = instance.monto
             cuota_actual.save()
 
 
