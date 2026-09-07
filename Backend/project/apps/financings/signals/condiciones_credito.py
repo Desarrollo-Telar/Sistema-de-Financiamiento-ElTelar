@@ -58,5 +58,5 @@ def recalcular_cuota_al_eliminar_condicion(sender, instance, **kwargs):
             cuota_actual.save()
             
         elif instance.reglas == 'CAPITAL FIJO':
-            cuota_actual.principal = cuota_actual.calculo_capital()
+            cuota_actual.capital_generado = cuota_actual.calculo_capital()
             cuota_actual.save()
