@@ -549,6 +549,90 @@ async function bancos() {
   ]));
 }
 
+async function bancosBi() {
+  const data = await fetchData('bancos-por-mes/bi/');
+  if (!data.length) return;
+
+  const dataProcesada = data.map(i => {
+    const fecha = new Date(i.mes);
+    return {
+      ...i,
+      mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`,
+      timestamp: fecha.getTime()
+    };
+  }).sort((a, b) => a.timestamp - b.timestamp);
+
+  const labels = dataProcesada.map(i => i.mesFormateado);
+  const saldos = dataProcesada.map(i => i.saldos);
+  const ingresos = dataProcesada.map(i => i.ingreso);
+  const egresos = dataProcesada.map(i => i.egreso);
+
+  createChart('bancosBIPorMesChart', {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        { 
+          label: 'Ingresos', 
+          data: ingresos, 
+          backgroundColor: 'rgba(16, 185, 129, 0.7)',
+          borderColor: '#10b981',
+          borderWidth: 1
+        },
+        { 
+          label: 'Egresos', 
+          data: egresos, 
+          backgroundColor: 'rgba(239, 68, 68, 0.7)',
+          borderColor: '#ef4444',
+          borderWidth: 1
+        },
+        { 
+          label: 'Saldos', 
+          type: 'line',
+          data: saldos, 
+          borderColor: '#3b82f6',
+          backgroundColor: 'transparent',
+          tension: 0.3,
+          fill: false,
+          pointStyle: 'circle',
+          pointRadius: 5
+        }
+      ]
+    },
+    options: { 
+      responsive: true, 
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: {
+          callbacks: {
+            label: (context) => `${context.dataset.label}: Q${context.raw.toLocaleString()}`
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: value => 'Q' + value.toLocaleString()
+          }
+        }
+      }
+    }
+  });
+
+  const ultimoSaldo = saldos[saldos.length - 1] || 0;
+  
+
+  renderTableData('tablaBancos', dataProcesada.map(i => [
+    i.mesFormateado, 
+    formatCurrency(i.ingreso), 
+    formatCurrency(i.egreso), 
+    formatCurrency(i.saldos)
+  ]));
+}
+
+
 async function acreedores() {
   const data = await fetchData('acreedores-por-mes/');
   if (!data.length) return;
@@ -966,6 +1050,7 @@ async function loadAllData() {
     recuperacion(),
     egresos(),
     bancos(),
+    bancosBi(),
     acreedores(),
     morosidad(),
     casos_exito_asesor(),

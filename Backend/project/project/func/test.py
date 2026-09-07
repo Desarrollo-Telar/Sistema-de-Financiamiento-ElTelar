@@ -253,7 +253,7 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-      agregar_gasto_de_cliente()
+      asignar()
     
    
 

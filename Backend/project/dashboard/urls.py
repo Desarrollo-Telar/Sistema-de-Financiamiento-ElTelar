@@ -37,6 +37,7 @@ urlpatterns = [
     path('recuperacion-mensual/', views.RecuperacionMensualAPIView.as_view(), name='recuperacion-mensual'),
     path('egresos-por-codigo-mes/', views.EgresosPorCodigoMesAPIView.as_view(),  name='gasto-por-mes'),
     path('bancos-por-mes/', views.BancosPorMesAPIView.as_view(), name='bancos-por-mes'),
+    path('bancos-por-mes/bi/', views.BancosBIPorMesAPIView.as_view(), name='bancos-por-mes-bi'),
     path('acreedores-por-mes/', views.AcreedoresPorMesAPIView.as_view(), name='acreedores-por-mes'),
     path('morosidad-por-mes/', views.MorosidadPorMesAPIView.as_view(), name='morosidad-por-mes'),
 ]

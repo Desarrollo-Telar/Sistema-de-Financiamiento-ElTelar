@@ -307,6 +307,31 @@ async function bancos() {
   renderTableData('tablaBancos', dataProcesada.map(i => [i.mesFormateado, formatCurrency(i.ingreso), formatCurrency(i.egreso), formatCurrency(i.saldos)]));
 }
 
+async function bancosBI() {
+  const data = await fetchData('bancos-por-mes/bi/');
+  if (!data.length) return;
+
+  const dataProcesada = data.map(i => {
+    const fecha = new Date(i.mes);
+    return { ...i, mesFormateado: `${labels_mes[fecha.getUTCMonth()]} ${fecha.getUTCFullYear()}`, timestamp: fecha.getTime() };
+  }).sort((a, b) => a.timestamp - b.timestamp);
+
+  createChart('bancosBIPorMesChart', {
+    type: 'bar',
+    data: {
+      labels: dataProcesada.map(i => i.mesFormateado),
+      datasets: [
+        { label: 'Ingresos', data: dataProcesada.map(i => i.ingreso), backgroundColor: '#10b981' },
+        { label: 'Egresos', data: dataProcesada.map(i => i.egreso), backgroundColor: '#ef4444' },
+        { label: 'Saldos', type: 'line', data: dataProcesada.map(i => i.saldos), borderColor: '#3b82f6', fill: false }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+
+  renderTableData('tablaBancos', dataProcesada.map(i => [i.mesFormateado, formatCurrency(i.ingreso), formatCurrency(i.egreso), formatCurrency(i.saldos)]));
+}
+
 async function acreedores() {
   const data = await fetchData('acreedores-por-mes/');
   if (!data.length) return;
@@ -496,6 +521,7 @@ async function loadAllData() {
       recuperacion(),
       egresos(),
       bancos(),
+      bancosBI(),
       acreedores(),
       morosidad(),
       casos_exito_asesor(),

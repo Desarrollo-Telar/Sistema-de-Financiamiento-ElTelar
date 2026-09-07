@@ -121,6 +121,7 @@ class BancosPorMesAPIView(APIView):
         anio = dia.year
 
         filters &= Q(fecha__year = anio)
+        filters &= Q(nombre_del_banco='BANRURAL')
 
         # 1. Definimos una subquery para encontrar el ID del último registro de cada mes
         # Usamos OuterRef('mes') para vincularlo con el agrupamiento principal
@@ -147,7 +148,44 @@ class BancosPorMesAPIView(APIView):
         
         return Response(data)
 
+class BancosBIPorMesAPIView(APIView):
+    def get(self, request):
+        sucursal = getattr(request, 'sucursal_actual', None)
+        filters = Q(registro_ficticio=False)
 
+        if sucursal:
+            filters &= Q(sucursal=sucursal)
+        
+        dia = datetime.now()
+        anio = dia.year
+
+        filters &= Q(fecha__year = anio)
+        filters &= Q(nombre_del_banco='BANCO INDUSTRIAL')
+
+        # 1. Definimos una subquery para encontrar el ID del último registro de cada mes
+        # Usamos OuterRef('mes') para vincularlo con el agrupamiento principal
+        ultimo_registro_id = Banco.objects.filter(
+            filters,
+            fecha__year=OuterRef('mes__year'),
+            fecha__month=OuterRef('mes__month')
+        ).order_by('-fecha', '-id').values('saldo_disponible')[:1]
+
+        # 2. Query principal
+        data = (
+            Banco.objects
+            .filter(filters)
+            .annotate(mes=TruncMonth('fecha'))
+            .values('mes')
+            .annotate(
+                ingreso=Sum('credito'),
+                egreso=Sum('debito'),
+                # Obtenemos el saldo del último movimiento del mes
+                saldos=Subquery(ultimo_registro_id)
+            )
+            .order_by('mes')
+        )
+        
+        return Response(data)
 
 
 class AcreedoresPorMesAPIView(APIView):
