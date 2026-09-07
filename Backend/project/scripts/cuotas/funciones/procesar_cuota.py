@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 from .calculos import calculo_interes
 
-from apps.financings.models import PaymentPlan
+from apps.financings.models import PaymentPlan, CondicionesCredito
 
 def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, mora, dia):
     datos_viejos = {}
@@ -24,12 +24,15 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
         if pago.credit_id:
             siguiente_cuota.credit_id = pago.credit_id
             siguiente_cuota.mora = mora 
+            tiene_condicion_interes = CondicionesCredito.objects.filter(credit=pago.credit_id, reglas='INTERES FIJO').first()
+
             siguiente_cuota.interest = interes_acumulado
 
             fecha_inicio = pago.credit_id.fecha_inicio
             fecha_emision = dia
             fecha_limite = pago.credit_id.fecha_finalizacion_gracia + relativedelta(months=1)
             forma_pago = pago.credit_id.forma_de_pago
+            
 
 
             if (
@@ -56,7 +59,11 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 
                 mora = ( Decimal(interes) * Decimal(mes))* Decimal(0.1) 
 
-                siguiente_cuota.interest = interes + interes_acumulado + mora
+                if tiene_condicion_interes:
+                    siguiente_cuota.interest = tiene_condicion_interes.monto
+
+                else:
+                    siguiente_cuota.interest = interes + interes_acumulado + mora
 
 
         if pago.seguro:
@@ -69,7 +76,7 @@ def procesar_siguiente_cuota(pago, siguiente_cuota, interes,interes_acumulado, m
 
         
 
-        siguiente_cuota.interes_generado =interes
+        siguiente_cuota.interes_generado = interes
         siguiente_cuota.start_date = pago.due_date
         siguiente_cuota.cambios = True
         siguiente_cuota.save()
