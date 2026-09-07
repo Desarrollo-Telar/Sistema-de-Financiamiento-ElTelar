@@ -134,7 +134,7 @@ window.eliminarCondicion = async function(id) {
 };
 
 
-function resetearFormulario() {
+window.resetearFormulario = function() {
     document.getElementById('condicionForm').reset();
     document.getElementById('condicion_id').value = '';
     document.getElementById('formTitle').innerText = 'Registrar Condición';
@@ -144,13 +144,13 @@ function resetearFormulario() {
     
 }
 
-function mostrarError(mensaje) {
+window.mostrarError = function(mensaje) {
     const alertBox = document.getElementById('apiAlert');
     document.getElementById('alertMessage').innerText = mensaje;
     alertBox.classList.remove('d-none');
 }
 
-function ocultarAlerta() {
+window.ocultarAlerta = function() {
     document.getElementById('apiAlert').classList.add('d-none');
 }
 
