@@ -182,7 +182,7 @@
             </div>
         </div>
         <hr>
-        {% elif boleta.seguro %}
+        {% elif boleta.seguro is not None %}
         <div class="card">
 
             <div class="card-body">
@@ -216,8 +216,10 @@
 
                 </div>
                 {%endif%}
+                
                 <a href="{% url 'contable:seguros_detail' boleta.seguro.id %}"
                     class="btn_guardar">{{boleta.seguro.codigo_seguro}}</a>
+               
             </div>
         </div>
         {% else %}
@@ -253,8 +255,7 @@
 
                 </div>
                 {%endif%}
-                <a href="{% url 'contable:seguros_detail' boleta.seguro.id %}"
-                    class="btn_guardar">{{boleta.seguro.codigo_seguro}}</a>
+           
             </div>
         </div>
         {% endif %}

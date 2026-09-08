@@ -25,7 +25,7 @@ from scripts.cargar_estado_cuenta.estado_cuenta import migracion_datos
 from scripts.INFILE.fact import guardar_xml_recibo
 from scripts.INFILE.consulta_nit import ejemplo_uso_consulta_receptor
 from scripts.cuotas.cuotas_fecha_limite import verificador_de_cuotas_fecha_limite
-
+from django.db.models import Q
 # DECIMAL
 from decimal import Decimal
 # CALCULOS
@@ -253,7 +253,9 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-      asignar()
+      numero_referencia = "1435007843"
+      boleta = Payment.objects.filter( Q(numero_referencia=numero_referencia)| Q(numero_referencia__regex=rf"^{numero_referencia}-D\d*$"))
+      print(boleta)
     
    
 
