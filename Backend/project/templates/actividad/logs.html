@@ -1,193 +1,245 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
+
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/actividad/logs.css'%}">
+<link rel="stylesheet" href="{% static 'css/actividad/logs.css' %}">
 {% endblock %}
+
 {% block content %}
-<div class="container box">
-    <!-- Header -->
-    <div class="welcome-section animate-fade-in">
-        <h4>
-            <span>🔍</span> Sistema de Logs Unificado
-        </h4>
-        <p class="fs-6">Monitoreo en tiempo real de actividades de usuarios y eventos del sistema</p>
-    </div>
-
-    <!-- Stats -->
-    <div class="stats-grid animate-slide-up">
-        <div class="stat-card user">
-            <div class="stat-value">1,243</div>
-            <div class="stat-label">User Logs</div>
-        </div>
-        <div class="stat-card system">
-            <div class="stat-value">856</div>
-            <div class="stat-label">System Logs</div>
-        </div>
-        <div class="stat-card error">
-            <div class="stat-value">23</div>
-            <div class="stat-label">Errores</div>
-        </div>
-        <div class="stat-card warning">
-            <div class="stat-value">67</div>
-            <div class="stat-label">Advertencias</div>
-        </div>
-    </div>
-
-    <!-- Controls -->
-    <div class="controls">
-        <div class="controls-row">
-            <input type="text" class="search-box" placeholder="🔍 Buscar en logs (usuario, acción, mensaje, IP...)">
-
-            <div class="filter-group">
-                <label>Tipo:</label>
-                <select>
-                    <option value="">Todos</option>
-                    <option value="user" class="text-uppercase">User Logs</option>
-                    <option value="system" class="text-uppercase">System Logs</option>
-                </select>
+<div class="container-fluid py-4">
+    
+    <!-- ENCABEZADO Y FILTROS -->
+    <div class="glass-panel mb-4">
+        <div class="glass-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+                <h4 class="m-0 text-black fw-bold d-flex align-items-center gap-2">
+                    <i class="bi bi-shield-shaded text-danger"></i> Registros del Sistema
+                </h4>
+                <small class="text-muted">Eventos técnicos, excepciones y auditoría interna</small>
             </div>
-
-            <div class="filter-group">
-                <label>Nivel:</label>
-                <select>
-                    <option value="">Todos</option>
-                    {% for categoria in categorias %}
-                    <option value="{{categoria}}" class="text-uppercase">{{categoria.name}}</option>
-                    {% endfor %}
-                    
-                </select>
-            </div>
-
-            <div class="filter-group">
-                <label>Categoría:</label>
-                <select>
-                    <option value="">Todas</option>
+            
+            <form method="GET" class="d-flex gap-2 flex-wrap">
+                <select name="nivel" class="glass-select">
+                    <option value="">-- Todos los Niveles --</option>
                     {% for nivel in niveles %}
-                    <option value="{{nivel}}" class="text-uppercase">{{nivel.name}}</option>
+                        <option value="{{ nivel.id }}">{{ nivel.name }}</option>
                     {% endfor %}
-                    
                 </select>
-            </div>
 
-            <div class="filter-group">
-                <label>Desde:</label>
-                <input type="datetime-local" value="2025-10-20T00:00">
-            </div>
+                <select name="categoria" class="glass-select">
+                    <option value="">-- Todas las Categorías --</option>
+                    {% for cat in categorias %}
+                        <option value="{{ cat.id }}">{{ cat.name }}</option>
+                    {% endfor %}
+                </select>
 
-            <button class="btn btn-primary">Filtrar</button>
-            <button class="btn btn-secondary">Limpiar</button>
+                <button type="submit" class="btn btn-glass-danger">
+                    <i class="bi bi-filter"></i> Filtrar
+                </button>
+            </form>
         </div>
     </div>
 
-    <!-- Logs Container -->
-    <div class="logs-container">
-        <!-- User Log Entry -->
-        {% for user_log, system_log in page_obj %}
-        {% if user_log %}
-        <div class="log-entry" onclick="this.querySelector('.expandable-content').classList.toggle('active')">
-            <div class="log-header">
-                <div class="log-main">
-                    <div class="log-icon user-log">👤</div>
-                    <div class="log-content">
-                        <div class="log-title"> {{user_log.action}}</div>
-                        <div class="log-details">{{user_log.details}}</div>
-                        <div class="log-meta">
-                            <div class="meta-item">
-                                <strong>Usuario:</strong> {{user_log.user}}
-                            </div>
-                            <div class="meta-item">
-                                <strong>IP:</strong> {{user_log.ip_address}}
-                            </div>
-                            <div class="meta-item">
-                                <strong>Navegador:</strong> {{user_log.user_agent}}
-                            </div>
-                            <div class="meta-item">
-                                <strong>Categoría:</strong> {{user_log.category}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="log-badges">
-                    <span class="badge badge-user">User Log</span>
-                    <span class="badge badge-info">Info</span>
-                    <div class="timestamp">{{user_log.timestamp}}</div>
-                </div>
-            </div>
+    <!-- TABLA DE LOGS -->
+    <div class="glass-panel">
+        <div class="table-responsive">
+            <table class="table-glass">
+                <thead>
+                    <tr>
+                        <th>Fecha / Hora</th>
+                        <th>Nivel</th>
+                        <th>Origen</th>
+                        <th>Categoría</th>
+                        <th>Mensaje</th>
+                        <th class="text-center">Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in page_obj %}
+                    <tr>
+                        <td class="text-nowrap text-muted" style="font-size: 0.85rem;">
+                            {{ log.timestamp|date:"Y-m-d H:i:s" }}
+                        </td>
 
-        </div>
-        {% endif%}
-        {% if system_log %}
-        <div class="log-entry" onclick="this.querySelector('.expandable-content').classList.toggle('active')">
-            <div class="log-header">
-                <div class="log-main">
-                    <div class="log-icon system-log">⚙️</div>
-                    <div class="log-content">
-                        <div class="log-title">{{system_log.source}}</div>
-                        <div class="log-details">
-                            {{system_log.message}}
-                        </div>
-                        <div class="log-meta">
-                            <div class="meta-item">
-                                <strong>Fuente:</strong> {{ system_log.traceback|truncatechars:100 }}
-                            </div>
+                        <td>
+                            {% with lvl=log.level.name|upper %}
+                                <span class="badge-log 
+                                    {% if 'ERROR' in lvl or 'CRITICAL' in lvl %}badge-error
+                                    {% elif 'WARN' in lvl %}badge-warning
+                                    {% else %}badge-info{% endif %}">
+                                    {{ log.level.name }}
+                                </span>
+                            {% endwith %}
+                        </td>
 
-                            <div class="meta-item">
-                                <strong>Categoría:</strong> {{system_log.category}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="log-badges">
-                    <span class="badge badge-system">System Log</span>
-                    <span
-                        class="badge {%if system_log.level.name == 'INFO' %} badge-info {% elif system_log.level.name == 'DEBUG' %} badge-info {% elif system_log.level.name == 'WARNING' %}  badge-warning {% else %} badge-error {% endif%}">
-                        {%if system_log.level.name == 'INFO' %}
-                        INFO
-                        {% elif system_log.level.name == 'DEBUG' %}
-                        DEBUG
-                        {% elif system_log.level.name == 'WARNING' %}
-                        WARNING
-                        {% elif system_log.level.name == 'ERROR' %}
-                        ERROR
-                        {% elif system_log.level.name == 'CRITICAL' %}
-                        CRITICAL
-                        {% endif%}
-                    </span>
-                    <div class="timestamp">{{ system_log.timestamp}}</div>
-                </div>
-            </div>
-            {% if system_log.traceback %}
-            <div class="expandable-content">
-                <strong style="color: #9ca3af; font-size: 12px;">TRACEBACK:</strong>
-                <div class="code-block">{{system_log.traceback}}</div>
+                        <td>
+                            <code class="text-light" style="font-size: 0.85rem;">{{ log.source }}</code>
+                        </td>
 
-            </div>
-            {% endif %}
-            {% if system_log.metadata %}
-            <div class="expandable-content">
-                <strong style="color: #9ca3af; font-size: 12px;">METADATA:</strong>
-                <div class="code-block">{{system_log.metadata}}</div>
+                        <td>
+                            {% if log.category %}
+                                <span class="text-muted" style="font-size: 0.85rem;">{{ log.category.name }}</span>
+                            {% else %}
+                                <span class="text-muted opacity-50">-</span>
+                            {% endif %}
+                        </td>
 
-            </div>
-            {% endif %}
+                        <td style="max-width: 350px;" class="text-truncate" title="{{ log.message }}">
+                            {{ log.message }}
+                        </td>
+
+                        <!-- BOTÓN CON ATRIBUTOS DATA FOR JS -->
+                        <td class="text-center">
+                            <button type="button" 
+                                    class="btn btn-glass-action btn-inspect-log" 
+                                    data-id="{{ log.id }}"
+                                    data-source="{{ log.source }}"
+                                    data-message="{{ log.message }}"
+                                    data-traceback="{{ log.traceback|default:'' }}"
+                                    data-metadata="{{ log.metadata|pprint }}">
+                                <i class="bi bi-code-slash"></i> Inspeccionar
+                            </button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">
+                            <i class="bi bi-check-circle fs-2 d-block mb-2 text-success"></i>
+                            No hay registros del sistema para mostrar.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
 
+        <!-- PAGINACIÓN -->
+        
+        {% if page_obj.has_other_pages %}
+        <div class="p-3 d-flex justify-content-between align-items-center flex-wrap border-top border-secondary border-opacity-10">
+            <span class="text-muted fs-7">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+            
+            <ul class="pagination glass-pagination m-0">
+                <!-- Botón Anterior -->
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if nivel_selected %}&nivel={{ nivel_selected }}{% endif %}{% if categoria_selected %}&categoria={{ categoria_selected }}{% endif %}">&laquo;</a>
+                    </li>
+                {% endif %}
+
+                <!-- Números de Página -->
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}{% if nivel_selected %}&nivel={{ nivel_selected }}{% endif %}{% if categoria_selected %}&categoria={{ categoria_selected }}{% endif %}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Botón Siguiente -->
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if nivel_selected %}&nivel={{ nivel_selected }}{% endif %}{% if categoria_selected %}&categoria={{ categoria_selected }}{% endif %}">&raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
         {% endif %}
-
-        {% endfor %}
-
-
-
-
-
-
     </div>
-
-    <!-- Pagination -->
-    {% if page_obj %}
-    <div class="row" style="margin-top: 5rem; ">
-        {% include 'snippets/pages.html' %}
-    </div>
-    {% endif %}
 </div>
+
+<!-- ÚNICO MODAL GLOBAL (AFUERA DE LA TABLA Y CONTENEDORES GLASS) -->
+<div class="modal fade" id="globalLogModal" tabindex="-1" aria-labelledby="globalLogModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="globalLogModalLabel">
+                    Detalle del Log #<span id="modalLogId"></span> — <span id="modalLogSource" class="badge bg-dark"></span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- MENSAJE COMPLETO -->
+                <div class="mb-3">
+                    <label class="fw-bold text-uppercase fs-7 text-muted mb-1 d-block">
+                        <i class="bi bi-chat-left-text"></i> Mensaje:
+                    </label>
+                    <div id="modalLogMessage" class="p-3 rounded-2 bg-light border border-secondary border-opacity-25 text-dark font-monospace" style="white-space: pre-wrap; word-break: break-word;"></div>
+                </div>
+
+                <!-- TRACEBACK -->
+                <div class="mb-3" id="wrapperTraceback">
+                    <label class="fw-bold text-uppercase fs-7 text-danger mb-1 d-block">
+                        <i class="bi bi-exclamation-triangle-fill"></i> Traceback (Pila de Error):
+                    </label>
+                    <pre id="modalLogTraceback" class="code-block m-0"></pre>
+                </div>
+
+                <!-- METADATA -->
+                <div id="wrapperMetadata">
+                    <label class="fw-bold text-uppercase fs-7 text-muted mb-1 d-block">
+                        <i class="bi bi-braces"></i> Metadata (JSON):
+                    </label>
+                    <pre id="modalLogMetadata" class="code-block-json m-0"></pre>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Instancia única del modal de Bootstrap
+    const logModal = new bootstrap.Modal(document.getElementById('globalLogModal'));
+
+    // Escuchar clic en los botones de inspección
+    document.querySelectorAll('.btn-inspect-log').forEach(button => {
+        button.addEventListener('click', function() {
+            // Extraer datos del botón
+            const logId = this.dataset.id;
+            const source = this.dataset.source;
+            const message = this.dataset.message;
+            const traceback = this.dataset.traceback;
+            const metadata = this.dataset.metadata;
+
+            // Inyectar en el Modal
+            document.getElementById('modalLogId').textContent = logId;
+            document.getElementById('modalLogSource').textContent = source;
+            document.getElementById('modalLogMessage').textContent = message;
+
+            // Manejo dinámico de Traceback
+            const wrapperTraceback = document.getElementById('wrapperTraceback');
+            if (traceback && traceback.trim() !== '' && traceback !== 'None') {
+                document.getElementById('modalLogTraceback').textContent = traceback;
+                wrapperTraceback.style.display = 'block';
+            } else {
+                wrapperTraceback.style.display = 'none';
+            }
+
+            // Manejo dinámico de Metadata
+            const wrapperMetadata = document.getElementById('wrapperMetadata');
+            if (metadata && metadata.trim() !== '' && metadata !== '{}' && metadata !== 'None') {
+                document.getElementById('modalLogMetadata').textContent = metadata;
+                wrapperMetadata.style.display = 'block';
+            } else {
+                wrapperMetadata.style.display = 'none';
+            }
+
+            // Abrir modal sin bloqueos de DOM
+            logModal.show();
+        });
+    });
+});
+</script>
 {% endblock %}

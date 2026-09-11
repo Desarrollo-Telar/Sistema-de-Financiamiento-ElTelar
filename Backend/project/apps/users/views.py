@@ -7,7 +7,7 @@ from django.utils.decorators import method_decorator
 
 # Modelos
 from .models import  User
-
+from django.contrib.auth import update_session_auth_hash
 # Formulario
 from .forms import RegistroForm, UpdateUserForm, ChangePasswordForm
 
@@ -153,8 +153,12 @@ class ChangePassword(View):
                 user.set_password(form.cleaned_data.get('password1'))
                 contra = form.cleaned_data.get('password1')
                 user.save()
+                
+                update_session_auth_hash(request, user)
+
                 user = authenticate(username=request.user.username, password=contra)
                 login(self.request, user)
+
 
                 return redirect(self.success_url)
             return redirect(self.success_url)
@@ -176,7 +180,9 @@ def change_password_user(request, id):
         if form.is_valid():
             user.set_password(form.cleaned_data.get('password1'))
             user.save()
+            update_session_auth_hash(request, user)
             messages.success(request, 'Contraseña cambiada exitosamente')
+            
             return redirect('users:users')
         else:
             messages.error(request, 'No se pudo realizar el cambio, verifique bien sus credenciales')

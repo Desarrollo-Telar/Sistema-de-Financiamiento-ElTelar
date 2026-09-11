@@ -1,382 +1,219 @@
+/* --- PALETA DE COLORES Y VARIABLES LIGHT GLASS --- */
 :root {
-    --primary-color: #E5383B;
-    --secondary-color: #BA181B;
-    --accent-color: #E5383B;
-    --success-color: #10b981;
-    --warning-color: #f59e0b;
-    --danger-color: #ef4444;
-    --dark-color: #1f2937;
-    --light-color: #f8fafc;
-    --glass-bg: rgba(255, 255, 255, 0.15);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 12px 48px rgba(0, 0, 0, 0.15);
-    --shadow-heavy: 0 20px 64px rgba(0, 0, 0, 0.2);
-}
-
-
-
-
-.stat-value {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.stat-label {
-    font-size: 12px;
-    color: #9ca3af;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.stat-card.user {
-    border-left: 3px solid #10b981;
-}
-
-.stat-card.user .stat-value {
-    color: #10b981;
-}
-
-.stat-card.system {
-    border-left: 3px solid #f59e0b;
-}
-
-.stat-card.system .stat-value {
-    color: #f59e0b;
-}
-
-.stat-card.error {
-    border-left: 3px solid #ef4444;
-}
-
-.stat-card.error .stat-value {
-    color: #ef4444;
-}
-
-.stat-card.warning {
-    border-left: 3px solid #f97316;
-}
-
-.stat-card.warning .stat-value {
-    color: #f97316;
-}
-
-.controls {    
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);    
-    box-shadow: var(--shadow-light);
-}
-
-.controls-row {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.filter-group {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.filter-group label {
-    font-size: 13px;
-    color: #9ca3af;
-    font-weight: 600;
-}
-
-select,
-input[type="text"],
-input[type="datetime-local"] {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-bg);
-    padding: 8px 12px;
-    border-radius: 6px;    
-    font-size: 13px;
-    outline: none;
-
+    --bg-body: #F5F3F4;
     
-}
-
-select:focus,
-input:focus {
-    border-color: var(--glass-bg);
-}
-
-.search-box {
-    flex: 1;
-    min-width: 300px;
-    padding: 10px 15px;
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-
-.btn-primary {
-    background: #3b82f6;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #2563eb;
-}
-
-.btn-secondary {
-    background: #374151;
-    color: #e4e6eb;
-}
-
-.btn-secondary:hover {
-    background: #4b5563;
-}
-
-.logs-container {
-    background: var(--glass-bg);;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--glass-bg);;
-}
-
-.log-entry {
-    padding: 15px 20px;
-    border-bottom: 1px solid var(--glass-bg);;
-    transition: background 0.2s;
-    cursor: pointer;
-}
-
-.log-entry:hover {
-    box-shadow: 0 4px 16px rgba(229, 58, 59, 0.3);
-}
-
-.log-entry:last-child {
-    border-bottom: none;
-}
-
-.log-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    margin-bottom: 10px;
-}
-
-.log-main {
-    display: flex;
-    gap: 15px;
-    align-items: start;
-}
-
-.log-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-}
-
-.log-icon.user-log {
-    background: rgba(16, 185, 129, 0.5);
-    color: #10b981;
-}
-
-.log-icon.system-log {
-    background: rgba(245, 158, 11, 0.7);
-    color: #f59e0b;
-}
-
-.log-content {
-    flex: 1;
-}
-
-.log-title {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 5px;
+    /* Panel de cristal claro sobre fondo claro */
+    --card-bg: rgba(255, 255, 255, 0.75);
+    --card-border: rgba(181, 167, 166, 0.3);
     
+    /* Colores primarios */
+    --red-dark: #660708;
+    --red-mid: #A4161A;
+    --red-main: #BA181B;
+    --red-bright: #E5383B;
+    
+    /* Contraste de textos */
+    --text-dark: #0B090A;
+    --text-medium: #161A1D;
+    --text-muted: #660708;
+    --text-subtle: #4A4A4A;
 }
 
-.log-details {
-    font-size: 13px;
-    color: #9ca3af;
-    line-height: 1.5;
+body {
+    background-color: var(--bg-body);
+    color: var(--text-dark);
+    font-family: system-ui, -apple-system, sans-serif;
 }
 
-.log-meta {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-}
-
-.meta-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    color: #6b7280;
-}
-
-.meta-item strong {
-    color: #9ca3af;
-}
-
-.log-badges {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-.badge {
-    padding: 4px 10px;
+/* --- LOG CONTAINER & GLASS EFFECT --- */
+.glass-panel {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
-    font-size: 11px;
-    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(11, 9, 10, 0.06);
+}
+
+.glass-header {
+    border-bottom: 1px solid var(--card-border);
+    padding: 1.25rem 1.5rem;
+}
+
+.glass-header p, .glass-header small {
+    color: var(--text-subtle) !important;
+}
+
+/* --- TABLA CON ELEVADO CONTRASTE --- */
+.table-glass {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--text-dark);
+}
+
+.table-glass th {
+    background: rgba(22, 26, 29, 0.05);
+    color: var(--text-medium);
+    font-weight: 700;
     text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 1rem;
+    border-bottom: 2px solid var(--card-border);
 }
 
-.badge-user {
-    background: rgba(16, 185, 129, 0.2);
-    color: #10b981;
+.table-glass td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgba(181, 167, 166, 0.2);
+    vertical-align: middle;
+    color: var(--text-medium) !important;
+    font-weight: 500;
 }
 
-.badge-system {
-    background: rgba(245, 158, 11, 0.2);
-    color: #f59e0b;
+/* Fecha y hora con color oscuro legible */
+.table-glass td.text-muted,
+.table-glass td span.text-muted {
+    color: var(--text-subtle) !important;
 }
 
-.badge-debug {
-    background: rgba(99, 102, 241, 0.2);
-    color: #6366f1;
+.table-glass tbody tr:hover {
+    background: rgba(229, 56, 59, 0.04);
 }
 
-.badge-info {
-    background: rgba(59, 130, 246, 0.2);
-    color: #3b82f6;
+/* --- INSIGNIAS DE NIVELES (LOG LEVELS) --- */
+.badge-log {
+    padding: 0.35em 0.7em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 6px;
+    letter-spacing: 0.03em;
+    display: inline-block;
+}
+
+.badge-error, .badge-critical {
+    background: #BA181B;
+    color: #FFFFFF;
 }
 
 .badge-warning {
-    background: rgba(249, 115, 22, 0.2);
-    color: #f97316;
+    background: #E5383B;
+    color: #FFFFFF;
 }
 
-.badge-error {
-    background: rgba(239, 68, 68, 0.2);
-    color: #ef4444;
+.badge-info {
+    background: #161A1D;
+    color: #FFFFFF;
 }
 
-.badge-critical {
-    background: rgba(220, 38, 38, 0.2);
-    color: #dc2626;
+/* --- CAMPOS DE BÚSQUEDA Y FILTROS --- */
+.glass-input, .glass-select {
+    background: #FFFFFF;
+    border: 1px solid var(--card-border);
+    color: var(--text-dark);
+    border-radius: 8px;
+    padding: 0.5rem 0.85rem;
+    outline: none;
+    transition: all 0.2s ease;
 }
 
-.timestamp {
-    font-size: 12px;
-    color: #6b7280;
-    font-family: 'Courier New', monospace;
+.glass-input:focus, .glass-select:focus {
+    border-color: var(--red-bright);
+    box-shadow: 0 0 8px rgba(229, 56, 59, 0.2);
 }
 
-.expandable-content {
-    margin-top: 15px;
-    padding: 15px;
-    background: #0f1419;
+/* --- BOTONES --- */
+.btn-glass-danger {
+    background: var(--red-main);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.1rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.btn-glass-danger:hover {
+    background: var(--red-dark);
+    color: #FFFFFF;
+}
+
+.btn-glass-action {
+    background: #FFFFFF;
+    border: 1px solid var(--card-border);
+    color: var(--text-medium);
     border-radius: 6px;
-    border: 1px solid #2d3748;
-    display: none;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
 }
 
-.expandable-content.active {
-    display: block;
+.btn-glass-action:hover {
+    background: var(--text-medium);
+    color: #FFFFFF;
+    border-color: var(--text-medium);
 }
 
-.code-block {
-    background: #000;
-    padding: 12px;
-    border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    font-size: 12px;
-    overflow-x: auto;
-    margin-top: 10px;
-    color: #22c55e;
-    border: 1px solid #1f2937;
-}
-
-.metadata-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.metadata-item {
-    background: #1a1f2e;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #2d3748;
-}
-
-.metadata-key {
-    font-size: 11px;
-    color: #6b7280;
-    text-transform: uppercase;
-    margin-bottom: 3px;
-}
-
-.metadata-value {
-    font-size: 13px;
-    color: #e4e6eb;
-    word-break: break-word;
-}
-
-.pagination {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-.page-btn {
-    padding: 10px 15px;
-    background: #1a1f2e;
-    border: 1px solid #2d3748;
-    color: #e4e6eb;
-    cursor: pointer;
+/* --- PAGINACIÓN --- */
+.glass-pagination .page-link {
+    background: #FFFFFF;
+    border: 1px solid var(--card-border);
+    color: var(--text-dark);
+    margin: 0 2px;
     border-radius: 6px;
-    font-size: 13px;
-    transition: all 0.3s;
 }
 
-.page-btn:hover {
-    background: #374151;
-    border-color: #3b82f6;
+.glass-pagination .page-item.active .page-link {
+    background: var(--red-main);
+    border-color: var(--red-main);
+    color: #FFFFFF;
 }
 
-.page-btn.active {
-    background: #3b82f6;
-    border-color: #3b82f6;
+/* --- MODAL TRACEBACK --- */
+/* Corrección de apilamiento para Bootstrap Modals sobre Glassmorphism */
+.modal-backdrop {
+    z-index: 1050 !important;
 }
 
-.empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: #6b7280;
+.modal-glass {
+    z-index: 1065 !important;
 }
 
-.empty-state-icon {
-    font-size: 64px;
-    margin-bottom: 20px;
-    opacity: 0.5;
+.modal-glass .modal-content {
+    background: #FFFFFF !important;
+    border: 1px solid var(--card-border);
+    color: var(--text-dark) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
+
+.modal-glass .modal-header {
+    border-bottom: 1px solid var(--card-border);
+    background: rgba(22, 26, 29, 0.03);
+}
+
+/* Visor de código para Traceback y Metadata */
+pre.code-block {
+    background: #0B090A !important;
+    color: #FF8A8A !important;
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.825rem;
+    max-height: 250px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+pre.code-block-json {
+    background: #161A1D !important;
+    color: #D3D3D3 !important;
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.825rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+

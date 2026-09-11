@@ -29,36 +29,91 @@ from django.core.paginator import Paginator
 
 @login_required
 def listando_logs(request):
-    template_name = 'actividad/logs.html'
+    template_name = "actividad/logs.html"
 
-    # Obtén los registros
-    user_log = list(UserLog.objects.all().order_by('-id'))
-    system_log = list(SystemLog.objects.all().order_by('-id'))
+    # 1. Obtener parámetros de filtro de la URL (GET)
+    nivel_id = request.GET.get("nivel")
+    categoria_id = request.GET.get("categoria")
 
-    # Combina ambos — zip devuelve pares
-    logs_zip = list(zip(user_log, system_log))
+    # 2. Construir la consulta base (QuerySet diferido)
+    system_log = SystemLog.objects.all()
 
-    # --- PAGINACIÓN ---
-    page_number = request.GET.get('page', 1)  # página actual
-    paginator = Paginator(logs_zip, 150)  # 20 pares por página
+    # 3. Aplicar filtros dinámicos si se enviaron valores válidos
+    if nivel_id and nivel_id.isdigit():
+        system_log = system_log.filter(level_id=nivel_id)
 
-    # Obtén los registros de la página actual
+    if categoria_id and categoria_id.isdigit():
+        system_log = system_log.filter(category_id=categoria_id)
+
+    # 4. Ordenar del más reciente al más antiguo
+    system_log = system_log.order_by("-id")
+
+    # 5. Paginación directa sobre el QuerySet filtrado
+    page_number = request.GET.get("page", 1)
+    paginator = Paginator(system_log, 10)
     page_obj = paginator.get_page(page_number)
 
     context = {
-        'page_obj': page_obj,
-        'logs_zip': page_obj.object_list,  # opcional, si quieres usar este nombre en el template
-        'permisos': recorrer_los_permisos_usuario(request),
-        'niveles': LogLevel.objects.all(),
-        'categorias': LogCategory.objects.all(),
+        "page_obj": page_obj,
+        "logs_zip": page_obj.object_list,
+        "permisos": recorrer_los_permisos_usuario(request),
+        "niveles": LogLevel.objects.all(),
+        "categorias": LogCategory.objects.all(),
+        # Enviamos los filtros seleccionados para mantener el estado en los <select>
+        "nivel_selected": nivel_id,
+        "categoria_selected": categoria_id,
     }
     return render(request, template_name, context)
 
 
 
+
+
+@login_required
+def listando_user_logs(request):
+    template_name = "actividad/user_logs.html"
+
+    # Capturar parámetros de filtro
+    search_query = request.GET.get("q", "").strip()
+    categoria_id = request.GET.get("categoria", "").strip()
+
+    # QuerySet base
+    logs_qs = UserLog.objects.select_related("user", "category").order_by("-timestamp")
+
+    # Filtro por término de búsqueda
+    if search_query:
+        logs_qs = logs_qs.filter(
+            Q(user__username__icontains=search_query)
+            | Q(user__first_name__icontains=search_query)
+            | Q(user__last_name__icontains=search_query)
+            | Q(action__icontains=search_query)
+            | Q(details__icontains=search_query)
+            | Q(ip_address__icontains=search_query)
+        )
+
+    # Filtro por Categoría
+    if categoria_id and categoria_id.isdigit():
+        logs_qs = logs_qs.filter(category_id=categoria_id)
+
+    # Paginación
+    page_number = request.GET.get("page", 1)
+    paginator = Paginator(logs_qs, 15)
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        "page_obj": page_obj,
+        "search_query": search_query,
+        "categoria_selected": categoria_id,
+        "categorias": LogCategory.objects.all(),
+        "permisos": recorrer_los_permisos_usuario(request),
+    }
+
+    return render(request, template_name, context)
+
+
 class ListandoLogs(ListView):
     template_name = 'actividad/logs.html'
-    paginate_by = 50
+    paginate_by = 20
     model = UserLog  # Solo por compatibilidad con ListView
     
     def query(self):

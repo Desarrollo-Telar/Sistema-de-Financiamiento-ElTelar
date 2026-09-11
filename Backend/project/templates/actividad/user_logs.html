@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/actividad/logs.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid py-4">
+    
+    <!-- ENCABEZADO Y FILTROS -->
+    <div class="glass-panel mb-4">
+        <div class="glass-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+                <h4 class="m-0 text-black fw-bold d-flex align-items-center gap-2">
+                    <i class="bi bi-people-fill text-danger"></i> Auditoría de Usuarios
+                </h4>
+                <small class="text-muted">Registro de acciones e interacciones de usuarios en el sistema</small>
+            </div>
+            
+            <form method="GET" class="d-flex gap-2 flex-wrap">
+                <input type="text" 
+                       name="q" 
+                       class="glass-input" 
+                       placeholder="Buscar por usuario, acción, IP..." 
+                       value="{{ search_query }}">
+
+                <select name="categoria" class="glass-select">
+                    <option value="">-- Todas las Categorías --</option>
+                    {% for cat in categorias %}
+                        <option value="{{ cat.id }}" {% if categoria_selected == cat.id|stringformat:"s" %}selected{% endif %}>
+                            {{ cat.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="btn btn-glass-danger">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TABLA DE REGISTROS -->
+    <div class="glass-panel">
+        <div class="table-responsive">
+            <table class="table-glass">
+                <thead>
+                    <tr>
+                        <th>Fecha / Hora</th>
+                        <th>Usuario</th>
+                        <th>Acción</th>
+                        <th>Categoría</th>
+                        <th>IP</th>
+                        <th class="text-center">Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in page_obj %}
+                    <tr>
+                        <td class="text-nowrap text-muted" style="font-size: 0.85rem;">
+                            {{ log.timestamp|date:"Y-m-d H:i:s" }}
+                        </td>
+
+                        <td>
+                            {% if log.user %}
+                                <strong class="text-dark">{{ log.user.get_full_name|default:log.user.username }}</strong>
+                            {% else %}
+                                <span class="badge bg-secondary">Anónimo / Sistema</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <span class="badge bg-dark">{{ log.action }}</span>
+                        </td>
+
+                        <td>
+                            {% if log.category %}
+                                <span class="text-muted" style="font-size: 0.85rem;">{{ log.category.name }}</span>
+                            {% else %}
+                                <span class="text-muted opacity-50">-</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <code class="text-muted" style="font-size: 0.85rem;">{{ log.ip_address|default:"N/A" }}</code>
+                        </td>
+
+                        <td class="text-center">
+                            <button type="button" 
+                                    class="btn btn-glass-action btn-inspect-user-log" 
+                                    data-id="{{ log.id }}"
+                                    data-user="{{ log.user.username|default:'Anónimo' }}"
+                                    data-action="{{ log.action }}"
+                                    data-details="{{ log.details }}"
+                                    data-ip="{{ log.ip_address|default:'N/A' }}"
+                                    data-agent="{{ log.user_agent|default:'N/A' }}"
+                                    data-metadata="{{ log.metadata|pprint }}">
+                                <i class="bi bi-eye"></i> Ver
+                            </button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">
+                            <i class="bi bi-info-circle fs-2 d-block mb-2 text-primary"></i>
+                            No se encontraron registros de auditoría de usuarios.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PAGINACIÓN NATIVA (SIN TEMPLATETAGS) -->
+        {% if page_obj.has_other_pages %}
+        <div class="p-3 d-flex justify-content-between align-items-center flex-wrap border-top border-secondary border-opacity-10">
+            <span class="text-muted fs-7">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+            <ul class="pagination glass-pagination m-0">
+                <!-- Anterior -->
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% if categoria_selected %}&categoria={{ categoria_selected }}{% endif %}">&laquo;</a>
+                    </li>
+                {% endif %}
+
+                <!-- Números -->
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}{% if search_query %}&q={{ search_query }}{% endif %}{% if categoria_selected %}&categoria={{ categoria_selected }}{% endif %}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Siguiente -->
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% if categoria_selected %}&categoria={{ categoria_selected }}{% endif %}">&raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- MODAL GLOBAL -->
+<div class="modal fade" id="globalUserLogModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">
+                    Registro de Actividad #<span id="modalUserLogId"></span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <strong>Usuario:</strong> <span id="modalUserLogUser" class="text-primary fw-bold"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Acción:</strong> <span id="modalUserLogAction" class="badge bg-dark"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="fw-bold text-uppercase fs-7 text-muted mb-1 d-block">Detalles de la Acción:</label>
+                    <div id="modalUserLogDetails" class="p-3 rounded-2 bg-light border text-dark font-monospace" style="white-space: pre-wrap; word-break: break-word;"></div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="fw-bold text-uppercase fs-7 text-muted mb-1 d-block">Dirección IP:</label>
+                        <code id="modalUserLogIp" class="d-block p-2 bg-light border rounded"></code>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="fw-bold text-uppercase fs-7 text-muted mb-1 d-block">User Agent:</label>
+                        <small id="modalUserLogAgent" class="d-block p-2 bg-light border rounded text-truncate"></small>
+                    </div>
+                </div>
+
+                <div id="wrapperUserMetadata">
+                    <label class="fw-bold text-uppercase fs-7 text-muted mb-1 d-block">Metadata (Contexto JSON):</label>
+                    <pre id="modalUserLogMetadata" class="code-block-json m-0"></pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const userLogModal = new bootstrap.Modal(document.getElementById('globalUserLogModal'));
+
+    document.querySelectorAll('.btn-inspect-user-log').forEach(button => {
+        button.addEventListener('click', function() {
+            document.getElementById('modalUserLogId').textContent = this.dataset.id;
+            document.getElementById('modalUserLogUser').textContent = this.dataset.user;
+            document.getElementById('modalUserLogAction').textContent = this.dataset.action;
+            document.getElementById('modalUserLogDetails').textContent = this.dataset.details;
+            document.getElementById('modalUserLogIp').textContent = this.dataset.ip;
+            document.getElementById('modalUserLogAgent').textContent = this.dataset.agent;
+
+            const metadata = this.dataset.metadata;
+            const wrapperMetadata = document.getElementById('wrapperUserMetadata');
+            if (metadata && metadata.trim() !== '' && metadata !== '{}' && metadata !== 'None') {
+                document.getElementById('modalUserLogMetadata').textContent = metadata;
+                wrapperMetadata.style.display = 'block';
+            } else {
+                wrapperMetadata.style.display = 'none';
+            }
+
+            userLogModal.show();
+        });
+    });
+});
+</script>
+{% endblock %}
