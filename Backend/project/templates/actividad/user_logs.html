@@ -18,7 +18,7 @@
                 <small class="text-muted">Registro de acciones e interacciones de usuarios en el sistema</small>
             </div>
             
-            <form method="GET" class="d-flex gap-2 flex-wrap">
+            <form method="GET" class="d-flex gap-2 flex-wrap" id="searchForm">
                 <input type="text" 
                        name="q" 
                        class="glass-input" 
@@ -223,6 +223,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             userLogModal.show();
         });
+    });
+});
+</script>
+<script>
+document.getElementById("searchForm").addEventListener("submit", function (e) {
+    this.querySelectorAll("input[name], select[name], textarea[name]").forEach(el => {
+        if (!el.value.trim()) el.removeAttribute("name");
     });
 });
 </script>

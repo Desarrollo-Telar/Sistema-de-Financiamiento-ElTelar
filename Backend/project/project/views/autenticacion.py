@@ -108,7 +108,7 @@ def login_view(request):
             
             messages.success(request,'Bienvenido')
             hora = datetime.now()
-            if user.username != 'choc1403':
+            if user.username == 'choc1403':
                 try:
                     send_email_user_conect_or_disconect(user,hora,'INGRESADO AL SISTEMA')
 
