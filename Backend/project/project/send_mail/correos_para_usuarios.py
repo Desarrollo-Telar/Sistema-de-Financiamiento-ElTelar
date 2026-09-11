@@ -71,6 +71,18 @@ def send_email_code_verification(user, code, usuario, accion):
 
         # fail_silently= fuerza a que lance excepción si falla el SMTP
         email.send(fail_silently=False)
+
+        log_system_event(
+                    message=f"Correo de verificación enviado exitosamente a {user_mail} para el usuario {usuario}.",
+                    level_name="INFO",
+                    source="send_email_code_verification",
+                    category_name="Email",
+                    metadata={
+                        "destinatario": user_mail,
+                        "usuario": str(usuario),
+                        "accion": accion,
+                    },
+                )
         return 
 
     except Exception as e:
@@ -100,7 +112,7 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
         log_system_event(
             message=f"Error al obtener los correos de los programadores: {e}",
             level_name="ERROR",
-            source="Correo",
+            source="send_email_user_conect_or_disconect",
             category_name="Email",
             traceback=traceback.format_exc(),
             metadata={"usuario_id": getattr(usuario, "id", None)},
@@ -113,7 +125,7 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
             log_system_event(
                 message=f"No se enviará correo para '{usuario}': No hay destinatarios con el rol 'Programador' activos o con correo configurado.",
                 level_name="WARNING",
-                source="Correo",
+                source="send_email_user_conect_or_disconect",
                 category_name="Email",
             )
         return
@@ -131,7 +143,7 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
         log_system_event(
             message="No se encontró la plantilla 'email/user_conect.html'.",
             level_name="ERROR",
-            source="Correo",
+            source="send_email_user_conect_or_disconect",
             category_name="Email",
         )
         return
@@ -139,7 +151,7 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
         log_system_event(
             message=f"Error al renderizar la plantilla para el correo de estado de conexión: {e}",
             level_name="ERROR",
-            source="Correo",
+            source="send_email_user_conect_or_disconect",
             category_name="Email",
             traceback=traceback.format_exc(),
         )
@@ -160,7 +172,7 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
         log_system_event(
             message=f"Correo de notificación '{estado}' enviado exitosamente para el usuario {usuario}.",
             level_name="INFO",
-            source="Correo",
+            source="send_email_user_conect_or_disconect",
             category_name="Email",
             metadata={
                 "destinatarios": usuarios_email,
@@ -174,7 +186,7 @@ def send_email_user_conect_or_disconect(usuario, hora, estado):
         log_system_event(
             message=f"Error al enviar el correo de notificación de estado para {usuario}: {e}",
             level_name="ERROR",
-            source="Correo",
+            source="send_email_user_conect_or_disconect",
             category_name="Email",
             traceback=traceback.format_exc(),
             metadata={"destinatarios": usuarios_email, "estado": estado},
