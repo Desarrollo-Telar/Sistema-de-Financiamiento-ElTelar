@@ -108,17 +108,17 @@ def login_view(request):
             
             messages.success(request,'Bienvenido')
             hora = datetime.now()
-            if user.username == 'choc1403':
-                try:
-                    send_email_user_conect_or_disconect(user,hora,'INGRESADO AL SISTEMA')
+            
+            try:
+                send_email_user_conect_or_disconect(user,hora,'INGRESADO AL SISTEMA')
 
-                except Exception as e:
-                    log_system_event(
+            except Exception as e:
+                log_system_event(
                         message=f"Error enviando correo de login para {user}: {e}",
                         level_name="ERROR",
                         source="LoginView",
                         category_name="Correo"
-                    )
+                )
 
             next_url = request.GET.get('next') or request.POST.get('next')
 

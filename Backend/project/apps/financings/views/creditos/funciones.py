@@ -17,6 +17,6 @@ def generar_codigo_seguridad(usuario_regis, accion):
 
     for usuario in usuarios:
         send_email_code_verification(usuario, num, usuario_regis, accion)
-    print(num)
+    
     
     return num 
