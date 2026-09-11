@@ -37,5 +37,6 @@ def forzar_logout_usuario(username):
 
 if __name__ == "__main__":
     # Ejemplo de uso
-    username_a_cerrar = "choc1403"  # Reemplaza con el nombre de usuario que deseas cerrar sesión
-    forzar_logout_usuario(username_a_cerrar)
+    from apps.users.models import User
+    for username_a_cerrar in User.objects.values_list('username', flat=True):
+        forzar_logout_usuario(username_a_cerrar)

@@ -33,17 +33,45 @@ from apps.codes.forms import CodeForm
 # LOGIN
 import logging
 
+from datetime import datetime
+from django.contrib import messages
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.utils import timezone
+
+from apps.actividades.utils import log_user_action, log_system_event
+
 ### -- APARTADO DE SALIR --##
 @login_required
 def logout_view(request):
     user = request.user
-    request.session.flush()
-    logout(request)
-    messages.success(request, 'Sesión cerrada exitosamente')
-    hora = datetime.now()
-    
-    send_email_user_conect_or_disconect(user,hora,'SALIDO DEL SISTEMA')
-    return redirect('login')
+
+    # Solo ejecutamos la lógica si hay un usuario autenticado
+    if user.is_authenticated:
+        # Usamos timezone.now() en lugar de datetime.now() para mantener consistencia con zona horaria
+        hora = timezone.now()
+
+        # Cierre de sesión (limpia la sesión, elimina cookies y regenera token CSRF)
+        logout(request)
+
+        # Notificación por correo / log
+        try:
+            send_email_user_conect_or_disconect(user, hora, "SALIDO DEL SISTEMA")
+        except Exception as e:
+            # Evita que un error en el servidor de correo bloquee el flujo del usuario
+            
+            log_system_event(
+                message=f"Error enviando correo de logout para {user}: {e}",
+                level_name="ERROR",
+                source="LogoutView",
+                category_name="Correo"
+            )
+
+        messages.success(request, "Sesión cerrada exitosamente")
+    else:
+        messages.info(request, "No hay una sesión activa para cerrar.")
+
+    return redirect("login")
 
 
 ### --- APARTADO PARA INICIAR SESION --- ###
@@ -81,7 +109,16 @@ def login_view(request):
             messages.success(request,'Bienvenido')
             hora = datetime.now()
             if user.username != 'choc1403':
-                send_email_user_conect_or_disconect(user,hora,'INGRESADO AL SISTEMA')
+                try:
+                    send_email_user_conect_or_disconect(user,hora,'INGRESADO AL SISTEMA')
+
+                except Exception as e:
+                    log_system_event(
+                        message=f"Error enviando correo de login para {user}: {e}",
+                        level_name="ERROR",
+                        source="LoginView",
+                        category_name="Correo"
+                    )
 
             next_url = request.GET.get('next') or request.POST.get('next')
 

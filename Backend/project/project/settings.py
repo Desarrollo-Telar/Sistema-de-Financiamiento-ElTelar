@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-f(l@4iukkrz%^l92ant-7xc4s%k1l%u_5a^#e3(f%3wi*3lutw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SERVIDOR = False
+SERVIDOR = True
 ALLOWED_HOSTS = ['*']
 
 
@@ -69,8 +69,7 @@ SESSION_COOKIE_AGE = 2700  # 45 minutos en segundos
 # Define que la sesión se cierre cuando el navegador se cierre
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-# Opcional: Si deseas que se borre la sesión de la base de datos al expirar
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 
 
@@ -146,8 +145,8 @@ if not SERVIDOR:
     _database = db.POSTGRES
 
 
-#DATABASES = _database
-DATABASES = db.POSTGRES_HEROKU
+DATABASES = _database
+#DATABASES = db.POSTGRES_HEROKU
 
 
 
