@@ -98,6 +98,14 @@
     </a>
   </li>
   {% endif %}
+  {% if permisos.puede_ver_listado_de_desembolsos_aplicados_del_credito %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'financings:list_disbursement' %}">
+       <i class="bi bi-newspaper" style="width: 20; height: 20; "></i>
+      Desembolsos
+    </a>
+  </li>
+  {% endif %}
 
   {% if permisos.puede_ver_registros_asesores %}
   <li class="nav-item">
@@ -135,12 +143,43 @@
   </li>
   {% endif %}
 
+  {% if permisos.puede_ver_facturas %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'financings:factura_list' %}">
+      <i class="bi bi-receipt"></i>
+      Facturas
+    </a>
+  </li>
+  {% endif %}
+
   {% if permisos.puede_ver_registro_usuarios %}
   <li class="nav-item">
     <a class="nav-link" href="{% url 'users:users' %}">
       <img src="{% static 'img/icons/cliente_01.png' %}" alt="icono_usuarios" width="20" height="20">
       Usuarios
     </a>
+  </li>
+  {% endif %}
+
+   {% if permisos.puede_ver_registro_usuarios %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'dashboard:dashboard' %}">
+      <i class="bi bi-speedometer2" style="width: 20; height: 20; color: black; "></i>
+      Dashboard
+    </a>
+  </li>
+  {% endif %}
+  {% if puede_ver_registro_usuarios %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-code-square" style="width: 20; height: 20; color: black; "></i>
+      Logs
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{% url 'actividades:list_logs' %}">Logs de Sistema</a></li>
+        <li><a class="dropdown-item" href="{% url 'actividades:list_user_logs' %}">Logs de Usuario</a></li>
+      
+    </ul>
   </li>
   {% endif %}
 

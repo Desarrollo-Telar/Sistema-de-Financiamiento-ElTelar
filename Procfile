@@ -1,1 +1,1 @@
-web: cd Backend/project && gunicorn project.wsgi:application
+web: cd Backend/project && gunicorn project.wsgi:application --workers 2 --threads 2 --worker-class gthread --max-requests 500 --max-requests-jitter 50
