@@ -7,57 +7,31 @@ from apps.actividades.models import DetalleInformeCobranza, Informe
 from datetime import datetime, timedelta
 
 from apps.financings.formato import formatear_numero
-from django.db.models import Q
+
+
+from django.db.models import OuterRef, Subquery, Sum, Q
+from django.utils import timezone
+
 
 def cuota(creditos):
-   dia = datetime.now().date()
-   dia_mas_uno = dia + timedelta(days=1)
-   cuota_actual = None
-   saldo_capital = 0
-   informacion_actual = {}
+    dia = timezone.localdate()
+    dia_mas_uno = dia + timedelta(days=1)
 
-   for credito in creditos:
-      cuota_actual = PaymentPlan.objects.filter(
-         credit_id=credito,
-         start_date__lte=dia,
-         fecha_limite__gte=dia_mas_uno
-      ).first()
+    cuota_actual = PaymentPlan.objects.filter(
+        credit_id=OuterRef('pk'),
+        start_date__lte=dia,
+        fecha_limite__gte=dia_mas_uno
+    ).order_by('id')
 
-      if cuota_actual is not None:
-        saldo_capital += cuota_actual.saldo_pendiente
-        credito.saldo_pendiente = cuota_actual.saldo_pendiente
-        credito.save()
+    total = creditos.annotate(
+        saldo_cuota=Subquery(
+            cuota_actual.values('saldo_pendiente')[:1]
+        )
+    ).aggregate(
+        total=Sum('saldo_cuota')
+    )['total'] or 0
 
-
-   informacion_actual['saldo_capital'] = saldo_capital
-    
-   
-
-   return saldo_capital 
-
-def recolectar_informacion_cobranza(asesor_autenticado):
-    if asesor_autenticado is None:
-        return None
-    
-    informe_vigente = Informe.objects.filter(usuario= asesor_autenticado.usuario, esta_activo=True).first()
-
-    if informe_vigente is None:
-        return None
-    
-    detalle_informe_cobranza = DetalleInformeCobranza.objects.filter(reporte=informe_vigente).order_by('-id')
-    cobranza = detalle_informe_cobranza[:10]
-    pendientes = detalle_informe_cobranza.filter(cobranza__estado_cobranza = 'Pendiente')
-    completados = detalle_informe_cobranza.filter(cobranza__estado_cobranza = 'COMPLETADO')
-
-    recolecion = {
-        'ultimos_10': cobranza,
-        'pendientes': pendientes.count(),
-        'completados':completados.count(),
-        'total':detalle_informe_cobranza.count()
-
-    }
-    return recolecion
-
+    return total
 
 def recolectar_informes_status_creditos(request):
     sucursal = request.session['sucursal_id']
@@ -119,3 +93,26 @@ def recolectar_informes_status_creditos(request):
     }
 
     return recoleccion
+def recolectar_informacion_cobranza(asesor_autenticado):
+    if asesor_autenticado is None:
+        return None
+    
+    informe_vigente = Informe.objects.filter(usuario= asesor_autenticado.usuario, esta_activo=True).first()
+
+    if informe_vigente is None:
+        return None
+    
+    detalle_informe_cobranza = DetalleInformeCobranza.objects.filter(reporte=informe_vigente).order_by('-id')
+    cobranza = detalle_informe_cobranza[:10]
+    pendientes = detalle_informe_cobranza.filter(cobranza__estado_cobranza = 'Pendiente')
+    completados = detalle_informe_cobranza.filter(cobranza__estado_cobranza = 'COMPLETADO')
+
+    recolecion = {
+        'ultimos_10': cobranza,
+        'pendientes': pendientes.count(),
+        'completados':completados.count(),
+        'total':detalle_informe_cobranza.count()
+
+    }
+    return recolecion
+

@@ -67,22 +67,28 @@ def generate_qr(request, data):
 @usuario_activo
 def index(request):
     template_name = 'index.html'
-    clientes = Customer.objects.all()
-
-    asesor_autenticado = CreditCounselor.objects.filter(usuario=request.user).first()
-    sucursal = request.session['sucursal_id']
-
-    if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
-        clientes = Customer.objects.filter(new_asesor_credito=asesor_autenticado, sucursal=sucursal)
-
+    sucursal = request.session.get('sucursal_id')
     
+    user = request.user
+    role_name = getattr(getattr(user, 'rol', None), 'role_name', None)
+
+    asesor_autenticado = CreditCounselor.objects.filter(usuario=user).first()
+
+    # Si es Asesor de Crédito, se filtra por su asignación y sucursal
+    if asesor_autenticado is not None and role_name == 'Asesor de Crédito':
+        total_clientes = Customer.objects.filter(
+            new_asesor_credito=asesor_autenticado, 
+            sucursal=sucursal
+        ).count()
+    else:
+        # Para todos los demás roles: Conteo global de clientes en todo el sistema
+        total_clientes = Customer.objects.count()
+
     context = {
-        'title':'Inicio',
-        'clientes':clientes,
-        'creditos':recolectar_informes_status_creditos(request),
-        'permisos':recorrer_los_permisos_usuario(request),
-        'actividad_usuario': UserLog.objects.filter(user=request.user),
-        'cobranza':recolectar_informacion_cobranza(asesor_autenticado)
+        'title': 'Inicio',
+        'clientes': total_clientes,  # Se envía el número entero al contexto
+        'creditos': recolectar_informes_status_creditos(request),
+        'permisos': recorrer_los_permisos_usuario(request),
     }
     return render(request, template_name, context)
 

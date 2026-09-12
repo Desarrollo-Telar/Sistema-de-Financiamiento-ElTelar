@@ -29,6 +29,10 @@ class Notification(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        indexes = [
+            # Optimiza la consulta exacta de get_queryset()
+            models.Index(fields=['user', 'read', '-created_at']),
+        ]
         verbose_name = 'Notificacion'
         verbose_name_plural = 'Notificaciones'
 

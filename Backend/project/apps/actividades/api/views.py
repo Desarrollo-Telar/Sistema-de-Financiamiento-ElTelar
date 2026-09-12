@@ -11,15 +11,29 @@ from .serializers import NotificationSerializaer, DetalleInformeCobranzaSerializ
 from rest_framework import viewsets, status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
 
+class NotificationPagination(PageNumberPagination):
+    page_size = 10  # Solo trae las 10 más recientes por petición
 
-
-class NotificationViewSet(viewsets.ModelViewSet):
+class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = NotificationSerializaer
-    queryset = Notification.objects.all()
+    pagination_class = NotificationPagination
 
     def get_queryset(self):
-        return Notification.objects.filter(user=self.request.user, read=False).order_by('-created_at')
+        # Muestra solo las no leídas del usuario autenticado
+        return Notification.objects.filter(
+            user=self.request.user, 
+            read=False
+        ).order_by('-created_at')
+
+    # Endpoint ultraligero solo para el badge/conteo
+    @action(detail=False, methods=['get'])
+    def unread_count(self, request):
+        # .count() ejecuta un 'SELECT COUNT(*)' directo en BD sin cargar objetos a la RAM
+        count = self.get_queryset().count()
+        return Response({'unread_count': count})
 
 class DetalleInformeCobranzaViewSet(viewsets.ModelViewSet):
     serializer_class = DetalleInformeCobranzaSerializer
