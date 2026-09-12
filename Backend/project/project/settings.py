@@ -203,8 +203,17 @@ DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 
 # Configuración de Celery
 
-CELERY_BROKER_URL = 'redis://:mystrongpassword@redis:6379/0'  # Usamos Redis como broker
-CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+
+CELERY_BROKER_URL = os.getenv(
+    "CELERY_BROKER_URL",
+    "redis://redis:6379/0"
+)
+
+CELERY_RESULT_BACKEND = os.getenv(
+    "CELERY_RESULT_BACKEND",
+    "redis://redis:6379/0"
+)
+
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
@@ -219,7 +228,7 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 from celery.schedules import crontab
 
 from urllib.parse import urlparse
-#REDISCLOUD_URL = 'redis://default:PTSGV1jP5KdITaOQxjLZotZZyG623CGf@redis-12001.c52.us-east-1-4.ec2.redns.redis-cloud.com:12001'
+
 
 
 CACHES = {
@@ -270,15 +279,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-AWS_ACCESS_KEY_ID = "WkXu9MHvOHvOsLiJjtda"  # Cambia según tu configuración
-AWS_SECRET_ACCESS_KEY = "g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe"
-AWS_STORAGE_BUCKET_NAME = "asiatrip"
-AWS_S3_ENDPOINT_URL = "https://pcxl65.stackhero-network.com"  # Reemplaza con la URL de tu MinIO
+
+AWS_ACCESS_KEY_ID = os.getenv("STACKHERO_MINIO_ROOT_ACCESS_KEY")
+AWS_SECRET_ACCESS_KEY = os.getenv("STACKHERO_MINIO_ROOT_SECRET_KEY")
+
+AWS_STORAGE_BUCKET_NAME = os.getenv(
+    "STACKHERO_MINIO_BUCKET_NAME",
+    "asiatrip"
+)
+
+AWS_S3_ENDPOINT_URL = os.getenv(
+    "STACKHERO_MINIO_ENDPOINT",
+    "https://pcxl65.stackhero-network.com"
+)
+
 AWS_S3_ADDRESSING_STYLE = "path"
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}"
+AWS_S3_CUSTOM_DOMAIN = (
+    f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}"
+)
+
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
-
