@@ -59,3 +59,4 @@ if __name__ == "__main__":
     from apps.users.models import User
     for username_a_cerrar in User.objects.values_list('username', flat=True):
         sesiones_activas_usuario(username_a_cerrar)
+        forzar_logout_usuario(username_a_cerrar)

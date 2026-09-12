@@ -74,44 +74,18 @@ services:
       - .:/code
     ports:
       - "8000:8000"
-    environment:
-      - POSTGRES_NAME=db
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
 
-      #- MINIO_STORAGE_ENDPOINT=http://minio:9000
-      #- MINIO_SERVER_ACCESS_KEY=choc1403
-      #- MINIO_SERVER_SECRET_KEY=choc1403
-      - STACKHERO_MINIO_CONSOLE_URL=https://pcxl65.stackhero-network.com:9348
-      - STACKHERO_MINIO_HOST=pcxl65.stackhero-network.com
-      - STACKHERO_MINIO_ROOT_ACCESS_KEY=WkXu9MHvOHvOsLiJjtda
-      - STACKHERO_MINIO_ROOT_SECRET_KEY=g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe
-      - STACKHERO_MINIO_BUCKET_NAME=tu_nombre_de_bucket
-
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
-      - MYSQL_DATABASE=db
-      - MYSQL_ROOT_PASSWORD=password
-      - REDISCLOUD_URL=redis://default:PTSGV1jP5KdITaOQxjLZotZZyG623CGf@redis-12001.c52.us-east-1-4.ec2.redns.redis-cloud.com:12001
-      - REDIS_URL=redis://
-      - DJANGO_SETTINGS_MODULE=project.settings
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
-      - DATABASE_URL=postgres://u6687kmrek5hj:p7e84f83897f50f940f734176c6715488d7b2f4bac5bd2a69be880fa642942fdc@ec2-72-44-53-200.compute-1.amazonaws.com:5432/dnug6voonsn6l
-      - EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
-      - EMAIL_HOST=smtp.gmail.com
-      - EMAIL_PORT=587
-      - EMAIL_USE_TLS=True
-      - EMAIL_HOST_USER=develtelar@gmail.com
-      - EMAIL_HOST_PASSWORD=zvab avbh dqhs ljmp
-      - DEFAULT_FROM_EMAIL=develtelar@gmail.com
-      
-    depends_on:
-      - db
-      - db_p
+    
 
     env_file:
       - .env
+
+    environment:
+      DJANGO_SETTINGS_MODULE: project.settings
+    
+    depends_on:
+      - db
+      - db_p
 
     networks:
       - app_fin
