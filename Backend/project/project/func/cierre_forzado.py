@@ -41,9 +41,12 @@ def forzar_logout_usuario(username):
 
     # Recorremos todas las sesiones activas en la base de datos
     for sesion in Session.objects.all():
-        datos_sesion = sesion.get_decoded()
+        try:
+            datos_sesion = sesion.get_decoded()
+        except Exception as e:
+            print(f"Sesión {sesion.session_key} no pudo ser decodificada: {e}")
+            continue
 
-        # Comprobamos si el ID del usuario coincide con el de la sesión
         if str(usuario.pk) == str(datos_sesion.get("_auth_user_id")):
             sesion.delete()
             sesiones_eliminadas += 1
