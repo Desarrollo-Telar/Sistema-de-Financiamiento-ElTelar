@@ -31,5 +31,7 @@ urlpatterns_reports = [
     path('reportes/egresos/', login_required(ReporteEgresosExcelView.as_view()), name='report_egresos'),
 
     path('reporte/cierre_diario/', login_required(CierreDiario.as_view()), name='reporte_cierre_datos'),
-    path('reporte/cobranza/', login_required(ReporteCobranza.as_view()), name='reporte_cobranza' )
+    path('reporte/cobranza/', login_required(ReporteCobranza.as_view()), name='reporte_cobranza' ),
+
+    path('reporte/descuento/', login_required(ReporteDescuentosExcelView.as_view()), name='reporte_descuento' ),
 ]

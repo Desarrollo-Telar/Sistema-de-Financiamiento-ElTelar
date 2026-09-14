@@ -23,3 +23,5 @@ from .egresos import ReporteEgresosExcelView
 from .cierre_diario.generando_reporte import CierreDiario
 
 from .cobranza import ReporteCobranza
+
+from .descuento import ReporteDescuentosExcelView
