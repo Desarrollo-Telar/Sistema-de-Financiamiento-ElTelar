@@ -49,25 +49,27 @@ def set_customer_code_and_update_status(sender, instance, **kwargs):
     buscar_asesor = None
     if instance.new_asesor_credito:
         buscar_asesor = CreditCounselor.objects.filter(id=instance.new_asesor_credito.id).first()
-        instance.asesor = f'{buscar_asesor.nombre} {buscar_asesor.apellido}'
-
-    
+        if buscar_asesor:
+            instance.asesor = f'{buscar_asesor.nombre} {buscar_asesor.apellido}'
 
     departamento = instance.lugar_emision_tipo_identificacion_departamento
     municipio = instance.lugar_emision_tipo_identificacion_municipio
 
-    # Filtro condicionalmente por id si es un número
-    filtros_departamento = Q(nombre__icontains=departamento)
-    if is_int(departamento):
-        filtros_departamento |= Q(id=departamento)
+    # Validamos y filtramos departamento solo si no es None o vacío
+    departamento_f = None
+    if departamento:
+        filtros_departamento = Q(nombre__icontains=departamento)
+        if is_int(departamento):
+            filtros_departamento |= Q(id=departamento)
+        departamento_f = Departamento.objects.filter(filtros_departamento).first()
 
-    departamento_f = Departamento.objects.filter(filtros_departamento).first()
-
-    filtros_municipio = Q(nombre__icontains=municipio)
-    if is_int(municipio):
-        filtros_municipio |= Q(id=municipio)
-
-    municipio_f = Municiopio.objects.filter(filtros_municipio).first()
+    # Validamos y filtramos municipio solo si no es None o vacío
+    municipio_f = None
+    if municipio:
+        filtros_municipio = Q(nombre__icontains=municipio)
+        if is_int(municipio):
+            filtros_municipio |= Q(id=municipio)
+        municipio_f = Municiopio.objects.filter(filtros_municipio).first()
 
     if departamento_f and municipio_f:
         instance.lugar_emision_tipo_identificacion_departamento = departamento_f.nombre
@@ -106,7 +108,7 @@ def set_customer_code_and_update_status(sender, instance, **kwargs):
                 customer_code = generate_customer_code(instance.status, current_year, counter)
 
             instance.customer_code = customer_code
-
+            
 def generar_numero_identificacion_sucursal(instance):
 
     if instance.sucursal is None:

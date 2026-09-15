@@ -59,6 +59,7 @@ def process(nuevo, sucursal):
 import pandas as np
 
 def process_banco_industrial(nuevo, sucursal):
+    print(f'Leyendo el archivo {nuevo} de sucursal: {sucursal}')
     # Leer el archivo CSV generado anteriormente
     df = pd.read_csv(nuevo, encoding='utf-8', on_bad_lines='skip')
 
@@ -94,7 +95,7 @@ def process_banco_industrial(nuevo, sucursal):
             continue  # Si ya existe, saltar este registro
 
         # Crear el objeto Banco
-        banco = Banco(
+        Banco.objects.create(
             fecha=fecha,
             referencia=referencia,
             credito=credito,
@@ -107,6 +108,6 @@ def process_banco_industrial(nuevo, sucursal):
             sucursal=sucursal,
             nombre_del_banco='BANCO INDUSTRIAL'
         )
-        banco.save()
+        
 
         print(f"Guardado - Fecha: {fecha.strftime('%Y-%m-%d')}, Referencia: {referencia}, Crédito: {credito}, Débito: {debito}, Descripción: {descripcion}")
