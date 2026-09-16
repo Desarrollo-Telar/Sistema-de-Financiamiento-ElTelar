@@ -55,6 +55,24 @@
     height: 2px;
     background: linear-gradient(90deg, var(--unread-accent), transparent);
 }
+.notification-action {
+    padding: 0.4rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(229, 56, 59, 0.4);
+    background: rgba(164, 22, 26, 0.2);
+    color: var(--text-main);
+}
+
+.notification-action:hover {
+    background: var(--accent-red);
+    color: #FFFFFF;
+    border-color: var(--accent-red);
+    transform: translateY(-2px);
+}
 
 .notification-link {
     color: inherit;
@@ -304,3 +322,65 @@
         right: 0.5rem;
     }
 }
+
+.glass-card, .glass-item {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(211, 211, 211, 0.4);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .glass-badge {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(211, 211, 211, 0.3);
+    }
+
+    .glass-item:hover {
+        background: rgba(255, 255, 255, 0.95);
+        transform: translateY(-2px);
+    }
+
+    /* Notificaciones no leídas con sutil acento en rojo corporativo */
+    .unread-notification {
+        background: rgba(229, 56, 59, 0.04) !important;
+        border-left: 4px solid #E5383B !important;
+    }
+
+    /* Puntos indicadores */
+    .pulse-dot {
+        height: 10px;
+        width: 10px;
+        background-color: #E5383B;
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: 0 0 0 rgba(229, 56, 59, 0.4);
+        animation: pulse 2s infinite;
+    }
+
+    .read-dot {
+        height: 8px;
+        width: 8px;
+        background-color: #D3D3D3;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(229, 56, 59, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 6px rgba(229, 56, 59, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(229, 56, 59, 0);
+        }
+    }
+
+    /* Ajustes generales de inputs para mantener limpieza visual */
+    .form-control:focus, .form-select:focus {
+        border-color: #A4161A;
+        box-shadow: 0 0 0 0.25rem rgba(165, 22, 26, 0.15);
+    }

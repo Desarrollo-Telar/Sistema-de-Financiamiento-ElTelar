@@ -1,8 +1,45 @@
 {% load static %}
 
-
-
 <div class="notifications-container">
+    
+    <div class="glass-card p-4 mb-4 rounded-4 shadow-sm border-0">
+        <form method="GET" action="{% url 'actividades:notification' %}" class="row g-3 align-items-center">
+            
+            <!-- Input de Búsqueda -->
+            <div class="col-md-5">
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-end-0 text-muted">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" name="q" value="{{ request_q }}" class="form-control bg-transparent border-start-0 shadow-none ps-0" placeholder="Buscar por título o mensaje...">
+                </div>
+            </div>
+
+            <!-- Selector de Categorías -->
+            <div class="col-md-5">
+                <select name="categoria" class="form-select bg-transparent shadow-none">
+                    <option value="">Todas las categorías</option>
+                    {% for cat in categorias_disponibles %}
+                        <option value="{{ cat }}" {% if request_categoria == cat %}selected{% endif %}>{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-danger w-100 shadow-sm" style="background-color: #E5383B; border: none;">
+                    Filtrar
+                </button>
+                {% if request_q or request_categoria %}
+                    <a href="{% url 'actividades:notification' %}" class="btn btn-outline-secondary border-0" title="Limpiar filtros">
+                        <i class="fas fa-redo-alt"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    <!-- Listado de Notificaciones -->
     {% for notification in object_list %}
     <div class="notification-card {% if not notification.read %}unread{% else %}read{% endif %}">
         <a href="{% url 'actividades:detalle_notificacion' notification.uuid %}" class="notification-link">
@@ -14,10 +51,9 @@
                 </a>
                 
                 <div class="notification-header">
-                    <h4 class="notification-title {% if not notification.read %}unread{% endif %}">
+                    <h4 class="notification-title">
                         {{ notification.title }}
                     </h4>
-                   
                 </div>
                 
                 <div class="notification-divider"></div>
@@ -44,10 +80,9 @@
                             </div>
                             {% if notification.especificaciones.url %}
                             <a href="{{ notification.especificaciones.url }}" 
-                               class="notification-action {% if not notification.read %}unread{% else %}read{% endif %}"
+                               class="notification-link"
                                onclick="event.preventDefault(); event.stopPropagation(); window.location.href='{{ notification.especificaciones.url }}';">
-                                <i class="fas fa-arrow-right me-1"></i>
-                                Ir
+                                <i class="fas fa-arrow-right me-1"></i> Ir
                             </a>
                             {% endif %}
                         </div>
@@ -58,13 +93,14 @@
     </div>
     {% endfor %}
 
+    <!-- Estado Vacío -->
     {% if not object_list %}
     <div class="empty-state">
         <div class="empty-state-icon">
             <i class="fas fa-bell-slash"></i>
         </div>
         <h3>Sin Notificaciones</h3>
-        <p>{{ request.user }}, no tienes notificaciones pendientes en este momento.</p>
+        <p>{{ request.user }}, no se encontraron notificaciones con los filtros aplicados.</p>
     </div>
     {% endif %}
 </div>
