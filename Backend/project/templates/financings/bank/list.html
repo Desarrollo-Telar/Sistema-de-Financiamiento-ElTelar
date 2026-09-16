@@ -1,71 +1,177 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/financings/banco/list.css' %}">
+
+{% endblock %}
+
 {% block content %}
-<div class="container-fluid box">
-    <!-- Sección de presentación -->
-    <div class="row">
-        {% include 'financings/bank/snippets/presentation.html' %}
-    </div>
-
-    <!-- Total de registros -->
-    <div class="row mb-4">
-        <div class="col">
-            <p class="text-body-secondary fs-6 text-uppercase">
-                TOTAL DE TODOS LOS REGISTROS {{ message }}:
-                <span class="badge rounded-pill text-bg-dark">{{ count }}</span>
-            </p>
+<div class="banco-container">
+    
+    <!-- Tarjeta de Bienvenida / Encabezado -->
+    <div class="welcome-glass-card">
+        <div class="welcome-text">
+            <h2>¡Bienvenido al Apartado de <span>Bancos</span>!</h2>
+            <p>Gestiona y administra de manera eficiente los registros y transacciones bancarias importadas.</p>
         </div>
-    </div>
-    <hr>
-
-    <!-- Filtros y botones -->
-    <div class="row align-items-center mb-4 gx-3 gy-2">
-        <!-- Buscador -->
-         {% if permisos.puede_buscar_registro_bancos %}
-        <div class="col-12 col-md-6 col-lg-5">
-            {% include 'financings/bank/snippets/search.html' with query=query %}
-        </div>
-        {% endif %}
-
-        <!-- Botones -->
-        <div class="col-12 col-md-6 col-lg-5">
-            {% include 'financings/bank/snippets/list_btns.html' %}
-        </div>
-
-        <!-- Filtros -->
-        <div class="col-2 col-md-2 col-lg-1">
-            {% include 'financings/bank/snippets/filters.html' %}
-        </div>
-
-        <!-- Botón de recargar -->
-         
-        <div class="col-2 col-md-2 col-lg-1">
-            <a href="{% url 'financings:comparacion_bancos' %}" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
-                    <path
-                        d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
-                </svg>
-            </a>
+        <div class="breadcrumb-badge">
+            <span>Finanzas / Bancos</span>
         </div>
     </div>
 
-    <!-- Tabla de datos -->
-    <div class="row">
-        <div class="col">
-            {% include 'financings/bank/table/table.html' %}
-        </div>
+    <!-- Barra de Herramientas y Filtros -->
+    <form method="GET" action="" class="toolbar-glass-card" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    
+    <!-- 1. Total de registros dinámico -->
+    <div class="counter-badge">
+        TOTAL DE REGISTROS: <span id="total-count">{{ count }}</span>
+    </div>
+    
+    <!-- 2. Campo de Búsqueda -->
+    <div class="search-filter-group" style="flex: 1; min-width: 220px;">
+        <input type="text" name="q" value="{{ request_q }}" placeholder="Buscar referencia, descripción..." class="glass-input">
     </div>
 
-    <!-- Paginación -->
+    <!-- 3. Filtrado por Estado (Validado / Pendiente) -->
+    <div class="filter-item">
+        <select name="status" class="glass-input" style="padding: 8px 12px; cursor: pointer;">
+            <option value="">Todos los Estados</option>
+            <option value="validado" {% if request_status == 'validado' %}selected{% endif %}>Validado</option>
+            <option value="pendiente" {% if request_status == 'pendiente' %}selected{% endif %}>Pendiente</option>
+        </select>
+    </div>
+
+    <!-- 4. Clasificar por Nombre de Banco -->
+    <div class="filter-item">
+        <select name="banco" class="glass-input" style="padding: 8px 12px; cursor: pointer;">
+            <option value="">Todos los Bancos</option>
+            {% for b in bancos_disponibles %}
+                {% if b %}
+                    <option value="{{ b }}" {% if request_banco == b %}selected{% endif %}>{{ b }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Botón Ejecutar Filtro -->
+    <button class="glass-btn-primary" type="submit">
+        <i class="bi bi-search"></i> Filtrar
+    </button>
+
+    <!-- Grupo de Acciones -->
+    <div class="actions-group" style="margin-left: auto;">
+        <a href="{% url 'document:banco' %}" class="glass-btn-accent">
+            <i class="fas fa-file-excel"></i> Cargar Estado de Cuenta.
+        </a>
+        <a href="?" class="glass-icon-btn" title="Limpiar filtros" style="text-decoration: none; display: flex; align-items: center; justify-content: center; ">
+            <i class="bi bi-trash"></i>
+        </a>
+    </div>
+</form>
+
+    <!-- Tabla Estilizada con Glassmorphism -->
+    <div class="table-glass-container">
+        <table class="glass-table" id="bancosTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>FECHA</th>
+                    <th>BANCO</th>
+                    <th>NO. REFERENCIA</th>
+                    <th>NO. SECUENCIAL</th>
+                    <th>MTO. CRÉDITO</th>
+                    <th>DÉBITO</th>
+                    <th>SALDO DISP.</th>
+                    <th>ESTADO / TIPO</th>
+                    <th>ACCIÓN</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in bancos %}
+                <tr class="table-row-glass">
+                    <td><strong>{{ forloop.counter }}</strong></td>
+                    <td>{{ item.fecha|date }}</td>
+                    <td><span class="badge-banco">{{ item.nombre_del_banco|default:"N/D" }}</span></td>
+                    <td><code>{{ item.referencia }}</code></td>
+                    <td><code>{{ item.secuencial|default:"---" }}</code></td>
+                    <td class="text-credit">Q{{ item.credito|floatformat:2 }}</td>
+                    <td class="text-debit">Q{{ item.debito|floatformat:2 }}</td>
+                    <td><strong>Q{{ item.saldo_disponible|floatformat:2 }}</strong></td>
+                    <td>
+                        {% if item.registro_ficticio %}
+                            <span class="status-pill warning"><i class="fas fa-exclamation-circle"></i> Ficticio</span>
+                        {% elif item.status %}
+                            <span class="status-pill success"><i class="fas fa-check-circle"></i> Validado</span>
+                        {% else %}
+                            <span class="status-pill pending"><i class="fas fa-clock"></i> Pendiente</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <button class="btn-detalle" onclick="verDetalle('{{ item.referencia }}')">Ver detalle</button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9" class="text-center py-4 text-muted">No hay registros bancarios disponibles.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
     {% if page_obj %}
-    <div class="row mt-4">
-        <div class="col">
-            {% include 'snippets/pages.html' %}
-        </div>
+    <div class="row">
+      {% include 'snippets/pages.html' %}
     </div>
-    {% endif %}
+  {% endif %}
+
 </div>
+
+
+
+
+<!-- Script JS para Filtro en Vivo e Interacciones -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("searchInput");
+        const tableRows = document.querySelectorAll("#bancosTable tbody tr.table-row-glass");
+        const totalCountSpan = document.getElementById("total-count");
+
+        // Funcionalidad de búsqueda en tiempo real
+        if (searchInput) {
+            searchInput.addEventListener("keyup", function() {
+                const query = searchInput.value.toLowerCase().trim();
+                let visibleCount = 0;
+
+                tableRows.forEach(row => {
+                    const textContent = row.textContent.toLowerCase();
+                    if (textContent.includes(query)) {
+                        row.style.display = "";
+                        visibleCount++;
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+
+                if (totalCountSpan) {
+                    totalCountSpan.textContent = visibleCount;
+                }
+            });
+        }
+    });
+
+    function verDetalle(id) {
+        // Puedes redirigir a una vista de detalle o abrir un modal
+        console.log("Ver detalle del registro banco ID:", id);
+        window.location.href = `/financings/clasificar/${id}/`;
+    }
+</script>
+<script>
+document.getElementById("searchForm").addEventListener("submit", function (e) {
+    this.querySelectorAll("input[name], select[name], textarea[name]").forEach(el => {
+        if (!el.value.trim()) el.removeAttribute("name");
+    });
+});
+</script>
 {% endblock %}

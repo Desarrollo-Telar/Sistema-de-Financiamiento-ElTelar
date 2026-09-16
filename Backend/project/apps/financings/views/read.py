@@ -14,6 +14,7 @@ from project.pagination import paginacion
 
 # SCRIPTS
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+from django.db.models import Q
 
 
 
@@ -38,19 +39,63 @@ def list_payment(request):
 @login_required
 @permiso_requerido('puede_ver_listado_registro_bancos')
 def list_bank(request):
-    sucursal = request.session['sucursal_id']
+    sucursal = request.session.get('sucursal_id')
     template_name = 'financings/bank/list.html'
-    page_obj = paginacion(request, Banco.objects.filter(registro_ficticio=False, sucursal=sucursal).order_by('-fecha'))
     
+    # Queryset base filtrado por sucursal y sin registros ficticios
+    queryset = Banco.objects.filter(registro_ficticio=False, sucursal=sucursal)
+    
+    # 1. Parámetros de filtrado y búsqueda desde la URL (GET)
+    query = request.GET.get('q', '').strip()
+    status_filter = request.GET.get('status', '').strip()
+    banco_filter = request.GET.get('banco', '').strip()
+
+    # Aplicar búsqueda por texto (referencia, descripción o nombre del banco)
+    if query:
+        queryset = queryset.filter(
+            Q(referencia__icontains=query) | 
+            Q(descripcion__icontains=query) | 
+            Q(nombre_del_banco__icontains=query)
+        )
+
+    # Aplicar filtro por estado (a. Validado / b. Pendiente)
+    # Asumiendo que 'status=True' es Validado y 'status=False' es Pendiente
+    if status_filter == 'validado':
+        queryset = queryset.filter(status=True)
+    elif status_filter == 'pendiente':
+        queryset = queryset.filter(status=False)
+
+    # Aplicar filtro por clasificador de nombre de banco
+    if banco_filter:
+        queryset = queryset.filter(nombre_del_banco=banco_filter)
+
+    # Ordenamiento final
+    queryset = queryset.order_by('-fecha')
+
+    # Obtener lista única de bancos para poblar el selector en el HTML
+    bancos_disponibles = Banco.objects.filter(
+        registro_ficticio=False, sucursal=sucursal
+    ).values_list('nombre_del_banco', flat=True).distinct()
+
+    # Total de registros filtrados reales
+    total_registros = queryset.count()
+
+    # Paginación
+    page_obj = paginacion(request, queryset)
 
     context = {
-        'title':'Registro de Bancos.',
-        'page_obj':page_obj,
-        'banco_list':page_obj,
-        'permisos':recorrer_los_permisos_usuario(request),
-        'count':Banco.objects.filter(registro_ficticio=False, sucursal=sucursal).count()
+        'title': 'Registro de Bancos.',
+        'page_obj': page_obj,
+        'bancos': page_obj,
+        'permisos': recorrer_los_permisos_usuario(request),
+        'count': total_registros,
+        'bancos_disponibles': bancos_disponibles, # Para llenar el select de bancos
+        # Devolvemos los valores actuales para mantenerlos seleccionados en el form
+        'request_q': query,
+        'request_status': status_filter,
+        'request_banco': banco_filter,
     }
-    return render(request,template_name, context)
+    return render(request, template_name, context)
 
 
 @login_required

@@ -1,0 +1,279 @@
+
+    :root {
+        --bg-dark-primary: #0B090A;
+        --bg-dark-secondary: #161A1D;
+        --red-deep: #660708;
+        --red-primary: #A4161A;
+        --red-bright: #BA181B;
+        --red-accent: #E5383B;
+        --gray-muted: #B1A7A6;
+        --gray-light: #D3D3D3;
+        --bg-glass: rgba(255, 255, 255, 0.75);
+        --border-glass: rgba(211, 211, 211, 0.4);
+    }
+
+    .banco-container {
+        padding: 20px 30px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Tarjetas Glassmorphism Generales */
+    .welcome-glass-card, .toolbar-glass-card {
+        background: var(--bg-glass);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--border-glass);
+        border-radius: 14px;
+        padding: 20px 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .welcome-text h2 {
+        font-size: 1.4rem;
+        color: var(--bg-dark-primary);
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .welcome-text h2 span {
+        color: var(--red-accent);
+    }
+
+    .welcome-text p {
+        color: #555;
+        font-size: 0.9rem;
+        margin: 5px 0 0 0;
+    }
+
+    .breadcrumb-badge {
+        background: rgba(164, 22, 26, 0.1);
+        color: var(--red-primary);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    /* Barra de Herramientas */
+    .toolbar-glass-card {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .counter-badge {
+        background: var(--bg-dark-primary);
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .search-filter-group {
+        display: flex;
+        gap: 8px;
+        flex: 1;
+        max-width: 400px;
+    }
+
+    .glass-input {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--gray-light);
+        padding: 8px 14px;
+        border-radius: 8px;
+        outline: none;
+        width: 100%;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .glass-input:focus {
+        border-color: var(--red-accent);
+        box-shadow: 0 0 0 3px rgba(229, 56, 59, 0.15);
+    }
+
+    .glass-btn-primary {
+        background: var(--red-primary);
+        color: #fff;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .glass-btn-primary:hover {
+        background: var(--red-bright);
+    }
+
+    .glass-btn-accent {
+        background: var(--bg-dark-secondary);
+        color: #fff;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.2s;
+    }
+
+    .glass-btn-accent:hover {
+        background: var(--red-deep);
+        color: #fff;
+    }
+
+    .actions-group {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .glass-icon-btn {
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid var(--gray-light);
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        cursor: pointer;
+        color: var(--bg-dark-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .glass-icon-btn:hover {
+        background: var(--red-accent);
+        color: #fff;
+        border-color: var(--red-accent);
+    }
+
+    /* Tabla Estilizada */
+    .table-glass-container {
+        background: var(--bg-glass);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--border-glass);
+        border-radius: 14px;
+        padding: 10px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        overflow-x: auto;
+    }
+
+    .glass-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+        text-align: left;
+    }
+
+    .glass-table th {
+        color: #666;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 10px 15px;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid rgba(0,0,0,0.05);
+    }
+
+    .table-row-glass {
+        background: rgba(255, 255, 255, 0.6);
+        transition: transform 0.2s, background 0.2s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    .table-row-glass td {
+        padding: 14px 15px;
+        font-size: 0.85rem;
+        color: var(--bg-dark-primary);
+        vertical-align: middle;
+    }
+
+    .table-row-glass td:first-child {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+
+    .table-row-glass td:last-child {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    .table-row-glass:hover {
+        background: rgba(255, 255, 255, 0.95);
+        transform: scale(1.002);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .badge-banco {
+        background: rgba(22, 26, 29, 0.08);
+        color: var(--bg-dark-secondary);
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
+
+    .text-credit {
+        color: #1b8a5a;
+        font-weight: 700;
+    }
+
+    .text-debit {
+        color: var(--red-accent);
+        font-weight: 700;
+    }
+
+    /* Estados tipo Píldora */
+    .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .status-pill.success {
+        background: rgba(27, 138, 90, 0.1);
+        color: #1b8a5a;
+    }
+
+    .status-pill.pending {
+        background: rgba(229, 156, 36, 0.15);
+        color: #b37400;
+    }
+
+    .status-pill.warning {
+        background: rgba(229, 56, 59, 0.1);
+        color: var(--red-accent);
+    }
+
+    .btn-detalle {
+        background: transparent;
+        border: 1px solid var(--gray-light);
+        color: var(--bg-dark-primary);
+        padding: 5px 12px;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-detalle:hover {
+        background: var(--bg-dark-primary);
+        color: #fff;
+        border-color: var(--bg-dark-primary);
+    }

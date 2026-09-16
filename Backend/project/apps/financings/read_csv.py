@@ -58,7 +58,7 @@ def read_banco_industrial(file_path, sucursal):
     # Función para crear un archivo nuevo y escribir en él
     def crear_archivo_nuevo(info):
         print('creando archivo nuevo')
-        with open(nuevo, 'a', newline='') as archivo:
+        with open(nuevo, 'a', newline='', encoding='utf-8') as archivo:
             writer = csv.writer(archivo)
             writer.writerow(info)
             
@@ -72,13 +72,30 @@ def read_banco_industrial(file_path, sucursal):
 
             for row in file:        
                 # Detecta el encabezado oficial de Banco Industrial
-                if row == ['Fecha', 'TT', 'Descripción', 'No. Doc', 'Debe (GTQ)', 'Haber (GTQ)', 'Saldo (GTQ)']:
+                if row and row[:7] == ['Fecha', 'TT', 'Descripción', 'No. Doc', 'Debe (GTQ)', 'Haber (GTQ)', 'Saldo (GTQ)']:
                     capture_data = True
-                    crear_archivo_nuevo(row)  # Escribe el encabezado
+                    crear_archivo_nuevo(row[:7])  # Escribe el encabezado exacto de 7 columnas
                     continue
 
                 # Captura las filas de datos omitiendo filas vacías
                 if capture_data and row and any(field.strip() for field in row):
+                    # Si una fila tiene más de 7 elementos, significa que la descripción 
+                    # tenía comas internas que rompieron la estructura.
+                    if len(row) > 7:
+                        # Estructura fija esperada de Banco Industrial:
+                        # [0]: Fecha, [1]: TT, [2...]: Descripción (rota), [-4]: No. Doc, [-3]: Debe, [-2]: Haber, [-1]: Saldo
+                        fecha = row[0]
+                        tt = row[1]
+                        no_doc = row[-4]
+                        debe = row[-3]
+                        haber = row[-2]
+                        saldo = row[-1]
+                        
+                        # Unimos todo lo que está en medio como la descripción real
+                        descripcion = ",".join(row[2:-4])
+                        
+                        row = [fecha, tt, descripcion, no_doc, debe, haber, saldo]
+
                     crear_archivo_nuevo(row)
                     
         process_banco_industrial(nuevo, sucursal)
