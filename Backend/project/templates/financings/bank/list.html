@@ -60,14 +60,18 @@
     </button>
 
     <!-- Grupo de Acciones -->
+    
     <div class="actions-group" style="margin-left: auto;">
+        {% if permisos.puede_buscar_registro_bancos %}
         <a href="{% url 'document:banco' %}" class="glass-btn-accent">
             <i class="fas fa-file-excel"></i> Cargar Estado de Cuenta.
         </a>
+        {% endif %}
         <a href="?" class="glass-icon-btn" title="Limpiar filtros" style="text-decoration: none; display: flex; align-items: center; justify-content: center; ">
             <i class="bi bi-trash"></i>
         </a>
     </div>
+    
 </form>
 
     <!-- Tabla Estilizada con Glassmorphism -->
