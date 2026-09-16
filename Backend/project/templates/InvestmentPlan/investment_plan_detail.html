@@ -1,0 +1,418 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="investment-detail-container">
+    
+    <!-- Encabezado Principal -->
+    <div class="glass-header-card mb-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+                <span class="badge-status {{ plan.estado_aprobacion|slugify }}">
+                    {{ plan.estado_aprobacion|default:"PENDIENTE" }}
+                </span>
+                <h2 class="text-dark-custom mt-2 mb-1 fw-bold">
+                    Plan: <span class="text-accent">{{ plan.investment_plan_code }}</span>
+                </h2>
+                <p class="text-muted-custom mb-0">
+                    <i class="fas fa-user me-1"></i> Cliente ID: {{ plan.customer_id_id }} | 
+                    <i class="fas fa-calendar-alt ms-2 me-1"></i> Creado: {{ plan.creation_date|date:"d/m/Y H:i" }}
+                </p>
+            </div>
+            <div class="d-flex gap-2">
+                <a href="javascript:history.back()" class="glass-btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i> Volver
+                </a>
+                {% if plan.tipo_documento == 'PAGARE' %}
+                <a href="{% url 'investment_plan:pagare' plan.id customer_code %}"  class="glass-btn-primary">
+                    <i class="bi bi-file-earmark-text me-1"></i>Pagaré
+                </a>
+                {% elif plan.tipo_documento is not None %}
+                <a href="{% url 'investment_plan:plan_pagos' plan.id customer_code %}"  class="glass-btn-primary">
+                    <i class="bi bi-file-earmark-text me-1"></i> {{plan.tipo_documento}}
+                </a>
+                {% endif%}
+              
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid de Información -->
+    <div class="row g-4">
+        
+        <!-- Columna Izquierda: Información Financiera y del Producto -->
+        <div class="col-lg-6">
+            <div class="glass-card h-100">
+                <h4 class="card-section-title">
+                    <i class="fas fa-chart-line text-accent me-2"></i> Detalles Financieros y del Producto
+                </h4>
+                <div class="divider"></div>
+                
+                <ul class="detail-list">
+                    <li>
+                        <span class="label">Tipo de Producto / Servicio:</span>
+                        <span class="value">{{ plan.type_of_product_or_service }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Valor Total:</span>
+                        <span class="value text-success-custom">Q {{ plan.total_value_of_the_product_or_service|floatformat:2 }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Monto Inicial:</span>
+                        <span class="value">Q {{ plan.initial_amount|default:"0.00"|floatformat:2 }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Monto Mensual:</span>
+                        <span class="value">Q {{ plan.monthly_amount|default:"0.00"|floatformat:2 }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Forma de Pago:</span>
+                        <span class="value badge-forma">{{ plan.forma_de_pago }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Plazo:</span>
+                        <span class="value">{{ plan.plazo|default:"N/A" }} meses</span>
+                    </li>
+                    <li>
+                        <span class="label">Tasa de Interés:</span>
+                        <span class="value">{{ plan.tasa_interes|default:"0.000" }}%</span>
+                    </li>
+                </ul>
+
+                
+            </div>
+        </div>
+
+        <!-- Columna Derecha: Fechas, Plazos de Gracia y Documentación -->
+        <div class="col-lg-6">
+            <div class="glass-card h-100">
+                <h4 class="card-section-title">
+                    <i class="fas fa-calendar-check text-accent me-2"></i> Vigencia y Documentación
+                </h4>
+                <div class="divider"></div>
+                
+                <ul class="detail-list">
+                    <li>
+                        <span class="label">Fecha de Inicio:</span>
+                        <span class="value">{{ plan.fecha_inicio|default:"No asignada" }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Fecha de Vencimiento:</span>
+                        <span class="value">{{ plan.fecha_vencimiento|default:"No asignada" }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Plazo de Gracia:</span>
+                        <span class="value">{{ plan.plazo_gracia|default:"0" }} meses</span>
+                    </li>
+                    <li>
+                        <span class="label">Fin de Gracia:</span>
+                        <span class="value">{{ plan.fecha_finalizacion_gracia|default:"N/A" }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Tipo de Documento:</span>
+                        <span class="value">{{ plan.tipo_documento|default:"N/A" }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Tipo de Pagaré:</span>
+                        <span class="value">{{ plan.tipo_pagare|default:"N/A" }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Sucursal ID:</span>
+                        <span class="value">{{ plan.sucursal|default:"N/A" }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Asesor Responsable ID:</span>
+                        <span class="value">{{ plan.asesor_responsable|default:"N/A" }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Plan De Pagos -->
+        <div class="col-12">
+            <div class="glass-card">
+                <h4 class="card-section-title">
+                    <i class="fas fa-shield-alt text-accent me-2"></i> Plan de Pagos
+                </h4>
+                <div class="divider"></div>
+                
+                <div class="row">
+                    {%include 'financings/credit/paymentplan.html' with plan=plan_pagos %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Garantías y Fiadores (JSON Fields) -->
+        <div class="col-12">
+            <div class="glass-card">
+                <h4 class="card-section-title">
+                    <i class="fas fa-shield-alt text-accent me-2"></i> Garantías y Fiadores
+                </h4>
+                <div class="divider"></div>
+                
+                <div class="row">
+                    <!-- Fiador -->
+                    <div class="col-md-6 mb-3">
+                        <h6 class="text-dark-custom fw-bold mb-2">Información de Fiador</h6>
+                        <div class="json-box">
+                            {% if fiadores %}
+                                {% for fiador in fiadores %}
+                                <pre><code id="json-fiador"> {{fiador}} </code></pre>
+                                {% endfor %}
+                            {% else %}
+                                <span class="text-muted-custom">No registra fiador asignado.</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Garantías -->
+                    <div class="col-md-6 mb-3">
+                        <h6 class="text-dark-custom fw-bold mb-2">Garantías Registradas</h6>
+                        <div class="json-box">
+                            {% if plan.garantias %}
+                                <pre><code id="json-garantias">{{ plan.garantias|safe }}</code></pre>
+                            {% else %}
+                                <span class="text-muted-custom">No registra garantías.</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Evaluaciones Cualitativas y Descripción -->
+        <div class="col-12">
+            <div class="glass-card mb-4">
+                <h4 class="card-section-title">
+                    <i class="fas fa-clipboard-list text-accent me-2"></i> Evaluación y Diagnóstico
+                </h4>
+                <div class="divider"></div>
+                
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <span class="label-block">Descripción del Plan de Inversión:</span>
+                        <div class="text-content-box">{{ plan.investment_plan_description|default:"Sin descripción detallada." }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="label-block">Riesgo Comercial:</span>
+                        <div class="text-content-box">{{ plan.riesgo_comercial|default:"Sin evaluar." }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="label-block">Evaluación del Mercado:</span>
+                        <div class="text-content-box">{{ plan.evaluacion_mercado|default:"Sin evaluar." }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="label-block">Diagnóstico de Oportunidades:</span>
+                        <div class="text-content-box">{{ plan.diganostico_oportunidad|default:"Sin evaluar." }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="label-block">Mitigadores:</span>
+                        <div class="text-content-box">{{ plan.mitigadores|default:"Sin registrar." }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Estilos CSS para el Tema Claro (Glassmorphism Light) -->
+<style>
+    :root {
+        --bg-card-light: #FFFFFF;
+        --border-glass-light: rgba(229, 56, 59, 0.15);
+        --primary-red: #A4161A;
+        --accent-red: #E5383B;
+        --bright-red: #BA181B;
+        --text-main: #161A1D;
+        --text-muted: #6c757d;
+        --shadow-light: 0 10px 30px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .investment-detail-container {
+        max-width: 1200px;
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+    }
+
+    .glass-header-card, .glass-card {
+        background: var(--bg-card-light);
+        border: 1px solid var(--border-glass-light);
+        border-radius: 16px;
+        padding: 1.75rem;
+        box-shadow: var(--shadow-light);
+        transition: transform 0.3s ease;
+    }
+
+    .text-accent {
+        color: var(--accent-red) !important;
+    }
+
+    .text-dark-custom {
+        color: var(--text-main) !important;
+    }
+
+    .text-muted-custom {
+        color: var(--text-muted) !important;
+        font-size: 0.9rem;
+    }
+
+    .text-success-custom {
+        color: #16a34a !important;
+        font-weight: 600;
+    }
+
+    .card-section-title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--text-main);
+        margin-bottom: 0.5rem;
+    }
+
+    .sub-section-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .divider {
+        height: 1px;
+        background: linear-gradient(90deg, rgba(229, 56, 59, 0.3), rgba(108, 117, 125, 0.1), transparent);
+        margin-bottom: 1rem;
+    }
+
+    .detail-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .detail-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid #f1f3f5;
+        font-size: 0.95rem;
+    }
+
+    .detail-list li:last-child {
+        border-bottom: none;
+    }
+
+    .detail-list .label {
+        color: var(--text-muted);
+    }
+
+    .detail-list .value {
+        color: var(--text-main);
+        font-weight: 500;
+        text-align: right;
+    }
+
+    .badge-status {
+        background: rgba(229, 56, 59, 0.1);
+        color: var(--accent-red);
+        border: 1px solid rgba(229, 56, 59, 0.3);
+        padding: 0.35rem 0.85rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .badge-forma {
+        background: rgba(164, 22, 26, 0.1);
+        color: var(--primary-red);
+        padding: 0.25rem 0.6rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    .json-box {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        padding: 1rem;
+        max-height: 150px;
+        overflow-y: auto;
+    }
+
+    .json-box pre {
+        margin: 0;
+        color: var(--primary-red);
+        font-size: 0.85rem;
+    }
+
+    .label-block {
+        display: block;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .text-content-box {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        padding: 0.85rem;
+        color: var(--text-main);
+        font-size: 0.9rem;
+        min-height: 50px;
+    }
+
+    .glass-btn-primary {
+        background: linear-gradient(135deg, var(--primary-red), var(--accent-red));
+        border: none;
+        color: #FFFFFF;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.55rem 1.25rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(164, 22, 26, 0.3);
+        text-decoration: none;
+    }
+
+    .glass-btn-primary:hover {
+        background: linear-gradient(135deg, var(--accent-red), var(--bright-red));
+        transform: translateY(-2px);
+        color: #FFF;
+    }
+
+    .glass-btn-secondary {
+        background: #f8f9fa;
+        border: 1px solid #ced4da;
+        color: var(--text-main);
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.55rem 1.25rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .glass-btn-secondary:hover {
+        background: #e9ecef;
+        color: var(--primary-red);
+        border-color: var(--accent-red);
+    }
+</style>
+
+<!-- Script JS para formatear dinámicamente campos JSON si fuera necesario -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        ['json-fiador', 'json-garantias'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el && el.innerText) {
+                try {
+                    let parsed = JSON.parse(el.innerText.replace(/'/g, '"'));
+                    el.innerText = JSON.stringify(parsed, null, 2);
+                } catch(e) {}
+            }
+        });
+    });
+</script>
+{% endblock %}

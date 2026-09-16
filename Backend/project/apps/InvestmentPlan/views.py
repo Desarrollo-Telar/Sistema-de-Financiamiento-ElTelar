@@ -29,6 +29,13 @@ from scripts.conversion_datos import model_to_dict
 from apps.financings.views.creditos.funciones import generar_codigo_seguridad
 from django.views.decorators.csrf import ensure_csrf_cookie 
 
+
+# Generando Plan de pagos
+from apps.financings.clases.paymentplan import PaymentPlan
+from apps.financings.clases.credit import Credit
+# Tiempo
+from datetime import datetime,timedelta, date
+
 @login_required
 @usuario_activo
 def create_plan_financiamiento(request, customer_code):
@@ -245,3 +252,45 @@ def update_plan_financiamiento(request, id, customer_code):
         'disponibilidad_efectiva': formatear_numero(customer_id.disponibilidad_efectiva()),
     }
     return render(request, template_name, context)
+
+@login_required
+@usuario_activo
+def detalle_plan_inversion(request, plan_id):
+    plan = get_object_or_404(InvestmentPlan, id=plan_id)
+    template_name = 'InvestmentPlan/investment_plan_detail.html'
+    cliente = plan.customer_id
+    sucursal = plan.sucursal
+    gracia = plan.plazo_gracia if plan.plazo_gracia else 0
+    dia = datetime.now().date()
+    
+    plazo = plan.plazo if plan.plazo else 1
+    tasa_interes = plan.get_tasa()
+    forma_pago = plan.forma_de_pago if plan.forma_de_pago else 'NIVELADA'
+    fecha_inicio = plan.fecha_inicio if plan.fecha_inicio else dia
+    
+    credito = Credit('', plan.total_value_of_the_product_or_service, plazo, tasa_interes, forma_pago, 'MENSUAL', fecha_inicio.strftime('%Y-%m-%d'), 'CONSUMO', cliente, None,None,gracia)
+    plan_pago = PaymentPlan(credito)
+    
+    cuotas = plan_pago.generar_plan()     # <--- AJUSTA si tu método es otro
+
+    fiadores_lista = plan.fiador or []
+    fiadores = None
+   
+    
+    if fiadores_lista:
+        ids_fiadores = [fiador.get('id') for fiador in fiadores_lista if fiador.get('id')]
+        ids_unicos_fiadores = set(ids_fiadores)
+        fiadores = Customer.objects.filter(id__in = ids_unicos_fiadores)
+    
+    context = {
+        'plan': plan,  # <-- AGREGADO: Enviamos el objeto con los datos existentes
+        'permisos': recorrer_los_permisos_usuario(request),
+        'plan_pagos': cuotas,
+        'total_cuota':formatear_numero(plan_pago.calcular_total_cuotas()),
+        'total_capital':formatear_numero(plan_pago.calcular_total_capital()),
+        'total_interes':formatear_numero(plan_pago.calcular_total_interes()),
+        'customer_code': cliente.customer_code,
+        'fiadores':fiadores
+    }
+    return render(request, template_name, context)
+

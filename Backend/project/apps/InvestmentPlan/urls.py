@@ -23,6 +23,7 @@ urlpatterns = [
     path('subir_archivos/<int:plan_id>/<int:user_id>/',views.subir_archivos_expedientes_notarios, name='subir_archivos'),
     path('lista_expedientes_notarios/<uuid:uuid>/',views.lista_expedientes_notarios, name='lista_expedientes_notarios'),
     path('editar_asunto_expediente/<int:plan_id>/',views.editar_asunto_expediente, name='editar_asunto_expediente'),
+    path('detalle/<int:plan_id>/', views.detalle_plan_inversion, name='detalle_plan_inversion')
 ]
 
 urlpatterns += routers.urlpatterns

@@ -32,6 +32,8 @@ from docx.oxml.ns import qn
 
 # Tiempo
 from datetime import datetime,timedelta, date
+from apps.financings.formato import formatear_numero
+from decimal import Decimal
 
 def obtener_cuota(credito):
     dia = datetime.now().date()
@@ -205,6 +207,11 @@ def generar_estado_cuenta_word(doc = None, id = None):
     hdr[3].text = "Intereses"
     hdr[4].text = "Capital"
     hdr[5].text = "Cuota"
+    total_intereses = 0
+    total_capital = 0
+    total_cuota = 0
+    
+    
 
     # Rellenar tabla
     for i, cuota in enumerate(cuotas, start=1):
@@ -215,6 +222,23 @@ def generar_estado_cuenta_word(doc = None, id = None):
         row[3].text = f"Q {cuota['fintereses']}"
         row[4].text = f"Q {cuota['fcapital']}"
         row[5].text = f"Q {cuota['fcuota']}"
+
+        total_intereses += cuota['intereses']
+        total_capital += cuota['capital']
+        total_cuota += cuota['cuota']
+
+        
+
+    # ==========================================
+    # AGREGAR FILA AL FINAL (Fila de Totales)
+    # ==========================================
+    row_totales = tabla.add_row().cells
+    row_totales[0].text = "TOTALES"
+    row_totales[1].text = ""
+    row_totales[2].text = ""
+    row_totales[3].text = f"Q {total_intereses:,.2f}"
+    row_totales[4].text = f"Q {total_capital:,.2f}"
+    row_totales[5].text = f"Q {total_cuota:,.2f}"
     
     
     set_table_border(tabla)

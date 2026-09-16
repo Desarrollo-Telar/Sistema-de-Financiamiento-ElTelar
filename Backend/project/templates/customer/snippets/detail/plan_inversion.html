@@ -151,7 +151,9 @@
                             
                             {% if permisos.puede_eliminar_informacion_destino_credito or permisos.puede_editar_informacion_destino_credito %}
                             <td class="text-center">
-                                 
+                                 <a href="{% url 'investment_plan:detalle_plan_inversion' plan.id %}" class="btn-action-edit">
+                                    <i class="bi bi-eye"></i>Ver Detalle
+                                 </a>
                                 {% if permisos.puede_editar_informacion_destino_credito %}   
                                 {% if plan.estado_aprobacion != 'ACEPTADO' %}    
                                     <a href="{% url 'investment_plan:update' plan.id customer_code %}" class="btn-action-edit">
