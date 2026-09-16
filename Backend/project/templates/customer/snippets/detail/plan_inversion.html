@@ -107,9 +107,9 @@
                         <th scope="col">Monto Mensual</th>         
                         <th scope="col">Documento</th>
                         <th scope="col">Expediente</th>
-                        {% if permisos.puede_eliminar_informacion_destino_credito or permisos.puede_editar_informacion_destino_credito %}
-                            <th scope="col" class="text-center">Acciones</th>
-                        {% endif %}
+                        
+                        <th scope="col" class="text-center">Acciones</th>
+                      
                     </tr>
                 </thead>
                 <tbody>
@@ -149,13 +149,13 @@
 
                             </td>
                             
-                            {% if permisos.puede_eliminar_informacion_destino_credito or permisos.puede_editar_informacion_destino_credito %}
+                            
                             <td class="text-center">
                                  <a href="{% url 'investment_plan:detalle_plan_inversion' plan.id %}" class="btn-action-edit">
                                     <i class="bi bi-eye"></i>Ver Detalle
                                  </a>
                                 {% if permisos.puede_editar_informacion_destino_credito %}   
-                                {% if plan.estado_aprobacion != 'ACEPTADO' %}    
+                                    {% if plan.estado_aprobacion != 'ACEPTADO' %}    
                                     <a href="{% url 'investment_plan:update' plan.id customer_code %}" class="btn-action-edit">
                                         <i class="bi bi-pencil me-1"></i>Editar
                                     </a>     
@@ -167,7 +167,7 @@
                                     </a>          
                                 {% endif %}
                             </td>
-                            {% endif %}
+                           
                         </tr>
                         {% endfor %}
                     {% else %}
