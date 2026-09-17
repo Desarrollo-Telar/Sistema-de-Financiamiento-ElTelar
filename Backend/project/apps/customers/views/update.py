@@ -22,6 +22,7 @@ from django.contrib import messages
 
 # SCRIPTS
 from scripts.recoleccion_permisos import recorrer_los_permisos_usuario
+from datetime import datetime
 
 
 # ----- EDITAR INFORMACION PERSONAL DE UN CLIENTE ----- #
@@ -60,8 +61,16 @@ def update_customer(request, customer_code):
 
         fecha = str(customer.date_birth)
         form.initial['date_birth'] = datetime.strptime(fecha, "%Y-%m-%d").strftime("%Y-%m-%d")
+        
         fecha = str(customer.fehca_vencimiento_de_tipo_identificacion)
-        form.initial['fehca_vencimiento_de_tipo_identificacion']= datetime.strptime(fecha, "%Y-%m-%d").strftime("%Y-%m-%d")
+        
+        try:
+            if fecha:
+                form.initial['fehca_vencimiento_de_tipo_identificacion'] = datetime.strptime(fecha, "%Y-%m-%d").strftime("%Y-%m-%d")
+            else:
+                form.initial['fehca_vencimiento_de_tipo_identificacion'] = None
+        except (ValueError, TypeError):
+            form.initial['fehca_vencimiento_de_tipo_identificacion'] = None
 
 
 
