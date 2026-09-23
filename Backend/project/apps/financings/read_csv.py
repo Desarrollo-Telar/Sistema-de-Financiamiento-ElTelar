@@ -51,55 +51,66 @@ def read(file_path, sucursal):
 
 def read_banco_industrial(file_path, sucursal):
     nuevo = 'apps/financings/clases/buenoo_industrial.csv'
+
     # Elimina el archivo si ya existe antes de empezar a escribir
     if os.path.exists(nuevo):
         os.remove(nuevo)
 
     # Función para crear un archivo nuevo y escribir en él
     def crear_archivo_nuevo(info):
+        os.makedirs(os.path.dirname(nuevo), exist_ok=True)
         print('creando archivo nuevo')
         with open(nuevo, 'a', newline='', encoding='utf-8') as archivo:
             writer = csv.writer(archivo)
             writer.writerow(info)
             
     if os.path.exists(file_path):
-        # Lee el archivo CSV original de Banco Industrial
         with open(file_path, newline='', encoding='latin1') as csvfile:
             file = csv.reader(csvfile, delimiter=',')
 
-            # Variable para activar la captura de los movimientos
             capture_data = False
+            tiene_saldo = False
 
             for row in file:        
-                # Detecta el encabezado oficial de Banco Industrial
-                if row and row[:7] == ['Fecha', 'TT', 'Descripción', 'No. Doc', 'Debe (GTQ)', 'Haber (GTQ)', 'Saldo (GTQ)']:
+                # Detecta las primeras 6 columnas obligatorias de Banco Industrial
+                if row and row[:6] == ['Fecha', 'TT', 'Descripción', 'No. Doc', 'Debe (GTQ)', 'Haber (GTQ)']:
                     capture_data = True
-                    crear_archivo_nuevo(row[:7])  # Escribe el encabezado exacto de 7 columnas
+                    # Verifica si la descarga incluye la columna 'Saldo (GTQ)'
+                    tiene_saldo = (len(row) >= 7 and row[6] == 'Saldo (GTQ)')
+                    
+                    # Genera el encabezado estandarizado de 7 columnas
+                    crear_archivo_nuevo(['Fecha', 'TT', 'Descripción', 'No. Doc', 'Debe (GTQ)', 'Haber (GTQ)', 'Saldo (GTQ)'])
                     continue
 
-                # Captura las filas de datos omitiendo filas vacías
+                # Captura las filas de datos
                 if capture_data and row and any(field.strip() for field in row):
-                    # Si una fila tiene más de 7 elementos, significa que la descripción 
-                    # tenía comas internas que rompieron la estructura.
-                    if len(row) > 7:
-                        # Estructura fija esperada de Banco Industrial:
-                        # [0]: Fecha, [1]: TT, [2...]: Descripción (rota), [-4]: No. Doc, [-3]: Debe, [-2]: Haber, [-1]: Saldo
+                    if tiene_saldo:
+                        # Estructura de 7 columnas (o más por comas en descripción)
                         fecha = row[0]
                         tt = row[1]
                         no_doc = row[-4]
                         debe = row[-3]
                         haber = row[-2]
                         saldo = row[-1]
-                        
-                        # Unimos todo lo que está en medio como la descripción real
                         descripcion = ",".join(row[2:-4])
-                        
-                        row = [fecha, tt, descripcion, no_doc, debe, haber, saldo]
+                    else:
+                        # Estructura de 6 columnas (sin Saldo)
+                        fecha = row[0]
+                        tt = row[1]
+                        no_doc = row[-3]
+                        debe = row[-2]
+                        haber = row[-1]
+                        saldo = '0.0'  # Valor por defecto
+                        descripcion = ",".join(row[2:-3])
 
-                    crear_archivo_nuevo(row)
+                    row_normalizado = [fecha, tt, descripcion, no_doc, debe, haber, saldo]
+                    crear_archivo_nuevo(row_normalizado)
                     
-        process_banco_industrial(nuevo, sucursal)
-
+        if capture_data:
+            process_banco_industrial(nuevo, sucursal)
+        else:
+            print("El archivo proporcionado no contiene el formato/encabezado válido de Banco Industrial.")
+            
 import re
 from datetime import datetime
 

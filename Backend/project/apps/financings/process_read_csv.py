@@ -105,10 +105,33 @@ def process(nuevo, sucursal):
 import pandas as np
 
 
+import os
+from datetime import datetime
+import pandas as pd
+import traceback
+from apps.financings.models import Banco
+from apps.actividades.utils import log_system_event
 
 def process_banco_industrial(nuevo, sucursal):
     print(f'Leyendo el archivo {nuevo} de sucursal: {sucursal}')
     
+    # 1. Validar si el archivo procesado realmente fue creado
+    if not os.path.exists(nuevo):
+        error_msg = f"El archivo procesado no fue creado. Es muy probable que el archivo subido no sea el formato correcto de Banco Industrial."
+        print(error_msg)
+        
+        log_system_event(
+            message=error_msg,
+            level_name="WARNING",
+            source="Banco Industrial",
+            category_name="Finanzas",
+            metadata={
+                "archivo": nuevo,
+                "sucursal": str(sucursal)
+            }
+        )
+        return  # Interrumpe la ejecución de forma segura sin lanzar FileNotFoundError
+
     registros_creados = 0
     registros_omitidos = 0
 
@@ -126,10 +149,8 @@ def process_banco_industrial(nuevo, sucursal):
 
         # Recorrer las filas del DataFrame
         for index, row in df_filtered.iterrows():
-            # Parsear fecha según formato de BI ('DD-MM-YYYY')
             fecha = datetime.strptime(row['Fecha'], '%d-%m-%Y')
             
-            # 'No. Doc' actúa como el número de referencia
             referencia = str(row['No. Doc']).strip()
             if '.' in referencia:
                 referencia = referencia.split('.')[0]
@@ -139,24 +160,21 @@ def process_banco_industrial(nuevo, sucursal):
             descripcion = row['Descripción']
             saldo = row['Saldo (GTQ)']
             
-            # Opcional: Tipo de transacción (NC, ND, DE, CQ, etc.)
             tipo_transaccion = str(row['TT']).strip() if pd.notna(row['TT']) else ''
 
-            # Verificar si la referencia ya existe en la base de datos
             if Banco.objects.filter(referencia=referencia).exists():
                 print(f"La referencia {referencia} ya existe. Ignorando...")
                 registros_omitidos += 1
-                continue  # Si ya existe, saltar este registro
+                continue
 
-            # Crear el objeto Banco
             Banco.objects.create(
                 fecha=fecha,
                 referencia=referencia,
                 credito=credito,
                 debito=debito,
                 descripcion=descripcion,
-                secuencial='',                    # No existe en BI
-                cheque=tipo_transaccion,       # Se asigna TT (NC, ND, etc.) o deja en blanco
+                secuencial='',
+                cheque=tipo_transaccion,
                 saldo_contable=saldo,
                 saldo_disponible=saldo,
                 sucursal=sucursal,
@@ -164,9 +182,7 @@ def process_banco_industrial(nuevo, sucursal):
             )
             
             registros_creados += 1
-            print(f"Guardado - Fecha: {fecha.strftime('%Y-%m-%d')}, Referencia: {referencia}, Crédito: {credito}, Débito: {debito}, Descripción: {descripcion}")
 
-        # Registro exitoso al finalizar el ciclo
         log_system_event(
             message=f"Proceso de Banco Industrial completado exitosamente para la sucursal {sucursal}.",
             level_name="INFO",
@@ -181,7 +197,6 @@ def process_banco_industrial(nuevo, sucursal):
         )
 
     except Exception as e:
-        # Si ocurre un error inesperado, capturamos el traceback y registramos un ERROR
         error_msg = f"Error al procesar el archivo de Banco Industrial para la sucursal {sucursal}: {str(e)}"
         print(error_msg)
         
@@ -196,3 +211,4 @@ def process_banco_industrial(nuevo, sucursal):
                 "sucursal": str(sucursal)
             }
         )
+
