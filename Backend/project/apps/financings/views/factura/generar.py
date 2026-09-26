@@ -40,6 +40,10 @@ def generar_factura(request, id):
         messages.error(request, "NO SE PUEDE FACTURAR, EL RECIBO NO PERTENECE A UN CLIENTE")
         return redirect('index')
 
+    if recibo.pago.registro_ficticio:
+        messages.error(request, 'NO SE PUEDE EMITIR UNA FACTURA CON UN PAGO FICTICIO')
+        return redirect('index')
+
     try:
         if not consulta_receptor(recibo.cliente.number_nit):
             messages.error(request, "NIT NO VÁLIDO")
@@ -60,7 +64,7 @@ def generar_factura(request, id):
         if not factura_instance or not factura_instance.numero_autorizacion:
             log_system_event('Error al recuperar factura generada', "ERROR", 'Sistema', 'Facturación', 'No se encontró la factura en BD o no posee UUID', factura_data)
             messages.error(request, "El documento fue procesado pero no se pudo obtener el número de autorización (UUID).")
-            return redirect('financings:factura_list', recibo.pago.credit.id)
+            return redirect('financings:factura_list')
 
         log_system_event('Factura generada y certificada exitosamente.', "INFO", 'Sistema', 'Facturación', None, None)
         messages.success(request, "Factura generada y certificada exitosamente.")
@@ -79,4 +83,4 @@ def generar_factura(request, id):
         log_system_event('Error al generar factura para el recibo', "ERROR", 'Sistema', 'Facturación', f'{e}', factura_data)
         messages.error(request, f"Ocurrió un error al generar la factura: {e}")
 
-    return redirect('financings:factura_list', recibo.pago.credit.id)
+    return redirect('financings:factura_list')
