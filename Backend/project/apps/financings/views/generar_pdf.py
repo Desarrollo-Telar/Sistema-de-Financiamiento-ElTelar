@@ -243,23 +243,14 @@ def render_pdf_calculos_credito_seguro(request,id):
 # CLASES
 from apps.financings.clases.paymentplan import PaymentPlan as PlanPagoos
 from apps.financings.clases.credit import Credit as Credito
+from scripts.generadores.plan import planPagosCredito 
 
-def planPagosCredito(credito):
-    formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
-    credit = Credito(credito.proposito,credito.monto,credito.plazo,credito.tasa_interes,credito.forma_de_pago,credito.frecuencia_pago,formatted_date,credito.tipo_credito,1,None,credito.fecha_vencimiento)
-    plan_pago = PlanPagoos(credit)
-    return plan_pago
 
-def planPagosCreditoAS(credito):
-    formatted_date = credito.fecha_inicio.strftime('%Y-%m-%d')
-    credit = Credito('credito proposito',credito.monto,credito.plazo,credito.tasa,credito.forma_de_pago,'MENSAUL',formatted_date,'credito.tipo_credito',1,None,credito.fecha_vencimiento)
-    plan_pago = PlanPagoos(credit)
-    return plan_pago
 
 def render_pdf_plan_pagos(request,id):
     
     credito = get_object_or_404(Credit,id=id)    
-    plan = planPagosCredito(credito).recalcular_capital()
+    plan = planPagosCredito(credito).generar_plan()
     
 
     template_path = 'financings/credit/plan_pagos/detail.html'

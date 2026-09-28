@@ -19,7 +19,7 @@ def send_message_status_boleta(sender, instance, created, **kwargs):
             print('mandar mensaje al cliente')
 
         if instance.status is True:
-            print('Guardando')
+           
             if instance.numero_referencia is None:
                 return
 
@@ -47,7 +47,7 @@ def send_message_status_boleta(sender, instance, created, **kwargs):
                 sucursal = instance.sucursal
             )
 
-            print(pago)
+            
 
 
 
