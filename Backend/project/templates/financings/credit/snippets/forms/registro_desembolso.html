@@ -15,13 +15,14 @@
         <div class="glass-card card-padding bg-white-70">
             <label class="form-label">Forma de Desembolso *</label>
             <select id="forma_desembolso" class="glass-input" onchange="toggleDisbursementMode()">
-               
+
                 <option value="APLICACIÓN GASTOS">APLICACIÓN GASTOS</option>
                 <option value="APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE">APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE
                 </option>
-             
+
             </select>
         </div>
+
 
         <!-- Searchable Multi-Select Existing Credits Panel -->
         <div id="existing-credits-panel" class="glass-card card-padding panel-amber hidden">
@@ -29,19 +30,22 @@
                 <h3 class="panel-amber-title">
                     <i class="fa-solid fa-list-check"></i> Buscar y Seleccionar Créditos a Cancelar / Ampliar
                 </h3>
-                <span class="badge badge-amber">Multiselección</span>
+                
             </div>
 
-            <!-- Filtro -->
+            <!-- Filtro pasándole el texto ingresado -->
             <div class="input-relative mb-3">
                 <input type="text" id="existing_credit_search" class="glass-input pl-icon text-xs"
-                    placeholder="Filtrar créditos vigentes por código" oninput="searchExistingCredits()"
+                    placeholder="Filtrar créditos vigentes por código" oninput="loadExistingCredits(this.value)"
                     autocomplete="off">
                 <i class="fa-solid fa-magnifying-glass input-icon-left"></i>
             </div>
 
+            <!-- Contenedor para mostrar los créditos ya seleccionados (Chips) -->
+            <div id="selected-credits-chips" class="flex flex-wrap gap-2 mb-3"></div>
+
             <div class="credits-scroll-list" id="existing-credits-list">
-                <!-- Populated by JS -->
+                <!-- Se llena con JS -->
             </div>
         </div>
 
@@ -75,7 +79,7 @@
             <div class="grid-2-col">
                 <div>
                     <label class="form-label text-muted">Monto Póliza de Seguro (Q)</label>
-                    <input type="number" step="0.01" id="poliza_seguro" class="glass-input font-semibold" value="350.00"
+                    <input type="number" step="0.01" id="poliza_seguro" class="glass-input font-semibold" value="0"
                         oninput="calculateDisbursementTotals()">
                 </div>
                 <div>
