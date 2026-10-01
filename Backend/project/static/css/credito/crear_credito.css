@@ -320,3 +320,27 @@
 ::-webkit-scrollbar-track { background: rgba(245, 243, 244, 0.8); }
 ::-webkit-scrollbar-thumb { background: rgba(186, 24, 27, 0.3); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--brand-red); }
+
+
+.glass-panel, 
+.glass-card, 
+.dynamic-container {
+    overflow: visible !important;
+}
+
+.fiador-search-container {
+    position: relative;
+    z-index: 100 !important;
+}
+
+/* Posicionamiento flotante sobrepuesto para el desplegable */
+.fiador-search-container .select2-dropdown {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+    background: #ffffff !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+}
