@@ -1,0 +1,163 @@
+{% load static %}
+<div class="section-header">
+    <h2 class="section-title">
+        <i class="fa-solid fa-hand-holding-dollar text-brand-red"></i> Registro de Desembolso (Disbursement)
+    </h2>
+    <p class="section-subtitle">Cálculo de retenciones de ley, honorarios, cancelación/ampliación previa y monto neto
+    </p>
+</div>
+
+<div class="grid-layout-sidebar">
+    <!-- Main Form Inputs -->
+    <div class="main-form-column">
+
+        <!-- Forma de desembolso -->
+        <div class="glass-card card-padding bg-white-70">
+            <label class="form-label">Forma de Desembolso *</label>
+            <select id="forma_desembolso" class="glass-input" onchange="toggleDisbursementMode()">
+               
+                <option value="APLICACIÓN GASTOS">APLICACIÓN GASTOS</option>
+                <option value="APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE">APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE
+                </option>
+             
+            </select>
+        </div>
+
+        <!-- Searchable Multi-Select Existing Credits Panel -->
+        <div id="existing-credits-panel" class="glass-card card-padding panel-amber hidden">
+            <div class="flex-between mb-3">
+                <h3 class="panel-amber-title">
+                    <i class="fa-solid fa-list-check"></i> Buscar y Seleccionar Créditos a Cancelar / Ampliar
+                </h3>
+                <span class="badge badge-amber">Multiselección</span>
+            </div>
+
+            <!-- Filtro -->
+            <div class="input-relative mb-3">
+                <input type="text" id="existing_credit_search" class="glass-input pl-icon text-xs"
+                    placeholder="Filtrar créditos vigentes por código" oninput="searchExistingCredits()"
+                    autocomplete="off">
+                <i class="fa-solid fa-magnifying-glass input-icon-left"></i>
+            </div>
+
+            <div class="credits-scroll-list" id="existing-credits-list">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Honorarios Section -->
+        <div class="glass-card card-padding bg-white-70 space-y-3">
+            <h3 class="card-subtitle">Gastos: Honorarios</h3>
+            <div class="grid-2-col">
+                <div>
+                    <label class="form-label text-muted">Monto de Honorarios (Q)</label>
+                    <input type="number" step="0.01" id="honorarios" class="glass-input font-semibold"
+                        oninput="calculateDisbursementTotals()">
+                </div>
+                <div>
+                    <label class="form-label text-muted">Número de Referencia</label>
+                    <input type="text" id="honorarios_ref" class="glass-input" placeholder="Ej: REC-90123">
+                </div>
+                <div>
+                    <label class="form-label text-muted">Fecha de Emisión</label>
+                    <input type="date" id="honorarios_fecha" class="glass-input">
+                </div>
+                <div>
+                    <label class="form-label text-muted">Documento / Boleta</label>
+                    <input type="file" class="glass-input file-input">
+                </div>
+            </div>
+        </div>
+
+        <!-- Póliza de Seguro Section -->
+        <div class="glass-card card-padding bg-white-70 space-y-3">
+            <h3 class="card-subtitle">Gastos: Póliza de Seguro</h3>
+            <div class="grid-2-col">
+                <div>
+                    <label class="form-label text-muted">Monto Póliza de Seguro (Q)</label>
+                    <input type="number" step="0.01" id="poliza_seguro" class="glass-input font-semibold" value="350.00"
+                        oninput="calculateDisbursementTotals()">
+                </div>
+                <div>
+                    <label class="form-label text-muted">Número de Referencia</label>
+                    <input type="text" id="poliza_ref" class="glass-input" placeholder="Ej: POL-88120">
+                </div>
+                <div>
+                    <label class="form-label text-muted">Fecha de Emisión</label>
+                    <input type="date" id="poliza_fecha" class="glass-input">
+                </div>
+                <div>
+                    <label class="form-label text-muted">Documento / Boleta</label>
+                    <input type="file" class="glass-input file-input">
+                </div>
+            </div>
+        </div>
+
+        <!-- Direct Cash Amount & Description -->
+        <div class="glass-card card-padding bg-white-70 space-y-3">
+            <div>
+                <label class="form-label">Monto Directo a Desembolsar al Cliente (monto_desembolsado) *</label>
+                <div class="input-relative">
+                    <span class="prefix-symbol">Q</span>
+                    <input type="number" step="0.01" id="monto_desembolsado" class="glass-input pl-symbol font-bold"
+                        value="0.00" oninput="calculateDisbursementTotals()">
+                </div>
+            </div>
+            <div>
+                <label class="form-label text-muted">Descripción del Desembolso</label>
+                <textarea id="disbursement_description" rows="2" class="glass-input"
+                    placeholder="Observaciones adicionales o detalle de emisión de cheque/transferencia..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Summary Dashboard Sidebar -->
+    <div class="sidebar-column">
+        <div class="glass-card summary-card sticky-sidebar">
+            <h3 class="summary-title">
+                <span>Resumen Liquidación</span>
+                <i class="fa-solid fa-receipt text-brand-red"></i>
+            </h3>
+
+            <div class="summary-rows">
+                <div class="flex-between">
+                    <span class="text-muted">Monto Crédito (A):</span>
+                    <span id="summary_monto_credito" class="font-bold">Q 0.00</span>
+                </div>
+                <div class="flex-between text-amber-700">
+                    <span>(-) Saldo Créditos Ant.:</span>
+                    <span id="summary_saldo_anterior" class="font-mono font-semibold">Q 0.00</span>
+                </div>
+                <div class="flex-between text-red-600">
+                    <span>(-) Honorarios:</span>
+                    <span id="summary_honorarios" class="font-mono font-semibold">Q 0.00</span>
+                </div>
+                <div class="flex-between text-red-600">
+                    <span>(-) Póliza Seguro:</span>
+                    <span id="summary_poliza" class="font-mono font-semibold">Q 0.00</span>
+                </div>
+                <div class="flex-between text-sky-700">
+                    <span>(-) Desembolso Cliente:</span>
+                    <span id="summary_monto_desembolsado" class="font-mono font-semibold">Q 0.00</span>
+                </div>
+
+                <div class="summary-divider flex-between font-bold">
+                    <span>Total Gastos Retenidos:</span>
+                    <span id="summary_total_gastos" class="font-mono">Q 0.00</span>
+                </div>
+
+                <div class="summary-status-box">
+                    <div class="text-xs text-muted">Monto Total Sobrante / Cuadre:</div>
+                    <div id="summary_diferencia" class="amount-title text-emerald font-mono">Q 0.00</div>
+                    <p id="summary_status_msg" class="status-msg text-emerald">✓ El desglose cuadra exactamente con el
+                        crédito.</p>
+                </div>
+            </div>
+
+            <button type="button" onclick="finalizeRegistration()" class="btn-gradient-primary w-full mt-6">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>Guardar Registro Completo</span>
+            </button>
+        </div>
+    </div>
+</div>

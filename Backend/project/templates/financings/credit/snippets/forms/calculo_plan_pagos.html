@@ -1,0 +1,32 @@
+{% load static %}
+<div class="section-header flex-between">
+                <div>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-table text-brand-red"></i> Tabla de Amortización Generada
+                    </h2>
+                    <p class="section-subtitle" id="plan-summary-text">Cálculo en base al monto y forma de pago seleccionada</p>
+                </div>
+                
+            </div>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">No.</th>
+                            <th>Fecha Pago</th>
+                            <th class="text-right">Saldo Inicial</th>
+                            <th class="text-right">Capital</th>
+                            <th class="text-right">Interés</th>
+                            <th class="text-right">Cuota Total</th>
+                            <th class="text-right">Saldo Final</th>
+                        </tr>
+                    </thead>
+                    <tbody id="plan-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                    <tfoot id="plan-table-foot">
+                        <!-- Totals by JS -->
+                    </tfoot>
+                </table>
+            </div>

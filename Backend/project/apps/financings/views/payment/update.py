@@ -28,7 +28,7 @@ def reversion_pago(request, id):
     if request.method == 'POST':
         
         pago.delete()
-        return redirect('list_payment') 
+        return redirect('financings:list_payment') 
 
     template_name = 'financings/payment/reversion_pago.html'
     context = {

@@ -25,7 +25,7 @@ from .funciones import generar_codigo_seguridad
 @login_required
 @permiso_requerido('puede_crear_informacion_credito')
 def create_credit(request):
-    template_name = 'financings/credit/create.html'
+    template_name = 'financings/credit/crear_credito.html'
     sucursal = request.session['sucursal_id']
 
     context = {

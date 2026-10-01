@@ -1,0 +1,144 @@
+{% load static %}
+<div class="section-header">
+    <div>
+        <h2 class="section-title">
+            <i class="fa-solid fa-sliders text-brand-red"></i> Parámetros de la Solicitud de Crédito
+        </h2>
+        <p class="section-subtitle">Complete los campos requeridos para la creación del modelo Credit</p>
+    </div>
+</div>
+
+<form id="credit-form" onsubmit="event.preventDefault(); switchTab('plan');">
+    <div class="grid-form">
+
+        <!-- Searchable Customer Selector (Select2 Style) -->
+        <div class="select2-custom-container">
+            <label class="form-label">Cliente *</label>
+            <div class="input-relative">
+                <input type="text" id="customer_search_input" class="glass-input pl-icon pr-icon"
+                    placeholder="Buscar por Nombre, DPI o Código..." autocomplete="off"
+                    onfocus="openSelect2('customer')" oninput="searchSelect2('customer')">
+                <i class="fa-solid fa-magnifying-glass input-icon-left"></i>
+                <i class="fa-solid fa-chevron-down input-icon-right"></i>
+                <input type="hidden" id="customer_id" required>
+            </div>
+            <div id="customer_dropdown" class="select2-dropdown hidden"></div>
+        </div>
+
+        <!-- Searchable Credit Advisor Selector -->
+        <div class="select2-custom-container">
+            <label class="form-label">Asesor de Crédito *</label>
+            <div class="input-relative">
+                <input type="text" id="advisor_search_input" class="glass-input pl-icon pr-icon"
+                    placeholder="Buscar por Nombre del Asesor..." autocomplete="off" onfocus="openSelect2('advisor')"
+                    oninput="searchSelect2('advisor')">
+                <i class="fa-solid fa-user-tie input-icon-left"></i>
+                <i class="fa-solid fa-chevron-down input-icon-right"></i>
+                <input type="hidden" id="asesor_de_credito" required>
+            </div>
+            <div id="advisor_dropdown" class="select2-dropdown hidden"></div>
+        </div>
+
+        <!-- Purpose -->
+        <div class="col-span-full">
+            <label class="form-label">Propósito del Crédito *</label>
+            <textarea id="proposito" rows="2" class="glass-input"
+                placeholder="Describa el destino e inversión de los fondos..." required></textarea>
+        </div>
+
+        <!-- Amount -->
+        <div>
+            <label class="form-label">Monto Solicitado (Q) *</label>
+            <div class="input-relative">
+                <span class="prefix-symbol">Q</span>
+                <input type="number" step="0.01" min="1" id="monto"
+                    class="glass-input pl-symbol text-red-dark font-bold" oninput="calculateDatesAndBalances()"
+                    required>
+            </div>
+        </div>
+
+        <!-- Interest Rate -->
+        <div>
+            <label class="form-label">Tasa de Interés Anual (%) *</label>
+            <div class="input-relative">
+                <input type="number" step="0.01" min="0" max="100" id="tasa_interes" class="glass-input pr-symbol"
+                    required>
+                <span class="suffix-symbol">%</span>
+            </div>
+        </div>
+
+        <!-- Term -->
+        <div>
+            <label class="form-label">Plazo (en Meses) *</label>
+            <input type="number" min="1" max="360" id="plazo" class="glass-input" oninput="calculateDatesAndBalances()"
+                required>
+        </div>
+
+        <!-- Payment Mode -->
+        <div>
+            <label class="form-label">Forma de Pago *</label>
+            <select id="forma_de_pago" class="glass-input" onchange="toggleGracePeriod()" required>
+                <option value="NIVELADA">NIVELADA (Cuota Fija)</option>
+                <option value="AMORTIZACIÓN A CAPITAL">AMORTIZACIÓN A CAPITAL (Cuota Variable)</option>
+                <option value="INTERES MENSUAL Y CAPITAL AL VENCIMIENTO">INTERES MENSUAL Y CAPITAL AL VENCIMIENTO
+                </option>
+                <option value="INTERES Y CAPITAL AL VENCIMIENTO">INTERES Y CAPITAL AL VENCIMIENTO</option>
+            </select>
+        </div>
+
+        <!-- Grace Period -->
+        <div>
+            <label class="form-label">
+                Plazo de Gracia (Meses)
+                <i class="fa-solid fa-circle-info text-brand-red text-xs ml-1"
+                    title="Aplica únicamente para forma de pago con Capital al vencimiento"></i>
+            </label>
+            <input type="number" min="0" id="plazo_gracia" class="glass-input" value="0" disabled
+                oninput="calculateDatesAndBalances()">
+        </div>
+
+        <!-- Credit Type -->
+        <div>
+            <label class="form-label">Tipo de Crédito *</label>
+            <select id="tipo_credito" class="glass-input" required>
+                <option value="AGROPECUARIO Y/O PRODUCTIVO">AGROPECUARIO Y/O PRODUCTIVO</option>
+                <option value="COMERCIO">COMERCIO</option>
+                <option value="SERVICIOS">SERVICIOS</option>
+                <option value="CONSUMO">CONSUMO</option>
+                <option value="VIVIENDA">VIVIENDA</option>
+            </select>
+        </div>
+
+        <!-- Payment Frequency (Fixed) -->
+        <div>
+            <label class="form-label">Frecuencia de Pago</label>
+            <input type="text" id="frecuencia_pago" class="glass-input text-red-dark font-semibold" value="MENSUAL"
+                readonly>
+        </div>
+
+        <!-- Start Date -->
+        <div>
+            <label class="form-label">Fecha de Inicio *</label>
+            <input type="date" id="fecha_inicio" class="glass-input" onchange="calculateDatesAndBalances()" required>
+        </div>
+
+        <!-- Expiration Date (Calculated) -->
+        <div>
+            <label class="form-label">Fecha de Vencimiento (Calculada)</label>
+            <input type="text" id="fecha_vencimiento" class="glass-input font-bold" readonly>
+        </div>
+
+        <!-- Grace Expiration Date (Calculated) -->
+        <div>
+            <label class="form-label">Fecha Finalización Gracia</label>
+            <input type="text" id="fecha_finalizacion_gracia" class="glass-input text-muted" readonly value="N/A">
+        </div>
+    </div>
+
+    <div class="form-actions-right">
+        <button type="button" onclick="generatePaymentPlan()" class="btn-gradient-primary">
+            <i class="fa-solid fa-calculator"></i>
+            <span>Generar Plan de Pagos</span>
+        </button>
+    </div>
+</form>

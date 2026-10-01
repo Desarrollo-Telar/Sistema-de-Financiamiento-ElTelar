@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<!-- FontAwesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/credito/crear_credito.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-layout">
+    <div class="content-container">
+        
+
+        <!-- Tab Navigation Bar -->
+        <nav class="glass-panel nav-tabs-container">
+            <div class="nav-tabs-wrapper">
+                <button onclick="switchTab('credito')" id="tab-btn-credito" class="tab-btn tab-active">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <span>1. Datos del Crédito</span>
+                </button>
+                <button onclick="switchTab('plan')" id="tab-btn-plan" class="tab-btn">
+                    <i class="fa-solid fa-table-list"></i>
+                    <span>2. Plan de Pagos</span>
+                </button>
+                <button onclick="switchTab('garantia')" id="tab-btn-garantia" class="tab-btn">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>3. Registro de Garantías</span>
+                </button>
+                <button onclick="switchTab('garantias_reg')" id="tab-btn-garantias_reg" class="tab-btn">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>4. Garantías Registradas</span>
+                    <span id="badge-garantias" class="badge">0</span>
+                </button>
+                <button onclick="switchTab('desembolso')" id="tab-btn-desembolso" class="tab-btn">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    <span>5. Desembolso</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- TAB 1: REGISTRO DE CRÉDITO -->
+        <section id="tab-credito" class="tab-content glass-panel">
+            {% include 'financings/credit/snippets/forms/informacion_credito.html' %}
+        </section>
+
+        <!-- TAB 2: PLAN DE PAGOS -->
+        <section id="tab-plan" class="tab-content glass-panel hidden">
+            {% include 'financings/credit/snippets/forms/calculo_plan_pagos.html' %}
+        </section>
+
+        <!-- TAB 3: REGISTRO DE GARANTÍAS -->
+        <section id="tab-garantia" class="tab-content glass-panel hidden">
+            {% include 'financings/credit/snippets/forms/registro_garantias.html' %}
+        </section>
+
+        <!-- TAB 4: GARANTÍAS REGISTRADAS -->
+        <section id="tab-garantias_reg" class="tab-content glass-panel hidden">
+            {% include 'financings/credit/snippets/forms/garantias_registradas.html' %}
+        </section>
+
+        <!-- TAB 5: DESEMBOLSO -->
+        <section id="tab-desembolso" class="tab-content glass-panel hidden">
+            {% include 'financings/credit/snippets/forms/registro_desembolso.html' %}
+        </section>
+    </div>
+
+    <!-- JSON Payload Modal -->
+    <div id="json-modal" class="modal-backdrop hidden">
+        <div class="glass-panel modal-box">
+            <div class="flex-between modal-header">
+                <h3 class="section-title text-base">
+                    <i class="fa-solid fa-code text-brand-red"></i> Estructura de Datos (Django JSON Payload)
+                </h3>
+                <button onclick="closeJsonPreviewModal()" class="close-btn">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <pre id="json-modal-content" class="modal-code-block"></pre>
+            <div class="flex-between pt-2">
+                <button onclick="copyJsonToClipboard()" class="btn-secondary">
+                    <i class="fa-solid fa-copy text-brand-red"></i>
+                    <span>Copiar JSON</span>
+                </button>
+                <button onclick="closeJsonPreviewModal()" class="btn-gradient-primary btn-sm">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast container -->
+    <div id="toast-container" class="toast-container"></div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="module" src="{% static 'js/financings/credito/crear_credito.js' %}"></script>
+{% endblock %}
