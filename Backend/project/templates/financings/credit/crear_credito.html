@@ -13,7 +13,7 @@
 {% block content %}
 <div class="main-layout">
     <div class="content-container">
-        
+
 
         <!-- Tab Navigation Bar -->
         <nav class="glass-panel nav-tabs-container">
@@ -68,7 +68,7 @@
         </section>
     </div>
 
-    
+
 
     <!-- Toast container -->
     <div id="toast-container" class="toast-container"></div>
@@ -83,4 +83,27 @@
 <script type="module" src="{% static 'js/financings/credito/style.js' %}"></script>
 
 <script type="module" src="{% static 'js/financings/credito/registro_garantias.js' %}"></script>
+
+<script type="module" src="{% static 'js/financings/credito/calculos.js' %}"></script>
+
+<script type="module" src="{% static 'js/financings/credito/plan_pagos.js' %}"></script>
+<script>
+    function switchTab(tabId) {
+        activeTab = tabId;
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('tab-active');
+            btn.classList.add('text-brandGrayText');
+        });
+
+        document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+        const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+        activeBtn.classList.add('tab-active');
+        activeBtn.classList.remove('text-brandGrayText');
+
+        if (tabId === 'plan') {
+            generatePaymentPlan();
+        }
+    }
+</script>
 {% endblock %}

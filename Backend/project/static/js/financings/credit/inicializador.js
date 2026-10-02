@@ -270,6 +270,7 @@ $(document).ready(function () {
         }
         
     });
+    
     $(".customer_id_fiador").select2({
         width: 'resolve',
         ajax: {

@@ -1,6 +1,6 @@
 
 
-export function calculateDatesAndBalances() {
+window.calculateDatesAndBalances = function () {
     const fechaInicioVal = document.getElementById('fecha_inicio').value;
     const plazoMeses = parseInt(document.getElementById('plazo').value) || 0;
     const plazoGracia = parseInt(document.getElementById('plazo_gracia').value) || 0;

@@ -45,251 +45,251 @@ export class PaymentPlan {
         if (monto === null) {
             monto = this.montoInicial;
         }
-        const intereses = ((monto * this.interes) );
+        const intereses = ((monto * this.interes));
         const calculo = parseFloat(intereses).toFixed(2);
         return redondearArriba(calculo);
     }
 
     // Dentro de la clase PaymentPlan
 
-calculoCuota(interes = null, capital = null, mesActual = null) {
-    let cuota = 0;
-    let plazo = this.plazo;
-    let gracia = this.plazoGracia;
-    
+    calculoCuota(interes = null, capital = null, mesActual = null) {
+        let cuota = 0;
+        let plazo = this.plazo;
+        let gracia = this.plazoGracia;
 
-    if (this.formaPago === 'NIVELADA') {
-        const defaultInteres = this.interes;
-        const parte1 = (Math.pow(1 + defaultInteres, plazo) * defaultInteres);
-        const parte2 = (Math.pow(1 + defaultInteres, plazo) - 1);
-        cuota = (parte1 / parte2) * this.montoInicial;
-        
-    } else if (this.formaPago === 'AMORTIZACIONES A CAPITAL') {
-        capital = this.calculoCapital()
-        cuota = parseFloat(interes) + parseFloat(capital);
 
-    } else if (this.formaPago === 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO') {
-        // Si es el último mes, paga Interés + Todo el Capital
-        if (mesActual > gracia) {
-            plazo -= gracia;
-           
+        if (this.formaPago === 'NIVELADA') {
+            const defaultInteres = this.interes;
+            const parte1 = (Math.pow(1 + defaultInteres, plazo) * defaultInteres);
+            const parte2 = (Math.pow(1 + defaultInteres, plazo) - 1);
+            cuota = (parte1 / parte2) * this.montoInicial;
 
-            capital = redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
+        } else if (this.formaPago === 'AMORTIZACIONES A CAPITAL') {
+            capital = this.calculoCapital()
             cuota = parseFloat(interes) + parseFloat(capital);
-        } else {
-            // Meses intermedios: Solo el interés
-            cuota = parseFloat(interes);
+
+        } else if (this.formaPago === 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO') {
+            // Si es el último mes, paga Interés + Todo el Capital
+            if (mesActual > gracia) {
+                plazo -= gracia;
+
+
+                capital = redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
+                cuota = parseFloat(interes) + parseFloat(capital);
+            } else {
+                // Meses intermedios: Solo el interés
+                cuota = parseFloat(interes);
+            }
+
+        } else if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
+            // Tu lógica específica: Capitalización en gracia y cuota única al final
+            if (mesActual > gracia) {
+                plazo -= gracia;
+
+
+                capital = redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
+
+                cuota = parseFloat(interes) + parseFloat(capital);
+
+
+
+
+
+            } else {
+                // Meses previos al vencimiento no hay cuota exigible
+                cuota = 0;
+            }
         }
 
-    } else if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
-        // Tu lógica específica: Capitalización en gracia y cuota única al final
-        if (mesActual > gracia) {
-            plazo -= gracia;
-           
-
-            capital = redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
-           
-            cuota = parseFloat(interes) + parseFloat(capital);
-            
-            
-
-            
-           
-        } else {
-            // Meses previos al vencimiento no hay cuota exigible
-            cuota = 0;
-        }
+        const calculo = parseFloat(cuota + this._agregar).toFixed(2);
+        return redondearArriba(calculo);
     }
 
-    const calculo = parseFloat(cuota + this._agregar).toFixed(2);
-    return redondearArriba(calculo);
-}
+    calculoCapital(cuota = null, intereses = null, mesActual = null) {
+        let plazo = this.plazo;
+        let gracia = this.plazoGracia;
 
-calculoCapital(cuota = null, intereses = null, mesActual = null) {
-    let plazo = this.plazo;
-    let gracia = this.plazoGracia;
+        if (this.formaPago === 'NIVELADA') {
+            return redondearArriba(parseFloat(cuota - intereses).toFixed(2));
 
-    if (this.formaPago === 'NIVELADA') {
-        return redondearArriba(parseFloat(cuota - intereses).toFixed(2));
-        
-    } else if (this.formaPago === 'AMORTIZACIONES A CAPITAL') {
-        return redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
-
-    } else if (this.formaPago === 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO') {
-        
-        if (mesActual > gracia) {
-            plazo -= gracia;
-           
-
+        } else if (this.formaPago === 'AMORTIZACIONES A CAPITAL') {
             return redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
 
-        } else {
-            
-            return 0;
-        }
+        } else if (this.formaPago === 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO') {
 
-    } else if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
-        if (mesActual > gracia) {
-            plazo = plazo - gracia
+            if (mesActual > gracia) {
+                plazo -= gracia;
 
-            return redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
 
-        } else {
-            
-            return 0;
+                return redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
+
+            } else {
+
+                return 0;
+            }
+
+        } else if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
+            if (mesActual > gracia) {
+                plazo = plazo - gracia
+
+                return redondearArriba(parseFloat(this.montoInicial / plazo).toFixed(2));
+
+            } else {
+
+                return 0;
+            }
         }
     }
-}
 
     mesInicial() {
         return this._credit.fechaInicio;
     }
 
     // Ajuste en el método inicial()
-inicial() {
-    const mesInicial = this.mesInicial();
-    const mesFinal = new Date(mesInicial);
-    mesFinal.setMonth(mesFinal.getMonth() + 1);
-    
-    const dicio = {
-        mes: 1,
-        fecha_inicio: mesInicial,
-        fecha_final: mesFinal,
-        monto_prestado: this.montoInicial,
-        monto_interes: this.montoInicial
-    };
-
-    const intereses = this.calculoIntereses(null, this.montoInicial);
-    // Agregamos el parámetro del mes actual (1)
-    const cuota = this.calculoCuota(intereses, null, 1);
-    const capital = this.calculoCapital(cuota, intereses, 1);
-
-    if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
-
-        dicio.intereses = intereses + (intereses * 0.1);
-        
-    }else{
-        dicio.intereses = intereses;
-
-    }
-
-    
-    dicio.capital = capital;
-    dicio.cuota = cuota;
-    return dicio;
-}
-calculoInteresAcumulado(saldoCapitalPendiente, n) {
-    let saldo = Number(saldoCapitalPendiente);
-    let tasa = Number(this.interes);
-    let interesAcumulado = 0;
-    let mora = 0
-    let listado_acumulacion = []
-
-    let i = 0;
-    // En JS usamos 'while' o un ciclo 'for'
-    while (i < n) {
-        // Cálculo del interés del mes actual
-        let interesDelMes = saldo * tasa;
-        
-        interesAcumulado = (interesAcumulado - mora) + interesDelMes
-
-        mora = (interesDelMes * (i + 1) ) * 0.1
-
-        i++;
-        if (i == n){
-            mora =  listado_acumulacion.reduce((acumulador, valor) => acumulador + valor, 0);
-
-        }else {
-            listado_acumulacion.push(mora)
-
-        }
-        
-        interesAcumulado =  interesAcumulado + mora;
-        
-        
-
-        
-        console.log(`MES: ${i}, Interés del mes: ${interesDelMes.toFixed(2)}, Acumulado: ${interesAcumulado.toFixed(2)}`);
-    }
-
-    return interesAcumulado;
-}
-
-
-// Ajuste en el loop de generarPlan()
-generarPlan() {
-    // Limpiamos el plan antes de empezar
-    this._plan = [];
-    const primeraCuota = this.inicial();
-    this._plan.push(primeraCuota);
-    let plazo = this.plazo;
-    let gracia = this.plazoGracia;
-
-    for (let mes = 2; mes <= this.plazo; mes++) {
-        const anterior = this._plan[this._plan.length - 1];
-        let montoParaInteres = 0;
-        let intereses = 0;
-
-        // 1. LÓGICA DE SALDOS SEGÚN FORMA DE PAGO
-        if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
-            // CAPITALIZACIÓN: El nuevo monto es el anterior + los intereses que no se pagaron
-            if (mes >  (gracia+1)){
-                montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
-                intereses = this.calculoIntereses(null, montoParaInteres);
-
-            }else{
-                montoParaInteres = parseFloat(anterior.monto_interes) + parseFloat(anterior.intereses);
-                intereses = this.calculoInteresAcumulado(anterior.monto_prestado, mes);
-
-            }
-            
-            
-            
-          
-            
-        } 
-        else if (this.formaPago === 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO') {
-            // Se mantiene el monto inicial porque el interés se paga mes a mes
-            montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
-            intereses = this.calculoIntereses(null, montoParaInteres);
-        } 
-        else {
-            // NIVELADA o AMORTIZACIÓN CONSTANTE: Se resta el capital ya pagado
-            montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
-            intereses = this.calculoIntereses(null, montoParaInteres);
-        }
-
-        let montoOtorgado = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
-
-        // 2. FECHAS
-        const mesInicial = new Date(anterior.fecha_final);
+    inicial() {
+        const mesInicial = this.mesInicial();
         const mesFinal = new Date(mesInicial);
         mesFinal.setMonth(mesFinal.getMonth() + 1);
 
-        // 3. CÁLCULOS DEL MES ACTUAL
-        // Importante: calculoIntereses debe recibir el monto capitalizado
-        
-        
-        // La cuota y el capital necesitan saber el mes actual para decidir si es el vencimiento
-        const cuota = this.calculoCuota(intereses, null, mes);
-        const capital = this.calculoCapital(cuota, intereses, mes);
-
-        this._plan.push({
-            mes: mes,
+        const dicio = {
+            mes: 1,
             fecha_inicio: mesInicial,
             fecha_final: mesFinal,
-            monto_prestado: parseFloat(montoOtorgado).toFixed(2), // Aquí se ve el aumento
-            monto_interes: parseFloat(montoParaInteres).toFixed(2),
-            intereses: parseFloat(intereses).toFixed(2),
-            capital: capital,
-            cuota: cuota
-        });
+            monto_prestado: this.montoInicial,
+            monto_interes: this.montoInicial
+        };
+
+        const intereses = this.calculoIntereses(null, this.montoInicial);
+        // Agregamos el parámetro del mes actual (1)
+        const cuota = this.calculoCuota(intereses, null, 1);
+        const capital = this.calculoCapital(cuota, intereses, 1);
+
+        if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
+
+            dicio.intereses = intereses + (intereses * 0.1);
+
+        } else {
+            dicio.intereses = intereses;
+
+        }
+
+
+        dicio.capital = capital;
+        dicio.cuota = cuota;
+        return dicio;
+    }
+    calculoInteresAcumulado(saldoCapitalPendiente, n) {
+        let saldo = Number(saldoCapitalPendiente);
+        let tasa = Number(this.interes);
+        let interesAcumulado = 0;
+        let mora = 0
+        let listado_acumulacion = []
+
+        let i = 0;
+        // En JS usamos 'while' o un ciclo 'for'
+        while (i < n) {
+            // Cálculo del interés del mes actual
+            let interesDelMes = saldo * tasa;
+
+            interesAcumulado = (interesAcumulado - mora) + interesDelMes
+
+            mora = (interesDelMes * (i + 1)) * 0.1
+
+            i++;
+            if (i == n) {
+                mora = listado_acumulacion.reduce((acumulador, valor) => acumulador + valor, 0);
+
+            } else {
+                listado_acumulacion.push(mora)
+
+            }
+
+            interesAcumulado = interesAcumulado + mora;
+
+
+
+
+            console.log(`MES: ${i}, Interés del mes: ${interesDelMes.toFixed(2)}, Acumulado: ${interesAcumulado.toFixed(2)}`);
+        }
+
+        return interesAcumulado;
     }
 
-    return this._plan;
-}
 
-    recalcular_capital(){
+    // Ajuste en el loop de generarPlan()
+    generarPlan() {
+        // Limpiamos el plan antes de empezar
+        this._plan = [];
+        const primeraCuota = this.inicial();
+        this._plan.push(primeraCuota);
+        let plazo = this.plazo;
+        let gracia = this.plazoGracia;
+
+        for (let mes = 2; mes <= this.plazo; mes++) {
+            const anterior = this._plan[this._plan.length - 1];
+            let montoParaInteres = 0;
+            let intereses = 0;
+
+            // 1. LÓGICA DE SALDOS SEGÚN FORMA DE PAGO
+            if (this.formaPago === 'INTERES Y CAPITAL AL VENCIMIENTO') {
+                // CAPITALIZACIÓN: El nuevo monto es el anterior + los intereses que no se pagaron
+                if (mes > (gracia + 1)) {
+                    montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
+                    intereses = this.calculoIntereses(null, montoParaInteres);
+
+                } else {
+                    montoParaInteres = parseFloat(anterior.monto_interes) + parseFloat(anterior.intereses);
+                    intereses = this.calculoInteresAcumulado(anterior.monto_prestado, mes);
+
+                }
+
+
+
+
+
+            }
+            else if (this.formaPago === 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO') {
+                // Se mantiene el monto inicial porque el interés se paga mes a mes
+                montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
+                intereses = this.calculoIntereses(null, montoParaInteres);
+            }
+            else {
+                // NIVELADA o AMORTIZACIÓN CONSTANTE: Se resta el capital ya pagado
+                montoParaInteres = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
+                intereses = this.calculoIntereses(null, montoParaInteres);
+            }
+
+            let montoOtorgado = parseFloat(anterior.monto_prestado) - parseFloat(anterior.capital);
+
+            // 2. FECHAS
+            const mesInicial = new Date(anterior.fecha_final);
+            const mesFinal = new Date(mesInicial);
+            mesFinal.setMonth(mesFinal.getMonth() + 1);
+
+            // 3. CÁLCULOS DEL MES ACTUAL
+            // Importante: calculoIntereses debe recibir el monto capitalizado
+
+
+            // La cuota y el capital necesitan saber el mes actual para decidir si es el vencimiento
+            const cuota = this.calculoCuota(intereses, null, mes);
+            const capital = this.calculoCapital(cuota, intereses, mes);
+
+            this._plan.push({
+                mes: mes,
+                fecha_inicio: mesInicial,
+                fecha_final: mesFinal,
+                monto_prestado: parseFloat(montoOtorgado).toFixed(2), // Aquí se ve el aumento
+                monto_interes: parseFloat(montoParaInteres).toFixed(2),
+                intereses: parseFloat(intereses).toFixed(2),
+                capital: capital,
+                cuota: cuota
+            });
+        }
+
+        return this._plan;
+    }
+
+    recalcular_capital() {
         let total_cap = 0;
         let total_monto = this._credit.monto;
         let plan = this.generarPlan();
@@ -297,8 +297,8 @@ generarPlan() {
             total_cap += element['capital'];
         });
         let diferencia = total_monto - total_cap;
-        if (diferencia > 0){
-            let promedio = diferencia /this.plazo
+        if (diferencia > 0) {
+            let promedio = diferencia / this.plazo
             this._plan.length = 0;
             this._agregar = parseFloat(promedio).toFixed(2);
             plan = this.generarPlan();
@@ -308,8 +308,39 @@ generarPlan() {
 
         }
         return this._plan
-            
 
 
+
+    }
+
+    calculo_total_capital(){
+        let total_capital = 0;
+        let plan = this.recalcular_capital();
+
+        plan.forEach(element => {
+            total_capital += parseFloat(element['capital']);
+        });
+        return total_capital;
+    }
+
+    calculo_total_interes(){
+        let total_interes = 0;
+        let plan = this.recalcular_capital();
+
+        plan.forEach(element => {
+            total_interes += parseFloat(element['intereses']);
+        }
+        );
+        return total_interes;
+    }
+
+    calculo_total_cuotas(){
+        let total_cuotas = 0;
+        let plan = this.recalcular_capital();   
+
+        plan.forEach(element => {
+            total_cuotas += parseFloat(element['cuota']);
+        }       );
+        return total_cuotas;
     }
 }

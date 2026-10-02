@@ -7,23 +7,7 @@ let activeTab = 'credito';
 
 let existingCreditsSearchTimeout = null;
 
-window.switchTab = function (tabId) {
-    activeTab = tabId;
-    document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('tab-active');
-        btn.classList.add('text-brandGrayText');
-    });
 
-    document.getElementById(`tab-${tabId}`).classList.remove('hidden');
-    const activeBtn = document.getElementById(`tab-btn-${tabId}`);
-    activeBtn.classList.add('tab-active');
-    activeBtn.classList.remove('text-brandGrayText');
-
-    if (tabId === 'plan') {
-        generatePaymentPlan();
-    }
-}
 
 window.toggleGracePeriod = function () {
     const formaPago = document.getElementById('forma_de_pago').value;

@@ -61,7 +61,7 @@
         <div>
             <label class="form-label">Tasa de Interés Anual (%) *</label>
             <div class="input-relative">
-                <input type="number" step="0.01" min="0" max="100" id="tasa_interes" class="glass-input pr-symbol"
+                <input type="number" step="0.01" min="0"  id="tasa_interes" class="glass-input pr-symbol"
                     required>
                 <span class="suffix-symbol">%</span>
             </div>
@@ -78,8 +78,8 @@
         <div>
             <label class="form-label">Forma de Pago *</label>
             <select id="forma_de_pago" class="glass-input" onchange="toggleGracePeriod()" required>
-                <option value="NIVELADA">NIVELADA (Cuota Fija)</option>
-                <option value="AMORTIZACIÓN A CAPITAL">AMORTIZACIÓN A CAPITAL (Cuota Variable)</option>
+                <option value="NIVELADA">NIVELADA</option>
+                <option value="AMORTIZACIÓN A CAPITAL">AMORTIZACIÓN A CAPITAL</option>
                 <option value="INTERES MENSUAL Y CAPITAL AL VENCIMIENTO">INTERES MENSUAL Y CAPITAL AL VENCIMIENTO
                 </option>
                 <option value="INTERES Y CAPITAL AL VENCIMIENTO">INTERES Y CAPITAL AL VENCIMIENTO</option>
