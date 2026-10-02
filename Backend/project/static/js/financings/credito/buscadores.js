@@ -534,7 +534,6 @@ export async function buscarFiadorLaboral(clienteId) {
     return filterList;
 }
 
-// Modificamos loadSelect2Data para soportar 'fiador'
 
 
 // Lógica de selección para autocompletar automáticamente el Fiador
