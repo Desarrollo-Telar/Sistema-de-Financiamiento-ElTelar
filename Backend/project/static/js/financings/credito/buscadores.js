@@ -176,7 +176,33 @@ async function loadSelect2Data(type, term = '') {
                 raw: item
             }));
         }
-        // ... mantener advisors y existing_credit
+        // ASESORES
+        else if (type === 'advisor') {
+
+            select2Data.advisor = data.map(item => ({
+                id: item.id,
+                text: `${item.nombre} ${item.apellido}`
+            }));
+
+        }
+
+
+        // CRÉDITOS VIGENTES
+        else if (type === 'existing_credit') {
+
+            select2Data.existing_credit = data.map(item => ({
+
+                id: item.id,
+
+                text:
+                    `${item.sucursal.nombre} - ` +
+                    `${item.codigo_credito} ` +
+                    `${item.customer_id.first_name} ` +
+                    `${item.customer_id.last_name}`
+
+            }));
+
+        }
         
         renderSelect2Options(type);
     } catch (error) {
