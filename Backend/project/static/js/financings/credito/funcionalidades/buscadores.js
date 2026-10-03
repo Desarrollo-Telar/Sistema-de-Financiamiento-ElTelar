@@ -7,26 +7,25 @@ import { actualizar_credito } from '../../API/credito/actualizar.js'
 import {calculateDisbursementTotals} from './calculos.js'
 
 // Extendemos select2Data para incluir al 'fiador'
-export const select2Data = {
+const select2Data = {
     customer: [],
     advisor: [],
     existing_credit: [],
     fiador: []
-    
 };
 
 
 // Declaración de variables para debounce y selección de créditos
 let searchTimeout = null;
 let existingCreditsSearchTimeout = null;
-export const selectedCreditsMap = new Map();
+const selectedCreditsMap = new Map();
 
 // Para enviar solo los IDs al backend:
-export const selectedIds = Array.from(selectedCreditsMap.keys()); 
+const selectedIds = Array.from(selectedCreditsMap.keys()); 
 // ["105", "204", "311"]
 
 // Para enviar los objetos completos:
-export const selectedObjects = Array.from(selectedCreditsMap.values());
+const selectedObjects = Array.from(selectedCreditsMap.values());
 
 
 
@@ -492,17 +491,13 @@ function renderSelect2Options(type) {
 }
 
 // Marcar o desmarcar un crédito
-export let creditos_seleccionados = []; // Array para almacenar los créditos seleccionados
 window.toggleCreditSelection = function(checkbox, creditObj) {
     const creditIdStr = String(creditObj.id);
 
     if (checkbox.checked) {
         selectedCreditsMap.set(creditIdStr, creditObj);
-        creditos_seleccionados.push(creditObj.id);
-
     } else {
         selectedCreditsMap.delete(creditIdStr);
-        creditos_seleccionados = creditos_seleccionados.filter(c => c !== creditObj.id);
     }
 
     renderSelectedChips();

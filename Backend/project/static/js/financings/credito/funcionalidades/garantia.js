@@ -1,5 +1,5 @@
 import { showToast } from './style.js';
-export let guaranteeList = [];
+let guaranteeList = [];
 
 
 window.renderDynamicGuaranteeFields = function ()  {
