@@ -2,10 +2,10 @@ import { showToast } from './style.js';
 let guaranteeList = [];
 
 
-function renderDynamicGuaranteeFields() {
+window.renderDynamicGuaranteeFields = function ()  {
 
-    const tipo = event.target.value;
-    alert(`Tipo de garantía seleccionado: ${tipo}`); // Muestra el tipo de garantía seleccionado
+    const tipo = document.getElementById('tipo_garantia').value;
+    
     const container = document.getElementById('dynamic-guarantee-fields');
     container.innerHTML = '';
 

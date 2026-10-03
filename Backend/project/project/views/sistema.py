@@ -93,6 +93,14 @@ def index(request):
     return render(request, template_name, context)
 
 
+
+@login_required
+@usuario_activo
+def cambio_oficina(request):
+    request.session['sucursal_id'] = None
+    return redirect('index')
+
+
 @login_required
 @usuario_activo
 def list_reportes_modulos(request):

@@ -76,6 +76,7 @@ class CreditSerializer(serializers.ModelSerializer):
         data['customer_id'] = cliente_serializado
         data['Fmonto'] = formatear_numero(instance.monto)
         data['Fsaldo_actual'] = formatear_numero(instance.saldo_actual)
+        data['saldo_actual'] = instance.saldo_actual
         data['sucursal'] = sucursal_serializado
         data['creation_date'] = instance.creation_date.date() if instance.creation_date else None
         data['categoria_credito_demandado'] = instance.categoria_credito_demandado.titulo if instance.categoria_credito_demandado else None

@@ -1,6 +1,8 @@
 
 
-window.calculateDatesAndBalances = function () {
+window.calculateDatesAndBalances = calculateDatesAndBalances;
+
+export function calculateDatesAndBalances() {
     const fechaInicioVal = document.getElementById('fecha_inicio').value;
     const plazoMeses = parseInt(document.getElementById('plazo').value) || 0;
     const plazoGracia = parseInt(document.getElementById('plazo_gracia').value) || 0;
@@ -28,6 +30,7 @@ window.calculateDatesAndBalances = function () {
     calculateDisbursementTotals();
 }
 
+window.calculateDisbursementTotals = calculateDisbursementTotals;
 
 export function calculateDisbursementTotals() {
 
@@ -50,16 +53,16 @@ export function calculateDisbursementTotals() {
 
     let saldoAnterior = 0;
 
+    // Se recorren todos los checkboxes seleccionados de la lista o área de créditos
     document
         .querySelectorAll(
-            '#existing-credits-list .existing-credit-chk:checked'
+            '#existing-credits-list .existing-credit-chk:checked, .existing-credit-chk:checked'
         )
         .forEach(chk => {
 
+            // Se obtiene la propiedad saldoActual del dataset
             const saldoPendiente =
-                parseFloat(
-                    chk.dataset.totalPendiente
-                ) || 0;
+                parseFloat(chk.dataset.saldoActual) || 0;
 
             saldoAnterior += saldoPendiente;
         });
@@ -70,14 +73,11 @@ export function calculateDisbursementTotals() {
     // ==========================================================
 
     const totalGastos =
-        honorarios + poliza;
+        honorarios + poliza + montoDesembolsado + saldoAnterior;
 
 
     // ==========================================================
     // DIFERENCIA DEL DESEMBOLSO
-    //
-    // Monto crédito -
-    // (saldo anterior + póliza + honorarios + monto desembolsado)
     // ==========================================================
 
     const montoTotalDesembolsoDiferencia =
@@ -105,96 +105,94 @@ export function calculateDisbursementTotals() {
     // ACTUALIZAR RESUMEN
     // ==========================================================
 
-    document.getElementById('summary_monto_credito').textContent =
-        formatoMoneda(montoCredito);
+    const elemMontoCredito = document.getElementById('summary_monto_credito');
+    if (elemMontoCredito) elemMontoCredito.textContent = formatoMoneda(montoCredito);
 
-    document.getElementById('summary_saldo_anterior').textContent =
-        formatoMoneda(saldoAnterior);
+    const elemSaldoAnterior = document.getElementById('summary_saldo_anterior');
+    if (elemSaldoAnterior) elemSaldoAnterior.textContent = formatoMoneda(saldoAnterior);
 
-    document.getElementById('summary_honorarios').textContent =
-        formatoMoneda(honorarios);
+    const elemHonorarios = document.getElementById('summary_honorarios');
+    if (elemHonorarios) elemHonorarios.textContent = formatoMoneda(honorarios);
 
-    document.getElementById('summary_poliza').textContent =
-        formatoMoneda(poliza);
+    const elemPoliza = document.getElementById('summary_poliza');
+    if (elemPoliza) elemPoliza.textContent = formatoMoneda(poliza);
 
-    document.getElementById('summary_monto_desembolsado').textContent =
-        formatoMoneda(montoDesembolsado);
+    const elemMontoDesembolsado = document.getElementById('summary_monto_desembolsado');
+    if (elemMontoDesembolsado) elemMontoDesembolsado.textContent = formatoMoneda(montoDesembolsado);
 
-    document.getElementById('summary_total_gastos').textContent =
-        formatoMoneda(totalGastos);
+    const elemTotalGastos = document.getElementById('summary_total_gastos');
+    if (elemTotalGastos) elemTotalGastos.textContent = formatoMoneda(totalGastos);
 
 
     // ==========================================================
     // DIFERENCIA
     // ==========================================================
 
-    const difDisplay =
-        document.getElementById('summary_diferencia');
+    const difDisplay = document.getElementById('summary_diferencia');
+    const statusMsg = document.getElementById('summary_status_msg');
 
-    const statusMsg =
-        document.getElementById('summary_status_msg');
-
-
-    difDisplay.textContent =
-        formatoMoneda(montoTotalDesembolsoDiferencia);
+    if (difDisplay) {
+        difDisplay.textContent = formatoMoneda(montoTotalDesembolsoDiferencia);
+    }
 
 
     // ==========================================================
     // ESTADO DEL DESGLOSE
     // ==========================================================
 
-    if (Math.abs(montoTotalDesembolsoDiferencia) < 0.01) {
+    if (difDisplay && statusMsg) {
 
-        // Cuadra exactamente
-        difDisplay.className =
-            'text-lg font-bold font-mono text-emerald-600';
+        if (Math.abs(montoTotalDesembolsoDiferencia) < 0.01) {
 
-        statusMsg.textContent =
-            '✓ El desglose cuadra exactamente con el crédito.';
+            // Cuadra exactamente
+            difDisplay.className =
+                'text-lg font-bold font-mono text-emerald-600';
 
-        statusMsg.className =
-            'text-[11px] text-emerald-600 font-medium';
+            statusMsg.textContent =
+                '✓ El desglose cuadra exactamente con el crédito.';
 
+            statusMsg.className =
+                'text-[11px] text-emerald-600 font-medium';
+
+        }
+        else if (montoTotalDesembolsoDiferencia > 0) {
+
+            // Existe dinero que todavía no ha sido asignado
+            difDisplay.className =
+                'text-lg font-bold font-mono text-amber-600';
+
+            statusMsg.textContent =
+                `⚠️ Sobrante sin asignar de Q ${montoTotalDesembolsoDiferencia.toLocaleString(
+                    'es-GT',
+                    {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }
+                )}`;
+
+            statusMsg.className =
+                'text-[11px] text-amber-600 font-medium';
+
+        }
+        else {
+
+            // Se está asignando más dinero del disponible
+            difDisplay.className =
+                'text-lg font-bold font-mono text-red-600';
+
+            statusMsg.textContent =
+                `❌ Exceso asignado de Q ${Math.abs(
+                    montoTotalDesembolsoDiferencia
+                ).toLocaleString(
+                    'es-GT',
+                    {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }
+                )}`;
+
+            statusMsg.className =
+                'text-[11px] text-red-600 font-medium';
+        }
     }
-
-    else if (montoTotalDesembolsoDiferencia > 0) {
-
-        // Existe dinero que todavía no ha sido asignado
-        difDisplay.className =
-            'text-lg font-bold font-mono text-amber-600';
-
-        statusMsg.textContent =
-            `⚠️ Sobrante sin asignar de Q ${montoTotalDesembolsoDiferencia.toLocaleString(
-                'es-GT',
-                {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                }
-            )}`;
-
-        statusMsg.className =
-            'text-[11px] text-amber-600 font-medium';
-
-    }
-
-    else {
-
-        // Se está asignando más dinero del disponible
-        difDisplay.className =
-            'text-lg font-bold font-mono text-red-600';
-
-        statusMsg.textContent =
-            `❌ Exceso asignado de Q ${Math.abs(
-                montoTotalDesembolsoDiferencia
-            ).toLocaleString(
-                'es-GT',
-                {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                }
-            )}`;
-
-        statusMsg.className =
-            'text-[11px] text-red-600 font-medium';
-    }
-};
+}

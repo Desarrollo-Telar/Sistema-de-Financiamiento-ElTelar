@@ -56,6 +56,9 @@
           {% if permisos.puede_ver_cierre_sistema %}          
           <li><a class="dropdown-item" href="{% url 'actividades:listar_cierres' %}">Cierre de Sistema</a></li>
           {% endif %}
+          {% if request.user.sucursal is None %}
+          <li><a class="dropdown-item" href="{% url 'cambio_oficina' %}">Cambiar Oficina</a></li>
+          {% endif %}
           <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
       </div>

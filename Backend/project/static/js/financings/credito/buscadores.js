@@ -4,6 +4,7 @@ import {urls_p} from '../../API/urls_api.js'
 import { get_ultima_cuota_ampliacion } from '../../API/credito/obtener_ultima_cuota.js'
 import {get_credit} from '../../API/credito/obtener_credito.js'
 import { actualizar_credito } from '../../API/credito/actualizar.js'
+import {calculateDisbursementTotals} from './calculos.js'
 
 // Extendemos select2Data para incluir al 'fiador'
 const select2Data = {
@@ -280,6 +281,7 @@ window.removeCreditSelection = function(id) {
     if (searchInput && searchInput.value.trim() !== '') {
         loadExistingCredits(searchInput.value);
     }
+    calculateDisbursementTotals();
 }
 
 
@@ -419,20 +421,20 @@ function renderExistingCredits(creditsList) {
             isChecked ? 'bg-amber-500/10' : 'hover:bg-white/10'
         }`;
 
-        // Escapamos comillas simples para evitar errores al pasar el JSON
         const creditJson = JSON.stringify(credit).replace(/'/g, "&apos;");
 
         item.innerHTML = `
             <div class="flex items-center gap-2">
                 <input type="checkbox" 
                        value="${credit.id}" 
+                       data-saldo-actual="${credit.saldo_actual || 0}"
                        ${isChecked ? 'checked' : ''} 
                        onchange='toggleCreditSelection(this, ${creditJson})'
-                       class="glass-checkbox">
-                <span class="text-xs font-semibold">${credit.sucursal.nombre} - ${credit.codigo_credito}  </span>
+                       class="glass-checkbox existing-credit-chk">
+                <span class="text-xs font-semibold">${credit.sucursal.nombre} - ${credit.codigo_credito}</span>
                 <span class="text-xs opacity-75">${credit.customer_id.first_name} ${credit.customer_id.last_name}</span>
             </div>
-            <span class="text-xs font-mono">Q${credit.Fsaldo_actual || credit.monto || 0}</span>
+            <span class="text-xs font-mono">${credit.Fsaldo_actual || 'Q 0.00'}</span>
         `;
         container.appendChild(item);
     });
@@ -499,6 +501,7 @@ window.toggleCreditSelection = function(checkbox, creditObj) {
     }
 
     renderSelectedChips();
+    calculateDisbursementTotals();
 }
 
 

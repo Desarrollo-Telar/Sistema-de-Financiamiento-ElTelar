@@ -60,7 +60,7 @@
                 </div>
                 <div>
                     <label class="form-label text-muted">Número de Referencia</label>
-                    <input type="text" id="honorarios_ref" class="glass-input" placeholder="Ej: REC-90123">
+                    <input type="text" id="honorarios_ref" class="glass-input" placeholder="Ej: 90123">
                 </div>
                 <div>
                     <label class="form-label text-muted">Fecha de Emisión</label>
@@ -68,7 +68,7 @@
                 </div>
                 <div>
                     <label class="form-label text-muted">Documento / Boleta</label>
-                    <input type="file" class="glass-input file-input">
+                    <input type="file" class="glass-input file-input" id="honorarios_doc">
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
                 </div>
                 <div>
                     <label class="form-label text-muted">Número de Referencia</label>
-                    <input type="text" id="poliza_ref" class="glass-input" placeholder="Ej: POL-88120">
+                    <input type="text" id="poliza_ref" class="glass-input" placeholder="Ej: 88120">
                 </div>
                 <div>
                     <label class="form-label text-muted">Fecha de Emisión</label>
@@ -92,27 +92,36 @@
                 </div>
                 <div>
                     <label class="form-label text-muted">Documento / Boleta</label>
-                    <input type="file" class="glass-input file-input">
+                    <input type="file" class="glass-input file-input" id="poliza_doc">
                 </div>
             </div>
         </div>
 
         <!-- Direct Cash Amount & Description -->
-        <div class="glass-card card-padding bg-white-70 space-y-3">
-            <div>
-                <label class="form-label">Monto Directo a Desembolsar al Cliente (monto_desembolsado) *</label>
-                <div class="input-relative">
-                    <span class="prefix-symbol">Q</span>
+         <div class="glass-card card-padding bg-white-70 space-y-3">
+            <h3 class="card-subtitle">Monto Directo a Desembolsar al Cliente *</h3>
+            <div class="grid-2-col">
+                <div>
+                    <label class="form-label text-muted">Monto (Q)</label>
                     <input type="number" step="0.01" id="monto_desembolsado" class="glass-input pl-symbol font-bold"
                         value="0.00" oninput="calculateDisbursementTotals()">
                 </div>
-            </div>
-            <div>
-                <label class="form-label text-muted">Descripción del Desembolso</label>
-                <textarea id="disbursement_description" rows="2" class="glass-input"
-                    placeholder="Observaciones adicionales o detalle de emisión de cheque/transferencia..."></textarea>
+                <div>
+                    <label class="form-label text-muted">Número de Referencia</label>
+                    <input type="text" id="monto_desembolsado_ref" class="glass-input" placeholder="Ej: 54893">
+                </div>
+                <div>
+                    <label class="form-label text-muted">Fecha de Emisión</label>
+                    <input type="date" id="monto_desembolsado_fecha" class="glass-input">
+                </div>
+                <div>
+                    <label class="form-label text-muted">Documento / Boleta</label>
+                    <input type="file" class="glass-input file-input" id="monto_desembolsado_doc">
+                </div>
             </div>
         </div>
+
+        
     </div>
 
     <!-- Live Summary Dashboard Sidebar -->
