@@ -15,6 +15,8 @@ export function generar_plan() {
     const plazo_gracia = document.getElementById('plazo_garantia');
     const customer_id = '';
 
+    const tfoot = document.getElementById('plan-table-foot');
+
     tbody_plan.innerHTML = '';
 
     const fechaInicioValue = new Date(fecha_inicio.value);
@@ -49,6 +51,15 @@ export function generar_plan() {
         nueva_fila.insertCell(5).textContent = 'Q' + element['capital'];
         nueva_fila.insertCell(6).textContent = 'Q' + element['cuota'];
     });
+    tfoot.innerHTML = `
+                <tr>
+                    <td colspan="3" class="p-3 uppercase">Totales del Plan</td>
+                    <td class="p-3 text-right font-mono text-emerald-700">Q ${plan_pago.calculo_total_interes().toFixed(2)}</td>
+                    <td class="p-3 text-right font-mono text-amber-700">Q ${plan_pago.calculo_total_capital().toFixed(2)}</td>
+                    <td class="p-3 text-right font-mono font-bold text-brandRedDark">Q ${plan_pago.calculo_total_cuotas().toFixed(2)}</td>
+                   
+                </tr>
+            `;
 }
 
 function transformarFecha(ele) {

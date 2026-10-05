@@ -120,8 +120,8 @@ export async function savePlanInversion(formData, planId = null) {
 }
 
 contenedorPagare.style.display = "none";
-contenedorFiadores.style.display = "none";
-contenedorCreditos.style.display = "none";
+contenedorFiadores.style.display = "block";
+contenedorCreditos.style.display = "block";
 
 const formaPago = document.getElementById("forma_de_pago");
 const contenedorPlazoGarantia = document.getElementById("contenedor_plazo_garantia");
@@ -140,8 +140,8 @@ formaPago.addEventListener("change", () => {
 
 tipoDocumento.addEventListener("change", () => {
     contenedorPagare.style.display = "none";
-    contenedorFiadores.style.display = "none";
-    contenedorCreditos.style.display = "none";
+    contenedorFiadores.style.display = "block";
+    contenedorCreditos.style.display = "block";
 
     if (tipoDocumento.value == "PAGARE") {
         contenedorPagare.style.display = "block";
@@ -149,8 +149,8 @@ tipoDocumento.addEventListener("change", () => {
 });
 
 tipoPagare.addEventListener("change", () => {
-    contenedorFiadores.style.display = "none";
-    contenedorCreditos.style.display = "none";
+    contenedorFiadores.style.display = "block";
+    contenedorCreditos.style.display = "block";
 
     if (tipoPagare.value == "FIADOR" || tipoPagare.value == "Fiador") {
         contenedorFiadores.style.display = "block";
@@ -165,9 +165,9 @@ tipoPagare.addEventListener("change", () => {
 
 function actualizarVisibilidadDocumento() {
     contenedorPagare.style.display = "none";
-    contenedorFiadores.style.display = "none";
-    contenedorCreditos.style.display = "none";
-    contenedorNotariosDoc.style.display = "none"; // Ocultar por defecto
+    contenedorFiadores.style.display = "block";
+    contenedorCreditos.style.display = "block";
+    contenedorNotariosDoc.style.display = "block"; // Ocultar por defecto
 
     const docSeleccionado = tipoDocumento.value;
 
@@ -182,8 +182,8 @@ function actualizarVisibilidadDocumento() {
 
 function actualizarVisibilidadPagare() {
     // Resetear visibilidad interna del pagaré
-    contenedorFiadores.style.display = "none";
-    contenedorCreditos.style.display = "none";
+    contenedorFiadores.style.display = "block";
+    contenedorCreditos.style.display = "block";
 
     const valorPagare = tipoPagare.value.toUpperCase();
 
@@ -649,7 +649,7 @@ $("#frmInvestmentPlan").on("submit", async function(e) {
     const listaNotariosPayload = []; // Tu lista global unificada
 
     // 1. Capturar Notario de Documentación (si aplica)
-    if (tipoDocumento.value !== "PAGARE" && tipoDocumento.value !== "" && $("#notario_documentacion").val()) {
+    if ($("#notario_documentacion").val()) {
         listaNotariosPayload.push({
             'id': parseInt($("#notario_documentacion").val()),
             'nombre': $("#notario_documentacion").find('option:selected').text(),
