@@ -1,31 +1,44 @@
 
 
 window.calculateDatesAndBalances = calculateDatesAndBalances;
+window.formatDateToISO = formatDateToISO;
+
+// Función helper para formatear Date a YYYY-MM-DD
+function formatDateToISO(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
 
 export function calculateDatesAndBalances() {
     const fechaInicioVal = document.getElementById('fecha_inicio').value;
     const plazoMeses = parseInt(document.getElementById('plazo').value) || 0;
     const plazoGracia = parseInt(document.getElementById('plazo_gracia').value) || 0;
-    const monto = parseFloat(document.getElementById('monto').value) || 0;
 
     if (fechaInicioVal) {
-        const startDate = new Date(fechaInicioVal + 'T00:00:00');
+        // Asegurar la fecha parseando YYYY-MM-DD
+        const [year, month, day] = fechaInicioVal.split('-').map(Number);
+        const startDate = new Date(year, month - 1, day);
 
         // Expiration Date = Start Date + plazo
         const expDate = new Date(startDate);
         expDate.setMonth(expDate.getMonth() + plazoMeses);
-        document.getElementById('fecha_vencimiento').value = expDate.toLocaleDateString('es-GT', { year: 'numeric', month: '2-digit', day: '2-digit' });
+        
+        // Formato obligatorio para Django: YYYY-MM-DD
+        document.getElementById('fecha_vencimiento').value = formatDateToISO(expDate);
 
         // Grace Date = Start Date + plazo_gracia
+        const graciaInput = document.getElementById('fecha_finalizacion_gracia');
         if (plazoGracia > 0 && !document.getElementById('plazo_gracia').disabled) {
             const graceDate = new Date(startDate);
             graceDate.setMonth(graceDate.getMonth() + plazoGracia);
-            document.getElementById('fecha_finalizacion_gracia').value = graceDate.toLocaleDateString('es-GT', { year: 'numeric', month: '2-digit', day: '2-digit' });
+            graciaInput.value = formatDateToISO(graceDate);
         } else {
-            document.getElementById('fecha_finalizacion_gracia').value = 'N/A';
+            // Enviar cadena vacía para que Django interprete null/blank correctamente
+            graciaInput.value = '';
         }
     }
-
 
     calculateDisbursementTotals();
 }

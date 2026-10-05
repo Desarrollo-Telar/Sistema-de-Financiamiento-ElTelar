@@ -12,7 +12,7 @@ import {get_credit} from '../../API/credito/obtener_credito.js'
 
 import {guaranteeList} from './garantia.js'
 import { showToast } from './style.js';
-import {creditos_seleccionados, selectedCreditsMap,selectedIds,selectedObjects } from './buscadores.js'
+import {creditos_seleccionados } from './buscadores.js'
 
 function get_tasaInteres() {
     const tasaInput = document.getElementById('tasa_interes');
@@ -32,6 +32,21 @@ function get_tasaInteres() {
 
 export async function guardar_credito(monto){
     let formData = new FormData();
+
+    if (document.getElementById('customer_id').value === '') {
+        showToast('Debe seleccionar un cliente antes de continuar.', 'error');
+        throw new Error('Cliente no seleccionado');
+    }
+
+    if (document.getElementById('sucursal_id').value === '') {
+        showToast('Debe seleccionar una sucursal antes de continuar.', 'error');
+        throw new Error('Sucursal no seleccionada');
+    }
+
+    if (document.getElementById('asesor_de_credito').value === '') {
+        showToast('Debe seleccionar un asesor de crédito antes de continuar.', 'error');
+        throw new Error('Asesor de crédito no seleccionado');
+    }
     formData.append('proposito',document.getElementById('proposito').value);
     formData.append('monto',monto);
     formData.append('plazo',document.getElementById('plazo').value);
@@ -56,6 +71,18 @@ export async function guardar_credito(monto){
 export async function guardar_desembolso(credit_id, forma_desembolso, credito_cancelado=NaN) {
     let formData = new FormData();
     let descripcion = document.getElementById('description')?.value || '';
+    
+    const montoCredito =
+        parseFloat(document.getElementById('monto')?.value) || 0;
+
+    const honorarios =
+        parseFloat(document.getElementById('honorarios')?.value) || 0;
+
+    const poliza =
+        parseFloat(document.getElementById('poliza_seguro')?.value) || 0;
+
+    const montoDesembolsado =
+        parseFloat(document.getElementById('monto_desembolsado')?.value) || 0;
 
     if (forma_desembolso === 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE' && credito_cancelado) {
         try {
@@ -66,15 +93,43 @@ export async function guardar_desembolso(credit_id, forma_desembolso, credito_ca
         }
     }
 
+    let saldoAnterior = 0;
+
+    // Se recorren todos los checkboxes seleccionados de la lista o área de créditos
+    document
+        .querySelectorAll(
+            '#existing-credits-list .existing-credit-chk:checked, .existing-credit-chk:checked'
+        )
+        .forEach(chk => {
+
+            // Se obtiene la propiedad saldoActual del dataset
+            const saldoPendiente =
+                parseFloat(chk.dataset.saldoActual) || 0;
+
+            saldoAnterior += saldoPendiente;
+        });
+
+    const totalGastos =
+        honorarios + poliza + montoDesembolsado + saldoAnterior;
+    
+    const montoTotalDesembolsoDiferencia =
+        montoCredito -
+        (
+            saldoAnterior +
+            poliza +
+            honorarios +
+            montoDesembolsado
+        );
+
     formData.append('credit_id', credit_id);
     formData.append('forma_desembolso', forma_desembolso);
-    formData.append('monto_credito', document.getElementById('monto').value);
-    formData.append('saldo_anterior', document.getElementById('credito_saldo_capital_vigente').value||0);
-    formData.append('honorarios', document.getElementById('honorarios').value||0);
-    formData.append('poliza_seguro', document.getElementById('poliza_seguro').value||0);
-    formData.append('monto_desembolsado', document.getElementById('monto_desembolsado').value||0);
-    formData.append('monto_total_desembolso', document.getElementById('total_depositar').value||0);
-    formData.append('total_gastos', document.getElementById('total_gastos').value||0);
+    formData.append('monto_credito', montoCredito);
+    formData.append('saldo_anterior', saldoAnterior);
+    formData.append('honorarios', honorarios);
+    formData.append('poliza_seguro', poliza);
+    formData.append('monto_desembolsado', montoDesembolsado);
+    formData.append('monto_total_desembolso', montoTotalDesembolsoDiferencia);
+    formData.append('total_gastos', totalGastos);
     formData.append('description', descripcion);
 
 
@@ -192,12 +247,18 @@ async function registrar_pago_boleta (monto, referencia, fecha, boleta, descripc
     await guardar_boleta_desembolso(credit.id, desembolso.id, monto, referencia, fecha, descripcion, boleta);
 };
 
-export function finalizeRegistration(){
+export async function finalizeRegistration(){
     // Validación de campos requeridos
-    /*
+    
     const requiredFields = [
         document.getElementById('proposito'),
         document.getElementById('monto'),
+        document.getElementById('plazo'),
+        document.getElementById('tasa_interes'),
+        document.getElementById('forma_de_pago'),
+        document.getElementById('fecha_inicio'),
+        document.getElementById('sucursal_id'),
+       
         ];
     let isValid = true;
 
@@ -205,13 +266,14 @@ export function finalizeRegistration(){
         if (!field.value.trim()) {
             field.classList.add('border-red-500');
             isValid = false;
+            console.log(`Campo requerido vacío: ${field.id}`);
         } else {
             field.classList.remove('border-red-500');
         }
     });
 
 
-    */
+    
    const forma_desembolso = document.getElementById('forma_desembolso').value;
 
 
@@ -233,7 +295,12 @@ export function finalizeRegistration(){
     if (isValid) {
         
         console.log('Todos los campos requeridos están completos. Procediendo con el registro...');
-        registro_formulario(forma_desembolso, guaranteeList, creditos_seleccionados);
+        const resultado = await registro_formulario(forma_desembolso, guaranteeList, creditos_seleccionados);
+
+        if (resultado && resultado.exito) {
+            showToast('Registro completado con éxito.', 'success');
+            setTimeout(() => { window.location.href = `/financings/credit/${resultado.credito.id}`; }, 1000);
+        }
         return;
 
     }else{
@@ -271,6 +338,7 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
         const respuestaDesembolso = await guardar_desembolso(credit_id, forma_desembolso, creditos_seleccionados);
         
         let respuestaCreditosCancelados = null;
+        let respuestaBoleta = null;
 
         if (creditos_seleccionados.length > 0) {
             for (let creditoId of creditos_seleccionados) {
@@ -283,7 +351,7 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
         }
 
         if (honorarios > 0 && ref_honorarios != ''){
-            await registrar_pago_boleta( 
+            respuestaBoleta = await registrar_pago_boleta( 
                 honorarios,
                 ref_honorarios,
                 document.getElementById('honorarios_fecha').value,
@@ -293,7 +361,7 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
         }
 
         if (poliza > 0 && ref_poliza != ''){
-            await registrar_pago_boleta(
+            respuestaBoleta = await registrar_pago_boleta(
                 poliza,
                 ref_poliza,
                 document.getElementById('poliza_fecha').value,
@@ -303,7 +371,7 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
         }
 
         if (monto_desembolsado > 0 && ref_monto_desembolsado != ''){
-            await registrar_pago_boleta(
+            respuestaBoleta =await registrar_pago_boleta(
                 monto_desembolsado,
                 ref_monto_desembolsado,
                 document.getElementById('monto_desembolsado_fecha').value,
@@ -327,6 +395,7 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
             exito: true,
             credito: respuestaCredito,
             desembolso: respuestaDesembolso,
+            creditos_cancelados: respuestaCreditosCancelados,
             garantia: respuestaGarantia,
             boleta: respuestaBoleta
         };
@@ -336,6 +405,7 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
     }catch(e){
         console.error('Error en el registro del formulario:', e);
         showToast('Ocurrió un error durante el registro. Por favor, intente nuevamente.', 'error');
+        setTimeout(() => { window.location.href = `/financings/credit/delete/${respuestaCredito.id}`; }, 1000);
     }
 
 }

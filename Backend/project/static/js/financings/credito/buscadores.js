@@ -94,60 +94,69 @@ window.openSelect2 = function(type) {
     loadSelect2Data(type);
 }
 
+// Lógica unificada para la selección de opciones en Select2
 window.selectSelect2Option = async function(type, id, text) {
+    const searchInput = document.getElementById(`${type}_search_input`);
+    const dropdown = document.getElementById(`${type}_dropdown`);
 
-    const searchInput =
-        document.getElementById(`${type}_search_input`);
+    if (searchInput) searchInput.value = text;
+    if (dropdown) dropdown.classList.add('hidden');
 
-    const dropdown =
-        document.getElementById(`${type}_dropdown`);
-
-    if (!searchInput || !dropdown) {
-        console.error(`No se encontraron elementos para ${type}`);
-        return;
-    }
-
-
-    // Mostrar texto seleccionado
-    searchInput.value = text;
-
-
-    // Determinar input hidden
+    // 1. Asignar valor a los inputs ocultos (Hidden Inputs) según el tipo
     let hiddenInputId;
-
     if (type === 'customer') {
-
         hiddenInputId = 'customer_id';
-
     } else if (type === 'advisor') {
-
         hiddenInputId = 'asesor_de_credito';
-
     } else if (type === 'existing_credit') {
-
         hiddenInputId = 'credito_vigente';
-
+    } else if (type === 'fiador') {
+        hiddenInputId = 'json_fiador_customer_id';
     }
 
-
-    const hiddenInput =
-        document.getElementById(hiddenInputId);
-
-
-    if (hiddenInput) {
-        hiddenInput.value = id;
+    if (hiddenInputId) {
+        const hiddenInput = document.getElementById(hiddenInputId);
+        if (hiddenInput) {
+            hiddenInput.value = id;
+            console.log(`Valor asignado a ${hiddenInputId}: ${id}`);
+            
+        }
     }
 
-
-    // Cerrar dropdown
-    dropdown.classList.add('hidden');
-
-
-    // Si seleccionó un crédito vigente
+    // 2. Acciones específicas por tipo
     if (type === 'existing_credit') {
-
         await seleccionarCreditoVigente(id);
+    } 
+    else if (type === 'fiador') {
+        try {
+            // Obtener detalles del cliente/fiador
+            const resClient = await fetch(`${urls_p.api_url_cliente}${id}/`);
+            if (resClient.ok) {
+                const cliente = await resClient.json();
+                const setVal = (elemId, val) => {
+                    const el = document.getElementById(elemId);
+                    if (el) el.value = val || '';
+                };
 
+                setVal('json_fiador_codigo', cliente.customer_code);
+                setVal('json_fiador_nombre', `${cliente.first_name} ${cliente.last_name}`);
+                setVal('json_fiador_tel', cliente.telephone);
+                setVal('json_fiador_foto', cliente.photo);
+            }
+
+            // Obtener y autocompletar datos de información laboral
+            const laboral = await buscarFiadorLaboral(id);
+            if (laboral.length > 0) {
+                const info = laboral[0];
+                document.getElementById('json_fiador_trabajo').value = info.company_name || info.source_of_income || 'N/A';
+                document.getElementById('json_fiador_ingreso').value = info.salary || 0;
+            } else {
+                document.getElementById('json_fiador_trabajo').value = 'N/A';
+                document.getElementById('json_fiador_ingreso').value = 0;
+            }
+        } catch (error) {
+            console.error('Error al autocompletar el fiador:', error);
+        }
     }
 };
 
@@ -496,13 +505,18 @@ export let creditos_seleccionados = []; // Array para almacenar los créditos se
 window.toggleCreditSelection = function(checkbox, creditObj) {
     const creditIdStr = String(creditObj.id);
 
+    const montoElement = document.getElementById('monto');
+
     if (checkbox.checked) {
         selectedCreditsMap.set(creditIdStr, creditObj);
         creditos_seleccionados.push(creditObj.id);
+        
+        montoElement.value = parseFloat(montoElement.value) + creditObj.saldo_actual;
 
     } else {
         selectedCreditsMap.delete(creditIdStr);
         creditos_seleccionados = creditos_seleccionados.filter(c => c !== creditObj.id);
+        montoElement.value = parseFloat(montoElement.value) - creditObj.saldo_actual;
     }
 
     renderSelectedChips();
@@ -570,40 +584,3 @@ export async function buscarFiadorLaboral(clienteId) {
 
 
 
-// Lógica de selección para autocompletar automáticamente el Fiador
-window.selectSelect2Option = async function(type, id, text) {
-    const searchInput = document.getElementById(`${type}_search_input`);
-    const dropdown = document.getElementById(`${type}_dropdown`);
-
-    if (searchInput) searchInput.value = text;
-    if (dropdown) dropdown.classList.add('hidden');
-
-    if (type === 'fiador') {
-        document.getElementById('json_fiador_customer_id').value = id;
-
-        try {
-            // 1. Obtener detalles del cliente
-            const resClient = await fetch(`${urls_p.api_url_cliente}${id}/`);
-            if (resClient.ok) {
-                const cliente = await resClient.json();
-                document.getElementById('json_fiador_codigo').value = cliente.customer_code || '';
-                document.getElementById('json_fiador_nombre').value = `${cliente.first_name} ${cliente.last_name}`;
-                document.getElementById('json_fiador_tel').value = cliente.telephone || '';
-                document.getElementById('json_fiador_foto').value = cliente.photo || '';
-            }
-
-            // 2. Obtener y auto-completar datos de información laboral
-            const laboral = await buscarFiadorLaboral(id);
-            if (laboral.length > 0) {
-                const info = laboral[0];
-                document.getElementById('json_fiador_trabajo').value = info.company_name || info.source_of_income || '';
-                document.getElementById('json_fiador_ingreso').value = info.salary || 0;
-            } else {
-                document.getElementById('json_fiador_trabajo').value = 'N/A';
-                document.getElementById('json_fiador_ingreso').value = 0;
-            }
-        } catch (error) {
-            console.error('Error al autocompletar el fiador:', error);
-        }
-    }
-};
