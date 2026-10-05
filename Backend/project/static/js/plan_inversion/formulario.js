@@ -272,7 +272,7 @@ $("#btnAgregarCredito").click(function() {
                         results: data.map(function (item) {
                             return {
                                 id: item.id,
-                                text: `ID: ${item.id} | Crédito: ${item.codigo_credito} (${item.customer_id.first_name} ${item.customer_id.last_name})`
+                                text: `Crédito: ${item.codigo_credito} (${item.customer_id.first_name} ${item.customer_id.last_name}) - Q ${item.Fsaldo_actual}`
                             };
                         })
                     };
