@@ -242,9 +242,15 @@ export async function registrarDetalle(garantia_id, lista_garantia = []) {
 
 window.finalizeRegistration = finalizeRegistration
 
-async function registrar_pago_boleta (monto, referencia, fecha, boleta, descripcion){
+async function registrar_pago_boleta (credito,desembolso,monto, referencia, fecha, boleta, descripcion){
 
-    await guardar_boleta_desembolso(credit.id, desembolso.id, monto, referencia, fecha, descripcion, boleta);
+    const respuesta =await guardar_boleta_desembolso(credito, desembolso, monto, referencia, fecha, descripcion, boleta);
+    console.log('Respuesta del pago de boleta:', respuesta);
+    if (respuesta === undefined) {
+        showToast('Error al registrar el pago de boleta.', 'error');
+        return null;
+    }
+    return respuesta;
 };
 
 export async function finalizeRegistration(){
@@ -258,6 +264,7 @@ export async function finalizeRegistration(){
         document.getElementById('forma_de_pago'),
         document.getElementById('fecha_inicio'),
         document.getElementById('sucursal_id'),
+        document.getElementById('asesor_de_credito'),
        
         ];
     let isValid = true;
@@ -317,6 +324,7 @@ export async function finalizeRegistration(){
 
 
 async function registro_formulario(forma_desembolso, listado_garantia, creditos_seleccionados = NaN){
+    let credit_id = null;
     try{
         // 1. Lectura del monto principal
         const monto = document.getElementById('monto')?.value || 0;
@@ -332,10 +340,23 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
 
         // 2. Guardar Crédito
         const respuestaCredito = await guardar_credito(monto);
-        const credit_id = respuestaCredito.id || respuestaCredito.pk;
+        
+        credit_id = respuestaCredito.id || respuestaCredito.pk;
+
+        
+        if(!respuestaCredito && respuestaCredito.id === undefined){
+            showToast('Error al guardar el crédito.', 'error');
+            return null;
+        }
 
         // 3. Guardar Desembolso
         const respuestaDesembolso = await guardar_desembolso(credit_id, forma_desembolso, creditos_seleccionados);
+  
+
+        if (!respuestaDesembolso && respuestaDesembolso.id === undefined) {
+            showToast('Error al guardar el desembolso.', 'error');
+            return null;
+        }
         
         let respuestaCreditosCancelados = null;
         let respuestaBoleta = null;
@@ -343,6 +364,14 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
         if (creditos_seleccionados.length > 0) {
             for (let creditoId of creditos_seleccionados) {
                 respuestaCreditosCancelados = await guardar_desembolso(creditoId, 'CANCELACIÓN DE CRÉDITO VIGENTE');
+               
+
+                if (!respuestaCreditosCancelados && respuestaCreditosCancelados.id === undefined) { 
+
+               
+                    showToast(`Error al cancelar el crédito con ID: ${creditoId}.`, 'error');
+                    return null;
+                }
 
                 const formData = new FormData();
                 formData.append('is_paid_off', true);
@@ -352,32 +381,56 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
 
         if (honorarios > 0 && ref_honorarios != ''){
             respuestaBoleta = await registrar_pago_boleta( 
+                credit_id,
+                respuestaDesembolso.id,
                 honorarios,
                 ref_honorarios,
                 document.getElementById('honorarios_fecha').value,
                 document.getElementById('honorarios_doc').files[0],
                 document.getElementById('honorarios_descripcion').value
             );
+
+            
+            if (respuestaBoleta === undefined) {
+                showToast('Error al registrar el pago de honorarios.', 'error');
+                return null;
+            }
         }
 
         if (poliza > 0 && ref_poliza != ''){
             respuestaBoleta = await registrar_pago_boleta(
+                credit_id,
+                respuestaDesembolso.id,
                 poliza,
                 ref_poliza,
                 document.getElementById('poliza_fecha').value,
                 document.getElementById('poliza_doc').files[0],
                 document.getElementById('poliza_descripcion').value
             );
+
+            
+            if ( respuestaBoleta === undefined) {
+                showToast('Error al registrar el pago de póliza de seguro.', 'error');
+                return null;
+            }
         }
 
         if (monto_desembolsado > 0 && ref_monto_desembolsado != ''){
             respuestaBoleta =await registrar_pago_boleta(
+                credit_id,
+                respuestaDesembolso.id,
                 monto_desembolsado,
                 ref_monto_desembolsado,
                 document.getElementById('monto_desembolsado_fecha').value,
                 document.getElementById('monto_desembolsado_doc').files[0],
                 document.getElementById('monto_desembolsado_descripcion').value
             );
+
+            
+            if ( respuestaBoleta === undefined) {
+                showToast('Error al registrar el pago del monto desembolsado.', 'error');
+                return null;
+            }
         }
 
 
@@ -389,6 +442,12 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
 
         if (listaGarantias.length > 0) {
             respuestaGarantia = await registroGarantia(credit_id, sumaTotalGarantia, listaGarantias);
+
+           
+            if (!respuestaGarantia) {
+                showToast('Error al registrar la garantía.', 'error');
+                return null;
+            }
         }
 
         return {
@@ -405,7 +464,7 @@ async function registro_formulario(forma_desembolso, listado_garantia, creditos_
     }catch(e){
         console.error('Error en el registro del formulario:', e);
         showToast('Ocurrió un error durante el registro. Por favor, intente nuevamente.', 'error');
-        setTimeout(() => { window.location.href = `/financings/credit/delete/${respuestaCredito.id}`; }, 1000);
+        setTimeout(() => { window.location.href = `/financings/credit/delete/${credit_id}`; }, 1000);
     }
 
 }
