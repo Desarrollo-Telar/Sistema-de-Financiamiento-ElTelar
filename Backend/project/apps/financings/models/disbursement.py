@@ -12,6 +12,7 @@ class Disbursement(models.Model):
         ('APLICACIÓN GASTOS', 'APLICACIÓN GASTOS'),
         ('APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE', 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE'),
         ('CANCELACIÓN DE CRÉDITO VIGENTE', 'CANCELACIÓN DE CRÉDITO VIGENTE'),
+        ('REESTRUCTURACIÓN DE CRÉDITO VIGENTE', 'REESTRUCTURACIÓN DE CRÉDITO VIGENTE'),
         ('DESEMBOLSAR', 'DESEMBOLSAR')
     ]
     credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE, verbose_name='Credito')

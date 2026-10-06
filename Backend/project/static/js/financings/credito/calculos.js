@@ -162,7 +162,7 @@ export function calculateDisbursementTotals() {
                 'text-lg font-bold font-mono text-emerald-600';
 
             statusMsg.textContent =
-                '✓ El desglose cuadra exactamente con el crédito.';
+                'El desglose cuadra exactamente con el crédito.';
 
             statusMsg.className =
                 'text-[11px] text-emerald-600 font-medium';
@@ -175,7 +175,7 @@ export function calculateDisbursementTotals() {
                 'text-lg font-bold font-mono text-amber-600';
 
             statusMsg.textContent =
-                `⚠️ Sobrante sin asignar de Q ${montoTotalDesembolsoDiferencia.toLocaleString(
+                `Sobrante sin asignar de Q ${montoTotalDesembolsoDiferencia.toLocaleString(
                     'es-GT',
                     {
                         minimumFractionDigits: 2,
@@ -194,7 +194,7 @@ export function calculateDisbursementTotals() {
                 'text-lg font-bold font-mono text-red-600';
 
             statusMsg.textContent =
-                `❌ Exceso asignado de Q ${Math.abs(
+                `Exceso asignado de Q ${Math.abs(
                     montoTotalDesembolsoDiferencia
                 ).toLocaleString(
                     'es-GT',

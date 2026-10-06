@@ -14,6 +14,8 @@ import {guaranteeList} from './garantia.js'
 import { showToast } from './style.js';
 import {creditos_seleccionados } from './buscadores.js'
 
+let listado_formas = ['APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE', 'REESTRUCTURACIÓN DE CRÉDITO VIGENTE'];
+
 function get_tasaInteres() {
     const tasaInput = document.getElementById('tasa_interes');
     const tasa = tasaInput ? parseFloat(tasaInput.value) || 0 : 0;
@@ -84,10 +86,10 @@ export async function guardar_desembolso(credit_id, forma_desembolso, credito_ca
     const montoDesembolsado =
         parseFloat(document.getElementById('monto_desembolsado')?.value) || 0;
 
-    if (forma_desembolso === 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE' && credito_cancelado) {
+    if (listado_formas.includes(forma_desembolso) && credito_cancelado) {
         try {
             const creditoObtenido = await get_credit(credito_cancelado);
-            descripcion = `${descripcion}\nSE AMPLIÓ DEL CRÉDITO: ${creditoObtenido.codigo_credito}`;
+            descripcion = `${descripcion}\nSE ${forma_desembolso}: ${creditoObtenido.codigo_credito}`;
         } catch (e) {
             console.warn("No se pudo obtener la información del crédito anterior:", e);
         }
@@ -286,8 +288,9 @@ export async function finalizeRegistration(){
 
     console.log(`Listado de Garantias: ${guaranteeList}`);
     console.log(`Creditos a Cancelar: ${creditos_seleccionados}\n `);
+    
 
-    if (forma_desembolso === 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE' && creditos_seleccionados.length === 0) {
+    if (listado_formas.includes(forma_desembolso) && creditos_seleccionados.length === 0) {
         showToast('Debe seleccionar al menos un crédito vigente para aplicar la ampliación.', 'error');
         isValid = false;
         return;

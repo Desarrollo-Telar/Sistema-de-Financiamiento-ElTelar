@@ -7,7 +7,7 @@ let activeTab = 'credito';
 
 let existingCreditsSearchTimeout = null;
 
-
+let listado_formas = ['APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE', 'REESTRUCTURACIÓN DE CRÉDITO VIGENTE'];
 
 window.toggleGracePeriod = function () {
     const formaPago = document.getElementById('forma_de_pago').value;
@@ -29,7 +29,7 @@ window.toggleDisbursementMode = function () {
     const mode = document.getElementById('forma_desembolso').value;
     const panel = document.getElementById('existing-credits-panel');
 
-    if (mode === 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE' || mode === 'CANCELACIÓN DE CRÉDITO VIGENTE') {
+    if (listado_formas.includes(mode)) {
         panel.classList.remove('hidden');
     } else {
         panel.classList.add('hidden');
