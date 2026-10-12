@@ -477,6 +477,8 @@ class Payment(models.Model):
                 if cuota is not None:
                     cuota.saldo_pendiente = saldo_pendiente
                     cuota.interest = interes
+                    cuota.status = False
+                    
                     cuota.save()
 
                 descuento_activo.recalcular_cuota = False
