@@ -12,30 +12,28 @@ def model_to_dict(instance, exclude_fields=None):
         exclude_fields = ['_state', 'password', 'uuid']
     
     data = {}
-
+    
     for field in instance._meta.fields:
         field_name = field.name
         if field_name in exclude_fields:
             continue
 
-        #  REEMPLAZO ÓPTIMO PARA FK / OneToOne:
-        # Obtiene el ID directamente de memoria (ej. credit_id_id) sin hacer SQL extra
-        if field.is_relation and field.many_to_one:
+        # Validamos si es una relación (ForeignKey o OneToOneField)
+        if field.is_relation and (field.many_to_one or field.one_to_one):
+            # Obtenemos el ID directamente usando el attname (ej: pago_id, cliente_id)
             value = getattr(instance, field.attname)
-
-        #  Si no es relación, obtenemos el valor normal del campo
         else:
             value = getattr(instance, field_name)
 
-            #  Decimales
+            # Decimales
             if isinstance(value, Decimal):
                 value = float(value)
 
-            #  Fechas y datetimes
+            # Fechas y datetimes
             elif isinstance(value, (date, datetime)):
                 value = value.isoformat()
 
-            #  Archivos o imágenes
+            # Archivos o imágenes
             elif isinstance(value, models.fields.files.FieldFile):
                 if value and value.name:
                     try:
@@ -48,6 +46,7 @@ def model_to_dict(instance, exclude_fields=None):
         data[field_name] = value
 
     return data
+
 
 
 
