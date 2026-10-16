@@ -50,7 +50,7 @@ def listando_logs(request):
 
     # 5. Paginación directa sobre el QuerySet filtrado
     page_number = request.GET.get("page", 1)
-    paginator = Paginator(system_log, 10)
+    paginator = Paginator(system_log, 50)
     page_obj = paginator.get_page(page_number)
 
     context = {
@@ -97,7 +97,7 @@ def listando_user_logs(request):
 
     # Paginación
     page_number = request.GET.get("page", 1)
-    paginator = Paginator(logs_qs, 15)
+    paginator = Paginator(logs_qs, 50)
     page_obj = paginator.get_page(page_number)
 
     context = {
