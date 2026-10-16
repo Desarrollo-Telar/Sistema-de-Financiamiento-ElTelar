@@ -13,7 +13,8 @@ class Disbursement(models.Model):
         ('APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE', 'APLICACIÓN DE AMPLIACIÓN DE CRÉDITO VIGENTE'),
         ('CANCELACIÓN DE CRÉDITO VIGENTE', 'CANCELACIÓN DE CRÉDITO VIGENTE'),
         ('REESTRUCTURACIÓN DE CRÉDITO VIGENTE', 'REESTRUCTURACIÓN DE CRÉDITO VIGENTE'),
-        ('DESEMBOLSAR', 'DESEMBOLSAR')
+        ('DESEMBOLSAR', 'DESEMBOLSAR'),
+        ('DESEMBOLSAR HONORARIOS', 'DESEMBOLSAR HONORARIOS')
     ]
     credit_id = models.ForeignKey(Credit, on_delete=models.CASCADE, verbose_name='Credito')
     forma_desembolso = models.CharField("Forma de Desembolso", choices=formaDesembolso, max_length=75, blank=False, null=False)
