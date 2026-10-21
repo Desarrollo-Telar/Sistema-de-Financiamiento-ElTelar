@@ -62,7 +62,8 @@ class CreditSerializer(serializers.ModelSerializer):
             'sucursal',
             'asesor_de_credito',
             'plazo_gracia',
-            'fecha_finalizacion_gracia'
+            'fecha_finalizacion_gracia',
+            'sub_destino'
         ]
 
     def to_representation(self, instance):

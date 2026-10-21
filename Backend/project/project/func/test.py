@@ -17,6 +17,9 @@ from apps.users.models import User
 from apps.subsidiaries.models import Subsidiary
 from apps.accountings.models import Income, Egress
 from apps.FinancialInformation.models import GastoCliente, TipoGasto
+from apps.InvestmentPlan.models import InvestmentPlan
+from apps.InvestmentPlan.generar_documento.reconocimiento import generar_contrato
+from apps.InvestmentPlan.generar_documento.generar_resolucion_credito import generar_resolucion_credito
 # Scripts
 from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
 from scripts.cargar_fiadores.vincular import main_vincular
@@ -33,6 +36,30 @@ from apps.financings.utils import calcular_capital, calcular_interes, calcular_m
 # Tiempo
 from datetime import datetime, timedelta, timezone
 from django.utils import timezone
+
+
+
+datos = {
+    "numero_asociado": "00125",
+    "fecha": "21/10/2026",
+    "acta": "25-2026",
+    "asociado": "JUAN CHOC",
+    "calidad_asociado": "PENDIENTE",
+    "estado": "APROBADO",
+    "descripcion": "Crédito para capital de trabajo",
+    "monto": "Q 15,000.00",
+    "destino": "Capital de trabajo",
+    "plazo": "12 meses",
+    "forma_pago": "Mensual",
+    "tasa_interes": "10%",
+    "desembolso": "Q 15,000.00",
+    "fecha_primer_pago": "21/11/2026",
+    "garantia": "Garantía fiduciaria",
+    "otras_condiciones": "Sujeto a verificación documental",
+    "firma_1": "Firma",
+    "firma_2": "Firma",
+}
+
 
 def generar_numero_identificacion_sucursal(instance, count):
     if instance.sucursal is None:
@@ -253,9 +280,15 @@ def limpiar_y_formatear_nit_estandarizado():
 
 if __name__ == "__main__":
   try:
-      numero_referencia = "1435007843"
-      boleta = Payment.objects.filter( Q(numero_referencia=numero_referencia)| Q(numero_referencia__regex=rf"^{numero_referencia}-D\d*$"))
-      print(boleta)
+    credito = InvestmentPlan.objects.get(id = 2)
+    garantias = credito.garantias
+      
+    print("Documento creado:", generar_contrato(credito, garantias))
+    print( "Documento Creado:",  generar_resolucion_credito(
+        datos,
+        "resolucion_credito.docx"
+    ))
+
     
    
 

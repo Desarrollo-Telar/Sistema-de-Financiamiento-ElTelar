@@ -720,6 +720,7 @@ $("#frmInvestmentPlan").on("submit", async function(e) {
         total_value_of_the_product_or_service: montoInicial, // Ajustar según lógica de negocio si cambia
         initial_amount: montoInicial,
         monthly_amount:montoInicial,
+        sub_destino: $("#sub_destino").val() || null,
         
         fecha_inicio: $("#fecha_inicio").val() || null,
         plazo: $("#plazo").val() ? parseInt($("#plazo").val()) : null,

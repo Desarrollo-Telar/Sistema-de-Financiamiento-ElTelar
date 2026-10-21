@@ -36,6 +36,8 @@ class Creditor(models.Model):
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
     fecha_cancelacion = models.DateField(verbose_name="Fecha de cancelacion", blank=True, null=True)
     fecha_entrar_en_mora = models.DateField(verbose_name="Fecha en entrar en Mora", blank=True, null=True)
+    sub_destino = models.TextField("Sub destino", blank=True, null=True)
+
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)
 
@@ -111,6 +113,7 @@ class Insurance(models.Model):
     sucursal = models.ForeignKey(Subsidiary, on_delete=models.SET_NULL, blank=True, null=True)
     fecha_cancelacion = models.DateField(verbose_name="Fecha de cancelacion", blank=True, null=True)
     fecha_entrar_en_mora = models.DateField(verbose_name="Fecha en entrar en Mora", blank=True, null=True)
+    sub_destino = models.TextField("Sub destino", blank=True, null=True)
     
     def get_boleta(self):
         return '{}{}'.format(MEDIA_URL,self.boleta)

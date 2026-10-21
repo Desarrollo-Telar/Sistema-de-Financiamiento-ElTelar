@@ -72,6 +72,7 @@ class InvestmentPlan(models.Model):
     diganostico_oportunidad = models.TextField("Diagnóstico de Oportunidades", blank=True, null=True)
     mitigadores = models.TextField("Mitigadores", blank=True, null=True)
     evaluacion_mercado = models.TextField("Evaluación del Mercado", blank=True, null=True)
+    sub_destino = models.TextField("Sub destino", blank=True, null=True)
 
     
     def fecha_primer_pago(self):

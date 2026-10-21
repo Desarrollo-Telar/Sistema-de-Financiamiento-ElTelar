@@ -33,6 +33,7 @@ class Address(models.Model):
     subsidiary = models.ForeignKey(Subsidiary, on_delete=models.CASCADE, blank=True, null=True)
     codigo_postal = models.CharField("Codigo Postal", blank=True, null=True, max_length=100)
     creation_date = models.DateTimeField("Fecha de Creación", auto_now_add=True)
+    direccion_url = models.TextField("Direccion url", blank=True, null=True)
 
     def __str__(self):
         return f'{self.street}, {self.city} '

@@ -34,6 +34,7 @@ class InvestmentPlanSerializer(serializers.ModelSerializer):
             'diganostico_oportunidad',
             'mitigadores',
             'evaluacion_mercado',
+            'sub_destino'
 
 
         ]

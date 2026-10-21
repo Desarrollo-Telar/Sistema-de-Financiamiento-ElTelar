@@ -132,6 +132,25 @@ class Customer(models.Model):
 
     def get_telefono(self):
         return self.telephone if self.telephone else ''
+
+    def info_laboral(self):
+        from apps.FinancialInformation.models import (
+                    WorkingInformation,
+                    OtherSourcesOfIncome
+                )
+
+        info_trabajo = WorkingInformation.objects.filter(customer_id=self).first()
+        info_ingresos = OtherSourcesOfIncome.objects.filter(customer_id=self).first()
+
+        if info_trabajo is None and info_ingresos is None:
+            return ''
+
+        if info_trabajo is not None:
+            return info_trabajo.company_name
+
+        if info_ingresos is not None:
+            return info_ingresos.source_of_income
+        
     
     def total_ingresos(self):
         

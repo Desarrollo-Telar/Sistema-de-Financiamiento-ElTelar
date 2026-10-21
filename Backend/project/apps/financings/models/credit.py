@@ -84,6 +84,7 @@ class Credit(models.Model):
 
     plazo_gracia =  models.IntegerField("Plazo de Gracia", blank=True, null=True)
     fecha_finalizacion_gracia = models.DateField("Fecha de Finalizacion de Gracia",blank=True, null=True)
+    sub_destino = models.TextField("Sub destino", blank=True, null=True)
     
     def __str__(self):
         return f'{self.codigo_credito} {self.customer_id}'
