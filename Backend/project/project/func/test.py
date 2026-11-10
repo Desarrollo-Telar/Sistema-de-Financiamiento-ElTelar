@@ -48,7 +48,7 @@ datos = {
     "estado": "APROBADO",
     "descripcion": "Crédito para capital de trabajo",
     "monto": "Q 15,000.00",
-    "destino": "Capital de trabajo",
+    "destino": "CONSUMO",
     "plazo": "12 meses",
     "forma_pago": "Mensual",
     "tasa_interes": "10%",

@@ -42,6 +42,15 @@ urlpatterns = [
     path('qr/<str:data>/', views.generate_qr, name='generate_qr'),
     path('pdf/<int:id>', generate_pdf.generar_pdf, name='pdf'),
     path('pdf/dashboad/', generate_pdf.generar_pdf_dash, name='pdf_dash'),
+
+    # DOCUMENTOS WORD (.DOCX)
+    path('documentos/', views.panel_descarga_pagare, name='panel_descarga_documentos'),
+    path('documentos/pagare/', views.panel_descarga_pagare, name='panel_descarga_pagare'),
+    path('documentos/pagare/ejemplo/', views.descargar_pagare_ejemplo, name='descargar_pagare_ejemplo'),
+    path('documentos/pagare/<int:credit_id>/', views.descargar_pagare_credito, name='descargar_pagare_credito'),
+    path('documentos/contrato/ejemplo/', views.descargar_contrato_ejemplo, name='descargar_contrato_ejemplo'),
+    path('documentos/contrato/directo/ejemplo/', views.descargar_contrato_directo_ejemplo, name='descargar_contrato_directo_ejemplo'),
+    path('documentos/contrato/fiador/ejemplo/', views.descargar_contrato_fiador_ejemplo, name='descargar_contrato_fiador_ejemplo'),
     path('boleta_procesada/', views.agradecimeinto, name='boleta_procesada'),
     path('cliente/<str:uuid>/', subida_documento, name='subida_documento_cliente'),
     path('customer/checklist/<str:customer_code>/', views.check_list_customer, name='check_list_customer'),

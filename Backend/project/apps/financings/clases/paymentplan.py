@@ -56,6 +56,13 @@ class PaymentPlan:
         valid_day = min(target_day, last_day)
         return next_month.replace(day=valid_day)
 
+    def calcular_fecha_maxima(self, current_date):
+        target_day = self.original_day if self.original_day != 0 else current_date.day
+        next_month = current_date + relativedelta(months=1, days = 16)
+        last_day = calendar.monthrange(next_month.year, next_month.month)[1]
+        valid_day = min(target_day, last_day)
+        return next_month.replace(day=valid_day)
+
     def calculo_intereses(self, dia=None, monto=None):
         if monto is None:
             monto = self.monto_inicial
@@ -195,6 +202,7 @@ class PaymentPlan:
             'mes': 1,
             'fecha_inicio': mes_inicio,
             'fecha_final': mes_fin,
+            'fecha_max': self.calcular_fecha_maxima(mes_inicio),
             'Ffecha_inicio': mes_inicio.date,
             'Ffecha_final': mes_fin.date,
             'monto_prestado': self.monto_inicial,
@@ -269,6 +277,7 @@ class PaymentPlan:
                 'mes': mes,
                 'fecha_inicio': mes_inicial,
                 'fecha_final': mes_final,
+                'fecha_max': self.calcular_fecha_maxima(mes_inicial),
                 'Ffecha_inicio': mes_inicial.date,
                 'Ffecha_final': mes_final.date,
                 'monto_prestado': monto_otorgado,

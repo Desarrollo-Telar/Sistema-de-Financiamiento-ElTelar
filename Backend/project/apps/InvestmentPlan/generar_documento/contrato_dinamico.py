@@ -245,9 +245,9 @@ def texto(credito, garantias):
         'el Registro Nacional de las Personas -RENAP-, de la República de Guatemala; '
         f'actúo en mi calidad de ADMINISTRADOR ÚNICO Y REPRESENTANTE LEGAL de {EMPRESA}, '
         'calidad que acredito con mi nombramiento, el cual está contenido en el acta notarial que contiene mi nombramiento, autorizada en la ciudad de Cobán Alta Verapaz, de fecha diecisiete de junio del año dos mil veinticuatro, por el Notario Adán Leal Natareno, la que se encuentra debidamente inscrita en el Registro Mercantil bajo el número SETECIENTOS CUARENTA Y SIETE MIL SEISCIENTOS CINCO (747605), '
-        'folio SETECIENTOS NOVENTA Y SIETE (797), del libro OCHOCIENTOS TREINTA Y TRES (833), de Auxiliares de Comericio, según expediente número SETENTA Y TRES MIL CUARENTA GUION DOS MIL VEINTICUATRO (73040-2024), según expediente número SETENTA Y ' 
+        'folio SETECIENTOS NOVENTA Y SIETE (797), del libro OCHOCIENTOS TREINTA Y TRES (833), de Auxiliares de Comercio, según expediente número SETENTA Y TRES MIL CUARENTA GUION DOS MIL VEINTICUATRO (73040-2024), según expediente número SETENTA Y ' 
         f'TRES MIL CUARENTA GUION DOS MIL VEINTICUATRO (73040-2024), según inscripción de fecha veinticinco de junio del año dos mil veinticuatro; según documento emitido por el Registro Mercantil con número quinientos veintisiete mil cuatrocientos noventa y tres; documento en el que hago consta que la empresa denominada {EMPRESA}, se encuentra debidamente inscrita en el Registro Mercantil, bajo el número CIENTO SESENTA Y SEIS MIL CIENTO VEINTE (166120), folio OCHOCIENTOS CINCUENTA Y NUEVE (859), del libro '
-        'consignadas, hallamos en el libre ejercicio de nuestros derechos civiles y que por el presente acto celebramos CONTRATO DE RECONOCIMIENTO DE DEUDA, conteniendo en las cláusulas siguentes: ' 
+        'consignadas, hallamos en el libre ejercicio de nuestros derechos civiles y que por el presente acto celebramos CONTRATO DE RECONOCIMIENTO DE DEUDA, conteniendo en las cláusulas siguientes: ' 
         
     )
 
@@ -272,22 +272,22 @@ def texto(credito, garantias):
             cuota = dinero(pago['cuota'])
             fecha_pago = fecha_es(pago['fecha_final'])
             etiqueta = 'último' if i == len(pagos) else f' {mes}'
-            pagina_2.append(f'debiendo hacer el {etiqueta} el dia {fecha_pago}; ')
+            pagina_2.append(f'debiendo hacer el {etiqueta} pago del dia {fecha_pago}; ')
     else:
         pagina_2.append('[PLAN DE PAGOS PENDIENTE DE GENERAR]; ')
 
     pagina_2.append(
         'los pagos deberán efectuarse mediante depósito a la cuenta monetaria número '
-        f'{sucursal.numero_de_cuenta_banco} del Banco {sucursal.nombre_banco} a nombre de {EMPRESA}, '
+        f'{sucursal.numero_de_cuenta_banco} del {sucursal.nombre_banco} a nombre de {EMPRESA}, '
         f'ubicada en {sucursal.get_direccion()}, sin necesidad de requerimiento o cobro alguno; '
         f'b) Manifiesto yo, {nombre(deudor)}, que la cantidad que me fue otorgada por la entidad {EMPRESA}, la invertiré exclusivamente en:  '
-        'tal y como conta en mi solicitud de crédito, por medio de transferencia bancaria'
-        f'a la cuenta { numero_cuenta} del Banco '
+        'tal y como conta en mi solicitud de crédito, por medio de transferencia bancaria '
+        f'a la cuenta { numero_cuenta} del Banco xxxxxx'
         f'{nombre_banco}, a nombre de {nombre(deudor)}; '
         f'c) La falta de pago de la cantidad adeudada, dará derecho a {EMPRESA}, por medio de su ADMINISTRADOR ÚNICO Y REPRESENTANTE LEGRAL, representada por el señor {REPRESENTANTE}, '
         'a dar por vencido el plazo y al cobro de la cantidad adeudada, intereses y costas '
-        'procesales y del presente documento debidamente legalizado por Notario en sus firmas servirá de titulo ejecutivo para iniciar el juicio correspondiente; y en esta forma se podra dar vencido el plazo si se le da al dinero mutuado, un destino diferente para el cual fue concedido, según la solicitud de crédito; y, resolucion emitida por  '
-        f'de la entidad: {EMPRESA}, por medio de su ADMINISTRADOR ÚNICO Y REPRESENTANTE LEGAL, contenida en el Acta   , de fecha {fecha_es()}, mediante la cual fue autorizada el presente crédito; '
+        'procesales y del presente documento debidamente legalizado por Notario en sus firmas servirá de título ejecutivo para iniciar el juicio correspondiente; y en esta forma se podrá dar vencido el plazo si se le da al dinero mutuado, un destino diferente para el cual fue concedido, según la solicitud de crédito; y, resolución  emitida por  '
+        f'de la entidad: {EMPRESA}, por medio de su ADMINISTRADOR ÚNICO Y REPRESENTANTE LEGAL, contenida en el Acta  xxxxxx , de fecha {fecha_es()}, mediante la cual fue autorizada el presente crédito; '
         f'd) Para los efectos legales, yo, {nombre(deudor)}, '
     )
 

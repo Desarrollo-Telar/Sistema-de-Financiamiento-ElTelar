@@ -22,7 +22,7 @@ def sobre_que_es_pago(self):
     
 
     if self.credit is not None:
-        cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit).order_by('fecha_limite')
+        cuotas = self.get_plan_pagos().objects.filter(credit_id=self.credit).order_by('fecha_limite')[:3]
         # Historial de pagos anteriores (último pago realizado)
         historial_a = self.get_estado_cuenta().objects.filter(credit=self.credit, description='PAGO DE CREDITO').order_by('-id').first()
 
