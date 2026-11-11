@@ -365,7 +365,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula PLAZO
     p_plazo = _agregar_parrafo_justificado(doc)
-    p_plazo.add_run("PLAZO: ").bold = True
+    p_plazo.add_run("A. PLAZO: ").bold = True
     p_plazo.add_run(
         f"El plazo del presente pagaré será de "
         
@@ -379,7 +379,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula INTERESES ORDINARIOS
     p_intereses = _agregar_parrafo_justificado(doc)
-    p_intereses.add_run("INTERESES ORDINARIOS: ").bold = True
+    p_intereses.add_run("B. INTERESES ORDINARIOS: ").bold = True
     p_intereses.add_run(
         "LA PARTE DEUDORA reconoce y se obliga a pagar el capital, cargos y los intereses aplicables. "
         f"Sobre el capital adeudado, se generará un interés total del {datos.get('tasa_interes_letras', '')} por ciento "
@@ -390,7 +390,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula AMORTIZACIONES
     p_amort = _agregar_parrafo_justificado(doc)
-    p_amort.add_run("AMORTIZACIONES: ").bold = True
+    p_amort.add_run("C. AMORTIZACIONES: ").bold = True
     p_amort.add_run(
         f"LA PARTE DEUDORA deberá pagar el capital, cargos, los intereses y cualquier impuesto aplicable en "
         f"{datos.get('numero_cuotas_letras', '')} cuota(s). La(s) cuota(s) incluye(n) el cálculo de los intereses "
@@ -402,12 +402,12 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula CALENDARIO DE PAGOS
     p_cal = _agregar_parrafo_justificado(doc)
-    p_cal.add_run("CALENDARIO DE PAGOS: ").bold = True
+    p_cal.add_run("D. CALENDARIO DE PAGOS: ").bold = True
     p_cal.add_run("La(s) cuota(s) se deberá(n) pagar en la(s) fechas pactadas según la tabla de amortización adjunta.")
 
     # Cláusula FORMA Y LUGAR DE PAGO
     p_forma = _agregar_parrafo_justificado(doc)
-    p_forma.add_run("FORMA Y LUGAR DE PAGO: ").bold = True
+    p_forma.add_run("E. FORMA Y LUGAR DE PAGO: ").bold = True
     p_forma.add_run(
         f"El pago del capital se hará mediante {datos.get('amortizaciones_capital_texto', 'una (1) amortización (es)')}, "
         f"más los intereses, cargos y los impuestos aplicables en {datos.get('amortizaciones_interes_cuotas', 'DOCE (12) amortización(es)')}. "
@@ -423,7 +423,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula CARGO POR ATRASO
     p_atraso = _agregar_parrafo_justificado(doc)
-    p_atraso.add_run("CARGO POR ATRASO: ").bold = True
+    p_atraso.add_run("F. CARGO POR ATRASO: ").bold = True
     p_atraso.add_run(
         "En caso de incumplimiento, que se producirá por la falta de pago de cualquiera de las cantidades pactadas "
         "en las fechas establecidas en la cláusula “E” de este documento, y sin que por ello se considere prorrogado el Plazo, "
@@ -434,7 +434,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula ORDEN DE PAGOS
     p_orden_p = _agregar_parrafo_justificado(doc)
-    p_orden_p.add_run("ORDEN DE PAGOS: ").bold = True
+    p_orden_p.add_run("G. ORDEN DE PAGOS: ").bold = True
     p_orden_p.add_run(
         "Todo pago que realice LA PARTE DEUDORA se aplicará, en primer lugar, a los cargos por atraso que se hayan generado "
         "y, al liquidar el monto correspondiente, en segundo lugar se aplicará a los intereses vencidos, en tercer lugar "
@@ -444,7 +444,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula REFINANCIAMIENTO
     p_ref = _agregar_parrafo_justificado(doc)
-    p_ref.add_run("REFINANCIAMIENTO: ").bold = True
+    p_ref.add_run("H. REFINANCIAMIENTO: ").bold = True
     p_ref.add_run(
         "Sin perjuicio de los derechos que incorpora el presente pagaré y la exigencia de estos, El ACREEDOR podrá recibir "
         "solicitudes para el refinanciamiento de la Suma Adeudada. El ACREEDOR podrá analizar las solicitudes de refinanciamiento "
@@ -453,7 +453,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula CAMBIO DE CONDICIONES
     p_cambio = _agregar_parrafo_justificado(doc)
-    p_cambio.add_run("CAMBIO DE CONDICIONES: ").bold = True
+    p_cambio.add_run("I. CAMBIO DE CONDICIONES: ").bold = True
     p_cambio.add_run(
         "En caso que algún ente regulador o alguna entidad debidamente autorizada para el efecto estableciera tasas de "
         "interés máximas para operaciones aquí previstas, se aplicarán las siguientes reglas: (i) los intereses que devengará "
@@ -467,7 +467,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula CEDIBILIDAD
     p_ced = _agregar_parrafo_justificado(doc)
-    p_ced.add_run("CEDIBILIDAD: ").bold = True
+    p_ced.add_run("J. CEDIBILIDAD: ").bold = True
     p_ced.add_run(
         "El ACREEDOR podrá transferir y negociar en cualquier forma sus derechos provenientes del presente pagaré a cualquier "
         "título sin necesidad de previa autorización, debiendo únicamente notificar de la cesión a LA PARTE DEUDORA. "
@@ -477,7 +477,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula VENCIMIENTO ANTICIPADO
     p_va = _agregar_parrafo_justificado(doc)
-    p_va.add_run("VENCIMIENTO ANTICIPADO: ").bold = True
+    p_va.add_run("K. VENCIMIENTO ANTICIPADO: ").bold = True
     p_va.add_run("EL ACREEDOR podrá dar por vencido el plazo del presente pagaré y exigir el pago de la totalidad de la suma adeudada en los casos siguientes:")
 
     _agregar_item_lista(doc, "", "Si los bienes de LA PARTE DEUDORA fueren objeto de embargo o en caso de insolvencia o quiebra.")
@@ -495,7 +495,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula COSTAS Y GASTOS
     p_costas = _agregar_parrafo_justificado(doc)
-    p_costas.add_run("COSTAS Y GASTOS: ").bold = True
+    p_costas.add_run("L. COSTAS Y GASTOS: ").bold = True
     p_costas.add_run(
         "Las costas judiciales, honorarios y cualquier otro gasto que se genere directa o indirectamente en virtud de la ejecución "
         "del presente pagaré, serán todos por cuenta única y exclusiva de LA PARTE DEUDORA, y devengará cargos por atraso en la misma "
@@ -504,7 +504,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
 
     # Cláusula PACTOS PROCESALES
     p_pactos = _agregar_parrafo_justificado(doc)
-    p_pactos.add_run("PACTOS PROCESALES: ").bold = True
+    p_pactos.add_run("M. PACTOS PROCESALES: ").bold = True
     p_pactos.add_run("Para el efectivo cumplimiento de sus obligaciones, LA PARTE DEUDORA expresamente:")
 
     _agregar_item_lista(doc, "", "Renuncia a cualquier cobro o requerimiento alguno, necesidad de protesto del presente pagaré (por lo que el presente pagaré se emite \"libre de protesto\"), aviso de falta de pago, requerimiento de pago y/o actos similares exigidos para la vigencia y ejecutabilidad de los derechos y acciones aquí contenidos.")

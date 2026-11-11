@@ -1,0 +1,714 @@
+/* ==========================================================================
+   INVESTMENT PLAN - GLASSMORPHISM STYLESHEET
+   Sistema de Financiamiento El Telar S.A.
+   ========================================================================== */
+
+:root {
+    --brand-red-deep: #660708;
+    --brand-red-dark: #A4161A;
+    --brand-red-mid: #BA181B;
+    --brand-red-light: #E5383B;
+    --brand-red-soft: rgba(186, 24, 27, 0.08);
+
+    --emerald-600: #059669;
+    --emerald-500: #10b981;
+    --emerald-soft: rgba(16, 185, 129, 0.12);
+
+    --amber-600: #d97706;
+    --amber-soft: rgba(217, 119, 6, 0.12);
+
+    --sky-600: #0284c7;
+    --sky-soft: rgba(2, 132, 199, 0.1);
+
+    --dark-card: #161A1D;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+
+    --glass-bg: rgba(255, 255, 255, 0.82);
+    --glass-bg-subtle: rgba(255, 255, 255, 0.65);
+    --glass-bg-input: rgba(255, 255, 255, 0.92);
+    --glass-border: rgba(255, 255, 255, 0.9);
+    --glass-border-card: rgba(226, 232, 240, 0.7);
+    --glass-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(164, 22, 26, 0.03);
+    --glass-shadow-hover: 0 16px 40px -5px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(164, 22, 26, 0.05);
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+}
+
+/* Base Form Container */
+.plan-inversion-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 5rem;
+    font-family: 'Quicksand', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text-primary);
+}
+
+/* Glass Panels */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-panel:hover {
+    box-shadow: var(--glass-shadow-hover);
+}
+
+/* Glass Card (elementos internos) */
+.glass-card {
+    background: var(--glass-bg-subtle);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border-card);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    transition: all 0.25s ease;
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(186, 24, 27, 0.25);
+}
+
+/* Header Banner Principal */
+.plan-header-banner {
+    background: #A4161A;
+    color: #ffffff;
+    border-radius: var(--radius-xl);
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 12px 32px rgba(102, 7, 8, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.plan-header-banner::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.plan-header-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+}
+
+.plan-header-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0;
+}
+
+/* Availability Badge / Chip */
+.disponibilidad-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1.25rem;
+    text-align: right;
+}
+
+.disponibilidad-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.85);
+    display: block;
+    font-weight: 600;
+}
+
+.disponibilidad-value {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffffff;
+    font-family: 'JetBrains Mono', monospace, sans-serif;
+}
+
+/* Section Titles with Icon Badges */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.section-icon-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--brand-red-soft);
+    color: var(--brand-red-mid);
+    font-size: 1rem;
+}
+
+/* Glass Inputs & Selects */
+.glass-input, .glass-select, .glass-textarea {
+    width: 100%;
+    background: var(--glass-bg-input);
+    border: 1.5px solid var(--glass-border-card);
+    border-radius: var(--radius-md);
+    padding: 0.65rem 0.95rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.glass-input:focus, .glass-select:focus, .glass-textarea:focus {
+    background: #ffffff;
+    border-color: var(--brand-red-mid);
+    box-shadow: 0 0 0 3px rgba(186, 24, 27, 0.12);
+    outline: none;
+}
+
+.glass-input:disabled, .glass-select:disabled, .glass-input[readonly] {
+    background: rgba(241, 245, 249, 0.85);
+    color: var(--text-secondary);
+    border-color: rgba(203, 213, 225, 0.6);
+    cursor: not-allowed;
+}
+
+.form-label-custom {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.form-label-custom .req {
+    color: var(--brand-red-mid);
+    margin-left: 2px;
+}
+
+/* Estado de Aprobación Badge Dinámico */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.825rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+}
+
+.status-pill.status-pendiente {
+    background: var(--amber-soft);
+    color: var(--amber-600);
+    border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.status-pill.status-aceptado {
+    background: var(--emerald-soft);
+    color: var(--emerald-600);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+}
+
+.status-pill.status-negado {
+    background: rgba(220, 38, 38, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+/* Banner de Alerta al Aprobar */
+.approved-guarantee-alert {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.08) 100%);
+    border: 1.5px solid rgba(16, 185, 129, 0.4);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    animation: fadeInDown 0.35s ease;
+}
+
+.approved-guarantee-alert .alert-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #059669;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.approved-guarantee-alert .alert-text h6 {
+    margin: 0;
+    font-weight: 700;
+    color: #065f46;
+    font-size: 0.95rem;
+}
+
+.approved-guarantee-alert .alert-text p {
+    margin: 0;
+    font-size: 0.825rem;
+    color: #047857;
+}
+
+/* Guarantee Coverage Indicator */
+.coverage-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.coverage-progress-wrapper {
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0.75rem 0 0.5rem 0;
+}
+
+.coverage-progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out, background-color 0.3s ease;
+}
+
+.coverage-progress-bar.sufficient {
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+}
+
+.coverage-progress-bar.insufficient {
+    background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Dynamic Guarantee Creator Box */
+.guarantee-creator-box {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1.5px dashed rgba(186, 24, 27, 0.35);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.25s ease;
+}
+
+.guarantee-creator-box:hover {
+    border-color: var(--brand-red-mid);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.dynamic-fields-wrapper {
+    background: rgba(248, 250, 252, 0.85);
+    border: 1px solid rgba(203, 213, 225, 0.7);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dynamic-fields-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--brand-red-dark);
+    margin-bottom: 1rem;
+}
+
+/* Guarantee Card in List */
+.guarantee-item-card {
+    background: #ffffff;
+    border: 1px solid var(--glass-border-card);
+    border-left: 5px solid var(--brand-red-mid);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guarantee-item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.guarantee-tag {
+    background: var(--brand-red-deep);
+    color: #ffffff;
+    font-size: 0.725rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+}
+
+.guarantee-specs-preview {
+    font-size: 0.775rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.5rem;
+    color: #334155;
+    line-height: 1.4;
+}
+
+/* Select2 Glass Overrides */
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+    background: var(--glass-bg-input) !important;
+    border: 1.5px solid var(--glass-border-card) !important;
+    border-radius: var(--radius-md) !important;
+    min-height: 44px !important;
+    padding: 4px 8px !important;
+    transition: all 0.2s ease !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: var(--text-primary) !important;
+    line-height: 34px !important;
+    font-weight: 500 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 40px !important;
+}
+
+.select2-dropdown {
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid var(--glass-border-card) !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
+    overflow: hidden !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--brand-red-mid) !important;
+}
+
+/* Custom Buttons */
+.btn-glass-primary {
+    background: var(--brand-red-mid);
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(186, 24, 27, 0.25);
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btn-glass-primary:hover {
+    background: linear-gradient(135deg, var(--brand-red-dark) 0%, #d90429 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(186, 24, 27, 0.35);
+}
+
+.btn-glass-secondary {
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 0.65rem 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(203, 213, 225, 0.8);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btn-glass-secondary:hover {
+    background: #ffffff;
+    border-color: var(--brand-red-mid);
+    color: var(--brand-red-mid);
+}
+
+.btn-glass-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-glass-danger:hover {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+/* Floating Actions Bar */
+.form-actions-floating {
+    position: sticky;
+    bottom: 1.5rem;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-xl);
+    padding: 1rem 1.75rem;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 0 20px rgba(186, 24, 27, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeInDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Glass Table Styling for Plan de Pagos */
+.glass-table {
+    width: 100%;
+    margin-bottom: 0;
+    color: var(--text-primary);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.glass-table thead th {
+    background: rgba(186, 24, 27, 0.08);
+    color: var(--brand-red-deep);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.85rem 1rem;
+    border-bottom: 2px solid rgba(186, 24, 27, 0.2);
+}
+
+.glass-table tbody td {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    vertical-align: middle;
+}
+
+.glass-table tbody tr:hover {
+    background: rgba(186, 24, 27, 0.03);
+}
+
+.glass-table tfoot td {
+    background: rgba(248, 250, 252, 0.95);
+    font-weight: 700;
+    border-top: 2px solid rgba(186, 24, 27, 0.3);
+    padding: 0.85rem 1rem;
+}
+
+/* Specifications Grid inside Registered Guarantee Card */
+.specs-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.6rem;
+    background: rgba(248, 250, 252, 0.9);
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    padding: 0.85rem;
+    margin-top: 0.75rem;
+}
+
+.spec-chip {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.4rem 0.65rem;
+}
+
+.spec-chip .spec-key {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.spec-chip .spec-val {
+    font-size: 0.825rem;
+    color: #0f172a;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+/* Empty State Placeholder */
+.empty-placeholder {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    background: rgba(248, 250, 252, 0.6);
+    border: 2px dashed #cbd5e1;
+    border-radius: var(--radius-lg);
+    color: #64748b;
+}
+
+.empty-placeholder i {
+    font-size: 2.25rem;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.empty-placeholder p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* Policy Risk Alert Badge */
+.policy-risk-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: var(--amber-soft);
+    color: var(--amber-600);
+    border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+/* Glassmorphism Modal */
+.glass-modal .modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgba(186, 24, 27, 0.08);
+    overflow: hidden;
+}
+
+.glass-modal .modal-header {
+    background: linear-gradient(135deg, var(--brand-red-deep) 0%, var(--brand-red-mid) 100%);
+    color: #ffffff;
+    border-bottom: none;
+    padding: 1.25rem 1.75rem;
+}
+
+.glass-modal .modal-header .modal-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.glass-modal .modal-body {
+    padding: 1.75rem;
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.glass-modal .modal-footer {
+    background: rgba(248, 250, 252, 0.9);
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    padding: 1rem 1.75rem;
+}
+
+/* Specs Status Badges on Cards */
+.badge-specs-pending {
+    background: #fef3c7;
+    color: #b45309;
+    border: 1px solid #fde68a;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-specs-complete {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-completar-pulsing {
+    animation: pulseBorder 2s infinite;
+}
+
+@keyframes pulseBorder {
+    0% {
+        box-shadow: 0 0 0 0 rgba(186, 24, 27, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(186, 24, 27, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(186, 24, 27, 0);
+    }
+}

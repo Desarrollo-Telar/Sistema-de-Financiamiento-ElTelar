@@ -1,583 +1,631 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block css %}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="{% static 'css/credito/Solicitud_credito.css' %}">
+<link rel="stylesheet" href="{% static 'css/plan_inversion/investment_plan_glass.css' %}">
 {% endblock %}
+
 {% block content %}
-<form id="frmInvestmentPlan">
+<div class="plan-inversion-wrapper">
 
-    {% csrf_token %}
-    <meta name="csrf-token" content="{{ csrf_token }}">
+    <!-- ========================================== -->
+    <!-- HEADER BANNER - CLIENT & SUBSIDIARY INFO   -->
+    <!-- ========================================== -->
+    <div class="plan-header-banner">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+                <span class="badge bg-white text-dark fw-bold px-3 py-1 mb-2 rounded-pill" style="font-size: 0.75rem; letter-spacing: 0.05em;">
+                    <i class="bi bi-file-earmark-spreadsheet text-danger me-1"></i> PLAN DE INVERSIÓN Y FINANCIAMIENTO
+                </span>
+                <h1 class="plan-header-title">
+                    {{ customer_id.first_name }} {{ customer_id.last_name }}
+                </h1>
+                <p class="plan-header-subtitle">
+                    <i class="bi bi-person-badge me-1"></i> Código: <strong>{{ customer_id.customer_code }}</strong> &nbsp;|&nbsp; 
+                    <i class="bi bi-geo-alt me-1"></i> Sucursal: <strong>{{ sucursal.nombre }}</strong> 
+                    {% if plan %}
+                        &nbsp;|&nbsp; <span class="badge bg-warning text-dark"><i class="bi bi-pencil-square"></i> Edición Expediente #{{ plan.id }}</span>
+                    {% else %}
+                        &nbsp;|&nbsp; <span class="badge bg-light text-dark"><i class="bi bi-plus-circle"></i> Nueva Solicitud</span>
+                    {% endif %}
+                </p>
+            </div>
 
-    <!-- Cliente -->
-    <input type="hidden" id="customer_id" name="customer_id" value="{{ customer_id.id }}">
-    <input type="hidden" id="codigo_cliente" value="{{ customer_id.customer_code }}">
-    <input type="hidden" id="sucursal" name="sucursal" value="{{ sucursal.id }}">
-    <input type="hidden" id="investment_plan_id" value="{{ plan.id|default:'' }}">
-
-    <div class="card mt-4">
-
-        <div class="card-header">
-
-            Información a Considerar 
-
-        </div>
-
-        <div class="card-body">
-
-            <div class="row">
-
-                <div class="col-md-12">
-                    <label for="disponibilidad_efectiva">Disponibilidad Efectiva</label>
-                    <input type="text"  value="Q {{ disponibilidad_efectiva }}" class="form-control" disabled>
-                    
-                </div>
+            <!-- DISPONIBILIDAD EFECTIVA -->
+            <div class="disponibilidad-box">
+                <span class="disponibilidad-label">
+                    <i class="bi bi-wallet2 me-1"></i> Disponibilidad Efectiva
+                </span>
+                <span class="disponibilidad-value">
+                    Q {{ disponibilidad_efectiva }}
+                </span>
             </div>
         </div>
     </div>
 
-    <!-- ========================= -->
-    <!-- INFORMACIÓN DEL CRÉDITO -->
-    <!-- ========================= -->
+    <!-- ========================================== -->
+    <!-- FORMULARIO PRINCIPAL                       -->
+    <!-- ========================================== -->
+    <form id="frmInvestmentPlan">
+        {% csrf_token %}
+        <meta name="csrf-token" content="{{ csrf_token }}">
 
-    <div class="card">
+        <!-- Inputs Ocultos de Contexto -->
+        <input type="hidden" id="customer_id" name="customer_id" value="{{ customer_id.id }}">
+        <input type="hidden" id="codigo_cliente" value="{{ customer_id.customer_code }}">
+        <input type="hidden" id="sucursal" name="sucursal" value="{{ sucursal.id }}">
+        <input type="hidden" id="investment_plan_id" value="{{ plan.id|default:'' }}">
 
-        <div class="card-header">
-            Información del Crédito
-        </div>
-
-        <div class="card-body">
-
-            <div class="row">
-                <div class="col-md-12 mb-3">
-
-                    <label>
-                        Asesor Responsable
-                    </label>
-
-                    <select class="form-control asesor" id="asesor_responsable" name="asesor_responsable">
-
-                    </select>
-
+        <!-- ========================================== -->
+        <!-- PANEL 1: INFORMACIÓN DEL CRÉDITO           -->
+        <!-- ========================================== -->
+        <div class="glass-panel">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon-badge"><i class="bi bi-cash-stack"></i></span>
+                    Información del Financiamiento
+                </h2>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted d-none d-md-inline">Estado de la Solicitud:</span>
+                    <span id="status_pill" class="status-pill status-pendiente">
+                        <i class="bi bi-clock-history"></i> PENDIENTE
+                    </span>
                 </div>
-                <div class="col-md-4 mb-3">
+            </div>
 
-                    <label>
-                        Estado de Aprobacion
+            <div class="row g-3">
+                <!-- Asesor Responsable -->
+                <div class="col-md-6 col-lg-8">
+                    <label class="form-label-custom" for="asesor_responsable">
+                        Asesor Responsable <span class="req">*</span>
                     </label>
+                    <select class="form-control asesor glass-select" id="asesor_responsable" name="asesor_responsable" style="width: 100%;">
+                        {% if plan.asesor_responsable %}
+                        <option value="{{ plan.asesor_responsable.id }}" selected>
+                            {{ plan.asesor_responsable.nombre }} {{ plan.asesor_responsable.apellido }}
+                        </option>
+                        {% endif %}
+                    </select>
+                </div>
 
-                    <select class="form-control" id="estado_aprobacion" name="estado_aprobacion">
-
-
-
-                        <option value="PENDIENTE">
+                <!-- Estado de Aprobación -->
+                <div class="col-md-6 col-lg-4">
+                    <label class="form-label-custom" for="estado_aprobacion">
+                        Estado de Aprobación <span class="req">*</span>
+                    </label>
+                    <select class="form-control glass-select" id="estado_aprobacion" name="estado_aprobacion">
+                        <option value="PENDIENTE" {% if plan.estado_aprobacion == "PENDIENTE" %}selected{% endif %}>
                             PENDIENTE
                         </option>
-                        {% if  not es_asesor %}
-                        <option value="ACEPTADO">
+                        {% if not es_asesor %}
+                        <option value="ACEPTADO" {% if plan.estado_aprobacion == "ACEPTADO" %}selected{% endif %}>
                             ACEPTADO
                         </option>
-
-                        <option value="NEGADO">
+                        <option value="NEGADO" {% if plan.estado_aprobacion == "NEGADO" %}selected{% endif %}>
                             NEGADO
                         </option>
                         {% endif %}
-
                     </select>
-
                 </div>
 
-
-                <div class="col-md-4 mb-3">
-
-                    <label>
-                        Tipo de Producto
+                <!-- Tipo de Producto -->
+                <div class="col-md-6 col-lg-4">
+                    <label class="form-label-custom" for="type_of_product_or_service">
+                        Tipo de Producto <span class="req">*</span>
                     </label>
-
-
-                    <select class="form-control" id="type_of_product_or_service" name="type_of_product_or_service">
-                        <option value="">Seleccione</option>
-                        <option value="AGROPECUARIO Y/O PRODUCTIVO" 
-                        {% if plan.type_of_product_or_service == "AGROPECUARIO Y/O PRODUCTIVO" %}selected{% endif %}>
-                            AGROPECUARIO Y/O PRODUCTIVO</option>
-                        <option value="COMERCIO" {% if plan.type_of_product_or_service == "COMERCIO" %}selected{% endif  %}>COMERCIO</option>
-                        <option value="SERVICIOS" {% if plan.type_of_product_or_service == "SERVICIOS" %}selected{% endif%}>SERVICIOS</option>
-                        <option value="CONSUMO" {% if plan.type_of_product_or_service == "CONSUMO" %}selected{% endif %}>
-                            CONSUMO</option>
-                        <option value="VIVIENDA" {% if plan.type_of_product_or_service == "VIVIENDA" %}selected{% endif %}>VIVIENDA</option>
-                    </select>
-
-                </div>
-                <div class="col-md-4 mb-3">
-
-                    <label>
-                        Sub Destino
-                    </label>
-
-
-                    <input type="text"  class="form-control" id="sub_destino" name="sub_destino"   value="{{ plan.sub_destino }}">
-
-                </div>
-                
-                <div class="col-md-4 mb-3">
-
-                    <label>
-                        Forma de Pago
-                    </label>
-
-                    <select class="form-control" id="forma_de_pago">
-                        <option value="NIVELADA" {% if plan.forma_de_pago == "NIVELADA" %}selected{% endif %}>NIVELADA
+                    <select class="form-control glass-select" id="type_of_product_or_service" name="type_of_product_or_service">
+                        <option value="">-- Seleccionar --</option>
+                        <option value="AGROPECUARIO Y/O PRODUCTIVO" {% if plan.type_of_product_or_service == "AGROPECUARIO Y/O PRODUCTIVO" %}selected{% endif %}>
+                            AGROPECUARIO Y/O PRODUCTIVO
                         </option>
-                        <option value="AMORTIZACIONES A CAPITAL" 
-                        {% if plan.forma_de_pago == "AMORTIZACIONES A CAPITAL" %}selected{% endif %}>AMORTIZACIONES A CAPITAL</option>
-                        <option value="INTERES MENSUAL Y CAPITAL AL VENCIMIENTO" 
-                        {% if plan.forma_de_pago == "INTERES MENSUAL Y CAPITAL AL VENCIMIENTO" %}selected{% endif %}>INTERES
-                            MENSUAL Y CAPITAL AL VENCIMIENTO</option>
-                        <option value="INTERES Y CAPITAL AL VENCIMIENTO" 
-                        {% if plan.forma_de_pago == "INTERES Y CAPITAL AL VENCIMIENTO" %}selected{% endif %}>INTERES Y
-                            CAPITAL AL VENCIMIENTO</option>
+                        <option value="COMERCIO" {% if plan.type_of_product_or_service == "COMERCIO" %}selected{% endif %}>
+                            COMERCIO
+                        </option>
+                        <option value="SERVICIOS" {% if plan.type_of_product_or_service == "SERVICIOS" %}selected{% endif %}>
+                            SERVICIOS
+                        </option>
+                        <option value="CONSUMO" {% if plan.type_of_product_or_service == "CONSUMO" %}selected{% endif %}>
+                            CONSUMO
+                        </option>
+                        <option value="VIVIENDA" {% if plan.type_of_product_or_service == "VIVIENDA" %}selected{% endif %}>
+                            VIVIENDA
+                        </option>
                     </select>
-
                 </div>
 
-                <div class="col-md-4 mb-3">
-
-                    <label>
-                        Valor del Producto
+                <!-- Sub Destino -->
+                <div class="col-md-6 col-lg-4">
+                    <label class="form-label-custom" for="sub_destino">
+                        Sub Destino del Crédito
                     </label>
-
-
-
-
-                    <input type="text" step="0.01" class="form-control" id="total_value_of_the_product_or_service"
-                        value="{{ plan.total_value_of_the_product_or_service }}">
-
-
-
+                    <input type="text" class="form-control glass-input" id="sub_destino" name="sub_destino" placeholder="Ej. Compra de inventario o maquinaria" value="{{ plan.sub_destino|default:'' }}">
                 </div>
-                <div class="col-md-4 mb-3">
 
-                    <label>
-                        Tasa de interés (Anual)
+                <!-- Forma de Pago -->
+                <div class="col-md-6 col-lg-4">
+                    <label class="form-label-custom" for="forma_de_pago">
+                        Forma de Pago <span class="req">*</span>
                     </label>
-
-
-                    <input type="text" step="0.001" class="form-control" id="tasa_interes"
-                        value="{{ plan.tasa_interes }}">
-
+                    <select class="form-control glass-select" id="forma_de_pago" name="forma_de_pago">
+                        <option value="NIVELADA" {% if plan.forma_de_pago == "NIVELADA" %}selected{% endif %}>
+                            NIVELADA
+                        </option>
+                        <option value="AMORTIZACIONES A CAPITAL" {% if plan.forma_de_pago == "AMORTIZACIONES A CAPITAL" %}selected{% endif %}>
+                            AMORTIZACIONES A CAPITAL
+                        </option>
+                        <option value="INTERES MENSUAL Y CAPITAL AL VENCIMIENTO" {% if plan.forma_de_pago == "INTERES MENSUAL Y CAPITAL AL VENCIMIENTO" %}selected{% endif %}>
+                            INTERÉS MENSUAL Y CAPITAL AL VENCIMIENTO
+                        </option>
+                        <option value="INTERES Y CAPITAL AL VENCIMIENTO" {% if plan.forma_de_pago == "INTERES Y CAPITAL AL VENCIMIENTO" %}selected{% endif %}>
+                            INTERÉS Y CAPITAL AL VENCIMIENTO
+                        </option>
+                    </select>
                 </div>
 
-                <div class="col-md-4 mb-3">
-                    <label>
-                        Fecha de Inicio
-
-                        <input type="date" class="form-control" id="fecha_inicio"
-                            value="{{ plan.fecha_inicio|date:'Y-m-d' }}">
-                </div>
-
-
-
-                <div class="col-md-4 mb-3">
-                    <label>
-                        Plazo
+                <!-- Valor del Producto / Monto Solicitado -->
+                <div class="col-md-6 col-lg-4">
+                    <label class="form-label-custom" for="total_value_of_the_product_or_service">
+                        Valor del Producto (Monto Q) <span class="req">*</span>
                     </label>
-                    <input type="number" class="form-control" id="plazo" value="{{ plan.plazo }}">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0 fw-bold text-muted">Q</span>
+                        <input type="number" step="0.01" class="form-control glass-input border-start-0" id="total_value_of_the_product_or_service" placeholder="0.00" value="{{ plan.total_value_of_the_product_or_service|default:'' }}">
+                    </div>
                 </div>
 
-
-
-                <div class="col-md-4 mb-3" id="contenedor_plazo_garantia"
-                    style="{% if plan.forma_de_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO' or plan.forma_de_pago == 'INTERES Y CAPITAL AL VENCIMIENTO' %}display: block;{% else %}display: none;{% endif %}">
-                    <label>Plazo de Garantía</label>
-                    <input type="number" class="form-control" id="plazo_garantia" value="{{ plan.plazo_gracia }}">
-                </div>
-
-
-
-
-
-
-
-
-                <div class="col-md-12 mb-3">
-                    <label for="investment_plan_description">
-                        Descripción
+                <!-- Tasa de Interés Anual -->
+                <div class="col-md-6 col-lg-4">
+                    <label class="form-label-custom" for="tasa_interes">
+                        Tasa de Interés Anual (%) <span class="req">*</span>
                     </label>
-                    <textarea class="form-control" id="investment_plan_description" rows="3">{{ plan.investment_plan_description|default:'' }}</textarea>
+                    <div class="input-group">
+                        <input type="number" step="0.001" class="form-control glass-input border-end-0" id="tasa_interes" placeholder="Ej. 18.00" value="{{ plan.tasa_interes|default:'' }}">
+                        <span class="input-group-text bg-white border-start-0 fw-bold text-muted">%</span>
+                    </div>
                 </div>
 
+                <!-- Fecha de Inicio -->
+                <div class="col-md-6 col-lg-4">
+                    <label class="form-label-custom" for="fecha_inicio">
+                        Fecha de Inicio <span class="req">*</span>
+                    </label>
+                    <input type="date" class="form-control glass-input" id="fecha_inicio" value="{{ plan.fecha_inicio|date:'Y-m-d' }}">
+                </div>
+
+                <!-- Plazo en Meses -->
+                <div class="col-md-6 col-lg-4">
+                    <label class="form-label-custom" for="plazo">
+                        Plazo (Meses) <span class="req">*</span>
+                    </label>
+                    <input type="number" class="form-control glass-input" id="plazo" placeholder="Ej. 12" value="{{ plan.plazo|default:'' }}">
+                </div>
+
+                <!-- Plazo de Garantía / Gracia (Condicional) -->
+                <div class="col-md-6 col-lg-4" id="contenedor_plazo_garantia" style="{% if plan.forma_de_pago == 'INTERES MENSUAL Y CAPITAL AL VENCIMIENTO' or plan.forma_de_pago == 'INTERES Y CAPITAL AL VENCIMIENTO' %}display: block;{% else %}display: none;{% endif %}">
+                    <label class="form-label-custom" for="plazo_garantia">
+                        Plazo de Gracia / Garantía (Meses) <span class="req">*</span>
+                    </label>
+                    <input type="number" class="form-control glass-input" id="plazo_garantia" placeholder="Ej. 6" value="{{ plan.plazo_gracia|default:'' }}">
+                </div>
+
+                <!-- Descripción del Plan -->
+                <div class="col-12">
+                    <label class="form-label-custom" for="investment_plan_description">
+                        Descripción Detallada del Plan de Inversión
+                    </label>
+                    <textarea class="form-control glass-textarea" id="investment_plan_description" rows="3" placeholder="Detalle la justificación, destino específico de los fondos y particularidades del cliente...">{{ plan.investment_plan_description|default:'' }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PANEL 2: SIMULADOR / PLAN DE PAGOS         -->
+        <!-- ========================================== -->
+        <div class="glass-panel">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon-badge"><i class="bi bi-calendar-check"></i></span>
+                    Simulación del Plan de Pagos
+                </h2>
+                <button type="button" class="btn-glass-secondary" id="generar_plan" onclick="generar_plan()">
+                    <i class="bi bi-calculator"></i> Generar Plan de Pagos
+                </button>
             </div>
 
-        </div>
-        <div style="margin-top: 2rem;" class="row">
-            <a type="button" onclick="generar_plan()" class="btn_cancel" id="generar_plan">Generar Plan de Pagos</a>
-        </div>
-        <div class="row">
+            <p class="small text-muted mb-3">
+                Haga clic en <strong>Generar Plan de Pagos</strong> para proyectar las cuotas, intereses y amortización a capital según el plazo y la forma de pago seleccionados.
+            </p>
 
-            <div class="table-responsive">
+            <div class="table-responsive glass-card p-0 overflow-hidden">
                 {% include 'financings/credit/snippets/forms/plan.html' %}
             </div>
-
-
         </div>
 
-    </div>
+        <!-- ========================================== -->
+        <!-- PANEL 3: DOCUMENTACIÓN LEGAL               -->
+        <!-- ========================================== -->
+        <div class="glass-panel">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon-badge"><i class="bi bi-journal-text"></i></span>
+                    Instrumento Legal y Documentación
+                </h2>
+            </div>
 
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label-custom" for="tipo_documento">
+                        Tipo de Documento Legal <span class="req">*</span>
+                    </label>
+                    <select class="form-control glass-select" id="tipo_documento" name="tipo_documento">
+                        <option value="">-- Seleccione Tipo de Instrumento --</option>
+                        <option value="PAGARE" {% if plan.tipo_documento == "PAGARE" %}selected{% endif %}>
+                            PAGARÉ
+                        </option>
+                        <option value="ESCRITURA PUBLICA" {% if plan.tipo_documento == "ESCRITURA PUBLICA" %}selected{% endif %}>
+                            ESCRITURA PÚBLICA
+                        </option>
+                        <option value="RECONOCIMIENTO DE DEUDA" {% if plan.tipo_documento == "RECONOCIMIENTO DE DEUDA" %}selected{% endif %}>
+                            RECONOCIMIENTO DE DEUDA
+                        </option>
+                    </select>
+                </div>
 
+                <!-- CONTENEDOR PAGARÉ -->
+                <div class="col-md-6" id="contenedor_pagare" style="display:none;">
+                    <label class="form-label-custom" for="tipo_pagare">
+                        Modalidad de Pagaré <span class="req">*</span>
+                    </label>
+                    <select id="tipo_pagare" class="form-control glass-select">
+                        <option value="Normal" {% if plan.tipo_pagare == "Normal" %}selected{% endif %}>Normal</option>
+                        <option value="Fiador" {% if plan.tipo_pagare == "Fiador" %}selected{% endif %}>Con Fiador</option>
+                        <option value="Restructuracion" {% if plan.tipo_pagare == "Restructuracion" %}selected{% endif %}>Restructuración</option>
+                    </select>
+                </div>
+            </div>
 
-    <!-- ========================= -->
-    <!-- DOCUMENTACIÓN -->
-    <!-- ========================= -->
+            <!-- NOTARIO DE DOCUMENTACIÓN GLOBAL -->
+            <div id="contenedor_notarios_doc" class="mt-4" style="display:none;">
+                <div class="glass-card">
+                    <label class="form-label-custom" for="notario_documentacion">
+                        <i class="bi bi-pen-fill text-danger me-1"></i> Notario Asignado para la Documentación
+                    </label>
+                    <select class="form-control glass-select" id="notario_documentacion" style="width: 100%;"></select>
+                    <small class="text-muted mt-1 d-block">Asigne el notario responsable de faccionar la escritura o instrumento legal.</small>
+                </div>
+            </div>
 
-    <div class="card mt-4">
+            <!-- SECCIÓN FIADORES -->
+            <div id="contenedor_fiadores" class="mt-4" style="display:none;">
+                <div class="glass-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold mb-0 text-dark">
+                            <i class="bi bi-people-fill text-danger me-1"></i> Fiadores Solidarios y Mancomunados
+                        </h6>
+                        <button type="button" id="btnAgregarFiador" class="btn-glass-secondary py-1 px-3">
+                            <i class="bi bi-plus-lg"></i> Agregar Fiador
+                        </button>
+                    </div>
+                    <div id="lista_fiadores">
+                        <!-- Filas de fiadores dinámicas -->
+                    </div>
+                </div>
+            </div>
 
-        <div class="card-header">
-
-            Documentación
-
+            <!-- SECCIÓN CRÉDITOS VIGENTES (REESTRUCTURACIÓN) -->
+            <div id="contenedor_creditos" class="mt-4" style="display:none;">
+                <div class="glass-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold mb-0 text-dark">
+                            <i class="bi bi-arrow-repeat text-danger me-1"></i> Créditos Anteriores Vigentes
+                        </h6>
+                        <button type="button" id="btnAgregarCredito" class="btn-glass-secondary py-1 px-3">
+                            <i class="bi bi-plus-lg"></i> Agregar Crédito
+                        </button>
+                    </div>
+                    <div id="lista_creditos">
+                        <!-- Filas de créditos dinámicas -->
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="card-body">
+        <!-- ========================================== -->
+        <!-- PANEL 4: GARANTÍAS Y COBERTURA             -->
+        <!-- ========================================== -->
+        <div class="glass-panel" id="panel_garantias">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon-badge"><i class="bi bi-shield-lock-fill"></i></span>
+                    Garantías y Cobertura Patrimonial
+                </h2>
+                <span class="badge bg-danger rounded-pill px-3 py-1 fs-6" id="badge-garantias-count">
+                    0 Registradas
+                </span>
+            </div>
 
-            <div class="row">
+            <!-- MONITOR DE COBERTURA EN TIEMPO REAL -->
+            <div class="coverage-card">
+                <div class="row align-items-center g-3">
+                    <div class="col-md-3">
+                        <span class="text-xs text-muted d-block fw-bold text-uppercase">Monto Solicitado</span>
+                        <span class="fs-5 fw-bold text-dark font-monospace" id="display-monto-solicitado">Q 0.00</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="text-xs text-muted d-block fw-bold text-uppercase">Garantías Registradas</span>
+                        <span class="fs-5 fw-bold text-dark font-monospace" id="registered-guarantee-total">Q 0.00</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="text-xs text-muted d-block fw-bold text-uppercase">Cobertura Patrimonial</span>
+                        <span class="fs-5 fw-bold font-monospace" id="coverage-percent">0%</span>
+                    </div>
+                    <div class="col-md-3 text-md-end">
+                        <span id="coverage-status-badge" class="badge bg-warning text-dark px-3 py-2 rounded-pill">
+                            <i class="bi bi-exclamation-triangle"></i> Cobertura Pendiente
+                        </span>
+                    </div>
+                </div>
+                <div class="coverage-progress-wrapper mt-3">
+                    <div class="coverage-progress-bar insufficient" id="coverage_progress_bar" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <!-- ALERTA DINÁMICA CUANDO EL ESTADO ES APROBADO / ACEPTADO -->
+            <div id="banner_aprobado_garantias" class="approved-guarantee-alert" style="display: none;">
+                <div class="alert-icon">
+                    <i class="bi bi-shield-fill-check"></i>
+                </div>
+                <div class="alert-text">
+                    <h6>Solicitud en Estado Aprobado</h6>
+                    <p>Al registrar las garantías se ha habilitado el formulario de especificaciones técnicas, registrales y legales completas (conforme al expediente de crédito) para formalizar las garantías.</p>
+                </div>
+            </div>
+
+            <!-- CREADOR INTERACTIVO DE GARANTÍAS -->
+            <div class="guarantee-creator-box">
+                <h6 class="fw-bold mb-3 text-dark d-flex align-items-center gap-2">
+                    <i class="bi bi-plus-circle-fill text-danger"></i> Registrar Nueva Garantía
+                </h6>
+
+                <div class="row g-3">
+                    <!-- Tipo de Garantía -->
+                    <div class="col-md-4">
+                        <label class="form-label-custom" for="garantia_tipo_input">
+                            Tipo de Garantía <span class="req">*</span>
+                        </label>
+                        <select class="form-control glass-select" id="garantia_tipo_input">
+                            <option value="HIPOTECA">HIPOTECA</option>
+                            <option value="DERECHO DE POSESION HIPOTECA">DERECHO DE POSESION HIPOTECA</option>                            
+                            <option value="CHEQUE / PAGARE">CHEQUE / PAGARE</option>
+                            <option value="VEHICULO">VEHICULO</option>
+                            <option value="MOBILIARIA">MOBILIARIA</option>
+                        </select>
+                    </div>
+
+                    <!-- Descripción General -->
+                    <div class="col-md-5">
+                        <label class="form-label-custom" for="garantia_desc_input">
+                            Descripción / Resumen de la Garantía <span class="req">*</span>
+                        </label>
+                        <input type="text" class="form-control glass-input" id="garantia_desc_input" placeholder="Ej. Inmueble ubicado en zona 1 Cobán o Vehículo Toyota...">
+                    </div>
+
+                    <!-- Valor de Cobertura -->
+                    <div class="col-md-3">
+                        <label class="form-label-custom" for="garantia_valor_input">
+                            Valor de Cobertura (Q) <span class="req">*</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0 fw-bold text-muted">Q</span>
+                            <input type="number" step="0.01" class="form-control glass-input border-start-0" id="garantia_valor_input" placeholder="0.00">
+                        </div>
+                    </div>
+
+                    <!-- Notario Asignado para Cheque/Pagaré > 500 -->
+                    <div class="col-md-6" id="contenedor_notario_builder" style="display: none;">
+                        <label class="form-label-custom text-danger" for="garantia_notario_builder">
+                            <i class="bi bi-person-check-fill"></i> Notario Asignado a esta Garantía
+                        </label>
+                        <select class="form-control glass-select" id="garantia_notario_builder" style="width: 100%;"></select>
+                    </div>
+                </div>
+
+                <!-- CONTENEDOR DINÁMICO DE ESPECIFICACIONES (SOLO CUANDO ESTADO === 'ACEPTADO') -->
+                <div id="dynamic-guarantee-fields-container" class="dynamic-fields-wrapper mt-3" style="display: none;">
+                    <div class="dynamic-fields-header">
+                        <i class="bi bi-file-earmark-ruled-fill"></i>
+                        <span>Especificaciones Técnicas y Registrales (<strong id="spec-tipo-nombre">HIPOTECA</strong>)</span>
+                    </div>
+
+                    <div id="dynamic-guarantee-fields" class="row g-3">
+                        <!-- Campos inyectados dinámicamente por formulario.js -->
+                    </div>
+                </div>
+
+                <!-- BOTÓN AGREGAR -->
+                <div class="text-end mt-3">
+                    <button type="button" id="btnAgregarGarantia" class="btn-glass-primary">
+                        <i class="bi bi-plus-lg"></i> Agregar Garantía a la Solicitud
+                    </button>
+                </div>
+            </div>
+
+            <!-- LISTADO DE GARANTÍAS REGISTRADAS -->
+            <div class="mt-4">
+                <h6 class="fw-bold text-dark mb-3">
+                    <i class="bi bi-list-check text-danger me-1"></i> Garantías Registradas en este Plan
+                </h6>
+                <div id="lista_garantias">
+                    <div class="empty-placeholder" id="empty-garantias-notice">
+                        <i class="bi bi-shield-slash"></i>
+                        <p class="fw-bold">No se han registrado garantías todavía.</p>
+                        <small>Utilice el formulario superior para añadir al menos una garantía que cubra el monto del crédito.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PANEL 5: ANÁLISIS DE RIESGO Y CONDICIONES  -->
+        <!-- ========================================== -->
+        <div class="glass-panel">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon-badge"><i class="bi bi-clipboard2-pulse"></i></span>
+                    Condiciones de la Solicitud y Análisis de Riesgo
+                </h2>
+                <span class="policy-risk-badge" id="risk-policy-badge">
+                    <i class="bi bi-info-circle"></i> Obligatorio para créditos ≥ Q 25,000.00
+                </span>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label-custom" for="riesgo_comercial">
+                        Riesgos Comerciales Principales
+                    </label>
+                    <textarea class="form-control glass-textarea" id="riesgo_comercial" rows="3" placeholder="Identifique factores de mercado, estacionalidad, competencia o volatilidad de precios...">{{ plan.riesgo_comercial|default:'' }}</textarea>
+                </div>
 
                 <div class="col-md-6">
-
-                    <label>
-
-                        Tipo de Documento
-
+                    <label class="form-label-custom" for="diganostico_oportunidad">
+                        Diagnóstico de Oportunidades
                     </label>
-                    <select class="form-control" id="tipo_documento" name="tipo_documento">
-                        <option value="">Seleccione</option>
-
-                        <option value="PAGARE" 
-                        {% if plan.tipo_documento == "PAGARE" %}selected{% endif %}>
-                            PAGARE</option>
-
-                        <option value="ESCRITURA PUBLICA" {% if plan.tipo_documento == "ESCRITURA PUBLICA" %}selected{% endif  %}>ESCRITURA PUBLICA</option>
-
-                        <option value="RECONOCIMIENTO DE DEUDA" {% if plan.tipo_documento == "RECONOCIMIENTO DE DEUDA" %}selected{% endif%}>RECONOCIMIENTO DE DEUDA</option>
-
-                       
-                    </select>
-
-                    
-
-
+                    <textarea class="form-control glass-textarea" id="diganostico_oportunidad" rows="3" placeholder="Potencial de crecimiento del negocio, experiencia del deudor, clientes consolidados...">{{ plan.diganostico_oportunidad|default:'' }}</textarea>
                 </div>
 
+                <div class="col-md-6">
+                    <label class="form-label-custom" for="mitigadores">
+                        Mitigadores de Riesgo
+                    </label>
+                    <textarea class="form-control glass-textarea" id="mitigadores" rows="3" placeholder="Acciones o condiciones que reducen el riesgo (ej. avalúos, historial crediticio, garantías líquidas)...">{{ plan.mitigadores|default:'' }}</textarea>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label-custom" for="evaluacion_mercado">
+                        Evaluación del Mercado
+                    </label>
+                    <textarea class="form-control glass-textarea" id="evaluacion_mercado" rows="3" placeholder="Análisis del entorno económico local, demanda del producto o servicio...">{{ plan.evaluacion_mercado|default:'' }}</textarea>
+                </div>
             </div>
+        </div>
 
-            <!-- PAGARE -->
+        <!-- ========================================== -->
+        <!-- FLOATING ACTION BAR                        -->
+        <!-- ========================================== -->
+        <div class="form-actions-floating">
+            <a href="{% url 'customers:detail' customer_code %}" class="btn-glass-secondary">
+                <i class="bi bi-arrow-left"></i> Cancelar y Volver
+            </a>
 
-            <div id="contenedor_pagare" style="display:none;">
+            <button type="submit" class="btn-glass-primary px-4 py-2" id="btnGuardarPlan">
+                <i class="bi bi-check-circle-fill"></i> Guardar Solicitud de Inversión
+            </button>
+        </div>
+    </form>
 
-                <hr>
+    <!-- ========================================== -->
+    <!-- MODAL DE EDICIÓN Y COMPLETADO DE GARANTÍA  -->
+    <!-- ========================================== -->
+    <div class="modal fade glass-modal" id="modalEditarGarantia" tabindex="-1" aria-labelledby="modalEditarGarantiaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarGarantiaLabel">
+                        <i class="bi bi-pencil-square me-2"></i> Modificar Garantía y Completar Especificaciones
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <input type="hidden" id="modal_edit_index" value="">
 
-                <div class="row">
-
-                    <div class="col-md-6">
-
-                        <label>
-
-                            Tipo de Pagaré
-
-                        </label>
-
-                        <select id="tipo_pagare" class="form-control">
-                                <option value="Normal"  {% if plan.tipo_pagare == "Normal" %}selected{% endif %}>Normal</option>
-
-                        <option value="Fiador" {% if plan.tipo_pagare == "Fiador" %}selected{% endif  %}>Fiador</option>
-
-                        <option value="Restructuracion" {% if plan.tipo_pagare == "Restructuracion" %}selected{% endif%}>Restructuracion</option>
-                        </select>
-
+                    <!-- Encabezado / Resumen informativo -->
+                    <div class="alert alert-info border-0 rounded-3 mb-4 d-flex align-items-center gap-3" style="background: rgba(2, 132, 199, 0.08); border-left: 4px solid #0284c7 !important;">
+                        <i class="bi bi-info-circle-fill text-primary fs-4"></i>
+                        <div>
+                            <span class="fw-bold d-block text-dark">Edición de Garantía Registrada</span>
+                            <small class="text-muted">Puede modificar los valores básicos y completar las especificaciones técnicas, registrales y legales para la formalización del expediente sin tener que volver a registrar la garantía.</small>
+                        </div>
                     </div>
 
-                </div>
+                    <!-- Datos Principales de la Garantía -->
+                    <div class="glass-card mb-4">
+                        <h6 class="fw-bold text-dark mb-3"><i class="bi bi-card-checklist text-danger me-1"></i> Datos Básicos de Cobertura</h6>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label-custom" for="modal_garantia_tipo">Tipo de Garantía <span class="req">*</span></label>
+                                <select class="form-control glass-select" id="modal_garantia_tipo">
+                                    <option value="HIPOTECA">HIPOTECA</option>
+                                    <option value="DERECHO DE POSESION HIPOTECA">DERECHO DE POSESION HIPOTECA</option>
+                                    <option value="FIADOR">FIADOR</option>
+                                    <option value="CHEQUE / PAGARE">CHEQUE / PAGARE</option>
+                                    <option value="VEHICULO">VEHICULO</option>
+                                    <option value="MOBILIARIA">MOBILIARIA</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label-custom" for="modal_garantia_desc">Descripción General / Resumen <span class="req">*</span></label>
+                                <input type="text" class="form-control glass-input" id="modal_garantia_desc" placeholder="Descripción general de la garantía...">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label-custom" for="modal_garantia_valor">Valor de Cobertura (Q) <span class="req">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0 fw-bold text-muted">Q</span>
+                                    <input type="number" step="0.01" class="form-control glass-input border-start-0" id="modal_garantia_valor" placeholder="0.00">
+                                </div>
+                            </div>
+                            <div class="col-md-12" id="modal_contenedor_notario" style="display: none;">
+                                <label class="form-label-custom text-danger" for="modal_garantia_notario">Notario Asignado a esta Garantía</label>
+                                <select class="form-control glass-select" id="modal_garantia_notario" style="width: 100%;"></select>
+                            </div>
+                        </div>
+                    </div>
 
-            </div>
-
-
-
-            <!-- ========================== -->
-            <!-- FIADORES -->
-            <!-- ========================== -->
-
-            <div id="contenedor_fiadores" style="display:none;">
-
-                <hr>
-
-                <div class="d-flex justify-content-between">
-
-                    <h5>
-
-                        Fiadores
-
-                    </h5>
-
-
-                    <button type="button" id="btnAgregarFiador" class="btn btn-danger">
-
-                        Agregar
-
-                    </button>
-
-                </div>
-
-                <div id="lista_fiadores">
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ========================== -->
-            <!-- CREDITOS -->
-            <!-- ========================== -->
-
-            <div id="contenedor_creditos" style="display:none;">
-
-                <hr>
-
-                <div class="d-flex justify-content-between">
-
-                    <h5>
-
-                        Créditos Vigentes
-
-                    </h5>
-
-                    <button type="button" id="btnAgregarCredito" class="btn btn-danger">
-
-                        Agregar
-
-                    </button>
-
-                </div>
-
-                <div id="lista_creditos">
-
-                </div>
-
-            </div>
-
-            <!-- ========================== -->
-            <!-- Notario -->
-            <!-- ========================== -->
-
-            <div id="contenedor_notarios_doc" style="display:none;">
-                <hr>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="fw-bold text-secondary">Notario de Documentación</label>
-                        <select class="form-control" id="notario_documentacion" style="width: 100%;"></select>
+                    <!-- Especificaciones Técnicas y Registrales -->
+                    <div class="dynamic-fields-wrapper m-0">
+                        <div class="dynamic-fields-header">
+                            <i class="bi bi-file-earmark-ruled-fill"></i>
+                            <span>Especificaciones Técnicas y Registrales (<strong id="modal_spec_tipo_nombre">HIPOTECA</strong>)</span>
+                        </div>
+                        <div id="modal_dynamic_fields" class="row g-3">
+                            <!-- Inyectado dinámicamente con valores precargados -->
+                        </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- ========================= -->
-    <!-- GARANTIAS -->
-    <!-- ========================= -->
-
-    <div class="card mt-4">
-
-        <div class="card-header">
-
-            Garantías
-
-        </div>
-
-        <div class="card-body">
-
-            <div class="d-flex justify-content-between">
-
-                <h5>
-
-                    Garantías Registradas
-
-                </h5>
-
-
-                <button type="button" id="btnAgregarGarantia" class="btn btn-danger">
-
-                    Agregar Garantía
-
-                </button>
-
-            </div>
-
-            <div id="lista_garantias">
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- ========================= -->
-    <!-- CONDICIONES-->
-    <!-- ========================= -->
-
-    <div class="card">
-
-        <div class="card-header">
-            Condiciones de la Solicitud de Crédito
-        </div>
-
-        <div class="card-body">
-
-            <div class="row">
-                 <div class="col-md-12 mb-3">
-
-                    <label>
-
-                        Riesgos Comerciales Principales 
-
-                    </label>
-                    <textarea class="form-control" id="riesgo_comercial" rows="3">{{ plan.riesgo_comercial|default:'' }}</textarea>
-                 </div>
-                 <div class="col-md-12 mb-3">
-
-                    <label>
-
-                        Diagnósitco de Oportunidades 
-
-                    </label>
-                    <textarea class="form-control" id="diganostico_oportunidad" rows="3">{{ plan.diganostico_oportunidad|default:'' }}</textarea>
-                 </div>
-                 <div class="col-md-12 mb-3">
-
-                    <label>
-
-                        Mitigadores  
-
-                    </label>
-                    <textarea class="form-control" id="mitigadores" rows="3">{{ plan.mitigadores|default:'' }}</textarea>
-                 </div>
-                 <div class="col-md-12 mb-3">
-
-                    <label>
-
-                        Evaluación del mercado 
-
-                    </label>
-                    <textarea class="form-control" id="evaluacion_mercado" rows="3">{{ plan.evaluacion_mercado|default:'' }}</textarea>
-                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-glass-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </button>
+                    <button type="button" class="btn-glass-primary" id="btnGuardarEdicionGarantia">
+                        <i class="bi bi-check-circle-fill"></i> Guardar Cambios en Garantía
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-
-
-
-    <div class="text-end mt-4">
-        <a href="{% url 'customers:detail' customer_code%}" class="btn btn-link">Cancelar</a>
-
-        <button type="submit" class="btn_guardar">
-
-            Guardar Solicitud
-
-        </button>
-
-    </div>
-
-</form>
+</div>
 {% endblock %}
 
 {% block js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<!-- Pre-carga de datos seguros para modo Edición -->
+{% if plan %}
+<script id="plan-preload-data" type="application/json">
+{
+    "id": {{ plan.id|default:"null" }},
+    "estado_aprobacion": "{{ plan.estado_aprobacion|default:'PENDIENTE' }}",
+    "tipo_documento": "{{ plan.tipo_documento|default:'' }}",
+    "tipo_pagare": "{{ plan.tipo_pagare|default:'' }}",
+    "fiadores": {{ plan.fiador|default:"[]"|safe }},
+    "creditos": {{ plan.credito_anterior_vigente|default:"[]"|safe }},
+    "garantias": {{ plan.garantias|default:"[]"|safe }},
+    "notarios": {{ plan.notarios|default:"[]"|safe }}
+}
+</script>
+{% endif %}
+
 <script type="module" src="{% static 'js/plan_inversion/destino.js'%}"></script>
 <script type="module" src="{% static 'js/plan_inversion/formulario.js'%}"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $(document).ready(function() {
-    // Leemos los bloques JSON inyectados de forma segura desde el backend
-    // Usamos el filtro |safe de Django montando bloques de scripts en el HTML o leyéndolos de variables globales
-    // Para este ejemplo asumiremos que los pasas renderizando listas ocultas o recuperándolos mediante los tags de Django:
-    
-    {% if plan %}
-        // --- Cargar Fiadores Existentes ---
-        const fiadoresExistentes = {{ plan.fiador|default:"[]"|safe }};
-        fiadoresExistentes.forEach(f => {
-            // Simulamos el click para crear la fila vacía
-            $("#btnAgregarFiador").click();
-            // Obtenemos la última fila agregada
-            const ultimaFila = $(".fila-fiador").last();
-            const selectContainer = ultimaFila.find('.fiador_select');
-
-            // Select2 necesita que la opción preseleccionada exista en el DOM antes de fijar el valor mediante AJAX
-            // Como no tenemos el texto completo aquí, hacemos una petición rápida o añadimos una opción temporal:
-            const optionTemplate = new Option(`Cargando ID: ${f.id}...`, f.id, true, true);
-            selectContainer.append(optionTemplate).trigger('change');
-            
-            // Opcional: Si tu API de Clientes permite buscar por ID exacto, puedes hacer un fetch individual 
-            // para cambiar el texto temporal "Cargando ID: X..." por el nombre real del cliente asociado.
-        });
-
-        // --- Cargar Créditos Vigentes Existentes ---
-        const creditosExistentes = {{ plan.credito_anterior_vigente|default:"[]"|safe }};
-        creditosExistentes.forEach(c => {
-            $("#btnAgregarCredito").click();
-            const ultimaFila = $(".fila-credito").last();
-            const selectContainer = ultimaFila.find('.credito_vigente');
-            
-            const optionTemplate = new Option(`Cargando Crédito ID: ${c.id}...`, c.id, true, true);
-            selectContainer.append(optionTemplate).trigger('change');
-        });
-
-        
-
-        // --- Cargar Garantías y sus Notarios Existentes ---
-        const garantiasExistentes = {{ plan.garantias|default:"[]"|safe }};
-        
-        garantiasExistentes.forEach(g => {
-            // 1. Forzamos el click para crear la fila con su estructura HTML y eventos
-            $("#btnAgregarGarantia").click();
-            
-            // 2. Obtenemos la última fila insertada en el DOM
-            const ultimaFila = $(".fila-garantia").last();
-            
-            // 3. Seteamos los valores básicos de la garantía
-            ultimaFila.find(".garantia-tipo").val(g.tipo).trigger('change');
-            ultimaFila.find(".garantia-descripcion").val(g.descripcion);
-            ultimaFila.find(".garantia-valor").val(g.valor).trigger('keyup'); // Trigger keyup activa el contenedor de notarios si > 5000
-            
-            // 4. Si la garantía viene con un notario guardado, lo preseleccionamos en su Select2
-            if (g.notario && g.notario.id) {
-                const selectNotarioFila = ultimaFila.find(".garantia-notario-select");
-                
-                // Creamos la opción persistente para Select2
-                const optionTemplate = new Option(g.notario.nombre, g.notario.id, true, true);
-                selectNotarioFila.append(optionTemplate).trigger('change');
-            }
-        });
-
-        // --- Cargar Notario de Documentación Global ---
-        const notariosExistentes = {{ plan.notarios|default:"[]"|safe }};
-        notariosExistentes.forEach(n => {
-            if (n.modulo === 'documentacion') {
-                const optionDoc = new Option(n.nombre, n.id, true, true);
-                $("#notario_documentacion").append(optionDoc).trigger('change');
-            }
-        });
-
-        setTimeout(() => {
-            $('#tipo_documento').trigger('change');
-            $('#tipo_pagare').trigger('change');
-        }, 100);
-    {% endif %}
-});
-</script>
-
-
-
-
 {% endblock %}
