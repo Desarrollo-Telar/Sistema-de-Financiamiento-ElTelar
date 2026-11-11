@@ -381,8 +381,10 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
     p_intereses = _agregar_parrafo_justificado(doc)
     p_intereses.add_run("B. INTERESES ORDINARIOS: ").bold = True
     p_intereses.add_run(
-        "LA PARTE DEUDORA reconoce y se obliga a pagar el capital, cargos y los intereses aplicables. "
-        f"Sobre el capital adeudado, se generará un interés total del {datos.get('tasa_interes_letras', '')} por ciento "
+        "LA PARTE DEUDORA reconoce y se obliga a pagar el capital, cargos y los intereses aplicables. Sobre el capital adeudado, se generará un interés total del ")
+    p_intereses.add_run(
+        f"{datos.get('tasa_interes_letras', '')} ").bold = True
+    p_intereses.add_run("por ciento "
         f"({datos.get('tasa_interes_formato', '')}) sobre el capital adeudado. El capital adeudado más intereses "
         "será acreditado a LA PARTE DEUDORA, mediante transferencia bancaria o mediante deposito a la cuenta monetaria "
         f"número {datos.get('cuenta_bancaria_letras', '')} ({datos.get('cuenta_bancaria', '')}) del {datos.get('banco_nombre', 'Banco de Desarrollo Rural, Banrural')}."
@@ -392,8 +394,11 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
     p_amort = _agregar_parrafo_justificado(doc)
     p_amort.add_run("C. AMORTIZACIONES: ").bold = True
     p_amort.add_run(
-        f"LA PARTE DEUDORA deberá pagar el capital, cargos, los intereses y cualquier impuesto aplicable en "
-        f"{datos.get('numero_cuotas_letras', '')} cuota(s). La(s) cuota(s) incluye(n) el cálculo de los intereses "
+        f"LA PARTE DEUDORA deberá pagar el capital, cargos, los intereses y cualquier impuesto aplicable en ")
+    p_amort.add_run( f"{datos.get('numero_cuotas_letras', '')} ").bold = True
+
+    p_amort.add_run(
+        "cuota(s). La(s) cuota(s) incluye(n) el cálculo de los intereses "
         "aplicables sobre el total del capital adeudado y el impuesto al Valor Agregado (IVA). En ese sentido, la "
         f"PARTE DEUDORA deberá pagar la cantidad de {datos.get('capital_adeudado_letras', '')} ({datos['capital_adeudado_formato']}) "
         "en concepto de capital; más intereses y recargos por mora. Para el cálculo y pago de cada cuota, el ACREEDOR "
@@ -410,7 +415,11 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
     p_forma.add_run("E. FORMA Y LUGAR DE PAGO: ").bold = True
     p_forma.add_run(
         f"El pago del capital se hará mediante {datos.get('amortizaciones_capital_texto', 'una (1) amortización (es)')}, "
-        f"más los intereses, cargos y los impuestos aplicables en {datos.get('amortizaciones_interes_cuotas', 'DOCE (12) amortización(es)')}. "
+        f"más los intereses, cargos y los impuestos aplicables en ")
+    p_forma.add_run(   
+        f"{datos.get('amortizaciones_interes_cuotas', 'DOCE (12) amortización(es)')}. ").bold = True
+    
+    p_forma.add_run(
         "Todos los pagos que, por cualquier naturaleza, procedan conforme a este pagaré deben hacerse mediante depósito "
         "o transferencias bancaria a la cuenta que indique el ACREEDOR. La Suma Adeudada deberá pagarse al ACREEDOR en la fecha "
         "de vencimiento, sin necesidad de protesto, aviso de falta de pago, requerimiento de pago y actos similares "
