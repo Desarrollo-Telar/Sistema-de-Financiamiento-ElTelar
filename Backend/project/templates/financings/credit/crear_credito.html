@@ -18,6 +18,7 @@
         {% csrf_token %}
         <meta name="csrf-token" content="{{ csrf_token }}">
 
+      
 
         <!-- Tab Navigation Bar -->
         <nav class="glass-panel nav-tabs-container">
@@ -81,6 +82,11 @@
 
 {% block js %}
 
+{% if solicitud and solicitud_data_json %}
+<script id="solicitud-preload-data" type="application/json">
+{{ solicitud_data_json|safe }}
+</script>
+{% endif %}
 
 <script type="module" src="{% static 'js/financings/credito/buscadores.js' %}"></script>
 
@@ -109,8 +115,122 @@
         activeBtn.classList.remove('text-brandGrayText');
 
         if (tabId === 'plan') {
-            generatePaymentPlan();
+            if (typeof generatePaymentPlan === 'function') {
+                generatePaymentPlan();
+            }
+        } else if (tabId === 'desembolso') {
+            if (typeof calculateDisbursementTotals === 'function') {
+                calculateDisbursementTotals();
+            }
         }
+    }
+</script>
+
+<script type="module">
+    function aplicarDatosSolicitud() {
+        const preloadEl = document.getElementById('solicitud-preload-data');
+        if (!preloadEl) return;
+
+        try {
+            const data = JSON.parse(preloadEl.textContent);
+            if (!data) return;
+
+            console.log('Precargando datos de la solicitud de crédito:', data);
+
+            // 1. Cliente
+            const custInput = document.getElementById('customer_search_input');
+            const custId = document.getElementById('customer_id');
+            if (custInput && data.customer_text) custInput.value = data.customer_text;
+            if (custId && data.customer_id) custId.value = data.customer_id;
+
+            // 2. Asesor de Crédito
+            const advInput = document.getElementById('advisor_search_input');
+            const advId = document.getElementById('asesor_de_credito');
+            if (advInput && data.advisor_text) advInput.value = data.advisor_text;
+            if (advId && data.advisor_id) advId.value = data.advisor_id;
+
+            // 3. Helper para asignar valores
+            const setVal = (id, val) => {
+                const el = document.getElementById(id);
+                if (el && val !== undefined && val !== null) {
+                    el.value = val;
+                }
+            };
+
+            setVal('proposito', data.proposito);
+            setVal('monto', data.monto);
+            setVal('tasa_interes', data.tasa_interes);
+            setVal('plazo', data.plazo);
+            setVal('forma_de_pago', data.forma_de_pago);
+
+            // Ajustar periodo de gracia según forma de pago
+            if (typeof window.toggleGracePeriod === 'function') {
+                window.toggleGracePeriod();
+            }
+
+            if (data.plazo_gracia !== undefined && data.plazo_gracia !== null) {
+                setVal('plazo_gracia', data.plazo_gracia);
+            }
+
+            setVal('tipo_credito', data.tipo_credito);
+            setVal('sub_destino', data.sub_destino);
+            setVal('fecha_inicio', data.fecha_inicio);
+
+            // Recalcular fechas de vencimiento y de gracia
+            if (typeof window.calculateDatesAndBalances === 'function') {
+                window.calculateDatesAndBalances();
+            }
+
+            if (data.fecha_vencimiento) {
+                setVal('fecha_vencimiento', data.fecha_vencimiento);
+            }
+            if (data.fecha_finalizacion_gracia) {
+                setVal('fecha_finalizacion_gracia', data.fecha_finalizacion_gracia);
+            }
+
+            // 4. Precargar Garantías
+            if (data.garantias && Array.isArray(data.garantias) && data.garantias.length > 0) {
+                if (typeof window.setGuaranteeList === 'function') {
+                    window.setGuaranteeList(data.garantias);
+                }
+                const bannerCount = document.getElementById('banner-count-garantias');
+                if (bannerCount) bannerCount.textContent = data.garantias.length;
+
+                const descGen = document.getElementById('garantia_descripcion_general');
+                if (descGen) {
+                    descGen.value = `Garantías vinculadas desde Solicitud #${data.investment_plan_code}`;
+                }
+            }
+
+            // 5. Precargar valores para Desembolso
+            setVal('monto_desembolsado', data.monto);
+            setVal('monto_desembolsado_fecha', data.fecha_inicio);
+            const descDesembolso = document.getElementById('monto_desembolsado_descripcion');
+            if (descDesembolso) {
+                descDesembolso.value = `Desembolso correspondiente al Plan de Inversión #${data.investment_plan_code}`;
+            }
+
+            if (typeof window.calculateDisbursementTotals === 'function') {
+                window.calculateDisbursementTotals();
+            }
+
+            // 6. Generar Plan de Pagos
+            if (typeof window.generatePaymentPlan === 'function') {
+                window.generatePaymentPlan();
+            }
+
+            if (typeof window.showToast === 'function') {
+                window.showToast(`Datos de solicitud #${data.investment_plan_code} autocompletados correctamente`, 'success');
+            }
+        } catch (e) {
+            console.error('Error al precargar datos de la solicitud:', e);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', aplicarDatosSolicitud);
+    } else {
+        aplicarDatosSolicitud();
     }
 </script>
 {% endblock %}

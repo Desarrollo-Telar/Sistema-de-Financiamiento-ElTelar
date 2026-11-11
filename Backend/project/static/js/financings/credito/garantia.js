@@ -269,4 +269,24 @@ window.updateGuaranteeListDisplay = function() {
                     </div>
                 </div>
             `).join('');
-}
+};
+
+window.setGuaranteeList = function(list) {
+    guaranteeList.length = 0;
+    if (Array.isArray(list)) {
+        list.forEach(item => {
+            guaranteeList.push({
+                id: item.id || (Date.now() + Math.floor(Math.random() * 1000)),
+                tipo_garantia: item.tipo_garantia || item.tipo || 'HIPOTECA',
+                valor_cobertura: parseFloat(item.valor_cobertura || item.valor) || 0,
+                especificaciones: item.especificaciones || item.especificacion || {},
+                creation_date: item.creation_date || new Date().toISOString()
+            });
+        });
+    }
+    window.updateGuaranteeListDisplay();
+};
+
+window.getGuaranteeList = function() {
+    return guaranteeList;
+};

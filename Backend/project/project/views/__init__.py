@@ -17,5 +17,9 @@ from .documentos_views import (
     descargar_contrato_ejemplo,
     descargar_contrato_directo_ejemplo,
     descargar_contrato_fiador_ejemplo,
+    descargar_contrato_directo_credito,
+    descargar_contrato_fiador_credito,
+    descargar_contrato_directo_solicitud,
+    descargar_contrato_fiador_solicitud,
     panel_descarga_pagare,
 )

@@ -98,6 +98,14 @@ class InvestmentPlan(models.Model):
     def __str__(self):
         return f"{self.type_of_product_or_service} - {self.customer_id}"
 
+    @property
+    def codigo_credito(self):
+        return self.investment_plan_code
+
+    @property
+    def monto(self):
+        return self.total_value_of_the_product_or_service
+
     def description(self):
         return self.investment_plan_description or '----'
     

@@ -61,14 +61,24 @@ def obtener_datos_ejemplo() -> dict:
         "lugar_emision": "--------",
         "fecha_emision": "---- de octubre 2026",
         # Avalista
-        "incluir_aval": False,
-        "aval_persona_avalada": "Mario Antonio Chen Caal",
+        "incluir_aval": True,
+        "avalistas": [
+            {
+                "nombre": "Juan Pérez",
+                "dpi": "2545 74211 1601",
+                "domicilio": "Cobán, Alta Verapaz",
+            },
+            {
+                "nombre": "María López",
+                "dpi": "1837 11882 1601",
+                "domicilio": "San Pedro Carchá, Alta Verapaz",
+            },
+        ],
+        
         "aval_monto": 360000.00,
         "aval_monto_letras": "TRESCIENTOS SESENTA MIL",
         "aval_lugar_fecha": "________________________________________________________________",
-        "avalista_nombre": "",
-        "avalista_dpi": "",
-        "avalista_domicilio": "",
+       
         # Legalización Notarial
         "incluir_autentica": True,
         "notario_ciudad": "Cobán",
@@ -657,78 +667,354 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
         return buffer
 
 
-def generar_pagare_desde_credito(credito_o_id, aval_info: dict | None = None, notario_info: dict | None = None, output_target=None):
-    """
-    Construye un pagaré Word extrayendo la información desde la base de datos de Django
-    (modelo apps.financings.models.Credit y sus relaciones Customer, Address, Guarantees).
-    """
+def sumar_meses(fecha_base: date, meses: int) -> date:
+    """Suma un número determinado de meses a una fecha."""
     try:
-        from apps.financings.models import Credit, Guarantees, DetailsGuarantees
-        from apps.customers.models import Customer
-        from apps.addresses.models import Address
+        from dateutil.relativedelta import relativedelta
+        return fecha_base + relativedelta(months=meses)
     except ImportError:
-        raise RuntimeError("No se pudieron importar los modelos de Django. Asegúrate de ejecutar dentro del entorno Django.")
+        nuevo_anio = fecha_base.year + (fecha_base.month + meses - 1) // 12
+        nuevo_mes = (fecha_base.month + meses - 1) % 12 + 1
+        nuevo_dia = min(fecha_base.day, 28)
+        return date(nuevo_anio, nuevo_mes, nuevo_dia)
 
-    if isinstance(credito_o_id, (int, str)):
-        credito = Credit.objects.select_related("customer_id", "destino_id").get(id=credito_o_id)
+
+def extraer_datos_pagare_desde_solicitud(solicitud, aval_info: dict | None = None, notario_info: dict | None = None) -> dict:
+    """
+    Extrae la información de la Solicitud (InvestmentPlan) y construye
+    la estructura exacta de datos para la generación del Pagaré Word.
+    """
+    capital = float(getattr(solicitud, 'total_value_of_the_product_or_service', None) or getattr(solicitud, 'monto', 0) or 0)
+    plazo_int = int(getattr(solicitud, 'plazo', 12) or 12)
+
+    # Fechas
+    f_venc = getattr(solicitud, 'fecha_vencimiento', None)
+    if isinstance(f_venc, (date, datetime)):
+        fecha_vencimiento_str = fecha_a_texto_estandar(f_venc)
+    elif getattr(solicitud, 'fecha_inicio', None):
+        fecha_vencimiento_str = fecha_a_texto_estandar(sumar_meses(solicitud.fecha_inicio, plazo_int))
     else:
-        credito = credito_o_id
+        fecha_vencimiento_str = "---- de -------- 2027"
 
-    cliente = credito.customer_id
-    direccion_obj = Address.objects.filter(customer_id=cliente).first()
-    direccion_str = str(direccion_obj) if direccion_obj else "-----"
+    f_ini = getattr(solicitud, 'fecha_inicio', None) or date.today()
+    if isinstance(f_ini, (date, datetime)):
+        fecha_emision_str = fecha_a_texto_estandar(f_ini)
+    else:
+        fecha_emision_str = str(f_ini)
 
-    # Recorrer los detalles de todas las garantías del crédito.
-    detalles_fiadores = DetailsGuarantees.objects.filter(
-        garantia_id__credit_id=credito,
-        tipo_garantia__in=["FIADOR", "CHEQUE / PAGARE"],
-    ).order_by("pk")
+    # Cliente / Deudor
+    cliente = getattr(solicitud, 'customer_id', None)
+    if cliente:
+        deudor_nombre = cliente.get_full_name() if hasattr(cliente, 'get_full_name') else f"{getattr(cliente, 'first_name', '')} {getattr(cliente, 'last_name', '')}".strip()
+        deudor_dpi_raw = getattr(cliente, 'identification_number', '') or ""
+        deudor_nit = getattr(cliente, 'number_nit', '') or ""
+    else:
+        deudor_nombre = "------"
+        deudor_dpi_raw = ""
+        deudor_nit = ""
+
+    deudor_dpi_letras, deudor_dpi_formateado = cui_dpi_a_letras(deudor_dpi_raw) if deudor_dpi_raw else ("", "")
+    deudor_dpi = deudor_dpi_formateado or deudor_dpi_raw
+    deudor_nit_letras = nit_a_letras(deudor_nit) if deudor_nit else ""
+
+    # Tasa de Interés
+    tasa_raw = float(getattr(solicitud, 'tasa_interes', 0) or 0)
+    if 0 < tasa_raw < 1:
+        tasa_interes = round(tasa_raw * 100, 2)
+    else:
+        tasa_interes = tasa_raw if tasa_raw > 0 else 4.5
+    tasa_interes_letras = porcentaje_a_letras(tasa_interes)
+
+    # Cuotas y amortizaciones
+    numero_cuotas = plazo_int
+    numero_cuotas_letras = numero_a_letras(plazo_int).upper()
+    cuotas_fmt = cuotas_a_letras(plazo_int)
+
+    amortizaciones_capital_texto = "una (1) amortización (es)"
+    amortizaciones_interes_cuotas = f"{cuotas_fmt} amortización(es)"
+
+    # Dirección para notificaciones
+    direccion_notificaciones = "-----"
+    if cliente:
+        try:
+            from apps.addresses.models import Address
+            dir_obj = Address.objects.filter(customer_id=cliente).first()
+            if dir_obj:
+                direccion_notificaciones = dir_obj.direccion() if hasattr(dir_obj, 'direccion') else str(dir_obj)
+        except Exception:
+            pass
+
+    # Lugar de emisión
+    sucursal = getattr(solicitud, 'sucursal', None)
+    if sucursal and hasattr(sucursal, 'city') and sucursal.city:
+        lugar_emision = f"{sucursal.city}, {getattr(sucursal, 'state', 'Alta Verapaz') or 'Alta Verapaz'}"
+    else:
+        lugar_emision = "Cobán, Alta Verapaz"
+
+    # Avalistas
     avalistas = []
-    for detalle in detalles_fiadores:
-        especificaciones = detalle.especificaciones
-        if not isinstance(especificaciones, dict):
-            continue
-        nombre = especificaciones.get("Nombre", "")
-        # Un cheque/pagaré sin una persona registrada no representa un avalista.
-        if detalle.tipo_garantia == "CHEQUE / PAGARE" and not nombre:
-            continue
-        avalistas.append({
-            "nombre": nombre,
-            "dpi": especificaciones.get("DPI") or especificaciones.get("dpi", ""),
-            "domicilio": especificaciones.get("Domicilio") or especificaciones.get("domicilio", ""),
-        })
+
+    # 1. De solicitud.fiador
+    fiadores_campo = getattr(solicitud, 'fiador', None) or []
+    if isinstance(fiadores_campo, dict):
+        fiadores_campo = [fiadores_campo]
+    ids_fiadores = []
+    if isinstance(fiadores_campo, (list, tuple)):
+        for f in fiadores_campo:
+            if isinstance(f, dict) and f.get('id'):
+                ids_fiadores.append(f['id'])
+            elif isinstance(f, int):
+                ids_fiadores.append(f)
+
+    if ids_fiadores:
+        try:
+            from apps.customers.models import Customer
+            from apps.addresses.models import Address
+            clientes_fiadores = Customer.objects.filter(id__in=ids_fiadores)
+            for cf in clientes_fiadores:
+                addr = Address.objects.filter(customer_id=cf).first()
+                dom = (addr.direccion() if hasattr(addr, 'direccion') else str(addr)) if addr else f"{cf.place_birth or 'Cobán, Alta Verapaz'}"
+                nom = cf.get_full_name() if hasattr(cf, 'get_full_name') else f"{cf.first_name} {cf.last_name}".strip()
+                dpi_fmt = cf.identification_number or ""
+                if dpi_fmt:
+                    _, dpi_fmt = cui_dpi_a_letras(dpi_fmt)
+                avalistas.append({
+                    "nombre": nom,
+                    "dpi": dpi_fmt or cf.identification_number or "",
+                    "domicilio": dom or "Cobán, Alta Verapaz",
+                })
+        except Exception:
+            pass
+
+    # 2. De solicitud.garantias (tipo FIADOR)
+    garantias_campo = getattr(solicitud, 'garantias', None) or []
+    if isinstance(garantias_campo, list):
+        for g in garantias_campo:
+            if isinstance(g, dict) and (g.get('tipo') == 'FIADOR' or g.get('tipo_garantia') == 'FIADOR'):
+                specs = g.get('especificaciones') or {}
+                if isinstance(specs, dict):
+                    nom = specs.get('Nombre') or specs.get('nombre') or ""
+                    dpi_val = specs.get('DPI') or specs.get('dpi') or ""
+                    dom_val = specs.get('Domicilio') or specs.get('domicilio') or specs.get('Lugar_de_Trabajo') or ""
+                    cod = specs.get('Codigo_de_Cliente')
+                    if (not dpi_val or not dom_val) and cod:
+                        try:
+                            from apps.customers.models import Customer
+                            from apps.addresses.models import Address
+                            cust = Customer.objects.filter(customer_code=cod).first()
+                            if cust:
+                                if not nom:
+                                    nom = cust.get_full_name() if hasattr(cust, 'get_full_name') else f"{cust.first_name} {cust.last_name}".strip()
+                                if not dpi_val:
+                                    dpi_val = cust.identification_number
+                                if not dom_val:
+                                    addr = Address.objects.filter(customer_id=cust).first()
+                                    dom_val = (addr.direccion() if hasattr(addr, 'direccion') else str(addr)) if addr else f"{cust.place_birth or 'Cobán, Alta Verapaz'}"
+                        except Exception:
+                            pass
+                    if dpi_val:
+                        _, dpi_fmt = cui_dpi_a_letras(dpi_val)
+                        if dpi_fmt:
+                            dpi_val = dpi_fmt
+                    if nom and not any(a['nombre'].strip().lower() == nom.strip().lower() for a in avalistas):
+                        avalistas.append({
+                            "nombre": nom,
+                            "dpi": dpi_val or "",
+                            "domicilio": dom_val or "Cobán, Alta Verapaz",
+                        })
+
+    incluir_aval = bool(avalistas)
+    aval_monto = capital
+    aval_monto_letras = monto_a_letras_quetzales(aval_monto).replace(" QUETZALES EXACTOS", "")
+
+    # Notario y Legalización
+    notario_ciudad = sucursal.city if sucursal and hasattr(sucursal, 'city') and sucursal.city else "Cobán"
+    notario_departamento = sucursal.state if sucursal and hasattr(sucursal, 'state') and sucursal.state else "Alta Verapaz"
+    notario_fecha_letras = fecha_a_texto_notarial(f_ini)
+
+    firmantes = [deudor_nombre] + [a["nombre"] for a in avalistas if a.get("nombre")]
+    if len(firmantes) == 1:
+        notario_firmantes = firmantes[0]
+    elif len(firmantes) == 2:
+        notario_firmantes = f"{firmantes[0]} y {firmantes[1]}"
+    else:
+        notario_firmantes = f"{', '.join(firmantes[:-1])} y {firmantes[-1]}"
+
+    dpis = [deudor_dpi] + [a["dpi"] for a in avalistas if a.get("dpi")]
+    notario_cui_firmantes = [cui_dpi_a_letras(d)[0] if d else "________________" for d in dpis]
 
     datos = {
         "acreedor_nombre_corto": "EL TELAR, S.A.",
         "acreedor_nombre_completo": "INVERSIONES INTEGRALES EL TELAR, SOCIEDAD ANONIMA",
-        "capital_adeudado": float(credito.monto),
-        "plazo_meses": credito.plazo,
-        "fecha_vencimiento": credito.fecha_vencimiento,
-        "deudor_nombre": cliente.get_full_name() if hasattr(cliente, "get_full_name") else f"{cliente.first_name} {cliente.last_name}",
-        "deudor_dpi": cliente.identification_number,
-        "deudor_nit": cliente.number_nit,
-        "tasa_interes": float(credito.tasa_interes) * 100 if float(credito.tasa_interes) < 1 else float(credito.tasa_interes),
-        "numero_cuotas": credito.plazo,
-        "direccion_notificaciones": direccion_str,
-        "lugar_emision": "Cobán, Alta Verapaz",
-        "fecha_emision": fecha_a_texto_estandar(credito.fecha_inicio or date.today()),
-        "incluir_aval": bool(avalistas),
+        "capital_adeudado": capital,
+        "plazo_meses": plazo_int,
+        "fecha_vencimiento": fecha_vencimiento_str,
+        "deudor_nombre": deudor_nombre,
+        "deudor_dpi": deudor_dpi,
+        "deudor_dpi_letras": deudor_dpi_letras,
+        "deudor_nit": deudor_nit,
+        "deudor_nit_letras": deudor_nit_letras,
+        "tasa_interes": tasa_interes,
+        "tasa_interes_letras": tasa_interes_letras,
+        "banco_nombre": "Banco de Desarrollo Rural, Banrural",
+        "cuenta_bancaria": "3696008759",
+        "cuenta_bancaria_letras": cuenta_a_letras("3696008759"),
+        "numero_cuotas": numero_cuotas,
+        "numero_cuotas_letras": numero_cuotas_letras,
+        "amortizaciones_capital_texto": amortizaciones_capital_texto,
+        "amortizaciones_interes_cuotas": amortizaciones_interes_cuotas,
+        "porcentaje_atraso": "diez por ciento (10%)",
+        "direccion_notificaciones": direccion_notificaciones,
+        "lugar_emision": lugar_emision,
+        "fecha_emision": fecha_emision_str,
+        # Avalista
+        "incluir_aval": incluir_aval,
         "avalistas": avalistas,
-        "aval_persona_avalada": f"{cliente.first_name} {cliente.last_name}",
-        "aval_monto": float(credito.monto),
+        "aval_monto": aval_monto,
+        "aval_monto_letras": aval_monto_letras,
+        "aval_lugar_fecha": "________________________________________________________________",
+        # Legalización Notarial
         "incluir_autentica": True,
+        "notario_ciudad": notario_ciudad,
+        "notario_departamento": notario_departamento,
+        "notario_fecha_letras": notario_fecha_letras,
+        "notario_firmantes": notario_firmantes,
+        "notario_cui_firmantes": notario_cui_firmantes,
     }
 
-    if aval_info:
-        if "avalistas" in aval_info and "incluir_aval" not in aval_info:
-            datos.pop("incluir_aval", None)
-        elif "avalistas" not in aval_info and any(
-            campo in aval_info for campo in ("avalista_nombre", "avalista_dpi", "avalista_domicilio")
-        ):
-            datos.pop("avalistas", None)
-            datos.pop("incluir_aval", None)
+    if aval_info and isinstance(aval_info, dict):
         datos.update(aval_info)
-    if notario_info:
+    if notario_info and isinstance(notario_info, dict):
         datos.update(notario_info)
 
+    return datos
+
+
+def generar_pagare_desde_credito(credito_o_id, aval_info: dict | None = None, notario_info: dict | None = None, output_target=None):
+    """
+    Construye un pagaré Word extrayendo la información desde la base de datos de Django
+    a partir de una Solicitud (InvestmentPlan) o de un Crédito (Credit).
+    """
+    solicitud = None
+    if isinstance(credito_o_id, (int, str)):
+        try:
+            from apps.InvestmentPlan.models import InvestmentPlan
+            solicitud = InvestmentPlan.objects.select_related("customer_id", "sucursal").filter(id=credito_o_id).first()
+        except Exception:
+            solicitud = None
+
+        if not solicitud:
+            try:
+                from apps.financings.models import Credit
+                credito = Credit.objects.select_related("customer_id", "destino_id").get(id=credito_o_id)
+            except Exception:
+                raise RuntimeError(f"No se encontró Solicitud o Crédito con ID: {credito_o_id}")
+        else:
+            credito = solicitud
+    else:
+        credito = credito_o_id
+
+    # Si es instancia de InvestmentPlan (o tiene los campos del plan de inversión)
+    if hasattr(credito, "total_value_of_the_product_or_service") or hasattr(credito, "investment_plan_code"):
+        datos = extraer_datos_pagare_desde_solicitud(credito, aval_info=aval_info, notario_info=notario_info)
+    else:
+        # Es una instancia del modelo Credit
+        try:
+            from apps.financings.models import DetailsGuarantees
+            from apps.addresses.models import Address
+        except ImportError:
+            raise RuntimeError("No se pudieron importar los modelos de Django.")
+
+        cliente = credito.customer_id
+        direccion_obj = Address.objects.filter(customer_id=cliente).first()
+        direccion_str = str(direccion_obj) if direccion_obj else "-----"
+
+        detalles_fiadores = DetailsGuarantees.objects.filter(
+            garantia_id__credit_id=credito,
+            tipo_garantia__in=["FIADOR", "CHEQUE / PAGARE"],
+        ).order_by("pk")
+        avalistas = []
+        for detalle in detalles_fiadores:
+            especificaciones = detalle.especificaciones
+            if not isinstance(especificaciones, dict):
+                continue
+            nombre = especificaciones.get("Nombre", "")
+            if detalle.tipo_garantia == "CHEQUE / PAGARE" and not nombre:
+                continue
+            dpi_f = especificaciones.get("DPI") or especificaciones.get("dpi", "")
+            if dpi_f:
+                _, dpi_fmt = cui_dpi_a_letras(dpi_f)
+                if dpi_fmt:
+                    dpi_f = dpi_fmt
+            avalistas.append({
+                "nombre": nombre,
+                "dpi": dpi_f,
+                "domicilio": especificaciones.get("Domicilio") or especificaciones.get("domicilio", ""),
+            })
+
+        tasa = float(credito.tasa_interes) * 100 if float(credito.tasa_interes) < 1 else float(credito.tasa_interes)
+        deudor_nombre = cliente.get_full_name() if hasattr(cliente, "get_full_name") else f"{cliente.first_name} {cliente.last_name}".strip()
+        deudor_dpi = cliente.identification_number or ""
+        if deudor_dpi:
+            _, dpi_fmt = cui_dpi_a_letras(deudor_dpi)
+            deudor_dpi = dpi_fmt or deudor_dpi
+
+        deudor_nit = cliente.number_nit or ""
+
+        firmantes = [deudor_nombre] + [a["nombre"] for a in avalistas if a.get("nombre")]
+        if len(firmantes) == 1:
+            notario_firmantes = firmantes[0]
+        elif len(firmantes) == 2:
+            notario_firmantes = f"{firmantes[0]} y {firmantes[1]}"
+        else:
+            notario_firmantes = f"{', '.join(firmantes[:-1])} y {firmantes[-1]}"
+
+        dpis = [deudor_dpi] + [a["dpi"] for a in avalistas if a.get("dpi")]
+        notario_cui_firmantes = [cui_dpi_a_letras(d)[0] if d else "________________" for d in dpis]
+
+        datos = {
+            "acreedor_nombre_corto": "EL TELAR, S.A.",
+            "acreedor_nombre_completo": "INVERSIONES INTEGRALES EL TELAR, SOCIEDAD ANONIMA",
+            "capital_adeudado": float(credito.monto),
+            "plazo_meses": credito.plazo,
+            "fecha_vencimiento": fecha_a_texto_estandar(credito.fecha_vencimiento) if isinstance(credito.fecha_vencimiento, (date, datetime)) else str(credito.fecha_vencimiento),
+            "deudor_nombre": deudor_nombre,
+            "deudor_dpi": deudor_dpi,
+            "deudor_dpi_letras": cui_dpi_a_letras(deudor_dpi)[0] if deudor_dpi else "",
+            "deudor_nit": deudor_nit,
+            "deudor_nit_letras": nit_a_letras(deudor_nit) if deudor_nit else "",
+            "tasa_interes": tasa,
+            "tasa_interes_letras": porcentaje_a_letras(tasa),
+            "banco_nombre": "Banco de Desarrollo Rural, Banrural",
+            "cuenta_bancaria": "3696008759",
+            "cuenta_bancaria_letras": cuenta_a_letras("3696008759"),
+            "numero_cuotas": credito.plazo,
+            "numero_cuotas_letras": numero_a_letras(credito.plazo).upper(),
+            "amortizaciones_capital_texto": "una (1) amortización (es)",
+            "amortizaciones_interes_cuotas": f"{cuotas_a_letras(credito.plazo)} amortización(es)",
+            "porcentaje_atraso": "diez por ciento (10%)",
+            "direccion_notificaciones": direccion_str,
+            "lugar_emision": "Cobán, Alta Verapaz",
+            "fecha_emision": fecha_a_texto_estandar(credito.fecha_inicio or date.today()),
+            "incluir_aval": bool(avalistas),
+            "avalistas": avalistas,
+            "aval_monto": float(credito.monto),
+            "aval_monto_letras": monto_a_letras_quetzales(float(credito.monto)).replace(" QUETZALES EXACTOS", ""),
+            "aval_lugar_fecha": "________________________________________________________________",
+            "incluir_autentica": True,
+            "notario_ciudad": "Cobán",
+            "notario_departamento": "Alta Verapaz",
+            "notario_fecha_letras": fecha_a_texto_notarial(credito.fecha_inicio or date.today()),
+            "notario_firmantes": notario_firmantes,
+            "notario_cui_firmantes": notario_cui_firmantes,
+        }
+
+        if aval_info:
+            datos.update(aval_info)
+        if notario_info:
+            datos.update(notario_info)
+
     return generar_pagare_word(datos, output_target=output_target)
+
+
+generar_pagare_desde_solicitud = generar_pagare_desde_credito

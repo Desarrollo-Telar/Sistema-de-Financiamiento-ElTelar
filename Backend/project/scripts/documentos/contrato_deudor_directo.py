@@ -22,6 +22,9 @@ from .helpers import (
     cui_dpi_a_letras,
     edad_a_letras,
     fecha_a_texto_notarial,
+    resolver_solicitud_o_credito,
+    construir_texto_garantia_item,
+    extraer_datos_base_contrato_desde_solicitud,
 )
 
 
@@ -137,7 +140,7 @@ def _preparar_datos_deudor_directo(datos_entrada: dict | None) -> dict:
         datos["deudor_dpi_formateado"] = ""
 
     # Garantía si se eligió tipo LABORAL pero no se especificó texto
-    if datos.get("tipo_garantia") == "LABORAL" and "garantia_texto" not in datos_entrada:
+    if datos.get("tipo_garantia") == "LABORAL" and "garantia_texto" not in (datos_entrada or {}):
         datos["garantia_texto"] = (
             "el sueldo que devengo como empleada del INSTITUTO NACIONAL DE BOSQUES -INAB-, "
             "como secretaria Subregional de la Dirección Subregional II-1 Santa Cruz Verapaz "
@@ -181,8 +184,11 @@ def generar_contrato_deudor_directo_word(datos_entrada: dict | None = None, outp
         f"En la Ciudad de {datos['ciudad']} del departamento de {datos['departamento']}, a {datos['fecha_contrato_letras']}. "
     )
     p_intro.add_run("NOSOTROS: ").bold = True
-    p_intro.add_run(
-        f"por una parte Yo, {datos['deudor_nombre']}, de {datos['deudor_edad_letras']} años de edad, "
+    p_intro.add_run(f"por una parte Yo, ")
+    
+    p_intro.add_run(f"{datos['deudor_nombre']}, ").bold = True
+
+    p_intro.add_run(f"de {datos['deudor_edad_letras']} años de edad, "
         f"{datos['deudor_estado_civil']}, {datos['deudor_nacionalidad']}, {datos['deudor_profesion']}, {datos['deudor_domicilio']}, "
         "me identifico con el Documento Personal de Identificación –DPI- Código Único de Identificación número "
         f"{datos['deudor_cui_letras']} ({datos['deudor_dpi_formateado'] or datos['deudor_dpi']}); extendido por el "
@@ -213,9 +219,12 @@ def generar_contrato_deudor_directo_word(datos_entrada: dict | None = None, outp
     p_primera.paragraph_format.line_spacing = 1.15
     p_primera.paragraph_format.space_after = Pt(8)
 
+    calidad_deudor = "LISO Y LLANO DEUDOR" if datos.get("deudor_genero", "F") == "M" else "LISA Y LLANA DEUDORA"
+    rol_deudor = "DEUDOR" if datos.get("deudor_genero", "F") == "M" else "DEUDORA"
+
     p_primera.add_run("PRIMERA: ").bold = True
     p_primera.add_run(
-        f"Yo, {datos['deudor_nombre']}, declaro que me reconozco LISA Y LLANA DEUDORA, de la entidad {datos['empresa_nombre']}, "
+        f"Yo, {datos['deudor_nombre']}, declaro que me reconozco {calidad_deudor}, de la entidad {datos['empresa_nombre']}, "
         f"por medio de su {datos['rep_legal_cargo']}, representada por el señor {datos['rep_legal_nombre']}, por la cantidad de "
         f"{datos['monto_capital_letras']}, ({datos['monto_capital_formato']}). El reconocimiento se regirá bajo las condiciones siguientes:\n"
         f"a) LA FORMA DE PAGO: El pago de la deuda será a través de {datos['plazo_cuotas_letras']} CUOTAS MENSUALES, distribuidos de la siguiente manera: "
@@ -281,7 +290,7 @@ def generar_contrato_deudor_directo_word(datos_entrada: dict | None = None, outp
     c0 = tabla_firmas.cell(0, 0).paragraphs[0]
     c0.paragraph_format.space_after = Pt(14)
     c0.add_run("f.____________________________\n").bold = True
-    c0.add_run(f"DEUDORA\n{datos['deudor_nombre']}")
+    c0.add_run(f"{rol_deudor}\n{datos['deudor_nombre']}")
 
     c1 = tabla_firmas.cell(0, 1).paragraphs[0]
     c1.paragraph_format.space_after = Pt(14)
@@ -323,7 +332,7 @@ def generar_contrato_deudor_directo_word(datos_entrada: dict | None = None, outp
     cn0 = tabla_not.cell(0, 0).paragraphs[0]
     cn0.paragraph_format.space_after = Pt(14)
     cn0.add_run("f.____________________________\n").bold = True
-    cn0.add_run(f"DEUDORA\n{datos['deudor_nombre']}")
+    cn0.add_run(f"{rol_deudor}\n{datos['deudor_nombre']}")
 
     cn1 = tabla_not.cell(0, 1).paragraphs[0]
     cn1.paragraph_format.space_after = Pt(14)
@@ -346,3 +355,119 @@ def generar_contrato_deudor_directo_word(datos_entrada: dict | None = None, outp
         doc.save(buffer)
         buffer.seek(0)
         return buffer
+
+
+def extraer_datos_contrato_deudor_directo_desde_solicitud(solicitud, overrides: dict | None = None) -> dict:
+    """
+    Extrae toda la información real desde una Solicitud (InvestmentPlan) o Crédito (Credit)
+    y construye el diccionario compatible con obtener_datos_ejemplo_deudor_directo().
+    """
+    datos = extraer_datos_base_contrato_desde_solicitud(solicitud)
+    # Remover clave auxiliar exclusiva del contrato con fiadores si no se necesita, manteniendo deudor_genero
+    datos["notario_dpi_deudor"] = datos.get("deudor_dpi", "")
+
+    # Recopilar garantías reales / mobiliarias / laborales del deudor
+    garantias_raw = getattr(solicitud, "garantias", None)
+    if not garantias_raw and getattr(solicitud, "destino_id", None) is not None:
+        garantias_raw = getattr(solicitud.destino_id, "garantias", None)
+
+    textos_garantia = []
+    tipo_garantia_principal = None
+
+    if isinstance(garantias_raw, list):
+        for g in garantias_raw:
+            if not isinstance(g, dict):
+                continue
+            tg = str(g.get("tipo") or g.get("tipo_garantia") or "").strip().upper()
+            if tg == "FIADOR":
+                continue
+            if not tipo_garantia_principal and tg:
+                tipo_garantia_principal = tg
+            specs = g.get("especificaciones") or {}
+            desc = g.get("descripcion") or ""
+            txt_g = construir_texto_garantia_item(tg or "MOBILIARIA", specs, desc)
+            if txt_g:
+                textos_garantia.append(txt_g)
+
+    # Si es instancia de Credit sin garantías JSON en el plan, consultar DetailsGuarantees
+    if not textos_garantia and not hasattr(solicitud, "total_value_of_the_product_or_service") and getattr(solicitud, "id", None):
+        try:
+            from apps.financings.models import DetailsGuarantees
+            detalles = DetailsGuarantees.objects.filter(
+                garantia_id__credit_id=solicitud
+            ).exclude(tipo_garantia="FIADOR").order_by("pk")
+            for det in detalles:
+                tg = str(det.tipo_garantia or "MOBILIARIA").strip().upper()
+                if not tipo_garantia_principal:
+                    tipo_garantia_principal = tg
+                specs = det.especificaciones if isinstance(det.especificaciones, dict) else {}
+                txt_g = construir_texto_garantia_item(tg, specs, "")
+                if txt_g:
+                    textos_garantia.append(txt_g)
+        except Exception:
+            pass
+
+    # Respaldo con WorkingInformation del cliente si no hay garantías cargadas en la solicitud
+    if not textos_garantia:
+        cliente = getattr(solicitud, "customer_id", None)
+        wi = getattr(cliente, "_mock_working_info", None) if cliente else None
+        if wi is None and cliente is not None:
+            try:
+                from apps.FinancialInformation.models import WorkingInformation
+                wi = WorkingInformation.objects.filter(customer_id=cliente).first()
+            except Exception:
+                wi = None
+
+        if wi is not None:
+            empresa_lab = str(getattr(wi, "company_name", "") or "").strip()
+            puesto_lab = str(getattr(wi, "position", "") or "").strip()
+            fuente_lab = str(getattr(wi, "source_of_income", "") or "").strip()
+            if empresa_lab and empresa_lab.upper() not in ("N/A", "---"):
+                if fuente_lab == "Negocio Propio":
+                    tipo_garantia_principal = "MOBILIARIA"
+                    textos_garantia.append(
+                        f"garantía mobiliaria sobre mi negocio propio denominado {empresa_lab}, "
+                        "así como con la totalidad de mis bienes presentes y futuros"
+                    )
+                else:
+                    tipo_garantia_principal = "LABORAL"
+                    empl = "empleado" if datos.get("deudor_genero") == "M" else "empleada"
+                    cargo_txt = f", como {puesto_lab}" if puesto_lab else ""
+                    textos_garantia.append(
+                        f"el sueldo que devengo como {empl} de {empresa_lab}{cargo_txt}, "
+                        "así como con la totalidad de mis bienes presentes y futuros"
+                    )
+
+    if textos_garantia:
+        datos["tipo_garantia"] = tipo_garantia_principal or "MOBILIARIA"
+        datos["garantia_texto"] = "; y con ".join(textos_garantia)
+    else:
+        datos["tipo_garantia"] = "MOBILIARIA"
+        datos["garantia_texto"] = "la totalidad de mis bienes presentes y futuros"
+
+    if overrides and isinstance(overrides, dict):
+        if "monto_capital" in overrides and "monto_capital_letras" not in overrides:
+            try:
+                datos["monto_capital_letras"] = monto_a_letras_quetzales(float(overrides["monto_capital"])).replace(" EXACTOS", "")
+            except Exception:
+                pass
+        if "deudor_dpi" in overrides and "deudor_cui_letras" not in overrides:
+            cui_l, dpi_f = cui_dpi_a_letras(overrides["deudor_dpi"], con_espacio=True)
+            datos["deudor_cui_letras"] = cui_l
+            datos["deudor_dpi_formateado"] = dpi_f
+        datos.update(overrides)
+
+    return datos
+
+
+def generar_contrato_deudor_directo_desde_solicitud(solicitud_o_id, overrides: dict | None = None, output_target=None):
+    """
+    Genera el Contrato de Reconocimiento de Deuda (Deudor Directo) en Word (.docx)
+    extrayendo los datos desde una Solicitud (InvestmentPlan) o Crédito (Credit).
+    """
+    solicitud = resolver_solicitud_o_credito(solicitud_o_id)
+    datos = extraer_datos_contrato_deudor_directo_desde_solicitud(solicitud, overrides=overrides)
+    return generar_contrato_deudor_directo_word(datos, output_target=output_target)
+
+
+generar_contrato_deudor_directo_desde_credito = generar_contrato_deudor_directo_desde_solicitud

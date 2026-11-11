@@ -24,6 +24,10 @@ from .helpers import (
     edad_a_letras,
     fecha_a_texto_notarial,
     ordinal,
+    resolver_solicitud_o_credito,
+    extraer_persona_notarial,
+    construir_texto_garantia_item,
+    extraer_datos_base_contrato_desde_solicitud,
 )
 
 
@@ -402,11 +406,11 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
     p_intro.add_run("NOSOTROS: ").bold = False
 
     # Parte Deudora
-    p_intro.add_run(
-        f"por una parte Yo, ") 
-    p_intro.add_run(f"{datos['deudor_nombre']},").bold = True
+    p_intro.add_run("por una parte Yo, ")
+    p_intro.add_run(f"{datos['deudor_nombre']}, ").bold = True
 
-    p_intro.add_run( f"de {datos['deudor_edad_letras']} años de edad, "
+    p_intro.add_run(
+        f"de {datos['deudor_edad_letras']} años de edad, "
         f"{datos['deudor_estado_civil']}, {datos['deudor_nacionalidad']}, {datos['deudor_profesion']}, {datos['deudor_domicilio']}, "
         "me identifico con el Documento Personal de Identificación –DPI- Código Único de Identificación número "
         f"{datos['deudor_cui_letras']} ({datos['deudor_dpi_formateado'] or datos['deudor_dpi']}); extendido por el "
@@ -422,9 +426,9 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
 
         p_intro.add_run(
             f"Yo, {f['nombre']}, ").bold = True
-        
+
         p_intro.add_run(
-            f"{prefijo_ordinal} de {f['edad_letras']} años de edad, {f['estado_civil']}, "
+            f"{prefijo_ordinal}de {f['edad_letras']} años de edad, {f['estado_civil']}, "
             f"{f['nacionalidad']}, {f['profesion']}, {f['domicilio']}, "
             "me identifico con el Documento Personal de Identificación –DPI- Código Único de Identificación número "
             f"{f['cui_letras']} ({f.get('dpi_formateado') or f['dpi']}); extendido por el "
@@ -479,119 +483,128 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
     p_primera.paragraph_format.line_spacing = 1.15
     p_primera.paragraph_format.space_after = Pt(8)
 
-    p_intro.add_run("PRIMERA: ").bold = True
-    p_intro.add_run(
-        f"Yo, ")
-    p_intro.add_run(f"{datos['deudor_nombre']}, ").bold = True
-    
-    p_intro.add_run(f"declaro que me reconozco LISA Y LLANA DEUDORA, de la entidad acreedora, por la cantidad de ")
-    p_intro.add_run(f"{datos['monto_capital_letras']} ({datos['monto_capital_formato']}). ").bold = True
-    p_intro.add_run(f"El reconocimiento se regirá bajo las condiciones siguientes: ")
-    p_intro.add_run(f"a) LA FORMA DE PAGO: ").bold = True
+    es_mujer = datos.get("deudor_genero", "F") == "F"
+    calidad_deudor = "LISA Y LLANA DEUDORA" if es_mujer else "LISO Y LLANO DEUDOR"
+    instruida_txt = "instruida" if es_mujer else "instruido"
+    rol_deudor_txt = "DEUDORA" if es_mujer else "DEUDOR"
 
-    p_intro.add_run(f"El pago de la deuda será a través de ")
-    p_intro.add_run(f"{datos['plazo_cuotas_letras']} {datos.get('tipo_pago_nombre', 'BONOS MENSUALES')}, ").bold = True
+    p_primera.add_run("PRIMERA: ").bold = True
+    p_primera.add_run("Yo, ")
+    p_primera.add_run(f"{datos['deudor_nombre']}, ").bold = True
     
-    p_intro.add_run(
+    p_primera.add_run(f"declaro que me reconozco {calidad_deudor}, de la entidad acreedora, por la cantidad de ")
+    p_primera.add_run(f"{datos['monto_capital_letras']} ({datos['monto_capital_formato']}). ").bold = True
+    p_primera.add_run("El reconocimiento se regirá bajo las condiciones siguientes: ")
+    p_primera.add_run("a) LA FORMA DE PAGO: ").bold = True
+
+    p_primera.add_run("El pago de la deuda será a través de ")
+    p_primera.add_run(f"{datos['plazo_cuotas_letras']} {datos.get('tipo_pago_nombre', 'BONOS MENSUALES')}, ").bold = True
+    
+    p_primera.add_run(
         f"distribuidos de la siguiente manera: {datos['desglose_cuotas_texto']} "
         f"los pagos deberán efectuarse mediante deposito a la cuenta monetaria número {datos['empresa_cuenta_bancaria']} a nombre de la empresa denominada ")
-    p_intro.add_run(
+    p_primera.add_run(
         f"{datos['empresa_nombre']}, ").bold = True
     
-    p_intro.add_run(f"empresa ubicada en la {datos['empresa_direccion']}, sin necesidad de requerimiento o cobro alguno;")
+    p_primera.add_run(f"empresa ubicada en la {datos['empresa_direccion']}, sin necesidad de requerimiento o cobro alguno; ")
 
-    p_intro.add_run(
-        f"b) Manifiesto yo, ")
-    p_intro.add_run(f"{datos['deudor_nombre']}, ").bold = True
+    p_primera.add_run("b) Manifiesto yo, ")
+    p_primera.add_run(f"{datos['deudor_nombre']}, ").bold = True
 
-    p_intro.add_run(f"que la cantidad que me fue otorgada por la ")
-    p_intro.add_run(f"entidad acreedora, ").bold = True
+    p_primera.add_run("que la cantidad que me fue otorgada por la ")
+    p_primera.add_run("entidad acreedora, ").bold = True
 
-    p_intro.add_run(f"la invertiré exclusivamente en: "
-        f"{datos['destino_credito']}, tal y como consta en mi solicitud de crédito;"
+    p_primera.add_run(
+        f"la invertiré exclusivamente en: {datos['destino_credito']}, tal y como consta en mi solicitud de crédito; "
         f"c) Comprometiéndome desde ya a pagar una tasa de interés del {datos['tasa_interes_letras']} ({datos['tasa_interes_num']}%), mensual, sin que estos se capitalicen, "
         "pudiendo variar en el transcurso del plazo, si el pago de los intereses y capital no se efectúa en la fecha establecida en este contrato "
         f"de reconocimiento de deuda la entidad acreedora, tendrá derecho de cobrar en concepto de multa la cantidad del {datos['multa_mora_pct']}%, sobre el monto de "
         "intereses vencidos, iniciando el día inmediato posterior a la fecha de pago acordada, la multa por morosidad permanecerá constante "
         f"hasta que el saldo quede al día tal como se me indicó previamente en la empresa ")
-    p_intro.add_run(f"{datos['empresa_nombre']}; ").bold = True
-    p_intro.add_run(
-        f"d) Autorizo que este crédito sea cedible o negociable, sin necesidad que la empresa ")
-    p_intro.add_run(f"{datos['empresa_nombre']}, ").bold = True
-    p_intro.add_run(f"me de aviso previo o posterior notificación;"
-        f"e) La falta de pago de la cantidad adeudada, dará derecho a la entidad: ")
-    p_intro.add_run(f"{datos['empresa_nombre']}, ").bold = True
-    p_intro.add_run(f"por medio de su ")
-    p_intro.add_run(f"{datos['rep_legal_cargo']}, representada por el señor {datos['rep_legal_nombre']}, ").bold = True
+    p_primera.add_run(f"{datos['empresa_nombre']}; ").bold = True
+    p_primera.add_run("d) Autorizo que este crédito sea cedible o negociable, sin necesidad que la empresa ")
+    p_primera.add_run(f"{datos['empresa_nombre']}, ").bold = True
+    p_primera.add_run(
+        "me de aviso previo o posterior notificación; "
+        "e) La falta de pago de la cantidad adeudada, dará derecho a la entidad: "
+    )
+    p_primera.add_run(f"{datos['empresa_nombre']}, ").bold = True
+    p_primera.add_run("por medio de su ")
+    p_primera.add_run(f"{datos['rep_legal_cargo']}, representada por el señor {datos['rep_legal_nombre']}, ").bold = True
 
-    p_intro.add_run(
-        f"a dar por vencido el plazo y al cobro de la cantidad adeudada, intereses y costas procesales "
+    p_primera.add_run(
+        "a dar por vencido el plazo y al cobro de la cantidad adeudada, intereses y costas procesales "
         "y el presente documento debidamente legalizado por Notario en sus firmas servirá de título ejecutivo para iniciar el juicio correspondiente "
         "y en esta forma se podrá dar por vencido el plazo si se da el dinero mutuado un destino diferente para el que fue concedido según la solicitud "
         f"de crédito y la resolución emitida por {datos['resolucion_ente']} de la empresa ")
-    p_intro.add_run(f"{datos['empresa_nombre']}, ").bold = True
+    p_primera.add_run(f"{datos['empresa_nombre']}, ").bold = True
 
-    p_intro.add_run(f"contenida en Acta número "
-        f"{datos['acta_numero']} mediante la cual fue autorizado el presente Crédito;").bold = True
+    p_primera.add_run(
+        f"contenida en Acta número {datos['acta_numero']} mediante la cual fue autorizado el presente Crédito; "
+    ).bold = True
     
-    p_intro.add_run(
-        f"f) Para los efectos legales, yo, ")
-    p_intro.add_run(f"{datos['deudor_nombre']}, ").bold = True
-    p_intro.add_run(f"renuncio al fuero de mi domicilio y me sujeto expresamente a los tribunales que la entidad acreedora elija, "
-        f"señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos en la siguiente dirección: ")
-    p_intro.add_run(f"{datos['deudor_direccion']}, ").bold = True
+    p_primera.add_run("f) Para los efectos legales, yo, ")
+    p_primera.add_run(f"{datos['deudor_nombre']}, ").bold = True
+    p_primera.add_run(
+        "renuncio al fuero de mi domicilio y me sujeto expresamente a los tribunales que la entidad acreedora elija, "
+        "señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos en la siguiente dirección: ")
+    p_primera.add_run(f"{datos['deudor_direccion']}, ").bold = True
 
-    p_intro.add_run(
+    p_primera.add_run(
         "casa plenamente conocida, lugar donde resido actualmente; y acepto como buenas, exactas, de plazo vencido, líquidas y exigibles las cantidades "
         "que a consecuencia de este crédito se me presenten en caso de incumplimiento a cualquiera de las estipulaciones de este contrato, y si cambiará de dirección "
-        "tengo la obligación de comunicarlo a la entidad acreedora, caso contrario las citaciones, notificaciones y emplazamientos se me harán en la dirección antes indicada y se tendrán como válidas;"
+        "tengo la obligación de comunicarlo a la entidad acreedora, caso contrario las citaciones, notificaciones y emplazamientos se me harán en la dirección antes indicada y se tendrán como válidas; "
     )
 
     # Cláusula de Garantía de Fiador(es) Dinámica
     if num_fiadores == 1:
         f = fiadores[0]
-        p_primera.add_run(
-            f"g) DE LA GARANTÍA: ").bold = True
-        p_intro.add_run(f"Yo, ")
-        p_intro.add_run(f"{f['nombre']}, ").bold = True
+        p_primera.add_run("g) DE LA GARANTÍA: ").bold = True
+        p_primera.add_run("Yo, ")
+        p_primera.add_run(f"{f['nombre']}, ").bold = True
 
-        p_intro.add_run(f"manifiesto que para el fiel cumplimiento de la obligación que contrae la parte deudora, por este acto me constituyo en ")
-        p_intro.add_run(
+        p_primera.add_run("manifiesto que para el fiel cumplimiento de la obligación que contrae la parte deudora, por este acto me constituyo en ")
+        p_primera.add_run(
             f"FIADOR, SOLIDARIO y MANCOMUNADO de {datos['deudor_nombre']}, ").bold = True
         
-        p_intro.add_run(f"garantizando la deuda, intereses, multa por morosidad y costas procesales con {f['garantia_texto']}. ")
-        p_intro.add_run(f"Yo: ")
-        p_intro.add_run(f"{f['nombre']}, ").bold = True
-        p_intro.add_run(f"renuncio al fuero de mi domicilio y me someto expresamente a los tribunales que la Entidad Acreedora elija, "
-            f"señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos, en la siguiente dirección: ")
-        p_intro.add_run(f"{f['direccion']}.").bold = True
+        p_primera.add_run(f"garantizando la deuda, intereses, multa por morosidad y costas procesales con {f['garantia_texto']}. ")
+        p_primera.add_run("Yo: ")
+        p_primera.add_run(f"{f['nombre']}, ").bold = True
+        p_primera.add_run(
+            "renuncio al fuero de mi domicilio y me someto expresamente a los tribunales que la Entidad Acreedora elija, "
+            "señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos, en la siguiente dirección: ")
+        p_primera.add_run(f"{f['direccion']}.").bold = True
 
     else:
         p_primera.add_run(
-            f"g) DE LAS GARANTÍAS Y FIADORES SOLIDARIOS Y MANCOMUNADOS: ").bold = True
-        p_intro.add_run(f"Para el fiel y estricto cumplimiento de todas y cada una de las obligaciones que contrae la parte deudora, "
-                        
-            f"nos constituimos de manera expresa en ")
-        p_intro.add_run(f"FIADORES, SOLIDARIOS Y MANCOMUNADOS de {datos['deudor_nombre']}, ").bold = True
+            "g) DE LAS GARANTÍAS Y FIADORES SOLIDARIOS Y MANCOMUNADOS: ").bold = True
+        p_primera.add_run(
+            "Para el fiel y estricto cumplimiento de todas y cada una de las obligaciones que contrae la parte deudora, "
+            "nos constituimos de manera expresa en ")
+        p_primera.add_run(f"FIADORES, SOLIDARIOS Y MANCOMUNADOS de {datos['deudor_nombre']}, ").bold = True
 
-        p_intro.add_run(f"bajo las siguientes declaraciones individuales:\n")
+        p_primera.add_run("bajo las siguientes declaraciones individuales:\n")
         for idx, f in enumerate(fiadores, 1):
             ord_fem = ordinal(idx, femenino=True)
-            salto_linea = "\n" if idx < num_fiadores else ""
             p_primera.add_run(
                 f"g.{idx}) DE LA {ord_fem} FIADURÍA SOLIDARIA: Yo, ") 
             p_primera.add_run(f"{f['nombre']}, ").bold = True
-            p_primera.add_run(f"manifiesto que para el fiel cumplimiento de la obligación que contrae la parte deudora, por este acto me constituyo en "
-                f"FIADOR, SOLIDARIO y MANCOMUNADO de ") 
+            p_primera.add_run(
+                "manifiesto que para el fiel cumplimiento de la obligación que contrae la parte deudora, por este acto me constituyo en "
+                "FIADOR, SOLIDARIO y MANCOMUNADO de ") 
             p_primera.add_run(f"{datos['deudor_nombre']}, ").bold = True
 
-            p_primera.add_run(f"garantizando la deuda, intereses, multa por morosidad y costas procesales con {f['garantia_texto']}. "
-                f"Yo, ") 
+            p_primera.add_run(
+                f"garantizando la deuda, intereses, multa por morosidad y costas procesales con {f['garantia_texto']}. "
+                "Yo, ") 
             p_primera.add_run(f"{f['nombre']}, ").bold = True
 
-            p_primera.add_run(f"renuncio al fuero de mi domicilio y me someto expresamente a los tribunales que la Entidad Acreedora elija, "
-                f"señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos en la siguiente dirección: ") 
+            p_primera.add_run(
+                "renuncio al fuero de mi domicilio y me someto expresamente a los tribunales que la Entidad Acreedora elija, "
+                "señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos en la siguiente dirección: ") 
             p_primera.add_run(f"{f['direccion']}.").bold = True
+            if idx < num_fiadores:
+                p_primera.add_run("\n")
 
     # =========================================================================
     # 3. CLÁUSULA SEGUNDA (DECLARACIÓN DE INSTRUCCIÓN PREVIA)
@@ -602,11 +615,12 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
     p_segunda.paragraph_format.space_after = Pt(8)
     p_segunda.add_run("SEGUNDA: ").bold = True
     p_segunda.add_run(
-        f"Yo, ") 
+        "Yo, ") 
     p_segunda.add_run(f"{datos['deudor_nombre']}, ").bold = True
 
-    p_segunda.add_run(f"manifiesto que en su momento fui plenamente instruida de las condiciones en las cuales se me otorgó el crédito anteriormente descrito, "
-        f"para el otorgamiento del presente crédito por parte de la de la empresa ") 
+    p_segunda.add_run(
+        f"manifiesto que en su momento fui plenamente {instruida_txt} de las condiciones en las cuales se me otorgó el crédito anteriormente descrito, "
+        "para el otorgamiento del presente crédito por parte de la empresa ") 
     p_segunda.add_run(f"{datos['empresa_nombre']}."
     ).bold = True
 
@@ -618,12 +632,14 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
     p_tercera.paragraph_format.line_spacing = 1.15
     p_tercera.paragraph_format.space_after = Pt(8)
     p_tercera.add_run("TERCERA: ").bold = True
+    p_tercera.add_run("Por mi parte Yo, ")
     p_tercera.add_run(
-        f"Por mi parte Yo, ")
-    p_tercera(f"{datos['rep_legal_nombre']}, en mi calidad de {datos['rep_legal_cargo']} de la entidad denominada "
-        f"{datos['empresa_nombre']}, ").bold = True
+        f"{datos['rep_legal_nombre']}, en mi calidad de {datos['rep_legal_cargo']} de la entidad denominada "
+        f"{datos['empresa_nombre']}, "
+    ).bold = True
     
-    p_tercera(f"expreso que en los términos relacionados ACEPTO EXPRESAMENTE, para mi representada el contenido íntegro del presente contrato."
+    p_tercera.add_run(
+        "expreso que en los términos relacionados ACEPTO EXPRESAMENTE, para mi representada el contenido íntegro del presente contrato."
     )
 
     # =========================================================================
@@ -645,7 +661,7 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
     # =========================================================================
     firmantes = []
     firmantes.append({
-        "rol": "DEUDORA" if datos.get("deudor_genero") == "F" else "DEUDOR(A)",
+        "rol": rol_deudor_txt,
         "nombre": datos["deudor_nombre"],
     })
 
@@ -698,7 +714,7 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
 
     partes_acta = []
     partes_acta.append(
-        f"{datos['deudor_nombre']} (DEUDORA), quien se identifica con el Documento Personal de Identificación –DPI– "
+        f"{datos['deudor_nombre']} ({rol_deudor_txt}), quien se identifica con el Documento Personal de Identificación –DPI– "
         f"Código Único de Identificación número {datos['deudor_cui_letras']}, extendido por el Registro Nacional de las Personas –RENAP–, "
         "de la República de Guatemala"
     )
@@ -751,3 +767,376 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
         doc.save(buffer)
         buffer.seek(0)
         return buffer
+
+
+def _construir_fiador_notarial_desde_customer(cust_obj, specs_extra: dict | None = None, asset_guarantees: list | None = None) -> dict:
+    """
+    Construye el diccionario exacto de un fiador a partir de una instancia de Customer,
+    enriqueciéndolo con WorkingInformation y especificaciones de garantías.
+    """
+    persona = extraer_persona_notarial(cust_obj, default_genero="M")
+    specs_extra = specs_extra if isinstance(specs_extra, dict) else {}
+
+    tipo_garantia = None
+    garantia_texto = specs_extra.get("garantia_texto") or ""
+    lugar_trabajo = str(specs_extra.get("Lugar_de_Trabajo") or specs_extra.get("lugar_trabajo") or "").strip()
+    if lugar_trabajo.upper() in ("N/A", "---", "NONE"):
+        lugar_trabajo = ""
+
+    # Buscar WorkingInformation real o mock
+    wi = getattr(cust_obj, "_mock_working_info", None)
+    if wi is None:
+        try:
+            from apps.FinancialInformation.models import WorkingInformation
+            wi = WorkingInformation.objects.filter(customer_id=cust_obj).first()
+        except Exception:
+            wi = None
+
+    empresa_lab = ""
+    puesto_lab = ""
+    fuente_lab = ""
+    if wi is not None:
+        empresa_lab = str(getattr(wi, "company_name", "") or "").strip()
+        puesto_lab = str(getattr(wi, "position", "") or "").strip()
+        fuente_lab = str(getattr(wi, "source_of_income", "") or "").strip()
+        if empresa_lab and empresa_lab.upper() not in ("N/A", "---") and not lugar_trabajo:
+            lugar_trabajo = empresa_lab
+
+    # Revisar si alguna garantía de activo corresponde explícitamente a este fiador por Titular
+    if not garantia_texto and asset_guarantees:
+        nom_norm = persona["nombre"].strip().upper()
+        for ag in asset_guarantees:
+            ag_specs = ag.get("especificaciones") if isinstance(ag, dict) else {}
+            if not isinstance(ag_specs, dict):
+                ag_specs = {}
+            titular = str(
+                ag_specs.get("Titular")
+                or ag_specs.get("titular")
+                or ag.get("propietario")
+                or ""
+            ).strip().upper()
+            if titular and (titular == nom_norm or nom_norm in titular or titular in nom_norm):
+                tg_ag = str(ag.get("tipo") or ag.get("tipo_garantia") or "MOBILIARIA").strip().upper()
+                tipo_garantia = tg_ag
+                garantia_texto = construir_texto_garantia_item(tg_ag, ag_specs, ag.get("descripcion") or "")
+                break
+
+    if not garantia_texto:
+        if fuente_lab == "Negocio Propio" and lugar_trabajo:
+            tipo_garantia = "MOBILIARIA"
+            garantia_texto = (
+                f"los ingresos provenientes de mi negocio propio denominado {lugar_trabajo}, "
+                "así como con la totalidad de mis bienes presentes y futuros"
+            )
+        elif lugar_trabajo:
+            tipo_garantia = "LABORAL"
+            empl = "empleada" if persona["genero"] == "F" else "empleado"
+            cargo_txt = f" en el cargo de {puesto_lab}" if puesto_lab else ""
+            garantia_texto = (
+                f"el sueldo y salario que devengo como {empl} de {lugar_trabajo}{cargo_txt}, "
+                "así como con la totalidad de mis bienes presentes y futuros"
+            )
+        else:
+            tipo_garantia = specs_extra.get("tipo_garantia") or "PERSONAL"
+            garantia_texto = (
+                f"los ingresos que percibo en el ejercicio de mi profesión ({persona['profesion']}), "
+                "así como con la totalidad de mis bienes presentes y futuros"
+            )
+
+    item = {
+        "nombre": persona["nombre"],
+        "edad_letras": persona["edad_letras"],
+        "edad_num": persona["edad_num"],
+        "estado_civil": persona["estado_civil"],
+        "nacionalidad": persona["nacionalidad"],
+        "profesion": persona["profesion"],
+        "domicilio": persona["domicilio"],
+        "dpi": persona["dpi"],
+        "cui_letras": persona["cui_letras"],
+        "direccion": persona["direccion"],
+        "tipo_garantia": tipo_garantia or "PERSONAL",
+        "garantia_texto": garantia_texto,
+    }
+    if lugar_trabajo:
+        item["lugar_trabajo"] = lugar_trabajo
+    return item
+
+
+def extraer_datos_contrato_con_fiador_desde_solicitud(solicitud, overrides: dict | None = None) -> dict:
+    """
+    Extrae toda la información real desde una Solicitud (InvestmentPlan) o Crédito (Credit),
+    siguiendo exactamente la estructura de obtener_datos_ejemplo_con_fiador() con soporte
+    dinámico para 1, 2, 3, 5 o N fiadores solidarios.
+    """
+    datos = extraer_datos_base_contrato_desde_solicitud(solicitud)
+
+    garantias_raw = getattr(solicitud, "garantias", None)
+    if not garantias_raw and getattr(solicitud, "destino_id", None) is not None:
+        garantias_raw = getattr(solicitud.destino_id, "garantias", None)
+    if not isinstance(garantias_raw, list):
+        garantias_raw = []
+
+    garantias_activos = [
+        g for g in garantias_raw
+        if isinstance(g, dict) and str(g.get("tipo") or g.get("tipo_garantia") or "").upper() != "FIADOR"
+    ]
+    garantias_fiadores = [
+        g for g in garantias_raw
+        if isinstance(g, dict) and str(g.get("tipo") or g.get("tipo_garantia") or "").upper() == "FIADOR"
+    ]
+
+    # Mapa auxiliar de specs en garantias FIADOR por codigo o nombre
+    specs_por_codigo = {}
+    specs_por_nombre = {}
+    for g in garantias_fiadores:
+        sp = g.get("especificaciones") if isinstance(g.get("especificaciones"), dict) else {}
+        cod = str(sp.get("Codigo_de_Cliente") or "").strip()
+        nom = str(sp.get("Nombre") or sp.get("nombre") or "").strip().upper()
+        if cod:
+            specs_por_codigo[cod] = sp
+        if nom:
+            specs_por_nombre[nom] = sp
+
+    fiadores_lista = []
+    vistos_ids = set()
+    vistos_nombres = set()
+
+    def _registrar_fiador(item_dict: dict, cust_id=None):
+        nom_key = item_dict["nombre"].strip().upper()
+        if cust_id is not None:
+            if cust_id in vistos_ids:
+                return
+            vistos_ids.add(cust_id)
+        if nom_key and nom_key in vistos_nombres:
+            return
+        if nom_key:
+            vistos_nombres.add(nom_key)
+        fiadores_lista.append(item_dict)
+
+    # 1. Extraer de solicitud.fiador (soporta list de {id}, list de objetos Customer, dict único o int)
+    raw_fiadores = getattr(solicitud, "fiador", None)
+    if not raw_fiadores and getattr(solicitud, "destino_id", None) is not None:
+        raw_fiadores = getattr(solicitud.destino_id, "fiador", None)
+
+    if isinstance(raw_fiadores, dict):
+        raw_fiadores = [raw_fiadores]
+    elif isinstance(raw_fiadores, int):
+        raw_fiadores = [{"id": raw_fiadores}]
+    elif not isinstance(raw_fiadores, (list, tuple)):
+        raw_fiadores = []
+
+    for f_entry in raw_fiadores:
+        cust_obj = None
+        dict_specs = {}
+        f_id = None
+
+        if isinstance(f_entry, dict):
+            f_id = f_entry.get("id") or f_entry.get("customer_id")
+            if f_entry.get("first_name") or f_entry.get("identification_number"):
+                # Diccionario con datos directos de fiador (sin requerir consulta ORM)
+                dict_specs = f_entry
+            elif f_entry.get("nombre"):
+                dict_specs = f_entry
+            if f_id:
+                try:
+                    from apps.customers.models import Customer
+                    cust_obj = Customer.objects.filter(id=f_id).first()
+                except Exception:
+                    cust_obj = None
+        elif isinstance(f_entry, int):
+            f_id = f_entry
+            try:
+                from apps.customers.models import Customer
+                cust_obj = Customer.objects.filter(id=f_id).first()
+            except Exception:
+                cust_obj = None
+        elif hasattr(f_entry, "first_name") or hasattr(f_entry, "get_full_name") or hasattr(f_entry, "identification_number"):
+            # Objeto Customer (real o mock) pasado directamente
+            cust_obj = f_entry
+            f_id = getattr(f_entry, "id", None)
+
+        if cust_obj is not None:
+            cod_c = str(getattr(cust_obj, "customer_code", "") or "").strip()
+            nom_c = (
+                cust_obj.get_full_name() if callable(getattr(cust_obj, "get_full_name", None))
+                else f"{getattr(cust_obj, 'first_name', '')} {getattr(cust_obj, 'last_name', '')}"
+            ).strip().upper()
+            sp_extra = specs_por_codigo.get(cod_c) or specs_por_nombre.get(nom_c) or dict_specs
+            fiador_item = _construir_fiador_notarial_desde_customer(cust_obj, specs_extra=sp_extra, asset_guarantees=garantias_activos)
+            _registrar_fiador(fiador_item, cust_id=f_id)
+        elif dict_specs and (dict_specs.get("nombre") or dict_specs.get("first_name")):
+            nom_d = dict_specs.get("nombre") or f"{dict_specs.get('first_name', '')} {dict_specs.get('last_name', '')}".strip()
+            dpi_d = dict_specs.get("dpi") or dict_specs.get("identification_number") or ""
+            cui_l, dpi_f = cui_dpi_a_letras(dpi_d, con_espacio=True) if dpi_d else ("", "")
+            edad_n = dict_specs.get("edad_num") or dict_specs.get("edad") or ""
+            fiador_item = {
+                "nombre": str(nom_d).strip().upper(),
+                "edad_letras": dict_specs.get("edad_letras") or (edad_a_letras(edad_n) if edad_n else "mayor"),
+                "edad_num": edad_n,
+                "estado_civil": dict_specs.get("estado_civil") or "soltero",
+                "nacionalidad": dict_specs.get("nacionalidad") or "guatemalteco",
+                "profesion": dict_specs.get("profesion") or "Comerciante",
+                "domicilio": dict_specs.get("domicilio") or "de este domicilio",
+                "dpi": dpi_f or dpi_d,
+                "cui_letras": dict_specs.get("cui_letras") or cui_l,
+                "direccion": dict_specs.get("direccion") or "Cobán, Alta Verapaz",
+                "tipo_garantia": dict_specs.get("tipo_garantia") or "PERSONAL",
+                "garantia_texto": dict_specs.get("garantia_texto") or "los ingresos que percibo y la totalidad de mis bienes presentes y futuros",
+            }
+            _registrar_fiador(fiador_item, cust_id=f_id)
+
+    # 2. Complementar con garantias de tipo FIADOR en solicitud.garantias
+    for g in garantias_fiadores:
+        specs = g.get("especificaciones") if isinstance(g.get("especificaciones"), dict) else {}
+        cod = str(specs.get("Codigo_de_Cliente") or "").strip()
+        nom = str(specs.get("Nombre") or specs.get("nombre") or "").strip()
+        cust_obj = None
+
+        if cod:
+            try:
+                from apps.customers.models import Customer
+                cust_obj = Customer.objects.filter(customer_code=cod).first()
+            except Exception:
+                cust_obj = None
+
+        if cust_obj is not None:
+            fiador_item = _construir_fiador_notarial_desde_customer(cust_obj, specs_extra=specs, asset_guarantees=garantias_activos)
+            _registrar_fiador(fiador_item, cust_id=getattr(cust_obj, "id", None))
+        elif nom:
+            dpi_raw = str(specs.get("DPI") or specs.get("dpi") or "").strip()
+            cui_l, dpi_f = cui_dpi_a_letras(dpi_raw, con_espacio=True) if dpi_raw else ("", "")
+            edad_n = specs.get("edad_num") or specs.get("edad") or ""
+            lugar_t = str(specs.get("Lugar_de_Trabajo") or specs.get("lugar_trabajo") or "").strip()
+            if lugar_t.upper() in ("N/A", "---"):
+                lugar_t = ""
+            gar_txt = specs.get("garantia_texto") or ""
+            if not gar_txt:
+                if lugar_t:
+                    tipo_g = "LABORAL"
+                    gar_txt = f"el sueldo y salario que devengo como empleado de {lugar_t}, así como con la totalidad de mis bienes presentes y futuros"
+                else:
+                    tipo_g = "PERSONAL"
+                    gar_txt = "el salario que devengo actualmente, así como con la totalidad de mis bienes presentes y futuros"
+            else:
+                tipo_g = str(specs.get("tipo_garantia") or "PERSONAL").upper()
+
+            fiador_item = {
+                "nombre": nom.upper(),
+                "edad_letras": specs.get("edad_letras") or (edad_a_letras(edad_n) if edad_n else "mayor"),
+                "edad_num": edad_n,
+                "estado_civil": specs.get("estado_civil") or "soltero",
+                "nacionalidad": specs.get("nacionalidad") or "guatemalteco",
+                "profesion": specs.get("profesion") or "Comerciante",
+                "domicilio": specs.get("domicilio") or "de este domicilio",
+                "dpi": dpi_f or dpi_raw,
+                "cui_letras": cui_l,
+                "direccion": specs.get("Domicilio") or specs.get("direccion") or "Cobán, Alta Verapaz",
+                "tipo_garantia": tipo_g,
+                "garantia_texto": gar_txt,
+            }
+            if lugar_t:
+                fiador_item["lugar_trabajo"] = lugar_t
+            _registrar_fiador(fiador_item)
+
+    # 3. Si es instancia real de Credit, complementar desde DetailsGuarantees
+    if not hasattr(solicitud, "total_value_of_the_product_or_service") and getattr(solicitud, "id", None):
+        try:
+            from apps.financings.models import DetailsGuarantees
+            from apps.customers.models import Customer
+            det_fiadores = DetailsGuarantees.objects.filter(
+                garantia_id__credit_id=solicitud,
+                tipo_garantia="FIADOR",
+            ).order_by("pk")
+            for det in det_fiadores:
+                sp = det.especificaciones if isinstance(det.especificaciones, dict) else {}
+                cod = str(sp.get("Codigo_de_Cliente") or "").strip()
+                cust_obj = Customer.objects.filter(customer_code=cod).first() if cod else None
+                if cust_obj is not None:
+                    f_item = _construir_fiador_notarial_desde_customer(cust_obj, specs_extra=sp, asset_guarantees=garantias_activos)
+                    _registrar_fiador(f_item, cust_id=cust_obj.id)
+                elif sp.get("Nombre"):
+                    dpi_r = str(sp.get("DPI") or sp.get("dpi") or "").strip()
+                    cui_l, dpi_f = cui_dpi_a_letras(dpi_r, con_espacio=True) if dpi_r else ("", "")
+                    lugar_t = str(sp.get("Lugar_de_Trabajo") or "").strip()
+                    f_item = {
+                        "nombre": str(sp.get("Nombre")).strip().upper(),
+                        "edad_letras": "mayor",
+                        "edad_num": "",
+                        "estado_civil": "soltero",
+                        "nacionalidad": "guatemalteco",
+                        "profesion": "Comerciante",
+                        "domicilio": "de este domicilio",
+                        "dpi": dpi_f or dpi_r,
+                        "cui_letras": cui_l,
+                        "direccion": sp.get("Domicilio") or "Cobán, Alta Verapaz",
+                        "tipo_garantia": "LABORAL" if lugar_t and lugar_t.upper() != "N/A" else "PERSONAL",
+                        "garantia_texto": (
+                            f"el sueldo y salario que devengo como empleado de {lugar_t}, así como con la totalidad de mis bienes presentes y futuros"
+                            if lugar_t and lugar_t.upper() != "N/A"
+                            else "el salario que devengo actualmente, así como con la totalidad de mis bienes presentes y futuros"
+                        ),
+                    }
+                    if lugar_t and lugar_t.upper() != "N/A":
+                        f_item["lugar_trabajo"] = lugar_t
+                    _registrar_fiador(f_item)
+        except Exception:
+            pass
+
+    # 4. Placeholder seguro si aún no se han registrado fiadores en la solicitud
+    if not fiadores_lista:
+        fiadores_lista.append({
+            "nombre": "FIADOR SOLIDARIO PENDIENTE",
+            "edad_letras": "____",
+            "edad_num": "",
+            "estado_civil": "____",
+            "nacionalidad": "guatemalteco",
+            "profesion": "____",
+            "domicilio": "de este domicilio",
+            "dpi": "________________",
+            "cui_letras": "________________",
+            "direccion": "________________",
+            "tipo_garantia": "PERSONAL",
+            "garantia_texto": "el salario y la totalidad de mis bienes presentes y futuros",
+        })
+
+    datos["fiadores"] = fiadores_lista
+    primer = fiadores_lista[0]
+    datos["fiador_nombre"] = primer["nombre"]
+    datos["fiador_edad_letras"] = primer["edad_letras"]
+    datos["fiador_estado_civil"] = primer["estado_civil"]
+    datos["fiador_nacionalidad"] = primer["nacionalidad"]
+    datos["fiador_profesion"] = primer["profesion"]
+    datos["fiador_domicilio"] = primer["domicilio"]
+    datos["fiador_dpi"] = primer["dpi"]
+    datos["fiador_cui_letras"] = primer["cui_letras"]
+    datos["fiador_direccion"] = primer["direccion"]
+    datos["tipo_garantia"] = primer["tipo_garantia"]
+    datos["garantia_texto"] = primer["garantia_texto"]
+
+    if overrides and isinstance(overrides, dict):
+        if "monto_capital" in overrides and "monto_capital_letras" not in overrides:
+            try:
+                datos["monto_capital_letras"] = monto_a_letras_quetzales(float(overrides["monto_capital"])).replace(" EXACTOS", "")
+            except Exception:
+                pass
+        if "deudor_dpi" in overrides and "deudor_cui_letras" not in overrides:
+            cui_l, dpi_f = cui_dpi_a_letras(overrides["deudor_dpi"], con_espacio=True)
+            datos["deudor_cui_letras"] = cui_l
+            datos["deudor_dpi_formateado"] = dpi_f
+        datos.update(overrides)
+
+    return datos
+
+
+def generar_contrato_con_fiador_desde_solicitud(solicitud_o_id, overrides: dict | None = None, output_target=None):
+    """
+    Genera el Contrato de Reconocimiento de Deuda con Fiador(es) Solidario(s) en Word (.docx)
+    extrayendo los datos reales y la lista dinámica de fiadores desde una Solicitud (InvestmentPlan)
+    o Crédito (Credit).
+    """
+    solicitud = resolver_solicitud_o_credito(solicitud_o_id)
+    datos = extraer_datos_contrato_con_fiador_desde_solicitud(solicitud, overrides=overrides)
+    return generar_contrato_con_fiador_word(datos, output_target=output_target)
+
+
+generar_contrato_con_fiador_desde_credito = generar_contrato_con_fiador_desde_solicitud

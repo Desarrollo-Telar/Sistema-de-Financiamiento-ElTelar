@@ -16,13 +16,47 @@ from scripts.documentos import (
     generar_contrato_word,
     obtener_datos_ejemplo_contrato,
     generar_contrato_deudor_directo_word,
+    generar_contrato_deudor_directo_desde_solicitud,
+    extraer_datos_contrato_deudor_directo_desde_solicitud,
     obtener_datos_ejemplo_deudor_directo,
     generar_contrato_con_fiador_word,
+    generar_contrato_con_fiador_desde_solicitud,
+    extraer_datos_contrato_con_fiador_desde_solicitud,
     obtener_datos_ejemplo_con_fiador,
 )
 
 # MIME type oficial para archivos Microsoft Word .docx
 DOCX_MIME_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+
+
+def _resolver_objeto_credito_o_404(credit_id):
+    """
+    Resuelve primero desde InvestmentPlan (solicitud) y, como respaldo, desde Credit.
+    Lanza Http404 si ninguno existe.
+    """
+    credito = None
+    try:
+        from apps.InvestmentPlan.models import InvestmentPlan
+        credito = (
+            InvestmentPlan.objects
+            .select_related("customer_id", "sucursal", "asesor_responsable")
+            .filter(id=credit_id)
+            .first()
+        )
+    except ImportError:
+        credito = None
+
+    if credito is not None:
+        return credito
+
+    try:
+        from apps.financings.models import Credit
+        return get_object_or_404(
+            Credit.objects.select_related("customer_id", "sucursal", "destino_id"),
+            id=credit_id,
+        )
+    except Exception:
+        raise Http404("No se encontró la solicitud de inversión o crédito especificado.")
 
 
 @require_GET
@@ -73,17 +107,24 @@ def descargar_pagare_ejemplo(request):
 @require_GET
 def descargar_pagare_credito(request, credit_id):
     """
-    Genera y descarga el Pagaré Word (.docx) vinculado a un Crédito real en el sistema.
+    Genera y descarga el Pagaré Word (.docx) vinculado a una Solicitud (InvestmentPlan) o Crédito real en el sistema.
     """
     try:
-        from apps.financings.models import Credit
+        from apps.InvestmentPlan.models import InvestmentPlan
+        credito = InvestmentPlan.objects.filter(id=credit_id).first()
     except ImportError:
-        raise Http404("Módulo de financings no disponible.")
+        credito = None
 
-    credito = get_object_or_404(Credit, id=credit_id)
+    if not credito:
+        try:
+            from apps.financings.models import Credit
+            credito = get_object_or_404(Credit, id=credit_id)
+        except Exception:
+            raise Http404("No se encontró la solicitud de inversión o crédito especificado.")
+
     buffer = generar_pagare_desde_credito(credito)
 
-    codigo = credito.codigo_credito or f"id_{credito.id}"
+    codigo = getattr(credito, 'investment_plan_code', None) or getattr(credito, 'codigo_credito', None) or f"id_{credito.id}"
     nombre_archivo = f"pagare_credito_{codigo}.docx"
 
     response = HttpResponse(buffer.getvalue(), content_type=DOCX_MIME_TYPE)
@@ -157,6 +198,85 @@ def descargar_contrato_ejemplo(request):
     if request.GET.get("tipo") == "fiador" or request.GET.get("fiador"):
         return descargar_contrato_fiador_ejemplo(request)
     return descargar_contrato_directo_ejemplo(request)
+
+
+@require_GET
+def descargar_contrato_directo_credito(request, credit_id):
+    """
+    Genera y descarga el Contrato de Reconocimiento de Deuda para Deudor Directo (.docx)
+    vinculado a una Solicitud (InvestmentPlan) o Crédito real en el sistema.
+    """
+    credito = _resolver_objeto_credito_o_404(credit_id)
+
+    overrides = {}
+    if request.GET.get("deudor"):
+        overrides["deudor_nombre"] = request.GET.get("deudor")
+    if request.GET.get("monto"):
+        try:
+            overrides["monto_capital"] = float(request.GET.get("monto"))
+        except ValueError:
+            pass
+    if request.GET.get("acta"):
+        overrides["acta_numero"] = request.GET.get("acta")
+    if request.GET.get("resolucion"):
+        overrides["resolucion_ente"] = request.GET.get("resolucion")
+
+    datos = extraer_datos_contrato_deudor_directo_desde_solicitud(credito, overrides=overrides or None)
+    buffer = generar_contrato_deudor_directo_word(datos)
+
+    codigo_raw = getattr(credito, "investment_plan_code", None) or getattr(credito, "codigo_credito", None) or f"id_{credito.id}"
+    codigo_seguro = str(codigo_raw).replace("/", "-").replace(" ", "_")
+    nombre_archivo = f"contrato_reconocimiento_deudor_directo_{codigo_seguro}.docx"
+
+    response = HttpResponse(buffer.getvalue(), content_type=DOCX_MIME_TYPE)
+    response["Content-Disposition"] = f'attachment; filename="{nombre_archivo}"'
+    response["Content-Length"] = len(buffer.getvalue())
+    return response
+
+
+@require_GET
+def descargar_contrato_fiador_credito(request, credit_id):
+    """
+    Genera y descarga el Contrato de Reconocimiento de Deuda Con Fiador(es) Solidario(s) (.docx)
+    vinculado a una Solicitud (InvestmentPlan) o Crédito real en el sistema.
+    Soporta dinámicamente todos los fiadores registrados en la solicitud (1, 2, 3, 5 o N fiadores).
+    """
+    credito = _resolver_objeto_credito_o_404(credit_id)
+
+    overrides = {}
+    if request.GET.get("deudor"):
+        overrides["deudor_nombre"] = request.GET.get("deudor")
+    if request.GET.get("monto"):
+        try:
+            overrides["monto_capital"] = float(request.GET.get("monto"))
+        except ValueError:
+            pass
+    if request.GET.get("acta"):
+        overrides["acta_numero"] = request.GET.get("acta")
+    if request.GET.get("resolucion"):
+        overrides["resolucion_ente"] = request.GET.get("resolucion")
+
+    datos = extraer_datos_contrato_con_fiador_desde_solicitud(credito, overrides=overrides or None)
+    if request.GET.get("fiador") and len(datos.get("fiadores", [])) > 0:
+        datos["fiadores"][0]["nombre"] = request.GET.get("fiador")
+        datos["fiador_nombre"] = request.GET.get("fiador")
+
+    buffer = generar_contrato_con_fiador_word(datos)
+
+    codigo_raw = getattr(credito, "investment_plan_code", None) or getattr(credito, "codigo_credito", None) or f"id_{credito.id}"
+    codigo_seguro = str(codigo_raw).replace("/", "-").replace(" ", "_")
+    cant_fiadores = len(datos.get("fiadores", []))
+    sufijo = f"con_{cant_fiadores}_fiadores" if cant_fiadores > 1 else "con_fiador"
+    nombre_archivo = f"contrato_reconocimiento_{sufijo}_{codigo_seguro}.docx"
+
+    response = HttpResponse(buffer.getvalue(), content_type=DOCX_MIME_TYPE)
+    response["Content-Disposition"] = f'attachment; filename="{nombre_archivo}"'
+    response["Content-Length"] = len(buffer.getvalue())
+    return response
+
+
+descargar_contrato_directo_solicitud = descargar_contrato_directo_credito
+descargar_contrato_fiador_solicitud = descargar_contrato_fiador_credito
 
 
 def panel_descarga_pagare(request):
@@ -277,7 +397,9 @@ def panel_descarga_pagare(request):
                             <li class="mb-1">🔹 <strong>Pagaré:</strong> <code><a href="/documentos/pagare/ejemplo/">/documentos/pagare/ejemplo/</a></code></li>
                             <li class="mb-1">🔹 <strong>Contrato Directo (Candy):</strong> <code><a href="/documentos/contrato/directo/ejemplo/">/documentos/contrato/directo/ejemplo/</a></code></li>
                             <li class="mb-1">🔹 <strong>Contrato con Fiador (Estefany & Fredy):</strong> <code><a href="/documentos/contrato/fiador/ejemplo/">/documentos/contrato/fiador/ejemplo/</a></code></li>
-                            <li>🔹 <strong>Pagaré por ID:</strong> <code>/documentos/pagare/&lt;credit_id&gt;/</code></li>
+                            <li class="mb-1">🔹 <strong>Pagaré por ID (Solicitud/Crédito):</strong> <code>/documentos/pagare/&lt;credit_id&gt;/</code></li>
+                            <li class="mb-1">🔹 <strong>Contrato Directo por ID (Solicitud/Crédito):</strong> <code>/documentos/contrato/directo/&lt;credit_id&gt;/</code></li>
+                            <li>🔹 <strong>Contrato con Fiador(es) por ID (Solicitud/Crédito):</strong> <code>/documentos/contrato/fiador/&lt;credit_id&gt;/</code></li>
                         </ul>
                     </div>
                 </div>

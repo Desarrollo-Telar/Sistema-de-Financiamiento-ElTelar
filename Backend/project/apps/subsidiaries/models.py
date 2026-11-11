@@ -35,7 +35,7 @@ class Subsidiary(models.Model):
     def get_direccion(self):
         from apps.addresses.models import Address
 
-        direccion = Address.objects.filter(subsidiary__id = self.id).first()
+        direccion = Address.objects.filter(subsidiary__id = self.id, type_address = 'Dirección de Sucursal').first()
 
         if direccion is None:
             return ''
@@ -45,7 +45,7 @@ class Subsidiary(models.Model):
     def get_direc(self):
         from apps.addresses.models import Address
 
-        direccion = Address.objects.filter(subsidiary__id = self.id).first()
+        direccion = Address.objects.filter(subsidiary__id = self.id, type_address = 'Dirección de Sucursal').first()
 
         if direccion is None:
             return ''
