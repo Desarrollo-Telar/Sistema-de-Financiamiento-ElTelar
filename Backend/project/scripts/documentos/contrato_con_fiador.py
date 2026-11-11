@@ -1,9 +1,10 @@
 """
-Módulo para la generación del CONTRATO DE RECONOCIMIENTO DE DEUDA - CON FIADOR SOLIDARIO
+Módulo para la generación del CONTRATO DE RECONOCIMIENTO DE DEUDA - CON FIADORES SOLIDARIOS
 en formato Word (.docx).
-Diseñado para El Telar S.A.
-Plantilla basada en el caso Estefany Yusela López Ruiz (Deudora) y Fredy Joel García Moscoso (Fiador).
-Soporta garantía mobiliaria (empresa mercantil) o laboral (sueldo institucional/empresa).
+Diseñado para Inversiones Integrales El Telar S.A.
+Soporta de forma 100% DINÁMICA cualquier cantidad de fiadores (1, 2, 3, 5 o N fiadores solidarios).
+Cada fiador cuenta con su comparecencia individual, cláusula de garantía mancomunada y solidaria,
+renuncia al fuero de su domicilio, firma respectiva y legalización notarial en el acta de firmas.
 """
 
 import io
@@ -22,19 +23,113 @@ from .helpers import (
     cui_dpi_a_letras,
     edad_a_letras,
     fecha_a_texto_notarial,
+    ordinal,
 )
 
 
-def obtener_datos_ejemplo_con_fiador() -> dict:
+def obtener_datos_ejemplo_con_fiador(cantidad_fiadores: int = 1) -> dict:
     """
-    Retorna un diccionario con los datos de ejemplo exactos de la plantilla
-    con Fiador Solidario (ESTEFANY YUSELA LÓPEZ RUIZ y FREDY JOEL GARCÍA MOSCOSO).
+    Retorna un diccionario con datos de ejemplo para el contrato con fiador(es).
+    Soporta generar 1 o múltiples fiadores solidarios de ejemplo (ej. 2, 3 o 5 fiadores).
     """
+    # Fiadores predefinidos con datos notariales completos
+    fiadores_catalogo = [
+        {
+            "nombre": "FREDY JOEL GARCÍA MOSCOSO",
+            "edad_letras": "veintiséis",
+            "edad_num": 26,
+            "estado_civil": "soltero",
+            "nacionalidad": "guatemalteco",
+            "profesion": "Bachiller en Ciencias y Letras",
+            "domicilio": "de este domicilio",
+            "dpi": "3268 85188 1604",
+            "cui_letras": "tres mil doscientos sesenta y ocho espacio ochenta y cinco mil ciento ochenta y ocho espacio un mil seiscientos cuatro",
+            "direccion": "Lotificación Villas del Carmen, zona tres, de la jurisdicción municipal de Tactic del departamento de Alta Verapaz",
+            "tipo_garantia": "MOBILIARIA",
+            "garantia_texto": (
+                "garantía mobiliaria sobre la empresa mercantil de mi propiedad bajo los siguientes datos registrales: "
+                "Empresa mercantil de nombre Comercial Agrícola W&A, inscrita en el Registro Mercantil bajo el número 1002212; "
+                "folio 401; del libro 1182, de Empresas Mercantiles"
+            ),
+        },
+        {
+            "nombre": "CARLOS HUMBERTO XOL CAAL",
+            "edad_letras": "treinta y cuatro",
+            "edad_num": 34,
+            "estado_civil": "casado",
+            "nacionalidad": "guatemalteco",
+            "profesion": "Perito Contador",
+            "domicilio": "de este domicilio",
+            "dpi": "2456 78123 1601",
+            "cui_letras": "dos mil cuatrocientos cincuenta y seis espacio setenta y ocho mil ciento veintitrés espacio un mil seiscientos uno",
+            "direccion": "quinta calle dos guion cuarenta, zona dos, del municipio de Cobán del departamento de Alta Verapaz",
+            "tipo_garantia": "LABORAL",
+            "lugar_trabajo": "Instituto Nacional de Electrificación INDE",
+            "garantia_texto": (
+                "el sueldo y salario que devengo como empleado del Instituto Nacional de Electrificación INDE, "
+                "en la Planta Hidroeléctrica Chixoy, así como con la totalidad de mis bienes presentes y futuros"
+            ),
+        },
+        {
+            "nombre": "MARÍA ELENA POP CHEN",
+            "edad_letras": "treinta y un",
+            "edad_num": 31,
+            "estado_civil": "soltera",
+            "nacionalidad": "guatemalteca",
+            "profesion": "Maestra de Educación Primaria",
+            "domicilio": "de este domicilio",
+            "dpi": "1987 65432 1601",
+            "cui_letras": "un mil novecientos ochenta y siete espacio sesenta y cinco mil cuatrocientos treinta y dos espacio un mil seiscientos uno",
+            "direccion": "Barrio San Sebastián, zona uno, del municipio de San Pedro Carchá del departamento de Alta Verapaz",
+            "tipo_garantia": "PERSONAL",
+            "garantia_texto": (
+                "los ingresos salariales que percibo mensualmente en el ejercicio de mi profesión docente, "
+                "así como con la totalidad de mis bienes presentes y futuros"
+            ),
+        },
+        {
+            "nombre": "JOSÉ LUIS HERNÁNDEZ MORÁN",
+            "edad_letras": "cuarenta",
+            "edad_num": 40,
+            "estado_civil": "casado",
+            "nacionalidad": "guatemalteco",
+            "profesion": "Comerciante",
+            "domicilio": "de este domicilio",
+            "dpi": "1765 43210 1602",
+            "cui_letras": "un mil setecientos sesenta y cinco espacio cuarenta y tres mil doscientos diez espacio un mil seiscientos dos",
+            "direccion": "cantón Las Casas, sector Las Flores, municipio de Santa Cruz Verapaz del departamento de Alta Verapaz",
+            "tipo_garantia": "MOBILIARIA",
+            "garantia_texto": (
+                "garantía mobiliaria sobre el inventario y mercaderías de mi establecimiento comercial denominado "
+                "Variedades Morán, así como con mis bienes presentes y futuros"
+            ),
+        },
+        {
+            "nombre": "GLADYS ESPERANZA SIERRA PACAY",
+            "edad_letras": "veintiocho",
+            "edad_num": 28,
+            "estado_civil": "soltera",
+            "nacionalidad": "guatemalteca",
+            "profesion": "Licenciada en Administración de Empresas",
+            "domicilio": "de este domicilio",
+            "dpi": "2890 12345 1601",
+            "cui_letras": "dos mil ochocientos noventa espacio doce mil trescientos cuarenta y cinco espacio un mil seiscientos uno",
+            "direccion": "séptima avenida tres guion doce, zona cuatro, del municipio de Cobán del departamento de Alta Verapaz",
+            "tipo_garantia": "LABORAL",
+            "garantia_texto": (
+                "el sueldo que devengo como administradora de operaciones, así como con mis bienes muebles presentes y futuros"
+            ),
+        },
+    ]
+
+    cant = max(1, min(cantidad_fiadores, len(fiadores_catalogo)))
+    lista_fiadores_elegidos = fiadores_catalogo[:cant]
+
     return {
         "ciudad": "Cobán",
         "departamento": "Alta Verapaz",
         "fecha_contrato_letras": "dieciséis de octubre del año dos mil veintiséis",
-        # Deudor
+        # Deudor Principal
         "deudor_nombre": "ESTEFANY YUSELA LÓPEZ RUIZ",
         "deudor_edad_letras": "veintinueve",
         "deudor_estado_civil": "casada",
@@ -44,16 +139,21 @@ def obtener_datos_ejemplo_con_fiador() -> dict:
         "deudor_dpi": "3511 13304 1601",
         "deudor_cui_letras": "tres mil quinientos once espacio trece mil trescientos cuatro espacio un mil seiscientos uno",
         "deudor_direccion": "Lotificación Villas del Carmen, zona tres, de la jurisdicción municipal de Tactic del departamento de Alta Verapaz",
-        # Fiador Solidario
-        "fiador_nombre": "FREDY JOEL GARCÍA MOSCOSO",
-        "fiador_edad_letras": "veintiséis",
-        "fiador_estado_civil": "soltero",
-        "fiador_nacionalidad": "guatemalteco",
-        "fiador_profesion": "Bachiller en Ciencias y Letras",
-        "fiador_domicilio": "de este domicilio",
-        "fiador_dpi": "3268 85188 1604",
-        "fiador_cui_letras": "tres mil doscientos sesenta y ocho espacio ochenta y cinco mil ciento ochenta y ocho espacio un mil seiscientos cuatro",
-        "fiador_direccion": "Lotificación Villas del Carmen, zona tres, de la jurisdicción municipal de Tactic del departamento de Alta Verapaz",
+        "deudor_genero": "F",
+        # Fiadores Solidarios Dinámicos
+        "fiadores": lista_fiadores_elegidos,
+        # Claves heredadas para retrocompatibilidad directa
+        "fiador_nombre": lista_fiadores_elegidos[0]["nombre"],
+        "fiador_edad_letras": lista_fiadores_elegidos[0]["edad_letras"],
+        "fiador_estado_civil": lista_fiadores_elegidos[0]["estado_civil"],
+        "fiador_nacionalidad": lista_fiadores_elegidos[0]["nacionalidad"],
+        "fiador_profesion": lista_fiadores_elegidos[0]["profesion"],
+        "fiador_domicilio": lista_fiadores_elegidos[0]["domicilio"],
+        "fiador_dpi": lista_fiadores_elegidos[0]["dpi"],
+        "fiador_cui_letras": lista_fiadores_elegidos[0]["cui_letras"],
+        "fiador_direccion": lista_fiadores_elegidos[0]["direccion"],
+        "tipo_garantia": lista_fiadores_elegidos[0]["tipo_garantia"],
+        "garantia_texto": lista_fiadores_elegidos[0]["garantia_texto"],
         # Representante Legal El Telar
         "rep_legal_nombre": "EDGAR ARMANDO ALVARADO BERMÚDEZ",
         "rep_legal_edad_letras": "cuarenta y un",
@@ -85,7 +185,7 @@ def obtener_datos_ejemplo_con_fiador() -> dict:
         "monto_capital": 13504.00,
         "monto_capital_letras": "TRECE MIL QUINIENTOS CUATRO QUETZALES",
         "plazo_cuotas_letras": "SEIS",
-        "tipo_pago_nombre": "BONOS MENSUALES",  # o "CUOTAS MENSUALES"
+        "tipo_pago_nombre": "BONOS MENSUALES",
         "desglose_cuotas_texto": (
             "el primer pago será por la cantidad de dos mil seiscientos sesenta y siete (Q. 2,667.00); "
             "el segundo pago será por la cantidad de dos mil quinientos uno (Q. 2,501.00); "
@@ -103,19 +203,80 @@ def obtener_datos_ejemplo_con_fiador() -> dict:
         "multa_mora_pct": "10",
         "resolucion_ente": "------",
         "acta_numero": "--- guion de fecha -----",
-        # Garantía otorgada por el Fiador (soporta MOBILIARIA o LABORAL)
-        "tipo_garantia": "MOBILIARIA",  # o "LABORAL"
-        "garantia_texto": (
-            "garantía mobiliaria sobre la empresa mercantil de mi propiedad bajo los siguientes datos registrales: "
-            "Empresa mercantil de nombre Comercial Agrícola W&A, inscrita en el Registro Mercantil bajo el número 1002212; "
-            "folio 401; del libro 1182, de Empresas Mercantiles."
-        ),
         # Notario
         "notario_fecha_letras": "dieciséis de octubre del año dos mil veintiséis",
     }
 
 
+def _preparar_un_fiador(f: dict, default_deudor_nombre: str = "") -> dict:
+    """
+    Normaliza y enriquece los datos de un fiador individual:
+    genera letras de edad, convierte CUI/DPI a letras notariales y construye
+    el texto formal de garantía si no se especificó textualmente.
+    """
+    item = dict(f)
+    nombre = item.get("nombre") or item.get("fiador_nombre") or "FIADOR SOLIDARIO"
+    item["nombre"] = nombre.strip()
+
+    # Edad
+    if not item.get("edad_letras"):
+        edad_num = item.get("edad_num") or item.get("edad")
+        if edad_num:
+            item["edad_letras"] = edad_a_letras(edad_num)
+        else:
+            item["edad_letras"] = "mayor"
+
+    # Generales con valores por defecto
+    item["estado_civil"] = item.get("estado_civil") or item.get("fiador_estado_civil") or "soltero"
+    item["nacionalidad"] = item.get("nacionalidad") or item.get("fiador_nacionalidad") or "guatemalteco"
+    item["profesion"] = item.get("profesion") or item.get("fiador_profesion") or "Bachiller en Ciencias y Letras"
+    item["domicilio"] = item.get("domicilio") or item.get("fiador_domicilio") or "de este domicilio"
+    item["direccion"] = item.get("direccion") or item.get("fiador_direccion") or "municipio de Cobán del departamento de Alta Verapaz"
+
+    # DPI / CUI en letras y formateado
+    dpi_raw = item.get("dpi") or item.get("fiador_dpi") or ""
+    if dpi_raw:
+        cui_letras, dpi_form = cui_dpi_a_letras(dpi_raw, con_espacio=True)
+        if not item.get("cui_letras"):
+            item["cui_letras"] = cui_letras
+        if not item.get("dpi_formateado"):
+            item["dpi_formateado"] = dpi_form
+    else:
+        item["cui_letras"] = item.get("cui_letras") or ""
+        item["dpi_formateado"] = item.get("dpi_formateado") or ""
+
+    # Texto de Garantía
+    tipo_g = (item.get("tipo_garantia") or "PERSONAL").upper()
+    item["tipo_garantia"] = tipo_g
+
+    if not item.get("garantia_texto"):
+        if tipo_g == "LABORAL" or item.get("lugar_trabajo"):
+            lugar = item.get("lugar_trabajo") or "la empresa para la cual laboro actualmente"
+            item["garantia_texto"] = (
+                f"el sueldo y salario que devengo como empleado de {lugar}, "
+                "así como con la totalidad de mis bienes presentes y futuros"
+            )
+        elif tipo_g == "MOBILIARIA":
+            if item.get("datos_mobiliaria"):
+                item["garantia_texto"] = f"garantía mobiliaria sobre {item['datos_mobiliaria']}"
+            else:
+                item["garantia_texto"] = (
+                    "garantía mobiliaria sobre la empresa mercantil de mi propiedad, "
+                    "así como con la totalidad de mis bienes presentes y futuros"
+                )
+        else:
+            item["garantia_texto"] = (
+                "el salario que devengo actualmente, así como con la totalidad de mis bienes presentes y futuros"
+            )
+
+    return item
+
+
 def _preparar_datos_con_fiador(datos_entrada: dict | None) -> dict:
+    """
+    Combina los datos base con los datos proporcionados y procesa la lista dinámica de fiadores.
+    Soporta recibir la lista 'fiadores' o campos individuales tradicionales ('fiador_nombre', etc.).
+    """
     datos = obtener_datos_ejemplo_con_fiador()
     if datos_entrada:
         datos.update(datos_entrada)
@@ -130,7 +291,7 @@ def _preparar_datos_con_fiador(datos_entrada: dict | None) -> dict:
     if "monto_capital_letras" not in datos or not datos["monto_capital_letras"]:
         datos["monto_capital_letras"] = monto_a_letras_quetzales(cap_val).replace(" EXACTOS", "")
 
-    # DPI deudora
+    # DPI Deudora
     cui_raw = datos.get("deudor_dpi", "")
     if cui_raw:
         letras_cui, form_cui = cui_dpi_a_letras(cui_raw, con_espacio=True)
@@ -141,38 +302,77 @@ def _preparar_datos_con_fiador(datos_entrada: dict | None) -> dict:
     else:
         datos["deudor_dpi_formateado"] = ""
 
-    # DPI fiador
-    cui_f_raw = datos.get("fiador_dpi", "")
-    if cui_f_raw:
-        letras_f, form_f = cui_dpi_a_letras(cui_f_raw, con_espacio=True)
-        if "fiador_cui_letras" not in datos or not datos["fiador_cui_letras"]:
-            datos["fiador_cui_letras"] = letras_f
-        if "fiador_dpi_formateado" not in datos:
-            datos["fiador_dpi_formateado"] = form_f
-    else:
-        datos["fiador_dpi_formateado"] = ""
+    # PROCESAMIENTO DINÁMICO DE FIADORES
+    fiadores_finales = []
+    deudor_nom = datos.get("deudor_nombre", "")
 
-    # Garantía laboral si se selecciona LABORAL
-    if datos.get("tipo_garantia") == "LABORAL" and "garantia_texto" not in datos_entrada:
-        datos["garantia_texto"] = (
-            "el sueldo que devengo como empleado de la empresa denominada Instituto Nacional de Electrificación INDE, "
-            "desempeñando el puesto / cargo: 00012019, Trabajador 3, Centro costo: 1102000001, Planta Hidroeléctrica Chixoy, "
-            "tal y como lo establezco con el comprobante de pago, extendida, firmada y sellada por el departamento de Salarios "
-            "y Prestaciones, de fecha veintisiete de noviembre del año dos mil veinticinco."
-        )
+    if "fiadores" in datos and isinstance(datos["fiadores"], list) and len(datos["fiadores"]) > 0:
+        for f in datos["fiadores"]:
+            if isinstance(f, dict):
+                fiadores_finales.append(_preparar_un_fiador(f, deudor_nom))
+    elif datos.get("fiador_nombre"):
+        # Retrocompatibilidad: Si pasaron los campos sueltos individuales
+        single_f = {
+            "nombre": datos.get("fiador_nombre"),
+            "edad_letras": datos.get("fiador_edad_letras"),
+            "edad_num": datos.get("fiador_edad_num"),
+            "estado_civil": datos.get("fiador_estado_civil"),
+            "nacionalidad": datos.get("fiador_nacionalidad"),
+            "profesion": datos.get("fiador_profesion"),
+            "domicilio": datos.get("fiador_domicilio"),
+            "dpi": datos.get("fiador_dpi"),
+            "cui_letras": datos.get("fiador_cui_letras"),
+            "dpi_formateado": datos.get("fiador_dpi_formateado"),
+            "direccion": datos.get("fiador_direccion"),
+            "tipo_garantia": datos.get("tipo_garantia"),
+            "garantia_texto": datos.get("garantia_texto"),
+        }
+        fiadores_finales.append(_preparar_un_fiador(single_f, deudor_nom))
+    else:
+        # Fiador por defecto
+        fiadores_finales = [_preparar_un_fiador(obtener_datos_ejemplo_con_fiador()["fiadores"][0], deudor_nom)]
+
+    datos["fiadores"] = fiadores_finales
+
+    # Sincronizar campos retrocompatibles con el primer fiador
+    if fiadores_finales:
+        primer = fiadores_finales[0]
+        datos["fiador_nombre"] = primer["nombre"]
+        datos["fiador_edad_letras"] = primer["edad_letras"]
+        datos["fiador_estado_civil"] = primer["estado_civil"]
+        datos["fiador_nacionalidad"] = primer["nacionalidad"]
+        datos["fiador_profesion"] = primer["profesion"]
+        datos["fiador_domicilio"] = primer["domicilio"]
+        datos["fiador_dpi"] = primer["dpi"]
+        datos["fiador_cui_letras"] = primer["cui_letras"]
+        datos["fiador_dpi_formateado"] = primer.get("dpi_formateado", "")
+        datos["fiador_direccion"] = primer["direccion"]
+        datos["tipo_garantia"] = primer["tipo_garantia"]
+        datos["garantia_texto"] = primer["garantia_texto"]
 
     return datos
 
 
 def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_target=None):
     """
-    Genera el archivo Word (.docx) del Contrato de Reconocimiento de Deuda con Fiador Solidario.
+    Genera el archivo Word (.docx) del Contrato de Reconocimiento de Deuda con Fiadores Solidarios.
+    Soporta de manera 100% DINÁMICA cualquier número de fiadores (1, 2, 3, 5, ... N).
+
+    Parámetros:
+    -----------
+    datos_entrada: dict
+        Diccionario con datos del crédito. Puede contener la lista 'fiadores' con N diccionarios
+        de fiadores o las claves individuales 'fiador_nombre', etc.
+    output_target: io.BytesIO | str | None
+        Si se pasa un buffer o string de ruta de archivo, se guarda allí. Si es None, retorna un io.BytesIO.
 
     Retorno:
     --------
-    io.BytesIO o str (si output_target es una ruta de archivo)
+    io.BytesIO | str
     """
     datos = _preparar_datos_con_fiador(datos_entrada)
+    fiadores = datos["fiadores"]
+    num_fiadores = len(fiadores)
 
     doc = Document()
     for section in doc.sections:
@@ -188,7 +388,9 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
     style.font.size = Pt(10.5)
     style.font.color.rgb = RGBColor(20, 20, 20)
 
-    # 1. COMPARECENCIA Y ANTECEDENTES (3 PARTES: DEUDORA, FIADOR, REPRESENTANTE LEGAL)
+    # =========================================================================
+    # 1. COMPARECENCIA Y ANTECEDENTES (DINÁMICO: DEUDOR + N FIADORES + REP LEGAL)
+    # =========================================================================
     p_intro = doc.add_paragraph()
     p_intro.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     p_intro.paragraph_format.line_spacing = 1.15
@@ -197,100 +399,236 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
     p_intro.add_run(
         f"En la ciudad de {datos['ciudad']} del departamento de {datos['departamento']}, a {datos['fecha_contrato_letras']}. "
     )
-    p_intro.add_run("NOSOTROS: ").bold = True
+    p_intro.add_run("NOSOTROS: ").bold = False
+
+    # Parte Deudora
     p_intro.add_run(
-        f"por una parte Yo, {datos['deudor_nombre']}, de {datos['deudor_edad_letras']} años de edad, "
+        f"por una parte Yo, ") 
+    p_intro.add_run(f"{datos['deudor_nombre']},").bold = True
+
+    p_intro.add_run( f"de {datos['deudor_edad_letras']} años de edad, "
         f"{datos['deudor_estado_civil']}, {datos['deudor_nacionalidad']}, {datos['deudor_profesion']}, {datos['deudor_domicilio']}, "
         "me identifico con el Documento Personal de Identificación –DPI- Código Único de Identificación número "
         f"{datos['deudor_cui_letras']} ({datos['deudor_dpi_formateado'] or datos['deudor_dpi']}); extendido por el "
         "Registro Nacional de las Personas –RENAP-, de la República de Guatemala; "
-        f"Yo, {datos['fiador_nombre']}, de {datos['fiador_edad_letras']} años de edad, {datos['fiador_estado_civil']}, "
-        f"{datos['fiador_nacionalidad']}, {datos['fiador_profesion']}, {datos['fiador_domicilio']}, "
-        "me identifico con el Documento Personal de Identificación –DPI- Código Único de Identificación número "
-        f"{datos['fiador_cui_letras']} ({datos['fiador_dpi_formateado'] or datos['fiador_dpi']}); extendido por el "
-        "Registro Nacional de las Personas –RENAP-, de la República de Guatemala; "
-        f"y por la otra parte Yo, {datos['rep_legal_nombre']}, de {datos['rep_legal_edad_letras']} ({datos.get('rep_legal_edad_num', '41')}) "
+    )
+
+    # Cada uno de los Fiadores Solidarios (Dinámico)
+    for idx, f in enumerate(fiadores, 1):
+        prefijo_ordinal = ""
+        if num_fiadores > 1:
+            ord_txt = ordinal(idx, femenino=False)
+            prefijo_ordinal = f"en mi calidad de {ord_txt} FIADOR SOLIDARIO "
+
+        p_intro.add_run(
+            f"Yo, {f['nombre']}, ").bold = True
+        
+        p_intro.add_run(
+            f"{prefijo_ordinal} de {f['edad_letras']} años de edad, {f['estado_civil']}, "
+            f"{f['nacionalidad']}, {f['profesion']}, {f['domicilio']}, "
+            "me identifico con el Documento Personal de Identificación –DPI- Código Único de Identificación número "
+            f"{f['cui_letras']} ({f.get('dpi_formateado') or f['dpi']}); extendido por el "
+            "Registro Nacional de las Personas –RENAP-, de la República de Guatemala; "
+        )
+
+    # Parte Acreedora (Representante Legal El Telar)
+    p_intro.add_run(
+        f"y por la otra parte Yo, ")
+    
+    p_intro.add_run(f"{datos['rep_legal_nombre']}, ").bold = True
+
+    p_intro.add_run(f"de {datos['rep_legal_edad_letras']} ({datos.get('rep_legal_edad_num', '41')}) "
         f"años de edad, {datos['rep_legal_estado_civil']}, {datos['rep_legal_nacionalidad']}, {datos['rep_legal_profesion']}, {datos['rep_legal_domicilio']}, "
         "me identifico con el Documento Personal de Identificación –DPI- Código Único de Identificación número "
         f"{datos['rep_legal_cui_letras']} ({datos['rep_legal_dpi']}) ; extendido por el Registro Nacional de las Personas –RENAP- "
-        f"de la República de Guatemala; actúo en mi calidad de {datos['rep_legal_cargo']} de la entidad denominada "
-        f"{datos['empresa_nombre']}, calidad que acredito con mi nombramiento, el cual está contenido en el acta notarial "
+        f"de la República de Guatemala; actúo en mi calidad de ")
+    p_intro.add_run(
+        f"{datos['rep_legal_cargo']} ").bold = True
+    
+    p_intro.add_run(f"de la entidad denominada ")
+    p_intro.add_run( f"{datos['empresa_nombre']}, ").bold = True
+
+    p_intro.add_run("calidad que acredito con mi nombramiento, el cual está contenido en el acta notarial "
         f"que contiene mi nombramiento, autorizada en la ciudad de Cobán Alta Verapaz, de fecha {datos['reg_acta_nombramiento_fecha']}, "
         f"por el Notario {datos['reg_notario_nombramiento']}, la que se encuentra debidamente inscrita en el Registro Mercantil "
-        f"bajo el número {datos['reg_numero_nombramiento']}, folio {datos['reg_folio_nombramiento']}, del libro {datos['reg_libro_nombramiento']}, "
-        f"según expediente número {datos['reg_expediente_nombramiento']}, según inscripción de fecha {datos['reg_fecha_inscripcion_nombramiento']}; "
+        f"bajo el número ")
+    p_intro.add_run(f"{datos['reg_numero_nombramiento']}, folio {datos['reg_folio_nombramiento']}, del libro {datos['reg_libro_nombramiento']}, ").bold = True
+    p_intro.add_run(f"según expediente número ")
+    p_intro.add_run(f"{datos['reg_expediente_nombramiento']}, ").bold = True
+    p_intro.add_run(f"según inscripción de fecha {datos['reg_fecha_inscripcion_nombramiento']}; "
         f"según documento emitido por el Registro Mercantil con número {datos['reg_doc_numero_rm']}; documento en el que hago constar "
-        f"que la empresa denominada {datos['empresa_nombre']}, se encuentra debidamente inscrita en el Registro Mercantil, "
-        f"bajo el número {datos['reg_sociedad_numero']}, folio {datos['reg_sociedad_folio']}, del libro {datos['reg_sociedad_libro']}, "
+        f"que la empresa denominada ")
+    p_intro.add_run(f"{datos['empresa_nombre']}, ").bold = True
+    p_intro.add_run(f"se encuentra debidamente inscrita en el Registro Mercantil, "
+        f"bajo el número ")
+    p_intro.add_run(f"{datos['reg_sociedad_numero']}, folio {datos['reg_sociedad_folio']}, del libro {datos['reg_sociedad_libro']}, "
         "manifiesto en la calidad en la que actúo que en el curso del presente documento mi representada será denominada simplemente "
-        "como la parte acreedora o la entidad acreedora. Todos aseguramos ser de las generales consignadas, hallarnos en el libre ejercicio "
+        "como la parte acreedora o la entidad acreedora. ").bold = True
+    
+    p_intro.add_run(f"Todos aseguramos ser de las generales consignadas, hallarnos en el libre ejercicio "
         "de nuestros derechos civiles y que por el presente acto celebramos "
     )
     p_intro.add_run("CONTRATO DE RECONOCIMIENTO DE DEUDA").bold = True
     p_intro.add_run(", contenido en las cláusulas siguientes:")
 
-    # 2. CLÁUSULA PRIMERA
+    # =========================================================================
+    # 2. CLÁUSULA PRIMERA (CONDICIONES DE DEUDA Y GARANTÍAS DE N FIADORES)
+    # =========================================================================
     p_primera = doc.add_paragraph()
     p_primera.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     p_primera.paragraph_format.line_spacing = 1.15
     p_primera.paragraph_format.space_after = Pt(8)
 
-    p_primera.add_run("PRIMERA: ").bold = True
-    p_primera.add_run(
-        f"Yo, {datos['deudor_nombre']}, declaro que me reconozco LISA Y LLANA DEUDORA, de la entidad acreedora, por la cantidad de "
-        f"{datos['monto_capital_letras']} ({datos['monto_capital_formato']}). El reconocimiento se regirá bajo las condiciones siguientes:\n"
-        f"a) LA FORMA DE PAGO: El pago de la deuda será a través de {datos['plazo_cuotas_letras']} {datos.get('tipo_pago_nombre', 'BONOS MENSUALES')}, "
+    p_intro.add_run("PRIMERA: ").bold = True
+    p_intro.add_run(
+        f"Yo, ")
+    p_intro.add_run(f"{datos['deudor_nombre']}, ").bold = True
+    
+    p_intro.add_run(f"declaro que me reconozco LISA Y LLANA DEUDORA, de la entidad acreedora, por la cantidad de ")
+    p_intro.add_run(f"{datos['monto_capital_letras']} ({datos['monto_capital_formato']}). ").bold = True
+    p_intro.add_run(f"El reconocimiento se regirá bajo las condiciones siguientes: ")
+    p_intro.add_run(f"a) LA FORMA DE PAGO: ").bold = True
+
+    p_intro.add_run(f"El pago de la deuda será a través de ")
+    p_intro.add_run(f"{datos['plazo_cuotas_letras']} {datos.get('tipo_pago_nombre', 'BONOS MENSUALES')}, ").bold = True
+    
+    p_intro.add_run(
         f"distribuidos de la siguiente manera: {datos['desglose_cuotas_texto']} "
-        f"los pagos deberán efectuarse mediante deposito a la cuenta monetaria número {datos['empresa_cuenta_bancaria']} a nombre de la empresa denominada "
-        f"{datos['empresa_nombre']}, empresa ubicada en la {datos['empresa_direccion']}, sin necesidad de requerimiento o cobro alguno;\n"
-        f"b) Manifiesto yo, {datos['deudor_nombre']}, que la cantidad que me fue otorgada por la entidad acreedora, la invertiré exclusivamente en: "
-        f"{datos['destino_credito']}, tal y como consta en mi solicitud de crédito;\n"
+        f"los pagos deberán efectuarse mediante deposito a la cuenta monetaria número {datos['empresa_cuenta_bancaria']} a nombre de la empresa denominada ")
+    p_intro.add_run(
+        f"{datos['empresa_nombre']}, ").bold = True
+    
+    p_intro.add_run(f"empresa ubicada en la {datos['empresa_direccion']}, sin necesidad de requerimiento o cobro alguno;")
+
+    p_intro.add_run(
+        f"b) Manifiesto yo, ")
+    p_intro.add_run(f"{datos['deudor_nombre']}, ").bold = True
+
+    p_intro.add_run(f"que la cantidad que me fue otorgada por la ")
+    p_intro.add_run(f"entidad acreedora, ").bold = True
+
+    p_intro.add_run(f"la invertiré exclusivamente en: "
+        f"{datos['destino_credito']}, tal y como consta en mi solicitud de crédito;"
         f"c) Comprometiéndome desde ya a pagar una tasa de interés del {datos['tasa_interes_letras']} ({datos['tasa_interes_num']}%), mensual, sin que estos se capitalicen, "
         "pudiendo variar en el transcurso del plazo, si el pago de los intereses y capital no se efectúa en la fecha establecida en este contrato "
         f"de reconocimiento de deuda la entidad acreedora, tendrá derecho de cobrar en concepto de multa la cantidad del {datos['multa_mora_pct']}%, sobre el monto de "
         "intereses vencidos, iniciando el día inmediato posterior a la fecha de pago acordada, la multa por morosidad permanecerá constante "
-        f"hasta que el saldo quede al día tal como se me indicó previamente en la empresa {datos['empresa_nombre']};\n"
-        f"d) Autorizo que este crédito sea cedible o negociable, sin necesidad que la empresa {datos['empresa_nombre']}, me de aviso previo o posterior notificación;\n"
-        f"e) La falta de pago de la cantidad adeudada, dará derecho a la entidad: {datos['empresa_nombre']}, por medio de su {datos['rep_legal_cargo']}, "
-        f"representada por el señor {datos['rep_legal_nombre']}, a dar por vencido el plazo y al cobro de la cantidad adeudada, intereses y costas procesales "
+        f"hasta que el saldo quede al día tal como se me indicó previamente en la empresa ")
+    p_intro.add_run(f"{datos['empresa_nombre']}; ").bold = True
+    p_intro.add_run(
+        f"d) Autorizo que este crédito sea cedible o negociable, sin necesidad que la empresa ")
+    p_intro.add_run(f"{datos['empresa_nombre']}, ").bold = True
+    p_intro.add_run(f"me de aviso previo o posterior notificación;"
+        f"e) La falta de pago de la cantidad adeudada, dará derecho a la entidad: ")
+    p_intro.add_run(f"{datos['empresa_nombre']}, ").bold = True
+    p_intro.add_run(f"por medio de su ")
+    p_intro.add_run(f"{datos['rep_legal_cargo']}, representada por el señor {datos['rep_legal_nombre']}, ").bold = True
+
+    p_intro.add_run(
+        f"a dar por vencido el plazo y al cobro de la cantidad adeudada, intereses y costas procesales "
         "y el presente documento debidamente legalizado por Notario en sus firmas servirá de título ejecutivo para iniciar el juicio correspondiente "
         "y en esta forma se podrá dar por vencido el plazo si se da el dinero mutuado un destino diferente para el que fue concedido según la solicitud "
-        f"de crédito y la resolución emitida por {datos['resolucion_ente']} de la empresa {datos['empresa_nombre']}, contenida en Acta número "
-        f"{datos['acta_numero']} mediante la cual fue autorizado el presente Crédito;\n"
-        f"f) Para los efectos legales, yo, {datos['deudor_nombre']}, renuncio al fuero de mi domicilio y me sujeto expresamente a los tribunales que la entidad acreedora elija, "
-        f"señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos en la siguiente dirección: {datos['deudor_direccion']}, "
+        f"de crédito y la resolución emitida por {datos['resolucion_ente']} de la empresa ")
+    p_intro.add_run(f"{datos['empresa_nombre']}, ").bold = True
+
+    p_intro.add_run(f"contenida en Acta número "
+        f"{datos['acta_numero']} mediante la cual fue autorizado el presente Crédito;").bold = True
+    
+    p_intro.add_run(
+        f"f) Para los efectos legales, yo, ")
+    p_intro.add_run(f"{datos['deudor_nombre']}, ").bold = True
+    p_intro.add_run(f"renuncio al fuero de mi domicilio y me sujeto expresamente a los tribunales que la entidad acreedora elija, "
+        f"señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos en la siguiente dirección: ")
+    p_intro.add_run(f"{datos['deudor_direccion']}, ").bold = True
+
+    p_intro.add_run(
         "casa plenamente conocida, lugar donde resido actualmente; y acepto como buenas, exactas, de plazo vencido, líquidas y exigibles las cantidades "
         "que a consecuencia de este crédito se me presenten en caso de incumplimiento a cualquiera de las estipulaciones de este contrato, y si cambiará de dirección "
-        "tengo la obligación de comunicarlo a la entidad acreedora, caso contrario las citaciones, notificaciones y emplazamientos se me harán en la dirección antes indicada y se tendrán como válidas;\n"
-        f"g) DE LA GARANTÍA: Yo, {datos['fiador_nombre']}, manifiesto que para el fiel cumplimiento de la obligación que contrae la parte deudora, por este acto me constituyo en "
-        f"FIADOR, SOLIDARIO y MANCOMUNADO de {datos['deudor_nombre']}, garantizando la deuda, intereses, multa por morosidad y costas procesales con {datos['garantia_texto']}. "
-        f"Yo: {datos['fiador_nombre']}, renuncio al fuero de mi domicilio y me someto expresamente a los tribunales que la Entidad Acreedora elija, "
-        f"señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos, en la siguiente dirección: {datos['fiador_direccion']}."
+        "tengo la obligación de comunicarlo a la entidad acreedora, caso contrario las citaciones, notificaciones y emplazamientos se me harán en la dirección antes indicada y se tendrán como válidas;"
     )
 
+    # Cláusula de Garantía de Fiador(es) Dinámica
+    if num_fiadores == 1:
+        f = fiadores[0]
+        p_primera.add_run(
+            f"g) DE LA GARANTÍA: ").bold = True
+        p_intro.add_run(f"Yo, ")
+        p_intro.add_run(f"{f['nombre']}, ").bold = True
+
+        p_intro.add_run(f"manifiesto que para el fiel cumplimiento de la obligación que contrae la parte deudora, por este acto me constituyo en ")
+        p_intro.add_run(
+            f"FIADOR, SOLIDARIO y MANCOMUNADO de {datos['deudor_nombre']}, ").bold = True
+        
+        p_intro.add_run(f"garantizando la deuda, intereses, multa por morosidad y costas procesales con {f['garantia_texto']}. ")
+        p_intro.add_run(f"Yo: ")
+        p_intro.add_run(f"{f['nombre']}, ").bold = True
+        p_intro.add_run(f"renuncio al fuero de mi domicilio y me someto expresamente a los tribunales que la Entidad Acreedora elija, "
+            f"señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos, en la siguiente dirección: ")
+        p_intro.add_run(f"{f['direccion']}.").bold = True
+
+    else:
+        p_primera.add_run(
+            f"g) DE LAS GARANTÍAS Y FIADORES SOLIDARIOS Y MANCOMUNADOS: ").bold = True
+        p_intro.add_run(f"Para el fiel y estricto cumplimiento de todas y cada una de las obligaciones que contrae la parte deudora, "
+                        
+            f"nos constituimos de manera expresa en ")
+        p_intro.add_run(f"FIADORES, SOLIDARIOS Y MANCOMUNADOS de {datos['deudor_nombre']}, ").bold = True
+
+        p_intro.add_run(f"bajo las siguientes declaraciones individuales:\n")
+        for idx, f in enumerate(fiadores, 1):
+            ord_fem = ordinal(idx, femenino=True)
+            salto_linea = "\n" if idx < num_fiadores else ""
+            p_primera.add_run(
+                f"g.{idx}) DE LA {ord_fem} FIADURÍA SOLIDARIA: Yo, ") 
+            p_primera.add_run(f"{f['nombre']}, ").bold = True
+            p_primera.add_run(f"manifiesto que para el fiel cumplimiento de la obligación que contrae la parte deudora, por este acto me constituyo en "
+                f"FIADOR, SOLIDARIO y MANCOMUNADO de ") 
+            p_primera.add_run(f"{datos['deudor_nombre']}, ").bold = True
+
+            p_primera.add_run(f"garantizando la deuda, intereses, multa por morosidad y costas procesales con {f['garantia_texto']}. "
+                f"Yo, ") 
+            p_primera.add_run(f"{f['nombre']}, ").bold = True
+
+            p_primera.add_run(f"renuncio al fuero de mi domicilio y me someto expresamente a los tribunales que la Entidad Acreedora elija, "
+                f"señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos en la siguiente dirección: ") 
+            p_primera.add_run(f"{f['direccion']}.").bold = True
+
+    # =========================================================================
     # 3. CLÁUSULA SEGUNDA (DECLARACIÓN DE INSTRUCCIÓN PREVIA)
+    # =========================================================================
     p_segunda = doc.add_paragraph()
     p_segunda.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     p_segunda.paragraph_format.line_spacing = 1.15
     p_segunda.paragraph_format.space_after = Pt(8)
     p_segunda.add_run("SEGUNDA: ").bold = True
     p_segunda.add_run(
-        f"Yo, {datos['deudor_nombre']}, manifiesto que en su momento fui plenamente instruida de las condiciones en las cuales se me otorgó el crédito anteriormente descrito, "
-        f"para el otorgamiento del presente crédito por parte de la de la empresa {datos['empresa_nombre']}."
-    )
+        f"Yo, ") 
+    p_segunda.add_run(f"{datos['deudor_nombre']}, ").bold = True
 
+    p_segunda.add_run(f"manifiesto que en su momento fui plenamente instruida de las condiciones en las cuales se me otorgó el crédito anteriormente descrito, "
+        f"para el otorgamiento del presente crédito por parte de la de la empresa ") 
+    p_segunda.add_run(f"{datos['empresa_nombre']}."
+    ).bold = True
+
+    # =========================================================================
     # 4. CLÁUSULA TERCERA (ACEPTACIÓN REPRESENTANTE LEGAL)
+    # =========================================================================
     p_tercera = doc.add_paragraph()
     p_tercera.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     p_tercera.paragraph_format.line_spacing = 1.15
     p_tercera.paragraph_format.space_after = Pt(8)
     p_tercera.add_run("TERCERA: ").bold = True
     p_tercera.add_run(
-        f"Por mi parte Yo, {datos['rep_legal_nombre']}, en mi calidad de {datos['rep_legal_cargo']} de la entidad denominada "
-        f"{datos['empresa_nombre']}, expreso que en los términos relacionados ACEPTO EXPRESAMENTE, para mi representada el contenido íntegro del presente contrato."
+        f"Por mi parte Yo, ")
+    p_tercera(f"{datos['rep_legal_nombre']}, en mi calidad de {datos['rep_legal_cargo']} de la entidad denominada "
+        f"{datos['empresa_nombre']}, ").bold = True
+    
+    p_tercera(f"expreso que en los términos relacionados ACEPTO EXPRESAMENTE, para mi representada el contenido íntegro del presente contrato."
     )
 
+    # =========================================================================
     # 5. CLÁUSULA CUARTA (RATIFICACIÓN DE TODAS LAS PARTES)
+    # =========================================================================
     p_cuarta = doc.add_paragraph()
     p_cuarta.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     p_cuarta.paragraph_format.line_spacing = 1.15
@@ -302,35 +640,49 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
         "lo aceptamos, ratificamos y firmamos."
     )
 
-    # 6. LÍNEAS DE FIRMA (3 FIRMAS: DEUDORA, FIADOR, REPRESENTANTE LEGAL)
-    tabla_firmas = doc.add_table(rows=2, cols=2)
+    # =========================================================================
+    # 6. TABLA DE FIRMAS DINÁMICA (DEUDOR + N FIADORES + REP LEGAL)
+    # =========================================================================
+    firmantes = []
+    firmantes.append({
+        "rol": "DEUDORA" if datos.get("deudor_genero") == "F" else "DEUDOR(A)",
+        "nombre": datos["deudor_nombre"],
+    })
+
+    for idx, f in enumerate(fiadores, 1):
+        rol_fiador = "FIADOR SOLIDARIO" if num_fiadores == 1 else f"FIADOR SOLIDARIO {idx}"
+        firmantes.append({
+            "rol": rol_fiador,
+            "nombre": f["nombre"],
+        })
+
+    firmantes.append({
+        "rol": f"REPRESENTANTE LEGAL\n{datos['empresa_nombre']}",
+        "nombre": datos["rep_legal_nombre"],
+    })
+
+    num_filas = (len(firmantes) + 1) // 2
+    tabla_firmas = doc.add_table(rows=num_filas, cols=2)
     tabla_firmas.alignment = WD_TABLE_ALIGNMENT.CENTER
     tabla_firmas.autofit = False
     tabla_firmas.columns[0].width = Inches(3.2)
     tabla_firmas.columns[1].width = Inches(3.2)
 
-    # Fila 0: Deudora y Fiador
-    c00 = tabla_firmas.cell(0, 0).paragraphs[0]
-    c00.paragraph_format.space_after = Pt(14)
-    c00.add_run("f.____________________________\n").bold = True
-    c00.add_run(f"DEUDORA\n{datos['deudor_nombre']}")
+    for i, s in enumerate(firmantes):
+        r_idx = i // 2
+        c_idx = i % 2
+        celda = tabla_firmas.cell(r_idx, c_idx).paragraphs[0]
+        celda.paragraph_format.space_after = Pt(14)
+        celda.add_run("f.____________________________\n").bold = True
+        celda.add_run(f"{s['rol']}\n{s['nombre']}")
 
-    c01 = tabla_firmas.cell(0, 1).paragraphs[0]
-    c01.paragraph_format.space_after = Pt(14)
-    c01.add_run("f.____________________________\n").bold = True
-    c01.add_run(f"FIADOR SOLIDARIO\n{datos['fiador_nombre']}")
-
-    # Fila 1: Representante Legal
-    c10 = tabla_firmas.cell(1, 0).paragraphs[0]
-    c10.paragraph_format.space_after = Pt(14)
-    c10.add_run("f.____________________________\n").bold = True
-    c10.add_run(f"REPRESENTANTE LEGAL\n{datos['empresa_nombre']}")
-
-    # 7. ACTA NOTARIAL DE LEGALIZACIÓN DE FIRMAS (3 COMPARECIENTES)
+    # =========================================================================
+    # 7. ACTA NOTARIAL DE LEGALIZACIÓN DE FIRMAS (DINÁMICA PARA N COMPARECIENTES)
+    # =========================================================================
     p_notario = doc.add_paragraph()
     p_notario.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     p_notario.paragraph_format.line_spacing = 1.15
-    p_notario.paragraph_format.space_before = Pt(14)
+    p_notario.paragraph_format.space_before = Pt(16)
     p_notario.paragraph_format.space_after = Pt(14)
 
     p_notario.add_run(
@@ -341,38 +693,47 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
     p_notario.add_run("Que las firmas que anteceden son ")
     p_notario.add_run("AUTENTICAS").bold = True
     p_notario.add_run(
-        ", por haber sido puestas en el CONTRATO DE RECONOCIMIENTO DE DEUDA, día de hoy a mi presencia por los señores: "
-        f"{datos['deudor_nombre']} (DEUDORA), quien se identifica con el Documento Personal de Identificación –DPI– "
-        f"Código Único de Identificación número {datos['deudor_cui_letras']}, extendido por el Registro Nacional de las Personas –RENAP–, "
-        f"de la República de Guatemala; {datos['fiador_nombre']} (FIADOR), quien se identifica con el Documento Personal de "
-        f"Identificación –DPI– Código Único de Identificación número {datos['fiador_cui_letras']}, extendido por el Registro Nacional "
-        f"de las Personas –RENAP–, de la República de Guatemala; y, {datos['rep_legal_nombre']}, en la calidad en que actúa como "
-        f"{datos['rep_legal_cargo']} de la entidad denominada {datos['empresa_nombre']}, quien se identifica con el Documento Personal "
-        f"de Identificación –DPI– Código Único de Identificación número {datos['rep_legal_cui_letras']}, extendidos por el Registro Nacional "
-        "de las Personas –RENAP–, de la República de Guatemala, quienes vuelven a firmar junto conmigo la presente acta de legalización de firmas."
+        ", por haber sido puestas en el CONTRATO DE RECONOCIMIENTO DE DEUDA, el día de hoy a mi presencia por los señores: "
     )
 
-    # Firmas Acta Notarial
-    tabla_not = doc.add_table(rows=2, cols=2)
+    partes_acta = []
+    partes_acta.append(
+        f"{datos['deudor_nombre']} (DEUDORA), quien se identifica con el Documento Personal de Identificación –DPI– "
+        f"Código Único de Identificación número {datos['deudor_cui_letras']}, extendido por el Registro Nacional de las Personas –RENAP–, "
+        "de la República de Guatemala"
+    )
+
+    for idx, f in enumerate(fiadores, 1):
+        etiqueta_acta = "FIADOR" if num_fiadores == 1 else f"FIADOR SOLIDARIO {idx}"
+        partes_acta.append(
+            f"{f['nombre']} ({etiqueta_acta}), quien se identifica con el Documento Personal de Identificación –DPI– "
+            f"Código Único de Identificación número {f['cui_letras']}, extendido por el Registro Nacional de las Personas –RENAP–, "
+            "de la República de Guatemala"
+        )
+
+    partes_acta.append(
+        f"y, {datos['rep_legal_nombre']}, en la calidad en que actúa como {datos['rep_legal_cargo']} de la entidad denominada "
+        f"{datos['empresa_nombre']}, quien se identifica con el Documento Personal de Identificación –DPI– Código Único de Identificación "
+        f"número {datos['rep_legal_cui_letras']}, extendidos por el Registro Nacional de las Personas –RENAP–, de la República de Guatemala"
+    )
+
+    p_notario.add_run("; ".join(partes_acta))
+    p_notario.add_run(", quienes vuelven a firmar junto conmigo la presente acta de legalización de firmas.")
+
+    # Firmas del Acta Notarial (Misma estructura de 2 columnas)
+    tabla_not = doc.add_table(rows=num_filas, cols=2)
     tabla_not.alignment = WD_TABLE_ALIGNMENT.CENTER
     tabla_not.autofit = False
     tabla_not.columns[0].width = Inches(3.2)
     tabla_not.columns[1].width = Inches(3.2)
 
-    cn00 = tabla_not.cell(0, 0).paragraphs[0]
-    cn00.paragraph_format.space_after = Pt(14)
-    cn00.add_run("f.____________________________\n").bold = True
-    cn00.add_run(f"DEUDORA\n{datos['deudor_nombre']}")
-
-    cn01 = tabla_not.cell(0, 1).paragraphs[0]
-    cn01.paragraph_format.space_after = Pt(14)
-    cn01.add_run("f.____________________________\n").bold = True
-    cn01.add_run(f"FIADOR SOLIDARIO\n{datos['fiador_nombre']}")
-
-    cn10 = tabla_not.cell(1, 0).paragraphs[0]
-    cn10.paragraph_format.space_after = Pt(14)
-    cn10.add_run("f.____________________________\n").bold = True
-    cn10.add_run(f"REPRESENTANTE LEGAL\n{datos['empresa_nombre']}")
+    for i, s in enumerate(firmantes):
+        r_idx = i // 2
+        c_idx = i % 2
+        celda_not = tabla_not.cell(r_idx, c_idx).paragraphs[0]
+        celda_not.paragraph_format.space_after = Pt(14)
+        celda_not.add_run("f.____________________________\n").bold = True
+        celda_not.add_run(f"{s['rol']}\n{s['nombre']}")
 
     p_ante = doc.add_paragraph()
     p_ante.paragraph_format.space_before = Pt(14)

@@ -118,13 +118,23 @@ def descargar_contrato_directo_ejemplo(request):
 @require_GET
 def descargar_contrato_fiador_ejemplo(request):
     """
-    Genera y descarga el Contrato de Reconocimiento de Deuda Con Fiador Solidario.
-    Plantilla: Estefany Yusela López Ruiz (Deudora) y Fredy Joel García Moscoso (Fiador).
+    Genera y descarga el Contrato de Reconocimiento de Deuda Con Fiador(es) Solidario(s).
+    Soporta dinámicamente cualquier número de fiadores (ej. ?num_fiadores=3 o ?num_fiadores=5).
     """
-    datos = obtener_datos_ejemplo_con_fiador()
+    num_f = 1
+    if request.GET.get("num_fiadores"):
+        try:
+            num_f = int(request.GET.get("num_fiadores"))
+        except ValueError:
+            num_f = 1
+    elif request.GET.get("fiadores") and request.GET.get("fiadores").isdigit():
+        num_f = int(request.GET.get("fiadores"))
+
+    datos = obtener_datos_ejemplo_con_fiador(cantidad_fiadores=num_f)
     if request.GET.get("deudor"):
         datos["deudor_nombre"] = request.GET.get("deudor")
-    if request.GET.get("fiador"):
+    if request.GET.get("fiador") and len(datos["fiadores"]) > 0:
+        datos["fiadores"][0]["nombre"] = request.GET.get("fiador")
         datos["fiador_nombre"] = request.GET.get("fiador")
     if request.GET.get("monto"):
         try:
@@ -133,7 +143,8 @@ def descargar_contrato_fiador_ejemplo(request):
             pass
 
     buffer = generar_contrato_con_fiador_word(datos)
-    nombre_archivo = "contrato_reconocimiento_con_fiador.docx"
+    sufijo = f"con_{len(datos['fiadores'])}_fiadores" if len(datos['fiadores']) > 1 else "con_fiador"
+    nombre_archivo = f"contrato_reconocimiento_{sufijo}.docx"
     response = HttpResponse(buffer.getvalue(), content_type=DOCX_MIME_TYPE)
     response["Content-Disposition"] = f'attachment; filename="{nombre_archivo}"'
     response["Content-Length"] = len(buffer.getvalue())
@@ -219,16 +230,27 @@ def panel_descarga_pagare(request):
                         </div>
                     </div>
 
-                    <!-- DOCUMENTO 3: CONTRATO CON FIADOR SOLIDARIO -->
+                    <!-- DOCUMENTO 3: CONTRATO CON FIADOR(ES) SOLIDARIO(S) -->
                     <div class="doc-card">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
                             <div>
-                                <span class="badge bg-info text-dark badge-tag">CON FIADOR SOLIDARIO (3 PARTES)</span>
-                                <h5 class="mt-1 mb-1 font-weight-bold text-dark">3. Contrato de Reconocimiento de Deuda (Con Fiador)</h5>
-                                <div class="text-muted small">Deudora: <strong>Estefany Yusela López Ruiz</strong> | Fiador: <strong>Fredy Joel García Moscoso</strong> | Monto: <strong>Q.13,504.00</strong> | 6 cuotas | 4 cláusulas</div>
+                                <span class="badge bg-info text-dark badge-tag">CON FIADORES SOLIDARIOS (1 A N FIADORES)</span>
+                                <h5 class="mt-1 mb-1 font-weight-bold text-dark">3. Contrato de Reconocimiento de Deuda (Dinámico con Fiadores)</h5>
+                                <div class="text-muted small">Deudora: <strong>Estefany Yusela López Ruiz</strong> | Soporta 1, 2, 3, 5 o más fiadores con cláusulas individuales, garantías y legalización notarial completa.</div>
                             </div>
-                            <a href="/documentos/contrato/fiador/ejemplo/" class="btn btn-download-secondary btn-sm">
-                                📥 Descargar (.docx)
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="/documentos/contrato/fiador/ejemplo/?num_fiadores=1" class="btn btn-download-secondary btn-sm">
+                                📥 1 Fiador (.docx)
+                            </a>
+                            <a href="/documentos/contrato/fiador/ejemplo/?num_fiadores=2" class="btn btn-outline-secondary btn-sm">
+                                📥 2 Fiadores (.docx)
+                            </a>
+                            <a href="/documentos/contrato/fiador/ejemplo/?num_fiadores=3" class="btn btn-outline-secondary btn-sm">
+                                📥 3 Fiadores (.docx)
+                            </a>
+                            <a href="/documentos/contrato/fiador/ejemplo/?num_fiadores=5" class="btn btn-outline-secondary btn-sm">
+                                📥 5 Fiadores (.docx)
                             </a>
                         </div>
                     </div>

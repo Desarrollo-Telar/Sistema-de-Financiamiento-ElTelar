@@ -30,7 +30,7 @@ def generar_contrato_word(datos_entrada: dict | None = None, output_target=None)
     """
     Genera el Contrato de Reconocimiento de Deuda en formato Word.
     Detecta automáticamente si se incluye Fiador Solidario en el diccionario de datos:
-    - Si 'fiador_nombre' tiene valor o 'tiene_fiador' es True, utiliza la plantilla con Fiador Solidario (3 partes, 4 cláusulas).
+    - Si 'fiadores' (lista), 'fiador_nombre' tiene valor o 'tiene_fiador' es True, utiliza la plantilla con Fiador(es) Solidario(s).
     - En caso contrario, genera la plantilla de Deudor Directo (2 partes, 3 cláusulas).
     """
     if datos_entrada is None:
@@ -38,8 +38,9 @@ def generar_contrato_word(datos_entrada: dict | None = None, output_target=None)
 
     tiene_fiador = datos_entrada.get("tiene_fiador")
     fiador_nombre = datos_entrada.get("fiador_nombre")
+    fiadores = datos_entrada.get("fiadores")
 
-    if tiene_fiador is True or (tiene_fiador is not False and bool(fiador_nombre)):
+    if tiene_fiador is True or (tiene_fiador is not False and (bool(fiador_nombre) or bool(fiadores))):
         return generar_contrato_con_fiador_word(datos_entrada, output_target=output_target)
     else:
         return generar_contrato_deudor_directo_word(datos_entrada, output_target=output_target)

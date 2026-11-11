@@ -293,3 +293,24 @@ def fecha_a_texto_notarial(d) -> str:
     mes = MESES[d.month] if 1 <= d.month <= 12 else str(d.month)
     anio_letras = num2words(d.year, lang='es')
     return f"{dia_letras} de {mes} del año {anio_letras}"
+
+
+ORDINALES_MASC = [
+    '', 'PRIMER', 'SEGUNDO', 'TERCER', 'CUARTO', 'QUINTO',
+    'SEXTO', 'SÉPTIMO', 'OCTAVO', 'NOVENO', 'DÉCIMO',
+    'DÉCIMO PRIMER', 'DÉCIMO SEGUNDO', 'DÉCIMO TERCER', 'DÉCIMO CUARTO', 'DÉCIMO QUINTO'
+]
+
+ORDINALES_FEM = [
+    '', 'PRIMERA', 'SEGUNDA', 'TERCERA', 'CUARTA', 'QUINTA',
+    'SEXTA', 'SÉPTIMA', 'OCTAVA', 'NOVENA', 'DÉCIMA',
+    'DÉCIMA PRIMERA', 'DÉCIMA SEGUNDA', 'DÉCIMA TERCERA', 'DÉCIMA CUARTA', 'DÉCIMA QUINTA'
+]
+
+
+def ordinal(n: int, femenino: bool = False) -> str:
+    """Retorna el número ordinal en español en mayúsculas."""
+    lista = ORDINALES_FEM if femenino else ORDINALES_MASC
+    if 1 <= n < len(lista):
+        return lista[n]
+    return f"{n}a." if femenino else f"{n}o."

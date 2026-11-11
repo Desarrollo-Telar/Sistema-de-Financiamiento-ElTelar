@@ -61,7 +61,7 @@ def obtener_datos_ejemplo() -> dict:
         "lugar_emision": "--------",
         "fecha_emision": "---- de octubre 2026",
         # Avalista
-        "incluir_aval": True,
+        "incluir_aval": False,
         "aval_persona_avalada": "Mario Antonio Chen Caal",
         "aval_monto": 360000.00,
         "aval_monto_letras": "TRESCIENTOS SESENTA MIL",
