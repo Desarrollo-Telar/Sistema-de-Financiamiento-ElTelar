@@ -13,6 +13,7 @@ from apps.FinancialInformation.models import Reference, WorkingInformation, Othe
 from apps.subsidiaries.models import Subsidiary
 from apps.documents.models import DocumentExpediente, DocumentCustomer
 from apps.pictures.models import ImagenCustomer
+from apps.financings.models import Credit as Credito
 
 # LIBRERIAS PARA CRUD
 from django.contrib import messages
@@ -275,12 +276,20 @@ def detalle_plan_inversion(request, plan_id):
 
     fiadores_lista = plan.fiador or []
     fiadores = None
+
+    credito_anterior_vigente_lista = plan.credito_anterior_vigente or []
+    credito_anterior_vigente = None
    
     
     if fiadores_lista:
         ids_fiadores = [fiador.get('id') for fiador in fiadores_lista if fiador.get('id')]
         ids_unicos_fiadores = set(ids_fiadores)
         fiadores = Customer.objects.filter(id__in = ids_unicos_fiadores)
+
+    if credito_anterior_vigente_lista:
+        ids_credito_anterior_vigente = [credito.get('id') for credito in credito_anterior_vigente_lista if credito.get('id')]
+        ids_unicos_credito_anterior_vigente = set(ids_credito_anterior_vigente)
+        credito_anterior_vigente = Credito.objects.filter(id__in = ids_unicos_credito_anterior_vigente)
     
     context = {
         'plan': plan,  # <-- AGREGADO: Enviamos el objeto con los datos existentes
@@ -290,7 +299,8 @@ def detalle_plan_inversion(request, plan_id):
         'total_capital':formatear_numero(plan_pago.calcular_total_capital()),
         'total_interes':formatear_numero(plan_pago.calcular_total_interes()),
         'customer_code': cliente.customer_code,
-        'fiadores':fiadores
+        'fiadores':fiadores,
+        'credito_anterior_vigente':credito_anterior_vigente,
     }
     return render(request, template_name, context)
 

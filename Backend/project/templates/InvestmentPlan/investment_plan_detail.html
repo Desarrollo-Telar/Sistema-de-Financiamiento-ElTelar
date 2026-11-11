@@ -24,13 +24,22 @@
                     <i class="fas fa-arrow-left me-1"></i> Volver
                 </a>
                 {% if plan.tipo_documento == 'PAGARE' %}
-                <a href="{% url 'descargar_contrato_directo_credito' plan.id  %}"  class="glass-btn-primary">
+                <a href="{% url 'descargar_pagare_credito' plan.id  %}"  class="glass-btn-primary">
                     <i class="bi bi-file-earmark-text me-1"></i>Pagaré
                 </a>
                 {% elif plan.tipo_documento is not None %}
-                <a href="{% url 'investment_plan:plan_pagos' plan.id customer_code %}"  class="glass-btn-primary">
+                {% if fiadores %}
+                <a href="{% url 'descargar_contrato_fiador_credito' plan.id %}"  class="glass-btn-primary">
                     <i class="bi bi-file-earmark-text me-1"></i> {{plan.tipo_documento}}
                 </a>
+                
+                {% else %}
+                <a href="{% url 'descargar_contrato_directo_credito' plan.id %}"  class="glass-btn-primary">
+                    <i class="bi bi-file-earmark-text me-1"></i> {{plan.tipo_documento}}
+                </a>
+
+                {% endif %}
+                
                 {% endif%}
                 {% if plan.estado_aprobacion == 'APROBADO' or plan.estado_aprobacion == 'ACEPTADO' %}
                 <a href="{% url 'financings:create_credit_aprobado' plan.id %}" class="glass-btn-primary" style="background: rgba(245, 243, 244, 0.75);
@@ -141,6 +150,9 @@ box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06)">
             <div class="glass-card">
                 <h4 class="card-section-title">
                     <i class="fas fa-shield-alt text-accent me-2"></i> Plan de Pagos
+                    <a href="{% url 'investment_plan:plan_pagos' plan.id customer_code %}"  class="glass-btn-primary" style="margin-left: 1rem;">
+                    <i class="bi bi-file-earmark-text me-1"></i> Plan de Pagos
+                </a>
                 </h4>
                 <div class="divider"></div>
                 
@@ -187,6 +199,36 @@ box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06)">
                 </div>
             </div>
         </div>
+
+        <!-- Sección de Creditos Anteriores (JSON Fields) -->
+         {% if credito_anterior_vigente%}
+        <div class="col-12">
+            <div class="glass-card">
+                <h4 class="card-section-title">
+                    <i class="fas fa-shield-alt text-accent me-2"></i> Creditos Anteriores
+                </h4>
+                <div class="divider"></div>
+                
+                <div class="row">
+                    <!-- Fiador -->
+                    <div class="col-md-6 mb-3">
+                        <h6 class="text-dark-custom fw-bold mb-2">Información del Credito</h6>
+                        <div class="json-box">
+                            {% if credito_anterior_vigente %}
+                                {% for credito in credito_anterior_vigente %}
+                                <pre><code id="json-credito"> {{credito}} </code></pre>
+                                {% endfor %}
+                            {% else %}
+                                <span class="text-muted-custom">No registra credito anterior vigente.</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+        {% endif%}
 
         <!-- Evaluaciones Cualitativas y Descripción -->
         <div class="col-12">
