@@ -166,6 +166,38 @@ def _preparar_datos(datos_entrada: dict | None) -> dict:
     if "aval_monto_letras" not in datos or not datos["aval_monto_letras"]:
         datos["aval_monto_letras"] = monto_a_letras_quetzales(datos["aval_monto"]).replace(" QUETZALES EXACTOS", "")
 
+    # Una lista explícita sustituye los campos históricos de avalista único.
+    entrada = datos_entrada or {}
+    if "avalistas" in entrada:
+        avalistas = entrada["avalistas"] or []
+        if not isinstance(avalistas, (list, tuple)) or any(
+            not isinstance(avalista, dict) for avalista in avalistas
+        ):
+            raise ValueError("avalistas debe ser una lista de diccionarios")
+        datos["avalistas"] = [dict(avalista) for avalista in avalistas]
+        datos["incluir_aval"] = bool(avalistas) and entrada.get("incluir_aval", True)
+    elif datos.get("incluir_aval") or any(
+        datos.get(campo) for campo in ("avalista_nombre", "avalista_dpi", "avalista_domicilio")
+    ):
+        datos["avalistas"] = [{
+            "nombre": datos.get("avalista_nombre", ""),
+            "dpi": datos.get("avalista_dpi", ""),
+            "domicilio": datos.get("avalista_domicilio", ""),
+        }]
+        datos["incluir_aval"] = entrada.get("incluir_aval", True)
+    else:
+        datos["avalistas"] = []
+
+    if datos["incluir_aval"]:
+        firmantes = [(datos.get("deudor_nombre", ""), datos.get("deudor_dpi", ""))]
+        firmantes.extend((aval.get("nombre", ""), aval.get("dpi", "")) for aval in datos["avalistas"])
+        if "notario_firmantes" not in entrada:
+            datos["notario_firmantes"] = "; ".join(nombre or "________________" for nombre, _ in firmantes)
+        if "notario_cui_firmantes" not in entrada:
+            datos["notario_cui_firmantes"] = [
+                cui_dpi_a_letras(dpi)[0] if dpi else "________________" for _, dpi in firmantes
+            ]
+
     return datos
 
 
@@ -238,6 +270,9 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
     -----------
     datos_entrada : dict, opcional
         Diccionario con las variables del documento (deudor, montos, plazos, aval, etc.).
+        avalistas: lista de diccionarios con nombre, dpi y domicilio; genera un bloque
+        por persona. Una lista vacía omite el aval. incluir_aval=False lo desactiva.
+        Se mantienen los campos avalista_nombre, avalista_dpi y avalista_domicilio.
         Si se omite o faltan campos, se autocompletan con datos de ejemplo estándar.
     output_target : str o archivo-like (ej. BytesIO), opcional
         Si se pasa un str (ruta), guarda el archivo en disco.
@@ -543,11 +578,11 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
     p_firma_bloque.add_run(f"DPI: {datos.get('deudor_dpi_formateado') or datos.get('deudor_dpi', '_______________________________________')}\n")
 
     # 6. AVAL (OPCIONAL O INCLUIDO)
-    if datos.get("incluir_aval", True):
+    for indice, avalista in enumerate(datos["avalistas"] if datos["incluir_aval"] else [], start=1):
         p_aval_tit = doc.add_paragraph()
         p_aval_tit.paragraph_format.space_before = Pt(10)
         p_aval_tit.paragraph_format.space_after = Pt(4)
-        p_aval_tit.add_run("AVAL:").bold = True
+        p_aval_tit.add_run(f"AVAL {indice}:" if len(datos["avalistas"]) > 1 else "AVAL:").bold = True
 
         p_aval_cuerpo = _agregar_parrafo_justificado(doc, espacio_despues=6)
         p_aval_cuerpo.add_run(
@@ -570,19 +605,19 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
         p_aval_firma_bloque.paragraph_format.line_spacing = 1.2
         p_aval_firma_bloque.paragraph_format.space_after = Pt(12)
         p_aval_firma_bloque.add_run("Firma: ______________________________________\n")
-        p_aval_firma_bloque.add_run(f"Nombre: {datos.get('avalista_nombre') or '____________________________________'}\n")
-        p_aval_firma_bloque.add_run(f"DPI: {datos.get('avalista_dpi') or '_______________________________________'}\n")
-        p_aval_firma_bloque.add_run(f"Domicilio: {datos.get('avalista_domicilio') or '_______________________________________'}\n")
+        p_aval_firma_bloque.add_run(f"Nombre: {avalista.get('nombre') or '____________________________________'}\n")
+        p_aval_firma_bloque.add_run(f"DPI: {avalista.get('dpi') or '_______________________________________'}\n")
+        p_aval_firma_bloque.add_run(f"Domicilio: {avalista.get('domicilio') or '_______________________________________'}\n")
 
     # 7. ACTA NOTARIAL DE LEGALIZACIÓN DE FIRMAS (AUTÉNTICA)
     if datos.get("incluir_autentica", True):
         firmantes_cui = datos.get("notario_cui_firmantes", [])
-        if len(firmantes_cui) >= 2:
-            cui_texto = f"el primero: {firmantes_cui[0]}; y, el segundo: {firmantes_cui[1]}"
-        elif len(firmantes_cui) == 1:
+        if len(firmantes_cui) > 1:
+            cui_texto = "; ".join(f"firmante {i}: {cui}" for i, cui in enumerate(firmantes_cui, 1))
+        elif firmantes_cui:
             cui_texto = firmantes_cui[0]
         else:
-            cui_texto = "dos mil quinientos veintiséis espacio veintidós mil noventa y siete espacio mil seiscientos uno"
+            cui_texto = "________________"
 
         p_autentica = _agregar_parrafo_justificado(doc, espacio_despues=8)
         p_autentica.paragraph_format.space_before = Pt(8)
@@ -599,7 +634,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
         p_autentica.add_run(
             f", por haber sido puestas en el PAGARÉ, el día de hoy en mi presencia por: {datos.get('notario_firmantes', 'JOSÉ y EDGAR')}, "
             f"quienes se identifican con los documentos personales de identificación -DPI- Código Único de Identificación -CUI- números: "
-            f"{cui_texto}; ambos extendidos por el Registro Nacional de las Personas -RENAP- de la República de Guatemala; "
+            f"{cui_texto}; extendidos por el Registro Nacional de las Personas -RENAP- de la República de Guatemala; "
             "y, quienes vuelven a firmar junto conmigo en la presente acta de legalización de firmas."
         )
 
@@ -643,19 +678,25 @@ def generar_pagare_desde_credito(credito_o_id, aval_info: dict | None = None, no
     direccion_obj = Address.objects.filter(customer_id=cliente).first()
     direccion_str = str(direccion_obj) if direccion_obj else "-----"
 
-    # Buscar si tiene garantía de tipo FIADOR o CHEQUE / PAGARE
-    garantia = Guarantees.objects.filter(credit_id=credito).first()
-    detalle_fiador = None
-    if garantia:
-        detalle_fiador = DetailsGuarantees.objects.filter(garantia_id=garantia, tipo_garantia__in=["FIADOR", "CHEQUE / PAGARE"]).first()
-
-    avalista_nombre = ""
-    avalista_dpi = ""
-    avalista_domicilio = ""
-
-    if detalle_fiador and isinstance(detalle_fiador.especificaciones, dict):
-        avalista_nombre = detalle_fiador.especificaciones.get("Nombre", "")
-        avalista_domicilio = detalle_fiador.especificaciones.get("Lugar_de_Trabajo", "")
+    # Recorrer los detalles de todas las garantías del crédito.
+    detalles_fiadores = DetailsGuarantees.objects.filter(
+        garantia_id__credit_id=credito,
+        tipo_garantia__in=["FIADOR", "CHEQUE / PAGARE"],
+    ).order_by("pk")
+    avalistas = []
+    for detalle in detalles_fiadores:
+        especificaciones = detalle.especificaciones
+        if not isinstance(especificaciones, dict):
+            continue
+        nombre = especificaciones.get("Nombre", "")
+        # Un cheque/pagaré sin una persona registrada no representa un avalista.
+        if detalle.tipo_garantia == "CHEQUE / PAGARE" and not nombre:
+            continue
+        avalistas.append({
+            "nombre": nombre,
+            "dpi": especificaciones.get("DPI") or especificaciones.get("dpi", ""),
+            "domicilio": especificaciones.get("Domicilio") or especificaciones.get("domicilio", ""),
+        })
 
     datos = {
         "acreedor_nombre_corto": "EL TELAR, S.A.",
@@ -671,16 +712,21 @@ def generar_pagare_desde_credito(credito_o_id, aval_info: dict | None = None, no
         "direccion_notificaciones": direccion_str,
         "lugar_emision": "Cobán, Alta Verapaz",
         "fecha_emision": fecha_a_texto_estandar(credito.fecha_inicio or date.today()),
-        "incluir_aval": True if detalle_fiador else False,
+        "incluir_aval": bool(avalistas),
+        "avalistas": avalistas,
         "aval_persona_avalada": f"{cliente.first_name} {cliente.last_name}",
         "aval_monto": float(credito.monto),
-        "avalista_nombre": avalista_nombre,
-        "avalista_dpi": avalista_dpi,
-        "avalista_domicilio": avalista_domicilio,
         "incluir_autentica": True,
     }
 
     if aval_info:
+        if "avalistas" in aval_info and "incluir_aval" not in aval_info:
+            datos.pop("incluir_aval", None)
+        elif "avalistas" not in aval_info and any(
+            campo in aval_info for campo in ("avalista_nombre", "avalista_dpi", "avalista_domicilio")
+        ):
+            datos.pop("avalistas", None)
+            datos.pop("incluir_aval", None)
         datos.update(aval_info)
     if notario_info:
         datos.update(notario_info)

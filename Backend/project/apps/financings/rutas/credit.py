@@ -15,6 +15,7 @@ urlpatterns_credit = [
     path('credit/',login_required(CreditoList.as_view()), name='list_credit'),
     path('credit/<int:id>/',login_required(detail_credit), name='detail_credit'),
     path('credit/create/',login_required(create_credit),name='create_credit'),
+    path('credit/create/<int:id>/',login_required(create_credit_aprobado),name='create_credit_aprobado'),
     path('credit/delete/<int:id>',login_required(delete_credit),name="delete_credit"),
     path('credit/search/',login_required(CreditSearch.as_view()),name='credit_search'),
     path('credit/estado_cuenta/<int:id>/',login_required(detalle_estado_cuenta),name='estado_cuenta'),
