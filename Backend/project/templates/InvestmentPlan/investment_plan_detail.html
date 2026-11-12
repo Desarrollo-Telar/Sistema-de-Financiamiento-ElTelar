@@ -41,6 +41,9 @@
                 {% endif %}
                 
                 {% endif%}
+                <a href="{% url 'descargar_resolucion_credito' plan.id %}" class="glass-btn-primary">
+                    <i class="bi bi-file-earmark-check me-1"></i> Resolución
+                </a>
                 {% if plan.estado_aprobacion == 'APROBADO' or plan.estado_aprobacion == 'ACEPTADO' %}
                 <a href="{% url 'financings:create_credit_aprobado' plan.id %}" class="glass-btn-primary" style="background: rgba(245, 243, 244, 0.75);
 color: #161A1D;

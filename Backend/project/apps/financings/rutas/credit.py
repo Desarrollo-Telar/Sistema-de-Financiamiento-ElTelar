@@ -9,6 +9,7 @@ from project.views import (
     descargar_pagare_credito,
     descargar_contrato_directo_credito,
     descargar_contrato_fiador_credito,
+    descargar_resolucion_credito,
 )
 
 # DECORADOR
@@ -29,6 +30,7 @@ urlpatterns_credit = [
     path('credit/pagare/word/<int:credit_id>/',login_required(descargar_pagare_credito),name='pagare_word_credito'),
     path('credit/contrato/directo/<int:credit_id>/',login_required(descargar_contrato_directo_credito),name='contrato_directo_word_credito'),
     path('credit/contrato/fiador/<int:credit_id>/',login_required(descargar_contrato_fiador_credito),name='contrato_fiador_word_credito'),
+    path('credit/resolucion/<int:credit_id>/',login_required(descargar_resolucion_credito),name='resolucion_word_credito'),
     #path('plan_inversion/plan_pagos/pdf/<int:id>/', render_plan_pdf_plan_pagos,name='plan_inversion_plan_pagos'),
     path('credit/clasificar/',list_clasificacion, name='list_clasificacion'),
     path('credit/excedente/',filter_credito_con_excedente, name='filter_credito_con_excedente'),

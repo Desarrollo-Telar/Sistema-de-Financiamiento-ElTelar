@@ -28,6 +28,7 @@ from .helpers import (
     extraer_persona_notarial,
     construir_texto_garantia_item,
     extraer_datos_base_contrato_desde_solicitud,
+    _obtener_acta_solicitud,
 )
 
 

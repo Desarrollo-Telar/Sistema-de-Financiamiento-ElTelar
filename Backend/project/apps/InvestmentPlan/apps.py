@@ -4,3 +4,6 @@ from django.apps import AppConfig
 class InvestmentplanConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'apps.InvestmentPlan'
+
+    def ready(self):
+            import apps.InvestmentPlan.signals

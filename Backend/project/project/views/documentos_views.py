@@ -23,6 +23,8 @@ from scripts.documentos import (
     generar_contrato_con_fiador_desde_solicitud,
     extraer_datos_contrato_con_fiador_desde_solicitud,
     obtener_datos_ejemplo_con_fiador,
+    generar_resolucion_word,
+    extraer_datos_resolucion_desde_solicitud
 )
 
 # MIME type oficial para archivos Microsoft Word .docx
@@ -279,6 +281,84 @@ descargar_contrato_directo_solicitud = descargar_contrato_directo_credito
 descargar_contrato_fiador_solicitud = descargar_contrato_fiador_credito
 
 
+def _extraer_overrides_resolucion_request(request) -> dict:
+    """Extrae parámetros opcionales desde query string para personalizar la Resolución."""
+    mapa_params = {
+        "cliente": "cliente_nombre",
+        "codigo": "codigo_cliente",
+        "fecha": "fecha",
+        "acta": "acta",
+        "calidad": "calidad_cliente",
+        "estado": "estado",
+        "destino": "destino",
+        "plazo": "plazo",
+        "forma_pago": "forma_pago",
+        "tasa": "tasa_interes",
+        "desembolso": "desembolso",
+        "primer_pago": "fecha_primer_pago",
+        "garantia": "garantia",
+        "otras_condiciones": "otras_condiciones",
+        "firma_1": "firma_1",
+        "firma_2": "firma_2",
+    }
+    overrides = {}
+    for q_key, d_key in mapa_params.items():
+        val = request.GET.get(q_key)
+        if val:
+            overrides[d_key] = val
+
+    monto_raw = request.GET.get("monto")
+    if monto_raw:
+        try:
+            overrides["monto"] = f"Q. {float(monto_raw):,.2f}"
+        except ValueError:
+            overrides["monto"] = monto_raw
+    return overrides
+
+
+@require_GET
+def descargar_resolucion_ejemplo(request):
+    """
+    Genera y descarga la Resolución del Comité Técnico de Créditos (.docx) de ejemplo.
+    """
+    datos = obtener_datos_ejemplo_resolucion()
+    overrides = _extraer_overrides_resolucion_request(request)
+    if overrides:
+        datos.update(overrides)
+
+    buffer = generar_resolucion_word(datos)
+    nombre_archivo = "resolucion_comite_tecnico_ejemplo.docx"
+    response = HttpResponse(buffer.getvalue(), content_type=DOCX_MIME_TYPE)
+    response["Content-Disposition"] = f'attachment; filename="{nombre_archivo}"'
+    response["Content-Length"] = len(buffer.getvalue())
+    return response
+
+
+@require_GET
+def descargar_resolucion_credito(request, credit_id):
+    """
+    Genera y descarga la Resolución del Comité Técnico de Créditos (.docx)
+    trayendo automáticamente los datos reales desde una Solicitud (InvestmentPlan) o Crédito.
+    """
+    credito = _resolver_objeto_credito_o_404(credit_id)
+    overrides = _extraer_overrides_resolucion_request(request)
+
+    datos = extraer_datos_resolucion_desde_solicitud(credito, overrides=overrides or None)
+    buffer = generar_resolucion_word(datos)
+
+    codigo_raw = getattr(credito, "investment_plan_code", None) or getattr(credito, "codigo_credito", None) or f"id_{credito.id}"
+    codigo_seguro = str(codigo_raw).replace("/", "-").replace(" ", "_")
+    nombre_archivo = f"resolucion_comite_{codigo_seguro}.docx"
+
+    response = HttpResponse(buffer.getvalue(), content_type=DOCX_MIME_TYPE)
+    response["Content-Disposition"] = f'attachment; filename="{nombre_archivo}"'
+    response["Content-Length"] = len(buffer.getvalue())
+    return response
+
+
+descargar_resolucion_solicitud = descargar_resolucion_credito
+
+
 def panel_descarga_pagare(request):
     """
     Página web interactiva con botones y enlaces directos para descargar
@@ -375,6 +455,20 @@ def panel_descarga_pagare(request):
                         </div>
                     </div>
 
+                    <!-- DOCUMENTO 4: RESOLUCIÓN COMITÉ TÉCNICO DE CRÉDITOS -->
+                    <div class="doc-card">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <span class="badge bg-warning text-dark badge-tag">COMITÉ TÉCNICO</span>
+                                <h5 class="mt-1 mb-1 font-weight-bold text-dark">4. Resolución del Comité Técnico de Créditos</h5>
+                                <div class="text-muted small">Ficha oficial con código de cliente, calidad, condiciones financieras, garantías, otras condiciones y firmas de resolución.</div>
+                            </div>
+                            <a href="/documentos/resolucion/ejemplo/" class="btn btn-download-primary btn-sm">
+                                📥 Descargar (.docx)
+                            </a>
+                        </div>
+                    </div>
+
                     <hr class="my-4">
 
                     <!-- Descargar por Crédito del Sistema -->
@@ -399,7 +493,8 @@ def panel_descarga_pagare(request):
                             <li class="mb-1">🔹 <strong>Contrato con Fiador (Estefany & Fredy):</strong> <code><a href="/documentos/contrato/fiador/ejemplo/">/documentos/contrato/fiador/ejemplo/</a></code></li>
                             <li class="mb-1">🔹 <strong>Pagaré por ID (Solicitud/Crédito):</strong> <code>/documentos/pagare/&lt;credit_id&gt;/</code></li>
                             <li class="mb-1">🔹 <strong>Contrato Directo por ID (Solicitud/Crédito):</strong> <code>/documentos/contrato/directo/&lt;credit_id&gt;/</code></li>
-                            <li>🔹 <strong>Contrato con Fiador(es) por ID (Solicitud/Crédito):</strong> <code>/documentos/contrato/fiador/&lt;credit_id&gt;/</code></li>
+                            <li class="mb-1">🔹 <strong>Contrato con Fiador(es) por ID (Solicitud/Crédito):</strong> <code>/documentos/contrato/fiador/&lt;credit_id&gt;/</code></li>
+                            <li>🔹 <strong>Resolución Comité por ID (Solicitud/Crédito):</strong> <code>/documentos/resolucion/&lt;credit_id&gt;/</code></li>
                         </ul>
                     </div>
                 </div>

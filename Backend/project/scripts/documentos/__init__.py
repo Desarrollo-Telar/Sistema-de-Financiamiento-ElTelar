@@ -30,6 +30,13 @@ from .contrato_con_fiador import (
     extraer_datos_contrato_con_fiador_desde_solicitud,
     obtener_datos_ejemplo_con_fiador,
 )
+from .resolucion import (
+    generar_resolucion_word,
+    generar_resolucion_desde_solicitud,
+    generar_resolucion_desde_credito,
+    extraer_datos_resolucion_desde_solicitud,
+    obtener_datos_ejemplo_resolucion,
+)
 from .helpers import (
     monto_a_letras_quetzales,
     cui_dpi_a_letras,
@@ -75,6 +82,12 @@ __all__ = [
     "generar_contrato_con_fiador_desde_credito",
     "extraer_datos_contrato_con_fiador_desde_solicitud",
     "obtener_datos_ejemplo_con_fiador",
+    # Resolución Comité Técnico de Créditos
+    "generar_resolucion_word",
+    "generar_resolucion_desde_solicitud",
+    "generar_resolucion_desde_credito",
+    "extraer_datos_resolucion_desde_solicitud",
+    "obtener_datos_ejemplo_resolucion",
     # Helpers
     "monto_a_letras_quetzales",
     "cui_dpi_a_letras",

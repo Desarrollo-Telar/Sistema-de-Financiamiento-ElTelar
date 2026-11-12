@@ -31,6 +31,48 @@ MESES = [
 ]
 
 
+def _obtener_acta_solicitud(solicitud) -> tuple[str, object]:
+    """Obtiene (numero_acta, fecha_acta) desde DetalleActa / Acta si la solicitud está vinculada a un acta."""
+    sol_ref = (
+        solicitud
+        if hasattr(solicitud, "total_value_of_the_product_or_service")
+        else getattr(solicitud, "destino_id", None)
+    )
+    if sol_ref is None:
+        return ("", None)
+
+    detalle = None
+    det_mgr = getattr(sol_ref, "detalles_acta", None)
+    if det_mgr is not None and hasattr(det_mgr, "select_related"):
+        try:
+            detalle = det_mgr.select_related("acta").order_by("-acta__fecha_acta", "-id").first()
+        except Exception:
+            try:
+                detalle = det_mgr.first()
+            except Exception:
+                detalle = None
+    elif getattr(sol_ref, "id", None):
+        try:
+            from apps.InvestmentPlan.models import DetalleActa
+            detalle = (
+                DetalleActa.objects
+                .select_related("acta")
+                .filter(solicitud_credito=sol_ref)
+                .order_by("-acta__fecha_acta", "-id")
+                .first()
+            )
+        except Exception:
+            detalle = None
+
+    if detalle is not None and getattr(detalle, "acta", None) is not None:
+        acta_obj = detalle.acta
+        num = str(getattr(acta_obj, "numero_acta", "") or "").strip()
+        fec = getattr(acta_obj, "fecha_acta", None)
+        return (num, fec)
+
+    return ("", None)
+
+
 def numero_a_letras(numero: int, mayusculas: bool = False) -> str:
     """Convierte un número entero a letras en español."""
     try:
@@ -1042,6 +1084,8 @@ def extraer_datos_base_contrato_desde_solicitud(solicitud) -> dict:
     tasa_str = str(int(tasa_mensual)) if float(tasa_mensual).is_integer() else f"{tasa_mensual:g}"
     tasa_letras = f"{porcentaje_a_letras(tasa_mensual)} POR CIENTO"
 
+    acta_numero, acta_fecha = _obtener_acta_solicitud(solicitud)
+
     mora_raw = getattr(solicitud, "tasa_mora", None)
     if mora_raw is not None:
         try:
@@ -1106,7 +1150,7 @@ def extraer_datos_base_contrato_desde_solicitud(solicitud) -> dict:
         "tasa_interes_num": tasa_str,
         "multa_mora_pct": multa_mora_pct,
         "resolucion_ente": "------",
-        "acta_numero": "--- guion de fecha -----",
+        "acta_numero": f" {acta_numero} de fecha {acta_fecha}" if acta_numero and acta_fecha else " ------",
         # Notario
         "notario_fecha_letras": fecha_letras,
     }
