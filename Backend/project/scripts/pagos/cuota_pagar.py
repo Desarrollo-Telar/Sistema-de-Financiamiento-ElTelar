@@ -1,13 +1,53 @@
 
 # FUNCIONES
 from .sobre_que_pago_analizar import sobre_que_es_pago
-    
 
+
+# Tiempo
+from datetime import datetime,timedelta
+
+
+
+from django.db.models import Q
+
+
+def obtener_cuota_vigente(self,objeto, fecha_emision=None):
+    if fecha_emision is None:
+        fecha_emision = datetime.now().date()
+    elif isinstance(fecha_emision, datetime):
+        fecha_emision = fecha_emision.date()
+
+    # Identificar el tipo de objeto para aplicar el filtro dinámico
+    filtro_relacion = {}
+    if hasattr(objeto, 'is_paid_off'):  # Es un Crédito
+        filtro_relacion = {'credit_id': objeto}
+        # Si el crédito está cancelado, traemos la última cuota registrada
+        if objeto.is_paid_off:
+            return self.get_plan_pagos().objects.filter(**filtro_relacion).order_by('-id').first()
+
+    elif hasattr(objeto, 'acreedor'):   # Es un objeto Creditor o similar
+        filtro_relacion = {'acreedor': objeto}
+    elif hasattr(objeto, 'seguro'):     # Es un objeto Insurance o similar
+        filtro_relacion = {'seguro': objeto}
+    else:
+        # Si se pasa la relación directa en un kwargs/diccionario
+        filtro_relacion = objeto
+
+    # Buscar la cuota dentro del rango de la fecha especificada
+    # Usamos lt para replicar la lógica de excluir la fecha_limite exacta si es necesario
+    cuota_actual = self.get_plan_pagos().objects.filter(
+        start_date__date__lte=fecha_emision,
+        fecha_limite__date__gt=fecha_emision,
+        **filtro_relacion
+    ).first()
+
+    # Fallback: Si no se encuentra una cuota activa en el rango, obtiene la más reciente
+    if not cuota_actual:
+        cuota_actual = self.get_plan_pagos().objects.filter(**filtro_relacion).order_by('-id').first()
+
+    return cuota_actual
 
 def cuota_a_pagar(self):
-    """
-    Encuentra la próxima cuota a pagar en función de la fecha de emisión y el historial de pagos.
-    """
     # Obtener todas las cuotas del crédito ordenadas por la fecha límite
     informacion = sobre_que_es_pago(self)
 
@@ -33,23 +73,14 @@ def cuota_a_pagar(self):
                 
             return informacion['ultima_cuota_pagar']
     
-    # Recorre las cuotas para realizar las comparaciones por fechas
-    print(informacion['cuotas'])
-    for cuota in informacion['cuotas']:
-        # Usar objetos datetime directamente
-        fecha_inicio = cuota.start_date.date()
-        fecha_limite = cuota.fecha_limite.date()
-        fecha_emision_date = fecha_emision
-        
-                        
-        # Comparar directamente objetos datetime
-        if fecha_inicio <= fecha_emision_date <= fecha_limite:
-            # Si la fecha de emisión cae dentro del rango de esta cuota
-            print(f"Cuota encontrada en rango de fechas: {cuota}")
-            if fecha_emision_date == fecha_limite:
-                print("Fecha de emisión es igual a la fecha límite, continuando a la siguiente cuota")
-                continue 
-            return cuota
+   
+
+    cuota_no_encontrada = obtener_cuota_vigente(self, informacion['credito'] , fecha_emision)
+
+    if cuota_no_encontrada:
+        print(f"Cuota encontrada fuera del rango de fechas: {cuota_no_encontrada}")
+        return cuota_no_encontrada
+
         
     # Si no se encuentra ninguna cuota aplicable
     print("No se encontró ninguna cuota aplicable")

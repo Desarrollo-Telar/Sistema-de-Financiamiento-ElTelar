@@ -46,6 +46,49 @@ def obtener_cuota_vigente(objeto, fecha_emision=None):
 
     return cuota_actual
 
+
+def obtener_siguiente_cuota(objeto, cuota_actual=None, fecha_emision=None):
+    """
+    Obtiene la siguiente cuota registrada después de la cuota actual.
+
+    - Respeta la relación con Crédito, Acreedor o Seguro.
+    - Busca el siguiente ID disponible, sin importar los saltos.
+    - Permite proporcionar una cuota actual para evitar consultas adicionales.
+    - Devuelve None si no existe una cuota siguiente.
+    """
+
+    # Obtener la cuota vigente si no se proporciona
+    if cuota_actual is None:
+        cuota_actual = obtener_cuota_vigente(objeto, fecha_emision)
+
+    if cuota_actual is None:
+        return None
+
+    # Identificar el tipo de relación
+    if isinstance(objeto, dict):
+        filtro_relacion = objeto
+
+    elif hasattr(objeto, 'is_paid_off'):
+        filtro_relacion = {'credit_id': objeto}
+
+    elif hasattr(objeto, 'acreedor'):
+        filtro_relacion = {'acreedor': objeto}
+
+    elif hasattr(objeto, 'seguro'):
+        filtro_relacion = {'seguro': objeto}
+
+    else:
+        raise ValueError("Tipo de objeto no válido")
+
+    # Buscar la siguiente cuota disponible
+    siguiente_cuota = PaymentPlan.objects.filter(
+        **filtro_relacion,
+        id__gt=cuota_actual.id
+    ).order_by('id').first()
+
+    return siguiente_cuota
+
+
 def cuota(credito):
     dia = datetime.now().date()
     dia_mas_uno = dia + timedelta(days=1)
