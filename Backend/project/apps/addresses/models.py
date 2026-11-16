@@ -36,7 +36,7 @@ class Address(models.Model):
     direccion_url = models.TextField("Direccion url", blank=True, null=True)
 
     def __str__(self):
-        return f'{self.street}, {self.city} '
+        return f'{self.street} '
     
     def direccion(self):
         return '{} Zona: {} Departamento: {} Municipio: {}'.format(self.street, self.number, self.city, self.state)

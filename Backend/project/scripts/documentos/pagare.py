@@ -719,10 +719,10 @@ def extraer_datos_pagare_desde_solicitud(solicitud, aval_info: dict | None = Non
 
     # Tasa de Interés
     tasa_raw = float(getattr(solicitud, 'tasa_interes', 0) or 0)
-    if 0 < tasa_raw < 1:
-        tasa_interes = round(tasa_raw * 100, 2)
-    else:
-        tasa_interes = tasa_raw if tasa_raw > 0 else 4.5
+  
+    tasa_interes = solicitud.get_tasa()
+   
+
     tasa_interes_letras = porcentaje_a_letras(tasa_interes)
 
     # Cuotas y amortizaciones
@@ -736,13 +736,8 @@ def extraer_datos_pagare_desde_solicitud(solicitud, aval_info: dict | None = Non
     # Dirección para notificaciones
     direccion_notificaciones = "-----"
     if cliente:
-        try:
-            from apps.addresses.models import Address
-            dir_obj = Address.objects.filter(customer_id=cliente).first()
-            if dir_obj:
-                direccion_notificaciones = dir_obj.direccion() if hasattr(dir_obj, 'direccion') else str(dir_obj)
-        except Exception:
-            pass
+        direccion_notificaciones = cliente.get_direccion()
+        
 
     # Lugar de emisión
     sucursal = getattr(solicitud, 'sucursal', None)
@@ -842,6 +837,7 @@ def extraer_datos_pagare_desde_solicitud(solicitud, aval_info: dict | None = Non
 
     dpis = [deudor_dpi] + [a["dpi"] for a in avalistas if a.get("dpi")]
     notario_cui_firmantes = [cui_dpi_a_letras(d)[0] if d else "________________" for d in dpis]
+    numero_banco = getattr(solicitud, 'sucursal', None).numero_de_cuenta_banco if getattr(solicitud, 'sucursal', None) else "3696008759"
 
     datos = {
         "acreedor_nombre_corto": "EL TELAR, S.A.",
@@ -857,8 +853,8 @@ def extraer_datos_pagare_desde_solicitud(solicitud, aval_info: dict | None = Non
         "tasa_interes": tasa_interes,
         "tasa_interes_letras": tasa_interes_letras,
         "banco_nombre": "Banco de Desarrollo Rural, Banrural",
-        "cuenta_bancaria": "3696008759",
-        "cuenta_bancaria_letras": cuenta_a_letras("3696008759"),
+        "cuenta_bancaria": f"{numero_banco}",
+        "cuenta_bancaria_letras": cuenta_a_letras(numero_banco),
         "numero_cuotas": numero_cuotas,
         "numero_cuotas_letras": numero_cuotas_letras,
         "amortizaciones_capital_texto": amortizaciones_capital_texto,
@@ -952,7 +948,7 @@ def generar_pagare_desde_credito(credito_o_id, aval_info: dict | None = None, no
                 "domicilio": especificaciones.get("Domicilio") or especificaciones.get("domicilio", ""),
             })
 
-        tasa = float(credito.tasa_interes) * 100 if float(credito.tasa_interes) < 1 else float(credito.tasa_interes)
+        tasa = float(credito.tasa_interes) / 12 
         deudor_nombre = cliente.get_full_name() if hasattr(cliente, "get_full_name") else f"{cliente.first_name} {cliente.last_name}".strip()
         deudor_dpi = cliente.identification_number or ""
         if deudor_dpi:

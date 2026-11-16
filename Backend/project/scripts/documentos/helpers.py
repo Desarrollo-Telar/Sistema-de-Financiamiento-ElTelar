@@ -1,3 +1,4 @@
+
 """
 Módulo de utilidades y formateadores para la generación de documentos legales
 (Guatemala - El Telar S.A.).
@@ -691,7 +692,7 @@ def extraer_persona_notarial(persona, default_genero: str = "F") -> dict:
 
 
 def construir_texto_garantia_item(tipo_garantia: str, specs: dict | None = None, descripcion: str = "") -> str:
-    """Construye la cláusula formal de garantía a partir de los datos de InvestmentPlan/DetailsGuarantees."""
+   
     tipo = str(tipo_garantia or "MOBILIARIA").strip().upper()
     specs = specs if isinstance(specs, dict) else {}
     desc_extra = str(descripcion or "").strip()
@@ -743,7 +744,7 @@ def construir_texto_garantia_item(tipo_garantia: str, specs: dict | None = None,
         folio = specs.get("folio") or specs.get("Folio") or ""
         libro = specs.get("libro") or specs.get("Libro") or ""
         ubic = specs.get("ubicacion") or specs.get("Ubicacion") or ""
-        desc_h = specs.get("descripcion") or specs.get("Descripcion") or desc_extra
+        desc_h = ""
         area = specs.get("area") or specs.get("Area") or ""
         esc = specs.get("noEscritura") or specs.get("NoEscritura") or ""
         notario_h = specs.get("notario") or specs.get("Notario") or ""
