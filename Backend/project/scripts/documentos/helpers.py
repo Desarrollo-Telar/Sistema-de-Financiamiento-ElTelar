@@ -123,18 +123,36 @@ def monto_a_letras_quetzales(monto, incluir_simbolo: bool = False) -> str:
     except Exception:
         return f"{monto} QUETZALES"
 
+from num2words import num2words
+
+
+def bloque_a_letras(bloque: str, usar_un_mil: bool = False) -> str:
+    """Convierte un bloque numérico (como string) a letras conservando ceros iniciales."""
+    ceros_iniciales = len(bloque) - len(bloque.lstrip('0'))
+    prefijo = ' '.join(['cero'] * ceros_iniciales)
+
+    valor = int(bloque)
+    if valor == 0:
+        return prefijo
+
+    texto_num = num2words(valor, lang='es').lower()
+
+    if usar_un_mil:
+        if texto_num == 'mil':
+            texto_num = 'un mil'
+        elif texto_num.startswith('mil '):
+            texto_num = 'un ' + texto_num
+
+    return f'{prefijo} {texto_num}'.strip()
+
 
 def cui_dpi_a_letras(cui_raw: str, con_espacio: bool = False) -> tuple[str, str]:
     """
     Formatea un CUI/DPI guatemalteco (13 dígitos) y lo convierte a palabras según
     el estándar notarial (4 - 5 - 4 dígitos).
-    Si con_espacio=True, une con ' espacio ' en minúsculas:
-    'dos mil ciento cincuenta y nueve espacio ochenta y tres mil ochocientos sesenta y seis espacio un mil ochocientos tres'
-    Si con_espacio=False, une con coma:
-    'Dos mil quinientos veintiséis, Veintidós mil noventa y siete, Mil seiscientos uno'
     """
     if not cui_raw:
-        return ("", "")
+        return ('', '')
 
     limpio = ''.join(c for c in str(cui_raw) if c.isdigit())
 
@@ -142,25 +160,19 @@ def cui_dpi_a_letras(cui_raw: str, con_espacio: bool = False) -> tuple[str, str]
         p1 = limpio[0:4]
         p2 = limpio[4:9]
         p3 = limpio[9:13]
-        formateado = f"{p1} {p2} {p3}"
+        formateado = f'{p1} {p2} {p3}'
 
         try:
             if con_espacio:
-                w1 = num2words(int(p1), lang='es').lower()
-                w2 = num2words(int(p2), lang='es').lower()
-                w3 = num2words(int(p3), lang='es').lower()
-                if w1 == "mil":
-                    w1 = "un mil"
-                if w3 == "mil":
-                    w3 = "un mil"
-                elif w3.startswith("mil "):
-                    w3 = "un " + w3
-                texto = f"{w1} espacio {w2} espacio {w3}"
+                w1 = bloque_a_letras(p1, usar_un_mil=True)
+                w2 = bloque_a_letras(p2, usar_un_mil=False)
+                w3 = bloque_a_letras(p3, usar_un_mil=True)
+                texto = f'{w1} espacio {w2} espacio {w3}'
             else:
-                w1 = num2words(int(p1), lang='es').capitalize()
-                w2 = num2words(int(p2), lang='es').capitalize()
-                w3 = num2words(int(p3), lang='es').capitalize()
-                texto = f"{w1}, {w2}, {w3}"
+                w1 = bloque_a_letras(p1).capitalize()
+                w2 = bloque_a_letras(p2).capitalize()
+                w3 = bloque_a_letras(p3).capitalize()
+                texto = f'{w1}, {w2}, {w3}'
             return (texto, formateado)
         except Exception:
             return (formateado, formateado)

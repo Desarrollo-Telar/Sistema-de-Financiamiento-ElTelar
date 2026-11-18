@@ -29,8 +29,7 @@ def verificador_de_cuotas_fecha_limite(dia):
         print("No hay registro")
         return
     recorrido_de_cuotas(planes, 'FECHA_LIMITE', dia)
-    for cuota in planes:
-        print(cuota)
+
 
     
     hora_actual = datetime.now().time()    

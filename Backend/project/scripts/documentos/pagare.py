@@ -8,11 +8,15 @@ import io
 import os
 from datetime import date, datetime
 from decimal import Decimal
+from django.contrib.staticfiles import finders
 
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.table import WD_ALIGN_VERTICAL
 from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import nsdecls, qn
 
@@ -39,6 +43,7 @@ def obtener_datos_ejemplo() -> dict:
     return {
         "acreedor_nombre_corto": "EL TELAR, S.A.",
         "acreedor_nombre_completo": "INVERSIONES INTEGRALES EL TELAR, SOCIEDAD ANONIMA",
+        "codigo_solicitud":"01-IIT319-2026",
         "capital_adeudado": 360000.00,
         "plazo_meses": 12,
         "fecha_vencimiento": "08 de noviembre 2027",
@@ -296,6 +301,43 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
     doc = Document()
     _aplicar_estilos_base(doc)
 
+    # 0. ENCABEZADO DE PÁGINA (LOGO A LA IZQUIERDA Y CÓDIGO A LA DERECHA)
+    section = doc.sections[0]
+    section.header_distance = Inches(0.4)
+    header = section.header
+
+    # Eliminar espacio del párrafo vacío inicial para que la tabla suba al tope
+    p_vacio = header.paragraphs[0]
+    p_vacio.paragraph_format.space_before = Pt(0)
+    p_vacio.paragraph_format.space_after = Pt(0)
+
+    # Calcular ancho útil de la página (ancho total menos márgenes)
+    ancho_util = section.page_width - section.left_margin - section.right_margin
+
+    tabla_header = header.add_table(rows=1, cols=2, width=ancho_util)
+    tabla_header.autofit = False
+    row = tabla_header.rows[0].cells
+
+    # Celda izquierda: Logo
+    row[0].width = Inches(2.5)
+    row[0].vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+    logo_path = finders.find('img/el_telar.jpeg')
+    if logo_path:
+        p_logo = row[0].paragraphs[0]
+        p_logo.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        p_logo.paragraph_format.space_after = Pt(0)
+        p_logo.add_run().add_picture(logo_path, width=Inches(1.8))
+
+    # Celda derecha: Código de solicitud
+    row[1].width = ancho_util - Inches(2.5)
+    row[1].vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+    p = row[1].paragraphs[0]
+    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p.paragraph_format.space_after = Pt(0)
+    run_cod = p.add_run(datos.get("codigo_solicitud", "01-IIT319-2026"))
+    run_cod.bold = True
+    run_cod.font.size = Pt(10)
+
     # 1. ENCABEZADO
     p_titulo = doc.add_paragraph()
     p_titulo.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -304,6 +346,10 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
     run_t1 = p_titulo.add_run("PAGARÉ")
     run_t1.bold = True
     run_t1.font.size = Pt(13)
+
+    
+
+    
 
     p_subtitulo = doc.add_paragraph()
     p_subtitulo.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -838,11 +884,13 @@ def extraer_datos_pagare_desde_solicitud(solicitud, aval_info: dict | None = Non
     dpis = [deudor_dpi] + [a["dpi"] for a in avalistas if a.get("dpi")]
     notario_cui_firmantes = [cui_dpi_a_letras(d)[0] if d else "________________" for d in dpis]
     numero_banco = getattr(solicitud, 'sucursal', None).numero_de_cuenta_banco if getattr(solicitud, 'sucursal', None) else "3696008759"
+    codigo_solicitud = getattr(solicitud, 'investment_plan_code', None)
 
     datos = {
-        "acreedor_nombre_corto": "EL TELAR, S.A.",
+        "acreedor_nombre_corto":"INVERSIONES INTEGRALES EL TELAR, S.A.",
         "acreedor_nombre_completo": "INVERSIONES INTEGRALES EL TELAR, SOCIEDAD ANONIMA",
         "capital_adeudado": capital,
+        "codigo_solicitud":codigo_solicitud,
         "plazo_meses": plazo_int,
         "fecha_vencimiento": fecha_vencimiento_str,
         "deudor_nombre": deudor_nombre,
