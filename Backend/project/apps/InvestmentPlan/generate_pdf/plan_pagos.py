@@ -12,6 +12,7 @@ from django.contrib.staticfiles import finders
 from apps.InvestmentPlan.models import InvestmentPlan
 from apps.subsidiaries.models import Subsidiary
 from apps.financings.models import Credit as Credito, PaymentPlan as PlanPagos
+from apps.customers.models import Customer
 # Generando Plan de pagos
 from apps.financings.clases.paymentplan import PaymentPlan
 from apps.financings.clases.credit import Credit
@@ -172,10 +173,29 @@ def generar_estado_cuenta_word(doc = None, id = None):
 
     table_info = doc.add_table(rows=5, cols=2)
     table_info.alignment = WD_TABLE_ALIGNMENT.CENTER
+
+    fiadores_list = []
+        # Verificamos si destino.fiador es una lista o un solo diccionario
+    if plan.fiador:
+        if isinstance(plan.fiador, list):
+            for f_data in plan.fiador:
+                f_obj = Customer.objects.filter(id=f_data.get('id')).first()
+                if f_obj:
+                    fiadores_list.append(f_obj)
+        elif isinstance(plan.fiador, dict):
+            f_obj = Customer.objects.filter(id=plan.fiador.get('id')).first()
+            if f_obj:
+                fiadores_list.append(f_obj)
     
+    deudor = cliente.get_full_name().upper()
+
+    if len(fiadores_list) >= 1:
+        for idx, fia in enumerate(fiadores_list, start=1):
+            deudor += ' / {}'.format(fia.get_full_name().upper())
+
 
     datos = [
-        ("Deudor", f'{cliente.get_full_name().upper()}'),
+        ("Deudor", f'{deudor}'),
         ("Monto Otorgado", f"Q{plan.total_value_of_the_product_or_service:,.2f}"),
         ("Fecha de Recibido", plan.fecha_inicio.strftime('%d-%m-%Y')),
         ("Forma de pago", f"{forma_pago}"),
