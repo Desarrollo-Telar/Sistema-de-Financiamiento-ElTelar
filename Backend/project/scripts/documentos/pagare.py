@@ -645,7 +645,7 @@ def generar_pagare_word(datos_entrada: dict | None = None, output_target=None):
             "POR AVAL, garantizo el pago total del presente pagaré a favor de EL ACREEDOR y por cuenta de "
             f"{datos.get('aval_persona_avalada', '___________________________________________')}, "
             "quien es la persona avalada.\n"
-            f"El presente aval garantiza la cantidad de Q__________ ({datos.get('aval_monto_letras', '________________________________________')} quetzales exactos), "
+            f"El presente aval garantiza la cantidad de Q {datos.get('aval_monto', '____')} ({datos.get('aval_monto_letras', '________________________________________')} quetzales exactos), "
             "más los intereses, recargos por atraso y demás cantidades legalmente procedentes conforme al pagaré.\n"
             "El avalista manifiesta que conoce y acepta el contenido del pagaré y que su obligación se mantendrá vigente "
             "hasta el pago total de la cantidad avalada.\n"
@@ -916,7 +916,7 @@ def extraer_datos_pagare_desde_solicitud(solicitud, aval_info: dict | None = Non
         "avalistas": avalistas,
         "aval_monto": aval_monto,
         "aval_monto_letras": aval_monto_letras,
-        "aval_lugar_fecha": "________________________________________________________________",
+        "aval_lugar_fecha": f"{lugar_emision}, {fecha_emision_str}",
         # Legalización Notarial
         "incluir_autentica": True,
         "notario_ciudad": notario_ciudad,

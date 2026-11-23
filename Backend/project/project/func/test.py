@@ -9,6 +9,8 @@ django.setup()
 from apps.financings.models import AccountStatement
 from apps.customers.models import Customer
 
+from scripts.generadores.generate_qr import generate_qr_servidor
+
 if __name__ == "__main__":
     print("Pruebas")
 
@@ -16,8 +18,18 @@ if __name__ == "__main__":
     clientes = Customer.objects.all()
     print(clientes.count())
 
+    codigos_clientes = [
+        '2026-200',
+        '2026-202',
+        '2026-201'
+    ]
+
 
     for cliente in clientes:
 
-        print(cliente.get_qr())
+        if cliente.customer_code in codigos_clientes:
+            filename = f'codigoQr_{cliente.customer_code}.png'
+            dato = f'https://www.ii-eltelarsa.com/pdf/{cliente.id}'
+
+            generate_qr_servidor(dato, filename)
     
