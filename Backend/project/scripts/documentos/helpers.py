@@ -1033,11 +1033,13 @@ def extraer_datos_base_contrato_desde_solicitud(solicitud) -> dict:
         "octava avenida uno guion doce, zona uno, de la jurisdicción municipal de Cobán del departamento de Alta Verapaz"
     )
     empresa_cuenta = "3696008759"
+    
 
     if sucursal is not None:
         cta = getattr(sucursal, "numero_de_cuenta_banco", None)
         if cta:
             empresa_cuenta = str(cta).strip()
+            
 
         suc_addr = getattr(sucursal, "_mock_address", None)
         if suc_addr is None and callable(getattr(sucursal, "get_direc", None)):
@@ -1139,6 +1141,7 @@ def extraer_datos_base_contrato_desde_solicitud(solicitud) -> dict:
         # Empresa El Telar
         "empresa_nombre": "INVERSIONES INTEGRALES EL TELAR, SOCIEDAD ANÓNIMA",
         "empresa_cuenta_bancaria": empresa_cuenta,
+        "empresa_cuenta_bancaria_en_letras": cuenta_a_letras(empresa_cuenta),
         "empresa_direccion": empresa_direccion,
         # Registro Mercantil El Telar
         "reg_acta_nombramiento_fecha": "diecisiete de junio del año dos mil veinticuatro",

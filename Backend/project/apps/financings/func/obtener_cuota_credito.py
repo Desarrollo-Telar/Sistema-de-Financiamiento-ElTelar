@@ -6,6 +6,22 @@ from apps.financings.models import PaymentPlan
 from django.db.models import Q
 
 
+def _obtener_filtro_relacion(objeto):
+    from apps.financings.models.credit import Credit
+    from apps.accountings.models import Creditor, Insurance
+
+    if isinstance(objeto, dict):
+        return objeto
+    if isinstance(objeto, Credit):
+        return {'credit_id': objeto}
+    if isinstance(objeto, Creditor):
+        return {'acreedor': objeto}
+    if isinstance(objeto, Insurance):
+        return {'seguro': objeto}
+
+    raise ValueError(f"Tipo de objeto no válido: {type(objeto).__name__}")
+
+
 def obtener_cuota_vigente(objeto, fecha_emision=None):
     """
     Obtiene la cuota correspondiente para un Crédito, Acreedor o Seguro.
@@ -17,20 +33,11 @@ def obtener_cuota_vigente(objeto, fecha_emision=None):
         fecha_emision = fecha_emision.date()
 
     # Identificar el tipo de objeto para aplicar el filtro dinámico
-    filtro_relacion = {}
-    if hasattr(objeto, 'is_paid_off'):  # Es un Crédito
-        filtro_relacion = {'credit_id': objeto}
-        # Si el crédito está cancelado, traemos la última cuota registrada
-        if objeto.is_paid_off:
-            return PaymentPlan.objects.filter(**filtro_relacion).order_by('-id').first()
+    filtro_relacion = _obtener_filtro_relacion(objeto)
 
-    elif hasattr(objeto, 'acreedor'):   # Es un objeto Creditor o similar
-        filtro_relacion = {'acreedor': objeto}
-    elif hasattr(objeto, 'seguro'):     # Es un objeto Insurance o similar
-        filtro_relacion = {'seguro': objeto}
-    else:
-        # Si se pasa la relación directa en un kwargs/diccionario
-        filtro_relacion = objeto
+    # Si el crédito/acreedor/seguro está cancelado, traemos la última cuota registrada
+    if getattr(objeto, 'is_paid_off', False):
+        return PaymentPlan.objects.filter(**filtro_relacion).order_by('-id').first()
 
     # Buscar la cuota dentro del rango de la fecha especificada
     # Usamos lt para replicar la lógica de excluir la fecha_limite exacta si es necesario
@@ -65,20 +72,7 @@ def obtener_siguiente_cuota(objeto, cuota_actual=None, fecha_emision=None):
         return None
 
     # Identificar el tipo de relación
-    if isinstance(objeto, dict):
-        filtro_relacion = objeto
-
-    elif hasattr(objeto, 'is_paid_off'):
-        filtro_relacion = {'credit_id': objeto}
-
-    elif hasattr(objeto, 'acreedor'):
-        filtro_relacion = {'acreedor': objeto}
-
-    elif hasattr(objeto, 'seguro'):
-        filtro_relacion = {'seguro': objeto}
-
-    else:
-        raise ValueError("Tipo de objeto no válido")
+    filtro_relacion = _obtener_filtro_relacion(objeto)
 
     # Buscar la siguiente cuota disponible
     siguiente_cuota = PaymentPlan.objects.filter(

@@ -89,8 +89,13 @@ export async function guardar_desembolso(credit_id, forma_desembolso, credito_ca
 
     if (listado_formas.includes(forma_desembolso) && credito_cancelado) {
         try {
-            const creditoObtenido = await get_credit(credito_cancelado);
-            descripcion = `${descripcion}\nSE ${forma_desembolso}: ${creditoObtenido.codigo_credito}`;
+            if (creditos_seleccionados.length > 0) {
+                for (let creditoId of creditos_seleccionados) {
+                    const creditoObtenido = await get_credit(creditoId);
+                    descripcion += `${descripcion}\nSE ${forma_desembolso}: ${creditoObtenido.codigo_credito}`;
+                }
+            }
+            
         } catch (e) {
             console.warn("No se pudo obtener la información del crédito anterior:", e);
         }

@@ -971,7 +971,7 @@ def generar_pagare_desde_credito(credito_o_id, aval_info: dict | None = None, no
 
         cliente = credito.customer_id
         direccion_obj = Address.objects.filter(customer_id=cliente).first()
-        direccion_str = str(direccion_obj) if direccion_obj else "-----"
+        direccion_str = str(direccion_obj.direccion()) if direccion_obj else "-----"
 
         detalles_fiadores = DetailsGuarantees.objects.filter(
             garantia_id__credit_id=credito,

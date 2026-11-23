@@ -217,7 +217,6 @@ class Payment(models.Model):
             if cuota is None:
                 raise MiExcepcionPersonalizada('No se puede continuar debido a que no se ha encontra una cuota asociada al pago', cuota)
             
-
             saldo_pendiente = cuota.saldo_pendiente
 
             informacion = sobre_que_es_pago(self)
@@ -237,10 +236,10 @@ class Payment(models.Model):
             procesos_de_pago(self,saldo_pendiente, interes,mora, capital_generado, tipo_proceso)
 
         except MiExcepcionPersonalizada as e:
-            print(f"Ocurrió un error: {e}")
+            print(f"Ocurrió un error en la funcion de realizar_pago de Payment models: {e}")
 
         except Exception as e:
-            print(f"Ocurrió un error inesperado: {e}")
+            print(f"Ocurrió un error inesperado en la funcion de realizar_pago de Payment models: {e}")
     
 
     def _registrar_pago(self, pagado_mora, pagado_interes,aporte_capital, saldo_pendiente, excedente=None):

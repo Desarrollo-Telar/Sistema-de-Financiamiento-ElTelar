@@ -60,6 +60,7 @@ def obtener_datos_ejemplo_deudor_directo() -> dict:
         # Empresa El Telar
         "empresa_nombre": "INVERSIONES INTEGRALES EL TELAR, SOCIEDAD ANÓNIMA",
         "empresa_cuenta_bancaria": "3696008759",
+        "empresa_cuenta_bancaria_en_letras": "-------",
         "empresa_direccion": "octava avenida uno guion doce, zona uno, de la jurisdicción municipal de Cobán del departamento de Alta Verapaz",
         # Registro Mercantil El Telar
         "reg_acta_nombramiento_fecha": "diecisiete de junio del año dos mil veinticuatro",
@@ -229,7 +230,7 @@ def generar_contrato_deudor_directo_word(datos_entrada: dict | None = None, outp
         f"{datos['monto_capital_letras']}, ({datos['monto_capital_formato']}). El reconocimiento se regirá bajo las condiciones siguientes:\n"
         f"a) LA FORMA DE PAGO: El pago de la deuda será a través de {datos['plazo_cuotas_letras']} CUOTAS MENSUALES, distribuidos de la siguiente manera: "
         f"{datos['desglose_cuotas_texto']} "
-        f"Los pagos deberán efectuarse mediante deposito a la cuenta monetaria número {datos['empresa_cuenta_bancaria']} a nombre de la empresa denominada "
+        f"Los pagos deberán efectuarse mediante deposito a la cuenta monetaria número {datos['empresa_cuenta_bancaria_en_letras']}  ( {datos['empresa_cuenta_bancaria']} ) a nombre de la empresa denominada "
         f"{datos['empresa_nombre']}, empresa ubicada en la {datos['empresa_direccion']}, sin necesidad de requerimiento o cobro alguno;\n"
         f"b) Manifiesto yo, {datos['deudor_nombre']}, que la cantidad que me fue otorgada por la entidad acreedora, la invertiré exclusivamente en: "
         f"{datos['destino_credito']}, tal y como consta en mi solicitud de crédito;\n"

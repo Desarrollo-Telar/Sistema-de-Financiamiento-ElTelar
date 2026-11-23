@@ -1,296 +1,44 @@
-from minio import Minio
-from minio.error import S3Error
-
-import uuid
-import json
 import os
 import django
+from django.utils import timezone
 
 # Configura Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")  # <-- Ajusta si tu settings está en otro path
 django.setup()
 
-# Modelos
-from apps.customers.models import CreditCounselor, Customer, Cobranza
-from apps.financings.models import Credit, PaymentPlan, Banco, Payment, Recibo, AccountStatement, Disbursement
-from apps.users.models import User
-from apps.subsidiaries.models import Subsidiary
-from apps.accountings.models import Income, Egress
-from apps.FinancialInformation.models import GastoCliente, TipoGasto
-from apps.InvestmentPlan.models import InvestmentPlan
-from apps.InvestmentPlan.generar_documento.reconocimiento import generar_contrato
-from apps.InvestmentPlan.generar_documento.generar_resolucion_credito import generar_resolucion_credito
-# Scripts
-from scripts.notificaciones.generacion_mensaje_whatsapp import mensaje_cliente_por_credito
-from scripts.cargar_fiadores.vincular import main_vincular
-from scripts.asignar_nuevos_permisos.otorgar_permiso import asignar
-from scripts.cargar_estado_cuenta.estado_cuenta import migracion_datos
-from scripts.INFILE.fact import guardar_xml_recibo
-from scripts.INFILE.consulta_nit import ejemplo_uso_consulta_receptor
-from scripts.cuotas.cuotas_fecha_limite import verificador_de_cuotas_fecha_limite
-from django.db.models import Q
-# DECIMAL
-from decimal import Decimal
-# CALCULOS
-from apps.financings.utils import calcular_capital, calcular_interes, calcular_mora
-# Tiempo
-from datetime import datetime, timedelta, timezone
-from django.utils import timezone
-
-
-
-datos = {
-    "numero_asociado": "00125",
-    "fecha": "21/10/2026",
-    "acta": "25-2026",
-    "asociado": "JUAN CHOC",
-    "calidad_asociado": "PENDIENTE",
-    "estado": "APROBADO",
-    "descripcion": "Crédito para capital de trabajo",
-    "monto": "Q 15,000.00",
-    "destino": "CONSUMO",
-    "plazo": "12 meses",
-    "forma_pago": "Mensual",
-    "tasa_interes": "10%",
-    "desembolso": "Q 15,000.00",
-    "fecha_primer_pago": "21/11/2026",
-    "garantia": "Garantía fiduciaria",
-    "otras_condiciones": "Sujeto a verificación documental",
-    "firma_1": "Firma",
-    "firma_2": "Firma",
-}
-
-
-def generar_numero_identificacion_sucursal(instance, count):
-    if instance.sucursal is None:
-        return None
-    
-    codigo_sucursal = instance.sucursal.codigo_sucursal if instance.sucursal else 0
-    cui = instance.identification_number
-    codigo_postal = instance.sucursal.codigo_postal if instance.sucursal.codigo_postal else 0
-   
-    correlativo = str(count).zfill(4)
-    numero_identificacion_sucursal = f'{codigo_sucursal}-{cui}-{correlativo}-{codigo_postal}'
-    return numero_identificacion_sucursal
-
-
-def main():
-  # Create a client for your MinIO server using your access and secret keys
-  client = Minio(
-    endpoint='pcxl65.stackhero-network.com:443',
-    secure=True,
-    access_key='WkXu9MHvOHvOsLiJjtda',
-    secret_key='g75dCPXZlgogk0KloBAM1BI2SfaqzDp2ufciMrIe'
-  )
-
-  # Check if the bucket 'asiatrip' exists, and create it if it does not
-  found = client.bucket_exists("asiatrip")
-  if not found:
-    client.make_bucket("asiatrip")
-  else:
-    print("Bucket 'asiatrip' already exists")
-
-def xd():
-  #asignar()
-    # python -m project.func.test
-    dia = datetime.now().date()
-    dia_mas_uno = dia + timedelta(days=1)
-    
-
-    # Obtener las primeras cuotas activas por crédito del asesor
-    
-    creditos = Credit.objects.filter(is_paid_off = False)
-   
-    print(f'Verificando {creditos.count()} creditos')
-    contador = 0
-
-    for credito in creditos:
-      cuota = PaymentPlan.objects.filter(
-          credit_id=credito,
-          start_date__lte=dia,
-          fecha_limite__gte=dia_mas_uno
-      ).first()
-      
-      verificacion = cuota.capital_generado - cuota.principal
-
-      if verificacion <= 0:
-        contador += 1
-        print(cuota)
-        cuota.credit_id.estado_aportacion = True
-        cuota.credit_id.save()
-
-
-    print(f'Proceso finalizado. se arreglaron {contador}')
-
-
-from django.db.models.functions import Replace
-from django.db.models import F, Value
-
-def agregar_gasto_de_cliente():
-    creditos = Credit.objects.filter(is_paid_off=False)
-    tipo_gasto, creado = TipoGasto.objects.get_or_create(nombre="CREDITO EL TELAR")
-
-    for credito in creditos:
-        primera_cuota = PaymentPlan.objects.filter(credit_id=credito, mes=1).first()
-        monto_origial = Decimal(credito.monto)
-        plazo = Decimal(credito.plazo)
-        tasa_interes = Decimal(credito.tasa_interes)
-
-        interes = monto_origial * tasa_interes
-        capital = monto_origial / plazo
-
-        cuota = capital + interes
-
-        GastoCliente.objects.create(
-            customer=credito.customer_id,
-            tipo_gasto=tipo_gasto,
-            descripcion=f"Gasto generado por el crédito {credito.codigo_credito} del cliente {credito.customer_id}",
-            monto=cuota,
-            frecuencia = "Mensual",
-            observaciones=f'#{credito.id}'
-        )
-        print(f"Gasto agregado para el cliente {credito.customer_id} por el crédito {credito.codigo_credito} con monto {cuota}")
-
-        
-        
-        
-
-
-
-def limpiar_nit_de_comas_django_corregido():
-    """
-    Actualiza el campo 'number_nit' en todos los clientes,
-    eliminando todas las comas (',') de la cadena de forma eficiente.
-    """
-    try:
-        # 🎯 USAMOS Value() PARA INDICAR QUE ES UN VALOR LITERAL DE CADENA
-        filas_actualizadas = Customer.objects.all().update(
-            number_nit=Replace(
-                F('number_nit'), 
-                Value(','),  # Cadena a buscar: la coma ','
-                Value('')   # Cadena de reemplazo: la cadena vacía ''
-            )
-        )
-        
-        print(f"✅ Éxito: Se actualizaron {filas_actualizadas} registros.")
-        return True
-        
-    except Exception as e:
-        print(f"❌ Error al actualizar los registros: {e}")
-        return False
-
-
-from django.db import IntegrityError
-
-def limpiar_nit_individualmente_con_manejo_errores():
-    """
-    Actualiza el campo 'number_nit' uno por uno, manejando errores de 
-    clave duplicada para evitar la interrupción del proceso.
-    """
-    total_registros = Customer.objects.count()
-    errores = 0
-    actualizados = 0
-
-    # Iterar sobre todos los clientes (usando .iterator() para ser más eficiente en memoria)
-    for cliente in Customer.objects.all().iterator():
-        
-        # Eliminar las comas en Python
-        nuevo_nit = cliente.number_nit.replace(',', '')
-        
-        # Solo intentar guardar si hay un cambio y el nuevo valor no está vacío
-        if nuevo_nit != cliente.number_nit and nuevo_nit:
-            cliente.number_nit = nuevo_nit
-            try:
-                cliente.save() # Se realiza una sentencia UPDATE por separado
-                actualizados += 1
-            
-            except IntegrityError as e:
-                # Capturamos el error de clave duplicada
-                if 'duplicate key value violates unique constraint' in str(e):
-                    print(f"⚠️ Omisión: El NIT limpiado '{nuevo_nit}' ya existe en otro registro.")
-                    errores += 1
-                else:
-                    # Otros errores de integridad que queremos ver
-                    raise e
-            except Exception as e:
-                print(f"❌ Error desconocido al guardar cliente {cliente.pk}: {e}")
-                errores += 1
-
-    print(f"--- Resumen de la Limpieza ---")
-    print(f"Total de registros procesados: {total_registros}")
-    print(f"✅ Registros actualizados: {actualizados}")
-    print(f"❌ Registros omitidos (duplicados): {errores}")
-
-# Uso:
-# limpiar_nit_individualmente_con_manejo_errores()
-
-import re
-from django.db import IntegrityError
-# Asume que tu modelo se llama 'Customer' y está importado
-# from your_app_name.models import Customer 
-
-def limpiar_y_formatear_nit_estandarizado():
-    """
-    Estandariza el campo 'number_nit' para que solo contenga caracteres 
-    alfanuméricos en mayúsculas (ej: 1808964K), manejando errores de duplicidad.
-    """
-    total_registros = Customer.objects.count()
-    errores = 0
-    actualizados = 0
-
-    # Iterar sobre todos los clientes (usando .iterator() para mejor rendimiento en memoria)
-    for cliente in Customer.objects.all().iterator():
-        original_nit = cliente.number_nit
-        
-        if not original_nit:
-            continue
-            
-        # 1. Limpiar Caracteres No Alfanuméricos
-        # r'[^a-zA-Z0-9]' busca cualquier cosa QUE NO sea una letra o un dígito.
-        # Esto elimina guiones, comas, puntos, espacios, etc.
-        limpio_nit = re.sub(r'[^a-zA-Z0-9]', '', original_nit)
-        
-        # 2. Formato: Asegurar que esté en mayúsculas
-        nuevo_nit = limpio_nit.upper()
-        
-        # Solo guardar si hubo un cambio y el valor resultante no está vacío
-        if nuevo_nit != original_nit and nuevo_nit:
-            cliente.number_nit = nuevo_nit
-            try:
-                # Intenta guardar el cambio en la base de datos
-                cliente.save()
-                actualizados += 1
-            
-            except IntegrityError:
-                # Captura el error de clave duplicada
-                print(f"⚠️ Omisión: El NIT limpio '{nuevo_nit}' ya existe en otro registro. Se ignoró el registro {cliente.pk}.")
-                errores += 1
-            except Exception as e:
-                # Captura cualquier otro error de guardado
-                print(f"❌ Error desconocido al guardar cliente {cliente.pk}: {e}")
-                errores += 1
-
-    print(f"\n--- Resumen del Proceso de Formateo de NIT ---")
-    print(f"Total de registros procesados: {total_registros}")
-    print(f"✅ Registros actualizados: {actualizados}")
-    print(f"❌ Registros omitidos (duplicados/otros errores): {errores}")
-
-# Uso:
-# limpiar_y_formatear_nit_estandarizado()
+from apps.financings.models import AccountStatement
 
 if __name__ == "__main__":
-  try:
-    credito = InvestmentPlan.objects.get(id = 2)
-    garantias = credito.garantias
-      
-    print("Documento creado:", generar_contrato(credito, garantias))
-    print( "Documento Creado:",  generar_resolucion_credito(
-        datos,
-        "resolucion_credito.docx"
-    ))
+    print("Pruebas")
+    print("Revisión de los últimos estados de cuenta...")
 
-    
-   
+    dia = timezone.localdate()
 
-  except S3Error as exc:
-    print("An error occurred.", exc)
+    ultimos_estados = (
+        AccountStatement.objects.filter(
+            description="PAGO DE CREDITO",
+            credit__isnull=False,
+        )
+        .select_related("credit", "payment", "cuota")
+        .order_by("credit_id", "-creation_date", "-id")
+        .distinct("credit_id")
+    )
+
+    print(ultimos_estados.count())
+
+    for estado in ultimos_estados:
+        credito = estado.credit
+
+        if (
+            credito is not None
+            and not credito.is_paid_off
+            and not credito.estado_judicial
+            and credito.categoria_credito_demandado is None
+            and estado.issue_date is not None
+        ):
+            fecha_diferencia = (dia - estado.issue_date).days
+           
+
+            if fecha_diferencia > 15 and credito.estados_fechas == True:
+
+                print(f" {credito.id} {credito.estados_fechas}")

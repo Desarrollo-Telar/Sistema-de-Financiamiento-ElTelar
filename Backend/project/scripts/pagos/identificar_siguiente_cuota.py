@@ -4,7 +4,7 @@ from django.db.models import Q
 
 # FUNCIONES
 from .sobre_que_pago_analizar import sobre_que_es_pago
-from .cuota_pagar import obtener_cuota_vigente
+from .cuota_pagar import obtener_cuota_vigente, _obtener_filtro_relacion
 
 
 def obtener_siguiente_cuota(self,objeto, cuota_actual=None, fecha_emision=None):
@@ -16,20 +16,7 @@ def obtener_siguiente_cuota(self,objeto, cuota_actual=None, fecha_emision=None):
         return None
 
     # Identificar el tipo de relación
-    if isinstance(objeto, dict):
-        filtro_relacion = objeto
-
-    elif hasattr(objeto, 'is_paid_off'):
-        filtro_relacion = {'credit_id': objeto}
-
-    elif hasattr(objeto, 'acreedor'):
-        filtro_relacion = {'acreedor': objeto}
-
-    elif hasattr(objeto, 'seguro'):
-        filtro_relacion = {'seguro': objeto}
-
-    else:
-        raise ValueError("Tipo de objeto no válido")
+    filtro_relacion = _obtener_filtro_relacion(objeto)
 
     # Buscar la siguiente cuota disponible
     siguiente_cuota = self.get_plan_pagos().objects.filter(
