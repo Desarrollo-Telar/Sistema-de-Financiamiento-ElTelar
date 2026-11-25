@@ -213,11 +213,41 @@ def obtener_datos_ejemplo_con_fiador(cantidad_fiadores: int = 1) -> dict:
     }
 
 
+def _construir_texto_garantias_lista(garantias_lista: list | None) -> tuple[str | None, str]:
+    """
+    Construye (tipo_principal, texto_unido) a partir de una lista de garantías
+    usando construir_texto_garantia_item (misma dinámica que contrato_deudor_directo).
+    """
+    if not isinstance(garantias_lista, list) or not garantias_lista:
+        return (None, "")
+
+    textos = []
+    tipo_principal = None
+    for g in garantias_lista:
+        if not isinstance(g, dict):
+            continue
+        tg = str(g.get("tipo") or g.get("tipo_garantia") or "").strip().upper()
+        if tg == "FIADOR":
+            continue
+        if not tipo_principal and tg:
+            tipo_principal = tg
+        specs = g.get("especificaciones") if isinstance(g.get("especificaciones"), dict) else {}
+        desc = g.get("descripcion") or ""
+        txt_g = construir_texto_garantia_item(tg or "MOBILIARIA", specs, desc)
+        if txt_g:
+            textos.append(txt_g)
+
+    if not textos:
+        return (tipo_principal, "")
+    return (tipo_principal or "MOBILIARIA", "; y con ".join(textos))
+
+
 def _preparar_un_fiador(f: dict, default_deudor_nombre: str = "") -> dict:
     """
     Normaliza y enriquece los datos de un fiador individual:
     genera letras de edad, convierte CUI/DPI a letras notariales y construye
-    el texto formal de garantía si no se especificó textualmente.
+    el texto formal de garantía desde sus garantías registradas o, en su defecto,
+    usando la modalidad LABORAL de helpers.construir_texto_garantia_item.
     """
     item = dict(f)
     nombre = item.get("nombre") or item.get("fiador_nombre") or "FIADOR SOLIDARIO"
@@ -251,28 +281,25 @@ def _preparar_un_fiador(f: dict, default_deudor_nombre: str = "") -> dict:
         item["dpi_formateado"] = item.get("dpi_formateado") or ""
 
     # Texto de Garantía
-    tipo_g = (item.get("tipo_garantia") or "PERSONAL").upper()
-    item["tipo_garantia"] = tipo_g
-
     if not item.get("garantia_texto"):
-        if tipo_g == "LABORAL" or item.get("lugar_trabajo"):
-            lugar = item.get("lugar_trabajo") or "la empresa para la cual laboro actualmente"
-            item["garantia_texto"] = (
-                f"el sueldo y salario que devengo como empleado de {lugar}, "
-                "así como con la totalidad de mis bienes presentes y futuros"
-            )
-        elif tipo_g == "MOBILIARIA":
-            if item.get("datos_mobiliaria"):
+        tipo_desde_lista, texto_desde_lista = _construir_texto_garantias_lista(item.get("garantias"))
+        if texto_desde_lista:
+            item["tipo_garantia"] = tipo_desde_lista or "MOBILIARIA"
+            item["garantia_texto"] = texto_desde_lista
+        else:
+            tipo_g = (item.get("tipo_garantia") or "LABORAL").upper()
+            if tipo_g == "MOBILIARIA" and item.get("datos_mobiliaria"):
+                item["tipo_garantia"] = "MOBILIARIA"
                 item["garantia_texto"] = f"garantía mobiliaria sobre {item['datos_mobiliaria']}"
             else:
-                item["garantia_texto"] = (
-                    "garantía mobiliaria sobre la empresa mercantil de mi propiedad, "
-                    "así como con la totalidad de mis bienes presentes y futuros"
+                lugar = str(item.get("lugar_trabajo") or item.get("Lugar_de_Trabajo") or "").strip()
+                item["tipo_garantia"] = "LABORAL"
+                item["garantia_texto"] = construir_texto_garantia_item(
+                    "LABORAL",
+                    {"lugar_trabajo": lugar} if lugar else {},
                 )
-        else:
-            item["garantia_texto"] = (
-                "el salario que devengo actualmente, así como con la totalidad de mis bienes presentes y futuros"
-            )
+    else:
+        item["tipo_garantia"] = (item.get("tipo_garantia") or "LABORAL").upper()
 
     return item
 
@@ -557,8 +584,10 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
         "tengo la obligación de comunicarlo a la entidad acreedora, caso contrario las citaciones, notificaciones y emplazamientos se me harán en la dirección antes indicada y se tendrán como válidas; "
     )
 
-    # Cláusula de Garantía de Fiador(es) Dinámica
-    if num_fiadores == 1:
+    # Cláusula de Garantía(s) Dinámica (Deudor si registró garantías propias + Fiador(es))
+    deudor_garantias_texto = str(datos.get("deudor_garantias_texto") or "").strip()
+
+    if not deudor_garantias_texto and num_fiadores == 1:
         f = fiadores[0]
         p_primera.add_run("g) DE LA GARANTÍA: ").bold = True
         p_primera.add_run("Yo, ")
@@ -580,29 +609,41 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
         p_primera.add_run(
             "g) DE LAS GARANTÍAS Y FIADORES SOLIDARIOS Y MANCOMUNADOS: ").bold = True
         p_primera.add_run(
-            "Para el fiel y estricto cumplimiento de todas y cada una de las obligaciones que contrae la parte deudora, "
-            "nos constituimos de manera expresa en ")
-        p_primera.add_run(f"FIADORES, SOLIDARIOS Y MANCOMUNADOS de {datos['deudor_nombre']}, ").bold = True
+            "Para el fiel y estricto cumplimiento de todas y cada una de las obligaciones derivadas del presente contrato, "
+            "se constituyen las siguientes garantías:\n"
+        )
 
-        p_primera.add_run("bajo las siguientes declaraciones individuales:\n")
-        for idx, f in enumerate(fiadores, 1):
-            ord_fem = ordinal(idx, femenino=True)
+        sub_idx = 0
+        if deudor_garantias_texto:
+            sub_idx += 1
+            p_primera.add_run(f"g.{sub_idx}) DE LA GARANTÍA DE LA PARTE DEUDORA: Yo, ")
+            p_primera.add_run(f"{datos['deudor_nombre']}, ").bold = True
             p_primera.add_run(
-                f"g.{idx}) DE LA {ord_fem} FIADURÍA SOLIDARIA: Yo, ") 
+                f"garantizo la deuda, intereses, multa por morosidad y costas procesales con {deudor_garantias_texto}.\n"
+            )
+
+        for idx, f in enumerate(fiadores, 1):
+            sub_idx += 1
+            ord_fem = ordinal(idx, femenino=True)
+            etiqueta_fiaduria = (
+                "DE LA FIADURÍA SOLIDARIA" if num_fiadores == 1
+                else f"DE LA {ord_fem} FIADURÍA SOLIDARIA"
+            )
+            p_primera.add_run(f"g.{sub_idx}) {etiqueta_fiaduria}: Yo, ")
             p_primera.add_run(f"{f['nombre']}, ").bold = True
             p_primera.add_run(
                 "manifiesto que para el fiel cumplimiento de la obligación que contrae la parte deudora, por este acto me constituyo en "
-                "FIADOR, SOLIDARIO y MANCOMUNADO de ") 
+                "FIADOR, SOLIDARIO y MANCOMUNADO de ")
             p_primera.add_run(f"{datos['deudor_nombre']}, ").bold = True
 
             p_primera.add_run(
                 f"garantizando la deuda, intereses, multa por morosidad y costas procesales con {f['garantia_texto']}. "
-                "Yo, ") 
+                "Yo, ")
             p_primera.add_run(f"{f['nombre']}, ").bold = True
 
             p_primera.add_run(
                 "renuncio al fuero de mi domicilio y me someto expresamente a los tribunales que la Entidad Acreedora elija, "
-                "señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos en la siguiente dirección: ") 
+                "señalando desde ya como lugar para recibir citaciones, notificaciones y emplazamientos en la siguiente dirección: ")
             p_primera.add_run(f"{f['direccion']}.").bold = True
             if idx < num_fiadores:
                 p_primera.add_run("\n")
@@ -770,13 +811,20 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
         return buffer
 
 
-def _construir_fiador_notarial_desde_customer(cust_obj, specs_extra: dict | None = None, asset_guarantees: list | None = None) -> dict:
+def _construir_fiador_notarial_desde_customer(
+    cust_obj,
+    specs_extra: dict | None = None,
+    asset_guarantees: list | None = None,
+    fiador_garantias: list | None = None,
+) -> dict:
     """
     Construye el diccionario exacto de un fiador a partir de una instancia de Customer,
-    enriqueciéndolo con WorkingInformation y especificaciones de garantías.
+    priorizando sus garantías propias (fiador["garantias"]) mediante construir_texto_garantia_item;
+    si el fiador no registra garantías propias, aplica la modalidad LABORAL de helpers.
     """
     persona = extraer_persona_notarial(cust_obj, default_genero="M")
     specs_extra = specs_extra if isinstance(specs_extra, dict) else {}
+    fiador_garantias = fiador_garantias if isinstance(fiador_garantias, list) else []
 
     tipo_garantia = None
     garantia_texto = specs_extra.get("garantia_texto") or ""
@@ -794,16 +842,19 @@ def _construir_fiador_notarial_desde_customer(cust_obj, specs_extra: dict | None
             wi = None
 
     empresa_lab = ""
-    puesto_lab = ""
-    fuente_lab = ""
     if wi is not None:
         empresa_lab = str(getattr(wi, "company_name", "") or "").strip()
-        puesto_lab = str(getattr(wi, "position", "") or "").strip()
-        fuente_lab = str(getattr(wi, "source_of_income", "") or "").strip()
         if empresa_lab and empresa_lab.upper() not in ("N/A", "---") and not lugar_trabajo:
             lugar_trabajo = empresa_lab
 
-    # Revisar si alguna garantía de activo corresponde explícitamente a este fiador por Titular
+    # 1. Prioridad: garantías registradas directamente en el fiador (fiador = [{"id": ..., "garantias": [...]}])
+    if not garantia_texto and fiador_garantias:
+        tipo_desde_f, texto_desde_f = _construir_texto_garantias_lista(fiador_garantias)
+        if texto_desde_f:
+            tipo_garantia = tipo_desde_f
+            garantia_texto = texto_desde_f
+
+    # 2. Respaldo retrocompatible: garantía de activo cuyo Titular coincida explícitamente con este fiador
     if not garantia_texto and asset_guarantees:
         nom_norm = persona["nombre"].strip().upper()
         for ag in asset_guarantees:
@@ -822,27 +873,11 @@ def _construir_fiador_notarial_desde_customer(cust_obj, specs_extra: dict | None
                 garantia_texto = construir_texto_garantia_item(tg_ag, ag_specs, ag.get("descripcion") or "")
                 break
 
+    # 3. Si el fiador no registró garantías propias, se utiliza el formato LABORAL de helpers.construir_texto_garantia_item
     if not garantia_texto:
-        if fuente_lab == "Negocio Propio" and lugar_trabajo:
-            tipo_garantia = "MOBILIARIA"
-            garantia_texto = (
-                f"los ingresos provenientes de mi negocio propio denominado {lugar_trabajo}, "
-                "así como con la totalidad de mis bienes presentes y futuros"
-            )
-        elif lugar_trabajo:
-            tipo_garantia = "LABORAL"
-            empl = "empleada" if persona["genero"] == "F" else "empleado"
-            cargo_txt = f" en el cargo de {puesto_lab}" if puesto_lab else ""
-            garantia_texto = (
-                f"el sueldo y salario que devengo como {empl} de {lugar_trabajo}{cargo_txt}, "
-                "así como con la totalidad de mis bienes presentes y futuros"
-            )
-        else:
-            tipo_garantia = specs_extra.get("tipo_garantia") or "PERSONAL"
-            garantia_texto = (
-                f"los ingresos que percibo en el ejercicio de mi profesión ({persona['profesion']}), "
-                "así como con la totalidad de mis bienes presentes y futuros"
-            )
+        tipo_garantia = "LABORAL"
+        specs_laboral = {"lugar_trabajo": lugar_trabajo} if lugar_trabajo else {}
+        garantia_texto = construir_texto_garantia_item("LABORAL", specs_laboral)
 
     item = {
         "nombre": persona["nombre"],
@@ -855,8 +890,9 @@ def _construir_fiador_notarial_desde_customer(cust_obj, specs_extra: dict | None
         "dpi": persona["dpi"],
         "cui_letras": persona["cui_letras"],
         "direccion": persona["direccion"],
-        "tipo_garantia": tipo_garantia or "PERSONAL",
+        "tipo_garantia": tipo_garantia or "LABORAL",
         "garantia_texto": garantia_texto,
+        "garantias": fiador_garantias,
     }
     if lugar_trabajo:
         item["lugar_trabajo"] = lugar_trabajo
@@ -929,10 +965,13 @@ def extraer_datos_contrato_con_fiador_desde_solicitud(solicitud, overrides: dict
     for f_entry in raw_fiadores:
         cust_obj = None
         dict_specs = {}
+        f_garantias = []
         f_id = None
 
         if isinstance(f_entry, dict):
             f_id = f_entry.get("id") or f_entry.get("customer_id")
+            if isinstance(f_entry.get("garantias"), list):
+                f_garantias = f_entry.get("garantias") or []
             if f_entry.get("first_name") or f_entry.get("identification_number"):
                 # Diccionario con datos directos de fiador (sin requerir consulta ORM)
                 dict_specs = f_entry
@@ -963,13 +1002,25 @@ def extraer_datos_contrato_con_fiador_desde_solicitud(solicitud, overrides: dict
                 else f"{getattr(cust_obj, 'first_name', '')} {getattr(cust_obj, 'last_name', '')}"
             ).strip().upper()
             sp_extra = specs_por_codigo.get(cod_c) or specs_por_nombre.get(nom_c) or dict_specs
-            fiador_item = _construir_fiador_notarial_desde_customer(cust_obj, specs_extra=sp_extra, asset_guarantees=garantias_activos)
+            fiador_item = _construir_fiador_notarial_desde_customer(
+                cust_obj,
+                specs_extra=sp_extra,
+                asset_guarantees=garantias_activos,
+                fiador_garantias=f_garantias,
+            )
             _registrar_fiador(fiador_item, cust_id=f_id)
         elif dict_specs and (dict_specs.get("nombre") or dict_specs.get("first_name")):
             nom_d = dict_specs.get("nombre") or f"{dict_specs.get('first_name', '')} {dict_specs.get('last_name', '')}".strip()
             dpi_d = dict_specs.get("dpi") or dict_specs.get("identification_number") or ""
             cui_l, dpi_f = cui_dpi_a_letras(dpi_d, con_espacio=True) if dpi_d else ("", "")
             edad_n = dict_specs.get("edad_num") or dict_specs.get("edad") or ""
+            tipo_d, gar_txt_d = _construir_texto_garantias_lista(f_garantias)
+            if not gar_txt_d:
+                gar_txt_d = dict_specs.get("garantia_texto") or ""
+            if not gar_txt_d:
+                lugar_d = str(dict_specs.get("lugar_trabajo") or dict_specs.get("Lugar_de_Trabajo") or "").strip()
+                tipo_d = "LABORAL"
+                gar_txt_d = construir_texto_garantia_item("LABORAL", {"lugar_trabajo": lugar_d} if lugar_d else {})
             fiador_item = {
                 "nombre": str(nom_d).strip().upper(),
                 "edad_letras": dict_specs.get("edad_letras") or (edad_a_letras(edad_n) if edad_n else "mayor"),
@@ -981,8 +1032,9 @@ def extraer_datos_contrato_con_fiador_desde_solicitud(solicitud, overrides: dict
                 "dpi": dpi_f or dpi_d,
                 "cui_letras": dict_specs.get("cui_letras") or cui_l,
                 "direccion": dict_specs.get("direccion") or "Cobán, Alta Verapaz",
-                "tipo_garantia": dict_specs.get("tipo_garantia") or "PERSONAL",
-                "garantia_texto": dict_specs.get("garantia_texto") or "los ingresos que percibo y la totalidad de mis bienes presentes y futuros",
+                "tipo_garantia": tipo_d or dict_specs.get("tipo_garantia") or "LABORAL",
+                "garantia_texto": gar_txt_d,
+                "garantias": f_garantias,
             }
             _registrar_fiador(fiador_item, cust_id=f_id)
 
@@ -1012,14 +1064,13 @@ def extraer_datos_contrato_con_fiador_desde_solicitud(solicitud, overrides: dict
                 lugar_t = ""
             gar_txt = specs.get("garantia_texto") or ""
             if not gar_txt:
-                if lugar_t:
-                    tipo_g = "LABORAL"
-                    gar_txt = f"el sueldo y salario que devengo como empleado de {lugar_t}, así como con la totalidad de mis bienes presentes y futuros"
-                else:
-                    tipo_g = "PERSONAL"
-                    gar_txt = "el salario que devengo actualmente, así como con la totalidad de mis bienes presentes y futuros"
+                tipo_g = "LABORAL"
+                gar_txt = construir_texto_garantia_item(
+                    "LABORAL",
+                    {"lugar_trabajo": lugar_t} if lugar_t else {},
+                )
             else:
-                tipo_g = str(specs.get("tipo_garantia") or "PERSONAL").upper()
+                tipo_g = str(specs.get("tipo_garantia") or "LABORAL").upper()
 
             fiador_item = {
                 "nombre": nom.upper(),
@@ -1059,6 +1110,8 @@ def extraer_datos_contrato_con_fiador_desde_solicitud(solicitud, overrides: dict
                     dpi_r = str(sp.get("DPI") or sp.get("dpi") or "").strip()
                     cui_l, dpi_f = cui_dpi_a_letras(dpi_r, con_espacio=True) if dpi_r else ("", "")
                     lugar_t = str(sp.get("Lugar_de_Trabajo") or "").strip()
+                    if lugar_t.upper() in ("N/A", "---", "NONE"):
+                        lugar_t = ""
                     f_item = {
                         "nombre": str(sp.get("Nombre")).strip().upper(),
                         "edad_letras": "mayor",
@@ -1070,14 +1123,13 @@ def extraer_datos_contrato_con_fiador_desde_solicitud(solicitud, overrides: dict
                         "dpi": dpi_f or dpi_r,
                         "cui_letras": cui_l,
                         "direccion": sp.get("Domicilio") or "Cobán, Alta Verapaz",
-                        "tipo_garantia": "LABORAL" if lugar_t and lugar_t.upper() != "N/A" else "PERSONAL",
-                        "garantia_texto": (
-                            f"el sueldo y salario que devengo como empleado de {lugar_t}, así como con la totalidad de mis bienes presentes y futuros"
-                            if lugar_t and lugar_t.upper() != "N/A"
-                            else "el salario que devengo actualmente, así como con la totalidad de mis bienes presentes y futuros"
+                        "tipo_garantia": "LABORAL",
+                        "garantia_texto": construir_texto_garantia_item(
+                            "LABORAL",
+                            {"lugar_trabajo": lugar_t} if lugar_t else {},
                         ),
                     }
-                    if lugar_t and lugar_t.upper() != "N/A":
+                    if lugar_t:
                         f_item["lugar_trabajo"] = lugar_t
                     _registrar_fiador(f_item)
         except Exception:
@@ -1099,6 +1151,27 @@ def extraer_datos_contrato_con_fiador_desde_solicitud(solicitud, overrides: dict
             "tipo_garantia": "PERSONAL",
             "garantia_texto": "el salario y la totalidad de mis bienes presentes y futuros",
         })
+
+    # Garantías propias de la parte deudora (solicitud.garantias excluyendo FIADOR y las asignadas por Titular a un fiador)
+    nombres_fiadores_norm = {f["nombre"].strip().upper() for f in fiadores_lista if f.get("nombre")}
+    garantias_deudor_filtradas = []
+    for ag in garantias_activos:
+        ag_specs = ag.get("especificaciones") if isinstance(ag.get("especificaciones"), dict) else {}
+        titular = str(
+            ag_specs.get("Titular")
+            or ag_specs.get("titular")
+            or ag.get("propietario")
+            or ""
+        ).strip().upper()
+        pertenece_a_fiador = bool(
+            titular and any(titular == fn or fn in titular or titular in fn for fn in nombres_fiadores_norm)
+        )
+        if not pertenece_a_fiador:
+            garantias_deudor_filtradas.append(ag)
+
+    _, deudor_garantias_texto = _construir_texto_garantias_lista(garantias_deudor_filtradas)
+    if deudor_garantias_texto:
+        datos["deudor_garantias_texto"] = deudor_garantias_texto
 
     datos["fiadores"] = fiadores_lista
     primer = fiadores_lista[0]

@@ -703,14 +703,43 @@ def _construir_resumen_garantias_solicitud(solicitud) -> str:
     elif not isinstance(raw_fiadores, (list, tuple)):
         raw_fiadores = []
 
+    def _agregar_garantias_de_fiador(nombre_fiador: str, garantias_fiador: list):
+        nonlocal idx_g
+        if not isinstance(garantias_fiador, list) or not garantias_fiador:
+            return
+        nom_f = nombre_fiador.strip().upper()
+        for gf_item in garantias_fiador:
+            if not isinstance(gf_item, dict):
+                continue
+            tg = str(gf_item.get("tipo") or gf_item.get("tipo_garantia") or "").strip().upper()
+            if tg == "FIADOR":
+                continue
+            idx_g += 1
+            specs = gf_item.get("especificaciones") if isinstance(gf_item.get("especificaciones"), dict) else {}
+            desc = str(gf_item.get("descripcion") or "").strip()
+            txt_g = construir_texto_garantia_item(tg or "MOBILIARIA", specs, desc)
+            if txt_g:
+                txt_g = txt_g[0].upper() + txt_g[1:]
+            valor = gf_item.get("valor") or gf_item.get("valor_cobertura")
+            valor_str = ""
+            if valor:
+                try:
+                    valor_str = f" - Cobertura: Q. {float(valor):,.2f}"
+                except (ValueError, TypeError):
+                    valor_str = ""
+            lineas.append(f"{idx_g}. [GARANTÍA DE FIADOR: {nom_f} | {tg or 'GARANTÍA'}{valor_str}] {txt_g}.")
+
     for f_entry in raw_fiadores:
         cust_obj = None
         f_id = None
         sp_dict = {}
+        f_garantias = []
 
         if isinstance(f_entry, dict):
             f_id = f_entry.get("id") or f_entry.get("customer_id")
             sp_dict = f_entry
+            if isinstance(f_entry.get("garantias"), list):
+                f_garantias = f_entry.get("garantias") or []
             if f_id:
                 try:
                     from apps.customers.models import Customer
@@ -747,11 +776,13 @@ def _construir_resumen_garantias_solicitud(solicitud) -> str:
                 if wi is not None:
                     trab = str(getattr(wi, "company_name", "") or "").strip()
             _agregar_fiador_linea(nom_c, dpi=dpi_c, trabajo=trab, cod=cod_c)
+            _agregar_garantias_de_fiador(nom_c, f_garantias)
         elif sp_dict and (sp_dict.get("nombre") or sp_dict.get("Nombre") or sp_dict.get("first_name")):
             nom_d = sp_dict.get("nombre") or sp_dict.get("Nombre") or f"{sp_dict.get('first_name', '')} {sp_dict.get('last_name', '')}".strip()
             dpi_d = str(sp_dict.get("dpi") or sp_dict.get("DPI") or sp_dict.get("identification_number") or "").strip()
             trab_d = str(sp_dict.get("Lugar_de_Trabajo") or sp_dict.get("lugar_trabajo") or "").strip()
             _agregar_fiador_linea(nom_d, dpi=dpi_d, trabajo=trab_d, cod=str(sp_dict.get("Codigo_de_Cliente") or ""))
+            _agregar_garantias_de_fiador(nom_d, f_garantias)
 
     for gf in garantias_fiador:
         sp = gf.get("especificaciones") if isinstance(gf.get("especificaciones"), dict) else {}
@@ -796,11 +827,14 @@ def _construir_otras_condiciones(solicitud, destino_principal: str) -> str:
     condiciones = []
 
     tipo_doc = str(getattr(solicitud, "tipo_documento", "") or "").strip()
+    clase_doc = str(getattr(solicitud, "clase_de_documento", "") or "").strip()
     tipo_pag = str(getattr(solicitud, "tipo_pagare", "") or "").strip()
-    if tipo_doc or tipo_pag:
+    if tipo_doc or clase_doc or tipo_pag:
         partes_doc = []
         if tipo_doc:
             partes_doc.append(f"Documento legal: {tipo_doc}")
+        if clase_doc:
+            partes_doc.append(f"Clase de documento: {clase_doc}")
         if tipo_pag:
             partes_doc.append(f"Modalidad de pagaré: {tipo_pag}")
         condiciones.append("• " + " | ".join(partes_doc) + ".")

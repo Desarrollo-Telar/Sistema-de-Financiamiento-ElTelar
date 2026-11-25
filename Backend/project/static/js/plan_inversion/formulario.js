@@ -4,10 +4,13 @@ import { urls_p } from '../API/urls_api.js';
 // ESTADO GLOBAL DEL MÓDULO DE PLAN DE INVERSIÓN
 // ==========================================================================
 let guaranteeList = [];
+let fiadoresGarantiasMap = {};
 
 const tipoDocumento = document.getElementById("tipo_documento");
 const tipoPagare = document.getElementById("tipo_pagare");
+const claseDocumento = document.getElementById("clase_de_documento");
 const contenedorPagare = document.getElementById("contenedor_pagare");
+const contenedorClaseDocumento = document.getElementById("contenedor_clase_documento");
 const contenedorFiadores = document.getElementById("contenedor_fiadores");
 const contenedorCreditos = document.getElementById("contenedor_creditos");
 const contenedorNotariosDoc = document.getElementById("contenedor_notarios_doc");
@@ -127,10 +130,10 @@ export async function savePlanInversion(formData, planId = null) {
 }
 
 // ==========================================================================
-// INICIALIZACIÓN DE SELECT2 EN NOTARIOS
+// INICIALIZACIÓN DE SELECT2 EN NOTARIOS Y CHECK DE NOTIFICACIÓN
 // ==========================================================================
-if (notarioDocSelect.length) {
-    notarioDocSelect.select2({
+function inicializarSelect2Notario($element, placeholder = 'Seleccione Notario', dropdownParent = null) {
+    const config = {
         width: '100%',
         ajax: {
             url: urls_p.api_url_notario,
@@ -147,52 +150,39 @@ if (notarioDocSelect.length) {
             },
             cache: true
         },
-        placeholder: 'Seleccione al Notario Responsable',
+        placeholder: placeholder,
         allowClear: true
+    };
+    if (dropdownParent) {
+        config.dropdownParent = dropdownParent;
+    }
+    $element.select2(config);
+}
+
+function toggleCheckNotificarNotario($selectEl, $checkContainer) {
+    if (!$selectEl.length || !$checkContainer.length) return;
+    if ($selectEl.val()) {
+        $checkContainer.fadeIn(180);
+    } else {
+        $checkContainer.fadeOut(150);
+    }
+}
+
+if (notarioDocSelect.length) {
+    inicializarSelect2Notario(notarioDocSelect, 'Seleccione al Notario Responsable');
+    notarioDocSelect.on('change select2:select select2:clear', function () {
+        toggleCheckNotificarNotario(notarioDocSelect, $("#contenedor_notificar_notario_doc"));
     });
 }
 
-$("#garantia_notario_builder").select2({
-    width: '100%',
-    ajax: {
-        url: urls_p.api_url_notario,
-        dataType: 'json',
-        delay: 250,
-        data: function (params) { return { term: params.term }; },
-        processResults: function (data) {
-            return {
-                results: (Array.isArray(data) ? data : []).map(item => ({
-                    id: item.id,
-                    text: item.nombre_completo || item.nombre || `${item.first_name || ''} ${item.last_name || ''}`.trim() || `Usuario #${item.id}`
-                }))
-            };
-        },
-        cache: true
-    },
-    placeholder: 'Seleccione Notario para esta Garantía',
-    allowClear: true
+inicializarSelect2Notario($("#garantia_notario_builder"), 'Seleccione Notario para esta Garantía');
+$("#garantia_notario_builder").on('change select2:select select2:clear', function () {
+    toggleCheckNotificarNotario($("#garantia_notario_builder"), $("#contenedor_notificar_notario_garantia"));
 });
 
-$("#modal_garantia_notario").select2({
-    dropdownParent: $('#modalEditarGarantia'),
-    width: '100%',
-    ajax: {
-        url: urls_p.api_url_notario,
-        dataType: 'json',
-        delay: 250,
-        data: function (params) { return { term: params.term }; },
-        processResults: function (data) {
-            return {
-                results: (Array.isArray(data) ? data : []).map(item => ({
-                    id: item.id,
-                    text: item.nombre_completo || item.nombre || `${item.first_name || ''} ${item.last_name || ''}`.trim() || `Usuario #${item.id}`
-                }))
-            };
-        },
-        cache: true
-    },
-    placeholder: 'Seleccione Notario para esta Garantía',
-    allowClear: true
+inicializarSelect2Notario($("#modal_garantia_notario"), 'Seleccione Notario para esta Garantía', $('#modalEditarGarantia'));
+$("#modal_garantia_notario").on('change select2:select select2:clear', function () {
+    toggleCheckNotificarNotario($("#modal_garantia_notario"), $("#modal_contenedor_notificar_notario"));
 });
 
 // ==========================================================================
@@ -212,22 +202,30 @@ if (formaPago && contenedorPlazoGarantia) {
 }
 
 // ==========================================================================
-// DINAMISMO: DOCUMENTACIÓN LEGAL (PAGARÉ, FIADORES, CRÉDITOS, NOTARIOS)
+// DINAMISMO: DOCUMENTACIÓN LEGAL (PAGARÉ, RECONOCIMIENTO DE DEUDA, ACTA, FIADORES, NOTARIOS)
 // ==========================================================================
 function actualizarVisibilidadDocumento() {
     if (!tipoDocumento) return;
     const docSeleccionado = tipoDocumento.value;
 
     if (contenedorPagare) contenedorPagare.style.display = "none";
+    if (contenedorClaseDocumento) contenedorClaseDocumento.style.display = "none";
     if (contenedorFiadores) contenedorFiadores.style.display = "block";
     if (contenedorCreditos) contenedorCreditos.style.display = "block";
     if (contenedorNotariosDoc) contenedorNotariosDoc.style.display = "none";
 
     if (docSeleccionado === "PAGARE") {
         if (contenedorPagare) $(contenedorPagare).fadeIn(200);
+        if (claseDocumento) claseDocumento.value = "";
         actualizarVisibilidadPagare();
-    } else if (docSeleccionado !== "") {
+    } else if (docSeleccionado === "RECONOCIMIENTO DE DEUDA") {
+        if (contenedorClaseDocumento) $(contenedorClaseDocumento).fadeIn(200);
         if (contenedorNotariosDoc) $(contenedorNotariosDoc).fadeIn(200);
+    } else if (docSeleccionado === "ACTA") {
+        if (claseDocumento) claseDocumento.value = "";
+        if (contenedorNotariosDoc) $(contenedorNotariosDoc).fadeIn(200);
+    } else {
+        if (claseDocumento) claseDocumento.value = "";
     }
 }
 
@@ -247,19 +245,237 @@ if (tipoDocumento) tipoDocumento.addEventListener("change", actualizarVisibilida
 if (tipoPagare) tipoPagare.addEventListener("change", actualizarVisibilidadPagare);
 
 // ==========================================================================
-// AGREGAR FIADORES DINÁMICOS
+// AGREGAR FIADORES DINÁMICOS CON REGISTRO DE GARANTÍAS PROPIAS
 // ==========================================================================
-function agregarFilaFiador(idPreload = null, textPreload = null) {
-    const filaId = 'fiador_' + Date.now() + Math.floor(Math.random() * 100);
-    const nuevaFila = $(`
-        <div class="row mb-2 fila-fiador align-items-center g-2" id="${filaId}">
-            <div class="col-10 col-md-11">
-                <select class="form-control fiador_select customer_id" style="width: 100%;"></select>
+function renderDynamicFiadorFields(filaId) {
+    const $fila = $(`#${filaId}`);
+    if (!$fila.length) return;
+
+    const tipo = $fila.find('.fiador-gar-tipo').val();
+    const $containerWrap = $fila.find('.fiador-dynamic-fields-container');
+    const $fieldsContainer = $fila.find('.fiador-dynamic-fields');
+    $fila.find('.fiador-spec-tipo-nombre').text(tipo || '');
+
+    const estado = ($("#estado_aprobacion").val() || "").toUpperCase();
+    if (estado !== "ACEPTADO") {
+        $containerWrap.hide();
+        $fieldsContainer.empty();
+        return;
+    }
+
+    $containerWrap.show();
+    $fieldsContainer.html(generarHTMLCamposEspecificacion(tipo, `${filaId}_spec_`));
+}
+
+function evaluarNotarioFiadorBuilder(filaId) {
+    const $fila = $(`#${filaId}`);
+    if (!$fila.length) return;
+
+    const tipo = $fila.find('.fiador-gar-tipo').val();
+    const valor = parseFloat($fila.find('.fiador-gar-valor').val()) || 0;
+    const $notarioWrap = $fila.find('.fiador-gar-notario-wrap');
+    const $notarioSelect = $fila.find('.fiador-gar-notario');
+
+    if (tipo === "CHEQUE / PAGARE" && valor > 500) {
+        $notarioWrap.fadeIn(180);
+    } else {
+        $notarioWrap.fadeOut(150);
+        $notarioSelect.val(null).trigger('change');
+    }
+}
+
+function renderFiadorGuarantees(filaId) {
+    const $fila = $(`#${filaId}`);
+    if (!$fila.length) return;
+
+    const lista = fiadoresGarantiasMap[filaId] || [];
+    const $container = $fila.find('.fiador-lista-garantias');
+    const $badge = $fila.find('.fiador-garantias-count');
+    const estadoAprobado = ($("#estado_aprobacion").val() || "").toUpperCase() === "ACEPTADO";
+
+    $badge.text(`${lista.length} garantía${lista.length === 1 ? '' : 's'}`);
+    $badge.toggleClass('bg-danger', lista.length > 0).toggleClass('bg-secondary', lista.length === 0);
+
+    if (lista.length === 0) {
+        $container.html(`
+            <div class="text-center text-muted small py-2 border rounded-3 bg-white bg-opacity-50">
+                <i class="bi bi-shield-plus me-1"></i> Aún no se han agregado garantías para este fiador.
             </div>
-            <div class="col-2 col-md-1">
-                <button type="button" class="btn btn-outline-danger w-100 btn-eliminar-item" title="Quitar Fiador">
-                    <i class="bi bi-trash"></i>
-                </button>
+        `);
+        return;
+    }
+
+    $container.empty();
+
+    lista.forEach((g, index) => {
+        const notarioText = (g.notario && g.notario.nombre) ? g.notario.nombre : null;
+        const notarioNotifyBadge = (g.notario && g.notario.id)
+            ? (g.notario.notificar !== false
+                ? `<span class="badge bg-success-subtle text-success border border-success-subtle ms-1"><i class="bi bi-envelope-check"></i> Notificar</span>`
+                : `<span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle ms-1"><i class="bi bi-envelope-slash"></i> Sin notificación</span>`)
+            : '';
+
+        const specs = g.especificaciones || {};
+        const keys = Object.keys(specs);
+        const hasSpecs = keys.some(k => specs[k] !== null && specs[k] !== '' && specs[k] !== undefined);
+
+        let statusBadgeSpecsHTML = '';
+        if (estadoAprobado) {
+            if (hasSpecs) {
+                statusBadgeSpecsHTML = `<span class="badge-specs-complete ms-1"><i class="bi bi-check-circle-fill"></i> Especificaciones completadas</span>`;
+            } else {
+                statusBadgeSpecsHTML = `<span class="badge-specs-pending ms-1"><i class="bi bi-exclamation-triangle-fill"></i> Especificaciones pendientes</span>`;
+            }
+        }
+
+        let specsBadgesHTML = '';
+        if (hasSpecs) {
+            specsBadgesHTML = Object.entries(specs)
+                .filter(([_, val]) => val !== null && val !== '' && val !== undefined)
+                .map(([key, val]) => `
+                    <div class="spec-chip">
+                        <span class="spec-key">${key.replace(/_/g, ' ')}</span>
+                        <span class="spec-val">${val}</span>
+                    </div>
+                `).join('');
+        }
+
+        const cardHTML = $(`
+            <div class="guarantee-item-card fiador-guarantee-item animate-fade-in mb-2 p-3" data-fila-id="${filaId}" data-index="${index}">
+                <div class="d-flex justify-content-between align-items-start gap-2 flex-wrap">
+                    <div>
+                        <div class="d-flex align-items-center flex-wrap gap-1">
+                            <span class="guarantee-tag">
+                                <i class="bi bi-shield-shaded me-1"></i> ${g.tipo}
+                            </span>
+                            <span class="badge bg-dark-subtle text-dark border">Garantía de Fiador</span>
+                            ${statusBadgeSpecsHTML}
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 mt-1 small">${g.descripcion || 'Sin descripción'}</h6>
+                        <span class="text-xs text-muted">
+                            Cobertura: <strong class="text-dark font-monospace">${formatearMonedaQ(g.valor)}</strong>
+                            ${notarioText ? `&nbsp;|&nbsp; <span class="badge bg-secondary"><i class="bi bi-person-fill"></i> Notario: ${notarioText}</span>${notarioNotifyBadge}` : ''}
+                        </span>
+                    </div>
+                    <div class="text-end d-flex align-items-center gap-1">
+                        <button type="button" class="btn btn-sm ${estadoAprobado && !hasSpecs ? 'btn-danger btn-completar-pulsing text-white' : 'btn-outline-primary'} btn-editar-garantia-fiador" data-fila-id="${filaId}" data-index="${index}" title="Modificar Garantía del Fiador">
+                            <i class="bi bi-pencil-square"></i> ${estadoAprobado && !hasSpecs ? 'Completar' : 'Modificar'}
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger btn-remover-garantia-fiador" data-fila-id="${filaId}" data-index="${index}" title="Quitar Garantía del Fiador">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                ${hasSpecs && specsBadgesHTML ? `
+                    <div class="mt-2">
+                        <a href="javascript:void(0);" class="btn-toggle-specs small text-primary text-decoration-none fw-bold" style="font-size: 0.75rem;">
+                            <i class="bi bi-chevron-down"></i> Ver Especificaciones (${Object.keys(specs).length} campos)
+                        </a>
+                        <div class="specs-detail-grid mt-2" style="display: none;">
+                            ${specsBadgesHTML}
+                        </div>
+                    </div>
+                ` : ''}
+            </div>
+        `);
+
+        $container.append(cardHTML);
+    });
+}
+
+function agregarFilaFiador(idPreload = null, textPreload = null, garantiasPreload = []) {
+    const filaId = 'fiador_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+    fiadoresGarantiasMap[filaId] = [];
+
+    const nuevaFila = $(`
+        <div class="fila-fiador fiador-card mb-3" id="${filaId}">
+            <div class="row align-items-center g-2">
+                <div class="col-10 col-md-11">
+                    <select class="form-control fiador_select customer_id" style="width: 100%;"></select>
+                </div>
+                <div class="col-2 col-md-1">
+                    <button type="button" class="btn btn-outline-danger w-100 btn-eliminar-fiador" data-fila-id="${filaId}" title="Quitar Fiador">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Opción para habilitar registro de garantías del fiador (se habilita al seleccionar fiador) -->
+            <div class="fiador-garantia-toggle-wrapper mt-2 pt-2 border-top" style="display: none;">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
+                        <input class="form-check-input toggle-fiador-garantia" type="checkbox" role="switch" id="toggle_gar_${filaId}" data-fila-id="${filaId}">
+                        <label class="form-check-label fw-semibold text-dark small" for="toggle_gar_${filaId}">
+                            <i class="bi bi-shield-lock-fill text-danger me-1"></i> ¿Este fiador deja registro de garantía?
+                        </label>
+                    </div>
+                    <span class="badge bg-secondary rounded-pill fiador-garantias-count">0 garantías</span>
+                </div>
+
+                <!-- Panel de Garantías del Fiador -->
+                <div class="fiador-garantias-panel mt-3" style="display: none;">
+                    <div class="fiador-guarantee-builder p-3 rounded-3 border bg-white bg-opacity-75 mb-3">
+                        <h6 class="fw-bold small text-dark mb-2">
+                            <i class="bi bi-plus-circle-fill text-danger me-1"></i> Registrar Garantía del Fiador
+                        </h6>
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <label class="form-label-custom">Tipo de Garantía <span class="req">*</span></label>
+                                <select class="form-control glass-select fiador-gar-tipo" data-fila-id="${filaId}">
+                                    <option value="HIPOTECA">HIPOTECA</option>
+                                    <option value="DERECHO DE POSESION HIPOTECA">DERECHO DE POSESION HIPOTECA</option>
+                                    <option value="CHEQUE / PAGARE">CHEQUE / PAGARE</option>
+                                    <option value="VEHICULO">VEHICULO</option>
+                                    <option value="MOBILIARIA">MOBILIARIA</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label-custom">Descripción / Resumen <span class="req">*</span></label>
+                                <input type="text" class="form-control glass-input fiador-gar-desc" placeholder="Ej. Inmueble o vehículo propiedad del fiador...">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label-custom">Valor Cobertura (Q) <span class="req">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0 fw-bold text-muted">Q</span>
+                                    <input type="number" step="0.01" class="form-control glass-input border-start-0 fiador-gar-valor" data-fila-id="${filaId}" placeholder="0.00">
+                                </div>
+                            </div>
+
+                            <!-- Notario condicional para Cheque/Pagaré > 500 -->
+                            <div class="col-md-6 fiador-gar-notario-wrap" style="display: none;">
+                                <label class="form-label-custom text-danger">
+                                    <i class="bi bi-person-check-fill"></i> Notario Asignado a esta Garantía
+                                </label>
+                                <select class="form-control glass-select fiador-gar-notario" style="width: 100%;"></select>
+                                <div class="fiador-gar-notificar-wrap notario-notify-box mt-2" style="display: none;">
+                                    <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
+                                        <input class="form-check-input fiador-gar-notificar" type="checkbox" role="switch" id="notificar_fgar_${filaId}" checked>
+                                        <label class="form-check-label fw-semibold text-dark small" for="notificar_fgar_${filaId}">
+                                            <i class="bi bi-envelope-check-fill text-danger me-1"></i> Notificar al notario
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Especificaciones dinámicas si estado === ACEPTADO -->
+                        <div class="fiador-dynamic-fields-container dynamic-fields-wrapper mt-3" style="display: none;">
+                            <div class="dynamic-fields-header">
+                                <i class="bi bi-file-earmark-ruled-fill"></i>
+                                <span>Especificaciones Técnicas y Registrales (<strong class="fiador-spec-tipo-nombre">HIPOTECA</strong>)</span>
+                            </div>
+                            <div class="fiador-dynamic-fields row g-2"></div>
+                        </div>
+
+                        <div class="text-end mt-3">
+                            <button type="button" class="btn-glass-secondary py-1 px-3 btn-agregar-garantia-fiador" data-fila-id="${filaId}">
+                                <i class="bi bi-plus-lg"></i> Agregar Garantía al Fiador
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="fiador-lista-garantias"></div>
+                </div>
             </div>
         </div>
     `);
@@ -288,17 +504,177 @@ function agregarFilaFiador(idPreload = null, textPreload = null) {
             cache: true
         },
         placeholder: 'Buscar cliente por nombre o código...',
-        minimumInputLength: 1
+        minimumInputLength: 1,
+        allowClear: true
+    });
+
+    // Inicializar Select2 del notario para garantías de este fiador
+    const $notarioFiadorSelect = nuevaFila.find('.fiador-gar-notario');
+    inicializarSelect2Notario($notarioFiadorSelect, 'Seleccione Notario para esta Garantía');
+    $notarioFiadorSelect.on('change select2:select select2:clear', function () {
+        toggleCheckNotificarNotario($notarioFiadorSelect, nuevaFila.find('.fiador-gar-notificar-wrap'));
+    });
+
+    // Mostrar/ocultar opción de garantía al seleccionar o limpiar fiador
+    selectEl.on('change select2:select select2:clear', function () {
+        const val = $(this).val();
+        const $toggleWrap = nuevaFila.find('.fiador-garantia-toggle-wrapper');
+        if (val) {
+            $toggleWrap.slideDown(200);
+        } else {
+            $toggleWrap.slideUp(180);
+            nuevaFila.find('.toggle-fiador-garantia').prop('checked', false);
+            nuevaFila.find('.fiador-garantias-panel').hide();
+            fiadoresGarantiasMap[filaId] = [];
+            renderFiadorGuarantees(filaId);
+            actualizarMonitorCobertura();
+        }
     });
 
     if (idPreload) {
         const option = new Option(textPreload || `Cliente #${idPreload}`, idPreload, true, true);
         selectEl.append(option).trigger('change');
     }
+
+    if (Array.isArray(garantiasPreload) && garantiasPreload.length > 0) {
+        fiadoresGarantiasMap[filaId] = garantiasPreload.map(g => ({
+            id: Date.now() + Math.floor(Math.random() * 10000),
+            tipo: g.tipo,
+            descripcion: g.descripcion,
+            valor: parseFloat(g.valor) || 0,
+            notario: g.notario || null,
+            especificaciones: g.especificaciones || {}
+        }));
+        nuevaFila.find('.toggle-fiador-garantia').prop('checked', true);
+        nuevaFila.find('.fiador-garantias-panel').show();
+        renderDynamicFiadorFields(filaId);
+        renderFiadorGuarantees(filaId);
+        actualizarMonitorCobertura();
+    } else {
+        renderFiadorGuarantees(filaId);
+    }
 }
 
 $("#btnAgregarFiador").click(function () {
     agregarFilaFiador();
+});
+
+// Eventos delegados para garantías de fiadores
+$(document).on('click', '.btn-eliminar-fiador', function () {
+    const filaId = $(this).data('fila-id');
+    delete fiadoresGarantiasMap[filaId];
+    $(this).closest('.fila-fiador').remove();
+    actualizarMonitorCobertura();
+});
+
+$(document).on('change', '.toggle-fiador-garantia', function () {
+    const filaId = $(this).data('fila-id');
+    const $fila = $(`#${filaId}`);
+    const $panel = $fila.find('.fiador-garantias-panel');
+
+    if ($(this).is(':checked')) {
+        $panel.slideDown(220);
+        renderDynamicFiadorFields(filaId);
+    } else {
+        $panel.slideUp(200);
+        fiadoresGarantiasMap[filaId] = [];
+        renderFiadorGuarantees(filaId);
+        actualizarMonitorCobertura();
+    }
+});
+
+$(document).on('change', '.fiador-gar-tipo', function () {
+    const filaId = $(this).data('fila-id');
+    renderDynamicFiadorFields(filaId);
+    evaluarNotarioFiadorBuilder(filaId);
+});
+
+$(document).on('keyup change', '.fiador-gar-valor', function () {
+    const filaId = $(this).data('fila-id');
+    evaluarNotarioFiadorBuilder(filaId);
+});
+
+$(document).on('click', '.btn-agregar-garantia-fiador', function () {
+    const filaId = $(this).data('fila-id');
+    const $fila = $(`#${filaId}`);
+    if (!$fila.length) return;
+
+    const tipo = $fila.find('.fiador-gar-tipo').val();
+    const descripcion = ($fila.find('.fiador-gar-desc').val() || "").trim();
+    const valor = parseFloat($fila.find('.fiador-gar-valor').val()) || 0;
+    const estado = ($("#estado_aprobacion").val() || "").toUpperCase();
+
+    if (!tipo) {
+        Swal.fire('Atención', 'Seleccione el tipo de garantía del fiador.', 'warning');
+        return;
+    }
+    if (!descripcion) {
+        Swal.fire('Atención', 'Ingrese la descripción de la garantía del fiador.', 'warning');
+        $fila.find('.fiador-gar-desc').focus();
+        return;
+    }
+    if (valor <= 0) {
+        Swal.fire('Atención', 'Ingrese un valor de cobertura válido superior a Q 0.00.', 'warning');
+        $fila.find('.fiador-gar-valor').focus();
+        return;
+    }
+
+    let notarioGarantia = null;
+    const $notarioSelect = $fila.find('.fiador-gar-notario');
+    if (tipo === "CHEQUE / PAGARE" && valor > 500 && $notarioSelect.val()) {
+        notarioGarantia = {
+            id: parseInt($notarioSelect.val()),
+            nombre: $notarioSelect.find('option:selected').text(),
+            notificar: $fila.find('.fiador-gar-notificar').is(':checked')
+        };
+    }
+
+    let especificaciones = {};
+    if (estado === "ACEPTADO") {
+        especificaciones = extraerEspecificacionesGenerico(tipo, `${filaId}_spec_`);
+    }
+
+    if (!Array.isArray(fiadoresGarantiasMap[filaId])) {
+        fiadoresGarantiasMap[filaId] = [];
+    }
+
+    fiadoresGarantiasMap[filaId].push({
+        id: Date.now() + Math.floor(Math.random() * 1000),
+        tipo: tipo,
+        descripcion: descripcion,
+        valor: valor,
+        notario: notarioGarantia,
+        especificaciones: especificaciones
+    });
+
+    // Resetear inputs del creador de garantía del fiador
+    $fila.find('.fiador-gar-desc').val('');
+    $fila.find('.fiador-gar-valor').val('');
+    $notarioSelect.val(null).trigger('change');
+    $fila.find('.fiador-gar-notificar').prop('checked', true);
+    renderDynamicFiadorFields(filaId);
+    evaluarNotarioFiadorBuilder(filaId);
+
+    renderFiadorGuarantees(filaId);
+    actualizarMonitorCobertura();
+    showToast('Garantía del fiador agregada exitosamente.', 'success');
+});
+
+$(document).on('click', '.btn-remover-garantia-fiador', function () {
+    const filaId = $(this).data('fila-id');
+    const index = parseInt($(this).data('index'));
+    if (fiadoresGarantiasMap[filaId] && !isNaN(index) && index >= 0 && index < fiadoresGarantiasMap[filaId].length) {
+        fiadoresGarantiasMap[filaId].splice(index, 1);
+        renderFiadorGuarantees(filaId);
+        actualizarMonitorCobertura();
+        showToast('Garantía del fiador eliminada.', 'info');
+    }
+});
+
+$(document).on('click', '.btn-editar-garantia-fiador', function () {
+    const filaId = $(this).data('fila-id');
+    const index = parseInt($(this).data('index'));
+    abrirModalEdicionGarantia(index, filaId);
 });
 
 // ==========================================================================
@@ -386,6 +762,10 @@ function actualizarEstadoAprobacion() {
 
     // Refrescar tarjetas de garantías para actualizar badges de especificaciones pendientes / completadas
     renderGuaranteeList();
+    Object.keys(fiadoresGarantiasMap).forEach(filaId => {
+        renderDynamicFiadorFields(filaId);
+        renderFiadorGuarantees(filaId);
+    });
 }
 
 $("#estado_aprobacion").on("change", actualizarEstadoAprobacion);
@@ -773,9 +1153,21 @@ function formatearMonedaQ(monto) {
     });
 }
 
+function obtenerGarantiasFiadores() {
+    const todas = [];
+    $(".fila-fiador").each(function () {
+        const filaId = $(this).attr("id");
+        const lista = fiadoresGarantiasMap[filaId] || [];
+        lista.forEach(g => todas.push(g));
+    });
+    return todas;
+}
+
 function actualizarMonitorCobertura() {
     const montoRequerido = parseFloat($("#total_value_of_the_product_or_service").val()) || 0;
-    const totalGarantias = guaranteeList.reduce((acc, g) => acc + (parseFloat(g.valor) || 0), 0);
+    const totalGarantiasPlan = guaranteeList.reduce((acc, g) => acc + (parseFloat(g.valor) || 0), 0);
+    const totalGarantiasFiadores = obtenerGarantiasFiadores().reduce((acc, g) => acc + (parseFloat(g.valor) || 0), 0);
+    const totalGarantias = totalGarantiasPlan + totalGarantiasFiadores;
 
     $("#display-monto-solicitado").text(formatearMonedaQ(montoRequerido));
     $("#registered-guarantee-total").text(formatearMonedaQ(totalGarantias));
@@ -828,6 +1220,11 @@ function renderGuaranteeList() {
 
     guaranteeList.forEach((g, index) => {
         const notarioText = (g.notario && g.notario.nombre) ? g.notario.nombre : null;
+        const notarioNotifyBadge = (g.notario && g.notario.id)
+            ? (g.notario.notificar !== false
+                ? `<span class="badge bg-success-subtle text-success border border-success-subtle ms-1"><i class="bi bi-envelope-check"></i> Notificar</span>`
+                : `<span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle ms-1"><i class="bi bi-envelope-slash"></i> Sin notificación</span>`)
+            : '';
         const specs = g.especificaciones || {};
         const keys = Object.keys(specs);
         const hasSpecs = keys.some(k => specs[k] !== null && specs[k] !== '' && specs[k] !== undefined);
@@ -866,7 +1263,7 @@ function renderGuaranteeList() {
                         <h6 class="fw-bold text-dark mb-1 mt-1">${g.descripcion || 'Sin descripción'}</h6>
                         <span class="text-xs text-muted">
                             Monto Cobertura: <strong class="text-dark font-monospace">${formatearMonedaQ(g.valor)}</strong>
-                            ${notarioText ? `&nbsp;|&nbsp; <span class="badge bg-secondary"><i class="bi bi-person-fill"></i> Notario: ${notarioText}</span>` : ''}
+                            ${notarioText ? `&nbsp;|&nbsp; <span class="badge bg-secondary"><i class="bi bi-person-fill"></i> Notario: ${notarioText}</span>${notarioNotifyBadge}` : ''}
                         </span>
                     </div>
 
@@ -940,7 +1337,9 @@ $("#modal_garantia_tipo").on("change", function () {
     const tipo = $(this).val();
     $("#modal_spec_tipo_nombre").text(tipo);
     const index = parseInt($("#modal_edit_index").val());
-    const existingSpecs = (!isNaN(index) && guaranteeList[index] && guaranteeList[index].tipo === tipo) ? guaranteeList[index].especificaciones : {};
+    const fiadorFilaId = $("#modal_edit_fiador_id").val() || "";
+    const targetList = fiadorFilaId ? (fiadoresGarantiasMap[fiadorFilaId] || []) : guaranteeList;
+    const existingSpecs = (!isNaN(index) && targetList[index] && targetList[index].tipo === tipo) ? targetList[index].especificaciones : {};
     
     $("#modal_dynamic_fields").html(generarHTMLCamposEspecificacion(tipo, 'modal_json_', existingSpecs));
     evaluarNotarioModal();
@@ -950,13 +1349,15 @@ $("#modal_garantia_valor").on("keyup change", function () {
     evaluarNotarioModal();
 });
 
-function abrirModalEdicionGarantia(index) {
-    if (isNaN(index) || index < 0 || index >= guaranteeList.length) {
+function abrirModalEdicionGarantia(index, fiadorFilaId = null) {
+    const targetList = fiadorFilaId ? (fiadoresGarantiasMap[fiadorFilaId] || []) : guaranteeList;
+    if (isNaN(index) || index < 0 || index >= targetList.length) {
         return;
     }
 
-    const g = guaranteeList[index];
+    const g = targetList[index];
     $("#modal_edit_index").val(index);
+    $("#modal_edit_fiador_id").val(fiadorFilaId || "");
     $("#modal_garantia_tipo").val(g.tipo);
     $("#modal_spec_tipo_nombre").text(g.tipo);
     $("#modal_garantia_desc").val(g.descripcion || "");
@@ -971,12 +1372,18 @@ function abrirModalEdicionGarantia(index) {
         if (g.notario && g.notario.id) {
             const option = new Option(g.notario.nombre, g.notario.id, true, true);
             $("#modal_garantia_notario").empty().append(option).trigger('change');
+            $("#modal_notificar_notario").prop('checked', g.notario.notificar !== false);
+            $("#modal_contenedor_notificar_notario").show();
         } else {
             $("#modal_garantia_notario").val(null).trigger('change');
+            $("#modal_notificar_notario").prop('checked', true);
+            $("#modal_contenedor_notificar_notario").hide();
         }
     } else {
         $("#modal_contenedor_notario").hide();
         $("#modal_garantia_notario").val(null).trigger('change');
+        $("#modal_notificar_notario").prop('checked', true);
+        $("#modal_contenedor_notificar_notario").hide();
     }
 
     // Abrir Modal Bootstrap
@@ -991,13 +1398,16 @@ function abrirModalEdicionGarantia(index) {
 
 $(document).on('click', '.btn-editar-garantia', function () {
     const index = parseInt($(this).data('index'));
-    abrirModalEdicionGarantia(index);
+    abrirModalEdicionGarantia(index, null);
 });
 
 // Guardar los cambios hechos en el Modal
 $("#btnGuardarEdicionGarantia").click(function () {
     const index = parseInt($("#modal_edit_index").val());
-    if (isNaN(index) || index < 0 || index >= guaranteeList.length) {
+    const fiadorFilaId = $("#modal_edit_fiador_id").val() || "";
+    const targetList = fiadorFilaId ? (fiadoresGarantiasMap[fiadorFilaId] || []) : guaranteeList;
+
+    if (isNaN(index) || index < 0 || index >= targetList.length) {
         return;
     }
 
@@ -1028,16 +1438,17 @@ $("#btnGuardarEdicionGarantia").click(function () {
     if (tipo === "CHEQUE / PAGARE" && valor > 500 && notarioSelect.val()) {
         notarioGarantia = {
             id: parseInt(notarioSelect.val()),
-            nombre: notarioSelect.find('option:selected').text()
+            nombre: notarioSelect.find('option:selected').text(),
+            notificar: $("#modal_notificar_notario").is(":checked")
         };
     }
 
     // Capturar especificaciones desde el modal
     const especificaciones = extraerEspecificacionesGenerico(tipo, 'modal_json_');
 
-    // Actualizar elemento en guaranteeList preservando ID
-    guaranteeList[index] = {
-        ...guaranteeList[index],
+    // Actualizar elemento en la lista correspondiente preservando ID
+    targetList[index] = {
+        ...targetList[index],
         tipo: tipo,
         descripcion: descripcion,
         valor: valor,
@@ -1054,7 +1465,12 @@ $("#btnGuardarEdicionGarantia").click(function () {
         $(modalEl).modal('hide');
     }
 
-    renderGuaranteeList();
+    if (fiadorFilaId) {
+        renderFiadorGuarantees(fiadorFilaId);
+        actualizarMonitorCobertura();
+    } else {
+        renderGuaranteeList();
+    }
     showToast('Garantía modificada y especificaciones guardadas exitosamente.', 'success');
 });
 
@@ -1090,7 +1506,8 @@ $("#btnAgregarGarantia").click(function () {
     if (tipo === "CHEQUE / PAGARE" && valor > 500 && notarioSelect.val()) {
         notarioGarantia = {
             id: parseInt(notarioSelect.val()),
-            nombre: notarioSelect.find('option:selected').text()
+            nombre: notarioSelect.find('option:selected').text(),
+            notificar: $("#notificar_notario_garantia").is(":checked")
         };
     }
 
@@ -1114,6 +1531,7 @@ $("#btnAgregarGarantia").click(function () {
     // Resetear inputs del creador
     $("#garantia_desc_input").val('');
     $("#garantia_valor_input").val('');
+    $("#notificar_notario_garantia").prop('checked', true);
     renderDynamicGuaranteeFields();
     evaluarNotarioBuilder();
 
@@ -1173,7 +1591,17 @@ function validarFormulario() {
         return false;
     }
 
-    if ($("#tipo_documento").val() === "PAGARE") {
+    const tipoDocVal = $("#tipo_documento").val();
+    const claseDocVal = ($("#clase_de_documento").val() || "").trim().toUpperCase();
+
+    if (tipoDocVal === "RECONOCIMIENTO DE DEUDA") {
+        if (!claseDocVal) {
+            Swal.fire('Campo requerido', 'Debe seleccionar la clase de documento (Individual, Fiduciario o Mobiliario) para el Reconocimiento de Deuda.', 'warning');
+            return false;
+        }
+    }
+
+    if (tipoDocVal === "PAGARE") {
         const tipoPag = $("#tipo_pagare").val();
         if (!tipoPag) {
             Swal.fire('Campo requerido', 'Debe seleccionar la modalidad de pagaré.', 'warning');
@@ -1185,37 +1613,87 @@ function validarFormulario() {
             return false;
         }
 
-        let fiadorVacio = false;
-        $(".fiador_select").each(function () {
-            if (!$(this).val()) fiadorVacio = true;
-        });
-        if (fiadorVacio) {
-            Swal.fire('Campo requerido', 'Todos los fiadores agregados deben tener un cliente seleccionado.', 'warning');
-            return false;
-        }
-
         if (tipoPag === "Restructuracion" && $(".credito_vigente").length === 0) {
             Swal.fire('Campo requerido', 'Debe agregar al menos un crédito anterior vigente para restructuración.', 'warning');
             return false;
         }
+    }
 
-        let creditoVacio = false;
-        $(".credito_vigente").each(function () {
-            if (!$(this).val()) creditoVacio = true;
-        });
-        if (creditoVacio) {
-            Swal.fire('Campo requerido', 'Todos los créditos vigentes agregados deben estar seleccionados.', 'warning');
-            return false;
+    // Validar que todos los fiadores agregados tengan cliente seleccionado
+    let fiadorVacio = false;
+    let fiadorSinGarantiaMarcada = false;
+    $(".fila-fiador").each(function () {
+        const filaId = $(this).attr("id");
+        const val = $(this).find(".fiador_select").val();
+        if (!val) {
+            fiadorVacio = true;
+        } else if ($(this).find(".toggle-fiador-garantia").is(":checked")) {
+            const listaF = fiadoresGarantiasMap[filaId] || [];
+            if (listaF.length === 0) {
+                fiadorSinGarantiaMarcada = true;
+            }
+        }
+    });
+    if (fiadorVacio) {
+        Swal.fire('Campo requerido', 'Todos los fiadores agregados deben tener un cliente seleccionado.', 'warning');
+        return false;
+    }
+    if (fiadorSinGarantiaMarcada) {
+        Swal.fire('Garantía del Fiador', 'Marcó que un fiador deja garantía, pero no ha agregado ninguna garantía en su sección. Agregue al menos una garantía o desactive la opción.', 'warning');
+        return false;
+    }
+
+    let creditoVacio = false;
+    $(".credito_vigente").each(function () {
+        if (!$(this).val()) creditoVacio = true;
+    });
+    if (creditoVacio) {
+        Swal.fire('Campo requerido', 'Todos los créditos vigentes agregados deben estar seleccionados.', 'warning');
+        return false;
+    }
+
+    // Validación de Garantías (Plan + Fiadores)
+    const garantiasFiadores = obtenerGarantiasFiadores();
+    const todasLasGarantias = [...guaranteeList, ...garantiasFiadores];
+
+    // Reglas específicas según Clase de Documento en Reconocimiento de Deuda
+    if (tipoDocVal === "RECONOCIMIENTO DE DEUDA") {
+        if (claseDocVal === "FIDUCIARIO" || claseDocVal === "FIDUCIARIA") {
+            let cantidadFiadores = 0;
+            $(".fila-fiador .fiador_select").each(function () {
+                if ($(this).val()) cantidadFiadores++;
+            });
+            if (cantidadFiadores === 0) {
+                Swal.fire(
+                    'Fiador Requerido',
+                    'Para un Reconocimiento de Deuda de clase Fiduciario debe registrar al menos un fiador.',
+                    'warning'
+                );
+                return false;
+            }
+        }
+
+        if (claseDocVal === "MOBILIARIO" || claseDocVal === "MOBILIARIA") {
+            const tieneGarantiaMobiliaria = todasLasGarantias.some(
+                g => (g.tipo || "").trim().toUpperCase() === "MOBILIARIA"
+            );
+            if (!tieneGarantiaMobiliaria) {
+                Swal.fire(
+                    'Garantía Mobiliaria Requerida',
+                    'Para un Reconocimiento de Deuda de clase Mobiliario debe registrar al menos una garantía de tipo MOBILIARIA (ya sea en el deudor o en algún fiador).',
+                    'warning'
+                );
+                return false;
+            }
         }
     }
 
-    // Validación de Garantías
-    if (guaranteeList.length === 0) {
+    if (todasLasGarantias.length === 0) {
         Swal.fire('Garantías requeridas', 'Debe registrar al menos una garantía para la solicitud de financiamiento.', 'warning');
         return false;
     }
 
-    const sumaGarantias = guaranteeList.reduce((acc, g) => acc + (parseFloat(g.valor) || 0), 0);
+    const sumaGarantias = todasLasGarantias.reduce((acc, g) => acc + (parseFloat(g.valor) || 0), 0);
     if (sumaGarantias < valorTotalProducto) {
         Swal.fire({
             icon: "error",
@@ -1234,6 +1712,13 @@ function validarFormulario() {
             const values = Object.values(specs).filter(v => v !== null && v !== '' && v !== undefined);
             if (values.length === 0) {
                 garantiasIncompletas.push(`• ${g.tipo}: ${g.descripcion || 'Sin descripción'}`);
+            }
+        });
+        garantiasFiadores.forEach((g) => {
+            const specs = g.especificaciones || {};
+            const values = Object.values(specs).filter(v => v !== null && v !== '' && v !== undefined);
+            if (values.length === 0) {
+                garantiasIncompletas.push(`• [Fiador] ${g.tipo}: ${g.descripcion || 'Sin descripción'}`);
             }
         });
 
@@ -1292,14 +1777,16 @@ $("#frmInvestmentPlan").on("submit", async function (e) {
 
     const planId = $("#investment_plan_id").val() || null;
     const montoInicial = $("#total_value_of_the_product_or_service").val() ? parseFloat($("#total_value_of_the_product_or_service").val()) : 0.00;
+    const tipoDocumentoVal = $("#tipo_documento").val() || null;
 
     // Recolectar Notarios
     const listaNotariosPayload = [];
-    if ($("#notario_documentacion").val()) {
+    if (tipoDocumentoVal && tipoDocumentoVal !== "PAGARE" && $("#notario_documentacion").val()) {
         listaNotariosPayload.push({
             id: parseInt($("#notario_documentacion").val()),
             nombre: $("#notario_documentacion").find('option:selected').text(),
-            modulo: 'documentacion'
+            modulo: 'documentacion',
+            notificar: $("#notificar_notario_doc").is(":checked")
         });
     }
 
@@ -1309,16 +1796,39 @@ $("#frmInvestmentPlan").on("submit", async function (e) {
             listaNotariosPayload.push({
                 id: g.notario.id,
                 nombre: g.notario.nombre,
-                modulo: 'garantia'
+                modulo: 'garantia',
+                notificar: g.notario.notificar !== false
             });
         }
     });
 
-    // Fiadores
+    // Fiadores con sus garantías: [ { id: 2, garantias: [ ... ] } ]
     const fiadores = [];
-    $(".fiador_select").each(function () {
-        if ($(this).val()) {
-            fiadores.push({ id: parseInt($(this).val()) });
+    $(".fila-fiador").each(function () {
+        const filaId = $(this).attr("id");
+        const fiadorId = $(this).find(".fiador_select").val();
+        if (fiadorId) {
+            const garantiasFiador = (fiadoresGarantiasMap[filaId] || []).map(g => {
+                if (g.notario && g.notario.id) {
+                    listaNotariosPayload.push({
+                        id: g.notario.id,
+                        nombre: g.notario.nombre,
+                        modulo: 'garantia_fiador',
+                        notificar: g.notario.notificar !== false
+                    });
+                }
+                return {
+                    tipo: g.tipo,
+                    descripcion: g.descripcion,
+                    valor: g.valor,
+                    notario: g.notario || null,
+                    especificaciones: g.especificaciones || {}
+                };
+            });
+            fiadores.push({
+                id: parseInt(fiadorId),
+                garantias: garantiasFiador
+            });
         }
     });
 
@@ -1345,8 +1855,9 @@ $("#frmInvestmentPlan").on("submit", async function (e) {
         transfers_or_transfer_of_funds: true,
         type_of_transfers_or_transfer_of_funds: "Local",
         tasa_interes: $("#tasa_interes").val() ? parseFloat($("#tasa_interes").val()) : null,
-        tipo_documento: $("#tipo_documento").val() || null,
-        tipo_pagare: $("#tipo_pagare").val() || null,
+        tipo_documento: tipoDocumentoVal,
+        clase_de_documento: tipoDocumentoVal === "RECONOCIMIENTO DE DEUDA" ? ($("#clase_de_documento").val() || null) : null,
+        tipo_pagare: tipoDocumentoVal === "PAGARE" ? ($("#tipo_pagare").val() || null) : null,
         investment_plan_description: $("#investment_plan_description").val() || "",
         riesgo_comercial: $("#riesgo_comercial").val() || "",
         diganostico_oportunidad: $("#diganostico_oportunidad").val() || "",
@@ -1389,10 +1900,19 @@ $("#frmInvestmentPlan").on("submit", async function (e) {
         }, 1200);
 
     } catch (err) {
+        let mensajeError = err.response?.data?.message || err.message || "No se pudo procesar la solicitud.";
+        const errData = err.response?.data;
+        if (errData && typeof errData === "object" && !errData.message) {
+            const firstKey = Object.keys(errData)[0];
+            if (firstKey) {
+                const val = errData[firstKey];
+                mensajeError = Array.isArray(val) ? val[0] : String(val);
+            }
+        }
         Swal.fire({
             icon: "error",
             title: "Error al Guardar",
-            text: err.response?.data?.message || err.message || "No se pudo procesar la solicitud."
+            text: mensajeError
         });
         console.error("Error al guardar solicitud:", err);
     }
@@ -1413,10 +1933,14 @@ $(document).ready(function () {
         try {
             const planData = JSON.parse(preloadEl.textContent || "{}");
 
-            // Cargar Fiadores
+            // Cargar Fiadores (con sus garantías si existen)
             if (Array.isArray(planData.fiadores)) {
                 planData.fiadores.forEach(f => {
-                    agregarFilaFiador(f.id, f.nombre || `Cliente #${f.id}`);
+                    agregarFilaFiador(
+                        f.id,
+                        f.nombre || `Cliente #${f.id}`,
+                        Array.isArray(f.garantias) ? f.garantias : []
+                    );
                 });
             }
 
@@ -1448,6 +1972,8 @@ $(document).ready(function () {
                     if (n.modulo === 'documentacion' && n.id) {
                         const optionDoc = new Option(n.nombre || `Notario #${n.id}`, n.id, true, true);
                         $("#notario_documentacion").append(optionDoc).trigger('change');
+                        $("#notificar_notario_doc").prop('checked', n.notificar !== false);
+                        $("#contenedor_notificar_notario_doc").show();
                     }
                 });
             }
@@ -1455,6 +1981,9 @@ $(document).ready(function () {
             // Sincronizar selectores
             setTimeout(() => {
                 $('#tipo_documento').trigger('change');
+                if (planData.clase_de_documento) {
+                    $('#clase_de_documento').val(planData.clase_de_documento.toUpperCase());
+                }
                 $('#tipo_pagare').trigger('change');
                 $('#estado_aprobacion').trigger('change');
                 $('#total_value_of_the_product_or_service').trigger('change');

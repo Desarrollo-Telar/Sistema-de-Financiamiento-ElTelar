@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+import json
 
 # FORMULARIO
 from .forms import InvestmentPlanForms
@@ -242,8 +243,56 @@ def update_plan_financiamiento(request, id, customer_code):
     if asesor_autenticado is not None and request.user.rol.role_name == 'Asesor de Crédito':
         es_asesor = True
 
+    fiadores_preload = []
+    fiadores_raw = get_plan.fiador or []
+    if isinstance(fiadores_raw, dict):
+        fiadores_raw = [fiadores_raw]
+    fiador_ids = [f.get('id') for f in fiadores_raw if isinstance(f, dict) and f.get('id')]
+    fiadores_db = {
+        c.id: f"{c.customer_code} - {c.first_name} {c.last_name}".strip()
+        for c in Customer.objects.filter(id__in=fiador_ids)
+    }
+    for f in fiadores_raw:
+        if isinstance(f, dict) and f.get('id'):
+            fid = f.get('id')
+            fiadores_preload.append({
+                'id': fid,
+                'nombre': fiadores_db.get(fid, f.get('nombre') or f"Cliente #{fid}"),
+                'garantias': f.get('garantias') or [],
+            })
+
+    creditos_preload = []
+    creditos_raw = get_plan.credito_anterior_vigente or []
+    if isinstance(creditos_raw, dict):
+        creditos_raw = [creditos_raw]
+    credito_ids = [c.get('id') for c in creditos_raw if isinstance(c, dict) and c.get('id')]
+    creditos_db = {
+        cr.id: f"Crédito: {cr.codigo_credito}"
+        for cr in Credito.objects.filter(id__in=credito_ids)
+    }
+    for c in creditos_raw:
+        if isinstance(c, dict) and c.get('id'):
+            cid = c.get('id')
+            creditos_preload.append({
+                'id': cid,
+                'codigo_credito': creditos_db.get(cid, c.get('codigo_credito') or f"Crédito #{cid}"),
+            })
+
+    preload_data = {
+        'id': get_plan.id,
+        'estado_aprobacion': get_plan.estado_aprobacion or 'PENDIENTE',
+        'tipo_documento': get_plan.tipo_documento or '',
+        'clase_de_documento': get_plan.clase_de_documento or '',
+        'tipo_pagare': get_plan.tipo_pagare or '',
+        'fiadores': fiadores_preload,
+        'creditos': creditos_preload,
+        'garantias': get_plan.garantias or [],
+        'notarios': get_plan.notarios or [],
+    }
+
     context = {
         'plan': get_plan,  # <-- AGREGADO: Enviamos el objeto con los datos existentes
+        'preload_data_json': json.dumps(preload_data, default=str),
         'customer_id': customer_id,
         'cliente': customer_id, # Asegura compatibilidad si usabas cliente.id en el hidden input
         'sucursal': sucursal,

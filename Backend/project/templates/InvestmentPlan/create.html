@@ -263,11 +263,11 @@
                         <option value="PAGARE" {% if plan.tipo_documento == "PAGARE" %}selected{% endif %}>
                             PAGARÉ
                         </option>
-                        <option value="ESCRITURA PUBLICA" {% if plan.tipo_documento == "ESCRITURA PUBLICA" %}selected{% endif %}>
-                            ESCRITURA PÚBLICA
-                        </option>
                         <option value="RECONOCIMIENTO DE DEUDA" {% if plan.tipo_documento == "RECONOCIMIENTO DE DEUDA" %}selected{% endif %}>
                             RECONOCIMIENTO DE DEUDA
+                        </option>
+                        <option value="ACTA" {% if plan.tipo_documento == "ACTA" %}selected{% endif %}>
+                            ACTA
                         </option>
                     </select>
                 </div>
@@ -283,6 +283,19 @@
                         <option value="Restructuracion" {% if plan.tipo_pagare == "Restructuracion" %}selected{% endif %}>Restructuración</option>
                     </select>
                 </div>
+
+                <!-- CONTENEDOR CLASE DE DOCUMENTO (RECONOCIMIENTO DE DEUDA) -->
+                <div class="col-md-6" id="contenedor_clase_documento" style="display:none;">
+                    <label class="form-label-custom" for="clase_de_documento">
+                        Clase de Documento <span class="req">*</span>
+                    </label>
+                    <select id="clase_de_documento" name="clase_de_documento" class="form-control glass-select">
+                        <option value="">-- Seleccione Clase de Documento --</option>
+                        <option value="INDIVIDUAL" {% if plan.clase_de_documento == "INDIVIDUAL" or plan.clase_de_documento == "Individual" %}selected{% endif %}>Individual</option>
+                        <option value="FIDUCIARIO" {% if plan.clase_de_documento == "FIDUCIARIO" or plan.clase_de_documento == "Fiduciario" %}selected{% endif %}>Fiduciario</option>
+                        <option value="MOBILIARIO" {% if plan.clase_de_documento == "MOBILIARIO" or plan.clase_de_documento == "Mobiliario" %}selected{% endif %}>Mobiliario</option>
+                    </select>
+                </div>
             </div>
 
             <!-- NOTARIO DE DOCUMENTACIÓN GLOBAL -->
@@ -293,6 +306,18 @@
                     </label>
                     <select class="form-control glass-select" id="notario_documentacion" style="width: 100%;"></select>
                     <small class="text-muted mt-1 d-block">Asigne el notario responsable de faccionar la escritura o instrumento legal.</small>
+
+                    <div id="contenedor_notificar_notario_doc" class="notario-notify-box mt-3" style="display:none;">
+                        <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
+                            <input class="form-check-input" type="checkbox" role="switch" id="notificar_notario_doc" name="notificar_notario_doc" checked>
+                            <label class="form-check-label fw-semibold text-dark" for="notificar_notario_doc">
+                                <i class="bi bi-envelope-check-fill text-danger me-1"></i> Notificar al notario por correo electrónico
+                            </label>
+                        </div>
+                        <small class="text-muted d-block mt-1">
+                            Active esta opción para enviar correo electrónico de notificación al notario asignado cuando la solicitud sea aprobada.
+                        </small>
+                    </div>
                 </div>
             </div>
 
@@ -428,6 +453,14 @@
                             <i class="bi bi-person-check-fill"></i> Notario Asignado a esta Garantía
                         </label>
                         <select class="form-control glass-select" id="garantia_notario_builder" style="width: 100%;"></select>
+                        <div id="contenedor_notificar_notario_garantia" class="notario-notify-box mt-2" style="display: none;">
+                            <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
+                                <input class="form-check-input" type="checkbox" role="switch" id="notificar_notario_garantia" checked>
+                                <label class="form-check-label fw-semibold text-dark small" for="notificar_notario_garantia">
+                                    <i class="bi bi-envelope-check-fill text-danger me-1"></i> Notificar al notario
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -539,6 +572,7 @@
                 </div>
                 <div class="modal-body p-4">
                     <input type="hidden" id="modal_edit_index" value="">
+                    <input type="hidden" id="modal_edit_fiador_id" value="">
 
                     <!-- Encabezado / Resumen informativo -->
                     <div class="alert alert-info border-0 rounded-3 mb-4 d-flex align-items-center gap-3" style="background: rgba(2, 132, 199, 0.08); border-left: 4px solid #0284c7 !important;">
@@ -578,6 +612,14 @@
                             <div class="col-md-12" id="modal_contenedor_notario" style="display: none;">
                                 <label class="form-label-custom text-danger" for="modal_garantia_notario">Notario Asignado a esta Garantía</label>
                                 <select class="form-control glass-select" id="modal_garantia_notario" style="width: 100%;"></select>
+                                <div id="modal_contenedor_notificar_notario" class="notario-notify-box mt-2" style="display: none;">
+                                    <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="modal_notificar_notario" checked>
+                                        <label class="form-check-label fw-semibold text-dark small" for="modal_notificar_notario">
+                                            <i class="bi bi-envelope-check-fill text-danger me-1"></i> Notificar al notario
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -613,16 +655,7 @@
 <!-- Pre-carga de datos seguros para modo Edición -->
 {% if plan %}
 <script id="plan-preload-data" type="application/json">
-{
-    "id": {{ plan.id|default:"null" }},
-    "estado_aprobacion": "{{ plan.estado_aprobacion|default:'PENDIENTE' }}",
-    "tipo_documento": "{{ plan.tipo_documento|default:'' }}",
-    "tipo_pagare": "{{ plan.tipo_pagare|default:'' }}",
-    "fiadores": {{ plan.fiador|default:"[]"|safe }},
-    "creditos": {{ plan.credito_anterior_vigente|default:"[]"|safe }},
-    "garantias": {{ plan.garantias|default:"[]"|safe }},
-    "notarios": {{ plan.notarios|default:"[]"|safe }}
-}
+{{ preload_data_json|safe }}
 </script>
 {% endif %}
 

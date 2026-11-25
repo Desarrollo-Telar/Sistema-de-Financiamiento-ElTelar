@@ -132,6 +132,12 @@ box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06)">
                         <span class="label">Tipo de Documento:</span>
                         <span class="value">{{ plan.tipo_documento|default:"N/A" }}</span>
                     </li>
+                    {% if plan.clase_de_documento %}
+                    <li>
+                        <span class="label">Clase de Documento:</span>
+                        <span class="value">{{ plan.clase_de_documento }}</span>
+                    </li>
+                    {% endif %}
                     <li>
                         <span class="label">Tipo de Pagaré:</span>
                         <span class="value">{{ plan.tipo_pagare|default:"N/A" }}</span>

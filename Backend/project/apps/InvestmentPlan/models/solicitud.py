@@ -72,6 +72,10 @@ class InvestmentPlan(models.Model):
     evaluacion_mercado = models.TextField("Evaluación del Mercado", blank=True, null=True)
     sub_destino = models.TextField("Sub destino", blank=True, null=True)
 
+    clase_de_documento = models.CharField("Clase de Documento", blank=True, null=True)
+    cargos_administrativos = models.JSONField("Cargos Administrativos", blank=True, null=True)
+
+
     
     def fecha_primer_pago(self):
         

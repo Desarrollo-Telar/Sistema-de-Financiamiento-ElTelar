@@ -76,13 +76,21 @@ def handle_investment_plan_approval(sender, instance, created, **kwargs):
     if not instance.notarios:
         return
 
-    ids_unicos = {
-        notario["id"]
-        for notario in instance.notarios
-        if notario.get("id")
-    }
+    notarios_por_id = {}
+    for notario in instance.notarios:
+        if not isinstance(notario, dict):
+            continue
+        id_notario = notario.get("id")
+        if not id_notario:
+            continue
+        # Por compatibilidad, si no viene la clave 'notificar' se asume True
+        debe_notificar = bool(notario.get("notificar", True))
+        if id_notario in notarios_por_id:
+            notarios_por_id[id_notario] = notarios_por_id[id_notario] or debe_notificar
+        else:
+            notarios_por_id[id_notario] = debe_notificar
 
-    for id_notario in ids_unicos:
+    for id_notario, debe_notificar in notarios_por_id.items():
         try:
             user_notario = User.objects.get(id=id_notario)
 
@@ -94,12 +102,13 @@ def handle_investment_plan_approval(sender, instance, created, **kwargs):
             if not creado:
                 continue
 
-            send_email_notario(
-                user=user_notario,
-                plan_inversion_id=instance.id,
-                formato="formato_01",
-                uuid=expediente.uuid
-            )
+            if debe_notificar:
+                send_email_notario(
+                    user=user_notario,
+                    plan_inversion_id=instance.id,
+                    formato="formato_01",
+                    uuid=expediente.uuid
+                )
 
         except User.DoesNotExist:
             continue
