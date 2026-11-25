@@ -1199,6 +1199,18 @@ function actualizarMonitorCobertura() {
 $("#total_value_of_the_product_or_service").on("keyup change", actualizarMonitorCobertura);
 
 // ==========================================================================
+// CARGOS ADMINISTRATIVOS: CÁLCULO DE TOTAL EN TIEMPO REAL
+// ==========================================================================
+function actualizarTotalCargosAdministrativos() {
+    const gastosJuridicos = parseFloat($("#cargo_gastos_juridicos").val()) || 0;
+    const otrosGastos = parseFloat($("#cargo_otros_gastos").val()) || 0;
+    const total = gastosJuridicos + otrosGastos;
+    $("#badge-cargos-total").text(`Total: ${formatearMonedaQ(total)}`);
+}
+
+$("#cargo_gastos_juridicos, #cargo_otros_gastos").on("keyup change input", actualizarTotalCargosAdministrativos);
+
+// ==========================================================================
 // RENDERIZADO DE LA LISTA DE GARANTÍAS REGISTRADAS
 // ==========================================================================
 function renderGuaranteeList() {
@@ -1553,6 +1565,18 @@ function validarFormulario() {
         return false;
     }
 
+    if (!$("#tipo_solicitud").val()) {
+        Swal.fire('Campo requerido', 'Debe seleccionar el tipo de solicitud.', 'warning');
+        return false;
+    }
+
+    const gastosJuridicosVal = parseFloat($("#cargo_gastos_juridicos").val() || 0);
+    const otrosGastosVal = parseFloat($("#cargo_otros_gastos").val() || 0);
+    if (gastosJuridicosVal < 0 || otrosGastosVal < 0) {
+        Swal.fire('Valor inválido', 'Los montos de cargos administrativos no pueden ser negativos.', 'warning');
+        return false;
+    }
+
     if (!$("#type_of_product_or_service").val()) {
         Swal.fire('Campo requerido', 'Debe seleccionar el tipo de producto.', 'warning');
         return false;
@@ -1845,9 +1869,21 @@ $("#frmInvestmentPlan").on("submit", async function (e) {
         }
     });
 
+    // Cargos Administrativos: [ { "Gastos Juridicos": 500, "Otros Gastos": 1000 } ]
+    const gastosJuridicosPayload = parseFloat($("#cargo_gastos_juridicos").val()) || 0;
+    const otrosGastosPayload = parseFloat($("#cargo_otros_gastos").val()) || 0;
+    const cargosAdministrativosPayload = [
+        {
+            "Gastos Juridicos": gastosJuridicosPayload,
+            "Otros Gastos": otrosGastosPayload
+        }
+    ];
+
     const payload = {
         customer_id: parseInt($("#customer_id").val()),
         sucursal: parseInt($("#sucursal").val()),
+        tipo_solicitud: $("#tipo_solicitud").val() || null,
+        cargos_administrativos: cargosAdministrativosPayload,
         type_of_product_or_service: $("#type_of_product_or_service").val(),
         total_value_of_the_product_or_service: montoInicial,
         initial_amount: montoInicial,
@@ -1931,12 +1967,38 @@ $(document).ready(function () {
     actualizarVisibilidadDocumento();
     actualizarEstadoAprobacion();
     actualizarMonitorCobertura();
+    actualizarTotalCargosAdministrativos();
 
     // 2. Comprobar si existe script de datos de precarga
     const preloadEl = document.getElementById("plan-preload-data");
     if (preloadEl) {
         try {
             const planData = JSON.parse(preloadEl.textContent || "{}");
+
+            // Cargar Tipo de Solicitud
+            if (planData.tipo_solicitud) {
+                $("#tipo_solicitud").val(planData.tipo_solicitud);
+            }
+
+            // Cargar Cargos Administrativos
+            const cargosRaw = planData.cargos_administrativos;
+            let cargoObj = null;
+            if (Array.isArray(cargosRaw) && cargosRaw.length > 0 && typeof cargosRaw[0] === "object") {
+                cargoObj = cargosRaw[0];
+            } else if (cargosRaw && typeof cargosRaw === "object" && !Array.isArray(cargosRaw)) {
+                cargoObj = cargosRaw;
+            }
+            if (cargoObj) {
+                const gj = cargoObj["Gastos Juridicos"] ?? cargoObj["gastos_juridicos"] ?? "";
+                const og = cargoObj["Otros Gastos"] ?? cargoObj["otros_gastos"] ?? "";
+                if (gj !== "" && gj !== null && gj !== undefined) {
+                    $("#cargo_gastos_juridicos").val(gj);
+                }
+                if (og !== "" && og !== null && og !== undefined) {
+                    $("#cargo_otros_gastos").val(og);
+                }
+                actualizarTotalCargosAdministrativos();
+            }
 
             // Cargar Fiadores (con sus garantías si existen)
             if (Array.isArray(planData.fiadores)) {

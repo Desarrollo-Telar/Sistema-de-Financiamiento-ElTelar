@@ -281,6 +281,8 @@ def update_plan_financiamiento(request, id, customer_code):
     preload_data = {
         'id': get_plan.id,
         'estado_aprobacion': get_plan.estado_aprobacion or 'PENDIENTE',
+        'tipo_solicitud': get_plan.tipo_solicitud or '',
+        'cargos_administrativos': get_plan.cargos_administrativos or [],
         'tipo_documento': get_plan.tipo_documento or '',
         'clase_de_documento': get_plan.clase_de_documento or '',
         'tipo_pagare': get_plan.tipo_pagare or '',

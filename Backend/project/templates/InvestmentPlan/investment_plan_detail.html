@@ -73,6 +73,12 @@ box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06)">
                 <div class="divider"></div>
                 
                 <ul class="detail-list">
+                    {% if plan.tipo_solicitud %}
+                    <li>
+                        <span class="label">Tipo de Solicitud:</span>
+                        <span class="value badge-forma">{{ plan.tipo_solicitud }}</span>
+                    </li>
+                    {% endif %}
                     <li>
                         <span class="label">Tipo de Producto / Servicio:</span>
                         <span class="value">{{ plan.type_of_product_or_service }}</span>
@@ -101,6 +107,16 @@ box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06)">
                         <span class="label">Tasa de Interés:</span>
                         <span class="value">{{ plan.tasa_interes|default:"0.000" }}%</span>
                     </li>
+                    {% if plan.cargos_administrativos %}
+                    {% for cargo in plan.cargos_administrativos %}
+                    {% for concepto, monto_cargo in cargo.items %}
+                    <li>
+                        <span class="label">{{ concepto }}:</span>
+                        <span class="value">Q {{ monto_cargo|floatformat:2 }}</span>
+                    </li>
+                    {% endfor %}
+                    {% endfor %}
+                    {% endif %}
                 </ul>
 
                 

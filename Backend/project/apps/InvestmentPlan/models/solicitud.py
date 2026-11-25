@@ -74,6 +74,7 @@ class InvestmentPlan(models.Model):
 
     clase_de_documento = models.CharField("Clase de Documento", blank=True, null=True)
     cargos_administrativos = models.JSONField("Cargos Administrativos", blank=True, null=True)
+    tipo_solicitud = models.CharField("Tipo de Solicitud", blank=True, null=True)
 
 
     

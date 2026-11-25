@@ -109,6 +109,25 @@
                     </select>
                 </div>
 
+                <!-- Tipo de Solicitud -->
+                <div class="col-md-6 col-lg-4">
+                    <label class="form-label-custom" for="tipo_solicitud">
+                        Tipo de Solicitud <span class="req">*</span>
+                    </label>
+                    <select class="form-control glass-select" id="tipo_solicitud" name="tipo_solicitud">
+                        <option value="">-- Seleccionar --</option>
+                        <option value="Nuevo Credito" {% if plan.tipo_solicitud == "Nuevo Credito" %}selected{% endif %}>
+                            Nuevo Crédito
+                        </option>
+                        <option value="Ampliación de Credito" {% if plan.tipo_solicitud == "Ampliación de Credito" %}selected{% endif %}>
+                            Ampliación de Crédito
+                        </option>
+                        <option value="Reestructuración de Credito" {% if plan.tipo_solicitud == "Reestructuración de Credito" %}selected{% endif %}>
+                            Reestructuración de Crédito
+                        </option>
+                    </select>
+                </div>
+
                 <!-- Tipo de Producto -->
                 <div class="col-md-6 col-lg-4">
                     <label class="form-label-custom" for="type_of_product_or_service">
@@ -218,6 +237,8 @@
                 </div>
             </div>
         </div>
+
+        
 
         <!-- ========================================== -->
         <!-- PANEL 2: SIMULADOR / PLAN DE PAGOS         -->
@@ -494,6 +515,44 @@
                         <i class="bi bi-shield-slash"></i>
                         <p class="fw-bold">No se han registrado garantías todavía.</p>
                         <small>Utilice el formulario superior para añadir al menos una garantía que cubra el monto del crédito.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ========================================== -->
+        <!-- PANEL: CARGOS ADMINISTRATIVOS              -->
+        <!-- ========================================== -->
+        <div class="glass-panel" id="panel_cargos_administrativos">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-icon-badge"><i class="bi bi-receipt"></i></span>
+                    Cargos Administrativos
+                </h2>
+                <span class="badge bg-dark rounded-pill px-3 py-1 fs-6 font-monospace" id="badge-cargos-total">
+                    Total: Q 0.00
+                </span>
+            </div>
+
+            <div class="row g-3">
+                <!-- Gastos Jurídicos -->
+                <div class="col-md-6">
+                    <label class="form-label-custom" for="cargo_gastos_juridicos">
+                        Gastos Jurídicos (Q)
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0 fw-bold text-muted">Q</span>
+                        <input type="number" step="0.01" min="0" class="form-control glass-input border-start-0" id="cargo_gastos_juridicos" name="gastos_juridicos" placeholder="0.00">
+                    </div>
+                </div>
+
+                <!-- Otros Gastos -->
+                <div class="col-md-6">
+                    <label class="form-label-custom" for="cargo_otros_gastos">
+                        Otros Gastos (Q)
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0 fw-bold text-muted">Q</span>
+                        <input type="number" step="0.01" min="0" class="form-control glass-input border-start-0" id="cargo_otros_gastos" name="otros_gastos" placeholder="0.00">
                     </div>
                 </div>
             </div>

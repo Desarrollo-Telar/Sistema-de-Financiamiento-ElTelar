@@ -36,7 +36,8 @@ class InvestmentPlanSerializer(serializers.ModelSerializer):
             'evaluacion_mercado',
             'sub_destino',
             'clase_de_documento',
-            'cargos_administrativos'
+            'cargos_administrativos',
+            'tipo_solicitud'
 
 
         ]

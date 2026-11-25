@@ -270,11 +270,28 @@ def generar_estado_cuenta_word(doc = None, id = None):
     tabla_totales = doc.add_table(rows=4, cols=2)
     tot_rows = tabla_totales.rows
 
+    
+
+    cargos = plan.cargos_administrativos or []
+    if isinstance(cargos, list) and len(cargos) > 0 and isinstance(cargos[0], dict):
+        cargo = cargos[0]
+    elif isinstance(cargos, dict):
+        cargo = cargos
+    else:
+        cargo = {}
+
+    gastos_juridicos = Decimal(str(cargo.get("Gastos Juridicos", 0) or 0))
+    otros_gastos = Decimal(str(cargo.get("Otros Gastos", 0) or 0))
+
+    total_cargos = gastos_juridicos + otros_gastos
+
+    liquido_recibir = Decimal(plan.total_value_of_the_product_or_service) - (Decimal (saldo_actual) + total_cargos)
+
     tot = [
         ("Saldo Anterior", f"Q{saldo_actual:,.2f}"),
-        ("Gastos jurídicos", "Q0.00"),
-        ("Otros Gastos", "Q0.00"),
-        ("Líquido a Recibir", f"Q{plan.total_value_of_the_product_or_service:,.2f}"),
+        ("Gastos jurídicos", f"Q {gastos_juridicos:,.2f}"),
+        ("Otros Gastos", f"Q{otros_gastos:,.2f}"),
+        ("Líquido a Recibir", f"Q{liquido_recibir:,.2f}"),
     ]
 
     for i, (campo, valor) in enumerate(tot):
