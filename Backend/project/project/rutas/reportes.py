@@ -17,12 +17,16 @@ urlpatterns_reports = [
     path('reporte/asesores/',login_required(ReporteAsesoresExcelView.as_view()),name='report_base_asesores'),
     path('reporte/clientes/',login_required(ReporteClientesExcelView.as_view()),name='report_clientes'),
     path('reporte/desembolso/<str:mes>/<str:anio>/',login_required(report_desmbolso),name='report_desmbolso'),
+    path('reporte/desembolso/<str:mes>/<str:anio>/',login_required(report_desmbolso_acreedor),name='report_desmbolso_acreedor'),
     path('reporte/desembolso_f/',login_required(ReporteDesembolsos.as_view()),name='report_desmbolso_f'),
     path('reporte/pagos/creditos/<str:anio>/<str:mes>/', login_required(report_pagos_generales),name='report_pagos_generales'),
     path('reporte/pagos/acreedores/<str:anio>/<str:mes>/', login_required(report_pagos_generales_acreedores),name='report_pagos_generales_acreedores'),
     path('reporte/pagos/seguros/<str:anio>/<str:mes>/', login_required(report_pagos_generales_seguros),name='report_pagos_generales_seguros'),
 
     path('reporte/creditos/',login_required(ReporteCreditos.as_view()),name='report_creditos_excel'),
+
+    path('reporte/acreedores/',login_required(ReporteAcreedores.as_view()),name='report_acreedores_excel'),
+    
     path('reporte/pagos/creditos/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(report_pagos),name='reporte_pagos_excel'),
     path('reporte/pagos/acreedores/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(report_pagos_acreedores),name='report_pagos_acreedores_excel'),
     path('reporte/pagos/seguros/<str:filtro_seleccionado>/<str:anio>/<str:mes>/<str:total>/',login_required(report_pagos_seguros),name='report_pagos_seguros_excel'),

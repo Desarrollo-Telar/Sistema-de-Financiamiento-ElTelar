@@ -12,7 +12,7 @@ from .boletas import report_base_boletas, ReporteBaseBoletasExcelView
 
 from .clientes import report_clientes, ReporteClientesExcelView
 
-from .desembolso import report_desmbolso, ReporteDesembolsos
+from .desembolso import report_desmbolso, ReporteDesembolsos, report_desmbolso_acreedor
 
 from .asesores import ReporteAsesoresExcelView
 
@@ -25,3 +25,5 @@ from .cierre_diario.generando_reporte import CierreDiario
 from .cobranza import ReporteCobranza
 
 from .descuento import ReporteDescuentosExcelView
+
+from .acreedores_r import ReporteAcreedores
