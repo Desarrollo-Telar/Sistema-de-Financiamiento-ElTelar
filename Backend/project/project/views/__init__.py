@@ -24,5 +24,8 @@ from .documentos_views import (
     descargar_resolucion_ejemplo,
     descargar_resolucion_credito,
     descargar_resolucion_solicitud,
+    descargar_acta_ejemplo,
+    descargar_acta_credito,
+    descargar_acta_solicitud,
     panel_descarga_pagare,
 )

@@ -16,11 +16,13 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
 
 from .helpers import (
+    FECHA_NACIMIENTO_EDGAR_ALVARADO,
     numero_a_letras,
     formato_quetzales,
     monto_a_letras_quetzales,
     cui_dpi_a_letras,
     edad_a_letras,
+    edad_notarial_desde_fecha,
     fecha_a_texto_notarial,
     resolver_solicitud_o_credito,
     construir_texto_garantia_item,
@@ -33,6 +35,7 @@ def obtener_datos_ejemplo_deudor_directo() -> dict:
     Retorna un diccionario con los datos de ejemplo exactos de la plantilla
     proporcionada (CANDY CLARAMARÍA CANTORAL CAAL DE PAPA).
     """
+    rep_edad_num, rep_edad_letras = edad_notarial_desde_fecha(FECHA_NACIMIENTO_EDGAR_ALVARADO)
     return {
         "ciudad": "Cobán",
         "departamento": "Alta Verapaz",
@@ -49,7 +52,8 @@ def obtener_datos_ejemplo_deudor_directo() -> dict:
         "deudor_direccion": "cero calle B, zona cuatro, Barrio Chamché, de la jurisdicción municipal de Tactic del departamento de Alta Verapaz",
         # Representante Legal El Telar
         "rep_legal_nombre": "EDGAR ARMANDO ALVARADO BERMÚDEZ",
-        "rep_legal_edad_letras": "cuarenta y un",
+        "rep_legal_edad_letras": rep_edad_letras,
+        "rep_legal_edad_num": str(rep_edad_num),
         "rep_legal_estado_civil": "soltero",
         "rep_legal_nacionalidad": "guatemalteco",
         "rep_legal_profesion": "Ingeniero Civil",

@@ -24,7 +24,11 @@ from scripts.documentos import (
     extraer_datos_contrato_con_fiador_desde_solicitud,
     obtener_datos_ejemplo_con_fiador,
     generar_resolucion_word,
-    extraer_datos_resolucion_desde_solicitud
+    extraer_datos_resolucion_desde_solicitud,
+    obtener_datos_ejemplo_resolucion,
+    generar_acta_word,
+    extraer_datos_acta_desde_solicitud,
+    obtener_datos_ejemplo_acta,
 )
 
 # MIME type oficial para archivos Microsoft Word .docx
@@ -359,6 +363,87 @@ def descargar_resolucion_credito(request, credit_id):
 descargar_resolucion_solicitud = descargar_resolucion_credito
 
 
+def _extraer_overrides_acta_request(request) -> dict:
+    """Extrae parámetros opcionales desde query string para personalizar el Acta Notarial."""
+    mapa_params = {
+        "ciudad": "ciudad",
+        "departamento": "departamento",
+        "hora": "hora",
+        "fecha": "fecha",
+        "notario": "notario_nombre",
+        "colegiado": "notario_colegiado_texto",
+        "oficina": "notario_oficina",
+        "req1": "req1_nombre",
+        "req2": "req2_nombre",
+        "cheque": "cheque_numero",
+        "cuenta": "cuenta_numero",
+        "cuenta_nombre": "cuenta_nombre",
+        "cuenta_nombre_legal": "cuenta_nombre_legal",
+        "banco": "banco_nombre",
+    }
+    overrides = {}
+    for q_key, d_key in mapa_params.items():
+        val = request.GET.get(q_key)
+        if val:
+            overrides[d_key] = val
+
+    monto_raw = request.GET.get("monto")
+    if monto_raw:
+        try:
+            overrides["monto"] = float(monto_raw)
+        except ValueError:
+            pass
+    return overrides
+
+
+@require_GET
+def descargar_acta_ejemplo(request):
+    """
+    Genera y descarga el Acta Notarial de Entrega de Cheque (.docx) de ejemplo.
+    Soporta ?ejemplo=1 (femenino) o ?ejemplo=2 (masculino, por defecto).
+    """
+    ejemplo_num = 2
+    if request.GET.get("ejemplo") == "1":
+        ejemplo_num = 1
+
+    datos = obtener_datos_ejemplo_acta(ejemplo=ejemplo_num)
+    overrides = _extraer_overrides_acta_request(request)
+    if overrides:
+        datos.update(overrides)
+
+    buffer = generar_acta_word(datos)
+    nombre_archivo = f"acta_notarial_ejemplo_{ejemplo_num}.docx"
+    response = HttpResponse(buffer.getvalue(), content_type=DOCX_MIME_TYPE)
+    response["Content-Disposition"] = f'attachment; filename="{nombre_archivo}"'
+    response["Content-Length"] = len(buffer.getvalue())
+    return response
+
+
+@require_GET
+def descargar_acta_credito(request, credit_id):
+    """
+    Genera y descarga el Acta Notarial de Entrega de Cheque (.docx)
+    vinculada a una Solicitud (InvestmentPlan) o Crédito real en el sistema.
+    """
+    credito = _resolver_objeto_credito_o_404(credit_id)
+    overrides = _extraer_overrides_acta_request(request)
+
+    datos = extraer_datos_acta_desde_solicitud(credito, overrides=overrides or None)
+    buffer = generar_acta_word(datos)
+
+    codigo_raw = getattr(credito, "investment_plan_code", None) or getattr(credito, "codigo_credito", None) or f"id_{credito.id}"
+    codigo_seguro = str(codigo_raw).replace("/", "-").replace(" ", "_")
+    nombre_archivo = f"acta_notarial_{codigo_seguro}.docx"
+
+    response = HttpResponse(buffer.getvalue(), content_type=DOCX_MIME_TYPE)
+    response["Content-Disposition"] = f'attachment; filename="{nombre_archivo}"'
+    response["Content-Length"] = len(buffer.getvalue())
+    return response
+
+
+descargar_acta_solicitud = descargar_acta_credito
+
+
 def panel_descarga_pagare(request):
     """
     Página web interactiva con botones y enlaces directos para descargar
@@ -469,6 +554,25 @@ def panel_descarga_pagare(request):
                         </div>
                     </div>
 
+                    <!-- DOCUMENTO 5: ACTA NOTARIAL DE ENTREGA DE CHEQUE -->
+                    <div class="doc-card">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <span class="badge bg-danger badge-tag">ACTA NOTARIAL</span>
+                                <h5 class="mt-1 mb-1 font-weight-bold text-dark">5. Acta Notarial (Entrega de Cheque y Compromiso de Pago)</h5>
+                                <div class="text-muted small">Acta notarial con comparecencia, identificación de cheque y cuenta en letras, aclaración de titularidad, juramento solemne y cierre notarial.</div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="/documentos/acta/ejemplo/?ejemplo=2" class="btn btn-download-primary btn-sm">
+                                    📥 Ejemplo 1 (.docx)
+                                </a>
+                                <a href="/documentos/acta/ejemplo/?ejemplo=1" class="btn btn-outline-secondary btn-sm">
+                                    📥 Ejemplo 2 (.docx)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <hr class="my-4">
 
                     <!-- Descargar por Crédito del Sistema -->
@@ -494,7 +598,8 @@ def panel_descarga_pagare(request):
                             <li class="mb-1">🔹 <strong>Pagaré por ID (Solicitud/Crédito):</strong> <code>/documentos/pagare/&lt;credit_id&gt;/</code></li>
                             <li class="mb-1">🔹 <strong>Contrato Directo por ID (Solicitud/Crédito):</strong> <code>/documentos/contrato/directo/&lt;credit_id&gt;/</code></li>
                             <li class="mb-1">🔹 <strong>Contrato con Fiador(es) por ID (Solicitud/Crédito):</strong> <code>/documentos/contrato/fiador/&lt;credit_id&gt;/</code></li>
-                            <li>🔹 <strong>Resolución Comité por ID (Solicitud/Crédito):</strong> <code>/documentos/resolucion/&lt;credit_id&gt;/</code></li>
+                            <li class="mb-1">🔹 <strong>Resolución Comité por ID (Solicitud/Crédito):</strong> <code>/documentos/resolucion/&lt;credit_id&gt;/</code></li>
+                            <li>🔹 <strong>Acta Notarial por ID (Solicitud/Crédito):</strong> <code>/documentos/acta/&lt;credit_id&gt;/</code></li>
                         </ul>
                     </div>
                 </div>

@@ -31,6 +31,35 @@ MESES = [
     'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
 ]
 
+# Fechas de nacimiento oficiales para cálculo dinámico de edad
+FECHA_NACIMIENTO_EDGAR_ALVARADO = date(1985, 2, 15)
+FECHA_NACIMIENTO_GRECIA_RODRIGUEZ = date(1987, 12, 14)
+
+
+def calcular_edad_desde_fecha(fecha_nacimiento: date, fecha_referencia: date | datetime | str | None = None) -> int:
+    """Calcula la edad cumplida exacta a la fecha de referencia (por defecto la fecha actual)."""
+    if fecha_referencia is None:
+        ref = date.today()
+    elif isinstance(fecha_referencia, datetime):
+        ref = fecha_referencia.date()
+    elif isinstance(fecha_referencia, date):
+        ref = fecha_referencia
+    elif isinstance(fecha_referencia, str):
+        try:
+            ref = datetime.strptime(fecha_referencia[:10], "%Y-%m-%d").date()
+        except Exception:
+            ref = date.today()
+    else:
+        ref = date.today()
+
+    return ref.year - fecha_nacimiento.year - ((ref.month, ref.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
+
+
+def edad_notarial_desde_fecha(fecha_nacimiento: date, fecha_referencia: date | datetime | str | None = None) -> tuple[int, str]:
+    """Retorna (edad_num, edad_letras) calculados dinámicamente desde la fecha de nacimiento."""
+    edad_num = calcular_edad_desde_fecha(fecha_nacimiento, fecha_referencia=fecha_referencia)
+    return (edad_num, edad_a_letras(edad_num))
+
 
 def _obtener_acta_solicitud(solicitud) -> tuple[str, object]:
     """Obtiene (numero_acta, fecha_acta) desde DetalleActa / Acta si la solicitud está vinculada a un acta."""
@@ -1112,6 +1141,8 @@ def extraer_datos_base_contrato_desde_solicitud(solicitud) -> dict:
     else:
         multa_mora_pct = "10"
 
+    rep_edad_num, rep_edad_letras = edad_notarial_desde_fecha(FECHA_NACIMIENTO_EDGAR_ALVARADO, f_ini)
+
     return {
         "ciudad": ciudad,
         "departamento": departamento,
@@ -1129,8 +1160,8 @@ def extraer_datos_base_contrato_desde_solicitud(solicitud) -> dict:
         "deudor_genero": deudor["genero"],
         # Representante Legal El Telar
         "rep_legal_nombre": "EDGAR ARMANDO ALVARADO BERMÚDEZ",
-        "rep_legal_edad_letras": "cuarenta y un",
-        "rep_legal_edad_num": "41",
+        "rep_legal_edad_letras": rep_edad_letras,
+        "rep_legal_edad_num": str(rep_edad_num),
         "rep_legal_estado_civil": "soltero",
         "rep_legal_nacionalidad": "guatemalteco",
         "rep_legal_profesion": "Ingeniero Civil",

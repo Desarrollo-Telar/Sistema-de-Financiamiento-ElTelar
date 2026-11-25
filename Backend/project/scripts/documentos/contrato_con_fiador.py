@@ -17,11 +17,13 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
 
 from .helpers import (
+    FECHA_NACIMIENTO_EDGAR_ALVARADO,
     numero_a_letras,
     formato_quetzales,
     monto_a_letras_quetzales,
     cui_dpi_a_letras,
     edad_a_letras,
+    edad_notarial_desde_fecha,
     fecha_a_texto_notarial,
     ordinal,
     resolver_solicitud_o_credito,
@@ -129,6 +131,7 @@ def obtener_datos_ejemplo_con_fiador(cantidad_fiadores: int = 1) -> dict:
 
     cant = max(1, min(cantidad_fiadores, len(fiadores_catalogo)))
     lista_fiadores_elegidos = fiadores_catalogo[:cant]
+    rep_edad_num, rep_edad_letras = edad_notarial_desde_fecha(FECHA_NACIMIENTO_EDGAR_ALVARADO)
 
     return {
         "ciudad": "Cobán",
@@ -161,8 +164,8 @@ def obtener_datos_ejemplo_con_fiador(cantidad_fiadores: int = 1) -> dict:
         "garantia_texto": lista_fiadores_elegidos[0]["garantia_texto"],
         # Representante Legal El Telar
         "rep_legal_nombre": "EDGAR ARMANDO ALVARADO BERMÚDEZ",
-        "rep_legal_edad_letras": "cuarenta y un",
-        "rep_legal_edad_num": "41",
+        "rep_legal_edad_letras": rep_edad_letras,
+        "rep_legal_edad_num": str(rep_edad_num),
         "rep_legal_estado_civil": "soltero",
         "rep_legal_nacionalidad": "guatemalteco",
         "rep_legal_profesion": "Ingeniero Civil",
@@ -469,7 +472,7 @@ def generar_contrato_con_fiador_word(datos_entrada: dict | None = None, output_t
     
     p_intro.add_run(f"{datos['rep_legal_nombre']}, ").bold = True
 
-    p_intro.add_run(f"de {datos['rep_legal_edad_letras']} ({datos.get('rep_legal_edad_num', '41')}) "
+    p_intro.add_run(f"de {datos['rep_legal_edad_letras']} ({datos.get('rep_legal_edad_num') or edad_notarial_desde_fecha(FECHA_NACIMIENTO_EDGAR_ALVARADO)[0]}) "
         f"años de edad, {datos['rep_legal_estado_civil']}, {datos['rep_legal_nacionalidad']}, {datos['rep_legal_profesion']}, {datos['rep_legal_domicilio']}, "
         "me identifico con el Documento Personal de Identificación –DPI- Código Único de Identificación número "
         f"{datos['rep_legal_cui_letras']} ({datos['rep_legal_dpi']}) ; extendido por el Registro Nacional de las Personas –RENAP- "

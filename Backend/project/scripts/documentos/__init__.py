@@ -37,7 +37,21 @@ from .resolucion import (
     extraer_datos_resolucion_desde_solicitud,
     obtener_datos_ejemplo_resolucion,
 )
+from .acta import (
+    generar_acta_word,
+    generar_acta_desde_solicitud,
+    generar_acta_desde_credito,
+    extraer_datos_acta_desde_solicitud,
+    obtener_datos_ejemplo_acta,
+    hora_a_texto_notarial,
+    cui_dpi_a_letras_acta,
+    digitos_a_letras_minusculas,
+)
 from .helpers import (
+    FECHA_NACIMIENTO_EDGAR_ALVARADO,
+    FECHA_NACIMIENTO_GRECIA_RODRIGUEZ,
+    calcular_edad_desde_fecha,
+    edad_notarial_desde_fecha,
     monto_a_letras_quetzales,
     cui_dpi_a_letras,
     edad_a_letras,
@@ -88,7 +102,20 @@ __all__ = [
     "generar_resolucion_desde_credito",
     "extraer_datos_resolucion_desde_solicitud",
     "obtener_datos_ejemplo_resolucion",
+    # Acta Notarial (Entrega de Cheque y Compromiso de Pago)
+    "generar_acta_word",
+    "generar_acta_desde_solicitud",
+    "generar_acta_desde_credito",
+    "extraer_datos_acta_desde_solicitud",
+    "obtener_datos_ejemplo_acta",
+    "hora_a_texto_notarial",
+    "cui_dpi_a_letras_acta",
+    "digitos_a_letras_minusculas",
     # Helpers
+    "FECHA_NACIMIENTO_EDGAR_ALVARADO",
+    "FECHA_NACIMIENTO_GRECIA_RODRIGUEZ",
+    "calcular_edad_desde_fecha",
+    "edad_notarial_desde_fecha",
     "monto_a_letras_quetzales",
     "cui_dpi_a_letras",
     "edad_a_letras",

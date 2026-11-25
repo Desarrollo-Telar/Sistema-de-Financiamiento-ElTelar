@@ -955,7 +955,11 @@ function generarHTMLCamposEspecificacion(tipo, prefix = 'json_', values = {}) {
         return `
             <div class="col-md-4">
                 <label class="form-label-custom">No. de Cheque / Pagaré</label>
-                <input type="text" id="${prefix}no_cheque" class="form-control glass-input" placeholder="Ej. 987654" value="${values.noCheque || ''}">
+                <input type="text" id="${prefix}no_cheque" class="form-control glass-input" placeholder="Ej. 00000388" value="${values.noCheque || ''}">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label-custom">No. de Cuenta</label>
+                <input type="text" id="${prefix}no_cuenta" class="form-control glass-input" placeholder="Ej. 3197005470" value="${values.noCuenta || ''}">
             </div>
             <div class="col-md-4">
                 <label class="form-label-custom">Nombre de la Cuenta</label>
@@ -965,11 +969,11 @@ function generarHTMLCamposEspecificacion(tipo, prefix = 'json_', values = {}) {
                 <label class="form-label-custom">Banco Emisor</label>
                 <input type="text" id="${prefix}banco" class="form-control glass-input" placeholder="Ej. Banco Industrial, Banrural..." value="${values.Banco || ''}">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label-custom">Cheque Girado A</label>
                 <input type="text" id="${prefix}girado_a" class="form-control glass-input" value="${values.Cheque_girado_a || 'INVERSIONES INTEGRALES EL TELAR S.A.'}">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label-custom">Monto del Cheque (Q)</label>
                 <input type="number" step="0.01" id="${prefix}monto_cheque" class="form-control glass-input" placeholder="0.00" value="${values.Monto_cheque || ''}">
             </div>
@@ -1089,6 +1093,7 @@ function extraerEspecificacionesGenerico(tipo, prefix = 'json_') {
     } else if (tipo === 'CHEQUE / PAGARE') {
         especificaciones = {
             noCheque: document.getElementById(`${prefix}no_cheque`)?.value || "",
+            noCuenta: document.getElementById(`${prefix}no_cuenta`)?.value || "",
             NombreCuenta: document.getElementById(`${prefix}nombre_cuenta`)?.value || "",
             Banco: document.getElementById(`${prefix}banco`)?.value || "",
             Cheque_girado_a: document.getElementById(`${prefix}girado_a`)?.value || "",

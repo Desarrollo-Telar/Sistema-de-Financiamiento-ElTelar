@@ -15,6 +15,20 @@ from num2words import num2words
 
 EMPRESA = 'INVERSIONES INTEGRALES EL TELAR, SOCIEDAD ANÓNIMA'
 REPRESENTANTE = 'EDGAR ARMANDO ALVARADO BERMÚDEZ'
+FECHA_NACIMIENTO_REPRESENTANTE = date(1985, 2, 15)
+
+
+def edad_representante_en_letras(fecha_ref=None):
+    hoy = fecha_ref or date.today()
+    edad = hoy.year - FECHA_NACIMIENTO_REPRESENTANTE.year - (
+        (hoy.month, hoy.day) < (FECHA_NACIMIENTO_REPRESENTANTE.month, FECHA_NACIMIENTO_REPRESENTANTE.day)
+    )
+    texto_edad = num2words(edad, lang='es').lower()
+    if edad > 1 and texto_edad.endswith('veintiuno'):
+        texto_edad = texto_edad[:-len('veintiuno')] + 'veintiún'
+    elif edad > 1 and texto_edad.endswith(' uno'):
+        texto_edad = texto_edad[:-len('uno')] + 'un'
+    return texto_edad
 
 
 def campo(obj, nombre, defecto=''):
@@ -237,7 +251,7 @@ def texto(credito, garantias):
     for fiador in fiadores_list:
         pagina_1.append(datos_personales(fiador))
     pagina_1.append(
-        f'Yo, {REPRESENTANTE}, de cuarenta y un años de edad, '
+        f'Yo, {REPRESENTANTE}, de {edad_representante_en_letras()} años de edad, '
         'soltero, guatemalteco, Ingeniero Civil, de este domicilio, me identifico '
         'con el Documento Personal de Identificación -DPI- Código Único de '
         'Identificación número un mil ochocientos treinta y siete espacio once mil '

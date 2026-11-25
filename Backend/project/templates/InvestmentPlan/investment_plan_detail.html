@@ -27,6 +27,10 @@
                 <a href="{% url 'descargar_pagare_credito' plan.id  %}"  class="glass-btn-primary">
                     <i class="bi bi-file-earmark-text me-1"></i>Pagaré
                 </a>
+                {% elif plan.tipo_documento == 'ACTA' %}
+                <a href="{% url 'descargar_acta_credito' plan.id %}" class="glass-btn-primary">
+                    <i class="bi bi-file-earmark-text me-1"></i> Acta Notarial
+                </a>
                 {% elif plan.tipo_documento is not None %}
                 {% if fiadores %}
                 <a href="{% url 'descargar_contrato_fiador_credito' plan.id %}"  class="glass-btn-primary">
